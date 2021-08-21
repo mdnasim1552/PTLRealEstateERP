@@ -9,6 +9,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
+            //Comment from parvez branch
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 
