@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col">
                         <div class="card card-fluid" style="min-height: 550px;">
                             <div class="card-body">
                                 <div class="row mb-2">
