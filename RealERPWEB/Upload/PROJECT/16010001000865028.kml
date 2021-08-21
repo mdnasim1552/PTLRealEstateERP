@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>CS-Map</name>
+    <Style id="poly-000000-1200-77-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-1200-77-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-1200-84-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>54000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-1200-84-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>54000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-1200-84">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1200-84-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1200-84-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-424242-1200-77-normal">
+      <LineStyle>
+        <color>ff424242</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d424242</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-424242-1200-77-highlight">
+      <LineStyle>
+        <color>ff424242</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d424242</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-424242-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-424242-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-424242-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>CS-16306</name>
+      <description><![CDATA[CS Dag: 16306<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>16306.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4694491,23.8342077,0
+              90.4694436,23.834127,0
+              90.4695857,23.8341596,0
+              90.4695757,23.8342012,0
+              90.4695461,23.8342006,0
+              90.4694491,23.8342077,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-16308</name>
+      <description><![CDATA[CS Dag: 16308<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>16308.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4695757,23.8342012,0
+              90.4695857,23.8341596,0
+              90.4696347,23.8341702,0
+              90.4696209,23.8342049,0
+              90.4695757,23.8342012,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-16307</name>
+      <description><![CDATA[CS Dag: 16307<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>16307.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4695014,23.834204,0
+              90.4695397,23.8342003,0
+              90.4695718,23.8342009,0
+              90.4696216,23.8342049,0
+              90.4696054,23.8342855,0
+              90.4695973,23.8342819,0
+              90.4695356,23.8342708,0
+              90.4695035,23.834269,0
+              90.4695041,23.8342395,0
+              90.4695014,23.834204,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14086</name>
+      <description><![CDATA[CS Dag: 14086<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14086.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4695035,23.834269,0
+              90.4695363,23.8342711,0
+              90.469598,23.8342822,0
+              90.4696061,23.8342858,0
+              90.4696057,23.8343104,0
+              90.4695996,23.8343398,0
+              90.4695832,23.8343419,0
+              90.4694984,23.834341,0
+              90.4695035,23.834269,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14090</name>
+      <description><![CDATA[CS Dag: 14090<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14090.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4693691,23.8341682,0
+              90.4693703,23.8341795,0
+              90.4693733,23.8342203,0
+              90.4693711,23.8342375,0
+              90.4693684,23.8342712,0
+              90.4693657,23.8342854,0
+              90.4693577,23.8343228,0
+              90.4692886,23.8343259,0
+              90.4692705,23.8343038,0
+              90.4692692,23.8342535,0
+              90.4692678,23.8341737,0
+              90.4693691,23.8341682,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-16309</name>
+      <description><![CDATA[CS Dag: 16309<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>16309.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4696209,23.8342049,0
+              90.4696347,23.8341702,0
+              90.4697044,23.8341866,0
+              90.4696876,23.8342182,0
+              90.4696745,23.8342148,0
+              90.4696544,23.8342105,0
+              90.4696209,23.8342049,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14040</name>
+      <description><![CDATA[CS Dag: 14040<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-424242-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14040.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4692883,23.8343259,0
+              90.4693574,23.8343228,0
+              90.4693511,23.8343983,0
+              90.4692841,23.8343885,0
+              90.4692883,23.8343259,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14085</name>
+      <description><![CDATA[CS Dag: 14085<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14085.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4695996,23.8343398,0
+              90.4696108,23.834411,0
+              90.4695605,23.8344257,0
+              90.4695384,23.8344269,0
+              90.4695028,23.83443,0
+              90.469472,23.8344416,0
+              90.4694103,23.8344447,0
+              90.4693882,23.8344441,0
+              90.4693774,23.8345054,0
+              90.4693318,23.8344962,0
+              90.4693426,23.8344447,0
+              90.4693426,23.8344349,0
+              90.4693514,23.8343998,0
+              90.4693577,23.8343243,0
+              90.469368,23.8342809,0
+              90.4693694,23.8342662,0
+              90.4693714,23.8342349,0
+              90.4693733,23.8342218,0
+              90.4694156,23.8342147,0
+              90.4694491,23.8342077,0
+              90.4695014,23.834204,0
+              90.4695041,23.8342395,0
+              90.4695038,23.8342739,0
+              90.4694977,23.8343407,0
+              90.4695996,23.8343398,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-16319</name>
+      <description><![CDATA[CS Dag: 16319<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-84</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>16319.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.469373,23.8342215,0
+              90.4693713,23.8342,0
+              90.46937,23.8341807,0
+              90.469367,23.8341601,0
+              90.4693623,23.8341393,0
+              90.4693569,23.8341178,0
+              90.4694436,23.8341273,0
+              90.4694491,23.834208,0
+              90.4694117,23.834216,0
+              90.469373,23.8342215,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14084</name>
+      <description><![CDATA[CS Dag: 14084<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14084.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.46947,23.8344398,0
+              90.4694698,23.8344515,0
+              90.4694638,23.8344981,0
+              90.4694598,23.834522,0
+              90.4694584,23.8345281,0
+              90.4694319,23.8345195,0
+              90.4694229,23.8345177,0
+              90.4694159,23.8345143,0
+              90.4693754,23.8345036,0
+              90.4693862,23.8344423,0
+              90.4694083,23.8344429,0
+              90.4694326,23.8344417,0
+              90.46947,23.8344398,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14083</name>
+      <description><![CDATA[CS Dag: 14083<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14083.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4695008,23.8344282,0
+              90.4694849,23.8345362,0
+              90.4694584,23.8345281,0
+              90.4694648,23.834489,0
+              90.4694691,23.8344583,0
+              90.4694698,23.8344515,0
+              90.46947,23.8344398,0
+              90.4695008,23.8344282,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-16310</name>
+      <description><![CDATA[CS Dag: 16310<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>16310.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4697044,23.8341866,0
+              90.469748,23.8341956,0
+              90.4697621,23.8342078,0
+              90.4697694,23.8342109,0
+              90.4697922,23.8342213,0
+              90.4697909,23.8342311,0
+              90.4697828,23.834233,0
+              90.4697748,23.8342324,0
+              90.4697667,23.834233,0
+              90.4697607,23.8342367,0
+              90.4697574,23.834241,0
+              90.4697574,23.8342465,0
+              90.4697553,23.8342636,0
+              90.4697285,23.8342587,0
+              90.4697144,23.8342606,0
+              90.4697004,23.834241,0
+              90.4696977,23.8342336,0
+              90.4696876,23.8342182,0
+              90.4697044,23.8341866,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14609</name>
+      <description><![CDATA[CS Dag: 14609<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14609.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4697922,23.8342213,0
+              90.4698345,23.8342311,0
+              90.4698338,23.8342968,0
+              90.4698358,23.8343311,0
+              90.469807,23.8343311,0
+              90.4697627,23.8343238,0
+              90.4697339,23.8343146,0
+              90.4697339,23.8342955,0
+              90.4697393,23.834282,0
+              90.4697553,23.8342636,0
+              90.4697574,23.8342465,0
+              90.4697574,23.834241,0
+              90.4697607,23.8342367,0
+              90.4697667,23.834233,0
+              90.4697748,23.8342324,0
+              90.4697909,23.8342311,0
+              90.4697922,23.8342213,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14610</name>
+      <description><![CDATA[CS Dag: 14610<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14610.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4698345,23.8342311,0
+              90.4698962,23.83424,0
+              90.4699458,23.8342449,0
+              90.4699465,23.8342897,0
+              90.4699491,23.8343057,0
+              90.4698358,23.8343311,0
+              90.4698338,23.8342928,0
+              90.4698344,23.8342753,0
+              90.4698338,23.8342596,0
+              90.4698345,23.8342311,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14087</name>
+      <description><![CDATA[CS Dag: 14087<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14087.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4697781,23.834327,0
+              90.4697808,23.8343816,0
+              90.4697797,23.8343939,0
+              90.4697821,23.8344215,0
+              90.4697848,23.834454,0
+              90.4697486,23.8344473,0
+              90.4697217,23.8344436,0
+              90.4696641,23.8344307,0
+              90.4696088,23.8344092,0
+              90.4695983,23.8343427,0
+              90.469605,23.8343101,0
+              90.4696054,23.8342855,0
+              90.4696209,23.8342049,0
+              90.4696544,23.8342105,0
+              90.4696876,23.8342182,0
+              90.4696977,23.8342336,0
+              90.4697004,23.834241,0
+              90.4697144,23.8342606,0
+              90.4697285,23.8342587,0
+              90.4697553,23.8342636,0
+              90.4697393,23.834282,0
+              90.4697339,23.8342955,0
+              90.4697339,23.8343146,0
+              90.4697627,23.8343238,0
+              90.4697781,23.834327,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14082</name>
+      <description><![CDATA[CS Dag: 14082<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14082.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4694921,23.8344862,0
+              90.4695008,23.8344282,0
+              90.4695585,23.8344239,0
+              90.4696088,23.8344092,0
+              90.4696641,23.8344307,0
+              90.4696825,23.8344353,0
+              90.4697046,23.8344402,0
+              90.4697395,23.8344464,0
+              90.4697087,23.8345114,0
+              90.4695048,23.8344868,0
+              90.4694921,23.8344862,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14608</name>
+      <description><![CDATA[CS Dag: 14608<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14608.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4699491,23.8343057,0
+              90.4699647,23.8343303,0
+              90.4699405,23.8344751,0
+              90.4698963,23.83448,0
+              90.4698493,23.8344702,0
+              90.4698091,23.8344646,0
+              90.4697848,23.834454,0
+              90.4697797,23.8343939,0
+              90.4697808,23.8343816,0
+              90.4697796,23.8343469,0
+              90.4697781,23.834327,0
+              90.469807,23.8343311,0
+              90.4698358,23.8343311,0
+              90.4699491,23.8343057,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14076</name>
+      <description><![CDATA[CS Dag: 14076<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14076.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4694849,23.8345362,0
+              90.4695361,23.8345538,0
+              90.4695233,23.8345973,0
+              90.4695153,23.8346231,0
+              90.4693973,23.83462,0
+              90.4692873,23.8346194,0
+              90.4692524,23.8346206,0
+              90.4692484,23.8345918,0
+              90.4692424,23.834574,0
+              90.4692417,23.8345642,0
+              90.4692464,23.8345525,0
+              90.4692544,23.8345157,0
+              90.4692585,23.834501,0
+              90.4692772,23.8344906,0
+              90.4693298,23.8344944,0
+              90.4693754,23.8345036,0
+              90.4694159,23.8345143,0
+              90.4694229,23.8345177,0
+              90.4694382,23.8345213,0
+              90.4694849,23.8345362,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14081</name>
+      <description><![CDATA[CS Dag: 14081<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14081.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4697087,23.8345114,0
+              90.4696946,23.8345396,0
+              90.4696678,23.8345426,0
+              90.4696269,23.8345481,0
+              90.4696034,23.8346395,0
+              90.4695233,23.8345973,0
+              90.4695361,23.8345538,0
+              90.4694849,23.8345362,0
+              90.4694921,23.8344862,0
+              90.4695048,23.8344868,0
+              90.4695357,23.8344899,0
+              90.4697087,23.8345114,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14080</name>
+      <description><![CDATA[CS Dag: 14080<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14080.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4697773,23.8344525,0
+              90.4697257,23.8345632,0
+              90.469715,23.834584,0
+              90.4696224,23.8345644,0
+              90.4696269,23.8345481,0
+              90.4696946,23.8345396,0
+              90.4697395,23.8344464,0
+              90.4697773,23.8344525,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14078</name>
+      <description><![CDATA[CS Dag: 14078<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14078.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4696034,23.8346395,0
+              90.4696224,23.8345644,0
+              90.469715,23.834584,0
+              90.4696908,23.8346843,0
+              90.4696034,23.8346395,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14607</name>
+      <description><![CDATA[CS Dag: 14607<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14607.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4698963,23.83448,0
+              90.469889,23.8345195,0
+              90.4698427,23.8345097,0
+              90.4698493,23.8344702,0
+              90.4698963,23.83448,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14078</name>
+      <description><![CDATA[CS Dag: 14079<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14079.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4696908,23.8346843,0
+              90.469715,23.834584,0
+              90.4697569,23.8344968,0
+              90.4697773,23.8344525,0
+              90.4698031,23.8344625,0
+              90.4698493,23.8344702,0
+              90.4698427,23.8345097,0
+              90.469889,23.8345195,0
+              90.4698025,23.8347354,0
+              90.4697823,23.8347262,0
+              90.4696908,23.8346843,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14606</name>
+      <description><![CDATA[CS Dag: 14606<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14606.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4699405,23.8344751,0
+              90.4699822,23.8344936,0
+              90.4699735,23.8345329,0
+              90.4699507,23.834574,0
+              90.4699286,23.8346224,0
+              90.4699125,23.8346519,0
+              90.4698984,23.8346899,0
+              90.4698857,23.8347199,0
+              90.469879,23.8347331,0
+              90.4698498,23.8347267,0
+              90.4698025,23.8347354,0
+              90.469889,23.8345195,0
+              90.4698963,23.83448,0
+              90.4699405,23.8344751,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14077</name>
+      <description><![CDATA[CS Dag: 14077<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14077.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4694586,23.8346222,0
+              90.4695153,23.8346231,0
+              90.4695233,23.8345973,0
+              90.4697004,23.8346897,0
+              90.469695,23.8347118,0
+              90.4694549,23.8347179,0
+              90.4694586,23.8346222,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14605</name>
+      <description><![CDATA[CS Dag: 14605<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14605.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4699822,23.8344936,0
+              90.4700624,23.8345164,0
+              90.4700114,23.8346537,0
+              90.4699286,23.8346224,0
+              90.4699735,23.8345329,0
+              90.4699822,23.8344936,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14604</name>
+      <description><![CDATA[CS Dag: 14604<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14604.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4700114,23.8346537,0
+              90.4699825,23.8347196,0
+              90.4699724,23.834735,0
+              90.4699617,23.8347595,0
+              90.4699403,23.8347527,0
+              90.4699322,23.8347527,0
+              90.469879,23.8347331,0
+              90.4699125,23.8346519,0
+              90.4699286,23.8346224,0
+              90.4700114,23.8346537,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+    <Placemark>
+      <name>CS-14075</name>
+      <description><![CDATA[CS Dag: 14075<br>Khatian No: <br>Owner Name: <br>Land Area: <br>description: ]]></description>
+      <styleUrl>#poly-000000-1200-77</styleUrl>
+      <ExtendedData>
+        <Data name="CS Dag">
+          <value>14075.0</value>
+        </Data>
+        <Data name="Khatian No">
+          <value/>
+        </Data>
+        <Data name="Owner Name">
+          <value/>
+        </Data>
+        <Data name="Land Area">
+          <value/>
+        </Data>
+        <Data name="description">
+          <value/>
+        </Data>
+      </ExtendedData>
+      <Polygon>
+        <outerBoundaryIs>
+          <LinearRing>
+            <tessellate>1</tessellate>
+            <coordinates>
+              90.4692524,23.8346206,0
+              90.4692991,23.8346207,0
+              90.4693622,23.8346195,0
+              90.4694586,23.8346222,0
+              90.4694549,23.8347179,0
+              90.4694198,23.834725,0
+              90.4693729,23.8347262,0
+              90.46933,23.834725,0
+              90.4692575,23.834725,0
+              90.4692602,23.8347004,0
+              90.4692549,23.8346796,0
+              90.4692549,23.8346587,0
+              90.4692524,23.8346206,0
+            </coordinates>
+          </LinearRing>
+        </outerBoundaryIs>
+      </Polygon>
+    </Placemark>
+  </Document>
+</kml>

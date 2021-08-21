@@ -1,0 +1,441 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptCrmNeedBase.aspx.cs" Inherits="RealERPWEB.F_21_MKT.RptCrmNeedBase" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+
+
+    <style>
+        .tblborder {
+            border: none;
+        }
+
+            .tblborder td {
+                border: none;
+            }
+
+        .visibleshow .grvHeader, .grvFooter {
+            display: none;
+        }
+    </style>
+
+
+
+    <div class="card card-fluid container-data">
+        <div class="card-body" style="min-height: 600px;">
+            <div class="row mt-2">
+                <%--<div class="col-md-1">
+                    <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="col-md-1">
+                    <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>--%>
+                <div class="col-md-3">
+                    <input type="text" id="myInput" onkeyup="inputekeyup();" placeholder="Search.." title="Type" class="form-control">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="form-group">
+                    <asp:GridView ID="gvSummary" runat="server" AutoGenerateColumns="False"
+                        ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea" data-toggle="table"
+                        data-search="true"
+                        data-show-columns="true">
+                        <RowStyle />
+                        <Columns>
+                            <asp:TemplateField>
+                                <HeaderTemplate>
+
+                                    <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" OnClick="lnkgvHeader_Click"><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
+
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="serialno" runat="server" Style="text-align: left" CssClass="table-data"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Code" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lsircode" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")) %>'></asp:Label>
+
+                                    <asp:Label ID="ldesig" runat="server" Width="40px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="P-ID">
+                                <HeaderTemplate>
+
+                                    <asp:TextBox ID="txtsrcA" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="P-ID" onkeyup="Search_Gridview(this,1)"></asp:TextBox>
+                                    <a id="pid" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lsircode1" runat="server" Width="80px" Font-Size="10px" CssClass="table-data"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1")) %>'></asp:Label>
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Generated">
+                                <HeaderTemplate>
+                                    <asp:TextBox ID="txtsrcB" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Generated" onkeyup="Search_Gridview(this,2)"></asp:TextBox>
+                                    <a id="gen" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgenerated" runat="server" Width="80px" Font-Size="10px" CssClass="table-data"
+                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy") %>'></asp:Label>
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Prospect Details">
+                                <HeaderTemplate>
+                                    <asp:TextBox ID="txtsrcC" BackColor="Transparent" BorderStyle="None" runat="server" Width="130px" placeholder="Prospect Details" onkeyup="Search_Gridview(this,3)"></asp:TextBox>
+                                    <a id="prospectdet" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="ldesc" runat="server" Width="150px" Font-Size="10px" CssClass="table-data"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'></asp:Label>
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Profession">
+                                <HeaderTemplate>
+                                    <asp:TextBox ID="txtsrcG" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="Profession" onkeyup="Search_Gridview(this,4)"></asp:TextBox>
+                                     <a id="prof" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lprof" runat="server" Width="100px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "profession")) %>'></asp:Label>
+                                </ItemTemplate>
+                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Associate">
+                                <HeaderTemplate>
+                                    <asp:TextBox ID="txtsrcD" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Associate" onkeyup="Search_Gridview(this,5)"></asp:TextBox>
+                                    <a id="assoc" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lassoc" runat="server" Width="120px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assoc")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Team Head">
+                                <HeaderTemplate>
+                                    <asp:TextBox ID="txtsrcE" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Team Head" onkeyup="Search_Gridview(this,6)"></asp:TextBox>
+                                    <a id="head" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblbusername" runat="server" Width="120px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc")) %>'></asp:Label>
+                                </ItemTemplate>
+
+
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Status">
+                                <HeaderTemplate>
+                                    <asp:TextBox ID="txtsrcF" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Status" onkeyup="Search_Gridview(this,7)"></asp:TextBox>
+                                    <a id="status" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbllstatus" runat="server" Width="80px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Type">
+                                 <HeaderTemplate>
+                                     <asp:Label ID="txtsrcH" runat="server" Width="40px">Type</asp:Label>                                   
+                                    <a id="typ" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="llTyp" runat="server" Width="60px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadType")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Approve Date" Visible="false">                               
+                                <ItemTemplate>
+                                    <asp:Label ID="lappdat" runat="server" Width="80px" Font-Size="10px"
+                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "appbydat")).ToString("dd-MMM-yyyy") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Pref. Location" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lprefdesc" runat="server" Width="60px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prefdesc")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Lead Source" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lLSrc" runat="server" Width="60px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="App. Size" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lAptsize" runat="server" Width="60px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "aptsize")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="App. Type" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lapttyp" runat="server" Width="60px" Font-Size="10px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+                    </asp:GridView>
+                </div>
+            </div>
+
+            <div class="modal fade" id="GridHeader" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="gridModalLabel">Select Grid Header</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Available Fields
+                                    <asp:GridView ID="gvCurrent" runat="server" AutoGenerateColumns="False"
+                                        ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Description">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkgv" runat="server" />
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Code" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lindex" runat="server" Font-Size="10px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Description">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lLSrc" runat="server" Font-Size="13px" CssClass="ml-3"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gvalue")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                                <div class="col-md-6">
+                                    Selected Fields
+                                    <asp:GridView ID="gvPrev" runat="server" AutoGenerateColumns="False"
+                                        ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Description">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkgv" runat="server" Checked="true" />
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Code" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lindex" runat="server" Font-Size="10px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Description">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lLSrc" runat="server" Font-Size="13px" CssClass="ml-3"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gvalue")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <FooterStyle CssClass="grvFooter" />
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                        <PagerStyle CssClass="gvPagination" />
+                                        <HeaderStyle CssClass="grvHeader" />
+                                    </asp:GridView>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <asp:LinkButton ID="lnkgvListShow" Style="float: right; margin-right: 10px;" runat="server" class="btn btn-success" OnClientClick="CloseGvModal();" OnClick="lnkgvListShow_Click">Update List</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            onclicksortbtn();
+        });
+
+        function onchangetrigger() {
+            onclicksortbtn();
+            inputekeyup();
+        }
+
+        function onclicksortbtn() {
+            var properties = [
+                'sl',
+                'pid',
+            'gen',
+            'prospectdet',
+            'prof',
+            'assoc',
+            'head',
+             'status',
+            'typ'
+            ];
+
+            $.each(properties, function (i, val) {
+                var orderClass = '';
+                $("#" + val).click(function (e) {
+                    e.preventDefault();
+                    var index = $(this).index(".indexing");
+                    sortTable(index);
+                });
+            });
+
+        }
+
+
+        function sortTable(n) {
+            var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            table = document.getElementById("<%=gvSummary.ClientID %>");
+            switching = true;
+            // Set the sorting direction to ascending:
+            dir = "asc";
+            /* Make a loop that will continue until
+            no switching has been done: */
+            while (switching) {
+                // Start by saying: no switching is done:
+                switching = false;
+                rows = table.rows;
+                /* Loop through all table rows (except the
+                first, which contains table headers): */
+                for (i = 1; i < (table.rows.length - 2) ; i++) {
+                    // Start by saying there should be no switching:
+                    shouldSwitch = false;
+                    /* Get the two elements you want to compare,
+                    one from current row and one from the next: */
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    //console.log(x.textContent.toLowerCase(), y.textContent.toLowerCase());
+                    /* Check if the two rows should switch place,
+                    based on the direction, asc or desc: */
+                    if (dir == "asc") {
+                        if (x.textContent.toLowerCase() > y.textContent.toLowerCase()) {
+                            // If so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    } else if (dir == "desc") {
+                        if (x.textContent.toLowerCase() < y.textContent.toLowerCase()) {
+                            // If so, mark as a switch and break the loop:
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldSwitch) {
+                    /* If a switch has been marked, make the switch
+                    and mark that a switch has been done: */
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    // Each time a switch is done, increase this count by 1:
+                    switchcount++;
+                } else {
+                    /* If no switching has been done AND the direction is "asc",
+                    set the direction to "desc" and run the while loop again. */
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+
+        function inputekeyup() {
+            var value = $("#myInput").val().toLowerCase();
+            $("#<%=gvSummary.ClientID %> tr:not(:first)").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+
+        }
+
+        function Search_Gridview(strKey, cellNr) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvSummary.ClientID %>");
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+
+                rowData = tblData.rows[i].cells[cellNr].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+
+            }
+        }
+
+
+
+
+        function OpenGvModal() {
+
+            $('#GridHeader').modal('toggle');
+        }
+
+        function CloseGvModal() {
+
+            $('#GridHeader').modal('hide');
+        }
+    </script>
+
+
+</asp:Content>
+
+

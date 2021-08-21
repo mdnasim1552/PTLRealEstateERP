@@ -1,0 +1,232 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="FxtAsstTransfer.aspx.cs" Inherits="RealERPWEB.F_29_Fxt.FxtAsstTransfer" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+        });
+
+        function pageLoaded() {
+
+
+            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+
+        }
+
+    </script>
+
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">  
+        <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                           <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+            <div class="container moduleItemWrpper">
+                <div class="contentPartSmall row">
+                    <fieldset class="scheduler-border fieldset_A">
+                        <legend>
+                            <asp:Label ID="Label1" runat="server" Text="Fixed Assets Transfer Information" Style="color: white; font-size: 14px; font-weight: bold;"></asp:Label></legend>
+                        <div class="form-horizontal">
+              
+                         <asp:Panel ID="pn1" runat="server">
+                                <div class="form-group">
+                                    <div class="col-md-8   pading5px  asitCol8">
+
+                                        <asp:Label ID="Label12" runat="server" CssClass=" lblName lblTxt" Text="Trans No:"></asp:Label>
+
+                                        <asp:Label ID="lblCurTransNo1" runat="server" CssClass=" inputtextbox"></asp:Label>
+                                        <asp:TextBox ID="txtCurTransNo2" runat="server" CssClass="inputtextbox">00001</asp:TextBox>
+
+                                        <asp:Label ID="Label7" runat="server" CssClass=" smLbl_to" Text="Date:"></asp:Label>
+                                        <asp:TextBox ID="txtCurTransDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtCurTransDate_CalendarExtender" runat="server"
+                                            Format="dd.MM.yyyy" TargetControlID="txtCurTransDate"></cc1:CalendarExtender>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-5  pading5px">
+
+                                        <asp:Label ID="lblProjectFromList0" runat="server" CssClass=" lblName lblTxt" Text="From Project List:"></asp:Label>
+
+                                        <asp:TextBox ID="txtProjectSearchF" runat="server" CssClass="inputtextbox"></asp:TextBox>
+
+
+                                        <asp:LinkButton ID="ImgbtnFindProject" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="ImgbtnFindProject_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+
+                                 
+                                        <asp:DropDownList ID="ddlprjlistfrom" runat="server"
+                                            Width="280px" AutoPostBack="True"
+                                            OnSelectedIndexChanged="ddlprjlistfrom_SelectedIndexChanged" CssClass="chzn-select ddlPage">
+                                        </asp:DropDownList>
+                                     
+                                        </div>
+                                     <div class="col-md-3  pading5px">
+                                      
+                                               <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                                 <asp:Label ID="lblddlProjectFrom" runat="server" CssClass="inputtextbox" Visible="False" Width="295px"></asp:Label>
+
+                                             </div>
+                                        
+                                        </div>
+
+                     
+<%--                                    </div>
+                                </div>--%>
+
+                                <div class="form-group">
+                                    <div class="col-md-10  pading5px  asitCol10">
+
+                                        <asp:Label ID="Label13" runat="server" CssClass=" lblName lblTxt" Text="Project List:"></asp:Label>
+
+                                        <asp:TextBox ID="txtProjectSearchT" runat="server" CssClass="inputtextbox"></asp:TextBox>
+
+
+                                        <asp:LinkButton ID="ImgbtnFindProject0" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="ImgbtnFindProject0_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+
+                                        <asp:DropDownList ID="ddlprjlistto" runat="server"
+                                            Width="300px" CssClass="chzn-select ddlPage">
+                                        </asp:DropDownList>
+
+                                        <asp:Label ID="lblddlProjectTo" runat="server" CssClass="inputtextbox" Visible="False" Width="295px"></asp:Label>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10  pading5px  asitCol10">
+
+                                        <asp:Label ID="lblPreList" runat="server" CssClass=" lblName lblTxt" Text="Prev. Trans List:"></asp:Label>
+
+                                        <asp:TextBox ID="txtPreTrnsSearch" runat="server" CssClass="inputtextbox"></asp:TextBox>
+
+
+                                        <asp:LinkButton ID="lbtnPrevVOUList" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnPrevVOUList_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+
+                                        <asp:DropDownList ID="ddlPrevISSList" runat="server"
+                                            Width="300px" CssClass="ddlPage">
+                                        </asp:DropDownList>
+
+                                        <asp:Label ID="lblmsg1" runat="server" CssClass=" btn btn-danger primaryBtn"></asp:Label>
+
+                                    </div>
+                                </div>
+                       
+                                </asp:Panel>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="table table-responsive">
+                    <asp:Panel ID="pnlgrd" runat="server" Visible="False">
+                        <div class="form-group">
+                            <div class="col-md-10  pading5px  asitCol10">
+
+                                <asp:Label ID="lblResList" runat="server" CssClass=" lblName lblTxt" Text="Resource List:"></asp:Label>
+                                <asp:DropDownList ID="ddlreslist" runat="server" Width="300px" CssClass="ddlPage"></asp:DropDownList>
+                                <asp:LinkButton ID="lnkselect" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkselect_Click">Select</asp:LinkButton>
+
+                            </div>
+                        </div>
+                     
+                        <asp:GridView ID="grvacc" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                                ShowFooter="True" Width="908px">
+
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Sl.No.">
+                                        <ItemTemplate>
+                                            <asp:Label ID="serialnoid0" runat="server" Style="text-align: right"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText=" resourcecode" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvrescode" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Resource Description">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbgrcod" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
+                                                Width="300px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Unit">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvunit" runat="server"
+                                                Style="font-size: 12px; text-align: center;"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
+                                                Width="40px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="left" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="left" Width="40px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Bal. Qty">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvbalqty" runat="server"
+                                                Style="font-size: 12px; text-align: center;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="40px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="left" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                        <ItemStyle HorizontalAlign="right" Width="60px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Quantity">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtqty" runat="server" BackColor="Transparent" BorderStyle="Solid"
+                                                Style="text-align: right"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="80px" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkupdate" runat="server"  OnClick="lnkupdate_Click"  CssClass="btn btn-danger primaryBtn">Update</asp:LinkButton>
+                                        </FooterTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
+                                        <ItemStyle Width="80px" HorizontalAlign="right" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                <FooterStyle CssClass="grvFooter" />
+                                <EditRowStyle />
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
+                                <HeaderStyle CssClass="grvHeader" />
+
+                            </asp:GridView>
+                    </asp:Panel>
+                </div>
+
+
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+
+

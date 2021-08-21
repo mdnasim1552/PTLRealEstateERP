@@ -1,0 +1,76 @@
+@import "variables";
+a {
+  color: $primary-text-color-ds;
+}
+.card-body {
+  height: 9rem;
+  position: relative;
+  .div-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 1.2rem;
+      color: black;
+      font-weight: bolder;
+    }
+  }
+  hr {
+    width: 90%;
+    border: 0.1px solid $border-color-ds;
+  }
+  .top-right {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: $top-icon-color-ds;
+    border-radius: 5px;
+    padding: 0rem 0.25rem;
+    color: white;
+    transition: all 0.5s ease-out;
+    font-size: 1rem;
+  }
+  .top-right:hover {
+    transform: scale(1.05);
+  }
+  .footer-container {
+    position: absolute;
+    width: 100%;
+    min-height: 20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .footer-items {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      a:hover {
+        transition: all 0.5s ease-out;
+        transform: scale(1.1);
+        color: $nav-text-color-ds;
+      }
+    }
+  }
+}
+.card:hover {
+  transform: scale(1.05);
+  border: 1px solid $border-color-ds;
+}
+.block-active {
+  background-color: $primary-select-color-ds;
+  .div-container {
+    span {
+      color: antiquewhite;
+    }
+  }
+
+  hr {
+    border: 0.1px solid antiquewhite;
+  }
+
+  a {
+    color: antiquewhite;
+  }
+}
