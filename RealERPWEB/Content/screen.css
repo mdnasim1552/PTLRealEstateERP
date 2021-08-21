@@ -1,0 +1,553 @@
+﻿
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .asit_container{
+        width:100%;
+    }
+    .asit_ComInfo{
+        float:none;
+        width:100%;
+        height:auto;
+        text-align:center;
+    }
+    .asit_ComLogo h1{
+        text-align:center;
+    }
+
+    .lblCompName{
+        font-size:20px;
+        line-height:22px;
+    }
+.headerMain .asit_container{
+    max-height:200px !important;
+
+}
+.asit_userinfoPanel{
+    width:100%;
+    float:none;
+}
+.asit_ComLogo{
+    float:none;
+}
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+.headerMain .asit_container{
+    max-height:200px !important;
+
+}
+.asit_ComLogo{
+    float:none;
+}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+.asit_container{
+    width:100%;
+}
+.asit_ComInfo{
+    width:50%;
+}
+ .lblCompName{
+        font-size:20px;
+        line-height:32px;
+    }
+ .asit_userinfoPanel{
+     width:30%;
+ }
+ .panelLeft{
+     width:50%;
+ }
+ .panelRight{
+     width:30%;
+ }
+ .topMenu ul li a{
+     padding:6px 0;
+     margin:0;
+ }
+ .topMenu ul li {
+     width:18% !important;
+ }
+  .topMenu ul li:last-child {
+     width:10% !important;
+ }
+
+
+
+  .accountsPart ul li a{
+        width:107px !important;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart .smllMenuBox{
+         width:80px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+    .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart  .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* iPad 3 (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+  .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+
+}
+
+/* iPad 3 (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+/* Styles */
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
+}
+
+/* iPhone 4 (landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+.headerMain .asit_container{
+    max-height:200px !important;
+
+}
+.asit_ComLogo{
+    float:none;
+}
+}
+
+/* iPhone 4 (portrait) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+.headerMain .asit_container{
+    max-height:200px !important;
+
+}
+.asit_ComLogo{
+    float:none;
+}
+ .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* iPhone 5 (landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* iPhone 5 (portrait) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+/* Styles */
+}
+
+/* iPhone 6 (landscape) ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+ .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* iPhone 6 (portrait) ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+ .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* iPhone 6+ (landscape) ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+ .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* iPhone 6+ (portrait) ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+ .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* Samsung Galaxy S3 (landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* Samsung Galaxy S3 (portrait) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* Samsung Galaxy S4 (landscape) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* Samsung Galaxy S4 (portrait) ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* Samsung Galaxy S5 (landscape) ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+/* Samsung Galaxy S5 (portrait) ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+.accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
+
+@media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px) 
+    and (orientation : landscape) 
+    and (-webkit-min-device-pixel-ratio : 3) 
+{ 
+    .accountsPart{
+        width:100%;
+    }
+     .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+
+
+}
+
+@media only screen 
+    and (min-device-width : 414px) 
+    and (max-device-width : 736px) 
+    and (orientation : portrait) 
+    and (-webkit-min-device-pixel-ratio : 3) 
+{
+    .accountsPart{
+        width:100%;
+    }
+
+     .accountsPart ul li a{
+        width:107px;
+        font-size:12px;
+        padding:5px;
+    }
+    .accountsPart  .smllMenuBox{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+    .accountsPart  .smllMenuBox1{
+         width:107px !important;
+        font-size:12px;
+        padding:5px;
+        margin:0;
+    }
+   .accountsPart .titelPanel{
+       font-size:18px;
+   }
+}
