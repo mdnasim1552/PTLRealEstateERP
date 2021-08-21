@@ -1,0 +1,351 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using CrystalDecisions.ReportSource;
+using RealERPLIB;
+using RealERPRPT;
+using System.Web.Services;
+using System.Web.Script.Services;
+using System.Web.Script.Serialization;
+namespace RealERPWEB.F_34_Mgt
+{
+    public partial class AccProjectCode : System.Web.UI.Page
+    {
+        ProcessAccess mgtData = new ProcessAccess();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("../AcceessError.aspx");
+                this.GeProjectMainCode();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Project Code Information";
+                //  this.ddlProjectList_SelectedIndexChanged(null, null);
+
+            }
+        }
+
+        public string GetComeCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
+
+        public string GetEmpID()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string Empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
+            return (Empid);
+
+        }
+
+        private void GeProjectMainCode()
+        {
+
+
+            string comcod = this.GetComeCode();
+            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROMAINCODE", filter, "", "", "", "", "", "", "", "");
+            this.ddlMainCode.DataSource = ds1.Tables[0];
+            this.ddlMainCode.DataTextField = "actdesc";
+            this.ddlMainCode.DataValueField = "actcode";
+            this.ddlMainCode.DataBind();
+            this.GetProjectSubCode1();
+            ds1.Dispose();
+
+        }
+
+        private void GetProjectSubCode1()
+        {
+            string comcod = this.GetComeCode();
+            string ProMainCode = this.ddlMainCode.SelectedValue.ToString().Substring(0, 2);
+            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROSUBCODE1", ProMainCode, filter, "", "", "", "", "", "", "");
+            this.ddlSub1.DataSource = ds1.Tables[0];
+            this.ddlSub1.DataTextField = "actdesc";
+            this.ddlSub1.DataValueField = "actcode";
+            this.ddlSub1.DataBind();
+            this.GetProjectSubCode2();
+            ds1.Dispose();
+
+        }
+
+        private void GetProjectSubCode2()
+        {
+            string comcod = this.GetComeCode();
+            string ProSubCode1 = this.ddlSub1.SelectedValue.ToString().Substring(0, 4);
+            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPROSUBCODE2", ProSubCode1, filter, "", "", "", "", "", "", "");
+            this.ddlSub2.DataSource = ds1.Tables[0];
+            this.ddlSub2.DataTextField = "actdesc";
+            this.ddlSub2.DataValueField = "actcode";
+            this.ddlSub2.DataBind();
+            this.GetProjectDetailsCode();
+            ds1.Dispose();
+
+        }
+
+        private void GetProjectDetailsCode()
+        {
+            ViewState.Remove("tblprolist");
+            string comcod = this.GetComeCode();
+            string ProSubCode2 = this.ddlSub2.SelectedValue.ToString().Substring(0, 8);
+            string filter = "%" + this.txtsrchMainCode.Text + "%";
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODE", ProSubCode2, filter, "", "", "", "", "", "", "");
+            this.ddlProjectList.DataSource = ds1.Tables[0];
+            this.ddlProjectList.DataTextField = "actdesc";
+            this.ddlProjectList.DataValueField = "actcode";
+            this.ddlProjectList.DataBind();
+            ViewState["tblprolist"] = ds1.Tables[0];
+            ds1.Dispose();
+            this.ddlProjectList_SelectedIndexChanged(null, null);
+
+
+        }
+
+        protected void chkNewProject_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkNewProject.Checked)
+            {
+                this.ddlProjectList.Items.Clear();
+                // this.txtProjectName.Text = "";
+                this.txtShortName.Text = "";
+            }
+
+        }
+        protected void imgbtnMainCode_Click(object sender, EventArgs e)
+        {
+            this.GeProjectMainCode();
+        }
+        protected void ingbtnSub1_Click(object sender, EventArgs e)
+        {
+            this.GetProjectSubCode1();
+
+        }
+        protected void imgbtnSub2_Click(object sender, EventArgs e)
+        {
+            this.GetProjectSubCode2();
+
+        }
+        protected void mgbtnPreDetails_Click(object sender, EventArgs e)
+        {
+            if (!(this.chkNewProject.Checked))
+                this.GetProjectDetailsCode();
+
+        }
+        protected void ddlMainCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectSubCode1();
+        }
+        protected void ddlSub1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectSubCode2();
+        }
+
+        protected void ddlSub2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectDetailsCode();
+
+        }
+        protected void lnkbtnSave_Click(object sender, EventArgs e)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetComeCode();
+            string SubCode2 = this.ddlSub2.SelectedValue.ToString().Trim().Substring(0, 8);
+            string ProjectName = this.txtProjectName.Text;
+            string ProjectNameBN = this.txtProjectNameBN.Text;
+            string ShortName = this.txtShortName.Text.Trim();
+            bool result = true;
+
+
+
+            if (this.ddlProjectList.Items.Count > 0)
+            {
+                string projectcode = this.ddlProjectList.SelectedValue.ToString();
+                result = mgtData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "UPDATEPROJECT", projectcode, ProjectName, ShortName, userid, ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
+            }
+            else
+            {
+                result = mgtData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "INSERTPROJECT", SubCode2, ProjectName, ShortName, userid, ProjectNameBN, "", "", "", "", "", "", "", "", "", "");
+            }
+            if (result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                //this.txtProjectName.Text = "";
+                //this.txtShortName.Text = "";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Sorry, Data Updated Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //this.lblmsg.ForeColor
+            }
+        }
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+
+        protected void ddlProjectList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.ddlProjectList.Items.Count == 0)
+                return;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetComeCode();
+            Session.Remove("EmployeeList");
+            string procode = this.ddlProjectList.SelectedValue.ToString();
+            this.txtProjectName.Text = this.ddlProjectList.SelectedItem.Text.Trim().ToString().Substring(13);
+            this.txtShortName.Text = (((DataTable)ViewState["tblprolist"]).Select("actcode='" + procode + "'"))[0]["acttdesc"].ToString();
+            string name = txtShortName.Text.ToString();
+            this.lblprjname.Text = txtShortName.Text.ToString();
+
+
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETPRODETAILSCODEIND", procode, "", "", "", "", "", "", "", "");
+
+
+
+
+
+
+            this.txtProjectNameBN.Text = ds1.Tables[0].Rows[0]["actdescbn"].ToString();
+            isLoadDataEmployeeGv(procode);
+
+
+        }
+
+        private void isLoadDataEmployeeGv(string pCode)
+        {
+
+            this.gvEmployeeInfo.DataSource = null;
+            this.gvEmployeeInfo.DataBind();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            DataSet ds1 = mgtData.GetTransInfo(comcod, "SP_ENTRY_MGT", "GETUSERINFLIST", pCode);
+            if (ds1.Tables[0].Rows.Count != 0)
+
+                Session["EmployeeList"] = ds1.Tables[0];
+            this.Data_bind();
+            //ds1.Dispose();
+        }
+
+
+
+        private void Data_bind()
+        {
+            DataTable dt = (DataTable)Session["EmployeeList"];
+
+            this.gvEmployeeInfo.DataSource = dt;
+            this.gvEmployeeInfo.DataBind();
+
+        }
+
+        protected void btnSaveEmp_Click(object sender, EventArgs e)
+        {
+            DataTable dt1 = (DataTable)Session["EmployeeList"];
+
+            for (int i = 0; i < this.gvEmployeeInfo.Rows.Count; i++)
+            {
+                string userid = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvUserId")).Text.ToString();
+                string name = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvName")).Text.ToString(); ;
+                string desig = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvDesig")).Text.ToString();
+                string usrprm = ((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvPerm")).Text.ToString();
+                CheckBox chk = ((CheckBox)gvEmployeeInfo.Rows[i].FindControl("chkPermission"));
+                string checkstatus = (chk.Checked == true) ? "True" : "False";
+                //string checkstatu1s = (((CheckBox)gvEmployeeInfo.Rows[i].FindControl("CheckPermission")).Checked) ? "True" : "False";
+
+                dt1.Rows[i]["usrid"] = userid;
+                dt1.Rows[i]["usrname"] = name;
+                dt1.Rows[i]["usrdesig"] = desig;
+                dt1.Rows[i]["permission"] = checkstatus;
+
+
+            }
+            Session["EmployeeList"] = dt1;
+
+
+            if (updateProjectPermission())
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Project Permission Updated Successfully!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+            }
+
+        }
+
+
+
+        protected void lnkBtnShow_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
+        }
+
+        protected void chkall_CheckedChanged(object sender, EventArgs e)
+        {
+            int i;
+            if (((CheckBox)this.gvEmployeeInfo.HeaderRow.FindControl("chkall")).Checked)
+            {
+                for (i = 0; i < this.gvEmployeeInfo.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvEmployeeInfo.Rows[i].FindControl("chkPermission")).Checked = true;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
+
+                }
+            }
+            else
+            {
+                for (i = 0; i < this.gvEmployeeInfo.Rows.Count; i++)
+                {
+                    //((CheckBox)this.gvEmployeeInfo.Rows[i].FindControl("chkPermission")).Enabled == true
+                    if (((Label)gvEmployeeInfo.Rows[i].FindControl("lblgvPerm")).Text.ToString() == "True")
+                    {
+                        ((CheckBox)this.gvEmployeeInfo.Rows[i].FindControl("chkPermission")).Checked = false;
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+
+                        //this.lblgvdeptandemployeeemp_Click(null, null);
+                    }
+                }
+            }
+        }
+
+
+        private bool updateProjectPermission()
+        {
+            DataTable dt1 = (DataTable)Session["EmployeeList"];
+            DataView dv = dt1.DefaultView;
+            dv.RowFilter = "permission=True";
+            DataSet ds1 = new DataSet("ds1");
+            ds1.Tables.Add(dv.ToTable());
+            ds1.Tables[0].TableName = "tbl1";
+            string procode1 = this.ddlProjectList.SelectedValue.ToString();
+            string procode = "16" + ASTUtility.Right(procode1, 10);
+
+            string comcod = this.GetComeCode();
+            string ss = ds1.GetXml();
+            bool result = mgtData.UpdateXmlTransInfo(comcod, "[SP_ENTRY_MGT]", "UPDATEUSERINF", ds1, null, null, procode, "");
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = mgtData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+            }
+
+            return true;
+        }
+    }
+}

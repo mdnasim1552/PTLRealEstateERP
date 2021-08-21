@@ -1,0 +1,101 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using RealERPLIB;
+
+namespace RealERPWEB
+{
+    public partial class GenPageLand : System.Web.UI.Page
+    {
+        ProcessAccess genRpModule = new ProcessAccess();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+
+
+                this.ViewSection();
+
+
+            }
+
+        }
+
+        private void ViewSection()
+        {
+            string Type = this.Request.QueryString["Type"].ToString();
+
+            this.pnlBusinessPlan.Visible = (Type == "01") ? true : (Type == "All") ? true : false;
+            this.pnlLandProcure.Visible = (Type == "02") ? true : (Type == "All") ? true : false;
+            this.pnlFeasibility.Visible = (Type == "03") ? true : (Type == "All") ? true : false;
+            this.pnlbgd.Visible = (Type == "04") ? true : (Type == "All") ? true : false;
+            this.pnlfinance.Visible = (Type == "05") ? true : (Type == "All") ? true : false;
+            this.pnlProPlan.Visible = (Type == "06") ? true : (Type == "All") ? true : false;
+            this.pnlProImp.Visible = (Type == "07") ? true : (Type == "All") ? true : false;
+            //this.pnlInven.Visible = (Type == "08") ? true : (Type == "All") ? true : false;
+            //this.pnlCentral.Visible = (Type == "09") ? true : (Type == "All") ? true : false;
+            //this.pnlProCure.Visible = (Type == "10") ? true : (Type == "All") ? true : false;
+            this.pnlAcc.Visible = (Type == "11") ? true : (Type == "All") ? true : false;
+            this.pnlMgtAcc.Visible = (Type == "12") ? true : (Type == "All") ? true : false;
+            this.pnlAudit.Visible = (Type == "13") ? true : (Type == "All") ? true : false;
+            this.pnlMkt.Visible = (Type == "14") ? true : (Type == "All") ? true : false;
+            this.pnlSales.Visible = (Type == "15") ? true : (Type == "All") ? true : false;
+            this.pnlCR.Visible = (Type == "16") ? true : (Type == "All") ? true : false;
+            //this.pnlCC.Visible = (Type == "17") ? true : (Type == "All") ? true : false;
+            this.pnlReg.Visible = (Type == "18") ? true : (Type == "All") ? true : false;
+            //this.pnlFxtAst.Visible = (Type == "19") ? true : (Type == "All") ? true : false;
+            //this.pnlDailyAct.Visible = (Type == "20") ? true : (Type == "All") ? true : false;
+            this.pnlMis.Visible = (Type == "21") ? true : (Type == "All") ? true : false;
+            this.pnlDoc.Visible = (Type == "22") ? true : (Type == "All") ? true : false;
+            this.pnlHR.Visible = (Type == "23") ? true : (Type == "All") ? true : false;
+
+
+
+        }
+
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //DataSet ds1 = this.genRpModule.GetTransInfo(comcod, "SP_REPORT_MIS", "GENRPTMODULEDES","","", "", "", "", "","","","");
+            //if (ds1 == null)
+            //    return;
+            //DataTable dt = ds1.Tables[0];
+
+            //var list = dt.DataTableToList<RealEntity.C_29_Fxt.EClassFixedAsset.EquipmentUseStatus>();
+            //LocalReport Rpt1 = new LocalReport();
+            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_26_Alert.RptGenModuleDesc", list, null, null);
+            //Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            //Rpt1.SetParameters(new ReportParameter("rptTitle", "List of Outputs"));
+            //Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            //Session["Report1"] = Rpt1;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            //ReportDocument rptstk = new RealERPRPT.R_26_Alert.RptGenModuleDesc();
+            //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
+            //txtCompany.Text = comnam;
+            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
+            //rptstk.SetDataSource(ds1.Tables[0]);
+            //Session["Report1"] = rptstk;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            //                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+    }
+}

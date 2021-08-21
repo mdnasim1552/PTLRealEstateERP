@@ -1,0 +1,408 @@
+﻿using RealERPLIB;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+namespace RealERPWEB.F_21_MKT
+{
+    public partial class RptSalesFunnel : System.Web.UI.Page
+    {
+        ProcessAccess instcrm = new ProcessAccess();
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Sales Funnel Reports";
+
+                //string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                //this.txtfodate.Text = Convert.ToDateTime("01" + Date.Substring(2)).ToString("dd-MMM-yyyy");
+                //this.txttodate.Text =  Convert.ToDateTime(txtfodate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                this.GetOpenDateKPI();
+
+                GetAllSubdata();
+                this.GETEMPLOYEEUNDERSUPERVISED();
+                ModalDataBind();
+
+                this.lbtnOk_Click(null, null);
+            }
+
+        }
+
+
+        public string GetComeCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
+        private void GetOpenDateKPI()
+
+        {
+            string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string comcod = GetComeCode();
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETKPIOPENDATE", "", "", "", "", "", "", "", "", "");
+            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+            {
+
+                this.txtfodate.Text = Convert.ToDateTime(txtfodate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                return;
+            }
+            else
+            {
+
+                this.txtfodate.Text = Convert.ToDateTime(ds2.Tables[0].Rows[0]["cdate"]).ToString("dd-MMM-yyyy");
+            }
+
+
+
+
+        }
+
+        private void GetAllSubdata()
+        {
+            string comcod = GetComeCode();
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            ViewState["tblsubddl"] = ds2.Tables[0];
+            ViewState["tblstatus"] = ds2.Tables[1];
+            ViewState["tblproject"] = ds2.Tables[2];
+            ds2.Dispose();
+        }
+        private void GETEMPLOYEEUNDERSUPERVISED()
+        {
+            string comcod = GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            ViewState["tblempsup"] = ds1.Tables[0];
+            ds1.Dispose();
+
+
+        }
+
+        //-------------------------------DashBoard------------------------------------------------
+        private void ModalDataBind()
+        {
+
+            DataTable dt1 = (DataTable)ViewState["tblsubddl"];
+            DataTable dtemp = (DataTable)ViewState["tblempsup"];
+            DataTable dtprj = (DataTable)ViewState["tblproject"];
+            DataView dv;
+            dv = dt1.Copy().DefaultView;
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string lempid = hst["empid"].ToString();
+            //string empid = (userrole == "1" ? "93" : lempid) + "%";
+            string comcod = this.GetComeCode();
+            DataTable dtE = new DataTable();
+            dv.RowFilter = ("gcod like '93%'");
+            if (userrole == "1")
+            {
+
+                dtE = dv.ToTable();
+                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+
+            }
+
+            else
+            {
+                DataTable dts = dv.ToTable();
+                var query = (from dtl1 in dts.AsEnumerable()
+                             join dtl2 in dtemp.AsEnumerable() on dtl1.Field<string>("gcod") equals dtl2.Field<string>("empid")
+                             select new
+                             {
+                                 gcod = dtl1.Field<string>("gcod"),
+                                 gdesc = dtl1.Field<string>("gdesc"),
+                                 code = dtl1.Field<string>("code")
+                             }).ToList();
+                dtE = ASITUtility03.ListToDataTable(query);
+                if (dtE.Rows.Count >= 2)
+                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                // if(dtE.Rows.Count>1)
+                //dtE.Rows.Add("000000000000", "Choose Employee..", "");
+            }
+
+            this.ddlEmpid.DataTextField = "gdesc";
+            this.ddlEmpid.DataValueField = "gcod";
+            this.ddlEmpid.DataSource = dtE;
+            this.ddlEmpid.DataBind();
+            this.ddlEmpid.SelectedValue = "000000000000";
+
+            dtprj.Rows.Add("000000000000", "Choose Project..", "");
+
+            this.ddlProject.DataTextField = "pactdesc";
+            this.ddlProject.DataValueField = "pactcode";
+            this.ddlProject.DataSource = dtprj;
+            this.ddlProject.DataBind();
+            this.ddlProject.SelectedValue = "000000000000";
+
+
+            //profession
+
+            DataTable dtprof = new DataTable();
+            dv.RowFilter = ("gcod like '86%'");
+
+            dtprof = dv.ToTable();
+            dtprof.Rows.Add("000000000000", "Choose Peofession..", "");
+
+            this.ddlProfession.DataTextField = "gdesc";
+            this.ddlProfession.DataValueField = "gcod";
+            this.ddlProfession.DataSource = dtprof;
+            this.ddlProfession.DataBind();
+            this.ddlProfession.SelectedValue = "000000000000";
+
+
+            DataTable dtsource = new DataTable();
+            dv.RowFilter = ("gcod like '31%'");
+
+            dtsource = dv.ToTable();
+            dtsource.Rows.Add("000000000000", "Choose Source..", "");
+
+            this.ddlSource.DataTextField = "gdesc";
+            this.ddlSource.DataValueField = "gcod";
+            this.ddlSource.DataSource = dtsource;
+            this.ddlSource.DataBind();
+            this.ddlSource.SelectedValue = "000000000000";
+
+
+
+
+
+        }
+
+        protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+
+        }
+        protected void gvSaleFunnel_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+        protected void ddlpage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Data_bind();
+
+        }
+        protected void lbtnOk_Click(object sender, EventArgs e)
+        {
+            string comcod = GetComeCode();
+            string cdate = this.txtfodate.Text.Trim();
+            string cdatef = this.txttodate.Text.Trim();
+
+            string empid = ((this.ddlEmpid.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmpid.SelectedValue.ToString()) + "%";
+            string prjcode = ((this.ddlProject.SelectedValue.ToString() == "") ? "%" : this.ddlProject.SelectedValue.ToString()) + "%";
+            string professioncode = ((this.ddlProfession.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProfession.SelectedValue.ToString()) + "%";
+            string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, cdate, prjcode, professioncode, cdatef, sourch);
+            if (ds1 == null)
+            {
+                this.grpBox.Visible = false;
+                this.gvSaleFunnel.DataSource = null;
+                this.gvSaleFunnel.DataBind();
+                return;
+            }
+            this.grpBox.Visible = true;
+            ViewState["tbldata"] = ds1.Tables[0];
+            ViewState["tbldataCount"] = ds1.Tables[1];
+            ViewState["tbldataTeams"] = ds1.Tables[2];
+            ViewState["tblteamDetails"] = ds1.Tables[3];
+            ViewState["tblleadPrj"] = ds1.Tables[4];
+            ViewState["tblleadPrjEmp"] = ds1.Tables[5];
+
+            ViewState["tblleadProfess"] = ds1.Tables[6];
+            ViewState["tblleadProfessEmp"] = ds1.Tables[7];
+
+            ViewState["tblleadSrc"] = ds1.Tables[8];
+            ViewState["tblleadSrcEmp"] = ds1.Tables[9];
+
+            Data_bind();
+
+
+
+        }
+
+        private void Data_bind()
+        {
+            DataTable dt = (DataTable)ViewState["tbldata"];
+            DataTable dtc = (DataTable)ViewState["tbldataCount"];
+            DataTable dtcteam = (DataTable)ViewState["tbldataTeams"];
+            DataTable dtcteamDets = (DataTable)ViewState["tblteamDetails"];
+            DataTable dtcprj = (DataTable)ViewState["tblleadPrj"];
+            DataTable dtcprjTeam = (DataTable)ViewState["tblleadPrjEmp"];
+            DataTable dtcProf = (DataTable)ViewState["tblleadProfess"];
+            DataTable dtcProfEmp = (DataTable)ViewState["tblleadProfessEmp"];
+            DataTable dtcsrc = (DataTable)ViewState["tblleadSrc"];
+            DataTable dtcsrcemp = (DataTable)ViewState["tblleadSrcEmp"];
+
+
+ 
+
+            if (dt.Rows.Count == 0)
+                return;
+            this.gvSaleFunnel.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());
+            this.gvSaleFunnel.DataSource = dt;
+            this.gvSaleFunnel.DataBind();
+
+             
+            var jsonSerialiser = new JavaScriptSerializer();
+
+            var lst = dtc.DataTableToList<SalFunnelgraph>();
+            var lst2 = dtcteam.DataTableToList<kpiTeamsgraph>();
+            var lst3 = dtcteamDets.DataTableToList<kpiTeamsgraph>();
+            var lst4 = dtcprj.DataTableToList<kpiPrjgraph>();
+            var lst5 = dtcprjTeam.DataTableToList<kpiPrjgraph>();
+            var lst6 = dtcProf.DataTableToList<kpiPrjgraph>();
+            var lst7 = dtcProfEmp.DataTableToList<kpiPrjgraph>();
+
+            var lst8 = dtcsrc.DataTableToList<kpiPrjgraph>();
+            var lst9 = dtcsrcemp.DataTableToList<kpiPrjgraph>();
+
+
+            var data = jsonSerialiser.Serialize(lst);
+            var data1 = jsonSerialiser.Serialize(lst2);
+            var data2 = jsonSerialiser.Serialize(lst3);
+            var data3 = jsonSerialiser.Serialize(lst4);
+            var data4 = jsonSerialiser.Serialize(lst5);
+           //profession
+            var data5 = jsonSerialiser.Serialize(lst6);
+            var data6 = jsonSerialiser.Serialize(lst7);
+            // source 
+
+            var data8 = jsonSerialiser.Serialize(lst8);
+            var data9 = jsonSerialiser.Serialize(lst9);
+
+            var gtype = this.ddlgrpType.SelectedValue.ToString();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + gtype + "')", true);
+
+        }
+
+
+
+
+        protected void gvSaleFunnel_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvSaleFunnel.PageIndex = e.NewPageIndex;
+            Data_bind();
+        }
+        protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+
+        }
+        protected void ddlProfession_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+
+        }
+
+        protected void lnkEditfollowup_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+
+
+                string comcod = this.GetComeCode();
+                int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+                string proscod = ((Label)this.gvSaleFunnel.Rows[rowindex].FindControl("lsircode")).Text;
+                string gempid = ((Label)this.gvSaleFunnel.Rows[rowindex].FindControl("lblgvempid")).Text;
+                string cdate = this.txttodate.Text.Trim();
+                DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+
+                this.rpclientinfo.DataSource = ds1.Tables[0];
+                this.rpclientinfo.DataBind();
+                this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
+                this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
+                this.lblprosaddress.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["haddress"].ToString() : ds1.Tables[0].Rows[0]["haddress"].ToString();
+                this.lblnotes.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["virnotes"].ToString() : ds1.Tables[0].Rows[0]["virnotes"].ToString();
+                this.lblpreferloc.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["preferloc"].ToString() : ds1.Tables[0].Rows[0]["preferloc"].ToString();
+                this.lblaptsize.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["aptsize"].ToString() : ds1.Tables[0].Rows[0]["aptsize"].ToString();
+                this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                this.lbleditempid.Value = gempid;
+                //this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+            }
+
+        }
+        protected void ddlSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        [Serializable]
+        public class SalFunnelgraph
+        {
+            public decimal total { get; set; }
+            public decimal query { get; set; }
+            public decimal lead { get; set; }
+            public decimal qualiflead { get; set; }
+            public decimal finalnego { get; set; }
+            public decimal nego { get; set; }
+            public decimal win { get; set; }
+        }
+        [Serializable]
+
+        public class kpiTeamsgraph
+        {
+            public decimal total { get; set; }
+
+            public string teamcode { get; set; }
+            public string usrname { get; set; }
+            public decimal query { get; set; }
+            public decimal lead { get; set; }
+            public decimal qualiflead { get; set; }
+            public decimal finalnego { get; set; }
+            public decimal nego { get; set; }
+            public decimal win { get; set; }
+        }
+
+        protected void ddlgrpType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Data_bind();
+        }
+        [Serializable]
+
+        public class kpiPrjgraph
+        {
+            public decimal total { get; set; }
+
+            public string prjcode { get; set; }
+            public string teamcode { get; set; }
+            public string usrname { get; set; }
+            public string prjname { get; set; }
+            public decimal query { get; set; }
+            public decimal lead { get; set; }
+            public decimal qualiflead { get; set; }
+            public decimal finalnego { get; set; }
+            public decimal nego { get; set; }
+            public decimal win { get; set; }
+        }
+
+        
+    }
+}

@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <!-- ! Font Awesome JS file -->
+     <script
+     src="https://kit.fontawesome.com/38ba10c199.js"
+     crossorigin="anonymous"
+   ></script>
+   <link rel="icon" href="assets/images/ASIT_Logo-01.png" />
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/styles/dashboard.min.css"> -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css" integrity="sha512-oc9+XSs1H243/FRN9Rw62Fn8EtxjEYWHXRvjS43YtueEewbS6ObfXcJNyohjHqVKFPoXXUxwc+q1K7Dee6vv9g==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="assets/styles/dashboard.min.css">
+</head>
+<body>
+    <div id="warning-message">
+      Please See the website in Landscape Mode.
+    </div>
+    <div id="wrapper" class="container-fluid">                
+        <div class="vertical-nav" id="sidebar">
+            <div class="mb-1">
+                <div class="media d-flex align-items-center justify-content-center">
+                     <a href="#" rel="noopener noreferrer"><img src="assets/images/ASIT_Logo-01.png" alt="Advanced Software And IT Services Ltd Logo" 
+                    width="80" class="img-fluid"></a>
+                </div>
+              </div>
+              <ul class="nav-menu">
+                  <li class="nav-menu-item">
+                    <a class="active" href="#">
+                        <i class="fas fa-home i-left"></i>
+                        <span> Home</span>
+                    </a>
+                  </li>
+              </ul>
+              <hr>
+              <div class="custom-scrollbar-css">
+
+              
+            <p class="text-dark font-weight-bold text-uppercase small px-4 py-1">Main</p>
+            <ul class="nav-menu">
+                <li class="nav-menu-item">
+                  <a href="#">
+                      <i class="fas fa-sitemap i-left"></i>                         
+                      <span>Modules</span>
+                        </a>
+                </li>
+                <li  class="nav-menu-item">
+                  <a href="#" >
+                      <i class="fas fa-chart-line i-left"></i>
+                      <span>Interfaces</span>
+                        </a>
+                </li>
+                
+              </ul>
+              <p class="text-dark font-weight-bold text-uppercase small px-4 py-1">Productivity</p>
+              <ul class="nav-menu">
+                <li class="nav-menu-item">
+                    <a href="#" class="drop-down-nav">
+                        <i class="fas fa-project-diagram i-left"></i>                          
+                        <span>My Favourites</span>
+                        <i class="fas fa-chevron-right i-right"></i>
+                    </a>
+                    <div class="dropdown-menu-items">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>                     
+                    </div>
+                </li>
+                <li class="nav-menu-item">
+                    <a href="#" class="drop-down-nav">
+                        <i class="fas fa-project-diagram i-left"></i>                          
+                        <span>Archives</span>
+                        <i class="fas fa-chevron-right i-right"></i>
+                    </a>
+                    <div class="dropdown-menu-items">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>  
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a> 
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>                    
+                    </div>
+                </li>
+                
+              </ul>
+              <p class="text-dark font-weight-bold text-uppercase small px-4 py-1">At A Glance</p>
+              <ul class="nav-menu">
+                <li  class="nav-menu-item">
+                    <a href="#" >
+                        <i class="fas fa-signal i-left"></i>
+                        <span>All In One</span>
+                          </a>
+                  </li>
+                <li class="nav-menu-item">
+                    <a href="#" class="drop-down-nav">
+                        <i class="fas fa-project-diagram i-left"></i>                          
+                        <span>Projects</span>
+                        <i class="fas fa-chevron-right i-right"></i>
+                    </a>
+                    <div class="dropdown-menu-items">
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>                     
+                    </div>
+                </li>
+                <li  class="nav-menu-item">
+                    <a href="#" >
+                        <i class="fas fa-hand-holding-usd i-left"></i>
+                        <span>Sales Overall</span>
+                    </a>
+                  </li>
+                  <li  class="nav-menu-item">
+                    <a href="#" >
+                        <i class="fas fa-cart-plus i-left"></i>
+                        <span>Purchase Overall</span>
+                    </a>
+                  </li>
+                  <li  class="nav-menu-item">
+                    <a href="#" >
+                        <i class="fas fa-calculator i-left"></i>
+                        <span>Accounts Overall</span>
+                    </a>
+                  </li>
+                
+                <li  class="nav-menu-item">
+                  <a href="#" >
+                   
+                      <i class="far fa-building i-left"></i>
+                      <span>Construction Overall</span>
+                        </a>
+                </li>
+              </ul>
+            </div>
+        </div>
+        <main>
+            <div class="page-content p-1" id="content">
+                <!-- Toggle button -->
+                <div class="header">
+                    <div class="toggle-btn">
+                        <button id="sidebarCollapse" type="button" class="btn btn-light bg-white rounded-pill shadow-sm"><i class="fa fa-bars mr-2"></i>
+                           </button>
+                    </div>
+                    <div class="company-name">
+                        <h6>Advanced Software And IT Services Ltd.</h5>
+                    </div>
+                    <div class="right-container">
+                        <a href=""><i class="fas fa-cog"></i></a>
+                        
+                        <a href=""><i class="fas fa-search"></i></a>
+
+                        <div class="user-info dropdown show">
+
+                            
+                                <a class="dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i>
+                                    <div class="user-info-text">
+                                        <span>Name</span>
+                                        <span>Designation</span>
+                                    </div>
+                                </a>
+                              
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                  <a class="dropdown-item" href="#">Action</a>
+                                  <a class="dropdown-item" href="#">Another action</a>
+                                  <a class="dropdown-item" href="#">Something else here</a>
+                                </div>
+                             
+                        </div>
+                        
+                    </div>
+                </div>
+               
+                <div class="main">
+                   
+                    <div class="container-fluid">
+                        <div class="row">
+
+                            <div class="left-part col-10 padding-0">
+                                <span class="header-text">Good Morning, Absar</span>
+                                
+                            </div>
+                            <div class="right-part col-2 padding-0">
+                                <select class=" form-control dropdown-css" id="sel1" onchange="myFunction()">
+                                    <option value="Admin">Admin</option>
+                                    <option value="User">User</option>
+                                  </select>
+                            </div>
+                        </div>
+                        <span class="PageName">DashBoard</span>
+                        <section id="admin">
+                          <div class="row tile">
+                              <div class="col-md-4 padding-1">
+                                  <div class="card">
+                                    <a href="#">
+                                      <div class="card-body number-data">
+                                      
+                                        <div class="info-text">
+                                          <h4><span id="todaywrkcount">10</span></h4>
+                                          <small>Today's Activities</small>
+                                        </div>
+                                      <div class="icon-container">
+                                        <i class="fas fa-tasks"></i>
+                                      </div>
+                                    
+                                      </div>
+                                    </a>
+                                    </div>
+                                  
+                              </div>
+                              <div class="col-md-4 padding-1">
+                                  <div class="card">
+                                    <a href="#">
+                                      <div class="card-body number-data">
+                                      
+                                        <div class="info-text">
+                                          <h4><span id="useroffline">06</span></h4>
+                                          <small>User Offline</small>
+                                        </div>
+                                      <div class="icon-container">
+                                        <i class="fas fa-users-slash"></i>
+                                      </div>
+                                    
+                                      </div>
+                                    </a>
+                                    </div>
+                                  
+                              </div>
+                              <div class="col-md-4 padding-1">
+                                  <div class="card">
+                                    <a href="#">
+                                      <div class="card-body number-data">
+                                      
+                                        <div class="info-text">
+                                          <h4>20</h4>
+                                          <small>Chat System</small>
+                                        </div>
+                                      <div class="icon-container">
+                                        <i class="fas fa-comments"></i>
+                                      </div>
+                                    
+                                      </div>
+                                    </a>
+                                    </div>
+                                  
+                              </div>
+                          </div>                       
+                          <div class="row tile">
+                              <div class="col-md-8 padding-1 graph">
+                                  <div class="card">
+                                      <div class="card-body">
+                                        <div class="graph-header">
+                                          <span id="graphhead">Sales Monthly Target Vs Actual Graph</span>
+                                          <a class="viewall" href="">View All</a>
+                                        </div>
+                                        <div class="graph-main">
+                                          <div id="container"></div>
+                                        </div>
+                                        <div class="graph-buttons" id="admin-graph">                                        
+                                          <button id="sale" class="btn btn-light rounded-pill shadow-sm button-item active">Sales</button>
+                                          <button id="purchase" class="btn btn-light rounded-pill shadow-sm button-item">Purchase</button>
+                                          <button id="accounts" class="btn btn-light rounded-pill shadow-sm button-item">Accounts</button>
+                                          <button id="construction" class="btn btn-light rounded-pill shadow-sm button-item">Construction</button>
+                                          <button id="subconstractor" class="btn btn-light rounded-pill shadow-sm button-item">Sub-Contractor</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                              </div>
+                              <div class="col-md-4 padding-1 row-divide">
+                                  <div class="card">                                 
+                                      <div class="card-body">
+                                        <div class="header-tile">
+                                          <span>Recent Activities</span>
+                                          <a href="" class="viewall">View All</a>
+                                        </div>
+                                        <div class="main-tile">
+                                          <ul>
+                                            <li>
+                                              <a href="#">
+                                                <p>Voucher Entry<br/> <small>Name </small></p>
+                                                <small>10 minutes ago</small>
+                                              </a>
+                                            </li>
+                                            <li>
+                                              <a href="#">
+                                                <p>Voucher Entry<br/> <small>Name </small></p>
+                                                <small>10 minutes ago</small>
+                                              </a>
+                                            </li>
+                                            <li>
+                                              <a href="#">
+                                                <p>Voucher Entry<br/> <small>Name </small></p>
+                                                <small>10 minutes ago</small>
+                                              </a>
+                                            </li>
+                                            
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="card">
+                                      
+                                        <div class="card-body">
+                                          <div class="header-tile">
+                                            <span>Today's Schedule</span>
+                                            <a href="" class="viewall">View All</a>
+                                          </div>
+                                          <div class="main-tile">
+                                            <ul>
+                                              <li>
+                                                <a href="#">
+                                                  <div class="left-side">
+                                                    <p>Task 1</p>
+                                                    <small>Status: UnDone</small>
+                                                  </div>
+                                                  <div class="right-side">
+                                                    <p>Accounts</p>
+                                                    <small>Assigned By</small>
+                                                  </div>
+
+                                                </a>
+                                              </li>
+                                              <li>
+                                                <a href="#">
+                                                  <div class="left-side">
+                                                    <p>Task 1</p>
+                                                    <small>Status: UnDone</small>
+                                                  </div>
+                                                  <div class="right-side">
+                                                    <p>Accounts</p>
+                                                    <small>Assigned By</small>
+                                                  </div>
+
+                                                </a>
+                                              </li>
+                                              <li>
+                                                <a href="#">
+                                                  <div class="left-side">
+                                                    <p>Task 1</p>
+                                                    <small>Status: UnDone</small>
+                                                  </div>
+                                                  <div class="right-side">
+                                                    <p>Accounts</p>
+                                                    <small>Assigned By</small>
+                                                  </div>
+
+                                                </a>
+                                              </li>
+    
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      
+                                    </div>
+                              </div>
+                          </div>
+                          <div class="row tile">
+                            <div class="col-md-12 padding-1">
+                              <div class="card">
+                                <div class="card-body">
+                                  <div class="graph-header">
+                                    <span>Notice</span>
+                                    <a class="viewall" href="">View All</a>
+                                  </div>
+                                  <div class="content">
+                                    Some Notice text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, commodi, ducimus itaque quos molestias 
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </section>
+                        <section id="user">
+                          <div class="row tile">
+                            <div class="col-md-12 padding-1">
+                              <div class="card">
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-8 col-md-8 userinfo-tile">
+                                      <div class="left">
+                                        <div class="image-container">
+                                          <img src="assets/images/img_avatar.png" alt="">
+                                        </div>
+                                      </div>
+                                      <div class="right">
+                                        <div class="user-info">
+                                          <div class="top">
+                                            <h6>Name Of User</h4>
+                                              <p>Some Lines from User</p>
+                                          </div>
+                                          <div class="social-media-links">
+                                            <a href="#"> <i class="fab fa-facebook-f"></i></a>
+                                            <a href="#"> <i class="fab fa-linkedin-in"></i></a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                     
+                                    </div>
+                                    <div class="col-4 col-md-4">
+                                      <p><strong>Designation:</strong> <span>Management</span></p>
+                                      <p> <strong>Software Role:</strong> <span>Admin</span></p>
+                                      <p> <strong>Department:</strong> <span>Accounts</span></p>
+                                      <p> <strong>Birth Date:</strong> <span>28 June, 1999</span></p>
+                                    </div>
+                                  </div>
+                                 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row tile">
+                            <div class="col-md-8 padding-1 graph">
+                                <div class="card">
+                                    <div class="card-body">
+                                      <div class="graph-header">
+                                        <span>Sales Monthly Target Vs Actual Graph</span>
+                                        <a class="viewall" href="">View All</a>
+                                      </div>
+                                      <div class="graph-main">
+                                        <div class="container">                                          
+                                        </div>
+                                      </div>
+                                      <div class="graph-buttons">                                        
+                                        <button id="saleu" class="btn btn-light rounded-pill shadow-sm button-item active">Sales</button>
+                                        <button id="purchaseu" class="btn btn-light rounded-pill shadow-sm button-item">Purchase</button>
+                                        <button id="accountsu" class="btn btn-light rounded-pill shadow-sm button-item">Accounts</button>
+                                        <button id="constructionu" class="btn btn-light rounded-pill shadow-sm button-item">Construction</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-4 padding-1 row-divide">                              
+                                  <div class="card">                                    
+                                      <div class="card-body">
+                                        <div class="header-tile">
+                                          <span>Today's Schedule</span>
+                                          <a href="" class="viewall">View All</a>
+                                        </div>
+                                        <div class="main-tile">
+                                          <ul>
+                                            <li>
+                                              <a href="#">
+                                                <div class="left-side">
+                                                  <p>Task 1</p>
+                                                  <small>Status: UnDone</small>
+                                                </div>
+                                                <div class="right-side">
+                                                  <p>Accounts</p>
+                                                  <small>Assigned By</small>
+                                                </div>
+
+                                              </a>
+                                            </li>
+                                            <li>
+                                              <a href="#">
+                                                <div class="left-side">
+                                                  <p>Task 1</p>
+                                                  <small>Status: UnDone</small>
+                                                </div>
+                                                <div class="right-side">
+                                                  <p>Accounts</p>
+                                                  <small>Assigned By</small>
+                                                </div>
+
+                                              </a>
+                                            </li>
+                                            <li>
+                                              <a href="#">
+                                                <div class="left-side">
+                                                  <p>Task 1</p>
+                                                  <small>Status: UnDone</small>
+                                                </div>
+                                                <div class="right-side">
+                                                  <p>Accounts</p>
+                                                  <small>Assigned By</small>
+                                                </div>
+
+                                              </a>
+                                            </li>
+  
+                                          </ul>
+                                        </div>
+                                      </div>
+                                    
+                                  </div>
+                                  <div class="card">
+                                    <div class="card-body">
+                                      <div class="graph-header">
+                                        <span>Notice</span>
+                                        <a class="viewall" href="">View All</a>
+                                      </div>
+                                      <div class="content">
+                                        Some Notice text Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, commodi, ducimus itaque quos molestias 
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div>
+                        
+                        </section>
+                    </div>
+
+                </div>
+
+
+                <div class="footer">
+                    <div class="copyright-container">
+                        Copyright &copy;
+                        <script>
+                          document.write(new Date().getFullYear());
+                        </script>
+                        ASIT UI/UX Team Development
+                      </div>
+                      <div class="common-button">
+                        <button id="calc" type="button" class="btn shadow-sm common-button-item">
+                            <small class="text-uppercase">Calculate</small></button>
+                        <button id="save" type="button" class="btn shadow-sm common-button-item">
+                                <small class="text-uppercase ">Save</small></button>
+                      
+                      </div>
+                      <div class="exchange-module-container">
+                        <a href="" class="module-main">No Module</a>
+                        <a class="dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            
+                            <div class="user-info-text">
+                                <span>Entry Form</span>
+                                
+                            </div>
+                        </a>
+                      
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                        <a class="dropdown-toggle" href="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div class="user-info-text">
+                                <span>Report Form</span>
+                            </div>
+                        </a>
+                      
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                      </div>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha512-k2WPPrSgRFI6cTaHHhJdc8kAXaRM4JBFEDo1pPGGlYiOyv4vnA0Pp0G5XMYYxgAPmtmv/IIaQA6n5fLAyJaFMA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js" integrity="sha512-ubuT8Z88WxezgSqf3RLuNi5lmjstiJcyezx34yIU2gAHonIi27Na7atqzUZCOoY4CExaoFumzOsFQ2Ch+I/HCw==" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    
+</body>
+</html>
