@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{24C0577D-B0F3-4AB5-A18B-C7050BBB97CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RealERPEntity</RootNamespace>
+    <AssemblyName>RealERPEntity</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="CompGroupMenu.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="C_01_LPA\BO_Fesibility.cs" />
+    <Compile Include="C_02_Fea\EClasFeasibility.cs" />
+    <Compile Include="C_04_Bgd\EClassBudget.cs" />
+    <Compile Include="C_04_Bgd\EClassEmployee.cs" />
+    <Compile Include="C_04_Bgd\EClassProProgress.cs" />
+    <Compile Include="C_08_PPlan\BL_UserManage_Con.cs" />
+    <Compile Include="C_08_PPlan\BO_Class_Con.cs" />
+    <Compile Include="C_08_PPlan\E_CLassPaymetSch.cs" />
+    <Compile Include="C_09_LCM\BL_AllLCInfo.cs" />
+    <Compile Include="C_09_LCM\BO_AllLCInfo.cs" />
+    <Compile Include="C_09_LCM\EClassLCM.cs" />
+    <Compile Include="C_09_LCM\UserManagerLCM.cs" />
+    <Compile Include="C_09_PImp\EClassExecution.cs" />
+    <Compile Include="C_09_PImp\EclassOrder.cs" />
+    <Compile Include="C_09_PImp\SubConBill.cs" />
+    <Compile Include="C_12_Inv\EClassIDCode.cs" />
+    <Compile Include="C_12_Inv\EClassMaterial.cs" />
+    <Compile Include="C_12_Inv\EclassPurchase.cs" />
+    <Compile Include="C_12_Inv\EClassReqInfo.cs" />
+    <Compile Include="C_14_Pro\BundleRpt.cs" />
+    <Compile Include="C_14_Pro\EClassPayment.cs" />
+    <Compile Include="C_14_Pro\EClassPur.cs" />
+    <Compile Include="C_14_Pro\UserManPur.cs" />
+    <Compile Include="C_16_Bill\BO_BillEntry.cs" />
+    <Compile Include="C_16_Bill\EClassBilling.cs" />
+    <Compile Include="C_17_Acc\AccSubCode.cs" />
+    <Compile Include="C_17_Acc\EClassAccounts.cs" />
+    <Compile Include="C_17_Acc\EClassAccVoucher.cs" />
+    <Compile Include="C_17_Acc\EClassDB_BO.cs" />
+    <Compile Include="C_17_Acc\EClassFinanStatement.cs" />
+    <Compile Include="C_17_Acc\EclassPendingBill.cs" />
+    <Compile Include="C_17_Acc\EClassSalesDetails.cs" />
+    <Compile Include="C_17_Acc\EClassSpecification.cs" />
+    <Compile Include="C_17_Acc\EClassSupChequeSt.cs" />
+    <Compile Include="C_17_Acc\RptInvList.cs" />
+    <Compile Include="C_17_Acc\UserDB_BL.cs" />
+    <Compile Include="C_21_MKT\ECRMClientInfo.cs" />
+    <Compile Include="C_21_MKT\EPaper.cs" />
+    <Compile Include="C_21_MKT\ESourceWiseLeadsclass.cs" />
+    <Compile Include="C_22_Sal\EClassSales.cs" />
+    <Compile Include="C_22_Sal\EClassSales_02.cs" />
+    <Compile Include="C_22_Sal\EnvelopModel.cs" />
+    <Compile Include="C_22_Sal\SalesInvoice_BL.cs" />
+    <Compile Include="C_22_Sal\Sales_BO.cs" />
+    <Compile Include="C_23_CR\EClassCutomer.cs" />
+    <Compile Include="C_23_CR\EClassSalesStatus.cs" />
+    <Compile Include="C_23_CR\EClassSales_03.cs" />
+    <Compile Include="C_24_CC\EClassAddwork.cs" />
+    <Compile Include="C_24_CC\RptCostRegistration.cs" />
+    <Compile Include="C_24_CC\RptSalesPermissionCost.cs" />
+    <Compile Include="C_29_Fxt\EClassFixedAsset.cs" />
+    <Compile Include="C_32_Mis\EClassAcc_03.cs" />
+    <Compile Include="C_33_Doc\EClassDoc.cs" />
+    <Compile Include="C_34_Mgt\EClassSalPurAcc.cs" />
+    <Compile Include="C_34_Mgt\EClassUserLog.cs" />
+    <Compile Include="C_34_Mgt\SalPurAccCombo.cs" />
+    <Compile Include="C_34_Mgt\SalPurAccComboManager.cs" />
+    <Compile Include="C_35_MgtAct\EClassMisOverall.cs" />
+    <Compile Include="C_39_MyPage\EClassMIS.cs" />
+    <Compile Include="C_39_MyPage\EClassMyPage.cs" />
+    <Compile Include="C_39_MyPage\UserManagerMyPage.cs" />
+    <Compile Include="C_41_GAcc\ProProgBillStatus.cs" />
+    <Compile Include="C_45_GrAcc\Companies.cs" />
+    <Compile Include="C_45_GrAcc\CompanyManager.cs" />
+    <Compile Include="C_45_GrAcc\RptGrpMisDailyActiviteis.cs" />
+    <Compile Include="C_45_GrAcc\RptGrpMisDailyActiviteisMan.cs" />
+    <Compile Include="C_46_GrMgtInter\DailyGrpRpt.cs" />
+    <Compile Include="C_46_GrMgtInter\DailyGrpRptMan.cs" />
+    <Compile Include="C_47_Kpi\BL_EntryKpi.cs" />
+    <Compile Include="C_47_Kpi\BO_EntryKpi.cs" />
+    <Compile Include="C_47_Kpi\EClassEMPKPI.cs" />
+    <Compile Include="C_47_Kpi\EClassKPI.cs" />
+    <Compile Include="C_47_Kpi\UserManagerKPI.cs" />
+    <Compile Include="C_62_Mis\EClassSales_02.cs" />
+    <Compile Include="C_81_Hrm\BankFor.cs" />
+    <Compile Include="C_81_Hrm\C_81_Rec\CreateOffLt.cs" />
+    <Compile Include="C_81_Hrm\C_83_Att\BO_ClassLate.cs" />
+    <Compile Include="C_81_Hrm\C_83_Att\EClassAttendance.cs" />
+    <Compile Include="C_81_Hrm\C_83_Att\EMDailyAttendenceClassCHL.cs" />
+    <Compile Include="C_81_Hrm\C_84_Lea\BO_ClassLeave.cs" />
+    <Compile Include="C_81_Hrm\C_86_All\EClassAllowance.cs" />
+    <Compile Include="C_81_Hrm\C_87_Tra\EmployeeTransInfo.cs" />
+    <Compile Include="C_81_Hrm\C_89_Pay\SalarySheet.cs" />
+    <Compile Include="C_81_Hrm\C_89_Pay\SalarySheet2.cs" />
+    <Compile Include="C_81_Hrm\C_90_PF\PFAlliance.cs" />
+    <Compile Include="C_81_Hrm\C_91_ACR\EMpEvaluation.cs" />
+    <Compile Include="C_81_Hrm\C_92_Mgt\BO_ClassEmployee.cs" />
+    <Compile Include="C_81_Hrm\C_92_Mgt\EmpSettlmnt.cs" />
+    <Compile Include="C_81_Hrm\C_93_AnnInc\AnnIncReport.cs" />
+    <Compile Include="C_81_Hrm\IndvPf.cs" />
+    <Compile Include="C_99_AllInterface\SalesJournal.cs" />
+    <Compile Include="EClassModule.cs" />
+    <Compile Include="EntityClassGeneral.cs" />
+    <Compile Include="EntityClassProject.cs" />
+    <Compile Include="ICMDSerializer.cs" />
+    <Compile Include="ProjectName1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EClassSalesOpening.cs" />
+    <Compile Include="SerializeHelper.cs" />
+    <Compile Include="SqlHelper.cs" />
+    <Compile Include="UserManager.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManagerMIS.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManBudget.cs" />
+    <Compile Include="UserManGenAccount.cs" />
+    <Compile Include="UserManMAccount.cs" />
+    <Compile Include="UserManMgtAct.cs" />
+    <Compile Include="UserManMkt.cs" />
+    <Compile Include="UserManProSupply.cs" />
+    <Compile Include="UserManPurchase.cs" />
+    <Compile Include="UserManSales.cs" />
+    <Compile Include="UserProjPlan.cs" />
+    <Compile Include="Xml_BO_Class.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="C_03_Fin\" />
+    <Folder Include="C_05_Busi\" />
+    <Folder Include="C_07_Ten\" />
+    <Folder Include="C_13_Cen\" />
+    <Folder Include="C_15_DPayReg\" />
+    <Folder Include="C_18_MAcc\" />
+    <Folder Include="C_19_Audit\" />
+    <Folder Include="C_20_BillMod\" />
+    <Folder Include="C_25_Reg\" />
+    <Folder Include="C_26_Alert\" />
+    <Folder Include="C_31_EDAct\" />
+    <Folder Include="C_50_CMIS\" />
+    <Folder Include="C_51_LBgd\" />
+    <Folder Include="C_64_Mgt\" />
+    <Folder Include="C_81_Hrm\C_82_App\" />
+    <Folder Include="C_81_Hrm\C_85_Lon\" />
+    <Folder Include="C_81_Hrm\C_88_Res\" />
+    <Folder Include="C_81_Hrm\C_94_Task\" />
+    <Folder Include="C_81_Hrm\C_97_MIS\" />
+    <Folder Include="C_81_Hrm\C_99_MgtAct\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

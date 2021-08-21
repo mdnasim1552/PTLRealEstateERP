@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Country">
+        <s:complexType />
+      </s:element>
+      <s:element name="CountryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceRup02">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceRup02Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceRup02Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDance02">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDance02Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDance02Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceAlli">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceAlliResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceAlliResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceCredence">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceCredenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceCredenceResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceAssure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceAssureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceAssureResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="CountrySoapIn">
+    <wsdl:part name="parameters" element="tns:Country" />
+  </wsdl:message>
+  <wsdl:message name="CountrySoapOut">
+    <wsdl:part name="parameters" element="tns:CountryResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDance" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceRup02SoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceRup02" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceRup02SoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceRup02Response" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDance02SoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDance02" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDance02SoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDance02Response" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceAlliSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAlli" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceAlliSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAlliResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceCredenceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceCredence" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceCredenceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceCredenceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceAssureSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAssure" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceAssureSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAssureResponse" />
+  </wsdl:message>
+  <wsdl:portType name="HrDailyAttenSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Country">
+      <wsdl:input message="tns:CountrySoapIn" />
+      <wsdl:output message="tns:CountrySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDance">
+      <wsdl:input message="tns:GetDailyAttenDanceSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceRup02">
+      <wsdl:input message="tns:GetDailyAttenDanceRup02SoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceRup02SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDance02">
+      <wsdl:input message="tns:GetDailyAttenDance02SoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDance02SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceAlli">
+      <wsdl:input message="tns:GetDailyAttenDanceAlliSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceAlliSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceCredence">
+      <wsdl:input message="tns:GetDailyAttenDanceCredenceSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceCredenceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceAssure">
+      <wsdl:input message="tns:GetDailyAttenDanceAssureSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceAssureSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HrDailyAttenSoap" type="tns:HrDailyAttenSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Country">
+      <soap:operation soapAction="http://tempuri.org/Country" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDance">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceRup02">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceRup02" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDance02">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDance02" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceAlli">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceAlli" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceCredence">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceCredence" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceAssure">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceAssure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HrDailyAttenSoap12" type="tns:HrDailyAttenSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Country">
+      <soap12:operation soapAction="http://tempuri.org/Country" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDance">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceRup02">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceRup02" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDance02">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDance02" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceAlli">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceAlli" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceCredence">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceCredence" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceAssure">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceAssure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HrDailyAtten">
+    <wsdl:port name="HrDailyAttenSoap" binding="tns:HrDailyAttenSoap">
+      <soap:address location="http://localhost/WebReference/HRDailyAtten.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HrDailyAttenSoap12" binding="tns:HrDailyAttenSoap12">
+      <soap12:address location="http://localhost/WebReference/HRDailyAtten.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
