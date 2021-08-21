@@ -23,7 +23,7 @@ namespace RealERPLIB
         /// ///////////
         /// Strt Menu
         /// <returns></returns>
-        //nahid
+
 
         #region General Menu
         public static DataTable WebObjTable()
@@ -907,7 +907,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703625", "F_17_Acc", "AccTrialBalance?", "Type=BDetails2", "Notes:Comprehensive Income 02", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703626", "F_17_Acc", "AccTrialBalance?", "Type=INDetails2", "Notes:Income Statement 02", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703627", "F_17_Acc", "RptChequeIssuedList", "", "List Of Issued Cheque", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1703000", "1703628", "F_17_Acc", "AccPurchaseOth?", "Type=Entry", "Other Purchase Update", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703628", "F_17_Acc", "AccPurchaseOth?", "Type=Entry", "General Bill Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703630", "F_17_Acc", "AccLedgerAll", "", "Accounts Ledger- All", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703631", "F_17_Acc", "RptGeneralReport", "", "General Requistion Report", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703632", "F_17_Acc", "RptBillRegister", "", "Bill Register Report", "Accounts", "False", "False", "False", "False" }); ;
