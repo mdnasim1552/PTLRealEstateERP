@@ -96,6 +96,7 @@
                                     </div>
                                 </div>
                             </asp:Panel>
+
                             <asp:Panel ID="pnlbillalrt" runat="server">
                                 <div class="mt-5">
 
@@ -182,6 +183,60 @@
                                 </div>
                                 
                            </asp:Panel>
+
+                            <asp:Panel ID="pnlAleartMsg" runat="server" Visible="False">
+
+                                <div class="modal-body">
+
+                            <div class="form-group d-none">
+                                <asp:TextBox ID="_sqlLnk1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="_sqlLnkuser1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="_sqlLnkpwd1" runat="server"></asp:TextBox>
+
+
+                            </div>
+                            <label runat="server" id="lblmsg" class="btn btn-sm float-right mr-2"></label>
+
+                            <asp:HiddenField ID="hiddDbName" runat="server" />
+                            <asp:HiddenField ID="mCompID" runat="server" />
+                            <div class="form-group">
+                                <label for="username">Master Company</label>
+                                <input type="text" class="form-control" runat="server" id="txtMasterComp" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Type Alert Message</label>
+                                <textarea rows="5" runat="server" id="Textarea1" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label>Color Set</label>
+                                <div id="xcp-component" class="input-group">
+                                    <input type="text" runat="server" id="Text1" class="form-control" />
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="username">Status</label>
+                                <div class="custom-control custom-switch">
+                                    <asp:RadioButtonList runat="server" ID="RadioButtonList1" RepeatDirection="Horizontal">
+                                        <asp:ListItem Value="True">Active</asp:ListItem>
+                                        <asp:ListItem Value="False">InActive</asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                                </asp:Panel>
+
+
+
+
 
                         </div>
 
