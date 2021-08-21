@@ -53,7 +53,7 @@ namespace RealERPWEB
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = true;
                         }
-                        else
+                         else
                         {
                             this.pnlbillalrt.Visible = true;
                             this.pnlTop.Visible = false;
