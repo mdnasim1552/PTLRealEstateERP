@@ -53,6 +53,15 @@ namespace RealERPWEB
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = true;
                         }
+                        else if (pnlType == "alrtMsg")
+                        {
+                            GetProcessSqlInfo(sysID);
+                            this.pnlbillalrt.Visible = false;
+                            this.pnlTop.Visible = false;
+                            this.pnlmsg.Visible = false;
+                            this.pnlDtPropertis.Visible = false;
+                            this.pnlAleartMsg.Visible = false;
+                        }
                         else
                         {
                             this.pnlbillalrt.Visible = true;
