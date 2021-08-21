@@ -1,0 +1,1173 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ASITMaster.master.cs" Inherits="RealERPWEB.ASITMaster" %>
+
+
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+
+    <asp:PlaceHolder runat="server">
+
+
+        <%: Styles.Render("~/Content/version") %>
+        <%: Styles.Render("~/Content/css") %>
+        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Scripts.Render("~/bundles/Version") %>
+        <%: Scripts.Render("~/bundles/Jquery") %>
+        <%: Scripts.Render("~/bundles/gridviewscroll") %>
+        <%: Scripts.Render("~/bundles/tablescroll") %>
+        <%: Scripts.Render("~/bundles/chosen") %>
+        <%: Scripts.Render("~/bundles/keynavigation") %>
+        <%: Scripts.Render("~/bundles/richtext") %>
+        <%: Scripts.Render("~/bundles/multiselect") %>
+        <%: Scripts.Render("~/bundles/User") %>
+        <%: Scripts.Render("~/bundles/Counter") %>
+
+        
+    </asp:PlaceHolder>
+
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pinovation ERP</title>
+   <%-- <link rel="icon" type="image/ico" href="favicon.ico" />--%>
+    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png"/>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style>
+        /*================================= update Menu CSS================*/
+        a:focus {
+            outline: none;
+            outline-offset: 0px;
+        }
+        /* general styles */
+        .menu, .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mainmneuWrp {
+            background: whitesmoke;
+            width: 40%;
+            margin: 0 auto;
+            border-left: 0;
+            border-right: 0;
+            height: 30px !important;
+        }
+
+        .menu {
+            /*height: 58px;*/
+        }
+
+            .menu li {
+                /*border-bottom: 2px solid #181818;
+                border-top: 2px solid #303030;*/
+                /*min-width: 160px;*/
+            }
+
+            .menu > li {
+                display: block;
+                float: left;
+                position: relative;
+            }
+
+                .menu > li:first-child {
+                }
+
+                .menu > li a:first-child {
+                    border: none;
+                }
+
+            /*.menu a {
+                border-right: 1px solid silver;
+                color: #000;
+                display: block;
+                font-family: Cambria;
+                font-size: 15px;
+                line-height: 22px;
+                padding: 0px 22px;
+                font-weight: 600;
+                text-decoration: none;
+                text-transform: uppercase;
+            }*/
+
+            /* onhover styles */
+            .menu li:hover {
+                /*background-color: #1c1c1c;
+                background: -moz-linear-gradient(#1c1c1c, #1b1b1b);
+                background: -ms-linear-gradient(#1c1c1c, #1b1b1b);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1c1c1c), color-stop(100%, #1b1b1b));
+                background: -webkit-linear-gradient(#1c1c1c, #1b1b1b);
+                background: -o-linear-gradient(#1c1c1c, #1b1b1b);
+                filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1c1c1c', endColorstr='#1b1b1b');
+                -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#1c1c1c', endColorstr='#1b1b1b')";
+                background: linear-gradient(#1c1c1c, #1b1b1b);*/
+                /*border-bottom: 2px solid #222222;
+                border-top: 2px solid #1B1B1B;*/
+                background: #fff;
+            }
+
+                .menu li:hover > a {
+                    /*border-radius: 5px 0 0 0;*/
+                    text-decoration: none;
+                    color: #C4302B;
+                }
+
+        /* submenu styles */
+        .submenu {
+            left: 0;
+            max-height: 0;
+            position: absolute;
+            top: 100%;
+            z-index: 0;
+            -webkit-perspective: 400px;
+            -moz-perspective: 400px;
+            -ms-perspective: 400px;
+            -o-perspective: 400px;
+            perspective: 400px;
+            min-width: 235px;
+        }
+
+            .submenu li {
+                opacity: 0;
+                -webkit-transform: rotateY(90deg);
+                -moz-transform: rotateY(90deg);
+                -ms-transform: rotateY(90deg);
+                -o-transform: rotateY(90deg);
+                transform: rotateY(90deg);
+                -webkit-transition: opacity .4s, -webkit-transform .5s;
+                -moz-transition: opacity .4s, -moz-transform .5s;
+                -ms-transition: opacity .4s, -ms-transform .5s;
+                -o-transition: opacity .4s, -o-transform .5s;
+                transition: opacity .4s, transform .5s;
+            }
+
+        .menu .submenu li:hover a {
+            border-left: 3px solid #454545;
+            border-radius: 0;
+            color: #ffffff;
+        }
+
+        .menu > li:hover .submenu, .menu > li:focus .submenu {
+            max-height: 2000px;
+            z-index: 10;
+        }
+
+            .menu > li:hover .submenu li, .menu > li:focus .submenu li {
+                opacity: 1;
+                -webkit-transform: none;
+                -moz-transform: none;
+                -ms-transform: none;
+                -o-transform: none;
+                transform: none;
+            }
+
+
+        .Menu1_2 tr {
+            float: left;
+        }
+
+        .mainmneuWrp .Menu1_2 {
+            margin-top: -20px;
+        }
+
+        .Menu1_2 tr td tr td a {
+            color: green;
+            float: left;
+            font-family: Cambria;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 30px !important;
+            padding: 0 10px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase !important;
+        }
+        /*calculator*/
+        .calculator {
+            width: 300px;
+            height: 300px;
+            background-color: #eeeeee;
+            border: 2px solid #CCCCCC;
+            margin: auto;
+            padding-left: 5px;
+            padding-bottom: 5px;
+        }
+
+            .calculator td {
+                height: 16.66%;
+            }
+
+        .calc_td_result {
+            text-align: center;
+        }
+
+        .calc_result {
+            width: 90%;
+            height: 40px;
+            text-align: right;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .calc_td_calculs {
+            text-align: center;
+        }
+
+        .calc_calculs {
+            width: 90%;
+            text-align: left;
+        }
+
+        .calc_td_btn {
+            width: 25%;
+            height: 100%;
+        }
+
+        .calc_btn {
+            width: 90%;
+            height: 90%;
+            font-size: 20px;
+        }
+    </style>
+    <link href="Content/BDAccStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+
+        function submitform() { document.getElementById("form1").submit(); }
+    </script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <%-- <link href="Content/bootstrap.icon-large.css" rel="stylesheet" />
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="Content/flaticon.css" rel="stylesheet" />
+
+    <link href="Content/asitCommonStyle.css" rel="stylesheet" />
+    <link href="Content/AppsStyle.css" rel="stylesheet" />
+    <link href="Content/AsitnoneResponsive.css" rel="stylesheet" />
+    <link href="Content/screen.css" rel="stylesheet" />
+      <link href="Content/ResponsiveForm.css" rel="stylesheet" />
+
+    <link href="Content/chosen.css" rel="stylesheet" />
+    <link href="Content/wheelmenu.css" rel="stylesheet" />
+    <link href="Content/GridViewScrooling.css" rel="stylesheet" />
+    <link href="Content/chosen.css" rel="stylesheet" />
+    <link href="Content/progressbar.css" rel="stylesheet" />
+    <link href="Content/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="Content/theme.blue.css" rel="stylesheet" />--%>
+
+
+    <style>
+        .userMenu ul .dropdown-menu {
+            right: 0 !important;
+            left: unset !important;
+        }
+
+        .userMenu li {
+            list-style: none;
+            margin-bottom: -1px;
+        }
+
+        /*.userMenu a {
+                background-color: none;
+                color: #fff;
+                cursor: pointer;
+                height: 32px;
+                padding: 15px 4px;
+                position: relative;
+                /*text-indent: -9999px;*/
+        /*width: auto;
+        }*/
+
+        */ .userMenu li:first-child a {
+            border-radius: 4px 4px 0 0;
+        }
+
+        .userMenu li:last-child a {
+            border-radius: 0 0 4px 4px;
+        }
+
+        .userMenu a:hover,
+        .userMenu a:focus {
+            /*background-color: #000;*/
+            /*color: #fff;*/
+        }
+
+        /*.userMenu a:active {
+                right: 2px;
+                top: 4px;
+            }*/
+
+        .userInformation {
+            height: 75px;
+            left: -230px;
+            top: 100%;
+            min-width: 300px;
+        }
+
+            .userInformation .well {
+                background: whitesmoke;
+            }
+
+            .userInformation p {
+                /*font-size: 20px;
+                line-height: 25px;
+                margin: 0;
+                color: #000;
+                font-family: Cambria;*/
+                margin: 0;
+            }
+
+                .userInformation p spna {
+                    /*font-size: 20px;
+                    line-height: 25px;*/
+                }
+
+        a.logoutBtn {
+            padding: 3px 12px;
+            margin-top: 10px;
+            background: #4D90FE;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            display: inline-flex;
+            border-radius: 4px !important;
+        }
+
+            a.logoutBtn:hover {
+                text-decoration: underline !important;
+            }
+
+        .sidepnaelMenu {
+            background: #ca6621 none repeat scroll 0 0;
+            border-radius: 5px 0 0 5px;
+            padding: 0;
+            position: fixed;
+            right: 0;
+            top: 30%;
+        }
+
+            .sidepnaelMenu .btn {
+                padding: 3px 6px;
+            }
+
+        .sidepnaelMenu1 {
+            position: fixed;
+            top: 30%;
+            right: 0;
+            position: absolute;
+            padding: 0px 0px;
+            background: #CA6621;
+            -webkit-border-radius: 5px 0 0 5px;
+            border-radius: 5px 0 0 5px;
+        }
+
+            .sidepnaelMenu1 .btn {
+                padding: 3px 6px;
+            }
+
+        .glypSideMenu {
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .dropSideMenu {
+            margin-left: -240px;
+            padding: 5px;
+            width: 265px;
+            z-index: 500;
+        }
+
+        .dropSideMenu1 {
+            width: 310px;
+            margin-left: -280px;
+            padding: 5px;
+            z-index: 500;
+        }
+
+        .dropSideMenu li {
+            float: left;
+            margin: 2px;
+        }
+
+            .dropSideMenu li a {
+                background: #fff none repeat scroll 0 0;
+                color: #000;
+                display: block;
+                font-size: 13px;
+                height: 80px;
+                padding: 20px 0;
+                text-align: center;
+                vertical-align: middle;
+                width: 80px;
+            }
+
+        .dropFa {
+            font-size: 22px;
+        }
+
+        .lbl2SubMenu h5 {
+            /*display: none;*/
+        }
+
+        .panelTopMenu {
+            -moz-border-bottom-colors: none;
+            -moz-border-left-colors: none;
+            -moz-border-right-colors: none;
+            -moz-border-top-colors: none;
+            background: whitesmoke none repeat scroll 0 0;
+            border-color: silver -moz-use-text-color;
+            border-image: none;
+            display: block;
+            height: 30px;
+            width: 100%;
+        }
+
+
+
+        .mainpage {
+            /*width:99%;*/
+        }
+
+
+        #main {
+            display: table;
+            margin: 0 auto;
+        }
+
+        .panelTopMenu ul {
+            display: table !important;
+            height: 30px !important;
+            margin: 0 auto;
+        }
+
+            .panelTopMenu ul li {
+                float: left;
+                height: 30px !important;
+                line-height: 30px !important;
+                list-style: outside none none;
+                margin: 0 !important;
+            }
+
+                .panelTopMenu ul li a {
+                    color: green;
+                    float: left;
+                    font-family: Cambria;
+                    font-size: 14px;
+                    line-height: 30px !important;
+                    padding: 0 10px;
+                    text-align: center;
+                    text-transform: uppercase !important;
+                    text-decoration: none;
+                    text-transform: capitalize;
+                    font-weight: bold;
+                }
+
+                    .panelTopMenu ul li a:hover {
+                        color: #fff;
+                        background: #939393;
+                    }
+    </style>
+    <script>
+        calc_array = new Array();
+        var calcul = 0;
+        var pas_ch = 0;
+
+
+
+        function $id(id) {
+            return document.getElementById(id);
+        }
+        function f_calc(id, n) {
+            if (n == 'ce') {
+                init_calc(id);
+            }
+            else if (n == '=') {
+                if (calc_array[id][0] != '=' && calc_array[id][1] != 1) {
+                    eval('calcul=' + calc_array[id][2] + calc_array[id][0] + calc_array[id][3] + ';');
+                    calc_array[id][0] = '=';
+                    $id(id + '_result').value = calcul;
+                    calc_array[id][2] = calcul;
+                    calc_array[id][3] = 0;
+                }
+            }
+            else if (n == '+-') {
+                $id(id + '_result').value = $id(id + '_result').value * (-1);
+                if (calc_array[id][0] == '=') {
+                    calc_array[id][2] = $id(id + '_result').value;
+                    calc_array[id][3] = 0;
+                }
+                else {
+                    calc_array[id][3] = $id(id + '_result').value;
+                }
+                pas_ch = 1;
+            }
+            else if (n == 'nbs') {
+                if ($id(id + '_result').value < 10 && $id(id + '_result').value > -10) {
+                    $id(id + '_result').value = 0;
+                }
+                else {
+                    $id(id + '_result').value = $id(id + '_result').value.slice(0, $id(id + '_result').value.length - 1);
+                }
+                if (calc_array[id][0] == '=') {
+                    calc_array[id][2] = $id(id + '_result').value;
+                    calc_array[id][3] = 0;
+                }
+                else {
+                    calc_array[id][3] = $id(id + '_result').value;
+                }
+            }
+            else {
+                if (calc_array[id][0] != '=' && calc_array[id][1] != 1) {
+                    eval('calcul=' + calc_array[id][2] + calc_array[id][0] + calc_array[id][3] + ';');
+                    $id(id + '_result').value = calcul;
+                    calc_array[id][2] = calcul;
+                    calc_array[id][3] = 0;
+                }
+                calc_array[id][0] = n;
+            }
+            if (pas_ch == 0) {
+                calc_array[id][1] = 1;
+            }
+            else {
+                pas_ch = 0;
+            }
+            document.getElementById(id + '_result').focus();
+            return true;
+        }
+        function add_calc(id, n) {
+            if (calc_array[id][1] == 1) {
+                $id(id + '_result').value = n;
+            }
+            else {
+                $id(id + '_result').value += n;
+            }
+            if (calc_array[id][0] == '=') {
+                calc_array[id][2] = $id(id + '_result').value;
+                calc_array[id][3] = 0;
+            }
+            else {
+                calc_array[id][3] = $id(id + '_result').value;
+            }
+            calc_array[id][1] = 0;
+            document.getElementById(id + '_result').focus();
+            return true;
+        }
+        function init_calc(id) {
+            $id(id + '_result').value = 0;
+            calc_array[id] = new Array('=', 1, '0', '0', 0);
+            document.getElementById(id + '_result').focus();
+            return true;
+        }
+        function key_detect_calc(id, evt) {
+            if ((evt.keyCode > 95) && (evt.keyCode < 106)) {
+                var nbr = evt.keyCode - 96;
+                add_calc(id, nbr);
+            }
+            else if ((evt.keyCode > 47) && (evt.keyCode < 58)) {
+                var nbr = evt.keyCode - 48;
+                add_calc(id, nbr);
+            }
+            else if (evt.keyCode == 107) {
+                f_calc(id, '+');
+            }
+            else if (evt.keyCode == 109) {
+                f_calc(id, '-');
+            }
+            else if (evt.keyCode == 106) {
+                f_calc(id, '*');
+            }
+            else if (evt.keyCode == 111) {
+                f_calc(id, '');
+            }
+            else if (evt.keyCode == 110) {
+                add_calc(id, '.');
+            }
+            else if (evt.keyCode == 190) {
+                add_calc(id, '.');
+            }
+            else if (evt.keyCode == 188) {
+                add_calc(id, '.');
+            }
+            else if (evt.keyCode == 13) {
+                f_calc(id, '=');
+            }
+            else if (evt.keyCode == 46) {
+                f_calc(id, 'ce');
+            }
+            else if (evt.keyCode == 8) {
+                f_calc(id, 'nbs');
+            }
+            else if (evt.keyCode == 27) {
+                f_calc(id, 'ce');
+            }
+            return true;
+        }
+    </script>
+    <script type="text/javascript">
+
+
+
+
+        function submitform() { document.getElementById("form1").submit(); }
+
+        function load_modal() {
+            $('#supportPart').modal('show');
+        }
+
+
+        function FunCurDate() {
+
+            var date = new Date().format('dd-MMM-yyyy hh:mm:ss tt');
+            $('#hdate').val(date);
+
+
+        }
+
+        function FunConfirmMerge() {
+            if (confirm('Are you sure you want merge this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+
+        function FunConfirm() {
+            if (confirm('Are you sure you want to delete this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+
+        function FunConfirmMail() {
+            if (confirm('Are you sure you want to send this Mail?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+        function FunConfirmSave() {
+            if (confirm('Are you sure you want to save this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+
+
+
+        function FunConfirmEdit() {
+            if (confirm('Are you sure you want to Edit this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+
+        function FunAppConfirm() {
+            if (confirm('Are you sure you want to Approved this  Item?')) {
+                return;
+            } else {
+                return false;
+            }
+        }
+
+
+
+        function HideLabel(id) {
+
+
+            if (id == "0") {
+
+                $('#lblmsg').addClass("msgerror");
+            }
+            else {
+                $('#lblmsg').addClass("msgsuccess");
+            }
+            setTimeout("lblHide()", 3000);
+        }
+
+
+        function lblHide() {    ///// using festival option
+            //  window.location = "http://webdesign.about.com";
+
+            $('#lblmsg').hide();
+
+        }
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+    <form id="form1" runat="server" enctype="multipart/form-data">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="0">
+            <Scripts>
+
+
+
+                <%--  <asp:ScriptReference Path="~/Scripts/jqplot.dateAxisRenderer.min.js" />
+                <asp:ScriptReference Path="~/Scripts/jqplot.highlighter.min.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery.jqplot.min.js" />
+                <asp:ScriptReference Path="~/Scripts/jqplot.cursor.min.js" />--%>
+                <%-- <asp:ScriptReference Path="~/Scripts/ScrollableGridPlugin.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery.keynavigation.js" />
+                <asp:ScriptReference Path="~/Scripts/ScrollableTablePlugin.js" />
+                <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVer.min.js" />
+                <asp:ScriptReference Path="~/Scripts/chosen.jquery.js" />
+                <asp:ScriptReference Path="~/tinymce/tinymce.min.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap-multiselect.js" />--%>
+                <%-- <asp:ScriptReference Path="~/Scripts/jquery.tablesorter.min.js" />
+                <asp:ScriptReference Path="~/Scripts/jquery.tablesorter.widgets.js" />--%>
+            </Scripts>
+
+        </asp:ScriptManager>
+        <asp:Label ID="lblprintstk1" runat="server" Style="display: none; color: #3495F3; position: absolute; right: -500px; top: -5000px"></asp:Label>
+        <asp:HiddenField ID="hdate" runat="server" ClientIDMode="Static"></asp:HiddenField>
+
+        <%-- <div class="sidepnaelMenu">
+
+            <div class="btn-group" id="sidepnaelMenu">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="Open Menu">
+                    <i class="fa fa-bars glypSideMenu"></i>
+
+                </a>
+                <ul class="dropdown-menu dropSideMenu">
+
+                    <li><a href="Image/General ERP Document (30042015).pdf" target="_blank"><i class="fa fa-user-secret dropFa"></i>
+                        <br />
+                        Profile</a></li>
+                    <li><a href="<%=this.ResolveUrl("~/Technology.aspx")%>" target="_blank"><i class="fa fa-users dropFa"></i>
+                        <br />
+                        Tools</a></li>
+                    <li><a href="Image/MicroVsOrac.pdf" target="_blank"><i class="fa fa-user-secret dropFa"></i>
+                        <br />
+                        Microsoft
+                        <br />
+                        Vs Oracle</a></li>
+                    <li><a href="<%=this.ResolveUrl("~/Clients_List1.aspx")%>" target="_blank"><i class="fa fa-sitemap dropFa"></i>
+                        <br />
+                        Client
+                        <br />
+                        List</a></li>
+                    <li><a href="#"><i class="fa fa-file dropFa"></i>
+                        <br />
+                        Reports</a></li>
+                    <li><a href="#"><i class="fa fa-info dropFa"></i>
+                        <br />
+                        Notification</a></li>
+                    <li><a href="#"><i class="fa fa-user dropFa"></i>
+                        <br />
+                        Online User</a></li>
+                    <li><a href="#supportPart" onclick="load_modal()"><i class="fa fa-phone dropFa"></i>
+                        <br />
+                        Support</a></li>
+                    <li><a href="#"><i class="fa fa-question dropFa"></i>
+                        <br />
+                        Help</a></li>
+                </ul>
+                <!-- Small modal -->
+
+
+            </div>
+
+
+            <div id="supportPart" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content well">
+                        <div class="panel-heading">
+                            <h2>Online Support</h2>
+                        </div>
+                        <h3>Software Help:- Md Mahbubur Rahman (Raihan): 01917792844</h3>
+                        <h3>Technical Help:- Mostak 0177545613</h3>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>--%>
+
+        <asp:Panel ID="pnlHead" runat="server">
+            <div class="sidepnaelMenu1">
+
+                <div class="btn-group" id="sidepnaelMenu1">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" title="Open Menu">
+                        <i class="fa fa-calculator glypSideMenu"></i>
+
+                    </a>
+                    <ul class="dropdown-menu dropSideMenu1">
+                        <li>
+                            <table class="calculator" id="calc">
+                                <tr>
+                                    <td colspan="4" class="calc_td_result">
+                                        <input type="text" readonly="readonly" name="calc_result" id="calc_result" class="calc_result" onkeydown="javascript:key_detect_calc('calc',event);" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="CE" onclick="javascript: f_calc('calc', 'ce');" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="&larr;" onclick="javascript: f_calc('calc', 'nbs');" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="%" onclick="javascript: f_calc('calc', '%');" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="+" onclick="javascript: f_calc('calc', '+');" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="7" onclick="javascript: add_calc('calc', 7);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="8" onclick="javascript: add_calc('calc', 8);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="9" onclick="javascript: add_calc('calc', 9);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="-" onclick="javascript: f_calc('calc', '-');" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="4" onclick="javascript: add_calc('calc', 4);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="5" onclick="javascript: add_calc('calc', 5);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="6" onclick="javascript: add_calc('calc', 6);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="x" onclick="javascript: f_calc('calc', '*');" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="1" onclick="javascript: add_calc('calc', 1);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="2" onclick="javascript: add_calc('calc', 2);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="3" onclick="javascript: add_calc('calc', 3);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="&divide;" onclick="javascript: f_calc('calc', '');" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="0" onclick="javascript: add_calc('calc', 0);" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="&plusmn;" onclick="javascript: f_calc('calc', '+-');" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="," onclick="javascript: add_calc('calc', '.');" />
+                                    </td>
+                                    <td class="calc_td_btn">
+                                        <input type="button" class="calc_btn" value="=" onclick="javascript: f_calc('calc', '=');" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+            </div>
+            <header class="headerMain2">
+                <div class=" asit_container">
+                    <div class="asit_row">
+                        <div class="asit_ComLogo">
+                            <h1>
+                                <%--<asp:Image ID="Image1" CssClass="Companylogo" runat="server" ImageUrl="~/Image/LOGO1.PNG" />--%>
+                                <asp:HyperLink runat="server" ID="LogoBar"><asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" /></asp:HyperLink>
+                            </h1>
+                        </div>
+                        <div class="asit_ComInfo">
+                            <div class="AppscompName pading5px">
+                                <asp:Label ID="LblGrpCompany" CssClass="lblCompName" runat="server" Text="Label"></asp:Label>
+                                <asp:Label ID="lbladd" CssClass="LblGrpCompanyAdress" runat="server" Text="Label"> </asp:Label>
+                            </div>
+                        </div>
+                        <div class="asit_userinfoPanel">
+                            <div class="userMenu pull-right">
+                                <ul>
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" data-target="#" href="#">
+                                       
+
+                                            <asp:Image ID="userimg" CssClass="img-circle" ImageUrl="~/image/profile_img.png" runat="server" AlternateText="Image Not Found" Style="width: 60px; height: 50px;" /></a>
+                                        <ul class="dropdown-menu">
+
+                                            <li><a href="#">
+                                                <asp:Label ID="lblmoduleid" Style="display: none;" runat="server"></asp:Label>
+                                                <asp:Label ID="lblLoginInfo" runat="server">User ID : ADMIN</asp:Label>
+                                            </a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="<%=this.ResolveUrl("~/home.aspx")%>">Modules</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="<%=this.ResolveUrl("~/F_33_Doc/GroupChat.aspx")%>">Chat Box<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                                    
+                                            <li><a href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=0")%>">Old Modules</a></li>
+                                            
+                                            <li class="divider"></li>
+                                            <li><a href="<%=this.ResolveUrl("~/Logout.aspx")%>">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                                        </ul>
+                                    </li>
+
+
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+
+                <div class="asit_container">
+                    <div>
+                        <div class="panelTopMenu">
+                            <div class="mainmneuWrp">
+                                <asp:Menu ID="Menu1" runat="server" aria-selected="true" ClientIDMode="Static">
+                                </asp:Menu>
+                                <div class=" clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <asp:Panel ID="pnlTitle" runat="server">
+                            <div class="pagetitelWrp">
+
+
+
+
+
+                                <div class="asit_col_74pr pading5px pull-left">
+                                    <div class=" pagetitel">
+                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                            <ContentTemplate>
+                                                <asp:Label ID="lblTitle" CssClass="lblPageTitel" runat="server"> 
+                                                </asp:Label>
+                                                <div class="col-md-4">
+
+                                                    <asp:Label ID="lblmsg" ClientIDMode="Static" CssClass="Message" runat="server"></asp:Label>
+
+
+
+                                                </div>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+
+                                <div class=" asit_col_25pr pading5px pull-right">
+                                    <asp:Label ID="lblprintstk" runat="server"></asp:Label>
+                                    <div class="input-group">
+                                        <asp:DropDownList ID="DDPrintOpt" runat="server" CssClass="form-control inputTxt">
+                                            <asp:ListItem Selected="True" Value="PDF">Adobe Acrobat (PDF)</asp:ListItem>
+                                            <asp:ListItem Value="HTML">HTML</asp:ListItem>
+                                            <asp:ListItem Value="WORD">MS Word</asp:ListItem>
+                                            <asp:ListItem Value="EXCEL">MS Excel</asp:ListItem>
+                                        </asp:DropDownList>
+
+                                        <span class="input-group-btn">
+
+                                            <asp:LinkButton ID="lnkPrint" ClientIDMode="Static" runat="server" OnClick="lnkPrint_Click" CssClass="btn btn-success printBtn okBtn"><span class="glyphicon glyphicon-print asitGlyp" style="color:#fff" aria-hidden="true"></span></asp:LinkButton>
+
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+
+
+
+                                <%--<div class="clearfix"></div>--%>
+                            </div>
+                        </asp:Panel>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </header>
+
+
+        </asp:Panel>
+        <section class="appsContiner">
+            <div class="mainpage">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </section>
+
+
+        <footer runat="server" class="navbar-fixed-bottom">
+
+
+            <asp:Panel ID="pnlbtn" runat="server" Visible="false">
+                <div class="container">
+                    <div class="row">
+                        <fieldset class="scheduler-border fieldset_A fixdbtn">
+
+                            <div class="form-horizontal">
+                                <div class="form-group">
+
+                                    <div class="col-md-12  ">
+                                        <div class="pull-left">
+                                            <asp:LinkButton ID="lnkbtnLedger" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btngl" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnHisprice" runat="server" CssClass="btngl" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnTranList" runat="server" CssClass="btngl " Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
+                                            <asp:CheckBox ID="chkBoxN" runat="server" TabIndex="10" Text="Payment" CssClass="btngl checkBoxAN checkBox" AutoPostBack="true" OnCheckedChanged="chkBoxN_CheckedChanged" />
+                                            <asp:CheckBox ID="CheckBox1" runat="server" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
+
+                                        </div>
+                                        <div class="pull-right">
+                                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                                <ContentTemplate>
+                                                    <asp:LinkButton ID="lnkbtnNew" runat="server" CssClass="btnsave  " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>
+ New</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="buttonAdd" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>
+ Add</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnEdit" runat="server" CssClass="buttonrefresh" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
+
+                                                    <asp:LinkButton ID="lnkbtnRecalculate" runat="server" CssClass="buttonAdd" Style="margin: 0 5px;" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnDelete" runat="server" OnClick="lnkbtnDelete_Click" CssClass="buttonDelete " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
+                                                    <asp:LinkButton ID="lnkbtnSave" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="buttonSave" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
+                                                    <asp:LinkButton ID="btnClose" runat="server" CssClass="buttonClose " OnClick="btnClose_Click" Style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
+Close</asp:LinkButton>
+
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                                </div>
+
+
+
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </asp:Panel>
+
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 text-right copyR">
+                        <%--<p><a href="DocumentAttached.aspx">Documents Attached </a></p>--%>
+                        
+                           <p><a href="http://www.pintechltd.com/#contact-us" target="_blank">Contact us</a><a href="http://www.pintechltd.com/#about-us" target="_blank">About us</a> <a href="#">Terms of use</a><a href="http://www.pintechltd.com" target="_blank">©Pinovation Tech Ltd.</a></p>
+                        
+                        <%--<p><a href="#">Contact us</a><a href="#">About us</a> <a href="#">Terms of use</a> <span>©</span> 2015-2021 ASIT Services Ltd., All  Rights  Reserved.  </p>--%>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </footer>
+
+        <div id="particles"></div>
+
+        <%-- <footer>
+
+
+            <div class="asit_container">
+                <div class="copyright">
+
+                    <p>
+                        <span>Powered by <a href="http://asit.com.bd/" target="_blank">
+                            <img class="img-rounded" width="50" height="40" src="http://www.apps.asit.com.bd/images/logo.png" alt="asitlogo" />
+
+                        </a>Advanced Software & IT Services Ltd. &nbsp;&nbsp; </span><a href="http://asit.com.bd/" target="_blank">www.asit.com.bd</a> &nbsp; 
+                            <a href="mailto:info@asit.com.bd">info@asit.com.bd</a>
+
+                        <br />
+                        <span class="fot02">Dhaka, Bangladesh &nbsp;&nbsp;  Contact Us: (+88)-02- 8122346, 8126184, 9118665 </span>
+                    </p>
+                </div>
+            </div>
+
+
+
+
+        </footer>--%>
+    </form>
+
+
+    <%--    <script src="Scripts/chosen.jquery.js"></script>
+    <script src="../Scripts/chosen.jquery.js"></script>--%>
+
+
+    <%-- <script type="text/javascript">
+
+            function HideLabel(id) {
+
+                alert(id);
+                if (id == "0") {
+
+                    $('#<%=this.lblmsg.ClientID%>').addClass("msgerror");
+          }
+          else {
+              $('#<%=this.lblmsg.ClientID%>').addClass("msgsuccess");
+          }
+          setTimeout("lblHide()", 3000);
+      }
+
+
+
+      function lblHide() {    ///// using festival option
+          //  window.location = "http://webdesign.about.com";
+
+          $('#<%=this.lblmsg.ClientID%>').hide(7000);
+            //  $('#<%=this.lblmsg.ClientID%>').text('');
+        }
+
+          </script>--%>
+    <script type="text/javascript">
+        document.getElementById('calc').onload = init_calc('calc');
+    </script>
+</body>
+</html>
