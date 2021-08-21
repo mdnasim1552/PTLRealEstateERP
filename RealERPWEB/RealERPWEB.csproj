@@ -46,10 +46,17 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="BilSimser.GeoJson">
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+>>>>>>> 93498d163a2f0ff2d16f697570607a1ef00eec35
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,14 +78,19 @@
       <HintPath>..\..\..\PTLRealERP\RealEstate\RealERPWEB\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
+>>>>>>> 93498d163a2f0ff2d16f697570607a1ef00eec35
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\Backup\Projects\PTLRealERP Before 210811\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
@@ -88,6 +100,17 @@
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
+>>>>>>> 93498d163a2f0ff2d16f697570607a1ef00eec35
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealEstate 210809Lu\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
@@ -122,7 +145,11 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+>>>>>>> 93498d163a2f0ff2d16f697570607a1ef00eec35
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -151,10 +178,17 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+>>>>>>> 93498d163a2f0ff2d16f697570607a1ef00eec35
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -174,6 +208,7 @@
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
@@ -182,6 +217,16 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+>>>>>>> 93498d163a2f0ff2d16f697570607a1ef00eec35
     </Reference>
   </ItemGroup>
   <ItemGroup>

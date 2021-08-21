@@ -23,11 +23,7 @@ namespace RealERPLIB
         /// ///////////
         /// Strt Menu
         /// <returns></returns>
-        //nahid
-        //Comment from dev branch 
-        //Comment from parvez branch 
-        //Second comment from parvez branch
-        //Third comment from parvez branch
+
 
         #region General Menu
         public static DataTable WebObjTable()
@@ -911,7 +907,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703625", "F_17_Acc", "AccTrialBalance?", "Type=BDetails2", "Notes:Comprehensive Income 02", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703626", "F_17_Acc", "AccTrialBalance?", "Type=INDetails2", "Notes:Income Statement 02", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703627", "F_17_Acc", "RptChequeIssuedList", "", "List Of Issued Cheque", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1703000", "1703628", "F_17_Acc", "AccPurchaseOth?", "Type=Entry", "Other Purchase Update", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703628", "F_17_Acc", "AccPurchaseOth?", "Type=Entry", "General Bill Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703630", "F_17_Acc", "AccLedgerAll", "", "Accounts Ledger- All", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703631", "F_17_Acc", "RptGeneralReport", "", "General Requistion Report", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703632", "F_17_Acc", "RptBillRegister", "", "Bill Register Report", "Accounts", "False", "False", "False", "False" }); ;
@@ -1607,7 +1603,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502390", "F_34_Mgt", "ProTargetTimeBasis?", "Type=Mgt", "Construction Planning - Time Basis(Management)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502391", "F_34_Mgt", "VehicleTrack?", "Type=TopSheet", "Vehicle Tracking", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502400", "F_34_Mgt", "Trigger", "", "Trigger Information", "Management", "False", "False", "False", "False" }); 
-            tblObj.Rows.Add(new Object[] { "3502000", "3502410", "Notices", "Notice", "", "Notice Information", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3502000", "3502410", "F_34_Mgt", "Notices/Events", "", "Notice Information", "Management", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "3503000", "3503998", "F_34_Mgt", "UserLoginfrm", "", "User Permission", "Admin", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3503000", "3503999", "F_34_Mgt", "UserLoginfrmasit", "", "Company Page Permission ", "Admin", "False", "False", "False", "False" }); ;
@@ -9262,7 +9258,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0416000000", "08. SMS/Mail Template Code", "F_34_Mgt/SMCodeBook", "", true, "" });    
             mnuTbl1.Rows.Add(new Object[] { "0417000000", "15. Group User Management", "F_34_Mgt/UserfrmGroup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0418000000", "16. Trigger Information", "F_34_Mgt/Trigger", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0419000000", "17. Notice Information", "Notices/Notice", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0419000000", "17. Notice Information", "F_34_Mgt/Notice", "", true, "" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0420000000", "", "", "", true, "" });
