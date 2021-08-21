@@ -9,6 +9,8 @@ using System.Web.UI.WebControls;
 
 using System.Diagnostics;
 using RealERPLIB;
+using System.Collections;
+
 namespace RealERPWEB
 {
 
@@ -59,12 +61,12 @@ namespace RealERPWEB
                         }
                         else if (pnlType == "alertMsg")
                         {
-                            GetProcessSqlInfo(sysID);
+                            GetAlertMsgInfo(sysID);
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
-                            this.pnlAlerMsg.Visible = true;
+                            this.pnlAlertMsg.Visible = true;
                         }
                         else
                         {
@@ -109,6 +111,33 @@ namespace RealERPWEB
             }
         }
 
+        private void GetAlertMsgInfo(string sysID)
+        {
+            try
+            {
+                string comcod = GetComCode();
+                DataSet ds1 = _linkVendorDb.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETCOMPINFO", "", "", "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+
+                txtCompMsg.Value = ds1.Tables[0].Rows[0]["commsg"].ToString();
+                txtMsgColor.Value = ds1.Tables[0].Rows[0]["commsgcol"].ToString();
+                string msgFlg = ds1.Tables[0].Rows[0]["msgflg"].ToString();
+                rbtnMsgStatus.SelectedValue = msgFlg;
+
+            }
+            catch (Exception ex)
+            {
+                this.pnlmsg.Visible = true;
+                this.msgBox.InnerText = "Error" + ex;
+            }
+        }
+        private string GetComCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
+        }
         private void GetProcessSqlInfo(string sysID)
         {
             try
