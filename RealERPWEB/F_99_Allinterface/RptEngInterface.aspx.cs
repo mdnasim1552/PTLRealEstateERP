@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Configuration;
 using System.Collections;
@@ -374,17 +374,26 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = this.GetCompCode();
             string FirstApp = "";
+            string frecom = "", secrecom = "";
 
             switch (comcod)
             {
                 case "3101":
                 case "1103":
                     FirstApp = "Checked";
+                    break;
+
+
+                case "1102": //IBCEL
+                    FirstApp = "Checked";
+                    frecom = "Forward";
+                    secrecom = "Approval";
 
                     break;
 
                 default:
-
+                    frecom = "1st Recom.";
+                    secrecom = "2nd Recom.";
                     FirstApp = "First Approval";
                     break;
 
@@ -397,8 +406,8 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["reqstatus"])).ToString("#,##0;(#,##0);") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["apprst"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Attachment</div></div></div>";
             this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["apprst"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + FirstApp + "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["frecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>1st Recom.</div></div></div>";
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  dark-gray e  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["secrecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>2nd Recom.</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  orange  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["frecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content  orange '><div class='circle-tile-description text-faded'>" + frecom + "</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading  dark-gray e  counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["secrecom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>" + secrecom + "</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["threcom"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Forward</div></div></div>";
 
             this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red   counter'>" + ((dt.Rows.Count == 0) ? 0 : Convert.ToDouble(dt.Rows[0]["fapp"])).ToString("#,##0;(#,##0);") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Final Approval</div></div></div>";
@@ -911,6 +920,27 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
+        private string GetComDelSkip3()
+            
+        {
+            string comcod = this.GetCompCode();
+            string delskip3 = "";
+            switch (comcod)
+            {
+                case "1102"://IBCEL
+                    break;
+
+                default:
+                    delskip3 = "delskip3";
+                    break;
+            
+            
+            
+            }
+
+
+            return delskip3;
+        }
 
         protected void btnDelOrder_Click(object sender, EventArgs e)
         {
@@ -920,7 +950,8 @@ namespace RealERPWEB.F_99_Allinterface
             int rowindex = gvr.RowIndex;
             string comcod = this.GetCompCode();
             string reqno = ((Label)this.gvFinlApproval.Rows[rowindex].FindControl("lblgvreqnoFnApp")).Text.Trim();
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string delskip3 = this.GetComDelSkip3();
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "DELETEOTHERREQ", reqno, delskip3, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {

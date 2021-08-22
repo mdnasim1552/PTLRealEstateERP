@@ -3124,12 +3124,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.EClassBudget.ProjBgdCon>)RptDataSet));
             return Rpt1a;
         }
-
-        private static LocalReport SetRptProjectBgd(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+  private static LocalReport SetRptProjectBgd(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.EClassBudget.BudgetInmStaSum>)RptDataSet));
             return Rpt1a;
         }
+      
 
         private static LocalReport SetRptMaterialsReqDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

@@ -28,7 +28,10 @@ namespace RealERPWEB.F_17_Acc
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Project Summary Infow ";
+
                 string Date = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                 this.txtfromdate.Text = "01-" + ASTUtility.Right(Date, 8);
                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -51,7 +54,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = hst["comcod"].ToString();
             if (ConstantInfo.LogStatus == true)
             {
-                string eventtype = this.LblTitle.Text;
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text.ToString();
                 string eventdesc = "Show Report";
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
@@ -69,17 +72,18 @@ namespace RealERPWEB.F_17_Acc
             string comcod = hst["comcod"].ToString();
             // string RptGroup = ((this.rbtnGroup.SelectedItem.Text.Trim() == "Deposit") ? "R" : "P");
 
-            string CallType = ((this.rbtnGroup.SelectedItem.Text.Trim() == "Deposit") ? "RPTNETTRANSCASHBANK02" : "RPTPOSTNETTRANSCASHABANK");
+            string CallType = ((this.rbtnGroup.SelectedValue.Trim() == "Deposit") ? "RPTNETTRANSCASHBANK02" : "RPTPOSTNETTRANSCASHABANK");
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS", CallType, fromdate, todate, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-
-            string RptGroup1 = this.rbtnGroup.SelectedItem.Text.Trim();
+            this.MultiView1.ActiveViewIndex = 0;
             DataView dvr = new DataView();
+            string RptGroup1 = this.rbtnGroup.SelectedValue.Trim();
             switch (RptGroup1)
             {
                 case "Deposit":
+                   
                     this.lblReceiptCash.Visible = true;
                     this.lblDetailsCash.Visible = true;
                     this.lblReceiptCash.Text = "Deposit";
@@ -89,7 +93,7 @@ namespace RealERPWEB.F_17_Acc
                     this.gvcashbook.Columns[9].HeaderText = "Received From(Clients)";
                     // this.gvcashbook.Columns[10].HeaderText = "Deposit";
                     break;
-                case "Withdraw":
+                case "Withdraw":                  
                     this.lblReceiptCash.Visible = true;
                     this.lblDetailsCash.Visible = true;
                     this.lblReceiptCash.Text = "Withdraw";
@@ -104,7 +108,6 @@ namespace RealERPWEB.F_17_Acc
             /////////
 
             Session["cashbank"] = ds1.Tables[0];
-
 
             dvr = ds1.Tables[0].DefaultView;
             dvr.RowFilter = ("grp1<>'F'");// ("grp1 = 'A' or grp1 = 'B' or grp1 = 'C' or grp1 = 'D' or grp1 = 'F'");
@@ -125,6 +128,9 @@ namespace RealERPWEB.F_17_Acc
                 ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtnbtbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
+
+        
+
         private void FooterCalculation(DataTable dt, string GvName)
         {
             if (dt.Rows.Count == 0)
@@ -225,7 +231,7 @@ namespace RealERPWEB.F_17_Acc
             //}
             if (ConstantInfo.LogStatus == true)
             {
-                string eventtype = this.LblTitle.Text;
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text.ToString();
                 string eventdesc = "Print Report";
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
@@ -234,6 +240,7 @@ namespace RealERPWEB.F_17_Acc
 
         private void PrintCashBook02()
         {
+            /*
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -277,9 +284,12 @@ namespace RealERPWEB.F_17_Acc
             string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
             rptcb1.SetParameterValue("ComLogo", ComLogo);
             Session["Report1"] = rptcb1;
-            lbljavascript.Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                                this.DDPrintOpt.SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
+            //lbljavascript.Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            //                    this.DDPrintOpt.SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            Session["Report1"] = rptcb1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        */
 
         }
         //private void PrintCashBook() 
