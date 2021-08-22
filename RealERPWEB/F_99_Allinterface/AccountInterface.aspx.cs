@@ -166,7 +166,7 @@ namespace RealERPWEB.F_99_Allinterface
                                                   ds1.Tables[16].Rows[0]["bnkrecount"].ToString() + "</span>";
             this.RadioButtonList1.Items[8].Text = "Client Modification" + "<span class='lbldata counter'>" +
                                                   ds1.Tables[16].Rows[0]["adcount"].ToString() + "</span>";
-            this.RadioButtonList1.Items[9].Text = "Other Bill Update" + "<span class='lbldata counter'>" +
+            this.RadioButtonList1.Items[9].Text = "General Bill Update" + "<span class='lbldata counter'>" +
                                                   ds1.Tables[16].Rows[0]["othreq"].ToString() + "</span>";
             this.RadioButtonList1.Items[10].Text = "LSD Update" + "<span class='lbldata counter'>" +
                                                   ds1.Tables[16].Rows[0]["lsdcount"].ToString() + "</span>";
