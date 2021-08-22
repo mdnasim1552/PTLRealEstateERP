@@ -144,7 +144,7 @@
                             </asp:Panel>
 
                             <asp:Panel ID="pnlDtPropertis" runat="server" Visible="False">
-                                <div class="form-group">
+                                <div class="form-group mt-5">
                                     <div>
                                         <asp:Label ID="lblDt" runat="server" CssClass="lblTxt lblName" Text="DT Propertis"></asp:Label>
                                     </div>
@@ -183,7 +183,6 @@
 
                             </asp:Panel>
 
-                            <asp:Panel ID="pnlAlerMsg" runat="server" Visible="False">
                                 <asp:Panel ID="pnlAlertMsg" runat="server" Visible="False">
                                     <div class="mt-5">
                                         <div class="form-group">
@@ -211,8 +210,6 @@
                                         </div>
                                     </div>
                                 </asp:Panel>
-
-                            </asp:Panel>
                         </div>
                     </div>
                 </div>
