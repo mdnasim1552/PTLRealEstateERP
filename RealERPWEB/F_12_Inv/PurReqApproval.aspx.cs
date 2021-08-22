@@ -66,7 +66,7 @@ namespace RealERPWEB.F_12_Inv
                 this.GetPayType();
                 createTable();
 
-                this.lnkOk_Click(null, null);
+               this.lnkOk_Click(null, null);
 
             }
 

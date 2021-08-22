@@ -77,7 +77,7 @@
                                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtCurMSRDate"></cc1:CalendarExtender>
 
 
-                                            
+
                                         </div>
                                         <div class="col-md-3  pading5px">
                                             <asp:Label ID="Label2" runat="server" CssClass=" lblName lblTxt" Text="Req. No:"></asp:Label>
@@ -85,20 +85,20 @@
 
 
 
-                                            </div>
+                                        </div>
                                         <div class="col-md-3  pading5px">
                                             <asp:Label ID="Label3" runat="server" CssClass=" lblName lblTxt" Text="Projects List:"></asp:Label>
                                             <asp:DropDownList ID="ddlprjlist" runat="server" AutoPostBack="True" Width="250px" CssClass="ddlPage chzn-select"></asp:DropDownList>
-                                             
 
 
-                                            </div>
+
+                                        </div>
 
                                         <div class="col-md-3  pading5px">
 
                                             <asp:LinkButton ID="lbtnMSROk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnMSROk_Click">Ok</asp:LinkButton>
 
-                                            </div>
+                                        </div>
 
 
                                     </div>
@@ -180,19 +180,19 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 pading5px  asitCol4">
-                                            <asp:DropDownList ID="ddlSpecificationms" runat="server"  Width="322px" CssClass=" chzn-select  form-control inputTxt" TabIndex="6">
+                                            <asp:DropDownList ID="ddlSpecificationms" runat="server" Width="322px" CssClass=" chzn-select  form-control inputTxt" TabIndex="6">
                                             </asp:DropDownList>
 
                                         </div>
 
 
-                                      
-                                        
-                                    
+
+
+
                                     </div>
 
-                                    
-                                   
+
+
 
                                 </asp:Panel>
                             </div>
@@ -384,7 +384,7 @@
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "resrate4")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="60px"></asp:TextBox>   
+                                                Width="60px"></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
@@ -414,7 +414,7 @@
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "resrate5")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="60px"></asp:TextBox>   
+                                                Width="60px"></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
@@ -482,7 +482,7 @@
 
                                     <asp:TemplateField HeaderText=" ">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lbtnSupplierdelete" runat="server" OnClick="lbtnSupplierdelete_Click"  OnClientClick="return confirm('Are you Sure to Delete This Suppliers ?');"><span class="glyphicon glyphicon-remove" > </span></asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnSupplierdelete" runat="server" OnClick="lbtnSupplierdelete_Click" OnClientClick="return confirm('Are you Sure to Delete This Suppliers ?');"><span class="glyphicon glyphicon-remove" > </span></asp:LinkButton>
                                         </ItemTemplate>
 
                                     </asp:TemplateField>
@@ -587,15 +587,26 @@
 
 
                             <asp:Panel ID="Panel2" runat="server" Visible="False">
-                                <asp:Label ID="lblReqNarr" runat="server" Text="Narration:" CssClass="lblName lblTxt"></asp:Label>
-                                <asp:TextBox ID="txtMSRNarr" runat="server" Width="322px" CssClass="inputtextbox"></asp:TextBox>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <asp:Label ID="lblReqNarr" runat="server" Text="Narration:" CssClass="lblName lblTxt"></asp:Label>
+                                        <asp:TextBox ID="txtMSRNarr" runat="server" Width="322px" CssClass="inputtextbox" TextMode="MultiLine" Rows="2"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-4 pading5px asitCol4 ">
+                                            <asp:DropDownList ID="ddlrecom" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </asp:Panel>
 
-                             
+
 
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

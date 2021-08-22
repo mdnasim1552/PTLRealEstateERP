@@ -34,7 +34,7 @@ namespace RealERPWEB
                     string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
                     string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
                     string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
-                    //string pnlType = "sqlExp";
+                    //string pnlType = "sysMsg";
 
 
                     if (qs == "ptldbd2021Nahid#$CompbDb*%Process")
@@ -54,19 +54,16 @@ namespace RealERPWEB
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = true;
+                            this.pnlAlertMsg.Visible = false;
                         }
-                        else if (pnlType == "alrtMsg")
+                        else if (pnlType == "sysMsg")
                         {
                             GetAlertMsgInfo(sysID);
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
-<<<<<<< HEAD
                             this.pnlAleartMsg.Visible = false;
-=======
-                            this.pnlAlertMsg.Visible = true;
->>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
                         }
                         else
                         {
@@ -318,7 +315,29 @@ namespace RealERPWEB
 
         protected void btnMsgSave_ServerClick(object sender, EventArgs e)
         {
+            string comcod = GetComCode();
 
+            string txtCompMsg = this.txtCompMsg.Value.ToString();
+            string txtMsgColor = this.txtMsgColor.Value.ToString();
+            string msgStatus = this.rbtnMsgStatus.SelectedValue.ToString();
+
+            bool resultb = _linkVendorDb.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUPDATEMSG", txtCompMsg, txtMsgColor, msgStatus, "", "", "", "", "", "", "");
+            if (!resultb)
+            {
+                this.pnlbillalrt.Visible = false;
+                this.pnlTop.Visible = false;
+                this.pnlmsg.Visible = false;
+                this.pnlAlertMsg.Visible = true;
+            }
+            else
+            {
+                this.pnlbillalrt.Visible = false;
+                this.pnlTop.Visible = false;
+                this.pnlAlertMsg.Visible = true;
+                this.pnlmsg.Visible = true;
+                ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('logIn.aspx') }, 5000);", true);
+
+            }
         }
     }
 
