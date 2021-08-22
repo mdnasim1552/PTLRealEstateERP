@@ -2029,7 +2029,8 @@ namespace RealERPWEB.F_12_Inv
 
                 }
             }
-            else
+
+            else if (this.Request.QueryString["InputType"] == "ReqCheck")
             {
                 string pactcode1 = this.ddlProject.SelectedValue.ToString();
                 string mReqno = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();              
