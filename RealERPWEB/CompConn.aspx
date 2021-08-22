@@ -41,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-md-3">Expiry Date</div>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtExpDate" runat="server" AutoPostBack="True" CssClass="form-control" TabIndex="1" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
+                                            <asp:TextBox ID="txtExpDate" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TabIndex="1" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtExpDate_CalendarExtender" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtExpDate"></cc1:CalendarExtender>
 
@@ -154,7 +154,7 @@
                                 </div>
                                 <hr />
                                 <div class="form-group">
-                                    <div>DT Propertis Limit</div>
+                                    <legend>DT Propertis Limit</legend>
                                     <div class="col-md-2">
                                         <asp:HiddenField ID="lblHL1" runat="server" />
                                         <asp:Label ID="lblL1" runat="server" CssClass="lblTxt lblName" Text="Limit 1"></asp:Label>
@@ -186,18 +186,18 @@
                                 <asp:Panel ID="pnlAlertMsg" runat="server" Visible="False">
                                     <div class="mt-5">
                                         <div class="form-group">
-                                            <label for="username">Type Message</label>
+                                            <legend>Type Message</legend>
                                             <textarea rows="5" runat="server" id="txtCompMsg" class="form-control"></textarea>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label>Color Set</label>
+                                            <legend>Color Set</legend>
                                             <div id="xcp-component_msg" class="input-group">
                                                 <input type="text" runat="server" id="txtMsgColor" class="form-control" />
                                                 <span class="input-group-addon"><i></i></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="username">Status</label>
+                                            <legend>Status</legend>
                                             <div class="custom-control custom-switch">
                                                 <asp:RadioButtonList runat="server" ID="rbtnMsgStatus" RepeatDirection="Horizontal">
                                                     <asp:ListItem Value="True">Active&nbsp;</asp:ListItem>
