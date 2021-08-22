@@ -16,6 +16,7 @@ using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPWEB.Service;
+using EASendMail;
 
 namespace RealERPWEB.F_34_Mgt
 {
@@ -1367,8 +1368,9 @@ namespace RealERPWEB.F_34_Mgt
                 case "OreqApproved":
                     switch (comcod)
                     {
-                        //case "3101":
+                       
                         case "1103":
+                        case "1102"://IBCEL
                             break;
 
                         default:
@@ -1473,14 +1475,43 @@ namespace RealERPWEB.F_34_Mgt
 
 
                 case "SecRecom":
-                    xmlSR = new System.IO.StringReader(approval);
-                    ds1.ReadXml(xmlSR);
-                    ds1.Tables[0].TableName = "tbl1";
-                    ds1.Tables[0].Rows[0]["secrecid"] = usrid;
-                    ds1.Tables[0].Rows[0]["secrecdat"] = Date;
-                    ds1.Tables[0].Rows[0]["secrectrmid"] = trmnid;
-                    ds1.Tables[0].Rows[0]["secrecseson"] = session;
-                    approval = ds1.GetXml();
+                    switch (comcod)
+                    {
+                        case "1102"://IBCEL
+
+                            xmlSR = new System.IO.StringReader(approval);
+                            ds1.ReadXml(xmlSR);
+                            ds1.Tables[0].TableName = "tbl1";
+                            ds1.Tables[0].Rows[0]["secrecid"] = usrid;
+                            ds1.Tables[0].Rows[0]["secrecdat"] = Date;
+                            ds1.Tables[0].Rows[0]["secrectrmid"] = trmnid;
+                            ds1.Tables[0].Rows[0]["secrecseson"] = session;
+                            ds1.Tables[0].Rows[0]["threcid"] = usrid;
+                            ds1.Tables[0].Rows[0]["threcdat"] = Date;
+                            ds1.Tables[0].Rows[0]["threctrmid"] = trmnid;
+                            ds1.Tables[0].Rows[0]["threcseson"] = session;
+                            approval = ds1.GetXml();
+                            break;
+
+
+                        default:
+                            xmlSR = new System.IO.StringReader(approval);
+                            ds1.ReadXml(xmlSR);
+                            ds1.Tables[0].TableName = "tbl1";
+                            ds1.Tables[0].Rows[0]["secrecid"] = usrid;
+                            ds1.Tables[0].Rows[0]["secrecdat"] = Date;
+                            ds1.Tables[0].Rows[0]["secrectrmid"] = trmnid;
+                            ds1.Tables[0].Rows[0]["secrecseson"] = session;
+                            approval = ds1.GetXml();
+                            break;
+                    
+                    
+                    
+                    
+                    }
+
+
+                   
 
                     break;
 
@@ -1713,29 +1744,29 @@ namespace RealERPWEB.F_34_Mgt
 
             if (type == "FinalAppr")
             {
-                switch (comcod)
-                {
-                    //case "3101":
-                    case "1103":
-                        break;
+                //switch (comcod)
+                //{
+                    ////case "3101":
+                    //case "1103":
+                    //    break;
 
-                    default:
+                    //default:
 
-                        if (adjcod != "000000000000")
-                        {
-                            result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATEJOURNAL",
-                                 mREQNO, "", "", mREQDAT, mMRFNO, "", "", nARRATION,
-                                 PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, "", paytype, payto, "", posteddat, supcode, termncon, payofmod, "", "", "");
+                        //if (adjcod != "000000000000")
+                        //{
+                        //    result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATEJOURNAL",
+                        //         mREQNO, "", "", mREQDAT, mMRFNO, "", "", nARRATION,
+                        //         PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, "", paytype, payto, "", posteddat, supcode, termncon, payofmod, "", "", "");
 
-                            if (!result)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                        //    if (!result)
+                        //    {
+                        //        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
-                                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                return;
-                            }
-                        }
+                        //        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        //        return;
+                        //    }
+                        //}
 
                         if (bankcode != "000000000000")
                         {
@@ -1755,10 +1786,10 @@ namespace RealERPWEB.F_34_Mgt
 
                         }
 
-                        break;
+                      //  break;
 
 
-                }
+               // }
 
 
 
@@ -1813,6 +1844,16 @@ namespace RealERPWEB.F_34_Mgt
 
             }
 
+           
+            
+            
+            
+            
+            
+            
+            
+            
+            
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
@@ -1836,7 +1877,7 @@ namespace RealERPWEB.F_34_Mgt
                             string SMSHead = "Ready for First Approval";
                             string comnam = hst["comnam"].ToString();
                             string compname = hst["compname"].ToString();
-                            string frmname = "OtherReqEntry.aspx?Type=OreqApproved";
+                            string frmname = "OtherReqEntry?Type=OreqApproved";
                             DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWGENBILLAPIINFO", userid, frmname, "", "", "");
                             SendSmsProcess sms = new SendSmsProcess();
                             DataTable dt = ds3.Tables[0];
@@ -1862,7 +1903,7 @@ namespace RealERPWEB.F_34_Mgt
                     SendSmsProcess sms = new SendSmsProcess();
                     string comnam = hst["comnam"].ToString();
                     string compname = hst["compname"].ToString();
-                    string frmname = "OtherReqEntry.aspx?Type=FinalAppr";
+                    string frmname = "OtherReqEntry?Type=FinalAppr";
 
                     string SMSHead = "Ready for Final Approval(General Requisition)";
 
@@ -1871,6 +1912,58 @@ namespace RealERPWEB.F_34_Mgt
                     bool resultsms = sms.SendSmms(SMSText, userid, frmname);
                 }
             }
+
+            if (hst["compmail"].ToString() == "True")
+            {
+
+                if (this.Request.QueryString["Type"] == "SecRecom")
+                {
+
+
+                    DataSet dsruaauser = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "SHOWREQAAPROVEUSERMAIL", mREQNO, "", "", "", "");
+
+
+                    string rusername = dsruaauser.Tables[0].Rows[0]["rusername"].ToString();
+                    string fausername = dsruaauser.Tables[0].Rows[0]["fausername"].ToString();
+                    string secapname = dsruaauser.Tables[0].Rows[0]["secapname"].ToString();
+                    string thrapname = dsruaauser.Tables[0].Rows[0]["thrapname"].ToString();
+                    SendMailProcess objsendmail = new SendMailProcess();
+                    string comnam = hst["comnam"].ToString();
+                    string compname = hst["compname"].ToString();
+                    string frmname = "OtherReqEntry?Type=FinalAppr";
+                    string subject = "Ready for Final Approval";
+                    string SMSHead = "Ready for Final Approval(General Requisition)";
+
+
+                    string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername 
+                        + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Second Approved: " + thrapname + "\n" + "Thanks";
+
+
+
+                    bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
+
+
+                    switch (ssl)
+                    {
+                        case true:
+                            bool resultmail =SendSSLMail(subject, SMSText, userid, frmname);
+                           
+                            break;
+
+                        case false:
+                            bool resulnmail = objsendmail.SendMail(subject, SMSText, userid, frmname);
+                            break;
+
+                    }
+
+                   
+
+
+                }
+            }
+
+                //Compmany Mail
+                
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -1881,7 +1974,86 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
-        private void UpdateAutoJrnl()
+        private bool  SendSSLMail(string subject, string SMSText, string  userid, string  frmname)
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                DataSet dssmtpandmail = this.purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", userid, "", "", "", "", "", "", "", "");
+                DataSet ds3 = purData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWMAILAPIINFO", userid, frmname, "", "", "");              
+               
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string mailtousr = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString(); ;
+
+
+            
+
+                for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
+                {
+                    EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+
+                    //Connection Details 
+                    SmtpServer oServer = new SmtpServer(hostname);
+                    oServer.User = frmemail;
+                    oServer.Password = psssword;
+                    oServer.Port = portnumber;
+                    oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                    //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+                    EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+                    oMail.From = frmemail;
+                    oMail.To = mailtousr;
+                    oMail.Cc = frmemail;
+                    oMail.Subject = subject;
+
+
+                    oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + SMSText + "</pre></body></html>";
+                 
+
+
+
+                    try
+                    {
+                        oSmtp.SendMail(oServer, oMail);
+                      //  ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+
+                    }
+                    catch (Exception ex)
+                    {
+                       ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+
+                    }
+
+
+
+
+                }
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                return false;
+            }// try
+
+
+        
+
+
+
+
+
+    }
+
+    private void UpdateAutoJrnl()
         {
             string comcod = this.GetCompCode();
             string mMRFNO = this.txtMRFNo.Text.Trim();
