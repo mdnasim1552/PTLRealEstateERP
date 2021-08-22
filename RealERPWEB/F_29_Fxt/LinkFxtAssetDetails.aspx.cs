@@ -420,6 +420,8 @@ namespace RealERPWEB.F_29_Fxt
             string comcod = hst["comcod"].ToString();
             DataSet ds1 = new DataSet();
             DataTable dt1 = ((DataTable)ViewState["tblDoChallan"]).Copy();
+
+
             ds1.DataSetName = "ds1";
             ds1.Tables.Add(dt1);
             ds1.Tables[0].TableName = "tbl1";

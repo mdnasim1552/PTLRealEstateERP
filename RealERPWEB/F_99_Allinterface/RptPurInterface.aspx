@@ -670,6 +670,12 @@
                     case 3316://Assure
                     case 3315://Assure
                     case 3317://Assure
+<<<<<<< HEAD
+=======
+                    case 3101://Assure
+
+
+>>>>>>> a8d88c34489481686a4ce02ac18e7a0d9c95e665
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
