@@ -1933,13 +1933,7 @@ namespace RealERPWEB.F_34_Mgt
                     string frmname = "OtherReqEntry?Type=FinalAppr";
                     string subject = "Ready for Final Approval";
                     string SMSHead = "Ready for Final Approval(General Requisition)";
-
-
-<<<<<<< HEAD
                     string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername 
-=======
-                    string SMSText = comnam + ":\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername 
->>>>>>> b300eea84dbe67331754c7fb87965eac549b6019
                         + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Second Approved: " + thrapname + "\n" + "Thanks";
 
 
@@ -2025,20 +2019,11 @@ namespace RealERPWEB.F_34_Mgt
                     try
                     {
                         oSmtp.SendMail(oServer, oMail);
-<<<<<<< HEAD
-                      //  ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
-=======
-                        //((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
->>>>>>> b300eea84dbe67331754c7fb87965eac549b6019
 
                     }
                     catch (Exception ex)
                     {
-<<<<<<< HEAD
                        ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
-=======
-                      //  ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
->>>>>>> b300eea84dbe67331754c7fb87965eac549b6019
 
                     }
 
@@ -2050,15 +2035,9 @@ namespace RealERPWEB.F_34_Mgt
 
                 return true;
             }
-<<<<<<< HEAD
             catch (Exception ex)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
-=======
-            catch (Exception exp)
-            {
-              
->>>>>>> b300eea84dbe67331754c7fb87965eac549b6019
                 return false;
             }// try
 
