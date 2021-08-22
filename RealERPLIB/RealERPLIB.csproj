@@ -65,6 +65,7 @@
     <Compile Include="ProcessAccess.cs" />
     <Compile Include="ProcessRAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendMailProcess.cs" />
     <Compile Include="SendSmsProcess.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

@@ -2456,11 +2456,9 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign6 = "Managing Director";
              */
             string txtSign1 = "";
-            string txtSign2 = "";
- 
+            string txtSign2 = ""; 
             string txtSign3 = crmcheck + "\n" + crmcheckdat;
             string txtSign4 = reqchkname +"\n"+ checkdat;
- 
             string txtSign5 = "";
             string txtSign6 = "";
 
