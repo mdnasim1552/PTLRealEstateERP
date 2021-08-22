@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_17_Acc
+namespace RealERPWEB.F_22_Sal
 {
 
 
-    public partial class RptPostNetTrnsCashBank
+    public partial class RptCollectionDetailInfo
     {
 
         /// <summary>
@@ -24,129 +24,93 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// UpdateProgress2 control.
+        /// lblDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.WebControls.Label lblDate;
 
         /// <summary>
-        /// txtfromdate control.
+        /// txtDateFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfromdate;
+        protected global::System.Web.UI.WebControls.TextBox txtDateFrom;
 
         /// <summary>
-        /// txtfromdate_CalendarExtender control.
+        /// txtDateFrom_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtfromdate_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender txtDateFrom_CalendarExtender;
 
         /// <summary>
-        /// txttodate control.
+        /// lbltoDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttodate;
+        protected global::System.Web.UI.WebControls.Label lbltoDate;
 
         /// <summary>
-        /// txttodate_CalendarExtender control.
+        /// txtDateto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
+        protected global::System.Web.UI.WebControls.TextBox txtDateto;
 
         /// <summary>
-        /// lbtnShow control.
+        /// txtDateto_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnShow;
+        protected global::AjaxControlToolkit.CalendarExtender txtDateto_CalendarExtender;
 
         /// <summary>
-        /// lblGroup control.
+        /// btnok control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGroup;
+        protected global::System.Web.UI.WebControls.LinkButton btnok;
 
         /// <summary>
-        /// rbtnGroup control.
+        /// lblPage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbtnGroup;
+        protected global::System.Web.UI.WebControls.Label lblPage;
 
         /// <summary>
-        /// MultiView1 control.
+        /// ddlpagesize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
-        /// Viewcashbook control.
+        /// gvCollection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View Viewcashbook;
-
-        /// <summary>
-        /// lblReceiptCash control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblReceiptCash;
-
-        /// <summary>
-        /// gvcashbook control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvcashbook;
-
-        /// <summary>
-        /// lblDetailsCash control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDetailsCash;
-
-        /// <summary>
-        /// gvcashbookDB control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvcashbookDB;
+        protected global::System.Web.UI.WebControls.GridView gvCollection;
     }
 }
