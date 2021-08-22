@@ -9,6 +9,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
+            //Comment from parvez branch
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
 
@@ -56,7 +57,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col">
                         <div class="card card-fluid" style="min-height: 550px;">
                             <div class="card-body">
                                 <div class="row mb-2">
