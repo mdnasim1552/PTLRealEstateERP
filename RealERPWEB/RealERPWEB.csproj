@@ -74,7 +74,7 @@
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
@@ -155,6 +155,10 @@
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
