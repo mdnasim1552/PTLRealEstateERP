@@ -24,9 +24,8 @@ namespace RealERPLIB
             return (hst["comcod"].ToString());
 
         }
+        public bool SendMail(string subject, string text, string userid, string frmname)
 
-       
-        public bool SendMail( string subject, string text, string userid, string frmname)
         {
             try
             {
