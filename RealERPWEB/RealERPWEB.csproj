@@ -87,13 +87,10 @@
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-=======
     <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
     </Reference>
->>>>>>> b300eea84dbe67331754c7fb87965eac549b6019
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
