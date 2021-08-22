@@ -21,7 +21,7 @@ namespace RealERPWEB.F_99_Allinterface
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.Timer Timer1;
+        protected global::System.Web.UI.WebControls.Timer Timer1;
 
         /// <summary>
         /// UpdatePanel1 control.
@@ -30,7 +30,7 @@ namespace RealERPWEB.F_99_Allinterface
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.UpdatePanel UpdatePanel1;
 
         /// <summary>
         /// UpdateProgress2 control.
@@ -39,7 +39,7 @@ namespace RealERPWEB.F_99_Allinterface
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
+        protected global::System.Web.UI.WebControls.UpdateProgress UpdateProgress2;
 
         /// <summary>
         /// txtfrmdate control.
