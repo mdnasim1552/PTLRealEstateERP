@@ -2017,13 +2017,17 @@ namespace RealERPWEB.F_17_Acc
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAcme", hshtbl, null, null);
                 }
-                if (comcod == "3353") // cheque manama
+                else if (comcod == "3353") // cheque manama
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeManama", hshtbl, null, null);
                 }
-                if (comcod == "1103" || comcod == "3101") // cheque TCL
+                else if (comcod == "1103") // cheque TCL
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTCL", hshtbl, null, null);
+                }
+                else if(comcod=="3348" || comcod == "3101")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptCheqCredence", hshtbl, null, null);
                 }
                 else
                 {

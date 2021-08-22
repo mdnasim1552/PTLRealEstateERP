@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEngInterface.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.RptEngInterface" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEngInterface.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.RptEngInterface" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -531,7 +531,7 @@
 
                 //Table Index start with 1
 
-             var   comcod = <%=this.GetCompCode()%>;
+                comcod = <%=this.GetCompCode()%>;
                 switch(comcod)
                 {
                

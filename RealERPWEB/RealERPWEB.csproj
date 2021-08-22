@@ -73,8 +73,14 @@
     <Reference Include="DayPilot">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
+    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\EASendMail\EASendMail.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\Tarikul\Working\Interior Team\InteriorWEB\Bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+
+      <HintPath>..\..\..\Backup\Projects\PTLRealERP Before 210811\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">

@@ -366,6 +366,7 @@
     <EmbeddedResource Include="R_17_Acc\RptCashCrPur.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashFlow02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashFlowIndirect.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCheqCredence.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCheque.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCheque01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeAcme.rdlc" />
