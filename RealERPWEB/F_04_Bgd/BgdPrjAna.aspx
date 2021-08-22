@@ -154,7 +154,7 @@
                                     <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;"></asp:Label>
 
                                     <div class="col-sm-9 pading5px">
-                                        <asp:RadioButtonList ID="rbtnList1" runat="server" Visible="False" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn " OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
+                                        <asp:RadioButtonList ID="rbtnList1" runat="server" Visible="False" BackColor="#0B88C5"  ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn "  OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
                                             RepeatColumns="7" RepeatDirection="Horizontal">
                                             <asp:ListItem>Catagory Selection</asp:ListItem>
                                             <asp:ListItem>Item Selection(All Cat.)</asp:ListItem>

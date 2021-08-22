@@ -96,6 +96,7 @@
                                     </div>
                                 </div>
                             </asp:Panel>
+
                             <asp:Panel ID="pnlbillalrt" runat="server">
                                 <div class="mt-5">
 
@@ -180,9 +181,69 @@
                                 <div>
                                     <button type="button" runat="server" id="btnDtPropSave" onserverclick="btnDtPropSave_ServerClick" class="btn btn-success">Save</button>
                                 </div>
+<<<<<<< HEAD
+                                
+                           </asp:Panel>
+
+                            <asp:Panel ID="pnlAleartMsg" runat="server" Visible="False">
+
+                                <div class="modal-body">
+
+                            <div class="form-group d-none">
+                                <asp:TextBox ID="_sqlLnk1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="_sqlLnkuser1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="_sqlLnkpwd1" runat="server"></asp:TextBox>
+
+
+                            </div>
+                            <label runat="server" id="lblmsg" class="btn btn-sm float-right mr-2"></label>
+
+                            <asp:HiddenField ID="hiddDbName" runat="server" />
+                            <asp:HiddenField ID="mCompID" runat="server" />
+                            <div class="form-group">
+                                <label for="username">Master Company</label>
+                                <input type="text" class="form-control" runat="server" id="txtMasterComp" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="username">Type Alert Message</label>
+                                <textarea rows="5" runat="server" id="Textarea1" class="form-control"></textarea>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <label>Color Set</label>
+                                <div id="xcp-component" class="input-group">
+                                    <input type="text" runat="server" id="Text1" class="form-control" />
+                                    <span class="input-group-addon"><i></i></span>
+                                </div>
+                            </div>
+=======
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
 
                             </asp:Panel>
 
+<<<<<<< HEAD
+
+                            <div class="form-group">
+                                <label for="username">Status</label>
+                                <div class="custom-control custom-switch">
+                                    <asp:RadioButtonList runat="server" ID="RadioButtonList1" RepeatDirection="Horizontal">
+                                        <asp:ListItem Value="True">Active</asp:ListItem>
+                                        <asp:ListItem Value="False">InActive</asp:ListItem>
+                                    </asp:RadioButtonList>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                                </asp:Panel>
+
+
+
+
+
+=======
                             <asp:Panel ID="pnlAlerMsg" runat="server" Visible="False">
                                 <asp:Panel ID="pnlAlertMsg" runat="server" Visible="False">
                                     <div class="mt-5">
@@ -213,13 +274,21 @@
                                 </asp:Panel>
 
                             </asp:Panel>
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
+               </ContentTemplate>
+    </asp:UpdatePanel>
+            </form>
+     
+=======
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
 
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

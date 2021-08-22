@@ -46,8 +46,6 @@ namespace RealERPWEB
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = true;
                             this.pnlmsg.Visible = false;
-                            this.pnlAlerMsg.Visible = false;
-
                         }
                         else if (pnlType == "sqlExp")
                         {
@@ -56,29 +54,28 @@ namespace RealERPWEB
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = true;
-                            this.pnlAlerMsg.Visible = false;
-
                         }
-                        else if (pnlType == "alertMsg")
+                        else if (pnlType == "alrtMsg")
                         {
                             GetAlertMsgInfo(sysID);
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
+<<<<<<< HEAD
+                            this.pnlAleartMsg.Visible = false;
+=======
                             this.pnlAlertMsg.Visible = true;
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
                         }
                         else
                         {
-                            this.pnlAlerMsg.Visible = false;
-
                             this.pnlbillalrt.Visible = true;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             GetServiceBillAltMsg(sysID);
 
-                        } 
-
+                        }
                     }
                     else
                     {
