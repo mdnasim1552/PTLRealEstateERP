@@ -24,14 +24,8 @@ namespace RealERPLIB
             return (hst["comcod"].ToString());
 
         }
-
-<<<<<<< HEAD
-
         public bool SendMail(string subject, string text, string userid, string frmname)
-=======
-       
-        public bool SendMail( string subject, string text, string userid, string frmname)
->>>>>>> b300eea84dbe67331754c7fb87965eac549b6019
+
         {
             try
             {

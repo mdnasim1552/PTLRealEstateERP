@@ -303,7 +303,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlButton btnDtPropSave;
 
         /// <summary>
-<<<<<<< HEAD
         /// pnlAleartMsg control.
         /// </summary>
         /// <remarks>
@@ -313,8 +312,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.Panel pnlAleartMsg;
 
         /// <summary>
-=======
->>>>>>> 439c83694bc1f85160bb5779cba32362334f5887
         /// pnlAlertMsg control.
         /// </summary>
         /// <remarks>
