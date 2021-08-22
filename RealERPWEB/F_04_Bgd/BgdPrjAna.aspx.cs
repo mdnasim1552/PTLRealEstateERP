@@ -874,7 +874,7 @@ namespace RealERPWEB.F_04_Bgd
             }
 
 
-
+            Session["tblActAna1"] = dt;
 
 
 

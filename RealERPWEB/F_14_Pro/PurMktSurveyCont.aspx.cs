@@ -30,7 +30,7 @@ namespace RealERPWEB.F_14_Pro
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Sub-Contractor Comparative Statement";
- 
+
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 //  this.TableCreate();
                 this.GetProjects();
@@ -113,7 +113,7 @@ namespace RealERPWEB.F_14_Pro
                 // this.pnlNarration.Visible = false;
                 this.lbtnMSROk.Text = "Ok";
 
-               
+
                 return;
             }
             this.ImgbtnFindPreMR.Visible = false;
@@ -126,7 +126,7 @@ namespace RealERPWEB.F_14_Pro
             this.lbtnMSROk.Text = "New";
             this.ImgbtnFindSup_Click(null, null);
             this.ImgbtnFindMat_Click(null, null);
-           
+
             this.Get_Survey_Info();
 
 
@@ -518,6 +518,8 @@ namespace RealERPWEB.F_14_Pro
             //    return;
             //}
             bool result;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
             string comcod = this.GetCompCode();
             this.Session_tblMSR_Update();
             string mMSRNO = "NEWMSR";
@@ -561,8 +563,17 @@ namespace RealERPWEB.F_14_Pro
             string lreqno = this.ddlReqNo.SelectedValue.ToString();
             string mRemarks = this.txtMSRNarr.Text.Trim();
             string prjcode = this.ddlprjlist.SelectedValue.ToString();
+
+            
+            string postedbyid = hst["usrid"].ToString();
+            string postrmid = hst["compname"].ToString();
+            string postseson = hst["session"].ToString();
+            string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+
             result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02A",
-                             mMSRNO, mMSRDAT, mRefno, mRemarks, prjcode, lreqno, "", "", "", "", "", "", "", "");
+                             mMSRNO, mMSRDAT, mRefno, mRemarks, prjcode, lreqno, postedbyid, postrmid, postseson, posteddat, "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -661,16 +672,16 @@ namespace RealERPWEB.F_14_Pro
             this.Resource_List(mSrchTxt);
 
 
-          
 
-           DataTable dtmat= (DataTable)Session["tblremat"];
-           DataTable dtmainMat= (DataTable)Session["tblMat"];
 
-            
+            DataTable dtmat = (DataTable)Session["tblremat"];
+            DataTable dtmainMat = (DataTable)Session["tblMat"];
 
 
 
-            if (dtmat==null)
+
+
+            if (dtmat == null)
             {
                 this.ddlMSRRes.DataTextField = "rsirdesc1";
                 this.ddlMSRRes.DataValueField = "rsircode";
@@ -706,7 +717,7 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-           
+
             this.GetSpecification01();
         }
 
@@ -735,8 +746,8 @@ namespace RealERPWEB.F_14_Pro
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
 
-            
-             string  prjcode = (this.Request.QueryString["pactcode"].ToString()).Length == 0 ?  "16%" : this.Request.QueryString["pactcode"].ToString() + "%";
+
+            string prjcode = (this.Request.QueryString["pactcode"].ToString()).Length == 0 ? "16%" : this.Request.QueryString["pactcode"].ToString() + "%";
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "PRJCODELIST1", prjcode, "", "", userid, "", "", "", "", "");
             if (ds1 == null)
@@ -761,14 +772,14 @@ namespace RealERPWEB.F_14_Pro
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETWORKERREQLIST", date, lisuno, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-        
+
             this.ddlReqNo.DataTextField = "lreqno1";
             this.ddlReqNo.DataValueField = "lreqno";
             this.ddlReqNo.DataSource = ds1.Tables[0];
             this.ddlReqNo.DataBind();
 
             Session["tblremat"] = ds1.Tables[1];
-
+            Session["tblt02"] = this.HiddenSameData(ds1.Tables[1]);
 
 
         }
@@ -1201,7 +1212,7 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
-             
+
 
             if (!result)
             {

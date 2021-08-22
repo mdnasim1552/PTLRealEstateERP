@@ -72,9 +72,9 @@
 
                                             <asp:Label ID="Label13" runat="server" CssClass=" smLbl_to" Text="Date:"></asp:Label>
 
-                                            <asp:TextBox ID="txtCurMSRDate" runat="server" CssClass="inputtextbox" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
+                                            <asp:TextBox ID="txtCurMSRDate" runat="server" CssClass="inputtextbox" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtCurMSRDate_CalendarExtender" runat="server"
-                                                Enabled="True" Format="dd.MM.yyyy" TargetControlID="txtCurMSRDate"></cc1:CalendarExtender>
+                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtCurMSRDate"></cc1:CalendarExtender>
 
 
                                             

@@ -46,8 +46,6 @@ namespace RealERPWEB
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = true;
                             this.pnlmsg.Visible = false;
-                            this.pnlAlerMsg.Visible = false;
-
                         }
                         else if (pnlType == "sqlExp")
                         {
@@ -56,29 +54,28 @@ namespace RealERPWEB
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = true;
-                            this.pnlAlerMsg.Visible = false;
-
                         }
-                        else if (pnlType == "alertMsg")
+                        else if (pnlType == "alrtMsg")
                         {
                             GetAlertMsgInfo(sysID);
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
+<<<<<<< HEAD
+                            this.pnlAleartMsg.Visible = false;
+=======
                             this.pnlAlertMsg.Visible = true;
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
                         }
                         else
                         {
-                            this.pnlAlerMsg.Visible = false;
-
                             this.pnlbillalrt.Visible = true;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             GetServiceBillAltMsg(sysID);
 
-                        } 
-
+                        }
                     }
                     else
                     {
@@ -116,13 +113,13 @@ namespace RealERPWEB
             try
             {
                 string comcod = GetComCode();
-                DataSet ds1 = _linkVendorDb.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETCOMPINFO", "", "", "", "", "", "", "", "", "", "");
-                if (ds1 == null)
+                DataSet ds2 = _linkVendorDb.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETCOMPINFO", "", "", "", "", "", "", "", "", "", "");
+                if (ds2 == null)
                     return;
 
-                txtCompMsg.Value = ds1.Tables[0].Rows[0]["commsg"].ToString();
-                txtMsgColor.Value = ds1.Tables[0].Rows[0]["commsgcol"].ToString();
-                string msgFlg = ds1.Tables[0].Rows[0]["msgflg"].ToString();
+                txtCompMsg.Value = ds2.Tables[0].Rows[0]["commsg"].ToString();
+                txtMsgColor.Value = ds2.Tables[0].Rows[0]["commsgcol"].ToString();
+                string msgFlg = ds2.Tables[0].Rows[0]["msgflg"].ToString();
                 rbtnMsgStatus.SelectedValue = msgFlg;
 
             }
@@ -132,19 +129,12 @@ namespace RealERPWEB
                 this.msgBox.InnerText = "Error" + ex;
             }
         }
-        private string GetComCode()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            return (hst["comcod"].ToString());
-
-        }
+        
         private void GetProcessSqlInfo(string sysID)
         {
             try
             {
-                UserLogin ulog = new UserLogin();
-                DataSet ds1 = ulog.GetNameAdd();
-                string comcod = ds1.Tables[0].Rows[0]["comcod"].ToString();
+                string comcod = GetComCode();
                 DataSet ds2 = _linkVendorDb.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETSYSTABLEDTPROPERTISE", "", "", "", "", "", "", "", "", "", "");
                 if (ds2 == null)
                     return;
@@ -172,9 +162,7 @@ namespace RealERPWEB
 
         private void GetServiceBillAltMsg(string sysID)
         {
-            UserLogin ulog = new UserLogin();
-            DataSet ds1 = ulog.GetNameAdd();
-            string comcod = ds1.Tables[0].Rows[0]["comcod"].ToString();
+            string comcod = GetComCode();
             DataSet ds2 = _linkVendorDb.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETBILLALRTMESSAGE", "", "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
@@ -266,9 +254,7 @@ namespace RealERPWEB
 
         protected void btnAlrtMsg_ServerClick(object sender, EventArgs e)
         {
-            UserLogin ulog = new UserLogin();
-            DataSet ds1 = ulog.GetNameAdd();
-            string comcod = ds1.Tables[0].Rows[0]["comcod"].ToString();
+            string comcod = GetComCode();
 
             string txtMsg = txtAltMessage.Value;
             string txtColor = txtColorCode.Value;
@@ -294,9 +280,7 @@ namespace RealERPWEB
 
         protected void btnDtPropSave_ServerClick(object sender, EventArgs e)
         {
-            UserLogin uLog = new UserLogin();
-            DataSet ds1 = uLog.GetNameAdd();
-            string comcod = ds1.Tables[0].Rows[0]["comcod"].ToString();
+            string comcod = GetComCode();
 
             string txtDtProper = this.txtDtProperties.Text.ToString();
             string txtL1 = this.txtL1.Text.ToString();
@@ -322,6 +306,19 @@ namespace RealERPWEB
                 ScriptManager.RegisterClientScriptBlock(this, typeof(Page), "redirectJS", "setTimeout(function() { window.location.replace('logIn.aspx') }, 5000);", true);
 
             }
+        }
+
+        private string GetComCode()
+        {
+            UserLogin ulog = new UserLogin();
+            DataSet ds1 = ulog.GetNameAdd();
+            string comcod = ds1.Tables[0].Rows[0]["comcod"].ToString();
+            return comcod;
+        }
+
+        protected void btnMsgSave_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 
