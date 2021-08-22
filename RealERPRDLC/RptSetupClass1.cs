@@ -282,6 +282,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptCheque": Rpt1a = SetRptCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeSuvastu": Rpt1a = SetRptChequeSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptCheqCredence": Rpt1a = SetRptCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_17_Acc.RptChequeIBBL": Rpt1a = SetRptChequeIBBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeSBL": Rpt1a = SetRptChequeSBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
