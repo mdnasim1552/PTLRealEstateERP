@@ -47,10 +47,17 @@
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+=======
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="BilSimser.GeoJson">
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
@@ -79,7 +86,11 @@
     </Reference>
     <Reference Include="DayPilot">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
+=======
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
 >>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
@@ -91,6 +102,7 @@
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
@@ -100,6 +112,17 @@
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
+=======
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
@@ -146,7 +169,11 @@
     </Reference>
     <Reference Include="RealERPRPT">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+=======
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
 >>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
@@ -179,15 +206,21 @@
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
 =======
+=======
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+<<<<<<< HEAD
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
+=======
 >>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
@@ -209,6 +242,7 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
@@ -217,6 +251,16 @@
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
       <HintPath>..\..\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+=======
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
       <HintPath>..\..\..\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>

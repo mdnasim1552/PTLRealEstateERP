@@ -583,6 +583,7 @@
             try {
      
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
                 var comcod = <%=this.GetCompCode()%>;
@@ -590,6 +591,14 @@
                     switch (comcod) {
 
 
+=======
+                
+               var comcod = <%=this.GetCompCode()%>;
+
+                    switch (comcod) {
+
+
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
                 
                var comcod = <%=this.GetCompCode()%>;
@@ -685,10 +694,15 @@
                     case 3317://Assure
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     case 3101:
 
 
 =======
+=======
+                    case 3101:
+
+>>>>>>> aff87a2b16145710d706ce89e3c3144190f66d54
 =======
                     case 3101:
 
