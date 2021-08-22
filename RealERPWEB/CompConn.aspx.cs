@@ -62,11 +62,8 @@ namespace RealERPWEB
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
-<<<<<<< HEAD
                             this.pnlAleartMsg.Visible = false;
-=======
-                            this.pnlAlertMsg.Visible = true;
->>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
+
                         }
                         else
                         {

@@ -70,8 +70,8 @@
 
 
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+       <ContentTemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -110,8 +110,9 @@
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px ">
-                                        <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click"
+                                        <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click"  CausesValidation="false" EnableViewState="true"
                                             TabIndex="3">Ok</asp:LinkButton>
+                                       
                                         <asp:Panel ID="pnlGridPage" runat="server" Visible="false" CssClass="pagination paginationPart">
                                             <table>
                                                 <tr>
@@ -902,6 +903,10 @@
 
             </script>
 
-        </ContentTemplate>
-    </asp:UpdatePanel>
+       </ContentTemplate>
+
+       
+   </asp:UpdatePanel>
+
+
 </asp:Content>
