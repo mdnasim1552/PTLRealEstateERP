@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEngInterface.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.RptEngInterface" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptEngInterface.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.RptEngInterface" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -529,8 +529,9 @@
 
             try {
 
+                //Table Index start with 1
 
-                comcod = <%=this.GetCompCode()%>;
+             var   comcod = <%=this.GetCompCode()%>;
                 switch(comcod)
                 {
                
@@ -540,8 +541,14 @@
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();
                         break;
 
+                    case 1102://IBCEL
+                        $(".tbMenuWrp table tr td:nth-child(6)").hide();
+                        break;
+
+
+
+
                     default:
-               
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
