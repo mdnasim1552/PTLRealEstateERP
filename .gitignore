@@ -214,8 +214,8 @@ _pkginfo.txt
 *.appx
 *.appxbundle
 *.appxupload
-*Web.config
-*RealERPWEB.csproj
+*.config
+*.csproj
 
 # Visual Studio cache files
 # files ending in .cache can be ignored
