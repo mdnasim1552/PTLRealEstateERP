@@ -681,6 +681,8 @@
                     case 3316://Assure
                     case 3315://Assure
                     case 3317://Assure
+                    case 3101://Assure
+
 
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
