@@ -581,18 +581,12 @@
         function pageLoaded() {
 
             try {
-<<<<<<< HEAD
+
      
                 var comcod = <%=this.GetCompCode()%>;
 
                     switch (comcod) {
-=======
-                
-               var comcod = <%=this.GetCompCode()%>;
 
-                    switch (comcod) {
-
->>>>>>> 9cae41640fa9dc6690e54a0171c27e2b99561907
                         case 3338:   // ACME   
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
