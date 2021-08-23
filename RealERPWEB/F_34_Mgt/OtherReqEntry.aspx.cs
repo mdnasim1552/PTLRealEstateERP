@@ -1933,8 +1933,9 @@ namespace RealERPWEB.F_34_Mgt
                     string frmname = "OtherReqEntry?Type=FinalAppr";
                     string subject = "Ready for Final Approval";
                     string SMSHead = "Ready for Final Approval(General Requisition)";
-                    string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername 
-                        + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Second Approved: " + thrapname + "\n" + "Thanks";
+                    string reqno = this.lblCurReqNo1.Text + this.txtCurReqNo2.Text;
+                    string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "Req No: " + reqno + "\n" + "Req. Entry: " + rusername 
+                        + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Thirrd Approved: " + thrapname + "\n" + "Thanks";
 
 
 
@@ -1985,15 +1986,15 @@ namespace RealERPWEB.F_34_Mgt
                 string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
                 string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-                string mailtousr = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString(); ;
+                string mailtousr = "";
 
 
             
 
                 for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
                 {
+                    mailtousr = ds3.Tables[1].Rows[i]["email"].ToString();
                     EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
-
                     //Connection Details 
                     SmtpServer oServer = new SmtpServer(hostname);
                     oServer.User = frmemail;
