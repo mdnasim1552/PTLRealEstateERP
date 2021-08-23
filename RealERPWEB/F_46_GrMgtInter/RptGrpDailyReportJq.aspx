@@ -12,7 +12,7 @@
     <script src="../Scripts_Own/print.js"></script>
     <script>
 
-
+        
         var comcode = '';
         //fotter & graph variables for A
         var tsalSum = 0;
@@ -32,18 +32,18 @@
         //fotter & graph variables for C
         var tcollamtSum = 0;
         var tastcollamtSum = 0;
-        var tdaycollamtSum = 0;
-        var tdayamtSum = 0;
+        var tdaycollamtSum= 0;
+        var tdayamtSum= 0;
         var perotcolleSum = 0;
 
         //fotter & graph variables for D
-        var acamtSum = 0;
-        var reconamtSum = 0;
-        var depchqSum = 0;
-        var inhrchqSum = 0;
-        var inhfchqSum = 0;
-        var inhpchqSum = 0;
-        var repchqSum = 0;
+        var acamtSum= 0;
+        var reconamtSum= 0;
+        var depchqSum= 0;
+        var inhrchqSum= 0;
+        var inhfchqSum= 0;
+        var inhpchqSum= 0;
+        var repchqSum= 0;
         var ncollamtSum = 0;
 
         //fotter & graph variables for E
@@ -64,40 +64,40 @@
         var tavamtSum = 0;
 
         //fotter & graph variables for G
-        var amt1Sum = 0;
-        var amt2Sum = 0;
-        var amt3Sum = 0;
-        var amt4Sum = 0;
-        var amt5Sum = 0;
-        var amt6Sum = 0;
-        var tamtSum = 0;
-
+        var amt1Sum=0;
+        var amt2Sum=0;
+        var amt3Sum=0;
+        var amt4Sum=0;
+        var amt5Sum=0;
+        var amt6Sum=0;
+        var tamtSum =0;
+        
         //fotter & graph variables for H
-        var recpamisSum = 0;
+        var recpamisSum=0;
         var payamisSum = 0;
 
         //fotter & graph variables for I
-        var mrramtSum = 0;
+        var mrramtSum=0;
         var monplanSum = 0;
         var excutionSum = 0;
 
         //fotter & graph variables for J
-        var revamtSum = 0;
-        var usoldamtSum = 0;
-        var soldamtSum = 0;
-        var recamtSum = 0;
+        var revamtSum=0;
+        var usoldamtSum=0;
+        var soldamtSum=0;
+        var recamtSum=0;
         var recabamtSum = 0;
 
         //fotter & graph variables for K
-        var costamtSum = 0;
-        var collamtSum = 0;
+        var costamtSum=0;
+        var collamtSum=0;
         var netamtSum = 0;
 
         //fotter & graph variables for L
-        var curempnoSum = 0;
+        var curempnoSum=0;
         var curpaySum = 0;
 
-        var sdate = '';
+        var sdate ='';
         var endDate = '';
 
         var url = "../ASMX_46_GrMgtInter/RptGrpMisDailyActiviteisWebService.asmx/PrintRpt";
@@ -110,11 +110,11 @@
             $("#lbtnOk").click(function () {
                 GetStartDate();
                 GetEndDate();
-                ShowData1();
+                ShowData();
                 return false;
-
+                
             });
-            $('#txtDate').change(function () {
+            $('#txtDate').change(function () {      
                 GetStartDate();
             });
             $('#txttodate').change(function () {
@@ -122,7 +122,7 @@
             });
 
             $("[id$=lnkPrint]").click(function () {
-
+                
                 PrintAction(url, prntVal);
                 return false;
 
@@ -136,33 +136,7 @@
 
             });
 
-        });
-
-        function ShowData1() {
-            StartProgressBar();
-            $.ajax({
-                type: "POST",
-                async: true,
-                url: "<%= this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq.aspx/GetDailyGrpRpt")%>",
-                contentType: "application/json;charset=utf-8",
-                data: '{frdate: "' + sdate + '" ,  todate: "' + endDate + '"}',
-                dataType: "json",
-
-                //  data: Sys.Serialization.JavaScriptSerializer.serialize({ 'frdate': sdate, 'todate': endDate }),
-                success: function onSuccess(data) {
-                    console.log(data);
-                    HideLabels();
-                    displayTable(data);
-                    CreateBarChart();
-                    ShowLabels();
-                    $("#pb").hide();
-
-                }
-
             });
-
-
-        }
     </script>
     <style>
         .gvTopHeader tr:nth-child(1) {
@@ -202,7 +176,7 @@
                                             <asp:TextBox ID="txttodate" runat="server" CssClass="inputtextbox" ClientIDMode="Static"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txttodate" Enabled="true"></cc1:CalendarExtender>
-                                            <asp:LinkButton ID="lbtnOk" runat="server"  CssClass="btn btn-primary primaryBtn" ClientIDMode="Static"> Show</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnOk" runat="server"  CssClass="btn btn-primary primaryBtn" ClientIDMode="Static">Show</asp:LinkButton>
                                             <div id="pb" style="width: 300px;"></div>
                                         </div>
                                     </div>

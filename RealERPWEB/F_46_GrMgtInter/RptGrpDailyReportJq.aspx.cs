@@ -14,9 +14,6 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
-using System.Web.Services;
-using System.Web.Script.Services;
-using RealEntity.C_46_GrMgtInter;
 
 namespace RealERPWEB.F_46_GrMgtInter
 {
@@ -63,15 +60,5 @@ namespace RealERPWEB.F_46_GrMgtInter
         //    //comcod = this.Request.QueryString["comcod"].Length > 0 ? this.Request.QueryString["comcod"].ToString () : comcod;
         //    return comcod;
         //}
-
-        [WebMethod(EnableSession = true)]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static List<DailyGrpRpt> GetDailyGrpRpt(string frdate, string todate)
-        {
-
-            DailyGrpRptMan dailyGrpRptMan = new DailyGrpRptMan();
-            List<DailyGrpRpt> lst = dailyGrpRptMan.GetRptGrpDailyReport(frdate, todate);
-            return lst;
-        }
     }
 }
