@@ -142,6 +142,7 @@
             StartProgressBar();
             $.ajax({
                 type: "POST",
+
                 async: true,
                 url: "<%= this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq.aspx/GetDailyGrpRpt")%>",
                 contentType: "application/json;charset=utf-8",
