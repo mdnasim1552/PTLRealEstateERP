@@ -1969,13 +1969,15 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
+            string crmchekd = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["iscrchecked"].ToString();
             string tblcrmcheckbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmcheckbyid"].ToString();
+
             string tblcrnPosttrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmchecktrmid"].ToString();
             string tblcrmPostSession = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["crmcheckseson"].ToString();
             string tblcrmcPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["crmcheckdat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
 
-            //crm part
-            string crmchekd = "";
+            //crm part  iscrchecked
+                 
             string crmcheckbyid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblcrmcheckbyid == "") ? userid : tblcrmcheckbyid);
             string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblcrnPosttrmid == "") ? Terminal : tblcrnPosttrmid);
             string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblcrmPostSession == "") ? Sessionid : tblcrmPostSession);
@@ -2030,17 +2032,17 @@ namespace RealERPWEB.F_12_Inv
                 }
             }
 
-            else if (this.Request.QueryString["InputType"] == "ReqCheck")
-            {
-                string pactcode1 = this.ddlProject.SelectedValue.ToString();
-                string mReqno = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();              
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKISCRMCHECKED", pactcode1, mReqno, "", "", "", "", "", "", "");
-                if (ds1.Tables[0].Rows.Count == 0)
-                    return;
+            //else if (this.Request.QueryString["InputType"] == "ReqCheck")
+            //{
+            //    string pactcode1 = this.ddlProject.SelectedValue.ToString();
+            //    string mReqno = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();              
+            //    DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKISCRMCHECKED", pactcode1, mReqno, "", "", "", "", "", "", "");
+            //    if (ds1.Tables[0].Rows.Count == 0)
+            //        return;
 
-                crmchekd = ds1.Tables[0].Rows[0]["ISCRCHECKED"].ToString();
+            //    crmchekd = ds1.Tables[0].Rows[0]["ISCRCHECKED"].ToString();
 
-            }
+            //}
 
 
 
