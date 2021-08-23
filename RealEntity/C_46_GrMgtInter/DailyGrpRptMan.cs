@@ -45,8 +45,8 @@ namespace RealEntity.C_46_GrMgtInter
 
         public List<DailyGrpRpt> GetRptGrpDailyReport(string frdate, string todate)
         {
-            //System.Web.HttpContext.Current.Session["frdate"] = frdate;
-            //System.Web.HttpContext.Current.Session["todate"] = todate;
+            System.Web.HttpContext.Current.Session["frdate"] = frdate;
+            System.Web.HttpContext.Current.Session["todate"] = todate;
             List<DailyGrpRpt> rptlst = new List<DailyGrpRpt>();
             string comcod = CallCompanyList();
             SqlDataReader dr = MktData.GetSqlReader(comcod, "SP_REPORT_GROUP_MIS03", "RPTMGTDAILYACT", frdate, todate, "", "", "", "", "", "", "");
