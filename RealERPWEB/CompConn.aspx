@@ -191,7 +191,6 @@
                                 <asp:TextBox ID="_sqlLnkuser1" runat="server"></asp:TextBox>
                                 <asp:TextBox ID="_sqlLnkpwd1" runat="server"></asp:TextBox>
 
-
                             </div>
                             <label runat="server" id="lblmsg" class="btn btn-sm float-right mr-2"></label>
 
