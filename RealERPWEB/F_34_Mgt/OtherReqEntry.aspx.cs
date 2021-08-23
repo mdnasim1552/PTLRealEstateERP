@@ -1933,9 +1933,7 @@ namespace RealERPWEB.F_34_Mgt
                     string frmname = "OtherReqEntry?Type=FinalAppr";
                     string subject = "Ready for Final Approval";
                     string SMSHead = "Ready for Final Approval(General Requisition)";
-
-
-                    string SMSText = comnam + ":\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername 
+                    string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "MRF No: " + txtMRFNo.Text + "\n" + "Req. Entry: " + rusername 
                         + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Second Approved: " + thrapname + "\n" + "Thanks";
 
 
@@ -2021,12 +2019,11 @@ namespace RealERPWEB.F_34_Mgt
                     try
                     {
                         oSmtp.SendMail(oServer, oMail);
-                        //((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
 
                     }
                     catch (Exception ex)
                     {
-                      //  ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                       ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
 
                     }
 
@@ -2038,9 +2035,9 @@ namespace RealERPWEB.F_34_Mgt
 
                 return true;
             }
-            catch (Exception exp)
+            catch (Exception ex)
             {
-              
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
                 return false;
             }// try
 

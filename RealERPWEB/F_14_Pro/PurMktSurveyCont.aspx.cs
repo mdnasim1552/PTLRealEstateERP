@@ -564,7 +564,7 @@ namespace RealERPWEB.F_14_Pro
             string mRemarks = this.txtMSRNarr.Text.Trim();
             string prjcode = this.ddlprjlist.SelectedValue.ToString();
 
-            
+
             string postedbyid = hst["usrid"].ToString();
             string postrmid = hst["compname"].ToString();
             string postseson = hst["session"].ToString();
@@ -989,12 +989,30 @@ namespace RealERPWEB.F_14_Pro
             Session["tblt01"] = (DataTable)tbl1;
             Session["tblterm"] = (DataTable)tblt;
             this.Payterm_DataBind();
+            this.Recom_Bind();
+        }
+
+        private void Recom_Bind()
+        {
+            DataTable dt1 = (DataTable)Session["tblterm"];
+            dt1.Rows.Add("", "000000000000", 0, " ", " ", "Select Recommeded Supplier") ;
+            this.ddlrecom.DataTextField = "ssirdesc";
+            this.ddlrecom.DataValueField = "ssircode";
+            this.ddlrecom.DataSource = dt1;
+            this.ddlrecom.DataBind();
+            this.ddlrecom.SelectedValue = "000000000000";
+            //ListItem li = new ListItem();
+            //li.Text = "Select Recommeded Supplier";
+            //li.Value = "";
+            //ddlrecom.Items.Add(li);
+            //this.ddlrecom.SelectedValue = "0";
         }
 
         private void Payterm_DataBind()
         {
             this.gvterm.DataSource = (DataTable)Session["tblterm"];
             this.gvterm.DataBind();
+
 
         }
         protected void ddlMSRRes_SelectedIndexChanged(object sender, EventArgs e)
