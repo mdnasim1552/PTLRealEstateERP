@@ -1935,13 +1935,9 @@ namespace RealERPWEB.F_34_Mgt
                     string SMSHead = "Ready for Final Approval(General Requisition)";
                     string reqno = this.lblCurReqNo1.Text + this.txtCurReqNo2.Text;
                     string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "Req No: " + reqno + "\n" + "Req. Entry: " + rusername 
-                        + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Thirrd Approved: " + thrapname + "\n" + "Thanks";
-
-
+                        + "\n" + "First Approved: " + fausername + "\n" + "Second Approved: " + secapname + "\n" + "Thirrd Approved: " + thrapname + "\n" + "Thanks";                       
 
                     bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
-
-
                     switch (ssl)
                     {
                         case true:
