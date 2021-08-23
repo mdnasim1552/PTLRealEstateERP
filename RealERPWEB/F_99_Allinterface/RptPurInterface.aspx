@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptPurInterface.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.RptPurInterface" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RptPurInterface.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.RptPurInterface" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -42,7 +42,7 @@
             font-weight: bold;
         }
 
-
+          
         .modal-title {
             font-weight: bold;
             color: #000;
@@ -574,8 +574,7 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
 
-
-        });
+     });
 
 
 
@@ -583,21 +582,12 @@
 
             try {
 
-                //$('.counter').counterUp({
-                //    delay: 10,
-                //    time: 1000
+     
+                var comcod = <%=this.GetCompCode()%>;
 
-                //});
+                    switch (comcod) {
 
-                comcod = <%=this.GetCompCode()%>;
-
-
-                switch (comcod) {
-
-
-
-
-                    case 3338:   // ACME   
+                        case 3338:   // ACME   
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
@@ -678,15 +668,20 @@
 
                         break;
 
+                    //case 3101:
                     case 3316://Assure
                     case 3315://Assure
                     case 3317://Assure
-                    case 3101:
 <<<<<<< HEAD
-
+<<<<<<< HEAD
 =======
-                     
->>>>>>> a1805cbe8fb61702ecacf1d050f2fc9edbf5e074
+                    case 3101://Assure
+
+
+>>>>>>> a8d88c34489481686a4ce02ac18e7a0d9c95e665
+=======
+
+>>>>>>> 9cae41640fa9dc6690e54a0171c27e2b99561907
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();

@@ -282,6 +282,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.TransectionPrint": Rpt1a = SetRptTrnPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptCheque": Rpt1a = SetRptCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeSuvastu": Rpt1a = SetRptChequeSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptCheqCredence": Rpt1a = SetRptCheque(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_17_Acc.RptChequeIBBL": Rpt1a = SetRptChequeIBBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeSBL": Rpt1a = SetRptChequeSBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3124,12 +3125,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.EClassBudget.ProjBgdCon>)RptDataSet));
             return Rpt1a;
         }
-
-        private static LocalReport SetRptProjectBgd(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+  private static LocalReport SetRptProjectBgd(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_04_Bgd.EClassBudget.BudgetInmStaSum>)RptDataSet));
             return Rpt1a;
         }
+      
 
         private static LocalReport SetRptMaterialsReqDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

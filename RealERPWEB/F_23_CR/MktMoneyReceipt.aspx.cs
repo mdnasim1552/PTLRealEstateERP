@@ -210,7 +210,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "3337":
                 case "3336":
-                case "3101":
+               // case "3101":
                     mrprint = "MRPrint4";
                     break;
                 case "3339":
@@ -1762,10 +1762,11 @@ namespace RealERPWEB.F_23_CR
                 rptStatus.SetParameterValue("ComLogo", ComLogo);
                 //  }
                 Session["Report1"] = rptStatus;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
             }
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+           
 
         }
 

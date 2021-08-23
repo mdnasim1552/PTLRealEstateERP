@@ -17,16 +17,16 @@
     </script>
 </head>
 <body>
-  
 
-            <form id="form1" runat="server">
-                <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="0">
-                    <Scripts>
-                    </Scripts>
 
-                </asp:ScriptManager>
-                  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="0">
+            <Scripts>
+            </Scripts>
+
+        </asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
                 <div>
                     <div class="container h-100">
 
@@ -41,7 +41,7 @@
                                     <div class="row">
                                         <div class="col-md-3">Expiry Date</div>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtExpDate" runat="server" AutoPostBack="True" CssClass="form-control" TabIndex="1" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
+                                            <asp:TextBox ID="txtExpDate" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TabIndex="1" ToolTip="(dd-MMM-yyyy)"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtExpDate_CalendarExtender" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtExpDate"></cc1:CalendarExtender>
 
@@ -96,43 +96,44 @@
                                     </div>
                                 </div>
                             </asp:Panel>
+
                             <asp:Panel ID="pnlbillalrt" runat="server">
                                 <div class="mt-5">
 
-                         
-                          
 
-                            <div class="form-group">
-                                <label for="username">Type Alert Message</label>
-                                <textarea rows="5" runat="server" id="txtAltMessage" class="form-control"></textarea>
-                            </div>
 
-                            <div class="form-group mb-3">
-                                <label>Color Set</label>
-                                <div id="xcp-component" class="input-group">
-                                    <input type="text" runat="server" id="txtColorCode" class="form-control" />
-                                    <span class="input-group-addon"><i></i></span>
+
+                                    <div class="form-group">
+                                        <label for="username">Type Alert Message</label>
+                                        <textarea rows="5" runat="server" id="txtAltMessage" class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label>Color Set</label>
+                                        <div id="xcp-component" class="input-group">
+                                            <input type="text" runat="server" id="txtColorCode" class="form-control" />
+                                            <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <label for="username">Status</label>
+                                        <div class="custom-control custom-switch">
+                                            <asp:RadioButtonList runat="server" ID="rbtLsit" RepeatDirection="Horizontal">
+                                                <asp:ListItem Value="True">Active</asp:ListItem>
+                                                <asp:ListItem Value="False">InActive</asp:ListItem>
+                                            </asp:RadioButtonList>
+                                        </div>
+
+                                    </div>
+
+
                                 </div>
-                            </div>
 
+                                <button type="button" runat="server" id="btnAlrtMsg" onserverclick="btnAlrtMsg_ServerClick" class="btn btn-primary">Update</button>
 
-
-                            <div class="form-group">
-                                <label for="username">Status</label>
-                                <div class="custom-control custom-switch">
-                                    <asp:RadioButtonList runat="server" ID="rbtLsit" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="True">Active</asp:ListItem>
-                                        <asp:ListItem Value="False">InActive</asp:ListItem>
-                                    </asp:RadioButtonList>
-                                </div>
-
-                            </div>
-
-
-                        </div>
-                       
-                            <button type="button" runat="server" id="btnAlrtMsg" onserverclick="btnAlrtMsg_ServerClick" class="btn btn-primary">Update</button>
-                     
                             </asp:Panel>
 
 
@@ -144,7 +145,7 @@
                             </asp:Panel>
 
                             <asp:Panel ID="pnlDtPropertis" runat="server" Visible="False">
-                                <div class="form-group">
+                                <div class="form-group mt-5">
                                     <div>
                                         <asp:Label ID="lblDt" runat="server" CssClass="lblTxt lblName" Text="DT Propertis"></asp:Label>
                                     </div>
@@ -154,23 +155,23 @@
                                 </div>
                                 <hr />
                                 <div class="form-group">
-                                    <div>DT Propertis Limit</div>
+                                    <legend>DT Propertis Limit</legend>
                                     <div class="col-md-2">
-                                       <asp:HiddenField ID="lblHL1" runat="server" />
+                                        <asp:HiddenField ID="lblHL1" runat="server" />
                                         <asp:Label ID="lblL1" runat="server" CssClass="lblTxt lblName" Text="Limit 1"></asp:Label>
                                     </div>
                                     <div class="col-md-2">
                                         <asp:TextBox ID="txtL1" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                     </div>
-                                      <div class="col-md-2">
-                                          <asp:HiddenField ID="lblHL2" runat="server" />
+                                    <div class="col-md-2">
+                                        <asp:HiddenField ID="lblHL2" runat="server" />
                                         <asp:Label ID="lblL2" runat="server" CssClass="lblTxt lblName" Text="Limit 2"></asp:Label>
                                     </div>
                                     <div class="col-md-2">
                                         <asp:TextBox ID="txtL2" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                     </div>
-                                      <div class="col-md-2">
-                                          <asp:HiddenField ID="lblHL3" runat="server" />
+                                    <div class="col-md-2">
+                                        <asp:HiddenField ID="lblHL3" runat="server" />
                                         <asp:Label ID="lblL3" runat="server" CssClass="lblTxt lblName" Text="Limit 3"></asp:Label>
                                     </div>
                                     <div class="col-md-2">
@@ -180,11 +181,13 @@
                                 <div>
                                     <button type="button" runat="server" id="btnDtPropSave" onserverclick="btnDtPropSave_ServerClick" class="btn btn-success">Save</button>
                                 </div>
+<<<<<<< HEAD
                                 
                            </asp:Panel>
 
-                            <asp:Panel ID="pnlAlerMsg" runat="server" Visible="False">
-                        <div class="modal-body">
+                            <asp:Panel ID="pnlAleartMsg" runat="server" Visible="False">
+
+                                <div class="modal-body">
 
                             <div class="form-group d-none">
                                 <asp:TextBox ID="_sqlLnk1" runat="server"></asp:TextBox>
@@ -213,8 +216,13 @@
                                     <span class="input-group-addon"><i></i></span>
                                 </div>
                             </div>
+=======
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
 
+                            </asp:Panel>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
                             <div class="form-group">
                                 <label for="username">Status</label>
@@ -229,18 +237,63 @@
 
 
                         </div>
-
                                 </asp:Panel>
 
+
+
+
+
+=======
+                            <asp:Panel ID="pnlAlerMsg" runat="server" Visible="False">
+=======
+>>>>>>> 439c83694bc1f85160bb5779cba32362334f5887
+                                <asp:Panel ID="pnlAlertMsg" runat="server" Visible="False">
+                                    <div class="mt-5">
+                                        <div class="form-group">
+                                            <legend>Type Message</legend>
+                                            <textarea rows="5" runat="server" id="txtCompMsg" class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <legend>Color Set</legend>
+                                            <div id="xcp-component_msg" class="input-group">
+                                                <input type="text" runat="server" id="txtMsgColor" class="form-control" />
+                                                <span class="input-group-addon"><i></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <legend>Status</legend>
+                                            <div class="custom-control custom-switch">
+                                                <asp:RadioButtonList runat="server" ID="rbtnMsgStatus" RepeatDirection="Horizontal">
+                                                    <asp:ListItem Value="True">Active&nbsp;</asp:ListItem>
+                                                    <asp:ListItem Value="False">InActive</asp:ListItem>
+                                                </asp:RadioButtonList>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" runat="server" id="btnMsgSave" onserverclick="btnMsgSave_ServerClick" class="btn btn-success">Save</button>
+                                        </div>
+                                    </div>
+                                </asp:Panel>
+<<<<<<< HEAD
+
+                            </asp:Panel>
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
+=======
+>>>>>>> 439c83694bc1f85160bb5779cba32362334f5887
                         </div>
-
-
                     </div>
                 </div>
+<<<<<<< HEAD
                </ContentTemplate>
     </asp:UpdatePanel>
             </form>
-       
+     
+=======
+            </ContentTemplate>
+        </asp:UpdatePanel>
+    </form>
+
+>>>>>>> 31ada1711b1cc8c022ec4b693c2ba3b788ad6766
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

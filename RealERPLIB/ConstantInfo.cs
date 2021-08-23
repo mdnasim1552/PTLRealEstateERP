@@ -1603,7 +1603,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502390", "F_34_Mgt", "ProTargetTimeBasis?", "Type=Mgt", "Construction Planning - Time Basis(Management)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502391", "F_34_Mgt", "VehicleTrack?", "Type=TopSheet", "Vehicle Tracking", "Management", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "3502000", "3502400", "F_34_Mgt", "Trigger", "", "Trigger Information", "Management", "False", "False", "False", "False" }); 
-            tblObj.Rows.Add(new Object[] { "3502000", "3502410", "F_34_Mgt", "Notices/Events", "", "Notice Information", "Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "3502000", "3502410", "Notices", "Notice", "", "Notice Information", "Management", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "3503000", "3503998", "F_34_Mgt", "UserLoginfrm", "", "User Permission", "Admin", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3503000", "3503999", "F_34_Mgt", "UserLoginfrmasit", "", "Company Page Permission ", "Admin", "False", "False", "False", "False" }); ;
@@ -9258,7 +9258,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0416000000", "08. SMS/Mail Template Code", "F_34_Mgt/SMCodeBook", "", true, "" });    
             mnuTbl1.Rows.Add(new Object[] { "0417000000", "15. Group User Management", "F_34_Mgt/UserfrmGroup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0418000000", "16. Trigger Information", "F_34_Mgt/Trigger", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0419000000", "17. Notice Information", "F_34_Mgt/Notice", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0419000000", "17. Notice Information", "Notices/Notice", "", true, "" });
 
 
             //mnuTbl1.Rows.Add(new Object[] { "0420000000", "", "", "", true, "" });

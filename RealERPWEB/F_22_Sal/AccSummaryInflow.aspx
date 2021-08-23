@@ -169,8 +169,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "unitsize")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvtpasuamt" runat="server" ForeColor="Black"
-                                               >Total</asp:Label>
+                                            <asp:Label ID="lgvtpasuamt" runat="server" ForeColor="Black">Total</asp:Label>
                                         </FooterTemplate>
                                     </asp:TemplateField>
 
@@ -191,8 +190,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "paidamt")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvtpaidamt" runat="server" ForeColor="Black"
-                                              ></asp:Label>
+                                            <asp:Label ID="lgvtpaidamt" runat="server" ForeColor="Black"></asp:Label>
                                         </FooterTemplate>
                                     </asp:TemplateField>
 

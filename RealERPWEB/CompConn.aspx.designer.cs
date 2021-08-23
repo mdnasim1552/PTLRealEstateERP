@@ -303,102 +303,57 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlButton btnDtPropSave;
 
         /// <summary>
-        /// pnlAlerMsg control.
+        /// pnlAleartMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAlerMsg;
+        protected global::System.Web.UI.WebControls.Panel pnlAleartMsg;
 
         /// <summary>
-        /// _sqlLnk1 control.
+        /// pnlAlertMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _sqlLnk1;
+        protected global::System.Web.UI.WebControls.Panel pnlAlertMsg;
 
         /// <summary>
-        /// _sqlLnkuser1 control.
+        /// txtCompMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _sqlLnkuser1;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtCompMsg;
 
         /// <summary>
-        /// _sqlLnkpwd1 control.
+        /// txtMsgColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _sqlLnkpwd1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMsgColor;
 
         /// <summary>
-        /// lblmsg control.
+        /// rbtnMsgStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblmsg;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnMsgStatus;
 
         /// <summary>
-        /// hiddDbName control.
+        /// btnMsgSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hiddDbName;
-
-        /// <summary>
-        /// mCompID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField mCompID;
-
-        /// <summary>
-        /// txtMasterComp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMasterComp;
-
-        /// <summary>
-        /// Textarea1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea Textarea1;
-
-        /// <summary>
-        /// Text1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text1;
-
-        /// <summary>
-        /// RadioButtonList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonList1;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnMsgSave;
     }
 }

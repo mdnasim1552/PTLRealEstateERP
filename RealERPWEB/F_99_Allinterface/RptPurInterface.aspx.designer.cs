@@ -21,6 +21,7 @@ namespace RealERPWEB.F_99_Allinterface
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+        
         protected global::System.Web.UI.Timer Timer1;
 
         /// <summary>
