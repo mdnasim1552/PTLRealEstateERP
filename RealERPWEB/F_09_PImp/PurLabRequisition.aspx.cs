@@ -51,6 +51,11 @@ namespace RealERPWEB.F_09_PImp
                     this.ddlPrevISSList.SelectedValue = this.Request.QueryString["genno"].ToString();
                     this.lbtnOk_Click(null, null);
                 }
+                if(this.Request.QueryString["msrno"].ToString().Length > 0)
+                {
+                    this.getPreviousMSR();
+                }
+                
 
             }
         }
@@ -799,7 +804,7 @@ namespace RealERPWEB.F_09_PImp
                 // double balamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalamt")).Text.Trim()));
 
                 double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
-                string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString(); ;
+                string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString();
                 CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("gvCheckBoxAppve");
 
                 bool aprvstatus = false;
@@ -944,7 +949,7 @@ namespace RealERPWEB.F_09_PImp
                 dlist.DataValueField = "ssircode";
                 dlist.DataSource = dt;
                 dlist.DataBind();
-                dlist.SelectedValue = contractor;
+                dlist.SelectedValue = this.Request.QueryString["recomsup"].ToString()=="" ? contractor : this.Request.QueryString["recomsup"].ToString();
 
                 bool aprovestatus = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "approve"));
                 CheckBox approve = (CheckBox)e.Row.FindControl("gvCheckBoxAppve");
@@ -960,6 +965,177 @@ namespace RealERPWEB.F_09_PImp
 
 
             }
+        }
+
+        private void getPreviousMSR()
+        {
+
+            string comcod = this.GetCompCode();
+            string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string mMSRNo = this.Request.QueryString["msrno"].ToString() == "" ? "" : this.Request.QueryString["msrno"].ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURMSRINFO1CON", mMSRNo, CurDate1,
+                          "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblt01"] = ds1.Tables[1];
+            Session["tblt02"] = this.HiddenSameData(ds1.Tables[2]);
+            Session["tblterm"] = ds1.Tables[3];
+
+
+            this.gvMSRInfo_DataBind();
+            this.Payterm_DataBind();
+
+
+        }
+
+        protected void gvMSRInfo2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TextBox txtrate1 = (TextBox)e.Row.FindControl("txtrate1");
+                TextBox txtrate2 = (TextBox)e.Row.FindControl("txtrate2");
+                TextBox txtrate3 = (TextBox)e.Row.FindControl("txtrate3");
+                TextBox txtrate4 = (TextBox)e.Row.FindControl("txtrate4");
+                TextBox txtrate5 = (TextBox)e.Row.FindControl("txtrate5");
+
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
+                if (code == "")
+                {
+                    return;
+                }
+                if (ASTUtility.Left(code, 2) == "71")
+                {
+                    txtrate1.Style.Add("text-align", "Left");
+                    txtrate2.Style.Add("text-align", "Left");
+                    txtrate3.Style.Add("text-align", "Left");
+                    txtrate4.Style.Add("text-align", "Left");
+                    txtrate5.Style.Add("text-align", "Left");
+                }
+
+            }
+        }
+
+        protected void gvMSRInfo2_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell0 = new TableCell();
+                cell0.Text = "";
+                cell0.HorizontalAlign = HorizontalAlign.Center;
+                cell0.ColumnSpan = 5;
+                gvrow.Cells.Add(cell0);
+                DataTable dt = (DataTable)Session["tblt01"];
+                //int j = 5;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    TableCell cell = new TableCell();
+                    cell.Text = dt.Rows[i]["ssirdesc1"].ToString();
+                    cell.HorizontalAlign = HorizontalAlign.Center;
+                    cell.ColumnSpan = 2;
+                    cell.Font.Bold = true;
+                    gvrow.Cells.Add(cell);
+
+                }
+                TableCell celll = new TableCell();
+                celll.Text = "";
+                celll.HorizontalAlign = HorizontalAlign.Center;
+                celll.ColumnSpan = 2;
+                gvrow.Cells.Add(celll);
+
+                gvMSRInfo2.Controls[0].Controls.AddAt(0, gvrow);
+            }
+
+        }
+
+        protected void gvMSRInfo_DataBind()
+        {
+            this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
+            this.gvMSRInfo2.DataBind();
+            this.FooterCalculation();
+        }
+
+        private void FooterCalculation()
+        {
+            DataTable dt = (DataTable)Session["tblt02"];
+            if (dt.Rows.Count == 0)
+                return;
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt1)", "")) ? 0.00
+          : dt.Compute("Sum(amt1)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt2)", "")) ? 0.00
+        : dt.Compute("Sum(amt2)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt3)", "")) ? 0.00
+        : dt.Compute("Sum(amt3)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt4)", "")) ? 0.00
+        : dt.Compute("Sum(amt4)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt5)", "")) ? 0.00
+        : dt.Compute("Sum(amt5)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+
+
+
+        }
+
+        private void Payterm_DataBind()
+        {
+            this.gvterm.DataSource = (DataTable)Session["tblterm"];
+            this.gvterm.DataBind();
+
+
+        }
+
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string rsircode = dt1.Rows[0]["rsircode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
+                {
+
+                    dt1.Rows[j]["rsirdesc1"] = "";
+                }
+                rsircode = dt1.Rows[j]["rsircode"].ToString();
+            }
+
+            DataView dv = dt1.DefaultView;
+            dv.Sort = ("rsircode");
+            dt1 = dv.ToTable();
+            return dt1;
+        }
+
+        protected void DdlContractor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //for (int i = 0; i < this.grvissue.Rows.Count; i++)
+            //{
+            //    string contrator = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedItem.Text.Trim();
+            //    string txtlabrate = ((TextBox)this.grvissue.Rows[i].FindControl("txtlabrate")).Text.ToString();
+            //    string rsircode = ((Label)this.grvissue.Rows[i].FindControl("lblitemcode")).Text.ToString();
+
+            //    DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
+            //    DataTable dt2 = (DataTable)Session["tblt02"]; // cs 
+                
+
+            //    DataRow[] drstk = dt2.Select(" rsircode='" + rsircode + "' and csircode='" + contrator + "'");
+
+            //    for (int j = 0; j < drstk.Length; j++)
+            //    {
+
+            //        DataRow dr2 = dt.NewRow();
+                 
+            //        dr2["reqrat"] = stkqty * stkrate;
+                   
+            //        dt.Rows.Add(dr2);
+
+            //    }
+
+
+            //}
         }
     }
 }

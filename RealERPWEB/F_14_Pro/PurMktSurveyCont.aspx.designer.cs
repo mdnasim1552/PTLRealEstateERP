@@ -357,12 +357,12 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.TextBox txtMSRNarr;
 
         /// <summary>
-        /// ddlrecom control.
+        /// ddlrecomsup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlrecom;
+        protected global::System.Web.UI.WebControls.DropDownList ddlrecomsup;
     }
 }
