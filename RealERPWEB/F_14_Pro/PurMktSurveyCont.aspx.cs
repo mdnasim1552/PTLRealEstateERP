@@ -995,17 +995,17 @@ namespace RealERPWEB.F_14_Pro
         private void Recom_Bind()
         {
             DataTable dt1 = (DataTable)Session["tblterm"];
-            dt1.Rows.Add("", "000000000000", 0, " ", " ", "Select Recommeded Supplier") ;
+            //dt1.Rows.Add("", "000000000000", 0, " ", " ", "Select Recommeded Supplier") ;
             this.ddlrecomsup.DataTextField = "ssirdesc";
             this.ddlrecomsup.DataValueField = "ssircode";
             this.ddlrecomsup.DataSource = dt1;
             this.ddlrecomsup.DataBind();
+           // this.ddlrecomsup.SelectedValue = "000000000000";
+            ListItem li = new ListItem();
+            li.Text = "Select Recommeded Supplier";
+            li.Value = "000000000000";
+            ddlrecomsup.Items.Add(li);
             this.ddlrecomsup.SelectedValue = "000000000000";
-            //ListItem li = new ListItem();
-            //li.Text = "Select Recommeded Supplier";
-            //li.Value = "";
-            //ddlrecom.Items.Add(li);
-            //this.ddlrecom.SelectedValue = "0";
         }
 
         private void Payterm_DataBind()

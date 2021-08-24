@@ -78,7 +78,7 @@
       <HintPath>C:\Users\Administrator\Desktop\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
