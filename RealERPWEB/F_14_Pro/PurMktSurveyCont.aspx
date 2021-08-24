@@ -198,7 +198,7 @@
                             </div>
                         </fieldset>
 
-                        <div class="table table-responsive">
+                        <div class="table table-responsive" style="min-height:360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True"
@@ -542,7 +542,7 @@
 
                                     <asp:TemplateField HeaderText="Quotation Date">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtCurQuTDate" runat="server" CssClass="inputtextbox" ToolTip="(dd.mm.yyyy)"
+                                            <asp:TextBox ID="txtCurQuTDate" runat="server" CssClass="inputtextbox"
                                                 Text='<%#(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).Year==1900?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).ToString("dd-MMM-yyyy")) %>'> </asp:TextBox>
                                             <cc1:CalendarExtender ID="txtCurQuTDate_CalendarExtender" runat="server"
                                                 TargetControlID="txtCurQuTDate"></cc1:CalendarExtender>
@@ -594,7 +594,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-4 pading5px asitCol4 ">
-                                            <asp:DropDownList ID="ddlrecom" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlrecomsup" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
