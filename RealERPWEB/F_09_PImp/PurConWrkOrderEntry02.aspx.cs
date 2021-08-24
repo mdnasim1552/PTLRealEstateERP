@@ -257,14 +257,10 @@ namespace RealERPWEB.F_09_PImp
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2P", lst, null, null);
 
-            //if (comcod == "3101" || comcod == "3333")
-            //{
-            //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_90_PF.RptIndvPfAlli", pflist, null, null);
-            //}
-            //else
-            //{
-            //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIndvPf", pflist, null, null);
-            //}
+            string txtSign1 = "";
+            string txtSign2 = "";
+            string txtSign3 = "";
+            string txtSign4 = "";
 
             string Address = lst[0].conadd.ToString();
             string Attn = lst[0].atten.ToString();
@@ -288,6 +284,10 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
             Rpt1.SetParameters(new ReportParameter("RptTitle", "Work Order"));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
+            Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
+            Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
+            Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
             //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
 
