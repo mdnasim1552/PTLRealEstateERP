@@ -97,6 +97,7 @@ namespace RealERPWEB.F_22_Sal
                     this.gvSpayment.Columns[6].Visible = true;
                     this.gvSpayment.Columns[7].Visible = true;
                     this.gvSpayment.Columns[16].Visible = true;
+
                     break;
 
                 default:
