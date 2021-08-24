@@ -875,7 +875,7 @@
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperation?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Go Purchase</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Go Purchase</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requsition</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink9" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Store Requsition</asp:HyperLink>
                                         <asp:LinkButton ID="LinkButton2" runat="server" CssClass="dropdown-item" Style="padding: 0 10px" OnClick="lnkInteface_Click">Interface</asp:LinkButton></li>
