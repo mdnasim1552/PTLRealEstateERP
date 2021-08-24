@@ -1926,6 +1926,7 @@
     <Content Include="Default.aspx" />
     <Content Include="DefaultPage.aspx" />
     <Content Include="DocumentAttached.aspx" />
+    <Content Include="Emailtemplate.html" />
     <Content Include="ErrorHandling.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\AgencyFB-Bold.svg" />
