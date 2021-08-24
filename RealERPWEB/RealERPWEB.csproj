@@ -2498,6 +2498,7 @@
     <Content Include="F_23_CR\RptDelMonyRec.aspx" />
     <Content Include="F_23_CR\RptDishonourCheque.aspx" />
     <Content Include="F_23_CR\RptInvoice02.aspx" />
+    <Content Include="F_23_CR\RptMonthlyCollectionMerge.aspx" />
     <Content Include="F_23_CR\RptPrjWiseClientStatus02.aspx" />
     <Content Include="F_23_CR\RptPrjwisecollofSummDetails.aspx" />
     <Content Include="F_23_CR\RptProjectWiseCollection.aspx" />
@@ -3663,6 +3664,13 @@
     </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
+      <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.designer.cs">
+      <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx.cs">
       <DependentUpon>HRDailyAttenManually.aspx</DependentUpon>
