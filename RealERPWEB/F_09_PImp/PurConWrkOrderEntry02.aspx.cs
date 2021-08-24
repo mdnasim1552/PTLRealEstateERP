@@ -257,7 +257,7 @@ namespace RealERPWEB.F_09_PImp
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2P", lst, null, null);
 
-            string txtSign1 = "";
+            string txtSign1 = ds1.Tables[2].Rows[0]["usrname"].ToString()+" ," + ds1.Tables[2].Rows[0]["usrdesig"].ToString() +" \n" + Convert.ToDateTime(ds1.Tables[2].Rows[0]["POSTEDDAT"]).ToString("dd-MMM-yyyy");
             string txtSign2 = "";
             string txtSign3 = "";
             string txtSign4 = "";

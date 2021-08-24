@@ -198,7 +198,7 @@
                             </div>
                         </fieldset>
 
-                        <div class="table table-responsive">
+                        <div class="table table-responsive" style="min-height:360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True"

@@ -100,8 +100,8 @@
         var sdate ='';
         var endDate = '';
 
-        var url = "../ASMX_46_GrMgtInter/RptGrpMisDailyActiviteisWebService.asmx/PrintRpt";
-        var prntVal = 'PDF';
+        //var url = "../ASMX_46_GrMgtInter/RptGrpMisDailyActiviteisWebService.asmx/PrintRpt";
+        //var prntVal = 'PDF';
 
 
         $(document).ready(function () {
@@ -121,20 +121,20 @@
                 GetEndDate();
             });
 
-            $("[id$=lnkPrint]").click(function () {
+            //$("[id$=lnkPrint]").click(function () {
                 
-                PrintAction(url, prntVal);
-                return false;
+            //    PrintAction(url, prntVal);
+            //    return false;
 
-            });
+            //});
 
 
-            $("[id$=DDPrintOpt]").change(function () {
-                prntVal = ($("[id$=DDPrintOpt]").val());
-                //alert(prntVal);
-                return false;
+            //$("[id$=DDPrintOpt]").change(function () {
+            //    prntVal = ($("[id$=DDPrintOpt]").val());
+            //    //alert(prntVal);
+            //    return false;
 
-            });
+            //});
 
         });
 

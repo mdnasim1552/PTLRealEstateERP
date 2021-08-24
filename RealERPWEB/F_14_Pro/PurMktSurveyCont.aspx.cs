@@ -570,10 +570,10 @@ namespace RealERPWEB.F_14_Pro
             string postseson = hst["session"].ToString();
             string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
-
+            string recomsup = this.ddlrecomsup.SelectedValue.ToString() == "000000000000" ? "" : this.ddlrecomsup.SelectedValue.ToString();
 
             result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02A",
-                             mMSRNO, mMSRDAT, mRefno, mRemarks, prjcode, lreqno, postedbyid, postrmid, postseson, posteddat, "", "", "", "");
+                             mMSRNO, mMSRDAT, mRefno, mRemarks, prjcode, lreqno, postedbyid, postrmid, postseson, posteddat, recomsup, "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -996,11 +996,11 @@ namespace RealERPWEB.F_14_Pro
         {
             DataTable dt1 = (DataTable)Session["tblterm"];
             dt1.Rows.Add("", "000000000000", 0, " ", " ", "Select Recommeded Supplier") ;
-            this.ddlrecom.DataTextField = "ssirdesc";
-            this.ddlrecom.DataValueField = "ssircode";
-            this.ddlrecom.DataSource = dt1;
-            this.ddlrecom.DataBind();
-            this.ddlrecom.SelectedValue = "000000000000";
+            this.ddlrecomsup.DataTextField = "ssirdesc";
+            this.ddlrecomsup.DataValueField = "ssircode";
+            this.ddlrecomsup.DataSource = dt1;
+            this.ddlrecomsup.DataBind();
+            this.ddlrecomsup.SelectedValue = "000000000000";
             //ListItem li = new ListItem();
             //li.Text = "Select Recommeded Supplier";
             //li.Value = "";
