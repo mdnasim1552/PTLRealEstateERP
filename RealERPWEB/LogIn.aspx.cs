@@ -607,10 +607,10 @@ namespace RealERPWEB
                         {
                             Url1 = "DeafultMenu?Type=9000";
                         }
-                        else if (comcod.Substring(0, 1) == "1")
-                        {
-                            Url1 = "DashboardAll?Type=7000";
-                        }
+                        //else if (comcod.Substring(0, 1) == "1")
+                        //{
+                        //    Url1 = "DashboardAll?Type=7000";
+                        //}
                         else
                         {
                             Url1 = "MyDashboard?Type=";

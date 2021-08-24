@@ -498,9 +498,9 @@ namespace RealERPWEB.F_16_Bill
             this.gvRptResBasis.DataSource = dt;
             this.gvRptResBasis.DataBind();
 
-            //    this.gvBillInfo.Columns[8].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
+          if(dt.Rows.Count>0)
             ((LinkButton)this.gvRptResBasis.FooterRow.FindControl("lnkfinalup")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
-            // ((LinkButton)this.gvRptResBasis.FooterRow.FindControl("lnkfinalup")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
+            
 
 
             this.FooterCalCulation();

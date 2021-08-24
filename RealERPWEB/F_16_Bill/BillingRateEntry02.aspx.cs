@@ -308,6 +308,8 @@ namespace RealERPWEB.F_16_Bill
             this.SaveValue();
             DataTable dt1 = (DataTable)Session["tblBill"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            dt1.Columns.Remove("isirdesc");
+            dt1.Columns.Remove("sdetails");
             DataSet ds1 = new DataSet("ds1");
             ds1.Merge(dt1);
             ds1.Tables[0].TableName = "tbl1";
