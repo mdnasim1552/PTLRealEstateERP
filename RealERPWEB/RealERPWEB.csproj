@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -46,10 +46,10 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,23 +71,23 @@
       <HintPath>..\..\..\PTLRealERP\RealEstate\RealERPWEB\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
-    </Reference>
-    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealEstate 210809Lu\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
@@ -122,7 +122,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -151,10 +151,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -174,14 +174,14 @@
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
       <Private>True</Private>
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -1926,7 +1926,6 @@
     <Content Include="Default.aspx" />
     <Content Include="DefaultPage.aspx" />
     <Content Include="DocumentAttached.aspx" />
-    <Content Include="Emailtemplate.html" />
     <Content Include="ErrorHandling.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\AgencyFB-Bold.svg" />
@@ -2448,7 +2447,6 @@
     <Content Include="F_22_Sal\RptBookingDues.aspx" />
     <Content Include="F_22_Sal\RptCalTotalAvgValue.aspx" />
     <Content Include="F_22_Sal\RptClientDateFile.aspx" />
-    <Content Include="F_22_Sal\RptCollectionDetailInfo.aspx" />
     <Content Include="F_22_Sal\RptCollMonYear.aspx" />
     <Content Include="F_22_Sal\RptCollSumOfCurMSale.aspx" />
     <Content Include="F_22_Sal\RptCustomerBill.aspx" />
@@ -2499,7 +2497,6 @@
     <Content Include="F_23_CR\RptDelMonyRec.aspx" />
     <Content Include="F_23_CR\RptDishonourCheque.aspx" />
     <Content Include="F_23_CR\RptInvoice02.aspx" />
-    <Content Include="F_23_CR\RptMonthlyCollectionMerge.aspx" />
     <Content Include="F_23_CR\RptPrjWiseClientStatus02.aspx" />
     <Content Include="F_23_CR\RptPrjwisecollofSummDetails.aspx" />
     <Content Include="F_23_CR\RptProjectWiseCollection.aspx" />
@@ -3658,20 +3655,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.designer.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
-      <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
-      <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
-      <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.designer.cs">
-      <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx.cs">
       <DependentUpon>HRDailyAttenManually.aspx</DependentUpon>
