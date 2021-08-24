@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptGrpDailyReportJq.aspx.cs" Inherits="RealERPWEB.F_46_GrMgtInter.RptGrpDailyReportJq" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptGrpDailyReportJq.aspx.cs" Inherits="RealERPWEB.F_46_GrMgtInter.RptGrpDailyReportJq" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -109,8 +109,8 @@
             HideLabels();
             $("#lbtnOk").click(function () {
                 GetStartDate();
-                GetEndDate();
-                ShowData();
+                GetEndDate();               
+                ShowData1();
                 return false;
                 
             });
@@ -136,7 +136,33 @@
 
             });
 
+        });
+
+        function ShowData1() {
+            StartProgressBar();
+            $.ajax({
+                type: "POST",
+                async: true,
+                url: "<%= this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq.aspx/GetDailyGrpRpt")%>",
+                contentType: "application/json;charset=utf-8",
+                data: '{frdate: "' + sdate + '" ,  todate: "' + endDate+'"}',
+                dataType: "json",
+
+              //  data: Sys.Serialization.JavaScriptSerializer.serialize({ 'frdate': sdate, 'todate': endDate }),
+                success: function onSuccess(data) {
+                    console.log(data);
+                    HideLabels();
+                    displayTable(data);
+                    CreateBarChart();
+                    ShowLabels();
+                    $("#pb").hide();
+
+                }
+
             });
+          
+
+        }
     </script>
     <style>
         .gvTopHeader tr:nth-child(1) {
@@ -176,7 +202,7 @@
                                             <asp:TextBox ID="txttodate" runat="server" CssClass="inputtextbox" ClientIDMode="Static"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server"
                                                 Format="dd-MMM-yyyy" TargetControlID="txttodate" Enabled="true"></cc1:CalendarExtender>
-                                            <asp:LinkButton ID="lbtnOk" runat="server"  CssClass="btn btn-primary primaryBtn" ClientIDMode="Static">Show</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnOk" runat="server"  CssClass="btn btn-primary primaryBtn" ClientIDMode="Static"> Show</asp:LinkButton>
                                             <div id="pb" style="width: 300px;"></div>
                                         </div>
                                     </div>
