@@ -262,6 +262,8 @@ namespace RealERPWEB.F_16_Bill
 
             this.SaveValue();
             DataTable dt1 = (DataTable)Session["tblBill"];
+            dt1.Columns.Remove("isirdesc");
+            dt1.Columns.Remove("sdetails");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             DataSet ds1 = new DataSet("ds1");
             ds1.Merge(dt1);
@@ -269,6 +271,9 @@ namespace RealERPWEB.F_16_Bill
 
             string comcod = hst["comcod"].ToString();
             string pactcode = this.ddlProject.SelectedValue.ToString();
+           // ds1.
+           // string xml = ds1.GetXml();
+           //return;
 
             bool result = ImpleData.UpdateXmlTransInfo(comcod, "SP_ENTRY_BILLMGT", "INSERTORUPDATETWRATE", ds1, null, null,
                    pactcode, "", "", "", "", "", "", "", "", "", "", "");

@@ -50,6 +50,13 @@
             height: 34px;
             width: 258px;
         }
+        .chzn-drop {
+
+           
+            width: 258px !important; 
+            
+        
+        }
 
         #loginform .form-group, #loginform .panel-body {
             margin: 0 !important;
@@ -329,6 +336,8 @@
             });
             $('#myModal').on('hidden.bs.modal', function () { $('#ForgetPass').removeAttr('checked'); })
 
+            $('.chzn-select').chosen({ search_contains: true });
+
 
         });
 
@@ -487,7 +496,7 @@
                                 <div id="loginform" class="form-horizontal">
                                     <div style="margin-bottom: 1px" class="input-group">
                                         <span class="input-group-addon">Company</span>
-                                        <asp:DropDownList ID="listComName" class="form-control" runat="server" AutoPostBack="True" TabIndex="1" OnSelectedIndexChanged="listComName_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="listComName" class="form-control chzn-select" runat="server" AutoPostBack="True" TabIndex="1" OnSelectedIndexChanged="listComName_SelectedIndexChanged"></asp:DropDownList>
 
 
                                     </div>
@@ -500,7 +509,7 @@
                                     </div>
                                     <div style="margin-bottom: 1px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <asp:TextBox ID="txtuserid" runat="server" class="form-control" name="txtuserid" value="" required="required" title="Please enter you username" onkeypress="return searchKeyPress(event);" placeholder="User Name or Id" TabIndex="3"></asp:TextBox>
+                                        <asp:TextBox ID="txtuserid" runat="server" class="form-control " name="txtuserid" value="" required="required" title="Please enter you username" onkeypress="return searchKeyPress(event);" placeholder="User Name or Id" TabIndex="3"></asp:TextBox>
 
 
                                     </div>

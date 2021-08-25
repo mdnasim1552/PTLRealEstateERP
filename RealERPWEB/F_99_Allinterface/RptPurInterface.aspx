@@ -672,16 +672,7 @@
                     case 3316://Assure
                     case 3315://Assure
                     case 3317://Assure
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
                     case 3101://Assure
-
-
->>>>>>> a8d88c34489481686a4ce02ac18e7a0d9c95e665
-=======
-
->>>>>>> 9cae41640fa9dc6690e54a0171c27e2b99561907
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
@@ -884,7 +875,7 @@
                                     <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperation?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Go Purchase</asp:HyperLink>
+                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/StepofOperationNew?moduleid=14" CssClass="dropdown-item" Style="padding: 0 10px">Go Purchase</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink8" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requsition</asp:HyperLink>
                                         <asp:HyperLink ID="HyperLink9" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Store Requsition</asp:HyperLink>
                                         <asp:LinkButton ID="LinkButton2" runat="server" CssClass="dropdown-item" Style="padding: 0 10px" OnClick="lnkInteface_Click">Interface</asp:LinkButton></li>
