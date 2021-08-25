@@ -168,6 +168,15 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.View ViewMonthyCollection;
 
         /// <summary>
+        /// gvTotalAmt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTotalAmt;
+
+        /// <summary>
         /// gvmoncoll control.
         /// </summary>
         /// <remarks>
@@ -175,5 +184,14 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvmoncoll;
+
+        /// <summary>
+        /// gvmoncollhide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvmoncollhide;
     }
 }

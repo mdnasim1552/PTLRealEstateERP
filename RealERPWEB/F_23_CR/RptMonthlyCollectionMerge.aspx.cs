@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -14,20 +15,20 @@ namespace RealERPWEB.F_23_CR
         ProcessAccess accData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            this.txtfrmdate.Text = date;
-            this.txttodate.Text = Convert.ToDateTime("01" + date.Substring(2)).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            this.ViewSelection();
-           
-            // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["Type"] == "MonthlyCollMerge" ? "Monthly Collection(Receipt Type Merge)"
-                : "Monthly Collection Schedule(Merge)" ;
+            if(!IsPostBack)
+            {
+                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = date;
+                this.txttodate.Text = Convert.ToDateTime("01" + date.Substring(2)).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.ViewSelection();
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = this.Request.QueryString["Type"] == "MonthlyCollMerge" ? "Monthly Collection(Receipt Type Merge)"
+                    : "Monthly Collection Schedule(Merge)";
+            }
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
 
         private void lbtnPrint_Click(object sender, EventArgs e)
@@ -63,7 +64,7 @@ namespace RealERPWEB.F_23_CR
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.Data_Bind();
         }
 
         protected void ddllang_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,15 +81,127 @@ namespace RealERPWEB.F_23_CR
         {
 
         }
+        protected void lbtnOk_Click(object sender, EventArgs e)
+        {
+            string type = this.Request.QueryString["Type"].ToString();
+            switch(type)
+            {
+                case "MonthlyCollMerge":
+                    this.ShowMonCollMerge_MainERP();
+                    break;
 
-        protected void gvmoncoll_RowDataBound(object sender, GridViewRowEventArgs e)
+                case "MonthlyCollSchMerge":
+                    this.ShowMonCollShchMerge();
+                    break;
+            }
+        }
+
+        private void ShowMonCollMerge_MainERP()
+        {
+            try 
+            {
+                string comcod = GetCompCode();
+                string fromDate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTMONHLYMRRECTYPEWISE", "", fromDate, toDate, "", "", "", "", "", "");
+                if (ds1 == null)
+                {
+                    this.gvmoncoll.DataSource = null;
+                    this.gvmoncoll.DataBind();
+                    return;
+                }
+
+                Session["tblAccRecAc"]  = ds1.Tables[0];
+                Session["tblrectypeAC"] = ds1.Tables[1];
+
+                Session["tblAccRecM"]   = ds1.Tables[2];
+                Session["tblrectypeM"]  = ds1.Tables[3];
+
+                Session["tblTotalAmt"]  = ds1.Tables[4];
+
+                this.Data_Bind();
+            }
+            catch (Exception ed)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ed.Message + "');", true);
+
+            }
+        }
+        private void ShowMonCollShchMerge()
         {
 
         }
 
-        protected void lbtnOk_Click(object sender, EventArgs e)
+        private void Data_Bind()
         {
+            try
+            {
+                DataTable dt1 = (DataTable)Session["tblAccRecAc"];
+                DataTable dt2 = (DataTable)Session["tblrectypeAC"];
+                DataTable dt3 = (DataTable)Session["tblAccRecM"];
+                DataTable dt4 = (DataTable)Session["tblrectypeM"];
+                DataTable dt5 = (DataTable)Session["tblTotalAmt"];
 
+                string type = this.Request.QueryString["Type"].ToString();
+                int i, j;
+                switch (type)
+                {
+                    case "MonthlyCollMerge":
+
+                        //Gridview data binding for Total Amt
+                        for (i = 7; i < this.gvTotalAmt.Columns.Count - 1; i++)
+                            this.gvTotalAmt.Columns[i].Visible = false;
+                        j = 7;
+                        for (i = 0; i < dt2.Rows.Count; i++)
+                        {
+                            this.gvTotalAmt.Columns[j].Visible = true;
+                            this.gvTotalAmt.Columns[j].HeaderText = dt2.Rows[i]["recpdesc"].ToString();
+                            j++;
+                        }
+                        this.gvTotalAmt.DataSource = dt5;
+                        this.gvTotalAmt.DataBind();
+
+                        //Gridview data binding Main erp
+                        for (i = 7; i < this.gvmoncoll.Columns.Count - 1; i++)
+                            this.gvmoncoll.Columns[i].Visible = false;
+                        j = 7;
+                        for (i = 0; i < dt4.Rows.Count; i++)
+                        {
+                            this.gvmoncoll.Columns[j].Visible = true;
+                            this.gvmoncoll.Columns[j].HeaderText = dt4.Rows[i]["recpdesc"].ToString();
+                            j++;
+                        }
+
+                        this.gvmoncoll.DataSource = dt3;
+                        this.gvmoncoll.DataBind();
+
+                        //Gridview data binding for Account erp
+                        for (i = 7; i < this.gvmoncollhide.Columns.Count - 1; i++)
+                            this.gvmoncollhide.Columns[i].Visible = false;
+                        j = 7;
+                        for (i = 0; i < dt2.Rows.Count; i++)
+                        {
+                            this.gvmoncollhide.Columns[j].Visible = true;
+                            this.gvmoncollhide.Columns[j].HeaderText = dt2.Rows[i]["recpdesc"].ToString();
+                            j++;
+                        }
+                        this.gvmoncollhide.DataSource = dt1;
+                        this.gvmoncollhide.DataBind();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        protected void gvmoncoll_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvmoncoll.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
         }
     }
 }
