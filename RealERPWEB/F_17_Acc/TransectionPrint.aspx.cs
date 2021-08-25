@@ -411,11 +411,12 @@ namespace RealERPWEB.F_17_Acc
                 case "Payslip":
                     this.PrintPaySlip();
                     break;
+
                 case "AccPostDatChq":
 
                     vounum = this.ddlPostDatedCheque.SelectedValue.ToString();
                     paytype = paytype = this.chkpayee.Checked ? "0" : "1"; ;
-                    type = "Type=AccPostDatChq&vounum=" + vounum + "&paytype=" + paytype;
+                    type = "Type=AccPostDatChq&vounum=" + vounum + "&paytype=" + paytype; ;
                     ScriptManager.RegisterStartupScript(this, GetType(), "target", "PrintRptCheque('" + type + "');", true);
 
 
@@ -1238,11 +1239,13 @@ namespace RealERPWEB.F_17_Acc
                 //string VouType = this.Request.QueryString["tname"].ToString();
                 string vounum = this.lstVouname.SelectedValue.ToString();
 
-                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
-                string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
-                string totalpath = hostname + currentptah;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+                //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+                //string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
+                //string totalpath = hostname + currentptah;
+                //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccPrint.aspx?Type=PostDatVou&vounum=" + vounum + "&paytype=" + ""
+                          + "', target='_blank');</script>";
 
 
                 //DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "PRINTVOUCHER01", vounum, "", "", "", "", "", "", "", "");

@@ -685,12 +685,9 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
-
             string type = this.Request.QueryString["Type"].ToString();
             switch (type)
             {
-
                 case "AllProDuesCollect":
                     this.AllProDuesCollection();
                     break;
@@ -717,17 +714,7 @@ namespace RealERPWEB.F_23_CR
                 case "MonthlyDuesOverDues":
                     this.ShowMonthlyDuesOverDues();
                     break;
-
-
-
-
-
-
-
             }
-
-
-
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -923,23 +910,23 @@ namespace RealERPWEB.F_23_CR
 
                     case "MonthlyColl":
 
-                       // for (i = 7; i < this.gvmoncoll.Columns.Count - 1; i++)
-                        //    this.gvmoncoll.Columns[i].Visible = false;
-                        //j = 7;
-                        //DataTable dtt = (DataTable)ViewState["tblrectype"];
-                        //for (i = 0; i < dtt.Rows.Count; i++)
-                        //// for (i = 0; i <= 23; i++)
+                        for (i = 7; i < this.gvmoncoll.Columns.Count - 1; i++)
+                            this.gvmoncoll.Columns[i].Visible = false;
+                        j = 7;
+                        DataTable dtt = (DataTable)ViewState["tblrectype"];
+                        for (i = 0; i < dtt.Rows.Count; i++)
+                        // for (i = 0; i <= 23; i++)
 
-                        //{
-
-
-                        //    this.gvmoncoll.Columns[j].Visible = true;
-                        //    this.gvmoncoll.Columns[j].HeaderText = dtt.Rows[i]["recpdesc"].ToString();
+                        {
 
 
-                        //    j++;
+                            this.gvmoncoll.Columns[j].Visible = true;
+                            this.gvmoncoll.Columns[j].HeaderText = dtt.Rows[i]["recpdesc"].ToString();
 
-                        //}
+
+                            j++;
+
+                        }
 
                         this.gvmoncoll.DataSource = dt;
                         this.gvmoncoll.DataBind();

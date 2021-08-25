@@ -295,14 +295,17 @@ namespace RealEntity.C_14_Pro
             public double resrate2 { get; set; }
             public double resrate3 { get; set; }
             public double resrate4 { get; set; }
+            public double resrate5 { get; set; }
             public double amt1 { get; set; }
             public double amt2 { get; set; }
             public double amt3 { get; set; }
             public double amt4 { get; set; }
+            public double amt5 { get; set; }
             public string camt1 { get; set; }
             public string camt2 { get; set; }
             public string camt3 { get; set; }
             public string camt4 { get; set; }
+            public string camt5 { get; set; }
             public string msrrmrk { get; set; }
             public double aprovrate { get; set; }
             public string spcfdesc { get; set; }

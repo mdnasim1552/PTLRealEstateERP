@@ -104,7 +104,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2305":
                     vouprint = "VocherPrint4";
                     break;
@@ -152,6 +152,11 @@ namespace RealERPWEB.F_17_Acc
                 case "3325":
                 case "2325":
                     vouprint = "VocherPrintLeisure";
+                    break;
+
+                case "3101":
+                case "3338":
+                    vouprint = "VocherPrintAcme";
                     break;
 
                 default:
@@ -413,6 +418,14 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
 
                 }
+
+                else if (Type == "VocherPrintAcme")
+                {
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherAcme", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                }
+
 
                 else
                 {
