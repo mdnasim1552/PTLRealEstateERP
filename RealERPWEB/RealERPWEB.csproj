@@ -3659,6 +3659,7 @@
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.designer.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
