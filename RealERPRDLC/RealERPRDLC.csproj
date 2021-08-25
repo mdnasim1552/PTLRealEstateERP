@@ -92,6 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
@@ -263,12 +267,15 @@
     <EmbeddedResource Include="R_14_Pro\RptPurchaseTra.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurchaseTrack02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurvey.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurvey05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurvey02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurvey03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurvey03New.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyEdison.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyManama05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyManama02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyManama03.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP2P05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP2P02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP_2_P.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptReqAppStatus.rdlc" />
@@ -344,6 +351,7 @@
     <EmbeddedResource Include="R_17_Acc\RptBankPosition.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankReconc.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankStatementInfo.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1Rup.rdlc" />
