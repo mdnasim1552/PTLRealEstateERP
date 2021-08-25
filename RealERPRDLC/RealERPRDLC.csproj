@@ -352,6 +352,7 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher4.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher5.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher6.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherAlliance.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherCredence.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherLeisure.rdlc" />
