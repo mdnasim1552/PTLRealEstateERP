@@ -2431,6 +2431,10 @@ namespace RealERPWEB.F_99_Allinterface
             string crmcheck = dts.Rows[0]["crmcheckname"].ToString();
             string crmcheckdat = dts.Rows[0]["crmcheckdat"].ToString();
 
+            // req post 
+            string postname = dts.Rows[0]["reqpostname"].ToString();
+            string postdat = dts.Rows[0]["POSTEDDAT"].ToString();
+
             //Narration part
             string crmnarr = dts.Rows[0]["crmnarr"].ToString();
 
@@ -2455,7 +2459,7 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign5 = "Procrument";
             string txtSign6 = "Managing Director";
              */
-            string txtSign1 = "";
+            string txtSign1 = postname +"\n"+ postdat;
             string txtSign2 = ""; 
             string txtSign3 = crmcheck + "\n" + crmcheckdat;
             string txtSign4 = reqchkname +"\n"+ checkdat;

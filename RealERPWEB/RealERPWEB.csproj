@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -73,17 +73,17 @@
     <Reference Include="DayPilot">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
-    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\Administrator\Desktop\EASendMail.dll</HintPath>
-    </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -2447,7 +2447,6 @@
     <Content Include="F_22_Sal\RptBookingDues.aspx" />
     <Content Include="F_22_Sal\RptCalTotalAvgValue.aspx" />
     <Content Include="F_22_Sal\RptClientDateFile.aspx" />
-    <Content Include="F_22_Sal\RptCollectionDetailInfo.aspx" />
     <Content Include="F_22_Sal\RptCollMonYear.aspx" />
     <Content Include="F_22_Sal\RptCollSumOfCurMSale.aspx" />
     <Content Include="F_22_Sal\RptCustomerBill.aspx" />
@@ -3656,13 +3655,6 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.designer.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
-      <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
-      <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx.cs">
       <DependentUpon>HRDailyAttenManually.aspx</DependentUpon>
