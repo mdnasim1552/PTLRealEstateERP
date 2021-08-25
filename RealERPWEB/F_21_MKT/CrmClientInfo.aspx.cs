@@ -2840,8 +2840,8 @@ namespace RealERPWEB.F_21_MKT
             string comcod = this.GetComeCode();
             switch (comcod)
             {
-                //case "3101":
-                case "3338":
+                case "3101":
+                case "3348":
                     this.ddlCountry.Visible = true;
                     this.ddlDist.Visible = true;
                     this.ddlZone.Visible = true;

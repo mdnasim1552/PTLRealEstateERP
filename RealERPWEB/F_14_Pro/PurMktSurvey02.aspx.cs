@@ -236,7 +236,35 @@ namespace RealERPWEB.F_14_Pro
             /// SP_ENTRY_PURCHASE_01 '3101','RPTMARKETSURVEY02','MSR20180200003', '',''
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
-            if (lst1.Count == 4)
+
+            if (lst1.Count == 5)
+            {
+                if (comcod == "3353")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyManama05", lst, lst1, null);
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurvey05", lst, lst1, null);
+                }
+
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+                Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+            else if (lst1.Count == 4)
             {
                 if (comcod == "3353")
                 {
@@ -362,8 +390,42 @@ namespace RealERPWEB.F_14_Pro
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
+            if (lst1.Count == 5)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P05", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
 
-            if (lst1.Count == 4)
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+            else if (lst1.Count == 4)
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P02", lst, lst1, null);
                 Rpt1.EnableExternalImages = true;
@@ -446,7 +508,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                    // case "3101":
+                case "3101":
                     this.printP2P_cs();
                     break;
                 default:
