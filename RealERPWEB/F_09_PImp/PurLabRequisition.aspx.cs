@@ -53,6 +53,7 @@ namespace RealERPWEB.F_09_PImp
                 }
                 if (Request.QueryString.AllKeys.Contains("msrno"))
                 {
+                    this.pannelHide();
                     this.getPreviousMSR();
                 }
 
@@ -67,6 +68,18 @@ namespace RealERPWEB.F_09_PImp
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        private void pannelHide()
+        {
+            //Panel3
+            string msrno = this.Request.QueryString["genno"].ToString();
+            string msrno1 = msrno.Substring(0, 3);
+            if (msrno1 == "MSC")
+            {
+                this.Panel3.Visible = true;
+            }
+
 
         }
 
@@ -948,7 +961,7 @@ namespace RealERPWEB.F_09_PImp
                 dlist.DataValueField = "ssircode";
                 dlist.DataSource = dt;
                 dlist.DataBind();
-                dlist.SelectedValue = this.Request.QueryString["recomsup"].ToString()=="" ? contractor : this.Request.QueryString["recomsup"].ToString();
+                dlist.SelectedValue = this.Request.QueryString["recomsup"].ToString() == "" ? contractor : this.Request.QueryString["recomsup"].ToString();
 
                 bool aprovestatus = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "approve"));
                 CheckBox approve = (CheckBox)e.Row.FindControl("gvCheckBoxAppve");
@@ -1118,7 +1131,7 @@ namespace RealERPWEB.F_09_PImp
 
             //    DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
             //    DataTable dt2 = (DataTable)Session["tblt02"]; // cs 
-                
+
 
             //    DataRow[] drstk = dt2.Select(" rsircode='" + rsircode + "' and csircode='" + contrator + "'");
 
@@ -1126,9 +1139,9 @@ namespace RealERPWEB.F_09_PImp
             //    {
 
             //        DataRow dr2 = dt.NewRow();
-                 
+
             //        dr2["reqrat"] = stkqty * stkrate;
-                   
+
             //        dt.Rows.Add(dr2);
 
             //    }

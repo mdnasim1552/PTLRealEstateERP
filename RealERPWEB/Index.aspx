@@ -2113,7 +2113,7 @@
                                         <div id="myTabContent" class="tab-content graph-main" style="width: 100%; height: 375px;">
 
 
-                                            <div class="tab-pane fade active show" id="tab_1231">
+                                            <div class="tab-pane fade  show" id="tab_1231">
                                                 <div class="row ">
 
                                                     <div class="col-md-12 xtext-righ pt-1 pb-1">
@@ -2299,7 +2299,7 @@
 
                                             </div>
 
-                                            <div class="tab-pane fade" id="tab_1343">
+                                            <div class="tab-pane fade active" id="tab_1343">
                                                 <div class="col-md-12 xtext-right pt-1 pb-1">
                                                     <h5> 
 

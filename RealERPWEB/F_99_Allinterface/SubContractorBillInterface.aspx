@@ -487,7 +487,7 @@
 
             try {
 
-              
+
 
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
@@ -500,10 +500,10 @@
                 $('#<%=this.gvfinal.ClientID%>').tblScrollable();
                 $('#<%=this.gvfinalapp.ClientID%>').tblScrollable();
                 $('#<%=this.gvAllReq.ClientID%>').tblScrollable();
-               
-                
+
+
                 $('#<%=this.grvImple.ClientID%>').tblScrollable();
-            
+
                 funComRadiButtonHidden();
 
             }
@@ -511,7 +511,7 @@
             catch (e) {
                 alert(e);
             }
-            
+
 
 
 
@@ -526,35 +526,34 @@
 
 
                 comcod = <%=this.GetCompCode()%>;
-                switch(comcod)
-                {
-               
+                switch (comcod) {
+
 
                     //case 3101:   //ASIT                      
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
                     case 3101:   //p2p
-                    //case 3355:   //greenwood
+                        //case 3355:   //greenwood
 
-   
+
                         $(".tbMenuWrp table tr td:nth-child(10)").hide();
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         break;
 
                     case 1103:   //tanvir
-   
+
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(7)").hide();
 
-                      
+
                         break;
 
 
                     default:
-                      
+
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();
                         $(".tbMenuWrp table tr td:nth-child(6)").hide();
@@ -562,20 +561,20 @@
                         $(".tbMenuWrp table tr td:nth-child(10)").hide();
                         $(".tbMenuWrp table tr td:nth-child(11)").hide();
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
-                      
-                   
-                  
+
+
+
                         //    $("table[id*=RadioButtonList1] input:first").next().next().hide();
-                   
+
                         break;
 
-                
-                
+
+
                 }
 
 
 
-            } 
+            }
             catch (e) {
 
 
@@ -587,45 +586,43 @@
 
 
         function Search_Gridview(strKey, cellNr, gvname) {
-            try
-            {
+            try {
 
-                var strData = strKey.value.toLowerCase().split(" ");             
+                var strData = strKey.value.toLowerCase().split(" ");
                 var tbldata;
 
-                switch(gvname)
-                {
-                    
+                switch (gvname) {
+
                     case 'gvAllReq':
-                     tblData = document.getElementById("<%=this.gvAllReq.ClientID %>");
+                        tblData = document.getElementById("<%=this.gvAllReq.ClientID %>");
                         break;
 
                     case 'gvsubbill':
-                        tblData = document.getElementById("<%=this.gvsubbill.ClientID %>");                       
+                        tblData = document.getElementById("<%=this.gvsubbill.ClientID %>");
                         break;
 
                     case 'gvfinal':
-                        tblData = document.getElementById("<%=this.gvfinal.ClientID %>");                       
+                        tblData = document.getElementById("<%=this.gvfinal.ClientID %>");
                         break;
 
 
                     case 'gvfinalapp':
-                        tblData = document.getElementById("<%=this.gvfinalapp.ClientID %>");                       
+                        tblData = document.getElementById("<%=this.gvfinalapp.ClientID %>");
                         break;
                     case 'gvConUpdat':
-                        tblData = document.getElementById("<%=this.gvConUpdat.ClientID %>");                       
-                        break;
-                           
-                   
-                    default:
-                        tblData = document.getElementById("<%=gvsubbill.ClientID %>");                     
+                        tblData = document.getElementById("<%=this.gvConUpdat.ClientID %>");
                         break;
 
-                
-                
+
+                    default:
+                        tblData = document.getElementById("<%=gvsubbill.ClientID %>");
+                        break;
+
+
+
                 }
 
-               
+
                 var rowData;
                 for (var i = 0; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].cells[cellNr].innerHTML;
@@ -642,10 +639,9 @@
                 }
             }
 
-            catch(e)
-            {
+            catch (e) {
                 alert(e.message);
-            
+
             }
 
         }
@@ -798,9 +794,9 @@
                                             <asp:HyperLink ID="HyperLink23" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/ImplementPlan" CssClass="dropdown-item" Style="padding: 0 15px">Monthly Plan</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink24" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurIssueEntry?Type=Report&prjcode=" CssClass="dropdown-item" Style="padding: 0 15px">Work Execution -Category Wise</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink25" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurConWrkOrderEntry02?Type=Entry" CssClass="dropdown-item" Style="padding: 0 15px">Work Order</asp:HyperLink>
-<%--                                            <asp:HyperLink ID="HyperLink26" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue2?Type=Current" CssClass="dropdown-item" Style="padding: 0 15px">>Sub-Contractor Bill-Work Wise</asp:HyperLink>--%>
+                                            <%--                                            <asp:HyperLink ID="HyperLink26" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue2?Type=Current" CssClass="dropdown-item" Style="padding: 0 15px">>Sub-Contractor Bill-Work Wise</asp:HyperLink>--%>
                                             <asp:HyperLink ID="HyperLink27" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Category Wise </asp:HyperLink>
-<%--                                            <asp:HyperLink ID="HyperLink28" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Work Wise</asp:HyperLink>--%>
+                                            <%--                                            <asp:HyperLink ID="HyperLink28" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Work Wise</asp:HyperLink>--%>
                                         </div>
                                     </div>
 
@@ -2373,8 +2369,8 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                        
-                                          
+
+
                                             <asp:TemplateField HeaderText="Amount">
 
                                                 <ItemTemplate>
@@ -2390,7 +2386,7 @@
 
                                             <asp:TemplateField HeaderText="Status">
                                                 <ItemTemplate>
-                                                     <asp:Label ID="lblgvisbilstatus" runat="server"
+                                                    <asp:Label ID="lblgvisbilstatus" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bilstatus")) %>'
                                                         Width="120px"></asp:Label>
 
@@ -2650,8 +2646,10 @@
 
                                             <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
+                                                    <asp:HyperLink ID="lnkbtnPrintCSApp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
                                                     <asp:HyperLink ID="lnkBillCSApp" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
+                                                    <asp:LinkButton ID="btnDelReqCSApp" OnClick="btnDelReqCSApp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
 
                                                 </ItemTemplate>
                                                 <ItemStyle Width="150px" />
