@@ -351,7 +351,6 @@
     <EmbeddedResource Include="R_17_Acc\RptBankPosition.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankReconc.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankStatementInfo.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptBankVoucherAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1Rup.rdlc" />
@@ -360,7 +359,6 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher4.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher5.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher6.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptBankVoucherAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherAlliance.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherCredence.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherLeisure.rdlc" />
