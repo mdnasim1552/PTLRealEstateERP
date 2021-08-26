@@ -2009,13 +2009,19 @@ namespace RealERPWEB.F_34_Mgt
 
 
                     // oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + SMSText + "</pre></body></html>";
+                    
+                    string usrid= ds3.Tables[1].Rows[i]["usrid"].ToString();
+
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+                    string currentptah = "RptEngInterface?Type=Report&usrid=" + usrid;
+                    string totalpath = uhostname + currentptah;
 
 
                     string body = "";
 
                     body = "Dear Sir,";
                     body += "<br /><br />"+ SMSText + "                                  " + "&nbsp;" +
-                    "<div style='float:left; margin-left:380px; padding:10px; background:Lavender; width:150px; height:40px; text-align:center '><a href='" + Request.Url.AbsoluteUri.Replace("Registration.aspx", "RActvation.aspx?ActivationCode=") + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:darkorange; color:white;text-decoration:none; text-align:center''> Click </a><br/></div>" ; 
+                    "<div style='float:left; margin-left:380px; padding:10px; background:Lavender; width:150px; height:40px; text-align:center '><a href='" + totalpath + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:darkorange; color:white;text-decoration:none; text-align:center''> Click </a><br/></div>" ; 
                     body += "<br />Best Regards.<br/> ";
                     oMail.HtmlBody = body;
                     //return false;

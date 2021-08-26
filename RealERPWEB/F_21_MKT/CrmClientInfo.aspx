@@ -2298,7 +2298,7 @@
                         <asp:View ID="View2" runat="server">
                             <asp:Panel ID="pnpRecFilter" runat="server">
                                 <div class="row">
-                                    <label class="control-label col-md-1">Record Filter</label>
+                                    <label class="control-label col-md-1">Filter</label>
 
 
                                     <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">

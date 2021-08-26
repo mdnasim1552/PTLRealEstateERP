@@ -2282,7 +2282,7 @@ namespace RealERPWEB.F_17_Acc
             string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "subcode1")).ToString().Trim();
 
             string projcode = ddlHAccProject.SelectedValue.ToString(); 
-             string date = txtDateto.Text;
+             string date = txtDatefrom.Text;
 
 
 

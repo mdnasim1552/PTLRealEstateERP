@@ -51,11 +51,10 @@ namespace RealERPWEB.F_09_PImp
                     this.ddlPrevISSList.SelectedValue = this.Request.QueryString["genno"].ToString();
                     this.lbtnOk_Click(null, null);
                 }
-                if(this.Request.QueryString["msrno"].ToString().Length > 0)
+                if (Request.QueryString.AllKeys.Contains("msrno"))
                 {
                     this.getPreviousMSR();
                 }
-                
 
             }
         }

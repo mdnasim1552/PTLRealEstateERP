@@ -127,7 +127,8 @@ namespace RealEntity
                 frmname = frmname.Replace("&flrcod=", "");
                 frmname = frmname.Replace ("&year=", "");
                 frmname = frmname.Replace ("&comcod=", "");
-                
+                frmname = frmname.Replace ("&usrid=", "");
+
                 DataRow[] dr1 = dtdb.Select("(frmname+qrytype)='" + frmname + "'");
 
                 if (dr1.Length > 0)
