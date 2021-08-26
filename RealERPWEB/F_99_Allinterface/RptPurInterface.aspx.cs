@@ -665,10 +665,15 @@ namespace RealERPWEB.F_99_Allinterface
                         case "3317"://Assure
                         case "3101"://Assure
 
-                             for (int i = 0; i < gvReqChk.Columns.Count; i++)
-                    {
-                        (gvReqChk.Columns[11]).Visible = true;
-                    }
+
+                            for (int i = 0; i < this.gvReqChk.Rows.Count; i++)
+                            {
+                                (gvReqChk.Columns[11]).Visible = true;
+                                //((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Enabled = false;
+                                ((LinkButton)this.gvReqChk.Rows[i].FindControl("btnDirecdelReq")).Visible = true;
+                            }     
+
+                            
 
 
                             break;
@@ -1576,7 +1581,7 @@ namespace RealERPWEB.F_99_Allinterface
         }
         private void Data_Bind(string gv, DataTable dt)
         {
-
+            string comcod = this.GetCompCode();
 
             switch (gv)
             {
@@ -1588,6 +1593,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvReqChk":
                     this.gvReqChk.DataSource = HiddenSameData(dt);
                     this.gvReqChk.DataBind();
+
+                    
 
                     break;
 
@@ -2233,6 +2240,7 @@ namespace RealERPWEB.F_99_Allinterface
                 else
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Removed Successfully.');", true);
             }
+
             else
             {
                 bool result = this.XmlDataInsertReq(genno, ds1);
@@ -4662,6 +4670,60 @@ namespace RealERPWEB.F_99_Allinterface
             }
             else
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+        }
+
+        protected void btnDirecdelReq_Click(object sender, EventArgs e)
+        {
+
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+
+            string url = "PurReqEntry?InputType=Entry";
+
+
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string genno = ((Label)this.gvReqChk.Rows[RowIndex].FindControl("lblgvreqnorq")).Text.Trim();
+
+
+            //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
+
+
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURREQINFO", genno, "", "", "", "", "", "", "", "");
+            //  DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", genno, "",
+
+            if (ds1 == null)
+                return;
+
+            
+                bool result = this.XmlDataInsertReq(genno, ds1);
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                    return;
+                }
+                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!resulbill)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                    return;
+                }
+                else
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            
+
 
             this.PurchaseInfoRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
