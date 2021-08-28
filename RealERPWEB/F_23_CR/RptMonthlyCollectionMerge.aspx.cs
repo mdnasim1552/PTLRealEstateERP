@@ -256,9 +256,9 @@ namespace RealERPWEB.F_23_CR
 
                     case "MonthlyCollSchMerge":
                         //Gridview data binding Main erp
-                        for (i = 7; i < this.gvmoncollsch.Columns.Count - 1; i++)
+                        for (i = 5; i < this.gvmoncollsch.Columns.Count - 1; i++)
                             this.gvmoncollsch.Columns[i].Visible = false;
-                        j = 7;
+                        j = 5;
                         for (i = 0; i < dt4.Rows.Count; i++)
                         {
                             this.gvmoncollsch.Columns[j].Visible = true;
@@ -271,9 +271,9 @@ namespace RealERPWEB.F_23_CR
                         ((HyperLink)this.gvmoncollsch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                         //Gridview data binding for Account erp
-                        for (i = 7; i < this.gvAccMonColSch.Columns.Count - 1; i++)
+                        for (i = 5; i < this.gvAccMonColSch.Columns.Count - 1; i++)
                             this.gvAccMonColSch.Columns[i].Visible = false;
-                        j = 7;
+                        j = 5;
                         for (i = 0; i < dt2.Rows.Count; i++)
                         {
                             this.gvAccMonColSch.Columns[j].Visible = true;
@@ -285,9 +285,9 @@ namespace RealERPWEB.F_23_CR
                         ((HyperLink)this.gvAccMonColSch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                         //Gridview data binding for Total Amt
-                        for (i = 7; i < this.gvAccTotAmt.Columns.Count - 1; i++)
+                        for (i = 5; i < this.gvAccTotAmt.Columns.Count - 1; i++)
                             this.gvAccTotAmt.Columns[i].Visible = false;
-                        j = 7;
+                        j = 5;
                         for (i = 0; i < dt2.Rows.Count; i++)
                         {
                             this.gvAccTotAmt.Columns[j].Visible = true;
