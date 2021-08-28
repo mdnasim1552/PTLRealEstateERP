@@ -1915,58 +1915,70 @@ namespace RealERPWEB.F_34_Mgt
 
             if (hst["compmail"].ToString() == "True")
             {
-                
-                if (this.Request.QueryString["Type"] == "OreqApproved" || this.Request.QueryString["Type"] == "FirstRecom" || this.Request.QueryString["Type"] == "SecRecom")
+
+                switch (comcod)
                 {
 
-
-                    DataSet dsruaauser = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "SHOWREQAAPROVEUSERMAIL", mREQNO, "", "", "", "");
-
-
-                    string rusername = dsruaauser.Tables[0].Rows[0]["rusername"].ToString();
-                    string fausername = dsruaauser.Tables[0].Rows[0]["fausername"].ToString();
-                    string secapname = dsruaauser.Tables[0].Rows[0]["secapname"].ToString();
-                    string thrapname = dsruaauser.Tables[0].Rows[0]["thrapname"].ToString();
-                    SendMailProcess objsendmail = new SendMailProcess();
-                    string comnam = hst["comnam"].ToString();
-                    string compname = hst["compname"].ToString();
-                    string frmname = this.Request.QueryString["Type"] == "OreqApproved"? "OtherReqEntry?Type=FirstRecom"
-                            :this.Request.QueryString["Type"] == "FirstRecom" ? "OtherReqEntry?Type=SecRecom" :  "OtherReqEntry?Type=FinalAppr";
-
-                    string subject = this.Request.QueryString["Type"] == "OreqApproved" ? "Ready for Forwared"
-                            : this.Request.QueryString["Type"] == "FirstRecom" ? "Ready for Approval" : "Ready for Final Approval";
-
-                    string SMSHead = this.Request.QueryString["Type"] == "OreqApproved" ? "Ready for Forwared(General Requisition)"
-                            : this.Request.QueryString["Type"] == "FirstRecom" ? "Ready for Approval(General Requisition)" : "Ready for Final Approval(General Requisition)";
-                    // string subject = "Ready for Final Approval";
-                    //string SMSHead = "Ready for Final Approval(General Requisition)";
+                    case "1102"://IBCEL
+                        if (this.Request.QueryString["Type"] == "OreqApproved" || this.Request.QueryString["Type"] == "FirstRecom" || this.Request.QueryString["Type"] == "SecRecom")
+                        {
 
 
-                    string reqno = this.lblCurReqNo1.Text + this.txtCurReqNo2.Text;
-                    string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "Req No: " + reqno + "\n" + "Req. Entry: " + rusername 
-                        + (fausername.Length == 0 ? "" :  "\n") +(fausername.Length==0?"":("First Approved: " + fausername))+(secapname.Length == 0 ? "" : "\n")
-                          +(secapname.Length == 0 ? "" : ("Second Approved: " + secapname)) + (thrapname.Length == 0 ? "" : "\n")  + (thrapname.Length == 0 ? "" : ("Third Approved: " + thrapname))  ; 
-                    
+                            DataSet dsruaauser = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "SHOWREQAAPROVEUSERMAIL", mREQNO, "", "", "", "");
 
 
-                    bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
-                    switch (ssl)
-                    {
-                        case true:
-                            bool resultmail =SendSSLMail(subject, SMSText, userid, frmname);
-                           
-                            break;
+                            string rusername = dsruaauser.Tables[0].Rows[0]["rusername"].ToString();
+                            string fausername = dsruaauser.Tables[0].Rows[0]["fausername"].ToString();
+                            string secapname = dsruaauser.Tables[0].Rows[0]["secapname"].ToString();
+                            string thrapname = dsruaauser.Tables[0].Rows[0]["thrapname"].ToString();
+                            SendMailProcess objsendmail = new SendMailProcess();
+                            string comnam = hst["comnam"].ToString();
+                            string compname = hst["compname"].ToString();
+                            string frmname = this.Request.QueryString["Type"] == "OreqApproved" ? "OtherReqEntry?Type=FirstRecom"
+                                    : this.Request.QueryString["Type"] == "FirstRecom" ? "OtherReqEntry?Type=SecRecom" : "OtherReqEntry?Type=FinalAppr";
 
-                        case false:
-                            bool resulnmail = objsendmail.SendMail(subject, SMSText, userid, frmname);
-                            break;
+                            string subject = this.Request.QueryString["Type"] == "OreqApproved" ? "Ready for Forwared"
+                                    : this.Request.QueryString["Type"] == "FirstRecom" ? "Ready for Approval" : "Ready for Final Approval";
 
-                    }
+                            string SMSHead = this.Request.QueryString["Type"] == "OreqApproved" ? "Ready for Forwared(General Requisition)"
+                                    : this.Request.QueryString["Type"] == "FirstRecom" ? "Ready for Approval(General Requisition)" : "Ready for Final Approval(General Requisition)";
+                            // string subject = "Ready for Final Approval";
+                            //string SMSHead = "Ready for Final Approval(General Requisition)";
 
-                   
+
+                            string reqno = this.lblCurReqNo1.Text + this.txtCurReqNo2.Text;
+                            string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "Req No: " + reqno + "\n" + "Req. Entry: " + rusername
+                                + (fausername.Length == 0 ? "" : "\n") + (fausername.Length == 0 ? "" : ("First Approved: " + fausername)) + (secapname.Length == 0 ? "" : "\n")
+                                  + (secapname.Length == 0 ? "" : ("Second Approved: " + secapname)) + (thrapname.Length == 0 ? "" : "\n") + (thrapname.Length == 0 ? "" : ("Third Approved: " + thrapname));
 
 
+
+                            bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
+                            switch (ssl)
+                            {
+                                case true:
+                                    bool resultmail = SendSSLMail(subject, SMSText, userid, frmname);
+
+                                    break;
+
+                                case false:
+                                    bool resulnmail = objsendmail.SendMail(subject, SMSText, userid, frmname);
+                                    break;
+
+                            }
+
+
+
+
+                        }
+                        break;
+                    default:
+                        break;
+                
+                
                 }
+                
+               
             }
 
                 //Compmany Mail
@@ -2024,7 +2036,7 @@ namespace RealERPWEB.F_34_Mgt
                     
                     string usrid= ds3.Tables[1].Rows[i]["usrid"].ToString();
 
-                    string uhostname = "https://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
                     string currentptah = "RptEngInterface?Type=Report&comcod="+comcod+"&usrid=" + usrid;
                     string totalpath = uhostname + currentptah;
 

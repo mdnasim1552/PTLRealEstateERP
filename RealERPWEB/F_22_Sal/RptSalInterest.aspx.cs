@@ -112,6 +112,12 @@ namespace RealERPWEB.F_22_Sal
                     this.lblinterest.Visible = false;
                     this.txtinpermonth.Visible = false;
                     break;
+
+
+                case "EarlybenADelay":
+                    this.ShowDelayRate(); 
+                    this.MultiView1.ActiveViewIndex = 3;
+                    break;
             }
 
 
@@ -240,6 +246,12 @@ namespace RealERPWEB.F_22_Sal
                     this.ShowInterestAll();
                     break;
 
+                case "EarlybenADelay":
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+                    this.ShowEarbenADelay();
+                    break;
+                    
+
 
 
             }
@@ -293,8 +305,8 @@ namespace RealERPWEB.F_22_Sal
 
             DataTable dt = ds2.Tables[2];
 
-            this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.00;(#,##0.00); ");
-            this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.00;(#,##0.00); ");
+            this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
+            this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
             this.Data_Bind();
             ds2.Dispose();
 
@@ -380,14 +392,55 @@ namespace RealERPWEB.F_22_Sal
 
         }
 
+        private void ShowEarbenADelay()
+        {
+
+            ViewState.Remove("tblinterest");
+            string comcod = this.GetCompCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string custid = this.ddlCustName.SelectedValue.ToString();
+            string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            //  string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            // string frmdate = "01-" + ASTUtility.Right(date, 8);
+            string todate = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SHOWEARBENADELAY", pactcode, custid, frmdate, todate, "", "", "", "", "");
+            if (ds2 == null)
+            {
+                this.gvearbenadelay.DataSource = null;
+                this.gvearbenadelay.DataBind();                
+                return;
+            }
+
+
+
+            
+            ViewState["tblinterest"] = ds2.Tables[0];
+            ViewState["tblmarcrdelay"] = ds2.Tables[1];
+
+
+
+
+
+
+
+            DataTable dt = ds2.Tables[2];
+
+            this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
+            this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.0000;(#,##0.0000); ");
+            this.Data_Bind();
+            ds2.Dispose();
+
+
+        }
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["tblinterest"];
             string Type = this.Request.QueryString["Type"].ToString().Trim();
+            DataView dv1 = new DataView();
             switch (Type)
             {
                 case "interest":
-                    DataView dv1 = new DataView();
+                   
                     dv1 = dt.DefaultView;
                     dv1.RowFilter = ("grp = 'A'");
                     this.gvInterest.DataSource = dv1.ToTable();
@@ -438,6 +491,37 @@ namespace RealERPWEB.F_22_Sal
                     this.FooterCal(dt);
                     break;
 
+
+                case "EarlybenADelay":                    
+                    dv1 = dt.DefaultView;
+                    dv1.RowFilter = ("grp = 'A'");
+                    this.gvearbenadelay.DataSource = dv1.ToTable();
+                    this.gvearbenadelay.DataBind();
+                    this.FooterCal(dv1.ToTable());
+                    this.lblchqdishonour.Visible = false;
+                    this.lblchqnotyetCleared.Visible = false;
+
+
+                    //Cheque Not yet Cleared
+
+                    dv1 = dt.DefaultView;
+                    dv1.RowFilter = ("grp = 'B'");
+                    this.gvChqnocl.DataSource = dv1.ToTable();
+                    this.gvChqnocl.DataBind();
+                    if (dv1.ToTable().Rows.Count > 0)
+                    {
+                        this.lblchqnotyetCleared.Visible = true;
+                        ((Label)this.gvChqnocl.FooterRow.FindControl("lgvFPayamtbuncr")).Text = Convert.ToDouble((Convert.IsDBNull(dv1.ToTable().Compute("sum(pamount)", "")) ?
+                                     0 : dv1.ToTable().Compute("sum(pamount)", ""))).ToString("#,##0;(#,##0); ");
+                    }
+
+
+
+                   
+                    break;
+
+
+                    
 
 
             }
@@ -505,6 +589,28 @@ namespace RealERPWEB.F_22_Sal
                                           0 : dt.Compute("sum(tamount)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDueCollAll.FooterRow.FindControl("lblgvFGDues")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gtamt)", "")) ?
                                           0 : dt.Compute("sum(gtamt)", ""))).ToString("#,##0;(#,##0); ");
+                    break;
+
+
+                case "EarlybenADelay":
+                    //((Label)this.gvInterest.FooterRow.FindControl("lgvFinsamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cinsam)", "")) ?
+                    //             0 : dt.Compute("sum(cinsam)", ""))).ToString("#,##0;-#,##0;");
+                    //((Label)this.gvInterest.FooterRow.FindControl("lgvFpayamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pamount)", "")) ?
+                    //                      0 : dt.Compute("sum(pamount)", ""))).ToString("#,##0;-#,##0;");
+                    //((Label)this.gvInterest.FooterRow.FindControl("lgvFcumbalamt")).Text = Convert.ToDouble(dt.Rows[(dt.Rows.Count) - 1]["cumbalance"]).ToString("#,##0;-#,##0;");
+
+                    //((Label)this.gvInterest.FooterRow.FindControl("lgvFinamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(interest)", "")) ?
+                    //                      0 : dt.Compute("sum(interest)", ""))).ToString("#,##0;-#,##0;");
+
+
+                    //double tointerest = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(interest)", "")) ? 0 : dt.Compute("sum(interest)", "")));
+                    //double linterest = Convert.ToDouble(dt.Rows[(dt.Rows.Count) - 1]["interest"]);
+                    //double todue = Convert.ToDouble(dt.Rows[(dt.Rows.Count) - 1]["dueamt"]);
+
+                    //((Label)this.gvInterest.FooterRow.FindControl("lgvFdueamt")).Text = (todue + tointerest - linterest).ToString("#,##0;-#,##0;");
+
+                    Session["Report1"] = gvInterest;
+                    ((HyperLink)this.gvInterest.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
             }
 
