@@ -414,6 +414,39 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+
+                                           <asp:TemplateField HeaderText="bill Qty" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvbillqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFbillqty" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right" Width="70px"></asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Bill Rate" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvbillrate" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="55px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Bill Amount" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvbillAmt" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFbillAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right" Width="70px"></asp:Label>
+                                            </FooterTemplate>
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Supplier Name ">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvrsumpname" runat="server" Style="text-align: left" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "supdesc")) %>'
