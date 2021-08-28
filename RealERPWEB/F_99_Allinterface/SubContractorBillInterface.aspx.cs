@@ -1631,9 +1631,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString() == "" ? "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
 
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSApproval&prjcode=" + pactcode + "&genno=" + blreqno + "&sircode=" + "" + "&recomsup=" + recomsup + "&msrno="+ msrno;
-                lnkbtnPrintCSApp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=SubConBillReq&lisuno=" + blreqno + "&pactcode=" + pactcode;
 
-                
+                lnkbtnPrintCSApp.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode + "&pType=" + "CSApproval" + "&msrno=" + msrno;
+
+
+
             }
         }
 

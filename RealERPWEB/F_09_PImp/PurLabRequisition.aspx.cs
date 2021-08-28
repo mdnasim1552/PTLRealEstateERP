@@ -77,7 +77,7 @@ namespace RealERPWEB.F_09_PImp
             string msrno1 = msrno.Substring(0, 3);
             if (msrno1 == "MSC")
             {
-                this.Panel3.Visible = true;
+                this.Panel3.Visible = false;
             }
 
 
@@ -961,7 +961,13 @@ namespace RealERPWEB.F_09_PImp
                 dlist.DataValueField = "ssircode";
                 dlist.DataSource = dt;
                 dlist.DataBind();
-                dlist.SelectedValue = this.Request.QueryString["recomsup"].ToString() == "" ? contractor : this.Request.QueryString["recomsup"].ToString();
+                //string recom = "";
+                //if (Request.QueryString.AllKeys.Contains("mykey")){
+                //    recom = this.Request.QueryString["recomsup"].ToString() ?? "";
+                //}
+                dlist.SelectedValue = Request.QueryString.AllKeys.Contains("recomsup") ? this.Request.QueryString["recomsup"].ToString() : contractor;
+
+
 
                 bool aprovestatus = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "approve"));
                 CheckBox approve = (CheckBox)e.Row.FindControl("gvCheckBoxAppve");
