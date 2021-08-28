@@ -275,8 +275,8 @@
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyManama05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyManama02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyManama03.rdlc" />
-    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP2P05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP2P02.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP2P05.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptPurMktSurveyP_2_P.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptReqAppStatus.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptRequisitionStatus1.rdlc" />
