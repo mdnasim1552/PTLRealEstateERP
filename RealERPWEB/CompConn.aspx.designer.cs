@@ -321,13 +321,13 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtCompMsg;
 
         /// <summary>
-        /// txtMsgColor control.
+        /// ddlMsgColor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtMsgColor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMsgColor;
 
         /// <summary>
         /// rbtnMsgStatus control.
