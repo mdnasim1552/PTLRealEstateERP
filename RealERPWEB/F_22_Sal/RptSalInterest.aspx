@@ -210,7 +210,7 @@
                                     <asp:TemplateField HeaderText="Ins.Amt">
                                         <FooterTemplate>
                                             <asp:Label ID="lgvFinsamt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                ForeColor="White" Style="text-align: right" Width="70px"></asp:Label>
+                                               Style="text-align: right" Width="70px"></asp:Label>
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lgvinsamt" runat="server" Style="text-align: right"
@@ -262,7 +262,7 @@
 
                                     <asp:TemplateField HeaderText="Cummulative Due">
                                         <HeaderTemplate>
-                                            <table style="width: 150px;">
+                                            <table style="width: 90px;">
                                                 <tr>
                                                     <td class="style58">
                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
@@ -280,7 +280,7 @@
                                             <asp:Label ID="lgvcummulativedue" runat="server" Style="text-align: right"
                                                 Font-Size="12px" Font-Underline="False"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cumdue")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="150px"></asp:Label>
+                                                Width="90px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
@@ -1025,7 +1025,7 @@
 
                     <asp:View ID="ViewEarbenefittADelay" runat="server">
                         <asp:GridView ID="gvearbenadelay" runat="server" AllowPaging="false"
-                                AutoGenerateColumns="False" PageSize="15" ShowFooter="true"
+                                AutoGenerateColumns="False" PageSize="15" ShowFooter="true" Width="500px"
                                 CssClass="table table-striped table-hover table-bordered grvContentarea">
                                 <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
                                     Mode="NumericFirstLast" />
@@ -1127,7 +1127,7 @@
                                         <asp:TemplateField HeaderText="Interest Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvintrateeben" runat="server" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intrate")).ToString("#,##0;(#,##0); ")+"%" %>'
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intrate")).ToString("#,##0.000;(#,##0.000); ")+"%" %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
