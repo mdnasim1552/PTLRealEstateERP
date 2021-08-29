@@ -30,6 +30,8 @@ namespace RealERPLIB
 {
     public static class ASTUtility
     {
+        public static object TripleDesProvider { get; private set; }
+
         public static string FilterString(string SourceString)
         {
             SourceString = SourceString.Trim();
@@ -436,6 +438,25 @@ namespace RealERPLIB
             encodedBytes = md5.ComputeHash(originalBytes);
             return BitConverter.ToString(encodedBytes);
         }
+
+        //private static string DecodePassword(string text)
+        //{
+        //    var hashmd5 = new MD5CryptoServiceProvider();
+        //    byte[] toEncryptArray = Encoding.UTF8.GetBytes(text);
+
+        //    byte[] keyArray = hashmd5.ComputeHash(Encoding.UTF8.GetBytes(text));
+        //    hashmd5.Clear();
+
+        //    TripleDesProvider.Key = keyArray;
+        //    TripleDesProvider.Mode = CipherMode.ECB;
+        //    TripleDesProvider.Padding = PaddingMode.PKCS7;
+
+        //    ICryptoTransform cTransform = TripleDesProvider.CreateEncryptor();
+
+        //    byte[] resultArray = cTransform.TransformFinalBlock(toEncryptArray, 0, toEncryptArray.Length);
+
+        //    return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+        //}
 
 
         public static int Datediff(DateTime dtto, DateTime dtfrm) 

@@ -132,6 +132,62 @@ namespace RealERPWEB.F_23_CR
         private void ShowMonCollShchMerge()
         {
 
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTMONHLYCOLLECTIONDWISE", "", frmdate, todate, "", "", "", "", "", "");
+
+                if (ds1 == null)
+                {
+                    this.gvmoncollsch.DataSource = null;
+                    this.gvmoncollsch.DataBind();
+                    return;
+                }
+
+                Session["tblAccRecAc"] = this.HiddenSameData(ds1.Tables[0]);
+                Session["tblrectypeAC"] = ds1.Tables[1];
+
+                Session["tblAccRecM"] = this.HiddenSameData(ds1.Tables[2]);
+                Session["tblrectypeM"] = ds1.Tables[3];
+
+                Session["tblTotalAmt"] = ds1.Tables[4];
+
+                this.Data_Bind();
+            }
+            catch (Exception ed)
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ed.Message + "');", true);
+
+            }
+        }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string type = this.Request.QueryString["Type"].ToString();
+            switch (type)
+            {
+                case "MonthlyCollSchMerge":
+
+                    DateTime cdate = Convert.ToDateTime(dt1.Rows[0]["cdate"].ToString());
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (Convert.ToDateTime(dt1.Rows[j]["cdate"].ToString()) == cdate)
+                        {
+
+                            dt1.Rows[j]["cdate1"] = "";
+                        }
+
+                        cdate = Convert.ToDateTime(dt1.Rows[j]["cdate"].ToString());
+                    }
+                    break;
+            }
+            return dt1;
         }
 
         private void Data_Bind()
@@ -150,19 +206,6 @@ namespace RealERPWEB.F_23_CR
                 {
                     case "MonthlyCollMerge":
 
-                        //Gridview data binding for Total Amt
-                        for (i = 7; i < this.gvTotalAmt.Columns.Count - 1; i++)
-                            this.gvTotalAmt.Columns[i].Visible = false;
-                        j = 7;
-                        for (i = 0; i < dt2.Rows.Count; i++)
-                        {
-                            this.gvTotalAmt.Columns[j].Visible = true;
-                            this.gvTotalAmt.Columns[j].HeaderText = dt2.Rows[i]["recpdesc"].ToString();
-                            j++;
-                        }
-                        this.gvTotalAmt.DataSource = dt5;
-                        this.gvTotalAmt.DataBind();
-
                         //Gridview data binding Main erp
                         for (i = 7; i < this.gvmoncoll.Columns.Count - 1; i++)
                             this.gvmoncoll.Columns[i].Visible = false;
@@ -176,6 +219,8 @@ namespace RealERPWEB.F_23_CR
 
                         this.gvmoncoll.DataSource = dt3;
                         this.gvmoncoll.DataBind();
+                        ((HyperLink)this.gvmoncoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
 
                         //Gridview data binding for Account erp
                         for (i = 7; i < this.gvmoncollhide.Columns.Count - 1; i++)
@@ -189,6 +234,70 @@ namespace RealERPWEB.F_23_CR
                         }
                         this.gvmoncollhide.DataSource = dt1;
                         this.gvmoncollhide.DataBind();
+                        ((HyperLink)this.gvmoncollhide.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
+
+                        //Gridview data binding for Total Amt
+                        for (i = 7; i < this.gvTotalAmt.Columns.Count - 1; i++)
+                            this.gvTotalAmt.Columns[i].Visible = false;
+                        j = 7;
+                        for (i = 0; i < dt2.Rows.Count; i++)
+                        {
+                            this.gvTotalAmt.Columns[j].Visible = true;
+                            this.gvTotalAmt.Columns[j].HeaderText = dt2.Rows[i]["recpdesc"].ToString();
+                            j++;
+                        }
+                        this.gvTotalAmt.DataSource = dt5;
+                        this.gvTotalAmt.DataBind();
+                        ((HyperLink)this.gvTotalAmt.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                        break;
+
+                    case "MonthlyCollSchMerge":
+                        //Gridview data binding Main erp
+                        for (i = 5; i < this.gvmoncollsch.Columns.Count - 1; i++)
+                            this.gvmoncollsch.Columns[i].Visible = false;
+                        j = 5;
+                        for (i = 0; i < dt4.Rows.Count; i++)
+                        {
+                            this.gvmoncollsch.Columns[j].Visible = true;
+                            this.gvmoncollsch.Columns[j].HeaderText = dt4.Rows[i]["pactdesc"].ToString();
+                            j++;
+                        }
+
+                        this.gvmoncollsch.DataSource = dt3;
+                        this.gvmoncollsch.DataBind();
+                        ((HyperLink)this.gvmoncollsch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                        //Gridview data binding for Account erp
+                        for (i = 5; i < this.gvAccMonColSch.Columns.Count - 1; i++)
+                            this.gvAccMonColSch.Columns[i].Visible = false;
+                        j = 5;
+                        for (i = 0; i < dt2.Rows.Count; i++)
+                        {
+                            this.gvAccMonColSch.Columns[j].Visible = true;
+                            this.gvAccMonColSch.Columns[j].HeaderText = dt2.Rows[i]["pactdesc"].ToString();
+                            j++;
+                        }
+                        this.gvAccMonColSch.DataSource = dt1;
+                        this.gvAccMonColSch.DataBind();
+                        ((HyperLink)this.gvAccMonColSch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                        //Gridview data binding for Total Amt
+                        for (i = 5; i < this.gvAccTotAmt.Columns.Count - 1; i++)
+                            this.gvAccTotAmt.Columns[i].Visible = false;
+                        j = 5;
+                        for (i = 0; i < dt2.Rows.Count; i++)
+                        {
+                            this.gvAccTotAmt.Columns[j].Visible = true;
+                            this.gvAccTotAmt.Columns[j].HeaderText = dt2.Rows[i]["pactdesc"].ToString();
+                            j++;
+                        }
+                        this.gvAccTotAmt.DataSource = dt5;
+                        this.gvAccTotAmt.DataBind();
+                        ((HyperLink)this.gvAccTotAmt.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
                         break;
                 }
             }

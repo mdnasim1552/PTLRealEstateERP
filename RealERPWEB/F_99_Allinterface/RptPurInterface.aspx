@@ -1413,14 +1413,19 @@
                                                                     <%-- <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphlabelicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
 
-
                                                                     <asp:LinkButton ID="btnDelOrder" runat="server"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
+                                                                  <asp:LinkButton ID="btnDirecdelReq" Visible="false" OnClick="btnDirecdelReq_Click" CssClass="btn btn-default  btn-xs" ToolTip="Delete" OnClientClick="javascript:return FunConfirm();" runat="server"><span  style="color:red"  class="fa fa-trash-alt "></span> </asp:LinkButton>
                                                                 </ItemTemplate>
+
+
+
                                                                 <ItemStyle Width="100px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="167px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="CRM Status" Visible="false">
+
+
+                                                            <asp:TemplateField HeaderText="CCD Status" Visible="false">
                                                                 <ItemTemplate>
 
 

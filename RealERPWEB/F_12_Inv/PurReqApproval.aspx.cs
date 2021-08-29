@@ -19,6 +19,8 @@ using System.Net;
 using System.IO;
 using AjaxControlToolkit;
 using Microsoft.Reporting.WinForms;
+using EASendMail;
+
 namespace RealERPWEB.F_12_Inv
 
 {
@@ -2062,7 +2064,9 @@ namespace RealERPWEB.F_12_Inv
             {
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
+               
                 string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
                 string EditByid = hst["usrid"].ToString();
                 string Edittrmid = hst["compname"].ToString();
                 string EditSession = hst["session"].ToString();
@@ -2281,6 +2285,72 @@ namespace RealERPWEB.F_12_Inv
                 }
 
 
+                if (hst["compmail"].ToString() == "True")
+                {
+
+                    switch (comcod)
+                    {
+
+                        case "1102"://IBCEL
+                            if (this.Request.QueryString["Type"] == "RateInput")
+                            {
+
+
+                                DataSet dsruaauser = accData.GetTransInfo(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "SHOWREQAAPROVEUSERMAIL", reqno, "", "", "", "");
+
+
+                                string rusername = dsruaauser.Tables[0].Rows[0]["rusername"].ToString();
+                                string chkusername = dsruaauser.Tables[0].Rows[0]["chkusername"].ToString();
+                                string ratepusername = dsruaauser.Tables[0].Rows[0]["ratepusername"].ToString();                                
+                                SendMailProcess objsendmail = new SendMailProcess();
+                                string comnam = hst["comnam"].ToString();
+                                string compname = hst["compname"].ToString();
+                                string frmname = "PurReqApproval?Type=Approval";                                
+
+                                string subject = "Ready for Requisition Approval";
+                                string SMSHead = "Ready for Requisition Approval(Purchase)";
+                                // string subject = "Ready for Final Approval";
+                                //string SMSHead = "Ready for Final Approval(General Requisition)";
+
+
+                               
+                                string SMSText = comnam + "\n" + SMSHead + "\n" + "\n" + "MRF No: " + mrfno + "\n" + "Req. Entry: " + rusername
+                                    +  "\n" +  "Checked By: " + chkusername +  "\n"+"Rate Proposed By: " + ratepusername;
+
+
+
+                                bool ssl = Convert.ToBoolean(((Hashtable)Session["tblLogin"])["ssl"].ToString());
+                                switch (ssl)
+                                {
+                                    case true:
+                                        bool resultmail = SendSSLMail(subject, SMSText, userid, frmname);
+
+                                        break;
+
+                                    case false:
+                                        bool resulnmail = objsendmail.SendMail(subject, SMSText, userid, frmname);
+                                        break;
+
+                                }
+
+
+
+
+                            }
+                            break;
+                        default:
+                            break;
+
+
+                    }
+
+
+                }
+
+                
+
+
+
                 //if (hst["compsms"].ToString() == "True")
                 //{
 
@@ -2314,6 +2384,100 @@ namespace RealERPWEB.F_12_Inv
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
+
+
+        }
+
+
+        private bool SendSSLMail(string subject, string SMSText, string userid, string frmname)
+        {
+            try
+            {
+
+                string comcod = this.GetCompCode();
+                DataSet dssmtpandmail = this.accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", userid, "", "", "", "", "", "", "", "");
+                DataSet ds3 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWMAILAPIINFO", userid, frmname, "", "", "");
+
+                string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+                int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                string mailtousr = "";
+
+
+
+
+                for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
+                {
+                    mailtousr = ds3.Tables[1].Rows[i]["email"].ToString();
+                    EASendMail.SmtpMail oMail = new EASendMail.SmtpMail("TryIt");
+                    //Connection Details 
+                    SmtpServer oServer = new SmtpServer(hostname);
+                    oServer.User = frmemail;
+                    oServer.Password = psssword;
+                    oServer.Port = portnumber;
+                    oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+                    //oServer.ConnectType = SmtpConnectType.ConnectSSLAuto;
+
+
+                    EASendMail.SmtpClient oSmtp = new EASendMail.SmtpClient();
+                    oMail.From = frmemail;
+                    oMail.To = mailtousr;
+                    oMail.Cc = frmemail;
+                    oMail.Subject = subject;
+
+
+                    // oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + SMSText + "</pre></body></html>";
+
+                    string usrid = ds3.Tables[1].Rows[i]["usrid"].ToString();
+
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+                    string currentptah = "RptPurInterface?Type=Report&comcod=" + comcod + "&usrid=" + usrid;
+                    string totalpath = uhostname + currentptah;
+
+
+                    string body = "<pre>";
+                 
+                    body += "Dear Sir,";
+                    body += "\n" + SMSText + "\n" +
+                    "<div style='float:left;  padding:10px; background:Lavender; width:150px; height:40px; text-align:center '><a href='" + totalpath + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:#05A6FF; color:white;text-decoration:none; text-align:center''> Click </a></div>";
+                    body += "\n" + "\n" + "\n" + "<div style='float:left;clear:both;margin-top:40px;'>Best Regards" + "<div></pre>";
+                    oMail.HtmlBody = body;
+                    //return false;
+                    //oMail.HtmlBody = true;
+
+
+                    try
+                    {
+                        oSmtp.SendMail(oServer, oMail);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+
+                    }
+
+
+
+
+                }
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                return false;
+            }// try
+
+
+
+
+
+
 
 
         }

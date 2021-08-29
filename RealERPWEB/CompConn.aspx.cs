@@ -29,12 +29,12 @@ namespace RealERPWEB
             {
                 try
                 {
-                    //string sysID = "1";
-                    //string qs = "ptldbd2021Nahid#$CompbDb*%Process";
-                    string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
-                    string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
-                    string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
-                    //string pnlType = "sysMsg";
+                    string sysID = "1";
+                    string qs = "ptldbd2021Nahid#$CompbDb*%Process";
+                    //string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
+                    //string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
+                    //string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
+                    string pnlType = "sysMsg";
 
 
                     if (qs == "ptldbd2021Nahid#$CompbDb*%Process")
@@ -46,6 +46,7 @@ namespace RealERPWEB
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = true;
                             this.pnlmsg.Visible = false;
+                            this.pnlAlertMsg.Visible = false;
                         }
                         else if (pnlType == "sqlExp")
                         {
@@ -63,13 +64,14 @@ namespace RealERPWEB
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
-                            this.pnlAleartMsg.Visible = false;
+                            this.pnlAlertMsg.Visible = true;
                         }
                         else
                         {
                             this.pnlbillalrt.Visible = true;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
+                            this.pnlAlertMsg.Visible = false;
                             GetServiceBillAltMsg(sysID);
 
                         }
