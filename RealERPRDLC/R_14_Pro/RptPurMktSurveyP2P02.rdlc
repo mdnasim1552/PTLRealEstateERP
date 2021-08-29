@@ -48,6 +48,14 @@
           <DataField>aprovrate</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="bgdqty">
+          <DataField>bgdqty</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="bgdrat">
+          <DataField>bgdrat</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="camt1">
           <DataField>camt1</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -268,10 +276,10 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>1.99127in</Width>
+                                <Width>1.88613in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>6.35737in</Width>
+                                <Width>6.46251in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -318,16 +326,16 @@
                                         <TablixBody>
                                           <TablixColumns>
                                             <TablixColumn>
-                                              <Width>1.58934in</Width>
+                                              <Width>1.61563in</Width>
                                             </TablixColumn>
                                             <TablixColumn>
-                                              <Width>1.58934in</Width>
+                                              <Width>1.61563in</Width>
                                             </TablixColumn>
                                             <TablixColumn>
-                                              <Width>1.20123in</Width>
+                                              <Width>1.22752in</Width>
                                             </TablixColumn>
                                             <TablixColumn>
-                                              <Width>1.97745in</Width>
+                                              <Width>2.00374in</Width>
                                             </TablixColumn>
                                           </TablixColumns>
                                           <TablixRows>
@@ -521,13 +529,13 @@
                                         <TablixBody>
                                           <TablixColumns>
                                             <TablixColumn>
-                                              <Width>2.11912in</Width>
+                                              <Width>2.15417in</Width>
                                             </TablixColumn>
                                             <TablixColumn>
-                                              <Width>2.11912in</Width>
+                                              <Width>2.15417in</Width>
                                             </TablixColumn>
                                             <TablixColumn>
-                                              <Width>2.11912in</Width>
+                                              <Width>2.15417in</Width>
                                             </TablixColumn>
                                           </TablixColumns>
                                           <TablixRows>
@@ -837,19 +845,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.74053in</Width>
+                  <Width>4.92497in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.68594in</Width>
+                  <Width>1.71557in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.63858in</Width>
+                  <Width>1.59529in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.53205in</Width>
+                  <Width>1.48876in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.5008in</Width>
+                  <Width>1.37418in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1396,7 +1404,7 @@
             <Top>1.22028in</Top>
             <Left>0.0375in</Left>
             <Height>0.60417in</Height>
-            <Width>11.0979in</Width>
+            <Width>11.09877in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1408,49 +1416,49 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.27264in</Width>
+                  <Width>0.34562in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.02238in</Width>
+                  <Width>1.10577in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.06332in</Width>
+                  <Width>0.92796in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.54353in</Width>
+                  <Width>0.61651in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.54068in</Width>
+                  <Width>0.63449in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.70009in</Width>
+                  <Width>0.58556in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60687in</Width>
+                  <Width>0.72629in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7967in</Width>
+                  <Width>0.71343in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.88025in</Width>
+                  <Width>0.9745in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.74297in</Width>
+                  <Width>0.70227in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89561in</Width>
+                  <Width>0.89302in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7437in</Width>
+                  <Width>0.63699in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.78835in</Width>
+                  <Width>0.86133in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.61311in</Width>
+                  <Width>0.63282in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.88769in</Width>
+                  <Width>0.74136in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -2229,14 +2237,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox19">
+                        <Textbox Name="bgdrat">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!bgdrat.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2244,11 +2252,11 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Center</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox19</rd:DefaultName>
+                          <rd:DefaultName>bgdrat</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2271,7 +2279,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!resrate1.Value</Value>
+                                  <Value>=Format(Fields!resrate1.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2306,7 +2314,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!amt1.Value</Value>
+                                  <Value>=Format(Fields!amt1.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2341,7 +2349,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!resrate2.Value</Value>
+                                  <Value>=Format(Fields!resrate2.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2376,7 +2384,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!amt2.Value</Value>
+                                  <Value>=Format(Fields!amt2.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2411,7 +2419,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!resrate3.Value</Value>
+                                  <Value>=Format(Fields!resrate3.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2446,7 +2454,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!amt3.Value</Value>
+                                  <Value>=Format(Fields!amt3.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2481,7 +2489,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!resrate4.Value</Value>
+                                  <Value>=Format(Fields!resrate4.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2516,7 +2524,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!amt4.Value</Value>
+                                  <Value>=Format(Fields!amt4.Value,"#,##0.00;(#,##0.00);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2630,7 +2638,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox23">
+                        <Textbox Name="Textbox19">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -2649,7 +2657,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <rd:DefaultName>Textbox19</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2987,7 +2995,7 @@
             <Top>1.84063in</Top>
             <Left>0.03751in</Left>
             <Height>0.57291in</Height>
-            <Width>11.09789in</Width>
+            <Width>11.0979in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -2999,19 +3007,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.74952in</Width>
+                  <Width>4.93807in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.67695in</Width>
+                  <Width>1.69205in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.63858in</Width>
+                  <Width>1.59529in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.53205in</Width>
+                  <Width>1.50066in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.50081in</Width>
+                  <Width>1.3727in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -3059,7 +3067,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!tvs1.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3094,7 +3102,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!tvs2.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3129,7 +3137,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!tvs3.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3164,7 +3172,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!tvs4.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3413,7 +3421,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!security1.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3448,7 +3456,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!security2.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3483,7 +3491,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!security3.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3518,7 +3526,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Parameters!security4.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4180,7 +4188,7 @@
             <Top>2.42653in</Top>
             <Left>0.0375in</Left>
             <Height>1.53759in</Height>
-            <Width>11.09791in</Width>
+            <Width>11.09877in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -4189,10 +4197,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>4.02454in</Height>
+        <Height>4.03495in</Height>
         <Style />
       </Body>
-      <Width>11.13541in</Width>
+      <Width>11.13627in</Width>
       <Page>
         <PageHeader>
           <Height>0.5925in</Height>
@@ -4362,7 +4370,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0in</Top>
               <Left>0.40354in</Left>
               <Height>0.28853in</Height>
               <Width>1.10416in</Width>
@@ -4413,7 +4420,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0in</Top>
               <Left>2.39521in</Left>
               <Height>0.28853in</Height>
               <Width>1.0625in</Width>
@@ -4466,7 +4472,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0in</Top>
               <Left>4.65146in</Left>
               <Height>0.27812in</Height>
               <Width>1.11458in</Width>
@@ -4519,7 +4524,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0in</Top>
               <Left>6.66916in</Left>
               <Height>0.28125in</Height>
               <Width>1.47917in</Width>
@@ -4572,7 +4576,6 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>0in</Top>
               <Left>9.38271in</Left>
               <Height>0.28125in</Height>
               <Width>1.36458in</Width>
@@ -4851,11 +4854,59 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="security1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="security2">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="security3">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="security4">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="tvs1">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="tvs2">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="tvs3">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="tvs4">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>24</NumberOfRows>
+      <NumberOfRows>29</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -5061,6 +5112,46 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>23</RowIndex>
           <ParameterName>payterm4</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>24</RowIndex>
+          <ParameterName>security1</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>24</RowIndex>
+          <ParameterName>security2</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>25</RowIndex>
+          <ParameterName>security3</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>25</RowIndex>
+          <ParameterName>security4</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>26</RowIndex>
+          <ParameterName>tvs1</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>27</RowIndex>
+          <ParameterName>tvs2</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>27</RowIndex>
+          <ParameterName>tvs3</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>28</RowIndex>
+          <ParameterName>tvs4</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

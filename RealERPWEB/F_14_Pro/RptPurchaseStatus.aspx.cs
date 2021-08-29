@@ -1581,6 +1581,9 @@ namespace RealERPWEB.F_14_Pro
                             }
 
                         }
+
+                        Session["Report1"] = gvPurStatus;
+                        ((HyperLink)this.gvPurStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                         break;
 
                     case "PurSum":
