@@ -193,7 +193,19 @@
                                     <div class="form-group mb-3">
                                         <legend>Color Set</legend>
                                         <div id="xcp-component_msg" class="input-group">
-                                            <input type="text" runat="server" id="txtMsgColor" class="form-control" />
+                                           <%-- <input type="text" runat="server" id="txtMsgColor" class="form-control" />--%>
+                                            <asp:DropDownList ID="ddlMsgColor" runat="server" CssClass="form-control" Width="150px">
+                                                <asp:ListItem>text-primary</asp:ListItem>
+                                                <asp:ListItem>text-secondary</asp:ListItem>
+                                                <asp:ListItem>text-success</asp:ListItem>
+                                                <asp:ListItem Selected="True">text-danger</asp:ListItem>
+                                                <asp:ListItem>text-warning</asp:ListItem>
+                                                <asp:ListItem>text-info</asp:ListItem>
+                                                <asp:ListItem>text-light</asp:ListItem>
+                                                <asp:ListItem>text-dark</asp:ListItem>
+                                                <asp:ListItem>text-muted</asp:ListItem>
+                                                <asp:ListItem>text-white</asp:ListItem>
+                                            </asp:DropDownList>
                                             <span class="input-group-addon"><i></i></span>
                                         </div>
                                     </div>

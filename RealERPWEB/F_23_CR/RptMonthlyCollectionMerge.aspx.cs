@@ -79,7 +79,49 @@ namespace RealERPWEB.F_23_CR
 
         protected void gvmoncollsch_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
+                string comcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
 
+                if (code == "")
+                {
+                    return;
+                }
+
+                if (code == "BBBBAAAAAAAA" && comcod=="3348")
+                {
+                    e.Row.Attributes["style"] = "background-color:#6bb55b;";
+                }
+
+                else if (code == "BBBBAAAAAAAA" && comcod == "3349")
+                {
+                    e.Row.Attributes["style"] = "background-color:#c25d6f;";
+                }
+            }
+        }
+        protected void gvmoncoll_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
+                string comcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
+
+                if (code == "")
+                {
+                    return;
+                }
+
+                if (code == "AAAAAAAAAAAA" && comcod == "3348")
+                {
+                    e.Row.Attributes["style"] = "background-color:#6bb55b;";
+                }
+
+                else if (code == "AAAAAAAAAAAA" && comcod == "3349")
+                {
+                    e.Row.Attributes["style"] = "background-color:#c25d6f;";
+                }
+            }
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -200,6 +242,10 @@ namespace RealERPWEB.F_23_CR
                 DataTable dt4 = (DataTable)Session["tblrectypeM"];
                 DataTable dt5 = (DataTable)Session["tblTotalAmt"];
 
+                DataTable dtMerge = dt3.Copy();
+                dtMerge.Merge(dt1);
+                dtMerge.Merge(dt5);
+
                 string type = this.Request.QueryString["Type"].ToString();
                 int i, j;
                 switch (type)
@@ -217,41 +263,11 @@ namespace RealERPWEB.F_23_CR
                             j++;
                         }
 
-                        this.gvmoncoll.DataSource = dt3;
+                        this.gvmoncoll.DataSource = dtMerge;
                         this.gvmoncoll.DataBind();
+
+                        Session["Report1"] = gvmoncoll;
                         ((HyperLink)this.gvmoncoll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-
-                        //Gridview data binding for Account erp
-                        for (i = 7; i < this.gvmoncollhide.Columns.Count - 1; i++)
-                            this.gvmoncollhide.Columns[i].Visible = false;
-                        j = 7;
-                        for (i = 0; i < dt2.Rows.Count; i++)
-                        {
-                            this.gvmoncollhide.Columns[j].Visible = true;
-                            this.gvmoncollhide.Columns[j].HeaderText = dt2.Rows[i]["recpdesc"].ToString();
-                            j++;
-                        }
-                        this.gvmoncollhide.DataSource = dt1;
-                        this.gvmoncollhide.DataBind();
-                        ((HyperLink)this.gvmoncollhide.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-
-
-                        //Gridview data binding for Total Amt
-                        for (i = 7; i < this.gvTotalAmt.Columns.Count - 1; i++)
-                            this.gvTotalAmt.Columns[i].Visible = false;
-                        j = 7;
-                        for (i = 0; i < dt2.Rows.Count; i++)
-                        {
-                            this.gvTotalAmt.Columns[j].Visible = true;
-                            this.gvTotalAmt.Columns[j].HeaderText = dt2.Rows[i]["recpdesc"].ToString();
-                            j++;
-                        }
-                        this.gvTotalAmt.DataSource = dt5;
-                        this.gvTotalAmt.DataBind();
-                        ((HyperLink)this.gvTotalAmt.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
                         break;
 
                     case "MonthlyCollSchMerge":
@@ -266,38 +282,11 @@ namespace RealERPWEB.F_23_CR
                             j++;
                         }
 
-                        this.gvmoncollsch.DataSource = dt3;
+                        this.gvmoncollsch.DataSource = dtMerge;
                         this.gvmoncollsch.DataBind();
+
+                        Session["Report1"] = gvmoncollsch;
                         ((HyperLink)this.gvmoncollsch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-                        //Gridview data binding for Account erp
-                        for (i = 5; i < this.gvAccMonColSch.Columns.Count - 1; i++)
-                            this.gvAccMonColSch.Columns[i].Visible = false;
-                        j = 5;
-                        for (i = 0; i < dt2.Rows.Count; i++)
-                        {
-                            this.gvAccMonColSch.Columns[j].Visible = true;
-                            this.gvAccMonColSch.Columns[j].HeaderText = dt2.Rows[i]["pactdesc"].ToString();
-                            j++;
-                        }
-                        this.gvAccMonColSch.DataSource = dt1;
-                        this.gvAccMonColSch.DataBind();
-                        ((HyperLink)this.gvAccMonColSch.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-                        //Gridview data binding for Total Amt
-                        for (i = 5; i < this.gvAccTotAmt.Columns.Count - 1; i++)
-                            this.gvAccTotAmt.Columns[i].Visible = false;
-                        j = 5;
-                        for (i = 0; i < dt2.Rows.Count; i++)
-                        {
-                            this.gvAccTotAmt.Columns[j].Visible = true;
-                            this.gvAccTotAmt.Columns[j].HeaderText = dt2.Rows[i]["pactdesc"].ToString();
-                            j++;
-                        }
-                        this.gvAccTotAmt.DataSource = dt5;
-                        this.gvAccTotAmt.DataBind();
-                        ((HyperLink)this.gvAccTotAmt.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
                         break;
                 }
             }
@@ -312,5 +301,7 @@ namespace RealERPWEB.F_23_CR
             this.gvmoncoll.PageIndex = e.NewPageIndex;
             this.Data_Bind();
         }
+
+       
     }
 }

@@ -29,12 +29,12 @@ namespace RealERPWEB
             {
                 try
                 {
-                    string sysID = "1";
-                    string qs = "ptldbd2021Nahid#$CompbDb*%Process";
-                    //string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
-                    //string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
-                    //string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
-                    string pnlType = "sysMsg";
+                    //string sysID = "1";
+                    //string qs = "ptldbd2021Nahid#$CompbDb*%Process";
+                    string qs = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["AccessToken"].ToString()));
+                    string sysID = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysID"].ToString()));
+                    string pnlType = System.Text.Encoding.UTF8.GetString(System.Convert.FromBase64String(this.Request.QueryString["sysType"].ToString()));
+                    //string pnlType = "sysMsg";
 
 
                     if (qs == "ptldbd2021Nahid#$CompbDb*%Process")
@@ -117,7 +117,7 @@ namespace RealERPWEB
                     return;
 
                 txtCompMsg.Value = ds2.Tables[0].Rows[0]["commsg"].ToString();
-                txtMsgColor.Value = ds2.Tables[0].Rows[0]["commsgcol"].ToString();
+                ddlMsgColor.Text = ds2.Tables[0].Rows[0]["commsgcol"].ToString();
                 string msgFlg = ds2.Tables[0].Rows[0]["msgflg"].ToString();
                 rbtnMsgStatus.SelectedValue = msgFlg;
 
@@ -320,7 +320,7 @@ namespace RealERPWEB
             string comcod = GetComCode();
 
             string txtCompMsg = this.txtCompMsg.Value.ToString();
-            string txtMsgColor = this.txtMsgColor.Value.ToString();
+            string txtMsgColor = this.ddlMsgColor.Text.ToString();
             string msgStatus = this.rbtnMsgStatus.SelectedValue.ToString();
 
             bool resultb = _linkVendorDb.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUPDATEMSG", txtCompMsg, txtMsgColor, msgStatus, "", "", "", "", "", "", "");
