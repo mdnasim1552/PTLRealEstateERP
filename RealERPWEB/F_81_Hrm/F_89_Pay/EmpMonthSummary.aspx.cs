@@ -84,6 +84,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
             this.ddlCompany.DataBind();
+            Session["tblcompany"] = ds1.Tables[0];
             this.ddlCompany_SelectedIndexChanged(null, null);
             ds1.Dispose();
 
@@ -100,7 +101,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 return;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string nozero = (hrcomln == 4) ? "0000" : "00";
+            string Company = (this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() + "%";
+
+            //string Company = this.CompanyType();
             string txtSProject = this.txtSrcPro.Text + "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, userid, "", "", "", "", "", "");
 
@@ -117,6 +122,30 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ds1.Dispose();
 
         }
+
+        //private string CompanyType()
+        //{
+        //    string comtype = "";
+        //    string comcod = this.GetCompCode();
+        //    switch (comcod)
+        //    {
+
+        //        //case "3101":
+        //        case "3315":
+        //        case "3316":
+        //            comtype = this.ddlCompany.SelectedValue.ToString().Substring(0, 4) + "%";
+        //            break;
+
+        //        default:
+        //            comtype = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+        //            break;
+
+
+
+        //    }
+
+        //    return comtype;
+        //}
         private void SectionName()
         {
 

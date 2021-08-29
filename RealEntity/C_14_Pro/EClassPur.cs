@@ -291,6 +291,8 @@ namespace RealEntity.C_14_Pro
             public string rsirunit { get; set; }
             public string spcfcod { get; set; }
             public double qty { get; set; }
+            public double bgdqty { get; set; }
+            public double bgdrat { get; set; }
             public double resrate1 { get; set; }
             public double resrate2 { get; set; }
             public double resrate3 { get; set; }

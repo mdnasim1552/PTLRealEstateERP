@@ -4942,11 +4942,11 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBillCredence";
                     break;
 
+                case "3101"://ASIT
                 case "3353":
                     PrintReq = "PrintBillManama";
                     break;
 
-                case "3101"://ASIT
                 case "3354":
                     PrintReq = "PrintBillEdisonErp";
                     break;
@@ -5277,7 +5277,7 @@ namespace RealERPWEB.F_99_Allinterface
             rptbill.SetParameters(new ReportParameter("comadd", comadd));
             rptbill.SetParameters(new ReportParameter("Rptname", "Sub-Contractor Bill"));
             rptbill.SetParameters(new ReportParameter("ProjectName", "Project Name : " + dt.Rows[0]["pactdesc"].ToString()));
-            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dt.Rows[0]["csirdesc"].ToString()));
+            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dt.Rows[0]["csirdesc"].ToString())); 
             rptbill.SetParameters(new ReportParameter("mBillNo", "Bill No: " + dtd.Rows[0]["billno1"].ToString()));
             rptbill.SetParameters(new ReportParameter("Date", "Date: " + Convert.ToDateTime(dtd.Rows[0]["billdate"]).ToString("dd-MMM-yyyy")));
             rptbill.SetParameters(new ReportParameter("SeDep", Convert.ToDouble(dtd.Rows[0]["sdamt"]).ToString("#,##0.00;(#,##0.00); ")));

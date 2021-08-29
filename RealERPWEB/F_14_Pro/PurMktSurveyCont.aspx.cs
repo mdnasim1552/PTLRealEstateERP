@@ -528,7 +528,7 @@ namespace RealERPWEB.F_14_Pro
                 case "3352":
                 case "1205":
                 case "3101":
-                    this.printP2P_cs();
+                    this.printP2P_cs_approval();
                     break;
                 default:
                     this.printAll_cs();
@@ -581,6 +581,9 @@ namespace RealERPWEB.F_14_Pro
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
+            string reqinfo = "";
+            string csinfo = "";
+
 
             if (lst1.Count == 5)
             {
@@ -596,7 +599,9 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
                     Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
                     Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
-
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", ""));
 
                     i++;
                 }
@@ -609,6 +614,9 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
 
                 // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
@@ -632,6 +640,10 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
                     Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
                     Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", ""));
+
 
 
                     i++;
@@ -645,6 +657,9 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
 
                 // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
@@ -666,6 +681,10 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
                     Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
                     Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", ""));
+
                     i++;
 
                 }
@@ -678,6 +697,10 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+
                 //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
@@ -688,7 +711,7 @@ namespace RealERPWEB.F_14_Pro
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "');</script>";
 
 
         }
