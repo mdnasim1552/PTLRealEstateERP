@@ -498,12 +498,12 @@
 
                                                         <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
                                                         <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="130"></asp:TextBox>
-                                                        <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
+                                                       <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
                                                             runat="server" CompletionListCssClass="AutoExtender"
                                                             CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
                                                             CompletionListItemCssClass="AutoExtenderList" CompletionSetCount="15"
                                                             DelimiterCharacters="" Enabled="True" FirstRowSelected="True"
-                                                            MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"
+                                                            MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"  
                                                             ServicePath="~/AutoCompleted.asmx" TargetControlID="txtPayto">
                                                         </cc1:AutoCompleteExtender>
 
