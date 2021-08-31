@@ -89,7 +89,8 @@ public class AutoCompleted : System.Web.Services.WebService
 
 
 
-    [WebMethod(true)]
+    [WebMethod]
+    [ScriptMethod (UseHttpGet =true)]
     public string[] GetRecandPayDetails(string prefixText, int count)
     {
         HttpSessionState session = HttpContext.Current.Session;

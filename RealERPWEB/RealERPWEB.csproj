@@ -3614,6 +3614,10 @@
       <DependentUpon>RptGrpMisDailyActiviteis.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="AutoCompleted.asmx.cs">
+      <DependentUpon>AutoCompleted.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4030,10 +4034,6 @@
     </Compile>
     <Compile Include="ASITNEW.Master.designer.cs">
       <DependentUpon>ASITNEW.Master</DependentUpon>
-    </Compile>
-    <Compile Include="AutoCompleted.asmx.cs">
-      <DependentUpon>AutoCompleted.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CalenderTest.aspx.cs">
       <DependentUpon>CalenderTest.aspx</DependentUpon>
