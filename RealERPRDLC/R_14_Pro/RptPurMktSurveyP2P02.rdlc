@@ -1696,7 +1696,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>BOQ </Value>
+                                  <Value>BOQ Rate</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2995,7 +2995,7 @@
             <Top>1.84063in</Top>
             <Left>0.03751in</Left>
             <Height>0.57291in</Height>
-            <Width>11.0979in</Width>
+            <Width>11.09792in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -3566,7 +3566,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Work Time </Value>
+                                  <Value>Work Duration</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                   </Style>

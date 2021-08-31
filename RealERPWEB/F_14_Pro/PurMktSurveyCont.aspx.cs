@@ -514,7 +514,7 @@ namespace RealERPWEB.F_14_Pro
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
 
 
         }
@@ -551,8 +551,18 @@ namespace RealERPWEB.F_14_Pro
             string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
             string comments = this.txtMSRNarr.Text.Trim();
             // string mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
-            string mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
-            
+            string mMSRNo = "";
+            if (Request.QueryString.AllKeys.Contains("msrno"))
+            {
+                mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
+            }
+            else
+            {
+                DataTable dt = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+            }
+
+
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
@@ -581,8 +591,8 @@ namespace RealERPWEB.F_14_Pro
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
-            string reqinfo = "";
-            string csinfo = "";
+            string reqinfo = ds1.Tables[3].Rows[0]["reqno"].ToString();
+            string csinfo = ds1.Tables[2].Rows[0]["msrno"].ToString() + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
 
 
             if (lst1.Count == 5)
@@ -601,7 +611,7 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
                     Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
                     Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
 
                     i++;
                 }
@@ -642,7 +652,7 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
                     Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
                     Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
 
 
 
@@ -683,7 +693,7 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
                     Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
                     Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
-                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
 
                     i++;
 
@@ -711,7 +721,7 @@ namespace RealERPWEB.F_14_Pro
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_self');</script>";
 
 
         }
@@ -798,6 +808,8 @@ namespace RealERPWEB.F_14_Pro
                     this.ddlPrevMSRList.DataValueField = "maxmsrno";
                     this.ddlPrevMSRList.DataSource = ds2.Tables[0];
                     this.ddlPrevMSRList.DataBind();
+
+                    Session["tblmsr01"] = ds2.Tables[0];
                 }
                 else
                     return;
@@ -888,11 +900,12 @@ namespace RealERPWEB.F_14_Pro
                 string qutdate = drr["qutdate"].ToString();
                 string worktime = drr["worktime"].ToString();
                 string notes = drr["notes"].ToString();
+                string crperiod = drr["crperiod"].ToString();
 
 
 
 
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02_CON", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, "", "", "", "", "", "");
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02_CON", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, crperiod, "", "", "", "", "");
             }
 
 
@@ -1105,6 +1118,7 @@ namespace RealERPWEB.F_14_Pro
                 string payterm = ((TextBox)this.gvterm.Rows[j].FindControl("txtgvpayterm")).Text.Trim();
                 string worktime = ((TextBox)this.gvterm.Rows[j].FindControl("txtworkline")).Text.Trim();
                 string notes = ((TextBox)this.gvterm.Rows[j].FindControl("txtNotes")).Text.Trim();
+                string crperiod = ((TextBox)this.gvterm.Rows[j].FindControl("txtcrPeriod")).Text.Trim();
 
                 string qtdate = Convert.ToDateTime(((TextBox)this.gvterm.Rows[j].FindControl("txtCurQuTDate")).Text).ToString("dd-MMM-yyyy");
 
@@ -1114,6 +1128,7 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Rows[j]["qutdate"] = qtdate;
                 tbl1.Rows[j]["worktime"] = worktime;
                 tbl1.Rows[j]["notes"] = notes;
+                tbl1.Rows[j]["crperiod"] = crperiod;
 
 
             }
@@ -1146,6 +1161,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["spcfdesc"] = this.ddlSpecificationms.SelectedItem.Text.Trim();
 
                 dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode + "'"))[0]["qty"];
+                dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode + "'"))[0]["bgdrat"];
                 dr1["resrate1"] = 0;
                 dr1["resrate2"] = 0;
                 dr1["resrate3"] = 0;
@@ -1233,6 +1249,7 @@ namespace RealERPWEB.F_14_Pro
                     drt["qutdate"] = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     drt["worktime"] = "";
                     drt["notes"] = "";
+                    drt["crperiod"] = "";
                     tblt.Rows.Add(drt);
 
                 }
@@ -1328,7 +1345,7 @@ namespace RealERPWEB.F_14_Pro
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 5;
+                cell0.ColumnSpan = 6;
                 gvrow.Cells.Add(cell0);
 
 
