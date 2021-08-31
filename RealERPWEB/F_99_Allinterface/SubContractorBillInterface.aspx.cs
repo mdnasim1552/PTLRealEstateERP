@@ -1673,5 +1673,15 @@ namespace RealERPWEB.F_99_Allinterface
         {
 
         }
+
+        protected void btnDelWrkodr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDelReadyBill_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

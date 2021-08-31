@@ -2791,6 +2791,9 @@
                                                     <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
 
+                                                      <asp:LinkButton ID="btnDelWrkodr"  OnClick="btnDelWrkodr_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
+
+
                                                 </ItemTemplate>
                                                 <ItemStyle Width="150px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
@@ -2942,6 +2945,8 @@
                                                 <ItemTemplate>
                                                     <asp:HyperLink ID="lnkWorkOrder" runat="server" ToolTip="CS" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                     </asp:HyperLink>
+                                                     <asp:LinkButton ID="btnDelReadyBill"  OnClick="btnDelReadyBill_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa  fa-recycle"></span> </asp:LinkButton>
+
 
                                                 </ItemTemplate>
                                                 <ItemStyle Width="150px" />

@@ -328,6 +328,8 @@ namespace RealEntity.C_14_Pro
             public string notes { get; set; }
             public string contact { get; set; }
 
+            public string crperiod { get; set; }
+
 
             public string ssirdesc { get; set; }
             public MkrServay03() { }

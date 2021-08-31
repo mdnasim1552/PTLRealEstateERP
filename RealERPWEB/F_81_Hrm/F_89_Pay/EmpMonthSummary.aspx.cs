@@ -111,7 +111,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             //Remove 
             DataView dv = ds1.Tables[0].DefaultView;
-            dv.RowFilter = ("actcode<>'000000000000'");
+            if (comcod=="3315" || comcod == "3316" || comcod == "3101")
+            { }
+            else
+            {
+                dv.RowFilter = ("actcode<>'000000000000'");
+            }       
 
 
             this.ddlProjectName.DataTextField = "actdesc";

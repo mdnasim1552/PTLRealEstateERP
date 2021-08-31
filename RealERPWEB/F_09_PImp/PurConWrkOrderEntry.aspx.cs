@@ -233,7 +233,6 @@ namespace RealERPWEB.F_09_PImp
         }
 
         private void PrintGeneral()
-
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -244,7 +243,7 @@ namespace RealERPWEB.F_09_PImp
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string CurDate = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
-            string refNo = this.txtOrderRef.Text.ToString();
+            string refNo = "";
             string Supp2 = this.ddlContractorlist.SelectedItem.Text.Trim().Substring(13).ToString();
             string mOrdernoO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
             string ordercopy = this.GetCompOrderCopy();
@@ -265,10 +264,22 @@ namespace RealERPWEB.F_09_PImp
 
             if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
             {
+                refNo = Request.QueryString["genno"].ToString();
+                string txtSign1 = ds1.Tables[2].Rows[0]["usrname"].ToString() + " ," + ds1.Tables[2].Rows[0]["usrdesig"].ToString() + " \n" + Convert.ToDateTime(ds1.Tables[2].Rows[0]["POSTEDDAT"]).ToString("dd-MMM-yyyy");
+                string txtSign2 = "";
+                string txtSign3 = "";
+                string txtSign4 = "";
+
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
+                Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
+                Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
+                Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
+                Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
+
             }
             else
             {
+                refNo = this.txtOrderRef.Text.ToString();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder", lst, null, null);
 
             }
