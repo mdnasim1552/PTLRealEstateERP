@@ -67,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="R_03_Fin\" />
-    <Folder Include="R_07_Ten\" />
     <Folder Include="R_09_LCM\" />
     <Folder Include="R_13_Cen\" />
     <Folder Include="R_18_MAcc\" />
@@ -92,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
@@ -144,6 +144,7 @@
     <EmbeddedResource Include="R_04_Bgd\RptWorkVsResource.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptWorkVsResVsAllocDet.rdlc" />
     <EmbeddedResource Include="R_05_Busi\RptYePlanIncomeSt.rdlc" />
+    <EmbeddedResource Include="R_07_Ten\RptTenderProposal.rdlc" />
     <EmbeddedResource Include="R_08_PPlan\RptProjectDesign.rdlc" />
     <EmbeddedResource Include="R_08_PPlan\RptProTargetTimeBasis.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptBgdVsExe.rdlc" />
