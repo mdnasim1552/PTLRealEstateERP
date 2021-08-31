@@ -81,6 +81,9 @@ namespace RealERPRDLC
 
 
                 #endregion
+                #region Tender
+                case "R_07_Ten.RptTenderProposal": Rpt1a = SetRptTenderProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                #endregion
                 #region Project Design
 
 
@@ -988,6 +991,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptIncomeSt(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.NoteIncoStatement>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptTenderProposal(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_08_PPlan.BO_Class_Con.RptTenderProposal>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptProjectDesign(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

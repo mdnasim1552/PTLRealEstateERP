@@ -15,9 +15,32 @@ namespace RealERPWEB.Tickets
         ProcessAccess _linkVendorDb = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!IsPostBack)
+            {
+                checkUser();
+            }
+        }
+        private void checkUser()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            string userId = hst["usrid"].ToString();
+            string comcod = GetCompCode();
+            DataSet ds1 = _linkVendorDb.GetcheckUser(comcod, userId);
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+                string Url1 = "Dashboard.aspx";
+                Response.Redirect(Url1);
+            }
+            else
+            {
+                Session["TicketUseId"] = ds1.Tables[0].Rows[0]["USERID"].ToString();
+                Session["TicketComCod"] = ds1.Tables[0].Rows[0]["COMCOD"].ToString();
+
+            }
+
 
         }
-
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -28,16 +51,16 @@ namespace RealERPWEB.Tickets
         protected void btnSave_ServerClick(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string username = hst["username"].ToString();
+            string username = Session["TicketUseId"].ToString();
+            string comcod = Session["TicketComCod"].ToString();
+            string usrid = hst["usrid"].ToString();
 
             string ticketType = this.ddlTicketType.SelectedValue.ToString();
             string txtTdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             string txtTicketDesc = this.txtTicketDesc.Text.ToString();
-            //string txtRemarks = this.txtRemarks.Text.ToString();
             string priority = this.ddlPriority.SelectedValue.ToString();
 
-            bool resultb = _linkVendorDb.InsertTicket("47", txtTicketDesc, ticketType, "99200", priority, txtTdate, "18", "", "", "3101001");
+            bool resultb = _linkVendorDb.InsertTicket(comcod, txtTicketDesc, ticketType, "99200", priority, txtTdate, username, "", "", usrid);
             if (!resultb)
             {
 

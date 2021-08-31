@@ -247,5 +247,18 @@ namespace RealEntity.C_08_PPlan
 
             }
         }
+
+        [Serializable]
+        public class RptTenderProposal
+        {
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public double amt1 { get; set; }
+            public double amt2 { get; set; }
+            public double amt3 { get; set; }
+            public RptTenderProposal(){ }
+        }
     }
 }

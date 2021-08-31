@@ -16,6 +16,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_07_Ten
 {
     public partial class RptPrjSchAnaLysis : System.Web.UI.Page
@@ -541,23 +544,20 @@ namespace RealERPWEB.F_07_Ten
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string projectName = this.ddlProjectName.SelectedItem.Text.Substring(13);
-            ReportDocument rptImp = new RealERPRPT.R_07_Ten.RptTenderProposal();
-            TextObject txtCompany = rptImp.ReportDefinition.ReportObjects["txtComName"] as TextObject;
-            txtCompany.Text = comnam;
-            TextObject rpttxtPrjName = rptImp.ReportDefinition.ReportObjects["txtProjectName"] as TextObject;
-            rpttxtPrjName.Text = "Project: " + projectName;
-            TextObject txtDate = rptImp.ReportDefinition.ReportObjects["txtDate"] as TextObject;
-            txtDate.Text = "Submission Date: " + System.DateTime.Today.ToString("dd-MMM-yyyy");
-
 
             DataTable dt = (DataTable)Session["tblschdule"];
-            TextObject txtuserinfo = rptImp.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            rptImp.SetDataSource(dt);
-            Session["Report1"] = rptImp;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt.DataTableToList<RealEntity.C_08_PPlan.BO_Class_Con.RptTenderProposal>();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_07_Ten.RptTenderProposal", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Tender Position at a glance"));
+            Rpt1.SetParameters(new ReportParameter("projectName", "Project: " + projectName));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Submission Date: " + System.DateTime.Today.ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
         private void printBenefitRpt()

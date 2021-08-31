@@ -132,14 +132,8 @@ namespace RealERPWEB.F_41_GAcc
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
             LocalReport Rpt1 = new LocalReport();
-
-            //Session["tblProBill"] = this.HiddenSameData(ds2.Tables[0]);
-            //Session["Header"] = ds2.Tables[1];
-
-
             DataTable dt = (DataTable)Session["tblProBill"];
             DataTable dt1 = (DataTable)Session["Header"];
-
             var lst = dt.DataTableToList<RealEntity.C_41_GAcc.ProProgBillStatus>();
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_41_GAcc.RptProProgBillStatus", lst, null, null);
