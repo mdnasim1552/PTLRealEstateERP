@@ -528,7 +528,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Payto">
+                            <asp:TemplateField HeaderText="Pay To">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtgvPayto" runat="server" BackColor="Transparent"
                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
