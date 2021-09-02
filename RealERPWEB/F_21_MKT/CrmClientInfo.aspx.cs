@@ -104,6 +104,8 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[10].Visible = false;
                     this.gvSummary.Columns[11].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[22].Visible = false;
                     break;
 
 
@@ -119,6 +121,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[18].Visible = false;
                     this.gvSummary.Columns[19].Visible = false;
                     this.gvSummary.Columns[20].Visible = false;
+                    this.gvSummary.Columns[22].Visible = true;
                     break;
 
 

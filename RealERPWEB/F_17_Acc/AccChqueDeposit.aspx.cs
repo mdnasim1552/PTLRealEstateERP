@@ -399,59 +399,62 @@ namespace RealERPWEB.F_17_Acc
 
             // Company Balance
 
-            //switch (comcod)
-            //{
-            //    case "3340"://Urban
-            //    case "3101"://Urban
+            switch (comcod)
+            {
+                case "3340"://Urban
+                case "3101"://Urban
 
+                                     
+                    string pactcode = this.Request.QueryString["prjcode"].ToString() ?? "" ;
+                    string usircode = this.Request.QueryString["usircode"].ToString() ?? "" ;                   
+                    DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_SALMGT", "GETEXCESSDEPOSITE", pactcode, usircode, "", "", "", "", "", "", "");
 
-            //        double paidamt = 0.00;
-            //        double paidamt1 = 0.00;
+                    double balamt = 0;
 
+                    balamt = ds1.Tables[0].Rows.Count == 0 ? 0.00 : Convert.ToDouble(ds1.Tables[0].Rows[0]["schamt"]);
+                    double paidamt = 0.00;
+                    double paidamt1 = 0.00;
+                    for (int i = 0; i < tbl2.Rows.Count; i++)
+                    {
 
-            //        for (int i=0; i<tbl2.Rows.Count; i++)
-            //        {
+                        if (tbl2.Rows[i]["chkdep"].ToString().Trim() == "True")
+                        {
+                            paidamt1 = Convert.ToDouble(tbl2.Rows[i]["paidamt"]);
+                            paidamt = +paidamt1;
 
-            //            if (tbl2.Rows[i]["chkdep"].ToString().Trim() == "True")
-            //            {
-            //                paidamt1 = Convert.ToDouble(tbl2.Rows[i]["paidamt"]);
-            //                paidamt = +paidamt1;
-
-            //            }
-
-
-
-            //        }
-
-            //        //string mrno = tbl2.Rows[0]["mrno"].ToString();
-            //        //double  paidamt = Convert.ToDouble( tbl2.Rows[0]["paidamt"]);
-            //        DataTable dt2 = (DataTable)Session["tblbalance"];           
-            //        double SAmount = 0;
-            //        double PAmount = 0, BalAmt = 0;
-
-            //        SAmount = dt2.Rows.Count==0 ? 0.00 : Convert.ToDouble( dt2.Rows[0]["schamt"]);
-            //        PAmount = dt2.Rows.Count == 0 ? 0.00 : Convert.ToDouble(dt2.Rows[0]["paidamt"]);
-            //        BalAmt = SAmount - PAmount - paidamt;
-
-            //        double topaidamt = paidamt;
-            //        if (topaidamt > BalAmt)
-            //        {
-
-            //           ((Label)this.Master.FindControl("lblmsg")).Text = "Receipt Amount exceed schedule";
-            //            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            //            return;
-
-            //        }
+                        }
 
 
 
-            //        break;
-            //    default:
-            //        break;
+                    }
+
+                    if (paidamt > balamt)
+                    {
+
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Please Updated Accounts Voucher !!!!!";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+
+                    }
 
 
 
-            //}
+                    ////string mrno = tbl2.Rows[0]["mrno"].ToString();
+                    ////double  paidamt = Convert.ToDouble( tbl2.Rows[0]["paidamt"]);
+                    //DataTable dt2 = (DataTable)Session["tblbalance"];
+                    //double SAmount = 0;
+                    //double PAmount = 0, BalAmt = 0;
+
+
+
+
+                    break;
+                default:
+                    break;
+
+
+
+            }
 
 
 

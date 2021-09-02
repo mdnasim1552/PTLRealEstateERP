@@ -272,9 +272,9 @@ namespace RealERPWEB.F_23_CR
 
                     case "MonthlyCollSchMerge":
                         //Gridview data binding Main erp
-                        for (i = 5; i < this.gvmoncollsch.Columns.Count - 1; i++)
+                        for (i = 6; i < this.gvmoncollsch.Columns.Count - 1; i++)
                             this.gvmoncollsch.Columns[i].Visible = false;
-                        j = 5;
+                        j = 6;
                         for (i = 0; i < dt4.Rows.Count; i++)
                         {
                             this.gvmoncollsch.Columns[j].Visible = true;
