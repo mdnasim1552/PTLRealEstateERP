@@ -342,7 +342,7 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Design Type" Visible="false">
+                                <asp:TemplateField HeaderText="Scope of Work" Visible="false">
                                     <EditItemTemplate>
                                         <asp:DropDownList ID="ddldesign" CssClass="ddlPage chzn-select" runat="server" Width="100px">
                                         </asp:DropDownList>

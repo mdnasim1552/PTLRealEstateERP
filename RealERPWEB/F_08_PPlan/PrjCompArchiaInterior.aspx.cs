@@ -36,7 +36,8 @@ namespace RealERPWEB.F_08_PPlan
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 string qType = this.Request.QueryString["Type"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (qType == "Architecture") ? "Project Design" : (qType == "Legal") ? "Project Interior"
-                    : (qType == "Logistic") ? "Project Pre-Planning-Logistic" : (qType == "Design") ? "Project Pre-Planning-Design" : "Project Pre-Planning-Brand";
+                    : (qType == "Logistic") ? "Project Pre-Planning-Logistic" : (qType == "Design") ? "Project Pre-Planning-Design" 
+                    : (qType == "Landscape") ? "Landscape Design" : (qType == "MasterPlan") ? "Master Plan" : "Project Pre-Planning-Brand";
 
                 this.GetProjectName();
                 this.GetWork();
@@ -79,8 +80,9 @@ namespace RealERPWEB.F_08_PPlan
             try
             {
                 string comcod = this.GetCompcode();
-                string Type = this.Request.QueryString["Type"] == "Architecture" ? "Architecture" : "Interior";
-                DataSet ds1 = this.MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETPROJECTDESIGNWORK", Type, "", "", "", "", "", "", "", "");
+                string Type = this.Request.QueryString["Type"].ToString();
+                string SType = Type == "Architecture" ? "Architecture" : Type == "Interior" ? "Interior" : Type== "Landscape" ? "Landscape" : "MasterPlan";
+                DataSet ds1 = this.MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETPROJECTDESIGNWORK", SType, "", "", "", "", "", "", "", "");
 
                 this.ddlwork.DataTextField = "actdesc";
                 this.ddlwork.DataValueField = "actcode";
