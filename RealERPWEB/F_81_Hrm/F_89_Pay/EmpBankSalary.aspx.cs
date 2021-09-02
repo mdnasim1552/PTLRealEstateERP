@@ -762,7 +762,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintForwardingLetterTerra();
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3355":
                     this.PrintForwardingLetterGreen();
                     break;
@@ -1224,7 +1224,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Det1 = "We are maintaining an SND account with your branch (AC/ #" + bank2 + " ) of our company and all of our employees are also maintaining their respective accounts with your branch. Now we like to pay off their salaries through their respective bank accounts.";
                 Det2 = "Such, we would request you to debit our (AC/ #" + bank2 + " ) and transfer the same amount to the respective employee’s personal accounts as per attached list.";
                 attn = "The Assistant Vice President & Manager";
-                bank = bankname;
+                bank = bankacc;
+                branch = "Mirpur Branch";
                 address = addr;
             }
 

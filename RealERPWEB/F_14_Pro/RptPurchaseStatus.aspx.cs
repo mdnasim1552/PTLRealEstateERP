@@ -1561,6 +1561,14 @@ namespace RealERPWEB.F_14_Pro
                         this.gvPurStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvPurStatus.DataSource = dt;
                         this.gvPurStatus.DataBind();
+                        if(comcod=="3340"|| comcod=="3101")
+                        {
+                            this.gvPurStatus.Columns[17].Visible = true;
+                            this.gvPurStatus.Columns[18].Visible = true;
+                            this.gvPurStatus.Columns[19].Visible = true;
+
+
+                        }
                         ((Label)this.gvPurStatus.FooterRow.FindControl("lgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ?
                                              0 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
                         if (ddlProjectName.SelectedValue.ToString() != "000000000000")
@@ -1573,6 +1581,9 @@ namespace RealERPWEB.F_14_Pro
                             }
 
                         }
+
+                        Session["Report1"] = gvPurStatus;
+                        ((HyperLink)this.gvPurStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                         break;
 
                     case "PurSum":

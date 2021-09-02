@@ -74,7 +74,7 @@
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
@@ -3581,8 +3581,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
-    <Content Include="Web.config" />
     <Content Include="Bundle.config" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceessError.aspx.cs">
@@ -3606,6 +3612,10 @@
     </Compile>
     <Compile Include="ASMX_F_45_GrAcc\RptGrpMisDailyActiviteis.asmx.cs">
       <DependentUpon>RptGrpMisDailyActiviteis.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AutoCompleted.asmx.cs">
+      <DependentUpon>AutoCompleted.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
@@ -4024,10 +4034,6 @@
     </Compile>
     <Compile Include="ASITNEW.Master.designer.cs">
       <DependentUpon>ASITNEW.Master</DependentUpon>
-    </Compile>
-    <Compile Include="AutoCompleted.asmx.cs">
-      <DependentUpon>AutoCompleted.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CalenderTest.aspx.cs">
       <DependentUpon>CalenderTest.aspx</DependentUpon>
@@ -11314,12 +11320,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

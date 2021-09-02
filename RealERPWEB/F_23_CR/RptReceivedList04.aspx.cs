@@ -685,12 +685,9 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
-
             string type = this.Request.QueryString["Type"].ToString();
             switch (type)
             {
-
                 case "AllProDuesCollect":
                     this.AllProDuesCollection();
                     break;
@@ -717,17 +714,7 @@ namespace RealERPWEB.F_23_CR
                 case "MonthlyDuesOverDues":
                     this.ShowMonthlyDuesOverDues();
                     break;
-
-
-
-
-
-
-
             }
-
-
-
         }
 
         private DataTable HiddenSameData(DataTable dt1)

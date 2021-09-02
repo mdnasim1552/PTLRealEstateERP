@@ -51,11 +51,11 @@ namespace RealERPWEB.F_09_PImp
                     this.ddlPrevISSList.SelectedValue = this.Request.QueryString["genno"].ToString();
                     this.lbtnOk_Click(null, null);
                 }
-                if(this.Request.QueryString["msrno"].ToString().Length > 0)
+                if (Request.QueryString.AllKeys.Contains("msrno"))
                 {
+                    this.pannelHide();
                     this.getPreviousMSR();
                 }
-                
 
             }
         }
@@ -68,6 +68,18 @@ namespace RealERPWEB.F_09_PImp
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        private void pannelHide()
+        {
+            //Panel3
+            string msrno = this.Request.QueryString["genno"].ToString();
+            string msrno1 = msrno.Substring(0, 3);
+            if (msrno1 == "MSC")
+            {
+                this.Panel3.Visible = false;
+            }
+
 
         }
 
@@ -173,6 +185,8 @@ namespace RealERPWEB.F_09_PImp
             string lisuno = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
 
+            this.printP2P_cs_approval();
+
             ////string url ="~/F_99_Allinterface/";
             //string url =  HttpContext.Current.Request.Url.Authority + "//F_99_Allinterface/";
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open(' " + url + "PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode
@@ -185,14 +199,191 @@ namespace RealERPWEB.F_09_PImp
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
             //lnkbtnPrint.NavigateUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode;
-
+            
+            /*
             string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode);
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + currentptah + "', target='_blank');</script>";
-
+            */
 
         }
 
 
+        protected void printP2P_cs_approval()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string comments = this.txtISSNarr.Text.Trim();
+            string mMSRNo = "";
+            if (Request.QueryString.AllKeys.Contains("msrno"))
+            {
+                mMSRNo = Request.QueryString["msrno"].ToString();
+            }
+            else
+            {
+                DataTable dt = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+            }
+
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            LocalReport Rpt1 = new LocalReport();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEYP02PCSApproval", mMSRNo, CurDate1, "", "", "", "", "", "", "");
+
+            string Projectname = "";
+            string Projectlocat = "";
+            string Username = "";
+            string userdesig = "";
+            string rsirdesc = "";
+
+            if (ds1.Tables[3].Rows.Count > 0)
+            {
+                Projectname = ds1.Tables[3].Rows[0]["pactdesc"].ToString();
+                Projectlocat = ds1.Tables[3].Rows[0]["projectadd"].ToString();
+                Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
+                userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
+                rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+            }
+
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
+            var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
+
+            string reqinfo = ds1.Tables[3].Rows[0]["reqno"].ToString();
+            string csinfo = ds1.Tables[2].Rows[0]["msrno"].ToString() + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
+
+
+            if (lst1.Count == 5)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P05", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+
+            else if (lst1.Count == 4)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P02", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+
+
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP_2_P", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+
+                    i++;
+
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "','');</script>";
+
+
+        }
+
+        //protected string GetStdDate(string Date1)
+        //{
+        //    Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
+        //    string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        //    Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
+        //    return Date1;
+        //}
 
 
         protected void lbtnPrevISSList_Click(object sender, EventArgs e)
@@ -949,7 +1140,13 @@ namespace RealERPWEB.F_09_PImp
                 dlist.DataValueField = "ssircode";
                 dlist.DataSource = dt;
                 dlist.DataBind();
-                dlist.SelectedValue = this.Request.QueryString["recomsup"].ToString()=="" ? contractor : this.Request.QueryString["recomsup"].ToString();
+                //string recom = "";
+                //if (Request.QueryString.AllKeys.Contains("mykey")){
+                //    recom = this.Request.QueryString["recomsup"].ToString() ?? "";
+                //}
+                dlist.SelectedValue = Request.QueryString.AllKeys.Contains("recomsup") ? this.Request.QueryString["recomsup"].ToString() : contractor;
+
+
 
                 bool aprovestatus = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "approve"));
                 CheckBox approve = (CheckBox)e.Row.FindControl("gvCheckBoxAppve");
@@ -1026,7 +1223,7 @@ namespace RealERPWEB.F_09_PImp
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 5;
+                cell0.ColumnSpan = 4;
                 gvrow.Cells.Add(cell0);
                 DataTable dt = (DataTable)Session["tblt01"];
                 //int j = 5;
@@ -1119,7 +1316,7 @@ namespace RealERPWEB.F_09_PImp
 
             //    DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
             //    DataTable dt2 = (DataTable)Session["tblt02"]; // cs 
-                
+
 
             //    DataRow[] drstk = dt2.Select(" rsircode='" + rsircode + "' and csircode='" + contrator + "'");
 
@@ -1127,9 +1324,9 @@ namespace RealERPWEB.F_09_PImp
             //    {
 
             //        DataRow dr2 = dt.NewRow();
-                 
+
             //        dr2["reqrat"] = stkqty * stkrate;
-                   
+
             //        dt.Rows.Add(dr2);
 
             //    }

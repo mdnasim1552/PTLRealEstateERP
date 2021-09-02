@@ -275,6 +275,15 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="BOQ Rate">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvMSRbgdrat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="50px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
                                         <FooterTemplate>
@@ -552,11 +561,23 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Working Time">
+                                    <asp:TemplateField HeaderText="Working Duration">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtworkline" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Text='<%# DataBinder.Eval(Container.DataItem, "worktime").ToString() %>'
+                                                Style="text-align: left; background-color: Transparent"
+                                                Width="80px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Credit Period">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtcrPeriod" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "crperiod").ToString() %>'
                                                 Style="text-align: left; background-color: Transparent"
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>

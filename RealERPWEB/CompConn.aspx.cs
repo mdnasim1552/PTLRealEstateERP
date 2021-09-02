@@ -46,6 +46,7 @@ namespace RealERPWEB
                             this.pnlbillalrt.Visible = false;
                             this.pnlTop.Visible = true;
                             this.pnlmsg.Visible = false;
+                            this.pnlAlertMsg.Visible = false;
                         }
                         else if (pnlType == "sqlExp")
                         {
@@ -63,13 +64,14 @@ namespace RealERPWEB
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
                             this.pnlDtPropertis.Visible = false;
-                            this.pnlAleartMsg.Visible = false;
+                            this.pnlAlertMsg.Visible = true;
                         }
                         else
                         {
                             this.pnlbillalrt.Visible = true;
                             this.pnlTop.Visible = false;
                             this.pnlmsg.Visible = false;
+                            this.pnlAlertMsg.Visible = false;
                             GetServiceBillAltMsg(sysID);
 
                         }
@@ -115,7 +117,7 @@ namespace RealERPWEB
                     return;
 
                 txtCompMsg.Value = ds2.Tables[0].Rows[0]["commsg"].ToString();
-                txtMsgColor.Value = ds2.Tables[0].Rows[0]["commsgcol"].ToString();
+                ddlMsgColor.Text = ds2.Tables[0].Rows[0]["commsgcol"].ToString();
                 string msgFlg = ds2.Tables[0].Rows[0]["msgflg"].ToString();
                 rbtnMsgStatus.SelectedValue = msgFlg;
 
@@ -318,7 +320,7 @@ namespace RealERPWEB
             string comcod = GetComCode();
 
             string txtCompMsg = this.txtCompMsg.Value.ToString();
-            string txtMsgColor = this.txtMsgColor.Value.ToString();
+            string txtMsgColor = this.ddlMsgColor.Text.ToString();
             string msgStatus = this.rbtnMsgStatus.SelectedValue.ToString();
 
             bool resultb = _linkVendorDb.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUPDATEMSG", txtCompMsg, txtMsgColor, msgStatus, "", "", "", "", "", "", "");

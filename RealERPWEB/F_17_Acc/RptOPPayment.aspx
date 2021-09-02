@@ -95,9 +95,22 @@
 
                                         </div>--%>
                                        </div>
+
+                      
+                            <div class="form-group">
+                                  <div class="col-md-3 pading5px asitCol2">
+                             <%--    <asp:Label ID="lblreport" runat="server" CssClass="lblName lblTxt"  Text="Value" ></asp:Label>--%>
+                                <asp:DropDownList ID="ddlVaule" runat="server"  CssClass="ddlPage" Width="100px">
+                                    <asp:ListItem Value="HonourBasis">Honour Basis</asp:ListItem>
+                                    <asp:ListItem Value="PostDated">Post Dated</asp:ListItem>
+                                    <asp:ListItem Value="All">ALL</asp:ListItem>                                  
+                                </asp:DropDownList>
+                                   </div>
+
+                              </div>
                                  <div class="form-group">
                                         <div class="col-md-2 pading5px asitCol2">
-                                          <asp:Label ID="lblPage" runat="server" CssClass="lblName lblTxt"  Text="Size:" Visible="False" Style="margin-left:-30px;"></asp:Label>
+                                          <asp:Label ID="lblPage" runat="server" CssClass="lblName lblTxt"  Text="Size:" Visible="False"></asp:Label>
 
                                              <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"  onselectedindexchanged="ddlpagesize_SelectedIndexChanged" Visible="False"  CssClass="ddlPage">
                                                         <asp:ListItem Value="10">10</asp:ListItem>

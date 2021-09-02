@@ -1185,6 +1185,60 @@ namespace RealERPLIB
             }
         }
 
+        public DataSet GetcheckUser(string comcode, string userId)
+        {
+            try
+            {
+                string connectionString = @"Server=123.200.23.58\MSSQL2K14;Database=DB_PINBOARD;uid=sa;pwd=@*asit1qaz`123#;";
+
+                try
+                {
+
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        SqlCommand command = new SqlCommand();
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.CommandText = "SP_TASK_MANAGMENT";
+                        command.Parameters.Add(new SqlParameter("@Comp1", comcode));
+                        command.Parameters.Add(new SqlParameter("@CallType", "GETCHECKUER"));
+                        command.Parameters.Add(new SqlParameter("@Desc1", userId));
+                        command.Connection = connection;
+                        try
+                        {
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                            SqlDataAdapter adp = new SqlDataAdapter();
+                            adp.SelectCommand = command;
+
+                            DataSet ds = new DataSet();
+                            adp.Fill(ds);
+                            return ds;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                        finally
+                        {
+                            connection.Close();
+                            connection.Dispose();
+                        }
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    this.SetError(ex);
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                this.SetError(ex);
+                return null;
+            }
+        }
 
         public bool InsertTicket(string companyType, string txtTicketDesc, string ticketType, string taskProgress, string priority, string createTask, string username, string txtRemarks, string proposedUser, string compUser)
         {

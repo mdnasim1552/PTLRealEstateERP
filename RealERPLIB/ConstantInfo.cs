@@ -1108,8 +1108,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2203000", "2203112", "F_22_Sal", "RptSalInterest?", "Type=CustNoteSheet", "Customer Note Sheet", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203113", "F_22_Sal", "RptSalInterest?", "Type=CustApp", "Customer Application", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203115", "F_22_Sal", "RptSalInterest?", "Type=PaymentSchedule", "Customer Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
+           
             tblObj.Rows.Add(new Object[] { "2203000", "2203116", "F_22_Sal", "RptSalInterest02?", "Type=interest", "Delay Charge 02", "Sales & Recovery", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2201000", "2201118", "F_22_Sal", "SalesPaymentCodeBook?", "Type=Sales", "Payment Schedule Code", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2203119", "F_22_Sal", "RptSalInterest?", "Type=EarlybenADelay", "Early Benefit & Delay Charge", "Sales & Recovery", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "2202000", "2202120", "F_23_CR", "ClientInfo", "", "Client Information", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203130", "F_22_Sal", "RptBgdSales?", "Type=Report", "Budgeted Sales", "Sales & Recovery", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2203000", "2203140", "F_22_Sal", "RptCalTotalAvgValue", "", "Sold Information", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7300,7 +7303,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0258000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0259000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0260000000", "", "", "", true, "" });
-        // mnuTbl1.Rows.Add(new Object[] { "0300000000", "Transactions Inputs", "", "", false, "mb" });
+            // mnuTbl1.Rows.Add(new Object[] { "0300000000", "Transactions Inputs", "", "", false, "mb" });
+
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "	Entry Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0301010000", "01. Money Receipt", "F_22_Sal/RptMktMoneyReceipt?Type=CustCare", "", true, "" });
@@ -7310,48 +7314,47 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0301050000", "08. Day Wise Collection Summary", "F_22_Sal/RptTransactionSt?Type=TransSummary&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301060000", "09. Delay Charge", "F_22_Sal/RptSalInterest?Type=interest", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301070000", "10. Delay Charge 02", "F_22_Sal/RptSalInterest02?Type=interest", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301080000", "14. Client Ledger", "F_23_CR/RptCustPayStatus?Type=ClLedger", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301090000", "16. Customer Invoice", "F_23_CR/RptCustomerInvoice", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301100000", "27. Invoice Print", "F_22_Sal/RptSalInterest?Type=DueCollAll", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301110000", "26. Current Dues", "F_23_CR/RptReceivedList02?Type=CurDues&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301120000", "29. Month Wise Collection", "F_17_Acc/RptAccCollVsClearance?Type=MonAR&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301130000", "30. Project Wise Collection Status", "F_23_CR/RptProjectWiseCollection", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301140000", "30. Monthly Collection Schedule", "F_23_CR/RptReceivedList04?Type=MonthlyColSchedule", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301150000", "30. Monthly Collection Schedule(Summary)", "F_23_CR/RptReceivedList04?Type=MonthlyColScheduleSum", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301150000", "30. Monthly Collection (Schedule Vs Actual)", "F_23_CR/RptReceivedList04?Type=MonthlyColScheduleDet", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301160000", "30. Monthly Collection(Receipt Type)", "F_23_CR/RptReceivedList04?Type=MonthlyColl", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301160000", "30. Monthly Dues and Overdues (Company Wise)", "F_23_CR/RptReceivedList04?Type=MonthlyDuesOverDues", "", true, "" });           
-            mnuTbl1.Rows.Add(new Object[] { "0301170000", "30. Invoice 360 <sup>0", "F_23_CR/RptInvoice02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301180000", "07. Refundable Benifit(Simple)", "F_23_CR/SaleRefBeneift", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301190000", "08. Customer Details Information", "F_23_CR/EntryCustomerInfo?Type=CustInfo", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301200000", "06. Early Payment Benifit", "F_23_CR/EarlyPayment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301080000", "10. Early Benefit & Delay Charge", "F_22_Sal/RptSalInterest?Type=EarlybenADelay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301090000", "14. Client Ledger", "F_23_CR/RptCustPayStatus?Type=ClLedger", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301100000", "16. Customer Invoice", "F_23_CR/RptCustomerInvoice", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301110000", "27. Invoice Print", "F_22_Sal/RptSalInterest?Type=DueCollAll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301120000", "26. Current Dues", "F_23_CR/RptReceivedList02?Type=CurDues&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301130000", "29. Month Wise Collection", "F_17_Acc/RptAccCollVsClearance?Type=MonAR&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301140000", "30. Project Wise Collection Status", "F_23_CR/RptProjectWiseCollection", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301150000", "30. Monthly Collection Schedule", "F_23_CR/RptReceivedList04?Type=MonthlyColSchedule", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301160000", "30. Monthly Collection Schedule(Summary)", "F_23_CR/RptReceivedList04?Type=MonthlyColScheduleSum", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301170000", "30. Monthly Collection (Schedule Vs Actual)", "F_23_CR/RptReceivedList04?Type=MonthlyColScheduleDet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301180000", "30. Monthly Collection(Receipt Type)", "F_23_CR/RptReceivedList04?Type=MonthlyColl", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301190000", "30. Monthly Dues and Overdues (Company Wise)", "F_23_CR/RptReceivedList04?Type=MonthlyDuesOverDues", "", true, "" });        
+            mnuTbl1.Rows.Add(new Object[] { "0301200000", "30. Invoice 360 <sup>0", "F_23_CR/RptInvoice02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301210000", "07. Refundable Benifit(Simple)", "F_23_CR/SaleRefBeneift", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301220000", "08. Customer Details Information", "F_23_CR/EntryCustomerInfo?Type=CustInfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301230000", "06. Early Payment Benifit", "F_23_CR/EarlyPayment", "", true, "" });
 
             
             
 
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0302100000", "	Supervision Level", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0302200000", "12. Transaction Search", "F_23_CR/TransactionSearch", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302300000", "13. Payment Status", "F_23_CR/RptCustPayStatus?Type=Payment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302400000", "	Supervision Level", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0302500000", "12. Transaction Search", "F_23_CR/TransactionSearch", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302600000", "13. Payment Status", "F_23_CR/RptCustPayStatus?Type=Payment", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0302400000", "15. Client Payment Details", "F_23_CR/RptCustPayStatus?Type=ClPayDetails", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302500000", "17. List Of Return Cheque(Report)", "F_23_CR/RptDishonourCheque", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302600000", "18. Accounts Receivable - 01", "F_23_CR/RptReceivedList", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302700000", "19. Accounts Receivable - 02", "F_23_CR/RptReceivedList02?Type=Receivedlist&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302700000", "15. Client Payment Details", "F_23_CR/RptCustPayStatus?Type=ClPayDetails", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302800000", "17. List Of Return Cheque(Report)", "F_23_CR/RptDishonourCheque", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302900000", "18. Accounts Receivable - 01", "F_23_CR/RptReceivedList", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000000", "19. Accounts Receivable - 02", "F_23_CR/RptReceivedList02?Type=Receivedlist&prjcode=", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0328000000", "Letter", "", "", false, "b" });
-            mnuTbl1.Rows.Add(new Object[] { "0329000000", "09. Down Payment Letter", "F_22_Sal/RptThanksLetter?Type=Down", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0330000000", "10. Installment Letter", "F_22_Sal/RptThanksLetter?Type=Install", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0331000000", "11. Dues Letter", "F_22_Sal/RptThanksLetter?Type=Dues", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0332000000", "12. Reminder Letter", "F_22_Sal/RptThanksLetter?Type=Remind", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0333000000", "13. Last Reminder Letter", "F_22_Sal/RptThanksLetter?Type=LRemind", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0334000000", "31. Monthly Collection(Receipt Type Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollMerge", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0335000000", "32. Monthly Collection Schedule(Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollSchMerge", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0336000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0337000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0338000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0331000000", "Letter", "", "", false, "b" });
+            mnuTbl1.Rows.Add(new Object[] { "0332000000", "09. Down Payment Letter", "F_22_Sal/RptThanksLetter?Type=Down", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0333000000", "10. Installment Letter", "F_22_Sal/RptThanksLetter?Type=Install", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0334000000", "11. Dues Letter", "F_22_Sal/RptThanksLetter?Type=Dues", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0335000000", "12. Reminder Letter", "F_22_Sal/RptThanksLetter?Type=Remind", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0336000000", "13. Last Reminder Letter", "F_22_Sal/RptThanksLetter?Type=LRemind", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0337000000", "31. Monthly Collection(Receipt Type Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollMerge", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0338000000", "32. Monthly Collection Schedule(Merge)", "F_23_CR/RptMonthlyCollectionMerge?Type=MonthlyCollSchMerge", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0339000000", "", "", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0340000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0341000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0342000000", "", "", "", true, "" });

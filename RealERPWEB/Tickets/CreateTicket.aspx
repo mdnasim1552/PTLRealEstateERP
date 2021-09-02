@@ -48,7 +48,7 @@
                                         <div class="col-lg-4 col-md-4 col-sm-12">
                                             <div class="form-group">
                                                 <label for="create date">Create Date</label>
-                                                <asp:TextBox ID="txtTdate" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtTdate" runat="server" CssClass="form-control" AutoCompleteType="Disabled"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy h: mm tt" TargetControlID="txtTdate"></cc1:CalendarExtender>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                             <div class="form-group">
                                                 <label for="image">Image Upload </label>
                                                 <asp:FileUpload ID="imageUpload" runat="server" />
-                                                <asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="btnUpload_Click"></asp:Button>
+                                                <%--<asp:Button ID="btnUpload" Text="Upload" runat="server" OnClick="btnUpload_Click"></asp:Button>--%>
                                                 <asp:Image ID="imageShow" runat="server" />
                                             </div>
                                         </div>

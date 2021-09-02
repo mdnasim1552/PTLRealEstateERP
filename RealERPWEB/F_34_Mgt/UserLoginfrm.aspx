@@ -270,17 +270,12 @@
                                 <asp:TemplateField HeaderText="Web Mail PassWord">
 
 
+                                   
                                     <ItemTemplate>
-                                        <asp:Label ID="lgvWebmailPWD" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mailpass")) %>'
-                                            Width="80px"></asp:Label>
-                                    </ItemTemplate>
-
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TxtWebmailPWD" runat="server" BackColor="Transparent"
+                                        <asp:TextBox ID="TxtWebmailPWD" runat="server" BackColor="Transparent" TextMode="Password"
                                             BorderStyle="None" Width="80px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mailpass")) %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                    </ItemTemplate>
 
 
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />

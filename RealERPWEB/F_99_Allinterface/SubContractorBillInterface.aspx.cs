@@ -1623,12 +1623,18 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkBillCSApp");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEditBilllReq");
+                HyperLink lnkbtnPrintCSApp = (HyperLink)e.Row.FindControl("lnkbtnPrintCSApp");
+
                 string blreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string recomsup = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString() == ""?  "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString();
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString() == "" ? "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
 
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSApproval&prjcode=" + pactcode + "&genno=" + blreqno + "&sircode=" + "" + "&recomsup=" + recomsup + "&msrno="+ msrno;
+
+                lnkbtnPrintCSApp.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode + "&pType=" + "CSApproval" + "&msrno=" + msrno;
+
+
 
             }
         }
@@ -1661,6 +1667,21 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
 
             }
+        }
+
+        protected void btnDelReqCSApp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDelWrkodr_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnDelReadyBill_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
