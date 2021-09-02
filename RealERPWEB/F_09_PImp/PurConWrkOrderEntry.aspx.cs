@@ -271,6 +271,7 @@ namespace RealERPWEB.F_09_PImp
                 string txtSign4 = "";
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
+                Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
                 Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
                 Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
@@ -281,6 +282,7 @@ namespace RealERPWEB.F_09_PImp
             {
                 refNo = this.txtOrderRef.Text.ToString();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder", lst, null, null);
+                Rpt1.EnableExternalImages = true;
 
             }
 
@@ -307,7 +309,6 @@ namespace RealERPWEB.F_09_PImp
             string GDesc = lst[0].grpdesc;
             string prjname = lst1[0].pactdesc.ToString();
 
-            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("CurDate", "Date: " + CurDate));
