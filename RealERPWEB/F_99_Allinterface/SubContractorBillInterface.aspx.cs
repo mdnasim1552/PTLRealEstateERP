@@ -1659,12 +1659,16 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkWorkOrder");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnPrintWorkOrder");
 
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
+
+                hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             }
         }
