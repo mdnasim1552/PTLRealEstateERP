@@ -1639,6 +1639,36 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        protected void btnDelReqCSApp_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurLabRequisition?Type=CSApproval";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
+            string refno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvissuerefbill")).Text.Trim();
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "", "", msrno, refno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+        }
+
         protected void gvWorkOrder_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -1673,10 +1703,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-        protected void btnDelReqCSApp_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         protected void btnDelWrkodr_Click(object sender, EventArgs e)
         {
