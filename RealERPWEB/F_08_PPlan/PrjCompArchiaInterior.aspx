@@ -165,45 +165,32 @@
     </div>
     <div class="card card-fluid" style="min-height: 450px;">
         <div class="card-body">
-            <div class="row">
-
-
+            <div class="row mt-2">
                 <div class="col-md-1">
                     <div class="form-group">
                         <label class="control-label  lblmargin-top9px" for="project" id="lblproject" runat="server">Project Name</label>
-
                     </div>
                 </div>
-
-
                 <div class="col-md-4">
                     <div class="form-group">
-
                         <asp:DropDownList ID="ddlPrjName" runat="server" CssClass=" form-control chzn-select">
                         </asp:DropDownList>
-
                     </div>
                 </div>
-
                 <div class="col-md-1">
                     <div class="form-group">
-                        <label class="control-label  lblmargin-top9px" id="lblwork" runat="server">Work</label>
-
+                        <label class="control-label  lblmargin-top9px ml-3" id="lblwork" runat="server">Work</label>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-
-                        <asp:DropDownList ID="ddlwork" runat="server" CssClass="form-control chzn-select">
+                        <asp:DropDownList ID="ddlwork" runat="server" CssClass="form-control chzn-select ddlPage">
                         </asp:DropDownList>
-
                     </div>
                 </div>
-
                 <div class="col-md-1">
                     <div class="form-group">
-                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary  " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
+                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary ml-1 btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                     </div>
                 </div>
 

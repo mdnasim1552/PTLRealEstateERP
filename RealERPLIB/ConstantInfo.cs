@@ -282,10 +282,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0802000", "0802001", "F_08_PPlan", "ProTarget", "", "Construction Planning", "Project Planning", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0802000", "0802015", "F_08_PPlan", "ProTargetTimeBasis?", "Type=GrpWise", "Construction Planning - Time Basis", "Project Planning", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "0802000", "0802030", "F_08_PPlan", "PrjCompArchiaInterior?", "Type=Architecture", "Project Design", "Project Planning", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0802000", "0802030", "F_08_PPlan", "PrjCompArchiaInterior?", "Type=Architecture", "Building Design", "Project Planning", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0802000", "0802031", "F_08_PPlan", "PrjCompArchiaInterior?", "Type=Landscape", "Landscape Design", "Project Planning", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0802000", "0802032", "F_08_PPlan", "PrjCompArchiaInterior?", "Type=MasterPlan", "Master Plan", "Project Planning", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0802000", "0802035", "F_08_PPlan", "PrjCompArchiaInterior?", "Type=Interior", "Interior Design", "Project Planning", "False", "False", "False", "False" });
 
 
-            tblObj.Rows.Add(new Object[] { "0802000", "0802035", "F_08_PPlan", "PrjCompArchiaInterior?", "Type=Interior", "Project Interior", "Project Planning", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0802000", "0802036", "F_08_PPlan", "RptPrjCompArchiaInterior?", "Type=Architecture", "Project Architecture Report", "Project Planning", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "0803000", "0803120", "F_08_PPlan", "RptProTarget?", "Type=WorkBasis", "Cash Flow - Work Basis", "Project Planning", "False", "False", "False", "False" }); ;
@@ -4411,27 +4413,26 @@ namespace RealERPLIB
         
 
             
-            mnuTbl1.Rows.Add(new Object[] { "0200000000", "Pre-Project Planning", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0200000000", "Ongoing Project Planning", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Project Pre-Planning-Overall", "F_08_PPlan/PrjCompFlowchart?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "01. Project Pre-Planning-Legal", "F_08_PPlan/PrjCompFlowchart?Type=Legal&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "01. Project Pre-Planning-Logistic", "F_08_PPlan/PrjCompFlowchart?Type=Logistic&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0204000000", "01. Electromechanical", "F_08_PPlan/PrjCompFlowchart?Type=Design&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "01. Project Pre-Planning-Brand", "F_08_PPlan/PrjCompFlowchart?Type=Brand&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "01. Project Design", "F_08_PPlan/PrjCompArchiaInterior?Type=Architecture&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "01. Project Interior", "F_08_PPlan/PrjCompArchiaInterior?Type=Interior&prjcode=", "", true, "" });
-            
+            mnuTbl1.Rows.Add(new Object[] { "0206000000", "01. Building Design", "F_08_PPlan/PrjCompArchiaInterior?Type=Architecture&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000000", "01. Interior Design", "F_08_PPlan/PrjCompArchiaInterior?Type=Interior&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "01. Landscape Design", "F_08_PPlan/PrjCompArchiaInterior?Type=Landscape&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "01. Master Plan", "F_08_PPlan/PrjCompArchiaInterior?Type=MasterPlan&prjcode=", "", true, "" });
 
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "Construction Planning", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0210000000", "05. Land And Overhead Planning", "F_08_PPlan/ProBgdColl?Type=Prolaovtar", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "05. Sales & Collection Planning", "F_08_PPlan/ProBgdColl?Type=ProSalestar", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0212000000", "02. Construction Planning- Time Base", "F_08_PPlan/ProTargetTimeBasis?Type=GrpWise&prjcode=&sircode=&flrcod=", "", true, "" });           
+            mnuTbl1.Rows.Add(new Object[] { "0210000000", "Construction Planning", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000000", "05. Land And Overhead Planning", "F_08_PPlan/ProBgdColl?Type=Prolaovtar", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0213000000", "05. Sales & Collection Planning", "F_08_PPlan/ProBgdColl?Type=ProSalestar", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000000", "02. Construction Planning- Time Base", "F_08_PPlan/ProTargetTimeBasis?Type=GrpWise&prjcode=&sircode=&flrcod=", "", true, "" });           
            
-           
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0217000000", "", "", "", true, "" });
