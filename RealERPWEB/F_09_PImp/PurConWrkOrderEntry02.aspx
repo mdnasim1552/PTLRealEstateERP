@@ -69,7 +69,7 @@
 
                                         <div class="col-md-4 pading5px pull-right">
                                             <asp:LinkButton ID="lbtnPrevList" runat="server" CssClass="lblTxt lblName prvLinkBtn" OnClick="lbtnPrevList_Click">Prev. List:</asp:LinkButton>
-                                            <asp:DropDownList ID="ddlPrevList" runat="server" CssClass=" ddlPage inputTxt" Width="250px" AutoPostBack="True" TabIndex="3"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlPrevList" runat="server" CssClass="chzn-select form-control  inputTxt" Width="250px" AutoPostBack="True" TabIndex="3"></asp:DropDownList>
 
                                         </div>
 

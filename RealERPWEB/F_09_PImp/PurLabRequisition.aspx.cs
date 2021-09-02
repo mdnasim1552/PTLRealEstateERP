@@ -17,6 +17,7 @@ using RealERPLIB;
 using RealERPRPT;
 using RealEntity;
 using System.IO;
+using System.Drawing;
 
 namespace RealERPWEB.F_09_PImp
 {
@@ -547,6 +548,15 @@ namespace RealERPWEB.F_09_PImp
                 //this.grvissue_DataBind();
                 return;
             }
+            if (this.Request.QueryString["Type"]== "CSApproval")
+            {
+                DataTable dt = (DataTable)ViewState["tblbillreq"];
+                foreach(DataRow dr1 in dt.Rows)
+                {
+                    dr1["csircode"] = this.Request.QueryString["recomsup"].ToString();
+                }
+                ViewState["tblbillreq"] = dt;
+            }
 
             this.lblfloorno.Visible = true;
             this.ddlfloorno.Visible = true;
@@ -860,7 +870,7 @@ namespace RealERPWEB.F_09_PImp
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
 
-
+            this.lnkTotal_Click(null, null);
 
 
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
@@ -909,6 +919,16 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
+
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "CHECK_DUPLICATE_BILL_REF", Refno, "", "", "", "", "", "", "", "");
+            if (ds2.Tables[0].Rows.Count > 0)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref No";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+
+          
             //string appxml = tbl2.Rows[0]["approval"].ToString();
 
 
@@ -1140,11 +1160,13 @@ namespace RealERPWEB.F_09_PImp
                 dlist.DataValueField = "ssircode";
                 dlist.DataSource = dt;
                 dlist.DataBind();
+                dlist.SelectedValue = contractor;
                 //string recom = "";
                 //if (Request.QueryString.AllKeys.Contains("mykey")){
                 //    recom = this.Request.QueryString["recomsup"].ToString() ?? "";
                 //}
-                dlist.SelectedValue = Request.QueryString.AllKeys.Contains("recomsup") ? this.Request.QueryString["recomsup"].ToString() : contractor;
+
+                //dlist.SelectedValue = Request.QueryString.AllKeys.Contains("recomsup") ? this.Request.QueryString["recomsup"].ToString() : contractor;
 
 
 
@@ -1170,14 +1192,17 @@ namespace RealERPWEB.F_09_PImp
             string comcod = this.GetCompCode();
             string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
             string mMSRNo = this.Request.QueryString["msrno"].ToString() == "" ? "" : this.Request.QueryString["msrno"].ToString();
+            string lreqno = this.Request.QueryString["genno"].ToString() == "" ? "" : this.Request.QueryString["genno"].ToString();
+            string prjcode = this.Request.QueryString["prjcode"].ToString() == "" ? "" : this.Request.QueryString["prjcode"].ToString();
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURMSRINFO1CON", mMSRNo, CurDate1,
-                          "", "", "", "", "", "", "");
+                          lreqno, prjcode, "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblt01"] = ds1.Tables[1];
             Session["tblt02"] = this.HiddenSameData(ds1.Tables[2]);
             Session["tblterm"] = ds1.Tables[3];
+            Session["tblcsirdesc"] = ds1.Tables[5];
 
 
             this.gvMSRInfo_DataBind();
@@ -1196,6 +1221,23 @@ namespace RealERPWEB.F_09_PImp
                 TextBox txtrate4 = (TextBox)e.Row.FindControl("txtrate4");
                 TextBox txtrate5 = (TextBox)e.Row.FindControl("txtrate5");
 
+
+                Label txtamt1 = (Label)e.Row.FindControl("lblgvAmount1");
+                Label txtamt2 = (Label)e.Row.FindControl("lblgvAmount2");
+                Label txtamt3 = (Label)e.Row.FindControl("lblgvAmount3");
+                Label txtamt4 = (Label)e.Row.FindControl("lblgvAmount4");
+                Label txtamt5 = (Label)e.Row.FindControl("lblgvAmount5");
+
+                TextBox txtbgdrat = (TextBox)e.Row.FindControl("txtgvMSRbgdrat");
+
+                double bdgrate = Convert.ToDouble("0" + txtbgdrat.Text.Trim());
+                double rate1 = Convert.ToDouble("0" + txtrate1.Text.Trim());
+                double rate2 = Convert.ToDouble("0" + txtrate2.Text.Trim());
+                double rate3 = Convert.ToDouble("0" + txtrate3.Text.Trim());
+                double rate4 = Convert.ToDouble("0" + txtrate4.Text.Trim());
+                double rate5 = Convert.ToDouble("0" + txtrate5.Text.Trim());
+
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
                 if (code == "")
                 {
@@ -1208,6 +1250,31 @@ namespace RealERPWEB.F_09_PImp
                     txtrate3.Style.Add("text-align", "Left");
                     txtrate4.Style.Add("text-align", "Left");
                     txtrate5.Style.Add("text-align", "Left");
+                }
+                if (rate1 > bdgrate)
+                {
+                    txtrate1.ForeColor = Color.Red;
+                    txtamt1.ForeColor = Color.Red;
+                }
+                if (rate2 > bdgrate)
+                {
+                    txtrate2.ForeColor = Color.Red;
+                    txtamt2.ForeColor = Color.Red;
+                }
+                if (rate3 > bdgrate)
+                {
+                    txtrate3.ForeColor = Color.Red;
+                    txtamt3.ForeColor = Color.Red;
+                }
+                if (rate4 > bdgrate)
+                {
+                    txtrate4.ForeColor = Color.Red;
+                    txtamt4.ForeColor = Color.Red;
+                }
+                if (rate5 > bdgrate)
+                {
+                    txtrate5.ForeColor = Color.Red;
+                    txtamt5.ForeColor = Color.Red;
                 }
 
             }
@@ -1223,7 +1290,7 @@ namespace RealERPWEB.F_09_PImp
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 4;
+                cell0.ColumnSpan = 5;
                 gvrow.Cells.Add(cell0);
                 DataTable dt = (DataTable)Session["tblt01"];
                 //int j = 5;
@@ -1308,31 +1375,21 @@ namespace RealERPWEB.F_09_PImp
 
         protected void DdlContractor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //for (int i = 0; i < this.grvissue.Rows.Count; i++)
-            //{
-            //    string contrator = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedItem.Text.Trim();
-            //    string txtlabrate = ((TextBox)this.grvissue.Rows[i].FindControl("txtlabrate")).Text.ToString();
-            //    string rsircode = ((Label)this.grvissue.Rows[i].FindControl("lblitemcode")).Text.ToString();
 
-            //    DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
-            //    DataTable dt2 = (DataTable)Session["tblt02"]; // cs 
+            DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
+            DataTable dt2 = (DataTable)Session["tblcsirdesc"]; // cs 
+         
+            int rowindex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+            string csircode = ((DropDownList)this.grvissue.Rows[rowindex].FindControl("DdlContractor")).SelectedValue.ToString();
+            string rsircode = dt.Rows[rowindex]["rsircode"].ToString();
 
-
-            //    DataRow[] drstk = dt2.Select(" rsircode='" + rsircode + "' and csircode='" + contrator + "'");
-
-            //    for (int j = 0; j < drstk.Length; j++)
-            //    {
-
-            //        DataRow dr2 = dt.NewRow();
-
-            //        dr2["reqrat"] = stkqty * stkrate;
-
-            //        dt.Rows.Add(dr2);
-
-            //    }
+            dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+            dt.Rows[rowindex]["csircode"] = csircode;
 
 
-            //}
+            Session["tblbillreq"] = dt;
+            this.grvissue_DataBind();
+
         }
     }
 }

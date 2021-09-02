@@ -1421,7 +1421,7 @@
 
                                                     <asp:HyperLink ID="lnkbtnPrintIN" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
 
-                                                    <asp:LinkButton ID="btnDelOrder" runat="server" CssClass="btn btn-xs btn-default" Visible="false"><span style="color:red" class="fa fa-recycle "></span> </asp:LinkButton>
+                                                    <asp:LinkButton ID="btnDelOrder" runat="server" CssClass="btn btn-xs btn-default"><span style="color:red" class="fa fa-recycle "></span> </asp:LinkButton>
                                                 </ItemTemplate>
                                                 <ItemStyle Width="100px" />
                                                 <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />

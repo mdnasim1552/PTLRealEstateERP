@@ -369,7 +369,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3330"://Bridge
-                            // case "3101"://Multiplan
+                case "3101"://Multiplan
                     this.rbtlBonSheet.SelectedIndex = 6;
                     break;
 
