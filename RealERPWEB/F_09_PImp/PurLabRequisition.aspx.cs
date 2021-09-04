@@ -890,6 +890,7 @@ namespace RealERPWEB.F_09_PImp
             string usrid = hst["usrid"].ToString();
             string Sessionid = hst["session"].ToString();
             string trmid = hst["compname"].ToString();
+            string date1 = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
             this.SaveValue();
             DataTable tbl2 = (DataTable)ViewState["tblbillreq"];
@@ -905,10 +906,11 @@ namespace RealERPWEB.F_09_PImp
 
             string mISUDAT = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString();
             string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
-            string mCONCODE = "";
             string mISURNAR = this.txtISSNarr.Text.Trim();
 
             string trade = this.ddltrade.SelectedValue.ToString();
+
+
 
 
 
@@ -919,14 +921,17 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "CHECK_DUPLICATE_BILL_REF", Refno, "", "", "", "", "", "", "", "");
-            if (ds2.Tables[0].Rows.Count > 0)
+            if(Request.QueryString["Type"]== "Entry")
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref No";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "CHECK_DUPLICATE_BILL_REF", Refno, "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref No";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
             }
+
 
           
             //string appxml = tbl2.Rows[0]["approval"].ToString();
@@ -971,13 +976,25 @@ namespace RealERPWEB.F_09_PImp
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-
-
-
                 // if (Isuqty > 0)
+            }
 
+            if(Request.QueryString["Type"] == "CSApproval" && result)
+            {
+                string msrno = Request.QueryString["msrno"].ToString() == "" ? "" : Request.QueryString["msrno"].ToString();
+                string prjcode = Request.QueryString["prjcode"].ToString() == "" ? "" : Request.QueryString["prjcode"].ToString();
+
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "UPDATEPURMSRCONAINFO", msrno, prjcode, usrid, Sessionid, trmid, date1, "", "");
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
 
             }
+
+
             this.txtCurISSDate.Enabled = false;
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
