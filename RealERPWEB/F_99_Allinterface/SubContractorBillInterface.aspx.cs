@@ -1764,8 +1764,8 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string oderno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvOrerNo")).Text.Trim();
-            string lreqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvlreq2")).Text.Trim();            
+            string oderno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lgvOrerNo")).Text.Trim();
+            string lreqno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lblgvlreq2")).Text.Trim();            
 
             bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_WORKORDER", null, null, null, oderno, lreqno, "", "", "", "", "", "", "");
 
