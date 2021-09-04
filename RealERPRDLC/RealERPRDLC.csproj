@@ -92,6 +92,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+GetWorkOrder.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
@@ -191,6 +192,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptTopSheet.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrder.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrder2.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptWorkOrder2V1.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderAcme.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2P.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderSuvastu.rdlc" />

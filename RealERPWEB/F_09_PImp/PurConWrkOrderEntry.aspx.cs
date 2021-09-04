@@ -324,8 +324,8 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("body", body));
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Term", Term));
-            Rpt1.SetParameters(new ReportParameter("Suppl", Suppl));
-            Rpt1.SetParameters(new ReportParameter("Suppl", Supp2));
+            Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
+            Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
             Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
 
@@ -385,7 +385,7 @@ namespace RealERPWEB.F_09_PImp
                 string txtSign3 = "";
                 string txtSign4 = "";
 
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2V1", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
                 Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
@@ -418,8 +418,8 @@ namespace RealERPWEB.F_09_PImp
             Rpt1.SetParameters(new ReportParameter("body", body));
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Term", Term));
-            Rpt1.SetParameters(new ReportParameter("Suppl", Suppl));
-            Rpt1.SetParameters(new ReportParameter("Suppl", Supp2));
+            Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
+            Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
             Rpt1.SetParameters(new ReportParameter("GDesc", GDesc));
             Rpt1.SetParameters(new ReportParameter("prjname", prjname));
 
