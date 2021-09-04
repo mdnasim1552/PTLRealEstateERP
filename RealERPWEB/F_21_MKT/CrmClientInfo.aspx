@@ -2733,7 +2733,19 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "virnotes")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <%--21--%>
+                                               
+                                                   <%--21--%>
+                                                
+                                                <asp:TemplateField HeaderText="Prefered Location" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgprefdesc" runat="server" Width="120px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prefdesc")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                
+                                                
+                                                
+                                                <%--22--%>
 
                                                 <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
