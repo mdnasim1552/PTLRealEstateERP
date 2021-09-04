@@ -22,7 +22,7 @@
                   <TextRun>
                     <Value>=Parameters!payTo.Value</Value>
                     <Style>
-                      <FontFamily>cambria</FontFamily>
+                      <FontFamily>Cambria</FontFamily>
                       <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
