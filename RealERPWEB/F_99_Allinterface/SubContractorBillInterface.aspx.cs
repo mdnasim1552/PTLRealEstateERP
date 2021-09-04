@@ -1639,6 +1639,36 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        protected void btnDelReqCSApp_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurLabRequisition?Type=CSApproval";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
+            string refno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvissuerefbill")).Text.Trim();
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "", "", msrno, refno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+        }
+
         protected void gvWorkOrder_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -1659,20 +1689,21 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkWorkOrder");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnPrintWorkOrder");
 
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
+
+                hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             }
         }
 
-        protected void btnDelReqCSApp_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         protected void btnDelWrkodr_Click(object sender, EventArgs e)
         {

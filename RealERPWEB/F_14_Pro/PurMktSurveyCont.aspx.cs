@@ -15,6 +15,8 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+using System.Drawing;
+
 namespace RealERPWEB.F_14_Pro
 {
     public partial class PurMktSurveyCont : System.Web.UI.Page
@@ -783,6 +785,7 @@ namespace RealERPWEB.F_14_Pro
 
             //    return;
             //}
+            this.lbtnTotal_Click(null, null);
             bool result;
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
@@ -1311,6 +1314,23 @@ namespace RealERPWEB.F_14_Pro
                 TextBox txtrate4 = (TextBox)e.Row.FindControl("txtrate4");
                 TextBox txtrate5 = (TextBox)e.Row.FindControl("txtrate5");
 
+
+                Label txtamt1 = (Label)e.Row.FindControl("lblgvAmount1");
+                Label txtamt2 = (Label)e.Row.FindControl("lblgvAmount2");
+                Label txtamt3 = (Label)e.Row.FindControl("lblgvAmount3");
+                Label txtamt4 = (Label)e.Row.FindControl("lblgvAmount4");
+                Label txtamt5 = (Label)e.Row.FindControl("lblgvAmount5");
+
+                TextBox txtbgdrat = (TextBox)e.Row.FindControl("txtgvMSRbgdrat");
+
+                double bdgrate = Convert.ToDouble("0" + txtbgdrat.Text.Trim());
+                double rate1 = Convert.ToDouble("0" + txtrate1.Text.Trim());
+                double rate2 = Convert.ToDouble("0" + txtrate2.Text.Trim());
+                double rate3 = Convert.ToDouble("0" + txtrate3.Text.Trim());
+                double rate4 = Convert.ToDouble("0" + txtrate4.Text.Trim());
+                double rate5 = Convert.ToDouble("0" + txtrate5.Text.Trim());
+
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
                 if (code == "")
                 {
@@ -1318,11 +1338,36 @@ namespace RealERPWEB.F_14_Pro
                 }
                 if (ASTUtility.Left(code, 2) == "71")
                 {
-                    txtrate1.Style.Add("text-align", "Left");
+                    txtrate1.Style.Add("text-align", "Left") ;
                     txtrate2.Style.Add("text-align", "Left");
                     txtrate3.Style.Add("text-align", "Left");
                     txtrate4.Style.Add("text-align", "Left");
                     txtrate5.Style.Add("text-align", "Left");
+                }
+                if(rate1 > bdgrate)
+                {
+                    txtrate1.ForeColor = Color.Red;
+                    txtamt1.ForeColor = Color.Red;
+                }
+                if (rate2 > bdgrate)
+                {
+                    txtrate2.ForeColor = Color.Red;
+                    txtamt2.ForeColor = Color.Red;
+                }
+                if (rate3 > bdgrate)
+                {
+                    txtrate3.ForeColor = Color.Red;
+                    txtamt3.ForeColor = Color.Red;
+                }
+                if (rate4 > bdgrate)
+                {
+                    txtrate4.ForeColor = Color.Red;
+                    txtamt4.ForeColor = Color.Red;
+                }
+                if (rate5 > bdgrate)
+                {
+                    txtrate5.ForeColor = Color.Red;
+                    txtamt5.ForeColor = Color.Red;
                 }
 
             }

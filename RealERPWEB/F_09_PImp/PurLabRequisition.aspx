@@ -634,6 +634,17 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
+                                     <asp:TemplateField HeaderText="BOQ Rate">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvMSRbgdrat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="50px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
+
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtrate1" runat="server" BorderColor="#99CCFF"
