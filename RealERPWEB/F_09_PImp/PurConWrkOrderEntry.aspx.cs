@@ -385,7 +385,7 @@ namespace RealERPWEB.F_09_PImp
                 string txtSign3 = "";
                 string txtSign4 = "";
 
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2V1", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
                 Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));

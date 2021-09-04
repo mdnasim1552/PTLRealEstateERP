@@ -192,7 +192,6 @@
     <EmbeddedResource Include="R_09_PIMP\RptTopSheet.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrder.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrder2.rdlc" />
-    <EmbeddedResource Include="R_09_PIMP\RptWorkOrder2V1.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderAcme.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderP2P.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptWorkOrderSuvastu.rdlc" />
