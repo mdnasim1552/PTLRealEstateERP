@@ -254,6 +254,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                    0 : dt.Compute("sum(cven)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvati.FooterRow.FindControl("lgvFmallow")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mallow)", "")) ?
                                    0 : dt.Compute("sum(mallow)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvati.FooterRow.FindControl("lgvFDailyall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(otallow)", "")) ?
+                                   0 : dt.Compute("sum(otallow)", ""))).ToString("#,##0;(#,##0); ");
 
                     ((Label)this.gvati.FooterRow.FindControl("lgvFgsal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gsal)", "")) ?
                                    0 : dt.Compute("sum(gsal)", ""))).ToString("#,##0;(#,##0); ");
@@ -448,6 +450,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
 
             DataTable dt = (DataTable)Session["tblpay"];
             if (dt == null)
@@ -458,12 +462,28 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var lstsum = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.aitpurpose>();
 
             LocalReport rpt1 = new LocalReport();
-            rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_89_Pay.RptAitPurpose", lstsum, null, null);
-            rpt1.EnableExternalImages = true;
+
+            if (comcod == "3101")
+            {
+
+                rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_89_Pay.RptAitPurposePeb", lstsum, null, null);
+                rpt1.EnableExternalImages = true;
+                rpt1.SetParameters(new ReportParameter("dateRange", "From  : " + frmdate + "To" + todate));
+
+            }
+
+            else
+            {
+                rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_89_Pay.RptAitPurpose", lstsum, null, null);
+                rpt1.EnableExternalImages = true;
+
+            }
+           
 
             rpt1.SetParameters(new ReportParameter("Comname", comnam));
             rpt1.SetParameters(new ReportParameter("comaddress", comadd));
             rpt1.SetParameters(new ReportParameter("rpttitle", "AIT Purpose Salary Statement"));
+            
             //  rpt1.SetParameters(new ReportParameter("date1", ""));
 
             Session["Report1"] = rpt1;
