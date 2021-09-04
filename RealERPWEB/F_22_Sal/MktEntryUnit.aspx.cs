@@ -499,11 +499,13 @@ namespace RealERPWEB.F_22_Sal
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt1.DataTableToList<RealEntity.C_22_Sal.Sales_BO.BudgetnSales>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.rptUnitFxInf()", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.rptUnitFxInf", lst, null, null);
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Unit Fixation Report"));
             Rpt1.SetParameters(new ReportParameter("projectName", this.ddlProjectName.SelectedItem.Text.Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
