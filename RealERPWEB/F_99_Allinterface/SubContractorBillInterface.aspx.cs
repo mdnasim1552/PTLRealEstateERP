@@ -1641,7 +1641,14 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnDelReqCSApp_Click(object sender, EventArgs e)
         {
+            // Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             string url = "PurLabRequisition?Type=CSApproval";
             DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
@@ -1654,9 +1661,12 @@ namespace RealERPWEB.F_99_Allinterface
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
             string refno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvissuerefbill")).Text.Trim();
+            string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreqno")).Text.Trim();
+            
+            
 
 
-            bool resulbill = accData.UpdateTransInfo(comcod, "", "", msrno, refno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP", null,null,null,msrno, refno, usrid, trmnid, session, Date, reqno, "", "", "", "", "", "", "", ""); 
 
             if (!resulbill)
             {
@@ -1665,7 +1675,8 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
-            this.RadioButtonList1_SelectedIndexChanged(null, null);
+            //this.RadioButtonList1_SelectedIndexChanged(null, null);
+            this.lbtnOk_Click(null, null);
 
         }
 
@@ -1684,6 +1695,40 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        protected void btnDelWrkodr_Click(object sender, EventArgs e)
+        {
+            // Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurConWrkOrderEntry?Type=Entry";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreq2")).Text.Trim();
+            string csircode = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvcsircode2")).Text.Trim();
+            //string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
+
+
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP_Final", null, null, null, reqno, csircode, "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            //this.RadioButtonList1_SelectedIndexChanged(null, null);
+            this.lbtnOk_Click(null, null);
+        }
+
         protected void gvReadyForBill_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -1697,22 +1742,41 @@ namespace RealERPWEB.F_99_Allinterface
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
 
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
-
                 hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             }
         }
 
-     
-
-        protected void btnDelWrkodr_Click(object sender, EventArgs e)
-        {
-
-        }
 
         protected void btnDelReadyBill_Click(object sender, EventArgs e)
         {
+            // Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
 
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurConWrkOrderEntry?Type=Entry";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string oderno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvOrerNo")).Text.Trim();
+            string lreqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvlreq2")).Text.Trim();            
+
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_WORKORDER", null, null, null, oderno, lreqno, "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            this.lbtnOk_Click(null, null);
         }
     }
 }

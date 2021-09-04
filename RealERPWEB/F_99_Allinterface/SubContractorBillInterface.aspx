@@ -2574,6 +2574,16 @@
                                                 <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Bill Requistion 02" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillreqno" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreqno")) %>'
+                                                        Width="40px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
 
                                             <asp:TemplateField HeaderText="Ref No">
                                                 <ItemTemplate>
@@ -2699,6 +2709,26 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvissnunof" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreqno1")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Bill Requistion 2" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvbillreq2" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreqno")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Supplier" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvcsircode2" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "csircode")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
 
@@ -2842,6 +2872,16 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvissnunof" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreqno1")) %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                              <asp:TemplateField HeaderText="Bill Requistion 2" Visible="false" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvlreq2" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreqno")) %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
 
