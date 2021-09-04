@@ -629,6 +629,19 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Daily Allowance">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblDailyall" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "otallow")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFDailyall" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                      </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Medical Allowance">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvmallow" runat="server" Style="text-align: right"
