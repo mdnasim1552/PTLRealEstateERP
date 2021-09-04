@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MktEntryUnit : System.Web.UI.Page
@@ -486,45 +488,28 @@ namespace RealERPWEB.F_22_Sal
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string ComPrint = this.GetComPrint();
-            ReportDocument rptstk = new ReportDocument();
-            if (ComPrint == "Printsuvastu")
-            {
-                rptstk = new RealERPRPT.R_22_Sal.rptUnitFxInfSuvastu();
-
-            }
-            else
-            {
-
-                rptstk = new RealERPRPT.R_22_Sal.rptUnitFxInf();
-
-            }
-
             DataTable dt1 = (DataTable)ViewState["tblUnit"];
             DataView dv1 = dt1.DefaultView;
             dv1.RowFilter = "uamt>0";
-            rptstk.SetDataSource(dv1);
+            dt1 = dv1.ToTable();
 
-            TextObject txtCompname = rptstk.ReportDefinition.ReportObjects["TxtCompName"] as TextObject;
-            txtCompname.Text = comnam;
-            TextObject txtprojectname = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            txtprojectname.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt1.DataTableToList<RealEntity.C_22_Sal.Sales_BO.BudgetnSales>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.rptUnitFxInf", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Unit Fixation Report"));
+            Rpt1.SetParameters(new ReportParameter("projectName", this.ddlProjectName.SelectedItem.Text.Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
-            if (ConstantInfo.LogStatus == true)
-            {
-                string eventtype = "Unit Fixation";
-                string eventdesc = "Print Report";
-                string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13);
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }
-            string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            rptstk.SetParameterValue("ComLogo", ComLogo);
-            Session["Report1"] = rptstk;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            dv1.RowFilter = "";
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
         protected void chkAllSInf_CheckedChanged(object sender, EventArgs e)
