@@ -49,6 +49,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_83_Att.RptDailyAttendenceCHL": Rpt1a = SetRptDailyAttendenceCHL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_89_Pay.RptAitPurpose": Rpt1a = SetRptAitPurpose(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptAitPurposePeb": Rpt1a = SetRptAitPurposePeb(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_81_Hrm.R_89_Pay.RptEmpAitCertificate": Rpt1a = SetRptEmpAitCertificate(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptEmpMonthSumm": Rpt1a = SetRptEmpMonthSumm(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_Mkt.RptSourceWiseLeads": Rpt1a = SetRptSourceWiseLeads(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -190,8 +192,14 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-       
+
+
         
+        private static LocalReport SetRptAitPurposePeb(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.aitpurpose>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptAitPurpose(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.aitpurpose>)RptDataSet));

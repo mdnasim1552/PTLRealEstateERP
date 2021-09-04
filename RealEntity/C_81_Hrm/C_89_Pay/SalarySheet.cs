@@ -172,7 +172,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public DateTime posteddat { get; set; }
             public string challanno { get; set; }
             public decimal bonamt { get; set; }
+            public decimal otallow { get; set; }
 
+            
 
 
         }

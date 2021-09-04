@@ -97,6 +97,9 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
+
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -751,6 +754,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_87_Tra\RptHREmpTransferReport.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\Overtime.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptAccTransfer.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptAitPurposePeb.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptAitPurpose.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankFordLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatement.rdlc" />
