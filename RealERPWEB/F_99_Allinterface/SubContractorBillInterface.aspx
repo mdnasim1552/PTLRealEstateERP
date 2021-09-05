@@ -533,7 +533,7 @@
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
-                    case 3101:   //p2p
+                    //case 3101:   //p2p
                         //case 3355:   //greenwood
 
 
@@ -542,6 +542,7 @@
                         $(".tbMenuWrp table tr td:nth-child(12)").hide();
                         break;
 
+                    //case 3101:   
                     case 1103:   //tanvir
 
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();
