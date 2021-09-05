@@ -684,6 +684,20 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
+                                <asp:TemplateField HeaderText="PF Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgvpfund" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pfund")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFpfund" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Bonus">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvbonamt" runat="server" Style="text-align: right"

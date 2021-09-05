@@ -173,8 +173,10 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string challanno { get; set; }
             public decimal bonamt { get; set; }
             public decimal otallow { get; set; }
+            public decimal pfund { get; set; }
 
-            
+
+
 
 
         }

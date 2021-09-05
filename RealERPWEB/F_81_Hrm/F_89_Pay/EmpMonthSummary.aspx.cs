@@ -257,6 +257,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((Label)this.gvati.FooterRow.FindControl("lgvFDailyall")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(otallow)", "")) ?
                                    0 : dt.Compute("sum(otallow)", ""))).ToString("#,##0;(#,##0); ");
 
+                    ((Label)this.gvati.FooterRow.FindControl("lgvFpfund")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfund)", "")) ?
+                                   0 : dt.Compute("sum(pfund)", ""))).ToString("#,##0;(#,##0); ");
+
                     ((Label)this.gvati.FooterRow.FindControl("lgvFgsal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gsal)", "")) ?
                                    0 : dt.Compute("sum(gsal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvati.FooterRow.FindControl("lgvFgsal1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gsal1)", "")) ?
@@ -319,10 +322,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
             Session.Remove("tblpay");
             string comcod = this.GetCompCode();
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string nozero = (hrcomln == 4) ? "0000" : "00";
+            string CompanyName = (this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() + "%";
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
-            string projectcode = this.ddlProjectName.SelectedValue.ToString();
+            //string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
+            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+           // string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString();// this.ddlProjectName.SelectedValue.ToString();
             string section = this.ddlSection.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlSection.SelectedValue.ToString();
             string monthid = Convert.ToDateTime(this.txttodate.Text).ToString("yyyyMM").ToString();
             string dt1 = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
@@ -463,12 +470,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             LocalReport rpt1 = new LocalReport();
 
-            if (comcod == "3101")
+            if (comcod == "3101" || comcod == "3347")
             {
 
                 rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_89_Pay.RptAitPurposePeb", lstsum, null, null);
                 rpt1.EnableExternalImages = true;
-                rpt1.SetParameters(new ReportParameter("dateRange", "From  : " + frmdate + "To" + todate));
+                rpt1.SetParameters(new ReportParameter("dateRange", "From  : " + frmdate + " To " + todate));
 
             }
 
