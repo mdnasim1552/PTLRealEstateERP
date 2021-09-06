@@ -32,7 +32,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 string type = this.Request.QueryString["Type"].ToString().Trim();
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = type == "salati" ? "AIT purpose salary " : "Monthly Attendance Statement";
+                ((Label)this.Master.FindControl("lblTitle")).Text = type == "salati" ? "AIT purpose salary " : type == "salsumMonth"? "Salary Summary (Month Wise)" :"Monthly Attendance Statement";
                 this.GetCompany();
 
                 //    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
@@ -185,6 +185,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 this.ShowATI();
             }
+
+            else if(type == "salsumMonth")
+            {
+                this.SalSummMonth();
+            }
             else
             {
                 this.ShowSal();
@@ -209,6 +214,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void Data_Bind()
         {
+            
             DataTable dt = (DataTable)Session["tblpay"];
             if (dt.Rows.Count == 0)
                 return;
@@ -226,6 +232,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.gvati.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvati.DataSource = dt;
                     this.gvati.DataBind();
+                    this.FooterCalculation();
+                    break;
+
+                case "salsumMonth":
+                    this.gvsalmonthly.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvsalmonthly.DataSource = dt;
+                    this.gvsalmonthly.DataBind();
                     this.FooterCalculation();
                     break;
 
@@ -275,6 +288,38 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                     break;
+
+                case "salsumMonth":
+
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFbsalm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bsal)", "")) ?
+                                    0 : dt.Compute("sum(bsal)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFhrentm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(hrent)", "")) ?
+                                   0 : dt.Compute("sum(hrent)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFcvenm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cven)", "")) ?
+                                   0 : dt.Compute("sum(cven)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFmallowm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mallow)", "")) ?
+                                   0 : dt.Compute("sum(mallow)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFDailyallm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(otallow)", "")) ?
+                                   0 : dt.Compute("sum(otallow)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFpfundm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(pfund)", "")) ?
+                                   0 : dt.Compute("sum(pfund)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFgsalm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gsal)", "")) ?
+                                   0 : dt.Compute("sum(gsal)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFgsal1m")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(gsal1)", "")) ?
+                                   0 : dt.Compute("sum(gsal1)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFbonamtm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bonamt)", "")) ?
+                                  0 : dt.Compute("sum(bonamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFitaxm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(itax)", "")) ?
+                                   0 : dt.Compute("sum(itax)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFcashamtm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cashamt)", "")) ?
+                                   0 : dt.Compute("sum(cashamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvsalmonthly.FooterRow.FindControl("lgvFbankamtm")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankamt)", "")) ?
+                                   0 : dt.Compute("sum(bankamt)", ""))).ToString("#,##0;(#,##0); ");
+
+
+                    break;
             }
 
             //this.gvati.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
@@ -313,6 +358,41 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             //  DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = ds3.Tables[0];
+
+            this.Data_Bind();
+
+        }
+
+
+        private void SalSummMonth ()
+        {
+            Session.Remove("tblpay");
+            string comcod = this.GetCompCode();
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string nozero = (hrcomln == 4) ? "0000" : "00";
+            string CompanyName = (this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() + "%";
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, 2);
+            string projectcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9) + "%";
+            // string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlProjectName.SelectedValue.ToString();// this.ddlProjectName.SelectedValue.ToString();
+            string section = this.ddlSection.SelectedValue.ToString() == "000000000000" ? "%" : this.ddlSection.SelectedValue.ToString();
+            string monthid = Convert.ToDateTime(this.txttodate.Text).ToString("yyyyMM").ToString();
+            string dt1 = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string curdate = Convert.ToDateTime(DateTime.Now).ToString("dd-MMM-yyyy");
+            string empid = (this.ddlEmplist.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmplist.SelectedValue.ToString() + "%";
+            string empname = this.ddlEmplist.SelectedItem.ToString();
+            var ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETSALARYMONTHWISE", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
+            if (ds3.Tables[0].Rows.Count == 0)
+            {
+                this.gvsalmonthly.DataSource = null;
+                this.gvsalmonthly.DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "FnDanger('" + empname + "');", true);
+                return;
+
+            }
+            Session["tblpay"] = ds3.Tables[0];
+            //ViewState["taxinf"] = ds3.Tables[1];
 
             this.Data_Bind();
 
@@ -405,6 +485,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 }
 
             }
+
+            else if (type == "salsumMonth")
+            {
+                this.PrintSummaryMonthWise();
+            }
             else
             {
                 this.PrintSallary();
@@ -443,6 +528,44 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             Session["Report1"] = rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" + ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
+        private void PrintSummaryMonthWise()
+        {
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["tblpay"];
+            if (dt == null)
+                return;
+
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            var lstsum = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.aitpurpose>();
+
+            LocalReport rpt1 = new LocalReport();                 
+            rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_89_Pay.RptAitPurpose", lstsum, null, null);
+            rpt1.EnableExternalImages = true;      
+            rpt1.SetParameters(new ReportParameter("Comname", comnam));
+            rpt1.SetParameters(new ReportParameter("comaddress", comadd));
+            rpt1.SetParameters(new ReportParameter("rpttitle", "AIT Purpose Salary Statement"));
+
+            //  rpt1.SetParameters(new ReportParameter("date1", ""));
+
+            Session["Report1"] = rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" + ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
 
         }
 
