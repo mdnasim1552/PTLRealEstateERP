@@ -2534,6 +2534,7 @@
     <Content Include="F_24_CC\RptProjectwiseClient.aspx" />
     <Content Include="F_24_CC\SalesPermissionCost.aspx" />
     <Content Include="F_25_Reg\EntryRegclearacne.aspx" />
+    <Content Include="F_25_Reg\OtherCollectionReport.aspx" />
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
@@ -3673,6 +3674,13 @@
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.designer.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_25_Reg\OtherCollectionReport.aspx.cs">
+      <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
+      <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx.cs">
       <DependentUpon>HRDailyAttenManually.aspx</DependentUpon>
