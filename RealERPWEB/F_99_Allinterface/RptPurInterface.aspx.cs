@@ -323,10 +323,11 @@ namespace RealERPWEB.F_99_Allinterface
         {
 
             string comcod = this.GetCompCode();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
             switch (comcod)
             {
-                case "3101": //Urban             
+                case "3101":
                 case "3340": //Urban 
                 case "3333"://Alliance
                 case "3354": // Edison  
@@ -337,8 +338,15 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
 
+                //case "3101":
+                case "3315":
+                case "3316":
+                    this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-6).ToString("dd-MMM-yyyy");
+                    break;
+
+
                 default:
-                    string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    
                     this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                     break;
 

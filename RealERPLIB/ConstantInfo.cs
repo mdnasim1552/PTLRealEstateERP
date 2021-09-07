@@ -141,6 +141,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0251000", "0251001", "F_99_Allinterface", "FeasibilityInterface", "", " Land Feasibility", "Land Feasibility-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0252000", "0251002", "F_99_Allinterface", "LandInterface_Land", "", " Land Feasibility  (Land)", "Land Feasibility-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0252000", "0251003", "F_99_Allinterface", "EntryLandRegProcess.aspx", "", "Land Managment", "Land Managment", "False", "False", "False", "False" });
 
 
             // tblObj.Rows.Add(new Object[] { "0203000", "0203220", "F_02_Fea", "ProSeriCode", "", "Catagory Code", "Management", "False", "False", "False", "False" });  

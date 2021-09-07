@@ -386,7 +386,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.lnkbtnSerOk.Text = "New";
                 this.lblCompanyNameAgg.Text = this.ddlCompanyAgg.SelectedItem.Text;
                 this.lblvaldeptagg.Text = this.ddldepartmentagg.SelectedItem.Text;
-                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text.ToString()== "000000000000" ? "000000000000" : this.ddlProjectName.SelectedItem.Text.Substring(13);
                 string empid = "";
                 if (this.ddlNPEmpName.Items.Count > 0)
                 {
@@ -594,7 +594,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 case "4315"://Assure
                 case "4325"://Leisure
                 case "4332"://Leisure
-                case "3338": //Acme 
+                //case "3338": //Acme 
                 case "3347": //PEB           
                 case "3348": //Credence           
                 case "3355": //GreenWood           
@@ -659,8 +659,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 // break;
 
 
-
-
+                case "3101": 
+                case "3338": //Acme
+                    this.rbtGross.Visible = false;
+                    this.rbtGross.SelectedIndex = 3;
+                    break;
 
 
                 default:
@@ -1675,8 +1678,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
 
-            }
-
+            }           
 
             else if (this.rbtGross.SelectedIndex == 2)
             {
@@ -1813,6 +1815,30 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
 
+            }
+            
+            // basic salary acme
+            else if (this.rbtGross.SelectedIndex == 3)
+            {
+                basic = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[0].FindControl("txtgvSaladd")).Text.Trim());
+
+                for (int i = 1; i < this.gvSalAdd.Rows.Count; i++)
+                {
+                    percent = Convert.ToDouble("0" + ((TextBox)this.gvSalAdd.Rows[i].FindControl("txtgvgperadd")).Text.Trim());
+                    dtsaladd.Rows[i]["gval"] = Math.Round((percent * basic * 0.01), 0);
+                    dtsaladd.Rows[i]["percnt"] = percent;
+
+                }
+
+
+                for (int i = 0; i < this.gvSalSub.Rows.Count; i++)
+                {
+                    percent = Convert.ToDouble("0" + ((TextBox)this.gvSalSub.Rows[i].FindControl("txtgvgpersub")).Text.Trim());
+                    dtsalsub.Rows[i]["gval"] = Math.Round((percent * 0.01 * basic), 0);
+                    dtsalsub.Rows[i]["percnt"] = percent;
+
+
+                }
             }
 
             ///-------------------------GLG
