@@ -58,9 +58,7 @@ namespace RealERPWEB.F_12_Inv
 
         private string Complength()
         {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
+            string comcod = this.GetCompCode();
             string Complength = "";
             switch (comcod)
             {
@@ -75,10 +73,15 @@ namespace RealERPWEB.F_12_Inv
                     break;
             }
 
-
-
             return Complength;
 
+
+        }
+
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
 
         }
 
@@ -274,6 +277,7 @@ namespace RealERPWEB.F_12_Inv
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tbMatStc"];
+            string comcod = this.GetCompCode();
             string type = this.Request.QueryString["Type"].ToString();
             switch (type)
             {
@@ -285,9 +289,16 @@ namespace RealERPWEB.F_12_Inv
 
                     if (type == "inv")
                     {
-                        this.gvMatStock.Columns[3].Visible = true;
-                        this.gvMatStock.Columns[12].Visible = true;
-
+                        if (comcod == "3340")
+                        {
+                            this.gvMatStock.Columns[3].Visible = false;
+                            this.gvMatStock.Columns[12].Visible = false;
+                        }
+                        else
+                        {
+                            this.gvMatStock.Columns[3].Visible = true;
+                            this.gvMatStock.Columns[12].Visible = true;
+                        }                      
                     }
 
                     this.FooterCalculation();

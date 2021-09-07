@@ -762,7 +762,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintForwardingLetterTerra();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3355":
                     this.PrintForwardingLetterGreen();
                     break;

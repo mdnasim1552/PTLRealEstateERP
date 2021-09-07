@@ -136,6 +136,10 @@
           <DataField>otallow</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="pfund">
+          <DataField>pfund</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="posteddat">
           <DataField>posteddat</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -170,10 +174,10 @@
                   <Width>0.54977in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.50536in</Width>
+                  <Width>1.25664in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.25536in</Width>
+                  <Width>1.09636in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.69286in</Width>
@@ -191,7 +195,7 @@
                   <Width>0.75261in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.66161in</Width>
+                  <Width>0.78661in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.77619in</Width>
@@ -622,7 +626,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Salary Allowance</Value>
+                                  <Value>PF Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1200,14 +1204,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="gsal1">
+                        <Textbox Name="pfund">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!gsal1.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!pfund.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1219,7 +1223,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>gsal1</rd:DefaultName>
+                          <rd:DefaultName>pfund</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1636,14 +1640,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="gsal11">
+                        <Textbox Name="pfund1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!gsal1.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!pfund.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1656,7 +1660,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>gsal11</rd:DefaultName>
+                          <rd:DefaultName>pfund1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1853,7 +1857,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.09458in</Top>
             <Height>0.85417in</Height>
-            <Width>11.64028in</Width>
+            <Width>11.35756in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1864,7 +1868,7 @@
         <Height>1.01042in</Height>
         <Style />
       </Body>
-      <Width>11.64028in</Width>
+      <Width>11.35756in</Width>
       <Page>
         <PageHeader>
           <Height>0.98958in</Height>
@@ -2047,7 +2051,7 @@
               <rd:DefaultName>Textbox8</rd:DefaultName>
               <Left>7.27508in</Left>
               <Height>0.25in</Height>
-              <Width>4.26231in</Width>
+              <Width>4.08248in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2067,8 +2071,8 @@
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.25in</RightMargin>
+        <LeftMargin>0.1in</LeftMargin>
+        <RightMargin>0.1in</RightMargin>
         <TopMargin>0.5in</TopMargin>
         <BottomMargin>0.5in</BottomMargin>
         <Style />

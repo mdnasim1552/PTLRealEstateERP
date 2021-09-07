@@ -823,7 +823,7 @@ namespace RealERPWEB.F_22_Sal
             switch (comcod)
             {
 
-                case "3101":// RHEL
+                //case "3101":// RHEL
                 case "3305":// RHEL
                 case "3311":// RHEL(chittagong)
                 case "3306":// Ratul
