@@ -530,6 +530,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3101":
                 case "1103":
                     FirstApp = "Checked";
+                    frecom = "1st Recom.";
+                    secrecom = "2nd Recom.";
                     break;
 
 
@@ -625,6 +627,7 @@ namespace RealERPWEB.F_99_Allinterface
             //First Recommendate
             dv.RowFilter = ("faprvbyid = '' and frecid='' and appamt > 0 and aprvbyid <>''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
+            dv = dt.DefaultView;
             this.Data_Bind("gvfrec", dv.ToTable());
 
 
@@ -632,6 +635,7 @@ namespace RealERPWEB.F_99_Allinterface
             //Second Recommendate
             dv.RowFilter = ("faprvbyid = '' and  frecid<>''    and  secrecid='' and appamt > 0 and aprvbyid <>''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
+            dv = dt.DefaultView;
             this.Data_Bind("gvsrec", dv.ToTable());
 
 
@@ -639,6 +643,7 @@ namespace RealERPWEB.F_99_Allinterface
             //Third Recommendate
             dv.RowFilter = ("faprvbyid = ''  and  frecid<>''    and  secrecid<>'' and threcid='' and appamt > 0 and aprvbyid <>''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
+            dv = dt.DefaultView;
             this.Data_Bind("gvthrec", dv.ToTable());
 
 

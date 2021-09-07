@@ -1298,11 +1298,16 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lnkselectgp_Click(object sender, EventArgs e)
         {
-
-            string gatepno = this.ddlResSpcfgp.SelectedValue.ToString().Substring(0, 14);
-            //string mProgNo = this.ddlResList.SelectedValue.ToString().Substring(14, 14);
-            string rescode = this.ddlResSpcfgp.SelectedValue.ToString().Substring(14, 12);
-            string spcfcod = this.ddlResSpcfgp.SelectedValue.ToString().Substring(26, 12);
+            string resSpcf = this.ddlResSpcfgp.SelectedValue.ToString();
+            if (resSpcf.Length == 0)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Resource List";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            string gatepno = resSpcf.Substring(0, 14);
+            string rescode = resSpcf.Substring(14, 12);
+            string spcfcod = resSpcf.Substring(26, 12);
 
             DataTable dt = (DataTable)ViewState["tblmattrns"];
             DataTable dt1 = (DataTable)ViewState["tblgatepinfo"];
@@ -1338,8 +1343,14 @@ namespace RealERPWEB.F_12_Inv
         protected void lnkselectgpAll_Click(object sender, EventArgs e)
         {
 
-
-            string gatepno = this.ddlResSpcfgp.SelectedValue.ToString().Substring(0, 14);
+            string resSpcf1 = this.ddlResSpcfgp.SelectedValue.ToString();
+            if (resSpcf1.Length == 0)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select  Resource List";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            string gatepno = resSpcf1.Substring(0, 14);
 
             DataTable dt = (DataTable)ViewState["tblmattrns"];
             DataTable dt1 = (DataTable)ViewState["tblgatepinfo"];
@@ -1379,6 +1390,8 @@ namespace RealERPWEB.F_12_Inv
             ViewState["tblmattrns"] = dt;
             this.Data_Bind();
         }
+
+
         protected void ddlreslistgp_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dtres = (DataTable)ViewState["tblgatepinfo"];
