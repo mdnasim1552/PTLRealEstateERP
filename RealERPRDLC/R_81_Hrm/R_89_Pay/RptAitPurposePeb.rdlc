@@ -174,10 +174,10 @@
                   <Width>0.54977in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.27747in</Width>
+                  <Width>1.25664in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.20053in</Width>
+                  <Width>1.09636in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.69286in</Width>
@@ -1857,7 +1857,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.09458in</Top>
             <Height>0.85417in</Height>
-            <Width>11.48256in</Width>
+            <Width>11.35756in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1868,7 +1868,7 @@
         <Height>1.01042in</Height>
         <Style />
       </Body>
-      <Width>11.48256in</Width>
+      <Width>11.35756in</Width>
       <Page>
         <PageHeader>
           <Height>0.98958in</Height>
@@ -2051,7 +2051,7 @@
               <rd:DefaultName>Textbox8</rd:DefaultName>
               <Left>7.27508in</Left>
               <Height>0.25in</Height>
-              <Width>4.20748in</Width>
+              <Width>4.08248in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2071,8 +2071,8 @@
         </PageFooter>
         <PageHeight>8.27in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.25in</RightMargin>
+        <LeftMargin>0.1in</LeftMargin>
+        <RightMargin>0.1in</RightMargin>
         <TopMargin>0.5in</TopMargin>
         <BottomMargin>0.5in</BottomMargin>
         <Style />
