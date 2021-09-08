@@ -87,6 +87,87 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
+        /// pnlsalops control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlsalops;
+
+        /// <summary>
+        /// hylnkarrear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkarrear;
+
+        /// <summary>
+        /// hylnkloan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkloan;
+
+        /// <summary>
+        /// hylnkOtherdeduction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkOtherdeduction;
+
+        /// <summary>
+        /// hylnkOtherearn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkOtherearn;
+
+        /// <summary>
+        /// hylnkOvetime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkOvetime;
+
+        /// <summary>
+        /// hylnkAbscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkAbscount;
+
+        /// <summary>
+        /// hylnkempTrans control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkempTrans;
+
+        /// <summary>
+        /// hylnkSalReduction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hylnkSalReduction;
+
+        /// <summary>
         /// lblDept control.
         /// </summary>
         /// <remarks>
