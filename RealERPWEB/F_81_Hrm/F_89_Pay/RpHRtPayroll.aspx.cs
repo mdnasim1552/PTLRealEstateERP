@@ -245,7 +245,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtSalSheet.SelectedIndex = 8;
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3330"://Bridge
                     this.rbtSalSheet.SelectedIndex = 9;
                     break;
@@ -281,7 +281,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtSalSheet.SelectedIndex = 15;
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3347"://PEB
                     this.rbtSalSheet.SelectedIndex = 16;
                     this.rbtnPayType.Visible = true;

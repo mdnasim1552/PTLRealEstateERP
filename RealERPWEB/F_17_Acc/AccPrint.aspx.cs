@@ -547,7 +547,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2305": // rupayan land
                     vouprint = "VocherPrint4";
                     break;
@@ -600,6 +600,11 @@ namespace RealERPWEB.F_17_Acc
                 case "3348":
                     vouprint = "VocherPrintCredence";
                     break;
+
+                //case "3101":
+                //case "1102": // islam brothers 
+                //    vouprint = "VocherPrintIBCEL";
+                //    break;
 
                 default:
                     vouprint = "VocherPrintMod";
@@ -2038,7 +2043,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTCL", hshtbl, null, null);
                 }
-                else if(comcod=="3348" || comcod == "3101")
+                else if (comcod == "3348" || comcod == "3101")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptCheqCredence", hshtbl, null, null);
                 }
