@@ -670,7 +670,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1702000", "1702010", "F_17_Acc", "AccPurchase?", "Type=Entry", "Purchase Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702015", "F_17_Acc", "AccSalJournal?", "Type=Consolidate", "Sales Journal", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702016", "F_17_Acc", "AccSalJournal?", "Type=Details", "Sales Journal-Details", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1702000", "1702020", "F_17_Acc", "AccSales?", "Type=Entry", "Collection Update", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1702000", "1702020", "F_17_Acc", "AccSales?", "Type=Entry", "Collection Update", "Accounts", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1702000", "1702021", "F_17_Acc", "AccTopPageUpdate?", "Type=Entry", "Petty Cash Bill Update", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1702000", "1702025", "F_17_Acc", "AccSalesADandDelay?", "Type=Entry", "Client Modification Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702030", "F_17_Acc", "AccBankRecon?", "Type=Acc", "Bank Reconcilation", "Accounts", "False", "False", "False", "False" }); ;
