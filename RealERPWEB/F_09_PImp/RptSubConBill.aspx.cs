@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_09_PImp
 {
     public partial class RptSubConBill : System.Web.UI.Page
@@ -349,21 +352,39 @@ namespace RealERPWEB.F_09_PImp
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             DataTable dt = (DataTable)Session["tblData"];
-            ReportDocument rptsale = new RealERPRPT.R_09_PImp.rptsubconbill();
-            TextObject rptCname = rptsale.ReportDefinition.ReportObjects["CompName"] as TextObject;
-            rptCname.Text = comnam;
-            TextObject rptpactdesc = rptsale.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            rptpactdesc.Text = this.ddlProjectName.SelectedItem.Text.ToString().Substring(17); //this.lblProjectdesc.Text;
-            TextObject rptSubdesc = rptsale.ReportDefinition.ReportObjects["SubConName"] as TextObject;
-            rptSubdesc.Text = "Sub-Contractor Name: " + this.ddlSubName.SelectedItem.Text.ToString().Substring(13);//this.lblSubDesc.Text;
-            TextObject rptDate = rptsale.ReportDefinition.ReportObjects["date"] as TextObject;
-            rptDate.Text = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            TextObject txtuserinfo = rptsale.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            rptsale.SetDataSource(dt);
-            Session["Report1"] = rptsale;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            var list = dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.ContractorBillDetails>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_09_PIMP.rptsubconbill", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("projectName", this.ddlProjectName.SelectedItem.Text.ToString().Substring(17)));
+            Rpt1.SetParameters(new ReportParameter("txtSubConName", "Sub-Contractor Name: " + this.ddlSubName.SelectedItem.Text.ToString().Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Bill Details - Sub-Contractor "));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            //ReportDocument rptsale = new RealERPRPT.R_09_PImp.rptsubconbill();
+            //TextObject rptCname = rptsale.ReportDefinition.ReportObjects["CompName"] as TextObject;
+            //rptCname.Text = comnam;
+            //TextObject rptpactdesc = rptsale.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
+            //rptpactdesc.Text = this.ddlProjectName.SelectedItem.Text.ToString().Substring(17); //this.lblProjectdesc.Text;
+            //TextObject rptSubdesc = rptsale.ReportDefinition.ReportObjects["SubConName"] as TextObject;
+            //rptSubdesc.Text = "Sub-Contractor Name: " + this.ddlSubName.SelectedItem.Text.ToString().Substring(13);//this.lblSubDesc.Text;
+            //TextObject rptDate = rptsale.ReportDefinition.ReportObjects["date"] as TextObject;
+            //rptDate.Text = "Date: " + Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            //TextObject txtuserinfo = rptsale.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
+            //rptsale.SetDataSource(dt);
+            //Session["Report1"] = rptsale;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            //         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
         }
         private void Print_ShowSubConBill()
         {
@@ -388,8 +409,8 @@ namespace RealERPWEB.F_09_PImp
             txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
             rptsale.SetDataSource(dt);
             Session["Report1"] = rptsale;
-            //lbljavascript.Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                    this.DDPrintOpt.SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+                      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)

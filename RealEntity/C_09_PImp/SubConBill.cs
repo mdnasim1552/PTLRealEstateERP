@@ -467,8 +467,23 @@ namespace RealEntity.C_09_PIMP
 
         }
 
+        [Serializable]
+
+        public class RptSubConBillOverAll
+        {
+            public string csircode { get; set; }
+            public string sirdesc { get; set; }
+            public double billamt { get; set; }
+            public double sdamt { get; set; }
+            public double dedamt { get; set; }
+            public double penamt { get; set; }
+            public double netamt { get; set; }
+            public double payment { get; set; }
+            public double netpayable { get; set; }
+            public RptSubConBillOverAll(){ }
+
+        }
+
     }
-
-
 
 }

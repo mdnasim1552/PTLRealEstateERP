@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_09_PImp
 {
     public partial class LinkSubContractorSd : System.Web.UI.Page
@@ -147,32 +150,23 @@ namespace RealERPWEB.F_09_PImp
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tblconsddetails"];
+            var list = dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.ContractorBillDetails>();
 
-            ReportDocument rptConSD = new RealERPRPT.R_09_PImp.RptSubConSD();
-            TextObject rptCname = rptConSD.ReportDefinition.ReportObjects["CompName"] as TextObject;
-            rptCname.Text = comnam;
-            //TextObject rptpactdesc = rptConSD.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //rptpactdesc.Text = "Project Name: " + this.ddlProjectName.SelectedItem.Text.Substring(13);
-            TextObject rptSubdesc = rptConSD.ReportDefinition.ReportObjects["SubConName"] as TextObject;
-            rptSubdesc.Text = this.Request.QueryString["ssirdesc"].ToString();//this.ddlSubName.SelectedItem.Text.Substring(13); ;
-            TextObject rptDate = rptConSD.ReportDefinition.ReportObjects["date"] as TextObject;
-            rptDate.Text = "Date: " + Convert.ToDateTime(this.Request.QueryString["Date1"]).ToString("dd-MMM-yyyy");//Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            TextObject txtuserinfo = rptConSD.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            rptConSD.SetDataSource((DataTable)Session["tblconsddetails"]);
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_09_PIMP.RptSubConSD", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtSubConName", this.Request.QueryString["ssirdesc"].ToString()));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Bill Details - Sub-Contractor "));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.Request.QueryString["Date1"]).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
 
-            string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            rptConSD.SetParameterValue("ComLogo", ComLogo);
-            Session["Report1"] = rptConSD;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
-
-
 
     }
 }

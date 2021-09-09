@@ -123,9 +123,6 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptConBillEdisonErp": Rpt1a = SetRptConBillEdisonErp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
-
-
-
                 case "R_09_PIMP.RptSubConSD": Rpt1a = SetRptSubConSD(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptImpExeStatus1": Rpt1a = SetRptImpExeStatus1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptPrjWiseSubcontractorbill": Rpt1a = SetRptPrjWiseSubcontractorbill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -140,6 +137,8 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptSubConBillTopSheet": Rpt1a = SetRptSubConBillTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillManama": Rpt1a = SetRptConBillManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptSubConOverAll2": Rpt1a = SetRptSubConOverAll2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                case "R_09_PIMP.RptSubConOverAll": Rpt1a = SetRptSubConOverAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
                 #region Procurement Module
@@ -1426,7 +1425,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-
+        private static LocalReport SetRptSubConOverAll(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.RptSubConBillOverAll>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptMonCollReceiptType(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_23_CRR.EClassSales_03.RptMonthlyCollecionReceiptType>)RptDataSet));

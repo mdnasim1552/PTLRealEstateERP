@@ -141,6 +141,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "0251000", "0251001", "F_99_Allinterface", "FeasibilityInterface", "", " Land Feasibility", "Land Feasibility-Interface", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0252000", "0251002", "F_99_Allinterface", "LandInterface_Land", "", " Land Feasibility  (Land)", "Land Feasibility-Interface", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0252000", "0251003", "F_99_Allinterface", "EntryLandRegProcess.aspx", "", "Land Managment", "Land Managment", "False", "False", "False", "False" });
 
 
             // tblObj.Rows.Add(new Object[] { "0203000", "0203220", "F_02_Fea", "ProSeriCode", "", "Catagory Code", "Management", "False", "False", "False", "False" });  
@@ -669,7 +670,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1702000", "1702010", "F_17_Acc", "AccPurchase?", "Type=Entry", "Purchase Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702015", "F_17_Acc", "AccSalJournal?", "Type=Consolidate", "Sales Journal", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702016", "F_17_Acc", "AccSalJournal?", "Type=Details", "Sales Journal-Details", "Accounts", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1702000", "1702020", "F_17_Acc", "AccSales?", "Type=Entry", "Collection Update", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1702000", "1702020", "F_17_Acc", "AccSales?", "Type=Entry", "Collection Update", "Accounts", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "1702000", "1702021", "F_17_Acc", "AccTopPageUpdate?", "Type=Entry", "Petty Cash Bill Update", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1702000", "1702025", "F_17_Acc", "AccSalesADandDelay?", "Type=Entry", "Client Modification Update", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1702000", "1702030", "F_17_Acc", "AccBankRecon?", "Type=Acc", "Bank Reconcilation", "Accounts", "False", "False", "False", "False" }); ;
@@ -1278,6 +1279,8 @@ namespace RealERPLIB
                 tblObj.Rows.Add(new Object[] { "2403000", "2403813", "F_24_CC", "RptLoanStatus?", "Type=Registration", "Registration Status", "Customer Care", "False", "False", "False", "False" }); ;
                 tblObj.Rows.Add(new Object[] { "2403000", "2403820", "F_24_CC", "RptRegclearacne?", "Type=Regiscl", "Registration Status- All Project", "Customer Care", "False", "False", "False", "False" }); ;
                 tblObj.Rows.Add(new Object[] { "2402000", "2402830", "F_24_CC", "EntryRegclearacne", "", "Registration Status- All Project", "Customer Care", "False", "False", "False", "False" });
+                tblObj.Rows.Add(new Object[] { "2402000", "2402832", "F_24_CC", "OtherCollectionReport", "", " Other's Collection Report", "Customer Care", "False", "False", "False", "False" });
+
                 tblObj.Rows.Add(new Object[] { "2402000", "2402840", "F_24_CC", "CustRevenue", "", "Revenue(Utility & Others)", "Customer Care", "False", "False", "False", "False" });
                 tblObj.Rows.Add(new Object[] { "2402000", "2402850", "F_24_CC", "CustMaintenaceopning", "", "Opening(Optional & Modification)", "Customer Care", "False", "False", "False", "False" });
 
@@ -7608,7 +7611,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0403010000", "01. Registration Clearence", "F_22_Sal/RptSalInterest?Type=registration", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403020000", "02. Registration Status", "F_24_CC/RptLoanStatus?Type=Registration", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403030000", "03. Registration Status- All Project", "F_25_Reg/RptRegclearacne?Type=Regiscl", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403030000", "04. Other's Collection Report", "F_25_Reg/OtherCollectionReport", "", true, "" });
 
+
+            
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "Other Related Report", "", "", false, "mb" });
 
             mnuTbl1.Rows.Add(new Object[] { "0404010000", "02. Send Letter(Customer)", "F_24_CC/RptLoanStatus?Type=Letter", "", true, "" });
