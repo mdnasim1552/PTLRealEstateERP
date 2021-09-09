@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptSubConBillOverAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
   </ItemGroup>

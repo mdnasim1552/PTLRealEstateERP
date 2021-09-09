@@ -97,7 +97,6 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
-
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
@@ -183,6 +182,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptProjWisBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\rptPurIssueEntry.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptSubConBillFinalization.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptSubConOverAll.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptsubConBillPrj.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptSubconbillreqP2p.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptSubConBillStu.rdlc" />
