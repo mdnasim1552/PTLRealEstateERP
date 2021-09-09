@@ -170,14 +170,10 @@
                                             <asp:LinkButton ID="lbtnresource" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="lbtnresource_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div  class="col-md-5 pading5px">
                                         <asp:ListBox ID="chkResourcelist" runat="server" CssClass="form-control" Style="min-width: 200px !important;" SelectionMode="Multiple"></asp:ListBox>
                                     
-                                        <%--<asp:ListBox ID="listGroup" runat="server" CssClass=" form-control" Width="200px" SelectionMode="Multiple"></asp:ListBox>--%>
-                                       <%-- <cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black"
-                                            MaxDropDownHeight="200" TabIndex="8" TransitionalMode="True" Width="345px">
-                                        </cc1:DropCheck>--%>
-
+                                     
 
 
 
