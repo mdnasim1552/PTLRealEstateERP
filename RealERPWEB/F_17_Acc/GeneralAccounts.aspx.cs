@@ -195,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-                // case "3101": // Test
+               // case "3101": // Test
                 case "3332":
                 case "3339":
                     this.chkpost.Checked = true;
@@ -3038,23 +3038,23 @@ namespace RealERPWEB.F_17_Acc
 
             // for Journal
 
-            if (vounum.Substring(0, 2) == "JV")
-            {
-                double dr = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trndram)", "")) ? 0.00 : dt.Compute("Sum(trndram)", "")));
-                double cr = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trncram)", "")) ? 0.00 : dt.Compute("Sum(trncram)", "")));
+            //if (vounum.Substring(0, 2) == "JV")
+            //{
+            //    double dr = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trndram)", "")) ? 0.00 : dt.Compute("Sum(trndram)", "")));
+            //    double cr = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(trncram)", "")) ? 0.00 : dt.Compute("Sum(trncram)", "")));
 
 
-                if (dr != cr)
-                {
+            //    if (dr != cr)
+            //    {
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Debit and Credit Amount is not Equal";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
+            //        ((Label)this.Master.FindControl("lblmsg")).Text = "Debit and Credit Amount is not Equal";
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //        return;
 
-                }
+            //    }
 
 
-            }
+            //}
 
 
 
@@ -3064,37 +3064,34 @@ namespace RealERPWEB.F_17_Acc
 
             //bool resulta = false;
 
-            //if (vounum.Substring(0, 2) != "JV")
-            // {
-            bool resulta = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, actcode1, subcode1, cactcode,
-                                 voudat, qty, trnremarks, vtcode, trnamt, spclcode, recndt, rpcode, billno, userid, userdate, Terminal, actcodeold, rescodeold, "", "", "", "", "", "", "", "");
+            if (vounum.Substring(0, 2) != "JV")
+             {
+                bool resulta = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, actcode1, subcode1, cactcode,
+                                     voudat, qty, trnremarks, vtcode, trnamt, spclcode, recndt, rpcode, billno, userid, userdate, Terminal, actcodeold, rescodeold, "", "", "", "", "", "", "", "");
 
 
 
-            if (!resulta)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                if (!resulta)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+
+                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
             }
-
-
-
-
-
-            //   }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully.";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+           
 
 
             this.dgv1.EditIndex = -1;
-
-
             Session["tblvoucher"] = HiddenSameData(dt);
             DataView dv = dt.DefaultView;
             dv.Sort = "actcode,subcode,spclcode";
             dt = dv.ToTable();
-
             this.Data_Bind();
 
 
