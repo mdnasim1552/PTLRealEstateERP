@@ -6,7 +6,7 @@
         .margin5px {
         }
 
-/*
+        /*
         .dropdown-toggle:after {
             display: inline-block;
             margin-left: .255em;
@@ -128,67 +128,72 @@
                                         </asp:UpdateProgress>
                                     </div>
 
-                                    <div class="col-md-2">
-                                        <panel id="pnlsalops" runat="server" visible="false">
-                                            <div class="btn-group">
-                                        <button type="button" class="btn btn-success">Operations</button>
-                                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                          <span class="caret"></span>
-                                        </button>
-                                          
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li> 
-                                              <asp:HyperLink ID="hylnkarrear" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=arrear"> Arrear Salary</asp:HyperLink>
-
-                                            </li>
-                                            <li>
-                                                <asp:HyperLink ID="hylnkloan" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_85_Lon/EmpDeducOther">Loan Installment</asp:HyperLink></li>
-                                            </li>
-                                              <li>
-                                             <asp:HyperLink ID="hylnkOtherdeduction" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=OtherDeduction">Other Deduction </asp:HyperLink>
-                                              </li>
-                                            <li>
-                                                <asp:HyperLink ID="hylnkOtherearn" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn">Other Earning </asp:HyperLink>                                                  
-                                            </li>                                                                           
-                                            <li>
-                                                <asp:HyperLink ID="hylnkOvetime" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=Overtime">Employee Overtime </asp:HyperLink>
-
-                                            </li>
-                                            <li>
-                                                <asp:HyperLink ID="hylnkAbscount" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_83_Att/HREmpAbsCt">Absent Count </asp:HyperLink>
-
-                                            </li>
-
-                                             <li>
-                                                <asp:HyperLink ID="hylnkempTrans" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_87_Tra/HREmpTransfer">Employee Transfer </asp:HyperLink>
-
-                                            </li>
-                                           
-
-                                            <li>
-                                                <asp:HyperLink ID="hylnkSalReduction" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction">Salary Reduction </asp:HyperLink>
-
-                                            </li>
-                                        </ul>  
-                                      
-                                         
-                                            
-                                     
-                                          
-                                      </div>
-
-                                        </panel>
-                             
+                                    <%--<div class="col-md-2">
                                         
-                                    </div>
 
-                                    <div class="col-md-2 pull-right">
+
+                                    </div>--%>
+
+                                    <div class="col-md-3 pull-right">
                                         <a href="#" class="btn btn-info primaryBtn margin5px" onclick="history.go(-1)">Back</a>
                                         <a class="btn btn-info primaryBtn margin5px" href="<%=this.ResolveUrl("~/F_81_Hrm/F_89_Pay/RpHRtPayroll.aspx?Type=Payslip")%>">Next</a>
-                                        <a class="btn btn-info primaryBtn margin5px" href="<%=this.ResolveUrl("~/F_81_Hrm/F_86_All/EntryDeduction02.aspx")%>" target="_blank">Deduction</a>
+                                        <%--<a class="btn btn-info primaryBtn margin5px" href="<%=this.ResolveUrl("~/F_81_Hrm/F_86_All/EntryDeduction02.aspx")%>" target="_blank">Deduction</a>--%>
 
 
                                         <%--<asp:HyperLink ID="hlnextEntry" Visible="false" class="btn btn-info primaryBtn margin5px" runat="server" NavigateUrl="<%=this.ResolveUrl("~/F_81_Hrm/F_89_Pay/RpHRtPayroll.aspx?Type=Entry")%>">Next</asp:HyperLink>--%>
+
+                                        <panel id="pnlsalops" runat="server" visible="true">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-success">Operations</button>
+                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                </button>
+
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkarrear" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=arrear"> Arrear Salary</asp:HyperLink>
+
+                                                    </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkloan" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_85_Lon/EmpDeducOther">Loan Installment</asp:HyperLink></li>
+                                                    </li>
+                                              <li>
+                                                  <asp:HyperLink ID="hylnkOtherdeduction" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=OtherDeduction">Other Deduction </asp:HyperLink>
+                                              </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkOtherearn" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn">Other Earning </asp:HyperLink>
+                                                    </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkOvetime" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=Overtime">Employee Overtime </asp:HyperLink>
+
+                                                    </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkAbscount" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_83_Att/HREmpAbsCt">Absent Count </asp:HyperLink>
+
+                                                    </li>
+
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkempTrans" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_87_Tra/HREmpTransfer">Employee Transfer </asp:HyperLink>
+
+                                                    </li>
+
+
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkSalReduction" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction">Salary Reduction </asp:HyperLink>
+
+                                                    </li>
+
+                                                    <li>
+                                                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EntryDeduction02.aspx">Deduction </asp:HyperLink>
+
+                                                    </li>
+
+
+
+                                                </ul>
+                                            </div>
+
+                                        </panel>
                                     </div>
                                 </div>
 
@@ -700,19 +705,19 @@
 
                                         <panel id="Pnlmantype" runet="server">
 
-                                             <div class="form-group">
-                                             
-                                             <asp:RadioButtonList ID="rbtnMantype" RepeatDirection="Horizontal" CssClass="rbtnList1"  Visible="false" runat="server" >
-                                            <asp:ListItem >Management</asp:ListItem> 
-                                            <asp:ListItem > Acting Management</asp:ListItem>
-                                            <asp:ListItem >General Employee</asp:ListItem>                                   
-                                            <asp:ListItem Selected="True" >All</asp:ListItem>
+                                            <div class="form-group">
 
-                                        </asp:RadioButtonList>
-                                            
+                                                <asp:RadioButtonList ID="rbtnMantype" RepeatDirection="Horizontal" CssClass="rbtnList1" Visible="false" runat="server">
+                                                    <asp:ListItem>Management</asp:ListItem>
+                                                    <asp:ListItem> Acting Management</asp:ListItem>
+                                                    <asp:ListItem>General Employee</asp:ListItem>
+                                                    <asp:ListItem Selected="True">All</asp:ListItem>
 
-                                             </div>
-                                            
+                                                </asp:RadioButtonList>
+
+
+                                            </div>
+
                                         </panel>
 
                                         <asp:Panel ID="PnlBonus" runat="server" Visible="False">
