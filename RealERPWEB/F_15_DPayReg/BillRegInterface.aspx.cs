@@ -552,7 +552,7 @@ namespace RealERPWEB.F_15_DPayReg
                 //    hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
                 //}
 
-                hlink1.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum + "&actcode" + actcode + "&reqno" + reqno;
+                hlink1.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum + "&actcode=" + actcode + "&reqno=" + reqno;
 
                 hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
 

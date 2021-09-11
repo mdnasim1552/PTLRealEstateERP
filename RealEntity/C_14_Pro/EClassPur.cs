@@ -1300,6 +1300,28 @@ namespace RealEntity.C_14_Pro
             public DateWiseReqCheckHistory() { }
 
         }
+         
+        [Serializable] 
+        public class ChequeSheet01
+        {
+
+            //comcod,slnum,actcode, actdesc=replace(actdesc,'WIP-',''), rescode, sirdesc, spcfcod,billno,amount,payapdat,postedbyid,fdate
+            public string comcod { get; set; }
+            public string slnum { get; set; }
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string rescode { get; set; }
+            public string sirdesc { get; set; }
+            public string spcfcod { get; set; }
+            public string billno { get; set; }
+            public double amount { get; set; }
+
+            public DateTime payapdat { get; set; }
+            public string postedbyid { get; set; }
+            public DateTime fdate { get; set; }
+
+            public ChequeSheet01() { }
+        }
 
     }
 }
