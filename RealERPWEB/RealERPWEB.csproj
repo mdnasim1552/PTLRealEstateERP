@@ -2815,6 +2815,7 @@
     <Content Include="F_81_Hrm\F_82_App\HRDesigCode.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HREmpEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\ImgUpload.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\LinkMyHRLeave.aspx" />
     <Content Include="F_81_Hrm\F_82_App\RptEmpInformation.aspx" />
     <Content Include="F_81_Hrm\F_82_App\RptMyAttendenceSheet.aspx" />
@@ -3681,6 +3682,13 @@
     </Compile>
     <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
       <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
+      <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.designer.cs">
+      <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx.cs">
       <DependentUpon>HRDailyAttenManually.aspx</DependentUpon>
