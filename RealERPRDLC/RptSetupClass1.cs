@@ -220,7 +220,9 @@ namespace RealERPRDLC
 
                 case "R_14_Pro.RptPrjWiseMrfHistory": Rpt1a = SetRptPrjWiseMrfHistory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_14_Pro.RptDateWiseReqCheckHistory": Rpt1a = SetRptDateWiseReqCheckHistory(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    
+
+                case "R_15_DPayReg.RptChequeIssue": Rpt1a = SetRptChequeIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
 
                 #endregion
                 #region Inventory
@@ -926,7 +928,16 @@ namespace RealERPRDLC
 
             return Rpt1a;
         }
+        private static LocalReport SetRptChequeIssue(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.ChequeSheet01>)RptDataSet));
+
+            return Rpt1a;
+        } 
+
+
         
+
         private static LocalReport SetRptPurchaseTrack02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_14_Pro.EClassPur.EclassReqAllOrderList>)RptDataSet));
