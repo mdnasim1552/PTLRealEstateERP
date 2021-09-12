@@ -944,7 +944,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
                 //string vounum = dt1.Rows[0]["vounum"].ToString();
 
-                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "F_17_Acc/";
+                string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
                 string currentptah = "AccPrint.aspx?Type=PfaccVou&vounum=" + vounum;
                 string totalpath = hostname + currentptah;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
