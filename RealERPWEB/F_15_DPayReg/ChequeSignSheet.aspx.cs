@@ -42,12 +42,21 @@ namespace RealERPWEB.F_15_DPayReg
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.GetProjectName();
-                this.Bankcode();
-                this.ColumnVisible();
-                this.ComInitial();
-                this.lnkOk_Click(null, null);
 
+                if (Request.QueryString.AllKeys.Contains("actcode"))
+                {
+                    // print cheque from bill register interface
+                    //this.printChequeIssue();
+
+                }
+                else
+                {
+                    this.GetProjectName();
+                    this.Bankcode();
+                    this.ColumnVisible();
+                    this.ComInitial();
+                    this.lnkOk_Click(null, null);
+                }
 
                 if (Cache["cactcode"] == null)
                 {
@@ -77,6 +86,8 @@ namespace RealERPWEB.F_15_DPayReg
                 {
                     this.checkpb.Visible = false;
                 }
+
+
 
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Cheque Preparation";
@@ -448,17 +459,6 @@ namespace RealERPWEB.F_15_DPayReg
 
                 this.lblInword.Text = ASTUtility.Trans(amount, 2);
             }
-
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -2363,6 +2363,37 @@ namespace RealERPWEB.F_15_DPayReg
                 return;
             this.txtRefNum.Text = this.ddlcheque.SelectedItem.Text;
         }
+
+
+        private void printChequeIssue()
+        {
+            try
+            {
+                Session.Remove("tbChqSign");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+                string SrchRefno = "%%";
+                string Issueno = Request.QueryString["slnum"].ToString() == "" ? "" : Request.QueryString["slnum"].ToString();
+
+                string pactcode = ((Request.QueryString["actcode"].ToString() == "000000000000") ? "" : Request.QueryString["actcode"].ToString()) + "%";
+                string RptType = (this.Request.QueryString["Type"] == "Acc") ? "Acc" : "Mgt";
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "SHOWCHQSIGN", Date, pactcode, "", "", SrchRefno, RptType, Issueno, "", "");
+
+                Session["tbChqSign"] = this.HiddenSameDate(ds1.Tables[0]);
+
+                //this.txtPayto.Text = ds1.Tables[0].Rows[0]["payto"].ToString();
+                //   Session["UserLog"] = ds1.Tables[2];
+
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error :" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
     }
 }
 

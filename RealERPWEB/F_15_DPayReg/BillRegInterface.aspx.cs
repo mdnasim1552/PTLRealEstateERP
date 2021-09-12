@@ -534,6 +534,9 @@ namespace RealERPWEB.F_15_DPayReg
                 string pymdate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "appisedate")).ToString();
                 string slnum = DataBinder.Eval(e.Row.DataItem, "slnum").ToString();
 
+                string actcode = DataBinder.Eval(e.Row.DataItem, "actcode").ToString();
+                string reqno = DataBinder.Eval(e.Row.DataItem, "reqno").ToString();
+
 
                 //string centrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "centrid")).ToString();
                 //string recvno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recvno")).ToString();
@@ -549,9 +552,11 @@ namespace RealERPWEB.F_15_DPayReg
                 //    hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
                 //}
 
+                hlink1.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum + "&actcode" + actcode + "&reqno" + reqno;
+
                 hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
 
-                hlink3.NavigateUrl = "~/F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk";
+                hlink3.NavigateUrl = "~/F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk&comcod=&Date1=&Date2=";
 
             }
         }
