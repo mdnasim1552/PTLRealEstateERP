@@ -93,6 +93,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+GetWorkOrder.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+SubConAllBill.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay02.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay021.datasource" />
@@ -183,6 +184,8 @@
     <EmbeddedResource Include="R_09_PIMP\RptProjWBillQty.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptProjWisBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\rptPurIssueEntry.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptPerodSubConBill.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\rptsubconbill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptSubConBillFinalization.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptSubConOverAll.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptsubConBillPrj.rdlc" />

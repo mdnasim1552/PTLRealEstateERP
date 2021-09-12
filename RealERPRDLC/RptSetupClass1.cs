@@ -139,6 +139,8 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptSubConOverAll2": Rpt1a = SetRptSubConOverAll2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_09_PIMP.RptSubConOverAll": Rpt1a = SetRptSubConOverAll(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.rptsubconbill": Rpt1a = Setrptsubconbill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptPerodSubConBill": Rpt1a = SetRptPerodSubConBill(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
                 #region Procurement Module
@@ -1439,6 +1441,16 @@ namespace RealERPRDLC
         private static LocalReport SetRptSubConOverAll(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.RptSubConBillOverAll>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport Setrptsubconbill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.SubConAllBill>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptPerodSubConBill(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.SubConAllBill>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMonCollReceiptType(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

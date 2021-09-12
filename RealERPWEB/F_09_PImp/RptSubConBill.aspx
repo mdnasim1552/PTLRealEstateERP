@@ -52,21 +52,15 @@
                                     <div class="col-md-3 asitCol3">
                                         <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName"
                                             Text="Date:"></asp:Label>
-
                                         <asp:TextBox ID="txtFDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtFDate"></cc1:CalendarExtender>
-
-
                                         <asp:Label ID="lbldateTo" runat="server" Font-Bold="True"
                                             Text="Date:" CssClass="smLbl_to" Visible="true"></asp:Label>
-
                                         <asp:TextBox ID="txtDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
                                             Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
                                     </div>
-
-
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3 asitCol3 pading5px">
@@ -166,9 +160,7 @@
                                 </div>
                             </div>
                         </fieldset>
-                    </div>
-                    
-
+                    </div>                  
 
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">

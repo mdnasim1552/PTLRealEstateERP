@@ -484,6 +484,39 @@ namespace RealEntity.C_09_PIMP
 
         }
 
+        [Serializable]
+        public class SubConAllBill
+        {
+            public string flrdes { get; set; }
+            public string rptdesc { get; set; }
+            public string rptunit { get; set; }
+            public string resdesc { get; set; }
+            public string unitdesc { get; set; }
+            public double rptqty { get; set; }
+            public double rptrat { get; set; }
+            public double rptamt { get; set; }
+            public double exqty { get; set; }
+            public double subconrat { get; set; }
+            public double subconamt { get; set; }
+            public double difqty { get; set; }
+            public double difrat { get; set; }
+            public double difamt { get; set; }
+            public double bgdrat { get; set; }
+            public double balamt { get; set; }
+            public double reqqty { get; set; }
+            public double reqrat { get; set; }
+            public double reqamt { get; set; }
+            public double preqty { get; set; }
+            public double preamt { get; set; }
+            public double curqty { get; set; }
+            public double curamt { get; set; }
+            public double totalqut { get; set; }
+            public double totalamt { get; set; }
+            public SubConAllBill() { }
+
+        }
+
+
     }
 
 }
