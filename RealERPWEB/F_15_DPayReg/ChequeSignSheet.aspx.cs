@@ -2410,16 +2410,16 @@ namespace RealERPWEB.F_15_DPayReg
             string paytype = "Pay Type : " +dt3.Rows[0]["paytype"].ToString();
             string payto = "Pay To : " + dt3.Rows[0]["payto"].ToString();
             string reqnar = "Narration : " + dt3.Rows[0]["reqnar"].ToString();
-            string date1 = "Req Date : " + Convert.ToDateTime(dt3.Rows[0]["reqdat"]).ToString("dd-MM-yyyyy");
+            string date1 = "Req Date : " + Convert.ToDateTime(dt3.Rows[0]["reqdat"]).ToString("dd-MM-yyyy");
 
             string billno =Request.QueryString["billno"].ToString() == "" ? "" : Request.QueryString["billno"].ToString();
             string payid = Request.QueryString["slnum"].ToString() == "" ? "" : Request.QueryString["slnum"].ToString();
 
 
-            string sign1 = dt2.Rows[0]["entryuser"].ToString() + "\n" + dt2.Rows[0]["entrydesig"].ToString() +"\n" +  Convert.ToDateTime(dt2.Rows[0]["entryDate"]).ToString("dd-MM-yyyyy");
-            string sign2 = dt2.Rows[0]["chkuser"].ToString() + "\n" + dt2.Rows[0]["chkuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["chkdate"]).ToString("dd-MM-yyyyy");
-            string sign3 = dt2.Rows[0]["fruser"].ToString() + "\n" + dt2.Rows[0]["fruserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["frdate"]).ToString("dd-MM-yyyyy");
-            string sign4 = dt2.Rows[0]["aprvuser"].ToString() + "\n" + dt2.Rows[0]["aprvuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprvdate"]).ToString("dd-MM-yyyyy");
+            string sign1 = dt2.Rows[0]["entryuser"].ToString() + "\n" + dt2.Rows[0]["entrydesig"].ToString() +"\n" +  Convert.ToDateTime(dt2.Rows[0]["entryDate"]).ToString("dd-MM-yyyy");
+            string sign2 = dt2.Rows[0]["chkuser"].ToString() + "\n" + dt2.Rows[0]["chkuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["chkdate"]).ToString("dd-MM-yyyy");
+            string sign3 = dt2.Rows[0]["fruser"].ToString() + "\n" + dt2.Rows[0]["fruserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["frdate"]).ToString("dd-MM-yyyy");
+            string sign4 = dt2.Rows[0]["aprvuser"].ToString() + "\n" + dt2.Rows[0]["aprvuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprvdate"]).ToString("dd-MM-yyyy");
 
             var list = dt1.DataTableToList<RealEntity.C_14_Pro.EClassPur.ChequeSheet01>();
 
