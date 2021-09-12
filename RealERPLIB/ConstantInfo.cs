@@ -1929,6 +1929,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102072", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpCon", "Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102073", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=Manpower", "Employee Manpower Report", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102074", "F_81_Hrm/F_82_App", "EntryAllEmp", "", "Marketing Employee Entry", "Appointment", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102075", "F_81_Hrm/F_82_App", "LandEmployeeEntry", "", "Land Employee Entry", "Appointment", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102076", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpGradeADesig", "Grade & Designation Wise  Salary Detail", "HR Management", "False", "False", "False", "False" }); ;
@@ -14337,6 +14338,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0211000000", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000000", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000000", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
 
 
 
