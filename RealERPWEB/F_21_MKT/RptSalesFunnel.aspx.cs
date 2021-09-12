@@ -30,6 +30,9 @@ namespace RealERPWEB.F_21_MKT
                 //this.txttodate.Text =  Convert.ToDateTime(txtfodate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                 this.GetOpenDateKPI();
+                this.rbtnlst.SelectedIndex = 0;
+                this.rbtnlst_SelectedIndexChanged(null, null);
+              // this.chkcondate_CheckedChanged(null, null);
 
                 GetAllSubdata();
                 this.GETEMPLOYEEUNDERSUPERVISED();
@@ -49,26 +52,79 @@ namespace RealERPWEB.F_21_MKT
         private void GetOpenDateKPI()
 
         {
-            string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            ViewState.Remove("tblopndate");
             string comcod = GetComeCode();
             DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETKPIOPENDATE", "", "", "", "", "", "", "", "", "");
-            if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
-            {
+            ViewState["tblopndate"] = Convert.ToDateTime(ds2.Tables[0].Rows[0]["cdate"]).ToString("dd-MMM-yyyy");
+            
+            
+            //if (ds2 == null || ds2.Tables[0].Rows.Count == 0)
+            //{
 
-                this.txtfodate.Text = Convert.ToDateTime(txtfodate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                return;
-            }
-            else
-            {
+            //    this.txtfodate.Text = Convert.ToDateTime(txtfodate.Text.Trim()).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //    return;
+            //}
+            //else
+            //{
 
-                this.txtfodate.Text = Convert.ToDateTime(ds2.Tables[0].Rows[0]["cdate"]).ToString("dd-MMM-yyyy");
-            }
+            //    this.txtfodate.Text = Convert.ToDateTime(ds2.Tables[0].Rows[0]["cdate"]).ToString("dd-MMM-yyyy");
+            //}
 
 
 
 
         }
+
+
+        protected void rbtnlst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string opndate = (string)ViewState["tblopndate"];
+            if (this.rbtnlst.SelectedIndex == 0)
+            {
+                this.lblcondate.Visible = false;
+                this.txtcondate.Visible = false;
+                this.txtcondate.Text = "";
+                this.txtfodate.Text = opndate;
+                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            }
+            else
+            {
+                this.lblcondate.Visible = true;
+                this.txtcondate.Visible = true;
+                this.txtfodate.Text = opndate;
+                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtcondate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+            }
+        }
+
+
+        //protected void chkcondate_CheckedChanged(object sender, EventArgs e)
+        //{
+
+
+        //    string opndate = (string)ViewState["tblopndate"];  
+        //    if (this.chkcondate.Checked == false)
+        //    {
+        //        this.txtcondate.Visible = false;
+        //        this.txtcondate.Text = "";
+        //        this.txtfodate.Text = opndate;
+        //        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+        //    }
+        //    else
+        //    {
+        //        this.txtcondate.Visible = true;
+        //        this.txtfodate.Text = opndate;
+        //        this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        //        this.txtcondate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+        //    }
+        //}
 
         private void GetAllSubdata()
         {
@@ -206,8 +262,9 @@ namespace RealERPWEB.F_21_MKT
             string prjcode = ((this.ddlProject.SelectedValue.ToString() == "") ? "%" : this.ddlProject.SelectedValue.ToString()) + "%";
             string professioncode = ((this.ddlProfession.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProfession.SelectedValue.ToString()) + "%";
             string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
-
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, cdate, prjcode, professioncode, cdatef, sourch);
+            string condate =this.txtcondate.Text;
+            string calltype = condate.Length == 0 ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION";
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate);
             if (ds1 == null)
             {
                 this.grpBox.Visible = false;
@@ -363,6 +420,7 @@ namespace RealERPWEB.F_21_MKT
             public decimal qualiflead { get; set; }
             public decimal finalnego { get; set; }
             public decimal nego { get; set; }
+            public decimal hold { get; set; }
             public decimal win { get; set; }
         }
         [Serializable]
@@ -378,6 +436,7 @@ namespace RealERPWEB.F_21_MKT
             public decimal qualiflead { get; set; }
             public decimal finalnego { get; set; }
             public decimal nego { get; set; }
+            public decimal hold { get; set; }
             public decimal win { get; set; }
         }
 
@@ -400,9 +459,10 @@ namespace RealERPWEB.F_21_MKT
             public decimal qualiflead { get; set; }
             public decimal finalnego { get; set; }
             public decimal nego { get; set; }
+            public decimal hold { get; set; }
             public decimal win { get; set; }
         }
 
-        
+      
     }
 }

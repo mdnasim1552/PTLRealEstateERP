@@ -15,6 +15,15 @@ namespace RealERPWEB.F_21_MKT
     {
 
         /// <summary>
+        /// rbtnlst control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnlst;
+
+        /// <summary>
         /// txtfodate control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,33 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender Cal3;
+
+        /// <summary>
+        /// lblcondate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcondate;
+
+        /// <summary>
+        /// txtcondate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtcondate;
+
+        /// <summary>
+        /// CalendarExtender_txtcondate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtcondate;
 
         /// <summary>
         /// ddlEmpid control.

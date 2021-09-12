@@ -130,12 +130,13 @@ namespace RealERPWEB.F_21_MKT
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "56" & gcode2 != "000") ? "55%"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "57" & gcode2 != "000") ? "56%"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58" & gcode2 != "000") ? "57%"
-
+                : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "45" & gcode2 != "000") ? "42%" 
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "54" & gcode2 == "000") ? "52%"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "55" & gcode2 == "000") ? "53%"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "56" & gcode2 == "000") ? "54%"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "57" & gcode2 == "000") ? "55%"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58" & gcode2 == "000") ? "56%" : "";
+
 
             if (gcode != "00000")
             {
@@ -246,13 +247,16 @@ namespace RealERPWEB.F_21_MKT
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "55") ? "District/Zone"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "56") ? "Zone/Police Station"
                 : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "57") ? "Police Station/Area"
-                : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58") ? "Area/Block" : "";
+                : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58") ? "Area/Block" 
+                : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "45") ? "Regression" : "";
 
                 this.grvacc.Columns[2].Visible = ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "54") ? true
                     : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "55") ? true
                     : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "56") ? true
                     : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "57") ? true
-                    : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58") ? true : false;
+                    : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "58") ? true 
+                    : ((this.ddlOthersBook.SelectedValue.ToString()).Substring(0, 2) == "45") ? true
+                    : false;
 
                 this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
