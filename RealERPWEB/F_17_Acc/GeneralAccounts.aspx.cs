@@ -195,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-               // case "3101": // Test
+                //case "3101": // Test
                 case "3332":
                 case "3339":
                     this.chkpost.Checked = true;
@@ -903,7 +903,7 @@ namespace RealERPWEB.F_17_Acc
                     if (ds4.Tables[0].Rows.Count == 0)
                         this.txtNarration.Text = "";
                     else
-                        this.txtNarration.Text = comcod == "1103" ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
+                        this.txtNarration.Text = (comcod == "1103" || comcod=="3339") ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
                     //---------------------
 
                     this.GetVouCherNumber();
