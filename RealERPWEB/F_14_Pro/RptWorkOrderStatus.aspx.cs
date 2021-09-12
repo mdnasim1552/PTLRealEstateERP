@@ -39,6 +39,7 @@ namespace RealERPWEB.F_14_Pro
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFDate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
                 this.GetProjectName();
+              
             }
         }
 
@@ -63,6 +64,13 @@ namespace RealERPWEB.F_14_Pro
 
                 case "DetailsWorkIOrdStatus":
                     this.MultiView1.ActiveViewIndex = 1;
+                    break;
+
+                case "RequisitionVsOrder":
+                    this.MultiView1.ActiveViewIndex = 2;
+                    this.rbtnList1.Visible = false;
+                    this.rbtnpurtype.Visible = false;
+
                     break;
 
             }
@@ -108,6 +116,13 @@ namespace RealERPWEB.F_14_Pro
                     this.DetworkorderStatus();
                     break;
 
+                case "RequisitionVsOrder":                                   
+                    this.GetRequisitionVsOrder();
+                    break;
+
+
+                    
+
             }
             if (ConstantInfo.LogStatus == true)
             {
@@ -137,6 +152,18 @@ namespace RealERPWEB.F_14_Pro
             this.LoadDetailsData();
 
         }
+
+        private void GetRequisitionVsOrder()
+        {
+
+
+            this.lblPage.Visible = true;
+            this.ddlpagesize.Visible = true;
+            this.RequisitionVsOrder();
+
+        }
+
+        
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -164,6 +191,30 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt1 = this.HiddenSameDate(ds1.Tables[0]);
             Session["tblstatus"] = dt1;
             this.LoadGrid();
+
+        }
+
+        private void RequisitionVsOrder()
+        {
+            Session.Remove("tblstatus");
+            string comcod = this.GetCompCode();      
+            string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string pactcode = this.ddlProjectName.SelectedValue.ToString()=="000000000000"? "%" : this.ddlProjectName.SelectedValue.ToString()+"%";           
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTREQUISITIONVSORDER", fromdate, todate, pactcode, "", "", "", "", "", "");
+            if (ds1.Tables[0] == null)
+            {
+                this.gvReqVsOrder.DataSource = null;
+                this.gvReqVsOrder.DataBind();
+                return;
+
+            }
+            DataTable dt1 = this.HiddenSameDate(ds1.Tables[0]);
+            Session["tblstatus"] = dt1;
+            this.LoadGrid();
+           // this.FooterCalculation();
+
+
 
         }
         private void LoadDetailsData()
@@ -206,6 +257,15 @@ namespace RealERPWEB.F_14_Pro
                     this.gvDeWorkOrdSt.DataSource = dt;
                     this.gvDeWorkOrdSt.DataBind();
                     break;
+
+                case "RequisitionVsOrder":
+                    this.gvReqVsOrder.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvReqVsOrder.DataSource = dt;
+                    this.gvReqVsOrder.DataBind();
+                    break;
+
+
+                    
             }
 
 
@@ -288,6 +348,36 @@ namespace RealERPWEB.F_14_Pro
 
                     }
                     break;
+
+
+
+                case "RequisitionVsOrder":
+
+                    string pactcode1 = dt1.Rows[0]["pactcode"].ToString();
+                    string reqno1 = dt1.Rows[0]["reqno"].ToString();
+
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode1)
+                        {
+                            pactcode = dt1.Rows[j]["pactcode"].ToString();
+                            reqno = dt1.Rows[j]["reqno"].ToString();
+                            dt1.Rows[j]["pactdesc"] = "";
+                            //dt1.Rows[j]["reqno1"] = "";
+                            //dt1.Rows[j]["reqdat1"] = "";
+                        }
+
+                        else
+                        {
+
+                         pactcode = dt1.Rows[j]["pactcode"].ToString();
+                                             
+
+                        }
+
+                    }
+                    break;
+
             }
             return dt1;
         }
@@ -571,6 +661,10 @@ namespace RealERPWEB.F_14_Pro
                     this.LoadGrid();
                     break;
                 case "DetailsWorkIOrdStatus":
+                    this.LoadGrid();
+                    break;
+
+                case "RequisitionVsOrder":
                     this.LoadGrid();
                     break;
             }
