@@ -177,14 +177,14 @@ namespace RealERPWEB.F_17_Acc
                     this.gvtbOpPay.DataSource = dt;
                     this.gvtbOpPay.DataBind();
                     Session["Report1"] = gvtbOpPay;
-                    //  ((HyperLink)this.gvtbOpPay.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvtbOpPay.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
                 case 1:
                     //this.gvtbOpDep.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvtbOpDep.DataSource = dt;
                     this.gvtbOpDep.DataBind();
                     Session["Report1"] = gvtbOpDep;
-                    //   ((HyperLink)this.gvtbOpDep.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvtbOpDep.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
             }
         }
