@@ -4285,7 +4285,7 @@ namespace RealERPWEB.F_21_MKT
 
             //{
 
-
+            DataTable dtg = ((DataTable)ViewState["tblsubddl"]).Copy();
 
             DataTable dt = (DataTable)ViewState["tbModalData"];
             this.gvInfo.DataSource = dt;
@@ -4319,17 +4319,11 @@ namespace RealERPWEB.F_21_MKT
             dv.RowFilter = ("gcod like '95%'");
             DataTable dts = dv.ToTable();
 
-            //add nahid
-            DataView dvLostReasion;
-            DataTable dtrvs = ((DataTable)ViewState["tblFollow"]).Copy();
-            dvLostReasion = dtrvs.DefaultView;
-            dvLostReasion.RowFilter = ("gcod like '45%'");
+           
 
 
 
-            ////  Status
-            //dv = dtvs.DefaultView;
-            //dv.RowFilter = ("gcod like '95%'");
+           
 
 
 
@@ -4349,6 +4343,7 @@ namespace RealERPWEB.F_21_MKT
 
             DropDownList ddlgval, ddlUnit, ddlVisitor, ddlgval1, ddlgval2, ddlgval3;
             ListBox ddlPartic;
+            DataRow dr1;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -4500,30 +4495,84 @@ namespace RealERPWEB.F_21_MKT
 
 
 
+                    case "810100101012": //Lead Reasion
+
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
+                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
+                        ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = false;
+                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+                        //add nahid
+                        //DataView dvLostReasion;
+                        //DataTable dtrvs = ((DataTable)ViewState["tblFollow"]).Copy();
+                        dv = dtg.DefaultView;
+                        dv.RowFilter = ("gcod like '45%'");
+
+                        //dvLostReasion = dtrvs.DefaultView;
+                        //dvLostReasion.RowFilter = ("gcod like '45%'");
+
+
+                        //add nahid
+
+                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = true;
+
+
+
+                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = true;
+                        DropDownList checkboxReson = ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson"));
+                        checkboxReson.DataTextField = "gdesc";
+                        checkboxReson.DataValueField = "gcod";
+                        checkboxReson.DataSource = dv.ToTable();
+                        checkboxReson.DataBind();
+
+                        ListItem li = new ListItem();
+                        li.Text = "None";
+                        li.Value = "";
+                        checkboxReson.Items.Add(li);
+                        checkboxReson.SelectedValue = "";
+
+                        //checkboxReson.SelectedItem = "--None--";
+
+
+                        //checkboxReson.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
+                        //
+
+
+
+
+                        break;
+
 
                     case "810100101014": //Lead Quality
 
-                        dv = dtv.DefaultView;
+                        dv = dtg.DefaultView;
                         dv.RowFilter = ("gcod like '42%'");
+                        DataTable dtlq = dv.ToTable();
 
+                       
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlVisit")).Visible = true;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit")).Visible = true;
-
-
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = false;
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = false;
-
-
                         ddlVisitor = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit"));
                         ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
+
+                       
+                        dtlq.Rows.Add();
                         ddlVisitor.DataTextField = "gdesc";
                         ddlVisitor.DataValueField = "gcod";
-                        ddlVisitor.DataSource = dv.ToTable();
-                        ddlVisitor.DataBind();
+                        ddlVisitor.DataSource = dtlq;
+                        ddlVisitor.DataBind();                        
+                        ddlVisitor.Items.Insert(0, new ListItem("None", "")) ;
                         ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
                         break;
 
@@ -4663,49 +4712,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-                    case "810100101012": //Lead Reasion
-
-                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlProject")).Visible = false;
-                        ((Panel)this.gvInfo.Rows[i].FindControl("PnlUnit")).Visible = false;
-                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlStatus")).Visible = true;
-                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
-                        ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlParic")).Visible = false;
-                        ((Label)this.gvInfo.Rows[i].FindControl("lblgvTime")).Visible = false;
-                        ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstStatus")).Visible = false;
-                        ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
-
-
-
-                        //add nahid
-
-                        ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = true;
-
-
-
-                        ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = true;
-                        DropDownList checkboxReson = ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson"));
-                        checkboxReson.DataTextField = "gdesc";
-                        checkboxReson.DataValueField = "gcod";
-                        checkboxReson.DataSource = dvLostReasion.ToTable();
-                        checkboxReson.DataBind();
-
-                        ListItem li = new ListItem();
-                        li.Text = "--None--";
-                        li.Value = "";
-                        checkboxReson.Items.Add(li);
-                        checkboxReson.SelectedValue = "";
-
-                        //checkboxReson.SelectedItem = "--None--";
-
-
-                        //checkboxReson.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
-                        //
-
-
-
-
-                        break;
+                  
 
                     case "810100101015": //Summary
                     case "810100101025": //Discussion

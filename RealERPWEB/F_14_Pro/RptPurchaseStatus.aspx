@@ -2133,12 +2133,21 @@
                                                 </div>
 
                                             </div>
+                                        
 
-                                            <div class="col-md-3 pading5px  asitCol3">
-                                                <asp:DropDownList ID="ddlOrder" runat="server" CssClass="form-control chzn-select inputTxt"></asp:DropDownList>
+                                            <div class="col-md-3">
+                                                <asp:DropDownList ID="ddlOrder" runat="server" CssClass="form-control chzn-select inputTxt" Width="265px" ></asp:DropDownList>
+
 
                                             </div>
-                                            <asp:LinkButton ID="lbtnOkOrder" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOkOrder_Click">Ok</asp:LinkButton>
+
+                                            <div class="colmd-1">
+
+                                            <asp:LinkButton ID="lbtnOkOrder" runat="server" CssClass="btn btn-primary okBtn"  OnClick="lbtnOkOrder_Click"  >Ok</asp:LinkButton>
+
+                                            </div>
+
+
 
 
 

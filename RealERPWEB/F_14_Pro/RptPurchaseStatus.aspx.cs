@@ -336,10 +336,10 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "Ordertrk":
-                    this.lblProjectName.Visible = false;
-                    this.txtSrcProject.Visible = false;
-                    this.ddlProjectName.Visible = false;
-                    this.imgbtnFindProject.Visible = false;
+                    this.lblProjectName.Visible = true;
+                    this.txtSrcProject.Visible = true;
+                    this.ddlProjectName.Visible = true;
+                    this.imgbtnFindProject.Visible = true;
                     this.lbldateto.Visible = false;
                     this.txttodate.Visible = false;
                     this.lblRptGroup.Visible = false;
@@ -1877,9 +1877,9 @@ namespace RealERPWEB.F_14_Pro
             Session.Remove("tblorder");
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            //string date = Convert.ToDateTime(this.tos.Text).ToString("dd-MMM-yyyy");
             string orderno = "%" + this.txtsrchorder.Text.Trim() + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETORDER", pactcode, date, orderno, "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETORDER", pactcode, "", orderno, "", "", "", "", "", "");
             this.ddlOrder.DataTextField = "orderno1";
             this.ddlOrder.DataValueField = "orderno";
             this.ddlOrder.DataSource = ds1.Tables[0];

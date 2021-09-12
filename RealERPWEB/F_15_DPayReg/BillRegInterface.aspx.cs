@@ -536,6 +536,7 @@ namespace RealERPWEB.F_15_DPayReg
 
                 string actcode = DataBinder.Eval(e.Row.DataItem, "actcode").ToString();
                 string reqno = DataBinder.Eval(e.Row.DataItem, "reqno").ToString();
+                string billno = DataBinder.Eval(e.Row.DataItem, "billno").ToString();
 
 
                 //string centrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "centrid")).ToString();
@@ -552,7 +553,7 @@ namespace RealERPWEB.F_15_DPayReg
                 //    hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
                 //}
 
-                hlink1.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum + "&actcode=" + actcode + "&reqno=" + reqno;
+                hlink1.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum + "&actcode=" + actcode + "&reqno=" + reqno + "&billno=" + billno;
 
                 hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
 

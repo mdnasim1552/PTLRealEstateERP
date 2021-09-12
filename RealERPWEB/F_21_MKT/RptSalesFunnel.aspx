@@ -20,15 +20,22 @@
             height: 34px !important;
         }
 
-        .chzn-container-single {
-            width: 210px !important;
-            height: 36px !important;
-        }
+
 
             .chzn-container-single .chzn-single {
                 height: 36px !important;
                 line-height: 36px;
             }
+
+        /*  .project-slect  .chzn-container-single{
+         width: 100px !important;
+            height: 34px !important;
+        
+        }*/
+        .profession-slect .chzn-container-single {
+            width: 100px !important;
+            height: 34px !important;
+        }
     </style>
 
 
@@ -85,16 +92,26 @@
             var gvSummary = $('#<%=this.gvSaleFunnel.ClientID %>');
             gvSummary.Scrollable();
 
-             
-
-           
-             
-
-           
-
-           
 
         };
+
+        //$('#chkcondate').change(function () {
+
+        //    alert("ok");
+
+        //    if ($('#chkcondate').is(":checked")) {
+
+        //        alert("checked");
+        //    }
+
+
+
+
+
+
+
+
+        //});
         function openModaldis() {
 
             $('#mdiscussion').modal('toggle');
@@ -104,8 +121,8 @@
 
         // Create the chart
         function ExecuteGraph(data, data1, data2, data3, data4, data5, data6, data8, data9, gtype) {
-           
-           // alert(gtype);
+
+            // alert(gtype);
             var saldata = JSON.parse(data);
             var empleadst = JSON.parse(data1);
             var empleadstdets = JSON.parse(data2);// employee wise leads deatails
@@ -160,7 +177,7 @@
 
                 tooltip: {
                     headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) +'<br/>'
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
                 },
 
                 series: [
@@ -178,19 +195,21 @@
                             },
                             {
                                 name: "Qualified Lead",
-                                y: parseFloat(saldata[0].qualiflead) 
+                                y: parseFloat(saldata[0].qualiflead)
                             },
                             {
                                 name: "Negotiation",
-                                y: parseFloat(saldata[0].nego) 
+                                y: parseFloat(saldata[0].nego)
                             },
                             {
                                 name: "Final Negotiation",
-                                y: parseFloat(saldata[0].finalnego) 
+                                y: parseFloat(saldata[0].finalnego)
                             },
+
+
                             {
                                 name: "Win",
-                                y: parseFloat(saldata[0].win) 
+                                y: parseFloat(saldata[0].win)
                             }
                             ,
                             {
@@ -205,12 +224,12 @@
 
             //team members graph
             var sumlead = 0;
-            var allempdata = [];              
+            var allempdata = [];
             for (var i = 0; i < empleadst.length; i++) {
                 allempdata.push({ "name": empleadst[i].usrname, "y": parseFloat(empleadst[i].total) })
                 sumlead += parseFloat(empleadst[i].total);
-            }  
-           
+            }
+
 
             console.log(sumlead);
             console.log("NAhid");
@@ -260,7 +279,7 @@
                     {
                         name: "Sales Funnel",
                         colorByPoint: true,
-                        data: allempdata                           
+                        data: allempdata
                     }
                 ]
 
@@ -277,7 +296,7 @@
                         type: 'column'
                     },
                     title: {
-                        text: 'Sales Funnel: ' + empleadstdets[i].usrname+'<img src="../images/userImg.png" alt=ddd>'
+                        text: 'Sales Funnel: ' + empleadstdets[i].usrname + '<img src="../images/userImg.png" alt=ddd>'
                     },
                     subtitle: {
                         text: ''
@@ -359,9 +378,9 @@
                     ]
 
                 });
-             
+
             }
- 
+
 
             //indiviual team graph pie
             for (var i = 0; i < empleadstdets.length; i++) {
@@ -375,7 +394,7 @@
                         type: 'pie'
                     },
                     title: {
-                        text: 'Sales Funnel :' + empleadstdets[i].usrname 
+                        text: 'Sales Funnel :' + empleadstdets[i].usrname
                     },
                     tooltip: {
                         pointFormat: '{series.name}: <b>{point.y}</b>'
@@ -398,7 +417,7 @@
                     series: [{
                         name: 'Stages',
                         colorByPoint: true,
-                        data: [ 
+                        data: [
                             {
                                 name: "Query",
                                 y: parseFloat(empleadstdets[i].query),
@@ -408,17 +427,17 @@
                             {
                                 name: "Lead",
                                 y: parseFloat(empleadstdets[i].lead)
-                                
+
                             },
                             {
                                 name: "Qualified Lead",
                                 y: parseFloat(empleadstdets[i].qualiflead)
-                               
+
                             },
                             {
                                 name: "Negotiation",
                                 y: parseFloat(empleadstdets[i].nego)
-                                
+
                             },
                             {
                                 name: "Final Negotiation",
@@ -437,7 +456,7 @@
                     }]
                 });
             }
-           
+
 
             //project wise
             var sumplead = 0;
@@ -565,7 +584,7 @@
                         {
                             name: "Sales Funnel",
                             colorByPoint: true,
-                            data: allprjTeam                            
+                            data: allprjTeam
                         }
                     ]
 
@@ -593,7 +612,7 @@
 
                 $('#prjWiseEmpPie').append('<div id="prjpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
 
-                 
+
                 Highcharts.chart('prjpie' + empleadstdets[i].teamcode, {
                     chart: {
                         plotBackgroundColor: null,
@@ -809,7 +828,7 @@
 
             //
             //Source Wise PAnel 
-            var sumsrc=0;
+            var sumsrc = 0;
             var allSrc = [];
             for (var i = 0; i < srcleads.length; i++) {
                 allSrc.push({ "name": srcleads[i].prjname, "y": parseFloat(srcleads[i].total) })
@@ -985,12 +1004,12 @@
 
             let w = $(".graph-main").width();
             let h = 300;
-           // chartsal.setSize(w, h);
+            // chartsal.setSize(w, h);
             empttlead.setSize(w, h);
             prjlead.setSize(w, h);
             proflead.setSize(w, h);
             allSrcGrph.setSize(w, h);
-            
+
             const elem = $(".graph-main")[0];
 
             //let resizeObserver = new ResizeObserver(function () {
@@ -1006,167 +1025,200 @@
         }
 
     </script>
- 
 
 
 
-            <div class="card card-fluid container-data mt-5">
-                <div class="card-body">
 
-                    <div class="row mb-2">
-                        <div class="col-md-3">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">From</button>
-                                </div>
-                                <asp:TextBox ID="txtfodate" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtfodate"></cc1:CalendarExtender>
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">To</button>
-                                </div>
-                                <asp:TextBox ID="txttodate" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="Cal3" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+    <div class="card card-fluid container-data mt-5">
+        <div class="card-body">
 
-                            </div>
-                        </div>
+            <div class="row">
+              
+                    <div class="form-check form-check-inline">
 
+                        <asp:RadioButtonList ID="rbtnlst" runat="server" AutoPostBack="True" CssClass="form-check-label"  OnSelectedIndexChanged="rbtnlst_SelectedIndexChanged"
+                            RepeatColumns="7" RepeatDirection="Horizontal">
+                            <asp:ListItem >Stand By</asp:ListItem>
+                            <asp:ListItem>Conversation</asp:ListItem>
 
+                        </asp:RadioButtonList>
 
-                        <div class="col-md-3 p-0">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Team Lead</button>
-                                </div>
-                                <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
-                                </asp:DropDownList>
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3 p-0">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Projects</button>
-                                </div>
-                                <asp:DropDownList ID="ddlProject" data-placeholder="Choose Projects.." Style="width: 100px" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged">
-                                </asp:DropDownList>
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3 p-0">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Profession</button>
-                                </div>
-                                <asp:DropDownList ID="ddlProfession" data-placeholder="Choose Profession.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProfession_SelectedIndexChanged">
-                                </asp:DropDownList>
-                                 <div class="input-group-prepend">
-                                    <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 p-0 d-none">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Source</button>
-                                </div>
-                                <asp:DropDownList ID="ddlSource" data-placeholder="Choose Source.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlSource_SelectedIndexChanged">
-                                </asp:DropDownList>
-                                
-
-                            </div>
-                        </div>
-
-                        <div class="col-2 col-sm-2 pading5px">
-                            <div class="card-body">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-secondary" type="button">Page</button>
-                                    </div>
-
-                                    <asp:DropDownList ID="ddlpage" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpage_SelectedIndexChanged">
-
-                                        <asp:ListItem>10</asp:ListItem>
-                                        <asp:ListItem>20</asp:ListItem>
-                                        <asp:ListItem>20</asp:ListItem>
-                                        <asp:ListItem>30</asp:ListItem>
-                                        <asp:ListItem>50</asp:ListItem>
-                                        <asp:ListItem>100</asp:ListItem>
-                                        <asp:ListItem>150</asp:ListItem>
-                                        <asp:ListItem>200</asp:ListItem>
-                                        <asp:ListItem>300</asp:ListItem>
-                                        <asp:ListItem Selected>400</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <div id="dvTab">
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-
-                                            <a class="nav-link btn active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false">Sales Funnel Graph</a>
-                                        </li>
-                                        <li class="nav-item ml-1">
-                                            <a class="nav-link btn" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Team Members Graph</a>
-                                        </li>
-                                        <li class="nav-item ml-1">
-                                            <a class="nav-link btn" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab2" aria-selected="false">Projects Graph</a>
-                                        </li>
-                                        <li class="nav-item ml-1">
-                                            <a class="nav-link btn" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Profession Graph</a>
-                                        </li>
-
-                                        <li class="nav-item ml-1">
-                                            <a class="nav-link btn" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab3" aria-selected="false">Sourch Wise Graph</a>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-2 col-sm-2 pading5px">
-                            <div class="card-body">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-secondary" type="button">Graph Type</button>
-                                    </div>
-
-                                    <asp:DropDownList ID="ddlgrpType" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlgrpType_SelectedIndexChanged">
-
-                                        <asp:ListItem Value="column">column</asp:ListItem>
-                                        <asp:ListItem Value="line">line</asp:ListItem>
-                                        <asp:ListItem Value="pie">pie</asp:ListItem>
-                                         
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
-                    <!-- Tab panes -->
-                    <div class="tab-content p-3">
-                        <div class="tab-pane fade active show" id="tab1" role="tabpanel" aria-labelledby="tab1">
-
-                            <div class="col-md-12 text-center graph-main" id="grpBox" runat="server" visible="false">
+                </div>
 
 
-                                <div id="salchartG" style="height: 325px; width:450px; margin: 0 auto"></div>
-                                
+            </div>
 
+
+            <div class="row mb-2">
+                <div class="col-md-4">
+                    <div class="input-group input-group-alt">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">From</button>
+                        </div>
+                        <asp:TextBox ID="txtfodate" runat="server" CssClass="form-control  pl-0 pr-0"></asp:TextBox>
+                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                            Format="dd-MMM-yyyy" TargetControlID="txtfodate"></cc1:CalendarExtender>
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">To</button>
+                        </div>
+                        <asp:TextBox ID="txttodate" runat="server" CssClass="form-control  pl-0 pr-0"></asp:TextBox>
+                        <cc1:CalendarExtender ID="Cal3" runat="server"
+                            Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                        <div class="input-group-prepend">
+                            <Label class="btn btn-secondary" id="lblcondate"  runat="server">Con Date</Label>
+                            <%--<asp:CheckBox  runat="server" ID="chkcondate" Text=" Con Date" CssClass="btn btn-secondary" ClientIDMode="Static" AutoPostBack="true" OnCheckedChanged="chkcondate_CheckedChanged" />--%>
+                        </div>
+                        <asp:TextBox ID="txtcondate" runat="server" CssClass="form-control pl-0 pr-0" ClientIDMode="Static"></asp:TextBox>
+                        <cc1:CalendarExtender ID="CalendarExtender_txtcondate" runat="server"
+                            Format="dd-MMM-yyyy" TargetControlID="txtcondate"></cc1:CalendarExtender>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+                <div class="col-md-3 p-0">
+                    <div class="input-group input-group-alt">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">Team Lead</button>
+                        </div>
+                        <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                        </asp:DropDownList>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-3 p-0">
+                    <div class="input-group input-group-alt">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">Projects</button>
+                        </div>
+                        <asp:DropDownList ID="ddlProject" data-placeholder="Choose Projects.." runat="server" CssClass="custom-select chzn-select " AutoPostBack="true" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged">
+                        </asp:DropDownList>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-2 p-0">
+                    <div class="input-group input-group-alt profession-slect">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">Profession</button>
+                        </div>
+                        <asp:DropDownList ID="ddlProfession" data-placeholder="Choose Profession.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlProfession_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <div class="input-group-prepend">
+                            <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 p-0 d-none">
+                    <div class="input-group input-group-alt">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">Source</button>
+                        </div>
+                        <asp:DropDownList ID="ddlSource" data-placeholder="Choose Source.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlSource_SelectedIndexChanged">
+                        </asp:DropDownList>
+
+
+                    </div>
+                </div>
+
+                <div class="col-2 col-sm-2 pading5px">
+                    <div class="card-body">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-secondary" type="button">Page</button>
                             </div>
-                            <div class="row">
+
+                            <asp:DropDownList ID="ddlpage" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpage_SelectedIndexChanged">
+
+                                <asp:ListItem>10</asp:ListItem>
+                                <asp:ListItem>20</asp:ListItem>
+                                <asp:ListItem>20</asp:ListItem>
+                                <asp:ListItem>30</asp:ListItem>
+                                <asp:ListItem>50</asp:ListItem>
+                                <asp:ListItem>100</asp:ListItem>
+                                <asp:ListItem>150</asp:ListItem>
+                                <asp:ListItem>200</asp:ListItem>
+                                <asp:ListItem>300</asp:ListItem>
+                                <asp:ListItem Selected>400</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <div id="dvTab">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+
+                                    <a class="nav-link btn active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false">Sales Funnel Graph</a>
+                                </li>
+                                <li class="nav-item ml-1">
+                                    <a class="nav-link btn" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Team Members Graph</a>
+                                </li>
+                                <li class="nav-item ml-1">
+                                    <a class="nav-link btn" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab2" aria-selected="false">Projects Graph</a>
+                                </li>
+                                <li class="nav-item ml-1">
+                                    <a class="nav-link btn" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Profession Graph</a>
+                                </li>
+
+                                <li class="nav-item ml-1">
+                                    <a class="nav-link btn" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab3" aria-selected="false">Sourch Wise Graph</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2 col-sm-2 pading5px">
+                    <div class="card-body">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-secondary" type="button">Graph Type</button>
+                            </div>
+
+                            <asp:DropDownList ID="ddlgrpType" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlgrpType_SelectedIndexChanged">
+
+                                <asp:ListItem Value="column">column</asp:ListItem>
+                                <asp:ListItem Value="line">line</asp:ListItem>
+                                <asp:ListItem Value="pie">pie</asp:ListItem>
+
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <!-- Tab panes -->
+            <div class="tab-content p-3">
+                <div class="tab-pane fade active show" id="tab1" role="tabpanel" aria-labelledby="tab1">
+
+                    <div class="col-md-12 text-center graph-main" id="grpBox" runat="server" visible="false">
+
+
+                        <div id="salchartG" style="height: 325px; width: 450px; margin: 0 auto"></div>
+
+
+                    </div>
+                    <div class="row">
 
                         <div class="col-md-12">
                             <asp:GridView ID="gvSaleFunnel" runat="server" AutoGenerateColumns="False"
@@ -1287,368 +1339,366 @@
 
 
                     </div>
-                        </div>
-                        <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
-                            <div class="row">
-                                <div class="col-md-12 graph-main">
-                                    <div id="Allempchart" style="width: 100%; height: 300px;"></div>
-
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 mt-5">
-                                    <header class="card-header" style="background: #F6F7F9">
-
-
-
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                Individual Employee wise sales Funnel  
-
-                                            </div>
-                                            <div class="dropdown">
-
-                                                <div class="form-group">
-
-                                                    <ul class="nav nav-tabs" id="myTab2" role="tablist">
-                                                        <li class="nav-item">
-
-                                                            <a class="nav-link btn active" data-toggle="tab" href="#ntab1" role="tab" aria-controls="tab1" aria-selected="false">Column Graph</a>
-                                                        </li>
-                                                        <li class="nav-item ml-1">
-                                                            <a class="nav-link btn" data-toggle="tab" href="#ntab2" role="tab" aria-controls="tab2" aria-selected="false">Pie Graph</a>
-                                                        </li>
-
-
-                                                    </ul>
-
-
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
-                                    </header>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="tab-content p-3">
-                                    <div class="tab-pane fade active show" id="ntab1" role="tabpanel" aria-labelledby="tab1">
-                                         <div class="row" id="indEmpStatusBar"></div>
-                                         
-                                    </div>
-                                    <div class="tab-pane fade" id="ntab2" role="tabpanel" aria-labelledby="tab1">
-                                         <div class="row" id="indEmpStatusPie"></div>
-
-                                         
-
-                                    </div>
-                                </div>
-
-
-                            </div>
+                </div>
+                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-labelledby="tab2">
+                    <div class="row">
+                        <div class="col-md-12 graph-main">
+                            <div id="Allempchart" style="width: 100%; height: 300px;"></div>
 
                         </div>
-
-                        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
-                            <div id="kpiProfesson" style="width: 100%; height: 300px;"></div>
-
-                            
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <header class="card-header" style="background: #F6F7F9">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-5">
+                            <header class="card-header" style="background: #F6F7F9">
 
 
 
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                Individual Employee Project wise sales Funnel  
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto">
+                                        Individual Employee wise sales Funnel  
 
-                                            </div>
-                                            <div class="dropdown">
+                                    </div>
+                                    <div class="dropdown">
 
-                                                <div class="form-group">
+                                        <div class="form-group">
 
-                                                    <ul class="nav nav-tabs" id="myTabkprofess" role="tablist">
-                                                        <li class="nav-item">
+                                            <ul class="nav nav-tabs" id="myTab2" role="tablist">
+                                                <li class="nav-item">
 
-                                                            <a class="nav-link btn active" data-toggle="tab" href="#prtab1" role="tab" aria-controls="prtab1" aria-selected="false">Column Graph</a>
-                                                        </li>
-                                                        <li class="nav-item ml-1">
-                                                            <a class="nav-link btn" data-toggle="tab" href="#prtab2" role="tab" aria-controls="prtab2" aria-selected="false">Pie Graph</a>
-                                                        </li>
-
-
-                                                    </ul>
+                                                    <a class="nav-link btn active" data-toggle="tab" href="#ntab1" role="tab" aria-controls="tab1" aria-selected="false">Column Graph</a>
+                                                </li>
+                                                <li class="nav-item ml-1">
+                                                    <a class="nav-link btn" data-toggle="tab" href="#ntab2" role="tab" aria-controls="tab2" aria-selected="false">Pie Graph</a>
+                                                </li>
 
 
-                                                </div>
+                                            </ul>
 
 
-
-                                            </div>
                                         </div>
-                                    </header>
+
+
+
+                                    </div>
                                 </div>
+                            </header>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="tab-content p-3">
+                            <div class="tab-pane fade active show" id="ntab1" role="tabpanel" aria-labelledby="tab1">
+                                <div class="row" id="indEmpStatusBar"></div>
+
                             </div>
+                            <div class="tab-pane fade" id="ntab2" role="tabpanel" aria-labelledby="tab1">
+                                <div class="row" id="indEmpStatusPie"></div>
 
-                            <div class="col-md-12">
-                                <div class="tab-content p-3">
-                                    <div class="tab-pane fade active show" id="prtab1" role="tabpanel" aria-labelledby="prtab1">
-                                        <div class="row" id="ProfessionEMPbar"></div>
-                                         
-                                    </div>
-                                    <div class="tab-pane fade" id="prtab2" role="tabpanel" aria-labelledby="prtab1">
-                                        <div class="row" id="ProfessionEMPpIE"></div>
-                                        
-                                        
-
-                                    </div>
-                                </div>
 
 
                             </div>
                         </div>
 
 
+                    </div>
 
-                        <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab3">
+                </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="kpiProjects" style="width: 100%; height: 300px;"></div>
+                <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="tab3">
+                    <div id="kpiProfesson" style="width: 100%; height: 300px;"></div>
 
-                                </div>
-                            </div>
 
-                            <div class="row mt-5">
-                                <div class="col-md-12">
-                                    <header class="card-header pt-0 pb-0" style="background: #F6F7F9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <header class="card-header" style="background: #F6F7F9">
 
 
 
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                Individual Employee Project wise sales Funnel  
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto">
+                                        Individual Employee Project wise sales Funnel  
 
-                                            </div>
-                                            <div class="dropdown">
+                                    </div>
+                                    <div class="dropdown">
 
-                                                <div class="form-group">
+                                        <div class="form-group">
 
-                                                    <ul class="nav nav-tabs" id="myTabkpproj" role="tablist">
-                                                        <li class="nav-item">
+                                            <ul class="nav nav-tabs" id="myTabkprofess" role="tablist">
+                                                <li class="nav-item">
 
-                                                            <a class="nav-link btn active" data-toggle="tab" href="#ptab1" role="tab" aria-controls="tab1" aria-selected="false">Column Graph</a>
-                                                        </li>
-                                                        <li class="nav-item ml-1">
-                                                            <a class="nav-link btn" data-toggle="tab" href="#ptab2" role="tab" aria-controls="tab2" aria-selected="false">Pie Graph</a>
-                                                        </li>
-
-
-                                                    </ul>
+                                                    <a class="nav-link btn active" data-toggle="tab" href="#prtab1" role="tab" aria-controls="prtab1" aria-selected="false">Column Graph</a>
+                                                </li>
+                                                <li class="nav-item ml-1">
+                                                    <a class="nav-link btn" data-toggle="tab" href="#prtab2" role="tab" aria-controls="prtab2" aria-selected="false">Pie Graph</a>
+                                                </li>
 
 
-                                                </div>
+                                            </ul>
 
 
-
-                                            </div>
                                         </div>
-                                    </header>
-                                </div>
-                            </div>
 
-                            <div class="col-md-12">
-                                <div class="tab-content p-3">
-                                    <div class="tab-pane fade active show" id="ptab1" role="tabpanel" aria-labelledby="ptab1">
-                                        <div class="row" id="prjWiseEmpbar">
 
-</div>                                        
-                                        
-                                    </div>
-                                    <div class="tab-pane fade" id="ptab2" role="tabpanel" aria-labelledby="ptab1">
-                                        <div class="row" id="prjWiseEmpPie">
-</div>                                        
-                                         
 
                                     </div>
                                 </div>
+                            </header>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="tab-content p-3">
+                            <div class="tab-pane fade active show" id="prtab1" role="tabpanel" aria-labelledby="prtab1">
+                                <div class="row" id="ProfessionEMPbar"></div>
+
+                            </div>
+                            <div class="tab-pane fade" id="prtab2" role="tabpanel" aria-labelledby="prtab1">
+                                <div class="row" id="ProfessionEMPpIE"></div>
+
 
 
                             </div>
-
                         </div>
 
-                        <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5">
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="kpiSourch" style="width: 100%; height: 300px;"></div>
-
-                                </div>
-                            </div>
-
-                            <div class="row mt-5">
-                                <div class="col-md-12">
-                                    <header class="card-header pt-0 pb-0" style="background: #F6F7F9">
+                    </div>
+                </div>
 
 
 
-                                        <div class="d-flex align-items-center">
-                                            <div class="mr-auto">
-                                                Individual Employee Source wise sales Funnel  
+                <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="tab3">
 
-                                            </div>
-                                            <div class="dropdown">
-
-                                                <div class="form-group">
-
-                                                    <ul class="nav nav-tabs" id="mySrc" role="tablist">
-                                                        <li class="nav-item">
-
-                                                            <a class="nav-link btn active" data-toggle="tab" href="#tabsrc1" role="tab" aria-controls="tabsrc1" aria-selected="false">Column Graph</a>
-                                                        </li>
-                                                        <li class="nav-item ml-1">
-                                                            <a class="nav-link btn" data-toggle="tab" href="#tabsrc2" role="tab" aria-controls="tabsrc2" aria-selected="false">Pie Graph</a>
-                                                        </li>
-
-
-                                                    </ul>
-
-
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
-                                    </header>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="tab-content p-3">
-                                    <div class="tab-pane fade active show" id="tabsrc1" role="tabpanel" aria-labelledby="tabsrc1">
-                                        <div class="row" id="SourceEMPbar">
-
-</div>                                        
-                                        
-                                    </div>
-                                    <div class="tab-pane fade" id="tabsrc2" role="tabpanel" aria-labelledby="tabsrc2">
-                                        <div class="row" id="SourceEMPbarPie">
-</div>                                        
-                                         
-
-                                    </div>
-                                </div>
-
-
-                            </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="kpiProjects" style="width: 100%; height: 300px;"></div>
 
                         </div>
                     </div>
 
-                    
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <header class="card-header pt-0 pb-0" style="background: #F6F7F9">
+
+
+
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto">
+                                        Individual Employee Project wise sales Funnel  
+
+                                    </div>
+                                    <div class="dropdown">
+
+                                        <div class="form-group">
+
+                                            <ul class="nav nav-tabs" id="myTabkpproj" role="tablist">
+                                                <li class="nav-item">
+
+                                                    <a class="nav-link btn active" data-toggle="tab" href="#ptab1" role="tab" aria-controls="tab1" aria-selected="false">Column Graph</a>
+                                                </li>
+                                                <li class="nav-item ml-1">
+                                                    <a class="nav-link btn" data-toggle="tab" href="#ptab2" role="tab" aria-controls="tab2" aria-selected="false">Pie Graph</a>
+                                                </li>
+
+
+                                            </ul>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="tab-content p-3">
+                            <div class="tab-pane fade active show" id="ptab1" role="tabpanel" aria-labelledby="ptab1">
+                                <div class="row" id="prjWiseEmpbar">
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="ptab2" role="tabpanel" aria-labelledby="ptab1">
+                                <div class="row" id="prjWiseEmpPie">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="tab5" role="tabpanel" aria-labelledby="tab5">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="kpiSourch" style="width: 100%; height: 300px;"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <header class="card-header pt-0 pb-0" style="background: #F6F7F9">
+
+
+
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto">
+                                        Individual Employee Source wise sales Funnel  
+
+                                    </div>
+                                    <div class="dropdown">
+
+                                        <div class="form-group">
+
+                                            <ul class="nav nav-tabs" id="mySrc" role="tablist">
+                                                <li class="nav-item">
+
+                                                    <a class="nav-link btn active" data-toggle="tab" href="#tabsrc1" role="tab" aria-controls="tabsrc1" aria-selected="false">Column Graph</a>
+                                                </li>
+                                                <li class="nav-item ml-1">
+                                                    <a class="nav-link btn" data-toggle="tab" href="#tabsrc2" role="tab" aria-controls="tabsrc2" aria-selected="false">Pie Graph</a>
+                                                </li>
+
+
+                                            </ul>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="tab-content p-3">
+                            <div class="tab-pane fade active show" id="tabsrc1" role="tabpanel" aria-labelledby="tabsrc1">
+                                <div class="row" id="SourceEMPbar">
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="tabsrc2" role="tabpanel" aria-labelledby="tabsrc2">
+                                <div class="row" id="SourceEMPbarPie">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
 
                 </div>
             </div>
 
 
-            <div id="mdiscussion" class="modal fade animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
-                <div class="modal-dialog modal-dialog-full-width modal-lg ">
-                    <div class="modal-content modal-content-full-width">
-                        <div class="modal-header">
-                            <h4 class="modal-title">
-                                <i class="fa fa-hand-point-right"></i>
-                                Discussion </h4>
 
-                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+    </div>
 
 
+    <div id="mdiscussion" class="modal fade animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-full-width modal-lg ">
+            <div class="modal-content modal-content-full-width">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <i class="fa fa-hand-point-right"></i>
+                        Discussion </h4>
+
+                    <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+
+                </div>
+                <div class="modal-body ">
+
+
+
+                    <div class="row">
+
+                        <div class="col-xs-9 col-sm-9 col-md-9">
+
+                            <p>
+                                <strong><span id="lblprosname" runat="server"></span></strong>
+                                <br>
+                                <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
+                                <br>
+                                <strong>Home Address: </strong><span id="lblprosaddress" runat="server"></span>
+                                <br>
+
+                                <strong>Notes: </strong><span id="lblnotes" runat="server"></span>
+                                <br>
+                            </p>
+
+                            <p>
+
+                                <strong>Prefered Area: </strong><span id="lblpreferloc" runat="server"></span>
+                                <br>
+                                <strong>Appartment Size: </strong><span id="lblaptsize" runat="server"></span>
+
+                                <asp:HiddenField ID="lblproscod" runat="server" />
+                                <asp:HiddenField ID="lbleditempid" runat="server" />
+                            </p>
                         </div>
-                        <div class="modal-body ">
 
 
 
+                    </div>
+
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-12 col-lg-12">
                             <div class="row">
-
-                                <div class="col-xs-9 col-sm-9 col-md-9">
-
-                                    <p>
-                                        <strong><span id="lblprosname" runat="server"></span></strong>
-                                        <br>
-                                        <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
-                                        <br>
-                                        <strong>Home Address: </strong><span id="lblprosaddress" runat="server"></span>
-                                        <br>
-
-                                        <strong>Notes: </strong><span id="lblnotes" runat="server"></span>
-                                        <br>
-                                    </p>
-
-                                    <p>
-
-                                        <strong>Prefered Area: </strong><span id="lblpreferloc" runat="server"></span>
-                                        <br>
-                                        <strong>Appartment Size: </strong><span id="lblaptsize" runat="server"></span>
-
-                                        <asp:HiddenField ID="lblproscod" runat="server" />
-                                        <asp:HiddenField ID="lbleditempid" runat="server" />
-                                    </p>
-                                </div>
+                                <asp:Repeater ID="rpclientinfo" runat="server">
+                                    <HeaderTemplate>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
 
 
+                                        <div class="col-md-12  col-lg-12">
+                                            <div class="well">
 
-                            </div>
+                                                <div class="col-sm-12 panel">
 
+                                                    <div class=" col-sm-12">
 
+                                                        <p>
+                                                            <strong>
+                                                                <%# DataBinder.Eval(Container, "DataItem.prosdesc")%> </strong>
 
-                            <div class="row">
-
-
-                                <div class="col-md-12 col-lg-12">
-                                    <div class="row">
-                                        <asp:Repeater ID="rpclientinfo" runat="server">
-                                            <HeaderTemplate>
-                                            </HeaderTemplate>
-                                            <ItemTemplate>
-
-
-                                                <div class="col-md-12  col-lg-12">
-                                                    <div class="well">
-
-                                                        <div class="col-sm-12 panel">
-
-                                                            <div class=" col-sm-12">
-
-                                                                <p>
-                                                                    <strong>
-                                                                        <%# DataBinder.Eval(Container, "DataItem.prosdesc")%> </strong>
-
-                                                                    <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>
-                                                                    <br>
+                                                            <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>
+                                                            <br>
 
 
 
 
-                                                                    <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
+                                                            <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
 
 
-                                                                    <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
+                                                            <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
 
 
 
-                                                                    <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
-                                                                    <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+                                                            <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                            <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
 
 
 
 
 
-                                                                    <br>
-                                                                </p>
+                                                            <br>
+                                                        </p>
 
 
 
@@ -1656,56 +1706,56 @@
 
 
 
-                                                            </div>
+                                                    </div>
 
 
 
 
 
-                                                            <div class="col-md-12 collapse dcomments" id="divreschedule<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>">
+                                                    <div class="col-md-12 collapse dcomments" id="divreschedule<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>">
 
 
 
-                                                                <asp:TextBox ID="txtdate" runat="server" ClientIDMode="Static" CssClass=""></asp:TextBox>
-                                                                <cc1:CalendarExtender ID="Cal2" runat="server"
-                                                                    Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
+                                                        <asp:TextBox ID="txtdate" runat="server" ClientIDMode="Static" CssClass=""></asp:TextBox>
+                                                        <cc1:CalendarExtender ID="Cal2" runat="server"
+                                                            Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
 
 
 
 
 
-                                                                Subject:
+                                                        Subject:
                                                     <textarea name="lblsubjects" id="lblsubjects" style="width: 300px"></textarea>
-                                                                Reason:
+                                                        Reason:
                                                     <textarea name="lblreason" id="lblreason" style="width: 300px"></textarea>
 
-                                                                <%--<button type="button" class="btn  btn-success btn-xs" onclick="funReschedule('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>')">Post</button>--%>
-                                                                <button type="button" class="lbtnschedule">Post</button>
+                                                        <%--<button type="button" class="btn  btn-success btn-xs" onclick="funReschedule('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>')">Post</button>--%>
+                                                        <button type="button" class="lbtnschedule">Post</button>
 
-                                                                <input type="hidden" id="lblcdate" value="<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>" />
-
-
-                                                            </div>
+                                                        <input type="hidden" id="lblcdate" value="<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>" />
 
 
-
-                                                            <%--<asp:LinkButton ID="lbtnComments" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnComments_Click"    data-toggle="collapse" data-target="#dcomments">Comments</asp:LinkButton>--%>
+                                                    </div>
 
 
 
-                                                            <div class="col-md-12 collapse dcomments" id="dcomments<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>">
-
-                                                                <textarea name="lblcomments" id="lblcomments<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>" style="width: 300px"></textarea>
-                                                                <br>
-                                                                <input type="text" name="txtcomdate" class="datepicker" id="txtcomdate<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>" value="<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("MM/dd/yyyy") %>" style="width: 300px"></input>
-
-                                                                <button type="button" class="btn  btn-success btn-xs" id="lbtnpostComments" onclick="funPost('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>')">Post</button>
+                                                    <%--<asp:LinkButton ID="lbtnComments" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnComments_Click"    data-toggle="collapse" data-target="#dcomments">Comments</asp:LinkButton>--%>
 
 
 
-                                                            </div>
+                                                    <div class="col-md-12 collapse dcomments" id="dcomments<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>">
 
-                                                            <%--  <button type="button" class="btn btn-primary btn-xs" runat="server" id="Button1" data-toggle="collapse" data-target="#dcomments" >Comments</button>
+                                                        <textarea name="lblcomments" id="lblcomments<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>" style="width: 300px"></textarea>
+                                                        <br>
+                                                        <input type="text" name="txtcomdate" class="datepicker" id="txtcomdate<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>" value="<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("MM/dd/yyyy") %>" style="width: 300px"></input>
+
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnpostComments" onclick="funPost('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>')">Post</button>
+
+
+
+                                                    </div>
+
+                                                    <%--  <button type="button" class="btn btn-primary btn-xs" runat="server" id="Button1" data-toggle="collapse" data-target="#dcomments" >Comments</button>
 
                                     <div class="col-md-12 collapse "  id="dcomments">
 
@@ -1715,41 +1765,41 @@
 
 
                                     </div>--%>
-                                                        </div>
-                                                    </div>
                                                 </div>
+                                            </div>
+                                        </div>
 
 
 
-                                            </ItemTemplate>
+                                    </ItemTemplate>
 
-                                        </asp:Repeater>
+                                </asp:Repeater>
 
-
-
-                                    </div>
-                                </div>
 
 
                             </div>
-
-
-
-
-
-
-
-
-
                         </div>
 
 
-
-
                     </div>
+
+
+
+
+
+
+
+
+
                 </div>
+
+
+
+
             </div>
-             
-     
+        </div>
+    </div>
+
+
 </asp:Content>
 
