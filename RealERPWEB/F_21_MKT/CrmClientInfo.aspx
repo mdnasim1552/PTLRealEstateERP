@@ -509,11 +509,16 @@
 
 
                     gcod = $(arrgschcodl[i]).text();
-                    var number;
+                    var number, numberlq;
                     switch (gcod) {
                         //Last Followup
                         case '810100101020':
                             number = i;
+                            break;
+
+
+                        case '810100101014':
+                            numberlq = i;
                             break;
 
 
@@ -558,6 +563,16 @@
                     }
 
                 });
+
+
+
+                var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
+                $(ddlvisit).change(function () {
+                    leadquality = $(this).val();
+                  //  alert(leadquality);
+
+                });
+                
 
 
 
