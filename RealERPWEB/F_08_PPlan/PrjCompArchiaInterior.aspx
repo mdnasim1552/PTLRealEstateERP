@@ -55,12 +55,21 @@
 
 
 
+                //$(".chosen-select").chosen({
+                //    search_contains: true,
+                //    no_results_text: "Sorry, no match!",
+                //    allow_single_deselect: true
+                //});
+                //$('.chosen-continer').css({ 'width': '600px', "height": "20px" });
+
+
                 $(".chosen-select").chosen({
                     search_contains: true,
                     no_results_text: "Sorry, no match!",
                     allow_single_deselect: true
                 });
-                $('.chosen-continer').css({ 'width': '600px', "height": "20px" });
+                $('.chosen-continer').css('width', '600px');
+
 
                 $('.chzn-select').chosen({ search_contains: true });
 
@@ -166,6 +175,20 @@
     <div class="card card-fluid" style="min-height: 450px;">
         <div class="card-body">
             <div class="row mt-2">
+
+                 <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label  lblmargin-top9px ml-3" id="lblwork" runat="server">Work</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <asp:DropDownList ID="ddlwork" runat="server" CssClass="form-control chzn-select ddlPage">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                
+                
                 <div class="col-md-1">
                     <div class="form-group">
                         <label class="control-label  lblmargin-top9px" for="project" id="lblproject" runat="server">Project Name</label>
@@ -177,17 +200,7 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label  lblmargin-top9px ml-3" id="lblwork" runat="server">Work</label>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <asp:DropDownList ID="ddlwork" runat="server" CssClass="form-control chzn-select ddlPage">
-                        </asp:DropDownList>
-                    </div>
-                </div>
+               
                 <div class="col-md-1">
                     <div class="form-group">
                         <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary ml-1 btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
@@ -340,7 +353,8 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd1"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser1" runat="server" CssClass=" inputTxt form-control"
+                            <asp:DropDownList ID="ddlassignuser1" runat="server"   SelectionMode="Multiple" Style="width: 300px !important;"
+                                                                data-placeholder="Choose Participant......" multiple="true" class="form-control chosen-select" CssClass=" inputTxt form-control"
                                 TabIndex="12">
                             </asp:DropDownList>
 

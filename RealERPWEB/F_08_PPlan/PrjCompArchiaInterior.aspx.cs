@@ -39,9 +39,10 @@ namespace RealERPWEB.F_08_PPlan
                     : (qType == "Logistic") ? "Project Pre-Planning-Logistic" : (qType == "Design") ? "Project Pre-Planning-Design" 
                     : (qType == "Landscape") ? "Landscape Design" : (qType == "MasterPlan") ? "Master Plan" : "Project Pre-Planning-Brand";
 
-                this.GetProjectName();
                 this.GetWork();
-                this.GetJOB();
+                this.GetProjectName();
+                
+                //this.GetJOB();
                 this.Getuser();
                 // this.CreateTable();
 
@@ -173,7 +174,8 @@ namespace RealERPWEB.F_08_PPlan
 
             string comcod = this.GetComCode();
             string txtSProject = "%" + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETEXPRJNAME", txtSProject, "", "", "", "", "", "", "", "");
+            string wokcode = this.ddlwork.SelectedValue.ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETWORKPRJNAME", txtSProject, wokcode, "", "", "", "", "", "", "");
             this.ddlPrjName.DataTextField = "actdesc";
             this.ddlPrjName.DataValueField = "actcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
