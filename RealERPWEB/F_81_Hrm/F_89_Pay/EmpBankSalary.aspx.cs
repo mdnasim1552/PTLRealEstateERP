@@ -417,15 +417,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             if (dt.Rows.Count == 0)
                 return;
             string comcod = this.GetComeCode();
-            if (comcod == "3330")
+            if (comcod == "3330" || comcod == "3101")
             {
                 ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-                  : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0);");
+                  : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
             else
             {
                 ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-                 : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00);");
+                 : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
             }
 
         }
@@ -952,12 +952,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             if (comcod == "3330")
             {
                 sumamt = ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-            : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
             else
             {
                 sumamt = ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
-            : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
+            : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
             }
 
 

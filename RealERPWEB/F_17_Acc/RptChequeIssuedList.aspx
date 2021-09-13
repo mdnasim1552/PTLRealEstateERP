@@ -95,13 +95,13 @@
                                         <asp:DropDownList ID="ddlpagesize" CssClass="inputTxt ddlPage" TabIndex="13" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
                                             <asp:ListItem>30</asp:ListItem>
                                             <asp:ListItem>50</asp:ListItem>
                                             <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
+                                            <asp:ListItem>150</asp:ListItem>                                            
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem>600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
 
                                         
