@@ -121,6 +121,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
 
+
+                        //case "3101":
+                        //case "3339":
+
+                        //    string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        //  //string frmdate = Convert.ToDateTime("01-Jan-" + Convert.ToDateTime(date).ToString("yyyy")).ToString("dd-MMM-yyyy");
+                        //   string  date2 = "01" + Convert.ToDateTime(date1).ToString().Substring(2);
+                        //    string date3 = Convert.ToDateTime(date2).AddDays(20).ToString("dd-MMM-yyyy");
+
+                        //   // if (Convert.ToDateTime(date3).ToString("dd-MMM-yyyy") > Convert.ToDateTime(date1).ToString("dd-MMM-yyyy"))
+
+                        //    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+
+                        //    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                        //    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                        //    break;
+                            
+
+
                         default:
 
                             // this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
