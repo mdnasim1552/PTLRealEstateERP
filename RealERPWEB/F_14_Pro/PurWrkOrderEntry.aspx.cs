@@ -102,18 +102,12 @@ namespace RealERPWEB.F_14_Pro
         {
 
             string comcod = this.GetCompCode();
-
-            switch (comcod)
+            string type = this.Request.QueryString["InputType"].ToString().Trim();
+            if ((comcod == "3339") && type== "OrderEntry")
             {
-               // case "3101":
-                case "3339":
-              
-                    this.txtCurOrderDate_CalendarExtender.StartDate = System.DateTime.Today;
-
-                    break;
+                this.txtCurOrderDate_CalendarExtender.StartDate = System.DateTime.Today;
 
             }
-
 
         }
         private void SendMail()
