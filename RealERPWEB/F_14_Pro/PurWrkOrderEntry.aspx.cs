@@ -54,6 +54,10 @@ namespace RealERPWEB.F_14_Pro
                 this.txtCurOrderDate_CalendarExtender.EndDate = System.DateTime.Today;
                 this.SendMail();
 
+                //only current date
+
+                this.CurDate();
+
                 if (Session["tblordrange"] == null)
                 {
 
@@ -93,6 +97,19 @@ namespace RealERPWEB.F_14_Pro
             }
         }
 
+        private void CurDate()
+
+        {
+
+            string comcod = this.GetCompCode();
+            string type = this.Request.QueryString["InputType"].ToString().Trim();
+            if ((comcod == "3339") && type== "OrderEntry")
+            {
+                this.txtCurOrderDate_CalendarExtender.StartDate = System.DateTime.Today;
+
+            }
+
+        }
         private void SendMail()
         {
             string comcod = this.GetCompCode();

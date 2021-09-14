@@ -12,6 +12,8 @@ using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
 using Microsoft.Reporting.WinForms;
+using System.Web.SessionState;
+
 namespace RealERPWEB.F_21_MKT
 {
     public partial class CrmClientInfo : System.Web.UI.Page
@@ -98,7 +100,7 @@ namespace RealERPWEB.F_21_MKT
                 case "3316"://Assure Development
                     this.gvSummary.Columns[6].HeaderText = "Date";
                     this.gvSummary.Columns[7].HeaderText = "Customer's Name";
-                    this.gvSummary.Columns[5].Visible = false;
+                    this.gvSummary.Columns[5].Visible = true; // for pid show
                     // this.gvSummary.Columns[8].Visible = false;                
                     this.gvSummary.Columns[9].Visible = false;
                     this.gvSummary.Columns[10].Visible = false;
@@ -3947,6 +3949,50 @@ namespace RealERPWEB.F_21_MKT
 
         [WebMethod(EnableSession = false)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string GetLeadReason(string comcod, string leadquality)
+        {
+
+          
+            ProcessAccess _processAccess = new ProcessAccess();
+
+            DataSet ds2 = _processAccess.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETLEADREASON", leadquality, "", "", "", "", "", "", "", "", "");
+
+
+            if (ds2.Tables[0].Rows.Count == 0)
+            {
+                var result = new { Message = "Schedule:", result = true };
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(result);
+                return json;
+
+            }
+
+
+            else
+            {
+
+                var lst = ds2.Tables[0].DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.EClassLeadReason>().ToList();
+                var jsonSerialiser = new JavaScriptSerializer();               
+                var json = jsonSerialiser.Serialize(lst);
+                return json;
+
+
+            }
+
+
+            
+
+
+
+
+        }
+
+
+
+
+
+        [WebMethod(EnableSession = false)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string UpdateStatus(string comcod, string proscod, string statusid, string empid)
         {
 
@@ -4520,9 +4566,6 @@ namespace RealERPWEB.F_21_MKT
                         //add nahid
 
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Visible = true;
-
-
-
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlLostResion")).Visible = true;
                         DropDownList checkboxReson = ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson"));
                         checkboxReson.DataTextField = "gdesc";
@@ -4979,6 +5022,15 @@ namespace RealERPWEB.F_21_MKT
                         Gvalue = (((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim()
                             : ((CheckBoxList)this.gvInfo.Rows[i].FindControl("ChkBoxLstFollow")).SelectedValue.ToString();
                     }
+
+                    //Lead Reason
+                    else if (Gcode == "810100101012")
+                    {
+
+                        Gvalue = (((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Items.Count == 0) ?""
+                            : ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).SelectedValue.ToString();
+                    }
+
 
 
 

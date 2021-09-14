@@ -1608,6 +1608,9 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
+                LinkButton btnDelBill = (LinkButton)e.Row.FindControl("btnDelBill");
+
+
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -1626,6 +1629,13 @@ namespace RealERPWEB.F_99_Allinterface
                     hlink2.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillEntry&genno=" + orderno + "&sircode=" + sircode;
                 else
                     hlink2.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + mrrno;
+
+                if(comcod=="1205" || comcod == "3351" || comcod == "3352" || comcod == "8306")
+                {
+                    btnDelBill.Visible = false;
+                }
+
+
             }
         }
 

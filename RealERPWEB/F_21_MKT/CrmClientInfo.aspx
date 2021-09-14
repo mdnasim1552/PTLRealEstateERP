@@ -565,11 +565,12 @@
                 });
 
 
-
+                //Lead Reason
                 var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
                 $(ddlvisit).change(function () {
                     leadquality = $(this).val();
-                  //  alert(leadquality);
+                    funLeadReason(comcod, leadquality);
+                   
 
                 });
                 
@@ -1222,6 +1223,79 @@
 
 
 
+        function funLeadReason(comcod, leadquality)
+        {
+
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetLeadReason",
+                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality +'"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+                      
+                        for (var i = 0; i < arrgschcodl.length; i++)
+                        {
+
+                            gcod = $(arrgschcodl[i]).text();                            
+                            switch (gcod)
+                            {
+                               
+                                case '810100101012':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+                      
+                    //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;                       
+                        $(ddllreason).html('');
+                        $.each(data, function (key, data)
+                        {
+
+                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
+                        });
+                      
+
+                        
+
+                       // console.log(data);
+                      //  funDataBind(data);                      
+                       
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+        }
+
+
         function funDupAllMobile() {
 
             try {
@@ -1445,6 +1519,12 @@
                                     if ($(item).val() == newfollowup) {
                                         $(item).attr('checked', true);
                                     }
+                                    else
+                                    {
+
+                                        $(item).attr('checked', false);
+
+                                    }
 
 
                                 });
@@ -1458,14 +1538,18 @@
                                     ar[j++] = newfollowup.substr(i, 7);
                                 }
 
-                                console.log(ar);
-                                alert(ar.length);
+                                //console.log(ar);
+                                //alert(ar.length);
 
                                 for (i = 0; i < ar.length; i++) {
 
                                     $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
                                         if ($(item).val() == ar[i]) {
                                             $(item).attr('checked', true);
+                                        }
+                                        else {
+                                            $(item).attr('checked', false);
+
                                         }
 
                                     });
@@ -1487,6 +1571,11 @@
                                 $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
                                     if ($(item).val() == newfollowup) {
                                         $(item).attr('checked', true);
+
+                                    }
+                                    else {
+
+                                        $(item).attr('checked', false);
 
                                     }
 
@@ -1511,6 +1600,11 @@
                                 $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
                                     if ($(item).val() == status) {
                                         $(item).attr('checked', true);
+
+                                    }
+                                    else {
+                                        $(item).attr('checked', false);
+
 
                                     }
 
@@ -3813,8 +3907,8 @@
                                                         </asp:Panel>
 
                                                         <asp:Panel ID="pnlParic" runat="server" Visible="false">
-                                                            <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" Style="width: 300px !important;"
-                                                                data-placeholder="Choose Participant......" multiple="true" class="form-control chosen-select"></asp:ListBox>
+                                                            <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chosen-select" Style="width: 300px !important;"
+                                                                data-placeholder="Choose Person......" multiple="true" ></asp:ListBox>
 
                                                         </asp:Panel>
 
@@ -3853,7 +3947,7 @@
                                                         </asp:DropDownList>--%>
 
 
-                                                            <asp:DropDownList ID="checkboxReson" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;">
+                                                            <asp:DropDownList ID="checkboxReson" Visible="false" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;">
                                                             </asp:DropDownList>
 
 
