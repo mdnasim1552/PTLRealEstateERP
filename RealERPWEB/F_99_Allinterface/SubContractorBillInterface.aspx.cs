@@ -1155,7 +1155,9 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintINapp");
                 HyperLink lnkbtnbfinapp = (HyperLink)e.Row.FindControl("lnkbtnbfinapp");
-                //  LinkButton btnDelReqCheck = (LinkButton)e.Row.FindControl("btnDelReqCheck");
+
+                LinkButton btnDelfinapp = (LinkButton)e.Row.FindControl("btnDelfinapp");
+                
 
 
                 // HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1176,7 +1178,10 @@ namespace RealERPWEB.F_99_Allinterface
                 // lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
 
-
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" )
+                {
+                    btnDelfinapp.Visible = false;
+                }
 
 
 
