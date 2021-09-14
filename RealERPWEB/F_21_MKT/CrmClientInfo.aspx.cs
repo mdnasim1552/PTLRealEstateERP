@@ -100,7 +100,7 @@ namespace RealERPWEB.F_21_MKT
                 case "3316"://Assure Development
                     this.gvSummary.Columns[6].HeaderText = "Date";
                     this.gvSummary.Columns[7].HeaderText = "Customer's Name";
-                    this.gvSummary.Columns[5].Visible = false;
+                    this.gvSummary.Columns[5].Visible = true; // for pid show
                     // this.gvSummary.Columns[8].Visible = false;                
                     this.gvSummary.Columns[9].Visible = false;
                     this.gvSummary.Columns[10].Visible = false;
