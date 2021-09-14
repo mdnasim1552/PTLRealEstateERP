@@ -3907,7 +3907,7 @@
                                                         </asp:Panel>
 
                                                         <asp:Panel ID="pnlParic" runat="server" Visible="false">
-                                                            <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" Style="width: 300px !important;"
+                                                            <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chosen-select" Style="width: 300px !important;"
                                                                 data-placeholder="Choose Person......" multiple="true" ></asp:ListBox>
 
                                                         </asp:Panel>
