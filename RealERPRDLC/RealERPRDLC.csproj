@@ -337,6 +337,7 @@
     <EmbeddedResource Include="R_17_Acc\RptAccFinalReports.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccFinalReportsDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccIncomeSt.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccIncomeStAlli.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedger.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerBridge.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerRup.rdlc" />
