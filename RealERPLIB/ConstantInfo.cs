@@ -2091,6 +2091,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103043", "F_81_Hrm/F_97_MIS", "RptMgtInterface", "", "Management Interface (HR)", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8151000", "8151001", "F_99_Allinterface", "HRInterfaceTopSheet", "", "Salary  360 <sup>0</span>", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8151000", "8151002", "F_81_Hrm/F_82_App", "RptMyInterface?", "Type=Report", "HR Interface", "HR Management", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8151000", "8151003", "F_99_Allinterface", "HRMAllInOne", "", "HR Dashboard", "HR Management", "False", "False", "False", "False" });
 
 
 
@@ -13652,6 +13653,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0259000000", "03. Purchase Interface", "F_99_Allinterface/RptPurInterface?Type=Report", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0259500000", "04. Sub-Contractor Interface ", "F_99_Allinterface/SubContractorBillInterface?Type=Report&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0259600000", "05. Salary Interface ", "F_99_Allinterface/HRInterfaceTopSheet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0259600000", "05. HR DashBoard ", "F_99_Allinterface/HRMAllInOne", "", true, "" });
+
+
+            
+
             mnuTbl1.Rows.Add(new Object[] { "0259700000", "05. Import Interface ", "F_99_Allinterface/RptLCInterface", "", true, "" });
 
 
