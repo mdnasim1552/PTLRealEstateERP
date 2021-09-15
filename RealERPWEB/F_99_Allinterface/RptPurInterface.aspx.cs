@@ -4899,5 +4899,58 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1_SelectedIndexChanged(null, null);
 
         }
+
+        protected void btnDelOrderAprv_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+
+            string url = "PurWrkOrderEntry?InputType=FirstApp";
+
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string orderno = ((Label)this.gvordfapp.Rows[RowIndex].FindControl("lblgvordernoofapp")).Text.Trim();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            if(orderno=="")
+                return;
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", orderno, date, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+
+            bool result = this.XmlDataInsertOrder(orderno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+
+            }
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERAPPROVAL", orderno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
+
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
     }
 }

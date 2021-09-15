@@ -461,6 +461,7 @@
     <EmbeddedResource Include="R_17_Acc\RptPostDateCqSuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPostDatedChqInHand.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintSubBill.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02Credence.rdlc" />
