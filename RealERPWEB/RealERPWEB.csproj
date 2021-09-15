@@ -2942,6 +2942,7 @@
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
+    <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
@@ -3962,6 +3963,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.cs">
+      <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
+      <DependentUpon>HRMAllInOne.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
