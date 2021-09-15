@@ -25,6 +25,68 @@
             background-color: #006699;
             cursor: pointer;
         }
+    
+
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 1px;
+                bottom: 1px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+            -webkit-transform: translateX(18px);
+            -ms-transform: translateX(18px);
+            transform: translateX(18px);
+        }
+
+       
+        .slider.round {
+            border-radius: 20px;
+        }
+
+            .slider.round:before {
+                border-radius: 50%;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -105,7 +167,18 @@
                                         </asp:RadioButtonList>
                                     </div>
 
-                                    <div class="col-md-3 pading5px pull-right">
+                                     <div class="col-md-1 pading5px">
+                                        <label id="chkbod" runat="server" visible="false" class="switch">
+                                    <asp:CheckBox ID="chkAdvanced" runat="server" visible="false"  OnCheckedChanged="chkAdvanced_CheckedChanged" AutoPostBack="true" />
+                                    <span class="btn btn-xs slider round"></span>
+                                </label>
+                                <asp:Label runat="server" ID="lbladvanced" visible="false" Text="Adjusted" CssClass="btn btn-xs"></asp:Label>
+                                    </div>
+
+
+
+
+                                    <div class="col-md-23 pading5px pull-right">
 
                                         <asp:TextBox ID="txtSrchMrfNo" runat="server" Visible="false" CssClass=" inputtextbox"></asp:TextBox>
                                         <asp:LinkButton ID="lbtnPrevReqList" runat="server" CssClass="btn btn-primary primaryBtn margin5px" OnClick="lbtnPrevReqList_Click">Req. List:</asp:LinkButton>
