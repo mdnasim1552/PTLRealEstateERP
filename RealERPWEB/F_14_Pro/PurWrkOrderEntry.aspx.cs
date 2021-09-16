@@ -56,7 +56,7 @@ namespace RealERPWEB.F_14_Pro
 
                 //only current date
 
-                this.CurDate();
+               // this.CurDate();
 
                 if (Session["tblordrange"] == null)
                 {
@@ -97,19 +97,19 @@ namespace RealERPWEB.F_14_Pro
             }
         }
 
-        private void CurDate()
+        //private void CurDate()
 
-        {
+        //{
 
-            string comcod = this.GetCompCode();
-            string type = this.Request.QueryString["InputType"].ToString().Trim();
-            if ((comcod == "3339") && type== "OrderEntry")
-            {
-                this.txtCurOrderDate_CalendarExtender.StartDate = System.DateTime.Today;
+        //    string comcod = this.GetCompCode();
+        //    string type = this.Request.QueryString["InputType"].ToString().Trim();
+        //    if ((comcod == "3339") && type== "OrderEntry")
+        //    {
+        //        this.txtCurOrderDate_CalendarExtender.StartDate = System.DateTime.Today;
 
-            }
+        //    }
 
-        }
+        //}
         private void SendMail()
         {
             string comcod = this.GetCompCode();
@@ -1440,6 +1440,22 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+        protected DateTime GetBackDate()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
+            string entrydate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETBDATEORDER", "", "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+            {
+                return (System.DateTime.Today);
+            }
+
+            return (Convert.ToDateTime(ds2.Tables[0].Rows[0]["bdate"]));
+        }
+
 
         protected void lbtnUpdatePurOrder_Click(object sender, EventArgs e)
         {
@@ -1458,6 +1474,31 @@ namespace RealERPWEB.F_14_Pro
             this.Session_tblOrder_Update();
 
             string mORDERDAT = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
+
+            // Back date Entry  only Tropical
+            if (comcod=="3339")
+            {
+                DateTime Bdate;
+                Bdate = this.GetBackDate();
+                bool dconi = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(mORDERDAT));
+                string type1 = this.Request.QueryString["InputType"].ToString().Trim();
+                
+                    if (type1== "OrderEntry")
+                    {
+                      if (!dconi)
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
+                            return;
+                        }
+
+                    }
+
+            }
+           
+
+
+
+
             string mPORDUSRID = "";
             string mAPPRUSRID = "";
             string mSSIRCODE = this.ddlSuplierList.Items.Count > 0 ? this.ddlSuplierList.SelectedValue.ToString() : this.lssircode.Text.Trim();
