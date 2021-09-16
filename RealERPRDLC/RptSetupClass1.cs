@@ -488,6 +488,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptMonthWiseBankLedger": Rpt1a = SetRptMonthWiseBankLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptVoucherTopSheet": Rpt1a = SetRptVoucherTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptOthersAccCode": Rpt1a = SetrptOthersAccCode(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAccCodeBookAcme": Rpt1a = SetRptAccCodeBookAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -1373,7 +1374,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptAccCodeBookAcme(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptInvoiceP2P360(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.InvoiceP2P360>)RptDataSet));

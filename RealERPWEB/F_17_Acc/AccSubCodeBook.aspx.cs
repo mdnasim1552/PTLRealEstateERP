@@ -488,7 +488,23 @@ namespace RealERPWEB.F_17_Acc
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            switch(comcod)
+            {
+                case "3338":
+                    this.PrintResCodeAcme();
+                    break;
 
+                default:
+                    this.PrintResCodeAll();
+                    break;
+            }
+
+        }
+
+        private void PrintResCodeAll()
+        {
             if (this.lnkok.Visible)
                 this.lnkok_Click(null, null);
 
@@ -507,6 +523,35 @@ namespace RealERPWEB.F_17_Acc
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptOthersAccCode", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("codeDesc", CodeDesc));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        private void PrintResCodeAcme()
+        {
+            if (this.lnkok.Visible)
+                this.lnkok_Click(null, null);
+
+            string CodeDesc = this.ddlOthersBook.SelectedItem.ToString().Trim().Substring(3)
+                        + " " + "(" + this.ddlOthersBookSegment.SelectedItem.ToString().Trim() + ")";
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["storedata"];
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccCodeBookAcme", list, null, null);
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("codeDesc", CodeDesc));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
