@@ -427,8 +427,9 @@ namespace RealERPWEB.F_17_Acc
 
 
                     }
+                  
 
-                    if (paidamt >= balamt)
+                    if (paidamt > balamt)
                     {
 
                         ((Label)this.Master.FindControl("lblmsg")).Text = "Please Updated Accounts Voucher !!!!!";

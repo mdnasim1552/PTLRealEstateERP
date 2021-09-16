@@ -100,6 +100,8 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
@@ -337,6 +339,7 @@
     <EmbeddedResource Include="R_17_Acc\RptAccFinalReports.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccFinalReportsDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccIncomeSt.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccIncomeStAlli.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedger.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerBridge.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerRup.rdlc" />
@@ -447,6 +450,7 @@
     <EmbeddedResource Include="R_17_Acc\RptNoteIncoStatement.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptNoteSheet.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptOpPayment.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccCodeBookAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptOthersAccCode.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaymentChqClearance.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaymentIncSch.rdlc" />
@@ -461,6 +465,7 @@
     <EmbeddedResource Include="R_17_Acc\RptPostDateCqSuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPostDatedChqInHand.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintSubBill.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02Credence.rdlc" />

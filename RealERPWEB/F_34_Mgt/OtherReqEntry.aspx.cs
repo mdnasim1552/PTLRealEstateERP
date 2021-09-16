@@ -57,6 +57,7 @@ namespace RealERPWEB.F_34_Mgt
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.lblpaytype.Visible = false;
                 this.rblpaytype.Visible = false;
+                this.GetComAdvanceorAdjust();
 
 
 
@@ -101,7 +102,32 @@ namespace RealERPWEB.F_34_Mgt
             }
         }
 
-   
+
+        private void GetComAdvanceorAdjust()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "1103"://Tanvir
+                case "3101":
+                    this.chkAdvanced.Checked = true;
+                    this.chkAdvanced_CheckedChanged(null, null);
+                    this.chkbod.Visible = true;
+                    this.chkAdvanced.Visible = true;
+                    this.lbladvanced.Visible = true;
+                    break;
+
+                default:
+                    break;
+
+            
+            
+            }
+        
+        
+        }
+
+
 
         private void Bankcode()
         {
@@ -805,6 +831,8 @@ namespace RealERPWEB.F_34_Mgt
                 // this.GeResVisibilityAdj();
                 this.ddlSupplier.SelectedValue = supcode;//ds1.Tables[1].Rows[0]["supcode"].ToString();
                 this.ddlBundle.SelectedValue = ds1.Tables[1].Rows[0]["bundno"].ToString();
+                this.chkAdvanced.Checked =Convert.ToBoolean(ds1.Tables[1].Rows[0]["advanced"]);
+                this.chkAdvanced_CheckedChanged(null, null);
                 this.gvOtherReq_DataBind();
             }
 
@@ -1720,6 +1748,7 @@ namespace RealERPWEB.F_34_Mgt
                 double ppdamt = Convert.ToDouble(tbl1.Rows[i]["ppdamt"]);
                 string appxml = tbl1.Rows[i]["approval"].ToString();
                 string Approval = this.GetReqApproval(appxml);
+                string advanced = this.chkAdvanced.Checked ? "1" : "0";
 
 
 
@@ -1727,7 +1756,7 @@ namespace RealERPWEB.F_34_Mgt
                 {
                     result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "INSERTOTHERREQ",
                              mREQNO, mPACTCODE, mRSIRCODE, mREQDAT, mMRFNO, mProAMT.ToString(), mAPPAMT.ToString(), nARRATION,
-                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval);
+                             PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, qty.ToString(), paytype, payto, ppdamt.ToString(), posteddat, supcode, spcfcod, adjcod, type, termncon, payofmod, bundleno, billno, bankcode, refnum, Approval, advanced);
                 }
                 if (!result)
                 {
@@ -1744,13 +1773,68 @@ namespace RealERPWEB.F_34_Mgt
 
             if (type == "FinalAppr")
             {
-                //switch (comcod)
-                //{
-                    ////case "3101":
-                    //case "1103":
-                    //    break;
+                switch (comcod)
+                {
+                    case "3101":
+                    case "1103":
+                        //if (bankcode != "000000000000")
+                        //{
 
-                    //default:
+                        //    result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATECONTRAVOUCHER",
+                        //            mREQNO, "", "", mREQDAT, mMRFNO, "", "", nARRATION,
+                        //            PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, "", paytype, payto, "", posteddat, supcode, termncon, payofmod, "", "", "");
+
+                        //    if (!result)
+                        //    {
+                        //        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+                        //        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        //        return;
+                        //    }
+
+                        //}
+                        bool advanced = this.chkAdvanced.Checked ? true : false;
+                        if (adjcod != "000000000000" && advanced)
+                        {
+
+                            result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "NONADJUSTMENT",
+                                        mREQNO, "", "", "", "", "", "", "",
+                                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                            if (!result)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
+
+
+                            }
+
+                        }
+
+
+
+                        break;
+
+                    default:
+                        //if (adjcod != "000000000000")
+                        //{
+                        //    result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATEJOURNAL",
+                        //         mREQNO, "", "", mREQDAT, mMRFNO, "", "", nARRATION,
+                        //         PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, "", paytype, payto, "", posteddat, supcode, termncon, payofmod, "", "", "");
+
+                        //    if (!result)
+                        //    {
+                        //        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+                        //        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                        //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        //        return;
+                        //    }
+                        //}
+
 
                         //if (adjcod != "000000000000")
                         //{
@@ -1786,10 +1870,10 @@ namespace RealERPWEB.F_34_Mgt
 
                         }
 
-                      //  break;
+                       break;
 
 
-               // }
+               }
 
 
 
@@ -2757,6 +2841,24 @@ namespace RealERPWEB.F_34_Mgt
             if (this.ddlcheque.Items.Count == 0)
                 return;
             this.txtRefNum.Text = this.ddlcheque.SelectedItem.Text;
+        }
+
+      
+
+        protected void chkAdvanced_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkAdvanced.Checked == true)
+            {
+
+                this.lbladvanced.Text = "Advanced";
+            }
+            else
+            {
+
+                this.lbladvanced.Text = "Adjusted";
+
+            }
+
         }
     }
 }
