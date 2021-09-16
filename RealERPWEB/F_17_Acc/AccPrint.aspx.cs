@@ -2046,7 +2046,7 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
 
-                if (comcod == "3338")
+                if (comcod == "3338" || comcod == "3101")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAcme", hshtbl, null, null);
                 }
@@ -2058,7 +2058,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTCL", hshtbl, null, null);
                 }
-                else if (comcod == "3348" || comcod == "3101")
+                else if (comcod == "3348")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptCheqCredence", hshtbl, null, null);
                 }
