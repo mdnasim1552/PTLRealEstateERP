@@ -1794,16 +1794,25 @@ namespace RealERPWEB.F_34_Mgt
                         //    }
 
                         //}
-                        //string advanced=
-                        //if (adjcod != "000000000000")
-                        //{
+                        bool advanced = this.chkAdvanced.Checked ? true : false;
+                        if (adjcod != "000000000000" && advanced)
+                        {
 
-                        //    result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "UPDATECONTRAVOUCHER",
-                        //                mREQNO, "", "", mREQDAT, mMRFNO, "", "", nARRATION,
-                        //                PostedByid, PostSession, Posttrmid, ApprovByid, approvdat, Approvtrmid, ApprovSession, "", paytype, payto, "", posteddat, supcode, termncon, payofmod, "", "", "");
+                            result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "NONADJUSTMENT",
+                                        mREQNO, "", "", "", "", "", "", "",
+                                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                            if (!result)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
 
 
-                        //}
+                            }
+
+                        }
 
 
 

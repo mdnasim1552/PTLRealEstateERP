@@ -21,8 +21,10 @@
 
 
 
-            var gv = $('#<%=this.gv1.ClientID %>');
+            var gv = $('#<%=this.gv1.ClientID %>');  
+            $.keynavigation(gv);
             gv.Scrollable();
+
         }
   </script>
 
