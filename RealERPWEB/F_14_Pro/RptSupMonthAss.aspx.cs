@@ -27,7 +27,23 @@ namespace RealERPWEB.F_14_Pro
                 this.txtfrmDate.Text = "01" + date.Substring(2);
                 this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(3).AddDays(-1).ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "SUPPLIER MONTHLY  ASSESSMENT REPORT";
+
+                this.SupplierList();
             }
+        }
+
+        private void SupplierList()
+        {
+            string comcod = this.GetComeCode();
+            string SrchSupplier = "%" + this.txtSupPro.Text.Trim() + "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_APPOINTMENT_LETTER", "GETASSSUPPLIER", SrchSupplier, "", "", "", "", "", "", "", "");
+            this.ddlSuplist.DataTextField = "resdesc";
+            this.ddlSuplist.DataValueField = "rescode";
+            this.ddlSuplist.DataSource = ds1.Tables[0];
+            this.ddlSuplist.DataBind();
+            ViewState["tblSup"] = ds1.Tables[0];
+            ds1.Dispose();
+          
         }
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -45,12 +61,12 @@ namespace RealERPWEB.F_14_Pro
             Session.Remove("tblper");
             string comcod = this.GetComeCode();
             // string comcode = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
-            // string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString() + "%";
+            string supplier = (this.ddlSuplist.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSuplist.SelectedValue.ToString() + "%";
 
             string fromdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy"); // this.txtfrmDate.Text.Trim();
             string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");//this.txttoDate.Text.Trim();
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_APPOINTMENT_LETTER", "SUPASSPOSITION", "", fromdate, todate, "", "", "", "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_APPOINTMENT_LETTER", "SUPASSPOSITION", supplier, fromdate, todate, "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvSupAssper.DataSource = null;
@@ -113,6 +129,11 @@ namespace RealERPWEB.F_14_Pro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        protected void ibtnFindSupply_Click(object sender, EventArgs e)
+        {
+            this.SupplierList();
         }
     }
 }

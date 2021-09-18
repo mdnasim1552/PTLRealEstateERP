@@ -2046,7 +2046,7 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
 
-                if (comcod == "3338" || comcod == "3101")
+                if (comcod == "3338")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeAcme", hshtbl, null, null);
                 }
