@@ -1108,7 +1108,22 @@
                 </div>
 
 
-                <div class="col-md-2 p-0">
+                 <div class="col-md-2 p-0">
+                    <div class="input-group input-group-alt profession-slect">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">Lead Status</button>
+                        </div>
+                        <asp:DropDownList ID="ddlleadstatus" data-placeholder="Choose Lead Status.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true"  OnSelectedIndexChanged="ddlleadstatus_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <div class="input-group-prepend">
+                            <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-2 p-0" style="display:none">
                     <div class="input-group input-group-alt profession-slect">
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary" type="button">Profession</button>
