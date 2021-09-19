@@ -365,6 +365,11 @@ namespace RealERPWEB.F_21_MKT
             this.lbtnOk_Click(null, null);
 
         }
+        protected void ddlleadstatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.lbtnOk_Click(null, null);
+
+        }
 
         protected void lnkEditfollowup_Click(object sender, EventArgs e)
         {
@@ -463,6 +468,6 @@ namespace RealERPWEB.F_21_MKT
             public decimal win { get; set; }
         }
 
-      
+       
     }
 }
