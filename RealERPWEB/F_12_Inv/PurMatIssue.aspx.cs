@@ -17,8 +17,11 @@ using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 namespace RealERPWEB.F_12_Inv
 {
+       
     public partial class PurMatIssue : System.Web.UI.Page
     {
+
+        
         int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
         ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -762,7 +765,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3315":
                 case "3316":
                 case "3317":
-                    // case "3101":
+                case "3101":
                     break;
 
                 default:
