@@ -881,7 +881,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.gvothearn.DataSource = dt;
                     if (comcod == "3339" || comcod == "3101")
                     {
-                        gvothearn.Columns[9].HeaderText = "Special Allow. / Intertainment ";
+                        gvothearn.Columns[9].HeaderText = "Trans/Entr";
 
                     }
                     this.gvothearn.DataBind();
@@ -2747,19 +2747,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         }
 
-        protected void gvothearn_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                string comcod = this.GetComeCode();
-                if (comcod == "3339" || comcod == "3101")
-                {
-                    gvothearn.Columns[9].HeaderText = "Trans/Entr";
-
-                }
-
-            }
-
-        }
+       
+       
     }
 }
