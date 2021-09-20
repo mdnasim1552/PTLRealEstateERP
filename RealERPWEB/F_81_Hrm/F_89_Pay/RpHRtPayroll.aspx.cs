@@ -123,26 +123,31 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                         //case "3101":
-                        //case "3339":
-
-                        //    //this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                        //    //string frmdate = Convert.ToDateTime("01-Jan-" + Convert.ToDateTime(date).ToString("yyyy")).ToString("dd-MMM-yyyy
-                        //    this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        //    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                        case "3339":   // Tropical Homes                   
                             
-                        //    this.txtfromdate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"); ;
+                            string date1 =  System.DateTime.Today.ToString("dd-MMM-yyyy");
+                            string date2 = "20" + date1.Trim().Substring(2);                     
 
-                        //    DateTime date1=
+                            if (Convert.ToDateTime(date1) >= Convert.ToDateTime(date2))
+                            {
+                                this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
 
-                        //    // if (Convert.ToDateTime(date3).ToString("dd-MMM-yyyy") > Convert.ToDateTime(date1).ToString("dd-MMM-yyyy"))
+                            }
 
-                        //    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            else
+                            {
+                                this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                        //    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                        //    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            }
 
-                        //    break;
+                            
+
+                            break;
 
 
 
