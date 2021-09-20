@@ -3311,17 +3311,17 @@
                                     <div class="form-group">
                                         <ul style="list-style: none; padding-left: 0px">
                                             <li>
-                                                <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial.aspx?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook.aspx" runat="server">Code Book</asp:HyperLink>
+                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">Code Book</asp:HyperLink>
 
                                             </li>
                                             <li>
                                                 <asp:LinkButton ID="lnkbtnReturn" runat="server" OnClick="lnkbtnReturn_Click">Return List</asp:LinkButton>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel.aspx" runat="server">Sales Funnel Reports</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                                             </li>
                                             <li>
