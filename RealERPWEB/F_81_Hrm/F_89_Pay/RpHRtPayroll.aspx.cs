@@ -272,7 +272,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtSalSheet.SelectedIndex = 8;
                     break;
 
-                case "3101":
+                
                 case "3330"://Bridge
                     this.rbtSalSheet.SelectedIndex = 9;
                     break;
@@ -298,7 +298,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtSalSheet.SelectedIndex = 13;
                     break;
 
-
+                case "3101":
                 case "3339"://Tropical
                     this.rbtSalSheet.SelectedIndex = 14;
                     break;
@@ -396,7 +396,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3330"://Bridge
-                case "3101"://Multiplan
+                //case "3101"://Multiplan
                     this.rbtlBonSheet.SelectedIndex = 6;
                     break;
 
@@ -411,12 +411,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtlBonSheet.SelectedIndex = 8;
                     break;
 
-
+                case "3101":
                 case "3339"://Tropical
                     this.rbtlBonSheet.SelectedIndex = 10;
                     break;
 
-                // case "3101":
+                
                 case "3347"://PEB STEEL
 
                     this.rbtlBonSheet.SelectedIndex = 11;

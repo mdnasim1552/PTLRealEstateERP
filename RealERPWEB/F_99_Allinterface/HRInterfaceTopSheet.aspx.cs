@@ -707,12 +707,18 @@ namespace RealERPWEB.F_99_Allinterface
                 case "otherearn":
                     this.gvothearn.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvothearn.DataSource = dt;
+                    if (comcod == "3339" || comcod == "3101")
+                    {
+                        gvothearn.Columns[9].HeaderText = "Trans/Entr";
+
+                    }
                     this.gvothearn.DataBind();
                     this.FooterCalculation();
                     if (comcod == "3101" || comcod == "3347")
                     {
                         this.gvothearn.Columns[11].Visible = true;
-                    }
+                       
+                    }                   
                     break;
 
                 case "dayadj":
@@ -2391,6 +2397,8 @@ namespace RealERPWEB.F_99_Allinterface
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SectionName();
-        }
+        }    
+
+       
     }
 }

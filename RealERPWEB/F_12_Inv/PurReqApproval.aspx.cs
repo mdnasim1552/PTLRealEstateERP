@@ -428,17 +428,12 @@ namespace RealERPWEB.F_12_Inv
             DataTable dt = (DataTable)Session["tblreq"];
             this.dgv1.DataSource = dt;
             this.dgv1.DataBind();
-
-
             if (dt.Rows.Count > 0)
             {
 
                 ((TextBox)this.dgv1.Rows[0].FindControl("txtgvsupRat")).Focus();
                 ((LinkButton)this.dgv1.FooterRow.FindControl("lbtnFinalUpdate")).Visible = ((this.Request.QueryString["Type"].ToString().Trim() == "VenSelect")
                                                                                            || (this.Request.QueryString["Type"].ToString().Trim() == "RateInput") || (this.Request.QueryString["Type"].ToString().Trim() == "FirstRecom") || (this.Request.QueryString["Type"].ToString().Trim() == "SecRecom") || (this.Request.QueryString["Type"].ToString().Trim() == "ThirdRecom"));
-
-
-
 
 
 
@@ -495,10 +490,23 @@ namespace RealERPWEB.F_12_Inv
                     break;
             }
 
+            if(this.Request.QueryString["Type"].ToString() == "RateInput")
+            {
+                switch (this.GetCompCode())
+                {
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                    //case "3101":
 
+                        this.dgv1.Columns[14].Visible = true;
+                        break;
 
-
-
+                    default:
+                        this.dgv1.Columns[14].Visible = false;
+                        break;
+                }
+            }          
 
         }
 
@@ -1417,6 +1425,8 @@ namespace RealERPWEB.F_12_Inv
                 DropDownList ddl4 = (DropDownList)e.Row.FindControl("ddlptype");
                 HyperLink resourceLink = (HyperLink)e.Row.FindControl("lblgvResDesc");
 
+                Label boqrate = (Label)e.Row.FindControl("lblgvboqRate");
+
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gpsl")).ToString().Trim();
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString().Trim();
@@ -1533,6 +1543,24 @@ namespace RealERPWEB.F_12_Inv
                     ((TextBox)e.Row.FindControl("txtgvappQty")).ReadOnly = true;
 
                 }
+
+                //if(Type== "RateInput")
+                //{
+                //    switch (comcod)
+                //    {
+                //        case "1205":
+                //        case "3351":
+                //        case "3352":
+                //        case "3101":
+
+                //            boqrate.Visible = true;
+                //            break;
+                //        default:
+                //            boqrate.Visible = false;
+                //            break;
+
+                //    }
+                //}
 
 
 

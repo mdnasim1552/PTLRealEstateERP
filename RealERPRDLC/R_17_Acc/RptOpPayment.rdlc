@@ -523,7 +523,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!payam2.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!payam3.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -796,6 +796,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>printFooter</rd:DefaultName>
+              <Top>0in</Top>
               <Height>0.25in</Height>
               <Width>5.50695in</Width>
               <Style>
@@ -829,6 +830,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0in</Top>
               <Left>5.52084in</Left>
               <Height>0.25in</Height>
               <Width>2.125in</Width>
