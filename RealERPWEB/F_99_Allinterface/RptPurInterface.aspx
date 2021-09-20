@@ -1807,6 +1807,7 @@
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
+                                                           
                                                             <asp:TemplateField HeaderText="Req <br>  Date">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lnkgvreqrat1" runat="server"
@@ -1814,6 +1815,24 @@
                                                                         Width="70px"></asp:Label>
 
 
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                             <asp:TemplateField HeaderText="1st App. <br>  Date" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lnkgv1stapdate" runat="server"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "fappdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="70px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                               <asp:TemplateField HeaderText="2nd App. <br>  Date" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lnkgv2ndapdate" runat="server"
+                                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "sappdat")).ToString("dd-MMM-yyyy") %>'
+                                                                        Width="70px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
