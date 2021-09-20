@@ -814,7 +814,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelComp.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -874,7 +874,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
                     break;
@@ -906,7 +906,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[2].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background:#5A5C59; display:block";
                     break;
@@ -937,7 +937,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[3].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[3].Attributes["style"] = "background:#5A5C59; display:block";
                     break;
@@ -970,7 +970,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[4].Attributes.Add("class", "lblactive");
                     //  this.RadioButtonList1.Items[4].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1004,7 +1004,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
 
 
@@ -1036,7 +1036,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[6].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[6].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1070,7 +1070,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[7].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[7].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1102,7 +1102,7 @@ namespace RealERPWEB.F_99_Allinterface
                     // this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[8].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[8].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1131,7 +1131,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1164,7 +1164,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1195,7 +1195,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[12].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1230,7 +1230,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[13].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[14].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1261,7 +1261,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBill.Visible = true;
                     this.PanelBillAudit.Visible = false;
 
-                    this.RadioButtonList1.Items[14].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[11].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[11].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1290,7 +1290,7 @@ namespace RealERPWEB.F_99_Allinterface
                     //this.PanelQC.Visible = false;
                     this.PanelBill.Visible = false;
                     this.PanelBillAudit.Visible = true;
-                    this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[16].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "17":
                     //Compilte
@@ -1312,7 +1312,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBill.Visible = false;
                     this.PanelComp.Visible = true;
                     this.PanelBillAudit.Visible = false;
-                    this.RadioButtonList1.Items[16].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[17].Attributes["class"] = "lblactive blink_me";
                     //  this.RadioButtonList1.Items[12].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[12].Attributes["style"] = "background:#5A5C59; display:block";
 
@@ -1593,6 +1593,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
                 //string imesimeno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mimei")).ToString();
+
+                if(comcod=="3353" || comcod == "3101")
+                {
+                    hlink1.Visible = false;
+                }
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
                 hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
