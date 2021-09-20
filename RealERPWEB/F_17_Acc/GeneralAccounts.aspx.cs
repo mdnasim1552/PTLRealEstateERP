@@ -3090,7 +3090,7 @@ namespace RealERPWEB.F_17_Acc
             this.dgv1.EditIndex = -1;
             Session["tblvoucher"] = HiddenSameData(dt);
             DataView dv = dt.DefaultView;
-           // dv.Sort = "actcode,subcode,spclcode";
+         //  dv.Sort = "actcode,subcode,spclcode";
             dt = dv.ToTable();
             this.Data_Bind();
 

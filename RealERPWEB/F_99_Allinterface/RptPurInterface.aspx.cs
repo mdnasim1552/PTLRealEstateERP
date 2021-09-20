@@ -1800,6 +1800,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.gvRatePro.DataSource = HiddenSameData(dt);
                     this.gvRatePro.DataBind();
+                    if (comcod == "3348")
+                    {
+                        this.gvRatePro.Columns[4].Visible = true;
+                        this.gvRatePro.Columns[5].Visible = true;
+
+
+                    }
 
                     if (dt.Rows.Count == 0)
                         return;
