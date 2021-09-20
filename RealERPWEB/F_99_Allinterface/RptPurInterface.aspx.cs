@@ -1635,10 +1635,10 @@ namespace RealERPWEB.F_99_Allinterface
                 else
                     hlink2.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + mrrno;
 
-                if(comcod=="1205" || comcod == "3351" || comcod == "3352" || comcod == "8306")
-                {
-                    btnDelBill.Visible = false;
-                }
+                //if(comcod=="1205" || comcod == "3351" || comcod == "3352" || comcod == "8306")
+                //{
+                //    btnDelBill.Visible = false;
+                //}
 
 
             }

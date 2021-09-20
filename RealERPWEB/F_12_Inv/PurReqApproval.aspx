@@ -307,7 +307,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Budget Rate"  Visible="false">
+                                <asp:TemplateField HeaderText="Budget Rate" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvboqRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                             BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"

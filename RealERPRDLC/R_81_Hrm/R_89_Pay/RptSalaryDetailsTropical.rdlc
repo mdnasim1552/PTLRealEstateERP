@@ -998,10 +998,10 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Special</Value>
+                                                <Value>Trans</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>7pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1013,10 +1013,10 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Allow.</Value>
+                                                <Value>/ Entr</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>7pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1381,10 +1381,25 @@
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Advanced/Loan</Value>
+                                                <Value>Advan.</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>7pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
+                                                  <FontWeight>Bold</FontWeight>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Center</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>/Loan</Value>
+                                                <Style>
+                                                  <FontFamily>Cambria</FontFamily>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -2579,14 +2594,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="cashamt">
+                        <Textbox Name="haircutal">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Fields!haircutal.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2598,7 +2613,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>cashamt</rd:DefaultName>
+                          <rd:DefaultName>haircutal</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -3411,7 +3426,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(sum(Fields!haircutal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4231,7 +4246,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Format(Sum(Fields!haircutal.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
