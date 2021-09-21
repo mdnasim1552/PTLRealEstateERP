@@ -1139,24 +1139,29 @@ namespace RealERPWEB.F_34_Mgt
         {
 
 
-
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = this.GetComeCode();
             string fromusrid = this.fromUserid.Text.ToString();
             string tousrid = this.ddlUser.SelectedValue.ToString();
             bool result = User.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "COPY_USERTOUSER_PRIVILEGE", fromusrid, tousrid, "", "", "", "", "", "", "");
 
 
-            if (result == true)
+            if (result == false)
+            {
+               
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                return;
+            }
+
+            else
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
-
-
-                return;
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+    
 
             //this.lblMsg1.Text = "Sorry! There has some error!";
         }
