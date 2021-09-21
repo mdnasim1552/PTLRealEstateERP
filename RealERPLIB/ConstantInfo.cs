@@ -469,7 +469,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1402000", "1402003", "F_14_Pro", "PurAprovEntry?", "InputType=PurProposal", "Order Process", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1402000", "1402010", "F_14_Pro", "PurMktSurvey?Type=MktSurvey", "", "Comparative Statement - Purchase 01", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1402000", "1402011", "F_14_Pro", "PurMktSurvey?Type=SurveyLink", "", "Survey Link", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1402000", "1402016", "F_14_Pro", "PurMktSurvey02", "", "Comparative Statement - Purchase 02", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1402000", "1402016", "F_14_Pro", "PurMktSurvey02?", "Type=CS","Comparative Statement - Purchase 02", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1402000", "1402017", "F_14_Pro", "PurMktSurveyCont?", "Type=ConCS", "Comparative Statement - Contractor", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1402000", "1402020", "F_14_Pro", "PurWrkOrderEntry?", "InputType=OrderEntry", "Purchase Order ", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402021", "F_14_Pro", "PurWrkOrderEntry?", "InputType=FirstApp", "Purchase Order(First Approved) ", "Procurement", "False", "False", "False", "False" });
@@ -5234,7 +5234,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0204000000", "04. Bill Confirmation", "F_14_Pro/PurBillEntry?Type=BillEntry&genno=&sircode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "05.", "Bill Audit", "F_14_Pro/PurBillEntry?Type=BillEntryAudit&genno=&sircode=", true });
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "05. Comparative Statement - Purchase 01", "F_14_Pro/PurMktSurvey?Type=MktSurvey", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "06. Comparative Statement - Purchase 02", "F_14_Pro/PurMktSurvey02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000000", "06. Comparative Statement - Purchase 02", "F_14_Pro/PurMktSurvey02?Type=CS&msrno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0208000000", "07. Survey Link", "F_14_Pro/PurMktSurvey?Type=SurveyLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0209000000", "08. Supply Link With Materials(Work)", "F_14_Pro/PurSuplinkWithMat", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "09.Landowner Payment Information", "F_14_Pro/LandOwnerPaymentSch?Type=Report&prjcode=", "", true, "" });
