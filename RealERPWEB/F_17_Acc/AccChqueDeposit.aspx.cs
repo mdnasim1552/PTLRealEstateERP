@@ -427,16 +427,21 @@ namespace RealERPWEB.F_17_Acc
 
 
                     }
-                  
-
-                    if (paidamt > balamt)
+                 
+                    if(ASTUtility.Left(pactcode,2)=="18")
                     {
+                        if (paidamt > balamt)
+                        {
 
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Please Updated Accounts Voucher !!!!!";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
+                            ((Label)this.Master.FindControl("lblmsg")).Text = "Please Updated Accounts Voucher !!!!!";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            return;
+
+                        }
 
                     }
+
+                   
 
 
 
