@@ -1424,17 +1424,44 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
 
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
+                HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyInprPrintCS");
+                
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
+                string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
+
+                
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_12_Inv/PurReqApproval?Type=RateInput&prjcode=" + pactcode + "&genno=" + reqno;
 
+
+
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
+                {
+                    hlink3.Visible = true;
+                    if (msrno == "")
+                    {
+                        hlink3.Enabled = false;
+                        hlink3.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        hlink3.Enabled = true;
+                        hlink3.ForeColor = System.Drawing.Color.Green;
+                    }
+
+                }
+                else
+                {
+                    hlink3.Visible = false;
+                }
+                hlink3.NavigateUrl = "~/F_14_Pro/PurMktSurvey02?Type=CS" + "&msrno=" + msrno;
 
 
                 //string comcod1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
@@ -1454,17 +1481,40 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
+                HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyInprPrintCS");
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
+                
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_12_Inv/PurReqApproval?Type=Approval&prjcode=" + pactcode + "&genno=" + reqno;
 
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
+                {
+                    hlink3.Visible = true;
+                    if (msrno == "")
+                    {
+                        hlink3.Enabled = false;
+                        hlink3.ForeColor = System.Drawing.Color.Red;
+                    }
+                    else
+                    {
+                        hlink3.Enabled = true;
+                        hlink3.ForeColor = System.Drawing.Color.Green;
+                    }
+
+                }
+                else
+                {
+                    hlink3.Visible = false;
+                }
+                hlink3.NavigateUrl = "~/F_14_Pro/PurMktSurvey02?Type=CS" +"&msrno=" + msrno;
             }
         }
 
