@@ -2447,6 +2447,7 @@
     <Content Include="F_22_Sal\RptBookingDues.aspx" />
     <Content Include="F_22_Sal\RptCalTotalAvgValue.aspx" />
     <Content Include="F_22_Sal\RptClientDateFile.aspx" />
+    <Content Include="F_22_Sal\RptCollectionDetailInfo.aspx" />
     <Content Include="F_22_Sal\RptCollMonYear.aspx" />
     <Content Include="F_22_Sal\RptCollSumOfCurMSale.aspx" />
     <Content Include="F_22_Sal\RptCustomerBill.aspx" />
@@ -3669,6 +3670,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.designer.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
+      <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
+      <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>

@@ -420,7 +420,7 @@ namespace RealERPWEB.F_22_Sal
                     this.chkAddIns.Visible = true;
                     ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = true;
 
-                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348")
+                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod=="3349")
                     {
 
                     }

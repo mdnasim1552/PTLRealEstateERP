@@ -213,11 +213,11 @@
                                     <li><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Mgt")%>" target="_blank">Salary Sheet Lock</a></li>
 
 
-                                       <li>
+                                    <li>
                                         <h5>Entry</h5>
                                     </li>
 
-                                      <li><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_82_App/EmpEntryForm")%>" target="_blank">New Employee Code</a></li>
+                                    <li><a href="<%=this.ResolveUrl("~/F_81_Hrm/F_82_App/EmpEntryForm")%>" target="_blank">New Employee Code</a></li>
 
 
                                 </ul>
@@ -248,7 +248,7 @@
                                                 <asp:ListItem Value="Mobile">Mobile Bill</asp:ListItem>
                                                 <asp:ListItem Value="otherearn">Other Earning</asp:ListItem>
                                                 <asp:ListItem Value="OtherDeduction"> Other Deduction</asp:ListItem>
-                                                
+
 
                                                 <%--<asp:ListItem>Actual Salary Sheet</asp:ListItem>
                                             <asp:ListItem>Salary Sheet Lock</asp:ListItem>--%>
@@ -284,29 +284,29 @@
                                             <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                         </div>
                                         <div class="col-md-3 pading5px asitCol4">
-                                            <asp:DropDownList ID="ddlDepartment" runat="server" Width="233" CssClass="chzn-select form-control inputTxt"  OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="True" TabIndex="7">
+                                            <asp:DropDownList ID="ddlDepartment" runat="server" Width="233" CssClass="chzn-select form-control inputTxt" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="True" TabIndex="7">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblDeptDesc" CssClass="dataLblview" runat="server" Visible="False" Width="233"></asp:Label>
                                         </div>
 
                                     </div>
 
-                                    
-                                   <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
-                                        <asp:TextBox ID="txtSrcSec" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnSecSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSecSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlSection" runat="server"  CssClass="form-control inputTxt chzn-select" TabIndex="6" Width="233">
-                                        </asp:DropDownList>
 
-                                      
+                                    <div class="form-group">
+                                        <div class="col-md-3 pading5px asitCol3">
+                                            <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
+                                            <asp:TextBox ID="txtSrcSec" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+                                            <asp:LinkButton ID="imgbtnSecSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSecSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        </div>
+                                        <div class="col-md-4 pading5px asitCol4">
+                                            <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="6" Width="233">
+                                            </asp:DropDownList>
+
+
+                                        </div>
+
                                     </div>
 
-                                </div>
-                                  
 
 
                                     <div class="form-group">
@@ -369,7 +369,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:CommandField ShowDeleteButton="True"  DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>"/>
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>" />
 
                                             <asp:TemplateField HeaderText="Section">
                                                 <HeaderTemplate>
@@ -824,7 +824,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>"/>
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>" />
                                             <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvEmpId" runat="server"
@@ -947,7 +947,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>"/>
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>" />
                                             <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvEmpId" runat="server"
@@ -1084,7 +1084,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>"/>
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>" />
                                             <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvEmpId" runat="server"
@@ -1353,7 +1353,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>"/>
+                                            <asp:CommandField ShowDeleteButton="True" DeleteText="<span style='color:red;' class='glyphicon glyphicon-trash'></span>" />
                                             <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvEmpId" runat="server"
@@ -1524,7 +1524,7 @@
                                         </div>
                                     </fieldset>
                                     <div class="table-responsive">
-                                        <asp:GridView ID="gvothearn" runat="server" 
+                                        <asp:GridView ID="gvothearn" runat="server"
                                             AutoGenerateColumns="False"
                                             ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea"
                                             OnPageIndexChanging="gvothearn_PageIndexChanging"
@@ -1623,7 +1623,8 @@
                                                     <ItemStyle HorizontalAlign="Right" />
                                                     <FooterStyle HorizontalAlign="Right" />
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Hair Cutt.">
+
+                                                <asp:TemplateField HeaderText="Hair Cutt.">                                                  
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txgvhaircut" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" Font-Size="11px" Style="text-align: right"
@@ -1652,7 +1653,7 @@
                                                     <FooterStyle HorizontalAlign="Right" />
                                                 </asp:TemplateField>
 
-                                                  <asp:TemplateField HeaderText="Food Taken <br>Day" Visible="false">
+                                                <asp:TemplateField HeaderText="Food Taken <br>Day" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txgvftakenday" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" Font-Size="11px" Style="text-align: right"

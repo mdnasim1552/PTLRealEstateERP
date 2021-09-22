@@ -1554,7 +1554,7 @@
                             <asp:GridView ID="gvothearn" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False"
                                 ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                OnPageIndexChanging="gvothearn_PageIndexChanging"
+                                OnPageIndexChanging="gvothearn_PageIndexChanging" 
                                 OnRowDeleting="gvothearn_RowDeleting">
                                 <RowStyle  />
                                 <Columns>
@@ -1652,7 +1652,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                     <asp:TemplateField HeaderText="Hair Cutt.">
+                                     <asp:TemplateField HeaderText="Hair Cut.">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txgvhaircut" runat="server" BackColor="Transparent"
                                                 BorderStyle="None" Font-Size="11px" Style="text-align: right"

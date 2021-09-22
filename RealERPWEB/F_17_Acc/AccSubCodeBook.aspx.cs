@@ -417,6 +417,7 @@ namespace RealERPWEB.F_17_Acc
                 this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
+
                 //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = false;
                 //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
                 //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Items.Clear();

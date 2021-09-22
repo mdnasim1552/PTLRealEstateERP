@@ -1267,8 +1267,8 @@ namespace RealERPWEB.F_17_Acc
 
                 // New Row Add 
 
-                string aresbandspclcode = sectcode + AccCode + ResCode + Billno + SpclCode;
-                DataRow[] drad = tblt01.Select("sectcode+actcode+subcode+billno+spclcode='" + aresbandspclcode + "'");
+                string aresbandspclcodetrnrmrks = sectcode + AccCode + ResCode + Billno + SpclCode+ TrnRemarks;
+                DataRow[] drad = tblt01.Select("sectcode+actcode+subcode+billno+spclcode+trnrmrk='" + aresbandspclcodetrnrmrks + "'");
                 if (drad.Length == 0)
                 {
                     DataRow dr2 = tblt01.NewRow();
@@ -2768,16 +2768,20 @@ namespace RealERPWEB.F_17_Acc
             string billno = ((TextBox)this.dgv1.Rows[e.RowIndex].FindControl("lblgvBillno")).Text.Trim();
             string pounaction = (dtuser.Rows.Count == 0) ? ((this.chkpost.Checked) ? "U" : "") : dtuser.Rows[0]["pounaction"].ToString().Trim();
 
-            string CallType = (this.chkpost.Checked && pounaction.Length == 0) ? "DELETEVOUITEM" : (this.chkpost.Checked) ? "DELETEVOUUNITEM" : "DELETEVOUITEM";
-
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, actcode, rescode, spclcode, billno, userid, Terminal, Posteddat, "", "", "", "", "", "");
-
-            if (!result)
+            if (vounum.Substring(0, 2) != "JV")
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
 
+                string CallType = (this.chkpost.Checked && pounaction.Length == 0) ? "DELETEVOUITEM" : (this.chkpost.Checked) ? "DELETEVOUUNITEM" : "DELETEVOUITEM";
+
+                bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, actcode, rescode, spclcode, billno, userid, Terminal, Posteddat, "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
             }
             int rowindex = (this.dgv1.PageSize) * (this.dgv1.PageIndex) + e.RowIndex;
             dt.Rows[rowindex].Delete();
@@ -2959,10 +2963,9 @@ namespace RealERPWEB.F_17_Acc
             string actcode = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["actcode"].ToString();
             string subcode = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["subcode"].ToString();
             string spclcode = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["spclcode"].ToString();
-
-
-
-            DataRow[] dr2 = dt.Select("actcode = '" + actcode + "' and subcode='" + subcode + "'");
+            string billno = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["billno"].ToString();
+            string trnrmrk = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["trnrmrk"].ToString();
+            DataRow[] dr2 = dt.Select("actcode = '" + actcode + "' and subcode='" + subcode + "' and billno='" + billno  + "' and trnrmrk='" + trnrmrk + "'");
             string ResCode = "";
             if (dr2.Length > 0)
             {
@@ -2994,7 +2997,7 @@ namespace RealERPWEB.F_17_Acc
             string trnremarks = ((Label)this.dgv1.Rows[rowindex].FindControl("lblgvRemarks")).Text.Trim();
             string recndt = ((Label)this.dgv1.Rows[rowindex].FindControl("lblrecndat")).Text.Trim();
             string rpcode = ((Label)this.dgv1.Rows[rowindex].FindControl("lblgvrpcode")).Text.Trim();
-            string billno = ((TextBox)this.dgv1.Rows[rowindex].FindControl("lblgvBillno")).Text.Trim();
+            //string billno = ((TextBox)this.dgv1.Rows[rowindex].FindControl("lblgvBillno")).Text.Trim();
             string userdate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
 
@@ -3090,7 +3093,7 @@ namespace RealERPWEB.F_17_Acc
             this.dgv1.EditIndex = -1;
             Session["tblvoucher"] = HiddenSameData(dt);
             DataView dv = dt.DefaultView;
-            dv.Sort = "actcode,subcode,spclcode";
+         //  dv.Sort = "actcode,subcode,spclcode";
             dt = dv.ToTable();
             this.Data_Bind();
 

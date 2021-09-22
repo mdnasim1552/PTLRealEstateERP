@@ -1178,10 +1178,10 @@ namespace RealERPWEB.F_99_Allinterface
                 // lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" )
-                {
-                    btnDelfinapp.Visible = false;
-                }
+                //if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" )
+                //{
+                //    btnDelfinapp.Visible = false;
+                //}
 
 
 

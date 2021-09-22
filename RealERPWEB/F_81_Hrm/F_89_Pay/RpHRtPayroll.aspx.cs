@@ -123,21 +123,31 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                         //case "3101":
-                        //case "3339":
+                        case "3339":   // Tropical Homes                   
+                            
+                            string date1 =  System.DateTime.Today.ToString("dd-MMM-yyyy");
+                            string date2 = "20" + date1.Trim().Substring(2);                     
 
-                        //    string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                        //    //string frmdate = Convert.ToDateTime("01-Jan-" + Convert.ToDateTime(date).ToString("yyyy")).ToString("dd-MMM-yyyy
-                        //    string date2 = "01" + date1.Substring(2);
-                        //    string date3 = Convert.ToDateTime(date2).AddDays(20).ToString("dd-MMM-yyyy");
+                            if (Convert.ToDateTime(date1) >= Convert.ToDateTime(date2))
+                            {
+                                this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                        //    // if (Convert.ToDateTime(date3).ToString("dd-MMM-yyyy") > Convert.ToDateTime(date1).ToString("dd-MMM-yyyy"))
 
-                        //    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            }
 
-                        //    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                        //    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            else
+                            {
+                                this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                        //    break;
+                            }
+
+                            
+
+                            break;
 
 
 
@@ -267,7 +277,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtSalSheet.SelectedIndex = 8;
                     break;
 
-                case "3101":
+                
                 case "3330"://Bridge
                     this.rbtSalSheet.SelectedIndex = 9;
                     break;
@@ -293,7 +303,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtSalSheet.SelectedIndex = 13;
                     break;
 
-
+                case "3101":
                 case "3339"://Tropical
                     this.rbtSalSheet.SelectedIndex = 14;
                     break;
@@ -391,7 +401,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "3330"://Bridge
-                case "3101"://Multiplan
+                //case "3101"://Multiplan
                     this.rbtlBonSheet.SelectedIndex = 6;
                     break;
 
@@ -406,12 +416,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.rbtlBonSheet.SelectedIndex = 8;
                     break;
 
-
+                case "3101":
                 case "3339"://Tropical
                     this.rbtlBonSheet.SelectedIndex = 10;
                     break;
 
-                // case "3101":
+                
                 case "3347"://PEB STEEL
 
                     this.rbtlBonSheet.SelectedIndex = 11;

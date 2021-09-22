@@ -122,7 +122,12 @@
         // Create the chart
         function ExecuteGraph(data, data1, data2, data3, data4, data5, data6, data8, data9, gtype) {
 
-            // alert(gtype);
+            // alert(gtype); 
+             
+            //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
+            //alert(rbtn);
+           
+          
             var saldata = JSON.parse(data);
             var empleadst = JSON.parse(data1);
             var empleadstdets = JSON.parse(data2);// employee wise leads deatails
@@ -138,89 +143,293 @@
 
             //console.log(saldata[0].lead);
 
-            Highcharts.chart('salchartG', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Sales Funnel'
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Sales Funnel Stages'
-                    }
 
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
+            var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
+            var leadstatus = $('#<%=this.ddlleadstatus.ClientID%>').val();
+           
+            if (rbtn == "Stand By") {
 
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
-                },
+                if ($.trim(leadstatus).length == 7) {
 
-                series: [
-                    {
-                        name: "Sales Funnel",
-                        colorByPoint: true,
-                        data: [
-                            {
-                                name: "Query",
-                                y: parseFloat(saldata[0].query)
-                            },
-                            {
-                                name: "Lead",
-                                y: parseFloat(saldata[0].lead)
-                            },
-                            {
-                                name: "Qualified Lead",
-                                y: parseFloat(saldata[0].qualiflead)
-                            },
-                            {
-                                name: "Negotiation",
-                                y: parseFloat(saldata[0].nego)
-                            },
-                            {
-                                name: "Final Negotiation",
-                                y: parseFloat(saldata[0].finalnego)
-                            },
-
-
-                            {
-                                name: "Win",
-                                y: parseFloat(saldata[0].win)
+                  
+                    Highcharts.chart('salchartG', {
+                        chart: {
+                            type: gtype
+                        },
+                        title: {
+                            text: 'Sales Funnel'
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            announceNewData: {
+                                enabled: true
                             }
-                            ,
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total Sales Funnel Stages'
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                        },
+
+                        series: [
                             {
-                                name: "Total",
-                                y: parseFloat(saldata[0].total)
+                                name: "Sales Funnel",
+                                colorByPoint: true,
+                                data: [
+                                    {
+                                        name: "Query",
+                                        y: parseFloat(saldata[0].query)
+                                    },
+                                    {
+                                        name: "Lead",
+                                        y: parseFloat(saldata[0].lead)
+                                    },
+                                    {
+                                        name: "Qualified Lead",
+                                        y: parseFloat(saldata[0].qualiflead)
+                                    },
+                                    {
+                                        name: "Negotiation",
+                                        y: parseFloat(saldata[0].nego)
+                                    },
+                                    {
+                                        name: "Final Negotiation",
+                                        y: parseFloat(saldata[0].finalnego)
+                                    },
+
+
+                                    {
+                                        name: "Win",
+                                        y: parseFloat(saldata[0].win)
+                                    }
+                                   
+                                    
+                                ]
                             }
                         ]
-                    }
-                ]
 
-            });
+                    });
+
+                }
+
+                else
+                {
+                  
+                  
+                    Highcharts.chart('salchartG', {
+                        chart: {
+                            type: gtype
+                        },
+                        title: {
+                            text: 'Sales Funnel'
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            announceNewData: {
+                                enabled: true
+                            }
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total Sales Funnel Stages'
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                        },
+
+                        series: [
+                            {
+                                name: "Sales Funnel",
+                                colorByPoint: true,
+                                data: [
+                                    {
+                                        name: "Query",
+                                        y: parseFloat(saldata[0].query)
+                                    },
+                                    {
+                                        name: "Lead",
+                                        y: parseFloat(saldata[0].lead)
+                                    },
+                                    {
+                                        name: "Qualified Lead",
+                                        y: parseFloat(saldata[0].qualiflead)
+                                    },
+                                    {
+                                        name: "Negotiation",
+                                        y: parseFloat(saldata[0].nego)
+                                    },
+                                    {
+                                        name: "Final Negotiation",
+                                        y: parseFloat(saldata[0].finalnego)
+                                    },
+
+
+                                    {
+                                        name: "Win",
+                                        y: parseFloat(saldata[0].win)
+                                    }
+                                    ,
+                                    {
+                                        name: "Total",
+                                        y: parseFloat(saldata[0].total)
+                                    }
+                                   
+                                ]
+                            }
+                        ]
+
+                    });
+
+                }
+                
+                //$('#salchartG').show();
+               // $('#salchartCon').hide();
+
+            }
+            else {
+               // $('#salchartG').hide();
+               // $('#salchartCon').show();
+
+                Highcharts.chart('salchartG', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: 'Sales Funnel'
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total Sales Funnel Stages'
+                        }
+
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                    },
+
+                    series: [
+                        {
+                            name: "Sales Funnel",
+                            colorByPoint: true,
+                            data: [
+                                {
+                                    name: "Query",
+                                    y: parseFloat(saldata[0].query)
+                                },
+                                {
+                                    name: "Lead",
+                                    y: parseFloat(saldata[0].lead)
+                                },
+                                {
+                                    name: "Qualified Lead",
+                                    y: parseFloat(saldata[0].qualiflead)
+                                },
+                                {
+                                    name: "Negotiation",
+                                    y: parseFloat(saldata[0].nego)
+                                },
+                                {
+                                    name: "Final Negotiation",
+                                    y: parseFloat(saldata[0].finalnego)
+                                },
+
+
+                                {
+                                    name: "Win",
+                                    y: parseFloat(saldata[0].win)
+                                }
+
+                            ]
+                        }
+                    ]
+
+                });
+
+
+
+            }
+
+           
+
+
+
+         
+
+
+
+
+
+
+
 
             //team members graph
             var sumlead = 0;
@@ -1038,8 +1247,8 @@
 
                         <asp:RadioButtonList ID="rbtnlst" runat="server" AutoPostBack="True" CssClass="form-check-label"  OnSelectedIndexChanged="rbtnlst_SelectedIndexChanged"
                             RepeatColumns="7" RepeatDirection="Horizontal">
-                            <asp:ListItem >Stand By</asp:ListItem>
-                            <asp:ListItem>Conversation</asp:ListItem>
+                            <asp:ListItem Value="Stand By" >Stand By</asp:ListItem>
+                            <asp:ListItem Value="Conversion">Conversion</asp:ListItem>
 
                         </asp:RadioButtonList>
 
@@ -1108,7 +1317,22 @@
                 </div>
 
 
-                <div class="col-md-2 p-0">
+                 <div class="col-md-2 p-0">
+                    <div class="input-group input-group-alt profession-slect">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-secondary" type="button">Lead Status</button>
+                        </div>
+                        <asp:DropDownList ID="ddlleadstatus" data-placeholder="Choose Lead Status.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true"  OnSelectedIndexChanged="ddlleadstatus_SelectedIndexChanged">
+                        </asp:DropDownList>
+                        <div class="input-group-prepend">
+                            <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-2 p-0" style="display:none">
                     <div class="input-group input-group-alt profession-slect">
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary" type="button">Profession</button>
@@ -1215,6 +1439,7 @@
 
 
                         <div id="salchartG" style="height: 325px; width: 450px; margin: 0 auto"></div>
+                         <%--<div id="salchartCon" style="height: 325px; width: 450px; margin: 0 auto"></div>--%>
 
 
                     </div>
@@ -1241,7 +1466,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvItmCode" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
-                                                Width="200px" ForeColor="Black"></asp:Label>
+                                                Width="300px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
