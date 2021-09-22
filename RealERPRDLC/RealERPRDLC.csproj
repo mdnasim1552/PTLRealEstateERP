@@ -372,6 +372,7 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher2.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher3.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher4.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher5.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher6.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherAcme.rdlc" />
@@ -465,7 +466,6 @@
     <EmbeddedResource Include="R_17_Acc\RptPostDateCqSuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPostDatedChqInHand.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintSubBill.rdlc" />
-    <EmbeddedResource Include="R_17_Acc\rptPrintVocherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherAlli02Credence.rdlc" />
@@ -485,6 +485,7 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher3.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher4 old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher4.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher5.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher6.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher7.rdlc" />
