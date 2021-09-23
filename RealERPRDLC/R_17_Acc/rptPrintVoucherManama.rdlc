@@ -1648,7 +1648,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
                         <Value>=Parameters!preparedby.Value</Value>
                         <Style>
                           <FontFamily>Cambria</FontFamily>
-                          <FontSize>9pt</FontSize>
+                          <FontSize>8pt</FontSize>
                           <FontWeight>Bold</FontWeight>
                         </Style>
                       </TextRun>
@@ -1659,15 +1659,16 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>preparedby</rd:DefaultName>
-                <Top>0.25869in</Top>
+                <Top>0.07119in</Top>
                 <Left>1.28542in</Left>
-                <Height>0.25in</Height>
-                <Width>1.30139in</Width>
+                <Height>0.4375in</Height>
+                <Width>1.28889in</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
                   </Border>
+                  <VerticalAlign>Middle</VerticalAlign>
                   <PaddingLeft>2pt</PaddingLeft>
                   <PaddingRight>2pt</PaddingRight>
                   <PaddingTop>2pt</PaddingTop>

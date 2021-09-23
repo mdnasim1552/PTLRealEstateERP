@@ -1017,17 +1017,27 @@ namespace RealERPWEB.F_17_Acc
             DataTable dt1 = (DataTable)ViewState["recandpayNote"];
             DataTable dt = (DataTable)Session["tblbdeposit"];
             LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.Cashflow>();
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassFinanStatement.CashFlowIndirect>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptCashFlow02", lst, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("Date", "For the year ended " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", (this.Request.QueryString["Type"].ToString() == "CashFlow") ? "Statement of Cash Flow" : "Statement of Cash Flow -Indirect"));
-            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-            Rpt1.SetParameters(new ReportParameter("txtpreamt", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtfromdate.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("txtcuramt", Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("date", "For the year ended " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", (this.Request.QueryString["Type"].ToString() == "CashFlow") ? "Statement of Cash Flow" : "Statement of Cash Flow -Indirect"));
+            Rpt1.SetParameters(new ReportParameter("openingDate", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtfromdate.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("closingDate", Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+
+            //rpt.SetParameters(new ReportParameter("compName", comnam));
+            //rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //rpt.SetParameters(new ReportParameter("rptTitle", (this.Request.QueryString["Type"].ToString() == "CashFlow") ? "Statement of Cash Flow" : "Statement of Cash Flow -Indirect"));
+            //rpt.SetParameters(new ReportParameter("date", "For the year ended " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
+            //rpt.SetParameters(new ReportParameter("closingDate", Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To \n" + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            //rpt.SetParameters(new ReportParameter("openingDate", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To \n" + Convert.ToDateTime(this.txtfromdate.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
+
+
+
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

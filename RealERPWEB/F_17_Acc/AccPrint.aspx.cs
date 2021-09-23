@@ -521,7 +521,8 @@ namespace RealERPWEB.F_17_Acc
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
-                            // case "3101"://  ASIT (Check)
+                case "3353":
+                case "3101"://  ASIT (Check)
                     break;
 
 
@@ -1240,8 +1241,8 @@ namespace RealERPWEB.F_17_Acc
                     else
                     {
                         voutype1 = voutype;
-                    }
-
+                    }                   
+                    
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherManama", list, null, null);
                     Rpt1.EnableExternalImages = true;
