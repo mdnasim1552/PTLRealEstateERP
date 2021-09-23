@@ -294,6 +294,8 @@ namespace RealERPWEB.F_34_Mgt
 
                 string comcod = this.GetCompCode();
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETBUNDLE", "", "", "", "", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
                 this.ddlBundle.DataTextField = "bundno";
                 this.ddlBundle.DataValueField = "bundno";
                 this.ddlBundle.DataSource = ds1.Tables[0];
@@ -2338,7 +2340,7 @@ namespace RealERPWEB.F_34_Mgt
                 if (ds2 == null)
                     return;
                 ds2.Dispose();
-                this.gvOtherReq_DataBind();
+                //this.gvOtherReq_DataBind();
 
 
             }
