@@ -2401,6 +2401,7 @@
     <Content Include="F_21_MKT\MktSalesDescription.aspx" />
     <Content Include="F_21_MKT\MktSalsPaymentPro.aspx" />
     <Content Include="F_21_MKT\MktTeamCodeBook.aspx" />
+    <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
@@ -3670,6 +3671,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.designer.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\MktTeamMember.aspx.cs">
+      <DependentUpon>MktTeamMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
+      <DependentUpon>MktTeamMember.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
