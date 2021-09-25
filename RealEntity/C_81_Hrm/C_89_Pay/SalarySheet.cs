@@ -15,6 +15,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string refno { get; set; }
             public string refdesc { get; set; }
             public double netpay { get; set; }
+            public double gssal { get; set; }
+            public double toadd { get; set; }
+            public double tdeduc { get; set; } 
         }
 
         [Serializable]

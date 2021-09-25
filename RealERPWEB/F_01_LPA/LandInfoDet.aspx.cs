@@ -61,9 +61,9 @@ namespace RealERPWEB.F_01_LPA
                 this.DataBindStatus();
                 GetYEARLAND();
                 this.GETEMPLOYEEUNDERSUPERVISED();
-                this.GetGridSummary();
-                this.ModalDataBind();
-                this.GetNotificationinfo();
+                //this.GetGridSummary();
+                //this.ModalDataBind();
+                //this.GetNotificationinfo();
                 divexland.Visible = false;
                 divddlinfo.Visible = false;
                 divLaOw.Visible = false;
@@ -81,6 +81,7 @@ namespace RealERPWEB.F_01_LPA
             if (this.hdnlblattribute.Value.Trim() == "")
             {
                 this.GetGridSummary();
+                this.ModalDataBind();
                 this.GetNotificationinfo();
             }
             else

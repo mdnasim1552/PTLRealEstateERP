@@ -106,6 +106,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
@@ -838,6 +839,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsRG.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsSuvastu.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsSuvastuHeadOffice.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsEdisonReal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsTerranova.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsTropical.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryGrndT.rdlc" />
