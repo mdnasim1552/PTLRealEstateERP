@@ -52,10 +52,10 @@
                                 <div class="col-md-1">
                                 </div>
                                 <div class="col-md-4">
-                                    <asp:DropDownList ID="ddlTeamMember" runat="server" CssClass="form-control chzn-select" Visible="false"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select" Visible="false"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-1">
-                                    <asp:LinkButton ID="lnkBtnAdd" runat="server" CssClass="btn btn-primary btn-sm ml-2" Visible="false">Add</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkBtnAdd" runat="server" CssClass="btn btn-primary btn-sm ml-2" Visible="false" OnClick="lnkBtnAdd_Click">Add</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
@@ -73,13 +73,16 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:LinkButton runat="server" ID="btndelete" Width="20px"></i></asp:LinkButton>
+                                     <asp:LinkButton runat="server" ID="btndelete" Width="20px" OnClick="btndelete_Click" OnClientClick="return confirm('Are you want to delete?')"><i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Employee Name">
                                 <ItemTemplate>
+                                    <asp:Label ID="lblteamcode" runat="server" Font-Bold="true" Font-Size="12px" Visible="False"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamcode")) %>'
+                                        Width="160px"></asp:Label>
                                     <asp:Label ID="lblempid" runat="server" Font-Bold="true" Font-Size="12px" Visible="False"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                         Width="160px"></asp:Label>
@@ -96,7 +99,7 @@
                                         Width="190px"></asp:Label>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-danger primaryBtn">Update</asp:LinkButton>
+                                    <asp:LinkButton ID="lbntUpdateOtherDed" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lbntUpdateOtherDed_Click">Update</asp:LinkButton>
                                 </FooterTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
                             </asp:TemplateField>

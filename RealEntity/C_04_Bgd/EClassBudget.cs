@@ -361,15 +361,15 @@ namespace RealEntity.C_04_Bgd
        public class BudMasterResGroupWiseDate
        {
             public string rescode { get; set; }
-
            public string resdesc { get; set; }
            public string acgcode { get; set; }
            public string acgdesc { get; set; }
            public string resunit { get; set; }
            public double bgdam { get; set; }
            public double acam { get; set; }
+           public double acamdr { get; set; }
 
-           public BudMasterResGroupWiseDate() { }
+            public BudMasterResGroupWiseDate() { }
        }
 
         [Serializable]
