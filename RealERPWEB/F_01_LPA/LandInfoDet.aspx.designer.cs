@@ -465,13 +465,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.GridView gvkpidet;
 
         /// <summary>
-        /// hdnlblattribute control.
+        /// lnkShowNotifcation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnlblattribute;
+        protected global::System.Web.UI.WebControls.LinkButton lnkShowNotifcation;
 
         /// <summary>
         /// lnkbtnDws control.
@@ -483,13 +483,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnDws;
 
         /// <summary>
-        /// cdws control.
+        /// lbldws control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cdws;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldws;
 
         /// <summary>
         /// lnkbtnDwr control.
@@ -501,31 +501,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnDwr;
 
         /// <summary>
-        /// cdwr control.
+        /// lbldwr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cdwr;
-
-        /// <summary>
-        /// lnkbtnOther control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOther;
-
-        /// <summary>
-        /// cothact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cothact;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldwr;
 
         /// <summary>
         /// lnkbtnkpi control.
@@ -537,40 +519,31 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnkpi;
 
         /// <summary>
-        /// lnkbtnProposal control.
+        /// lblkpi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnProposal;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblkpi;
 
         /// <summary>
-        /// cpro control.
+        /// lnkbtnOther control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cpro;
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOther;
 
         /// <summary>
-        /// lnkbtnDayPassed control.
+        /// lbloth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnDayPassed;
-
-        /// <summary>
-        /// cdaypassed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cdaypassed;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbloth;
 
         /// <summary>
         /// lnkCall control.
@@ -582,13 +555,49 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkCall;
 
         /// <summary>
-        /// ccall control.
+        /// lblCall control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ccall;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblCall;
+
+        /// <summary>
+        /// lnkBtnVisit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnVisit;
+
+        /// <summary>
+        /// lblvisit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblvisit;
+
+        /// <summary>
+        /// lnkbtnDayPassed control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnDayPassed;
+
+        /// <summary>
+        /// lblDayPass control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDayPass;
 
         /// <summary>
         /// lnkbtnLome control.
@@ -600,13 +609,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnLome;
 
         /// <summary>
-        /// clome control.
+        /// lblLome control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clome;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblLome;
 
         /// <summary>
         /// lnkbtnLomi control.
@@ -618,31 +627,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnLomi;
 
         /// <summary>
-        /// clomi control.
+        /// lblLomi control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl clomi;
-
-        /// <summary>
-        /// lnkbtnServey control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnServey;
-
-        /// <summary>
-        /// csurvey control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl csurvey;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblLomi;
 
         /// <summary>
         /// lnkbtnComment control.
@@ -654,13 +645,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnComment;
 
         /// <summary>
-        /// ccomments control.
+        /// lblComments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ccomments;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblComments;
 
         /// <summary>
         /// lnkbtnFreezland control.
@@ -672,13 +663,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnFreezland;
 
         /// <summary>
-        /// cfreezing control.
+        /// lblFreez control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cfreezing;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFreez;
 
         /// <summary>
         /// lnkbtnDead control.
@@ -690,13 +681,13 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnDead;
 
         /// <summary>
-        /// cdeadl control.
+        /// lblDeadProspect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cdeadl;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDeadProspect;
 
         /// <summary>
         /// lbtnSigned control.
@@ -708,13 +699,58 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.LinkButton lbtnSigned;
 
         /// <summary>
-        /// csigned control.
+        /// lblcsigned control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl csigned;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcsigned;
+
+        /// <summary>
+        /// lnkBtnDatablank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkBtnDatablank;
+
+        /// <summary>
+        /// lblDatablank control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDatablank;
+
+        /// <summary>
+        /// hdnlblattribute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnlblattribute;
+
+        /// <summary>
+        /// HyperLink3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+
+        /// <summary>
+        /// hllnkCodebook control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hllnkCodebook;
 
         /// <summary>
         /// lnkbtnReturn control.
@@ -724,6 +760,15 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnReturn;
+
+        /// <summary>
+        /// HyperLink1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
         /// Discoussion control.

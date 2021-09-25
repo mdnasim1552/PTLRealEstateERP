@@ -61,8 +61,8 @@ namespace RealERPWEB.F_01_LPA
                 this.DataBindStatus();
                 GetYEARLAND();
                 this.GETEMPLOYEEUNDERSUPERVISED();
-                //this.GetGridSummary();
-                //this.ModalDataBind();
+                this.GetGridSummary();
+                this.ModalDataBind();
                 //this.GetNotificationinfo();
                 divexland.Visible = false;
                 divddlinfo.Visible = false;
@@ -82,7 +82,7 @@ namespace RealERPWEB.F_01_LPA
             {
                 this.GetGridSummary();
                 this.ModalDataBind();
-                this.GetNotificationinfo();
+              //  this.GetNotificationinfo();
             }
             else
             {
@@ -417,19 +417,21 @@ namespace RealERPWEB.F_01_LPA
             {
                 return;
             }
-            this.cdws.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dws"].ToString();
-            this.cdwr.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dwr"].ToString();
-            this.cothact.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["othact"].ToString();
-            this.cpro.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["pro"].ToString();
-            this.cdaypassed.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["daypassed"].ToString();
-            this.ccall.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["call"].ToString();
-            this.clome.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lome"].ToString();
-            this.clomi.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lomi"].ToString();
-            this.csurvey.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["survey"].ToString();
-            this.ccomments.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["comments"].ToString();
-            this.cfreezing.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["freezing"].ToString();
-            this.cdeadl.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deadl"].ToString();
-            this.csigned.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["signed"].ToString();
+            this.lbldws.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dws"].ToString();
+            this.lbldwr.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dwr"].ToString();
+            this.lbloth.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["othact"].ToString();
+            //this.cpro.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["pro"].ToString();
+            this.lblDayPass.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["daypassed"].ToString();
+            this.lblCall.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["call"].ToString();
+           // this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
+            this.lblLome.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lome"].ToString();
+            this.lblLomi.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lomi"].ToString();
+            //this.csurvey.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["survey"].ToString();
+            this.lblComments.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["comments"].ToString();
+            this.lblFreez.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["freezing"].ToString();
+            this.lblDeadProspect.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deadl"].ToString();
+            this.lblcsigned.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["signed"].ToString();
+            //lblDatablank
 
         }
 
@@ -5421,7 +5423,7 @@ namespace RealERPWEB.F_01_LPA
         protected void lUpdatInfo_Click(object sender, EventArgs e)
         {
             this.GetSearchGridSummary();
-            this.GetNotificationinfo();
+            //this.GetNotificationinfo();
 
         }
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -7344,6 +7346,21 @@ namespace RealERPWEB.F_01_LPA
             ViewState["tbModalData"] = ds1.Tables[0];
             this.Modal_Data_Bind();
 
+
+        }
+
+        protected void lnkShowNotifcation_Click(object sender, EventArgs e)
+        {
+            this.GetNotificationinfo();
+        }
+
+        protected void lnkbtnOther_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkBtnVisit_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -402,6 +402,18 @@ namespace RealERPWEB.F_99_Allinterface
                     this.Timer1.Interval = 36000000;
                     break;
 
+                case "3101":// p2p
+                case "1205":
+                case "3351":
+                case "3352":
+                case "8306":
+
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
+
+                    this.Timer1.Interval = 3600000;
+                    break;
+
 
                 default:
                     this.Timer1.Interval = 3600000;
@@ -410,7 +422,8 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-            }
+            }          
+
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
