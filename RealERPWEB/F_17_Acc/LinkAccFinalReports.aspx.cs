@@ -245,12 +245,21 @@ namespace RealERPWEB.F_17_Acc
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string txtCuramt = Convert.ToDateTime(this.txtDatefrom.Text).ToString("dd-MMM-yyyy") + "\n" + " To " + System.Environment.NewLine + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
-            string txtPreamt = Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + "\n" + " To " + System.Environment.NewLine + Convert.ToDateTime(this.txtDatefrom.Text).AddDays(-1).ToString("dd-MMM-yyyy");
-            string mTRNDAT1 = this.txtDatefrom.Text.Substring(0, 11);
-            string mTRNDAT2 = this.txtDateto.Text.Substring(0, 11);
+            //string txtCuramt = Convert.ToDateTime(this.txtDatefrom.Text).ToString("dd-MMM-yyyy") + "\n" + " To " + System.Environment.NewLine + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+            //string txtPreamt = Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + "\n" + " To " + System.Environment.NewLine + Convert.ToDateTime(this.txtDatefrom.Text).AddDays(-1).ToString("dd-MMM-yyyy");
+            //string mTRNDAT1 = this.txtDatefrom.Text.Substring(0, 11);
+            //string mTRNDAT2 = this.txtDateto.Text.Substring(0, 11);
             string mLEVEL1 = this.DDListLevels.SelectedItem.Text.ToString();
 
+
+
+            //
+            string fdate1 = this.txtfrmdate.Text.Substring(0, 11);
+            string tdate2 = this.txttodate.Text.Substring(0, 11); 
+            string opdate1 = this.Request.QueryString["opndate"].ToString();
+            string txtCuramt = Convert.ToDateTime(fdate1).ToString("dd-MMM-yyyy") + "\n" + "To " + "\n" + Convert.ToDateTime(tdate2).ToString("dd-MMM-yyyy");
+            string txtPreamt = Convert.ToDateTime(opdate1).ToString("dd-MMM-yyyy") + "\n" + "To " + "\n" + Convert.ToDateTime(fdate1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //
 
             DataTable dt = (DataTable)ViewState["tblAcc"];
             string lvel = this.DDListLevels.SelectedValue.ToString();
@@ -276,7 +285,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("TxtCompName", comnam));
             Rpt1.SetParameters(new ReportParameter("txtCuramt", txtCuramt));
             Rpt1.SetParameters(new ReportParameter("txtPreamt", txtPreamt));
-            Rpt1.SetParameters(new ReportParameter("TxtRptPeriod", "For the year ended " + Convert.ToDateTime(this.txtDateto.Text.Substring(0, 11)).ToString("dd MMMM yyyy")));
+            Rpt1.SetParameters(new ReportParameter("TxtRptPeriod", "For the year ended " + Convert.ToDateTime(tdate2).ToString("dd MMMM yyyy")));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtdate", System.DateTime.Today.ToString("MMMM dd, yyyy")));
 
