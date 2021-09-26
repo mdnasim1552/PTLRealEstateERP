@@ -297,7 +297,7 @@ namespace RealERPWEB.F_21_MKT
             string cdate = this.txtfodate.Text.Trim();
             string cdatef = this.txttodate.Text.Trim();
 
-            string empid = ((this.ddlEmpid.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmpid.SelectedValue.ToString()) + "%";
+            string empid = ((this.ddlEmpid.SelectedValue.ToString() == "000000000000") ? "" : this.ddlEmpid.SelectedValue.ToString()) + "%";
             string prjcode = ((this.ddlProject.SelectedValue.ToString() == "") ? "%" : this.ddlProject.SelectedValue.ToString()) + "%";
             string professioncode = ((this.ddlProfession.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProfession.SelectedValue.ToString()) + "%";
 
@@ -326,6 +326,7 @@ namespace RealERPWEB.F_21_MKT
 
             ViewState["tblleadSrc"] = ds1.Tables[8];
             ViewState["tblleadSrcEmp"] = ds1.Tables[9];
+            ViewState["tblteamlead"] = ds1.Tables[10];
 
             Data_bind();
 
@@ -345,9 +346,10 @@ namespace RealERPWEB.F_21_MKT
             DataTable dtcProfEmp = (DataTable)ViewState["tblleadProfessEmp"];
             DataTable dtcsrc = (DataTable)ViewState["tblleadSrc"];
             DataTable dtcsrcemp = (DataTable)ViewState["tblleadSrcEmp"];
+            DataTable dtteamlead = (DataTable)ViewState["tblteamlead"];
 
 
- 
+
 
             if (dt.Rows.Count == 0)
                 return;
@@ -368,6 +370,7 @@ namespace RealERPWEB.F_21_MKT
 
             var lst8 = dtcsrc.DataTableToList<kpiPrjgraph>();
             var lst9 = dtcsrcemp.DataTableToList<kpiPrjgraph>();
+            var lst10 = dtteamlead.DataTableToList<kpiTeamsgraph>();
 
 
             var data = jsonSerialiser.Serialize(lst);
@@ -382,9 +385,12 @@ namespace RealERPWEB.F_21_MKT
 
             var data8 = jsonSerialiser.Serialize(lst8);
             var data9 = jsonSerialiser.Serialize(lst9);
+            var data10 = jsonSerialiser.Serialize(lst10);
+            var data11 = jsonSerialiser.Serialize(lst10);
+
 
             var gtype = this.ddlgrpType.SelectedValue.ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + gtype + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + data10 + "','" + data11 + "','" + gtype + "')", true);
 
         }
 
