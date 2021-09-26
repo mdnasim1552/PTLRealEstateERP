@@ -344,9 +344,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string ptleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvpl")).Text.Trim()).ToString();
                 string wpleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvWPl")).Text.Trim()).ToString();
                 string trpleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvTrL")).Text.Trim()).ToString();
-
                 string lonproidleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnProba")).Text.Trim()).ToString();
-
                 string lonsepaleave = Convert.ToDouble("0" + ((TextBox)this.gvLeaveRule.Rows[i].FindControl("txtgvLOnSepa")).Text.Trim()).ToString();
                 
 
