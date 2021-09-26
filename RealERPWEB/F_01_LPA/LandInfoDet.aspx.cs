@@ -5295,7 +5295,7 @@ namespace RealERPWEB.F_01_LPA
             {
 
                 dtE = dv.ToTable();
-                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                dtE.Rows.Add("000000000000", "Employee", "");
             }
             else
             {
@@ -5310,7 +5310,7 @@ namespace RealERPWEB.F_01_LPA
                              }).ToList();
                 dtE = ASITUtility03.ListToDataTable(query);
                 if (dtE.Rows.Count >= 2)
-                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                    dtE.Rows.Add("000000000000", "Employee", "");
             }
             // end
 
@@ -5330,7 +5330,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '52%'");
             DataTable dtCo = dv.ToTable();
-            dtCo.Rows.Add("0000000", "Choose Country..", "");
+            dtCo.Rows.Add("0000000", "Country", "");
             this.ddlCountry.DataTextField = "gdesc";
             this.ddlCountry.DataValueField = "gcod";
             this.ddlCountry.DataSource = dtCo;
@@ -5341,7 +5341,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '51%'");
             DataTable dtPr = dv.ToTable();
-            dtPr.Rows.Add("0000000", "Choose Priotiry..", "");
+            dtPr.Rows.Add("0000000", "Priotiry", "");
             this.ddlPri.DataTextField = "gdesc";
             this.ddlPri.DataValueField = "gcod";
             this.ddlPri.DataSource = dtPr;
@@ -5352,7 +5352,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '95%'");
             DataTable dtSta = dv.ToTable();
-            dtSta.Rows.Add("0000000", "Choose Status..");
+            dtSta.Rows.Add("0000000", "Status");
             this.ddlStatus.DataTextField = "gdesc";
             this.ddlStatus.DataValueField = "gcod";
             this.ddlStatus.DataSource = dtSta;
@@ -5451,7 +5451,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '54%' and code ='" + dis + "'");
             DataTable dtZone = dv.ToTable();
-            dtZone.Rows.Add("0000000", "Choose Zone..", "");
+            dtZone.Rows.Add("0000000", "Zone", "");
             this.ddlZone.DataTextField = "gdesc";
             this.ddlZone.DataValueField = "gcod";
             this.ddlZone.DataSource = dtZone;
@@ -5470,7 +5470,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '55%' and code ='" + zone + "'");
             DataTable dtPO = dv.ToTable();
-            dtPO.Rows.Add("0000000", "Choose Police Station..", "");
+            dtPO.Rows.Add("0000000", "P.S.", "");
             this.ddlPStat.DataTextField = "gdesc";
             this.ddlPStat.DataValueField = "gcod";
             this.ddlPStat.DataSource = dtPO;
@@ -5489,7 +5489,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '56%' and code ='" + PoSt + "'");
             DataTable dtArea = dv.ToTable();
-            dtArea.Rows.Add("0000000", "Choose Area..", "");
+            dtArea.Rows.Add("0000000", "Area", "");
             this.ddlArea.DataTextField = "gdesc";
             this.ddlArea.DataValueField = "gcod";
             this.ddlArea.DataSource = dtArea;
@@ -5508,7 +5508,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '57%' and code ='" + Area + "'");
             DataTable dtBlk = dv.ToTable();
-            dtBlk.Rows.Add("0000000", "Choose Block..", "");
+            dtBlk.Rows.Add("0000000", "Block", "");
             this.ddlBlock.DataTextField = "gdesc";
             this.ddlBlock.DataValueField = "gcod";
             this.ddlBlock.DataSource = dtBlk;
@@ -5527,7 +5527,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '58%' and code ='" + Block + "'");
             DataTable dtRoad = dv.ToTable();
-            dtRoad.Rows.Add("0000000", "Choose Road..", "");
+            dtRoad.Rows.Add("0000000", "Road", "");
             this.ddlRoad.DataTextField = "gdesc";
             this.ddlRoad.DataValueField = "gcod";
             this.ddlRoad.DataSource = dtRoad;

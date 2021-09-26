@@ -1473,6 +1473,19 @@
                                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
+
+                                                         <asp:TemplateField HeaderText="Ref No">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lgptrefno" runat="server"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refno")) %>'
+                                                                    Width="80px"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+
+
+
+
                                                         <asp:TemplateField HeaderText="Transfer</br> Amount">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbltrsnamt" runat="server" Style="text-align: right"
