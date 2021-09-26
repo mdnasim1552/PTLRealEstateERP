@@ -1023,10 +1023,10 @@ namespace RealERPWEB.F_17_Acc
 
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("date", "For the year ended " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
+            Rpt1.SetParameters(new ReportParameter("date", "For the year ended, " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.Request.QueryString["Type"].ToString() == "CashFlow") ? "Statement of Cash Flow" : "Statement of Cash Flow -Indirect"));
-            Rpt1.SetParameters(new ReportParameter("openingDate", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtfromdate.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("closingDate", Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("openingDate", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To \n" + Convert.ToDateTime(this.txtfromdate.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("closingDate", Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To \n" + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
             //rpt.SetParameters(new ReportParameter("compName", comnam));
@@ -1066,7 +1066,7 @@ namespace RealERPWEB.F_17_Acc
             rpt.SetParameters(new ReportParameter("compName", comnam));
             rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
             rpt.SetParameters(new ReportParameter("rptTitle", (this.Request.QueryString["Type"].ToString() == "CashFlow") ? "Statement of Cash Flow" : "Statement of Cash Flow -Indirect"));
-            rpt.SetParameters(new ReportParameter("date", "For the year ended " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
+            rpt.SetParameters(new ReportParameter("date", "For the year ended, " + Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd MMMM yyyy")));
             rpt.SetParameters(new ReportParameter("closingDate", Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To \n" + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
             rpt.SetParameters(new ReportParameter("openingDate", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To \n" + Convert.ToDateTime(this.txtfromdate.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
 
