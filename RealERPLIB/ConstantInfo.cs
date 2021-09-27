@@ -91,13 +91,18 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0103000", "0103097", "F_01_LPA", "MktLandOwnerDiscus?", "Type=Entry", "Landowner Discussion Entry", "Land Proposal", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0103000", "0103098", "F_01_LPA", "MktLandOwnerDiscus?", "Type=Edit", "Landowner Discussion Edit", "Land Proposal", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "0103000", "0103099", "F_01_LPA", "RptBusinessClient", "", "Landowner Notification", "Land Proposal", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "0103000", "0103099", "F_01_LPA", "RptBusinessClient", "", "Landowner Notification", "Land Proposal", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0103000", "0103110", "F_01_LPA", "LandSearch", "", "Land Search", "Land Proposal", "False", "False", "False", "False" }); ;
 
+
+
+            
 
             tblObj.Rows.Add(new Object[] { "0151000", "0151001", "F_99_Allinterface", "BusinessDashboard?", "Type=Report", "Business Development", "Land Proposal", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0151000", "0151003", "F_01_LPA", "LandInfoDet?", "Type=Entry", "Business Development", "Land Proposal", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0191000", "0191085", "F_01_LPA", "RptDashBoardLandPro", "", "Land Procurement", "Land Proposal-Dashboard", "False", "False", "False", "False" }); ;
             
+
 
 
 

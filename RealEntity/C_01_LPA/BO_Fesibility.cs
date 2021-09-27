@@ -185,7 +185,29 @@ namespace RealEntity.C_01_LPA
        
        }
 
-        
+
+
+        [Serializable]
+        public class EClassZDTM
+
+        {
+            public string gcod { get; set; }
+            public string gdesc { get; set; }
+
+
+            public EClassZDTM()
+            {
+
+
+            }
+
+
+
+
+
+        }
+
+
 
     }
 }

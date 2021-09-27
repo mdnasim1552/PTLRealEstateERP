@@ -55,6 +55,7 @@
 
         $(document).ready(function () {
 
+            
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -120,38 +121,224 @@
 
 
         // Create the chart
-        function ExecuteGraph(data, data1, data2, data3, data4, data5, data6, data8, data9, gtype) {
+        function ExecuteGraph(data, data1, data2, data3, data4, data5, data6, data8, data9, data10, data11, gtype) {
 
-            // alert(gtype); 
-             
-            //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
-            //alert(rbtn);
-           
-          
-            var saldata = JSON.parse(data);
-            var empleadst = JSON.parse(data1);
-            var empleadstdets = JSON.parse(data2);// employee wise leads deatails
-            var prjLead = JSON.parse(data3);// Project wise leads deatails
-            var prjLeadTeam = JSON.parse(data4);// Project wise leads deatails
-
-            var prjLeadProfess = JSON.parse(data5);// Project wise leads deatails
-            var prjLeadProfssTeam = JSON.parse(data6);// Project wise leads deatails
+            try
+            {
 
 
-            var srcleads = JSON.parse(data8);// Source wise leads deatails
-            var srcleadsTeam = JSON.parse(data9);// Source TEam wise leads deatails
+                // alert(gtype); 
 
-            //console.log(saldata[0].lead);
+                //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
+                //alert(rbtn);
 
 
-            var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
-            var leadstatus = $('#<%=this.ddlleadstatus.ClientID%>').val();
-           
-            if (rbtn == "Stand By") {
+                var saldata = JSON.parse(data);
+                var empleadst = JSON.parse(data1);
+                var empleadstdets = JSON.parse(data2);// employee wise leads deatails
+                var prjLead = JSON.parse(data3);// Project wise leads deatails
+                var prjLeadTeam = JSON.parse(data4);// Project wise leads deatails
 
-                if ($.trim(leadstatus).length == 7) {
+                var prjLeadProfess = JSON.parse(data5);// Project wise leads deatails
+                var prjLeadProfssTeam = JSON.parse(data6);// Project wise leads deatails
 
-                  
+
+                var srcleads = JSON.parse(data8);// Source wise leads deatails
+                var srcleadsTeam = JSON.parse(data9);// Source TEam wise leads deatails
+                var teamlead = JSON.parse(data10);// Source TEam wise leads deatails
+
+
+
+
+                var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
+                var leadstatus = $('#<%=this.ddlleadstatus.ClientID%>').val();
+
+                if (rbtn == "Stand By") {
+
+                    if ($.trim(leadstatus).length == 7) {
+
+
+                        Highcharts.chart('salchartG', {
+                            chart: {
+                                type: gtype
+                            },
+                            title: {
+                                text: 'Sales Funnel'
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
+                                }
+                            },
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Total Sales Funnel Stages'
+                                }
+
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            },
+
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                            },
+
+                            series: [
+                                {
+                                    name: "Sales Funnel",
+                                    colorByPoint: true,
+                                    data: [
+                                        {
+                                            name: "Query",
+                                            y: parseFloat(saldata[0].query)
+                                        },
+                                        {
+                                            name: "Lead",
+                                            y: parseFloat(saldata[0].lead)
+                                        },
+                                        {
+                                            name: "Qualified Lead",
+                                            y: parseFloat(saldata[0].qualiflead)
+                                        },
+                                        {
+                                            name: "Negotiation",
+                                            y: parseFloat(saldata[0].nego)
+                                        },
+                                        {
+                                            name: "Final Negotiation",
+                                            y: parseFloat(saldata[0].finalnego)
+                                        },
+
+
+                                        {
+                                            name: "Win",
+                                            y: parseFloat(saldata[0].win)
+                                        }
+
+
+                                    ]
+                                }
+                            ]
+
+                        });
+
+                    }
+
+                    else {
+
+
+                        Highcharts.chart('salchartG', {
+                            chart: {
+                                type: gtype
+                            },
+                            title: {
+                                text: 'Sales Funnel'
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
+                                }
+                            },
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Total Sales Funnel Stages'
+                                }
+
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            },
+
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                            },
+
+                            series: [
+                                {
+                                    name: "Sales Funnel",
+                                    colorByPoint: true,
+                                    data: [
+                                        {
+                                            name: "Query",
+                                            y: parseFloat(saldata[0].query)
+                                        },
+                                        {
+                                            name: "Lead",
+                                            y: parseFloat(saldata[0].lead)
+                                        },
+                                        {
+                                            name: "Qualified Lead",
+                                            y: parseFloat(saldata[0].qualiflead)
+                                        },
+                                        {
+                                            name: "Negotiation",
+                                            y: parseFloat(saldata[0].nego)
+                                        },
+                                        {
+                                            name: "Final Negotiation",
+                                            y: parseFloat(saldata[0].finalnego)
+                                        },
+
+
+                                        {
+                                            name: "Win",
+                                            y: parseFloat(saldata[0].win)
+                                        }
+                                        ,
+                                        {
+                                            name: "Total",
+                                            y: parseFloat(saldata[0].total)
+                                        }
+
+                                    ]
+                                }
+                            ]
+
+                        });
+
+                    }
+
+                    //$('#salchartG').show();
+                    // $('#salchartCon').hide();
+
+                }
+                else {
+                    // $('#salchartG').hide();
+                    // $('#salchartCon').show();
+
                     Highcharts.chart('salchartG', {
                         chart: {
                             type: gtype
@@ -225,121 +412,48 @@
                                         name: "Win",
                                         y: parseFloat(saldata[0].win)
                                     }
-                                   
-                                    
+
                                 ]
                             }
                         ]
 
                     });
 
+
+
                 }
 
-                else
-                {
-                  
-                  
-                    Highcharts.chart('salchartG', {
-                        chart: {
-                            type: gtype
-                        },
-                        title: {
-                            text: 'Sales Funnel'
-                        },
-                        subtitle: {
-                            text: ''
-                        },
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
-                            title: {
-                                text: 'Total Sales Funnel Stages'
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
-                                }
-                            }
-                        },
-
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
-                        },
-
-                        series: [
-                            {
-                                name: "Sales Funnel",
-                                colorByPoint: true,
-                                data: [
-                                    {
-                                        name: "Query",
-                                        y: parseFloat(saldata[0].query)
-                                    },
-                                    {
-                                        name: "Lead",
-                                        y: parseFloat(saldata[0].lead)
-                                    },
-                                    {
-                                        name: "Qualified Lead",
-                                        y: parseFloat(saldata[0].qualiflead)
-                                    },
-                                    {
-                                        name: "Negotiation",
-                                        y: parseFloat(saldata[0].nego)
-                                    },
-                                    {
-                                        name: "Final Negotiation",
-                                        y: parseFloat(saldata[0].finalnego)
-                                    },
 
 
-                                    {
-                                        name: "Win",
-                                        y: parseFloat(saldata[0].win)
-                                    }
-                                    ,
-                                    {
-                                        name: "Total",
-                                        y: parseFloat(saldata[0].total)
-                                    }
-                                   
-                                ]
-                            }
-                        ]
 
-                    });
 
+
+
+
+
+
+
+
+
+
+                //team members graph
+                var sumlead = 0;
+                var allempdata = [];
+                for (var i = 0; i < empleadst.length; i++) {
+                    allempdata.push({ "name": empleadst[i].usrname, "y": parseFloat(empleadst[i].total) })
+                    sumlead += parseFloat(empleadst[i].total);
                 }
-                
-                //$('#salchartG').show();
-               // $('#salchartCon').hide();
 
-            }
-            else {
-               // $('#salchartG').hide();
-               // $('#salchartCon').show();
 
-                Highcharts.chart('salchartG', {
+                //console.log(sumlead);
+                //console.log("NAhid");
+
+                var empttlead = Highcharts.chart('Allempchart', {
                     chart: {
                         type: gtype
                     },
                     title: {
-                        text: 'Sales Funnel'
+                        text: 'Sales Funnel Total Lead:-  ' + sumlead
                     },
                     subtitle: {
                         text: ''
@@ -356,7 +470,6 @@
                         title: {
                             text: 'Total Sales Funnel Stages'
                         }
-
                     },
                     legend: {
                         enabled: false
@@ -373,209 +486,180 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
                     },
 
                     series: [
                         {
                             name: "Sales Funnel",
                             colorByPoint: true,
-                            data: [
-                                {
-                                    name: "Query",
-                                    y: parseFloat(saldata[0].query)
-                                },
-                                {
-                                    name: "Lead",
-                                    y: parseFloat(saldata[0].lead)
-                                },
-                                {
-                                    name: "Qualified Lead",
-                                    y: parseFloat(saldata[0].qualiflead)
-                                },
-                                {
-                                    name: "Negotiation",
-                                    y: parseFloat(saldata[0].nego)
-                                },
-                                {
-                                    name: "Final Negotiation",
-                                    y: parseFloat(saldata[0].finalnego)
-                                },
-
-
-                                {
-                                    name: "Win",
-                                    y: parseFloat(saldata[0].win)
-                                }
-
-                            ]
+                            data: allempdata
                         }
                     ]
 
                 });
 
+                //indiviual team graph bar
+                for (var i = 0; i < empleadstdets.length; i++) {
+
+                    $('#indEmpStatusBar').append('<div id="r' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
 
 
-            }
-
-           
-
-
-
-         
-
-
-
-
-
-
-
-
-            //team members graph
-            var sumlead = 0;
-            var allempdata = [];
-            for (var i = 0; i < empleadst.length; i++) {
-                allempdata.push({ "name": empleadst[i].usrname, "y": parseFloat(empleadst[i].total) })
-                sumlead += parseFloat(empleadst[i].total);
-            }
-
-
-            console.log(sumlead);
-            console.log("NAhid");
-
-            var empttlead = Highcharts.chart('Allempchart', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Sales Funnel Total Lead:-  ' + sumlead
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Sales Funnel Stages'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
-                },
-
-                series: [
-                    {
-                        name: "Sales Funnel",
-                        colorByPoint: true,
-                        data: allempdata
-                    }
-                ]
-
-            });
-
-            //indiviual team graph bar
-            for (var i = 0; i < empleadstdets.length; i++) {
-
-                $('#indEmpStatusBar').append('<div id="r' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
-
-
-                Highcharts.chart('r' + empleadstdets[i].teamcode, {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Sales Funnel: ' + empleadstdets[i].usrname + '<img src="../images/userImg.png" alt=ddd>'
-                    },
-                    subtitle: {
-                        text: ''
-                    },
-                    accessibility: {
-                        announceNewData: {
-                            enabled: true
-                        }
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
+                    Highcharts.chart('r' + empleadstdets[i].teamcode, {
+                        chart: {
+                            type: 'column'
+                        },
                         title: {
-                            text: 'Total Sales Funnel Stages'
-                        }
-
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y}'
+                            text: 'Sales Funnel: ' + empleadstdets[i].usrname + '<img src="../images/userImg.png" alt=ddd>'
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            announceNewData: {
+                                enabled: true
                             }
-                        }
-                    },
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total Sales Funnel Stages'
+                            }
 
-                    tooltip: {
-                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
-                    },
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
 
-                    series: [
-                        {
-                            name: "Sales Funnel",
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
+                        },
+
+                        series: [
+                            {
+                                name: "Sales Funnel",
+                                colorByPoint: true,
+                                data: [
+                                    {
+                                        name: "Query",
+                                        y: parseFloat(empleadstdets[i].query),
+                                        drilldown: "Query"
+                                    },
+                                    {
+                                        name: "Lead",
+                                        y: parseFloat(empleadstdets[i].lead),
+                                        drilldown: "Lead"
+                                    },
+                                    {
+                                        name: "Qualified Lead",
+                                        y: parseFloat(empleadstdets[i].qualiflead),
+                                        drilldown: "QualifiedLead"
+                                    },
+                                    {
+                                        name: "Negotiation",
+                                        y: parseFloat(empleadstdets[i].nego),
+                                        drilldown: "Negotiation"
+                                    },
+                                    {
+                                        name: "Final Negotiation",
+                                        y: parseFloat(empleadstdets[i].finalnego),
+                                        drilldown: "Final Negotiation"
+                                    },
+                                    {
+                                        name: "Win",
+                                        y: parseFloat(empleadstdets[i].win),
+                                        drilldown: null
+                                    }
+                                    ,
+                                    {
+                                        name: "Total",
+                                        y: parseFloat(empleadstdets[i].total)
+                                    }
+                                ]
+                            }
+                        ]
+
+                    });
+
+                }
+
+
+                //indiviual team graph pie
+                for (var i = 0; i < empleadstdets.length; i++) {
+
+                    $('#indEmpStatusPie').append('<div id="p' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+                    Highcharts.chart('p' + empleadstdets[i].teamcode, {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Sales Funnel :' + empleadstdets[i].usrname
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.y}</b>'
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: ''
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y}'
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Stages',
                             colorByPoint: true,
                             data: [
                                 {
                                     name: "Query",
                                     y: parseFloat(empleadstdets[i].query),
-                                    drilldown: "Query"
+                                    sliced: true,
+                                    selected: true
                                 },
                                 {
                                     name: "Lead",
-                                    y: parseFloat(empleadstdets[i].lead),
-                                    drilldown: "Lead"
+                                    y: parseFloat(empleadstdets[i].lead)
+
                                 },
                                 {
                                     name: "Qualified Lead",
-                                    y: parseFloat(empleadstdets[i].qualiflead),
-                                    drilldown: "QualifiedLead"
+                                    y: parseFloat(empleadstdets[i].qualiflead)
+
                                 },
                                 {
                                     name: "Negotiation",
-                                    y: parseFloat(empleadstdets[i].nego),
-                                    drilldown: "Negotiation"
+                                    y: parseFloat(empleadstdets[i].nego)
+
                                 },
                                 {
                                     name: "Final Negotiation",
-                                    y: parseFloat(empleadstdets[i].finalnego),
-                                    drilldown: "Final Negotiation"
+                                    y: parseFloat(empleadstdets[i].finalnego)
                                 },
                                 {
                                     name: "Win",
-                                    y: parseFloat(empleadstdets[i].win),
-                                    drilldown: null
+                                    y: parseFloat(empleadstdets[i].win)
                                 }
                                 ,
                                 {
@@ -583,369 +667,220 @@
                                     y: parseFloat(empleadstdets[i].total)
                                 }
                             ]
+                        }]
+                    });
+                }
+
+
+                //project wise
+                var sumplead = 0;
+                var allprj = [];
+                for (var i = 0; i < prjLead.length; i++) {
+                    allprj.push({ "name": prjLead[i].prjname, "y": parseFloat(prjLead[i].total) })
+                    sumplead += parseFloat(prjLead[i].total);
+
+                }
+                //console.log(allempdata);
+
+                var prjlead = Highcharts.chart('kpiProjects', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: 'Projects Wise Sales Funnel, Total Lead:-  ' + sumplead
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total Sales Funnel Stages'
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}'
+                            }
+                        }
+                    },
+
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
+                    },
+
+                    series: [
+                        {
+                            name: "Sales Funnel",
+                            colorByPoint: true,
+                            data: allprj
                         }
                     ]
 
                 });
 
-            }
+                //prjWiseEmpbar
+                for (var i = 0; i < empleadstdets.length; i++) {
 
+                    var empid = empleadstdets[i].teamcode;
 
-            //indiviual team graph pie
-            for (var i = 0; i < empleadstdets.length; i++) {
+                    var allprjTeam = [];
+                    for (var j = 0; j < prjLeadTeam.length; j++) {
+                        var prjteam = prjLeadTeam[j].teamcode
+                        if (prjteam == empid) {
+                            allprjTeam.push({ "name": prjLeadTeam[j].prjname, "y": parseFloat(prjLeadTeam[j].total) })
 
-                $('#indEmpStatusPie').append('<div id="p' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
-                Highcharts.chart('p' + empleadstdets[i].teamcode, {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Sales Funnel :' + empleadstdets[i].usrname
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.y}</b>'
-                    },
-                    accessibility: {
-                        point: {
-                            valueSuffix: ''
                         }
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.y}'
+                    }
+
+
+
+
+                    $('#prjWiseEmpbar').append('<div id="prj' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+
+                    Highcharts.chart('prj' + empleadstdets[i].teamcode, {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Sales Funnel: ' + empleadstdets[i].usrname
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            announceNewData: {
+                                enabled: true
                             }
-                        }
-                    },
-                    series: [{
-                        name: 'Stages',
-                        colorByPoint: true,
-                        data: [
-                            {
-                                name: "Query",
-                                y: parseFloat(empleadstdets[i].query),
-                                sliced: true,
-                                selected: true
-                            },
-                            {
-                                name: "Lead",
-                                y: parseFloat(empleadstdets[i].lead)
-
-                            },
-                            {
-                                name: "Qualified Lead",
-                                y: parseFloat(empleadstdets[i].qualiflead)
-
-                            },
-                            {
-                                name: "Negotiation",
-                                y: parseFloat(empleadstdets[i].nego)
-
-                            },
-                            {
-                                name: "Final Negotiation",
-                                y: parseFloat(empleadstdets[i].finalnego)
-                            },
-                            {
-                                name: "Win",
-                                y: parseFloat(empleadstdets[i].win)
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total Sales Funnel Stages'
                             }
-                            ,
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                        },
+
+                        series: [
                             {
-                                name: "Total",
-                                y: parseFloat(empleadstdets[i].total)
+                                name: "Sales Funnel",
+                                colorByPoint: true,
+                                data: allprjTeam
                             }
                         ]
-                    }]
-                });
-            }
 
+                    });
 
-            //project wise
-            var sumplead = 0;
-            var allprj = [];
-            for (var i = 0; i < prjLead.length; i++) {
-                allprj.push({ "name": prjLead[i].prjname, "y": parseFloat(prjLead[i].total) })
-                sumplead += parseFloat(prjLead[i].total);
-
-            }
-            //console.log(allempdata);
-
-            var prjlead = Highcharts.chart('kpiProjects', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Projects Wise Sales Funnel, Total Lead:-  ' + sumplead
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Sales Funnel Stages'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
-                },
-
-                series: [
-                    {
-                        name: "Sales Funnel",
-                        colorByPoint: true,
-                        data: allprj
-                    }
-                ]
-
-            });
-
-            //prjWiseEmpbar
-            for (var i = 0; i < empleadstdets.length; i++) {
-
-                var empid = empleadstdets[i].teamcode;
-
-                var allprjTeam = [];
-                for (var j = 0; j < prjLeadTeam.length; j++) {
-                    var prjteam = prjLeadTeam[j].teamcode
-                    if (prjteam == empid) {
-                        allprjTeam.push({ "name": prjLeadTeam[j].prjname, "y": parseFloat(prjLeadTeam[j].total) })
-
-                    }
                 }
 
+                //prjWiseEmpPie
 
+                for (var i = 0; i < empleadstdets.length; i++) {
 
+                    var empid = empleadstdets[i].teamcode;
 
-                $('#prjWiseEmpbar').append('<div id="prj' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+                    var allprjTeam = [];
+                    for (var j = 0; j < prjLeadTeam.length; j++) {
+                        var prjteam = prjLeadTeam[j].teamcode
+                        if (prjteam == empid) {
+                            allprjTeam.push({ "name": prjLeadTeam[j].prjname, "y": parseFloat(prjLeadTeam[j].total) })
 
-                Highcharts.chart('prj' + empleadstdets[i].teamcode, {
-                    chart: {
-                        type: 'column'
-                    },
-                    title: {
-                        text: 'Sales Funnel: ' + empleadstdets[i].usrname
-                    },
-                    subtitle: {
-                        text: ''
-                    },
-                    accessibility: {
-                        announceNewData: {
-                            enabled: true
                         }
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
+                    }
+
+
+
+
+                    $('#prjWiseEmpPie').append('<div id="prjpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+
+
+                    Highcharts.chart('prjpie' + empleadstdets[i].teamcode, {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
                         title: {
-                            text: 'Total Sales Funnel Stages'
-                        }
-
-                    },
-                    legend: {
-                        enabled: false
-                    },
-                    plotOptions: {
-                        series: {
-                            borderWidth: 0,
-                            dataLabels: {
-                                enabled: true,
-                                format: '{point.y}'
+                            text: 'Sales Funnel :' + empleadstdets[i].usrname
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.y}</b>'
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: ''
                             }
-                        }
-                    },
-
-                    tooltip: {
-                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
-                    },
-
-                    series: [
-                        {
-                            name: "Sales Funnel",
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y}'
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Stages',
                             colorByPoint: true,
                             data: allprjTeam
-                        }
-                    ]
+                        }]
+                    });
 
-                });
-
-            }
-
-            //prjWiseEmpPie
-
-            for (var i = 0; i < empleadstdets.length; i++) {
-
-                var empid = empleadstdets[i].teamcode;
-
-                var allprjTeam = [];
-                for (var j = 0; j < prjLeadTeam.length; j++) {
-                    var prjteam = prjLeadTeam[j].teamcode
-                    if (prjteam == empid) {
-                        allprjTeam.push({ "name": prjLeadTeam[j].prjname, "y": parseFloat(prjLeadTeam[j].total) })
-
-                    }
                 }
 
 
+                //Profession wise
+                var sumproflead = 0;
+                var allProf = [];
+                for (var i = 0; i < prjLeadProfess.length; i++) {
+                    allProf.push({ "name": prjLeadProfess[i].prjname, "y": parseFloat(prjLeadProfess[i].total) })
+                    sumproflead += parseFloat(prjLeadProfess[i].total);
 
-
-                $('#prjWiseEmpPie').append('<div id="prjpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
-
-
-                Highcharts.chart('prjpie' + empleadstdets[i].teamcode, {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Sales Funnel :' + empleadstdets[i].usrname
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.y}</b>'
-                    },
-                    accessibility: {
-                        point: {
-                            valueSuffix: ''
-                        }
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.y}'
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Stages',
-                        colorByPoint: true,
-                        data: allprjTeam
-                    }]
-                });
-
-            }
-
-
-            //Profession wise
-            var sumproflead = 0;
-            var allProf = [];
-            for (var i = 0; i < prjLeadProfess.length; i++) {
-                allProf.push({ "name": prjLeadProfess[i].prjname, "y": parseFloat(prjLeadProfess[i].total) })
-                sumproflead += parseFloat(prjLeadProfess[i].total);
-
-            }
-            //console.log(allempdata);
-
-            var proflead = Highcharts.chart('kpiProfesson', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Professiom Wise Sales Funnel, Total:-  ' + sumproflead
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Sales Funnel Stages'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
-                },
-
-                series: [
-                    {
-                        name: "Sales Funnel",
-                        colorByPoint: true,
-                        data: allProf
-                    }
-                ]
-
-            });
-
-            //ProfessionWiseEmpbar
-            for (var i = 0; i < empleadstdets.length; i++) {
-
-                var empid = empleadstdets[i].teamcode;
-
-                var allprofTeam = [];
-                for (var j = 0; j < prjLeadProfssTeam.length; j++) {
-                    var prjteam = prjLeadProfssTeam[j].teamcode
-                    if (prjteam == empid) {
-                        allprofTeam.push({ "name": prjLeadProfssTeam[j].prjname, "y": parseFloat(prjLeadProfssTeam[j].total) })
-
-                    }
                 }
+                //console.log(allempdata);
 
-                //bar
-
-
-                $('#ProfessionEMPbar').append('<div id="prof' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
-
-                Highcharts.chart('prof' + empleadstdets[i].teamcode, {
+                var proflead = Highcharts.chart('kpiProfesson', {
                     chart: {
-                        type: 'column'
+                        type: gtype
                     },
                     title: {
-                        text: 'Sales Funnel: ' + empleadstdets[i].usrname
+                        text: 'Professiom Wise Sales Funnel, Total:-  ' + sumproflead
                     },
                     subtitle: {
                         text: ''
@@ -962,7 +897,6 @@
                         title: {
                             text: 'Total Sales Funnel Stages'
                         }
-
                     },
                     legend: {
                         enabled: false
@@ -979,148 +913,148 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
                     },
 
                     series: [
                         {
                             name: "Sales Funnel",
+                            colorByPoint: true,
+                            data: allProf
+                        }
+                    ]
+
+                });
+
+                //ProfessionWiseEmpbar
+                for (var i = 0; i < empleadstdets.length; i++) {
+
+                    var empid = empleadstdets[i].teamcode;
+
+                    var allprofTeam = [];
+                    for (var j = 0; j < prjLeadProfssTeam.length; j++) {
+                        var prjteam = prjLeadProfssTeam[j].teamcode
+                        if (prjteam == empid) {
+                            allprofTeam.push({ "name": prjLeadProfssTeam[j].prjname, "y": parseFloat(prjLeadProfssTeam[j].total) })
+
+                        }
+                    }
+
+                    //bar
+
+
+                    $('#ProfessionEMPbar').append('<div id="prof' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+
+                    Highcharts.chart('prof' + empleadstdets[i].teamcode, {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Sales Funnel: ' + empleadstdets[i].usrname
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            announceNewData: {
+                                enabled: true
+                            }
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total Sales Funnel Stages'
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                        },
+
+                        series: [
+                            {
+                                name: "Sales Funnel",
+                                colorByPoint: true,
+                                data: allprofTeam
+                            }
+                        ]
+
+                    });
+
+                    //// pie
+                    $('#ProfessionEMPpIE').append('<div id="profpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+
+
+                    Highcharts.chart('profpie' + empleadstdets[i].teamcode, {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Sales Funnel :' + empleadstdets[i].usrname
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.y}</b>'
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: ''
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y}'
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Stages',
                             colorByPoint: true,
                             data: allprofTeam
-                        }
-                    ]
-
-                });
-
-                //// pie
-                $('#ProfessionEMPpIE').append('<div id="profpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+                        }]
+                    });
 
 
-                Highcharts.chart('profpie' + empleadstdets[i].teamcode, {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Sales Funnel :' + empleadstdets[i].usrname
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.y}</b>'
-                    },
-                    accessibility: {
-                        point: {
-                            valueSuffix: ''
-                        }
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.y}'
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Stages',
-                        colorByPoint: true,
-                        data: allprofTeam
-                    }]
-                });
-
-
-            }
-
-
-            //
-            //Source Wise PAnel 
-            var sumsrc = 0;
-            var allSrc = [];
-            for (var i = 0; i < srcleads.length; i++) {
-                allSrc.push({ "name": srcleads[i].prjname, "y": parseFloat(srcleads[i].total) })
-                sumsrc += parseFloat(srcleads[i].total);
-
-            }
-            var allSrcGrph = Highcharts.chart('kpiSourch', {
-                chart: {
-                    type: gtype
-                },
-                title: {
-                    text: 'Source Wise Sales Funnel, Total: ' + sumsrc
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Sales Funnel Stages'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
-                },
-
-                series: [
-                    {
-                        name: "Source Wise Sales Funnel",
-                        colorByPoint: true,
-                        data: allSrc
-                    }
-                ]
-
-            });
-
-
-            //Source emp wise
-            for (var i = 0; i < empleadstdets.length; i++) {
-
-                var empid = empleadstdets[i].teamcode;
-
-                var allsrcTeam = [];
-                for (var j = 0; j < srcleadsTeam.length; j++) {
-                    var prjteam = srcleadsTeam[j].teamcode
-                    if (prjteam == empid) {
-                        allsrcTeam.push({ "name": srcleadsTeam[j].prjname, "y": parseFloat(srcleadsTeam[j].total) })
-
-                    }
                 }
 
-                //bar
 
+                //
+                //Source Wise PAnel 
+                var sumsrc = 0;
+                var allSrc = [];
+                for (var i = 0; i < srcleads.length; i++) {
+                    allSrc.push({ "name": srcleads[i].prjname, "y": parseFloat(srcleads[i].total) })
+                    sumsrc += parseFloat(srcleads[i].total);
 
-                $('#SourceEMPbar').append('<div id="src' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
-
-                Highcharts.chart('src' + empleadstdets[i].teamcode, {
+                }
+                var allSrcGrph = Highcharts.chart('kpiSourch', {
                     chart: {
-                        type: 'column'
+                        type: gtype
                     },
                     title: {
-                        text: 'Sales Funnel: ' + empleadstdets[i].usrname
+                        text: 'Source Wise Sales Funnel, Total: ' + sumsrc
                     },
                     subtitle: {
                         text: ''
@@ -1137,7 +1071,193 @@
                         title: {
                             text: 'Total Sales Funnel Stages'
                         }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        series: {
+                            borderWidth: 0,
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.y}'
+                            }
+                        }
+                    },
 
+                    tooltip: {
+                        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
+                    },
+
+                    series: [
+                        {
+                            name: "Source Wise Sales Funnel",
+                            colorByPoint: true,
+                            data: allSrc
+                        }
+                    ]
+
+                });
+
+
+                //Source emp wise
+                for (var i = 0; i < empleadstdets.length; i++) {
+
+                    var empid = empleadstdets[i].teamcode;
+
+                    var allsrcTeam = [];
+                    for (var j = 0; j < srcleadsTeam.length; j++) {
+                        var prjteam = srcleadsTeam[j].teamcode
+                        if (prjteam == empid) {
+                            allsrcTeam.push({ "name": srcleadsTeam[j].prjname, "y": parseFloat(srcleadsTeam[j].total) })
+
+                        }
+                    }
+
+                    //bar
+
+
+                    $('#SourceEMPbar').append('<div id="src' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+
+                    Highcharts.chart('src' + empleadstdets[i].teamcode, {
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: 'Sales Funnel: ' + empleadstdets[i].usrname
+                        },
+                        subtitle: {
+                            text: ''
+                        },
+                        accessibility: {
+                            announceNewData: {
+                                enabled: true
+                            }
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Total Sales Funnel Stages'
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y}'
+                                }
+                            }
+                        },
+
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                        },
+
+                        series: [
+                            {
+                                name: "Sales Funnel",
+                                colorByPoint: true,
+                                data: allsrcTeam
+                            }
+                        ]
+
+                    });
+
+                    //// pie
+                    $('#SourceEMPbarPie').append('<div id="srcpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
+
+
+                    Highcharts.chart('srcpie' + empleadstdets[i].teamcode, {
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Sales Funnel :' + empleadstdets[i].usrname
+                        },
+                        tooltip: {
+                            pointFormat: '{series.name}: <b>{point.y}</b>'
+                        },
+                        accessibility: {
+                            point: {
+                                valueSuffix: ''
+                            }
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '<b>{point.name}</b>: {point.y}'
+                                }
+                            }
+                        },
+                        series: [{
+                            name: 'Stages',
+                            colorByPoint: true,
+                            data: allsrcTeam
+                        }]
+                    });
+
+
+                }
+
+
+
+
+                let w = $(".graph-main").width();
+                let h = 300;
+                // chartsal.setSize(w, h);
+                empttlead.setSize(w, h);
+                prjlead.setSize(w, h);
+                proflead.setSize(w, h);
+                allSrcGrph.setSize(w, h);
+
+
+
+               // Lead Team
+
+
+                var ateamlead = [];
+                for (var i = 0; i < teamlead.length; i++) {
+                    ateamlead.push({ "name": teamlead[i].usrname, "y": parseFloat(teamlead[i].total) });
+
+                }
+
+                Highcharts.chart('kpitmleader', {
+                    chart: {
+                        type: gtype
+                    },
+                    title: {
+                        text: 'Sales Funnel (Team Wise) '
+                    },
+                    subtitle: {
+                        text: ''
+                    },
+                    accessibility: {
+                        announceNewData: {
+                            enabled: true
+                        }
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Total Sales Funnel Stages'
+                        }
                     },
                     legend: {
                         enabled: false
@@ -1161,77 +1281,96 @@
                         {
                             name: "Sales Funnel",
                             colorByPoint: true,
-                            data: allsrcTeam
+                            data: ateamlead
                         }
                     ]
 
                 });
 
-                //// pie
-                $('#SourceEMPbarPie').append('<div id="srcpie' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
 
 
-                Highcharts.chart('srcpie' + empleadstdets[i].teamcode, {
-                    chart: {
-                        plotBackgroundColor: null,
-                        plotBorderWidth: null,
-                        plotShadow: false,
-                        type: 'pie'
-                    },
-                    title: {
-                        text: 'Sales Funnel :' + empleadstdets[i].usrname
-                    },
-                    tooltip: {
-                        pointFormat: '{series.name}: <b>{point.y}</b>'
-                    },
-                    accessibility: {
-                        point: {
-                            valueSuffix: ''
-                        }
-                    },
-                    plotOptions: {
-                        pie: {
-                            allowPointSelect: true,
-                            cursor: 'pointer',
-                            dataLabels: {
-                                enabled: true,
-                                format: '<b>{point.name}</b>: {point.y}'
-                            }
-                        }
-                    },
-                    series: [{
-                        name: 'Stages',
-                        colorByPoint: true,
-                        data: allsrcTeam
-                    }]
-                });
+
+                // console.log(ateamlead);
+
+
+
+                //const elem = $(".graph-main")[0];             
+                //resizeObserver.observe(elem);
+
+
+
+
+
+
+                //var empttlead = Highcharts.chart('Allempchart', {
+                //    chart: {
+                //        type: gtype
+                //    },
+                //    title: {
+                //        text: 'Sales Funnel Total Lead:-  ' + sumlead
+                //    },
+                //    subtitle: {
+                //        text: ''
+                //    },
+                //    accessibility: {
+                //        announceNewData: {
+                //            enabled: true
+                //        }
+                //    },
+                //    xAxis: {
+                //        type: 'category'
+                //    },
+                //    yAxis: {
+                //        title: {
+                //            text: 'Total Sales Funnel Stages'
+                //        }
+                //    },
+                //    legend: {
+                //        enabled: false
+                //    },
+                //    plotOptions: {
+                //        series: {
+                //            borderWidth: 0,
+                //            dataLabels: {
+                //                enabled: true,
+                //                format: '{point.y}'
+                //            }
+                //        }
+                //    },
+
+                //    tooltip: {
+                //        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                //        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                //    },
+
+                //    series: [
+                //        {
+                //            name: "Sales Funnel",
+                //            colorByPoint: true,
+                //            data: allempdata
+                //        }
+                //    ]
+
+                //});
+
+
+
 
 
             }
 
 
+            catch (e)
+            {
+                alert(e.message);
 
-            let w = $(".graph-main").width();
-            let h = 300;
-            // chartsal.setSize(w, h);
-            empttlead.setSize(w, h);
-            prjlead.setSize(w, h);
-            proflead.setSize(w, h);
-            allSrcGrph.setSize(w, h);
-
-            const elem = $(".graph-main")[0];
-
-            //let resizeObserver = new ResizeObserver(function () {
-            //    chartsal.setSize(w, h);
-            //    empttlead.setSize(w, h);
-            //    prjlead.setSize(w, h);
-            //    proflead.setSize(w, h);
-
-            //    w = $(".graph-main").width();
-            //});
-            resizeObserver.observe(elem);
-
+            }
+        
         }
+            
+            
+
+        
 
     </script>
 
@@ -1256,11 +1395,6 @@
                     </div>
 
                 </div>
-
-
-            </div>
-
-
             <div class="row mb-2">
                 <div class="col-md-4">
                     <div class="input-group input-group-alt">
@@ -1403,6 +1537,10 @@
                                     <a class="nav-link btn" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab3" aria-selected="false">Sourch Wise Graph</a>
                                 </li>
 
+                                <li class="nav-item ml-1">
+                                    <a class="nav-link btn" data-toggle="tab" href="#tab6" role="tab" aria-controls="tab3" aria-selected="false">Team Leader</a>
+                                </li>
+
                             </ul>
 
                         </div>
@@ -1428,9 +1566,6 @@
                 </div>
 
             </div>
-
-
-
             <!-- Tab panes -->
             <div class="tab-content p-3">
                 <div class="tab-pane fade active show" id="tab1" role="tabpanel" aria-labelledby="tab1">
@@ -1823,9 +1958,79 @@
                     </div>
 
                 </div>
+
+
+                 <div class="tab-pane fade" id="tab6" role="tabpanel" aria-labelledby="tab6">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div id="kpitmleader" style="width: 100%; height: 300px;"></div>
+
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-md-12">
+                            <header class="card-header pt-0 pb-0" style="background: #F6F7F9">
+
+
+
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-auto">
+                                        Individual Employee Source wise sales Funnel  
+
+                                    </div>
+                                    <div class="dropdown">
+
+                                        <div class="form-group">
+
+                                            <ul class="nav nav-tabs" id="myteamlead" role="tablist">
+                                                <li class="nav-item">
+
+                                                    <a class="nav-link btn active" data-toggle="tab" href="#tabtmleader1" role="tab" aria-controls="tabsrc1" aria-selected="false">Column Graph</a>
+                                                </li>
+                                                <li class="nav-item ml-1">
+                                                    <a class="nav-link btn" data-toggle="tab" href="#tabtmleader2" role="tab" aria-controls="tabsrc2" aria-selected="false">Pie Graph</a>
+                                                </li>
+
+
+                                            </ul>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </header>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="tab-content p-3">
+                            <div class="tab-pane fade active show" id="tabtmleader1" role="tabpanel" aria-labelledby="tabsrc1">
+                                <div class="row" id="tmleaderbar">
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="tabtmleader2" role="tabpanel" aria-labelledby="tabsrc2">
+                                <div class="row" id="tmleaderPie">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            
+            
+            
+            
             </div>
-
-
 
         </div>
     </div>

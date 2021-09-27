@@ -3322,6 +3322,9 @@
                                             <li>
                                                 <asp:LinkButton ID="lnkbtnNotes" runat="server" OnClick="lnkbtnNotes_Click">Notes</asp:LinkButton>
                                             </li>
+                                            <li>
+                                                <asp:HyperLink ID="hlnkTeamMember" Target="_blank" NavigateUrl="~/F_21_Mkt/MktTeamMember" runat="server">Team Member</asp:HyperLink>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

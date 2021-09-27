@@ -141,7 +141,7 @@
 
                             <div class="row">
 
-                                <fieldset class="scheduler-border fieldset_A">
+                                    <fieldset class="scheduler-border fieldset_A">
                                     <asp:Panel ID="pnlleave" runat="server" BackColor="#F8F8F8" Visible="False">
                                         <div class="form-horizontal">
                                             <div class="form-group">
@@ -167,6 +167,8 @@
                                                     <asp:TextBox ID="txtmtleave" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
                                                 </div>
+
+                                                  
                                                 <div class="col-md-3 pading5px asitCol3">
                                                     <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName">Without Pay Leave </asp:Label>
                                                     <asp:TextBox ID="txtWPayleave" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
@@ -180,6 +182,26 @@
                                                 </div>
 
 
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <div class="col-md-3 pading5px asitCol3">
+                                                    <asp:Label ID="Label17" runat="server" CssClass="lblTxt lblName">Paternity Leave</asp:Label>
+                                                    <asp:TextBox ID="txtptleave" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                                </div>
+                                                <div class="col-md-3 pading5px asitCol3">
+                                                    <asp:Label ID="Label18" runat="server" CssClass="lblTxt lblName">Leave On Probation</asp:Label>
+                                                    <asp:TextBox ID="txtleaveOnProvi" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                                </div>
+                                                <div class="col-md-3 pading5px asitCol3">
+                                                    <asp:Label ID="Label22" runat="server" CssClass="lblTxt lblName">Leave On Separation</asp:Label>
+                                                    <asp:TextBox ID="txtleaveOnSepa" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                                </div>                                                                                                                                             
+                                                                                               
                                             </div>
                                         </div>
                                     </asp:Panel>
@@ -195,11 +217,15 @@
                                     </div>
 
                                 </fieldset>
+                         
+
+                                
 
                             </div>
                             <div class="row">
-
-                                <asp:GridView ID="gvLeaveRule" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                
+                                <div class="table-responsive">
+                                    <asp:GridView ID="gvLeaveRule" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                     OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" Width="834px" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     PageSize="15">
                                     <PagerSettings Position="Top" />
@@ -307,6 +333,16 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Paternity Leave">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvpl" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                    ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ptleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Without Pay Leave">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvWPl" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -325,6 +361,25 @@
                                             <ItemStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Leave On Probation">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                    ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Leave On Separation">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvLOnSepa" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                    ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonsepaleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="right" />
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
@@ -332,6 +387,9 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
+                                </div>
+                             
+                                
                             </div>
 
 
