@@ -1944,6 +1944,7 @@
     <Content Include="F_01_LPA\LandInfoDet.aspx" />
     <Content Include="F_01_LPA\LandOwCodeBook.aspx" />
     <Content Include="F_01_LPA\LandProGenCode.aspx" />
+    <Content Include="F_01_LPA\LandSearch.aspx" />
     <Content Include="F_01_LPA\LinkIniLandProposal.aspx" />
     <Content Include="F_01_LPA\LinkLandDevTopSheet.aspx" />
     <Content Include="F_01_LPA\LinkLandProcurement.aspx" />
@@ -3622,6 +3623,13 @@
     <Compile Include="AutoCompleted.asmx.cs">
       <DependentUpon>AutoCompleted.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_01_LPA\LandSearch.aspx.cs">
+      <DependentUpon>LandSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_01_LPA\LandSearch.aspx.designer.cs">
+      <DependentUpon>LandSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
