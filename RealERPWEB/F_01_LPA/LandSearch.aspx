@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LandSearch.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LandSearch" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <script type="text/javascript">
         $(document).ready(function () {
             //alert("I m IN");
@@ -36,6 +38,15 @@
                 });
 
                 $('.chzn-select').chosen({ search_contains: true });
+
+
+                $("[id$=lnkPrint]").click(function () {
+                    funPrint();
+                    //PrintAction(url, prntVal, empid, frmdate, todate);
+                    return false;
+
+                });
+
 
             }
 
@@ -305,7 +316,7 @@
         function displayTable(tbllandinfo) {
             var i = 0, tarper = 0.00;
 
-            console.log(tbllandinfo);
+         
             $("#gvlandinfo").html('');
 
             var hrow = '';
@@ -359,7 +370,7 @@
 
 
 
-                console.log(row);
+               
                 i++;
 
             });
@@ -388,6 +399,64 @@
         }
 
 
+        function funPrint()
+        {
+
+
+            try {
+
+                console.log("print");
+
+                var comcod =<%=this.GetCompCode()%>;
+                var zone = $('#ddlZone option:selected').val();
+                var dist = $('#ddldistrict option:selected').val();
+                var thana = $('#ddlthana option:selected').val();
+                var mouza = $('#ddlMouza option:selected').val();
+                 var csdhagno = $('#<%=this.txtcsdhagno.ClientID%>').val();
+
+                 $.ajax({
+                     type: "POST",
+                     url: "LandSearch.aspx/PrintLandInfo",
+                     data: '{comcod:"' + comcod + '", zone:"' + zone + '", dist:"' + dist + '", thana:"' + thana + '", mouza:"' + mouza + '", csdhagno:"' + csdhagno + '"}',
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     success: function (response) {
+
+                         var data = JSON.parse(response.d);
+                         //console.log(data);
+
+                         displayTable(data);
+                         //var ddlMouza = $('#ddlMouza');
+                         //$(ddlMouza).html('');
+                         //$.each(data, function (key, data) {
+
+                         //    $(ddlMouza).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
+                         //});
+
+                     },
+
+
+                     failure: function (response) {
+
+                         alert("failure");
+                     }
+                 });
+
+
+
+             }
+
+             catch (e) {
+
+                 alert(e.message);
+
+             }
+
+
+
+        }
+
+
     </script>
     <style>
         .grvHeader, .grvFooter {
@@ -399,33 +468,12 @@
         }
     </style>
 
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
-
 
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress9" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+            
 
 
             <div class="card card-fluid">
