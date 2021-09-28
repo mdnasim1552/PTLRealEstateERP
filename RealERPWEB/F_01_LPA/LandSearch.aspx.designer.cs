@@ -33,15 +33,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.UpdateProgress UpdateProgress9;
 
         /// <summary>
-        /// lblzone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblzone;
-
-        /// <summary>
         /// ddlZone control.
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlZone;
-
-        /// <summary>
-        /// lbldistrict control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldistrict;
 
         /// <summary>
         /// ddldistrict control.
@@ -69,15 +51,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.DropDownList ddldistrict;
 
         /// <summary>
-        /// lblthana control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblthana;
-
-        /// <summary>
         /// ddlthana control.
         /// </summary>
         /// <remarks>
@@ -85,15 +58,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlthana;
-
-        /// <summary>
-        /// lblmouza control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblmouza;
 
         /// <summary>
         /// ddlMouza control.
@@ -105,15 +69,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.DropDownList ddlMouza;
 
         /// <summary>
-        /// lblcsdhagno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcsdhagno;
-
-        /// <summary>
         /// txtcsdhagno control.
         /// </summary>
         /// <remarks>
@@ -121,15 +76,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtcsdhagno;
-
-        /// <summary>
-        /// lblsadhagno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblsadhagno;
 
         /// <summary>
         /// txtsadhagno control.
@@ -141,15 +87,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.TextBox txtsadhagno;
 
         /// <summary>
-        /// lblrsdhagno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblrsdhagno;
-
-        /// <summary>
         /// txtrsdhagno control.
         /// </summary>
         /// <remarks>
@@ -157,15 +94,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtrsdhagno;
-
-        /// <summary>
-        /// lblbsdhagno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblbsdhagno;
 
         /// <summary>
         /// txtbsdhagno control.
@@ -177,15 +105,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.TextBox txtbsdhagno;
 
         /// <summary>
-        /// lblbskhatina control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblbskhatina;
-
-        /// <summary>
         /// txtbskhatina control.
         /// </summary>
         /// <remarks>
@@ -193,15 +112,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbskhatina;
-
-        /// <summary>
-        /// lbllownername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbllownername;
 
         /// <summary>
         /// txtlownername control.
@@ -213,15 +123,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.TextBox txtlownername;
 
         /// <summary>
-        /// lblfathername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblfathername;
-
-        /// <summary>
         /// txtfather control.
         /// </summary>
         /// <remarks>
@@ -229,15 +130,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtfather;
-
-        /// <summary>
-        /// lblmothername control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblmothername;
 
         /// <summary>
         /// txtmothername control.
@@ -249,15 +141,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.TextBox txtmothername;
 
         /// <summary>
-        /// lbladdress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbladdress;
-
-        /// <summary>
         /// txtaddress control.
         /// </summary>
         /// <remarks>
@@ -265,15 +148,6 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtaddress;
-
-        /// <summary>
-        /// lblmobile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblmobile;
 
         /// <summary>
         /// txtmobile control.
@@ -285,15 +159,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.TextBox txtmobile;
 
         /// <summary>
-        /// lblnid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblnid;
-
-        /// <summary>
         /// txtnid control.
         /// </summary>
         /// <remarks>
@@ -303,15 +168,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.WebControls.TextBox txtnid;
 
         /// <summary>
-        /// lblPassport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblPassport;
-
-        /// <summary>
         /// txtPassport control.
         /// </summary>
         /// <remarks>
@@ -319,14 +175,5 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPassport;
-
-        /// <summary>
-        /// lbtnShow control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnShow;
     }
 }
