@@ -206,11 +206,11 @@ namespace RealERPWEB.F_01_LPA
 
 
 
-        [WebMethod(EnableSession = false)]
+        [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string GetLandInfo(string comcod, string zone, string dist, string thana, string mouza, string csdhagno)
         {
-
+           
             csdhagno = (csdhagno.Length == 0 ? "" : csdhagno) + "%";
             ProcessAccess _processAccess = new ProcessAccess();
 
@@ -246,7 +246,56 @@ namespace RealERPWEB.F_01_LPA
 
         }
 
-        
+
+
+        [WebMethod(EnableSession = true)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string  PrintLandInfo(string comcod, string zone, string dist, string thana, string mouza, string csdhagno)
+        {
+
+
+
+           // Session["tblemployee"] = lst3;
+            csdhagno = (csdhagno.Length == 0 ? "" : csdhagno) + "%";
+            ProcessAccess _processAccess = new ProcessAccess();
+
+            DataSet ds2 = _processAccess.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "SHOWLANDINFO", zone, dist, thana, mouza, csdhagno, "", "", "", "", "");
+
+
+            if (ds2.Tables[0].Rows.Count == 0)
+            {
+                var result = new { Message = "Success", result = true };
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(result);
+                return json;
+
+            }
+
+
+            else
+            {
+
+                var lst = ds2.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EClassLandInfo>().ToList();
+                var jsonSerialiser = new JavaScriptSerializer();
+                var json = jsonSerialiser.Serialize(lst);
+                return json;
+
+
+            }
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
 
         protected void lbtnShow_Click(object sender, EventArgs e)
         {
