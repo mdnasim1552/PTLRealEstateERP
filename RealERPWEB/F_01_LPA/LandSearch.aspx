@@ -347,15 +347,15 @@
                     "<td style=text-align:left;" + ">" + arval.sadhagno + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.rsdhagno + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.bsdhagno + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.cslarea == 0) ? '' : (arval.cslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.bslarea == 0) ? '' : (arval.bslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.cslarea == 0) ? '' : (arval.cslarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.bslarea == 0) ? '' : (arval.bslarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.bskhotianno + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.bsklarea == 0) ? '' : (arval.bsklarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.bsklarea == 0) ? '' : (arval.bsklarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.jblrefno + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.restlarea == 0) ? '' : (arval.restlarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.purarea == 0) ? '' : (arval.purarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>";
+                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.restlarea == 0) ? '' : (arval.restlarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.purarea == 0) ? '' : (arval.purarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>";
 
 
 
@@ -369,15 +369,15 @@
             frow += "<tr><td></td>" +
                 "<td style=text-align:center;font-weight:bold;" + ">" + " Total" + "</td>" +
                 "<td></td><td></td><td></td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tcslarea == 0) ? '' : (tcslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbslarea == 0) ? '' : (tbslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tcslarea == 0) ? '' : tcslarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbslarea == 0) ? '' : tbslarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                 "<td></td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbsklarea == 0) ? '' : (tbsklarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbsklarea == 0) ? '' : tbsklarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                 "<td></td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : (tbudarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : (tbudarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((trestlarea == 0) ? '' : (trestlarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tpurarea == 0) ? '' : (tpurarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>" + "</tfoot>";
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : tbudarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : tbudarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((trestlarea == 0) ? '' : trestlarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tpurarea == 0) ? '' : tpurarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>" + "</tfoot>";
 
 
 

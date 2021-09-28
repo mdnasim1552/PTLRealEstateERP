@@ -211,7 +211,7 @@ namespace RealERPWEB.F_01_LPA
         public static string GetLandInfo(string comcod, string zone, string dist, string thana, string mouza, string csdhagno)
         {
 
-
+            csdhagno = (csdhagno.Length == 0 ? "" : csdhagno) + "%";
             ProcessAccess _processAccess = new ProcessAccess();
 
             DataSet ds2 = _processAccess.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "SHOWLANDINFO", zone, dist, thana, mouza, csdhagno, "", "", "", "","");
