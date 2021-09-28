@@ -496,6 +496,7 @@ namespace RealERPWEB.F_34_Mgt
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString().Substring(0, 2);
+            
             if (pactcode == "16")
                 this.ProjectData();
 
@@ -714,7 +715,6 @@ namespace RealERPWEB.F_34_Mgt
         }
         protected void Get_Requisition_Info()
         {
-
 
             try
             {
@@ -2320,6 +2320,7 @@ namespace RealERPWEB.F_34_Mgt
 
             if (pactcode.Substring(0, 2) == "16")
             {
+                
                 string GroupCode = this.ddlMatGrp.SelectedValue.ToString();               
 
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETREQBGDBAL", pactcode, GroupCode, CurDate1, "", "", "", "", "", "");
@@ -2342,7 +2343,7 @@ namespace RealERPWEB.F_34_Mgt
                 if (ds2 == null)
                     return;
                 ds2.Dispose();
-                this.gvOtherReq_DataBind();
+                this.gvOtherReq_DataBind(); 
 
 
             }
@@ -2353,6 +2354,11 @@ namespace RealERPWEB.F_34_Mgt
 
 
             this.GeResVisibility();
+
+            string comcod = this.GetCompCode();
+            if (comcod == "3338")
+                return;
+            
             this.ProjectData();
 
 
