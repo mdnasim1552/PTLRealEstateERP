@@ -681,7 +681,7 @@
                     </div>
                     <div class="row">
 
-                        <table id="gvlandinfo" class=" table-responsive table table-striped table-hover table-bordered grvContentarea">
+                        <table id="gvlandinfo" class="table table-striped table-hover table-bordered grvContentarea">
                             <thead></thead>
                             <tbody></tbody>
                             <tfoot></tfoot>
