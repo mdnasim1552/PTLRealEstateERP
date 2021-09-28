@@ -33,6 +33,7 @@ namespace RealERPRDLC
             {
                 #region LAND LPA
                 case "R_01_LPA.RptLandFeasibility": Rpt1a = SetRptLandFeasibility(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_01_LPA.RptLandInformation": Rpt1a = SetRptLandInformation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_02_Fea.rptProjectFeasibility": Rpt1a = SetrptProjectFeasibility(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_01_LPA.RptlandDataBank": Rpt1a = SetRptlandDataBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_02_Fea.RptProjectTopSheet": Rpt1a = SetRptProjectTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3919,7 +3920,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-
+        private static LocalReport SetRptLandInformation(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_01_LPA.BO_Fesibility.EClassLandInfo>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetrptProjectFeasibility(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.EClassProFeasibility>)RptDataSet));
