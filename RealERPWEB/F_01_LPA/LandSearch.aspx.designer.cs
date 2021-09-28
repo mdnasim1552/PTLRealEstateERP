@@ -24,15 +24,6 @@ namespace RealERPWEB.F_01_LPA
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// UpdateProgress9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress9;
-
-        /// <summary>
         /// ddlZone control.
         /// </summary>
         /// <remarks>
