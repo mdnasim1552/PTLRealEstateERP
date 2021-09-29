@@ -150,13 +150,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.HyperLink HyperLink37;
 
         /// <summary>
-        /// HyperLink38 control.
+        /// hlnkworkorder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink38;
+        protected global::System.Web.UI.WebControls.HyperLink hlnkworkorder;
 
         /// <summary>
         /// HyperLink39 control.

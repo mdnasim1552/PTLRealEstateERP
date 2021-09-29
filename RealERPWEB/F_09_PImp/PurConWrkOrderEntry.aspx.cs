@@ -52,22 +52,31 @@ namespace RealERPWEB.F_09_PImp
 
                 string genno = this.Request.QueryString["genno"] ?? "";
 
-                if (genno.Length > 0)
+                if (this.Request.QueryString["genno"] == "SubConOrder")
                 {
-                    //  PnlRes.Visible = false;
-                    string contractor = this.Request.QueryString["sircode"] ?? "";
-                    if (contractor.Length > 0)
-                    {
-                        this.ddlContractorlist.SelectedValue = contractor;
-                    }
 
-                    string actcode = this.Request.QueryString["actcode"] ?? "";
-                    if (actcode.Length > 0)
-                    {
-                        this.ddlprjlist.SelectedValue = actcode;
-                    }
-                    this.lbtnOk_Click(null, null);
                 }
+                else
+                {
+                    if (genno.Length > 0)
+                    {
+                        //  PnlRes.Visible = false;
+                        string contractor = this.Request.QueryString["sircode"] ?? "";
+                        if (contractor.Length > 0)
+                        {
+                            this.ddlContractorlist.SelectedValue = contractor;
+                        }
+
+                        string actcode = this.Request.QueryString["actcode"] ?? "";
+                        if (actcode.Length > 0)
+                        {
+                            this.ddlprjlist.SelectedValue = actcode;
+                        }
+                        this.lbtnOk_Click(null, null);
+                    }
+                }
+
+
                 if (Request.QueryString.AllKeys.Contains("orderno"))
                 {
                     this.printWorkOrderP2P();

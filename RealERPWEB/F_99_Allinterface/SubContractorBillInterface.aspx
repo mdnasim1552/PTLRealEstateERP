@@ -529,7 +529,7 @@
                 switch (comcod) {
 
 
-                    //case 3101:   //ASIT                      
+                    case 3101:   //ASIT                      
                     case 1205:   //p2p
                     case 3351:   //p2p
                     case 3352:   //p2p
@@ -772,7 +772,10 @@
                                             <asp:HyperLink ID="HyperLink35" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/ImplementPlan" CssClass="dropdown-item" Style="padding: 0 15px">Monthly Plan</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink36" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurIssueEntry?Type=Report&prjcode=" CssClass="dropdown-item" Style="padding: 0 15px">Work Execution-Category Wise</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink37" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurIssueWorkWiseEntry" CssClass="dropdown-item" Style="padding: 0 15px">Work Execution-Work Wise</asp:HyperLink>
-                                            <asp:HyperLink ID="HyperLink38" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurConWrkOrderEntry02?Type=Entry" CssClass="dropdown-item" Style="padding: 0 15px">Work Order </asp:HyperLink>
+                                            <%--<asp:HyperLink ID="HyperLink38" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurConWrkOrderEntry02?Type=Entry" CssClass="dropdown-item" Style="padding: 0 15px">Work Order </asp:HyperLink>--%>
+                                            <asp:HyperLink ID="hlnkworkorder" runat="server" Target="_blank" CssClass="dropdown-item" Style="padding: 0 15px">Work Order </asp:HyperLink>
+
+
                                             <asp:HyperLink ID="HyperLink39" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Floor Wise </asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink40" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabIssue2?Type=Current&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill-Work Wise</asp:HyperLink>
                                             <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_09_PImp/PurLabRequisition?Type=Entry&prjcode=&genno=&sircode=" CssClass="dropdown-item" Style="padding: 0 15px">Sub-Contractor Bill Requisition</asp:HyperLink>
