@@ -117,6 +117,7 @@
   <ItemGroup>
     <EmbeddedResource Include="R_01_LPA\RptlandDataBank.rdlc" />
     <EmbeddedResource Include="R_01_LPA\RptLandFeasibility.rdlc" />
+    <EmbeddedResource Include="R_01_LPA\RptLandInformation.rdlc" />
     <EmbeddedResource Include="R_02_Fea\RptFeaProject.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptProjectFeasibility.rdlc" />
     <EmbeddedResource Include="R_02_Fea\RptProjectTopSheet.rdlc" />

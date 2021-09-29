@@ -1,10 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LandSearch.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LandSearch" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="LandSearch.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LandSearch" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+     <script src="../Script_own/print.js"></script>
+    <script src="../Script_own/S_05_MyPage/RptEmpMonthWiseEva03.js"></script>
     <script type="text/javascript">
+        var url = "../S_05_MyPage/RptEmpMonthWiseEva03.asmx/PrintLandInfo";
+        var prntVal = 'PDF';
+        var comcod =<%=this.GetCompCode()%>;
+        var zone = $('#ddlZone option:selected').val();
+        var dist = $('#ddldistrict option:selected').val();
+        var thana = $('#ddlthana option:selected').val();
+        var mouza = $('#ddlMouza option:selected').val();
+        var csdhagno = $('#<%=this.txtcsdhagno.ClientID%>').val();
+
         $(document).ready(function () {
             //alert("I m IN");
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -40,11 +51,10 @@
                 $('.chzn-select').chosen({ search_contains: true });
 
 
-                $("[id$=lnkPrint]").click(function () {
-                    funPrint();
-                    //PrintAction(url, prntVal, empid, frmdate, todate);
+                $("[id$=lnkconPrint]").click(function () {
+                    
+                    PrintActionRDLC(url, prntVal, comcod, zone, dist, thana, mouza, csdhagno);
                     return false;
-
                 });
 
 
@@ -399,7 +409,7 @@
         }
 
 
-        function funPrint()
+       <%-- function funPrint()
         {
 
 
@@ -423,15 +433,7 @@
                      success: function (response) {
 
                          var data = JSON.parse(response.d);
-                         //console.log(data);
-
                          displayTable(data);
-                         //var ddlMouza = $('#ddlMouza');
-                         //$(ddlMouza).html('');
-                         //$.each(data, function (key, data) {
-
-                         //    $(ddlMouza).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
-                         //});
 
                      },
 
@@ -442,8 +444,6 @@
                      }
                  });
 
-
-
              }
 
              catch (e) {
@@ -451,10 +451,7 @@
                  alert(e.message);
 
              }
-
-
-
-        }
+        }--%>
 
 
     </script>
@@ -721,7 +718,7 @@
 
                             <div class="form-group">
                                 <button id="lbtnShow" class=" form-control btn btn-primary" onclick="funShowData();" style="margin-left: 84px; width: 230px;">Show</button>
-                                <%--<asp:LinkButton ID="lbtnShow" runat="server" CssClass=" form-control btn btn-primary" Style=" margin-left:84px;width:230px;" OnClick="lbtnShow_Click">Show</asp:LinkButton>--%>
+                                <button id="lnkconPrint" class=" form-control btn btn-primary"  style="margin-left: 84px; width: 230px;"><i class="fas fa-print"></i></button>                                
                             </div>
                         </div>
 
