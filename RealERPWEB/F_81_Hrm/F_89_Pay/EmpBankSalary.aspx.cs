@@ -374,6 +374,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = (ds2.Tables[0]);
             Session["tblover"] = dt;
+            Session["tblBankTrns"] = ds2.Tables[1];
 
             this.Data_Bind();
         }
@@ -761,13 +762,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void PrintForwardingLetterEdison()
         {
             DataTable dt = (DataTable)Session["tblover"];
+            DataTable dt1 = (DataTable)Session["tblBankTrns"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetComeCode();
             string comname = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            //string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+            string username = hst["username"].ToString();           
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
@@ -776,8 +777,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string banksl = dt.Rows[0]["banksl"].ToString();
             string addr = dt.Rows[0]["bankaddr"].ToString();
             string bankname = dt.Rows[0]["bankname"].ToString();
-
-            // string[] add = addr.Split('^');
+            string bankAccNo = dt.Rows[0]["acno"].ToString();
+            string totNoTrans = dt1.Rows[0]["ttrnsecno"].ToString();
+           
             string[] add = addr.Split(',');
 
             string Badd = "";
@@ -793,33 +795,28 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             
             string inwords = ASTUtility.Trans(Convert.ToDouble(sumamt), 2);
             string subject = "";
-            subject = ((this.chkBonus.Checked) ? "Subject: Festival Bonus " : "Subject: Salary ") + "Payment advise for the Month of " + month + " " + year + ".";
+            subject = "Subject: Request for Disbursement of Salary- " + month + "-" + year + " as Per Attached Sheet.";
 
             string Det1 = "";
-            if (this.chkBonus.Checked)
-            {
-                Det1 = "Subject: Festival Bonus";
-            }
-            else
-            {
-                Det1 = "We forwarded herewith a payment instruction for processing of salary in favor of our employees maintaining accounts with your bank";
-            }
-
+            Det1 = "I/We hereby request you to take the necessary initiatives to proceed with bulk salary transfer. The transfer detail is attached herewith duly signed by the signatory.";
+            
             string Det2 = "";
-            Det2 = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
-                            + banksl + " as per bellow details: ";
-           
+            Det2 = "I/We take the responsibility for the attached sheet for its detailed information given to the bank, which is fair and free from any anti-money laundering issue.";
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
             LocalReport Rpt1 = new LocalReport();        
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptForLetterEdison", null, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptForLetterEdison", list, null, null);
             Rpt1.SetParameters(new ReportParameter("BankAdd", addr));
             Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
-            Rpt1.SetParameters(new ReportParameter("Attn", "Attn: "));
+            Rpt1.SetParameters(new ReportParameter("Attn", "Assistant Vice President"));
             Rpt1.SetParameters(new ReportParameter("Bank", bankname));
             Rpt1.SetParameters(new ReportParameter("subject", subject));
             Rpt1.SetParameters(new ReportParameter("Det1", Det1));
             Rpt1.SetParameters(new ReportParameter("Det2", Det2));
-            Rpt1.SetParameters(new ReportParameter("Det3", "Total Amount: BDT " + sumamt));
-            Rpt1.SetParameters(new ReportParameter("inwords", "Amount in Words: " + inwords));
+            Rpt1.SetParameters(new ReportParameter("totalAmt", sumamt));
+            Rpt1.SetParameters(new ReportParameter("InWrd", inwords));
+            Rpt1.SetParameters(new ReportParameter("totNoTrans", totNoTrans));
+            Rpt1.SetParameters(new ReportParameter("bankAccNo", bankAccNo));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
