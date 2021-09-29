@@ -497,6 +497,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = this.GetMonthName();
@@ -504,13 +505,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataView dv = dt.DefaultView;
             dv.RowFilter = ("saltrn='True'");
             dt = dv.ToTable();
+            double TAmount = 0.00;
+            TAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 : dt.Compute("sum(amt)", "")));
 
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
 
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementEdison", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + ", " + year));
+            Rpt1.SetParameters(new ReportParameter("InWrd", "In Word : " + ASTUtility.Trans(Math.Round(TAmount), 2)));
             Rpt1.SetParameters(new ReportParameter("rptBankName", bankname));
 
             Session["Report1"] = Rpt1;
@@ -560,22 +566,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-
-
-            //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBankStatementAlli();
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text = "For " + month + ", " + year;
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-
-            //TextObject txtamt = rpcp.ReportDefinition.ReportObjects["txtamt"] as TextObject;
-            //txtamt.Text = inwords;
-            //rpcp.SetDataSource(dt);
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
         private void PrintBankStatementSan()
@@ -650,20 +640,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-            //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBankStatementPEB();
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text = "For " + month + ", " + year;
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-
-
-            //rpcp.SetDataSource(dt);
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
         private void PrintrptBankStatement()
@@ -743,22 +719,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-            //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptBankStatement();
-
-            //TextObject txtheader = rpcp.ReportDefinition.ReportObjects["txtheader"] as TextObject;
-            //txtheader.Text = (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement";
-
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text = "For " + month + ", " + year;
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-
-            //rpcp.SetDataSource(dt);
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
         }
         private void PrintForwardingLetter()
         {
@@ -783,6 +743,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintForwardingLetterGreen();
                     break;
 
+                case "3101":
+                case "3354": //Edison
+                    this.PrintForwardingLetterEdison();
+                    break;
+
                 default:
                     this.PrintForwardingLettergen();
                     break;
@@ -790,6 +755,75 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
 
+
+        }
+
+        private void PrintForwardingLetterEdison()
+        {
+            DataTable dt = (DataTable)Session["tblover"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string comname = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            //string bankname = this.ddlBankName.SelectedItem.Text.Trim();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string year = this.txtDate.Text.Substring(0, 4).ToString();
+            string month = this.GetMonthName();
+
+            string banksl = dt.Rows[0]["banksl"].ToString();
+            string addr = dt.Rows[0]["bankaddr"].ToString();
+            string bankname = dt.Rows[0]["bankname"].ToString();
+
+            // string[] add = addr.Split('^');
+            string[] add = addr.Split(',');
+
+            string Badd = "";
+
+            foreach (string add1 in add)
+                Badd = Badd + add1 + "," + "\n";
+            Badd = Badd.Substring(1, Badd.Length - 1);
+
+
+            string sumamt = "";
+            sumamt = ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
+            : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            
+            string inwords = ASTUtility.Trans(Convert.ToDouble(sumamt), 2);
+            string subject = "";
+            subject = ((this.chkBonus.Checked) ? "Subject: Festival Bonus " : "Subject: Salary ") + "Payment advise for the Month of " + month + " " + year + ".";
+
+            string Det1 = "";
+            if (this.chkBonus.Checked)
+            {
+                Det1 = "Subject: Festival Bonus";
+            }
+            else
+            {
+                Det1 = "We forwarded herewith a payment instruction for processing of salary in favor of our employees maintaining accounts with your bank";
+            }
+
+            string Det2 = "";
+            Det2 = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
+                            + banksl + " as per bellow details: ";
+           
+            LocalReport Rpt1 = new LocalReport();        
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptForLetterEdison", null, null, null);
+            Rpt1.SetParameters(new ReportParameter("BankAdd", addr));
+            Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
+            Rpt1.SetParameters(new ReportParameter("Attn", "Attn: "));
+            Rpt1.SetParameters(new ReportParameter("Bank", bankname));
+            Rpt1.SetParameters(new ReportParameter("subject", subject));
+            Rpt1.SetParameters(new ReportParameter("Det1", Det1));
+            Rpt1.SetParameters(new ReportParameter("Det2", Det2));
+            Rpt1.SetParameters(new ReportParameter("Det3", "Total Amount: BDT " + sumamt));
+            Rpt1.SetParameters(new ReportParameter("inwords", "Amount in Words: " + inwords));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -873,62 +907,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
 
-
-            //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptForLetterTerra();
-
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text = "Date: " + Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy");
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-            //TextObject txtBankAdd = rpcp.ReportDefinition.ReportObjects["address"] as TextObject;
-            //txtBankAdd.Text = Badd;
-            //TextObject txtsub = rpcp.ReportDefinition.ReportObjects["sub"] as TextObject;
-            //txtsub.Text = ((this.chkBonus.Checked) ? "Subject: Festival Bonus " : "Subject: Salary ") + "Payment advise for the Month of " + month + " " + year + ".";
-            //TextObject txtDet1 = rpcp.ReportDefinition.ReportObjects["det1"] as TextObject;
-            //txtDet1.Text = (this.chkBonus.Checked) ? "We forwarded herewith a payment instruction for processing of festival bonus in favor of our employees maintaining accounts with your bank." : "We forwarded herewith a payment instruction for processing of salary in favor of our employees maintaining accounts with your bank";
-
-            //TextObject txtpurpose = rpcp.ReportDefinition.ReportObjects["txtpurpose"] as TextObject;
-            //txtpurpose.Text = (this.chkBonus.Checked) ? "Festival Bonus " : "Salary ";
-
-
-
-            //TextObject txtDet = rpcp.ReportDefinition.ReportObjects["det2"] as TextObject;
-
-            //if (comcod == "4315")
-            //{
-
-            //    txtDet.Text = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our Account Title ASSURE DEVELOPMENT & DESIGN LTD C/D account no. "
-            //              + comname + " " + banksl + " as per bellow details: ";
-            //}
-
-
-
-            //else if (comcod == "3344")
-            //{
-            //    txtDet.Text = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account name"
-            //               +" Terranova Developments Ltd.Ac Number " + banksl + " as per bellow details: ";
-            //}
-
-            //else
-            //{
-
-            //    txtDet.Text = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
-            //                + banksl + " as per bellow details: ";
-            //}
-
-
-
-            //TextObject Amount = rpcp.ReportDefinition.ReportObjects["amt"] as TextObject;
-            //Amount.Text = "BDT " + sumamt;
-            //TextObject txtInword = rpcp.ReportDefinition.ReportObjects["inword"] as TextObject;
-            //txtInword.Text = "BDT " + inwords;
-            //TextObject txtVDate = rpcp.ReportDefinition.ReportObjects["vdate"] as TextObject;
-            //txtVDate.Text = Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy");
-
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void PrintForwardingLettergen()
@@ -1068,96 +1046,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-
-
-
-
-
-
-
-
-
-
-            // ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptForLetter();
-
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text =  Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy");
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-            //TextObject txtBankAdd = rpcp.ReportDefinition.ReportObjects["address"] as TextObject;
-            //txtBankAdd.Text = Badd;
-            //TextObject txtsub = rpcp.ReportDefinition.ReportObjects["sub"] as TextObject;
-
-            //if(comcod=="3330")
-            //{
-            //    txtsub.Text = ((this.chkBonus.Checked) ? "Subject: Festival Bonus " : "Subject: ") + "Payment advice " +".";
-            //}
-
-            //else
-            //{
-            //    txtsub.Text = ((this.chkBonus.Checked) ? "Subject: Festival Bonus " : "Subject: Salary ") + "Payment advise for the Month of " + month + " " + year + ".";
-
-            //}
-
-
-            //TextObject txtDet1 = rpcp.ReportDefinition.ReportObjects["det1"] as TextObject;
-
-            //if (this.chkBonus.Checked)
-            //{
-            //    txtDet1.Text = "Subject: Festival Bonus";
-
-
-            //}
-
-
-            //else if (comcod=="3330")
-            //{
-            //    txtDet1.Text = "We forwarded herewith a payment advice to make the salary transfer from our CD Account no. " + banksl  + "  to our employee account numbers as per the attached statement.";
-
-
-            //}
-
-
-            //else
-            //{
-            //    txtDet1.Text = "We forwarded herewith a payment instruction for processing of salary in favor of our employees maintaining accounts with your bank";
-            //}
-
-
-
-            //TextObject txtDet = rpcp.ReportDefinition.ReportObjects["det2"] as TextObject;
-
-            //if (comcod == "4315")
-            //{
-
-            //    txtDet.Text = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our Account Title ASSURE DEVELOPMENT & DESIGN LTD C/D account no. "
-            //              + comname +" " +banksl + " as per bellow details: ";
-            //}
-
-            //else if (comcod == "3330")
-            //{
-            //    txtDet.Text = "We would like to request you to transfer the particular amount to the respective employee accounts of our company accordingly.";
-            //}
-
-            //else
-            //{
-
-            //    txtDet.Text = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
-            //                + banksl + " as per bellow details: ";
-            //}
-
-
-
-            //TextObject Amount = rpcp.ReportDefinition.ReportObjects["amt"] as TextObject;
-            //Amount.Text = "BDT " + sumamt;
-            //TextObject txtInword = rpcp.ReportDefinition.ReportObjects["inword"] as TextObject;
-            //txtInword.Text =  inwords;
-
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
         private void PrintForwardingLetterGreen()
@@ -1343,46 +1231,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-
-
-            //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptForLetter();
-
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text = "Date: " + Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy");
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-            //TextObject txtBankAdd = rpcp.ReportDefinition.ReportObjects["address"] as TextObject;
-            //txtBankAdd.Text = Badd;
-            //TextObject txtsub = rpcp.ReportDefinition.ReportObjects["sub"] as TextObject;
-            //txtsub.Text = ((this.chkBonus.Checked) ? "Subject: Festival Bonus " : "Subject: Salary ") + "Payment advise for the Month of " + month + " " + year + ".";
-            //TextObject txtDet1 = rpcp.ReportDefinition.ReportObjects["det1"] as TextObject;
-            //txtDet1.Text = (this.chkBonus.Checked) ? "We forwarded herewith a payment instruction for processing of festival bonus in favor of our employees maintaining accounts with your bank." : "We forwarded herewith a payment instruction for processing of salary in favor of our employees maintaining accounts with your bank";
-
-            //TextObject txtpurpose = rpcp.ReportDefinition.ReportObjects["txtpurpose"] as TextObject;
-            //txtpurpose.Text = (this.chkBonus.Checked) ? "Festival Bonus " : "Salary ";
-
-
-
-            //TextObject txtDet = rpcp.ReportDefinition.ReportObjects["det2"] as TextObject;
-
-            //txtDet.Text = "We would like to request you to transfer the amount to the respective accounts of our employees (details list attached) by debiting our C/D account no. "
-            //                + banksl + " as per bellow details: ";
-
-
-
-
-            //TextObject Amount = rpcp.ReportDefinition.ReportObjects["amt"] as TextObject;
-            //Amount.Text = "BDT " + sumamt;
-            //TextObject txtInword = rpcp.ReportDefinition.ReportObjects["inword"] as TextObject;
-            //txtInword.Text = "BDT " + inwords;
-            //TextObject txtVDate = rpcp.ReportDefinition.ReportObjects["vdate"] as TextObject;
-            //txtVDate.Text = Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy");
-
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
         private void PrintAccountTrans()
         {
@@ -1455,40 +1303,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-
-
-
-            //ReportDocument rpcp = new RealERPRPT.R_81_Hrm.R_89_Pay.rptAccTransfer();
-            //TextObject txtccaret = rpcp.ReportDefinition.ReportObjects["date"] as TextObject;
-            //txtccaret.Text = "Date: " + Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy");
-            //TextObject BankName = rpcp.ReportDefinition.ReportObjects["bankname"] as TextObject;
-            //BankName.Text = bankname;
-            //TextObject txtBankAdd = rpcp.ReportDefinition.ReportObjects["address"] as TextObject;
-            //txtBankAdd.Text = addr;
-
-            //if(comcod=="4315"){
-            //    TextObject txtDet = rpcp.ReportDefinition.ReportObjects["det1"] as TextObject;
-            //    txtDet.Text = "Please refer to our previous discussion and we would like to transfer an amount of BDT " + sumamt + " " + inwords + " from ASSURE DEVELOPMENT & DESIGN LTD CD A/C # " + banksl + " to " + "      " +
-            //                   " Nos. of salary A/C as per attached sheet on " + Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy") + ".";
-
-            //}
-            //else
-            //{
-            //    TextObject txtDet = rpcp.ReportDefinition.ReportObjects["det1"] as TextObject;
-            //    txtDet.Text = "Please refer to our previous discussion and we would like to transfer an amount of BDT " + sumamt + " " + inwords + " from our CD A/C # " + banksl + " to " +
-            //                   " Nos. of salary A/C as per attached sheet on " + Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy") + ".";
-
-
-            //}
-
-
-
-
-            //Session["Report1"] = rpcp;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
-            //                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
 
