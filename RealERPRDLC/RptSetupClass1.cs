@@ -757,6 +757,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.rptForLetterBridge": Rpt1a = SetrptForLetterBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptForLetterTerra": Rpt1a = SetrptForLetterTerra(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptForLetterGreenwood": Rpt1a = SetrptForLetterGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptForLetterEdison": Rpt1a = SetrptForLetter(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_89_Pay.rptAccTransfer": Rpt1a = SetrptAccTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlipGreenwood": Rpt1a = SetRptPaySlipGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
