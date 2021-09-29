@@ -1958,6 +1958,7 @@
     <Content Include="F_01_LPA\RptBusinessClient.aspx" />
     <Content Include="F_01_LPA\RptDashBoardLandPro.aspx" />
     <Content Include="F_01_LPA\RptLandDevTopSheet.aspx" />
+    <Content Include="F_01_LPA\RptLandInventory.aspx" />
     <Content Include="F_01_LPA\RptLandProcurement.aspx" />
     <Content Include="F_02_Fea\FeaPrjGenInformation.aspx" />
     <Content Include="F_02_Fea\FeaProjectCodeBook.aspx" />
@@ -3630,6 +3631,13 @@
     </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.designer.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_01_LPA\RptLandInventory.aspx.cs">
+      <DependentUpon>RptLandInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_01_LPA\RptLandInventory.aspx.designer.cs">
+      <DependentUpon>RptLandInventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
