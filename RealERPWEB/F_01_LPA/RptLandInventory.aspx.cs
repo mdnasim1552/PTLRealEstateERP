@@ -13,5 +13,10 @@ namespace RealERPWEB.F_01_LPA
         {
 
         }
+
+        protected void lbtnShow_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
