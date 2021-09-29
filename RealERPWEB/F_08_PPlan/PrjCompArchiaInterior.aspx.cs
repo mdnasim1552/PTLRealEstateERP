@@ -1167,16 +1167,18 @@ namespace RealERPWEB.F_08_PPlan
 
                         for (k = 1; k <= 14; k++)
                         {
-                            double dueam = Convert.ToDouble(dt.Rows[0]["dueam"]);
-                            int indexofper = dt.Rows[0]["job" + k.ToString()].ToString().IndexOf("%");
-                            if (indexofper == -1)
-                            {
-                                dt.Rows[i]["job" + k.ToString()] = "";
-                                continue;
-                            }
-                            double percnt = Convert.ToDouble(dt.Rows[0]["job" + k.ToString()].ToString().Substring(0, indexofper).Trim());
-                            double jobam = percnt * dueam * 0.01;
-                            dt.Rows[i]["job" + k.ToString()] = jobam.ToString("#,##0.00;(#,##)0.00; ");
+                            //double dueam = Convert.ToDouble(dt.Rows[0]["dueam"]);
+                            //int indexofper = dt.Rows[0]["job" + k.ToString()].ToString().IndexOf("%");
+                            //if (indexofper == -1)
+                            //{
+                            //    dt.Rows[i]["job" + k.ToString()] = "";
+                            //    continue;
+                            //}
+                            //double percnt = Convert.ToDouble(dt.Rows[0]["job" + k.ToString()].ToString().Substring(0, indexofper).Trim());
+                            //double jobam = percnt * dueam * 0.01;
+                           // dt.Rows[i]["job" + k.ToString()] = jobam.ToString("#,##0.00;(#,##)0.00; ");
+                            dt.Rows[i]["job" + k.ToString()] = ((TextBox)gv1.FindControl("txtgvjob" + k.ToString())).Text.ToString();
+                           
                         }
                         break;
 
