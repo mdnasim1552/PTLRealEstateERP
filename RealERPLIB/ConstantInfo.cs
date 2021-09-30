@@ -92,11 +92,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0103000", "0103098", "F_01_LPA", "MktLandOwnerDiscus?", "Type=Edit", "Landowner Discussion Edit", "Land Proposal", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "0103000", "0103099", "F_01_LPA", "RptBusinessClient", "", "Landowner Notification", "Land Proposal", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0103000", "0103110", "F_01_LPA", "LandSearch", "", "Land Search", "Land Proposal", "False", "False", "False", "False" }); ;
-
-
-
+            tblObj.Rows.Add(new Object[] { "0103000", "0103110", "F_01_LPA", "LandSearch", "", "Land Search", "Land Proposal", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "0103000", "0103120", "F_01_LPA", "RptLandInventory", "", "Land Inventory", "Land Proposal", "False", "False", "False", "False" });
             
+
+
+
+
 
             tblObj.Rows.Add(new Object[] { "0151000", "0151001", "F_99_Allinterface", "BusinessDashboard?", "Type=Report", "Business Development", "Land Proposal", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0151000", "0151003", "F_01_LPA", "LandInfoDet?", "Type=Entry", "Business Development", "Land Proposal", "False", "False", "False", "False" }); ;
@@ -3351,14 +3353,14 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0359000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0360000000", "", "", "", true, "" });
 
-
+           
 
 
             mnuTbl1.Rows.Add(new Object[] { "0403000000", "	Management Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0403100000", "05. Project Top Sheet", "F_02_Fea/PrjTopSheet", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403200000", "06. Land Data Bank", "F_01_LPA/RptAllProTopSheet?Type=Report&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "06. Landowner Notification", "F_01_LPA/RptBusinessClient", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0404100000", "", "", "", true, "" });//"07.  In Word ", "F_01_LPA/Inword", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404100000", "07. Land Inventory", "F_01_LPA/RptLandInventory", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0412000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0413000000", "", "", "", true, "" });
