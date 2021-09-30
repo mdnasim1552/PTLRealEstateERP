@@ -251,9 +251,11 @@ namespace RealEntity.C_01_LPA
                 this.sadhagno =sadhagno;                
                 this.rsdhagno = rsdhagno;
                 this.bsdhagno = bsdhagno;
+               
                 this.bskhotianno = bskhotianno;
                 this.cslarea = cslarea;
                 this.bslarea = bslarea;
+                this.bsklarea = bsklarea;
                 this.jblrefno = jblrefno;
                 this.budarea = budarea;
                 this.purarea = purarea;
