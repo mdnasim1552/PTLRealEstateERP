@@ -2199,10 +2199,10 @@
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
 
-                                                <asp:LinkButton ID="hlnkprjlink" Visible="false" CssClass="btn btn-xs btn-default" runat="server" ToolTip="Project Linking" OnClientClick="Confirm (Do You Want To Link this Project?) return;" OnClick="hlnkprjlink_Click" Font-Underline="false"><span class="fa fa-check"></span>
+                                                <asp:LinkButton ID="hlnkprjlink"  CssClass="btn btn-xs btn-default" runat="server" ToolTip="Project Linking" OnClientClick="Confirm (Do You Want To Link this Project?) return;" OnClick="hlnkprjlink_Click" Font-Underline="false"><span class="fa fa-check"></span>
                                                 </asp:LinkButton>
 
-                                                <asp:HyperLink ID="hlnkpaymentSch" Visible="false" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Go Payment Schedule" runat="server" Font-Size="15px"><span  class="fa fa-check"></span> </asp:HyperLink>
+                                                <asp:HyperLink ID="hlnkpaymentSch"  CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Go Payment Schedule" runat="server" Font-Size="15px"><span  class="fa fa-check"></span> </asp:HyperLink>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />

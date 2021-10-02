@@ -288,7 +288,7 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Current Duse">
+                                            <asp:TemplateField HeaderText="Current Dues">
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFtcurdues" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="Black"
                                                         Style="text-align: right"></asp:Label>
@@ -303,7 +303,7 @@
 
 
 
-                                            <asp:TemplateField HeaderText="Over Duse">
+                                            <asp:TemplateField HeaderText="Over Dues">
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFtpredues" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="Black"
                                                         Style="text-align: right"></asp:Label>
@@ -1610,7 +1610,7 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Current Duse">
+                                            <asp:TemplateField HeaderText="Current Dues">
 
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvtcurduesschandac" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curdues")).ToString("#,##0;(#,##0); ") %>'

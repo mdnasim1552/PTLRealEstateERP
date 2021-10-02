@@ -107,6 +107,12 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "csdhagno"))   %>'
                                             Width="80px"></asp:Label>
                                     </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFTotal" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px"
+                                            Style="text-align: left" Width="70px" Text="Total"></asp:Label>
+                                    </FooterTemplate>
+                               
+                                        
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="SA">
