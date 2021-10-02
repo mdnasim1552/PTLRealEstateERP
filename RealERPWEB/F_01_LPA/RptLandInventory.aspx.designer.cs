@@ -40,5 +40,14 @@ namespace RealERPWEB.F_01_LPA
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnShow;
+
+        /// <summary>
+        /// gvlandinven control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvlandinven;
     }
 }
