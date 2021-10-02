@@ -12,7 +12,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
         public class SalaryGrandT
         {
             public string  comcod { get; set; }
-            public string refno { get; set; }
+            public string refno { get; set; } 
             public string refdesc { get; set; }
             public double netpay { get; set; }
             public double gssal { get; set; }
@@ -674,6 +674,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string refdesc { get; set; }
             public string aminword { get; set; }
             public string bankacno { get; set; }
+            public double haircutal { get; set; }
 
             public SalaryPaySlip()
             {
