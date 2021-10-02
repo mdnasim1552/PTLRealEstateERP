@@ -820,7 +820,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.26042in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1147,7 +1147,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.3125in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -1179,7 +1179,7 @@
                               <Style>Solid</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>Solid</Style>
@@ -1231,13 +1231,13 @@
                               <Style>Solid</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </LeftBorder>
                             <RightBorder>
                               <Style>None</Style>
@@ -1277,6 +1277,18 @@
                             <Border>
                               <Style>Solid</Style>
                             </Border>
+                            <TopBorder>
+                              <Style>None</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>Solid</Style>
+                            </BottomBorder>
+                            <LeftBorder>
+                              <Style>Solid</Style>
+                            </LeftBorder>
+                            <RightBorder>
+                              <Style>Solid</Style>
+                            </RightBorder>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -1331,7 +1343,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.11979in</Top>
             <Left>0.06197in</Left>
-            <Height>1.03125in</Height>
+            <Height>1.10417in</Height>
             <Width>7.59338in</Width>
             <Style>
               <Border>
@@ -1698,7 +1710,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
                     <Value>=Parameters!txtuserinfo.Value</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>7pt</FontSize>
+                      <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1708,8 +1720,8 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>printFooter</rd:DefaultName>
-            <Top>2.99747in</Top>
-            <Left>0.07063in</Left>
+            <Top>2.97882in</Top>
+            <Left>0.05725in</Left>
             <Height>0.17847in</Height>
             <Width>7.63472in</Width>
             <ZIndex>4</ZIndex>
@@ -1724,7 +1736,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.21091in</Height>
+        <Height>3.19008in</Height>
         <Style>
           <Border>
             <Style>None</Style>
