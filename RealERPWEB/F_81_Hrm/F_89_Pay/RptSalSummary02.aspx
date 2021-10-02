@@ -141,14 +141,54 @@
 
 
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px">
+                                    <div class="col-md-9 pading5px">
                                         <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">Month</asp:Label>
                                         <asp:TextBox ID="txtfMonth" runat="server" CssClass=" inputDateBox "></asp:TextBox>
 
                                         <cc1:CalendarExtender ID="txtfMonth_CalendarExtender" runat="server"
                                             Enabled="True" Format="yyyyMM" TargetControlID="txtfMonth"
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
+
+                                     <div class="col-md-3 pading5px asitCol2" >
+                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName" Visible="false">Form</asp:Label>
+                                        <asp:DropDownList ID="ddlfrmDesig" runat="server" Visible="false" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
+                                        </asp:DropDownList>
                                     </div>
+
+                                    <div class="col-md-4 pading5px">
+                                        <asp:Label ID="lbltdeg" runat="server" Visible="false" CssClass=" smLbl_to">To</asp:Label>
+
+
+                                        <asp:DropDownList ID="ddlToDesig" runat="server" Visible="false" Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
+                                        </asp:DropDownList>
+
+                                    </div>
+
+
+                                    </div>
+
+                       <%--           <div class="form-group">
+                                    <div class="col-md-3 pading5px asitCol2">
+                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
+                                        <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="100px" TabIndex="6">
+                                        </asp:DropDownList>
+                                    </div>
+
+                                    <div class="col-md-4 pading5px">
+                                        <asp:Label ID="lbltdeg" runat="server" CssClass=" smLbl_to">To</asp:Label>
+
+
+                                        <asp:DropDownList ID="ddlToDesig" runat="server" Width="120" CssClass="form-control inputTxt chzn-select" TabIndex="6">
+                                        </asp:DropDownList>
+
+                                    </div>
+
+                                </div>--%>
+
+
+
+
+
                                     <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                         Font-Size="14px" Height="14px" RepeatColumns="14" RepeatDirection="Horizontal"
                                         Width="500px" Visible="false">

@@ -3294,7 +3294,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
 
-            else if (comcod == "3339" || comcod == "3101")
+            else if (comcod == "3339" )
             {
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipTro", list, null, null);
@@ -3310,7 +3310,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
 
 
-            else if (comcod == "3347")
+            else if (comcod == "3347" || comcod == "3101")
             {
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipPEB", list, null, null);

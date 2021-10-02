@@ -64,17 +64,7 @@ namespace RealERPWEB.F_08_PPlan
 
         }
 
-        private void CreateTable()
-        {
-            Session.Remove("tbljob");
-            DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("jobcode", Type.GetType("System.String"));
-            tblt01.Columns.Add("jobdesc", Type.GetType("System.String"));
-            Session["tbljob"] = tblt01;
-
-
-        }
-
+       
         private void GetWork()
         {
 
@@ -175,7 +165,7 @@ namespace RealERPWEB.F_08_PPlan
             string comcod = this.GetComCode();
             string txtSProject = "%" + "%";
             string wokcode = this.ddlwork.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETWORKPRJNAME", txtSProject, wokcode, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTACUSTOMER", txtSProject, wokcode, "", "", "", "", "", "", "");
             this.ddlPrjName.DataTextField = "actdesc";
             this.ddlPrjName.DataValueField = "actcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
@@ -229,10 +219,11 @@ namespace RealERPWEB.F_08_PPlan
         {
             Session.Remove("tbljob");
             string comcod = this.GetComCode();
-            string ProjectCode = this.ddlPrjName.SelectedValue.ToString();
+            string ProjectCode = this.ddlPrjName.SelectedValue.ToString().Substring(0,12);
             string workcode = this.ddlwork.SelectedValue.ToString();
+            string usircode = this.ddlPrjName.SelectedValue.ToString().Substring(12);
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDESIGNINFO", ProjectCode, workcode, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDESIGNINFO", ProjectCode, usircode, workcode, "", "", "", "", "", "", "");
             if (ds1.Tables[0].Rows.Count == 0)
                 return;
             this.GetDues();
@@ -246,11 +237,12 @@ namespace RealERPWEB.F_08_PPlan
 
             Session.Remove("tbljob");
             string comcod = this.GetComCode();
-            string ProjectCode ="18"+ this.ddlPrjName.SelectedValue.ToString().Substring(2);
+            string ProjectCode ="18"+ this.ddlPrjName.SelectedValue.ToString().Substring(2,10);
+            string usircode = this.ddlPrjName.SelectedValue.ToString().Substring(12);
             string workcode = this.ddlwork.SelectedValue.ToString();
             string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDUES", ProjectCode, workcode, date, "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDUES", ProjectCode, workcode, date, usircode, "", "", "", "", "");
             if (ds1.Tables[0].Rows.Count == 0)
                 return;
            
@@ -1175,16 +1167,18 @@ namespace RealERPWEB.F_08_PPlan
 
                         for (k = 1; k <= 14; k++)
                         {
-                            double dueam = Convert.ToDouble(dt.Rows[0]["dueam"]);
-                            int indexofper = dt.Rows[0]["job" + k.ToString()].ToString().IndexOf("%");
-                            if (indexofper == -1)
-                            {
-                                dt.Rows[i]["job" + k.ToString()] = "";
-                                continue;
-                            }
-                            double percnt = Convert.ToDouble(dt.Rows[0]["job" + k.ToString()].ToString().Substring(0, indexofper).Trim());
-                            double jobam = percnt * dueam * 0.01;
-                            dt.Rows[i]["job" + k.ToString()] = jobam.ToString("#,##0.00;(#,##)0.00; ");
+                            //double dueam = Convert.ToDouble(dt.Rows[0]["dueam"]);
+                            //int indexofper = dt.Rows[0]["job" + k.ToString()].ToString().IndexOf("%");
+                            //if (indexofper == -1)
+                            //{
+                            //    dt.Rows[i]["job" + k.ToString()] = "";
+                            //    continue;
+                            //}
+                            //double percnt = Convert.ToDouble(dt.Rows[0]["job" + k.ToString()].ToString().Substring(0, indexofper).Trim());
+                            //double jobam = percnt * dueam * 0.01;
+                           // dt.Rows[i]["job" + k.ToString()] = jobam.ToString("#,##0.00;(#,##)0.00; ");
+                            dt.Rows[i]["job" + k.ToString()] = ((TextBox)gv1.FindControl("txtgvjob" + k.ToString())).Text.ToString();
+                           
                         }
                         break;
 
@@ -1263,7 +1257,8 @@ namespace RealERPWEB.F_08_PPlan
             DataTable dtj = (DataTable)Session["tbljob"];
             int lenj = dtj.Rows.Count;
             int i = 0, k, j;
-            string pactcode = this.ddlPrjName.SelectedValue.ToString();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString().Substring(0,12);
+            string usircode = this.ddlPrjName.SelectedValue.ToString().Substring(12);
             string actcode = this.ddlwork.SelectedValue.ToString();
             string proesam = dt.Rows[0]["proesam"].ToString();
             string proadam = dt.Rows[0]["proadam"].ToString();
@@ -1275,7 +1270,7 @@ namespace RealERPWEB.F_08_PPlan
 
             //-----------Update pdesignb-----------------//
             bool resultb = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNB", pactcode, actcode, proesam, proadam, dueam,
-                            PostbyId, Posteddat, posttrmid, postsesson, "", "", "", "", "", "", "", "", "", "", "", "");
+                            PostbyId, Posteddat, posttrmid, postsesson, usircode, "", "", "", "", "", "", "", "", "", "", "");
 
             if (!resultb)
             {
@@ -1317,7 +1312,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobvalue = dt.Rows[i]["job" + k.ToString()].ToString();
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                            jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1340,7 +1335,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobvalue = Convert.ToDouble("0" + dt.Rows[i]["job" + k.ToString()].ToString()).ToString();
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                               jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                               jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1363,7 +1358,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             jobvalue = dt.Rows[i]["job" + k.ToString()].ToString();
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                               jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                               jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1388,7 +1383,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             jobvalue = dt.Rows[i]["job" + k.ToString()].ToString().Trim().Length == 0 ? "01-Jan-1900" : Convert.ToDateTime(dt.Rows[i]["job" + k.ToString()].ToString()).ToString("dd-MMM-yyyy");
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                               jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                               jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1415,10 +1410,11 @@ namespace RealERPWEB.F_08_PPlan
             {
 
 
+                string rowid =dr1["rowid"].ToString();
                 jobcode = dr1["jobcode"].ToString();
                 jobvalue = dr1["jobdesc"].ToString();
-                bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNC", pactcode, actcode, jobcode, jobvalue, "",
-                   "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNC", pactcode, actcode, jobcode, jobvalue, rowid,
+                   usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
                 if (!resulta)
                 {

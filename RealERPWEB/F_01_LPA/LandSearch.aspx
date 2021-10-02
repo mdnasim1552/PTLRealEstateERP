@@ -1,8 +1,21 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LandSearch.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LandSearch" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" EnableEventValidation="false" CodeBehind="LandSearch.aspx.cs" Inherits="RealERPWEB.F_01_LPA.LandSearch" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
+     <script src="../Script_own/print.js"></script>
+    <script src="../Script_own/S_05_MyPage/RptEmpMonthWiseEva03.js"></script>
     <script type="text/javascript">
+        var url = "../S_05_MyPage/RptEmpMonthWiseEva03.asmx/PrintLandInfo";
+        var prntVal = 'PDF';
+        var comcod =<%=this.GetCompCode()%>;
+        var zone = $('#ddlZone option:selected').val();
+        var dist = $('#ddldistrict option:selected').val();
+        var thana = $('#ddlthana option:selected').val();
+        var mouza = $('#ddlMouza option:selected').val();
+        var csdhagno = $('#<%=this.txtcsdhagno.ClientID%>').val();
+
         $(document).ready(function () {
             //alert("I m IN");
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -36,6 +49,14 @@
                 });
 
                 $('.chzn-select').chosen({ search_contains: true });
+
+
+                $("[id$=lnkconPrint]").click(function () {
+                    
+                    PrintActionRDLC(url, prntVal, comcod, zone, dist, thana, mouza, csdhagno);
+                    return false;
+                });
+
 
             }
 
@@ -305,7 +326,7 @@
         function displayTable(tbllandinfo) {
             var i = 0, tarper = 0.00;
 
-            console.log(tbllandinfo);
+         
             $("#gvlandinfo").html('');
 
             var hrow = '';
@@ -347,19 +368,19 @@
                     "<td style=text-align:left;" + ">" + arval.sadhagno + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.rsdhagno + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.bsdhagno + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.cslarea == 0) ? '' : (arval.cslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.bslarea == 0) ? '' : (arval.bslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.cslarea == 0) ? '' : (arval.cslarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.bslarea == 0) ? '' : (arval.bslarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.bskhotianno + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.bsklarea == 0) ? '' : (arval.bsklarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.bsklarea == 0) ? '' : (arval.bsklarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                     "<td style=text-align:left;" + ">" + arval.jblrefno + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.restlarea == 0) ? '' : (arval.restlarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                    "<td style=text-align:right;" + ">" + ((arval.purarea == 0) ? '' : (arval.purarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>";
+                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.budarea == 0) ? '' : (arval.budarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.restlarea == 0) ? '' : (arval.restlarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                    "<td style=text-align:right;" + ">" + ((arval.purarea == 0) ? '' : (arval.purarea).toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>";
 
 
 
-                console.log(row);
+               
                 i++;
 
             });
@@ -369,15 +390,15 @@
             frow += "<tr><td></td>" +
                 "<td style=text-align:center;font-weight:bold;" + ">" + " Total" + "</td>" +
                 "<td></td><td></td><td></td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tcslarea == 0) ? '' : (tcslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbslarea == 0) ? '' : (tbslarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tcslarea == 0) ? '' : tcslarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbslarea == 0) ? '' : tbslarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                 "<td></td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbsklarea == 0) ? '' : (tbsklarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbsklarea == 0) ? '' : tbsklarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
                 "<td></td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : (tbudarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : (tbudarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((trestlarea == 0) ? '' : (trestlarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
-                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tpurarea == 0) ? '' : (tpurarea).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>" + "</tfoot>";
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : tbudarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tbudarea == 0) ? '' : tbudarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((trestlarea == 0) ? '' : trestlarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td>" +
+                "<td style=text-align:right;font-weight:bold;" + ">" + "&nbsp" + ((tpurarea == 0) ? '' : tpurarea.toFixed(4).toLocaleString('en-US', { minimumFractionDigits: 0 })) + "</td></tr>" + "</tfoot>";
 
 
 
@@ -386,6 +407,51 @@
 
 
         }
+
+
+       <%-- function funPrint()
+        {
+
+
+            try {
+
+                console.log("print");
+
+                var comcod =<%=this.GetCompCode()%>;
+                var zone = $('#ddlZone option:selected').val();
+                var dist = $('#ddldistrict option:selected').val();
+                var thana = $('#ddlthana option:selected').val();
+                var mouza = $('#ddlMouza option:selected').val();
+                 var csdhagno = $('#<%=this.txtcsdhagno.ClientID%>').val();
+
+                 $.ajax({
+                     type: "POST",
+                     url: "LandSearch.aspx/PrintLandInfo",
+                     data: '{comcod:"' + comcod + '", zone:"' + zone + '", dist:"' + dist + '", thana:"' + thana + '", mouza:"' + mouza + '", csdhagno:"' + csdhagno + '"}',
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     success: function (response) {
+
+                         var data = JSON.parse(response.d);
+                         displayTable(data);
+
+                     },
+
+
+                     failure: function (response) {
+
+                         alert("failure");
+                     }
+                 });
+
+             }
+
+             catch (e) {
+
+                 alert(e.message);
+
+             }
+        }--%>
 
 
     </script>
@@ -399,33 +465,12 @@
         }
     </style>
 
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-
-
 
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress9" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+            
 
 
             <div class="card card-fluid">
@@ -673,7 +718,7 @@
 
                             <div class="form-group">
                                 <button id="lbtnShow" class=" form-control btn btn-primary" onclick="funShowData();" style="margin-left: 84px; width: 230px;">Show</button>
-                                <%--<asp:LinkButton ID="lbtnShow" runat="server" CssClass=" form-control btn btn-primary" Style=" margin-left:84px;width:230px;" OnClick="lbtnShow_Click">Show</asp:LinkButton>--%>
+                                <button id="lnkconPrint" class=" form-control btn btn-primary"  style="margin-left: 84px; width: 230px;"><i class="fas fa-print"></i></button>                                
                             </div>
                         </div>
 

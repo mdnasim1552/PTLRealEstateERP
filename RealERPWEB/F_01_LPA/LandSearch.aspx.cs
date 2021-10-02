@@ -1,4 +1,6 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
+using RealERPRDLC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,7 +34,7 @@ namespace RealERPWEB.F_01_LPA
         }
 
 
-       
+
 
 
         public string GetCompCode()
@@ -73,12 +75,6 @@ namespace RealERPWEB.F_01_LPA
 
             }
 
-
-
-
-
-
-
         }
 
         [WebMethod(EnableSession = false)]
@@ -110,14 +106,7 @@ namespace RealERPWEB.F_01_LPA
                 var json = jsonSerialiser.Serialize(lst);
                 return json;
 
-
             }
-
-
-
-
-
-
 
         }
 
@@ -152,14 +141,7 @@ namespace RealERPWEB.F_01_LPA
                 var json = jsonSerialiser.Serialize(lst);
                 return json;
 
-
             }
-
-
-
-
-
-
 
         }
 
@@ -192,29 +174,22 @@ namespace RealERPWEB.F_01_LPA
                 var json = jsonSerialiser.Serialize(lst);
                 return json;
 
-
             }
-
-
-
-
-
-
 
         }
 
 
 
 
-        [WebMethod(EnableSession = false)]
+        [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public static string GetLandInfo(string comcod, string zone, string dist, string thana, string mouza, string csdhagno)
         {
 
-
+            csdhagno = (csdhagno.Length == 0 ? "" : csdhagno) + "%";
             ProcessAccess _processAccess = new ProcessAccess();
 
-            DataSet ds2 = _processAccess.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "SHOWLANDINFO", zone, dist, thana, mouza, csdhagno, "", "", "", "","");
+            DataSet ds2 = _processAccess.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "SHOWLANDINFO", zone, dist, thana, mouza, csdhagno, "", "", "", "", "");
 
 
             if (ds2.Tables[0].Rows.Count == 0)
@@ -238,15 +213,8 @@ namespace RealERPWEB.F_01_LPA
 
             }
 
-
-
-
-
-
-
         }
 
-        
 
         protected void lbtnShow_Click(object sender, EventArgs e)
         {
@@ -255,9 +223,22 @@ namespace RealERPWEB.F_01_LPA
             string dist = this.ddldistrict.SelectedValue.ToString();
             string thana = this.ddlthana.SelectedValue.ToString();
             string mouza = this.ddlMouza.SelectedValue.ToString();
-            string csdhagno = (this.txtcsdhagno.Text.Trim().Length == 0 ? "" : this.txtcsdhagno.Text.Trim()) + "%";            
+            string csdhagno = (this.txtcsdhagno.Text.Trim().Length == 0 ? "" : this.txtcsdhagno.Text.Trim()) + "%";
             DataSet ds2 = ProData.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "GETLANDINFO", zone, dist, thana, mouza, csdhagno, "", "", "", "", "");
 
         }
+
+        //[WebMethod(EnableSession = true)]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public static string   PrintLandInfo()
+        //{
+           
+
+        //    var result = new { Message = "Success", result = true };
+        //    var jsonSerialiser = new JavaScriptSerializer();
+        //    var json = jsonSerialiser.Serialize(result);
+        //    return json;
+
+        //}
     }
 }

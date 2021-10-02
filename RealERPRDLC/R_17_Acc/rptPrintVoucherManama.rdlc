@@ -1368,7 +1368,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>InWrd</rd:DefaultName>
-            <Top>1.44272in</Top>
+            <Top>1.66772in</Top>
             <Left>0.06197in</Left>
             <Height>0.25in</Height>
             <Width>7.63in</Width>
@@ -1404,7 +1404,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>1.73438in</Top>
+            <Top>1.37188in</Top>
             <Left>0.06197in</Left>
             <Height>0.26041in</Height>
             <Width>7.63in</Width>
@@ -1895,44 +1895,6 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox10">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!txtPartyName.Value</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Right</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox7</rd:DefaultName>
-              <Top>1.37464in</Top>
-              <Left>3.90375in</Left>
-              <Height>0.23958in</Height>
-              <Width>3.83333in</Width>
-              <ZIndex>5</ZIndex>
-              <Visibility>
-                <Hidden>=Globals!PageNumber&gt;1</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
             <Textbox Name="Textbox7">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -1953,8 +1915,8 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
               <Top>1.37463in</Top>
               <Left>0.03917in</Left>
               <Height>0.23958in</Height>
-              <Width>3.83333in</Width>
-              <ZIndex>6</ZIndex>
+              <Width>7.61618in</Width>
+              <ZIndex>5</ZIndex>
               <Visibility>
                 <Hidden>=Globals!PageNumber&gt;1</Hidden>
               </Visibility>
@@ -2135,7 +2097,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
               <Left>0.02135in</Left>
               <Height>0.28125in</Height>
               <Width>7.71667in</Width>
-              <ZIndex>7</ZIndex>
+              <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

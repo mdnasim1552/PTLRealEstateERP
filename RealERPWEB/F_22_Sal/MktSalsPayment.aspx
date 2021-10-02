@@ -690,7 +690,7 @@
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="lgcResDesc2" runat="server" BackColor="Transparent" BorderStyle="None"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                            Width="350px" ForeColor="Black"></asp:TextBox>
+                                                            Width="330px" ForeColor="Black"></asp:TextBox>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>

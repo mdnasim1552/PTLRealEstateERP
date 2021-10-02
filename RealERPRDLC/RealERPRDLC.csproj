@@ -107,6 +107,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
@@ -117,6 +118,7 @@
   <ItemGroup>
     <EmbeddedResource Include="R_01_LPA\RptlandDataBank.rdlc" />
     <EmbeddedResource Include="R_01_LPA\RptLandFeasibility.rdlc" />
+    <EmbeddedResource Include="R_01_LPA\RptLandInformation.rdlc" />
     <EmbeddedResource Include="R_02_Fea\RptFeaProject.rdlc" />
     <EmbeddedResource Include="R_02_Fea\rptProjectFeasibility.rdlc" />
     <EmbeddedResource Include="R_02_Fea\RptProjectTopSheet.rdlc" />
@@ -772,6 +774,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptAitPurposePeb.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptAitPurpose.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankFordLetter.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementAlli.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementGreenwood.rdlc" />
@@ -797,12 +800,14 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSummaryBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusSummaryPEB.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBonusTropical.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02Edison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptCashPay02GreenWood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpAitCertificate.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpBonusAssure.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpLeaveStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptEmpMonthSumm.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetter.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterGreenwood.rdlc" />

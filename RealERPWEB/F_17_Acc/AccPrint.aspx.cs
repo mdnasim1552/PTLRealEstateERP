@@ -109,7 +109,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint4";
                     break;
 
-
+                case "3101":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -148,7 +148,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintP2P";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     vouprint = "VocherPrintManama";
                     break;
@@ -1300,7 +1300,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, potseson, Posteddat, compname, username, printdate, session)));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate, session)));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
