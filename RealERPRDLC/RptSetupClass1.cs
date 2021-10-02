@@ -807,10 +807,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsPEBHeadOfficeCash": Rpt1a = SetRptSalaryDetailsPEBHeadOfficeCash(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptCashPay02GreenWood": Rpt1a = SetRptCashPay02GreenWood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptCashPay02Edison": Rpt1a = SetRptRptCashPay02Edison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-                case "R_81_Hrm.R_89_Pay.RptSalaryDetailsEdisonReal": Rpt1a = SetRptSalaryDetailsEdisonReal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;//
-
-
+                case "R_81_Hrm.R_89_Pay.RptSalaryDetailsEdisonReal": Rpt1a = SetRptSalaryDetailsEdisonReal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_89_Pay.RptSalSummaryPEB": Rpt1a = SetRptSalSummaryPEB(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptGrpSummary": Rpt1a = SetRptGrpSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;

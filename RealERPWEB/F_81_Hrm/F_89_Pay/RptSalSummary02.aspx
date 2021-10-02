@@ -150,7 +150,7 @@
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
 
                                      <div class="col-md-3 pading5px asitCol2" >
-                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName" Visible="false">Form</asp:Label>
+                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName" Visible="false">From</asp:Label>
                                         <asp:DropDownList ID="ddlfrmDesig" runat="server" Visible="false" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
                                         </asp:DropDownList>
                                     </div>
