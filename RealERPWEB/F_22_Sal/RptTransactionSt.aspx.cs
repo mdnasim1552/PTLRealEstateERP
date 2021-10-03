@@ -103,7 +103,7 @@ namespace RealERPWEB.F_22_Sal
                 case "TransDateWise":
                     this.MultiView1.ActiveViewIndex = 1;
                     this.rbtnList1.Visible = true;
-                    this.rbtnList1.SelectedIndex = 0;
+                    this.rbtnList1.SelectedIndex = 3;
                     break;
                 case "ClientStat":
                     this.MultiView1.ActiveViewIndex = 2;
@@ -848,7 +848,8 @@ namespace RealERPWEB.F_22_Sal
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
-            string actual = (this.rbtnList1.SelectedIndex == 2) ? "Actualdate" : "";
+            string actual = (this.rbtnList1.SelectedIndex == 2) ? "Actualdate"
+                     :(this.rbtnList1.SelectedIndex == 3)?"Reconcliedate" : "";
 
             string coltype = this.companytype();
 
