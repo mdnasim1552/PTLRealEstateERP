@@ -91,7 +91,7 @@
     </script>
 
 
-<%--    <asp:UpdatePanel ID="UpdatePanel1" runat="server">--%>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
 
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -877,7 +877,7 @@
 
 
         </ContentTemplate>
-<%--    </asp:UpdatePanel>--%>
+    </asp:UpdatePanel>
 </asp:Content>
 
 

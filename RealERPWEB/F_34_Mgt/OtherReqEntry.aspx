@@ -445,7 +445,7 @@
                                     <asp:TemplateField HeaderText="Bal. Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvBalAmt" runat="server"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
