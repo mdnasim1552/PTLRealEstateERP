@@ -1163,6 +1163,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "2203000", "2202272", "F_22_Sal", "RptCustomerBill?", "Type=CustBill", "Customer Bill Info", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2203000", "2202273", "F_22_Sal", "ProjectFileDetailsEntry", "", "Project File Details", "Sales", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2251000", "2251001", "F_99_Allinterface", "SalesInterface?Type=Report", "", "Sales", "Sales & Recovery-Interface", "False", "False", "False", "False" }); ;
 
@@ -7024,11 +7025,12 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0220000000", "16. Trigger Information", "F_34_Mgt/Trigger", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0221000000", "08. Sales Increase Info", "F_24_CC/CustMaintenanceWork?Type=EntrySales&Date1=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0222000000", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
-           
+            mnuTbl1.Rows.Add(new Object[] { "0223000000", "16. Project File Details", "F_22_Sal/ProjectFileDetailsEntry", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0223000000", "Modification-Landowner's ", "", "", false, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0224000000", "01. Landowner's Unit Fixation", "F_22_Sal/MktLOnerUnitEntry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0225000000", "02. Modification Details", "F_22_Sal/MktLandOwnerDetails", "", true, "" });
+
+            mnuTbl1.Rows.Add(new Object[] { "0224000000", "Modification-Landowner's ", "", "", false, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0225000000", "01. Landowner's Unit Fixation", "F_22_Sal/MktLOnerUnitEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0226000000", "02. Modification Details", "F_22_Sal/MktLandOwnerDetails", "", true, "" });
             
 
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "04. Rent Payment Schedule", "F_22_Sal/MktRentPaymentSchdule?Type=Sales", "", true, "" });

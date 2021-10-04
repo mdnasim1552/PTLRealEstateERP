@@ -2443,6 +2443,7 @@
     <Content Include="F_22_Sal\MonthlySalesBudget.aspx" />
     <Content Include="F_22_Sal\MonthlySalesBudget02.aspx" />
     <Content Include="F_22_Sal\MonthlySalesBudget03.aspx" />
+    <Content Include="F_22_Sal\ProjectFileDetailsEntry.aspx" />
     <Content Include="F_22_Sal\ProjectGroup.aspx" />
     <Content Include="F_22_Sal\ProPriceTrading.aspx" />
     <Content Include="F_22_Sal\RptAvailChart.aspx" />
@@ -3694,6 +3695,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
+      <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.designer.cs">
+      <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
