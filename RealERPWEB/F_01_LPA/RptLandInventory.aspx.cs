@@ -90,16 +90,17 @@ namespace RealERPWEB.F_01_LPA
             if (lst.Count == 0)
                 return lst;
             int j = 0;
-            string csdhagno = lst[0].csdhagno;
+            string ocsdhagno = lst[0].ocsdhagno;
             foreach (var lst1 in lst)
             {
                 if (j == 0)
                 {
                     j++;
+                    continue;
 
                 }
 
-                else if (lst1.csdhagno.ToString() == csdhagno)
+                else if (lst1.ocsdhagno.ToString() == ocsdhagno)
                 {
                    
                     
@@ -112,7 +113,7 @@ namespace RealERPWEB.F_01_LPA
 
 
 
-                csdhagno = lst1.csdhagno;
+                ocsdhagno = lst1.ocsdhagno;
 
 
 

@@ -635,7 +635,7 @@
                     case 1103:   //Tanvir
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(3)").hide();//2nd Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(17)").hide();

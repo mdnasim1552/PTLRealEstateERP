@@ -2443,6 +2443,7 @@
     <Content Include="F_22_Sal\MonthlySalesBudget.aspx" />
     <Content Include="F_22_Sal\MonthlySalesBudget02.aspx" />
     <Content Include="F_22_Sal\MonthlySalesBudget03.aspx" />
+    <Content Include="F_22_Sal\ProjectFileDetailsEntry.aspx" />
     <Content Include="F_22_Sal\ProjectGroup.aspx" />
     <Content Include="F_22_Sal\ProPriceTrading.aspx" />
     <Content Include="F_22_Sal\RptAvailChart.aspx" />
@@ -2481,6 +2482,7 @@
     <Content Include="F_22_Sal\SalesRegister.aspx" />
     <Content Include="F_22_Sal\SaleYearlySalAndColl.aspx" />
     <Content Include="F_22_Sal\TradingInterestCal.aspx" />
+    <Content Include="F_23_CR\RptMRTopSheet.aspx" />
     <Content Include="F_23_CR\ClientInfo.aspx" />
     <Content Include="F_23_CR\CustChDishoner.aspx" />
     <Content Include="F_23_CR\CustCollectBudget.aspx" />
@@ -3695,12 +3697,26 @@
     <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
+      <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.designer.cs">
+      <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptMRTopSheet.aspx.cs">
+      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptMRTopSheet.aspx.designer.cs">
+      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>

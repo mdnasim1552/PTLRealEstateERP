@@ -423,6 +423,24 @@
                 //    delay: 10,
                 //    time: 1000
                 //});
+              //  $("#lblcons").attr("href", "F_08_PPlan/ConstructionInfo.aspx?Type=Report&comcod=" + comcod);
+
+                var comcod =<%=this.GetCompCode()%>;
+
+              
+                switch (comcod)
+                {
+                    case 3339:
+                    case 3101:
+                        $('#<%=this.hlnkyearlybudget.ClientID%>').attr("href", "../F_22_Sal/MonthlySalesBudget03");
+                        break;
+
+                    default:
+                        $('#<%=this.hlnkyearlybudget.ClientID%>').attr("href", "../F_22_Sal/MonthlySalesBudget02");
+                        break;
+
+
+                }
 
                 $('.chzn-select').chosen({ search_contains: true });
 

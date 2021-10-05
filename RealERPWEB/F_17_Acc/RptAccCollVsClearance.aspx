@@ -783,9 +783,10 @@
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs">
 
-                                            <li class="active"><a href="#tab1primary" data-toggle="tab" style="font-size: 18px"><span class="glyphicon glyphicon-stats"></span>Bar Chart</a></li>
+                                            <li class="active"><a href="#tab1primary" data-toggle="tab" style="font-size: 18px"><i class="fa fa-bar-chart" aria-hidden="true"></i>Bar Chart</a></li>
 
-                                            <li><a href="#tab2primary" data-toggle="tab" style="font-size: 18px"><span class="glyphicon glyphicon-random"></span>Line Chart</a></li>
+                                            <li><a href="#tab2primary" data-toggle="tab" style="font-size: 18px"><i class="fa fa-line-chart" aria-hidden="true"></i>Line Chart</a></li>
+                                            <li><a href="#tab3primary" data-toggle="tab" style="font-size: 18px"><i class="fa fa-pie-chart" aria-hidden="true"></i>Pie Chart</a></li>
 
 
                                         </ul>
@@ -800,6 +801,12 @@
                                                 <div id="MonthlySalesLine" style="width: 700px; height: 250px; margin: 0 auto"></div>
 
                                             </div>
+
+                                             <div class="tab-pane fade " id="tab3primary">
+                                                <div id="MonthlySalesPie" style="width: 700px; height: 250px; margin: 0 auto"></div>
+
+                                            </div>
+                                             
 
                                         </div>
                                     </div>
@@ -2018,9 +2025,11 @@
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs">
 
-                                            <li class="active"><a href="#tab1primary1" data-toggle="tab" style="font-size: 18px"><span class="glyphicon glyphicon-stats"></span>Bar Chart</a></li>
+                                            <li class="active"><a href="#tab1primary1" data-toggle="tab" style="font-size: 18px"><i class="fa fa-bar-chart" aria-hidden="true"></i> Bar Chart</a></li>
+                                            
 
-                                            <li><a href="#tab2primary2" data-toggle="tab" style="font-size: 18px"><span class="glyphicon glyphicon-random"></span>Line Chart</a></li>
+                                            <li><a href="#tab2primary2" data-toggle="tab" style="font-size: 18px"> <i class="fa fa-line-chart" aria-hidden="true"></i>Line Chart</a></li>
+                                            <li><a href="#tabprimary3" data-toggle="tab" style="font-size: 18px"><i class="fa fa-pie-chart" aria-hidden="true"></i> Pie Chart</a></li>
 
 
                                         </ul>
@@ -2032,6 +2041,11 @@
                                                 <div id="MonthlyCol" style="width: 700px; height: 250px; margin: 0 auto"></div>
                                             </div>
                                             <div class="tab-pane fade " id="tab2primary2">
+                                                <div id="MonthlyColLine" style="width: 700px; height: 250px; margin: 0 auto"></div>
+
+                                            </div>
+
+                                             <div class="tab-pane fade " id="tabprimary3">
                                                 <div id="MonthlyColPie" style="width: 700px; height: 250px; margin: 0 auto"></div>
 
                                             </div>
@@ -2556,6 +2570,72 @@
 
 
             });
+            $("#MonthlySalesPie").highcharts({
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: 'Month Wise Sales',
+                    style: {
+                        color: '#44994a',
+                        fontWeight: 'bold'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    title: {
+                        text: 'Amount in Crore.'
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: 'Sales',
+                    data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
+                    color: '#1581C1'
+
+
+                }]
+
+
+            });
+
+
+            
 
             $("#MonthlyCol").highcharts({
                 chart: {
@@ -2667,9 +2747,72 @@
                 ]
             });
 
-            $("#MonthlyColPie").highcharts({
+            $("#MonthlyColLine").highcharts({
                 chart: {
                     type: 'line'
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: 'Month Wise Collection',
+                    style: {
+                        color: '#44994a',
+                        fontWeight: 'bold'
+                    }
+                },
+                xAxis: {
+                    categories: [
+                        'Jan',
+                        'Feb',
+                        'Mar',
+                        'Apr',
+                        'May',
+                        'Jun',
+                        'Jul',
+                        'Aug',
+                        'Sep',
+                        'Oct',
+                        'Nov',
+                        'Dec'
+                    ],
+                    crosshair: true
+                },
+                yAxis: {
+                    title: {
+                        text: 'Amount in Crore.'
+                    }
+                },
+                legend: {
+                    enabled: true
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                },
+
+                series: [{
+                    name: 'Collection',
+                    data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
+                    color: '#1581C1'
+
+
+                }]
+
+
+            });
+            $("#MonthlyColPie").highcharts({
+                chart: {
+                    type: 'pie'
                 },
                 title: {
                     text: ''

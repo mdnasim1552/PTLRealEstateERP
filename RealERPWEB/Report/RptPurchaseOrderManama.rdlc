@@ -1982,7 +1982,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2101,7 +2101,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!carecost.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!carecost.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2220,7 +2220,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!disamt.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!disamt.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2343,7 +2343,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!nettotal.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!nettotal.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2500,7 +2500,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!advamt.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!advamt.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>

@@ -496,7 +496,7 @@ namespace RealERPWEB.F_34_Mgt
         {
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString().Substring(0, 2);
-            
+
             if (pactcode == "16")
                 this.ProjectData();
 
@@ -2253,19 +2253,35 @@ namespace RealERPWEB.F_34_Mgt
                 double appamt = Convert.ToDouble('0' + ((TextBox)this.gvOtherReq.Rows[i].FindControl("txtgvApamt")).Text.Trim());
                 string billno = ((TextBox)this.gvOtherReq.Rows[i].FindControl("txtgvBillno")).Text.Trim();
                 //OreqApproved  =OreqEntry
-                //    FinalAppr
+                //    FinalAppr//lblgvBalAmt txtgvQtamt
+
+
+                
+                string comcod = this.GetCompCode();
+
+
                 rate = rate > 0 ? rate : (qty > 0 ? (Proamt / qty) : 0.00);
                 Proamt = (type == "OreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
                 appamt = (type == "OreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
+
+                if (comcod == "3338" || comcod == "3101")
+                {
+                    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
+                    if (Proamt > balamt)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "Proposed Amt Can't Excess Balance Amt ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+                    }
+                        
+                }
+
                 tbl1.Rows[i]["proamt"] = Proamt;// qty* rate; proamt
                 tbl1.Rows[i]["appamt"] = appamt; //qty * rate;//appamt;
                 tbl1.Rows[i]["qty"] = qty;
                 tbl1.Rows[i]["rate"] = rate;
                 tbl1.Rows[i]["billno"] = billno;
-
-
-
-
 
             }
             Session["tblReq"] = tbl1;
@@ -2320,8 +2336,8 @@ namespace RealERPWEB.F_34_Mgt
 
             if (pactcode.Substring(0, 2) == "16")
             {
-                
-                string GroupCode = this.ddlMatGrp.SelectedValue.ToString();               
+
+                string GroupCode = this.ddlMatGrp.SelectedValue.ToString();
 
                 DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "GETREQBGDBAL", pactcode, GroupCode, CurDate1, "", "", "", "", "", "");
 
@@ -2343,7 +2359,7 @@ namespace RealERPWEB.F_34_Mgt
                 if (ds2 == null)
                     return;
                 ds2.Dispose();
-                this.gvOtherReq_DataBind(); 
+                this.gvOtherReq_DataBind();
 
 
             }
@@ -2358,7 +2374,7 @@ namespace RealERPWEB.F_34_Mgt
             string comcod = this.GetCompCode();
             if (comcod == "3338")
                 return;
-            
+
             this.ProjectData();
 
 

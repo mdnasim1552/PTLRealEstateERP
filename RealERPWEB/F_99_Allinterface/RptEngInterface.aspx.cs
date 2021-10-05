@@ -207,16 +207,9 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                //case "3338":
-                //case "3336":
-
-                // break;
-
-                default:
+                case "2306":
                     this.gvReqInfo.Columns[5].Visible = false;
                     this.gvReqInfo.Columns[8].Visible = false;
-
-
                     this.gvPenApproval.Columns[4].Visible = false;
                     this.gvPenApproval.Columns[7].Visible = false;
                     this.gvPenApproval.Columns[15].Visible = false;
@@ -225,6 +218,23 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvFinlApproval.Columns[1].Visible = false;
                     this.gvPayOrder.Columns[4].Visible = false;
                     this.gvPayOrder.Columns[7].Visible = false;
+                    this.gvPayOrder.Columns[15].Visible = true;
+
+
+                    break;
+
+                default:
+                    this.gvReqInfo.Columns[5].Visible = false;
+                    this.gvReqInfo.Columns[8].Visible = false;
+                    this.gvPenApproval.Columns[4].Visible = false;
+                    this.gvPenApproval.Columns[7].Visible = false;
+                    this.gvPenApproval.Columns[15].Visible = false;
+                    this.gvFinlApproval.Columns[4].Visible = false;
+                    this.gvFinlApproval.Columns[7].Visible = false;
+                    this.gvFinlApproval.Columns[1].Visible = false;
+                    this.gvPayOrder.Columns[4].Visible = false;
+                    this.gvPayOrder.Columns[7].Visible = false;
+                    this.gvPayOrder.Columns[15].Visible = false;
                     break;
 
 
@@ -988,13 +998,13 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
                 hlink1.NavigateUrl = "~/F_34_Mgt/OtherReqEntry?Type=OreqPrint&prjcode=" + pactcode + "&genno=" + reqno;
-                if ((comcod.Substring(0, 1) == "2" || comcod.Substring(0, 1) == "3") && pactcode.Substring(0, 2) == "16" && supcode.Substring(0, 2) == "99")
+                if ((comcod.Substring(0, 1) == "2" || comcod.Substring(0, 1) == "3") && pactcode.Substring(0, 2) == "26" && supcode.Substring(0, 2) == "99")
                 {
 
                     hlink2.Visible = true;
                     hlink2.NavigateUrl = "~/F_14_Pro/LandOwnerPaymentSch?Type=Report&prjcode=" + pactcode;
                 }
-                if (pactcode.Substring(0, 2) == "16" && supcode.Substring(0, 2) == "99")
+                if (pactcode.Substring(0, 2) == "26" && supcode.Substring(0, 2) == "99")
                 {
 
                     hlink3.Visible = true;

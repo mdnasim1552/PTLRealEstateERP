@@ -4089,14 +4089,16 @@ namespace RealERPWEB.F_99_Allinterface
                 if(comcod=="3353" || comcod == "3101")
                 {
                     Rpt1.SetParameters(new ReportParameter("refno01", mrfno1));
+                    //Rpt1.SetParameters(new ReportParameter("refno01", ""));
+
                 }
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00);")));
-                Rpt1.SetParameters(new ReportParameter("disamt", amtdis.ToString("#,##0.00;(#,##0.00);")));
-                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00);")));
+                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00); ")));
+                Rpt1.SetParameters(new ReportParameter("disamt", amtdis.ToString("#,##0.00;(#,##0.00); ")));
+                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00); ")));
                 Rpt1.SetParameters(new ReportParameter("nettotal", nettotalamt));
                 Rpt1.SetParameters(new ReportParameter("advamt", advamt));
                 Rpt1.SetParameters(new ReportParameter("discountdesc", discountdesc));
