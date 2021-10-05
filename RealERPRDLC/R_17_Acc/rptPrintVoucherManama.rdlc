@@ -159,7 +159,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -209,7 +209,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -259,7 +259,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -309,7 +309,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -359,7 +359,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -409,7 +409,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -459,7 +459,7 @@
                               <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
                               <Style>Solid</Style>
@@ -506,10 +506,10 @@
                           <rd:DefaultName>actcode</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -554,10 +554,10 @@
                           <rd:DefaultName>actdesc1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -602,10 +602,10 @@
                           <rd:DefaultName>Textbox3</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -650,10 +650,10 @@
                           <rd:DefaultName>Textbox4</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -698,10 +698,10 @@
                           <rd:DefaultName>Textbox5</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -746,10 +746,10 @@
                           <rd:DefaultName>Dr1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -794,10 +794,10 @@
                           <rd:DefaultName>Cr1</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>None</Style>
@@ -846,7 +846,7 @@
                           <rd:DefaultName>mactcode</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -892,7 +892,7 @@
                           <rd:DefaultName>actdesc</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -938,7 +938,7 @@
                           <rd:DefaultName>unit</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -984,7 +984,7 @@
                           <rd:DefaultName>trnqty</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -1030,7 +1030,7 @@
                           <rd:DefaultName>trnrat</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -1076,7 +1076,7 @@
                           <rd:DefaultName>Dr</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -1122,7 +1122,7 @@
                           <rd:DefaultName>Cr</rd:DefaultName>
                           <Style>
                             <Border>
-                              <Style>Solid</Style>
+                              <Style>None</Style>
                             </Border>
                             <TopBorder>
                               <Style>None</Style>
@@ -1147,11 +1147,11 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.3125in</Height>
+                  <Height>0.25in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox25">
+                        <Textbox Name="Textbox47">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1173,13 +1173,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <rd:DefaultName>Textbox47</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
                             <TopBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>Solid</Style>
@@ -1190,7 +1190,6 @@
                             <RightBorder>
                               <Style>None</Style>
                             </RightBorder>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1206,7 +1205,7 @@
                     <TablixCell />
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox36">
+                        <Textbox Name="Textbox52">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1217,6 +1216,7 @@
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1225,24 +1225,23 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox36</rd:DefaultName>
+                          <rd:DefaultName>Textbox52</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
                             <TopBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>Solid</Style>
                             </BottomBorder>
                             <LeftBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </LeftBorder>
                             <RightBorder>
                               <Style>None</Style>
                             </RightBorder>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1253,7 +1252,7 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox38">
+                        <Textbox Name="Textbox53">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -1264,6 +1263,7 @@
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1272,13 +1272,13 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox38</rd:DefaultName>
+                          <rd:DefaultName>Textbox53</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
                             </Border>
                             <TopBorder>
-                              <Style>None</Style>
+                              <Style>Solid</Style>
                             </TopBorder>
                             <BottomBorder>
                               <Style>Solid</Style>
@@ -1289,7 +1289,6 @@
                             <RightBorder>
                               <Style>Solid</Style>
                             </RightBorder>
-                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -1343,7 +1342,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.11979in</Top>
             <Left>0.06197in</Left>
-            <Height>1.10417in</Height>
+            <Height>1.04167in</Height>
             <Width>7.59338in</Width>
             <Style>
               <Border>
@@ -1380,7 +1379,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>InWrd</rd:DefaultName>
-            <Top>1.66772in</Top>
+            <Top>1.58022in</Top>
             <Left>0.06197in</Left>
             <Height>0.25in</Height>
             <Width>7.63in</Width>
@@ -1416,7 +1415,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>1.37188in</Top>
+            <Top>1.28438in</Top>
             <Left>0.06197in</Left>
             <Height>0.26041in</Height>
             <Width>7.63in</Width>
@@ -1689,7 +1688,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>2.06423in</Top>
+            <Top>1.97673in</Top>
             <Left>0.03698in</Left>
             <Height>0.88542in</Height>
             <Width>7.67999in</Width>
@@ -1720,7 +1719,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>printFooter</rd:DefaultName>
-            <Top>2.97882in</Top>
+            <Top>2.89132in</Top>
             <Left>0.05725in</Left>
             <Height>0.17847in</Height>
             <Width>7.63472in</Width>
@@ -1736,7 +1735,7 @@ Microsoft.VisualBasic.Strings.Left(First(Fields!vounum.Value, "DataSet1"), 2) = 
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>3.19008in</Height>
+        <Height>3.12758in</Height>
         <Style>
           <Border>
             <Style>None</Style>
