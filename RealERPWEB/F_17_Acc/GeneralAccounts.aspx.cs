@@ -809,6 +809,8 @@ namespace RealERPWEB.F_17_Acc
         {
 
             this.custom_lnkOk_Click(); // todo for keyboard enter key  tarik
+            this.columnVisibility();
+
 
         }
 
@@ -880,6 +882,8 @@ namespace RealERPWEB.F_17_Acc
                     this.txtCurrntlast6.Text = this.ddlPrivousVou.SelectedValue.ToString().Substring(8);
                     this.txtCurrntlast6.Enabled = false;
                     this.CalculatrGridTotal();
+
+
                 }
                 else
                 {
@@ -903,7 +907,7 @@ namespace RealERPWEB.F_17_Acc
                     if (ds4.Tables[0].Rows.Count == 0)
                         this.txtNarration.Text = "";
                     else
-                        this.txtNarration.Text = (comcod == "1103" || comcod=="3339") ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
+                        this.txtNarration.Text = (comcod == "1103" || comcod == "3339") ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
                     //---------------------
 
                     this.GetVouCherNumber();
@@ -1195,7 +1199,7 @@ namespace RealERPWEB.F_17_Acc
                     double dgTrnrate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvRate")).Text.Trim()));
                     double dgTrnDrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvDrAmt")).Text.Trim()));
                     double dgTrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[i].FindControl("txtgvCrAmt")).Text.Trim()));
-                    string dgTrnRemarks = ((Label)this.dgv1.Rows[i].FindControl("lblgvRemarks")).Text.Trim();
+                    string dgTrnRemarks = ((TextBox)this.dgv1.Rows[i].FindControl("txtgvRemarks")).Text.Trim();
                     string recndt = ((Label)this.dgv1.Rows[i].FindControl("lblrecndat")).Text;
                     string rpcode = ((Label)this.dgv1.Rows[i].FindControl("lblgvrpcode")).Text;
                     string billno1 = ((TextBox)this.dgv1.Rows[i].FindControl("lblgvBillno")).Text;
@@ -1214,7 +1218,7 @@ namespace RealERPWEB.F_17_Acc
                         ((TextBox)this.dgv1.Rows[i].FindControl("txtgvRate")).Text = dgTrnrate.ToString("#,##0.00;(#,##0.00); ");
                         ((TextBox)this.dgv1.Rows[i].FindControl("txtgvDrAmt")).Text = dgTrnDrAmt.ToString("#,##0.00;(#,##0.00); ");
                         ((TextBox)this.dgv1.Rows[i].FindControl("txtgvCrAmt")).Text = dgTrnCrAmt.ToString("#,##0.00;(#,##0.00); ");
-                        ((Label)this.dgv1.Rows[i].FindControl("lblgvRemarks")).Text = TrnRemarks;
+                        ((TextBox)this.dgv1.Rows[i].FindControl("txtgvRemarks")).Text = TrnRemarks;
                         ((TextBox)this.dgv1.Rows[i].FindControl("lblgvBillno")).Text = billno;
                         ((Label)this.dgv1.Rows[i].FindControl("lblgvcostcenter")).Text = sectcode;
 
@@ -1267,7 +1271,7 @@ namespace RealERPWEB.F_17_Acc
 
                 // New Row Add 
 
-                string aresbandspclcodetrnrmrks = sectcode + AccCode + ResCode + Billno + SpclCode+ TrnRemarks;
+                string aresbandspclcodetrnrmrks = sectcode + AccCode + ResCode + Billno + SpclCode + TrnRemarks;
                 DataRow[] drad = tblt01.Select("sectcode+actcode+subcode+billno+spclcode+trnrmrk='" + aresbandspclcodetrnrmrks + "'");
                 if (drad.Length == 0)
                 {
@@ -1425,6 +1429,8 @@ namespace RealERPWEB.F_17_Acc
             // ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
 
             this.CalculatrGridTotal();
+
+            //this.columnVisibility(); // show narration
         }
         protected void CalculatrGridTotal()
         {
@@ -1500,7 +1506,26 @@ namespace RealERPWEB.F_17_Acc
             double cramt = Convert.ToDouble("0" + ((TextBox)this.dgv1.FooterRow.FindControl("txtTgvCrAmt")).Text);
             string vouchertype = this.txtcurrentvou.Text == "" ? "" : this.txtcurrentvou.Text.Substring(0, 2);
             double txttoamt = Math.Abs((dramt - cramt));
-            this.lblInword.Text = (vouchertype == "JV") ? "" : (txttoamt > 0 ? ASTUtility.Trans(txttoamt, 2) : "");
+            this.lblInword.Text = (vouchertype == "JV") ? "" : (txttoamt > 0 ? ASTUtility.Trans(txttoamt, 2) : "");                 
+
+
+        }
+
+        private void columnVisibility()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3353":
+                    this.dgv1.Columns[14].Visible = true;
+                    break;
+                default:
+                    this.dgv1.Columns[14].Visible = false;
+                    break;
+            }
+          
+
         }
 
         protected void lnkTotal_Click(object sender, EventArgs e)
@@ -2000,7 +2025,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 //-----------//Update Transaction A Table//
-                string dtrnrmrks = ((Label)this.dgv1.Rows[0].FindControl("lblgvRemarks")).Text.Trim();
+                string dtrnrmrks = ((TextBox)this.dgv1.Rows[0].FindControl("txtgvRemarks")).Text.Trim();
                 for (int i = 0; i < dgv1.Rows.Count; i++)
                 {
                     string actcode = ((Label)this.dgv1.Rows[i].FindControl("lblAccCod")).Text.Trim();
@@ -2010,13 +2035,12 @@ namespace RealERPWEB.F_17_Acc
                     double Dramt = ASTUtility.StrPosOrNagative(((TextBox)this.dgv1.Rows[i].FindControl("txtgvDrAmt")).Text.Trim());
                     double Cramt = ASTUtility.StrPosOrNagative(((TextBox)this.dgv1.Rows[i].FindControl("txtgvCrAmt")).Text.Trim());
                     string trnamt = Convert.ToString(Dramt - Cramt);
-                    string trnremarks = ((Label)this.dgv1.Rows[i].FindControl("lblgvRemarks")).Text.Trim();
+                    string trnremarks = ((TextBox)this.dgv1.Rows[i].FindControl("txtgvRemarks")).Text.Trim();
                     trnremarks = (vounum.Substring(0, 2) == "JV" && dtrnrmrks.Contains("PBL")) ? dtrnrmrks : trnremarks;
                     string recndt = (this.Request.QueryString["Mod"] == "Accounts") ? ((cactcode.Substring(0, 4) == "1901") ? voudat : ((Label)this.dgv1.Rows[i].FindControl("lblrecndat")).Text.Trim()) : ((Label)this.dgv1.Rows[i].FindControl("lblrecndat")).Text.Trim();
                     string rpcode = ((Label)this.dgv1.Rows[i].FindControl("lblgvrpcode")).Text.Trim();
                     string billno = ((TextBox)this.dgv1.Rows[i].FindControl("lblgvBillno")).Text.Trim();
                     string sectcode = ((Label)this.dgv1.Rows[i].FindControl("lblgvcostcenter")).Text.Trim();
-
 
 
 
@@ -2710,7 +2734,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 HyperLink hlnkAccdesc1 = (HyperLink)e.Row.FindControl("hlnkAccdesc1");
 
-
+                TextBox tnrRemarks = (TextBox)e.Row.FindControl("txtgvRemarks");
 
                 string actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString();
                 string subcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "subcode")).ToString();
@@ -2733,6 +2757,21 @@ namespace RealERPWEB.F_17_Acc
 
 
                 }
+
+
+
+                //string comcod = this.GetCompCode();
+                //switch (comcod)
+                //{
+                //    case "3101":
+                //    case "3353":
+                //        tnrRemarks.ReadOnly = false;
+
+                //        break;
+                //    default:
+                //        tnrRemarks.ReadOnly = true;
+                //        break;
+                //}
 
             }
         }
@@ -2965,7 +3004,7 @@ namespace RealERPWEB.F_17_Acc
             string spclcode = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["spclcode"].ToString();
             string billno = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["billno"].ToString();
             string trnrmrk = ((DataTable)Session["tblvoucher"]).Rows[rowindex]["trnrmrk"].ToString();
-            DataRow[] dr2 = dt.Select("actcode = '" + actcode + "' and subcode='" + subcode + "' and billno='" + billno  + "' and trnrmrk='" + trnrmrk + "'");
+            DataRow[] dr2 = dt.Select("actcode = '" + actcode + "' and subcode='" + subcode + "' and billno='" + billno + "' and trnrmrk='" + trnrmrk + "'");
             string ResCode = "";
             if (dr2.Length > 0)
             {
@@ -2994,7 +3033,7 @@ namespace RealERPWEB.F_17_Acc
             double Dramt = Convert.ToDouble("0" + ((TextBox)this.dgv1.Rows[rowindex].FindControl("txtgvDrAmt")).Text.Trim());
             double Cramt = Convert.ToDouble("0" + ((TextBox)this.dgv1.Rows[rowindex].FindControl("txtgvCrAmt")).Text.Trim());
             string trnamt = Convert.ToString(Dramt - Cramt);
-            string trnremarks = ((Label)this.dgv1.Rows[rowindex].FindControl("lblgvRemarks")).Text.Trim();
+            string trnremarks = ((TextBox)this.dgv1.Rows[rowindex].FindControl("txtgvRemarks")).Text.Trim();
             string recndt = ((Label)this.dgv1.Rows[rowindex].FindControl("lblrecndat")).Text.Trim();
             string rpcode = ((Label)this.dgv1.Rows[rowindex].FindControl("lblgvrpcode")).Text.Trim();
             //string billno = ((TextBox)this.dgv1.Rows[rowindex].FindControl("lblgvBillno")).Text.Trim();
@@ -3068,7 +3107,7 @@ namespace RealERPWEB.F_17_Acc
             //bool resulta = false;
 
             if (vounum.Substring(0, 2) != "JV")
-             {
+            {
                 bool resulta = accData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, vounum, actcode1, subcode1, cactcode,
                                      voudat, qty, trnremarks, vtcode, trnamt, spclcode, recndt, rpcode, billno, userid, userdate, Terminal, actcodeold, rescodeold, "", "", "", "", "", "", "", "");
 
@@ -3087,13 +3126,13 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
-           
+
 
 
             this.dgv1.EditIndex = -1;
             Session["tblvoucher"] = HiddenSameData(dt);
             DataView dv = dt.DefaultView;
-         //  dv.Sort = "actcode,subcode,spclcode";
+            //  dv.Sort = "actcode,subcode,spclcode";
             dt = dv.ToTable();
             this.Data_Bind();
 

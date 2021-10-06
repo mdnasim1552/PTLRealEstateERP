@@ -2255,7 +2255,8 @@ namespace RealERPWEB.F_34_Mgt
                 //OreqApproved  =OreqEntry
                 //    FinalAppr//lblgvBalAmt txtgvQtamt
 
-                double balamt = Convert.ToDouble('0' + ((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
+
+                
                 string comcod = this.GetCompCode();
 
 
@@ -2265,6 +2266,7 @@ namespace RealERPWEB.F_34_Mgt
 
                 if (comcod == "3338" || comcod == "3101")
                 {
+                    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
                     if (Proamt > balamt)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Visible = true;
