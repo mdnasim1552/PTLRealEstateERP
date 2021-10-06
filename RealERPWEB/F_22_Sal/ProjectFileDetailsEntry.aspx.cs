@@ -47,11 +47,13 @@ namespace RealERPWEB.F_22_Sal
             this.ddlProject.DataValueField = "pactcode";
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
+            this.ShowProjFileInfo();
         }
         private void ShowProjFileInfo()
         {
             string comcod = GetCompCode();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPROJECTFILEINFO", "", "", "", "", "", "", "", "", "", "");
+            string pactcode = this.ddlProject.SelectedValue.ToString();
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPROJECTFILEINFO", pactcode, "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -69,12 +71,13 @@ namespace RealERPWEB.F_22_Sal
 
         protected void lbtnAdd_Click(object sender, EventArgs e)
         {
+            this.SaveValue();
             DataTable dt = (DataTable)Session["tblPrjFileInfo"];
             string pactode = this.ddlProject.SelectedValue.ToString();
             string pactdesc = this.ddlProject.SelectedItem.Text.Trim();
-            string txtFileNo = this.txtFileNo.Text;
+            string txtFileNo = this.txtFileNo.Text.Trim();
             string txtLocation = this.txtLocation.Text;
-            DataRow[] dr = dt.Select("pactcode='" + pactode + "'");
+            DataRow[] dr = dt.Select("pactcode='" + pactode + "' and fileno='"+ txtFileNo + "'");
             if(dr.Length==0)
             {
                 DataRow dr1 = dt.NewRow();
@@ -182,6 +185,34 @@ namespace RealERPWEB.F_22_Sal
             this.SaveValue();
             this.gvProjFileDet.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void lbtnOk_Click(object sender, EventArgs e)
+        {
+            if(this.lbtnOk.Text.Trim() == "Ok")
+            {
+                this.lbtnOk.Text = "New";
+                this.pnlAdd.Visible = true;
+                this.pnlGrid.Visible = true;
+                this.lblFileNo.Visible = true;
+                this.txtFileNo.Visible = true;
+                this.lblLocation.Visible = true;
+                this.txtLocation.Visible = true;
+                this.lbtnAdd.Visible = true;
+                this.ShowProjFileInfo();
+            }
+            else
+            {
+                this.pnlGrid.Visible = false;
+                this.pnlAdd.Visible = false;
+                this.lblFileNo.Visible = false;
+                this.txtFileNo.Visible = false;
+                this.lblLocation.Visible = false;
+                this.txtLocation.Visible = false;
+                this.lbtnAdd.Visible = false;
+                this.lbtnOk.Text = "Ok";
+                this.ShowProjFileInfo();
+            }
         }
     }
 }

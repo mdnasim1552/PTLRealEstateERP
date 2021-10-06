@@ -32,37 +32,9 @@ namespace RealERPWEB.F_23_CR
                     Response.Redirect("../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Voucher 360 <sup>0";
-                this.Master.Page.Title = "Voucher 360 <sup>0</sup>";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Money Receipt Top Sheet";
                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
-
-
-                HyperLink hyp1 = (HyperLink)this.HyperLinkTriBal as HyperLink;
-                if (this.GetCompCode() == "3339")
-                {
-                    hyp1.NavigateUrl = "~/F_32_Mis/ProjTrialBalanc.aspx?Type=PrjTrailBal3&prjcode=";
-                }
-                else
-                {
-                    hyp1.NavigateUrl = "~/F_32_Mis/ProjTrialBalanc.aspx?Type=PrjTrailBal&prjcode=";
-
-                }
-
-                if (this.GetCompCode() == "3336" || this.GetCompCode() == "3337")
-                {
-                    this.checkpb.Visible = true;
-                    this.withoutchqdate.Visible = true;
-
-
-                }
-                else
-                {
-                    this.checkpb.Visible = false;
-                }
-
 
                 this.lbtnOk_Click(null, null);
 
@@ -91,11 +63,9 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string voutype = this.ddlvoucher.SelectedValue.ToString();
             string refnum = "%" + this.txtrefno.Text.Trim() + "%";
 
-
-            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "RPTACCOUNTTOPSHEET", frmdate, todate, voutype, refnum, "", "", "", "", "", "");
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTMONEYRECEIPTTOPSHEET", frmdate, todate, refnum, "", "", "", "", "", "");
             if (ds1 == null)
             {
                 this.gvAccVoucher.DataSource = null;
@@ -114,61 +84,11 @@ namespace RealERPWEB.F_23_CR
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblunposted"];
-
-
             this.gvAccVoucher.DataSource = dt;
             this.gvAccVoucher.DataBind();
             this.FooterCalCulation();
-            this.VoucherUsrSumm();
-            this.VoucherCount();
-
-
-
-
         }
 
-        private void VoucherUsrSumm()
-        {
-            DataTable dt2 = (DataTable)Session["tblusrvoucount"];
-
-
-            if (dt2.Rows.Count == 0)
-                return;
-
-            this.gvvoucountsum.DataSource = dt2;
-            this.gvvoucountsum.DataBind();
-
-            ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFpdc")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(pdcvou)", "")) ?
-           0 : dt2.Compute("sum(pdcvou)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFCash")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(cashvou)", "")) ?
-          0 : dt2.Compute("sum(cashvou)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFBank")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(bankvou)", "")) ?
-          0 : dt2.Compute("sum(bankvou)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFContra")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(contravou)", "")) ?
-          0 : dt2.Compute("sum(contravou)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFJour")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(jourvou)", "")) ?
-          0 : dt2.Compute("sum(jourvou)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvvoucountsum.FooterRow.FindControl("lgvFTotalvou")).Text = Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(tonum)", "")) ?
-          0 : dt2.Compute("sum(tonum)", ""))).ToString("#,##0;(#,##0); ");
-
-
-        }
-
-        private void VoucherCount()
-        {
-
-            DataTable dt1 = (DataTable)Session["tblvoucount"];
-            if (dt1.Rows.Count == 0)
-                return;
-
-            this.pnlvouCount.Visible = true;
-            this.lbltoCashVoucher.Text = Convert.ToDouble(dt1.Rows[0]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            this.lbltoBankVoucher.Text = Convert.ToDouble(dt1.Rows[1]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            this.lbltoContraVoucher.Text = Convert.ToDouble(dt1.Rows[2]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            this.lbltoJournalVoucher.Text = Convert.ToDouble(dt1.Rows[3]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            this.lbltoPdcVoucher.Text = Convert.ToDouble(dt1.Rows[4]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-            this.lbltotalvoucher.Text = Convert.ToDouble(dt1.Rows[5]["tonum"]).ToString("#, #,#0; (#, #,#0); ");
-        }
         private void FooterCalCulation()
         {
             DataTable dt = (DataTable)Session["tblunposted"];
@@ -195,7 +115,6 @@ namespace RealERPWEB.F_23_CR
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string userinfo = ASTUtility.Concat(compname, username, printdate);
-            string vouType = this.ddlvoucher.SelectedItem.Text.ToString();
             DataTable dt = (DataTable)Session["tblunposted"];
             DataTable dt2 = (DataTable)Session["tblusrvoucount"];
 
@@ -207,13 +126,13 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "All Voucher Top Sheet"));
             Rpt1.SetParameters(new ReportParameter("txtDate", "From " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("vouType", "Type: " + vouType));
-            Rpt1.SetParameters(new ReportParameter("vouPDC", this.lbltoPdcVoucher.Text));
-            Rpt1.SetParameters(new ReportParameter("vouCash", this.lbltoCashVoucher.Text));
-            Rpt1.SetParameters(new ReportParameter("vouBank", this.lbltoBankVoucher.Text));
-            Rpt1.SetParameters(new ReportParameter("vouContra", this.lbltoContraVoucher.Text));
-            Rpt1.SetParameters(new ReportParameter("vouJournal", this.lbltoJournalVoucher.Text));
-            Rpt1.SetParameters(new ReportParameter("vouTotal", this.lbltotalvoucher.Text));
+            //Rpt1.SetParameters(new ReportParameter("vouType", "Type: " + vouType));
+            //Rpt1.SetParameters(new ReportParameter("vouPDC", this.lbltoPdcVoucher.Text));
+            //Rpt1.SetParameters(new ReportParameter("vouCash", this.lbltoCashVoucher.Text));
+            //Rpt1.SetParameters(new ReportParameter("vouBank", this.lbltoBankVoucher.Text));
+            //Rpt1.SetParameters(new ReportParameter("vouContra", this.lbltoContraVoucher.Text));
+            //Rpt1.SetParameters(new ReportParameter("vouJournal", this.lbltoJournalVoucher.Text));
+            //Rpt1.SetParameters(new ReportParameter("vouTotal", this.lbltotalvoucher.Text));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", userinfo));
 
@@ -228,46 +147,23 @@ namespace RealERPWEB.F_23_CR
             {
 
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkVoucherEdit");
-                HyperLink hlnkPrintVoucher = (HyperLink)e.Row.FindControl("hlnkVoucherPrint");
-                HyperLink hlnkChequePrint = (HyperLink)e.Row.FindControl("hlnkChequePrint");
+                HyperLink hlnkPrintVoucher = (HyperLink)e.Row.FindControl("hlnkMoneyRcptPrint");
                 string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
                 string vounum1 = vounum.Substring(0, 2);
-
-                string paytype = this.ChboxPayee.Checked ? "0" : "1";
 
                 string cquepbl = (this.checkpb.Checked) == false ? "0" : "1";
                 string woutchqdat = (this.withoutchqdate.Checked) ? "1" : "0";
 
-
-
                 if (this.checkpb.Checked == true)
                 {
                     hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
-                    hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
-                    if (vounum1 == "BD" || vounum1 == "CT")
-                    {
-                        hlnkChequePrint.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=AccCheque&vounum=" + vounum + "&paytype=" + paytype + "&pbl=" + cquepbl + "&woutchqdat=" + woutchqdat;
-                    }
-                    else
-                    {
-                        hlnkChequePrint.Visible = false;
-                    }
+                    hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;                   
                 }
-
-
 
                 else
                 {
                     hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
-                    hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
-                    if (vounum1 == "BD" || vounum1 == "CT")
-                    {
-                        hlnkChequePrint.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=AccCheque&vounum=" + vounum + "&paytype=" + paytype + "&pbl=" + cquepbl + "&woutchqdat=" + woutchqdat;
-                    }
-                    else
-                    {
-                        hlnkChequePrint.Visible = false;
-                    }
+                    hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;                    
                 }
 
 
@@ -355,8 +251,6 @@ namespace RealERPWEB.F_23_CR
         protected void lbtnVoucherApp_Click(object sender, EventArgs e)
         {
 
-
-
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             DataTable dt = (DataTable)Session["tblunposted"];
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
@@ -408,8 +302,6 @@ namespace RealERPWEB.F_23_CR
             //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             //int index = row.RowIndex;
 
-
-
             //((Label)this.Master.FindControl("lblmsg")).Visible = true;
             //Hashtable hst = (Hashtable)Session["tblLogin"];
             //string comcod = this.GetCompCode();
@@ -425,8 +317,6 @@ namespace RealERPWEB.F_23_CR
             //    return;
 
             //}
-
-
 
             //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             //this.Data_Bind();
@@ -474,39 +364,6 @@ namespace RealERPWEB.F_23_CR
                 ViewState["directionState"] = value;
             }
         }
-
-        protected void ChboxPayee_CheckedChanged(object sender, EventArgs e)
-        {
-
-
-            // this.Data_Bind();
-
-            foreach (GridViewRow gv1 in gvAccVoucher.Rows)
-            {
-                string vounum = ((Label)gv1.FindControl("lblvounumh")).Text.Trim();
-                HyperLink hlink1 = (HyperLink)gv1.FindControl("hlnkVoucherEdit");
-                HyperLink hlnkPrintVoucher = (HyperLink)gv1.FindControl("hlnkVoucherPrint");
-                HyperLink hlnkChequePrint = (HyperLink)gv1.FindControl("hlnkChequePrint");
-                string vounum1 = vounum.Substring(0, 2);
-                string paytype = this.ChboxPayee.Checked ? "0" : "1";
-                string cquepbl = (this.checkpb.Checked) == false ? "0" : "1";
-                string woutchqdat = (this.withoutchqdate.Checked) ? "1" : "0";
-
-                hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
-                hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
-                if (vounum1 == "BD")
-                {
-                    hlnkChequePrint.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=AccCheque&vounum=" + vounum + "&paytype=" + paytype + "&woutchqdat=" + woutchqdat + "&pbl=" + cquepbl;
-                }
-                else
-                {
-                    hlnkChequePrint.Visible = false;
-                }
-            }
-        }
-
-
-
         protected void withoutchqdate_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -517,20 +374,11 @@ namespace RealERPWEB.F_23_CR
                 HyperLink hlnkPrintVoucher = (HyperLink)gv1.FindControl("hlnkVoucherPrint");
                 HyperLink hlnkChequePrint = (HyperLink)gv1.FindControl("hlnkChequePrint");
                 string vounum1 = vounum.Substring(0, 2);
-                string paytype = this.ChboxPayee.Checked ? "0" : "1";
                 string cquepbl = (this.checkpb.Checked) == false ? "0" : "1";
                 string woutchqdat = (this.withoutchqdate.Checked) ? "1" : "0";
 
                 hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
-                hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
-                if (vounum1 == "BD")
-                {
-                    hlnkChequePrint.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=AccCheque&vounum=" + vounum + "&paytype=" + paytype + "&woutchqdat=" + woutchqdat + "&pbl=" + cquepbl;
-                }
-                else
-                {
-                    hlnkChequePrint.Visible = false;
-                }
+                hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;               
             }
 
         }

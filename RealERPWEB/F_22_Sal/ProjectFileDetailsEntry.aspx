@@ -46,28 +46,16 @@
                                     <asp:Label ID="lblProjCode" runat="server" Text="Project Code:" Style="font-weight: bold;"></asp:Label>
                                 </div>
                                 <div class="col-md-2">
-                                    <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select form-control" Style="width: 230px;"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select" Style="width: 230px;"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-1 ml-5">
+                                    <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                                 </div>
                                 <div class="col-md-1">
-                                    <asp:Label ID="lblFileNo" runat="server" Text="File No:" Style="font-weight: bold; float: right;"></asp:Label>
-                                </div>
-                                <div class="col-md-2">
-                                    <asp:TextBox ID="txtFileNo" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:Label ID="lblPage" runat="server"  Font-Bold="True" Text="Page Size:"></asp:Label>
                                 </div>
                                 <div class="col-md-1">
-                                    <asp:Label ID="lblLocation" runat="server" Text="File Location:" Style="font-weight: bold; float: right;"></asp:Label>
-                                </div>
-                                <div class="col-md-2">
-                                    <asp:TextBox ID="txtLocation" runat="server" CssClass="form-control"></asp:TextBox>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-primary" OnClick="lbtnAdd_Click">Add</asp:LinkButton>
-                                </div>
-                                <div class="col-md-1 mr-0">                                    
-                                    <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to" Font-Bold="True" Text="Page Size:"></asp:Label>
-                                </div>
-                                <div class="col-md-1 ml-0">
-                                    <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
                                         <asp:ListItem Value="10">10</asp:ListItem>
                                         <asp:ListItem Value="15">15</asp:ListItem>
                                         <asp:ListItem Value="20">20</asp:ListItem>
@@ -82,65 +70,90 @@
                             </div>
                         </div>
                     </div>
-                    <asp:GridView ID="gvProjFileDet" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        AutoGenerateColumns="False" ShowFooter="True" Width="16px" AllowPaging="True" PageSize="2" OnPageIndexChanging="gvProjFileDet_PageIndexChanging">
-                        <PagerSettings Visible="True" Mode="NumericFirstLast" />
-                        <RowStyle />
-                        <Columns>
-                            <asp:TemplateField HeaderText="Sl.No.">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
-                                        Style="text-align: right"
-                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText=" Code" Visible="false">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvProjCode" runat="server" Height="16px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
-                                        Width="80px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Right" />
-                            </asp:TemplateField>
-                            <asp:TemplateField>
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="lbtngvDelete" runat="server" Font-Bold="True" CssClass=" btn btn-xs" OnClick="lbtngvDelete_Click"><i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Right" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Project Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvProjDesc" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
-                                        Width="350px"></asp:Label>
-                                </ItemTemplate>
-                                <FooterTemplate>
-                                    <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True" CssClass=" btn  btn-danger primarygrdBtn" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
-                                </FooterTemplate>
-                                <FooterStyle HorizontalAlign="Left" />
-                                <HeaderStyle HorizontalAlign="Left" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="File No">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txtgvFileNo" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fileno")) %>'
-                                        Width="120px"></asp:TextBox>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="File Location">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txtgvLocation" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "location")) %>'
-                                        Width="150px"></asp:TextBox>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                        <FooterStyle BackColor="#e6c8d0" />
-                        <EditRowStyle />
-                        <AlternatingRowStyle />
-                        <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="40px" HorizontalAlign="Center" />
-                    </asp:GridView>
+                    <asp:Panel ID="pnlAdd" runat="server" Visible="false">
+                        <div class="card card-fluid">
+                            <div class="card-body pl-0">
+                                <div class="row mb-2">
+                                    <div class="col-md-1">
+                                        <asp:Label ID="lblFileNo" runat="server" Text="File No:" Style="font-weight: bold;"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:TextBox ID="txtFileNo" runat="server"  Style="width: 230px;"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1 ml-5">
+                                        <asp:Label ID="lblLocation" runat="server" Text="File Location:" Style="font-weight: bold; float: right;"></asp:Label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:TextBox ID="txtLocation" runat="server"  Style="width: 230px;"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-1 ml-5">
+                                        <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnAdd_Click">Add</asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlGrid" runat="server" Visible="false">
+                        <asp:GridView ID="gvProjFileDet" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
+                            AutoGenerateColumns="False" ShowFooter="True" Width="16px" AllowPaging="True" PageSize="2" OnPageIndexChanging="gvProjFileDet_PageIndexChanging">
+                            <PagerSettings Visible="True" Mode="NumericFirstLast" />
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvSlNo" runat="server" Height="16px"
+                                            Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText=" Code" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvProjCode" runat="server" Height="16px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
+                                            Width="80px"></asp:Label>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtngvDelete" runat="server" Font-Bold="True" CssClass=" btn btn-xs" OnClick="lbtngvDelete_Click"><i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Project Name">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvProjDesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactdesc")) %>'
+                                            Width="350px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True" CssClass=" btn  btn-danger primarygrdBtn" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
+                                    </FooterTemplate>
+                                    <FooterStyle HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Left" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="File No">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvFileNo" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fileno")) %>'
+                                            Width="120px"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="File Location">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvLocation" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "location")) %>'
+                                            Width="150px"></asp:TextBox>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle BackColor="#e6c8d0" Height="30px" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="40px" HorizontalAlign="Center" />
+                        </asp:GridView>
+                    </asp:Panel>
                 </div>
             </div>
         </ContentTemplate>
