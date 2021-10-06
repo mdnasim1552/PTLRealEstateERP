@@ -316,6 +316,10 @@ namespace RealERPWEB.F_17_Acc
                 //-----------Update Transaction B Table-----------------//
                 bool resultb = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", vounum, voudat, refnum, srinfo,
                         vounarration1, vounarration2, voutype, vtcode, edit, userid, Terminal, Sessionid, Postdat, "", "");
+               
+                
+                
+                
                 if (!resultb)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();

@@ -939,21 +939,20 @@
                                     <!-- child menu -->
                                     <ul class="menu" runat="server" id="dbGraph">
                                         <li class="menu-item">
-                                            <a href="F_34_Mgt/RptAllDashboard?Type=Purchase" target="_blank" class="menu-link">Purchase</a>
+                                            <a href="<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Purchase") %>" target="_blank" class="menu-link">Purchase</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="F_34_Mgt/RptAllDashboard?Type=Accounts" target="_blank" class="menu-link">Accounts</a>
+                                            <a href="<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Accounts") %>" target="_blank" class="menu-link">Accounts</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="F_34_Mgt/RptAllDashboard?Type=Sales" target="_blank" class="menu-link">Sales</a>
+                                            <a href="<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Sales") %>" target="_blank" class="menu-link">Sales</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="F_34_Mgt/RptAllDashboard?Type=Construction" target="_blank" class="menu-link">Construction</a>
+                                            <a href="<%= ResolveUrl("~/F_34_Mgt/RptAllDashboard?Type=Construction") %>" target="_blank" class="menu-link">Construction</a>
                                         </li>
 
-
                                         <li class="menu-item">
-                                            <a href="F_32_Mis/ProjectAnalysis?Type=Report&comcod=" target="_blank" class="menu-link">Multi Project</a>
+                                            <a  href="<%= ResolveUrl("~/F_32_Mis/ProjectAnalysis?Type=Report&comcod=") %>" target="_blank" class="menu-link">Multi Project</a>
                                         </li>
                                         <li class="menu-item">
                                             <a runat="server" id="PrjSummary" class="menu-link">Project Summary</a>

@@ -121,7 +121,8 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             string fdate = this.txtfromdate.Text;
             string tdate = this.txttodate.Text;
-            string Type = (this.Request.QueryString["Type"] == "HonourBasis") ? "HonourBasis" : "";
+            string Type = ddlVaule.SelectedValue.ToString();
+            //string Type = (this.Request.QueryString["Type"] == "HonourBasis") ? "HonourBasis" : "";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS", "RPTOPPAYMENT", fdate, tdate, Type, "", "", "", "", "", "");
             if (ds1 == null)
             {
@@ -176,14 +177,14 @@ namespace RealERPWEB.F_17_Acc
                     this.gvtbOpPay.DataSource = dt;
                     this.gvtbOpPay.DataBind();
                     Session["Report1"] = gvtbOpPay;
-                    //  ((HyperLink)this.gvtbOpPay.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvtbOpPay.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
                 case 1:
                     //this.gvtbOpDep.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvtbOpDep.DataSource = dt;
                     this.gvtbOpDep.DataBind();
                     Session["Report1"] = gvtbOpDep;
-                    //   ((HyperLink)this.gvtbOpDep.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    ((HyperLink)this.gvtbOpDep.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
             }
         }
@@ -396,8 +397,14 @@ namespace RealERPWEB.F_17_Acc
                     Amount.Style.Add("text-align", "Left");
                 }
 
+                else if(code== "0000AAA" || code == "0000BBB")
+                {
+                    
+                    actdesc.Attributes["style"] = "font-weight:bold; color:maroon;";
+                }
 
-                else if (code == "AAAAAAA")
+
+                else if (code == "AAAAAAA" || code == "BBBBBBB")
                 {
                     actdesc.Font.Bold = true;
                     Amount1.Font.Bold = true;

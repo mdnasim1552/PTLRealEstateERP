@@ -436,7 +436,7 @@
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="Center">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="gvtxtQty" runat="server" BackColor="Transparent" BorderColor="Transparent"
-                                                    BorderStyle="None" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    BorderStyle="None" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                     Width="60px" Style="text-align: right;"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />

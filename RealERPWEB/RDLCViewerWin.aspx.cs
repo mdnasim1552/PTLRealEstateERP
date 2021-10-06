@@ -84,6 +84,9 @@ namespace RealERPWEB
 
             byte[] bytes = rt.Render(reportType, deviceInfo, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
             Response.Clear();
+
+           // Response.ContentEncoding = System.Text.Encoding.UTF8;  //Uni Code
+          //  Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());//Uni Code
             Response.Buffer = true;
             Response.ContentType = "Application/pdf";
             Response.BinaryWrite(bytes);

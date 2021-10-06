@@ -92,11 +92,12 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 case "3352": //p2p 360
-                             //case "3101": //Asit
+                //case "3101": //Asit
                     this.gvPayment.Columns[5].Visible = true;
                     this.gvPayment.Columns[6].Visible = true;
                     this.gvPayment.Columns[7].Visible = true;
-                    this.gvPayment.Columns[16].Visible = true;
+                    this.gvSpayment.Columns[16].Visible = true;
+
                     break;
 
                 default:
@@ -419,7 +420,7 @@ namespace RealERPWEB.F_22_Sal
                     this.chkAddIns.Visible = true;
                     ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = true;
 
-                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348")
+                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod=="3349")
                     {
 
                     }

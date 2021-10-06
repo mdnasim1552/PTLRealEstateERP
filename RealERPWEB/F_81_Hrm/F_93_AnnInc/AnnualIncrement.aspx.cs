@@ -662,5 +662,40 @@ namespace RealERPWEB.F_81_Hrm.F_93_AnnInc
 
         }
 
+        protected void btnIncreEmp_Click(object sender, EventArgs e)
+        {
+
+            int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string comcod = this.GetComeCode();
+            DataTable dt = (DataTable)Session["tblAnnInc"];
+            //string incno = this.lblCurIncrNo.Text.ToString().Trim().Substring(0, 3) + cutdate.Substring(7, 4) + this.lblCurIncrNo.Text.ToString().Trim().Substring(3, 2) + this.txtCurIncrNo.Text.ToString().Trim();
+
+           // this.txtdate.Text
+            string incno = this.lblCurIncrNo.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtdate.Text.Trim()), 4) + this.lblCurIncrNo.Text.Trim().Substring(3, 2) + this.txtCurIncrNo.Text.Trim();     
+            string empid = ((Label)this.gvAnnIncre.Rows[rownum].FindControl("lgvEmpId")).Text.Trim();
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ANNUAL_INCREMENT", "INCREMENTEMPLOYEEDELETE",
+                       incno, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result)
+            {
+                dt.Rows[rownum].Delete();
+            }
+
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail !!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
+
+
+
+
+            DataView dv = dt.DefaultView;
+            Session.Remove("tblAnnInc");
+            Session["tblAnnInc"] = dv.ToTable();
+            this.LoadGrid();
+        }
     }
 }

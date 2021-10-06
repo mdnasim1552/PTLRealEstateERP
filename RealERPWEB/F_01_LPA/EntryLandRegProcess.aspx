@@ -162,7 +162,8 @@
 
                                                             <asp:HyperLink ID="HyperLink11" runat="server" Target="_blank" NavigateUrl="~/F_04_Bgd/BgdMaster.aspx?InputType=BgdMain&prjcode=" CssClass="dropdown-item" Style="padding: 0 10px">Budget-General</asp:HyperLink>
                                                             <asp:HyperLink ID="HyperLink12" runat="server" Target="_blank" NavigateUrl="~/F_99_Allinterface/RptEngInterface" CssClass="dropdown-item" Style="padding: 0 10px">General Bill </asp:HyperLink>
-                                                            <asp:HyperLink ID="HyperLink13" runat="server" Target="_blank" NavigateUrl="~/F_15_DPayReg/BillRegInterface?Type=Report" CssClass="dropdown-item" Style="padding: 0 10px">Bill Register</asp:HyperLink>
+                                                            <asp:HyperLink ID="HyperLink10" runat="server" Target="_blank" NavigateUrl="~/F_15_DPayReg/BillRegInterface?Type=Report" CssClass="dropdown-item" Style="padding: 0 10px">Bill Register</asp:HyperLink>
+                                                            <asp:HyperLink ID="hlnk" runat="server" Target="_blank" NavigateUrl="~/F_01_LPA/LandSearch" CssClass="dropdown-item" Style="padding: 0 10px">Search(Khotian)</asp:HyperLink>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -254,7 +255,7 @@
                                                                 </asp:TemplateField>
 
 
-                                                                <asp:TemplateField HeaderText="Unit" Visible="false">
+                                                                <asp:TemplateField HeaderText="Unit" >
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lgudesc01" runat="server"
                                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>'
@@ -269,7 +270,7 @@
                                                                     </FooterTemplate>
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lgvbudgetqty" runat="server"
-                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                                             Width="70px"></asp:Label>
                                                                     </ItemTemplate>
                                                                     <FooterStyle HorizontalAlign="Right" />
@@ -281,7 +282,7 @@
 
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lgvbudgetrate" runat="server"
-                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0;(#,##0); ") %>'
                                                                             Width="60px"></asp:Label>
                                                                     </ItemTemplate>
                                                                     <HeaderStyle HorizontalAlign="Center" />
@@ -308,14 +309,14 @@
 
 
 
-                                                                <asp:TemplateField HeaderText="Payable <br> Qty">
+                                                                <asp:TemplateField HeaderText="Purchase <br> Qty">
                                                                     <FooterTemplate>
                                                                         <asp:Label ID="lgvFactualqty" runat="server" Font-Bold="True" Font-Size="12px"
                                                                             ForeColor="Black" Style="text-align: right"></asp:Label>
                                                                     </FooterTemplate>
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lgvactualqty" runat="server"
-                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                                             Width="60px"></asp:Label>
                                                                     </ItemTemplate>
                                                                     <HeaderStyle HorizontalAlign="Center" />
@@ -324,11 +325,11 @@
                                                                     <FooterStyle HorizontalAlign="Right" />
                                                                 </asp:TemplateField>
 
-                                                                <asp:TemplateField HeaderText="Payable <br> Rate">
+                                                                <asp:TemplateField HeaderText="Purchase <br> Rate">
 
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lgvactualrate" runat="server"
-                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrat")).ToString("#,##0;(#,##0); ") %>'
                                                                             Width="60px"></asp:Label>
                                                                     </ItemTemplate>
                                                                     <HeaderStyle HorizontalAlign="Center" />

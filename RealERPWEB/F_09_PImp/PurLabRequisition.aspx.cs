@@ -17,6 +17,7 @@ using RealERPLIB;
 using RealERPRPT;
 using RealEntity;
 using System.IO;
+using System.Drawing;
 
 namespace RealERPWEB.F_09_PImp
 {
@@ -51,6 +52,11 @@ namespace RealERPWEB.F_09_PImp
                     this.ddlPrevISSList.SelectedValue = this.Request.QueryString["genno"].ToString();
                     this.lbtnOk_Click(null, null);
                 }
+                if (Request.QueryString.AllKeys.Contains("msrno"))
+                {
+                    this.pannelHide();
+                    this.getPreviousMSR();
+                }
 
             }
         }
@@ -63,6 +69,18 @@ namespace RealERPWEB.F_09_PImp
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+        private void pannelHide()
+        {
+            //Panel3
+            string msrno = this.Request.QueryString["genno"].ToString();
+            string msrno1 = msrno.Substring(0, 3);
+            if (msrno1 == "MSC")
+            {
+                this.Panel3.Visible = false;
+            }
+
 
         }
 
@@ -168,6 +186,8 @@ namespace RealERPWEB.F_09_PImp
             string lisuno = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
             string pactcode = this.ddlprjlist.SelectedValue.ToString();
 
+            this.printP2P_cs_approval();
+
             ////string url ="~/F_99_Allinterface/";
             //string url =  HttpContext.Current.Request.Url.Authority + "//F_99_Allinterface/";
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open(' " + url + "PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode
@@ -180,14 +200,191 @@ namespace RealERPWEB.F_09_PImp
             //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 
             //lnkbtnPrint.NavigateUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode;
-
+            
+            /*
             string currentptah = this.ResolveUrl("~/F_99_Allinterface/PurchasePrint.aspx?Type=SubConBillReq&lisuno=" + lisuno + "&pactcode=" + pactcode);
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + currentptah + "', target='_blank');</script>";
-
+            */
 
         }
 
 
+        protected void printP2P_cs_approval()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string comments = this.txtISSNarr.Text.Trim();
+            string mMSRNo = "";
+            if (Request.QueryString.AllKeys.Contains("msrno"))
+            {
+                mMSRNo = Request.QueryString["msrno"].ToString();
+            }
+            else
+            {
+                DataTable dt = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+            }
+
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            LocalReport Rpt1 = new LocalReport();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEYP02PCSApproval", mMSRNo, CurDate1, "", "", "", "", "", "", "");
+
+            string Projectname = "";
+            string Projectlocat = "";
+            string Username = "";
+            string userdesig = "";
+            string rsirdesc = "";
+
+            if (ds1.Tables[3].Rows.Count > 0)
+            {
+                Projectname = ds1.Tables[3].Rows[0]["pactdesc"].ToString();
+                Projectlocat = ds1.Tables[3].Rows[0]["projectadd"].ToString();
+                Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
+                userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
+                rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+            }
+
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
+            var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
+
+            string reqinfo = ds1.Tables[3].Rows[0]["reqno"].ToString();
+            string csinfo = ds1.Tables[2].Rows[0]["msrno"].ToString() + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
+
+
+            if (lst1.Count == 5)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P05", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+
+            else if (lst1.Count == 4)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P02", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+
+
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP_2_P", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+
+                    i++;
+
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "','');</script>";
+
+
+        }
+
+        //protected string GetStdDate(string Date1)
+        //{
+        //    Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
+        //    string[] moth1 = { "XXX", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+        //    Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
+        //    return Date1;
+        //}
 
 
         protected void lbtnPrevISSList_Click(object sender, EventArgs e)
@@ -350,6 +547,15 @@ namespace RealERPWEB.F_09_PImp
 
                 //this.grvissue_DataBind();
                 return;
+            }
+            if (this.Request.QueryString["Type"]== "CSApproval")
+            {
+                DataTable dt = (DataTable)ViewState["tblbillreq"];
+                foreach(DataRow dr1 in dt.Rows)
+                {
+                    dr1["csircode"] = this.Request.QueryString["recomsup"].ToString();
+                }
+                ViewState["tblbillreq"] = dt;
             }
 
             this.lblfloorno.Visible = true;
@@ -664,7 +870,7 @@ namespace RealERPWEB.F_09_PImp
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
 
-
+            this.lnkTotal_Click(null, null);
 
 
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
@@ -684,6 +890,7 @@ namespace RealERPWEB.F_09_PImp
             string usrid = hst["usrid"].ToString();
             string Sessionid = hst["session"].ToString();
             string trmid = hst["compname"].ToString();
+            string date1 = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
             this.SaveValue();
             DataTable tbl2 = (DataTable)ViewState["tblbillreq"];
@@ -699,10 +906,11 @@ namespace RealERPWEB.F_09_PImp
 
             string mISUDAT = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString();
             string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
-            string mCONCODE = "";
             string mISURNAR = this.txtISSNarr.Text.Trim();
 
             string trade = this.ddltrade.SelectedValue.ToString();
+
+
 
 
 
@@ -713,6 +921,19 @@ namespace RealERPWEB.F_09_PImp
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
+            if(Request.QueryString["Type"]== "Entry")
+            {
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "CHECK_DUPLICATE_BILL_REF", Refno, "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref No";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+            }
+
+
+          
             //string appxml = tbl2.Rows[0]["approval"].ToString();
 
 
@@ -755,13 +976,25 @@ namespace RealERPWEB.F_09_PImp
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                     return;
                 }
-
-
-
                 // if (Isuqty > 0)
+            }
 
+            if(Request.QueryString["Type"] == "CSApproval" && result)
+            {
+                string msrno = Request.QueryString["msrno"].ToString() == "" ? "" : Request.QueryString["msrno"].ToString();
+                string prjcode = Request.QueryString["prjcode"].ToString() == "" ? "" : Request.QueryString["prjcode"].ToString();
+
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_BILLMGT02", "UPDATEPURMSRCONAINFO", msrno, prjcode, usrid, Sessionid, trmid, date1, "", "");
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
 
             }
+
+
             this.txtCurISSDate.Enabled = false;
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
@@ -799,7 +1032,7 @@ namespace RealERPWEB.F_09_PImp
                 // double balamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.grvissue.Rows[i].FindControl("lblbalamt")).Text.Trim()));
 
                 double amount = ASTUtility.StrPosOrNagative(((TextBox)this.grvissue.Rows[i].FindControl("txtgvamount")).Text.Trim());
-                string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString(); ;
+                string csircode = ((DropDownList)this.grvissue.Rows[i].FindControl("DdlContractor")).SelectedValue.ToString();
                 CheckBox approve = (CheckBox)this.grvissue.Rows[i].FindControl("gvCheckBoxAppve");
 
                 bool aprvstatus = false;
@@ -945,6 +1178,14 @@ namespace RealERPWEB.F_09_PImp
                 dlist.DataSource = dt;
                 dlist.DataBind();
                 dlist.SelectedValue = contractor;
+                //string recom = "";
+                //if (Request.QueryString.AllKeys.Contains("mykey")){
+                //    recom = this.Request.QueryString["recomsup"].ToString() ?? "";
+                //}
+
+                //dlist.SelectedValue = Request.QueryString.AllKeys.Contains("recomsup") ? this.Request.QueryString["recomsup"].ToString() : contractor;
+
+
 
                 bool aprovestatus = Convert.ToBoolean(DataBinder.Eval(e.Row.DataItem, "approve"));
                 CheckBox approve = (CheckBox)e.Row.FindControl("gvCheckBoxAppve");
@@ -960,6 +1201,212 @@ namespace RealERPWEB.F_09_PImp
 
 
             }
+        }
+
+        private void getPreviousMSR()
+        {
+
+            string comcod = this.GetCompCode();
+            string CurDate1 = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string mMSRNo = this.Request.QueryString["msrno"].ToString() == "" ? "" : this.Request.QueryString["msrno"].ToString();
+            string lreqno = this.Request.QueryString["genno"].ToString() == "" ? "" : this.Request.QueryString["genno"].ToString();
+            string prjcode = this.Request.QueryString["prjcode"].ToString() == "" ? "" : this.Request.QueryString["prjcode"].ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURMSRINFO1CON", mMSRNo, CurDate1,
+                          lreqno, prjcode, "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblt01"] = ds1.Tables[1];
+            Session["tblt02"] = this.HiddenSameData(ds1.Tables[2]);
+            Session["tblterm"] = ds1.Tables[3];
+            Session["tblcsirdesc"] = ds1.Tables[5];
+
+
+            this.gvMSRInfo_DataBind();
+            this.Payterm_DataBind();
+
+
+        }
+
+        protected void gvMSRInfo2_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                TextBox txtrate1 = (TextBox)e.Row.FindControl("txtrate1");
+                TextBox txtrate2 = (TextBox)e.Row.FindControl("txtrate2");
+                TextBox txtrate3 = (TextBox)e.Row.FindControl("txtrate3");
+                TextBox txtrate4 = (TextBox)e.Row.FindControl("txtrate4");
+                TextBox txtrate5 = (TextBox)e.Row.FindControl("txtrate5");
+
+
+                Label txtamt1 = (Label)e.Row.FindControl("lblgvAmount1");
+                Label txtamt2 = (Label)e.Row.FindControl("lblgvAmount2");
+                Label txtamt3 = (Label)e.Row.FindControl("lblgvAmount3");
+                Label txtamt4 = (Label)e.Row.FindControl("lblgvAmount4");
+                Label txtamt5 = (Label)e.Row.FindControl("lblgvAmount5");
+
+                TextBox txtbgdrat = (TextBox)e.Row.FindControl("txtgvMSRbgdrat");
+
+                double bdgrate = Convert.ToDouble("0" + txtbgdrat.Text.Trim());
+                double rate1 = Convert.ToDouble("0" + txtrate1.Text.Trim());
+                double rate2 = Convert.ToDouble("0" + txtrate2.Text.Trim());
+                double rate3 = Convert.ToDouble("0" + txtrate3.Text.Trim());
+                double rate4 = Convert.ToDouble("0" + txtrate4.Text.Trim());
+                double rate5 = Convert.ToDouble("0" + txtrate5.Text.Trim());
+
+
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
+                if (code == "")
+                {
+                    return;
+                }
+                if (ASTUtility.Left(code, 2) == "71")
+                {
+                    txtrate1.Style.Add("text-align", "Left");
+                    txtrate2.Style.Add("text-align", "Left");
+                    txtrate3.Style.Add("text-align", "Left");
+                    txtrate4.Style.Add("text-align", "Left");
+                    txtrate5.Style.Add("text-align", "Left");
+                }
+                if (rate1 > bdgrate)
+                {
+                    txtrate1.ForeColor = Color.Red;
+                    txtamt1.ForeColor = Color.Red;
+                }
+                if (rate2 > bdgrate)
+                {
+                    txtrate2.ForeColor = Color.Red;
+                    txtamt2.ForeColor = Color.Red;
+                }
+                if (rate3 > bdgrate)
+                {
+                    txtrate3.ForeColor = Color.Red;
+                    txtamt3.ForeColor = Color.Red;
+                }
+                if (rate4 > bdgrate)
+                {
+                    txtrate4.ForeColor = Color.Red;
+                    txtamt4.ForeColor = Color.Red;
+                }
+                if (rate5 > bdgrate)
+                {
+                    txtrate5.ForeColor = Color.Red;
+                    txtamt5.ForeColor = Color.Red;
+                }
+
+            }
+        }
+
+        protected void gvMSRInfo2_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                TableCell cell0 = new TableCell();
+                cell0.Text = "";
+                cell0.HorizontalAlign = HorizontalAlign.Center;
+                cell0.ColumnSpan = 5;
+                gvrow.Cells.Add(cell0);
+                DataTable dt = (DataTable)Session["tblt01"];
+                //int j = 5;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    TableCell cell = new TableCell();
+                    cell.Text = dt.Rows[i]["ssirdesc1"].ToString();
+                    cell.HorizontalAlign = HorizontalAlign.Center;
+                    cell.ColumnSpan = 2;
+                    cell.Font.Bold = true;
+                    gvrow.Cells.Add(cell);
+
+                }
+                TableCell celll = new TableCell();
+                celll.Text = "";
+                celll.HorizontalAlign = HorizontalAlign.Center;
+                celll.ColumnSpan = 2;
+                gvrow.Cells.Add(celll);
+
+                gvMSRInfo2.Controls[0].Controls.AddAt(0, gvrow);
+            }
+
+        }
+
+        protected void gvMSRInfo_DataBind()
+        {
+            this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
+            this.gvMSRInfo2.DataBind();
+            this.FooterCalculation();
+        }
+
+        private void FooterCalculation()
+        {
+            DataTable dt = (DataTable)Session["tblt02"];
+            if (dt.Rows.Count == 0)
+                return;
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt1)", "")) ? 0.00
+          : dt.Compute("Sum(amt1)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt2)", "")) ? 0.00
+        : dt.Compute("Sum(amt2)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt3)", "")) ? 0.00
+        : dt.Compute("Sum(amt3)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt4)", "")) ? 0.00
+        : dt.Compute("Sum(amt4)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+
+            ((Label)this.gvMSRInfo2.FooterRow.FindControl("lgvFamt5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(amt5)", "")) ? 0.00
+        : dt.Compute("Sum(amt5)", ""))).ToString("#,##0.00;(#,##0.00);  ");
+
+
+
+        }
+
+        private void Payterm_DataBind()
+        {
+            this.gvterm.DataSource = (DataTable)Session["tblterm"];
+            this.gvterm.DataBind();
+
+
+        }
+
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string rsircode = dt1.Rows[0]["rsircode"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
+                {
+
+                    dt1.Rows[j]["rsirdesc1"] = "";
+                }
+                rsircode = dt1.Rows[j]["rsircode"].ToString();
+            }
+
+            DataView dv = dt1.DefaultView;
+            dv.Sort = ("rsircode");
+            dt1 = dv.ToTable();
+            return dt1;
+        }
+
+        protected void DdlContractor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            DataTable dt = (DataTable)ViewState["tblbillreq"]; /// gridview main 
+            DataTable dt2 = (DataTable)Session["tblcsirdesc"]; // cs 
+         
+            int rowindex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+            string csircode = ((DropDownList)this.grvissue.Rows[rowindex].FindControl("DdlContractor")).SelectedValue.ToString();
+            string rsircode = dt.Rows[rowindex]["rsircode"].ToString();
+
+            dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+            dt.Rows[rowindex]["csircode"] = csircode;
+
+
+            Session["tblbillreq"] = dt;
+            this.grvissue_DataBind();
+
         }
     }
 }

@@ -36,21 +36,20 @@ namespace RealERPWEB.F_17_Acc
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
 
                 string mRepID = "IS";
 
                 this.MultiView1.ActiveViewIndex = ((mRepID == "IS" || mRepID == "IS2") ? 0 : (mRepID == "BS" ? 1 : ((mRepID == "PS" || mRepID == "SS") ? 2
                     : (mRepID == "BE" ? 3 : (mRepID == "SPC" ? 4 : ((mRepID == "IPRJ" || mRepID == "IACUR") ? 5 : (mRepID == "SPC" ? 6 : (mRepID == "LandSt" ? 8 : 7))))))));
 
-                //DateTime opndate = this.GetOpeningDate();
-
-                //string curdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                //DateTime yfdate = Convert.ToDateTime("01-Jan-" + curdate.Substring(7));
-                //this.txtDatefrom.Text = (yfdate < opndate) ? opndate.AddDays(1).ToString("dd-MMM-yyyy") : yfdate.ToString("dd-MMM-yyyy");
-                //this.txtDateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-                //this.txtDatefrom_CalendarExtender.StartDate = Convert.ToDateTime(opndate.AddDays(1));
-
+                DateTime opndate = this.GetOpeningDate();
+                string curdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                DateTime yfdate = Convert.ToDateTime("01-jul-" + Convert.ToDateTime(curdate).AddYears(-1).ToString("yyyy"));
+                this.txtDatefrom.Text = (yfdate < opndate) ? opndate.AddDays(1).ToString("dd-MMM-yyyy") : yfdate.ToString("dd-MMM-yyyy");
+                this.txtDateto.Text = (yfdate < opndate) ? opndate.AddDays(1).ToString("dd-MMM-yyyy") : yfdate.AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy"); 
+                this.txtDatefrom_CalendarExtender.StartDate = Convert.ToDateTime(opndate.AddDays(1));
+                this.txtOpeningDate.Text = Convert.ToDateTime(hst["opndate"]).ToString("dd-MMM-yyyy");
                 lbtnOk_Click(null, null);
 
             }
@@ -239,166 +238,61 @@ namespace RealERPWEB.F_17_Acc
         protected void GetIncomeStatementForPrint()
         {
 
-
-
-            string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
             string comnam = hst["comnam"].ToString();
             string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-            string mTRNDAT1 = this.txtDatefrom.Text.Substring(0, 11);
-            string mTRNDAT2 = this.txtDateto.Text.Substring(0, 11);
+            //string txtCuramt = Convert.ToDateTime(this.txtDatefrom.Text).ToString("dd-MMM-yyyy") + "\n" + " To " + System.Environment.NewLine + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+            //string txtPreamt = Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + "\n" + " To " + System.Environment.NewLine + Convert.ToDateTime(this.txtDatefrom.Text).AddDays(-1).ToString("dd-MMM-yyyy");
+            //string mTRNDAT1 = this.txtDatefrom.Text.Substring(0, 11);
+            //string mTRNDAT2 = this.txtDateto.Text.Substring(0, 11);
             string mLEVEL1 = this.DDListLevels.SelectedItem.Text.ToString();
 
 
 
-
-            LocalReport Rpt1 = new LocalReport();
+            //
+            string fdate1 = this.txtfrmdate.Text.Substring(0, 11);
+            string tdate2 = this.txttodate.Text.Substring(0, 11); 
+            string opdate1 = this.Request.QueryString["opndate"].ToString();
+            string txtCuramt = Convert.ToDateTime(fdate1).ToString("dd-MMM-yyyy") + "\n" + "To " + "\n" + Convert.ToDateTime(tdate2).ToString("dd-MMM-yyyy");
+            string txtPreamt = Convert.ToDateTime(opdate1).ToString("dd-MMM-yyyy") + "\n" + "To " + "\n" + Convert.ToDateTime(fdate1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //
 
             DataTable dt = (DataTable)ViewState["tblAcc"];
-
-            ////DataView dv = dt.DefaultView;
-            ////dv.RowFilter = ("actcode4 not like'%00'");
-            ////dt = dv.ToTable();
-
-
-
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.CompIncome>();
-            var lst1 = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.CompIncome01>();
-
-            if (comcod == "3101" || comcod == "3333" || comcod == "3335")
+            string lvel = this.DDListLevels.SelectedValue.ToString();
+            DataView dv = dt.DefaultView;
+            switch (comcod)
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccIncomeStAlli", lst, lst1, null);
-            }
-            else
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccIncomeStAlli", lst, lst1, null);
+                case "3333":
+                    dv.RowFilter = ("actcode4 not like'%00'");
+                    dt = dv.ToTable();
+                    break;
+
+                default:
+                    break;
+
             }
 
+            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.NoteIncoStatement>();
+            string compIncomest = this.compIncomest();
+            LocalReport Rpt1 = new LocalReport();            
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptIncomeSt", list, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Hashtable reportParm = new Hashtable();
+            Rpt1.SetParameters(new ReportParameter("TxtCompName", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtCuramt", txtCuramt));
+            Rpt1.SetParameters(new ReportParameter("txtPreamt", txtPreamt));
+            Rpt1.SetParameters(new ReportParameter("TxtRptPeriod", "For the year ended " + Convert.ToDateTime(tdate2).ToString("dd MMMM yyyy")));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Statement of Comprehensive Income"));
-            Rpt1.SetParameters(new ReportParameter("YearEnd", Convert.ToDateTime(this.txtDateto.Text.Substring(0, 11)).ToString("MMMM yyyy")));
-            Rpt1.SetParameters(new ReportParameter("Todat", System.DateTime.Today.ToString("MMMM dd, yyyy")));
-            Rpt1.SetParameters(new ReportParameter("Curdate", Convert.ToDateTime(this.txtDatefrom.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("Predate", Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDatefrom.Text).AddDays(-1).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtdate", System.DateTime.Today.ToString("MMMM dd, yyyy")));
+
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-
-            //string mTRNDAT1 = this.Request.QueryString["Date1"].ToString();// this.txtDatefrom.Text.Substring(0, 11);
-            //string mTRNDAT2 = this.Request.QueryString["Date2"].ToString(); //this.txtDateto.Text.Substring(0, 11);
-            //string Opndate = this.Request.QueryString["opndate"].ToString();
-            //string mLEVEL1 = this.DDListLevels.SelectedItem.Text.ToString();
-
-
-
-            ////string mTRNDAT1 = this.txtDatefrom.Text.Substring(0, 11);
-            ////string mTRNDAT2 = this.txtDateto.Text.Substring(0, 11);
-            ////string mLEVEL1 = this.DDListLevels.SelectedItem.Text.ToString();
-
-
-            //DataTable dt = (DataTable)ViewState["tblAcc"];
-
-            //DataView dv = dt.DefaultView;
-            //dv.RowFilter = ("actcode4 not like'%00'");
-            //dt = dv.ToTable();
-
-            ////("right(actcode4,2) <>"00")'" );
-
-            ////DataView dv1 = ds2.Tables[0].DefaultView;
-            ////  dv1.RowFilter = ("reqno <>'" + mREQNO + "'");
-            ////  DataTable dt = dv1.ToTable();
-
-            ////string mTOPHEAD1 = (this.ChkTopHead.Checked == true ? "TOPHEAD" : "NOTOPHEAD");
-            ////DataSet ds1 = accData.GetTransInfo(mCOMCOD, "SP_REPORT_ACCOUNTS_IS_BS_R2", "ISR_COMPANY_0" +
-            ////        ASTUtility.Right(mLEVEL1, 1), mTRNDAT1, mTRNDAT2, mTOPHEAD1, "", "", "", "", "", "");
-
-            ////if (ds1 == null)
-            ////    return;
-
-            ////mTRNDAT1 = this.txtDatefrom.Text;
-            ////mTRNDAT2 = this.txtDateto.Text;
-            ////mLEVEL1 = this.DDListLevels.SelectedItem.Text.ToString();
-
-            //ReportDocument RptInSt = new ReportDocument();
-
-            //string compIncomest = this.compIncomest();
-
-
-
-            //if (compIncomest == "IncomestAlli")
-            //{
-            //    RptInSt = new RealERPRPT.R_17_Acc.RptAccIncomeStAlli();
-            //}
-
-            //else
-            //{
-            //    RptInSt = new RealERPRPT.R_17_Acc.RptAccIncomeSt01();
-
-            //}
-
-
-            //RptInSt.SetDataSource(dt);
-            //// RptInSt.SetDataSource((DataTable)ViewState["tblAcc"]);
-
-            //TextObject TxtCompName = RptInSt.ReportDefinition.ReportObjects["TxtCompName"] as TextObject;
-            //TxtCompName.Text = comnam;
-
-            ////TextObject TxtRptTitle = RptInSt.ReportDefinition.ReportObjects["TxtRptTitle"] as TextObject;
-            ////TxtRptTitle.Text = mLEVEL1;
-
-            //TextObject TxtRptPeriod = RptInSt.ReportDefinition.ReportObjects["TxtRptPeriod"] as TextObject;
-            //TxtRptPeriod.Text = "For the year ended " + Convert.ToDateTime(mTRNDAT1).ToString("dd MMMM yyyy");
-            //// TxtRptPeriod.Text = "(From " + mTRNDAT1 + " to " + mTRNDAT2 + ")";
-
-            //TextObject txtdate = RptInSt.ReportDefinition.ReportObjects["txtdate"] as TextObject;
-            //txtdate.Text = System.DateTime.Today.ToString("MMMM dd, yyyy");
-
-
-            //TextObject txtCuramt = RptInSt.ReportDefinition.ReportObjects["txtCuramt"] as TextObject; //"\n"+
-            //txtCuramt.Text = Convert.ToDateTime(mTRNDAT1).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(mTRNDAT2).ToString("dd-MMM-yyyy");
-            //TextObject txtPreamt = RptInSt.ReportDefinition.ReportObjects["txtPreamt"] as TextObject;
-            //txtPreamt.Text = Convert.ToDateTime(Opndate).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(mTRNDAT1).ToString("dd-MMM-yyyy");
-
-
-
-            ////TextObject txtCuramt = RptInSt.ReportDefinition.ReportObjects["txtCuramt"] as TextObject;
-            ////txtCuramt.Text = Convert.ToDateTime(this.txtDatefrom.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy"); ;
-            ////TextObject txtPreamt = RptInSt.ReportDefinition.ReportObjects["txtPreamt"] as TextObject;
-            ////txtPreamt.Text = Convert.ToDateTime(this.txtOpeningDate.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDatefrom.Text).AddDays(-1).ToString("dd-MMM-yyyy"); ;
-
-
-            ////TextObject txtuserinfo = RptInSt.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            ////txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //RptInSt.SetParameterValue("ComLogo", ComLogo);
-            ////--------------------Export to PDF--------------------------------------------------
-            //Session["Report1"] = RptInSt;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 

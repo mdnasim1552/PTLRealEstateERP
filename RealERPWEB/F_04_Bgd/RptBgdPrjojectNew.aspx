@@ -509,11 +509,8 @@
                                 <div class="form-horizontal">
                                     <div class="form-group">
                                         <div class=" col-md-1  pading5px">
-
-                                            <asp:Label ID="lblProjectList" CssClass="lblTxt lblName " runat="server" Text="Project Name:"></asp:Label>
+                                            <asp:Label ID="lblProjectList" CssClass="lblTxt lblName " runat="server" Text="Project Name:"></asp:Label>                                           
                                             <asp:TextBox ID="txtSrcProject" runat="server" CssClass=" inputtextbox" Visible="false"></asp:TextBox>
-
-
                                             <asp:LinkButton ID="imgbtnFindProject" Visible="false" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnFindProject_Click" TabIndex="12"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
 
@@ -521,6 +518,7 @@
 
 
                                         <div class="col-md-4 pading5px">
+                                             
                                             <asp:DropDownList ID="ddlProjectName" runat="server" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select" TabIndex="13" AutoPostBack="true">
                                             </asp:DropDownList>
 
@@ -568,6 +566,27 @@
 
 
                                     </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-md-1 pading5px">
+                                         <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName" Visible="false">Date</asp:Label>
+                                        </div>
+
+                                     <div class="col-md-3 pading5px">
+                                       
+                                        <asp:TextBox ID="txtfromdate" runat="server" CssClass=" inputDateBox " AutoComplete="off" Visible="false"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
+
+
+                                        <asp:Label ID="lbltodate" runat="server" CssClass=" smLbl_to" Visible="false">To</asp:Label>
+                                        <asp:TextBox ID="txttodate" runat="server" CssClass=" inputDateBox" AutoComplete="off" Visible="false"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                                    </div>
+
+                                </div>
+                                
+                                
                                 </div>
                             </fieldset>
                         </div>
@@ -2551,6 +2570,21 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText=" Description">
+                                        <HeaderTemplate>
+                                                <table style="width: 30%;">
+                                                    <tr>
+                                                        <td class="style58">
+                                                            <asp:Label ID="xLabel13" runat="server" Font-Bold="True"
+                                                                Text="Description" Width="80px"></asp:Label>
+                                                        </td>
+                                                        <td class="style60">&nbsp;</td>
+                                                        <td>
+                                                            <asp:HyperLink ID="hlbtnCBdataExel" runat="server" CssClass="btn btn-xs"><i class="fa fa-file-excel"></i></asp:HyperLink>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </HeaderTemplate>
+
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkgvActDescgrwisedetres" runat="server" ForeColor="Black" Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "acgdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "resdesc").ToString().Length>0 ? 
@@ -2582,10 +2616,21 @@
 
 
 
-                                    <asp:TemplateField HeaderText="Actual">
+                                    <asp:TemplateField HeaderText="Actual Cost">
                                         <ItemTemplate>
                                             <asp:HyperLink ID="hlnkgvacamgrwisedetres" runat="server" Font-Bold="false" ForeColor="Black" Target="_blank" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acam")).ToString("#,##0;(#,##0); ") %>'
-                                                Width="80px"></asp:HyperLink>
+                                                Width="90px"></asp:HyperLink>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+
+                                     <asp:TemplateField HeaderText="Actual<br/>(Current Month)">
+                                        <ItemTemplate>
+                                            <asp:HyperLink ID="hlnkgvacamdrgrwisedetres" runat="server" Font-Bold="false" ForeColor="Black" Target="_blank" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acamdr")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="90px"></asp:HyperLink>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Right" />

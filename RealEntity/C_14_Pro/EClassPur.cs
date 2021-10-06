@@ -291,18 +291,23 @@ namespace RealEntity.C_14_Pro
             public string rsirunit { get; set; }
             public string spcfcod { get; set; }
             public double qty { get; set; }
+            public double bgdqty { get; set; }
+            public double bgdrat { get; set; }
             public double resrate1 { get; set; }
             public double resrate2 { get; set; }
             public double resrate3 { get; set; }
             public double resrate4 { get; set; }
+            public double resrate5 { get; set; }
             public double amt1 { get; set; }
             public double amt2 { get; set; }
             public double amt3 { get; set; }
             public double amt4 { get; set; }
+            public double amt5 { get; set; }
             public string camt1 { get; set; }
             public string camt2 { get; set; }
             public string camt3 { get; set; }
             public string camt4 { get; set; }
+            public string camt5 { get; set; }
             public string msrrmrk { get; set; }
             public double aprovrate { get; set; }
             public string spcfdesc { get; set; }
@@ -322,6 +327,8 @@ namespace RealEntity.C_14_Pro
             public string worktime { get; set; }
             public string notes { get; set; }
             public string contact { get; set; }
+
+            public string crperiod { get; set; }
 
 
             public string ssirdesc { get; set; }
@@ -1292,6 +1299,28 @@ namespace RealEntity.C_14_Pro
             
             public DateWiseReqCheckHistory() { }
 
+        }
+         
+        [Serializable] 
+        public class ChequeSheet01
+        {
+
+            //comcod,slnum,actcode, actdesc=replace(actdesc,'WIP-',''), rescode, sirdesc, spcfcod,billno,amount,payapdat,postedbyid,fdate
+            public string comcod { get; set; }
+            public string slnum { get; set; }
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string rescode { get; set; }
+            public string sirdesc { get; set; }
+            public string spcfcod { get; set; }
+            public string billno { get; set; }
+            public double amount { get; set; }
+
+            public DateTime payapdat { get; set; }
+            public string postedbyid { get; set; }
+            public DateTime fdate { get; set; }
+
+            public ChequeSheet01() { }
         }
 
     }

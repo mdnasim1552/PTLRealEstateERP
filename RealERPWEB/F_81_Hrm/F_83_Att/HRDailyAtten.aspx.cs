@@ -668,15 +668,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void InsertDailyAttnAssure()
         {
-
-            if (chktype.Checked == true)
+            try
             {
-                this.GetAccessAtteDataAssure();
-            }
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
-            else
-            {
-                try
+                if (chktype.Checked == true)
+                {
+                    this.GetAccessAtteDataAssure();
+                }
+
+                else
                 {
 
 
@@ -714,13 +715,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
 
                     this.ShowData();
-                }
-
-                catch (Exception ex)
-                {
 
 
                 }
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error in exception";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
 
             }
 
@@ -746,7 +750,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
                 DataSet ds = DailyAttendance.GetDailyAttenDanceAssure(date1, date2);
                 //DataSet ds = DailyAttendance.GetDailyAttenDanceAssure(date1, date2);
-                string count = DailyAttendance.Country();
+                //string count = DailyAttendance.Country();
 
                 Session["DayAtten"] = ds.Tables[0];
                 DataTable dt = (DataTable)Session["DayAtten"];
@@ -776,7 +780,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             catch (Exception ex)
             {
 
-                this.lmsg.Text = "Error in exception";
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error in exception";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
 
 
             }

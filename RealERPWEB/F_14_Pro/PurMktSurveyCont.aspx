@@ -198,7 +198,7 @@
                             </div>
                         </fieldset>
 
-                        <div class="table table-responsive">
+                        <div class="table table-responsive" style="min-height:360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True"
@@ -272,6 +272,15 @@
                                                 BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="55px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="BOQ Rate">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvMSRbgdrat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                                BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdrat")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="50px"></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
@@ -542,7 +551,7 @@
 
                                     <asp:TemplateField HeaderText="Quotation Date">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtCurQuTDate" runat="server" CssClass="inputtextbox" ToolTip="(dd.mm.yyyy)"
+                                            <asp:TextBox ID="txtCurQuTDate" runat="server" CssClass="inputtextbox"
                                                 Text='<%#(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).Year==1900?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).ToString("dd-MMM-yyyy")) %>'> </asp:TextBox>
                                             <cc1:CalendarExtender ID="txtCurQuTDate_CalendarExtender" runat="server"
                                                 TargetControlID="txtCurQuTDate"></cc1:CalendarExtender>
@@ -552,11 +561,23 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Working Time">
+                                    <asp:TemplateField HeaderText="Working Duration">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtworkline" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Text='<%# DataBinder.Eval(Container.DataItem, "worktime").ToString() %>'
+                                                Style="text-align: left; background-color: Transparent"
+                                                Width="80px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                        <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Credit Period">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtcrPeriod" runat="server" BorderColor="#99CCFF"
+                                                BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "crperiod").ToString() %>'
                                                 Style="text-align: left; background-color: Transparent"
                                                 Width="80px"></asp:TextBox>
                                         </ItemTemplate>
@@ -594,7 +615,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-4 pading5px asitCol4 ">
-                                            <asp:DropDownList ID="ddlrecom" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlrecomsup" runat="server" AutoPostBack="True" Width="322px" CssClass="ddlPage chzn-select"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>

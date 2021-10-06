@@ -129,7 +129,7 @@ namespace RealERPWEB.F_17_Acc
         private void TxtnameChange()
         {
             this.lblPayto.Text = this.Request.QueryString["tname"].ToString().Contains("Payment") ? "Pay To: " : "Received From:";
-            this.dgv1.Columns[11].HeaderText = this.Request.QueryString["tname"].ToString().Contains("Payment") ? "Pay To " : "Received From";
+           // this.dgv1.Columns[11].HeaderText = this.Request.QueryString["tname"].ToString().Contains("Payment") ? "Pay To " : "Received From";
 
         }
         private string CompanyPrintVou()

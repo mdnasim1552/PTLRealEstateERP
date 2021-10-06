@@ -85,6 +85,10 @@
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
+    <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
+    </Reference>
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
@@ -1944,6 +1948,7 @@
     <Content Include="F_01_LPA\LandInfoDet.aspx" />
     <Content Include="F_01_LPA\LandOwCodeBook.aspx" />
     <Content Include="F_01_LPA\LandProGenCode.aspx" />
+    <Content Include="F_01_LPA\LandSearch.aspx" />
     <Content Include="F_01_LPA\LinkIniLandProposal.aspx" />
     <Content Include="F_01_LPA\LinkLandDevTopSheet.aspx" />
     <Content Include="F_01_LPA\LinkLandProcurement.aspx" />
@@ -1957,6 +1962,7 @@
     <Content Include="F_01_LPA\RptBusinessClient.aspx" />
     <Content Include="F_01_LPA\RptDashBoardLandPro.aspx" />
     <Content Include="F_01_LPA\RptLandDevTopSheet.aspx" />
+    <Content Include="F_01_LPA\RptLandInventory.aspx" />
     <Content Include="F_01_LPA\RptLandProcurement.aspx" />
     <Content Include="F_02_Fea\FeaPrjGenInformation.aspx" />
     <Content Include="F_02_Fea\FeaProjectCodeBook.aspx" />
@@ -2401,6 +2407,7 @@
     <Content Include="F_21_MKT\MktSalesDescription.aspx" />
     <Content Include="F_21_MKT\MktSalsPaymentPro.aspx" />
     <Content Include="F_21_MKT\MktTeamCodeBook.aspx" />
+    <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
@@ -2440,6 +2447,7 @@
     <Content Include="F_22_Sal\MonthlySalesBudget.aspx" />
     <Content Include="F_22_Sal\MonthlySalesBudget02.aspx" />
     <Content Include="F_22_Sal\MonthlySalesBudget03.aspx" />
+    <Content Include="F_22_Sal\ProjectFileDetailsEntry.aspx" />
     <Content Include="F_22_Sal\ProjectGroup.aspx" />
     <Content Include="F_22_Sal\ProPriceTrading.aspx" />
     <Content Include="F_22_Sal\RptAvailChart.aspx" />
@@ -2478,6 +2486,7 @@
     <Content Include="F_22_Sal\SalesRegister.aspx" />
     <Content Include="F_22_Sal\SaleYearlySalAndColl.aspx" />
     <Content Include="F_22_Sal\TradingInterestCal.aspx" />
+    <Content Include="F_23_CR\RptMRTopSheet.aspx" />
     <Content Include="F_23_CR\ClientInfo.aspx" />
     <Content Include="F_23_CR\CustChDishoner.aspx" />
     <Content Include="F_23_CR\CustCollectBudget.aspx" />
@@ -2498,6 +2507,7 @@
     <Content Include="F_23_CR\RptDelMonyRec.aspx" />
     <Content Include="F_23_CR\RptDishonourCheque.aspx" />
     <Content Include="F_23_CR\RptInvoice02.aspx" />
+    <Content Include="F_23_CR\RptMonthlyCollectionMerge.aspx" />
     <Content Include="F_23_CR\RptPrjWiseClientStatus02.aspx" />
     <Content Include="F_23_CR\RptPrjwisecollofSummDetails.aspx" />
     <Content Include="F_23_CR\RptProjectWiseCollection.aspx" />
@@ -2534,6 +2544,7 @@
     <Content Include="F_24_CC\RptProjectwiseClient.aspx" />
     <Content Include="F_24_CC\SalesPermissionCost.aspx" />
     <Content Include="F_25_Reg\EntryRegclearacne.aspx" />
+    <Content Include="F_25_Reg\OtherCollectionReport.aspx" />
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
@@ -2814,6 +2825,7 @@
     <Content Include="F_81_Hrm\F_82_App\HRDesigCode.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HREmpEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\ImgUpload.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\LinkMyHRLeave.aspx" />
     <Content Include="F_81_Hrm\F_82_App\RptEmpInformation.aspx" />
     <Content Include="F_81_Hrm\F_82_App\RptMyAttendenceSheet.aspx" />
@@ -2940,6 +2952,7 @@
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
     <Content Include="F_99_Allinterface\HRInterfaceTopSheet.aspx" />
+    <Content Include="F_99_Allinterface\HRMAllInOne.aspx" />
     <Content Include="F_99_Allinterface\InventoryInterface.aspx" />
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
@@ -3581,8 +3594,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
-    <Content Include="Web.config" />
     <Content Include="Bundle.config" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceessError.aspx.cs">
@@ -3607,6 +3626,24 @@
     <Compile Include="ASMX_F_45_GrAcc\RptGrpMisDailyActiviteis.asmx.cs">
       <DependentUpon>RptGrpMisDailyActiviteis.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AutoCompleted.asmx.cs">
+      <DependentUpon>AutoCompleted.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_01_LPA\LandSearch.aspx.cs">
+      <DependentUpon>LandSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_01_LPA\LandSearch.aspx.designer.cs">
+      <DependentUpon>LandSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_01_LPA\RptLandInventory.aspx.cs">
+      <DependentUpon>RptLandInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_01_LPA\RptLandInventory.aspx.designer.cs">
+      <DependentUpon>RptLandInventory.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
@@ -3657,12 +3694,54 @@
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.designer.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\MktTeamMember.aspx.cs">
+      <DependentUpon>MktTeamMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
+      <DependentUpon>MktTeamMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
+      <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.designer.cs">
+      <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptMRTopSheet.aspx.cs">
+      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptMRTopSheet.aspx.designer.cs">
+      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
+      <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.designer.cs">
+      <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_25_Reg\OtherCollectionReport.aspx.cs">
+      <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
+      <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
+      <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.designer.cs">
+      <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx.cs">
       <DependentUpon>HRDailyAttenManually.aspx</DependentUpon>
@@ -3937,6 +4016,13 @@
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.cs">
+      <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
+      <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4024,10 +4110,6 @@
     </Compile>
     <Compile Include="ASITNEW.Master.designer.cs">
       <DependentUpon>ASITNEW.Master</DependentUpon>
-    </Compile>
-    <Compile Include="AutoCompleted.asmx.cs">
-      <DependentUpon>AutoCompleted.asmx</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CalenderTest.aspx.cs">
       <DependentUpon>CalenderTest.aspx</DependentUpon>
@@ -11314,12 +11396,6 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

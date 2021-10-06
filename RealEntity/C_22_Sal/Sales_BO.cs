@@ -1534,6 +1534,27 @@ namespace RealEntity.C_22_Sal
             public DuesCollAll() { }
         }
 
+        [Serializable]
+        public class BudgetnSales
+        {
+            public string udesc { get; set; }
+            public string munit { get; set; }
+            public double usize { get; set; }
+            public double urate { get; set; }
+            public double uamt { get; set; }
+            public double pamt { get; set; }
+            public double utility { get; set; }
+            public double cooperative { get; set; }
+            public double tamt { get; set; }
+            public double uqty { get; set; }
+            public double pqty { get; set; }
+            public string bstat { get; set; }
+            public double minbam { get; set; }
+            public string facing { get; set; }
+            public string uview { get; set; }
+            public string urmrks { get; set; }
+            public BudgetnSales() { }
+        }
 
     }
 }

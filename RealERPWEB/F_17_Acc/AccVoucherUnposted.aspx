@@ -177,7 +177,7 @@
                                         <%-- <asp:LinkButton ID="lnkbtnViewIN" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </asp:LinkButton>--%>
                                         <asp:LinkButton ID="lnkbtnPrintIN" runat="server" OnClick="lnkbtnPrintRD_Click"  ><span class="glyphicon glyphicon-print"></span></asp:LinkButton>
-                                        <%--<asp:HyperLink ID="hlnkVoucherEdit" ToolTip="Edit"  runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" ><span class="glyphicon glyphicon-pencil"></span>--%>
+                                     <asp:HyperLink ID="hlnkVoucherEdit" ToolTip="Edit"  runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" ><span class="glyphicon glyphicon-pencil"></span>
                                         </asp:HyperLink>
 
                                         

@@ -282,7 +282,7 @@ namespace RealERPWEB.F_99_Allinterface
             //this.pnlInterf.Visible = false;
             //this.pnlPurchase.Visible = true;
         }
-        private string GetCompCode()
+        public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();

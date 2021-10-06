@@ -164,7 +164,7 @@
                     </div>
                     <div class="row">
                         <div class="table-responsive">
-<asp:GridView ID="gvAnnIncre" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                   <asp:GridView ID="gvAnnIncre" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                             OnPageIndexChanging="gvAnnIncre_PageIndexChanging" ShowFooter="True" Width="831px" CssClass="table-striped table-hover table-bordered grvContentarea"
                             Height="200px">
                             <RowStyle />
@@ -176,6 +176,24 @@
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText=" ">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btnIncreEmp" runat="server" OnClick="btnIncreEmp_Click" ><span class="glyphicon glyphicon-remove"> </span></asp:LinkButton>
+                                    </ItemTemplate>
+                                      </asp:TemplateField>
+                                  
+                                <asp:TemplateField HeaderText="Emp ID" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lgvEmpId" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
+                                                Width="180px" Font-Bold="True" Font-Size="11px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
 
                                 <asp:TemplateField HeaderText="Department">
                                     <ItemTemplate>

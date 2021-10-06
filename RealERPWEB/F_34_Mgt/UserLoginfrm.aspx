@@ -270,17 +270,12 @@
                                 <asp:TemplateField HeaderText="Web Mail PassWord">
 
 
+                                   
                                     <ItemTemplate>
-                                        <asp:Label ID="lgvWebmailPWD" runat="server"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mailpass")) %>'
-                                            Width="80px"></asp:Label>
-                                    </ItemTemplate>
-
-                                    <EditItemTemplate>
-                                        <asp:TextBox ID="TxtWebmailPWD" runat="server" BackColor="Transparent"
+                                        <asp:TextBox ID="TxtWebmailPWD" runat="server" BackColor="Transparent" TextMode="Password"
                                             BorderStyle="None" Width="80px"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mailpass")) %>'></asp:TextBox>
-                                    </EditItemTemplate>
+                                    </ItemTemplate>
 
 
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -374,7 +369,7 @@
                                        </HeaderTemplate>--%>
 
                                      <ItemTemplate>
-                                    <asp:LinkButton ID="lbtnLink" OnClick="lbtnLink_Click" ToolTip="Copy Privilege" runat="server" CssClass="btn btn-xs btn-info"><span class="fa fa-copy"></span></asp:LinkButton>
+                                    <asp:LinkButton ID="lbtnLink" OnClick="lbtnLink_Click" ToolTip="Copy From " runat="server" CssClass="btn btn-xs btn-info"><span class="fa fa-copy"></span></asp:LinkButton>
                                    </ItemTemplate>
                                </asp:TemplateField>
 
@@ -677,16 +672,16 @@
                                         <div class="modal-content  ">
                                             <div class="modal-header">
                                                 <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                                                <h4 class="modal-title">
-                                                    <span class="fa fa-table"></span> <span class="fa fa-copy"></span> Copy User Privilege</h4>
+                                                <h2 class="modal-title">
+                                                    <span class="fa fa-table"></span> <span class="fa fa-copy" ></span> Copy From</h2>
                                             </div>
                                            
                                             <div class="modal-body">
                                                 <div class="row-fluid">
                                                     <div class="form-group">
-                                                        <asp:Label ID="Label3" runat="server" CssClass="col-md-4">Select To User: </asp:Label>
+                                                        <asp:Label ID="Label3" runat="server" CssClass="col-md-4" Font-Bold="true" Font-Size="20px">Select From : </asp:Label>
                                                       <div class="col-md-6">
-                                                          <asp:DropDownList ID="ddlUser" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                          <asp:DropDownList ID="ddlUser" CssClass="form-control chzn-select" runat="server"></asp:DropDownList>
                                                           <asp:Label ID="fromUserid" runat="server" Visible="false"></asp:Label>
                                                       </div>
                                                     </div>

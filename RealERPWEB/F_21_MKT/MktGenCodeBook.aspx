@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="MktGenCodeBook.aspx.cs" Inherits="RealERPWEB.F_21_MKT.MktGenCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktGenCodeBook.aspx.cs" Inherits="RealERPWEB.F_21_MKT.MktGenCodeBook" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript">

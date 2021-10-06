@@ -3,17 +3,30 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
-        .margin5px {}
+        .margin5px {
+        }
+
+        /*
+        .dropdown-toggle:after {
+            display: inline-block;
+            margin-left: .255em;
+            vertical-align: .255em;
+            content: "";
+            border-top: .3em solid;
+            border-right: .3em solid transparent;
+            border-bottom: 0;
+            border-left: .3em solid transparent;
+        }*/
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
 
-    
-    
-    
-    
-    <script  type="text/javascript">
+
+
+
+
+    <script type="text/javascript">
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -21,18 +34,18 @@
         });
         function pageLoaded() {
             $('.chzn-select').chosen({ search_contains: true });
-           
 
-        
+
+
         }
 
 
-       
+
 
     </script>
-    
-    
-    
+
+
+
     <%--<script language="javascript" type="text/javascript">
        $(document).ready(function () {
 
@@ -98,7 +111,7 @@
                                         <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnCompany_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlCompany" runat="server"  CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                        <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                         </asp:DropDownList>
 
 
@@ -115,13 +128,72 @@
                                         </asp:UpdateProgress>
                                     </div>
 
-                                    <div class="col-md-2 pull-right">
+                                    <%--<div class="col-md-2">
+                                        
+
+
+                                    </div>--%>
+
+                                    <div class="col-md-3 pull-right">
                                         <a href="#" class="btn btn-info primaryBtn margin5px" onclick="history.go(-1)">Back</a>
                                         <a class="btn btn-info primaryBtn margin5px" href="<%=this.ResolveUrl("~/F_81_Hrm/F_89_Pay/RpHRtPayroll.aspx?Type=Payslip")%>">Next</a>
-                                        <a class="btn btn-info primaryBtn margin5px" href="<%=this.ResolveUrl("~/F_81_Hrm/F_86_All/EntryDeduction02.aspx")%>" target="_blank">Deduction</a>
-                                       
+                                        <%--<a class="btn btn-info primaryBtn margin5px" href="<%=this.ResolveUrl("~/F_81_Hrm/F_86_All/EntryDeduction02.aspx")%>" target="_blank">Deduction</a>--%>
+
 
                                         <%--<asp:HyperLink ID="hlnextEntry" Visible="false" class="btn btn-info primaryBtn margin5px" runat="server" NavigateUrl="<%=this.ResolveUrl("~/F_81_Hrm/F_89_Pay/RpHRtPayroll.aspx?Type=Entry")%>">Next</asp:HyperLink>--%>
+
+                                        <panel id="pnlsalops" runat="server" visible="true">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-success">Operations</button>
+                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                </button>
+
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkarrear" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=arrear"> Arrear Salary</asp:HyperLink>
+
+                                                    </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkloan" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_85_Lon/EmpDeducOther">Loan Installment</asp:HyperLink></li>
+                                                    </li>
+                                              <li>
+                                                  <asp:HyperLink ID="hylnkOtherdeduction" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=OtherDeduction">Other Deduction </asp:HyperLink>
+                                              </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkOtherearn" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn">Other Earning </asp:HyperLink>
+                                                    </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkOvetime" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=Overtime">Employee Overtime </asp:HyperLink>
+
+                                                    </li>
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkAbscount" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_83_Att/HREmpAbsCt">Absent Count </asp:HyperLink>
+
+                                                    </li>
+
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkempTrans" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_87_Tra/HREmpTransfer">Employee Transfer </asp:HyperLink>
+
+                                                    </li>
+
+
+                                                    <li>
+                                                        <asp:HyperLink ID="hylnkSalReduction" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction">Salary Reduction </asp:HyperLink>
+
+                                                    </li>
+
+                                                    <li>
+                                                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="dropdown-item" Target="_blank" NavigateUrl="~/F_81_Hrm/F_86_All/EntryDeduction02.aspx">Deduction </asp:HyperLink>
+
+                                                    </li>
+
+
+
+                                                </ul>
+                                            </div>
+
+                                        </panel>
                                     </div>
                                 </div>
 
@@ -132,7 +204,7 @@
                                         <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnProSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True" runat="server"  CssClass="form-control inputTxt chzn-select" TabIndex="6">
+                                        <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="6">
                                         </asp:DropDownList>
 
                                         <cc1:ListSearchExtender ID="ddlProjectName_ListSearchExtender" runat="server"
@@ -151,7 +223,7 @@
                                         <asp:LinkButton ID="imgbtnSecSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSecSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlSection" runat="server" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged"  CssClass="form-control inputTxt chzn-select" TabIndex="6" AutoPostBack="true">
+                                        <asp:DropDownList ID="ddlSection" runat="server" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select" TabIndex="6" AutoPostBack="true">
                                         </asp:DropDownList>
 
                                         <cc1:ListSearchExtender ID="ddlSection_ListSearchExtender" runat="server"
@@ -163,18 +235,18 @@
                                 </div>
 
                                 <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="lblemp" runat="server" CssClass="lblTxt lblName" Visible="false">Employee List:</asp:Label>
-                                            <asp:TextBox ID="txtEmpSrcInfo" runat="server" CssClass="inputTxt inputName inpPixedWidth" Visible="false"></asp:TextBox>
-                                            <asp:LinkButton ID="ibtnEmpListAllinfo" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ibtnEmpListAllinfo_Click" visible="false"><span class="glyphicon glyphicon-search asitGlyp" > </span></asp:LinkButton>
-                                        </div>
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server"  CssClass="form-control inputTxt chzn-select" TabIndex="2"  AutoPostBack="True" Width="335px"  visible="false" >
-                                            </asp:DropDownList>
-                                        </div>
-
-
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        <asp:Label ID="lblemp" runat="server" CssClass="lblTxt lblName" Visible="false">Employee List:</asp:Label>
+                                        <asp:TextBox ID="txtEmpSrcInfo" runat="server" CssClass="inputTxt inputName inpPixedWidth" Visible="false"></asp:TextBox>
+                                        <asp:LinkButton ID="ibtnEmpListAllinfo" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ibtnEmpListAllinfo_Click" Visible="false"><span class="glyphicon glyphicon-search asitGlyp" > </span></asp:LinkButton>
                                     </div>
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="2" AutoPostBack="True" Width="335px" Visible="false">
+                                        </asp:DropDownList>
+                                    </div>
+
+
+                                </div>
 
 
                                 <div class="form-group">
@@ -186,7 +258,7 @@
 
 
                                         <asp:Label ID="lbltodate" runat="server" CssClass=" smLbl_to">To</asp:Label>
-                                        <asp:TextBox ID="txttodate" runat="server" CssClass=" inputDateBox"  AutoComplete="off"></asp:TextBox>
+                                        <asp:TextBox ID="txttodate" runat="server" CssClass=" inputDateBox" AutoComplete="off"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
@@ -204,29 +276,29 @@
                                         </asp:DropDownList>
                                     </div>
 
-                                     
-                                     <div class="col-md-3 pading5px asitCol4">
-                                        <asp:RadioButtonList ID="rbtnPayType" RepeatDirection="Horizontal" CssClass="rbtnList1"  Visible="false"  runat="server" >
-                                            <asp:ListItem >Cash</asp:ListItem> 
-                                            <asp:ListItem >Bank</asp:ListItem>
-                                            <asp:ListItem >Cheque</asp:ListItem>                                   
-                                            <asp:ListItem Selected="True" >All</asp:ListItem>
+
+                                    <div class="col-md-3 pading5px asitCol4">
+                                        <asp:RadioButtonList ID="rbtnPayType" RepeatDirection="Horizontal" CssClass="rbtnList1" Visible="false" runat="server">
+                                            <asp:ListItem>Cash</asp:ListItem>
+                                            <asp:ListItem>Bank</asp:ListItem>
+                                            <asp:ListItem>Cheque</asp:ListItem>
+                                            <asp:ListItem Selected="True">All</asp:ListItem>
 
                                         </asp:RadioButtonList>
                                     </div>
-                                 <%--   <div class="col-md-2">
+                                    <%--   <div class="col-md-2">
                                      <asp:CheckBox ID="chkExcluMgt" runat="server" CssClass="checkbox chkBoxControl" Text="Exclude Management" Visible="False" />
 
                                     </div>--%>
 
-                                   
+
 
                                     <div class="col-md-2">
                                         <asp:CheckBox ID="chkgrndt" runat="server" />
                                         <asp:Label ID="lblgrandt" runat="server">Print Grand Total</asp:Label>
                                     </div>
                                     <div class="col-md-1">
-                                        <asp:CheckBox ID="chkBangla" runat="server"  Visible="false"/>
+                                        <asp:CheckBox ID="chkBangla" runat="server" Visible="false" />
                                         <asp:Label ID="lblBangla" runat="server" Visible="false">Bangla Print</asp:Label>
                                     </div>
 
@@ -281,9 +353,8 @@
                                                     <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                                         Font-Size="14px" Height="16px" RepeatColumns="14" RepeatDirection="Horizontal"
                                                         Width="520px" Visible="false">
-
                                                     </asp:RadioButtonList>
-                                                  
+
                                                 </div>
 
                                             </div>
@@ -316,7 +387,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="ID CARD">
 
-                                              <%--  <FooterTemplate>
+                                                <%--  <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn  btn-primary primarygrdBtn" OnClick="lnkTotal_Click">Total</asp:LinkButton>
                                                 </FooterTemplate>--%>
 
@@ -332,14 +403,14 @@
                                             <asp:TemplateField HeaderText="Section">
                                                 <HeaderTemplate>
 
-                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                                        Text="Section" Width="70px"></asp:Label>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                        Text="Section" Width="70px"></asp:Label>
 
 
-                                                        <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
-                                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i></asp:HyperLink>
-                                                     
-                                                    </HeaderTemplate>
+                                                    <asp:HyperLink ID="hlbtntbCdataExcel" runat="server"
+                                                        CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i></asp:HyperLink>
+
+                                                </HeaderTemplate>
 
                                                 <FooterTemplate>
                                                     <asp:CheckBox ID="chkSalaryLock" runat="server" CssClass="btn btn-primary checkBox" Text="Lock" Width="90px" />
@@ -498,7 +569,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                          
+
 
 
                                             <asp:TemplateField HeaderText="Salary Payble">
@@ -593,7 +664,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
-                                              <asp:TemplateField HeaderText="Remarks">
+                                            <asp:TemplateField HeaderText="Remarks">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="lgvrmrks" runat="server"
                                                         Style="text-align: left;"
@@ -605,7 +676,7 @@
                                             </asp:TemplateField>
 
 
-                                               <asp:TemplateField HeaderText="Cash Remarks" Visible="false">
+                                            <asp:TemplateField HeaderText="Cash Remarks" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="lgvrmrks2" runat="server"
                                                         Style="text-align: left;"
@@ -632,23 +703,23 @@
                                 <fieldset class="scheduler-border fieldset_A">
                                     <div class="form-horizontal">
 
-                                         <panel ID="Pnlmantype" runet="server">
+                                        <panel id="Pnlmantype" runet="server">
 
-                                             <div class="form-group">
-                                             
-                                             <asp:RadioButtonList ID="rbtnMantype" RepeatDirection="Horizontal" CssClass="rbtnList1"  Visible="false" runat="server" >
-                                            <asp:ListItem >Management</asp:ListItem> 
-                                            <asp:ListItem > Acting Management</asp:ListItem>
-                                            <asp:ListItem >General Employee</asp:ListItem>                                   
-                                            <asp:ListItem Selected="True" >All</asp:ListItem>
+                                            <div class="form-group">
 
-                                        </asp:RadioButtonList>
-                                            
+                                                <asp:RadioButtonList ID="rbtnMantype" RepeatDirection="Horizontal" CssClass="rbtnList1" Visible="false" runat="server">
+                                                    <asp:ListItem>Management</asp:ListItem>
+                                                    <asp:ListItem> Acting Management</asp:ListItem>
+                                                    <asp:ListItem>General Employee</asp:ListItem>
+                                                    <asp:ListItem Selected="True">All</asp:ListItem>
 
-                                             </div>
-                                            
+                                                </asp:RadioButtonList>
+
+
+                                            </div>
+
                                         </panel>
-                                         
+
                                         <asp:Panel ID="PnlBonus" runat="server" Visible="False">
                                             <div class="form-group">
 
@@ -657,15 +728,15 @@
                                                     <asp:TextBox ID="txtBonusPer" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
                                                     <asp:LinkButton ID="lnkbtnGenBonus" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lnkbtnGenBonus_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                                 </div>
-                                                <div class="col-md-6 pading5px">                                                   
+                                                <div class="col-md-6 pading5px">
                                                 </div>
 
 
                                             </div>
                                         </asp:Panel>
 
-                                        
-                                  
+
+
                                         <asp:Panel ID="Panel5" runat="server">
 
                                             <div class="form-group">
@@ -926,7 +997,7 @@
                                                     Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'
                                                     Width="80px"></asp:TextBox>
                                             </ItemTemplate>
-                                           
+
                                             <FooterStyle HorizontalAlign="Right" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />

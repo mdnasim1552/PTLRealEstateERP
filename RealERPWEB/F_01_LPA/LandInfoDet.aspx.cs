@@ -63,7 +63,7 @@ namespace RealERPWEB.F_01_LPA
                 this.GETEMPLOYEEUNDERSUPERVISED();
                 this.GetGridSummary();
                 this.ModalDataBind();
-                this.GetNotificationinfo();
+                //this.GetNotificationinfo();
                 divexland.Visible = false;
                 divddlinfo.Visible = false;
                 divLaOw.Visible = false;
@@ -81,7 +81,8 @@ namespace RealERPWEB.F_01_LPA
             if (this.hdnlblattribute.Value.Trim() == "")
             {
                 this.GetGridSummary();
-                this.GetNotificationinfo();
+                this.ModalDataBind();
+              //  this.GetNotificationinfo();
             }
             else
             {
@@ -416,19 +417,21 @@ namespace RealERPWEB.F_01_LPA
             {
                 return;
             }
-            this.cdws.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dws"].ToString();
-            this.cdwr.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dwr"].ToString();
-            this.cothact.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["othact"].ToString();
-            this.cpro.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["pro"].ToString();
-            this.cdaypassed.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["daypassed"].ToString();
-            this.ccall.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["call"].ToString();
-            this.clome.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lome"].ToString();
-            this.clomi.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lomi"].ToString();
-            this.csurvey.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["survey"].ToString();
-            this.ccomments.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["comments"].ToString();
-            this.cfreezing.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["freezing"].ToString();
-            this.cdeadl.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deadl"].ToString();
-            this.csigned.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["signed"].ToString();
+            this.lbldws.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dws"].ToString();
+            this.lbldwr.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["dwr"].ToString();
+            this.lbloth.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["othact"].ToString();
+            //this.cpro.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["pro"].ToString();
+            this.lblDayPass.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["daypassed"].ToString();
+            this.lblCall.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["call"].ToString();
+           // this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
+            this.lblLome.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lome"].ToString();
+            this.lblLomi.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lomi"].ToString();
+            //this.csurvey.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["survey"].ToString();
+            this.lblComments.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["comments"].ToString();
+            this.lblFreez.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["freezing"].ToString();
+            this.lblDeadProspect.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deadl"].ToString();
+            this.lblcsigned.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["signed"].ToString();
+            //lblDatablank
 
         }
 
@@ -5292,7 +5295,7 @@ namespace RealERPWEB.F_01_LPA
             {
 
                 dtE = dv.ToTable();
-                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                dtE.Rows.Add("000000000000", "Employee", "");
             }
             else
             {
@@ -5307,7 +5310,7 @@ namespace RealERPWEB.F_01_LPA
                              }).ToList();
                 dtE = ASITUtility03.ListToDataTable(query);
                 if (dtE.Rows.Count >= 2)
-                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                    dtE.Rows.Add("000000000000", "Employee", "");
             }
             // end
 
@@ -5327,7 +5330,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '52%'");
             DataTable dtCo = dv.ToTable();
-            dtCo.Rows.Add("0000000", "Choose Country..", "");
+            dtCo.Rows.Add("0000000", "Country", "");
             this.ddlCountry.DataTextField = "gdesc";
             this.ddlCountry.DataValueField = "gcod";
             this.ddlCountry.DataSource = dtCo;
@@ -5338,7 +5341,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '51%'");
             DataTable dtPr = dv.ToTable();
-            dtPr.Rows.Add("0000000", "Choose Priotiry..", "");
+            dtPr.Rows.Add("0000000", "Priotiry", "");
             this.ddlPri.DataTextField = "gdesc";
             this.ddlPri.DataValueField = "gcod";
             this.ddlPri.DataSource = dtPr;
@@ -5349,7 +5352,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '95%'");
             DataTable dtSta = dv.ToTable();
-            dtSta.Rows.Add("0000000", "Choose Status..");
+            dtSta.Rows.Add("0000000", "Status");
             this.ddlStatus.DataTextField = "gdesc";
             this.ddlStatus.DataValueField = "gcod";
             this.ddlStatus.DataSource = dtSta;
@@ -5420,7 +5423,7 @@ namespace RealERPWEB.F_01_LPA
         protected void lUpdatInfo_Click(object sender, EventArgs e)
         {
             this.GetSearchGridSummary();
-            this.GetNotificationinfo();
+            //this.GetNotificationinfo();
 
         }
         protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -5448,7 +5451,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '54%' and code ='" + dis + "'");
             DataTable dtZone = dv.ToTable();
-            dtZone.Rows.Add("0000000", "Choose Zone..", "");
+            dtZone.Rows.Add("0000000", "Zone", "");
             this.ddlZone.DataTextField = "gdesc";
             this.ddlZone.DataValueField = "gcod";
             this.ddlZone.DataSource = dtZone;
@@ -5467,7 +5470,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '55%' and code ='" + zone + "'");
             DataTable dtPO = dv.ToTable();
-            dtPO.Rows.Add("0000000", "Choose Police Station..", "");
+            dtPO.Rows.Add("0000000", "P.S.", "");
             this.ddlPStat.DataTextField = "gdesc";
             this.ddlPStat.DataValueField = "gcod";
             this.ddlPStat.DataSource = dtPO;
@@ -5486,7 +5489,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '56%' and code ='" + PoSt + "'");
             DataTable dtArea = dv.ToTable();
-            dtArea.Rows.Add("0000000", "Choose Area..", "");
+            dtArea.Rows.Add("0000000", "Area", "");
             this.ddlArea.DataTextField = "gdesc";
             this.ddlArea.DataValueField = "gcod";
             this.ddlArea.DataSource = dtArea;
@@ -5505,7 +5508,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '57%' and code ='" + Area + "'");
             DataTable dtBlk = dv.ToTable();
-            dtBlk.Rows.Add("0000000", "Choose Block..", "");
+            dtBlk.Rows.Add("0000000", "Block", "");
             this.ddlBlock.DataTextField = "gdesc";
             this.ddlBlock.DataValueField = "gcod";
             this.ddlBlock.DataSource = dtBlk;
@@ -5524,7 +5527,7 @@ namespace RealERPWEB.F_01_LPA
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '58%' and code ='" + Block + "'");
             DataTable dtRoad = dv.ToTable();
-            dtRoad.Rows.Add("0000000", "Choose Road..", "");
+            dtRoad.Rows.Add("0000000", "Road", "");
             this.ddlRoad.DataTextField = "gdesc";
             this.ddlRoad.DataValueField = "gcod";
             this.ddlRoad.DataSource = dtRoad;
@@ -7343,6 +7346,21 @@ namespace RealERPWEB.F_01_LPA
             ViewState["tbModalData"] = ds1.Tables[0];
             this.Modal_Data_Bind();
 
+
+        }
+
+        protected void lnkShowNotifcation_Click(object sender, EventArgs e)
+        {
+            this.GetNotificationinfo();
+        }
+
+        protected void lnkbtnOther_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lnkBtnVisit_Click(object sender, EventArgs e)
+        {
 
         }
     }

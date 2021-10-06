@@ -6,8 +6,30 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
     <style>
+         .multiselect{
+             width: 270px !important;
+             text-wrap:initial !important;
+              height:27px !important;
+         }
+         .multiselect-text{
+             width:200px !important;
+         }
+         .multiselect-container {
+            height: 250px !important;
+            width:300px !important;
+            overflow-y: scroll !important;
+        }
+        
+         span.multiselect-selected-text{
+              width:200px !important;
+         }
+         .form-control{ height:34px;}
         .nsl {
             width: 270px !important;
         }
@@ -19,22 +41,16 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-
         });
         function pageLoaded() {
             $(function () {
                 $('[id*=ddlDetailsCode]').multiselect({
-                    includeSelectAllOption: true
-                })
+                    includeSelectAllOption: true,
+
+                    enableCaseInsensitiveFiltering: true,
+                });
 
             });
-
-
-
-
-
 
             var gvInPlan = $('#<%=this.gvInPlan.ClientID %>');
 
@@ -1087,7 +1103,7 @@
                                     <asp:Label ID="lblProject1" runat="server" CssClass="lblTxt lblName" Text="Details:"></asp:Label>
 
 
-                                    <asp:ListBox ID="ddlDetailsCode" runat="server" CssClass=" form-control" Width="280px" SelectionMode="Multiple"></asp:ListBox>
+                                    <asp:ListBox ID="ddlDetailsCode" runat="server" CssClass="form-control" Width="280px" SelectionMode="Multiple"></asp:ListBox>
 
 
 

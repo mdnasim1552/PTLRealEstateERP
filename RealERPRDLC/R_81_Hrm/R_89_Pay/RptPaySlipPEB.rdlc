@@ -1821,7 +1821,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Bivas Paul</Value>
+                                      <Value>Md. Monirul Islam Patwary</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -1856,9 +1856,10 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Manager &amp; HOD, HR &amp; Admin</Value>
+                                      <Value>AGM &amp; HOD ,  Internal Audit &amp; HR and Admin</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1871,7 +1872,7 @@
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>0.91892in</Top>
                               <Left>0.45708in</Left>
-                              <Height>0.17708in</Height>
+                              <Height>0.36583in</Height>
                               <Width>2.31201in</Width>
                               <ZIndex>44</ZIndex>
                               <Style>
@@ -2139,7 +2140,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Bivas Paul</Value>
+                                      <Value>Md. Monirul Islam Patwary</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
                                         <FontWeight>Bold</FontWeight>
@@ -2147,15 +2148,15 @@
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
-                                    <TextAlign>Left</TextAlign>
+                                    <TextAlign>Center</TextAlign>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>7.04867in</Top>
-                              <Left>3.24478in</Left>
+                              <Left>2.65103in</Left>
                               <Height>0.19792in</Height>
-                              <Width>2.04167in</Width>
+                              <Width>2.63542in</Width>
                               <ZIndex>52</ZIndex>
                               <Style>
                                 <Border>
@@ -2177,23 +2178,24 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Manager &amp; HOD, HR &amp; Admin</Value>
+                                      <Value>AGM &amp; HOD ,  Internal Audit &amp; HR and Admin</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
+                                        <FontSize>8pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
-                                    <TextAlign>Right</TextAlign>
+                                    <TextAlign>Center</TextAlign>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox2</rd:DefaultName>
                               <Top>7.27436in</Top>
-                              <Left>3.24477in</Left>
+                              <Left>2.65103in</Left>
                               <Height>0.19792in</Height>
-                              <Width>2.04167in</Width>
+                              <Width>2.63541in</Width>
                               <ZIndex>53</ZIndex>
                               <Style>
                                 <Border>

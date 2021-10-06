@@ -509,11 +509,16 @@
 
 
                     gcod = $(arrgschcodl[i]).text();
-                    var number;
+                    var number, numberlq;
                     switch (gcod) {
                         //Last Followup
                         case '810100101020':
                             number = i;
+                            break;
+
+
+                        case '810100101014':
+                            numberlq = i;
                             break;
 
 
@@ -558,6 +563,17 @@
                     }
 
                 });
+
+
+                //Lead Reason
+                var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
+                $(ddlvisit).change(function () {
+                    leadquality = $(this).val();
+                    funLeadReason(comcod, leadquality);
+
+
+                });
+
 
 
 
@@ -1207,6 +1223,75 @@
 
 
 
+        function funLeadReason(comcod, leadquality) {
+
+            try {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetLeadReason",
+                    data: '{comcod:"' + comcod + '", leadquality:"' + leadquality + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101012':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
+                        $(ddllreason).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
+                        });
+
+
+
+
+                        // console.log(data);
+                        //  funDataBind(data);                      
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+        }
+
+
         function funDupAllMobile() {
 
             try {
@@ -1342,8 +1427,8 @@
 
                 //var  comdate =$('#txtcomdate'+number).val();
                 var comcod =<%=this.GetComeCode()%>;
-                    var empid =<%=this.GetEmpID()%>;
-                    var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+                var empid =<%=this.GetEmpID()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
 
 
 
@@ -1430,6 +1515,11 @@
                                     if ($(item).val() == newfollowup) {
                                         $(item).attr('checked', true);
                                     }
+                                    else {
+
+                                        $(item).attr('checked', false);
+
+                                    }
 
 
                                 });
@@ -1443,14 +1533,18 @@
                                     ar[j++] = newfollowup.substr(i, 7);
                                 }
 
-                                console.log(ar);
-                                alert(ar.length);
+                                //console.log(ar);
+                                //alert(ar.length);
 
                                 for (i = 0; i < ar.length; i++) {
 
                                     $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
                                         if ($(item).val() == ar[i]) {
                                             $(item).attr('checked', true);
+                                        }
+                                        else {
+                                            $(item).attr('checked', false);
+
                                         }
 
                                     });
@@ -1472,6 +1566,11 @@
                                 $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
                                     if ($(item).val() == newfollowup) {
                                         $(item).attr('checked', true);
+
+                                    }
+                                    else {
+
+                                        $(item).attr('checked', false);
 
                                     }
 
@@ -1496,6 +1595,11 @@
                                 $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
                                     if ($(item).val() == status) {
                                         $(item).attr('checked', true);
+
+                                    }
+                                    else {
+                                        $(item).attr('checked', false);
+
 
                                     }
 
@@ -2298,7 +2402,7 @@
                         <asp:View ID="View2" runat="server">
                             <asp:Panel ID="pnpRecFilter" runat="server">
                                 <div class="row">
-                                    <label class="control-label col-md-1">Record Filter</label>
+                                    <label class="control-label col-md-1">Filter</label>
 
 
                                     <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
@@ -2404,30 +2508,30 @@
                                         </div>
 
 
-                                        <div class="col-md-1">   
-                                     
-                                                <%--<label class="control-label">Page</label>--%>
-                                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control custom-select"
-                                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                                   <asp:ListItem>10</asp:ListItem>
-                                                   <asp:ListItem>20</asp:ListItem>
-                                                   <asp:ListItem>30</asp:ListItem>
-                                                   <asp:ListItem>40</asp:ListItem>
-                                                    <asp:ListItem>50</asp:ListItem>
-                                                    <asp:ListItem>100</asp:ListItem>
-                                                    <asp:ListItem>150</asp:ListItem>
-                                                    <asp:ListItem>200</asp:ListItem>
-                                                    <asp:ListItem>300</asp:ListItem>
-                                                    <asp:ListItem>600</asp:ListItem>
-                                                    <asp:ListItem>900</asp:ListItem>
-                                                    <asp:ListItem>1000</asp:ListItem>
-                                                    <asp:ListItem>2000</asp:ListItem>
-                                                    <asp:ListItem>3000</asp:ListItem>
-                                                    <asp:ListItem>4000</asp:ListItem>
-                                                    <asp:ListItem>5000</asp:ListItem>
-                                                </asp:DropDownList>
-                                            
-                                           
+                                        <div class="col-md-1">
+
+                                            <%--<label class="control-label">Page</label>--%>
+                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control custom-select"
+                                                OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                                <asp:ListItem>10</asp:ListItem>
+                                                <asp:ListItem>20</asp:ListItem>
+                                                <asp:ListItem>30</asp:ListItem>
+                                                <asp:ListItem>40</asp:ListItem>
+                                                <asp:ListItem>50</asp:ListItem>
+                                                <asp:ListItem>100</asp:ListItem>
+                                                <asp:ListItem>150</asp:ListItem>
+                                                <asp:ListItem>200</asp:ListItem>
+                                                <asp:ListItem>300</asp:ListItem>
+                                                <asp:ListItem>600</asp:ListItem>
+                                                <asp:ListItem>900</asp:ListItem>
+                                                <asp:ListItem>1000</asp:ListItem>
+                                                <asp:ListItem>2000</asp:ListItem>
+                                                <asp:ListItem>3000</asp:ListItem>
+                                                <asp:ListItem>4000</asp:ListItem>
+                                                <asp:ListItem>5000</asp:ListItem>
+                                            </asp:DropDownList>
+
+
                                         </div>
 
 
@@ -2733,7 +2837,19 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "virnotes")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+
                                                 <%--21--%>
+
+                                                <asp:TemplateField HeaderText="Prefered Location" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgprefdesc" runat="server" Width="120px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prefdesc")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+
+                                                <%--22--%>
 
                                                 <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
@@ -2769,7 +2885,7 @@
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Code">
+                                                <asp:TemplateField HeaderText="Code" Visible="false">
                                                     <ItemTemplate>
 
                                                         <%-- <asp:Label ID="lsircode" runat="server"
@@ -2821,7 +2937,7 @@
 
                                                 <asp:TemplateField HeaderText="Call">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkgvkpicall" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkgvkpicall_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "call")) %>'> </asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkgvkpicall" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkgvkpicall_Click" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "call")).ToString("#,##0;(#,##0); ") %>'> </asp:LinkButton>
 
 
                                                     </ItemTemplate>
@@ -2836,7 +2952,7 @@
 
                                                 <asp:TemplateField HeaderText="Ext. Meeting">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkkpiDetrailsExMet" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkkpiDetrailsExMet_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extmeeting")) %>'> </asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkkpiDetrailsExMet" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkkpiDetrailsExMet_Click" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "extmeeting")).ToString("#,##0;(#,##0); ") %>'> </asp:LinkButton>
 
 
 
@@ -2853,7 +2969,7 @@
 
                                                 <asp:TemplateField HeaderText="Internal. Meeting">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkkpiDetrailsINtMet" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkkpiDetrailsINtMet_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "intmeeting")) %>'> </asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkkpiDetrailsINtMet" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkkpiDetrailsINtMet_Click" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intmeeting")).ToString("#,##0;(#,##0); ") %>'> </asp:LinkButton>
 
 
                                                     </ItemTemplate>
@@ -2869,7 +2985,7 @@
 
                                                 <asp:TemplateField HeaderText="visit">
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkkpiDetrailsVisit" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkkpiDetrailsVisit_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "visit")) %>'> </asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkkpiDetrailsVisit" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server" OnClick="lnkkpiDetrailsVisit_Click" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "visit")).ToString("#,##0;(#,##0); ") %>'> </asp:LinkButton>
 
 
                                                     </ItemTemplate>
@@ -2887,7 +3003,7 @@
                                                 <asp:TemplateField HeaderText="Proposal">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkkpiDetrailsProposal" ForeColor="Chocolate" ClientIDMode="Static" Width="60px" Font-Size="10px" Style="text-align: center;" runat="server"
-                                                            OnClick="lnkkpiDetrailsProposal_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "proposal")) %>'> </asp:LinkButton>
+                                                            OnClick="lnkkpiDetrailsProposal_Click" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposal")).ToString("#,##0;(#,##0); ") %>'> </asp:LinkButton>
 
 
 
@@ -3190,21 +3306,24 @@
                                     <div class="form-group">
                                         <ul style="list-style: none; padding-left: 0px">
                                             <li>
-                                                <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial.aspx?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook.aspx" runat="server">Code Book</asp:HyperLink>
+                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">Code Book</asp:HyperLink>
 
                                             </li>
                                             <li>
                                                 <asp:LinkButton ID="lnkbtnReturn" runat="server" OnClick="lnkbtnReturn_Click">Return List</asp:LinkButton>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel.aspx" runat="server">Sales Funnel Reports</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                                             </li>
                                             <li>
                                                 <asp:LinkButton ID="lnkbtnNotes" runat="server" OnClick="lnkbtnNotes_Click">Notes</asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="hlnkTeamMember" Target="_blank" NavigateUrl="~/F_21_Mkt/MktTeamMember" runat="server">Team Member</asp:HyperLink>
                                             </li>
                                         </ul>
                                     </div>
@@ -3786,8 +3905,8 @@
                                                         </asp:Panel>
 
                                                         <asp:Panel ID="pnlParic" runat="server" Visible="false">
-                                                            <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" Style="width: 300px !important;"
-                                                                data-placeholder="Choose Participant......" multiple="true" class="form-control chosen-select"></asp:ListBox>
+                                                            <asp:ListBox ID="ddlPartic" runat="server" SelectionMode="Multiple" class="form-control chosen-select" Style="width: 300px !important;"
+                                                                data-placeholder="Choose Person......" multiple="true"></asp:ListBox>
 
                                                         </asp:Panel>
 
@@ -3826,7 +3945,7 @@
                                                         </asp:DropDownList>--%>
 
 
-                                                            <asp:DropDownList ID="checkboxReson" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;">
+                                                            <asp:DropDownList ID="checkboxReson" Visible="false" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;">
                                                             </asp:DropDownList>
 
 

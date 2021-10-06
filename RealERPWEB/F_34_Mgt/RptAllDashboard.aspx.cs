@@ -142,6 +142,8 @@ namespace RealERPWEB.F_34_Mgt
             string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
                                                                                                         // string month = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("MMM");
             DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "PURPAYANALYSISGRAPH", dates, "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             List<data2> weeklypur = ds2.Tables[2].DataTableToList<data2>();
             List<data1> topsuppur = ds2.Tables[4].DataTableToList<data1>();
             List<data1> topmat = ds2.Tables[5].DataTableToList<data1>();

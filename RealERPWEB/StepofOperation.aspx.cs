@@ -163,7 +163,7 @@ namespace RealERPWEB
             DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
             ((Label)this.Master.FindControl("LblGrpCompany")).Text = this.ddlCompanyName.SelectedItem.Text.Trim();// ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
             ((Label)this.Master.FindControl("lbladd")).Text = (dr[0]["comadd"].ToString().Substring(0, 6) == "<br />") ? dr[0]["comadd"].ToString().Substring(6) : dr[0]["comadd"].ToString();
-            ((Image)this.Master.FindControl("Image1")).ImageUrl = "~/Image/" + "LOGO" + comcod + ".PNG";
+            //((Image)this.Master.FindControl("Image1")).ImageUrl = "~/Image/" + "LOGO" + comcod + ".PNG";
 
         }
         private void GetUserPermission()

@@ -606,8 +606,9 @@ namespace RealERPWEB
 
             string empid ="%%";
             string prjcode ="%%";
-            string professioncode = "%%";                       
-            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, "");
+            string professioncode = "%%";
+            string sourceref = "%";
+            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref);
             if(ds2CRM2==null)
             {
                 return;

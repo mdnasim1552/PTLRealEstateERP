@@ -42,7 +42,7 @@ namespace RealERPWEB.F_17_Acc
                 this.CreateTable();
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetConAndBill();
-                this.LoadBillList();
+                //this.LoadBillList();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.CompanyPost();
 
@@ -838,9 +838,9 @@ namespace RealERPWEB.F_17_Acc
                     if (billno.Selected)
                     {
 
-
+                        string billno1 = billno.Value.ToString();
                         string CallType = this.ComCallType();
-                        DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, billno.Value.ToString(),
+                        DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, billno1,
                                       "", "", "", "", "", "", "", "");
                         DataTable dt1 = ds1.Tables[0];
 
@@ -854,7 +854,7 @@ namespace RealERPWEB.F_17_Acc
                             // string billno = dt1.Rows[i]["billid"].ToString();
 
 
-                            DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and subcode='" + dgResCode + "' and spclcode='" + dgSpclCode + "'  and billno='" + billno + "'");
+                            DataRow[] dr2 = tblt01.Select("actcode='" + dgAccCode + "'  and subcode='" + dgResCode + "' and spclcode='" + dgSpclCode + "'  and billno='" + billno1 + "'");
                             if (dr2.Length > 0)
                             {
                                 tblt01.Clear();

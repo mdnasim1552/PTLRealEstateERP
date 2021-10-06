@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="GeneralAccounts.aspx.cs" Inherits="RealERPWEB.F_17_Acc.GeneralAccounts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="GeneralAccounts.aspx.cs" Inherits="RealERPWEB.F_17_Acc.GeneralAccounts" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -386,7 +385,7 @@
                                                         <asp:Label ID="lblCramt" runat="server" Style="margin-left: -20px;" CssClass="lblTxt">Cr. Amount</asp:Label>
                                                     </div>
                                                     <div class="col-md-3 ">
-                                                        <asp:TextBox ID="txtCrAmt" runat="server" CssClass="form-control" TabIndex="22" Style="text-align: right; margin-left: -20px;"  onkeypress="return searchKeyPress(event);"></asp:TextBox>
+                                                        <asp:TextBox ID="txtCrAmt" runat="server" CssClass="form-control" TabIndex="22" Style="text-align: right; margin-left: -20px;" onkeypress="return searchKeyPress(event);"></asp:TextBox>
 
                                                     </div>
                                                     <div class="col-md-1">
@@ -803,11 +802,10 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvRemarks" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                        Font-Size="12px"
+                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px" 
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trnrmrk")) %>'
-                                                        Width="80px" ForeColor="Black" TabIndex="83"></asp:Label>
+                                                        Width="80px" ForeColor="Black" TabIndex="83"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -846,6 +844,7 @@
                                                         Width="80px" TabIndex="60"></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
+
 
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />

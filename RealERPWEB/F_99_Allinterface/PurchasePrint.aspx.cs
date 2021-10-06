@@ -38,6 +38,8 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "ReqPrint":
                     this.PrintRequisition();
+                    //Dev change
+                    //Dev change
                     break;
 
                 //case "ReqPrintRDLC":
@@ -417,7 +419,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dtr = ds1.Tables[0];
 
             // rdlc start for manama
-            if (comcod == "3353")
+            if (comcod == "3353" || comcod == "3101")
             {
 
                 string txtcrno = dt1.Rows[0]["reqno1"].ToString(); ;
@@ -2431,6 +2433,10 @@ namespace RealERPWEB.F_99_Allinterface
             string crmcheck = dts.Rows[0]["crmcheckname"].ToString();
             string crmcheckdat = dts.Rows[0]["crmcheckdat"].ToString();
 
+            // req post 
+            string postname = dts.Rows[0]["reqpostname"].ToString();
+            string postdat = dts.Rows[0]["POSTEDDAT"].ToString();
+
             //Narration part
             string crmnarr = dts.Rows[0]["crmnarr"].ToString();
 
@@ -2455,7 +2461,7 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign5 = "Procrument";
             string txtSign6 = "Managing Director";
              */
-            string txtSign1 = "";
+            string txtSign1 = postname +"\n"+ postdat;
             string txtSign2 = ""; 
             string txtSign3 = crmcheck + "\n" + crmcheckdat;
             string txtSign4 = reqchkname +"\n"+ checkdat;
@@ -3784,6 +3790,8 @@ namespace RealERPWEB.F_99_Allinterface
                 string porderno = this.ComOrderNo(orderno, oissueno);
                 string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
 
+                string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
+
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", wrkid, "", "", "", "", "", "", "", "");
 
                 ViewState["tblOrder1"] = ds1.Tables[0];
@@ -3841,7 +3849,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         break;
-                    case "3101": // Asit
+                    //case "3101": // Asit
                     case "3335": // Edison Properties            
 
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
@@ -3872,7 +3880,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign6 = "Approved By";
                         break;
-                    //case "3101": // Asit
+                    case "3101": // Asit
                     case "3353": //Manama
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -3957,7 +3965,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         break;
 
-                    case "3101": // ASIT     
+                    //case "3101": // ASIT     
                     case "3335": // Edison Properties
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4010,7 +4018,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
                         break;
 
-                    case "3101"://Asit
+                    //case "3101"://Asit
                     case "3335": // Edison Properties
                         Reportpath = "~/Report/RptPurchaseOrderEdison.rdlc";
                         break;
@@ -4043,7 +4051,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "2325": //Leisure
                         Reportpath = "~/Report/RptPurchaseOrderLeisure.rdlc";
                         break;
-
+                    case "3101"://Asit
                     case "3353": //Manama
                         Reportpath = "~/Report/RptPurchaseOrderManama.rdlc";
                         break;
@@ -4078,13 +4086,19 @@ namespace RealERPWEB.F_99_Allinterface
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
                 }
+                if(comcod=="3353" || comcod == "3101")
+                {
+                    Rpt1.SetParameters(new ReportParameter("refno01", mrfno1));
+                    //Rpt1.SetParameters(new ReportParameter("refno01", ""));
+
+                }
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00);")));
-                Rpt1.SetParameters(new ReportParameter("disamt", amtdis.ToString("#,##0.00;(#,##0.00);")));
-                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00);")));
+                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00); ")));
+                Rpt1.SetParameters(new ReportParameter("disamt", amtdis.ToString("#,##0.00;(#,##0.00); ")));
+                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00); ")));
                 Rpt1.SetParameters(new ReportParameter("nettotal", nettotalamt));
                 Rpt1.SetParameters(new ReportParameter("advamt", advamt));
                 Rpt1.SetParameters(new ReportParameter("discountdesc", discountdesc));
@@ -4938,11 +4952,11 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBillCredence";
                     break;
 
+                case "3101"://ASIT
                 case "3353":
                     PrintReq = "PrintBillManama";
                     break;
 
-                case "3101"://ASIT
                 case "3354":
                     PrintReq = "PrintBillEdisonErp";
                     break;
@@ -5273,7 +5287,7 @@ namespace RealERPWEB.F_99_Allinterface
             rptbill.SetParameters(new ReportParameter("comadd", comadd));
             rptbill.SetParameters(new ReportParameter("Rptname", "Sub-Contractor Bill"));
             rptbill.SetParameters(new ReportParameter("ProjectName", "Project Name : " + dt.Rows[0]["pactdesc"].ToString()));
-            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dt.Rows[0]["csirdesc"].ToString()));
+            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dt.Rows[0]["csirdesc"].ToString())); 
             rptbill.SetParameters(new ReportParameter("mBillNo", "Bill No: " + dtd.Rows[0]["billno1"].ToString()));
             rptbill.SetParameters(new ReportParameter("Date", "Date: " + Convert.ToDateTime(dtd.Rows[0]["billdate"]).ToString("dd-MMM-yyyy")));
             rptbill.SetParameters(new ReportParameter("SeDep", Convert.ToDouble(dtd.Rows[0]["sdamt"]).ToString("#,##0.00;(#,##0.00); ")));

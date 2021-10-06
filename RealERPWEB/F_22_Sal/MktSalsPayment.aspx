@@ -342,7 +342,7 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Design Type" Visible="false">
+                                <asp:TemplateField HeaderText="Scope of Work" Visible="false">
                                     <EditItemTemplate>
                                         <asp:DropDownList ID="ddldesign" CssClass="ddlPage chzn-select" runat="server" Width="100px">
                                         </asp:DropDownList>
@@ -690,7 +690,7 @@
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="lgcResDesc2" runat="server" BackColor="Transparent" BorderStyle="None"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                            Width="350px" ForeColor="Black"></asp:TextBox>
+                                                            Width="330px" ForeColor="Black"></asp:TextBox>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>

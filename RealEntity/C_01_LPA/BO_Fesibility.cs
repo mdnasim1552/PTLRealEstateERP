@@ -185,7 +185,94 @@ namespace RealEntity.C_01_LPA
        
        }
 
+
+
+        [Serializable]
+        public class EClassZDTM
+
+        {
+            public string gcod { get; set; }
+            public string gdesc { get; set; }
+
+
+            public EClassZDTM()
+            {
+
+
+            }
+
+
+
+
+
+        }
+
+
+
+    
+
+
+
+        [Serializable]
+        public class EClassLandInfo
+
+        {
+            public string gcod { get; set; }
+            public string lsircode { get; set; }
+            public string ocsdhagno { get; set; }
+            public string csdhagno { get; set; }
+            public string osadhagno { get; set; }
+            public string sadhagno { get; set; }
+            public string rsdhagno { get; set; }
+            public string bsdhagno { get; set; }
+            public string bskhotianno { get; set; }
+            public double cslarea { get; set; }
+            public double bslarea { get; set; }
+            public double bsklarea { get; set; }
+            public string jblrefno { get; set; }
+            public double budarea { get; set; }
+            public double purarea { get; set; }
+            public double restlarea { get; set; }
+
+
+            public EClassLandInfo()
+            {
+
+
+            }
+
+            public EClassLandInfo(string gcod, string lsircode , string ocsdhagno, string csdhagno, string osadhagno, string sadhagno, string rsdhagno, string bsdhagno, string bskhotianno,  double cslarea, double bslarea, double bsklarea, string jblrefno, double budarea, double purarea, double restlarea)
+            {
+                this.gcod =gcod;
+                this.lsircode =lsircode;
+                this.ocsdhagno =ocsdhagno;
+                this.csdhagno = csdhagno;
+                this.osadhagno = osadhagno;
+                this.sadhagno =sadhagno;                
+                this.rsdhagno = rsdhagno;
+                this.bsdhagno = bsdhagno;
+               
+                this.bskhotianno = bskhotianno;
+                this.cslarea = cslarea;
+                this.bslarea = bslarea;
+                this.bsklarea = bsklarea;
+                this.jblrefno = jblrefno;
+                this.budarea = budarea;
+                this.purarea = purarea;
+                this.restlarea = restlarea;
+
+            }
+
         
+
+
+        }
+
+
+
+
+     
+
 
     }
 }

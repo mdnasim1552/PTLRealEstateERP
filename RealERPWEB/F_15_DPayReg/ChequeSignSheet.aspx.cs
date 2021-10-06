@@ -42,12 +42,20 @@ namespace RealERPWEB.F_15_DPayReg
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.GetProjectName();
-                this.Bankcode();
-                this.ColumnVisible();
-                this.ComInitial();
-                this.lnkOk_Click(null, null);
 
+                if (Request.QueryString.AllKeys.Contains("reqno"))
+                {
+                    // print cheque from bill register interface
+                    this.getChequeIssue();
+                }              
+                else
+                {
+                    this.GetProjectName();
+                    this.Bankcode();
+                    this.ColumnVisible();
+                    this.ComInitial();
+                    this.lnkOk_Click(null, null);
+                }
 
                 if (Cache["cactcode"] == null)
                 {
@@ -77,6 +85,8 @@ namespace RealERPWEB.F_15_DPayReg
                 {
                     this.checkpb.Visible = false;
                 }
+
+
 
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Cheque Preparation";
@@ -448,17 +458,6 @@ namespace RealERPWEB.F_15_DPayReg
 
                 this.lblInword.Text = ASTUtility.Trans(amount, 2);
             }
-
-
-
-
-
-
-
-
-
-
-
 
         }
 
@@ -2363,6 +2362,93 @@ namespace RealERPWEB.F_15_DPayReg
                 return;
             this.txtRefNum.Text = this.ddlcheque.SelectedItem.Text;
         }
+
+
+        private void getChequeIssue()
+        {
+            try
+            {
+                Session.Remove("tbChqSign");
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+                string Issueno = Request.QueryString["slnum"].ToString() == "" ? "" : Request.QueryString["slnum"].ToString();
+                string billno = Request.QueryString["billno"].ToString() == "" ? "" : Request.QueryString["billno"].ToString();
+
+                string pactcode = ((Request.QueryString["actcode"].ToString() == "000000000000") ? "" : Request.QueryString["actcode"].ToString()) + "%";
+                DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_ONLINE_PAYMENT", "CHEQUEISSUEPRINT", Issueno, billno, "", "", "", "");
+                if (ds1.Tables[0].Rows.Count == 0)
+                    return;
+
+                Session["dscheqeinfo"]= ds1;
+                this.printChequeIssue();
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error :" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
+        private void printChequeIssue()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+
+
+            DataSet ds1 = (DataSet)Session["dscheqeinfo"];
+            DataTable dt1 = ds1.Tables[0];
+            DataTable dt2 = ds1.Tables[1];
+            DataTable dt3 = ds1.Tables[2];
+
+            string paytype = "Pay Type : " +dt3.Rows[0]["paytype"].ToString();
+            string payto = "Pay To : " + dt3.Rows[0]["payto"].ToString();
+            string reqnar = "Narration : " + dt3.Rows[0]["reqnar"].ToString();
+            string date1 = "Req Date : " + Convert.ToDateTime(dt3.Rows[0]["reqdat"]).ToString("dd-MM-yyyy");
+
+            string billno =Request.QueryString["billno"].ToString() == "" ? "" : Request.QueryString["billno"].ToString();
+            string payid = Request.QueryString["slnum"].ToString() == "" ? "" : Request.QueryString["slnum"].ToString();
+
+
+            string sign1 = dt2.Rows[0]["entryuser"].ToString() + "\n" + dt2.Rows[0]["entrydesig"].ToString() +"\n" +  Convert.ToDateTime(dt2.Rows[0]["entryDate"]).ToString("dd-MM-yyyy");
+            string sign2 = dt2.Rows[0]["chkuser"].ToString() + "\n" + dt2.Rows[0]["chkuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["chkdate"]).ToString("dd-MM-yyyy");
+            string sign3 = dt2.Rows[0]["fruser"].ToString() + "\n" + dt2.Rows[0]["fruserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["frdate"]).ToString("dd-MM-yyyy");
+            string sign4 = dt2.Rows[0]["aprvuser"].ToString() + "\n" + dt2.Rows[0]["aprvuserdesig"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["aprvdate"]).ToString("dd-MM-yyyy");
+
+            var list = dt1.DataTableToList<RealEntity.C_14_Pro.EClassPur.ChequeSheet01>();
+
+            LocalReport rpt = new LocalReport();
+            rpt = RptSetupClass1.GetLocalReport("R_15_DPayReg.RptChequeIssue", list, null, null);
+            rpt.EnableExternalImages = true;
+            rpt.SetParameters(new ReportParameter("compName", comnam));
+            rpt.SetParameters(new ReportParameter("txtTitle", "Bill Information"));
+            rpt.SetParameters(new ReportParameter("date1", date1));
+
+            rpt.SetParameters(new ReportParameter("paytype", paytype));
+            rpt.SetParameters(new ReportParameter("payto", payto));
+            rpt.SetParameters(new ReportParameter("reqnar", reqnar));
+            rpt.SetParameters(new ReportParameter("billno", "Bill No: " + billno));
+            rpt.SetParameters(new ReportParameter("payid", "Pay Id : " + payid));
+
+            rpt.SetParameters(new ReportParameter("txtsign1", sign1));
+            rpt.SetParameters(new ReportParameter("txtsign2", sign2));
+            rpt.SetParameters(new ReportParameter("txtsign3", sign3));
+            rpt.SetParameters(new ReportParameter("txtsign4", sign4));
+
+            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            rpt.SetParameters(new ReportParameter("comLogo", ComLogo));
+
+            Session["Report1"] = rpt;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+        }
+
     }
 }
 

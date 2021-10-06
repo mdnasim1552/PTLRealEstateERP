@@ -231,19 +231,14 @@ namespace RealERPWEB.F_32_Mis
         {
             Session.Remove("tblrescode");
             string comcod = this.GetComeCode();
-            //  Data.GetResCode(comcod, "SP_REPORT_MIS", "GETRESCODE", "", "", "", "", "", "", "", "", "");
-
             DataSet ds = MISData.GetTransInfo(comcod, "SP_REPORT_MIS", "GETRESCODE", "", "", "", "", "", "", "", "", "");
             if (ds == null)
                 return;
+
             this.ddlDetailsCode.DataTextField = "resdesc";
             this.ddlDetailsCode.DataValueField = "rescode";
             this.ddlDetailsCode.DataSource = ds.Tables[0];
             this.ddlDetailsCode.DataBind();
-
-
-
-
         }
 
         protected void chkDeselectAll_CheckedChanged(object sender, EventArgs e)

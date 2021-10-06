@@ -685,12 +685,9 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
-
             string type = this.Request.QueryString["Type"].ToString();
             switch (type)
             {
-
                 case "AllProDuesCollect":
                     this.AllProDuesCollection();
                     break;
@@ -717,17 +714,7 @@ namespace RealERPWEB.F_23_CR
                 case "MonthlyDuesOverDues":
                     this.ShowMonthlyDuesOverDues();
                     break;
-
-
-
-
-
-
-
             }
-
-
-
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -863,6 +850,8 @@ namespace RealERPWEB.F_23_CR
             try
             {
                 DataTable dt = (DataTable)Session["tblAccRec"];
+                string comcod=this.GetCompCode();
+
                 string type = this.Request.QueryString["Type"].ToString();
                 int i, j;
                 //  double p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19, p20;
@@ -922,6 +911,7 @@ namespace RealERPWEB.F_23_CR
                         break;
 
                     case "MonthlyColl":
+                        
 
                         for (i = 7; i < this.gvmoncoll.Columns.Count - 1; i++)
                             this.gvmoncoll.Columns[i].Visible = false;
@@ -929,17 +919,15 @@ namespace RealERPWEB.F_23_CR
                         DataTable dtt = (DataTable)ViewState["tblrectype"];
                         for (i = 0; i < dtt.Rows.Count; i++)
                         // for (i = 0; i <= 23; i++)
-
                         {
-
-
                             this.gvmoncoll.Columns[j].Visible = true;
                             this.gvmoncoll.Columns[j].HeaderText = dtt.Rows[i]["recpdesc"].ToString();
-
 
                             j++;
 
                         }
+
+
 
                         this.gvmoncoll.DataSource = dt;
                         this.gvmoncoll.DataBind();
@@ -1587,6 +1575,7 @@ namespace RealERPWEB.F_23_CR
                     lgvtotal.Font.Bold = true;
                     custname.Style.Add("text-align", "right");
                 }
+               
 
             }
         }
@@ -1642,6 +1631,12 @@ namespace RealERPWEB.F_23_CR
 
                     lgvtotal.Font.Bold = true;
                     custname.Style.Add("text-align", "right");
+                }
+
+                string comcod = this.GetCompCode();
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352")
+                {
+
                 }
 
             }

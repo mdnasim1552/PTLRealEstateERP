@@ -18,6 +18,7 @@ namespace RealERPWEB.Notices
             if (!IsPostBack)
             {
                 this.NoticeDetails();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "All Notices";
             }
         }
         private string GetcompCode()

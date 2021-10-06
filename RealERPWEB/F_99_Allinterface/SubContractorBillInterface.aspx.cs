@@ -48,6 +48,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //  this.RadioButtonList1_SelectedIndexChanged(null, null);
                 // this.Countqty();
                 this.Visible();
+                this.CheckHyperLink();
 
             }
 
@@ -81,6 +82,21 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
 
+        }
+
+
+        private void CheckHyperLink()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306")
+            {
+                hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + "SubConOrder";
+            }
+            else
+            {
+                hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry02?Type=Entry";
+            }
+           
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -702,7 +718,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
-                case "3101":
+                //case "3101":
                 case "3330":
 
                     coltype = "TRANSACTION_STATEMENT2";
@@ -1155,7 +1171,9 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintINapp");
                 HyperLink lnkbtnbfinapp = (HyperLink)e.Row.FindControl("lnkbtnbfinapp");
-                //  LinkButton btnDelReqCheck = (LinkButton)e.Row.FindControl("btnDelReqCheck");
+
+                LinkButton btnDelfinapp = (LinkButton)e.Row.FindControl("btnDelfinapp");
+                
 
 
                 // HyperLink lnkbtnEditBilll = (HyperLink)e.Row.FindControl("lnkbtnEditBilll");
@@ -1176,7 +1194,10 @@ namespace RealERPWEB.F_99_Allinterface
                 // lnkbtnEditBilll.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Edit&genno=" + lisuno + "&prjcode=" + pactcode + "&sircode=" + sircode;
 
 
-
+                //if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" )
+                //{
+                //    btnDelfinapp.Visible = false;
+                //}
 
 
 
@@ -1601,11 +1622,10 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
 
-                    //case 3101:   //ASIT                      
+                    //case "3101":   //ASIT                      
                     case "1205":   //p2p
                     case "3351":   //p2p
                     case "3352":   //p2p
-                    case "3101":   //p2p
 
                         hlink1.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode;
 
@@ -1623,12 +1643,61 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkBillCSApp");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEditBilllReq");
+                HyperLink lnkbtnPrintCSApp = (HyperLink)e.Row.FindControl("lnkbtnPrintCSApp");
+
                 string blreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string recomsup = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString() == ""?  "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recomsup")).ToString();
+                string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString() == "" ? "" : Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
 
-                hlink1.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSApproval&prjcode=" + pactcode + "&genno=" + blreqno + "&sircode=";
+                hlink1.NavigateUrl = "~/F_09_PImp/PurLabRequisition?Type=CSApproval&prjcode=" + pactcode + "&genno=" + blreqno + "&sircode=" + "" + "&recomsup=" + recomsup + "&msrno="+ msrno;
+
+                lnkbtnPrintCSApp.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode + "&pType=" + "CSApproval" + "&msrno=" + msrno;
+
+
 
             }
+        }
+
+        protected void btnDelReqCSApp_Click(object sender, EventArgs e)
+        {
+            // Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurLabRequisition?Type=CSApproval";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
+            string refno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvissuerefbill")).Text.Trim();
+            string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreqno")).Text.Trim();
+            
+            
+
+
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP", null,null,null,msrno, refno, usrid, trmnid, session, Date, reqno, "", "", "", "", "", "", "", ""); 
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            //this.RadioButtonList1_SelectedIndexChanged(null, null);
+            this.lbtnOk_Click(null, null);
+
         }
 
         protected void gvWorkOrder_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1646,19 +1715,88 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        protected void btnDelWrkodr_Click(object sender, EventArgs e)
+        {
+            // Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurConWrkOrderEntry?Type=Entry";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreq2")).Text.Trim();
+            string csircode = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvcsircode2")).Text.Trim();
+            //string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
+
+
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP_Final", null, null, null, reqno, csircode, "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            //this.RadioButtonList1_SelectedIndexChanged(null, null);
+            this.lbtnOk_Click(null, null);
+        }
+
         protected void gvReadyForBill_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkWorkOrder");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnPrintWorkOrder");
 
                 string lreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lreqno")).ToString();
                 string csircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "csircode")).ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+
                 hlink1.NavigateUrl = "~/F_09_PImp/PurLabIssue?Type=Current&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + csircode;
+                hlink2.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + lreqno + "&sircode=" + csircode + "&actcode=" + pactcode + "&orderno=" + orderno;
 
             }
+        }
+
+
+        protected void btnDelReadyBill_Click(object sender, EventArgs e)
+        {
+            // Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            string url = "PurConWrkOrderEntry?Type=Entry";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string oderno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lgvOrerNo")).Text.Trim();
+            string lreqno = ((Label)this.gvReadyForBill.Rows[RowIndex].FindControl("lblgvlreq2")).Text.Trim();            
+
+            bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_WORKORDER", null, null, null, oderno, lreqno, "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+            this.lbtnOk_Click(null, null);
         }
     }
 }

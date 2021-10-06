@@ -17,8 +17,11 @@ using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 namespace RealERPWEB.F_12_Inv
 {
+       
     public partial class PurMatIssue : System.Web.UI.Page
     {
+
+        
         int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
         ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -565,10 +568,12 @@ namespace RealERPWEB.F_12_Inv
 
 
             /////
-            string mResCode = this.ddlMaterials.SelectedValue.ToString().Substring(0, 9);
+            //string mResCode = this.ddlMaterials.SelectedValue.ToString().Substring(0,9);
+            string mResCode = this.ddlMaterials.SelectedValue.ToString();
             DataTable tbl1 = (DataTable)Session["specification"];
             DataView dv1 = tbl1.DefaultView;
-            dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
+            dv1.RowFilter = "rsircode = '" + mResCode + "'";
+            // dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
             this.ddlSpecification.DataTextField = "spcfdesc";
             this.ddlSpecification.DataValueField = "spcfcod";
             this.ddlSpecification.DataSource = dv1.ToTable();
@@ -760,7 +765,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3315":
                 case "3316":
                 case "3317":
-                    // case "3101":
+                case "3101":
                     break;
 
                 default:
