@@ -302,10 +302,9 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("txtMode", txtMode));
                 Rpt1.SetParameters(new ReportParameter("txtInWord", amt1));
                 Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
-
-                //Rpt1.SetParameters(new ReportParameter("bankname", bankname));
-                //Rpt1.SetParameters(new ReportParameter("amt", amtstr));
-                //Rpt1.SetParameters(new ReportParameter("narration", naration));
+                Rpt1.SetParameters(new ReportParameter("bankname", bankname));
+                Rpt1.SetParameters(new ReportParameter("amt", amtstr));
+                Rpt1.SetParameters(new ReportParameter("narration", naration));
                 //Rpt1.SetParameters(new ReportParameter("paidby", ""));
                 //Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
 

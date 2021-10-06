@@ -1,5 +1,5 @@
 ﻿
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ASITMaster.Master"  CodeBehind="SalesInformation.aspx.cs" Inherits="RealERPWEB.F_22_Sal.SalesInformation" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ASITNEW.Master"  CodeBehind="SalesInformation.aspx.cs" Inherits="RealERPWEB.F_22_Sal.SalesInformation" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

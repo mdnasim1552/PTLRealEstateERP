@@ -2461,6 +2461,7 @@
     <Content Include="F_22_Sal\RptCustomerBill.aspx" />
     <Content Include="F_22_Sal\RptMktMoneyReceipt.aspx" />
     <Content Include="F_22_Sal\RptMonthConAss.aspx" />
+    <Content Include="F_22_Sal\RptMonthWiseNewSales.aspx" />
     <Content Include="F_22_Sal\RptPendingPayment.aspx" />
     <Content Include="F_22_Sal\RptPeriodicSalesWithCollection.aspx" />
     <Content Include="F_22_Sal\RptProPriceTrading.aspx" />
@@ -3715,12 +3716,13 @@
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_23_CR\RptMRTopSheet.aspx.cs">
-      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+    <Compile Include="F_22_Sal\RptMonthWiseNewSales.aspx.cs">
+      <DependentUpon>RptMonthWiseNewSales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_23_CR\RptMRTopSheet.aspx.designer.cs">
-      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+    <Compile Include="F_22_Sal\RptMonthWiseNewSales.aspx.designer.cs">
+      <DependentUpon>RptMonthWiseNewSales.aspx</DependentUpon>
+
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
