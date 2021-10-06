@@ -36,6 +36,11 @@
             width: 100px !important;
             height: 34px !important;
         }
+         .prcntbox{
+            display:block !important;
+            color:#ff6a00 !important;
+            font-size:14px !important;           
+        }
     </style>
 
 
@@ -338,6 +343,35 @@
                 else {
                     // $('#salchartG').hide();
                     // $('#salchartCon').show();
+                    var leadpcnt = "";
+                    var qulpcnt = "";
+                    var negpcnt = "";                   
+                    var fgpecnt = "";
+                    var winpcnt = "";
+                    var qurypcnt = "";
+                    
+                    var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
+                    if (rbtn == "Conversion") {
+                        qurypcnt = "100 %";
+                       
+                        leadpcnt = Math.round(saldata[0].lead * 100 / parseFloat(saldata[0].query));
+                        leadpcnt = (leadpcnt != 'NaN' ? leadpcnt:0) + "%";
+
+                        qulpcnt = Math.round(saldata[0].qualiflead * 100 / parseFloat(saldata[0].lead));
+                        qulpcnt = (qulpcnt != 'NaN' ? qulpcnt: 0) + "%";
+
+                        negpcnt = Math.round(saldata[0].nego * 100 / parseFloat(saldata[0].qualiflead));
+                        negpcnt = (negpcnt != 'NaN' ? negpcnt :0) + "%";
+
+                        fgpecnt = Math.round(saldata[0].finalnego * 100 / parseFloat(saldata[0].nego));
+                        fgpecnt = (fgpecnt != 'NaN' ? fgpecnt:0)  + "%";
+
+                        winpcnt = Math.round(saldata[0].win * 100 / parseFloat(saldata[0].finalnego));
+                        winpcnt =(winpcnt != 'NaN' ? winpcnt : 0) + "%";
+                        
+
+                    }
+
 
                     Highcharts.chart('salchartG', {
                         chart: {
@@ -385,31 +419,33 @@
                             {
                                 name: "Sales Funnel",
                                 colorByPoint: true,
+                                 
                                 data: [
                                     {
-                                        name: "Query",
+                                        
+                                        name: "Query <span class='prcntbox text-'>" + qurypcnt + " </span>",
                                         y: parseFloat(saldata[0].query)
                                     },
                                     {
-                                        name: "Lead",
-                                        y: parseFloat(saldata[0].lead)
+                                        name: "Lead  <span class='prcntbox text-'>" + leadpcnt +" </span>",
+                                        y:  parseFloat(saldata[0].lead)
                                     },
                                     {
-                                        name: "Qualified Lead",
+                                        name: "Qualified Lead <span class='prcntbox'>" + qulpcnt + " </span>",
                                         y: parseFloat(saldata[0].qualiflead)
                                     },
                                     {
-                                        name: "Negotiation",
+                                        name: "Negotiation <span class='prcntbox'>" + negpcnt + " </span>",
                                         y: parseFloat(saldata[0].nego)
                                     },
                                     {
-                                        name: "Final Negotiation",
+                                        name: "Final Negotiation <span class='prcntbox'>" + fgpecnt + " </span>",
                                         y: parseFloat(saldata[0].finalnego)
                                     },
 
 
                                     {
-                                        name: "Win",
+                                        name: "Win <span class='prcntbox'>" + winpcnt + " </span>",
                                         y: parseFloat(saldata[0].win)
                                     }
 
@@ -880,7 +916,7 @@
                         type: gtype
                     },
                     title: {
-                        text: 'Professiom Wise Sales Funnel, Total:-  ' + sumproflead
+                        text: 'Profession Wise Sales Funnel, Total:-  ' + sumproflead
                     },
                     subtitle: {
                         text: ''
@@ -1573,7 +1609,7 @@
                     <div class="col-md-12 text-center graph-main" id="grpBox" runat="server" visible="false">
 
 
-                        <div id="salchartG" style="height: 325px; width: 450px; margin: 0 auto"></div>
+                        <div id="salchartG" style="height: 325px; width: 550px; margin: 0 auto"></div>
                          <%--<div id="salchartCon" style="height: 325px; width: 450px; margin: 0 auto"></div>--%>
 
 
