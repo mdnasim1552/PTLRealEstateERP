@@ -78,15 +78,6 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.TextBox txtrefno;
 
         /// <summary>
-        /// ddlvoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlvoucher;
-
-        /// <summary>
         /// lbtnOk control.
         /// </summary>
         /// <remarks>
@@ -96,24 +87,6 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// chkbod control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl chkbod;
-
-        /// <summary>
-        /// ChboxPayee control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ChboxPayee;
-
-        /// <summary>
         /// HpblnkNew control.
         /// </summary>
         /// <remarks>
@@ -121,69 +94,6 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HpblnkNew;
-
-        /// <summary>
-        /// hylnkpdcIssue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hylnkpdcIssue;
-
-        /// <summary>
-        /// hlnkLedger control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlnkLedger;
-
-        /// <summary>
-        /// HyperLink1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
-
-        /// <summary>
-        /// HyperLinkTriBal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkTriBal;
-
-        /// <summary>
-        /// HyperLink2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
-
-        /// <summary>
-        /// HyperLink4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
-
-        /// <summary>
-        /// HyperLink5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink5;
 
         /// <summary>
         /// checkpb control.
@@ -211,77 +121,5 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvAccVoucher;
-
-        /// <summary>
-        /// gvvoucountsum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvvoucountsum;
-
-        /// <summary>
-        /// pnlvouCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlvouCount;
-
-        /// <summary>
-        /// lbltoPdcVoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoPdcVoucher;
-
-        /// <summary>
-        /// lbltoCashVoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoCashVoucher;
-
-        /// <summary>
-        /// lbltoBankVoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoBankVoucher;
-
-        /// <summary>
-        /// lbltoContraVoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoContraVoucher;
-
-        /// <summary>
-        /// lbltoJournalVoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoJournalVoucher;
-
-        /// <summary>
-        /// lbltotalvoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltotalvoucher;
     }
 }
