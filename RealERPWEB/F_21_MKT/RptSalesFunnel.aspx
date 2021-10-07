@@ -353,21 +353,24 @@
                     var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
                     if (rbtn == "Conversion") {
                         qurypcnt = "100 %";
+
+
+
                        
-                        leadpcnt = Math.round(saldata[0].lead * 100 / parseFloat(saldata[0].query));
-                        leadpcnt = (leadpcnt != 'NaN' ? leadpcnt:0) + "%";
+                        leadpcnt = Math.round(saldata[0].query !=0?saldata[0].lead * 100 / parseFloat(saldata[0].query):0);
+                        leadpcnt =  leadpcnt + "%";
 
-                        qulpcnt = Math.round(saldata[0].qualiflead * 100 / parseFloat(saldata[0].lead));
-                        qulpcnt = (qulpcnt != 'NaN' ? qulpcnt: 0) + "%";
+                        qulpcnt = Math.round(saldata[0].lead != 0 ?saldata[0].qualiflead * 100 / parseFloat(saldata[0].lead):0);
+                        qulpcnt =  qulpcnt+ "%";
 
-                        negpcnt = Math.round(saldata[0].nego * 100 / parseFloat(saldata[0].qualiflead));
-                        negpcnt = (negpcnt != 'NaN' ? negpcnt :0) + "%";
+                        negpcnt = Math.round(saldata[0].qualiflead != 0 ?saldata[0].nego * 100 / parseFloat(saldata[0].qualiflead):0);
+                        negpcnt = negpcnt  + "%";
 
-                        fgpecnt = Math.round(saldata[0].finalnego * 100 / parseFloat(saldata[0].nego));
-                        fgpecnt = (fgpecnt != 'NaN' ? fgpecnt:0)  + "%";
+                        fgpecnt = Math.round(saldata[0].nego != 0 ?saldata[0].finalnego * 100 / parseFloat(saldata[0].nego):0);
+                        fgpecnt =  fgpecnt   + "%";
 
-                        winpcnt = Math.round(saldata[0].win * 100 / parseFloat(saldata[0].finalnego));
-                        winpcnt =(winpcnt != 'NaN' ? winpcnt : 0) + "%";
+                        winpcnt = Math.round(saldata[0].finalnego != 0 ?saldata[0].win * 100 / parseFloat(saldata[0].finalnego):0);
+                        winpcnt = winpcnt  + "%";
                         
 
                     }
@@ -479,7 +482,8 @@
                     allempdata.push({ "name": empleadst[i].usrname, "y": parseFloat(empleadst[i].total) })
                     sumlead += parseFloat(empleadst[i].total);
                 }
-
+                var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
+                var typea = (rbtn == "Conversion") ?" 100%": "";
 
                 //console.log(sumlead);
                 //console.log("NAhid");
@@ -489,7 +493,7 @@
                         type: gtype
                     },
                     title: {
-                        text: 'Sales Funnel Total Lead:-  ' + sumlead
+                        text: 'Sales Funnel Total Query:-  ' + sumlead + typea
                     },
                     subtitle: {
                         text: ''
@@ -535,99 +539,216 @@
 
                 });
 
+                var leadpcnt = "";
+                var qulpcnt = "";
+                var negpcnt = "";
+                var fgpecnt = "";
+                var winpcnt = "";
+                var qurypcnt = "";
                 //indiviual team graph bar
                 for (var i = 0; i < empleadstdets.length; i++) {
 
                     $('#indEmpStatusBar').append('<div id="r' + empleadstdets[i].teamcode + '" class="col-md-4"></div>')
 
+                    if (rbtn = "Conversion") {
+                        qurypcnt = "100 %";
+                         
 
-                    Highcharts.chart('r' + empleadstdets[i].teamcode, {
-                        chart: {
-                            type: 'column'
-                        },
-                        title: {
-                            text: 'Sales Funnel: ' + empleadstdets[i].usrname + '<img src="../images/userImg.png" alt=ddd>'
-                        },
-                        subtitle: {
-                            text: ''
-                        },
-                        accessibility: {
-                            announceNewData: {
-                                enabled: true
-                            }
-                        },
-                        xAxis: {
-                            type: 'category'
-                        },
-                        yAxis: {
+                        leadpcnt = Math.round(parseFloat(empleadstdets[i].query)!=0?empleadstdets[i].lead * 100 / parseFloat(empleadstdets[i].query):0);
+                        leadpcnt =  leadpcnt + "%";
+
+                        qulpcnt = Math.round(parseFloat(empleadstdets[i].lead)!=0?empleadstdets[i].qualiflead * 100 / parseFloat(empleadstdets[i].lead):0);
+                        qulpcnt =qulpcnt   + "%";
+
+                        negpcnt = Math.round(parseFloat(empleadstdets[i].qualiflead)!=0?empleadstdets[i].nego * 100 / parseFloat(empleadstdets[i].qualiflead):0);
+                        negpcnt =  negpcnt+ "%";
+
+                        fgpecnt = Math.round(parseFloat(empleadstdets[i].nego)!=0?empleadstdets[i].finalnego * 100 / parseFloat(empleadstdets[i].nego):0);
+                        fgpecnt = fgpecnt  + "%";
+
+                        winpcnt = Math.round(parseFloat(empleadstdets[i].finalnego)!=0?empleadstdets[i].win * 100 / parseFloat(empleadstdets[i].finalnego):0);
+                        
+
+                        winpcnt = winpcnt + "%";
+
+
+
+
+                        Highcharts.chart('r' + empleadstdets[i].teamcode, {
+                            chart: {
+                                type: 'column'
+                            },
                             title: {
-                                text: 'Total Sales Funnel Stages'
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y}'
+                                text: 'Sales Funnel: ' + empleadstdets[i].usrname + '<img src="../images/userImg.png" alt=ddd>'
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
                                 }
-                            }
-                        },
+                            },
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Total Sales Funnel Stages'
+                                }
 
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
-                        },
-
-                        series: [
-                            {
-                                name: "Sales Funnel",
-                                colorByPoint: true,
-                                data: [
-                                    {
-                                        name: "Query",
-                                        y: parseFloat(empleadstdets[i].query),
-                                        drilldown: "Query"
-                                    },
-                                    {
-                                        name: "Lead",
-                                        y: parseFloat(empleadstdets[i].lead),
-                                        drilldown: "Lead"
-                                    },
-                                    {
-                                        name: "Qualified Lead",
-                                        y: parseFloat(empleadstdets[i].qualiflead),
-                                        drilldown: "QualifiedLead"
-                                    },
-                                    {
-                                        name: "Negotiation",
-                                        y: parseFloat(empleadstdets[i].nego),
-                                        drilldown: "Negotiation"
-                                    },
-                                    {
-                                        name: "Final Negotiation",
-                                        y: parseFloat(empleadstdets[i].finalnego),
-                                        drilldown: "Final Negotiation"
-                                    },
-                                    {
-                                        name: "Win",
-                                        y: parseFloat(empleadstdets[i].win),
-                                        drilldown: null
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
                                     }
-                                    ,
-                                    {
-                                        name: "Total",
-                                        y: parseFloat(empleadstdets[i].total)
-                                    }
-                                ]
-                            }
-                        ]
+                                }
+                            },
 
-                    });
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
+                            },
+
+                            series: [
+                                {
+                                    name: "Sales Funnel",
+                                    colorByPoint: true,
+                                    data: [
+                                        {
+                                            name: "Query <span class='prcntbox'>" + qurypcnt + " </span>",
+                                            y: parseFloat(empleadstdets[i].query),
+                                            drilldown: "Query"
+                                        },
+                                        {
+                                            name: "Lead <span class='prcntbox'>" + leadpcnt + " </span>",
+                                            y: parseFloat(empleadstdets[i].lead),
+                                            drilldown: "Lead"
+                                        },
+                                        {
+                                            name: "Qualified Lead <span class='prcntbox'>" + qulpcnt + " </span>",
+                                            y: parseFloat(empleadstdets[i].qualiflead),
+                                            drilldown: "QualifiedLead"
+                                        },
+                                        {
+                                            name: "Negotiation <span class='prcntbox'>" + negpcnt + " </span>",
+                                            y: parseFloat(empleadstdets[i].nego),
+                                            drilldown: "Negotiation"
+                                        },
+                                        {
+                                            name: "Final Negotiation <span class='prcntbox'>" + fgpecnt + " </span>",
+                                            y: parseFloat(empleadstdets[i].finalnego),
+                                            drilldown: "Final Negotiation"
+                                        },
+                                        {
+                                            name: "Win <span class='prcntbox'>" + winpcnt + " </span>",
+                                            y: parseFloat(empleadstdets[i].win),
+                                            drilldown: null
+                                        }
+                                        
+                                    ]
+                                }
+                            ]
+
+                        });
+                    }
+                    else {
+                        Highcharts.chart('r' + empleadstdets[i].teamcode, {
+                            chart: {
+                                type: 'column'
+                            },
+                            title: {
+                                text: 'Sales Funnel: ' + empleadstdets[i].usrname + '<img src="../images/userImg.png" alt=ddd>'
+                            },
+                            subtitle: {
+                                text: ''
+                            },
+                            accessibility: {
+                                announceNewData: {
+                                    enabled: true
+                                }
+                            },
+                            xAxis: {
+                                type: 'category'
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Total Sales Funnel Stages'
+                                }
+
+                            },
+                            legend: {
+                                enabled: false
+                            },
+                            plotOptions: {
+                                series: {
+                                    borderWidth: 0,
+                                    dataLabels: {
+                                        enabled: true,
+                                        format: '{point.y}'
+                                    }
+                                }
+                            },
+
+                            tooltip: {
+                                headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
+                            },
+
+                            series: [
+                                {
+                                    name: "Sales Funnel",
+                                    colorByPoint: true,
+                                    data: [
+                                        {
+                                            name: "Query",
+                                            y: parseFloat(empleadstdets[i].query),
+                                            drilldown: "Query"
+                                        },
+                                        {
+                                            name: "Lead",
+                                            y: parseFloat(empleadstdets[i].lead),
+                                            drilldown: "Lead"
+                                        },
+                                        {
+                                            name: "Qualified Lead",
+                                            y: parseFloat(empleadstdets[i].qualiflead),
+                                            drilldown: "QualifiedLead"
+                                        },
+                                        {
+                                            name: "Negotiation",
+                                            y: parseFloat(empleadstdets[i].nego),
+                                            drilldown: "Negotiation"
+                                        },
+                                        {
+                                            name: "Final Negotiation",
+                                            y: parseFloat(empleadstdets[i].finalnego),
+                                            drilldown: "Final Negotiation"
+                                        },
+                                        {
+                                            name: "Win",
+                                            y: parseFloat(empleadstdets[i].win),
+                                            drilldown: null
+                                        }
+                                        ,
+                                        {
+                                            name: "Total",
+                                            y: parseFloat(empleadstdets[i].total)
+                                        }
+                                    ]
+                                }
+                            ]
+
+                        });
+                    }
+                    
+                    
 
                 }
 
@@ -723,7 +844,7 @@
                         type: gtype
                     },
                     title: {
-                        text: 'Projects Wise Sales Funnel, Total Lead:-  ' + sumplead
+                        text: 'Projects Wise Sales Funnel, Total Query:-  ' + sumplead
                     },
                     subtitle: {
                         text: ''
@@ -1404,20 +1525,47 @@
         
         }
             
-            
+        function printFunc() {
+            var gvSummary = $('#<%=this.gvSaleFunnel.ClientID %>');
+            gvSummary.Scrollable();
 
-        
-
+            var divToPrint = document.getElementById('printarea');
+            var htmlToPrint = '' +
+                '<style type="text/css">' +
+                '#btn{display:none}' +
+                
+                'table th, table td {' +
+                'border:1px solid #000;' +
+                'padding;0.5em;' +
+                '}' +
+                'table td span {' +
+                '{height:auto;}'+
+                '}'+
+                '.form-check-label th, .form-check-label td {' +
+                'border:0px solid #000;' +
+                'padding;0.5em;' +
+                '}' +
+                 '#divscroll{width:100%; height:auto  !important; overflow:hidden !important}'+
+                '</style>';
+            htmlToPrint += divToPrint.outerHTML;
+            newWin = window.open("");
+            newWin.document.write("<h3 align='center'></h3>");
+            newWin.document.write(htmlToPrint);
+            newWin.print();
+            newWin.close();
+        }
     </script>
 
 
 
 
-    <div class="card card-fluid container-data mt-5">
+    <div class="card card-fluid container-data mt-5" id='printarea'>
         <div class="card-body">
 
             <div class="row">
               
+                    <input type='button' id='btn' class="d-none" value='Print' onclick='printFunc();'>
+
                     <div class="form-check form-check-inline">
 
                         <asp:RadioButtonList ID="rbtnlst" runat="server" AutoPostBack="True" CssClass="form-check-label"  OnSelectedIndexChanged="rbtnlst_SelectedIndexChanged"
