@@ -74,12 +74,12 @@
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Local Project\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail, Version=7.3.1.8, Culture=neutral, PublicKeyToken=88adb80ecd66540b">
       <SpecificVersion>False</SpecificVersion>
@@ -2457,6 +2457,7 @@
     <Content Include="F_22_Sal\RptCustomerBill.aspx" />
     <Content Include="F_22_Sal\RptMktMoneyReceipt.aspx" />
     <Content Include="F_22_Sal\RptMonthConAss.aspx" />
+    <Content Include="F_22_Sal\RptMonthWiseNewSales.aspx" />
     <Content Include="F_22_Sal\RptPendingPayment.aspx" />
     <Content Include="F_22_Sal\RptPeriodicSalesWithCollection.aspx" />
     <Content Include="F_22_Sal\RptProPriceTrading.aspx" />
@@ -2482,7 +2483,6 @@
     <Content Include="F_22_Sal\SalesRegister.aspx" />
     <Content Include="F_22_Sal\SaleYearlySalAndColl.aspx" />
     <Content Include="F_22_Sal\TradingInterestCal.aspx" />
-    <Content Include="F_23_CR\RptMRTopSheet.aspx" />
     <Content Include="F_23_CR\ClientInfo.aspx" />
     <Content Include="F_23_CR\CustChDishoner.aspx" />
     <Content Include="F_23_CR\CustCollectBudget.aspx" />
@@ -3711,12 +3711,12 @@
     <Compile Include="F_22_Sal\RptCollectionDetailInfo.aspx.designer.cs">
       <DependentUpon>RptCollectionDetailInfo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_23_CR\RptMRTopSheet.aspx.cs">
-      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+    <Compile Include="F_22_Sal\RptMonthWiseNewSales.aspx.cs">
+      <DependentUpon>RptMonthWiseNewSales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_23_CR\RptMRTopSheet.aspx.designer.cs">
-      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+    <Compile Include="F_22_Sal\RptMonthWiseNewSales.aspx.designer.cs">
+      <DependentUpon>RptMonthWiseNewSales.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>

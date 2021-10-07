@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_23_CR
+namespace RealERPWEB.F_22_Sal
 {
 
 
-    public partial class RptMRTopSheet
+    public partial class RptMonthWiseNewSales
     {
 
         /// <summary>
@@ -69,57 +69,48 @@ namespace RealERPWEB.F_23_CR
         protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
 
         /// <summary>
-        /// txtrefno control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtrefno;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// lbtnOk control.
+        /// ddlProjectName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
 
         /// <summary>
-        /// HpblnkNew control.
+        /// ddlProjectName_ListSearchExtender2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HpblnkNew;
+        protected global::AjaxControlToolkit.ListSearchExtender ddlProjectName_ListSearchExtender2;
 
         /// <summary>
-        /// checkpb control.
+        /// lbtnShow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox checkpb;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnShow;
 
         /// <summary>
-        /// withoutchqdate control.
+        /// gvNewsales control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox withoutchqdate;
-
-        /// <summary>
-        /// gvAccVoucher control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvAccVoucher;
+        protected global::System.Web.UI.WebControls.GridView gvNewsales;
     }
 }

@@ -1516,6 +1516,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
+                case "1103":
                 case "3101":
                 case "3353":
                     this.dgv1.Columns[14].Visible = true;
