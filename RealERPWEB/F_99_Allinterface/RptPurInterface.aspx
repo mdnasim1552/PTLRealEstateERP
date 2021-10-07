@@ -669,6 +669,8 @@
                         break;
 
                     //case 3101:
+                    case 1108:
+                    case 1109:
                     case 3316://Assure
                     case 3315://Assure
                     case 3317://Assure

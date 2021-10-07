@@ -137,7 +137,11 @@ namespace RealERPWEB.F_14_Pro
             if (dt.Rows.Count > 0)
             {
                 HyperLink FotLnk = (HyperLink)this.gvPurmatwise.FooterRow.FindControl("lgvFtotal");
-                string prjcode = (Request.QueryString["prjcode"].Length > 0) ? Request.QueryString["prjcode"].ToString() : "";
+                string prjcode = Request.QueryString["prjcode"] ?? "";
+
+                 prjcode = (prjcode.Length > 0) ? prjcode : "";
+
+                //string prjcode = (Request.QueryString["prjcode"].Length > 0) ? Request.QueryString["prjcode"].ToString() : "";
                 FotLnk.NavigateUrl = "~/F_14_Pro/RptPurchaseStatus.aspx?Type=Purchase&Rpt=DaywPur&comcod=" + comcod + "&prjcode=" + prjcode + "&Date1=" + date1 + "&Date2=" + date2;
             }
 

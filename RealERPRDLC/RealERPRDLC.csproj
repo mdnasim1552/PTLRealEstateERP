@@ -166,6 +166,7 @@
     <EmbeddedResource Include="R_09_PIMP\RptConBill.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillAcme.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillAlli.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptConBillAssure02.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillAssure.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillBridge.rdlc" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillBridgeWithoutLogo.rdlc" />

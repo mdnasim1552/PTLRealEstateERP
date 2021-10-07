@@ -109,7 +109,8 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint4";
                     break;
 
-                case "3101":
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -189,6 +190,9 @@ namespace RealERPWEB.F_17_Acc
                 case "3309":// HOlding
                 case "3310":// RCU
                 case "2305":// land
+
+                case "1108"://  Assure(engineering)
+                case "1109"://  Assure(tourism)
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
@@ -334,10 +338,8 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
-
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher5", list, null, null);
                     Rpt1.EnableExternalImages = true;
-
 
 
                 }
@@ -516,8 +518,10 @@ namespace RealERPWEB.F_17_Acc
                 case "3310":// RHEL(ctg)
 
                 case "3306":// Ratul
-                case "3309":// HOlding
+                case "3309":// Holding
                 case "2305":// land
+                case "1108"://  Assure(Engineering)
+                case "1109"://  Assure(Tourism)
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
@@ -567,7 +571,8 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint4";
                     break;
 
-
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -634,6 +639,30 @@ namespace RealERPWEB.F_17_Acc
         }
 
 
+        private string GetCompNarration()
+        {
+
+            string comcod = this.GetCompCode();
+            string ntype = "";
+            switch (comcod)
+            {
+                case "1103":// Tanvir
+                case "3353": // manama
+                case "3101":// ptl
+                    ntype = "ShowNarration";
+                    break;
+
+
+                default:
+                    ntype = "";
+                    break;
+
+
+            }
+            return ntype;
+        }
+
+
 
         private string Getpouaction(string vounum)
         {
@@ -665,10 +694,12 @@ namespace RealERPWEB.F_17_Acc
                 string vounum = this.Request.QueryString["vounum"].ToString();
                 string session = hst["session"].ToString();
                 string PrintInstar = this.GetCompInstar();
+                string ntype = this.GetCompNarration();
+
                 string pouaction = this.Getpouaction(vounum);
                 string Calltype = (pouaction.Length > 0) ? "PRINTUNPOSTEDVOUCHER01" : "PRINTVOUCHER01";
                 //string Calltype =  "PRINTVOUCHER01";
-                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, "", "", "", "", "", "", "");
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, ntype, "", "", "", "", "", "");
                 if (_ReportDataSet == null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Data Not Found');", true);
@@ -1500,6 +1531,8 @@ namespace RealERPWEB.F_17_Acc
                 //case "3306":
                 //    chequeprint = "PrintCheque03";
                 //    break;
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -1551,8 +1584,11 @@ namespace RealERPWEB.F_17_Acc
                 //    this.PrinCheque();
                 //    break;
 
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
+                case "3317":
 
                     PrinChequeAssure();
                     break;
@@ -1786,6 +1822,8 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "1108":
+                case "1109":
                 case "3315":// Assure Builders
                 case "3316": //Assure Builders
                     this.PrintChequePostAssure();

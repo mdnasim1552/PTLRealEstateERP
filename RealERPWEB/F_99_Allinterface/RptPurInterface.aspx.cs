@@ -338,9 +338,11 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
 
-                //case "3101":
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
+                case "3317":
                     this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-6).ToString("dd-MMM-yyyy");
                     break;
 
@@ -837,7 +839,8 @@ namespace RealERPWEB.F_99_Allinterface
                         case "3315"://Assure
                         case "3317"://Assure
                         case "3101"://Assure
-
+                        case "1108"://engineering
+                        case "1109"://tourism
 
                             for (int i = 0; i < this.gvReqChk.Rows.Count; i++)
                             {
