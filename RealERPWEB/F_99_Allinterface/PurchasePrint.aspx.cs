@@ -1127,6 +1127,8 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3101":
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                     PrintReq = "PrintReque09";
@@ -2576,6 +2578,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "2305":
                 case "2306":
                 case "3101":
+                case "1108":// Assure
+                case "1109":
                 case "3315":// Assure
                 case "3316":
 
@@ -2601,6 +2605,8 @@ namespace RealERPWEB.F_99_Allinterface
             string porderno = "";
             switch (comcod)
             {
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -3223,7 +3229,8 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-
+                    case "1108": // Assure
+                    case "1109":// Assure
                     case "3315": // Assure
                     case "3316":// Assure
                                 //case "3101":
@@ -4011,6 +4018,8 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
+                    case "1108": //Assure
+                    case "1109": //Assure
                     case "3315": //Assure
                     case "3316": //Assure
                     case "3317": //Assure
@@ -4183,6 +4192,8 @@ namespace RealERPWEB.F_99_Allinterface
 
                 case "3312":
                 case "3311":
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -4942,6 +4953,11 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 // case "3101"://ASIT
+                case "1108": //Assure
+                case "1109":// Assure
+                    PrintReq = "PrintBillAssure2";
+                    break;
+
                 case "3316": //Assure
                 case "3315":// Assure
 
@@ -4994,6 +5010,8 @@ namespace RealERPWEB.F_99_Allinterface
                 //case "3309":
                 //    this.PrintLabIssue02();
                 //    break;
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -5202,6 +5220,15 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             }
+
+            else if (pCompanyBill == "PrintBillAssure2")
+            {
+                rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillAssure02", lst, null, null);
+                rptbill.EnableExternalImages = true;
+
+
+            }
+            
 
             else if (pCompanyBill == "PrintBillCredence")
             {
