@@ -202,7 +202,7 @@
 
                             tooltip: {
                                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>'
                             },
 
                             series: [
@@ -288,7 +288,7 @@
 
                             tooltip: {
                                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                             },
 
                             series: [
@@ -415,7 +415,7 @@
 
                         tooltip: {
                             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(saldata[0].query) + '<br/>'
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                         },
 
                         series: [
@@ -526,7 +526,7 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                     },
 
                     series: [
@@ -613,7 +613,7 @@
 
                             tooltip: {
                                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                             },
 
                             series: [
@@ -698,7 +698,7 @@
 
                             tooltip: {
                                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total 14<br/>'
+                                pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                             },
 
                             series: [
@@ -877,7 +877,7 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                     },
 
                     series: [
@@ -948,7 +948,7 @@
 
                         tooltip: {
                             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                         },
 
                         series: [
@@ -1070,7 +1070,7 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                     },
 
                     series: [
@@ -1141,7 +1141,7 @@
 
                         tooltip: {
                             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                         },
 
                         series: [
@@ -1244,7 +1244,7 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total <br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                     },
 
                     series: [
@@ -1316,7 +1316,7 @@
 
                         tooltip: {
                             headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                            pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                         },
 
                         series: [
@@ -1431,7 +1431,7 @@
 
                     tooltip: {
                         headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
+                        pointFormat: '<span style="color:{point.color}">{point.name}</span>'
                     },
 
                     series: [
@@ -1524,36 +1524,30 @@
             }
         
         }
-            
         function printFunc() {
-            var gvSummary = $('#<%=this.gvSaleFunnel.ClientID %>');
-            gvSummary.Scrollable();
+            ////$("#divFilter").hide();
+            //var name = $("#txtfodate").val();
+            //var name = $("#txtfodate").val();
+             
+            //var divContents = document.getElementById("printarea").innerHTML;
+            //var a = window.open('', '', 'height=3300px, width=2400px');
+            //a.document.write('<html>');
+            //a.document.write('<head>');
+            //a.document.write('<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />');
+            
+            //a.document.write('<style></style>');
+            
+            //a.document.write('</head>');
+            //a.document.write('<body>');
+            //a.document.write(divContents);
+            
 
-            var divToPrint = document.getElementById('printarea');
-            var htmlToPrint = '' +
-                '<style type="text/css">' +
-                '#btn{display:none}' +
-                
-                'table th, table td {' +
-                'border:1px solid #000;' +
-                'padding;0.5em;' +
-                '}' +
-                'table td span {' +
-                '{height:auto;}'+
-                '}'+
-                '.form-check-label th, .form-check-label td {' +
-                'border:0px solid #000;' +
-                'padding;0.5em;' +
-                '}' +
-                 '#divscroll{width:100%; height:auto  !important; overflow:hidden !important}'+
-                '</style>';
-            htmlToPrint += divToPrint.outerHTML;
-            newWin = window.open("");
-            newWin.document.write("<h3 align='center'></h3>");
-            newWin.document.write(htmlToPrint);
-            newWin.print();
-            newWin.close();
+            //a.document.write('</body></html>');
+            //a.document.close();
+            //a.print();
         }
+        
+         
     </script>
 
 
@@ -1563,9 +1557,8 @@
         <div class="card-body">
 
             <div class="row">
-              
-                    <input type='button' id='btn' class="d-none" value='Print' onclick='printFunc();'>
-
+              <a href="#" target="_blank" id='btn' class="d-none"  onclick='printFunc();'>Print</a>
+                     
                     <div class="form-check form-check-inline">
 
                         <asp:RadioButtonList ID="rbtnlst" runat="server" AutoPostBack="True" CssClass="form-check-label"  OnSelectedIndexChanged="rbtnlst_SelectedIndexChanged"
@@ -1579,26 +1572,26 @@
                     </div>
 
                 </div>
-            <div class="row mb-2">
+            <div class="row mb-2" id="divFilter">
                 <div class="col-md-4">
                     <div class="input-group input-group-alt">
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary" type="button">From</button>
                         </div>
-                        <asp:TextBox ID="txtfodate" runat="server" CssClass="form-control  pl-0 pr-0"></asp:TextBox>
+                        <asp:TextBox ID="txtfodate" ClientIDMode="Static" runat="server" CssClass="form-control  pl-0 pr-0"></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
                             Format="dd-MMM-yyyy" TargetControlID="txtfodate"></cc1:CalendarExtender>
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary" type="button">To</button>
                         </div>
-                        <asp:TextBox ID="txttodate" runat="server" CssClass="form-control  pl-0 pr-0"></asp:TextBox>
+                        <asp:TextBox ID="txttodate" ClientIDMode="Static" runat="server" CssClass="form-control  pl-0 pr-0"></asp:TextBox>
                         <cc1:CalendarExtender ID="Cal3" runat="server"
                             Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                         <div class="input-group-prepend">
-                            <Label class="btn btn-secondary" id="lblcondate"  runat="server">Con Date</Label>
+                            <Label class="btn btn-secondary" ClientIDMode="Static" id="lblcondate"  runat="server">Con Date</Label>
                             <%--<asp:CheckBox  runat="server" ID="chkcondate" Text=" Con Date" CssClass="btn btn-secondary" ClientIDMode="Static" AutoPostBack="true" OnCheckedChanged="chkcondate_CheckedChanged" />--%>
                         </div>
-                        <asp:TextBox ID="txtcondate" runat="server" CssClass="form-control pl-0 pr-0" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtcondate" ClientIDMode="Static" runat="server" CssClass="form-control pl-0 pr-0" ClientIDMode="Static"></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender_txtcondate" runat="server"
                             Format="dd-MMM-yyyy" TargetControlID="txtcondate"></cc1:CalendarExtender>
                     </div>
@@ -1614,9 +1607,9 @@
                 <div class="col-md-3 p-0">
                     <div class="input-group input-group-alt">
                         <div class="input-group-prepend">
-                            <button class="btn btn-secondary" type="button">Team Lead</button>
+                            <button class="btn btn-secondary"  type="button">Team Lead</button>
                         </div>
-                        <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                         </asp:DropDownList>
 
                     </div>
@@ -1628,7 +1621,7 @@
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary" type="button">Projects</button>
                         </div>
-                        <asp:DropDownList ID="ddlProject" data-placeholder="Choose Projects.." runat="server" CssClass="custom-select chzn-select " AutoPostBack="true" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlProject" ClientIDMode="Static" data-placeholder="Choose Projects.." runat="server" CssClass="custom-select chzn-select " AutoPostBack="true" OnSelectedIndexChanged="ddlProject_SelectedIndexChanged">
                         </asp:DropDownList>
 
                     </div>
@@ -1783,7 +1776,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Project Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvItmCode" runat="server" Height="16px"
+                                            <asp:Label ID="lblgvItmCode" CssClass="desclbll" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
                                                 Width="300px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
