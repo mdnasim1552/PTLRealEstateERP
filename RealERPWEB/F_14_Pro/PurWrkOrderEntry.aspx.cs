@@ -528,6 +528,8 @@ namespace RealERPWEB.F_14_Pro
             string orderno = "";
             switch (comcod)
             {
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
