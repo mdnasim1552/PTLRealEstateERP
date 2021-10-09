@@ -1275,7 +1275,7 @@
 
                         var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
 
-                        console.log(ddlProject);
+                        //console.log(ddlProject);
                         $(ddlProject).html('');
                         $.each(data, function (key, data) {
 
@@ -1644,6 +1644,49 @@
                             }
 
                             break;
+
+
+
+                        case "810100101007": //Company
+                            console.log(data.gdesc1);
+                           
+                            var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
+
+                            $(ddlcompany+' > option').each(function (index,item)
+
+                            { 
+                                if ($(item).val() == data.gdesc1)
+                                {
+                                    $(item).attr("selected", true);
+                                }
+                                   
+
+                            });
+
+
+
+                            break;
+
+
+                        case "810100101003": //Project
+                          
+                            var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
+
+
+
+                            $(ddlProject + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
+                                    $(item).attr("selected", true);
+                                }
+
+
+                            });
+
+                           
+                            
+                          
+                            break;
+
 
 
 
@@ -4018,7 +4061,7 @@
 
 
                                                          <%-- <asp:Panel ID="Pnlcompany" runat="server">--%>
-                                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
+                                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
                                                                 TabIndex="12">
                                                             </asp:DropDownList>
                                                               <%--</asp:Panel>--%>
