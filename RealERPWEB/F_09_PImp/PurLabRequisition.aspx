@@ -463,7 +463,7 @@
 
                                     <asp:TemplateField HeaderText="Rate">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"
+                                            <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px" 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="60px" BackColor="Transparent"
                                                 BorderStyle="None" BorderWidth="1px" Style="text-align: right"></asp:TextBox>
@@ -480,7 +480,7 @@
 
 
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvamount" runat="server" BackColor="Transparent" BorderStyle="None"
+                                            <asp:TextBox ID="txtgvamount" runat="server" BackColor="Transparent" BorderStyle="None" 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="70px" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>

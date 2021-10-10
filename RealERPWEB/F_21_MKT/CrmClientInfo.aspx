@@ -509,8 +509,15 @@
 
 
                     gcod = $(arrgschcodl[i]).text();
-                    var number, numberlq;
+                    var number, numberlq, numbercom;
                     switch (gcod) {
+
+
+                        //Company
+                        case '810100101007':
+                            numbercom = i;
+                            break;
+
                         //Last Followup
                         case '810100101020':
                             number = i;
@@ -564,8 +571,20 @@
 
                 });
 
+                //Company
+
+                
+                var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom;
+                $(ddlcompany).change(function () {
+                    var company = $(this).val();
+                   // console.log(company);
+                    funCompanyProject(comcod, company);
+
+
+                });
 
                 //Lead Reason
+
                 var ddlvisit = '#ContentPlaceHolder1_gvInfo_ddlVisit_' + numberlq;
                 $(ddlvisit).change(function () {
                     leadquality = $(this).val();
@@ -1220,7 +1239,78 @@
         }
 
 
+        function funCompanyProject(comcod, company)
+        {
+            try
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/GetCompanyProject",
+                    data: '{comcod:"' + comcod + '", company:"' + company + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
 
+                        var data = JSON.parse(response.d);
+
+                        var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
+                        var numberrl;
+
+                        for (var i = 0; i < arrgschcodl.length; i++) {
+
+                            gcod = $(arrgschcodl[i]).text();
+                            switch (gcod) {
+
+                                case '810100101003':
+                                    numberrl = i;
+                                    break;
+
+                            }
+
+                        }
+
+                      
+                        
+                        //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
+
+                        var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
+
+                        //console.log(ddlProject);
+                        $(ddlProject).html('');
+                        $.each(data, function (key, data) {
+
+                            $(ddlProject).append("<option value='" + data.actcode + "'>" + data.actdesc + "</option>");
+                        });
+
+
+
+
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e)
+            {
+
+                alert(e.message);
+
+            }
+
+
+
+        }
+        
 
 
         function funLeadReason(comcod, leadquality) {
@@ -1554,6 +1644,53 @@
                             }
 
                             break;
+
+
+
+                        case "810100101007": //Company
+                            console.log(data.gdesc1);
+                           
+                            var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
+
+                            $(ddlcompany+' > option').each(function (index,item)
+
+                            { 
+                                if ($(item).val() == data.gdesc1)
+                                {
+                                    $(item).attr("selected", true);
+                                }
+                                   
+
+                            });
+
+
+
+                            break;
+
+
+                        case "810100101003": //Project
+                          
+                            var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
+
+
+
+                            $(ddlProject + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
+                                    $(item).attr("selected", true);
+                                }
+
+
+                            });
+
+                           
+                            
+                          
+                            break;
+
+
+
+
+                        
 
 
 
@@ -1952,11 +2089,11 @@
                                 <div class="col-md-6">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title" runat="server" id="hpref"><span class="clickable small panel-collapsed"><i class="fa fa-plus "></i></span>
+                                            <h4 class="panel-title" runat="server" id="hpref"><span class="clickable small"><i class="fa fa-plus "></i></span>
                                                 <asp:Label ID="lblheadprospect" runat="server" Text="Prospect's Preference"></asp:Label>
                                             </h4>
                                         </div>
-                                        <div class="panel-body" style="display: none;">
+                                        <div class="panel-body">
                                             <asp:GridView ID="gvpinfo" runat="server" AutoGenerateColumns="False"
                                                 ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow">
                                                 <RowStyle />
@@ -2006,6 +2143,18 @@
                                                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
                                                             <asp:Panel ID="Panegrd" runat="server">
 
+
+
+                                                                <div class="form-group mt-2">
+
+                                                                    <asp:DropDownList ID="ddlvalcom" runat="server" Width="300px" OnSelectedIndexChanged="ddlvalcom_SelectedIndexChanged" AutoPostBack="true" CssClass="custom-select chzn-select">
+                                                                    </asp:DropDownList>
+
+
+                                                                </div>
+
+
+                                                                
                                                                 <div class="form-group mt-2">
 
                                                                     <asp:DropDownList ID="ddlvalpros" runat="server" Width="300px" CssClass="custom-select chzn-select">
@@ -3320,6 +3469,10 @@
 
                                             </li>
                                             <li>
+                                                <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
+
+                                            </li>
+                                            <li>
                                                 <asp:LinkButton ID="lnkbtnNotes" runat="server" OnClick="lnkbtnNotes_Click">Notes</asp:LinkButton>
                                             </li>
                                             <li>
@@ -3910,8 +4063,16 @@
 
                                                         </asp:Panel>
 
+
+                                                         <%-- <asp:Panel ID="Pnlcompany" runat="server">--%>
+                                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
+                                                                TabIndex="12">
+                                                            </asp:DropDownList>
+                                                              <%--</asp:Panel>--%>
+                                                       
+
                                                         <asp:Panel ID="PnlProject" runat="server">
-                                                            <asp:DropDownList ID="ddlProject" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
+                                                            <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
                                                                 TabIndex="12">
                                                             </asp:DropDownList>
                                                         </asp:Panel>

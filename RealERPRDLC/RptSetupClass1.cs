@@ -122,7 +122,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.RptConBillAssure": Rpt1a = SetRptConBillAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillCredence": Rpt1a = SetRptConBillCrdence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillEdisonErp": Rpt1a = SetRptConBillEdisonErp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
+                case "R_09_PIMP.RptConBillAssure02": Rpt1a = SetRptConBillAssure02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_09_PIMP.RptSubConSD": Rpt1a = SetRptSubConSD(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptImpExeStatus1": Rpt1a = SetRptImpExeStatus1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3787,6 +3787,12 @@ namespace RealERPRDLC
 
 
         private static LocalReport SetRptConBillAssure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.BillFinalization>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptConBillAssure02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.EClassOrder.BillFinalization>)RptDataSet));
             return Rpt1a;

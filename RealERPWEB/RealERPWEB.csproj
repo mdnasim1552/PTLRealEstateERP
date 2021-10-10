@@ -46,10 +46,10 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -71,7 +71,7 @@
       <HintPath>..\..\..\PTLRealERP\RealEstate\RealERPWEB\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
       <HintPath>..\..\..\..\Local Project\PTLRealEstate 210812LU\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
@@ -87,7 +87,7 @@
     </Reference>
     <Reference Include="FastMember, Version=1.0.0.9, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealEstate 210809Lu\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
@@ -122,7 +122,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -151,10 +151,10 @@
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.5.0.0\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -174,14 +174,14 @@
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
       <Private>True</Private>
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -2416,6 +2416,7 @@
     <Content Include="F_21_MKT\RptProspectClient.aspx" />
     <Content Include="F_21_MKT\RptProWiseClOffered.aspx" />
     <Content Include="F_21_MKT\RptSalesFunnel.aspx" />
+    <Content Include="F_21_MKT\RptSalesRegressionFunnel.aspx" />
     <Content Include="F_21_MKT\ToDaysAppointment.aspx" />
     <Content Include="F_21_MKT\TransferClient.aspx" />
     <Content Include="F_22_Sal\AccFlow.aspx" />
@@ -2483,7 +2484,6 @@
     <Content Include="F_22_Sal\SalesRegister.aspx" />
     <Content Include="F_22_Sal\SaleYearlySalAndColl.aspx" />
     <Content Include="F_22_Sal\TradingInterestCal.aspx" />
-    <Content Include="F_23_CR\RptMRTopSheet.aspx" />
     <Content Include="F_23_CR\ClientInfo.aspx" />
     <Content Include="F_23_CR\CustChDishoner.aspx" />
     <Content Include="F_23_CR\CustCollectBudget.aspx" />
@@ -3697,6 +3697,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.cs">
+      <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.designer.cs">
+      <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
       <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
