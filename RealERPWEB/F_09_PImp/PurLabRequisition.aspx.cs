@@ -515,11 +515,14 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 reqno = this.ddlPrevISSList.SelectedValue.ToString();
             }
+
+            string recomsup = this.RecomSup();
             DataSet ds1 = new DataSet();
-            ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "GET_PURLAB_REQ_INFO", reqno, CurDate1,
-                         pactcode, "", "", "", "", "", "");
+
+            ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "GET_PURLAB_REQ_INFO", reqno, CurDate1, pactcode, recomsup, "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             ViewState["tblbillreq"] = ds1.Tables[0];
 
             if (reqno == "NEWMISS")
@@ -589,6 +592,31 @@ namespace RealERPWEB.F_09_PImp
             this.grvissue_DataBind();
 
             // ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (ds1.Tables[1].Rows[0]["billno"].ToString() == "00000000000000");
+
+        }
+
+        private string RecomSup()
+        {
+            string recom = "";            
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                case "8306":
+                    if (this.Request.QueryString["Type"] == "CSApproval")
+                    {
+                        recom = this.Request.QueryString["recomsup"].ToString();                        
+                    }
+                    break;
+
+                default:
+                    recom = "";
+                    break;
+            }
+
+            return recom;
 
         }
 
@@ -1419,9 +1447,21 @@ namespace RealERPWEB.F_09_PImp
             int rowindex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
             string csircode = ((DropDownList)this.grvissue.Rows[rowindex].FindControl("DdlContractor")).SelectedValue.ToString();
             string rsircode = dt.Rows[rowindex]["rsircode"].ToString();
-
-            dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+            if(csircode== "000000000000")
+            {
+                dt.Rows[rowindex]["reqrat"] = 0.00;
+            }
+            else
+            {
+                dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+            }
+            
             dt.Rows[rowindex]["csircode"] = csircode;
+
+            double qty =Convert.ToDouble(dt.Rows[rowindex]["reqqty"]);
+            double rate = Convert.ToDouble(dt.Rows[rowindex]["reqrat"]);
+            dt.Rows[rowindex]["reqamt"] = qty * rate;
+
 
 
             Session["tblbillreq"] = dt;
