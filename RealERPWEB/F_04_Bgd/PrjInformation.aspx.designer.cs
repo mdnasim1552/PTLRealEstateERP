@@ -15,6 +15,15 @@ namespace RealERPWEB.F_04_Bgd
     {
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>

@@ -1591,7 +1591,7 @@
                             <Label class="btn btn-secondary" ClientIDMode="Static" id="lblcondate"  runat="server">Con Date</Label>
                             <%--<asp:CheckBox  runat="server" ID="chkcondate" Text=" Con Date" CssClass="btn btn-secondary" ClientIDMode="Static" AutoPostBack="true" OnCheckedChanged="chkcondate_CheckedChanged" />--%>
                         </div>
-                        <asp:TextBox ID="txtcondate" ClientIDMode="Static" runat="server" CssClass="form-control pl-0 pr-0" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="txtcondate" ClientIDMode="Static" runat="server" CssClass="form-control pl-0 pr-0"></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender_txtcondate" runat="server"
                             Format="dd-MMM-yyyy" TargetControlID="txtcondate"></cc1:CalendarExtender>
                     </div>

@@ -1969,7 +1969,8 @@ namespace RealERPWEB.F_14_Pro
                     this.txtOrderNarr.Text = Narration.Substring(0, (Narration.Length) - 2);
                     break;
 
-
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
