@@ -921,12 +921,29 @@
                   <TextAlign>Right</TextAlign>
                 </Style>
               </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value />
+                    <Style>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.05556in</Top>
-            <Left>4.30667in</Left>
-            <Height>0.25in</Height>
-            <Width>3.20375in</Width>
+            <Left>6.23561in</Left>
+            <Height>0.22222in</Height>
+            <Width>1.2748in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -955,9 +972,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.05556in</Top>
-            <Height>0.25in</Height>
-            <Width>3.58458in</Width>
+            <Top>0.04167in</Top>
+            <Height>0.23611in</Height>
+            <Width>1.4808in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -1019,6 +1036,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.65278in</Top>
+            <Left>0.00001in</Left>
             <Height>0.25in</Height>
             <Width>3.58458in</Width>
             <ZIndex>7</ZIndex>
@@ -1577,6 +1595,42 @@
             <Height>0.23958in</Height>
             <Width>4.52083in</Width>
             <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="prjname">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!prjname.Value</Value>
+                    <Style>
+                      <FontFamily>Cambria</FontFamily>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>prjname</rd:DefaultName>
+            <Top>0.01666in</Top>
+            <Left>1.51622in</Left>
+            <Height>0.25694in</Height>
+            <Width>4.68809in</Width>
+            <ZIndex>24</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

@@ -1200,6 +1200,26 @@ namespace RealERPWEB.F_09_PImp
                 }
 
 
+                TextBox txtlabrate = ((TextBox)e.Row.FindControl("txtlabrate"));
+                TextBox txtgvamount = ((TextBox)e.Row.FindControl("txtgvamount"));
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                    case "8306":
+                        txtlabrate.ReadOnly = true;
+                        txtgvamount.ReadOnly = true;
+                        break;
+
+                    default:
+                        txtlabrate.ReadOnly = false;
+                        txtgvamount.ReadOnly = false;
+                        break;
+                }
+
+
             }
         }
 
