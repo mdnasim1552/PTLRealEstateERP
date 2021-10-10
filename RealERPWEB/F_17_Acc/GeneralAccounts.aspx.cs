@@ -195,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-                //case "3101": // Test
+               // case "3101": // Test
                 case "3332":
                 case "3339":
                     this.chkpost.Checked = true;
@@ -2852,13 +2852,19 @@ namespace RealERPWEB.F_17_Acc
             Session.Remove("tblvoucher");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            DataTable dtuser = (DataTable)Session["UserLog"];
-            string pounaction = (dtuser.Rows.Count == 0) ? ((this.chkpost.Checked) ? "U" : "") : dtuser.Rows[0]["pounaction"].ToString().Trim();
-            string aprovbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
+           // DataTable dt= Session["tblcopyvoucher"]
+        
+
+           // DataTable dtuser = (DataTable)Session["UserLog"];
+           // string pounaction = (dtuser.Rows.Count == 0) ? ((this.chkpost.Checked) ? "U" : "") : dtuser.Rows[0]["pounaction"].ToString().Trim();
+           //string aprovbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
 
 
-            string CallType = (this.chkpost.Checked && pounaction.Length == 0) ? "EDITVOUCHER" : (this.chkpost.Checked) ? "EDITUNVOUCHER" : "EDITVOUCHER";
+            //string CallType = (this.chkpost.Checked && pounaction.Length == 0) ? "EDITVOUCHER" : (this.chkpost.Checked) ? "EDITUNVOUCHER" : "EDITVOUCHER";
             string vounum = this.ddlcopyvoucher.SelectedValue.ToString();
+            string pounaction = ((DataTable)Session["tblcopyvoucher"]).Select("vounum='"+ vounum + "'")[0]["pounaction"].ToString();
+            string CallType = pounaction.Length==0 ? "EDITVOUCHER" : "EDITUNVOUCHER" ;
+
             DataSet _EditDataSet = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", CallType, vounum, "", "", "", "", "", "", "", "");
             DataTable dt = this.HiddenSameData(_EditDataSet.Tables[0]);
             Session["tblvoucher"] = dt;
@@ -2878,6 +2884,7 @@ namespace RealERPWEB.F_17_Acc
 
         private void GetCopyVoucher()
         {
+            Session.Remove("tblcopyvoucher");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string ConAccHead = this.ddlConAccHead.SelectedValue.ToString();
@@ -2899,7 +2906,8 @@ namespace RealERPWEB.F_17_Acc
             this.ddlcopyvoucher.DataTextField = "vounum1";
             this.ddlcopyvoucher.DataValueField = "vounum";
             this.ddlcopyvoucher.DataBind();
-
+            Session["tblcopyvoucher"] = ds5.Tables[0];
+            ds5.Dispose();
 
         }
         protected void dgv1_RowEditing(object sender, GridViewEditEventArgs e)
