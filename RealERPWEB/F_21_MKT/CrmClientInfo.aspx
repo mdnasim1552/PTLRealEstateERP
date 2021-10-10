@@ -3469,6 +3469,10 @@
 
                                             </li>
                                             <li>
+                                                <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
+
+                                            </li>
+                                            <li>
                                                 <asp:LinkButton ID="lnkbtnNotes" runat="server" OnClick="lnkbtnNotes_Click">Notes</asp:LinkButton>
                                             </li>
                                             <li>

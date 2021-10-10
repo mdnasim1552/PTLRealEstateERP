@@ -2416,6 +2416,7 @@
     <Content Include="F_21_MKT\RptProspectClient.aspx" />
     <Content Include="F_21_MKT\RptProWiseClOffered.aspx" />
     <Content Include="F_21_MKT\RptSalesFunnel.aspx" />
+    <Content Include="F_21_MKT\RptSalesRegressionFunnel.aspx" />
     <Content Include="F_21_MKT\ToDaysAppointment.aspx" />
     <Content Include="F_21_MKT\TransferClient.aspx" />
     <Content Include="F_22_Sal\AccFlow.aspx" />
@@ -3591,13 +3592,6 @@
     </None>
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Bundle.config" />
-    <Content Include="Web.config" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceessError.aspx.cs">
@@ -3696,6 +3690,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.cs">
+      <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.designer.cs">
+      <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
       <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
