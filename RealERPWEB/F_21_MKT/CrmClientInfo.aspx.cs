@@ -2453,22 +2453,34 @@ namespace RealERPWEB.F_21_MKT
             DataTable dt6 = new DataTable();
             dt1.Clear();
             dt1.Columns.Add("gcod");
+            dt1.Columns.Add("gval");
             dt1.Columns.Add("gvalue");
-            dt2.Clear();
-            dt2.Columns.Add("gcod");
-            dt2.Columns.Add("gvalue");
-            dt3.Clear();
-            dt3.Columns.Add("gcod");
-            dt3.Columns.Add("gvalue");
-            dt4.Clear();
-            dt4.Columns.Add("gcod");
-            dt4.Columns.Add("gvalue");
-            dt5.Clear();
-            dt5.Columns.Add("gcod");
-            dt5.Columns.Add("gvalue");
-            dt6.Clear();
-            dt6.Columns.Add("gcod");
-            dt6.Columns.Add("gvalue");
+            dt1.Columns.Add("remarks");
+            //dt2.Clear();
+            //dt2.Columns.Add("gcod");
+            //dt2.Columns.Add("gval");
+            //dt2.Columns.Add("gvalue");
+            //dt2.Columns.Add("remarks");
+            //dt3.Clear();
+            //dt3.Columns.Add("gcod");
+            //dt3.Columns.Add("gval");
+            //dt3.Columns.Add("gvalue");
+            //dt3.Columns.Add("remarks");
+            //dt4.Clear();
+            //dt4.Columns.Add("gcod");
+            //dt4.Columns.Add("gval");
+            //dt4.Columns.Add("gvalue");
+            //dt4.Columns.Add("remarks");
+            //dt5.Clear();
+            //dt5.Columns.Add("gcod");
+            //dt5.Columns.Add("gval");
+            //dt5.Columns.Add("gvalue");
+            //dt5.Columns.Add("remarks");
+            //dt6.Clear();
+            //dt6.Columns.Add("gcod");
+            //dt6.Columns.Add("gval");
+            //dt6.Columns.Add("gvalue");
+            //dt6.Columns.Add("remarks");
             string Name = "";
             string Phone = "";
             string altphone1 = "";
@@ -2477,10 +2489,12 @@ namespace RealERPWEB.F_21_MKT
             string empid = "";
             string maddress = "";
             string faclass = "fa-exclamation-circle";
+            string gval = "";
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 DataRow dr = dt1.NewRow();
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCodeper")).Text.Trim();
+                gval = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                 if (Gcode == "0301001")
                 {
                     Name = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
@@ -2593,23 +2607,16 @@ namespace RealERPWEB.F_21_MKT
                 //}
 
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 dr["gvalue"] = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dt1.Rows.Add(dr);
             }
-            //if (Name == "")
-            //{
-            //    //ScriptManager.RegisterClientScriptBlock(this.Page, this.Page.GetType(), "alert", "return confirm('Do You want to ...?');", true);
-            //    faclass = "fa-exclamation-circle";
-            //    string Message = "Please Add Name To Save";
-            //    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
-            //    return;
-            //    //Message
-            //  }
+          
             for (int i = 0; i < this.gvSourceInfo.Rows.Count; i++)
             {
-                DataRow dr = dt2.NewRow();
+                DataRow dr = dt1.NewRow();
                 string Gcode = ((Label)this.gvSourceInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
-
+                gval = ((Label)this.gvSourceInfo.Rows[i].FindControl("lgvgvalsr")).Text.Trim();
                 if (Gcode == "0302003")
                 {
 
@@ -2629,17 +2636,23 @@ namespace RealERPWEB.F_21_MKT
                 {
                     empid = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 }
+                
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 dr["gvalue"] = (((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() :
                     ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                dt2.Rows.Add(dr);
+                dt1.Rows.Add(dr);
             }
             //Project Info
             for (int i = 0; i < this.gvpinfo.Rows.Count; i++)
             {
-                DataRow dr = dt3.NewRow();
+                DataRow dr = dt1.NewRow();
                 string Gcode = ((Label)this.gvpinfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                gval = ((Label)this.gvpinfo.Rows[i].FindControl("lgvgvalpinf")).Text.Trim();
+
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
+
                 //Company
                 if (Gcode == "0303002")
                 {
@@ -2656,6 +2669,7 @@ namespace RealERPWEB.F_21_MKT
                 else if (Gcode == "0303005")
                 {
                     string Gvalue = "";
+                    string remarks = "";
                     //Gvalue == "";
                     foreach (ListItem item in ((ListBox)this.gvpinfo.Rows[i].FindControl("lstlocation")).Items)
                     {
@@ -2665,12 +2679,14 @@ namespace RealERPWEB.F_21_MKT
                             if (item.Selected)
                             {
                                 Gvalue += item.Value;
+                                remarks= remarks+item.Text+", ";
                             }
                         }
                     }
 
 
 
+                    dr["remarks"] = remarks.Length==0?"": remarks.Substring(0, remarks.Length-2);
                     dr["gvalue"] = Gvalue;
 
 
@@ -2687,7 +2703,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-                dt3.Rows.Add(dr);
+                dt1.Rows.Add(dr);
 
 
 
@@ -2695,9 +2711,11 @@ namespace RealERPWEB.F_21_MKT
             }
             for (int i = 0; i < this.gvplot.Rows.Count; i++)
             {
-                DataRow dr = dt4.NewRow();
+                DataRow dr = dt1.NewRow();
                 string Gcode = ((Label)this.gvplot.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                gval = ((Label)this.gvplot.Rows[i].FindControl("lgvgvalplot")).Text.Trim();
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 if (Gcode == "0304001")
                 {
 
@@ -2761,13 +2779,15 @@ namespace RealERPWEB.F_21_MKT
                 {
                     dr["gvalue"] = ((TextBox)this.gvplot.Rows[i].FindControl("txtgvVal")).Text.Trim();
                 }
-                dt4.Rows.Add(dr);
+                dt1.Rows.Add(dr);
             }
             for (int i = 0; i < this.gvbusinfo.Rows.Count; i++)
             {
-                DataRow dr = dt5.NewRow();
+                DataRow dr = dt1.NewRow();
                 string Gcode = ((Label)this.gvbusinfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                gval = ((Label)this.gvbusinfo.Rows[i].FindControl("lgvgvalbuinf")).Text.Trim();
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 if (Gcode == "0305001")
                 {
 
@@ -2814,14 +2834,16 @@ namespace RealERPWEB.F_21_MKT
                 {
                     dr["gvalue"] = ((TextBox)this.gvbusinfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                 }
-                dt5.Rows.Add(dr);
+                dt1.Rows.Add(dr);
             }
 
             for (int i = 0; i < this.gvMoreInfo.Rows.Count; i++)
             {
-                DataRow dr = dt6.NewRow();
+                DataRow dr = dt1.NewRow();
                 string Gcode = ((Label)this.gvMoreInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                gval = ((Label)this.gvMoreInfo.Rows[i].FindControl("lgvgvalminfo")).Text.Trim();
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 if (Gcode == "0306001")
                 {
                     dr["gvalue"] = ((DropDownList)this.gvMoreInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
@@ -2842,28 +2864,34 @@ namespace RealERPWEB.F_21_MKT
                 {
                     dr["gvalue"] = ((TextBox)this.gvMoreInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                 }
-                dt6.Rows.Add(dr);
+                dt1.Rows.Add(dr);
             }
+            //Item data exist
+            DataView dv = dt1.DefaultView;
+            dv.RowFilter = ("gvalue<>''");
+
             DataSet ds = new DataSet("ds1");
             //ds.Merge(dt);
 
-            ds.Tables.Add(dt1);
-            ds.Tables.Add(dt2);
-            ds.Tables.Add(dt3);
-            ds.Tables.Add(dt4);
-            ds.Tables.Add(dt5);
-            ds.Tables.Add(dt6);
-            ds.Tables[0].TableName = "tbl1";
-            ds.Tables[1].TableName = "tbl2";
-            ds.Tables[2].TableName = "tbl3";
-            ds.Tables[3].TableName = "tbl4";
-            ds.Tables[4].TableName = "tbl5";
-            ds.Tables[5].TableName = "tbl6";
+            ds.Tables.Add(dv.ToTable());
+            //ds.Tables.Add(dt2);
+            //ds.Tables.Add(dt3);
+            //ds.Tables.Add(dt4);
+            //ds.Tables.Add(dt5);
+            //ds.Tables.Add(dt6);
+            ds.Tables[0].TableName = "tbl";
+            //ds.Tables[1].TableName = "tbl2";
+            //ds.Tables[2].TableName = "tbl3";
+            //ds.Tables[3].TableName = "tbl4";
+            //ds.Tables[4].TableName = "tbl5";
+            //ds.Tables[5].TableName = "tbl6";
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
             string clientid = (string)ViewState["newclientcode"];
             bool active = this.GetComPanyProsActivein();
+            
+           
             //string number = "";
             //number = Phone.Length > 0 ? Phone + "," : "";
             //number = number + (altphone1.Length > 0 ? altphone1 + "," : "");
@@ -2899,7 +2927,8 @@ namespace RealERPWEB.F_21_MKT
                     
             }
             string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-
+          //  string xml = ds.GetXml();
+           
 
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat);
             if (result == true)
