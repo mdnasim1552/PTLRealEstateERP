@@ -5200,12 +5200,13 @@ namespace RealERPWEB.F_21_MKT
                     return;
 
                 }
+                
 
                 for (int i = 0; i < this.gvInfo.Rows.Count; i++)
                 {
                     string Gcode = ((Label)this.gvInfo.Rows[i].FindControl("lblgvItmCodedis")).Text.Trim();
                     string gtype = ((Label)this.gvInfo.Rows[i].FindControl("lgvgvaldis")).Text.Trim();
-
+                    string remarks = "";
                     // Followup
 
                     if (Gcode == "810100101002")
@@ -5297,9 +5298,13 @@ namespace RealERPWEB.F_21_MKT
                             if (item.Selected)
                             {
                                 Gvalue += item.Value;
+                                remarks = remarks + item.Text + ", ";
+
                             }
                             // }
                         }
+
+                      remarks= (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
 
 
                         //Gvalue = (((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim()
@@ -5339,7 +5344,7 @@ namespace RealERPWEB.F_21_MKT
 
                     if (Gvalue != "")
                     {
-                        result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", hempid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue);
+                        result = instcrm.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", hempid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue, remarks);
 
                         if (result)
                         {

@@ -2644,7 +2644,7 @@ namespace RealERPWEB.F_34_Mgt
             string mqty = dr2[0]["qty"].ToString();
             string mProAMT = dr2[0]["proamt"].ToString();
             string mAPPAMT = dr2[0]["appamt"].ToString();
-            string nARRATION = txtReqNarr.Text;
+            string nARRATION = txtReqNarr.Text.Trim();
 
             string paytype = this.rblpaytype.SelectedValue.ToString();
             string payto = this.txtPayto.Text.Trim().ToString();

@@ -1743,14 +1743,30 @@
                                             <HeaderStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Dues Amount">
+                                        <asp:TemplateField HeaderText="current Dues">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFcduesamt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="Black"
+                                                    Style="text-align: right"></asp:Label>
+                                            </FooterTemplate>
+
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvcDuesamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "curdues")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="75px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <FooterStyle HorizontalAlign="Right" />
+
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Over Dues">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFDuesamt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="Black"
                                                     Style="text-align: right"></asp:Label>
                                             </FooterTemplate>
 
                                             <ItemTemplate>
-                                                <asp:Label ID="lgvDuesamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duesamt")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lgvDuesamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "overdues")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="75px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />

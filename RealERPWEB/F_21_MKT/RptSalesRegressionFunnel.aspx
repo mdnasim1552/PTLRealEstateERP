@@ -93,15 +93,36 @@
 
 
         };
+        function openModaldis() {
 
+            $('#mdiscussion').modal('toggle');
+            //  $('#lbtntfollowup').click();
+        };
 
     </script>
 
-
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
     <div class="card card-fluid container-data mt-5">
         <div class="card-body">
-            <h4 class="mb-2">Sales Regression Funnel Reports</h4>
-
+          
             <div class="row mb-2" id="divFilter">
                 <div class="col-md-3">
                     <div class="input-group input-group-alt">
@@ -252,7 +273,7 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvItmCode" CssClass="desclbll" runat="server" Height="16px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
-                                        Width="300px" ForeColor="Black"></asp:Label>
+                                        Width="150px" ForeColor="Black"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
@@ -269,7 +290,7 @@
 
 
 
-                                    <asp:LinkButton ID="lnkEditfollowup" ForeColor="Chocolate" ClientIDMode="Static" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clientname")) %>'> </asp:LinkButton>
+                                    <asp:LinkButton ID="lnkEditfollowup" Width="150px" OnClick="lnkEditfollowup_Click" ForeColor="Chocolate" ClientIDMode="Static" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clientname")) %>'> </asp:LinkButton>
 
 
 
@@ -289,27 +310,10 @@
 
                             <asp:TemplateField HeaderText="Funnel Stage">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblgvquery" runat="server" Height="16px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "query")) %>'
-                                        Width="60px" ForeColor="Black"></asp:Label>
-                                     <asp:Label ID="lblgvlead" runat="server" Height="16px" Visible="false"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lead")) %>'
-                                        Width="80px" ForeColor="Black"></asp:Label>
-
-                                     <asp:Label ID="lblgvqualiflead" runat="server" Height="16px"  Visible="false"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "qualiflead")) %>'
-                                        Width="150px" ForeColor="Black"></asp:Label>
-                                     <asp:Label ID="lblgvNegotiation" runat="server" Height="16px"  Visible="false"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "nego")) %>'
-                                        Width="100px" ForeColor="Black"></asp:Label>
-
-                                     <asp:Label ID="lblgvfNegotiation" runat="server" Height="16px"  Visible="false"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "finalnego")) %>'
-                                        Width="150px" ForeColor="Black"></asp:Label>
-
-                                     <asp:Label ID="lblgvwin" runat="server" Height="16px"  Visible="false"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "win")) %>'
-                                        Width="50px" ForeColor="Black"></asp:Label>
+                                    <asp:Label ID="lblgvFunnel" runat="server" Height="16px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lststge")) %>'
+                                        Width="160px" ForeColor="Black"></asp:Label>
+                                   
 
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -321,13 +325,17 @@
  
                             <asp:TemplateField HeaderText="Regression Funnel Stage">
                                 <ItemTemplate>
-                                   <asp:Label ID="lblgvRegression" runat="server" Height="16px" Text='' Width="150px" ForeColor="Black"></asp:Label>
+                                    <asp:Label ID="lblgvRegression" runat="server" Height="16px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstregss")) %>'
+                                        Width="160px" ForeColor="Black"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Reason">
                                 <ItemTemplate>
-                                   <asp:Label ID="lblgvReasonn" runat="server" Height="16px" Text='' Width="150px" ForeColor="Black"></asp:Label>
+                                   <asp:Label ID="lblgvReason" runat="server" Height="16px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstreson")) %>'
+                                        Width="300px" ForeColor="Black"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
@@ -348,4 +356,202 @@
 
         </div>
     </div>
+
+    <div id="mdiscussion" class="modal fade animated slideInTop " role="dialog" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-full-width modal-lg ">
+            <div class="modal-content modal-content-full-width">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <i class="fa fa-hand-point-right"></i>
+                        Discussion </h4>
+
+                    <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+
+                </div>
+                <div class="modal-body ">
+
+
+
+                    <div class="row">
+
+                        <div class="col-xs-9 col-sm-9 col-md-9">
+
+                            <p>
+                                <strong><span id="lblprosname" runat="server"></span></strong>
+                                <br>
+                                <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
+                                <br>
+                                <strong>Home Address: </strong><span id="lblprosaddress" runat="server"></span>
+                                <br>
+
+                                <strong>Notes: </strong><span id="lblnotes" runat="server"></span>
+                                <br>
+                            </p>
+
+                            <p>
+
+                                <strong>Prefered Area: </strong><span id="lblpreferloc" runat="server"></span>
+                                <br>
+                                <strong>Appartment Size: </strong><span id="lblaptsize" runat="server"></span>
+
+                                <asp:HiddenField ID="lblproscod" runat="server" />
+                                <asp:HiddenField ID="lbleditempid" runat="server" />
+                            </p>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+                        <div class="col-md-12 col-lg-12">
+                            <div class="row">
+                                <asp:Repeater ID="rpclientinfo" runat="server">
+                                    <HeaderTemplate>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+
+
+                                        <div class="col-md-12  col-lg-12">
+                                            <div class="well">
+
+                                                <div class="col-sm-12 panel">
+
+                                                    <div class=" col-sm-12">
+
+                                                        <p>
+                                                            <strong>
+                                                                <%# DataBinder.Eval(Container, "DataItem.prosdesc")%> </strong>
+
+                                                            <%# DataBinder.Eval(Container, "DataItem.kpigrpdesc").ToString() %>  on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>
+                                                            <br>
+
+
+
+
+                                                            <strong>Participants:</strong> <%# DataBinder.Eval(Container, "DataItem.partcilist").ToString() %><br>
+
+
+                                                            <strong>Summary:</strong><span class="textwrap"><%# DataBinder.Eval(Container, "DataItem.discus").ToString() %></span><br>
+
+
+
+                                                            <strong>Next Action:</strong> <%# DataBinder.Eval(Container, "DataItem.nfollowup").ToString() %> on <%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.napnt")).ToString("dd-MMM-yyyy hh:mm tt")%><br>
+                                                            <strong>Comments:</strong> <%# DataBinder.Eval(Container, "DataItem.disgnote").ToString() %>
+
+
+
+
+
+                                                            <br>
+                                                        </p>
+
+
+
+
+
+
+
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-md-12 collapse dcomments" id="divreschedule<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>">
+
+
+
+                                                        <asp:TextBox ID="txtdate" runat="server" ClientIDMode="Static" CssClass=""></asp:TextBox>
+                                                        <cc1:CalendarExtender ID="Cal2" runat="server"
+                                                            Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
+
+
+
+
+
+                                                        Subject:
+                                                    <textarea name="lblsubjects" id="lblsubjects" style="width: 300px"></textarea>
+                                                        Reason:
+                                                    <textarea name="lblreason" id="lblreason" style="width: 300px"></textarea>
+
+                                                        <%--<button type="button" class="btn  btn-success btn-xs" onclick="funReschedule('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>')">Post</button>--%>
+                                                        <button type="button" class="lbtnschedule">Post</button>
+
+                                                        <input type="hidden" id="lblcdate" value="<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>" />
+
+
+                                                    </div>
+
+
+
+                                                    <%--<asp:LinkButton ID="lbtnComments" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnComments_Click"    data-toggle="collapse" data-target="#dcomments">Comments</asp:LinkButton>--%>
+
+
+
+                                                    <div class="col-md-12 collapse dcomments" id="dcomments<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>">
+
+                                                        <textarea name="lblcomments" id="lblcomments<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>" style="width: 300px"></textarea>
+                                                        <br>
+                                                        <input type="text" name="txtcomdate" class="datepicker" id="txtcomdate<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>" value="<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("MM/dd/yyyy") %>" style="width: 300px"></input>
+
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnpostComments" onclick="funPost('<%# Convert.ToDateTime(DataBinder.Eval(Container, "DataItem.cdate")).ToString("dd-MMM-yyyy hh:mm tt") %>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString() %>')">Post</button>
+
+
+
+                                                    </div>
+
+                                                    <%--  <button type="button" class="btn btn-primary btn-xs" runat="server" id="Button1" data-toggle="collapse" data-target="#dcomments" >Comments</button>
+
+                                    <div class="col-md-12 collapse "  id="dcomments">
+
+                                      <input type="text"  name="lblcomments" id="lblcomments" />
+                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnpostComments"  >Post</button>
+                                      
+
+
+                                    </div>--%>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </ItemTemplate>
+
+                                </asp:Repeater>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+             </ContentTemplate>
+    </asp:UpdatePanel>
+
 </asp:Content>
