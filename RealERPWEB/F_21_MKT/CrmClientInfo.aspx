@@ -2042,7 +2042,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalsr" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -2124,7 +2124,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalpinf" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -2224,7 +2224,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalplot" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -2360,7 +2360,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalbuinf" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -2493,7 +2493,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalminfo" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -2920,7 +2920,7 @@
 
                                                 <asp:TemplateField HeaderText="Mobile">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvphone" runat="server" Width="60px"
+                                                        <asp:Label ID="lblgvphone" runat="server" Width="80px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "phone")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>

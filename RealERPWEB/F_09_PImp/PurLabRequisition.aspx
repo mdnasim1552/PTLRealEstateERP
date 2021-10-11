@@ -462,8 +462,8 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px" 
+                                        <ItemTemplate> 
+                                            <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"  
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="60px" BackColor="Transparent"
                                                 BorderStyle="None" BorderWidth="1px" Style="text-align: right"></asp:TextBox>

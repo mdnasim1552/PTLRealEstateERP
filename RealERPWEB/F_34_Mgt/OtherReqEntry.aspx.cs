@@ -2264,18 +2264,18 @@ namespace RealERPWEB.F_34_Mgt
                 Proamt = (type == "OreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
                 appamt = (type == "OreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
 
-                if (comcod == "3338" || comcod == "3101")
-                {
-                    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
-                    if (Proamt > balamt)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Proposed Amt Can't Excess Balance Amt ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
-                    }
+                //if (comcod == "3338" || comcod == "3101")
+                //{
+                //    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
+                //    if (Proamt > balamt)
+                //    {
+                //        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                //        ((Label)this.Master.FindControl("lblmsg")).Text = "Proposed Amt Can't Excess Balance Amt ";
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //        return;
+                //    }
                         
-                }
+                //}
 
                 tbl1.Rows[i]["proamt"] = Proamt;// qty* rate; proamt
                 tbl1.Rows[i]["appamt"] = appamt; //qty * rate;//appamt;

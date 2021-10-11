@@ -1306,12 +1306,27 @@ namespace RealEntity.C_22_Sal
         }
         #endregion
 
+        [Serializable]
+        public class RptMonWiseNewSales
+        {
+            public string rowid { get; set; }
+            public string monthid1 { get; set; }
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public double usize { get; set; }
+            public string munit { get; set; }
+            public string udesc { get; set; }
+            public string pactdesc { get; set; }
+            public string custname { get; set; }
+            public string schdate { get; set; }
+            public double colamt { get; set; }
+            public double tsalvalue { get; set; }
+            public string teamlead { get; set; }
 
-    }
+            public RptMonWiseNewSales() { }
 
-    
-
-    
+        }
+    }   
  
 }
         
