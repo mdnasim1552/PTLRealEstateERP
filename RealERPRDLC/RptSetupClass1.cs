@@ -317,6 +317,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccIncomeSt": Rpt1a = SetRptAccIncomeSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptVouTopSheet": Rpt1a = SetRptRptVouTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptLedger": Rpt1a = SetRptLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptLedgerTanvir":Rpt1a = SetRptLedgerTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
                 case "R_17_Acc.RptAccLedger": Rpt1a = SetRptAccLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerBridge": Rpt1a = SetRptAccLedgerBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerTerra": Rpt1a = SetRptAccLedgerTerra(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4044,6 +4046,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptLedgerTanvir(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
+            return Rpt1a;
+        }
+
+        
 
         private static LocalReport SetRptAccLedger(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {

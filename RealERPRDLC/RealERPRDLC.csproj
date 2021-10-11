@@ -443,6 +443,7 @@
     <EmbeddedResource Include="R_17_Acc\RptIssueVsClr.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIsuVsPaySum1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptLabourDetails.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptLedgerTanvir.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptLedger.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonColBarChart.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonColLineChart.rdlc" />
