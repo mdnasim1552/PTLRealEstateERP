@@ -378,6 +378,7 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1Rup.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher2.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher3.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherTanvir.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher4.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher5.rdlc" />
@@ -442,6 +443,7 @@
     <EmbeddedResource Include="R_17_Acc\RptIssueVsClr.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptIsuVsPaySum1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptLabourDetails.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptLedgerTanvir.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptLedger.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonColBarChart.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptMonColLineChart.rdlc" />

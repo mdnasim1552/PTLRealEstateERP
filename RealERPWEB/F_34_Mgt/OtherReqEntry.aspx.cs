@@ -923,7 +923,19 @@ namespace RealERPWEB.F_34_Mgt
                     string rescode = (this.ddlMatGrp.SelectedValue.ToString() == "") ? "000000000000" : this.ddlMatGrp.SelectedValue.ToString();
                     string spcfcod = (this.ddlSpclinf.SelectedValue.ToString() == "") ? "000000000000" : this.ddlSpclinf.SelectedValue.ToString();
                     //DataRow[] dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "' and billno= '" + Billno + "'");
-                    DataRow[] dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
+                    DataRow[] dr2;
+                    string comcod = this.GetCompCode();
+                    switch (comcod)
+                    {
+                        case"3101":
+                        case"1103":
+                            dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "' and billno= '" + Billno + "'");
+                            break;
+                        default:
+                            dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
+                            break;
+                    }
+                    
 
                     if (dr2.Length == 0)
                     {

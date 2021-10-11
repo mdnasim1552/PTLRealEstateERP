@@ -165,6 +165,10 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintAcme";
                     break;
 
+                case "1103":
+                    vouprint = "VocherPrintTanvir";
+                    break;
+
                 default:
                     vouprint = "VocherPrint";
                     break;
@@ -442,6 +446,15 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.EnableExternalImages = true;
                 }
 
+                else if(Type== "VocherPrintTanvir")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherTanvir", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtPay", (vounum.Substring(0, 2).ToString() == "PV") ? "Pay To " : "Receive From"));
+
+                }
 
                 else
                 {
