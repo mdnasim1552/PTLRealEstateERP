@@ -1103,12 +1103,14 @@ namespace RealERPWEB.F_23_CR
                 case "MonthlyDuesOverDues":
 
 
-                    ((Label)this.gvDuesOverdues.FooterRow.FindControl("lgvFDuesamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(duesamt)", "")) ?
-                           0.00 : dt.Compute("Sum(duesamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvDuesOverdues.FooterRow.FindControl("lgvFDuesamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(overdues)", "")) ?
+                           0.00 : dt.Compute("Sum(overdues)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDuesOverdues.FooterRow.FindControl("lgvFReceived")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(recamt)", "")) ?
                        0.00 : dt.Compute("Sum(recamt)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvDuesOverdues.FooterRow.FindControl("lgvFBalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(balamt)", "")) ?
                        0.00 : dt.Compute("Sum(balamt)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvDuesOverdues.FooterRow.FindControl("lgvFcduesamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(curdues)", "")) ?
+                       0.00 : dt.Compute("Sum(curdues)", ""))).ToString("#,##0;(#,##0); ");
 
 
 

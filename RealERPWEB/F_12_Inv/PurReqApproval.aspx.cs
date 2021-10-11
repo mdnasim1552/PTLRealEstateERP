@@ -814,14 +814,30 @@ namespace RealERPWEB.F_12_Inv
                 if (drt.Length > 0)
                 {
 
-                    string reqapdate = this.txtdate.Text.Trim();
-                    result = accData.UpdateTransInfo3(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "AUTOUPDATEPPROGAORD", Reqno, ApprovByid, approvdat, Approvtrmid, ApprovSession, carring, reqapdate, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                    if (!result)
+                    switch(comcod)  
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
+
+                        
+                        case "3339": // Cash purcahse but check purcahse program and Work order for Tropical
+                            break;
+
+                        default:
+
+                            string reqapdate = this.txtdate.Text.Trim();
+                            result = accData.UpdateTransInfo3(comcod, "SP_ENTRY_REQUISITION_APPROVAL", "AUTOUPDATEPPROGAORD", Reqno, ApprovByid, approvdat, Approvtrmid, ApprovSession, carring, reqapdate, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            if (!result)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
+                            }
+                            break;
+
                     }
+
+                   
+
+                    
 
 
 
