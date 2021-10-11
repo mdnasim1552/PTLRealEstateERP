@@ -63,7 +63,7 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string refnum = this.txtrefno.Text.Trim();
+            string refnum = "%" + this.txtrefno.Text.Trim() + "%";
 
             DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "RPTMONEYRECEIPTTOPSHEET", frmdate, todate, refnum, "", "", "", "", "", "");
             if (ds1 == null)
@@ -111,7 +111,7 @@ namespace RealERPWEB.F_23_CR
                 string mrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrno")).ToString();
                 string mrdate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mrdate")).ToString();
 
-                hlnkMoneyRcptEdit.NavigateUrl = "~/F_23_CR/MktMoneyReceipt?Type=Management";
+                hlnkMoneyRcptEdit.NavigateUrl = "~/F_23_CR/MktMoneyReceipt?Type=Management&prjcode=" + pactcode + "&usircode=" + usircode + "&genno=" + mrno;
                 hlnkPrintMoneyRcpt.NavigateUrl = "~/F_17_Acc/PrintMoneyReceipt.aspx?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
 
             }
