@@ -798,9 +798,12 @@ namespace RealERPWEB.F_17_Acc
                 case "3101":
                 case "3337"://Suvastu
                 case "3339"://Tropical
-                case "3336"://Suvastu
+                case "3336"://Suvastu                       
+                    comledger = "LedgerSuvTropical";
+                    break;
+
                 case "1103"://Tanvir Constructions Ltd.          
-                    comledger = "LedgerSuTroaTanvir";
+                    comledger = "LedgerTanvir";
                     break;
 
                 //case "3101":
@@ -875,12 +878,17 @@ namespace RealERPWEB.F_17_Acc
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>();
             LocalReport Rpt1 = new LocalReport();
 
-            if (comledger == "LedgerSuTroaTanvir")
+            if (comledger == "LedgerSuvTropical")
             {
-
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptLedger", lst, null, null);
                 Rpt1.EnableExternalImages = true;
             }
+            else if (comledger == "LedgerTanvir")
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptLedgerTanvir", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+            }
+            
 
             else if (comledger == "LedgerBridge")
             {

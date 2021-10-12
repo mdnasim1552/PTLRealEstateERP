@@ -317,6 +317,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccIncomeSt": Rpt1a = SetRptAccIncomeSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptVouTopSheet": Rpt1a = SetRptRptVouTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptLedger": Rpt1a = SetRptLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptLedgerTanvir":Rpt1a = SetRptLedgerTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
                 case "R_17_Acc.RptAccLedger": Rpt1a = SetRptAccLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerBridge": Rpt1a = SetRptAccLedgerBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerTerra": Rpt1a = SetRptAccLedgerTerra(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -475,7 +477,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptBankVoucherTropical": Rpt1a = SetrptBankVoucherTropical(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptBankVoucherSuvastu": Rpt1a = SetrptBankVoucherSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptBankVoucherAcme": Rpt1a = SetrptBankVoucherAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptBankVoucherManama": Rpt1a = SetrptBankVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;                 
+                case "R_17_Acc.rptBankVoucherManama": Rpt1a = SetrptBankVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptBankVoucherTanvir": Rpt1a = SetrptBankVoucherTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;                    
                 case "R_17_Acc.RptAccCashbook1": Rpt1a = SetRptAccCashbook1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccCashbook1Credence": Rpt1a = SetRptAccCashbook1Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptDailyPayProposal": Rpt1a = SetRptDailyPayProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1317,6 +1320,14 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetrptBankVoucherTanvir(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
+            return Rpt1a;
+        }
+
+        
 
         private static LocalReport SetRptAccCashbook1(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -4035,6 +4046,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptLedgerTanvir(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSetLedger", (List<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>)RptDataSet));
+            return Rpt1a;
+        }
+
+        
 
         private static LocalReport SetRptAccLedger(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
