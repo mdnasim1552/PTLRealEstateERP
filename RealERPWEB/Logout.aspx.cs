@@ -41,6 +41,8 @@ namespace RealERPWEB
                 Session.Remove("tbllog1");
                 Session.Remove("tblLogin");
 
+                Session["ixComcod"] = comcod;
+
             }
 
             Response.Redirect("~/LogIn");

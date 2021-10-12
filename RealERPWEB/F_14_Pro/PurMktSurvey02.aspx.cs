@@ -25,12 +25,12 @@ namespace RealERPWEB.F_14_Pro
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("~/AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Comparative Statement - Purchase 02";
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Comparative Statement - Purchase 02";
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 if (Request.QueryString.AllKeys.Contains("msrno"))

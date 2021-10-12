@@ -2983,6 +2983,7 @@ namespace RealERPWEB.F_12_Inv
                 tbl1.Rows[TblRowIndex2]["expusedt"] = dgvUseDat;
                 tbl1.Rows[TblRowIndex2]["pursdate"] = dgvSupDat;
                 tbl1.Rows[TblRowIndex2]["reqnote"] = dgvReqNote;
+                
             }
             ViewState["tblReq"] = tbl1;
         }
