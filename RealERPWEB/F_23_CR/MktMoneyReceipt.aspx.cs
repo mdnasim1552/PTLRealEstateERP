@@ -31,10 +31,15 @@ namespace RealERPWEB.F_23_CR
             this.lbtnUpdate.Attributes.Add("onClick", " javascript:return confirm('You sure you want to Save the record?');");
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ////this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 Session.Remove("Unit");
                 this.tableintosession();
                 if (this.Request.QueryString["Type"] == "CustCare")
@@ -45,6 +50,11 @@ namespace RealERPWEB.F_23_CR
                 this.InforInitialize();
                 this.GetProjectName();
                 this.GetInsType();
+                string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
+                if(qPrjCode.Length>0)
+                {
+                    this.lbtnOk_Click(null, null);
+                }
                 // this.GetCollectTeam();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
@@ -233,7 +243,8 @@ namespace RealERPWEB.F_23_CR
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string txtSProject = "%" + this.txtSrcPro.Text + "%";
+            string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
+            string txtSProject = qPrjCode.Length > 0 ? qPrjCode : "%" + this.txtSrcPro.Text + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPROJECTNAME", txtSProject, userid, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -350,7 +361,8 @@ namespace RealERPWEB.F_23_CR
 
             string comcod = this.GetComCode();
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string srchunit = "%" + this.txtsrchunit.Text.Trim() + "%";
+            string qusirCode = this.Request.QueryString["usircode"] ?? "";
+            string srchunit = qusirCode.Length > 0 ? qusirCode : "%" + this.txtsrchunit.Text.Trim() + "%";
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSUSERINFINFO", PactCode, srchunit, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -519,40 +531,6 @@ namespace RealERPWEB.F_23_CR
 
                 //if (empselect.Length > 0)
                 //{
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                 if (hst["empid"].ToString().Length > 0)
                 {
