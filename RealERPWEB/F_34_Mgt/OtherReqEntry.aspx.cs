@@ -923,7 +923,19 @@ namespace RealERPWEB.F_34_Mgt
                     string rescode = (this.ddlMatGrp.SelectedValue.ToString() == "") ? "000000000000" : this.ddlMatGrp.SelectedValue.ToString();
                     string spcfcod = (this.ddlSpclinf.SelectedValue.ToString() == "") ? "000000000000" : this.ddlSpclinf.SelectedValue.ToString();
                     //DataRow[] dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "' and billno= '" + Billno + "'");
-                    DataRow[] dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
+                    DataRow[] dr2;
+                    string comcod = this.GetCompCode();
+                    switch (comcod)
+                    {
+                        case"3101":
+                        case"1103":
+                            dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "' and billno= '" + Billno + "'");
+                            break;
+                        default:
+                            dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "'");
+                            break;
+                    }
+                    
 
                     if (dr2.Length == 0)
                     {
@@ -2264,18 +2276,18 @@ namespace RealERPWEB.F_34_Mgt
                 Proamt = (type == "OreqEntry") ? (rate > 0 ? qty * rate : Proamt) : Proamt;
                 appamt = (type == "OreqEntry") ? 0.00 : (rate > 0 ? qty * rate : appamt);
 
-                if (comcod == "3338" || comcod == "3101")
-                {
-                    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
-                    if (Proamt > balamt)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Proposed Amt Can't Excess Balance Amt ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
-                    }
+                //if (comcod == "3338" || comcod == "3101")
+                //{
+                //    double balamt = ASTUtility.StrPosOrNagative(((Label)this.gvOtherReq.Rows[i].FindControl("lblgvBalAmt")).Text.Trim());
+                //    if (Proamt > balamt)
+                //    {
+                //        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                //        ((Label)this.Master.FindControl("lblmsg")).Text = "Proposed Amt Can't Excess Balance Amt ";
+                //        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //        return;
+                //    }
                         
-                }
+                //}
 
                 tbl1.Rows[i]["proamt"] = Proamt;// qty* rate; proamt
                 tbl1.Rows[i]["appamt"] = appamt; //qty * rate;//appamt;
@@ -2632,7 +2644,7 @@ namespace RealERPWEB.F_34_Mgt
             string mqty = dr2[0]["qty"].ToString();
             string mProAMT = dr2[0]["proamt"].ToString();
             string mAPPAMT = dr2[0]["appamt"].ToString();
-            string nARRATION = txtReqNarr.Text;
+            string nARRATION = txtReqNarr.Text.Trim();
 
             string paytype = this.rblpaytype.SelectedValue.ToString();
             string payto = this.txtPayto.Text.Trim().ToString();

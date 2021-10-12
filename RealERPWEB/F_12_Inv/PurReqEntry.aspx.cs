@@ -108,10 +108,11 @@ namespace RealERPWEB.F_12_Inv
 
             switch (comcod)
             {
-                //case "3101":
+                case "3101":
                 case "3336":
                 case "3337":
                     this.txtCurReqDate_CalendarExtender.StartDate = System.DateTime.Today;
+                    this.txtCurReqDate.ReadOnly = true;
 
                     break;
 

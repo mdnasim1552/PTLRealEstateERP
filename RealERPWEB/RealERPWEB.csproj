@@ -2316,6 +2316,7 @@
     <Content Include="F_17_Acc\MoneyRecptApprov.aspx" />
     <Content Include="F_17_Acc\OtherPayment.aspx" />
     <Content Include="F_17_Acc\PostDatedChq.aspx" />
+    <Content Include="F_17_Acc\PrintMoneyReceipt.aspx" />
     <Content Include="F_17_Acc\PurchaseOrderRecived.aspx" />
     <Content Include="F_17_Acc\RatioCodeBook.aspx" />
     <Content Include="F_17_Acc\ResGenCodeBook.aspx" />
@@ -2505,6 +2506,7 @@
     <Content Include="F_23_CR\RptDishonourCheque.aspx" />
     <Content Include="F_23_CR\RptInvoice02.aspx" />
     <Content Include="F_23_CR\RptMonthlyCollectionMerge.aspx" />
+    <Content Include="F_23_CR\RptMRTopSheet.aspx" />
     <Content Include="F_23_CR\RptPrjWiseClientStatus02.aspx" />
     <Content Include="F_23_CR\RptPrjwisecollofSummDetails.aspx" />
     <Content Include="F_23_CR\RptProjectWiseCollection.aspx" />
@@ -3592,6 +3594,13 @@
     </None>
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Bundle.config" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AcceessError.aspx.cs">
@@ -3677,6 +3686,13 @@
     <Compile Include="F_17_Acc\LinkRptBgdvsExpensDetails.aspx.designer.cs">
       <DependentUpon>LinkRptBgdvsExpensDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_17_Acc\PrintMoneyReceipt.aspx.cs">
+      <DependentUpon>PrintMoneyReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\PrintMoneyReceipt.aspx.designer.cs">
+      <DependentUpon>PrintMoneyReceipt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3725,6 +3741,13 @@
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.designer.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptMRTopSheet.aspx.cs">
+      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptMRTopSheet.aspx.designer.cs">
+      <DependentUpon>RptMRTopSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_25_Reg\OtherCollectionReport.aspx.cs">
       <DependentUpon>OtherCollectionReport.aspx</DependentUpon>

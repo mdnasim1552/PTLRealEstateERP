@@ -18,6 +18,8 @@ using System.IO;
 using RealERPLIB;
 using RealERPRPT;
 using RealEntity;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 
 namespace RealERPWEB.F_22_Sal
 {
@@ -43,9 +45,14 @@ namespace RealERPWEB.F_22_Sal
         }
 
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
-
+        }
 
         private string GetCompCode()
         {
@@ -128,7 +135,34 @@ namespace RealERPWEB.F_22_Sal
             }
             return dt1;
         }
+        private void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            DataTable dt = (DataTable)Session["tblnewsales"];
+            var list = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptMonWiseNewSales>();
 
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptMonthWiseNewSales", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Month Wise Sale Report (New Sale)"));
+            Rpt1.SetParameters(new ReportParameter("txtProjName", "Project Name: " + this.ddlProjectName.SelectedItem.Text.ToString()));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "From: " + Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy") + "  To:  " + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
         protected void gvNewsales_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

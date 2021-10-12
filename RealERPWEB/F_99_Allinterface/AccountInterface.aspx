@@ -523,7 +523,7 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control" placeholder="Ref. No" Visible="false"></asp:TextBox>
+                                <asp:TextBox ID="txtrefno" runat="server" CssClass="form-control" placeholder="Ref. No" Visible="true"></asp:TextBox>
                             </div>
                         </div>
 
