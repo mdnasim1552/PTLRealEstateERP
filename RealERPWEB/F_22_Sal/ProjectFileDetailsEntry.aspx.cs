@@ -97,8 +97,8 @@ namespace RealERPWEB.F_22_Sal
             string comcod = GetCompCode();
             int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowIndex = (this.gvProjFileDet.PageSize) * (this.gvProjFileDet.PageIndex) + gvRowIndex;
-            string pactcode = dt.Rows[rowIndex]["pactcode"].ToString();
-            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "DELETEPROJFILEINFO", pactcode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string pactID = dt.Rows[rowIndex]["id"].ToString();
+            bool result = accData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "DELETEPROJFILEINFO", pactID, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (result == true)
             {
                 dt.Rows[rowIndex].Delete();

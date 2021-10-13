@@ -315,17 +315,14 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                 Height="20px" Font-Size="12px"></asp:TextBox>
 
-
                                             <asp:TextBox
                                                 ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                 Width="130px" Font-Size="12px"></asp:TextBox>
-
                                             <cc1:CalendarExtender ID="CalendarExtender_txtgvdVal" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
 
-                                            <%--  <asp:TextBox ID="txtVal" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "gdesc1")).ToString("dd-MMM-yyyy") %>'  runat="server" CssClass=" inputDateBox "></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtVal_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtVal">
-                                        </cc1:CalendarExtender>--%>
+                                            <asp:DropDownList ID="ddlFileNo" runat="server" CssClass="form-control inputTxt"></asp:DropDownList>
+
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
