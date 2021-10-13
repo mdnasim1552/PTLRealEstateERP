@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CrmClientInfo.aspx.cs" Inherits="RealERPWEB.F_21_MKT.CrmClientInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CrmClientInfo.aspx.cs" EnableEventValidation="false" ValidateRequest="false" Inherits="RealERPWEB.F_21_MKT.CrmClientInfo" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -418,7 +418,7 @@
 
 
             var intY = document.getElementById("divscroll").scrollTop;
-            console.log(intY);
+            //console.log(intY);
             // alert(intY);
             document.cookie = "yPos=!~" + intY + "~!";
         }
@@ -451,8 +451,8 @@
                     var subject = $(this).parent().find('#txtdate').val();
                     var lblcdate = $(this).parent().find('#lblcdate').val();
 
-                    alert(subject);
-                    console.log(lblcdate);
+                    //alert(subject);
+                    //console.log(lblcdate);
                 });
 
 
@@ -473,9 +473,6 @@
                     allow_single_deselect: true
                 });
                 $('.chosen-continer').css('width', '600px');
-
-                $('.chzn-select').chosen({ search_contains: true });
-
 
                 $('.chzn-select').chosen({ search_contains: true });
 
@@ -607,7 +604,7 @@
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
-                console.log(arraygval);
+               // console.log(arraygval);
                 // var txtmobile=arraygval[1];  
                 var txtmobile, txtaltmobile1, txtaltmobile2;
 
@@ -924,9 +921,9 @@
         function CreateTable(data) {
 
             try {
-                console.log(data);
+               // console.log(data);
                 var adata = JSON.parse(data);
-                console.log(adata);
+               // console.log(adata);
                 var row = '';
                 var i = 1;
                 $.each(adata,
@@ -4077,8 +4074,8 @@
                                                             </asp:DropDownList>
                                                         </asp:Panel>
                                                         <asp:Panel ID="PnlUnit" runat="server">
-                                                            <asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="True" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
-                                                                OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"
+                                                            <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
+                                                                
                                                                 TabIndex="12">
                                                             </asp:DropDownList>
                                                         </asp:Panel>

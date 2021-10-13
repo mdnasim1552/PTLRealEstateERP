@@ -5404,24 +5404,24 @@ namespace RealERPWEB.F_21_MKT
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)ViewState["tblappmnt"];
-            DataTable ddt = (DataTable)ViewState["tbother"];
-            DataSet ds1 = (DataSet)ViewState["tblproaunit"];
-            string pactcode = ((DropDownList)this.gvInfo.Rows[1].FindControl("ddlProject")).Text.Trim();
-            string usircode = ((DropDownList)this.gvInfo.Rows[2].FindControl("ddlUnit")).Text.Trim();
-            //for (int i = 0; i < this.gvInfo.Rows.Count; i++)
-            //{
+            //DataTable dt = (DataTable)ViewState["tblappmnt"];
+            //DataTable ddt = (DataTable)ViewState["tbother"];
+            //DataSet ds1 = (DataSet)ViewState["tblproaunit"];
+            //string pactcode = ((DropDownList)this.gvInfo.Rows[1].FindControl("ddlProject")).Text.Trim();
+            //string usircode = ((DropDownList)this.gvInfo.Rows[2].FindControl("ddlUnit")).Text.Trim();
+            ////for (int i = 0; i < this.gvInfo.Rows.Count; i++)
+            ////{
 
-            DataTable dt1 = ds1.Tables[1].Copy();
-            DataView dv1;
-            dv1 = dt1.DefaultView;
-            dv1.RowFilter = ("pactcode='000000000000' or pactcode='" + pactcode + "'");
-            dt1 = dv1.ToTable();
-            ((TextBox)this.gvInfo.Rows[3].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["usize"])).ToString("#,##0;(#,##0); ");
-            ((TextBox)this.gvInfo.Rows[4].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["rate"])).ToString("#,##0;(#,##0); ");
-            ((TextBox)this.gvInfo.Rows[5].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["pamt"])).ToString("#,##0;(#,##0); ");
-            ((TextBox)this.gvInfo.Rows[6].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["othamt"])).ToString("#,##0;(#,##0); ");
-            ((TextBox)this.gvInfo.Rows[7].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["tuamt"])).ToString("#,##0;(#,##0); ");
+            //DataTable dt1 = ds1.Tables[1].Copy();
+            //DataView dv1;
+            //dv1 = dt1.DefaultView;
+            //dv1.RowFilter = ("pactcode='000000000000' or pactcode='" + pactcode + "'");
+            //dt1 = dv1.ToTable();
+            //((TextBox)this.gvInfo.Rows[3].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["usize"])).ToString("#,##0;(#,##0); ");
+            //((TextBox)this.gvInfo.Rows[4].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["rate"])).ToString("#,##0;(#,##0); ");
+            //((TextBox)this.gvInfo.Rows[5].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["pamt"])).ToString("#,##0;(#,##0); ");
+            //((TextBox)this.gvInfo.Rows[6].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["othamt"])).ToString("#,##0;(#,##0); ");
+            //((TextBox)this.gvInfo.Rows[7].FindControl("txtgvVal")).Text = ((usircode == "000000000000") ? 0 : Convert.ToDouble((dt1.Select("pactcode='" + pactcode + "' and usircode='" + usircode + "'"))[0]["tuamt"])).ToString("#,##0;(#,##0); ");
 
 
 
