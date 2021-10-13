@@ -515,7 +515,7 @@ namespace RealERPWEB.F_14_Pro
 
 
         protected void ImgbtnFindRes_Click(object sender, EventArgs e)
-        {
+         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             //string SerchText = this.txtResSearch.Text.Trim() + "%";
