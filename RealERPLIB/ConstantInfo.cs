@@ -540,7 +540,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1403000", "1403258", "F_14_Pro", "RptSupplierChequeHistory", "", "Supplier Cheque History", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403259", "F_14_Pro", "RptPrjWiseMrfHistory", "", "Project Wise MRF History Counting", "Procurement", "False", "False", "False", "False" });
 
-
+            
 
             tblObj.Rows.Add(new Object[] { "1403000", "1403260", "F_14_Pro", "RptDateWiseReqCheckHistory?", "Type=Checkdate", "Date Wise Requisition Check History", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1403000", "1403261", "F_14_Pro", "RptPurchaseAgeing", "", "Supplier Credit Status (Purchase)", "Procurement", "False", "False", "False", "False" });
@@ -1420,7 +1420,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3203000", "3203065", "F_32_Mis", "RptPrjCostPerSFT?", "Type=ProTarVsAchievement", "Construction Target Vs. Achievement", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3203000", "3203070", "F_32_Mis", "RptSalesDuPeriod", "", "Sales During Period", "MIS", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3203000", "3203080", "F_17_Acc", "AccTrialBalance?", "Type=Details", "Details Of Balance", "MIS", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "3203000", "3203100", "F_17_Acc", "AccFinalReports?", "RepType=IS", "Income Statement 01", "MIS", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "3203000", "3203100", "F_17_Acc", "AccFinalReports?", "RepType=IS", " Statement Of Comprehensive Income", "MIS", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3203000", "3203101", "F_17_Acc", "AccFinalReports?", "RepType=IS2", "Income Statement 02", "MIS", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "3203000", "3203102", "F_17_Acc", "AccFinalReports?", "RepType=BS", "Balance Sheet", "MIS", "False", "False", "False", "False" }); ;
