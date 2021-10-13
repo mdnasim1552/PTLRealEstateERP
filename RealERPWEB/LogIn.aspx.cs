@@ -41,6 +41,8 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
+                
+                
                 this.Initilize();
 
                 this.getComName();
@@ -153,12 +155,13 @@ namespace RealERPWEB
 
                 if (dt1.Rows.Count == 0)
                 {
-
+                    
                     this.listComName.SelectedIndex = 0;
                 }
                 else
                 {
-                    this.listComName.SelectedValue = dt1.Rows[0]["comcod"].ToString();
+                    //nahid vs uzzal
+                    this.listComName.SelectedValue = (Session["ixComcod"] == null ? dt1.Rows[0]["comcod"].ToString() : Session["ixComcod"].ToString());
 
                 }
             }

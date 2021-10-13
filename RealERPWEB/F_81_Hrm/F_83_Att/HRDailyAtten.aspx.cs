@@ -281,6 +281,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3338":
                 case "3330": // Bridge
                 case "3355": // Greenwood
+                case "3353": // Greenwood
 
                     this.InsertDailyAttnAlliance();
                     break;
