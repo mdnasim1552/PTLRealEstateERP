@@ -5366,7 +5366,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302070000", "22. Purchase History-Supplier Wise", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=IndSup&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302080000", "23. General Tracking", "F_14_Pro/BillTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302090000", "05. Purchase Order-Supplier Wise", "F_14_Pro/RptWorkOrderVsSupply?Type=OrdVsSup&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302100000", "06. Purchase Order Histroy Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302100000", "06. Purchase Order History Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302110000", "07. Purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302120000", "12. Periodic Purchase Tracking", "F_14_Pro/RptDateWiseReq?Type=PeriodPurchase", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302130000", "17. Rate Variance-Materials", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=MatRateVar&comcod=&Date1=&Date2=", "", true, "" });
@@ -14063,7 +14063,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0406000000", "04. Requisition Status", "F_14_Pro/RptRequsitionStatus?WType=ReqStatus&Type=Purchase", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0407000000", "05. Purchase Order Details", "F_14_Pro/RptWorkOrderStatus?Type=DetailsWorkIOrdStatus", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0408000000", "06. Purchase Order Histroy Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000000", "06. Purchase Order History Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0409000000", "07. purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "08. Pending Bill", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=PenBill&comcod=&Date1=&Date2=", "", true, "" });

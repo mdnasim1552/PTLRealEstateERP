@@ -834,6 +834,13 @@ namespace RealERPWEB.F_14_Pro
             this.gvAprovInfo.DataSource = dv1.ToTable();
             this.gvAprovInfo.DataBind();
 
+            //For Visible Item Serial Manama
+            string comcod = GetCompCode();
+            if (comcod == "3353" || comcod == "3101")
+            {
+                this.gvAprovInfo.Columns[1].Visible = true;
+            }
+
         }
 
 
@@ -966,9 +973,11 @@ namespace RealERPWEB.F_14_Pro
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnUpdatePurOrder")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
             ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Visible = ((this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp") && comcod == "3335");
 
-
-
-            // }
+            //For Visible Item Serial Manama
+            if (comcod == "3353" || comcod == "3101")
+            {
+                this.gvOrderInfo.Columns[1].Visible = true;
+            }
 
             if (tbl1.Rows.Count == 0)
                 return;
