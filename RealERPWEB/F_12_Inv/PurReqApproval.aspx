@@ -401,13 +401,20 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Supplier Name">
+                                    <asp:TemplateField HeaderText="">
 
                                         <ItemTemplate>
                                             <asp:DropDownList ID="ddlSupname" CssClass=" ddlPage125 chzn-select" runat="server" Width="120px">
                                             </asp:DropDownList>
                                         </ItemTemplate>
+                                        
+                                        <HeaderTemplate>
+                                            <p>Supplier's</p>
 
+                                            <asp:CheckBox ID="chkSameSupplier" runat="server" AutoPostBack="True"
+                                                OnCheckedChanged="chkSameSupplier_CheckedChanged" Width="15px" />
+                                            Same Supplier
+                                        </HeaderTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                         <FooterStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
@@ -593,8 +600,8 @@
                             </div>
                         </asp:Panel>
 
-
-                        <asp:Panel ID="fotpanel" runat="server">
+                      <%--  Rahain to Request below panle visible false, by nahid--%>
+                        <asp:Panel ID="fotpanel" Visible="false" runat="server">
 
 
                             <div class="col-md-12">

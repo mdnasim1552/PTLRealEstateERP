@@ -1,6 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="ProjectFileDetailsEntry.aspx.cs" Inherits="RealERPWEB.F_22_Sal.ProjectFileDetailsEntry" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .primaryBtnUp {
+            height: 2rem;
+            font-size: .875rem;
+        }
+    </style>
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -52,7 +58,7 @@
                                     <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                                 </div>
                                 <div class="col-md-1">
-                                    <asp:Label ID="lblPage" runat="server"  Font-Bold="True" Text="Page Size:"></asp:Label>
+                                    <asp:Label ID="lblPage" runat="server" Font-Bold="True" Text="Page Size:"></asp:Label>
                                 </div>
                                 <div class="col-md-1">
                                     <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
@@ -78,13 +84,13 @@
                                         <asp:Label ID="lblFileNo" runat="server" Text="File No:" Style="font-weight: bold;"></asp:Label>
                                     </div>
                                     <div class="col-md-2">
-                                        <asp:TextBox ID="txtFileNo" runat="server"  Style="width: 230px;"></asp:TextBox>
+                                        <asp:TextBox ID="txtFileNo" runat="server" Style="width: 230px;"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1 ml-5">
                                         <asp:Label ID="lblLocation" runat="server" Text="File Location:" Style="font-weight: bold; float: right;"></asp:Label>
                                     </div>
                                     <div class="col-md-2">
-                                        <asp:TextBox ID="txtLocation" runat="server"  Style="width: 230px;"></asp:TextBox>
+                                        <asp:TextBox ID="txtLocation" runat="server" Style="width: 230px;"></asp:TextBox>
                                     </div>
                                     <div class="col-md-1 ml-5">
                                         <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lbtnAdd_Click">Add</asp:LinkButton>
@@ -127,7 +133,7 @@
                                             Width="350px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True" CssClass=" btn  btn-danger primarygrdBtn" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdate" runat="server" Font-Bold="True" CssClass=" btn  btn-danger primaryBtnUp" OnClick="lbtnUpdate_Click">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Left" />
@@ -151,7 +157,7 @@
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="40px" HorizontalAlign="Center" />
+                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="30px" HorizontalAlign="Center" />
                         </asp:GridView>
                     </asp:Panel>
                 </div>
