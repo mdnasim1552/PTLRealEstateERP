@@ -2063,6 +2063,7 @@ namespace RealERPWEB.F_12_Inv
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
+                string rowId = i.ToString();
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
 
@@ -2095,7 +2096,7 @@ namespace RealERPWEB.F_12_Inv
                     //}
                     result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQA",
                                 mREQNO, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
-                                PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, "", "", "", "", "", "", "");
+                                PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
 
 
                     if (!result)

@@ -417,6 +417,8 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt1 = ds1.Tables[1];
             DataTable dt = ds1.Tables[2];
             DataTable dtr = ds1.Tables[0];
+            DataTable dtPType = ds1.Tables[6];
+
 
             // rdlc start for manama
             if (comcod == "3353" || comcod == "3101")
@@ -458,17 +460,22 @@ namespace RealERPWEB.F_99_Allinterface
                 string txtSign1 = ds1.Tables[4].Rows[0]["reqname"].ToString() + "\n" + ds1.Tables[4].Rows[0]["reqdat"].ToString();
                 string txtSign2 = ds1.Tables[4].Rows[0]["reqratename"].ToString() + "\n" + ds1.Tables[4].Rows[0]["rateidate"].ToString();
 
+                //For Payment Type
+                string payType = "";
+                for (int i = 0; i < dtPType.Rows.Count; i++)
+                {
+                    payType += dtPType.Rows[i]["paytype"] + ",";
+                }
+                string fPayType = payType.Remove(payType.Length - 1, 1);
 
                 var lst = dtr.DataTableToList<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>();
                 LocalReport Rpt1 = new LocalReport();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptReqEntryManama", lst, null, null);
                 Rpt1.EnableExternalImages = true;
-
-
                 Rpt1.SetParameters(new ReportParameter("txtcompanyname", comnam));
-
                 Rpt1.SetParameters(new ReportParameter("txtRptTitle", "Materials Purchase Requisition"));
                 Rpt1.SetParameters(new ReportParameter("txtReqNo", txtcrno));
+                Rpt1.SetParameters(new ReportParameter("txtPayType", fPayType));
                 Rpt1.SetParameters(new ReportParameter("txtReqDate", txtcrdate));
                 Rpt1.SetParameters(new ReportParameter("txtMrfno", txtmrfno));
                 Rpt1.SetParameters(new ReportParameter("txtProjectName", txtprojectname));
