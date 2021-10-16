@@ -1353,6 +1353,14 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = (DataTable)ViewState["tblBill"];
             this.gvBillInfo.DataSource = tbl1;
             this.gvBillInfo.DataBind();
+
+            //For Visible Item Serial Manama
+            string comcod = GetCompCode();
+            if (comcod == "3353" || comcod=="3101")
+            {
+                this.gvBillInfo.Columns[1].Visible = true;
+            }
+
             this.gvBillInfo.Columns[8].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
             ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
             ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
@@ -1576,6 +1584,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["mrramt"] = dr3[0]["mrramt"];
                 dr1["mmrramt"] = dr3[0]["mrramt"];
                 dr1["remrks"] = dr3[0]["mrrnote"];
+                dr1["rowid"] = dr3[0]["rowid"];
                 tbl1.Rows.Add(dr1);
 
 
@@ -1693,6 +1702,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrramt"] = tbl2.Rows[i]["mrramt"].ToString();
                     dr1["mmrramt"] = tbl2.Rows[i]["mrramt"].ToString();
                     dr1["remrks"] = tbl2.Rows[i]["mrrnote"].ToString();
+                    dr1["rowid"] = tbl2.Rows[i]["rowid"].ToString();
                     tbl1.Rows.Add(dr1);
 
 
@@ -1812,6 +1822,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrramt"] = dr3[0]["mrramt"];
                     dr1["mmrramt"] = dr3[0]["mrramt"];
                     dr1["remrks"] = dr3[0]["mrrnote"];
+                    dr1["rowid"] = dr3[0]["rowid"];
                     tbl1.Rows.Add(dr1);
 
 

@@ -638,6 +638,14 @@ namespace RealERPWEB.F_12_Inv
             DataTable tbl1 = (DataTable)ViewState["tblMRR"];
             this.gvMRRInfo.DataSource = tbl1;
             this.gvMRRInfo.DataBind();
+
+            //For Visible Item Serial Manama
+            string comcod = GetCompCode();
+            if (comcod == "3353" || comcod == "3101")
+            {
+                this.gvMRRInfo.Columns[1].Visible = true;
+            }
+
             if (this.Request.QueryString["Type"].ToString() == "Entry")
             {
 
@@ -913,6 +921,7 @@ namespace RealERPWEB.F_12_Inv
                         double balqty = Convert.ToDouble(tbl2.Rows[i]["balqty"]);
                         double mrrqty = 0.00;
                         double mrrrate = Convert.ToDouble(tbl2.Rows[i]["mrrrate"]);
+                        double rowid = Convert.ToDouble(tbl2.Rows[i]["rowid"]);
                         //dr1["reqno1"] = dr3[0]["reqno1"];
                         //dr1["rsirdesc1"] = dr3[0]["sirdesc"];
                         //dr1["spcfdesc"] = dr3[0]["spcfdesc"];
@@ -956,6 +965,7 @@ namespace RealERPWEB.F_12_Inv
                             dr1["mrramt"] = 0;
                             dr1["mrrnote"] = "";
                             dr1["chlnqty"] = balqty;
+                            dr1["rowid"] = rowid;
                             tbl1.Rows.Add(dr1);
 
                             if (mReqno2 != mReqno)

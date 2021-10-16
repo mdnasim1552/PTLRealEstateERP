@@ -243,6 +243,13 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
+                                 <%--Item Serial RowID add for Manama--%>
+                                        <asp:TemplateField HeaderText="Item Sl" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvItemSl" runat="server" Height="16px" Style="text-align: right"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"rowid")) %>' Width="15px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Req No." Visible="false">
                                     <ItemTemplate>
