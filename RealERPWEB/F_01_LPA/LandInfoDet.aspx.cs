@@ -63,7 +63,7 @@ namespace RealERPWEB.F_01_LPA
                 this.GETEMPLOYEEUNDERSUPERVISED();
                 this.GetGridSummary();
                 this.ModalDataBind();
-                //this.GetNotificationinfo();
+               this.GetNotificationinfo();
                 divexland.Visible = false;
                 divddlinfo.Visible = false;
                 divLaOw.Visible = false;
@@ -2015,10 +2015,7 @@ namespace RealERPWEB.F_01_LPA
             string empid = hst["empid"].ToString();
 
 
-            DataTable dt = new DataTable();
-            DataTable dt1 = new DataTable();
-            DataTable dt2 = new DataTable();
-            DataTable dt3 = new DataTable();
+            DataTable dt = new DataTable();            
             DataTable dtowner = new DataTable();
             DataTable dthomadd = new DataTable();
             DataTable dtbusinesadd = new DataTable();
@@ -2027,24 +2024,27 @@ namespace RealERPWEB.F_01_LPA
 
             dt.Clear();
             dt.Columns.Add("gcod");
+            dt.Columns.Add("gval");
             dt.Columns.Add("gvalue");
-            dt1.Clear();
-            dt1.Columns.Add("gcod");
-            dt1.Columns.Add("gvalue");
-            dt2.Clear();
-            dt2.Columns.Add("gcod");
-            dt2.Columns.Add("gvalue");
-            dt3.Clear();
-            dt3.Columns.Add("gcod");
-            dt3.Columns.Add("gvalue");
+            dt.Columns.Add("remarks");
+            //dt1.Clear();
+            //dt1.Columns.Add("gcod");
+            //dt1.Columns.Add("gvalue");
+            //dt2.Clear();
+            //dt2.Columns.Add("gcod");
+            //dt2.Columns.Add("gvalue");
+            //dt3.Clear();
+            //dt3.Columns.Add("gcod");
+            //dt3.Columns.Add("gvalue");
             dtowner.Clear();
             dtowner.TableName = "tbl1";
             dtowner.Columns.Add("own");
             dtowner.Columns.Add("gcod");
+            dtowner.Columns.Add("gval");
             dtowner.Columns.Add("gvalue");
 
 
-
+            
 
             string landplotinfo = "";
             string landid = (divexland.Visible == false) ? LandNewCode() : (string)ViewState["sircodegrid"]; //newlandcode
@@ -2057,15 +2057,15 @@ namespace RealERPWEB.F_01_LPA
                 return;
             }
 
-            DataTable dtlohom = dsloinfo.Tables[1];
-            dtlohom.TableName = "tbl2";
+            DataTable dtlowoinfo = dsloinfo.Tables[1];
+            //dtlohom.TableName = "tbl2";
 
-            DataTable dtbusiness = dsloinfo.Tables[2];
-            dtbusiness.TableName = "tbl3";
+            //DataTable dtbusiness = dsloinfo.Tables[2];
+            //dtbusiness.TableName = "tbl3";
 
-            DataTable dtpersonal = dsloinfo.Tables[3];
-            dtpersonal.TableName = "tbl4";
-            // check land owner name 
+            //DataTable dtpersonal = dsloinfo.Tables[3];
+            //dtpersonal.TableName = "tbl4";
+           
             string Name = "";
             string Phone = "";
 
@@ -2127,29 +2127,21 @@ namespace RealERPWEB.F_01_LPA
             {
                 DataRow dr = dt.NewRow();
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                string gval = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgvalper")).Text.Trim();
+                
                 string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 dr["gvalue"] = Gvalue;
                 dt.Rows.Add(dr);
 
             }
-            for (int i = 0; i < this.GvOwnerLand.Rows.Count; i++)
-            {
-
-                DataRow dr = dtowner.NewRow();
-                string ownid = "01"; //ASTUtility.Right("0" + this.ddlNLandOwner.SelectedValue.ToString(), 2);
-                string Gcode = ((Label)this.GvOwnerLand.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
-                string Gvalue = (((DropDownList)this.GvOwnerLand.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.GvOwnerLand.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.GvOwnerLand.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                dr["own"] = ownid;
-                dr["gcod"] = Gcode;
-                dr["gvalue"] = Gvalue;
-                dtowner.Rows.Add(dr);
-
-            }
+        
             for (int i = 0; i < this.gvplot.Rows.Count; i++)
             {
-                DataRow dr = dt1.NewRow();
+                DataRow dr = dt.NewRow();
                 string Gcode = ((Label)this.gvplot.Rows[i].FindControl("lblgvItmCodeplot")).Text.Trim();
+                string gval = ((Label)this.gvplot.Rows[i].FindControl("lgvgvalplot")).Text.Trim();
                 string Gvalue = "";
                 if (Gcode == "0302001")
                 {
@@ -2206,17 +2198,20 @@ namespace RealERPWEB.F_01_LPA
                 }
 
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 dr["gvalue"] = Gvalue;
-                dt1.Rows.Add(dr);
+                dt.Rows.Add(dr);
 
             }
 
 
             for (int i = 0; i < this.gvpropdet.Rows.Count; i++)
             {
-                DataRow dr = dt2.NewRow();
+                DataRow dr = dt.NewRow();
                 string Gcode = ((Label)this.gvpropdet.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                string gval = ((Label)this.gvpropdet.Rows[i].FindControl("lgvgvalplotdet")).Text.Trim();
                 string Gvalue = "";
+                string remarks = "";
                 if (Gcode == "0303019")
                 {
                     foreach (ListItem item in ((ListBox)this.gvpropdet.Rows[i].FindControl("ddlPartic")).Items)
@@ -2227,6 +2222,7 @@ namespace RealERPWEB.F_01_LPA
                             if (item.Selected)
                             {
                                 Gvalue += item.Value;
+                                remarks = remarks + item.Text + ", ";
                             }
                         }
                     }
@@ -2236,8 +2232,10 @@ namespace RealERPWEB.F_01_LPA
                     Gvalue = (((DropDownList)this.gvpropdet.Rows[i].FindControl("ddlvalprojdet")).Items.Count == 0) ? ((TextBox)this.gvpropdet.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvpropdet.Rows[i].FindControl("ddlvalprojdet")).SelectedValue.ToString();
                 }
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 dr["gvalue"] = Gvalue;
-                dt2.Rows.Add(dr);
+                dr["remarks"] = remarks.Length == 0 ? "" : remarks.Substring(0, remarks.Length - 2);
+                dt.Rows.Add(dr);
             }
 
 
@@ -2245,65 +2243,73 @@ namespace RealERPWEB.F_01_LPA
 
             for (int i = 0; i < this.gvother.Rows.Count; i++)
             {
-                DataRow dr = dt3.NewRow();
+                DataRow dr = dt.NewRow();
                 string Gcode = ((Label)this.gvother.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                string gval = ((Label)this.gvother.Rows[i].FindControl("lgvgvalother")).Text.Trim();
                 string Gvalue = ((TextBox)this.gvother.Rows[i].FindControl("txtgvVal")).Text.Trim();
                 dr["gcod"] = Gcode;
+                dr["gval"] = gval;
                 dr["gvalue"] = Gvalue;
-                dt3.Rows.Add(dr);
+                dt.Rows.Add(dr);
 
             }
 
 
 
-            DataSet ds = new DataSet("ds1");
-            DataSet ds2 = new DataSet("ds2");
-            //ds.Merge(dt);
-            ds.Tables.Add(dt);
-            ds.Tables.Add(dt1);
-            ds.Tables.Add(dt2);
-            ds.Tables.Add(dt3);
 
-            //DataTable dtlohom = dsloinfo.Tables[1];
-            //DataTable dtbusiness = dsloinfo.Tables[2];
-            //DataTable dtpersonal = dsloinfo.Tables[3];
+            for (int i = 0; i < this.GvOwnerLand.Rows.Count; i++)
+            {
 
-            ds2.Tables.Add(dtowner);
+                DataRow dr = dtowner.NewRow();
+                string ownid = "01"; //ASTUtility.Right("0" + this.ddlNLandOwner.SelectedValue.ToString(), 2);
+                string Gcode = ((Label)this.GvOwnerLand.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                string gval = ((Label)this.GvOwnerLand.Rows[i].FindControl("lgvgvallowner")).Text.Trim();
+                string Gvalue = (((DropDownList)this.GvOwnerLand.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.GvOwnerLand.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.GvOwnerLand.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
+                dr["own"] = ownid;
+                dr["gcod"] = Gcode;
+                dr["gval"] = gval;
+                dr["gvalue"] = Gvalue;
+                dtowner.Rows.Add(dr);
 
-            //ds2.Tables.Add(dtlohom);
-            dtlohom = dtlohom.Copy();
-            ds2.Tables.Add(dtlohom);
-
-
-
-            dtbusiness = dtbusiness.Copy();
-            ds2.Tables.Add(dtbusiness);
-
-
-            dtpersonal = dtpersonal.Copy();
-            ds2.Tables.Add(dtpersonal);
-
-            ds.Tables[0].TableName = "tblinfo1";
-            ds.Tables[1].TableName = "tblinfo2";
-            ds.Tables[2].TableName = "tblinfo3";
-            ds.Tables[3].TableName = "tblinfo4";
-
-            ds2.Tables[0].TableName = "tbl1";
-            ds2.Tables[1].TableName = "tbl2";
-            ds2.Tables[2].TableName = "tbl3";
-            ds2.Tables[3].TableName = "tbl4";
-            // Duplicate Land info
-            //if (divexland.Visible == false)
-            //{
-
+            }
 
             DataSet ds1 = new DataSet("ds1");
-            ds1.Merge(ds.Tables[1]);
-            ds1.Tables[0].TableName = "tbl1";
-            string xml = ds1.GetXml();
-            // DataTable dtplot = ds.Tables[1];
+            DataSet ds2 = new DataSet("ds2");
+            //ds.Merge(dt);
+            ds1.Tables.Add(dt);
+            //ds.Tables.Add(dt1);
+            //ds.Tables.Add(dt2);
+            //ds.Tables.Add(dt3);
 
-            // }
+
+            
+            foreach (DataRow dr1 in dtowner.Rows)
+            {
+                dtlowoinfo.ImportRow(dr1);
+
+                //dtlowoinfo.Rows.Merge(dr1);
+
+
+
+            }
+
+
+            ds2.Merge(dtlowoinfo);           
+            //dtlohom = dtlohom.Copy();
+            //ds2.Merge(dtlohom);
+            //ds2.Merge(dtbusiness);
+            //ds2.Merge(dtpersonal);
+
+
+            
+
+            ds1.Tables[0].TableName = "tbl1";
+            ds2.Tables[0].TableName = "tbl1";         
+            //string xml = ds1.GetXml();
+            //string xml1 = ds2.GetXml();
+
+        
+         
 
             string landinfo = landplotinfo;
             //Check Duplicate
@@ -2344,7 +2350,7 @@ namespace RealERPWEB.F_01_LPA
             }
 
             string date = this.txtdate.Text.Trim();
-            bool result = HRData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATE_LINFO", ds, ds2, null, landid, landinfo, usrid, empid, date, "", "", "", "", "", "", "", "", "", "");
+            bool result = HRData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATE_LINFO", ds1, ds2, null, landid, landinfo, usrid, empid, date, "", "", "", "", "", "", "", "", "", "");
 
             // ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successful";
@@ -5750,7 +5756,7 @@ namespace RealERPWEB.F_01_LPA
                 {
                     string Gcode = ((Label)this.gvInfo.Rows[i].FindControl("lblgvItmCodedis")).Text.Trim();
                     string gtype = ((Label)this.gvInfo.Rows[i].FindControl("lgvgvaldis")).Text.Trim();
-
+                    string remarks = "";
 
 
 
@@ -5807,14 +5813,20 @@ namespace RealERPWEB.F_01_LPA
                                 if (item.Selected)
                                 {
                                     Gvalue += item.Value;
+                                    remarks = remarks + item.Text + ", ";
                                 }
                             }
                         }
 
 
-                        //Gvalue = (((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim()
-                        //    : ((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic")).SelectedValue.ToString();
-                    }
+                      
+                        // }
+                   // }
+
+                    remarks = (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
+
+
+                }
 
 
 
@@ -5849,7 +5861,7 @@ namespace RealERPWEB.F_01_LPA
 
                     if (Gvalue != "")
                     {
-                        result = HRData.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", empid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue);
+                        result = HRData.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "INSERTUPDATESCDINF", empid, Client, kpigrp, "", wrkdpt, cdate, Gcode, gtype, Gvalue, remarks);
                         if (!result)
                         {
                             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";

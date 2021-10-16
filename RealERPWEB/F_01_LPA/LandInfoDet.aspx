@@ -1341,7 +1341,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalper" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1423,7 +1423,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvallowner" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1503,7 +1503,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalother" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1571,7 +1571,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplot" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1720,7 +1720,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplotdet" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
