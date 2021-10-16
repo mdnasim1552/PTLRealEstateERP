@@ -2064,6 +2064,7 @@ namespace RealERPWEB.F_14_Pro
                             dr1["aprovrate"] = dtResP.Rows[i]["aprovrate"];
                             dr1["ordramt"] = Convert.ToDouble(dtResP.Rows[i]["aprovqty"]) * Convert.ToDouble(dtResP.Rows[i]["aprovrate"]);
                             dr1["paytype"] = dtResP.Rows[i]["paytype"];
+                            dr1["rowid"] = dtResP.Rows[i]["rowid"];
                             dt1.Rows.Add(dr1);
                             if (aprovno1 != aprovno)
                             {
