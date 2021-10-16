@@ -109,7 +109,7 @@
 
                                                     <asp:Label ID="lblCurDate" runat="server" CssClass="lblTxt lblDate " Text="Req.Date"></asp:Label>
 
-                                                    <asp:TextBox ID="txtCurReqDate" runat="server" CssClass="inputtextbox" TabIndex="5" ToolTip="(dd.mm.yyyy)" ReadOnly="true"></asp:TextBox>
+                                                    <asp:TextBox ID="txtCurReqDate" runat="server" CssClass="inputtextbox" TabIndex="5" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txtCurReqDate_CalendarExtender" runat="server"
                                                         Format="dd.MM.yyyy" TargetControlID="txtCurReqDate"></cc1:CalendarExtender>
 
