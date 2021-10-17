@@ -1731,8 +1731,8 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreq2")).Text.Trim();
-            string csircode = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvcsircode2")).Text.Trim();
+            string reqno = ((Label)this.gvWorkOrder.Rows[RowIndex].FindControl("lblgvbillreq2")).Text.Trim();
+            string csircode = ((Label)this.gvWorkOrder.Rows[RowIndex].FindControl("lblgvcsircode2")).Text.Trim();
             //string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
 
 
