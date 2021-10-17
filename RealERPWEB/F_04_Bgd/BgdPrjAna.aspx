@@ -1,9 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="BgdPrjAna.aspx.cs" Inherits="RealERPWEB.F_04_Bgd.BgdPrjAna" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style type="text/css">
         .auto-style1 {
             width: 141px;
@@ -50,6 +49,13 @@
             }
         }
 
+        function openNotesModal() {
+            $('#noteDetails').modal('toggle');
+        }
+
+        function closeNotesModal() {
+            $('#noteDetails').modal('hide');
+        }
 
         function pageLoaded() {
 
@@ -154,7 +160,7 @@
                                     <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;"></asp:Label>
 
                                     <div class="col-sm-9 pading5px">
-                                        <asp:RadioButtonList ID="rbtnList1" runat="server" Visible="False" BackColor="#0B88C5"  ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn "  OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
+                                        <asp:RadioButtonList ID="rbtnList1" runat="server" Visible="False" BackColor="#0B88C5" ForeColor="White" AutoPostBack="True" CssClass="btn rbtnList1 margin5px  primaryBtn " OnSelectedIndexChanged="rbtnList1_SelectedIndexChanged"
                                             RepeatColumns="7" RepeatDirection="Horizontal">
                                             <asp:ListItem>Catagory Selection</asp:ListItem>
                                             <asp:ListItem>Item Selection(All Cat.)</asp:ListItem>
@@ -584,6 +590,11 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lbtnAddNotes" runat="server" CssClass="btn btn-success btn-xs" OnClick="lbtnAddNotes_Click" ToolTip="Add Notes"><i class="fas fa-comment-alt-plus"></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="DateTime">
                                             <ItemTemplate>
@@ -603,6 +614,14 @@
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Notes">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvNotes" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes")) %>'
+                                                    Width="200px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" />
+                                        </asp:TemplateField>
 
 
                                     </Columns>
@@ -1000,7 +1019,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lprate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
-                                      
+
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
@@ -1011,7 +1030,7 @@
                                                 Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lpdate")).ToString("dd-MMM-yyyy") %>'
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
-                                      
+
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
@@ -1747,11 +1766,30 @@
                 </div>
             </div>
 
-
-
-
-
-
+            <%--Notes Modal Start--%>
+            <div class="modal fade " id="noteDetails" role="dialog">
+                <div class="modal-dialog  modal-lg ">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h3 class="modal-title text-center">Note Details</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label" style="font-size:large;">Details:</label>
+                                <asp:TextBox ID="txtpactcode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
+                                <asp:TextBox ID="txtisircode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
+                                <asp:TextBox ID="txtNoteDetails" runat="server" TextMode="MultiLine"  CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="lbtnUpdateNotes" runat="server" class="btn btn-success" aria-hidden="true" OnClick="lbtnUpdateNotes_Click" OnClientClick="closeNotesModal();">Update</asp:LinkButton>
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%--Notes Modal End--%>
 
         </ContentTemplate>
     </asp:UpdatePanel>

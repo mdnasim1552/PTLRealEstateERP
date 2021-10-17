@@ -1341,7 +1341,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalper" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1423,7 +1423,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvallowner" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1503,7 +1503,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalother" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1571,7 +1571,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplot" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1720,7 +1720,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplotdet" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -3054,7 +3054,7 @@
 
 
                                 <div class="col-md-2 marapaddingzero">
-                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Click Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
 
 
 

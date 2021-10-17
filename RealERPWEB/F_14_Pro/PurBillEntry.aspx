@@ -486,11 +486,18 @@
                                                         <asp:Label ID="lblgvSlNo0" runat="server" 
                                                             style="text-align: right" 
                                                             Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
-                                                    </ItemTemplate>
-                                                  
-                                                    <HeaderStyle Width="20px" />
-                                                  
+                                                    </ItemTemplate>                                                  
+                                                    <HeaderStyle Width="20px" />                                                  
                                                 </asp:TemplateField>
+
+                                                <%--Item Serial RowID add for Manama--%>
+                                                <asp:TemplateField HeaderText="Item Sl" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvItemSl" runat="server" Height="16px" Style="text-align: right"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"rowid")) %>' Width="15px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
                                                 <asp:TemplateField HeaderText="Project">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvProject" runat="server" 

@@ -285,6 +285,7 @@ namespace RealERPWEB.F_99_Allinterface
             int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string gatepasno = ((Label)this.gvapproval.Rows[Rowindex].FindControl("lblgetpasno")).Text.Trim();
 
+
             DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPURGERPASSINFO", gatepasno, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -297,7 +298,8 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             }
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "UPGATEPASSMAT", gatepasno, "", "", "", "", "", "", "", "", "", "");
+            string ctype = this.getCompanyRef();
+            bool result1 = feaData.UpdateTransInfo(comcod, "SP_REPORT_TRANSFER_INTERFACE", "UPGATEPASSMAT", gatepasno, ctype, "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
@@ -307,6 +309,28 @@ namespace RealERPWEB.F_99_Allinterface
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }
+
+
+
+        private string getCompanyRef()
+        {
+            string comcod = this.GetCompCode();
+            string ctype = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3338":
+                    ctype = "SingleGPA";
+                    break;
+
+                default:
+                    ctype = "";
+                    break;
+            }
+            return ctype;
+
+        }
+
         protected void lnkremovead_Click(object sender, EventArgs e)
         {
 

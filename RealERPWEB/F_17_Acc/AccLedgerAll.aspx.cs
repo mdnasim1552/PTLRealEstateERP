@@ -734,6 +734,19 @@ namespace RealERPWEB.F_17_Acc
             //string prjname = this.ddlConAccResHead.SelectedItem == null ? "" : this.ddlConAccResHead.SelectedItem.ToString().Substring(13);
             string prjname2 = this.ddlRescode.SelectedItem == null ? "" : this.ddlRescode.SelectedItem.ToString().Substring(13);
 
+            string fdate = "";
+            string tdate = "";
+            if (rbtnLedger.SelectedValue == "DetailLedger")
+            {
+                fdate = Convert.ToDateTime(this.txtDateFromSp.Text).ToString("dd-MMM-yyyy");
+                tdate = Convert.ToDateTime(this.txtDatetoSp.Text).ToString("dd-MMM-yyyy");               
+            }
+            else
+            {
+                fdate = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy");
+                tdate = Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+            }
+
             DataTable dt1 = (DataTable)Session["tblspledger"];
             if (dt1 == null)
                 return;
@@ -744,7 +757,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));
             Rpt1.SetParameters(new ReportParameter("prjname", "Name : " + prjname2));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
-            Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy") + ")"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + fdate + " To " + tdate + ")"));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("Rptaital", "SPECIAL LEDGER REPORT"));
