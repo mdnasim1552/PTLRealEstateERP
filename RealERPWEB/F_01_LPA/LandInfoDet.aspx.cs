@@ -63,7 +63,7 @@ namespace RealERPWEB.F_01_LPA
                 this.GETEMPLOYEEUNDERSUPERVISED();
                 this.GetGridSummary();
                 this.ModalDataBind();
-               this.GetNotificationinfo();
+              //this.GetNotificationinfo();
                 divexland.Visible = false;
                 divddlinfo.Visible = false;
                 divLaOw.Visible = false;
