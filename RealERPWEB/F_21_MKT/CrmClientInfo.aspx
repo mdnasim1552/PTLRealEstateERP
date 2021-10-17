@@ -381,6 +381,10 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
+       /* .checkbox label {
+        margin-right:2px;
+        
+        }*/
 
         /**  modal design end **/
     </style>
@@ -4049,7 +4053,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox">
+                                                                runat="server" CssClass="form-control checkbox"  >
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4093,7 +4097,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox" Style="width: 510px!important">
+                                                                runat="server" CssClass="form-control checkbox" >
                                                             </asp:CheckBoxList>
 
 

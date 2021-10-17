@@ -63,7 +63,7 @@ namespace RealERPWEB.F_01_LPA
                 this.GETEMPLOYEEUNDERSUPERVISED();
                 this.GetGridSummary();
                 this.ModalDataBind();
-               this.GetNotificationinfo();
+              //this.GetNotificationinfo();
                 divexland.Visible = false;
                 divddlinfo.Visible = false;
                 divLaOw.Visible = false;
@@ -99,6 +99,7 @@ namespace RealERPWEB.F_01_LPA
             DataTable dt = new DataTable();
             dt.Columns.Add("sircode", Type.GetType("System.String"));
             ViewState["newlandcode"] = dt;
+            //test
 
         }
 

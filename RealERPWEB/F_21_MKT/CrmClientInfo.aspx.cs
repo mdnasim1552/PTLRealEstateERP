@@ -5810,7 +5810,7 @@ namespace RealERPWEB.F_21_MKT
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 string gempid = ((Label)this.gvkpi.Rows[rowindex].FindControl("lblgbempid")).Text;
-                string folltype = "9601001";
+                string folltype = "9601004";
                 GetGridSummary_FollowupTye(gempid, folltype);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenKpiDetailsModal();", true);
 
@@ -5832,7 +5832,7 @@ namespace RealERPWEB.F_21_MKT
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 string gempid = ((Label)this.gvkpi.Rows[rowindex].FindControl("lblgbempid")).Text;
-                string folltype = "9601001";
+                string folltype = "9601008";
                 GetGridSummary_FollowupTye(gempid, folltype);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenKpiDetailsModal();", true);
 
@@ -5854,7 +5854,7 @@ namespace RealERPWEB.F_21_MKT
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 string gempid = ((Label)this.gvkpi.Rows[rowindex].FindControl("lblgbempid")).Text;
-                string folltype = "9601001";
+                string folltype = "9601016";
                 GetGridSummary_FollowupTye(gempid, folltype);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenKpiDetailsModal();", true);
 
@@ -5876,7 +5876,7 @@ namespace RealERPWEB.F_21_MKT
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 string gempid = ((Label)this.gvkpi.Rows[rowindex].FindControl("lblgbempid")).Text;
-                string folltype = "9601001";
+                string folltype = "9601020";
                 GetGridSummary_FollowupTye(gempid, folltype);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenKpiDetailsModal();", true);
 
@@ -5898,7 +5898,7 @@ namespace RealERPWEB.F_21_MKT
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 string gempid = ((Label)this.gvkpi.Rows[rowindex].FindControl("lblgbempid")).Text;
-                string folltype = "9601001";
+                string folltype = "9601024";
                 GetGridSummary_FollowupTye(gempid, folltype);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenKpiDetailsModal();", true);
 

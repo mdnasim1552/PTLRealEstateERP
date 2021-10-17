@@ -3054,7 +3054,7 @@
 
 
                                 <div class="col-md-2 marapaddingzero">
-                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Click Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
 
 
 
