@@ -266,7 +266,22 @@
         .dcomments {
             margin: 10px 0 0 0;
         }
-    </style>
+   
+        
+          .notifsectino .tile {
+            font-size: 12px !important;
+        }
+
+        .notifsectino .list-group-item {
+            padding: 2px 5px;
+        }
+
+
+        .notifsectino .list-group-item-body {
+            font-size: 10px !important;
+        }
+        
+        </style>
 
     <script type="text/javascript">
 
@@ -2528,6 +2543,7 @@
                                             <FooterStyle CssClass="grvFooter" />
                                             <EditRowStyle />
                                             <AlternatingRowStyle />
+                                            <PagerSettings Mode="NumericFirstLast" />
                                             <PagerStyle CssClass="gvPagination" />
                                             <HeaderStyle CssClass="grvHeader" />
                                         </asp:GridView>
