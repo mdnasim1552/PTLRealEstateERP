@@ -261,6 +261,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetCompCode();
             switch (comcod)
             {
+                case "3353":
+                    this.InsertDailyAttnManama();
+                    break;
 
                 case "4305":
                     this.InsertDailyAttnRup();
@@ -281,7 +284,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3338":
                 case "3330": // Bridge
                 case "3355": // Greenwood
-                case "3353": // Greenwood
+               // case "3353": // Greenwood
 
                     this.InsertDailyAttnAlliance();
                     break;
@@ -397,6 +400,79 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
         }
+
+        private void InsertDailyAttnManama()
+        {
+            //if (chktype.Checked == true)
+            //{
+            //    this.GetAccessAtteDataAssure();
+            //}
+            //else
+            //{
+
+
+            try
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+                //HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
+
+
+                //string hello = DailyAttendance.HelloWorld();
+                //return;
+
+
+
+
+                Session.Remove("DayAtten");
+                bool result;
+                string pdate = Convert.ToDateTime(this.txtdate.Text).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                string date1 = "#" + this.txtdate.Text + " 12:00:00 AM" + "#";
+                string date2 = "#" + this.txtdate.Text + " 11:59:00 PM" + "#";
+
+
+
+                HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
+                //  DataSet ds = DailyAttendance.GetDailyAttenDanceCredence(date1, date2);
+                DataSet ds = DailyAttendance.GetDailyAttenDanceManama(date1, date2);
+                //  string count = DailyAttendance.Country();
+
+                Session["DayAtten"] = ds.Tables[0];
+                DataTable dt = (DataTable)Session["DayAtten"];
+                string comcod = this.GetCompCode();
+                string date = this.txtdate.Text;
+
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEATTEN", date, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string idcardno1 = dt.Rows[i]["din"].ToString();
+                    string idcardno = ASTUtility.Right(("000000" + idcardno1.Trim()), 6);
+                    string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
+
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
+                // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                this.ShowData();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + ex.Message + "');", true);
+                return;
+
+            }
+
+            //}
+        }
+
 
         private void InsertDailyAttnCredence()
         {

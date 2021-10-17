@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="RealERPWEB_HrWebService_HrDailyAtten" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost/WebReference/HRDailyAtten.asmx</Value>
+      <Value Profile="(Default)">http://123.200.23.58/WebReference/HRDailyAtten.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
