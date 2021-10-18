@@ -1906,12 +1906,17 @@
                                             <!-- metric column -->
                                             <div class="col">
                                                 <!-- .metric -->
-                                                <a href="F_33_Doc/GroupChat.aspx" class="metric metric-bordered align-items-center card p-1">
-                                                    <h2 class="metric-label">Task Management</h2>
+
+                                                  <a href="#" target="_self" runat="server" id="noProj" class="metric metric-bordered align-items-center card p-1">
+                                                    <h2 class="metric-label">No of Projects </h2>
+                                                    <%--Teams--%>
                                                     <p class="metric-value h3">
-                                                        <sub><i class="fa fa-tasks"></i></sub><span class="value"></span>
+                                                        <sub><i class="oi oi-people"></i></sub><span class="value" runat="server" id="noProjCount">0</span>
                                                     </p>
                                                 </a>
+
+
+                                               
                                                 <!-- /.metric -->
                                             </div>
 
