@@ -2548,6 +2548,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
+    <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
     <Content Include="F_29_Fxt\EntryFxtAssetITDept.aspx" />
     <Content Include="F_29_Fxt\EntryFxtasstIssue.aspx" />
     <Content Include="F_29_Fxt\FxtAssetIssue.aspx" />
@@ -3760,6 +3761,13 @@
     </Compile>
     <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
       <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
+      <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
+      <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>

@@ -579,8 +579,7 @@
                                                     Width="100px" CssClass="style101"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
-                                        <asp:CommandField ShowEditButton="True" />
+                                        </asp:TemplateField>                                       
 
                                         <asp:TemplateField HeaderText="Status">
                                             <ItemTemplate>
@@ -589,12 +588,7 @@
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:LinkButton ID="lbtnAddNotes" runat="server" CssClass="btn btn-success btn-xs" OnClick="lbtnAddNotes_Click" ToolTip="Add Notes"><i class="fas fa-comment-alt-plus"></i></asp:LinkButton>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>                                       
 
                                         <asp:TemplateField HeaderText="DateTime">
                                             <ItemTemplate>
@@ -613,19 +607,23 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
+                                        <asp:CommandField ShowEditButton="True" />
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lbtnAddNotes" runat="server" CssClass="btn btn-success btn-xs" OnClick="lbtnAddNotes_Click" ToolTip="Add Notes"><i class="fas fa-comment-alt-plus"></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
 
                                          <asp:TemplateField HeaderText="Notes">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvNotes" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "notes")) %>'
-                                                    Width="200px"></asp:Label>
+                                                    Width="250px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
-
                                     </Columns>
-
 
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
@@ -1779,7 +1777,7 @@
                                 <label class="control-label" style="font-size:large;">Details:</label>
                                 <asp:TextBox ID="txtpactcode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
                                 <asp:TextBox ID="txtisircode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
-                                <asp:TextBox ID="txtNoteDetails" runat="server" TextMode="MultiLine"  CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtNoteDetails" runat="server" TextMode="MultiLine" Rows="5"  CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
                         <div class="modal-footer">
