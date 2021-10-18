@@ -396,7 +396,7 @@ namespace RealERPWEB.F_34_Mgt
             DataView dv = new DataView();
             DataSet ds1 = new DataSet("ds1");
             dv = dt1.DefaultView;
-            dv.RowFilter = "chkper=True";
+            //dv.RowFilter = "chkper=True";
             dt1 = dv.ToTable();
 
             ds1.Tables.Add(dt1);

@@ -165,7 +165,7 @@ namespace RealERPWEB.F_29_Fxt
             Session["tblresource"] = ds1.Tables[0];
             Session["tblempname"] = ds1.Tables[1];
             this.GetfrmEmployee();
-            this.GetToEmployee();
+            //this.GetToEmployee();
 
 
 
