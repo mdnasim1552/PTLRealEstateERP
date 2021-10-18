@@ -2909,7 +2909,7 @@ namespace RealERPWEB.F_04_Bgd
         {
             string comcod = this.GetComeCode();
             DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "GETNOTEDETEAILS", pactcode, rsircode, "", "", "", "", "", "", "");
-            this.txtNoteDetails.Text = ds1.Tables[0].Rows[0]["notes"].ToString();
+            this.txtNoteDetails.Text = ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["notes"].ToString();
         }
 
         protected void lbtnUpdateNotes_Click(object sender, EventArgs e)
