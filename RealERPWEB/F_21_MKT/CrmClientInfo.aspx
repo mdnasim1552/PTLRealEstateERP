@@ -3469,6 +3469,14 @@
                                                 <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                                             </li>
+
+                                             <li>
+                                                <asp:HyperLink ID="hlnkalldiscusssion" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientDiscuDetails" runat="server">All Discussion</asp:HyperLink>
+
+                                            </li>
+
+
+                                           
                                             <li>
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
 
