@@ -105,6 +105,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.DropDownList ddlGraphtype;
 
         /// <summary>
+        /// tab_1231 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1231;
+
+        /// <summary>
         /// Hypersales control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlsalchart;
+
+        /// <summary>
+        /// tab_1232 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1232;
 
         /// <summary>
         /// HyperProcurement control.
@@ -159,6 +177,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.Panel Panel2;
 
         /// <summary>
+        /// tab_1233 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1233;
+
+        /// <summary>
         /// HypAccounts control.
         /// </summary>
         /// <remarks>
@@ -184,6 +211,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel4;
+
+        /// <summary>
+        /// tab_1234 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1234;
 
         /// <summary>
         /// hypConstruction control.
@@ -213,6 +249,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.Panel Panel6;
 
         /// <summary>
+        /// tab_1235 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1235;
+
+        /// <summary>
         /// lblSubContractor control.
         /// </summary>
         /// <remarks>
@@ -238,6 +283,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel8;
+
+        /// <summary>
+        /// tab_1343 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1343;
 
         /// <summary>
         /// hypCrmDetails control.

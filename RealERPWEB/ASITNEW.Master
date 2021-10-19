@@ -5,7 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pinovation ERP </title>
+    <meta property="og:title" content="Dashboard">
+    <meta name="author" content="Pinovation Tech Ltd.">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="ERP SOFTWARE BY Advance Software and IT Services LTD">
+    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
+ 
+    <meta property="og:site_name" content="Realstate ERP">
     <asp:PlaceHolder runat="server">
        <%: Styles.Render("~/Content/cssnew") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -26,19 +36,10 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title>Pinovation ERP </title>
-    <meta property="og:title" content="Dashboard">
-    <meta name="author" content="Pinovation Tech Ltd.">
-    <meta property="og:locale" content="en_US">
-    <meta name="description" content="ERP SOFTWARE BY Advance Software and IT Services LTD">
-    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
- 
-    <meta property="og:site_name" content="Realstate ERP">
+    
 
     <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
@@ -251,6 +252,8 @@
         .ajax__calendar_dayname{
             padding:0 !important;
         }
+
+         
     </style>
 
 
@@ -291,16 +294,6 @@
                 <asp:ScriptReference Path="~/Scripts/jquery.counterup.min.js" />
                 <asp:ScriptReference Path="~/Scripts/jquery-migrate-1.3.0.js" />--%>
        
-
-
-
-
-
-
-                
-                
-         
-                 
 
             </Scripts>
         </asp:ScriptManager>
@@ -392,209 +385,7 @@
                             <asp:LinkButton ID="lnkPrint" runat="server" OnClick="lnkPrint_Click" CssClass="btn btn-success"><span class=" fa fa-print"></span></asp:LinkButton>
 
                           
-                            <!-- .nav -->
-                            <%--<ul class="header-nav nav">
-
-                                <!-- .nav-item -->
-                                <li class="nav-item dropdown header-nav-dropdown has-notified">
-                                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-chart-area"></span></a>
-                                    <!-- .dropdown-menu -->
-                                    <ul class="dropdown-menu checkbox-menu allow-focus" aria-labelledby="dropdownMenu1">
-
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div1">
-                                                Today's Summary
-                                            </label>
-                                        </li>
-
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div2">
-                                                Pending Task
-                                            </label>
-                                        </li>
-
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div3">
-                                                Top Active User
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div4">
-                                                Sales Graph
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div5">
-                                                Procurement Graph
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div6">
-                                                Accounts Graph
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div7">
-                                                Construction Graph
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div8">
-                                                User Today's Work
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="div9">
-                                                User Today's Figure Graph
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" checked="checked" id="EventNotice">
-                                                Event Notice
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <button type="button" class="btn btn-primary" id="btnshowchckdash" onclick="myFunction()">Show</button>
-                                        </li>
-                                    </ul>
-                                    <!-- /.dropdown-menu -->
-                                </li>
-                                <!-- /.nav-item -->
-                                <!-- .nav-item -->
-                                <li class="nav-item dropdown header-nav-dropdown has-notified">
-                                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-envelope-open"></span></a>
-                                    <!-- .dropdown-menu -->
-                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
-                                        <div class="dropdown-arrow"></div>
-                                        <h6 class="dropdown-header stop-propagation">
-                                            <span>Messages</span> <a href="#">Mark all as read</a>
-                                        </h6>
-                                        <!-- .dropdown-scroll -->
-                                        <div class="dropdown-scroll perfect-scrollbar">
-                                            <!-- .dropdown-item -->
-                                            <a href="#" class="dropdown-item unread">
-                                                <div class="user-avatar">
-                                                    <img src="assets/images/avatars/team1.jpg" alt="">
-                                                </div>
-                                                <div class="dropdown-item-body">
-                                                    <p class="subject">Stilearning </p>
-                                                    <p class="text text-truncate">Invitation: Joe's Dinner @ Fri Aug 22 </p>
-                                                    <span class="date">2 hours ago</span>
-                                                </div>
-                                            </a>
-                                            <!-- /.dropdown-item -->
-                                            <!-- .dropdown-item -->
-                                            <a href="#" class="dropdown-item">
-                                                <div class="user-avatar">
-                                                    <img src="assets/images/avatars/team3.png" alt="">
-                                                </div>
-                                                <div class="dropdown-item-body">
-                                                    <p class="subject">Openlane </p>
-                                                    <p class="text text-truncate">Final reminder: Upgrade to Pro </p>
-                                                    <span class="date">23 hours ago</span>
-                                                </div>
-                                            </a>
-                                            <!-- /.dropdown-item -->
-                                            <!-- .dropdown-item -->
-                                            <a href="#" class="dropdown-item">
-                                                <div class="tile tile-circle bg-green">GZ </div>
-                                                <div class="dropdown-item-body">
-                                                    <p class="subject">Gogo Zoom </p>
-                                                    <p class="text text-truncate">Live healthy with this wireless sensor. </p>
-                                                    <span class="date">1 day ago</span>
-                                                </div>
-                                            </a>
-                                            <!-- /.dropdown-item -->
-                                            <!-- .dropdown-item -->
-                                            <a href="#" class="dropdown-item">
-                                                <div class="tile tile-circle bg-teal">GD </div>
-                                                <div class="dropdown-item-body">
-                                                    <p class="subject">Gold Dex </p>
-                                                    <p class="text text-truncate">Invitation: Design Review @ Mon Jul 7 </p>
-                                                    <span class="date">1 day ago</span>
-                                                </div>
-                                            </a>
-                                            <!-- /.dropdown-item -->
-                                            <!-- .dropdown-item -->
-                                            <a href="#" class="dropdown-item">
-                                                <div class="user-avatar">
-                                                    <img src="assets/images/avatars/team2.png" alt="">
-                                                </div>
-                                                <div class="dropdown-item-body">
-                                                    <p class="subject">Creative Division </p>
-                                                    <p class="text text-truncate">Need some feedback on this please </p>
-                                                    <span class="date">2 days ago</span>
-                                                </div>
-                                            </a>
-                                            <!-- /.dropdown-item -->
-                                            <!-- .dropdown-item -->
-                                            <a href="#" class="dropdown-item">
-                                                <div class="tile tile-circle bg-pink">LD </div>
-                                                <div class="dropdown-item-body">
-                                                    <p class="subject">Lab Drill </p>
-                                                    <p class="text text-truncate">Our UX exercise is ready </p>
-                                                    <span class="date">6 days ago</span>
-                                                </div>
-                                            </a>
-                                            <!-- /.dropdown-item -->
-                                        </div>
-                                        <!-- /.dropdown-scroll -->
-                                        <a href="page-messages.html" class="dropdown-footer">All messages <i class="fas fa-fw fa-long-arrow-alt-right"></i></a>
-                                    </div>
-                                    <!-- /.dropdown-menu -->
-                                </li>
-                                <!-- /.nav-item -->
-                                <!-- .nav-item -->
-                                <li class="nav-item dropdown header-nav-dropdown">
-                                    <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="fa fa-th "></span></a>
-                                    <!-- .dropdown-menu -->
-                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
-                                        <div class="dropdown-arrow"></div>
-                                        <!-- .dropdown-sheets -->
-                                        <div class="dropdown-sheets">
-                                            <!-- .dropdown-sheet-item -->
-                                            <div class="dropdown-sheet-item">
-                                                <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-indigo"><i class="oi oi-people"></i></span><span class="tile-peek">Teams</span></a>
-                                            </div>
-                                            <!-- /.dropdown-sheet-item -->
-                                            <!-- .dropdown-sheet-item -->
-                                            <div class="dropdown-sheet-item">
-                                                <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-teal"><i class="oi oi-fork"></i></span><span class="tile-peek">Projects</span></a>
-                                            </div>
-                                            <!-- /.dropdown-sheet-item -->
-                                            <!-- .dropdown-sheet-item -->
-                                            <div class="dropdown-sheet-item">
-                                                <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-pink"><i class="fa fa-tasks"></i></span><span class="tile-peek">Tasks</span></a>
-                                            </div>
-                                            <!-- /.dropdown-sheet-item -->
-                                            <!-- .dropdown-sheet-item -->
-                                            <div class="dropdown-sheet-item">
-                                                <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-yellow"><i class="oi oi-fire"></i></span><span class="tile-peek">Feeds</span></a>
-                                            </div>
-                                            <!-- /.dropdown-sheet-item -->
-                                            <!-- .dropdown-sheet-item -->
-                                            <div class="dropdown-sheet-item">
-                                                <a href="#" class="tile-wrapper"><span class="tile tile-lg bg-cyan"><i class="oi oi-document"></i></span><span class="tile-peek">Files</span></a>
-                                            </div>
-                                            <!-- /.dropdown-sheet-item -->
-                                        </div>
-                                        <!-- .dropdown-sheets -->
-                                    </div>
-                                    <!-- .dropdown-menu -->
-                                </li>
-                                <!-- /.nav-item -->
-                            </ul>--%>
-                            <!-- /.nav -->
+                           
                             <!-- .btn-account -->
                             <div class="dropdown d-flex">
                                 <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -676,11 +467,9 @@
                         <div id="dropdown-aside" class="dropdown-aside collapse">
                             <!-- dropdown-items -->
                             <div class="pb-3">
-                                <a class="dropdown-item" href="user-profile.html"><span class="dropdown-icon oi oi-person"></span>Profile</a>
+                                <a class="dropdown-item" href="#"><span class="dropdown-icon oi oi-person"></span>Profile</a>
                                 <a class="dropdown-item" href='<%=this.ResolveUrl("~/Login")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
-                                <div class="dropdown-divider"></div>
-                              
-                                
+                                <div class="dropdown-divider"></div> 
                                 <a class="dropdown-item" href="#">Ask Forum</a>
                                  <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
                             </div>
@@ -694,7 +483,7 @@
                         <!-- .stacked-menu -->
                         <nav id="stacked-menu" class="stacked-menu">
                             <div id="nav-bar">
-                                <a class="nav-link" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-bar-open" title="Expand/Collapse"><span class="fa fa-bars"></span></a>
+                                <a class="nav-link" href="javascript:void(0);" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="nav-bar-open" title="Expand/Collapse"><span class="fa fa-bars"></span></a>
                             </div>
 
 
@@ -730,7 +519,7 @@
                                 <!-- /.menu-item -->
                                 <!-- .menu-item -->
                                 <li class="menu-item has-child Module" onclick="SetItemStorage('Module')">
-                                    <a href="#" class="menu-link"><span class="menu-icon far fa-file" title="Modules"></span><span class="menu-text">Modules</span> </a>
+                                    <a href="javascript:void(0);" class="menu-link"><span class="menu-icon far fa-file" title="Modules"></span><span class="menu-text">Modules</span> </a>
                                     <!-- child menu <span class="badge badge-warning">New</span>-->
                                     <ul class="menu" id="Module" runat="server"></ul>
 
@@ -738,7 +527,7 @@
                                 <!-- /.menu-item -->
                                 <!-- .menu-item -->
                                 <li class="menu-item has-child Interface" onclick="SetItemStorage('Interface')">
-                                    <a href="#" class="menu-link"><span class="menu-icon fa fa-list" title="Interfaces"></span><span class="menu-text">Interfaces</span></a>
+                                    <a href="javascript:void(0);" class="menu-link"><span class="menu-icon fa fa-list" title="Interfaces"></span><span class="menu-text">Interfaces</span></a>
                                     <!-- child menu -->
                                     <ul class="menu" id="Interface" runat="server">
                                         <%--<li class="menu-item">
@@ -1155,7 +944,7 @@
  New</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btnadd btncommon" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>
  Add</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnSave" Visible="false" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
                             <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
@@ -1178,10 +967,6 @@ Close</asp:LinkButton>
         </div>
         <!-- /.app -->
 
-        <%--<script src='<%= "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath %>Content/Theme/theme.min.js'></script>--%>
-        <%-- <script src='<%= "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath %>Content/Theme/select2.min.js'></script>
-        <script src='<%= "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath %>Content/Theme/select2-demo.js'></script>
-        --%>
     </form>
         
     <!-- BEGIN BASE JS -->
@@ -1328,6 +1113,8 @@ Close</asp:LinkButton>
         gtag('js', new Date());
         gtag('config', 'UA-116692175-1');
 
+      
+   
 
         //toster
         function showContent(msg) {
