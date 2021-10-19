@@ -1113,19 +1113,8 @@ Close</asp:LinkButton>
         gtag('js', new Date());
         gtag('config', 'UA-116692175-1');
 
-        function matchStart(term, text) {
-            console.log(text);
-            if (text.toUpperCase().indexOf(term.toUpperCase()) == 0) {
-                return true;
-            }
-            return false;
-        }
-
-        $.fn.select2.amd.require(['select2/compat/matcher'], function (oldMatcher) {
-            $("select").select2({
-                matcher: oldMatcher(matchStart)
-            })
-        });
+      
+   
 
         //toster
         function showContent(msg) {
