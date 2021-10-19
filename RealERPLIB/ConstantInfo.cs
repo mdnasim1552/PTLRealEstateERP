@@ -1341,7 +1341,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2902000", "2902010", "F_29_Fxt", "FxtAsstTransfer", "", "Fixed Asset Transfer", "Fixed Assets", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2902000", "2902011", "F_29_Fxt", "EntryFxtAssetITDept", "", "Fixed Asset Entry (IT Dept)", "Fixed Assets", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2902000", "2902012", "F_29_Fxt", "EntryFxtasstIssue", "", "Fixed Asset Issue", "Fixed Assets", "False", "False", "False", "False" }); ;
-            
+            tblObj.Rows.Add(new Object[] { "2902000", "2902013", "F_29_Fxt", "EntryFixAssetTransITStock", "", "Fixed Asset Transfer (IT Dept)", "Fixed Assets", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "2903000", "2903020", "F_29_Fxt", "RptFxtAsstBillRent", "", "Fixed Asset Rent Bill Information ", "Fixed Assets", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2901000", "2901030", "F_29_Fxt", "FxtAsstCodeBook", "", "Fixed Assets Code Book", "Fixed Assets", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2902000", "2902040", "F_29_Fxt", "DepreciationCharge", "", "Depreciation Charge", "Fixed Assets", "False", "False", "False", "False" }); ;
@@ -5366,7 +5367,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0302070000", "22. Purchase History-Supplier Wise", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=IndSup&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302080000", "23. General Tracking", "F_14_Pro/BillTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302090000", "05. Purchase Order-Supplier Wise", "F_14_Pro/RptWorkOrderVsSupply?Type=OrdVsSup&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0302100000", "06. Purchase Order Histroy Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302100000", "06. Purchase Order History Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302110000", "07. Purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302120000", "12. Periodic Purchase Tracking", "F_14_Pro/RptDateWiseReq?Type=PeriodPurchase", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0302130000", "17. Rate Variance-Materials", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=MatRateVar&comcod=&Date1=&Date2=", "", true, "" });
@@ -8092,22 +8093,24 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "04. Depreciation Charge(Calculation)", "F_29_Fxt/EntryDepCharge", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "05. Fixed Asset Entry (IT Dept)", "F_29_Fxt/EntryFxtAssetITDept", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0208000000", "06. Fixed Asset Issue", "F_29_Fxt/EntryFxtasstIssue", "", true, "" });
-           
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "07. Fixed Asset Transfer(IT Dept)", "F_29_Fxt/EntryFixAssetTransITStock", "", true, "" });
+
+
+
             
-          
-            
-            
+  
+
             //mnuTbl1.Rows.Add(new Object[] { "0307000000", "06. Material Issue/Refund To Employee", "F_29_Fxt/FxtAssetIssue", "", true, "" });
 
-            //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });//"01. Fixed Assets Code Book", "F_29_Fxt/FxtAsstCodeBook", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });//"02. List Of Employee", "F_29_Fxt/FxtEmpCodeBook", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });//"03. Depreciation Charge in percentage", "F_29_Fxt/DepreciationCharge", "", true, "" });
+              //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });//"01. Fixed Assets Code Book", "F_29_Fxt/FxtAsstCodeBook", "", true, "" });
+              //mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });//"02. List Of Employee", "F_29_Fxt/FxtEmpCodeBook", "", true, "" });
+              //mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });//"03. Depreciation Charge in percentage", "F_29_Fxt/DepreciationCharge", "", true, "" });
 
 
-            //mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0206000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "", "", "", true, "" });
+              //mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });
+              //mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
+              //mnuTbl1.Rows.Add(new Object[] { "0206000000", "", "", "", true, "" });
+              mnuTbl1.Rows.Add(new Object[] { "0207000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0208000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "", "", "", true, "" });
@@ -14063,7 +14066,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0406000000", "04. Requisition Status", "F_14_Pro/RptRequsitionStatus?WType=ReqStatus&Type=Purchase", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0407000000", "05. Purchase Order Details", "F_14_Pro/RptWorkOrderStatus?Type=DetailsWorkIOrdStatus", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0408000000", "06. Purchase Order Histroy Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000000", "06. Purchase Order History Suppliers", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisSup", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0409000000", "07. purchase Order History Resources", "F_14_Pro/RptWorkOrderHistorySup?Type=WorkOrdHisRes", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0411000000", "08. Pending Bill", "F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=PenBill&comcod=&Date1=&Date2=", "", true, "" });

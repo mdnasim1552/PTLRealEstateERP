@@ -2892,10 +2892,59 @@ namespace RealERPWEB.F_04_Bgd
         {
 
         }
+
+        protected void lbtnAddNotes_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblActAna1"];
+            int rowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string rsircode = dt.Rows[rowIndex]["isircode"].ToString();
+            this.txtisircode.Text = rsircode;
+            string pactcode = this.ddlProject.SelectedValue;
+            this.txtpactcode.Text = pactcode;
+            this.GetDetailsInfo(pactcode, rsircode);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openNotesModal();", true);
+        }
+
+        private void GetDetailsInfo(string pactcode,string rsircode)
+        {
+            string comcod = this.GetComeCode();
+            DataSet ds1 = bgdData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "GETNOTEDETEAILS", pactcode, rsircode, "", "", "", "", "", "", "");
+            this.txtNoteDetails.Text = ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["notes"].ToString();
+        }
+
+        protected void lbtnUpdateNotes_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable dt = (DataTable)Session["tblActAna1"];
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string userid = hst["usrid"].ToString();
+
+                string actcode = this.txtpactcode.Text.Trim();
+                string isircode = this.txtisircode.Text.Trim();
+                string txtNotes = this.txtNoteDetails.Text.Trim();
+
+                bool result = bgdData.UpdateTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "INSERTUPDATENOTEDETAILS", actcode, isircode, txtNotes, "", "", "", "");
+
+                if (!result)
+                {
+
+                    ((Label)this.Master.FindControl("lblmsg")).Text = bgdData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
     }
 
 }
 
-
-
-//(DataTable)Session["tblActAna1"]

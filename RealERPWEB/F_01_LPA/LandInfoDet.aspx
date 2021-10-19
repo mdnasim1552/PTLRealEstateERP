@@ -266,7 +266,22 @@
         .dcomments {
             margin: 10px 0 0 0;
         }
-    </style>
+   
+        
+          .notifsectino .tile {
+            font-size: 12px !important;
+        }
+
+        .notifsectino .list-group-item {
+            padding: 2px 5px;
+        }
+
+
+        .notifsectino .list-group-item-body {
+            font-size: 10px !important;
+        }
+        
+        </style>
 
     <script type="text/javascript">
 
@@ -1341,7 +1356,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalper" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1423,7 +1438,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvallowner" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1503,7 +1518,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalother" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1571,7 +1586,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplot" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1720,7 +1735,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplotdet" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -2528,6 +2543,7 @@
                                             <FooterStyle CssClass="grvFooter" />
                                             <EditRowStyle />
                                             <AlternatingRowStyle />
+                                            <PagerSettings Mode="NumericFirstLast" />
                                             <PagerStyle CssClass="gvPagination" />
                                             <HeaderStyle CssClass="grvHeader" />
                                         </asp:GridView>
@@ -3054,7 +3070,7 @@
 
 
                                 <div class="col-md-2 marapaddingzero">
-                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Click Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
 
 
 

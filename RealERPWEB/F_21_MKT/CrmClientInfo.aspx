@@ -381,6 +381,10 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
+       /* .checkbox label {
+        margin-right:2px;
+        
+        }*/
 
         /**  modal design end **/
     </style>
@@ -3465,6 +3469,14 @@
                                                 <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                                             </li>
+
+                                             <li>
+                                                <asp:HyperLink ID="hlnkalldiscusssion" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientDiscuDetails" runat="server">All Discussion</asp:HyperLink>
+
+                                            </li>
+
+
+                                           
                                             <li>
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
 
@@ -4049,7 +4061,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox">
+                                                                runat="server" CssClass="form-control checkbox"  >
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4093,7 +4105,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox" Style="width: 510px!important">
+                                                                runat="server" CssClass="form-control checkbox" >
                                                             </asp:CheckBoxList>
 
 

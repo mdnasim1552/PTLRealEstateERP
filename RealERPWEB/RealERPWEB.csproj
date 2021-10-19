@@ -2548,6 +2548,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
+    <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
     <Content Include="F_29_Fxt\EntryFxtAssetITDept.aspx" />
     <Content Include="F_29_Fxt\EntryFxtasstIssue.aspx" />
     <Content Include="F_29_Fxt\FxtAssetIssue.aspx" />
@@ -3592,9 +3593,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Bundle.config" />
+    <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Web.config" />
+    <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
+    <Content Include="Web References\HrWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3755,6 +3761,13 @@
     </Compile>
     <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
       <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
+      <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
+      <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
@@ -11411,11 +11424,6 @@
     <Content Include="Upload\purorder\POR201911000032941.xlsx" />
     <Content Include="Upload\purorder\POR2019110000389187.xlsx" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
-    <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
-    <Content Include="Web References\HrWebService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -11456,10 +11464,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost/WebReference/HRDailyAtten.asmx">
+    <WebReferenceUrl Include="http://123.200.23.58/WebReference/HRDailyAtten.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\HrWebService\</RelPath>
-      <UpdateFromURL>http://localhost/WebReference/HRDailyAtten.asmx</UpdateFromURL>
+      <UpdateFromURL>http://123.200.23.58/WebReference/HRDailyAtten.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

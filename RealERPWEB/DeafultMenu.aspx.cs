@@ -88,13 +88,16 @@ namespace RealERPWEB
 
                 if (ASTUtility.Left(this.GetCompCode(), 1) == "1")
                 {
-                    this.pnlflochartCon.Visible = (this.Request.QueryString["type"] == "8010");/////////Flow Chart
+                    this.pnlflochartCon.Visible = (this.Request.QueryString["type"] == "8010");/////////Constraction
                 }
-                else
+                else if(ASTUtility.Left(this.GetCompCode(), 1) == "3")
                 {
-                    this.pnlflochart.Visible = (this.Request.QueryString["type"] == "8010");/////////Flow Chart
+                    this.pnlflochart.Visible = (this.Request.QueryString["type"] == "8010");/////////Real Estate
                 }
-
+                else 
+                {
+                    this.pnlflochartLand.Visible = (this.Request.QueryString["type"] == "8010");/////////Real Estate
+                }
 
                 //((LinkButton)this.Master.FindControl("id")).Visible = false;
             }

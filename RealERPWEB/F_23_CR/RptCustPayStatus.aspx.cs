@@ -960,6 +960,11 @@ namespace RealERPWEB.F_23_CR
             {
                 this.PrintClientPaymentSchedule();
             }
+
+            //else if (comcod== "3348")
+            //{
+            //    this.PrintPaymentS();
+            //}
             else
             {
                 this.PrintPaymentSchedule();

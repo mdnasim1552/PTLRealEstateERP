@@ -644,7 +644,9 @@
             });
 
             //console.log(saldata[0].lead);
-            Highcharts.chart('crmChart', {
+            var chartcmrData = Highcharts.chart('crmChart', {
+
+           
                 chart: {
                     type: gtype
                 },
@@ -715,6 +717,11 @@
                                 name: "Win",
                                 y: parseFloat(cmrData[0].win)
                             }
+                            ,
+                            {
+                                name: "Total",
+                                y: parseFloat(cmrData[0].total)
+                            }
                         ]
                     }
                 ]
@@ -728,7 +735,7 @@
             chartacc.setSize(w, h);
             chartcons.setSize(w, h);
             chartsubcon.setSize(w, h);
-         //   chartcmrData.setSize(w, h);
+            chartcmrData.setSize(w, h);
 
 
             const elem = $(".graph-main")[0];
@@ -739,7 +746,7 @@
                 chartacc.setSize(w, h);
                 chartcons.setSize(w, h);
                 chartsubcon.setSize(w, h);
-             //   chartcmrData.setSize(w, h);
+                chartcmrData.setSize(520, h);
 
                 w = $(".graph-main").width();
             });
@@ -2113,7 +2120,7 @@
                                         <div id="myTabContent" class="tab-content graph-main" style="width: 100%; height: 375px;">
 
 
-                                            <div class="tab-pane fade  show" id="tab_1231">
+                                            <div class="tab-pane fade show" id="tab_1231" runat="server">
                                                 <div class="row ">
 
                                                     <div class="col-md-12 xtext-righ pt-1 pb-1">
@@ -2148,7 +2155,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade" id="tab_1232">
+                                            <div class="tab-pane fade show" id="tab_1232" runat="server">
 
                                                 <div class="row ">
 
@@ -2185,7 +2192,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade" id="tab_1233">
+                                            <div class="tab-pane fade show" id="tab_1233" runat="server">
                                                 <div class="row ">
                                                     <div class="col-md-12 xtext-right pt-1 pb-1">
                                                         <h5>   <small class="float-right">
@@ -2221,7 +2228,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade" id="tab_1234">
+                                            <div class="tab-pane fade show" id="tab_1234" runat="server">
 
 
                                                 <div class="row ">
@@ -2261,7 +2268,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade" id="tab_1235">
+                                            <div class="tab-pane fade show" id="tab_1235" runat="server">
                                                 <div class="col-md-12 xtext-right pt-1 pb-1">
                                                     <h5> 
 
@@ -2299,7 +2306,7 @@
 
                                             </div>
 
-                                            <div class="tab-pane fade active" id="tab_1343">
+                                            <div class="tab-pane fade show" id="tab_1343" runat="server">
                                                 <div class="col-md-12 xtext-right pt-1 pb-1">
                                                     <h5> 
 

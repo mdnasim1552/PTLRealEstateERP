@@ -2362,14 +2362,7 @@ Thanks :)*/
                         top: 514px;
                         width: 22px;
                     }
-
-                    .na_comlogo {
-                        height: 28px;
-                        left: 927px;
-                        position: absolute;
-                        top: 4px;
-                        width: 171px;
-                    }
+                     
                 </style>
 
 
@@ -2429,9 +2422,7 @@ Thanks :)*/
                     <div class="na_linqC8j"></div>
                     <div class="na_linqC8k"></div>
 
-                    <div class="na_comlogo">
-                        <img src="housing3.PNG" height="28" width="171" alt="comlogo" />
-                    </div>
+                   
 
 
                     <div class="na_first">
@@ -2459,9 +2450,12 @@ Thanks :)*/
 
                                 <li></li>
                                 <li><h5><span class="glyph-icon flaticon-home183"></span>Interface</h5></li>
-                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Purchase</a></li>
-                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptEngInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>General Bill</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Construction</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/SubContractorBillInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Sub-Contractor</a></li>
+
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Purchase</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Inventory</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptEngInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>General Bill</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/BillRegInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Bill Register</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Accounts</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/SalesInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Sales</a></li>
@@ -3188,18 +3182,12 @@ Thanks :)*/
                         width: 22px;
                     }
 
-                    .na_comlogo {
-                        height: 28px;
-                        left: 927px;
-                        position: absolute;
-                        top: 4px;
-                        width: 171px;
-                    }
+                    
                 </style>
 
 
                 <div id="na_wrawpr">
-
+                    
                     <div class="na_linqC1a"></div>
 
                     <div class="na_linqC2a"></div>
@@ -3211,8 +3199,7 @@ Thanks :)*/
                     <div class="na_linqC4a"></div>
                     <div class="na_linqC4b"></div>
                     <div class="na_linqC4c"></div>
-                    <div class="na_linqC20a"></div>
-
+                   
 
                     <div class="na_linqC4d"></div>
                     <div class="na_linqC4e"></div>
@@ -3227,9 +3214,7 @@ Thanks :)*/
                     <div class="na_linqC4k"></div>
                     <div class="na_linqC4l"></div>
 
-                    <div class="na_linqC7a"></div>
-
-
+                   
 
                     <div class="na_linqC5a"></div>
 
@@ -3254,10 +3239,7 @@ Thanks :)*/
                     <div class="na_linqC8j"></div>
                     <div class="na_linqC8k"></div>
 
-                    <div class="na_comlogo">
-                        <img src="housing3.PNG" height="28" width="171" alt="comlogo" />
-                    </div>
-
+                   
 
                     <div class="na_first">
                         <ul>
@@ -3287,10 +3269,14 @@ Thanks :)*/
 
                                 <li></li>
                                 <li><h5><span class="glyph-icon flaticon-home183"></span>Interface</h5></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Construction</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Purchase</a></li>
-                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptEngInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>General Bill</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/SubContractorBillInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Sub-Contractor</a></li>
-                                <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/BillRegInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Bill Register</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptEngInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Inventroy</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/BillRegInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Billing Mgt</a></li>
+
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptEngInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>General Bill</a></li>
+
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Accounts</a></li>
                                <%-- <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/SalesInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Sales</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/KPIDashboard.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>KPI</a></li>--%>
@@ -3455,7 +3441,7 @@ Thanks :)*/
                             <li></li>
                             <li></li>
                             <li>
-                                <h5><%--<span class="glyph-icon flaticon-black193"></span>--%></h5>
+                                 
                             </li>
                             <li><%--<span class="fa down_dr fa-long-arrow-down"></span>--%></li>
                             <li><%--<a href="<%=this.ResolveUrl("~/F_21_Mkt/RptMktAppointment.aspx?Type=Todaysdis&UType=Mgt")%>"><span class="glyph-icon flaticon-buy12"></span>Today's appointment</a>--%></li>
@@ -3548,6 +3534,827 @@ Thanks :)*/
                              <li><h5><span class="glyph-icon flaticon-home183"></span>Dashborad</h5></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_22_Sal/SalesInformation.aspx")%>"><span class="glyph-icon flaticon-sales3"></span>Sales</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurInformation.aspx")%>"><span class="glyph-icon flaticon-favourite26"></span>Purchase</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_18_MAcc/AccDashBoard.aspx")%>"><span class="glyph-icon flaticon-settings49"></span>Accounts</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_32_Mis/RptConstruProgress.aspx")%>"><span class="glyph-icon flaticon-working9"></span>Construction</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan")%>"><span class="glyph-icon flaticon-working9"></span>Project Report</a></li>
+
+                        </ul>
+                    </div>
+
+
+
+                </div>
+
+            </asp:Panel>
+        </div>
+
+        <div class="row">
+            <asp:Panel ID="pnlflochartLand" runat="server" CssClass="pnlflowchart" Visible="false">
+
+                <style>
+                    * {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                    .pnlflowchart {
+                        overflow: hidden;
+                        background-image: url(Image/bg.PNG) !important;
+                    }
+
+                    #na_wrawpr {
+                        width: 1100px;
+                        height: auto;
+                        margin: 0 auto;
+                        position: relative;
+                        background-image: url(image/bg.PNG);
+                        /*background-color: #F7F7F7;
+                            background-image: linear-gradient(90deg, rgba(255,255,255,.07) 50%, transparent 50%),
+                            linear-gradient(90deg, rgba(255,255,255,.13) 50%, transparent 50%),
+                            linear-gradient(90deg, transparent 50%, rgba(255,255,255,.17) 50%),
+                            linear-gradient(90deg, transparent 50%, rgba(255,255,255,.19) 50%);
+                            background-size: 13px, 29px, 37px, 53px;*/
+                    }
+
+                    .na_first {
+                        width: 160px;
+                        float: left;
+                    }
+
+                    #na_wrawpr ul {
+                        margin: 0;
+                        padding: 0;
+                    }
+
+                        #na_wrawpr ul li {
+                            list-style: none;
+                            margin: 1px 0;
+                            text-align: center;
+                            height: 30px;
+                        }
+
+                    .na_first ul li h5 {
+                        background: #f0fee6 none repeat scroll 0 0 !important;
+                        border: 1px solid #699f44;
+                        box-shadow: 0 0 4px 2px #bec9b6 inset;
+                        font-family: "ar_cenaregular";
+                        font-size: 17px;
+                        font-weight: normal;
+                        line-height: 28px;
+                        text-align: center;
+                        vertical-align: middle;
+                        margin: 0;
+                        color: #000;
+                        padding: 0;
+                    }
+
+                    .na_first ul li a.MMenu {
+                        background: #f0fee6 none repeat scroll 0 0 !important;
+                        border: 1px solid #699f44;
+                        box-shadow: 0 0 4px 2px #bec9b6 inset;
+                        font-family: "ar_cenaregular";
+                        font-size: 17px;
+                        font-weight: normal;
+                        line-height: 28px;
+                        text-align: center;
+                        vertical-align: middle;
+                        margin: 0;
+                        color: #000;
+                        padding: 0;
+                    }
+
+                    .na_first ul li a {
+                        background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff 0%, #fbfbfb 49%, #d2d2d2 98%, #cce0f2 100%) repeat scroll 0 0;
+                        font-family: "ar_cenaregular";
+                        font-size: 14px;
+                        font-weight: normal;
+                        line-height: 28px;
+                        display: block;
+                        color: #000;
+                        text-align: center;
+                        vertical-align: middle;
+                        border: 1px solid #999;
+                        margin: 0;
+                        padding: 0;
+                        text-decoration: none;
+                    }
+
+                    .na_first2 {
+                        width: 75px;
+                        float: left;
+                    }
+
+                        .na_first2 ul li span {
+                            height: 30px;
+                            font-size: 20px;
+                            color: #903;
+                        }
+
+                        .na_first2 ul li i {
+                            height: 30px;
+                            font-size: 20px;
+                            color: #903;
+                        }
+
+                    .na_first ul li span {
+                        height: 30px;
+                        font-size: 20px;
+                        color: green;
+                    }
+
+                    .na_first ul li i {
+                        height: 30px;
+                        font-size: 20px;
+                        color: #903;
+                    }
+
+                    [class^="flaticon-"]::before, [class*=" flaticon-"]::before, [class^="flaticon-"]::after, [class*=" flaticon-"]::after {
+                        font-size: 20px !important;
+                        margin: 0;
+                        padding: 0 10px 0 2px !important;
+                        width: 20px !important;
+                    }
+
+
+                    .na_first ul a {
+                        text-align: left !important;
+                    }
+
+                    .na_first ul h5 {
+                        text-align: left !important;
+                    }
+
+                    .na_linqC1a {
+                        background: green;
+                        height: 50px;
+                        left: 78px;
+                        position: absolute;
+                        top: 160px;
+                        width: 3px;
+                    }
+
+                    .na_linqC2a {
+                        background: #903 none repeat scroll 0 0;
+                        height: 98px;
+                        left: 209px;
+                        position: absolute;
+                        top: 170px;
+                        width: 3px;
+                    }
+
+                    .na_linqC20a {
+                        background: green;
+                        height: 50px;
+                        left: 78px;
+                        position: absolute;
+                        top: 282px;
+                        width: 3px;
+                    }
+
+                    .na_linqC2b {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 210px;
+                        position: absolute;
+                        top: 170px;
+                        width: 20px;
+                    }
+
+                    .right_dr {
+                        margin: 5px 0 0 52px;
+                    }
+
+                    .down_dr {
+                        margin-top: 6px;
+                    }
+
+                    .left_dr {
+                        margin: 5px 52px 0 0;
+                    }
+
+                    .na_linqC2c {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 162px;
+                        position: absolute;
+                        top: 268px;
+                        width: 50px;
+                    }
+
+                    .na_linqC4a {
+                        background: #903 none repeat scroll 0 0;
+                        height: 523px;
+                        left: 432px;
+                        position: absolute;
+                        top: 80px;
+                        width: 3px;
+                    }
+
+                    .na_linqC4b {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 432px;
+                        position: absolute;
+                        top: 77px;
+                        width: 20px;
+                    }
+
+                    .na_linqC4c {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 394px;
+                        position: absolute;
+                        top: 603px;
+                        width: 41px;
+                    }
+
+                    .na_linqC4d {
+                        background: #903 none repeat scroll 0 0;
+                        height: 59px;
+                        left: 434px;
+                        position: absolute;
+                        top: 667px;
+                        width: 3px;
+                    }
+
+                    .na_linqC4e {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 415px;
+                        position: absolute;
+                        top: 666px;
+                        width: 21px;
+                    }
+
+                    .na_linqC4f {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 435px;
+                        position: absolute;
+                        top: 724px;
+                        width: 32px;
+                    }
+
+                    .na_linqC4g {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 416px;
+                        position: absolute;
+                        top: 573px;
+                        width: 521px;
+                    }
+
+                    .na_linqC4h {
+                        background: #903 none repeat scroll 0 0;
+                        height: 157px;
+                        left: 416px;
+                        position: absolute;
+                        top: 575px;
+                        width: 3px;
+                    }
+
+                    .na_linqC4l {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 675px;
+                        position: absolute;
+                        top: 232px;
+                        width: 24px;
+                    }
+
+                    .na_linqC4j {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 395px;
+                        position: absolute;
+                        top: 297px;
+                        width: 283px;
+                    }
+
+                    .na_linqC4k {
+                        background: #903 none repeat scroll 0 0;
+                        height: 66px;
+                        left: 675px;
+                        position: absolute;
+                        top: 233px;
+                        width: 3px;
+                    }
+
+                    .na_linqC4l {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 675px;
+                        position: absolute;
+                        top: 232px;
+                        width: 24px;
+                    }
+
+                    .na_linqC4m {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 394px;
+                        position: absolute;
+                        top: 729px;
+                        width: 23px;
+                    }
+
+                    .na_linqC5a {
+                        background: green;
+                        height: 200px;
+                        left: 548px;
+                        position: absolute;
+                        top: 388px;
+                        width: 3px;
+                    }
+
+                    .na_linqC5b {
+                        background: #903 none repeat scroll 0 0;
+                        height: 90px;
+                        left: 594px;
+                        position: absolute;
+                        top: 374px;
+                        width: 3px;
+                    }
+
+                    .na_linqC5e {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 594px;
+                        position: absolute;
+                        top: 464px;
+                        width: 322px;
+                    }
+
+                    .na_linqC5f {
+                        background: #903 none repeat scroll 0 0;
+                        height: 19px;
+                        left: 916px;
+                        position: absolute;
+                        top: 464px;
+                        width: 3px;
+                    }
+
+                    .na_linqC5c {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 451px;
+                        position: absolute;
+                        top: 265px;
+                        width: 18px;
+                    }
+
+                    .na_linqC5d {
+                        background: #903 none repeat scroll 0 0;
+                        height: 340px;
+                        left: 448px;
+                        position: absolute;
+                        top: 265px;
+                        width: 3px;
+                    }
+
+                    .na_linqC7a {
+                        background: green;
+                        height: 39px;
+                        left: 783px;
+                        position: absolute;
+                        top: 560px;
+                        width: 3px;
+                    }
+
+                    .na_linqC8a {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 867px;
+                        position: absolute;
+                        top: 325px;
+                        width: 51px;
+                    }
+
+                    .na_linqC8b {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 866px;
+                        position: absolute;
+                        top: 790px;
+                        width: 40px;
+                    }
+
+                    .na_linqC8c {
+                        background: #903 none repeat scroll 0 0;
+                        height: 437px;
+                        left: 905px;
+                        position: absolute;
+                        top: 356px;
+                        width: 3px;
+                    }
+
+                    .na_linqC8d {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 905px;
+                        position: absolute;
+                        top: 356px;
+                        width: 26px;
+                    }
+
+                    .na_linqC8e {
+                        background: #903 none repeat scroll 0 0;
+                        height: 281px;
+                        left: 887px;
+                        position: absolute;
+                        top: 418px;
+                        width: 3px;
+                    }
+
+                    .na_linqC8f {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 887px;
+                        position: absolute;
+                        top: 418px;
+                        width: 48px;
+                    }
+
+                    .na_linqC8g {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 864px;
+                        position: absolute;
+                        top: 696px;
+                        width: 24px;
+                    }
+
+                    /*.na_linqC8i {
+                        background: #903 none repeat scroll 0 0;
+                        height: 99px;
+                        left: 945px;
+                        position: absolute;
+                        top: 418px;
+                        width: 3px;
+                    }*/
+
+                    .na_linqC8j {
+                        background: #903 none repeat scroll 0 0;
+                        height: 3px;
+                        left: 865px;
+                        position: absolute;
+                        top: 514px;
+                        width: 22px;
+                    }
+ 
+                </style>
+
+
+                <div id="na_wrawpr">
+
+                    <div class="na_linqC1a"></div>
+
+                    <div class="na_linqC2a"></div>
+
+                    <div class="na_linqC2b"></div>
+
+                    <div class="na_linqC2c"></div>
+
+                    <div class="na_linqC4a"></div>
+                    <div class="na_linqC4b"></div>
+                    <div class="na_linqC4c"></div>
+                    
+
+                    <div class="na_linqC4d"></div>
+                    <div class="na_linqC4e"></div>
+                    <div class="na_linqC4f"></div>
+                    
+                    <div class="na_linqC4g"></div>
+                    <div class="na_linqC4h"></div>
+                    <div class="na_linqC4i"></div>
+                    <div class="na_linqC4m"></div>
+
+                    <div class="na_linqC4j"></div>
+                    <div class="na_linqC4k"></div>
+                    <div class="na_linqC4l"></div>
+
+                    <div class="na_linqC7a"></div>
+
+
+
+                    <div class="na_linqC5a"></div>
+
+                    <div class="na_linqC5b"></div>
+                    <div class="na_linqC5c"></div>
+                    <div class="na_linqC5d"></div>
+
+                    <div class="na_linqC5e"></div>
+                    <div class="na_linqC5f"></div>
+
+                    <div class="na_linqC8a"></div>
+
+                    <div class="na_linqC8b"></div>
+                    <div class="na_linqC8c"></div>
+                    <div class="na_linqC8d"></div>
+
+                    <div class="na_linqC8e"></div>
+                    <div class="na_linqC8f"></div>
+                    <div class="na_linqC8g"></div>
+
+                    <div class="na_linqC8i"></div>
+                    <div class="na_linqC8j"></div>
+                    <div class="na_linqC8k"></div>
+
+              
+
+                    <div class="na_first">
+                        <ul>
+                            <li>
+                                <h5><span class="glyph-icon flaticon-home183"></span>Land Mgt ERP</h5>
+                            </li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li>
+                                <h5><span class="glyph-icon flaticon-building150"></span>Land Procurement</h5>
+                                ></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+
+                            <a href="<%=this.ResolveUrl("~/")%>">
+
+                                <li><a href="<%=this.ResolveUrl("~/F_01_LPA/PriLandProposal.aspx?Type=Report")%>"><span class="glyph-icon flaticon-tray30 nfal"></span>Initial Land Survey</a></li>
+
+                                <li></li>
+                                <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                                <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-light105"></span>Land Doc Upload</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_02_Fea/ProjectFeasibility.aspx?Type=fea&prjcode=")%>"><span class="glyph-icon flaticon-wiring"></span>Land Legal Issue</a></li>
+                                                                <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-light105"></span>Map Processing</a></li>
+                                                                <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-light105"></span>Land Purchase</a></li>
+
+                                
+                                <li><a href="<%=this.ResolveUrl("~/F_01_LPA/RptAllProTopSheet.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-wiring"></span>Land Data Bank</a></li>
+
+                                <li></li>
+                                <li><h5><span class="glyph-icon flaticon-home183"></span>Interface</h5></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Land MGT</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Budget</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Purchase</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptPurInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Inventory</a></li>
+                                
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/SubContractorBillInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>Sub-Contractor</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/SalesInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Sales</a></li>
+
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/RptEngInterface.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>General Bill</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/BillRegInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Bill Register</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-computer214"></span>Accounts</a></li>
+<%--                                <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/KPIDashboard.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>KPI</a></li>--%>
+                                <li><a href="<%=this.ResolveUrl("~/DashboardHRM.aspx")%>"><span class="glyph-icon flaticon-computer214"></span>HRM</a></li>
+                                 <li></li>
+                               
+                                
+                                
+                        </ul>
+                    </div>
+
+                    <div class="na_first2">
+                        <ul>
+
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa fa-long-arrow-right right_dr  fa-fw"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="na_first">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li>
+                                <h5><span class="glyph-icon flaticon-budget"></span>Budget</h5>
+                            </li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_04_Bgd/BgdStdAna.aspx")%>"><span class="glyph-icon flaticon-computer118"></span>Recipe / Analysis </a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_34_Mgt/AccProjectCode.aspx")%>"><span class="glyph-icon flaticon-badges1"></span>Create Project</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_04_Bgd/PrjInformation.aspx")%>"><span class="glyph-icon flaticon-information58"></span>Project Information</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_04_Bgd/BgdPrjAna.aspx?InputType=BgdMain&prjcode=&sircode=")%>"><span class="glyph-icon flaticon-hammer24"></span>Budget-Construction</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_04_Bgd/BgdMaster.aspx?InputType=BgdMain&prjcode=")%>"><span class="glyph-icon flaticon-currency13"></span>Budget-General</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_22_Sal/MktEntryUnit.aspx")%>"><span class="glyph-icon flaticon-sale18"></span>Budget-Sales</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_04_Bgd/BgdPrjAna.aspx?InputType=BgdSub&prjcode=&sircode=")%>"><span class="glyph-icon flaticon-selling1"></span>Budget Approval (Lock)</a></li>
+                            <li><span class="fa  down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-strategical"></span>Planning</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_08_PPlan/ProTargetTimeBasis.aspx?Type=GrpWise&prjcode=&sircode=&flrcod=")%>"><span class="glyph-icon flaticon-seo47"></span>Scheduling</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_04_Bgd/BgdLevelRate.aspx?Type=Level")%>"><span class="glyph-icon flaticon-forklift3"></span>Construction Level</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-working9"></span>Construction</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_12_Inv/PurReqEntry.aspx?InputType=Entry&prjcode=&genno=")%>"><span class="glyph-icon flaticon-construction14"></span>Materials Requisition</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_09_PImp/ImplementPlan.aspx")%>"><span class="glyph-icon flaticon-business73"></span>Work Target</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_09_PImp/PurIssueEntry.aspx?Type=Report&prjcode=")%>"><span class="glyph-icon flaticon-panel3"></span>Work Execution</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_09_PImp/PurLabIssue.aspx?Type=Current&prjcode=&genno=&sircode=")%>"><span class="glyph-icon flaticon-news35"></span>Sub-contractor's R/A bill</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AccSubconBillPay.aspx?tcode=99&tname=Payment%20Voucher&Mod=Accounts")%>"><span class="glyph-icon flaticon-mastercard4"></span>Payment Approval</a></li>
+
+                             <li></li>
+                            <li></li>
+
+                            <li><a href="<%=this.ResolveUrl("~/GenPage.aspx?Type=All")%>"><span class="glyph-icon flaticon-contract11"></span>All Reports</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="na_first2">
+                        <ul>
+
+
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa  right_dr fa-long-arrow-right"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa  right_dr fa-long-arrow-right"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa left_dr fa-long-arrow-left"></span></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="na_first">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li>
+                                <h5><span class="glyph-icon flaticon-domain2"></span>Procurement</h5>
+                            </li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurMktSurvey.aspx?Type=MktSurvey")%>"><span class="glyph-icon flaticon-link30"></span>CS Preparation</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_12_Inv/PurReqApproval.aspx?Type=RateInput&prjcode=&genno=")%>"><span class="glyph-icon flaticon-currency22"></span>Rate Proposal</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_12_Inv/PurReqApproval.aspx?Type=Approval&prjcode=&genno=")%>"><span class="glyph-icon flaticon-international36"></span>Requisition Approval</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurAprovEntry.aspx?InputType=PurProposal&genno=")%>"><span class="glyph-icon flaticon-software3"></span>Order Process</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurWrkOrderEntry.aspx?InputType=OrderEntry&genno=")%>"><span class="glyph-icon flaticon-market1"></span>Purchase Order </a></li>
+                            <li></li>
+                            <li></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurBillEntry.aspx?Type=BillEntry&genno=&sircode=")%>"><span class="glyph-icon flaticon-computerscreen27"></span>Bill Confirmation</a></li>
+                            <li><span class="fa fa-long-arrow-up"></span></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+
+                            <li><a href="<%=this.ResolveUrl("~/F_12_Inv/PurMRREntry.aspx?Type=Entry&prjcode=&genno=&sircode=")%>"><span class="glyph-icon flaticon-research1"></span>Materials Receive</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-house198"></span>Materials Store</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_12_Inv/PurMatIssue.aspx?Type=Entry")%>"><span class="glyph-icon flaticon-checkmark11"></span>Materials  Issue</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report")%>"><span class="glyph-icon flaticon-construction12"></span>Materials  Transfer</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="na_first2">
+                        <ul>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa right_dr fa-long-arrow-right"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="na_first">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li>
+                                <h5><span class="glyph-icon flaticon-black193"></span>Customer Relation</h5>
+                            </li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_21_Mkt/RptMktAppointment.aspx?Type=Todaysdis&UType=Mgt")%>"><span class="glyph-icon flaticon-buy12"></span>Today's appointment</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_21_Mkt/ToDaysAppointment.aspx?Type=ClDiscuss&UType=Mgt")%>"><span class="glyph-icon flaticon-searching26"></span>Communication</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_12_Inv/PurReqApproval.aspx?Type=Approval")%>" class="MMenu"><span class="glyph-icon flaticon-house118"></span>Sales </a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_22_Sal/RptSalInterest.aspx?Type=CustNoteSheet")%>"><span class="glyph-icon flaticon-pencil41"></span>Customer(Note sheet)</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_22_Sal/MktSalsPayment.aspx?Type=Sales")%>"><span class="glyph-icon flaticon-coins18"></span>Payment Schedule</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurBillEntry.aspx?Type=BillEntry&genno=&sircode=")%>" class="MMenu"><span class="glyph-icon flaticon-speechbubbles3"></span>Credit Realization</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_22_Sal/RptSalInterest.aspx?Type=DueCollAll")%>"><span class="glyph-icon flaticon-newspaper21"></span>Invoice</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_23_CR/MktMoneyReceipt.aspx?Type=CustCare")%>"><span class="glyph-icon flaticon-magnifyingglass27"></span>Collection (MR)</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AccChqueDeposit.aspx?Type=ChquedepEntry")%>"><span class="glyph-icon flaticon-creditcard7"></span>Cheque Deposit</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AccSales.aspx?Type=Entry")%>"><span class="glyph-icon flaticon-data55"></span>Cheque Clearemce</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_22_Sal/RptThanksLetter.aspx?Type=Remind")%>"><span class="glyph-icon flaticon-software7"></span>Reminder</a></li>
+
+                            <li></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-telephone172"></span>Customer Care</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_24_CC/CustMaintenanceWork.aspx?Type=Entry&genno=&Date1=")%>"><span class="glyph-icon flaticon-prize3"></span>Client's Choice</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_24_CC/CustMaintenanceWork.aspx?Type=Entry&genno=&Date1=")%>"><span class="glyph-icon flaticon-sales4"></span>Client's Modification</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/DeafultMenu.aspx?Type=4105#")%>" class="MMenu"><span class="glyph-icon flaticon-file294"></span>Registration</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_25_Reg/EntryRegclearacne.aspx")%>"><span class="glyph-icon flaticon-game50"></span>Clearence</a></li>
+                            <li></li>
+                        </ul>
+                    </div>
+
+                    <div class="na_first2">
+                        <ul>
+
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa  right_dr fa-long-arrow-right"></span></li>
+                            <li><span class="fa  right_dr fa-long-arrow-right"></span></li>
+                            <li></li>
+                            <li><span class="fa  right_dr fa-long-arrow-right"></span></li>
+                            <li></li>
+                            <li><span class="fa right_dr fa-long-arrow-right"></span></li>
+
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><span class="fa  right_dr fa-long-arrow-right"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+                            <li><a href="<%=this.ResolveUrl("~/")%>"></a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="na_first">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li>
+                                <h5><span class="glyph-icon flaticon-settings49"></span>Finance & Accounts</h5>
+                            </li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_05_Busi/YearlyPlanningBudget.aspx?Type=Yearly")%>" class="MMenu"><span class="glyph-icon flaticon-graph22"></span>Annual Business Plan</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AccMonthlyBgd.aspx?Type=All&actcode=&year=")%>"><span class="glyph-icon flaticon-statistics15"></span>Working Budget</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AllVoucherTopSheet.aspx")%>"><span class="glyph-icon flaticon-money13"></span>Payment Voucher</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AllVoucherTopSheet.aspx")%>"><span class="glyph-icon flaticon-money405"></span>Deposit Voucher</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AllVoucherTopSheet.aspx")%>"><span class="glyph-icon flaticon-prize3"></span>Journal Voucher</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AccInterComVoucher.aspx")%>"><span class="glyph-icon flaticon-computer218"></span>Inter Company Payment</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report")%>"><span class="glyph-icon flaticon-register"></span>Update- Sales (Adv.)</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report")%>"><span class="glyph-icon flaticon-stocks3"></span>Update-Collection</a></li>
+                            <li><span class="fa down_dr fa-long-arrow-down"></span></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_23_CR/RptCustPayStatus.aspx?Type=ClLedger")%>"><span class="glyph-icon flaticon-money296"></span>Hit Client Ledger</a></li>
+                            <li></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_99_Allinterface/AccountInterface.aspx?Type=Report")%>"><span class="glyph-icon flaticon-bars-graphic"></span>Update-Purchase</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/SuplierPayment.aspx?tcode=99&tname=Payment Voucher&Mod=Accounts")%>"><span class="glyph-icon flaticon-creditcard7"></span>Supplier's payment</a></li>
+                            <li></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_17_Acc/AccSubconBillPay.aspx?tcode=99&tname=Payment%20Voucher&Mod=Accounts")%>"><span class="glyph-icon flaticon-data62"></span>Contractor's Payment</a></li>
+                            <li></li>
+                           <%-- <li><a href="#" class="MMenu"><span class="glyph-icon flaticon-credit56"></span>Digital Payment</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/AccOnlinePaymnt.aspx")%>"><span class="glyph-icon flaticon-business73"></span>Bill entry / update</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/AccOnlinePaymentRa.aspx?Type=ChequeReady")%>"><span class="glyph-icon flaticon-report1"></span>Forward</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/AccOnlinePaymentApp.aspx?Type=ChequePayment")%>"><span class="glyph-icon flaticon-favourite26"></span>Approval</a></li>
+                            <li><a href="<%=this.ResolveUrl("~/F_15_DPayReg/ChequeSignSheet.aspx?Type=Acc")%>"><span class="glyph-icon flaticon-pencil41"></span>Cheque Issue</a></li>--%>
+
+                             <li><h5><span class="glyph-icon flaticon-home183"></span>Dashborad</h5></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_22_Sal/SalesInformation.aspx")%>"><span class="glyph-icon flaticon-sales3"></span>Sales</a></li>
+                                <li><a href="<%=this.ResolveUrl("~/F_14_Pro/PurInformation.aspx?Type=Report&comcod=")%>"><span class="glyph-icon flaticon-favourite26"></span>Purchase</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_18_MAcc/AccDashBoard.aspx")%>"><span class="glyph-icon flaticon-settings49"></span>Accounts</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_32_Mis/RptConstruProgress.aspx")%>"><span class="glyph-icon flaticon-working9"></span>Construction</a></li>
                                 <li><a href="<%=this.ResolveUrl("~/F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan")%>"><span class="glyph-icon flaticon-working9"></span>Project Report</a></li>
