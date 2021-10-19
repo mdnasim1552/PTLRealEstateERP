@@ -274,6 +274,7 @@ namespace RealERPWEB
 
 
             }
+            string prjcount = ds1.Tables[2].Rows[0]["pcount"].ToString();
             this.offlineUserCount.InnerHtml = Convert.ToString(i);
             this.OfflineUsers.InnerHtml = innHTML;
             int l = 0;
@@ -314,6 +315,9 @@ namespace RealERPWEB
 
             }
             TopActivity.InnerHtml = toactivity;
+            this.noProjCount.InnerHtml = prjcount;
+            this.noProj.Attributes.Add("href", "F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" + comcod);    //?Type=Entry&genno=" + usrid);
+
 
             ds1.Dispose();
             ds2.Dispose();
@@ -478,6 +482,8 @@ namespace RealERPWEB
 
 
             }
+            string prjcount = ds1.Tables[2].Rows[0]["pcount"].ToString();
+
             this.offlineUserCount.InnerHtml = Convert.ToString(i);
             this.OfflineUsers.InnerHtml = innHTML;
             int l = 0;
@@ -519,6 +525,8 @@ namespace RealERPWEB
 
             }
             TopActivity.InnerHtml = toactivity;
+            this.noProjCount.InnerHtml = prjcount;
+            this.noProj.Attributes.Add("href", "F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" + comcod);    //?Type=Entry&genno=" + usrid);
 
             ds1.Dispose();
             ds2.Dispose();
