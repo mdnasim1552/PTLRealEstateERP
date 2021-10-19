@@ -46,7 +46,7 @@ namespace RealERPWEB
                     this.getGraphComponent();
                     this.getUserLogData();
                     this.getHomeWidget();
-                   // GetGraphFilterData();
+                    GetGraphFilterData();
                     
                    // this.ddlyearSale_SelectedIndexChanged(null, null);
 
@@ -163,18 +163,36 @@ namespace RealERPWEB
             {
                 if (i == 0)
                 {
-                    component += "<li class='nav-item'><a class='nav-link show active' data-toggle='tab' href='#tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
+                    component += "<li class='nav-item'><a class='nav-link show active' data-toggle='tab' href='#ContentPlaceHolder1_tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
+
+                    if (row["MENUID"].ToString() == "1343")
+                    {
+                        tab_1343.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1232") {
+
+                        tab_1232.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else
+                    {
+                        tab_1231.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+
+
 
                 }
                 else
                 {
-                    component += "<li class='nav-item'><a class='nav-link show' data-toggle='tab' href='#tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
-
+                    component += "<li class='nav-item'><a class='nav-link' data-toggle='tab' href='#ContentPlaceHolder1_tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
+                    
+                    
                 }
                 i++;
             }
             this.userGraph.InnerHtml = component;
-
             this.Hypersales.NavigateUrl = "CompanyOverAllReport?comcod=" + comcod + "&Type=sales";
             this.HyperProcurement.NavigateUrl = "CompanyOverAllReport?comcod=" + comcod + "&Type=Procurement";
             this.HypAccounts.NavigateUrl = "CompanyOverAllReport?comcod=" + comcod + "&Type=Accounts";
@@ -190,7 +208,7 @@ namespace RealERPWEB
                 string fxdate = System.DateTime.Today.ToString("MMM");
 
                // this.ddlMonths.SelectedValue = "00";//fxdate.ToString();
-                ddlyearSale_SelectedIndexChanged(null, null);
+                //ddlyearSale_SelectedIndexChanged(null, null);
 
             }
             else
@@ -222,6 +240,8 @@ namespace RealERPWEB
             int wkpresence = (from DataRow dr in dt.Rows
                               where (int)dr["menuid"] == 1256
                               select (int)dr["menuid"]).FirstOrDefault();
+
+      
 
             //int tmntatt = (from DataRow dr in dt.Rows
             //               where (int)dr["menuid"] == 108
@@ -604,11 +624,12 @@ namespace RealERPWEB
             }
 
 
-            string empid ="%%";
-            string prjcode ="%%";
-            string professioncode = "%%";
+            string empid ="%";
+            string prjcode ="%";
+            string professioncode = "%";
             string sourceref = "%";
-            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref);
+ 
+            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref,"","95%");
             if(ds2CRM2==null)
             {
                 return;
@@ -1076,6 +1097,7 @@ namespace RealERPWEB
             public decimal finalnego { get; set; }
             public decimal nego { get; set; }
             public decimal win { get; set; }
+            public decimal total { get; set; }
         }
 
     }

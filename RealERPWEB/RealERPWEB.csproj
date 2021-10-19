@@ -3593,9 +3593,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Bundle.config" />
+    <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Web.config" />
+    <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
+    <Content Include="Web References\HrWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -11419,11 +11424,6 @@
     <Content Include="Upload\purorder\POR201911000032941.xlsx" />
     <Content Include="Upload\purorder\POR2019110000389187.xlsx" />
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource" />
-    <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
-    <Content Include="Web References\HrWebService\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -11464,10 +11464,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost/WebReference/HRDailyAtten.asmx">
+    <WebReferenceUrl Include="http://123.200.23.58/WebReference/HRDailyAtten.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\HrWebService\</RelPath>
-      <UpdateFromURL>http://localhost/WebReference/HRDailyAtten.asmx</UpdateFromURL>
+      <UpdateFromURL>http://123.200.23.58/WebReference/HRDailyAtten.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
