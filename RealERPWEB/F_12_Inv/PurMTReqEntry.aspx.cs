@@ -414,6 +414,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3340":
                 case "3315":
                 case "3316":
+                case "1108":
+                case "1109":
 
 
                     DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPMATREQREF", mtrref, "", "", "", "", "", "", "", "");
@@ -443,10 +445,11 @@ namespace RealERPWEB.F_12_Inv
             string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
             string reqno = this.lblreqno.Text.Trim();
+            string reqApproval = this.getCompReApproval();
 
             bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "INESERTUPDATEMTREQ", "PURMTREQB", mtreqno, mtreqdat, fromprj, toprj, mtrref, mtrnar, PostedByid, Posttrmid,
 
-                           PostSession, Posteddat, reqno, "", "", "", "", "", "", "", "", "", "", "");
+                           PostSession, Posteddat, reqno, reqApproval, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -506,6 +509,30 @@ namespace RealERPWEB.F_12_Inv
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
+
+
+        private string getCompReApproval()
+        {
+            string comcod = this.GetCompCode();
+            string ptype = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                case "8306":
+                    ptype = "reqApprobed";
+                    break;
+
+                default:
+                    ptype = "";
+                    break;
+
+            }
+            return ptype;
+        }
+ 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
