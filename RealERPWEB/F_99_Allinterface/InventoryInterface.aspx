@@ -511,13 +511,36 @@
 
         function pageLoaded() {
 
+
+
+            var comcod = <%=this.GetCompCode()%>;
+
+            switch (comcod) {
+
+                case 3101:   // ptl 
+                case 1205:   // p2p 
+                case 3351:   // p2p 
+                case 3352:   // p2p   
+                case 8306:   // p2p   
+
+                    $(".tbMenuWrp table tr td:nth-child(2)").show();// Check  
+                    break;
+
+                default:
+                    $(".tbMenuWrp table tr td:nth-child(2)").hide();;// Check
+                    break;
+
+            }
+
             var gvstatus = $('#<%=this.gvstatus.ClientID %>');
+            var gvreqaprv = $('#<%=this.gvreqaprv.ClientID %>');
             var gvgatepass = $('#<%=this.gvgatepass.ClientID %>');
             var gvapproval = $('#<%=this.gvapproval.ClientID %>');
             var gvaudit = $('#<%=this.gvaudit.ClientID %>');
             var gvaccount = $('#<%=this.gvaccount.ClientID %>');
 
             gvstatus.Scrollable();
+            gvreqaprv.Scrollable();
             gvgatepass.Scrollable();
             gvapproval.Scrollable();
             gvaudit.Scrollable();

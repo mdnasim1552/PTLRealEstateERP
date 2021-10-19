@@ -46,7 +46,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-        private string GetCompCode()
+        public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
@@ -431,6 +431,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
                 switch (status)
                 {
+                    case "Req Approval":
+                        track.Attributes.CssStyle.Add("color", "Red");
+                        break;
                     case "Gate Pass":
                         track.Attributes.CssStyle.Add("color", "Maroon");
                         break;
