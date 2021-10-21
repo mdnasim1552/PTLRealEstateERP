@@ -4909,7 +4909,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBill01";
                     break;
 
-
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill02";
                     break;
@@ -4975,7 +4975,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBillCredence";
                     break;
 
-                case "3101"://ASIT
+                //case "3101"://ASIT
                 case "3353":
                     PrintReq = "PrintBillManama";
                     break;
@@ -5067,6 +5067,7 @@ namespace RealERPWEB.F_99_Allinterface
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
 
+
             // For  Image withdrawn 
 
             string mBillNo = this.Request.QueryString["billno"].ToString();
@@ -5097,21 +5098,26 @@ namespace RealERPWEB.F_99_Allinterface
             string billrefno = (dtd.Rows[0]["cbillref"].ToString().Length > 0) ? "Bill Ref. No: " + dtd.Rows[0]["cbillref"].ToString() : "";
 
             string pactcode = ds1.Tables[1].Rows[0]["pactcode"].ToString();
+            string secdep = Convert.ToDouble(dtd.Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); ");
+            string lblSecurity = "Security Deposit " + "(" + secdep + " %)";
 
             if (pCompanyBill == "PrintBill02")
             {
                 //comcod == "3330" && pactcode == "160100010025"
+                //lblSecurity
                 if (pactcode == "160100010025")
                 {
                     //RptConBillBridgeWithoutLogo
                     rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillBridgeWithoutLogo", lst, null, null);
                     rptbill.SetParameters(new ReportParameter("txtBilType", dtd.Rows[0]["billtype"].ToString()));
+                    rptbill.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
                 }
                 else
                 {
                     rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillBridge", lst, null, null);
                     rptbill.EnableExternalImages = true;
                     rptbill.SetParameters(new ReportParameter("txtBilType", dtd.Rows[0]["billtype"].ToString()));
+                    rptbill.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
                 }
 
 
