@@ -1,111 +1,40 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="RealERPWEB.Index" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-      <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
 
-     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
 
 
-        //function pageLoaded() {
-        //    alert("I m In");
-        //    GetData();
-        //    //GetData();
-        //}
-        $(function () {
-            $('#<%= ddlyearSale.ClientID%>').change(function () {
-                var selectedText = $(this).find("option:selected").text();
-                var selectedValue = $(this).val();
-                createItem(selectedValue);
-                //  alert(selectedValue);
-            });
-        });
 
         $(document).ready(function () {
-
-            var url = $('#<%=this.ParentDir.ClientID%>').val();
-         
-
-           
-           
-            var selyear = $('#<%= ddlyearSale.ClientID%>').val();
-          
+            var url = $('#<%=this.ParentDir.ClientID %>').val();
             GetData();
-            createItem(selyear);
-            $("#btnshowchckdash").click(function () {
-                $("#div1").hide();
-            });
-
-
-
-            $(function () {
-                $('#the-basics').autocomplete({
-                    source: function (request, response) {
-                        $.ajax({
-                            url: '<%=ResolveUrl("~/Service/UserService.asmx/GetSearchUrl")%>',
-                            data: '{strkeys: "' + request.term + '" }',
-                            dataType: "json",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            success: function (data) {
-                                //console.log(request.term);
-                                console.log(data);
-                                response($.map(data.d, function (item) {
-                                    //return { value: "<a href=''>"+item.dscrption+"</a>" }
-                                    return {
-                                        dscrption: item.itemdesc,
-                                        urlinf: item.itemurl,
-                                        floc: item.fbold
-
-                                    }
-                                }))
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                // alert(textStatus);
-                            }
-                        });
-                    }, focus: function (event, ui) {
-                        //  $('#the-basics').val(ui.item.dscrption);
-                        return false;
-                    },
-                    select: function (event, ui) {
-                        // $('#the-basics').val(ui.item.dscrption);
-                        return false;
-                    },
-                }).data("ui-autocomplete")._renderItem = function (ul, item) {
-
-                    return $("<li>")
-                        .append("<a href='" + url + "/" + item.urlinf + "' target='_blank'>" + item.dscrption + "  </a>")
-                        .appendTo(ul);
-                };
-            });
-            ExcuteEmpStatus();
-           
+            GetHRData();
         });
 
-       
-        
+
         function createItem(selyear) {
-            localStorage.setItem("year",selyear);
-            //var year = localStorage.getItem("year");
-           // console.log(year);
+            localStorage.setItem("year", selyear);
         }
         function GetData() {
             try {
-               
+
                 comcod = <%=this.GetCompCode()%>;
                 var temp = comcod.toString();
                 var com = temp.slice(0, 1);
-                
-                if (com == "1"){
-                    
+
+                if (com == "1") {
+
                     $("#dpSales").hide();
                     $("#dpCRM").hide();
                 }
@@ -115,17 +44,48 @@
             }
 
         };
+        function GetHRData() {
+            try {
+                comcod = <%=this.GetCompCode()%>;
+                Date1 = $('#txtDateFrom').val();
+                Date2 = $('#txtDateto').val();
+                 
+                $.ajax({
+                    type: "POST",
+                    url: "index.aspx/GetAllDataHR",
+                    data: '{date1: "' + $('#<%=this.txtDateFrom.ClientID%>').val() + '" , date2: "' + $('#<%=this.txtDateto.ClientID%>').val() + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(JSON.parse(response.d));
+                        var data = response.d;
+
+                        //console.log(data['account']);
+                        ExecuteGraphHR(data);
+                    },
+                    failure: function (response) {
+                        //  alert(response);
+                        alert("f");
+                    }
+                });
+             }
+             catch (e) {
+                 alert(e);
+             }
+
+         }
         function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm) {
-            ExcuteEmpStatus();
+            gtype = gtype == "" ? "column" : gtype;
+            // ExcuteEmpStatus();
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
             var accdata = JSON.parse(data2);
             var consdata = JSON.parse(data3);
             var sucondata = JSON.parse(data4);
-               
+
             var cmrData = JSON.parse(crm);
 
-            var chartsal= Highcharts.chart('salchart', {
+            var chartsal = Highcharts.chart('salchart', {
                 chart: {
                     type: gtype
                 },
@@ -191,7 +151,7 @@
                     ],
                     color: '#759ABE'
 
-                }, 
+                },
                 {
                     name: 'Actual',
                     //color:red,
@@ -236,7 +196,7 @@
             //End of Sales Chart
             //Start of Sales Chart
 
-            var chartpur= Highcharts.chart('purchart',{
+            var chartpur = Highcharts.chart('purchart', {
 
 
                 chart: {
@@ -341,7 +301,7 @@
             });
             //End of Purchase
             //Start of Accounts Chart
-            var chartacc= Highcharts.chart('accchart',{
+            var chartacc = Highcharts.chart('accchart', {
                 chart: {
                     type: gtype
                 },
@@ -419,8 +379,8 @@
                     accdata[9].cramcore,
                     accdata[10].cramcore,
                     accdata[11].cramcore
-                    
-                 
+
+
                     ],
                     color: '#759ABE'
 
@@ -428,18 +388,18 @@
 
                     name: 'Payment',
                     //color:red,
-                    data:[accdata[0].dramcore,
-                      accdata[1].dramcore,
-                      accdata[2].dramcore,
-                      accdata[3].dramcore,
-                      accdata[4].dramcore,
-                      accdata[5].dramcore,
-                      accdata[6].dramcore,
-                      accdata[7].dramcore,
-                      accdata[8].dramcore,
-                      accdata[9].dramcore,
-                      accdata[10].dramcore,
-                      accdata[11].dramcore
+                    data: [accdata[0].dramcore,
+                    accdata[1].dramcore,
+                    accdata[2].dramcore,
+                    accdata[3].dramcore,
+                    accdata[4].dramcore,
+                    accdata[5].dramcore,
+                    accdata[6].dramcore,
+                    accdata[7].dramcore,
+                    accdata[8].dramcore,
+                    accdata[9].dramcore,
+                    accdata[10].dramcore,
+                    accdata[11].dramcore
                     ],
                     color: 'black'
                 }]
@@ -447,7 +407,7 @@
 
 
             //Start of Construction Chart
-            var chartcons= Highcharts.chart('conschart', {
+            var chartcons = Highcharts.chart('conschart', {
 
 
                 chart: {
@@ -551,7 +511,7 @@
                 }]
             });
             //Start of Construction Chart
-            var chartsubcon= Highcharts.chart('subconchart', {
+            var chartsubcon = Highcharts.chart('subconchart', {
                 chart: {
                     type: gtype
                 },
@@ -595,7 +555,7 @@
                     shared: true,
                     useHTML: true,
 
-                   
+
                 },
                 plotOptions: {
                     column: {
@@ -646,7 +606,7 @@
             //console.log(saldata[0].lead);
             var chartcmrData = Highcharts.chart('crmChart', {
 
-           
+
                 chart: {
                     type: gtype
                 },
@@ -729,7 +689,7 @@
             });
 
             let w = $(".graph-main").width();
-            let h= 325;
+            let h = 325;
             chartsal.setSize(w, h);
             chartpur.setSize(w, h);
             chartacc.setSize(w, h);
@@ -756,7 +716,7 @@
 
         function ExecuteUserdata(data1) {
             //userdata
-            
+
             console.log(JSON.parse(data1));
             var userdata = JSON.parse(data1);
             var descdata = [];
@@ -805,11 +765,11 @@
 
 
         };
-       
 
-        function ExecuteMotnhsGraph(data,purdata,dataacc, datacons, datasubcons, gtype) {
+
+        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype) {
             var today = new Date(),
-               day = 1000 * 60 * 60 * 24;
+                day = 1000 * 60 * 60 * 24;
             //console.log(day);
             ExcuteEmpStatus();
             // Set to 00:00:00:000 today
@@ -845,8 +805,8 @@
                 total += item.ttlsalamtcore;
             });
             // console.log(monthseries);
-            var MonthlySalesline= Highcharts.chart('MonthlySales', {
-            
+            var MonthlySalesline = Highcharts.chart('MonthlySales', {
+
                 //   $('#MonthlySales').highcharts({
                 chart: {
                     // type: 'line'
@@ -863,11 +823,11 @@
                     }
                 },
                 xAxis: {
-                    categories: 
-                       monthseries,
+                    categories:
+                        monthseries,
                     //  minTickInterval: 60 * 1000,
                     //  tickMarkPlacement: 'on',
-                   
+
                     crosshair: true
                 },
                 yAxis: {
@@ -912,9 +872,9 @@
                 }]
             });
 
-           
 
-           
+
+
             //purchase
             var monthseriesp_ur = [];
             var monPuramt = [];
@@ -925,8 +885,8 @@
                 monPurcolamt.push(item.tpayamtcore);
             });
             // console.log(monthseries);
-            var MonthlyPurchase= Highcharts.chart('MonthlyPurchase', {
-            
+            var MonthlyPurchase = Highcharts.chart('MonthlyPurchase', {
+
                 //$('#MonthlyPurchase').highcharts({
                 chart: {
                     // type: 'line'
@@ -943,8 +903,8 @@
                     }
                 },
                 xAxis: {
-                    categories: 
-                       monthseriesp_ur                  
+                    categories:
+                        monthseriesp_ur
                     ,
                     currentDateIndicator: true,
                     crosshair: true
@@ -991,8 +951,8 @@
             });
 
             //MonthlyAccounts
-           
-            var monthseries_acc= [];
+
+            var monthseries_acc = [];
             var monamt_acc = [];
             var moncolamt_acc = [];
             $.each(dataacc, function (i, item) {
@@ -1001,8 +961,8 @@
                 moncolamt_acc.push(item.tpayamtcore);
             });
             // console.log(monthseries);
-            var MonthlyAccounts= Highcharts.chart('MonthlyAccounts', {
-            
+            var MonthlyAccounts = Highcharts.chart('MonthlyAccounts', {
+
                 // $('#MonthlyAccounts').highcharts({
                 chart: {
                     // type: 'line'
@@ -1019,8 +979,8 @@
                     }
                 },
                 xAxis: {
-                    categories: 
-                       monthseries_acc
+                    categories:
+                        monthseries_acc
                     ,
                     currentDateIndicator: true,
                     crosshair: true
@@ -1065,10 +1025,10 @@
                     color: '#CA6621'
                 }]
             });
-            
+
 
             //Monthlyconschart
-            var monthseries_cons= [];
+            var monthseries_cons = [];
             var monamt_cons = [];
             var moncolamt_cons = [];
             $.each(datacons, function (i, item) {
@@ -1076,10 +1036,10 @@
                 monamt_cons.push(item.taramtcore);
                 moncolamt_cons.push(item.examtcore);
             });
-            var Monthlyconschart= Highcharts.chart('Monthlyconschart', {
+            var Monthlyconschart = Highcharts.chart('Monthlyconschart', {
 
                 // console.log(monthseries);
-            
+
                 // $('#Monthlyconschart').highcharts({
                 chart: {
                     // type: 'line'
@@ -1096,8 +1056,8 @@
                     }
                 },
                 xAxis: {
-                    categories: 
-                       monthseries_cons
+                    categories:
+                        monthseries_cons
                     ,
                     currentDateIndicator: true,
                     crosshair: true
@@ -1142,10 +1102,10 @@
                     color: '#CA6621'
                 }]
             });
- 
+
 
             //MonthlySUBconschart
-            var monthseries_scons= [];
+            var monthseries_scons = [];
             var monamt_scons = [];
             var moncolamt_scons = [];
             $.each(datasubcons, function (i, item) {
@@ -1154,8 +1114,8 @@
                 moncolamt_scons.push(item.tcbpayamtcore);
             });
             // console.log(monthseries);
-            var Monthlysubconchart= Highcharts.chart('Monthlysubconchart', {
-            
+            var Monthlysubconchart = Highcharts.chart('Monthlysubconchart', {
+
                 // $('#Monthlysubconchart').highcharts({
                 chart: {
                     // type: 'line'
@@ -1172,8 +1132,8 @@
                     }
                 },
                 xAxis: {
-                    categories: 
-                       monthseries_scons
+                    categories:
+                        monthseries_scons
                     ,
                     currentDateIndicator: true,
                     crosshair: true
@@ -1218,15 +1178,15 @@
                     color: '#CA6621'
                 }]
             });
- 
+
             let w = $(".graph-main").width();
-            let h= 325;
+            let h = 325;
             MonthlySalesline.setSize(w, h);
             MonthlyPurchase.setSize(w, h);
             MonthlyAccounts.setSize(w, h);
             Monthlyconschart.setSize(w, h);
             Monthlysubconchart.setSize(w, h);
-            
+
             const elem = $(".graph-main")[0];
 
             let resizeObserver = new ResizeObserver(function () {
@@ -1235,7 +1195,7 @@
                 MonthlyAccounts.setSize(w, h);
                 Monthlyconschart.setSize(w, h);
                 Monthlysubconchart.setSize(w, h);
-               
+
                 w = $(".graph-main").width();
             });
             resizeObserver.observe(elem);
@@ -1243,34 +1203,34 @@
 
 
         };
-        
-   
-       
-        function ExcuteEmpStatus(){
-            
-            var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
-            var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
-            var eleave = this.parseFloat($("#<%=this.lbleleave.ClientID %>").val());
-            var onleave = this.parseFloat($("#<%=this.lblonleave.ClientID %>").val());
-            var abs = this.parseFloat($("#<%=this.lblabs.ClientID %>").val());
 
-               
-          
-            google.charts.load('current', {'packages':['corechart']});
+
+
+        function ExcuteEmpStatus() {
+
+            var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
+                var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
+                var eleave = this.parseFloat($("#<%=this.lbleleave.ClientID %>").val());
+                var onleave = this.parseFloat($("#<%=this.lblonleave.ClientID %>").val());
+                var abs = this.parseFloat($("#<%=this.lblabs.ClientID %>").val());
+
+
+
+            google.charts.load('current', { 'packages': ['corechart'] });
             google.charts.setOnLoadCallback(drawChart);
-            
+
             function drawChart() {
 
                 var data = google.visualization.arrayToDataTable([
-                  ['Task', 'Attendance status'],
+                    ['Task', 'Attendance status'],
 
-                  ['Present',     present],
-                  ['Absent',    abs],
-                  ['Late',      late],
-                  ['Early Leave',  eleave],
-                  ['On leave',  onleave],
-                
-                 
+                    ['Present', present],
+                    ['Absent', abs],
+                    ['Late', late],
+                    ['Early Leave', eleave],
+                    ['On leave', onleave],
+
+
                 ]);
 
                 var options = {
@@ -1292,7 +1252,7 @@
             var consdata = JSON.parse(data3);
             var sucondata = JSON.parse(data4);
 
-            var chartsal= Highcharts.chart('salchartG', {
+            var chartsal = Highcharts.chart('salchartG', {
                 chart: {
                     type: gtype
                 },
@@ -1358,7 +1318,7 @@
                     ],
                     color: '#759ABE'
 
-                }, 
+                },
                 {
                     name: 'Actual',
                     //color:red,
@@ -1398,12 +1358,12 @@
             });
 
 
-            
-            
+
+
             //End of Sales Chart
             //Start of Sales Chart
 
-            var chartpur= Highcharts.chart('purchartG',{
+            var chartpur = Highcharts.chart('purchartG', {
 
 
                 chart: {
@@ -1508,7 +1468,7 @@
             });
             //End of Purchase
             //Start of Accounts Chart
-            var chartacc= Highcharts.chart('accchartG',{
+            var chartacc = Highcharts.chart('accchartG', {
                 chart: {
                     type: gtype
                 },
@@ -1586,8 +1546,8 @@
                     accdata[9].cramcore,
                     accdata[10].cramcore,
                     accdata[11].cramcore
-                    
-                 
+
+
                     ],
                     color: '#759ABE'
 
@@ -1595,26 +1555,26 @@
 
                     name: 'Payment',
                     //color:red,
-                    data:[accdata[0].dramcore,
-                      accdata[1].dramcore,
-                      accdata[2].dramcore,
-                      accdata[3].dramcore,
-                      accdata[4].dramcore,
-                      accdata[5].dramcore,
-                      accdata[6].dramcore,
-                      accdata[7].dramcore,
-                      accdata[8].dramcore,
-                      accdata[9].dramcore,
-                      accdata[10].dramcore,
-                      accdata[11].dramcore
+                    data: [accdata[0].dramcore,
+                    accdata[1].dramcore,
+                    accdata[2].dramcore,
+                    accdata[3].dramcore,
+                    accdata[4].dramcore,
+                    accdata[5].dramcore,
+                    accdata[6].dramcore,
+                    accdata[7].dramcore,
+                    accdata[8].dramcore,
+                    accdata[9].dramcore,
+                    accdata[10].dramcore,
+                    accdata[11].dramcore
                     ],
                     color: 'black'
                 }]
             });
-           
+
 
             //Start of Construction Chart
-            var chartcons= Highcharts.chart('conschartG', {
+            var chartcons = Highcharts.chart('conschartG', {
 
 
                 chart: {
@@ -1718,7 +1678,7 @@
                 }]
             });
             //Start of Construction Chart
-            var chartsubcon= Highcharts.chart('subconchartG', {
+            var chartsubcon = Highcharts.chart('subconchartG', {
                 chart: {
                     type: gtype
                 },
@@ -1762,7 +1722,7 @@
                     shared: true,
                     useHTML: true,
 
-                   
+
                 },
                 plotOptions: {
                     column: {
@@ -1811,7 +1771,7 @@
             });
 
             let w = $(".graph-main").width();
-            let h= 325;
+            let h = 325;
             chartsal.setSize(w, h);
             chartpur.setSize(w, h);
             chartacc.setSize(w, h);
@@ -1830,9 +1790,1027 @@
             resizeObserver.observe(elem);
 
         }
-    
 
-     
+
+        function ExecuteGraphHR(bgd) {
+            try {
+
+                Highcharts.setOptions({
+                    lang: {
+                        decimalPoint: '.',
+                        thousandsSep: ' '
+                    }
+                });
+
+                var bgddata = JSON.parse(bgd);
+                console.log(bgddata);
+
+                //Leave Legend
+                var leavedata = bgddata['leave'];
+
+                var armainhead = [];
+                for (var i = 0; i < leavedata.length; i++) {
+                    armainhead[i] = leavedata[i]["head"];
+                }
+
+             
+                var row = '';
+            
+
+                $.each(leavedata,
+                    function (i, item) {
+                        //ar1 = (item.grp == "A")? '<a target=_blank href=' + encodeURI('F_17_Acc/LinkRptReciptPayment.aspx?Type=receipt&comcod=' + comcod + '&Date1=' +Date1 + '&Date2=' + Date2) + '>'
+                        //    : item.grp == "B"? '<a target=_blank href=' + encodeURI('F_17_Acc/LinkRptReciptPayment.aspx?Type=payment&comcod=' + comcod + '&Date1=' +Date1 + '&Date2=' + Date2) + '>'
+                        //    : '';
+                        //ar2 = (item.grp == "A") || (item.grp == "B") ? '</a>' : '';
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.amount == 0)
+                                ? ''
+                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
+                        row += "</tr>";
+                        $("#leave tbody").html(row);
+                    });
+
+
+                //Sales Legend
+                var memberdata = bgddata['member'];
+
+                var saleshead = [];
+                for (var i = 0; i < memberdata.length; i++) {
+                    saleshead[i] = memberdata[i]["head"];
+                }
+
+                //var ar1 = '';
+                //var ar2 = '';
+                var row = '';
+                $.each(memberdata,
+                    function (i, item) {
+                        //ar1 = (item.gcod == "01001")
+                        //    ? '<a target=_blank href=' + encodeURI('F_22_Sal/RptSaleMonYear.aspx') + '>'
+                        //    : item.gcod == "01002"
+                        //    ? '<a target=_blank href=' + encodeURI('F_22_Sal/RptCollMonYear.aspx') + '>'
+                        //    : '';
+                        //ar2 = (item.gcod == "01001") || (item.gcod == "01002") ? '</a>' : '';
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.amount == 0)
+                                ? ''
+                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) +
+                            "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) +
+                            "</td>";
+                        row += "</tr>";
+                        $("#member tbody").html(row);
+                    });
+
+                //Purchase Legend
+                var attendata = bgddata['attendance'];
+                console.log(attendata);
+                var purchasehead = [];
+                for (var i = 0; i < attendata.length; i++) {
+                    purchasehead[i] = attendata[i]["head"];
+                }
+
+
+                //var ar1 = '';
+                //var ar2 = '';
+                var row = '';
+                $.each(attendata,
+                    function (i, item) {
+                        //ar1 = (item.gcod == "01001")
+                        //    ? '<a target=_blank href=' + encodeURI('F_14_Pro/PurSumMatWise.aspx') + '>'
+                        //    : '';
+                        //ar2 = (item.gcod == "01001") ? '</a>' : '';
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.amount == 0)
+                                ? ''
+                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) +
+                            "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) +
+                            "</td>";
+                        row += "</tr>";
+                        $("#atten tbody").html(row);
+                    });
+
+
+                //Salary Legend
+                var salarydata = bgddata['salary'];
+                var conshead = [];
+                for (var i = 0; i < salarydata.length; i++) {
+                    conshead[i] = salarydata[i]["head"];
+                }
+                //var ar1 = '';
+                //var ar2 = '';
+                var row = '';
+                $.each(salarydata,
+                    function (i, item) {
+                        
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.amount == 0)
+                                ? ''
+                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) +
+                            "</td>";
+                        row += "<td style=text-align:right;>" +
+                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) +
+                            "</td>";
+                        row += "</tr>";
+                        $("#salary tbody").html(row);
+                    });
+
+
+                ////Confirmation Legend
+                var confirmdata = bgddata['confirm'];
+                var bankhead = [];
+                for (var i = 0; i < confirmdata.length; i++) {
+                    bankhead[i] = confirmdata[i]["head"];
+                }
+
+                var ar1 = '';
+                var ar2 = '';
+                var row = '';
+                $.each(confirmdata,
+                    function (i, item) {
+                        ar1 = (item.gcod == "01002")
+                            ? '<a target=_blank href=' + encodeURI('/F_81_Hrm/F_92_Mgt/HREmpConfirmation.aspx') + '>'
+                            : item.gcod == "01003"
+                                ? '<a target=_blank href=' +
+                                encodeURI('/F_81_Hrm/F_92_Mgt/HREmpConfirmation.aspx') +
+                                '>'
+                                : '';
+                        ar2 = (item.gcod == "01002") || (item.gcod == "01003") ? '</a>' : '';
+                        row += "<tr>";
+                        row += "<td>" + ar1 + item.head + ar2 + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
+                        row += "</tr>";
+                        $("#confirm tbody").html(row);
+                    });
+
+                //Loan Legend
+                var loandata = bgddata['loan'];
+                var stockhead = [];
+                for (var i = 0; i < loandata.length; i++) {
+                    stockhead[i] = loandata[i]["head"];
+                }
+
+                var row = '';
+                $.each(loandata,
+                    function (i, item) {
+
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
+                        row += "</tr>";
+                        $("#loan tbody").html(row);
+                    });
+
+
+
+                ////PF Account
+                var pffunddata = bgddata['pffund'];
+                var dueshead = [];
+                for (var i = 0; i < pffunddata.length; i++) {
+                    dueshead[i] = pffunddata[i]["head"];
+                }
+
+                var row = '';
+                $.each(pffunddata,
+                    function (i, item) {
+
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
+                        row += "</tr>";
+                        $("#pffund tbody").html(row);
+                    });
+
+
+
+                ////Separation Legend
+                var sepdata = bgddata['separation'];
+                var penbilhead = [];
+                for (var i = 0; i < sepdata.length; i++) {
+                    penbilhead[i] = sepdata[i]["head"];
+                }
+                var row = '';
+                $.each(sepdata,
+                    function (i, item) {
+
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
+                        row += "</tr>";
+                        $("#sep tbody").html(row);
+                    });
+
+
+                //////Employee Joining
+                var empjoindata = bgddata['empjoining'];
+                var dueshead = [];
+                for (var i = 0; i < empjoindata.length; i++) {
+                    dueshead[i] = empjoindata[i]["head"];
+                }
+
+                var row = '';
+                $.each(empjoindata,
+                    function (i, item) {
+
+                        row += "<tr>";
+                        row += "<td>" + item.head + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
+                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
+                        row += "</tr>";
+                        $("#empjoin tbody").html(row);
+                    });
+
+
+
+
+                 
+
+                //Leave
+                Highcharts.chart('leavedt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, armainhead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in leavedata) {
+                                            if (leavedata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    leavedata[key].head,
+                                                    leavedata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+                //Member
+                Highcharts.chart('memberdt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, saleshead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in memberdata) {
+                                            if (memberdata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    memberdata[key].head,
+                                                    memberdata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+                //Attendance
+                Highcharts.chart('attendt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, purchasehead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in attendata) {
+                                            if (attendata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    attendata[key].head,
+                                                    attendata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+                ////Salary
+                Highcharts.chart('salarydt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, conshead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in salarydata) {
+                                            if (salarydata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    salarydata[key].head,
+                                                    salarydata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+                ////Confirmation
+                Highcharts.chart('confirmdt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, bankhead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in confirmdata) {
+                                            if (confirmdata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    confirmdata[key].head,
+                                                    confirmdata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+                ////Loan
+                Highcharts.chart('loandt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, stockhead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in loandata) {
+                                            if (loandata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    loandata[key].head,
+                                                    loandata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+                
+
+                ////Separation
+                Highcharts.chart('sepdt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, penbilhead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in sepdata) {
+                                            if (sepdata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    sepdata[key].head,
+                                                    sepdata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+                ////Man Power
+                Highcharts.chart('pffunddt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, dueshead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in pffunddata) {
+                                            if (pffunddata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    pffunddata[key].head,
+                                                    pffunddata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+
+                ////Employee Joining
+                Highcharts.chart('joindt',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            type: 'category',
+                            labels:
+                            {
+                                formatter: function () {
+                                    if ($.inArray(this.value, dueshead) !== -1) {
+                                        return '<span style="fill: maroon;">' + this.value + '</span>';
+                                    } else {
+                                        return this.value;
+                                    }
+                                },
+                                style: {
+                                    color: '#000',
+
+                                }
+                            }
+                        },
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data":
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [],
+
+                                            i;
+
+                                        for (var key in empjoindata) {
+                                            if (empjoindata.hasOwnProperty(key)) {
+                                                data.push([
+                                                    empjoindata[key].head,
+                                                    empjoindata[key].amount, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+
+                
+
+            } catch (e) {
+
+                alert(e);
+            }
+
+
+        }
+
     </script>
 
     <style>
@@ -1954,153 +2932,559 @@
         .grpattn {
             width: 100%;
         }
-        .grMoreMenu .btn{
+
+        .grMoreMenu .btn {
             outline: 0;
-    box-shadow: 0 0 0 1px #346cb0;
+            box-shadow: 0 0 0 1px #346cb0;
         }
-        .grMoreMenu ul{
-            top:30px !important;
-            left:-40px !important;
+
+        .grMoreMenu ul {
+            top: 30px !important;
+            left: -40px !important;
         }
-                .grMoreMenu ul li{
-             padding: 5px;
-        }
-                .grMoreMenu ul li a{
-           display:block;
-           padding:0 12px;
-           line-height:18px;
-           color:#363642;
-        }
+
+            .grMoreMenu ul li {
+                padding: 5px;
+            }
+
+                .grMoreMenu ul li a {
+                    display: block;
+                    padding: 0 12px;
+                    line-height: 18px;
+                    color: #363642;
+                }
+
                     .grMoreMenu ul li a:hover {
-                        color:#346cb0!important;
-                        background:none;
+                        color: #346cb0 !important;
+                        background: none;
                     }
     </style>
 
-      
-
-    <div class="page">
-        <div class="page-inner">
-            <div style="display: none;">
-                <asp:TextBox ID="ParentDir" runat="server" CssClass="hide"></asp:TextBox>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
             </div>
-            <%-- <div class="mb-5" id="EventNotice" runat="server">--%>
-            <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
-                <div class="row">
-                    <!--Breaking box-->
-                    <div class="col-md-2 col-lg-2 pr-md-0">
-                        <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
-                    </div>
-                    <!--end breaking box-->
-                    <!--Breaking content-->
-                    <div class="col-md-10 col-lg-10 pl-md-4 py-2">
-                        <div class="breaking-box">
-                            <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
-                                <!--breaking news-->
-                                <div class="carousel-inner " id="EventCaro" runat="server">
-                                 
-                                </div>
-                                <!--end breaking news-->
 
-                                <!--navigation slider-->
-                                <div class="navigation-box p-2 d-none d-sm-block">
-                                    <!--nav left-->
-                                    <a class="carousel-control-prev text-primary" href="#carouselbreaking" role="button" data-slide="prev">
-                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <!--nav right-->
-                                    <a class="carousel-control-next text-primary" href="#carouselbreaking" role="button" data-slide="next">
-                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </div>
-                                <!--end navigation slider-->
+
+            <div class="page">
+                <div class="page-inner">
+                    <div style="display: none;">
+                        <asp:TextBox ID="ParentDir" runat="server" CssClass="hide"></asp:TextBox>
+
+                          <div class="col-md-4">
+                                         
+                                        <div>
+                                        <asp:Label ID="lblDate" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
+                                        <asp:TextBox ID="txtDateFrom" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" 
+                                             ClientIDMode="Static" ></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtDateFrom_CalendarExtender" runat="server"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtDateFrom" Enabled="true"></cc1:CalendarExtender>
+
+
+                                        <asp:Label ID="lbltoDate" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
+                                        <asp:TextBox ID="txtDateto" ClientIDMode="Static" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd-MM-yyyy)"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtDateto_CalendarExtender" runat="server"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtDateto" Enabled="true"></cc1:CalendarExtender>
+
+                                        <div class="colMdbtn">
+                                          
+                                            <asp:LinkButton ID="btnok" runat="server" CssClass="btn btn-primary okBtn" OnClientClick="GetData();return false;" >OK</asp:LinkButton>
+                                         
+                                        </div>
+                                            </div>
+                                    </div>
+
+
+                    </div>
+                    <%-- <div class="mb-5" id="EventNotice" runat="server">--%>
+                    <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
+                        <div class="row">
+                            <!--Breaking box-->
+                            <div class="col-md-2 col-lg-2 pr-md-0">
+                                <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
                             </div>
+                            <!--end breaking box-->
+                            <!--Breaking content-->
+                            <div class="col-md-10 col-lg-10 pl-md-4 py-2">
+                                <div class="breaking-box">
+                                    <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
+                                        <!--breaking news-->
+                                        <div class="carousel-inner " id="EventCaro" runat="server">
+                                        </div>
+                                        <!--end breaking news-->
+
+                                        <!--navigation slider-->
+                                        <div class="navigation-box p-2 d-none d-sm-block">
+                                            <!--nav left-->
+                                            <a class="carousel-control-prev text-primary" href="#carouselbreaking" role="button" data-slide="prev">
+                                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                            <!--nav right-->
+                                            <a class="carousel-control-next text-primary" href="#carouselbreaking" role="button" data-slide="next">
+                                                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </div>
+                                        <!--end navigation slider-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end breaking content-->
                         </div>
                     </div>
-                    <!--end breaking content-->
-                </div>
-            </div>
-            <%-- </div>--%>
-            <!-- /.page-title-bar -->
-            <!-- .page-section -->
+                    <%-- </div>--%>
+                    <!-- /.page-title-bar -->
+                    <!-- .page-section -->
 
 
-            <div class="page-section">
-                <asp:Panel ID="pnlActiveUser" Visible="false" runat="server">
-                    <div class="section-block mb-0 mt-1">
-                        <div class="metric-row mb-0">
-                            <div class="col-lg-12">
-                                <div class="card pt-0 pb-0 mb-1 card-fluid">
-                                    <div class="card-body pb-1 pt-0">
-                                        <h3 class="card-title">Top Active User Today</h3>
-                                        <div class="row" id="TopActivity" runat="server">
+                    <div class="page-section">
+                        <asp:Panel ID="pnlActiveUser" Visible="false" runat="server">
+                            <div class="section-block mb-0 mt-1">
+                                <div class="metric-row mb-0">
+                                    <div class="col-lg-12">
+                                        <div class="card pt-0 pb-0 mb-1 card-fluid">
+                                            <div class="card-body pb-1 pt-0">
+                                                <h3 class="card-title">Top Active User Today</h3>
+                                                <div class="row" id="TopActivity" runat="server">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
+                        </asp:Panel>
+
+
+
+
+
+                        <div class="section-block mt-0 mb-0">
+                            <!-- <h1 class="section-title">Overview</h1> -->
+                            <!-- metric row -->
+                            <div class="metric-row mt-0 mb-0">
+                                <div class="col-12">
+                                    <section class="card pt-0 pb-0 mb-1 card-fluid">
+
+                                        <div id="divgsraph" class="userGraph" runat="server">
+                                            <!-- .card-header -->
+                                            <header class="card-header pt-0 pb-0">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="mr-auto">
+                                                        <ul class="nav userGraphNav" id="userGraph" runat="server">
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="dropdown">
+
+                                                        <div class="form-group mb-0">
+                                                            <label class="control-label" for="ddlUserName">Year</label>
+
+
+
+
+
+                                                            <asp:DropDownList ID="ddlyearSale" runat="server" OnSelectedIndexChanged="ddlyearSale_SelectedIndexChanged" ClientIDMode="Static" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                                <asp:ListItem Value="2019">2019</asp:ListItem>
+                                                                <asp:ListItem Value="2020">2020</asp:ListItem>
+                                                                <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
+
+                                                            </asp:DropDownList>
+                                                            <asp:DropDownList ID="ddlMonths" runat="server" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                                <asp:ListItem Selected Value="00">All Months</asp:ListItem>
+                                                                <asp:ListItem Value="Jan">Jan</asp:ListItem>
+                                                                <asp:ListItem Value="Feb">Feb</asp:ListItem>
+                                                                <asp:ListItem Value="Mar">Mar</asp:ListItem>
+                                                                <asp:ListItem Value="Apr">Apr</asp:ListItem>
+                                                                <asp:ListItem Value="May">May</asp:ListItem>
+                                                                <asp:ListItem Value="Jun">Jun</asp:ListItem>
+                                                                <asp:ListItem Value="Jul">Jul</asp:ListItem>
+                                                                <asp:ListItem Value="Aug">Aug</asp:ListItem>
+                                                                <asp:ListItem Value="Sep">Sep</asp:ListItem>
+                                                                <asp:ListItem Value="Oct">Oct</asp:ListItem>
+                                                                <asp:ListItem Value="Nov">Nov</asp:ListItem>
+                                                                <asp:ListItem Value="Dec">Dec</asp:ListItem>
+
+
+                                                            </asp:DropDownList>
+
+                                                            <asp:DropDownList ID="ddlGraphtype" runat="server" OnSelectedIndexChanged="ddlGraphtype_SelectedIndexChanged" ClientIDMode="Static" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                                <asp:ListItem Value="line">Line</asp:ListItem>
+                                                                <asp:ListItem Value="column" Selected="True">Column</asp:ListItem>
+                                                                <asp:ListItem Value="area">Area</asp:ListItem>
+
+                                                            </asp:DropDownList>
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                                <!-- .nav-tabs -->
+
+                                                <!-- /.nav-tabs -->
+                                            </header>
+                                            <!-- /.card-header -->
+                                            <!-- .card-body -->
+                                            <div class="card-body pt-0 pb-0">
+                                                <!-- .tab-content -->
+                                                <div id="myTabContent" class="tab-content graph-main" style="width: 100%; height: 375px;">
+
+
+                                                    <div class="tab-pane fade show" id="tab_1231" runat="server">
+                                                        <div class="row ">
+
+                                                            <div class="col-md-12 xtext-righ pt-1 pb-1">
+                                                                <h5><small class="float-right">
+
+
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Sales">Sales All Graph</a></li>
+                                                                            <li>
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="Hypersales" ClientIDMode="Static">Sales Details</asp:HyperLink>
+
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </small></h5>
+
+                                                            </div>
+                                                        </div>
+                                                        <asp:Panel ID="pnlMonthlySales" runat="server">
+                                                            <div id="MonthlySales" style="height: 280px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+                                                        <asp:Panel ID="pnlsalchart" runat="server">
+                                                            <div id="salchart" style="width: 90%; max-height: 280px;"></div>
+                                                        </asp:Panel>
+
+
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="tab_1232" runat="server">
+
+                                                        <div class="row ">
+
+                                                            <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                                <h5><small class="float-right">
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase">Procurement All Graph</a></li>
+                                                                            <li>
+
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="HyperProcurement" ClientIDMode="Static">Procurement Details</asp:HyperLink>
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </small></h5>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <asp:Panel ID="Panel1" runat="server">
+                                                            <div id="MonthlyPurchase" style="height: 280px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+                                                        <asp:Panel ID="Panel2" runat="server">
+                                                            <div id="purchart" style="width: 90%; max-height: 280px;"></div>
+                                                        </asp:Panel>
+
+
+
+
+
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="tab_1233" runat="server">
+                                                        <div class="row ">
+                                                            <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                                <h5><small class="float-right">
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Accounts">Accounts All Graph</a></li>
+                                                                            <li>
+
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="HypAccounts" ClientIDMode="Static">Accounts Details</asp:HyperLink>
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </small></h5>
+
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <asp:Panel ID="Panel3" runat="server">
+                                                            <div id="MonthlyAccounts" style="height: 280px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+                                                        <asp:Panel ID="Panel4" runat="server">
+                                                            <div id="accchart" style="width: 90%; max-height: 280px;"></div>
+                                                        </asp:Panel>
+
+
+
+
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="tab_1234" runat="server">
+
+
+                                                        <div class="row ">
+                                                            <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                                <h5><small class="float-right">
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+                                                                            <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Construction">Construction All Graph</a></li>
+                                                                            <li>
+
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="hypConstruction" ClientIDMode="Static">Construction Details</asp:HyperLink>
+
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </small></h5>
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <asp:Panel ID="Panel5" runat="server">
+                                                            <div id="Monthlyconschart" style="height: 280px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+                                                        <asp:Panel ID="Panel6" runat="server">
+                                                            <div id="conschart" style="width: 90%; max-height: 280px;"></div>
+                                                        </asp:Panel>
+
+
+
+
+
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="tab_1235" runat="server">
+                                                        <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                            <h5>
+
+                                                                <small class="float-right">
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+
+                                                                            <li>
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="lblSubContractor" ClientIDMode="Static">Sub-Contractor Details</asp:HyperLink>
+
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </small>
+
+                                                            </h5>
+
+                                                        </div>
+
+
+                                                        <asp:Panel ID="Panel7" runat="server">
+                                                            <div id="Monthlysubconchart" style="height: 280px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+                                                        <asp:Panel ID="Panel8" runat="server">
+                                                            <div id="subconchart" style="width: 90%; max-height: 280px;"></div>
+                                                        </asp:Panel>
+
+
+
+                                                    </div>
+
+
+                                                    <div class="tab-pane fade show" id="tab_1236" runat="server">
+                                                        <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                            <h5>
+
+                                                                <small class="float-right">
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+
+                                                                            <li>
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="HyperLink1" ClientIDMode="Static">Sub-Contractor Details</asp:HyperLink>
+
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </small>
+
+                                                            </h5>
+
+                                                        </div>
+
+
+                                        <div id="memberdt" style="width:295px;height: 220px; margin: 0 auto"></div>
+                                        <div id="attendt" style="width: 290px;height: 220px; margin: 0 auto"></div>
+
+
+
+
+                                                    </div>
+
+                                                    <div class="tab-pane fade show" id="tab_1343" runat="server">
+                                                        <div class="col-md-12 xtext-right pt-1 pb-1">
+                                                            <h5>
+
+                                                                <small class="float-right">
+                                                                    <div class="btn-group show-on-hover grMoreMenu">
+                                                                        <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                                                                            More Reports 
+                                                                        </button>
+                                                                        <ul class="dropdown-menu" role="menu">
+
+                                                                            <li>
+                                                                                <asp:HyperLink runat="server" Target="_blank" ID="hypCrmDetails" ClientIDMode="Static">CRM Details</asp:HyperLink>
+
+
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+
+                                                                </small>
+
+                                                            </h5>
+
+                                                        </div>
+
+
+                                                        <asp:Panel ID="Panel9" runat="server" Width="500" Style="margin: 0 auto;">
+                                                            <div id="crmChart" style="height: 280px; width: 450px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+                                                        <asp:Panel ID="Panel10" runat="server">
+                                                            <div id="crmChartMonthly" style="height: 280px; margin: 0 auto"></div>
+                                                        </asp:Panel>
+
+
+
+                                                    </div>
+
+
+                                                </div>
+                                                <!-- /.tab-content -->
+                                            </div>
+                                            <!-- /.card-body -->
+                                        </div>
+                                    </section>
+                                </div>
+
+
+                            </div>
+
                         </div>
-                    </div>
-                </asp:Panel>
 
-                 
+                        <div id="Div1" class="section-block mt-0 mb-0" runat="server">
+                            <!-- .section-block -->
+                            <span class="d-none hidden" runat="server" id="offlineUserCount">0</span>
+                            <div class="section-block mb-0 mt-1">
 
-                
 
-                <div class="section-block mt-0 mb-0">
-                    <!-- <h1 class="section-title">Overview</h1> -->
-                    <!-- metric row -->
-                    <div class="metric-row mt-0 mb-0">
-                        <div class="col-12">
-                            <section class="card pt-0 pb-0 mb-1 card-fluid">
-                               
-                                <div id="divgsraph" class="userGraph" runat="server">
+                                <div id="Usercompnent" class="metric-row mb-0" runat="server"></div>
+
+                                <!-- /metric row -->
+                            </div>
+                            <!-- /.section-block -->
+
+                        </div>
+
+
+                        <!--  this is for group users -->
+
+                        <div class="row" id="div_groupUSers" runat="server">
+                            <div class="col-md-12">
+                                <div id="div4" class="card card-fluid" runat="server">
                                     <!-- .card-header -->
-                                    <header class="card-header pt-0 pb-0">
+                                    <header class="card-header">
                                         <div class="d-flex align-items-center">
                                             <div class="mr-auto">
-                                                <ul class="nav userGraphNav" id="userGraph" runat="server">                                                   
+                                                <ul class="nav ">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active show" data-toggle="tab" href="#Salesg">Sales</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#Procurementg">Procurement</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#Accountsg">Accounts</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#Constructiong">Construction</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#Sub-Contractorg">Sub-Contractor</a>
+                                                    </li>
+
+
+
                                                 </ul>
                                             </div>
 
                                             <div class="dropdown">
 
-                                                <div class="form-group mb-0">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="ddlUserName">Company</label>
+                                                    <asp:DropDownList ID="ddlCompcode" runat="server" OnSelectedIndexChanged="ddlCompcode_SelectedIndexChanged" AutoPostBack="true" Width="300px" CssClass="custom-select chzn-select">
+                                                    </asp:DropDownList>
+
                                                     <label class="control-label" for="ddlUserName">Year</label>
-
-
-
-
-
-                                                    <asp:DropDownList ID="ddlyearSale" runat="server" OnSelectedIndexChanged="ddlyearSale_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                    <asp:DropDownList ID="ddlGropuYear" runat="server" OnSelectedIndexChanged="ddlGropuYear_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                         <asp:ListItem Value="2019">2019</asp:ListItem>
                                                         <asp:ListItem Value="2020">2020</asp:ListItem>
                                                         <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
 
                                                     </asp:DropDownList>
-                                                    <asp:DropDownList ID="ddlMonths" runat="server" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                        <asp:ListItem Selected Value="00">All Months</asp:ListItem>
-                                                        <asp:ListItem Value="Jan">Jan</asp:ListItem>
-                                                        <asp:ListItem Value="Feb">Feb</asp:ListItem>
-                                                        <asp:ListItem Value="Mar">Mar</asp:ListItem>
-                                                        <asp:ListItem Value="Apr">Apr</asp:ListItem>
-                                                        <asp:ListItem Value="May">May</asp:ListItem>
-                                                        <asp:ListItem Value="Jun">Jun</asp:ListItem>
-                                                        <asp:ListItem Value="Jul">Jul</asp:ListItem>
-                                                        <asp:ListItem Value="Aug">Aug</asp:ListItem>
-                                                        <asp:ListItem Value="Sep">Sep</asp:ListItem>
-                                                        <asp:ListItem Value="Oct">Oct</asp:ListItem>
-                                                        <asp:ListItem Value="Nov">Nov</asp:ListItem>
-                                                        <asp:ListItem Value="Dec">Dec</asp:ListItem>
 
-
-                                                    </asp:DropDownList>
-
-                                                    <asp:DropDownList ID="ddlGraphtype" runat="server" OnSelectedIndexChanged="ddlGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
+                                                    <asp:DropDownList ID="ddlGrpGraphtype" runat="server" OnSelectedIndexChanged="ddlGrpGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                         <asp:ListItem Value="line">Line</asp:ListItem>
                                                         <asp:ListItem Value="column" Selected="True">Column</asp:ListItem>
-                                                        <asp:ListItem Value="area" >Area</asp:ListItem>
+                                                        <asp:ListItem Value="area">Area</asp:ListItem>
+
 
                                                     </asp:DropDownList>
                                                 </div>
@@ -2109,239 +3493,63 @@
 
                                             </div>
                                         </div>
-                                        <!-- .nav-tabs -->
-
-                                        <!-- /.nav-tabs -->
                                     </header>
                                     <!-- /.card-header -->
                                     <!-- .card-body -->
-                                    <div class="card-body pt-0 pb-0">
+                                    <div class="card-body">
                                         <!-- .tab-content -->
-                                        <div id="myTabContent" class="tab-content graph-main" style="width: 100%; height: 375px;">
+                                        <div id="myTabContentg" class="tab-content graph-main" style="width: 100%; height: 375px;">
 
 
-                                            <div class="tab-pane fade show" id="tab_1231" runat="server">
+                                            <div class="tab-pane fade active show" id="Salesg">
                                                 <div class="row ">
-
-                                                    <div class="col-md-12 xtext-righ pt-1 pb-1">
-                                                        <h5>   <small class="float-right">
-
-
-                                                            <div class="btn-group show-on-hover grMoreMenu">
-                                                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                                                    More Reports 
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Sales">Sales All Graph</a></li>
-                                                                    <li> 
-                                    <asp:HyperLink runat="server"  Target="_blank" ID="Hypersales" ClientIDMode="Static">Sales Details</asp:HyperLink>
+                                                    <div class="col-md-12 text-right">
+                                                        <asp:HyperLink ID="salesView" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
+                                                    </div>
+                                                </div>
 
 
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                <div id="salchartG" style="width: 90%; max-height: 280px;"></div>
 
-                                                                   </small></h5>
+                                            </div>
+                                            <div class="tab-pane fade" id="Procurementg">
+
+                                                <div class="row ">
+                                                    <div class="col-md-12 text-right">
+                                                        <asp:HyperLink ID="Purchaselink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
+
 
                                                     </div>
                                                 </div>
-                                                <asp:Panel ID="pnlMonthlySales" runat="server">
-                                                    <div id="MonthlySales" style="height: 280px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-                                                <asp:Panel ID="pnlsalchart" runat="server">
-                                                    <div id="salchart" style="width: 90%; max-height: 280px;"></div>
-                                                </asp:Panel>
-
-
+                                                <div id="purchartG" style="width: 90%; max-height: 280px;"></div>
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1232" runat="server">
-
+                                            <div class="tab-pane fade" id="Accountsg">
                                                 <div class="row ">
+                                                    <div class="col-md-12 text-right">
+                                                        <asp:HyperLink ID="Accountsglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
 
-                                                    <div class="col-md-12 xtext-right pt-1 pb-1">
-                                                        <h5>   <small class="float-right">
-                                                                 <div class="btn-group show-on-hover grMoreMenu">
-                                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                                    More Reports 
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Purchase">Procurement All Graph</a></li>
-                                                                    <li> 
-
-                                    <asp:HyperLink runat="server"  Target="_blank" ID="HyperProcurement" ClientIDMode="Static">Procurement Details</asp:HyperLink>
-
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            </small></h5>
 
                                                     </div>
-
                                                 </div>
-                                                <asp:Panel ID="Panel1" runat="server">
-                                                    <div id="MonthlyPurchase" style="height: 280px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-                                                <asp:Panel ID="Panel2" runat="server">
-                                                    <div id="purchart" style="width: 90%; max-height: 280px;"></div>
-                                                </asp:Panel>
-
-
-
-
-
+                                                <div id="accchartG" style="width: 90%; height: 280px;"></div>
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1233" runat="server">
-                                                <div class="row ">
-                                                    <div class="col-md-12 xtext-right pt-1 pb-1">
-                                                        <h5>   <small class="float-right">
-                                                             <div class="btn-group show-on-hover grMoreMenu">
-                                                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                                                    More Reports 
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Accounts">Accounts All Graph</a></li>
-                                                                    <li> 
-
-                                    <asp:HyperLink runat="server"  Target="_blank" ID="HypAccounts" ClientIDMode="Static">Accounts Details</asp:HyperLink>
-
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            </small></h5>
-
-                                                    </div>
-
-
-                                                </div>
-
-                                                <asp:Panel ID="Panel3" runat="server">
-                                                    <div id="MonthlyAccounts" style="height: 280px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-                                                <asp:Panel ID="Panel4" runat="server">
-                                                    <div id="accchart" style="width: 90%; max-height: 280px;"></div>
-                                                </asp:Panel>
-
-
-
-
-                                            </div>
-                                            <div class="tab-pane fade show" id="tab_1234" runat="server">
+                                            <div class="tab-pane fade" id="Constructiong">
 
 
                                                 <div class="row ">
-                                                    <div class="col-md-12 xtext-right pt-1 pb-1">
-                                                        <h5>   <small class="float-right">
-                                                            <div class="btn-group show-on-hover grMoreMenu">
-                                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-                                                                    More Reports 
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                    <li><a href="F_34_Mgt/RptAllDashboard.aspx?Type=Construction">Construction All Graph</a></li>
-                                                                    <li> 
+                                                    <div class="col-md-12 text-right">
+                                                        <asp:HyperLink ID="Constructionglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
 
-                                    <asp:HyperLink runat="server"  Target="_blank" ID="hypConstruction" ClientIDMode="Static">Construction Details</asp:HyperLink>
-
-
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            
-                                                            </small></h5>
 
                                                     </div>
-
-
                                                 </div>
-                                                <asp:Panel ID="Panel5" runat="server">
-                                                    <div id="Monthlyconschart" style="height: 280px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-                                                <asp:Panel ID="Panel6" runat="server">
-                                                    <div id="conschart" style="width: 90%; max-height: 280px;"></div>
-                                                </asp:Panel>
-
-
-
-
-
+                                                <div id="conschartG" style="width: 90%; height: 280px;"></div>
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1235" runat="server">
-                                                <div class="col-md-12 xtext-right pt-1 pb-1">
-                                                    <h5> 
-
-                                                         <small class="float-right">
-                                                            <div class="btn-group show-on-hover grMoreMenu">
-                                                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                                                    More Reports 
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                  
-                                                                    <li>
-                                    <asp:HyperLink runat="server"  Target="_blank" ID="lblSubContractor" ClientIDMode="Static">Sub-Contractor Details</asp:HyperLink>
-                                    
-                                                                        
-                                                                       </li>
-                                                                </ul>
-                                                            </div>
-                                                            
-                                                            </small>
-
-                                                    </h5>
-
-                                                </div>
-
-
-                                                <asp:Panel ID="Panel7" runat="server">
-                                                    <div id="Monthlysubconchart" style="height: 280px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-                                                <asp:Panel ID="Panel8" runat="server">
-                                                    <div id="subconchart" style="width: 90%; max-height: 280px;"></div>
-                                                </asp:Panel>
+                                            <div class="tab-pane fade" id="Sub-Contractorg">
 
 
 
-                                            </div>
-
-                                            <div class="tab-pane fade show" id="tab_1343" runat="server">
-                                                <div class="col-md-12 xtext-right pt-1 pb-1">
-                                                    <h5> 
-
-                                                         <small class="float-right">
-                                                            <div class="btn-group show-on-hover grMoreMenu">
-                                                                <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                                                                    More Reports 
-                                                                </button>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                  
-                                                                    <li>
-                                    <asp:HyperLink runat="server"  Target="_blank" ID="hypCrmDetails" ClientIDMode="Static">CRM Details</asp:HyperLink>
-                                    
-                                                                        
-                                                                       </li>
-                                                                </ul>
-                                                            </div>
-                                                            
-                                                            </small>
-
-                                                    </h5>
-
-                                                </div>
-
-
-                                                <asp:Panel ID="Panel9" runat="server" Width="500" style="margin:0 auto;">
-                                                    <div id="crmChart" style="height: 280px; width:450px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-                                               <asp:Panel ID="Panel10" runat="server">
-                                                    <div id="crmChartMonthly" style="height: 280px; margin: 0 auto"></div>
-                                                </asp:Panel>
-
-
-
+                                                <div id="subconchartG" style="width: 90%; height: 280px;"></div>
                                             </div>
 
 
@@ -2350,377 +3558,230 @@
                                     </div>
                                     <!-- /.card-body -->
                                 </div>
-                            </section>
+
+                            </div>
                         </div>
 
 
-                    </div>
-
-                </div>
-
-                <div id="Div1" class="section-block mt-0 mb-0" runat="server">
-                    <!-- .section-block -->
-                    <span class="d-none hidden" runat="server" id="offlineUserCount">0</span>
-                    <div class="section-block mb-0 mt-1">
-
-
-                        <div id="Usercompnent" class="metric-row mb-0" runat="server"></div>
-
-                        <!-- /metric row -->
-                    </div>
-                    <!-- /.section-block -->
-
-                </div>
-
-
-                 <!--  this is for group users -->
-                 
-                <div class="row" id="div_groupUSers"  runat="server">
-                        <div class="col-md-12">
-                            <div id="div4" class="card card-fluid" runat="server">
-                                <!-- .card-header -->
-                                <header class="card-header">
-                                    <div class="d-flex align-items-center">
-                                        <div class="mr-auto">
-                                            <ul class="nav ">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active show" data-toggle="tab" href="#Salesg">Sales</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Procurementg">Procurement</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Accountsg">Accounts</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Constructiong">Construction</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" data-toggle="tab" href="#Sub-Contractorg">Sub-Contractor</a>
-                                                </li>
 
 
 
-                                            </ul>
-                                        </div>
-
-                                        <div class="dropdown">
-
-                                            <div class="form-group">
-                                                <label class="control-label" for="ddlUserName">Company</label>
-                                                  <asp:DropDownList ID="ddlCompcode" runat="server" OnSelectedIndexChanged="ddlCompcode_SelectedIndexChanged" AutoPostBack="true" Width="300px" CssClass="custom-select chzn-select">
-                                                  
-                                                </asp:DropDownList>
-
-                                                <label class="control-label" for="ddlUserName">Year</label>
-                                                <asp:DropDownList ID="ddlGropuYear" runat="server" OnSelectedIndexChanged="ddlGropuYear_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                    <asp:ListItem Value="2019">2019</asp:ListItem>
-                                                    <asp:ListItem Value="2020">2020</asp:ListItem>
-                                                    <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
-
-                                                </asp:DropDownList>
-
-                                                <asp:DropDownList ID="ddlGrpGraphtype" runat="server" OnSelectedIndexChanged="ddlGrpGraphtype_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                    <asp:ListItem Value="line">Line</asp:ListItem>
-                                                    <asp:ListItem Value="column" Selected="True">Column</asp:ListItem>
-                                                    <asp:ListItem Value="area" >Area</asp:ListItem>
-                                                     
-
-                                                </asp:DropDownList>
-                                            </div>
 
 
 
-                                        </div>
-                                    </div>                                   
-                                </header>
-                                <!-- /.card-header -->
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <!-- .tab-content -->
-                                    <div id="myTabContentg" class="tab-content graph-main" style="width: 100%; height: 375px;">
+                        <asp:Panel ID="pnlwkpresence" Visible="false" runat="server">
+                            <div class="section-block mb-0 mt-1">
+                                <div class="metric-row">
+                                    <div class="col-md-6 col-lg-6">
+                                        <section class="card mb-1 card-fluid p-2">
+                                            <!-- .card-header -->
+                                            <header class="card-header border-0">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="mr-auto">Today's Presence</span>
 
-
-                                        <div class="tab-pane fade active show" id="Salesg">
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="salesView" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
                                                 </div>
+                                            </header>
+                                            <!-- /.card-header -->
+                                            <!-- .table-responsive -->
+                                            <div class="table-responsive">
+                                                <!-- .table -->
+                                                <asp:GridView ID="gvRptAttn" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                                    ShowFooter="false" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvRptAttn_RowDataBound">
+                                                    <RowStyle />
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="Sl.No.">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
+                                                                    Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>' Width="30px"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderText="Company Name">
+                                                            <ItemTemplate>
+                                                                <asp:HyperLink ID="hlnkgvcomname" runat="server" BorderColor="#99CCFF"
+                                                                    BorderStyle="none" Font-Size="11px" Font-Underline="false" ForeColor="Black"
+                                                                    Style="text-align: left; background-color: Transparent" Target="_blank"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comnam"))%>'></asp:HyperLink>
+
+
+                                                            </ItemTemplate>
+                                                            <FooterTemplate>
+                                                                <asp:Label ID="lbl" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comnam"))%>'></asp:Label>
+                                                            </FooterTemplate>
+                                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Total Staff">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvttStaff" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlstap")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                            </ItemTemplate>
+
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Present">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvPresent" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "present")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Late">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvLate" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "late")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Early Leave">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvEarlyLv" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "earlyLev")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                            </ItemTemplate>
+
+                                                            <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="On Leave">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lgvOnleav" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "onlev")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                            </ItemTemplate>
+
+                                                            <FooterStyle HorizontalAlign="Right" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            <ItemStyle HorizontalAlign="right" />
+                                                        </asp:TemplateField>
+
+
+
+                                                        <asp:TemplateField HeaderText="Absent">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvAbst" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                        </asp:TemplateField>
+
+
+                                                    </Columns>
+
+                                                    <EditRowStyle />
+                                                    <AlternatingRowStyle />
+
+
+                                                </asp:GridView>
+                                                <!-- /.table -->
                                             </div>
+                                            <!-- /.table-responsive -->
+                                        </section>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6">
+                                        <div class="card card-fluid p-2 grpattn">
+
+                                            <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
+                                            <div class="d-none">
 
 
-                                            <div id="salchartG" style="width: 90%; max-height: 280px;"></div>
+                                                <asp:TextBox ID="lblpresent" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="lbllate" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="lbleleave" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="lblonleave" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="lblabs" runat="server"></asp:TextBox>
 
-                                        </div>
-                                        <div class="tab-pane fade" id="Procurementg">
-
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="Purchaselink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-
-                                                    
-                                                </div>
                                             </div>
-                                            <div id="purchartG" style="width: 90%; max-height: 280px;"></div>
                                         </div>
-                                        <div class="tab-pane fade" id="Accountsg">
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="Accountsglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-
-                                                    
-                                                </div>
-                                            </div>
-                                            <div id="accchartG" style="width: 90%; height: 280px;"></div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Constructiong">
-
-
-                                            <div class="row ">
-                                                <div class="col-md-12 text-right">
-                                                    <asp:HyperLink ID="Constructionglink" runat="server" class="pull-right"> View all <i class="fa fa-fw fa-angle-right"></i></asp:HyperLink>
-
-                                                    
-                                                </div>
-                                            </div>
-                                            <div id="conschartG" style="width: 90%; height: 280px;"></div>
-                                        </div>
-                                        <div class="tab-pane fade" id="Sub-Contractorg">
-
-
-
-                                            <div id="subconchartG" style="width: 90%; height: 280px;"></div>
-                                        </div>
-
 
                                     </div>
-                                    <!-- /.tab-content -->
+                                </div>
+                            </div>
+                        </asp:Panel>
+
+
+
+
+
+
+
+
+                        <asp:Panel ID="pnlTdayWork" runat="server" class="card-deck-xl" Visible="false">
+                            <!-- .card -->
+                            <div class="card card-fluid" id="div8">
+                                <div class="card-header">
+                                    My Work:
+                             <a href="F_34_Mgt/RptUserLogDetails.aspx" class="float-right">View all <i class="fa fa-fw fa-angle-right"></i></a>
+
+                                </div>
+                                <!-- .lits-group -->
+                                <div class="card-body" style="min-height: 230px;">
+                                    <table class="table-striped table-hover table-bordered">
+                                        <thead>
+                                            <tr class="tblh">
+                                                <th class="th3">#</th>
+                                                <th class="th2">Today's Work List</th>
+                                                <th class="th1">Count</th>
+                                        </thead>
+                                        <tbody id="userdata"></tbody>
+                                    </table>
+                                    <br />
+                                </div>
+
+                            </div>
+                            <!-- /.card -->
+                            <!-- .card -->
+                            <div class="card card-fluid" id="div9">
+                                <div class="card-header">
+                                    Today's Work
+                                </div>
+                                <!-- .card-body -->
+                                <div class="card-body" style="min-height: 230px;">
+                                    <div id="empdata" style="width: 480px;"></div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
+                            <!-- /.card -->
+                        </asp:Panel>
 
-                        </div>
+
+
+
+
+
+
                     </div>
-            
 
 
-
-               
-
-                
-
-                <asp:Panel ID="pnlwkpresence" Visible="false" runat="server">
-                    <div class="section-block mb-0 mt-1">
-                        <div class="metric-row">
-                            <div class="col-md-6 col-lg-6">
-                                <section class="card mb-1 card-fluid p-2">
-                                    <!-- .card-header -->
-                                    <header class="card-header border-0">
-                                        <div class="d-flex align-items-center">
-                                            <span class="mr-auto">Today's Presence</span>
-
-                                        </div>
-                                    </header>
-                                    <!-- /.card-header -->
-                                    <!-- .table-responsive -->
-                                    <div class="table-responsive">
-                                        <!-- .table -->
-                                        <asp:GridView ID="gvRptAttn" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                                            ShowFooter="false" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvRptAttn_RowDataBound">
-                                            <RowStyle />
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="Sl.No.">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                                            Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>' Width="30px"></asp:Label>
-                                                    </ItemTemplate>
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-
-                                                <asp:TemplateField HeaderText="Company Name">
-                                                    <ItemTemplate>
-                                                        <asp:HyperLink ID="hlnkgvcomname" runat="server" BorderColor="#99CCFF"
-                                                            BorderStyle="none" Font-Size="11px" Font-Underline="false" ForeColor="Black"
-                                                            Style="text-align: left; background-color: Transparent" Target="_blank"
-                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comnam"))%>'></asp:HyperLink>
-
-
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <asp:Label ID="lbl" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "comnam"))%>'></asp:Label>
-                                                    </FooterTemplate>
-                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Total Staff">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvttStaff" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttlstap")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                    </ItemTemplate>
-
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Present">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvPresent" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "present")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Late">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvLate" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "late")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Early Leave">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvEarlyLv" Style="text-align: right" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "earlyLev")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                    </ItemTemplate>
-
-                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="On Leave">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lgvOnleav" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "onlev")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                    </ItemTemplate>
-
-                                                    <FooterStyle HorizontalAlign="Right" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    <ItemStyle HorizontalAlign="right" />
-                                                </asp:TemplateField>
-
-
-
-                                                <asp:TemplateField HeaderText="Absent">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblgvAbst" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                </asp:TemplateField>
-
-
-                                            </Columns>
-
-                                            <EditRowStyle />
-                                            <AlternatingRowStyle />
-
-
-                                        </asp:GridView>
-                                        <!-- /.table -->
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </section>
-                            </div>
-                            <div class="col-md-6 col-lg-6">
-                                <div class="card card-fluid p-2 grpattn">
-
-                                    <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
-                                    <div class="d-none">
-
-
-                                        <asp:TextBox ID="lblpresent" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lbllate" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lbleleave" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lblonleave" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lblabs" runat="server"></asp:TextBox>
-
-                                    </div>
-                                </div>
-
+                    <!-- /.page-section -->
+                </div>
+            </div>
+            <!-- /.page-inner -->
+            <!----Draw right ---->
+            <div class="modal modal-drawer fade has-shown" id="exampleModalDrawerRight" tabindex="-1" role="dialog" aria-labelledby="exampleModalDrawerRightLabel" style="display: none;" aria-hidden="true">
+                <!-- .modal-dialog -->
+                <div class="modal-dialog modal-drawer-right" role="document">
+                    <!-- .modal-content -->
+                    <div class="modal-content">
+                        <!-- .modal-header -->
+                        <div class="modal-header modal-body-scrolled">
+                            <h5 id="exampleModalDrawerRightLabel" class="modal-title">Offline User List </h5>
+                        </div>
+                        <!-- /.modal-header -->
+                        <!-- .modal-body -->
+                        <div class="modal-body">
+                            <div class="section-block" id="OfflineUsers" runat="server">
                             </div>
                         </div>
+                        <!-- /.modal-body -->
+                        <!-- .modal-footer -->
+                        <div class="modal-footer modal-body-scrolled">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                        </div>
+                        <!-- /.modal-footer -->
                     </div>
-                </asp:Panel>
-
-
-
-
-                 
-
-
-
-                <asp:Panel ID="pnlTdayWork" runat="server" class="card-deck-xl" Visible="false">
-                    <!-- .card -->
-                    <div class="card card-fluid" id="div8">
-                        <div class="card-header">
-                            My Work:
-                             <a href="F_34_Mgt/RptUserLogDetails.aspx" class="float-right">View all <i class="fa fa-fw fa-angle-right"></i></a>
-
-                        </div>
-                        <!-- .lits-group -->
-                        <div class="card-body" style="min-height: 230px;">
-                            <table class="table-striped table-hover table-bordered">
-                                <thead>
-                                    <tr class="tblh">
-                                        <th class="th3">#</th>
-                                        <th class="th2">Today's Work List</th>
-                                        <th class="th1">Count</th>
-                                </thead>
-                                <tbody id="userdata"></tbody>
-                            </table>
-                            <br />
-                        </div>
-
-                    </div>
-                    <!-- /.card -->
-                    <!-- .card -->
-                    <div class="card card-fluid" id="div9">
-                        <div class="card-header">
-                            Today's Work
-                        </div>
-                        <!-- .card-body -->
-                        <div class="card-body" style="min-height: 230px;">
-                            <div id="empdata" style="width: 480px;"></div>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    <!-- /.card -->
-                </asp:Panel>
-
-
-
-                
-
-
-
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
             </div>
 
-          
-            <!-- /.page-section -->
-        </div>
-    </div>
-    <!-- /.page-inner -->
-    <!----Draw right ---->
-    <div class="modal modal-drawer fade has-shown" id="exampleModalDrawerRight" tabindex="-1" role="dialog" aria-labelledby="exampleModalDrawerRightLabel" style="display: none;" aria-hidden="true">
-        <!-- .modal-dialog -->
-        <div class="modal-dialog modal-drawer-right" role="document">
-            <!-- .modal-content -->
-            <div class="modal-content">
-                <!-- .modal-header -->
-                <div class="modal-header modal-body-scrolled">
-                    <h5 id="exampleModalDrawerRightLabel" class="modal-title">Offline User List </h5>
-                </div>
-                <!-- /.modal-header -->
-                <!-- .modal-body -->
-                <div class="modal-body">
-                    <div class="section-block" id="OfflineUsers" runat="server">
-                    </div>
-                </div>
-                <!-- /.modal-body -->
-                <!-- .modal-footer -->
-                <div class="modal-footer modal-body-scrolled">
-                    <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
-                </div>
-                <!-- /.modal-footer -->
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-
-           
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 

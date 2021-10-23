@@ -1214,10 +1214,7 @@
             resizeObserver.observe(elem);
 
         }
-
-
-        /// group graph
-
+          
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
@@ -2323,7 +2320,7 @@
     </div>
 
 
-    </div>
+   
 
    
 
