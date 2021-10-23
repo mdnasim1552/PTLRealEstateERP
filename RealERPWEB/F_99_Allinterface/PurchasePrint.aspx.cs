@@ -2637,6 +2637,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3101":
+                case "3353":
                 case "3355":
                     this.OrderPrintRDLC();
                     break;
