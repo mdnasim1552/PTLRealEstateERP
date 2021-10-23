@@ -315,7 +315,7 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
             string CallType = this.ClientCalltype();
-            string length = comcod == "3101" ? "length" : "";
+            string length = comcod == "3348" ? "length" : "";
 
 
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
@@ -2309,7 +2309,7 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
             string CallType = this.ClientCalltype();
-            string length = comcod == "3101" ? "length" : "";
+            string length = comcod == "3348" ? "length" : "";
             DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
 
             DataTable tblins = this.HiddenSameDate2(ds5.Tables[0]);
