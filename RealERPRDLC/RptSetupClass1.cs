@@ -848,6 +848,10 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptPaySlipPEB": Rpt1a = SetRptPaySlipPEB(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlipAssure": Rpt1a = SetRptPaySlipAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlip": Rpt1a = SetRptPaySlip(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptPaySlipEdisonReal":
+                    Rpt1a = SetRptPaySlipEdisonReal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+                    
                 //Bonus Sheet
                 case "R_81_Hrm.R_89_Pay.RptBonusBridge1": Rpt1a = SetRptBonusBridge1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusAlli": Rpt1a = SetRptBonusAlli(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1789,6 +1793,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetRptPaySlipAssure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport  SetRptPaySlipEdisonReal(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
             return Rpt1a;

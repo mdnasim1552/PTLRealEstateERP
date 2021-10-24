@@ -1778,6 +1778,7 @@ namespace RealERPWEB.F_14_Pro
             ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             //string projname=dsty.Tables[0].Rows[]
+            ViewState["purtermcon"] = null;
 
             if (hst["compsms"].ToString() == "True")
             {
@@ -4297,6 +4298,7 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void lnkAddTerms_Click(object sender, EventArgs e)
         {
+            this.bindTermsintoGrid();
 
             DataTable dt = ((DataTable)ViewState["purtermcon"]).Copy();
             //string comcod = this.GetCompCode();
@@ -4339,6 +4341,28 @@ namespace RealERPWEB.F_14_Pro
             this.gvOrderTerms.DataBind();
 
         }
+
+
+        private void bindTermsintoGrid()
+        {
+            DataTable dt = (DataTable)ViewState["purtermcon"];
+
+            for (int j = 0; j < this.gvOrderTerms.Rows.Count; j++)
+            {
+                string mTERMSID = ((Label)this.gvOrderTerms.Rows[j].FindControl("lblgvTermsID")).Text.Trim();
+                string mTERMSSUBJ = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvSubject")).Text.Trim();
+                string mTERMSDESC = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvDesc")).Text.Trim();
+                string mTERMSRMRK = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvRemarks")).Text.Trim();
+
+                dt.Rows[j]["termsid"] = mTERMSID;
+                dt.Rows[j]["termssubj"] = mTERMSSUBJ;
+                dt.Rows[j]["termsdesc"] = mTERMSDESC;
+                dt.Rows[j]["termsrmrk"] = mTERMSRMRK;
+                dt.AcceptChanges();
+            }
+            ViewState["purtermcon"] = dt;
+        }
+
 
 
         //protected void btnDelTerms_Click(object sender, GridView e)
@@ -4422,5 +4446,7 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
+
+       
     }
 }
