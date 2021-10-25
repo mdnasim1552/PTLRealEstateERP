@@ -3637,6 +3637,13 @@
       <DependentUpon>AutoCompleted.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4179,13 +4186,6 @@
     </Compile>
     <Compile Include="CompConn.aspx.designer.cs">
       <DependentUpon>CompConn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="DashboardAll.aspx.cs">
       <DependentUpon>DashboardAll.aspx</DependentUpon>
