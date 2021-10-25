@@ -43,8 +43,6 @@
             <div class="container moduleItemWrpper">
                 <div class="contentPartSmall row">
                     <fieldset class="scheduler-border fieldset_A">
-                        <legend>
-                            <asp:Label ID="Label1" runat="server" Text="Fixed Assets Transfer Information" Style="color: white; font-size: 14px; font-weight: bold;"></asp:Label></legend>
                         <div class="form-horizontal">
               
                          <asp:Panel ID="pn1" runat="server">
@@ -60,6 +58,8 @@
                                         <asp:TextBox ID="txtCurTransDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurTransDate_CalendarExtender" runat="server"
                                             Format="dd.MM.yyyy" TargetControlID="txtCurTransDate"></cc1:CalendarExtender>
+                                         <asp:Label ID="lblrefno" runat="server" CssClass=" lblName lblTxt" Text="Ref No:"></asp:Label>
+                                         <asp:TextBox ID="txtRefno" runat="server" CssClass="inputtextbox" Width="100px"></asp:TextBox>
 
 
                                     </div>
@@ -109,13 +109,13 @@
 
                                         <asp:Label ID="lblPreList" runat="server" CssClass=" lblName lblTxt" Text="Prev. Trans List:"></asp:Label>
 
-                                        <asp:TextBox ID="txtPreTrnsSearch" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                      <%--  <asp:TextBox ID="txtPreTrnsSearch" runat="server" CssClass="inputtextbox"></asp:TextBox>--%>
 
 
                                         <asp:LinkButton ID="lbtnPrevVOUList" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnPrevVOUList_Click"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
 
                                         <asp:DropDownList ID="ddlPrevISSList" runat="server"
-                                            Width="350px" CssClass="ddlPage">
+                                            Width="320px" CssClass="ddlPage">
                                         </asp:DropDownList>
 
                                         <asp:Label ID="lblmsg1" runat="server" CssClass=" btn btn-danger primaryBtn"></asp:Label>
@@ -193,7 +193,7 @@
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="From empId">
+                                         <asp:TemplateField HeaderText="From empId" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblempid" runat="server" Style="text-align: left"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
@@ -212,7 +212,7 @@
                                     </asp:TemplateField>
                                 
 
-                                         <asp:TemplateField HeaderText="To empId">
+                                         <asp:TemplateField HeaderText="To empId" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblempidto" runat="server" Style="text-align: left"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empidto")) %>'
