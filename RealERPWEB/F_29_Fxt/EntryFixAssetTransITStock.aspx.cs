@@ -193,8 +193,6 @@ namespace RealERPWEB.F_29_Fxt
         private void GetToEmployee()
         {
 
- 
-         
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             //string prjfrom = this.ddlprjlistfrom.SelectedItem.Text;
@@ -203,8 +201,7 @@ namespace RealERPWEB.F_29_Fxt
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "Get_to_Employee", deptto, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
- 
-
+                
             this.dlltoemployee.DataTextField = "empname";
             this.dlltoemployee.DataValueField = "empid";
             this.dlltoemployee.DataSource = ds1.Tables[0];
