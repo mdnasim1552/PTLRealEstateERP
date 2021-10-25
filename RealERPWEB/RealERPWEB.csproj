@@ -2420,6 +2420,7 @@
     <Content Include="F_21_MKT\RptSalesRegressionFunnel.aspx" />
     <Content Include="F_21_MKT\ToDaysAppointment.aspx" />
     <Content Include="F_21_MKT\TransferClient.aspx" />
+    <Content Include="F_21_MKT\YearlyActivitiesTarget.aspx" />
     <Content Include="F_22_Sal\AccFlow.aspx" />
     <Content Include="F_22_Sal\AccSumCustPayStatus.aspx" />
     <Content Include="F_22_Sal\AccSummaryInflow.aspx" />
@@ -3719,6 +3720,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.designer.cs">
       <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\YearlyActivitiesTarget.aspx.cs">
+      <DependentUpon>YearlyActivitiesTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\YearlyActivitiesTarget.aspx.designer.cs">
+      <DependentUpon>YearlyActivitiesTarget.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
       <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>

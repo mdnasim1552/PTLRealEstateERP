@@ -48,9 +48,7 @@
 
   
     <meta name="theme-color" content="#3063A0">
-     <!--
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
--->
+     
     <script type="application/ld+json">
       {
         "name": "Looper - Bootstrap 4 Admin Theme",
@@ -1113,7 +1111,14 @@ Close</asp:LinkButton>
         gtag('js', new Date());
         gtag('config', 'UA-116692175-1');
 
-      
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        function IsNumeric(e) {
+            var keyCode = e.which ? e.which : e.keyCode
+            var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            document.getElementById("error").style.display = ret ? "none" : "inline";
+            return ret;
+        }
    
 
         //toster
