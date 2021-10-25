@@ -41,6 +41,7 @@
             color:#ff6a00 !important;
             font-size:14px !important;           
         }
+        .grvContentarea {}
     </style>
 
 
@@ -1762,7 +1763,7 @@
                                 OnPageIndexChanging="gvSaleFunnel_PageIndexChanging"
                                 PageSize="15" AllowPaging="true"
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                OnRowDataBound="gvSaleFunnel_RowDataBound">
+                                OnRowDataBound="gvSaleFunnel_RowDataBound" Width="800px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
@@ -1778,7 +1779,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvItmCode" CssClass="desclbll" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
-                                                Width="300px" ForeColor="Black"></asp:Label>
+                                                Width="200px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -1786,16 +1787,16 @@
 
                                     <asp:TemplateField HeaderText="Client Name">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvempid" runat="server" Visible="false"
+                                            <asp:Label ID="lblgvempid" runat="server"  Width="320px"  Visible="false"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamcode")) %>'></asp:Label>
 
-                                            <asp:Label ID="lsircode" runat="server" Visible="false"
+                                            <asp:Label ID="lsircode" runat="server" Width="350px" Visible="false"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "proscod")) %>'></asp:Label>
 
 
 
 
-                                            <asp:LinkButton ID="lnkEditfollowup" ForeColor="Chocolate" ClientIDMode="Static" runat="server" OnClick="lnkEditfollowup_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clientname")) %>'> </asp:LinkButton>
+                                            <asp:LinkButton ID="lnkEditfollowup" ForeColor="Chocolate" ClientIDMode="Static" runat="server" Width="320px" OnClick="lnkEditfollowup_Click" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "clientname")) %>'> </asp:LinkButton>
 
 
 
@@ -1835,7 +1836,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvqualiflead" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "qualiflead")) %>'
-                                                Width="150px" ForeColor="Black"></asp:Label>
+                                                Width="120px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -1853,7 +1854,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvfNegotiation" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "finalnego")) %>'
-                                                Width="150px" ForeColor="Black"></asp:Label>
+                                                Width="120px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
