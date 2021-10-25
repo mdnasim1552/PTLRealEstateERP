@@ -217,8 +217,8 @@ namespace RealERPWEB.F_08_PPlan
             string wwise = (this.chkWorkwise.Checked) ? "Workwise" : "";
             string srchmaterial = "%" + this.txtsrchmaterial.Text.Trim() + "%";
             string flrcode = this.ddlfloorno.SelectedValue.ToString();
-            string groupcode = this.ddlgroupwise.SelectedValue.ToString();
-            string type = (this.Request.QueryString["Type"] == "GrpWise") ? "GrouWise" : "";
+            string groupcode = (this.ddlgroupwise.SelectedValue.ToString()=="0000"? "41%" : this.ddlgroupwise.SelectedValue.ToString()+"%");
+            string type = (this.Request.QueryString["Type"] == "GrpWise") ? "GroupWise" : "";
             string CallType = (this.checkBalance.Checked) ? "PROBALTARGETTIMEBASIS" : "PROTARGETTIMEBASIS";
             DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PROJECTTARGET", CallType, pactcode, wwise, srchmaterial, flrcode, groupcode, type, "", "", "");
             if (ds1 == null)

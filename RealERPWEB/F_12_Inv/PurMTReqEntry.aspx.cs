@@ -33,6 +33,11 @@ namespace RealERPWEB.F_12_Inv
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS TRANSFER Requisition";
+
+                if (this.Request.QueryString["Type"].ToString() == "ReqApproval")
+                {
+                    this.getMatReqInfo();
+                }
             }
             if (this.ddlprjlistfrom.Items.Count == 0)
             {
@@ -41,7 +46,6 @@ namespace RealERPWEB.F_12_Inv
                 this.GetProject();
                 this.Load_Project_From_Combo();
                 this.tableintosession();
-
             }
             this.txtCurTransDate_CalendarExtender.EndDate = System.DateTime.Today;
         }
@@ -532,7 +536,7 @@ namespace RealERPWEB.F_12_Inv
             }
             return ptype;
         }
- 
+
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
@@ -883,6 +887,17 @@ namespace RealERPWEB.F_12_Inv
         protected void ImgbtnFindMTno_Click1(object sender, EventArgs e)
         {
             this.Load_Prev_Trans_List();
+
+        }
+
+
+        private void getMatReqInfo()
+        {
+            string comcod = this.GetCompCode();
+            string reqno = this.Request.QueryString["genno"].ToString();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "GETPREVIOUSMTRREQ", reqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
 
         }
     }
