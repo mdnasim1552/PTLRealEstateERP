@@ -128,12 +128,12 @@
                     </fieldset>
                 </div>
                 <div class="table table-responsive">
-                    <asp:Panel ID="pnlgrd" runat="server" Visible="False">
+                    <asp:Panel ID="pnlgrd" runat="server" Visible="False" Height="300px">
                           <div class="form-group">
                                     <div class="col-md-10  pading5px  asitCol10">
 
                                         <asp:Label ID="Label2" runat="server" CssClass=" lblName lblTxt" Text="From Employee :"></asp:Label>                                                                         
-                                        <asp:DropDownList ID="ddlfrmemployee" runat="server" OnSelectedIndexChanged="ddlfrmemployee_SelectedIndexChanged"
+                                        <asp:DropDownList ID="ddlfrmemployee" runat="server" OnSelectedIndexChanged="ddlfrmemployee_SelectedIndexChanged" AutoPostBack="true"
                                             Width="350px" CssClass="chzn-select ddlPage">
                                         </asp:DropDownList>
 
@@ -148,7 +148,7 @@
 
                                                                             
 
-                                        <asp:DropDownList ID="dlltoemployee" runat="server"
+                                        <asp:DropDownList ID="dlltoemployee" runat="server" 
                                             Width="350px" CssClass="chzn-select ddlPage">
                                         </asp:DropDownList>
 
@@ -168,7 +168,7 @@
                         </div>
                      
                         <asp:GridView ID="grvacc" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                ShowFooter="True" Width="908px">
+                                ShowFooter="True">
 
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
@@ -192,16 +192,42 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Unit">
+
+                                         <asp:TemplateField HeaderText="From empId">
                                         <ItemTemplate>
-                                            <asp:Label ID="lgvunit" runat="server"
-                                                Style="font-size: 12px; text-align: center;"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
-                                                Width="40px"></asp:Label>
+                                            <asp:Label ID="lblempid" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
+                                                Width="60px"></asp:Label>
                                         </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="left" />
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
-                                        <ItemStyle HorizontalAlign="left" Width="40px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="From Employee">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblfrmempname" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                                Width="300px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                
+
+                                         <asp:TemplateField HeaderText="To empId">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblempidto" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empidto")) %>'
+                                                Width="60px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="To Employee">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblempname" runat="server" Style="text-align: left"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empnameto")) %>'
+                                                Width="300px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Bal. Qty">

@@ -123,6 +123,10 @@
                                             <asp:ListItem Value="150">150</asp:ListItem>
                                             <asp:ListItem Value="200">200</asp:ListItem>
                                             <asp:ListItem Value="300">300</asp:ListItem>
+                                            <asp:ListItem Value="300">600</asp:ListItem>
+                                            <asp:ListItem Value="300">900</asp:ListItem>
+                                             <asp:ListItem Value="300">1200</asp:ListItem>
+                                            <asp:ListItem Value="300">1500</asp:ListItem>
                                         </asp:DropDownList>
 
                                           <asp:CheckBox ID="chkvoudate" runat="server" TabIndex="10" Text="Voucher Date" CssClass="btn btn-primary checkBox" />

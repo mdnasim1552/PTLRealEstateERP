@@ -3289,6 +3289,9 @@
 
                                             </li>
                                             <li>
+                                                <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget" runat="server">Yearly Activities Target Set</asp:HyperLink>
+                                            </li>
+                                            <li>
                                                 <%--<asp:LinkButton ID="lnkbtnNotes" runat="server" OnClick="lnkbtnNotes_Click">Notes</asp:LinkButton>--%>
                                             </li>
                                         </ul>

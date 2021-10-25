@@ -91,9 +91,11 @@ namespace RealERPWEB.F_29_Fxt
         {
             dttemp.Columns.Add("rsircode", Type.GetType("System.String"));
             dttemp.Columns.Add("rsirdesc", Type.GetType("System.String"));
-            dttemp.Columns.Add("sirunit", Type.GetType("System.String"));
-            dttemp.Columns.Add("frmemployee", Type.GetType("System.String"));
-            dttemp.Columns.Add("toemployee", Type.GetType("System.String"));
+           // dttemp.Columns.Add("sirunit", Type.GetType("System.String"));
+            dttemp.Columns.Add("empid", Type.GetType("System.String"));
+            dttemp.Columns.Add("empname", Type.GetType("System.String"));
+            dttemp.Columns.Add("empidto", Type.GetType("System.String")); 
+            dttemp.Columns.Add("empnameto", Type.GetType("System.String"));
             dttemp.Columns.Add("qty", Type.GetType("System.Double"));
             dttemp.Columns.Add("balqty", Type.GetType("System.Double"));
             Session["sessionforgrid"] = dttemp;
@@ -125,23 +127,39 @@ namespace RealERPWEB.F_29_Fxt
 
         private void GetfrmEmployee()
         {
-            DataTable dt = (DataTable)Session["tblempname"];          
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            //string prjfrom = this.ddlprjlistfrom.SelectedItem.Text;
+            string deptfrm = this.ddltoDept.SelectedValue.ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "GETFROMEMPLIST", deptfrm, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
             this.ddlfrmemployee.DataTextField = "empname";
             this.ddlfrmemployee.DataValueField = "empid";
-            this.ddlfrmemployee.DataSource = dt;
+            this.ddlfrmemployee.DataSource = ds1.Tables[0];
             this.ddlfrmemployee.DataBind();
+
+            this.GetToEmployee();
+            //DataTable dt = (DataTable)Session["tblempname"];          
+            //this.ddlfrmemployee.DataTextField = "empname";
+            //this.ddlfrmemployee.DataValueField = "empid";
+            //this.ddlfrmemployee.DataSource = dt;
+            //this.ddlfrmemployee.DataBind();
 
         }
 
         protected void ddlprjlistfrom_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["prlist"];
-            string actcode = this.ddlfrmDept.SelectedValue.ToString();
-            DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "actcode not in ('" + actcode + "')";
+            //string actcode = this.ddlfrmDept.SelectedValue.ToString();
+            //DataView dv1 = dt.DefaultView;
+            //dv1.RowFilter = "actcode not in ('" + actcode + "')";
             this.ddltoDept.DataTextField = "actdesc";
             this.ddltoDept.DataValueField = "actcode";
-            this.ddltoDept.DataSource = dv1.ToTable();
+            this.ddltoDept.DataSource = dt;
             this.ddltoDept.DataBind();
 
         }
@@ -153,8 +171,9 @@ namespace RealERPWEB.F_29_Fxt
             string comcod = hst["comcod"].ToString();
             //string prjfrom = this.ddlprjlistfrom.SelectedItem.Text;
             string prjcode = this.ddlfrmDept.SelectedValue.ToString();
-
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "GETRSOURCELIST", prjcode, "%%", "", "", "", "", "", "", "");
+            string resource = "%%";
+            string frmemp = this.ddlfrmemployee.SelectedValue.ToString();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "GETRSOURCELIST", prjcode, resource, frmemp, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -164,11 +183,32 @@ namespace RealERPWEB.F_29_Fxt
             this.ddlreslist.DataBind();
             Session["tblresource"] = ds1.Tables[0];
             Session["tblempname"] = ds1.Tables[1];
-            this.GetfrmEmployee();
+            //this.GetfrmEmployee();
+            //this.GetToEmployee();
 
 
-           // this.GetToEmployee();
+        }
 
+
+        private void GetToEmployee()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            //string prjfrom = this.ddlprjlistfrom.SelectedItem.Text;
+            string deptto = this.ddltoDept.SelectedValue.ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "Get_to_Employee", deptto, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+                
+            this.dlltoemployee.DataTextField = "empname";
+            this.dlltoemployee.DataValueField = "empid";
+            this.dlltoemployee.DataSource = ds1.Tables[0];
+            this.dlltoemployee.DataBind();
+            //this.GetfrmEmployee();
+          // this.GetToEmployee();
+            this.Load_Project_Res_Combo();
 
         }
         protected void lnkselect_Click(object sender, EventArgs e)
@@ -187,9 +227,14 @@ namespace RealERPWEB.F_29_Fxt
             DataRow drforgrid = dt.NewRow();
             drforgrid["rsircode"] = rsircode;
             drforgrid["rsirdesc"] = this.ddlreslist.SelectedItem.Text.Trim();
-            drforgrid["sirunit"] = (((DataTable)Session["tblsir"]).Select("sircode='" + rsircode + "'"))[0]["sirunit"].ToString();
+           // drforgrid["sirunit"] = (((DataTable)Session["tblsir"]).Select("sircode='" + rsircode + "'"))[0]["sirunit"].ToString();
             drforgrid["qty"] = 0;
-            drforgrid["balqty"] = Convert.ToDouble((((DataTable)Session["tblsir"]).Select("sircode='" + rsircode + "'"))[0]["balqty"]);
+            drforgrid["balqty"] = Convert.ToDouble((((DataTable)Session["tblresource"]).Select("rsircode='" + rsircode + "'"))[0]["balqty"]);
+            drforgrid["empname"] = this.ddlfrmemployee.SelectedItem.Text.Trim().ToString().Substring(13);
+            drforgrid["empnameto"] = this.dlltoemployee.SelectedItem.Text.Trim().ToString().Substring(13); ;
+
+
+
             dt.Rows.Add(drforgrid);
             Session["sessionforgrid"] = dt;
             this.grvacc_DataBind();
@@ -202,7 +247,17 @@ namespace RealERPWEB.F_29_Fxt
             for (int i = 0; i < this.grvacc.Rows.Count; i++)
             {
                 double qty = Convert.ToDouble("0" + ((TextBox)this.grvacc.Rows[i].FindControl("txtqty")).Text.Trim());
+                
+                string frmempid = ((Label)this.grvacc.Rows[i].FindControl("lblempid")).Text.Trim();
+                string lblempidto = ((Label)this.grvacc.Rows[i].FindControl("lblempidto")).Text.Trim();
+
+                //string toempid =  (Label)this.grvacc.Rows[i].FindControl("lblempid").Trim().;
+
                 dt1.Rows[i]["qty"] = qty;
+                dt1.Rows[i]["empid"] = frmempid;
+                dt1.Rows[i]["empidto"] = lblempidto;
+
+
             }
             Session["sessionforgrid"] = dt1;
 
@@ -235,15 +290,21 @@ namespace RealERPWEB.F_29_Fxt
                 }
                 string curdate = this.GetStdDate(this.txtCurTransDate.Text.ToString().Trim());
                 string tansno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
-                string fromprj = this.ddlfrmDept.SelectedValue.ToString().Trim();
-                string toprj = this.ddltoDept.SelectedValue.ToString().Trim();
+                string frmdept = this.ddlfrmDept.SelectedValue.ToString().Trim();
+                string todept = this.ddltoDept.SelectedValue.ToString().Trim();
+                //string frmempid = this.SelectedValue.ToString().Trim();
+                //string toempid = this.ddltoDept.SelectedValue.ToString().Trim();
+
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string trsircode = dt.Rows[i]["rsircode"].ToString().Trim();
-                    string tunit = dt.Rows[i]["sirunit"].ToString().Trim();
+                    string empid = dt.Rows[i]["empid"].ToString().Trim();
+                    string empidto = dt.Rows[i]["empidto"].ToString().Trim();
+
+
                     string tqty = dt.Rows[i]["qty"].ToString().Trim();
-                    bool result = pa.UpdateTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "INSERTORUPDATEASSTTRASNSINFO", tansno, fromprj, toprj, trsircode,
-                         tqty, curdate, "", "", "", "", "", "", "", "", "");
+                    bool result = pa.UpdateTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "INSERTORUPDATE_ASSTTRASNSINFOITDEPT", tansno, frmdept, todept, trsircode,
+                         empid, empidto,tqty, curdate, "", "", "", "", "", "", "");
                 }
                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
@@ -297,7 +358,8 @@ namespace RealERPWEB.F_29_Fxt
                 }
                 this.lblddlProjectFrom.Text = this.ddlfrmDept.SelectedItem.Text.Trim();
                 this.lblddlProjectTo.Text = this.ddltoDept.SelectedItem.Text.Trim();
-                this.Load_Project_Res_Combo();
+                //this.Load_Project_Res_Combo();
+                this.GetfrmEmployee();
 
 
             }
@@ -440,6 +502,7 @@ namespace RealERPWEB.F_29_Fxt
 
         protected void ddlfrmemployee_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.Load_Project_Res_Combo();
 
         }
 

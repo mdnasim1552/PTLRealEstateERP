@@ -219,6 +219,7 @@ namespace RealEntity.C_23_CRR
       public class EClassClientLedger
      {
 
+     public string grp { get; set; }
      public string mrno { get; set; }
      public string pactcode { get; set; }
      public string usircode{get;set;}

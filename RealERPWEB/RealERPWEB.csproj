@@ -2420,6 +2420,7 @@
     <Content Include="F_21_MKT\RptSalesRegressionFunnel.aspx" />
     <Content Include="F_21_MKT\ToDaysAppointment.aspx" />
     <Content Include="F_21_MKT\TransferClient.aspx" />
+    <Content Include="F_21_MKT\YearlyActivitiesTarget.aspx" />
     <Content Include="F_22_Sal\AccFlow.aspx" />
     <Content Include="F_22_Sal\AccSumCustPayStatus.aspx" />
     <Content Include="F_22_Sal\AccSummaryInflow.aspx" />
@@ -3636,6 +3637,13 @@
       <DependentUpon>AutoCompleted.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3719,6 +3727,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.designer.cs">
       <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\YearlyActivitiesTarget.aspx.cs">
+      <DependentUpon>YearlyActivitiesTarget.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\YearlyActivitiesTarget.aspx.designer.cs">
+      <DependentUpon>YearlyActivitiesTarget.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
       <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
@@ -4171,13 +4186,6 @@
     </Compile>
     <Compile Include="CompConn.aspx.designer.cs">
       <DependentUpon>CompConn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Dashboard.aspx.designer.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="DashboardAll.aspx.cs">
       <DependentUpon>DashboardAll.aspx</DependentUpon>

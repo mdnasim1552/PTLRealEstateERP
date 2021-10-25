@@ -2637,6 +2637,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3101":
+                case "3353":
                 case "3355":
                     this.OrderPrintRDLC();
                     break;
@@ -4008,6 +4009,20 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
 
                         break;
+
+
+                    // manama
+                    case "3101": // ASIT
+                    case "3353":
+                        terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "* " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+                        break;
+
+
                     default: //Default
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4909,7 +4924,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBill01";
                     break;
 
-
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill02";
                     break;
@@ -4975,7 +4990,7 @@ namespace RealERPWEB.F_99_Allinterface
                     PrintReq = "PrintBillCredence";
                     break;
 
-                case "3101"://ASIT
+                //case "3101"://ASIT
                 case "3353":
                     PrintReq = "PrintBillManama";
                     break;
@@ -5067,6 +5082,7 @@ namespace RealERPWEB.F_99_Allinterface
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
 
+
             // For  Image withdrawn 
 
             string mBillNo = this.Request.QueryString["billno"].ToString();
@@ -5097,21 +5113,26 @@ namespace RealERPWEB.F_99_Allinterface
             string billrefno = (dtd.Rows[0]["cbillref"].ToString().Length > 0) ? "Bill Ref. No: " + dtd.Rows[0]["cbillref"].ToString() : "";
 
             string pactcode = ds1.Tables[1].Rows[0]["pactcode"].ToString();
+            string secdep = Convert.ToDouble(dtd.Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); ");
+            string lblSecurity = "Security Deposit " + "(" + secdep + " %)";
 
             if (pCompanyBill == "PrintBill02")
             {
                 //comcod == "3330" && pactcode == "160100010025"
+                //lblSecurity
                 if (pactcode == "160100010025")
                 {
                     //RptConBillBridgeWithoutLogo
                     rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillBridgeWithoutLogo", lst, null, null);
                     rptbill.SetParameters(new ReportParameter("txtBilType", dtd.Rows[0]["billtype"].ToString()));
+                    rptbill.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
                 }
                 else
                 {
                     rptbill = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptConBillBridge", lst, null, null);
                     rptbill.EnableExternalImages = true;
                     rptbill.SetParameters(new ReportParameter("txtBilType", dtd.Rows[0]["billtype"].ToString()));
+                    rptbill.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
                 }
 
 

@@ -987,7 +987,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
             </TablixRowHierarchy>
             <DataSetName>DataSetLedger</DataSetName>
             <Top>0.06125in</Top>
-            <Left>0.0375in</Left>
+            <Left>0.0125in</Left>
             <Height>0.63541in</Height>
             <Width>7.91866in</Width>
             <Style>
@@ -1000,10 +1000,10 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
         <Height>0.97791in</Height>
         <Style />
       </Body>
-      <Width>7.95616in</Width>
+      <Width>7.93116in</Width>
       <Page>
         <PageHeader>
-          <Height>1.14945in</Height>
+          <Height>1.46195in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1028,9 +1028,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtCompanyName</rd:DefaultName>
-              <Left>1.04514in</Left>
+              <Left>0.92014in</Left>
               <Height>0.3125in</Height>
-              <Width>6.51042in</Width>
+              <Width>6.86042in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1052,20 +1052,21 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                       <Value>=Parameters!txtHeadertitle.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
+                        <FontSize>11pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Left</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>prjname</rd:DefaultName>
-              <Top>0.58625in</Top>
+              <Top>0.53125in</Top>
+              <Left>0.92014in</Left>
               <Height>0.25625in</Height>
-              <Width>4.16055in</Width>
+              <Width>6.86042in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1098,9 +1099,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox9</rd:DefaultName>
-              <Top>0.83in</Top>
-              <Left>5.46193in</Left>
-              <Height>0.2in</Height>
+              <Top>1.07653in</Top>
+              <Left>5.43763in</Left>
+              <Height>0.19444in</Height>
               <Width>2.4339in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -1123,6 +1124,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                       <Value>=Parameters!prjname.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1131,9 +1133,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>prjname1</rd:DefaultName>
-              <Top>0.92862in</Top>
-              <Left>0.02084in</Left>
-              <Height>0.20833in</Height>
+              <Top>1.07653in</Top>
+              <Left>0.025in</Left>
+              <Height>0.19444in</Height>
               <Width>5.39874in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -1161,15 +1163,15 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Center</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox12</rd:DefaultName>
-              <Top>0.58417in</Top>
-              <Left>4.16055in</Left>
+              <Top>0.7875in</Top>
+              <Left>0.91458in</Left>
               <Height>0.22917in</Height>
-              <Width>3.71597in</Width>
+              <Width>6.86042in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1190,7 +1192,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                     <TextRun>
                       <Value>=Parameters!comadd.Value</Value>
                       <Style>
-                        <FontFamily>times New Roman</FontFamily>
+                        <FontFamily>cambria</FontFamily>
                         <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
@@ -1202,9 +1204,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraphs>
               <rd:DefaultName>Textbox13</rd:DefaultName>
               <Top>0.3125in</Top>
-              <Left>1.04514in</Left>
+              <Left>0.92014in</Left>
               <Height>0.21875in</Height>
-              <Width>6.51042in</Width>
+              <Width>6.86042in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>

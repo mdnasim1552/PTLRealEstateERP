@@ -1677,7 +1677,7 @@ namespace RealERPWEB.F_34_Mgt
 
             /////log end
 
-            string nARRATION = txtReqNarr.Text;
+            string nARRATION = txtReqNarr.Text.Trim();
 
             string paytype = this.rblpaytype.SelectedValue.ToString();
             string payto = this.txtPayto.Text.Trim().ToString();

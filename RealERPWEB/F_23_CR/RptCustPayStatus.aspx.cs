@@ -134,7 +134,7 @@ namespace RealERPWEB.F_23_CR
                         case "3310": //RCU
 
                         case "3349":
-                        case "3101":
+                        //case "3101":
                             this.chkConsolidate.Checked = false;
                             this.chkConsolidate.Visible = false;
                             break;
@@ -315,8 +315,10 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
             string CallType = this.ClientCalltype();
+            string length = comcod == "3348" ? "length" : "";
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
             //DataSet ds2= purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", "INSTALLMANTWITHMRR", pactcode, custid, Date, "", "", "", "", "", "");
 
             if (ds2 == null)
@@ -797,6 +799,9 @@ namespace RealERPWEB.F_23_CR
         private void FooterCalculation()
         {
             DataTable dt = (DataTable)Session["tblCustPayment"];
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "grp like 'AA' ";
+            dt = dv1.ToTable();
             ((Label)this.gvCustLedger.FooterRow.FindControl("lblFscamt")).Text =
               Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ?
               0.00 : dt.Compute("Sum(schamt)", ""))).ToString("#,##0;(#,##0); ");
@@ -2304,9 +2309,28 @@ namespace RealERPWEB.F_23_CR
             string Date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
 
             string CallType = this.ClientCalltype();
-            DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            string length = comcod == "3348" ? "length" : "";
+            DataSet ds5 = purData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, length, "", "", "", "", "");
 
             DataTable tblins = this.HiddenSameDate2(ds5.Tables[0]);
+
+            DataTable tbl6 = ds5.Tables[0];
+
+            DataView dv1 = tbl6.DefaultView;
+            dv1.RowFilter = "grp like 'AA' ";
+            tbl6 = dv1.ToTable();
+
+
+            double Schamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(schamt)", "")) ? 0.00 : tbl6.Compute("Sum(schamt)", "")));
+            double rcvamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(paidamt)", "")) ? 0.00 : tbl6.Compute("Sum(paidamt)", "")));
+            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));
+
+            
+
+
+            double balamt = Schamt - rcvamt;
+           
+
 
             LocalReport Rpt1 = new LocalReport();
             var lst1 = tblins.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassClientLedger>();
@@ -2356,6 +2380,11 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("Handoverdate", (Convert.ToDateTime(ds5.Tables[1].Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy") == "01-Jan-1900") ? "" : Convert.ToDateTime(ds5.Tables[1].Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy")));
 
             Rpt1.SetParameters(new ReportParameter("TotalBuildingAmt", tobuildingamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtSchamt", Schamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtrcvamt", rcvamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtbalamt", balamt.ToString("#,##0;(#,##0); ")));
+            Rpt1.SetParameters(new ReportParameter("txtbaldues", baldues.ToString("#,##0;(#,##0); ")));
+
 
 
             //Rpt1.SetParameters(new ReportParameter("txttoSalevalue", tsalevalue.ToString("#,##0;(#,##0); ")));
@@ -2739,13 +2768,73 @@ namespace RealERPWEB.F_23_CR
                 cell05.HorizontalAlign = HorizontalAlign.Center;
                 cell05.ColumnSpan = 2;
 
+                //TableCell cell06 = new TableCell();
+                //cell06.Text = "";
+                //cell06.HorizontalAlign = HorizontalAlign.Center;
+                //cell06.ColumnSpan = 1;
+
                 gvrow.Cells.Add(cell01);
                 gvrow.Cells.Add(cell02);
                 gvrow.Cells.Add(cell03);
                 gvrow.Cells.Add(cell04);
                 gvrow.Cells.Add(cell05);
+                //gvrow.Cells.Add(cell06);
+
                 gvCustLedger.Controls[0].Controls.AddAt(0, gvrow);
             }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                Label lblParticlr = (Label)e.Row.FindControl("lblParticlr");
+                Label lblDueAmnt = (Label)e.Row.FindControl("lblDueAmnt");
+                Label lblRcvAmnt = (Label)e.Row.FindControl("lblRcvAmnt");
+                Label lblUnClr = (Label)e.Row.FindControl("lblUnClr");
+
+                
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grp")).ToString();
+
+
+                if (code == "")
+                {
+                    return;
+                }
+
+                if (code == "BB" || code == "CC")
+                {
+
+                    lblParticlr.Font.Bold = true;
+                    lblDueAmnt.Font.Bold = true;
+                    lblRcvAmnt.Font.Bold = true;
+                    lblUnClr.Font.Bold = true;
+
+                    
+                    lblParticlr.Font.Size = 11;
+                    lblDueAmnt.Font.Size = 11;
+                    lblRcvAmnt.Font.Size = 11;
+                    lblUnClr.Font.Size = 11;
+
+
+
+                    // e.Row.BackColor = System.Drawing.Color.Orange;
+                    //e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor='green'");
+                    lblParticlr.Attributes["style"] = "font-weight:bold; color:#FF0066;";
+                    lblDueAmnt.Attributes["style"] = "font-weight:bold; color:#FF0066;";
+                    lblRcvAmnt.Attributes["style"] = "font-weight:bold; color:#FF0066;";
+                    lblUnClr.Attributes["style"] = "font-weight:bold; color:#FF0066;";
+
+
+
+                    lblParticlr.Style.Add("text-align", "right");
+                    //lgvNetPayment.Style.Add("text-align", "right");
+
+                }
+            }
+
+            
+
+
+
 
         }
 

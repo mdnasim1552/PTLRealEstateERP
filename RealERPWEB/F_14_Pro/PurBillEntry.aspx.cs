@@ -184,7 +184,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                 // case "3336":
-                //case "3101":
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill04";
 
@@ -203,7 +203,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
 
-                case "3101":
+                //case "3101":
                 case "3353":// manama
                     PrintReq = "PrintBill07";
 
@@ -796,6 +796,9 @@ namespace RealERPWEB.F_14_Pro
             string mrfno = dtmrref.Rows[0]["mrfno"].ToString();
             string mrfno1 = dtmrref.Rows[0]["mrfno"].ToString();
 
+            string securitydep = this.txtpercentage.Text.ToString();
+            string lblSecurity = "Less Security Deposite "+"( "+ securitydep + " )"; 
+
 
             for (int i = 1; i < dtmrref.Rows.Count; i++)
             {
@@ -877,6 +880,7 @@ namespace RealERPWEB.F_14_Pro
                 rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
                 rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
                 rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
                 // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
                 Session["Report1"] = rpt;
@@ -918,6 +922,7 @@ namespace RealERPWEB.F_14_Pro
                 string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
 
                 //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+                
 
                 var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
                 LocalReport rpt = new LocalReport();
@@ -951,6 +956,9 @@ namespace RealERPWEB.F_14_Pro
                 rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
                 rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
                 rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
+
+
                 // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
                 Session["Report1"] = rpt;
