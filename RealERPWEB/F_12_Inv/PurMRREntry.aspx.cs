@@ -1138,6 +1138,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3315":
                 case "3316":
                 case "3317":
+                case "3339": // THL
+
                     // case "3101":
 
 

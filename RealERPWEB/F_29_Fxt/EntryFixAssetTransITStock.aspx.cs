@@ -56,7 +56,7 @@ namespace RealERPWEB.F_29_Fxt
 
             string mTrnsDAT = this.GetStdDate(this.txtCurTransDate.Text.Trim());
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "LASTTRANSFETNO", mTrnsDAT,
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "LASTTRANSFETNODEPT", mTrnsDAT,
                    "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
@@ -230,8 +230,11 @@ namespace RealERPWEB.F_29_Fxt
            // drforgrid["sirunit"] = (((DataTable)Session["tblsir"]).Select("sircode='" + rsircode + "'"))[0]["sirunit"].ToString();
             drforgrid["qty"] = 0;
             drforgrid["balqty"] = Convert.ToDouble((((DataTable)Session["tblresource"]).Select("rsircode='" + rsircode + "'"))[0]["balqty"]);
-            drforgrid["empname"] = this.ddlfrmemployee.SelectedItem.Text.Trim().ToString().Substring(13);
-            drforgrid["empnameto"] = this.dlltoemployee.SelectedItem.Text.Trim().ToString().Substring(13); ;
+            drforgrid["empname"] = this.ddlfrmemployee.SelectedItem.Text.Trim().ToString();
+            drforgrid["empnameto"] = this.dlltoemployee.SelectedItem.Text.Trim().ToString();
+            drforgrid["empid"] = this.ddlfrmemployee.SelectedValue.ToString();
+            drforgrid["empidto"] = this.dlltoemployee.SelectedValue.ToString();
+
 
 
 
@@ -288,23 +291,43 @@ namespace RealERPWEB.F_29_Fxt
                 {
                     this.GetPreTrnNm();
                 }
+
+
                 string curdate = this.GetStdDate(this.txtCurTransDate.Text.ToString().Trim());
                 string tansno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
                 string frmdept = this.ddlfrmDept.SelectedValue.ToString().Trim();
                 string todept = this.ddltoDept.SelectedValue.ToString().Trim();
-                //string frmempid = this.SelectedValue.ToString().Trim();
-                //string toempid = this.ddltoDept.SelectedValue.ToString().Trim();
+                string refno = this.txtRefno.Text.Trim();
+;                //string frmempid = this.SelectedValue.ToString().Trim();
+                 //string toempid = this.ddltoDept.SelectedValue.ToString().Trim();
+
+                if (refno.Length == 0)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "refno No Should Not Be Empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                    return;
+                }
+
+                DataRow [] dr1 = dt.Select("balqty<qty");
+
+                if (dr1.Length > 0)
+                {
+
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Balance";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string trsircode = dt.Rows[i]["rsircode"].ToString().Trim();
                     string empid = dt.Rows[i]["empid"].ToString().Trim();
                     string empidto = dt.Rows[i]["empidto"].ToString().Trim();
-
-
                     string tqty = dt.Rows[i]["qty"].ToString().Trim();
                     bool result = pa.UpdateTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "INSERTORUPDATE_ASSTTRASNSINFOITDEPT", tansno, frmdept, todept, trsircode,
-                         empid, empidto,tqty, curdate, "", "", "", "", "", "", "");
+                         empid, empidto,tqty, curdate, refno, "", "", "", "", "", "");
                 }
                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
@@ -331,7 +354,7 @@ namespace RealERPWEB.F_29_Fxt
                 this.ddlfrmDept.Visible = true;
                 this.ddltoDept.Visible = false;
                 this.ddlPrevISSList.Visible = false;
-                this.txtPreTrnsSearch.Visible = false;
+                //this.txtPreTrnsSearch.Visible = false;
                 this.lblPreList.Visible = false;
                 this.lbtnPrevVOUList.Visible = false;
                 if (this.ddlPrevISSList.Items.Count > 0)
@@ -341,7 +364,7 @@ namespace RealERPWEB.F_29_Fxt
                     Hashtable hst = (Hashtable)Session["tblLogin"];
                     string comcod = hst["comcod"].ToString();
 
-                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "PrevTransferInfo", trnno, "", "", "", "", "", "", "", "");
+                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "Get_FXTASSTDEPTNOWISE", trnno, "", "", "", "", "", "", "", "");
                     DataTable dt1 = ds.Tables[0];
                     this.ddlfrmDept.SelectedValue = ds.Tables[1].Rows[0]["tfpactcode"].ToString();
                     this.ddlprjlistfrom_SelectedIndexChanged(null, null);
@@ -375,7 +398,8 @@ namespace RealERPWEB.F_29_Fxt
                 this.ddltoDept.Visible = true;
                 this.ddlPrevISSList.Visible = true;
                 this.lbtnPrevVOUList.Visible = true;
-                this.txtPreTrnsSearch.Visible = true;
+                // this.txtPreTrnsSearch.Visible = true;
+                this.txtRefno.Text = "";
                 this.lblPreList.Visible = true;
                 this.grvacc.DataSource = null;
                 this.txtCurTransDate.Enabled = true;
@@ -430,7 +454,7 @@ namespace RealERPWEB.F_29_Fxt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string curdate = this.GetStdDate(this.txtCurTransDate.Text.ToString().Trim());
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "GetPrevTrnsList", curdate, "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "Get_Prev_TrnsListDept", curdate, "", "", "", "", "", "", "", "");
             Session["prevtranslist"] = ds1.Tables[0];
             if (ds1 == null)
                 return;
