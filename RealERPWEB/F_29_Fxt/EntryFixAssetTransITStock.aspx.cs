@@ -28,7 +28,7 @@ namespace RealERPWEB.F_29_Fxt
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
             //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-            ((Label)this.Master.FindControl("lblTitle")).Text = "Fixed Asset Transfer";
+            ((Label)this.Master.FindControl("lblTitle")).Text = "Fixed Asset Transfer (IT Dept.)";
 
             if (this.ddlfrmDept.Items.Count == 0)
             {
@@ -131,7 +131,7 @@ namespace RealERPWEB.F_29_Fxt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             //string prjfrom = this.ddlprjlistfrom.SelectedItem.Text;
-            string deptfrm = this.ddltoDept.SelectedValue.ToString();
+            string deptfrm = this.ddlfrmDept.SelectedValue.ToString();
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "GETFROMEMPLIST", deptfrm, "", "", "", "", "", "", "", "");
             if (ds1 == null)

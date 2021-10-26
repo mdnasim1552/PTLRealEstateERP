@@ -5014,7 +5014,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Salary Sheet</Value>
+                      <Value>=Parameters!txtHeader2.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>12pt</FontSize>
@@ -5352,6 +5352,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="txtHeader2">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -5392,6 +5398,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>txtheader</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>txtHeader2</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
