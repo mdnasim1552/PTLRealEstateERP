@@ -128,7 +128,7 @@
                     </fieldset>
                 </div>
                 <div class="table table-responsive">
-                    <asp:Panel ID="pnlgrd" runat="server" Visible="False" Height="300px">
+                    <asp:Panel ID="pnlgrd" runat="server" Visible="False" Height="500px">
                           <div class="form-group">
                                     <div class="col-md-10  pading5px  asitCol10">
 
@@ -235,7 +235,7 @@
                                             <asp:Label ID="lgvbalqty" runat="server"
                                                 Style="font-size: 12px; text-align: center;"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="40px"></asp:Label>
+                                                Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="left" />
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
