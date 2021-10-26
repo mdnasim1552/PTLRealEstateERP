@@ -3256,6 +3256,7 @@ namespace RealERPWEB.F_21_MKT
             string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string comcod = this.GetComeCode();
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
             string proscod = dt.Rows[RowIndex]["sircode"].ToString();
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "DELETEPROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
@@ -3271,7 +3272,9 @@ namespace RealERPWEB.F_21_MKT
             }
 
 
-            dt.Rows[RowIndex].Delete();
+            //dt.Rows[RowIndex].Delete();
+            dt.Rows[rowno].Delete();
+
             DataView dv = dt.DefaultView;
             Session.Remove("tblsummData");
             Session["tblsummData"] = dv.ToTable();
