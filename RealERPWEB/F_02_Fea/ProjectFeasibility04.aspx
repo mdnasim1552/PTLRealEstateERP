@@ -90,6 +90,7 @@
                                     <asp:ListItem>Land Owner&#39;s Benefit</asp:ListItem>
                                     <asp:ListItem>Reports</asp:ListItem>
                                     <asp:ListItem>Image</asp:ListItem>
+                                    <asp:ListItem>Bank Interest</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
 
