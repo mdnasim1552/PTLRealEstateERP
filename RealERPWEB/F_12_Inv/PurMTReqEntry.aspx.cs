@@ -1029,13 +1029,14 @@ namespace RealERPWEB.F_12_Inv
 
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblreqaprv"];
+            DataTable dt2 = (DataTable)ViewState["tblreqprj"];
 
             string mtreqno = this.Request.QueryString["genno"].ToString();
-            string fromprj = this.lblddlProjectFrom.Text.ToString();
-            string toprj = this.lblddlProjectTo.ToString();
+            string fromprj = dt2.Rows[0]["TFPACTCODE"].ToString();
+            string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
 
 
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", "PURMTREQB", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL",mtreqno, fromprj, toprj,APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
