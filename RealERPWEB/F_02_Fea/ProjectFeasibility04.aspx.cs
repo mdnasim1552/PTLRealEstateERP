@@ -128,7 +128,7 @@ namespace RealERPWEB.F_02_Fea
                 this.lblProjectdesc.Visible = true;
                 this.PanelSelName.Visible = true;
                 this.ProjectCDate();
-                this.RadioVisibility();
+                //this.RadioVisibility();
                 return;
             }
             this.lbtnOk.Text = "Ok";
@@ -151,7 +151,7 @@ namespace RealERPWEB.F_02_Fea
             this.ListViewEmpAll.DataBind();
             this.ImagePanel.Visible = false;
 
-            this.rbtnList1.Items.Add("Image");
+           // this.rbtnList1.Items.Add("Image");
 
 
 
@@ -557,6 +557,19 @@ namespace RealERPWEB.F_02_Fea
 
                 case 4:
                     this.ShowReport();
+                    this.chkAllRes.Visible = false;
+                    this.MultiView1.ActiveViewIndex = rindex;
+                    break;
+
+
+                case 5:
+                    this.ShowReport();
+                    this.chkAllRes.Visible = false;
+                    this.MultiView1.ActiveViewIndex = rindex;
+                    break;
+
+                case 6: // Bank Interest
+                    this.ShowBankInterest();
                     this.chkAllRes.Visible = false;
                     this.MultiView1.ActiveViewIndex = rindex;
                     break;
@@ -1325,6 +1338,29 @@ namespace RealERPWEB.F_02_Fea
             Session["tblfeaprj"] = ds2.Tables[0];
             this.Data_Bind();
         }
+
+        private void ShowBankInterest()
+        {
+            //sircode like '0[89]%'  or  sircode like '1[0-9]%'
+
+            Session.Remove("tblfeaprj");
+            string comcod = this.GetComCode();
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string Code =  "infcod like '5[2-5]%'" ;
+          
+            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "GETPROSALES", pactcode, Code, "", "", "", "", "", "", "");
+            if (ds2 == null)
+            {
+
+                this.gvFeaPrj.DataSource = null;
+                this.gvFeaPrj.DataBind();
+                return;
+            }
+            Session["tblfeaprj"] = ds2.Tables[0];
+            this.Data_Bind();
+        }
+
+        
         private string GetCompProOnSaleorCost()
         {
 
@@ -2025,6 +2061,22 @@ namespace RealERPWEB.F_02_Fea
 
             }
         }
+
+        protected void gvBankIn_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void lbtnTotalCostbi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnfUpdateCostbi_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void FileUploadComplete(object sender, AsyncFileUploadEventArgs e)
         {
             string comcod = this.GetComCode();
