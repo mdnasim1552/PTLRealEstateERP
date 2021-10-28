@@ -1346,14 +1346,14 @@ namespace RealERPWEB.F_02_Fea
             Session.Remove("tblfeaprj");
             string comcod = this.GetComCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string Code =  "infcod like '5[2-5]%'" ;
+           // string Code =  "5[2-5]%'" ;
           
-            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "GETPROSALES", pactcode, Code, "", "", "", "", "", "", "");
+            DataSet ds2 = feaData.GetTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "SHOWBANKINTEREST", pactcode, "", "", "", "", "", "", "", "");
             if (ds2 == null)
             {
 
-                this.gvFeaPrj.DataSource = null;
-                this.gvFeaPrj.DataBind();
+                this.gvBankIn.DataSource = null;
+                this.gvBankIn.DataBind();
                 return;
             }
             Session["tblfeaprj"] = ds2.Tables[0];
@@ -1482,6 +1482,31 @@ namespace RealERPWEB.F_02_Fea
                     this.gvFeaPrjRep.DataBind();
                     break;
 
+                case 6:
+                    this.gvBankIn.DataSource = dt;
+                    this.gvBankIn.DataBind();
+
+
+                    string infcod, ninfcod;
+                    for (int k = 0; k < dt.Rows.Count - 1; k++)
+                    {
+
+                        infcod = dt.Rows[k]["infcod"].ToString();
+                        ninfcod = dt.Rows[k + 1]["infcod"].ToString();
+
+                        if (infcod == ninfcod)
+                        {
+                            ((LinkButton)this.gvBankIn.Rows[k].FindControl("lnkbtnAdd")).Style["display"] = "none";
+
+                        }
+                    }
+
+
+
+                    this.FooterCal();
+                    break;
+
+
 
 
             }
@@ -1532,6 +1557,13 @@ namespace RealERPWEB.F_02_Fea
                     ((Label)this.gvFeaLOwner.FooterRow.FindControl("lgvFTsizel")).Text = Stotalsize.ToString("#,##0;(#,##0); ");
                     ((Label)this.gvFeaLOwner.FooterRow.FindControl("lgvFsalratel")).Text = ((Stotalsize == 0) ? "" : (stotalAmt / Stotalsize).ToString("#,##0;(#,##0); "));
                     ((Label)this.gvFeaLOwner.FooterRow.FindControl("lgvFAmtl")).Text = stotalAmt.ToString("#,##0;(#,##0); ");
+                    break;
+
+
+                case 6:
+
+                    ((Label)this.gvBankIn.FooterRow.FindControl("lgvFAmtbi")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(intamt)", "")) ?
+                    0.00 : dt.Compute("Sum(intamt)", ""))).ToString("#,##0; -#,##0; ");
                     break;
             }
 
@@ -2062,19 +2094,225 @@ namespace RealERPWEB.F_02_Fea
             }
         }
 
-        protected void gvBankIn_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void btnDelbint_Click(object sender, EventArgs e)
         {
 
+            string comcod = this.GetComCode();
+            DataTable dt = (DataTable)Session["tblfeaprj"];
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();          
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string Itemcode = dt.Rows[RowIndex]["infcod"].ToString();// ((Label)this.gvBankIn.Rows[RowIndex].FindControl("lblgvItmCodbi")).Text.Trim();
+            string seq = dt.Rows[RowIndex]["seq"].ToString();
+
+            bool result = feaData.UpdateTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "DELETEITEBANKINT", PactCode, Itemcode, seq, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!result)
+                return;
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = "infcod not in('" + Itemcode + "')";
+            Session.Remove("tblfeaprj");
+            Session["tblfeaprj"] = dv.ToTable();
+            this.Data_Bind();
         }
 
         protected void lbtnTotalCostbi_Click(object sender, EventArgs e)
         {
+
+            DataTable dt = (DataTable)Session["tblfeaprj"];
+            int i = 0;
+            double twlvemonth = 12, intamt=0.00;
+            foreach (GridViewRow gv1  in gvBankIn.Rows)
+            {
+
+               
+                double prinamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvprincipalbi")).Text.Trim());
+                double irate = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvintratebi")).Text.Trim());
+                double imonth = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvimontbi")).Text.Trim());
+                double gintamt = Convert.ToDouble("0" + ((TextBox)gv1.FindControl("txtgvAmtbi")).Text.Trim());
+                intamt = prinamt == 0 ? 0.00 :Math.Round(((irate * 0.01 * imonth * prinamt) / twlvemonth),0);
+                intamt = gintamt > 0 ? gintamt : intamt;
+                dt.Rows[i]["prinamt"] = prinamt;
+                dt.Rows[i]["irate"] = irate;
+                dt.Rows[i]["imonth"] = imonth;
+                dt.Rows[i]["intamt"] = intamt;
+                i++;
+
+
+            }
+            Session["tblfeaprj"] = dt;
+            this.Data_Bind();
 
         }
 
         protected void lbtnfUpdateCostbi_Click(object sender, EventArgs e)
         {
 
+
+            string comcod = this.GetComCode();
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            DataTable dt = ((DataTable)Session["tblfeaprj"]).Copy();
+            dt.Columns.Remove("infdesc");
+            dt.Columns.Remove("unit");
+            DataView dv = dt.DefaultView;
+            dv.RowFilter=("intamt>0");
+
+            
+            DataSet ds1 = new DataSet("ds1");
+            ds1.Merge(dv.ToTable());
+            ds1.Tables[0].TableName = "tbl1";
+            string xml = ds1.GetXml();          
+            bool result = feaData.UpdateXmlTransInfo(comcod, "SP_ENTRY_FEA_PROFEASIBILITY", "INORUPLNINTEREST", ds1, null, null, PactCode, "", "", "", "", "", "", "", "", "");
+
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = feaData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+
+
+            }
+
+             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+
+
+
+
+
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Update CodeBook";
+                string eventdesc2 = this.rbtnList1.SelectedItem.ToString();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
+
+        protected void lnkbtnAdd_Click(object sender, EventArgs e)
+        {
+
+
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            DataTable dt = (DataTable)Session["tblfeaprj"];
+            string infcod = dt.Rows[Rowindex]["infcod"].ToString();
+            int seq;
+            DataRow dr1 = dt.Rows[Rowindex];//.Select("infcod='" + infcod + "'");
+            //if (dr1.Length > 0)
+            //{
+
+                seq =Convert.ToInt32(dr1["seq"].ToString());
+                seq++;
+              //  dr1["seq"] = seq;
+                dt.ImportRow(dr1);
+            int rcount = dt.Rows.Count-1;
+            dt.Rows[rcount]["seq"] = seq;
+               // dt.ImportRow(dr1);
+
+            //  }
+            DataView dv = dt.DefaultView;
+            dv.Sort = "infcod, seq";
+            dt = dv.ToTable();
+
+            Session["tblfeaprj"] = dt;
+            this.Data_Bind();
+
+            //DataTable dt = (DataTable)ViewState["tblpayment"];
+            //GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            //int RowIndex = gvr.RowIndex;
+
+
+            //string slnum = dt.Rows[RowIndex]["slnum"].ToString();
+            //string mslnum = dt.Rows[RowIndex]["mslnum"].ToString();
+            //DataRow[] dr2 = dt.Select("slnum='" + slnum + "'");
+            //this.lblmslnum.Text = mslnum;
+
+            //this.lblslnum.Text = slnum;
+            //slnum = this.IncrmentSlNum();
+            //this.lblslnum.Text = slnum;
+
+            //DataRow dr1 = dt.NewRow();
+            //dr1["mslnum"] = mslnum;
+            //dr1["mslnum1"] = mslnum;
+            //dr1["slnum"] = slnum;
+            //dr1["rcvdate"] = this.txtReceiveDate.Text;
+            //dr1["billnature"] = "";
+            //dr1["billndesc"] = "";
+
+            //dr1["actcode"] = dr2[0]["actcode"].ToString();
+            //dr1["actdesc"] = dr2[0]["actdesc"].ToString();
+            //dr1["rescode"] = dr2[0]["rescode"].ToString();
+            //dr1["resdesc"] = dr2[0]["resdesc"].ToString();
+            //dr1["paycode"] = "";
+            //dr1["paydesc"] = "";
+            //dr1["refno"] = dr2[0]["refno"].ToString(); ;
+            //dr1["billno"] = dr2[0]["billno"].ToString();
+            //dr1["billno1"] = dr2[0]["billno1"].ToString();
+            //dr1["apppaydate"] = Convert.ToDateTime(dr2[0]["apppaydate"].ToString()).ToString("dd-MMM-yyyy");
+            //dr1["valdate"] = Convert.ToDateTime(dr2[0]["valdate"].ToString()).ToString("dd-MMM-yyyy");
+            //// dr1["chqdate"] = Convert.ToDateTime(dr2[0]["chqdate"].ToString()).ToString("dd-MMM-yyyy");
+            //dr1["billamt"] = dr2[0]["billamt"].ToString();
+            //dr1["billamt1"] = 0.00;
+            //dr1["amt"] = dr2[0]["amt"].ToString();
+            //dr1["advamt"] = 0.00;
+            //dr1["netamt"] = dr2[0]["netamt"].ToString();
+            //dt.Rows.Add(dr1);
+
+
+            //string billno1 = dr2[0]["billno"].ToString();
+
+
+            //for (int i = RowIndex + 1; i < dt.Rows.Count - 1; i++)
+            //{
+
+            //    mslnum = (billno1 == dt.Rows[i]["billno"].ToString()) ? this.lblmslnum.Text : this.IncrmentMSlNum();
+            //    this.lblmslnum.Text = mslnum;
+            //    slnum = (billno1 == dt.Rows[i]["billno"].ToString()) ? this.lblslnum.Text : this.IncrmentSlNum();
+            //    this.lblslnum.Text = slnum;
+            //    dt.Rows[i]["mslnum"] = this.lblmslnum.Text;//ASTUtility.Right(("000000000" + (Convert.ToDouble(slnum) + i)), 9);
+            //    dt.Rows[i]["slnum"] = this.lblslnum.Text;//ASTUtility.Right(("000000000" + (Convert.ToDouble(slnum) + i)), 9);
+            //    billno1 = dt.Rows[i]["billno"].ToString();
+            //}
+
+
+            //DataView dv = dt.DefaultView;
+            //dv.Sort = "slnum";
+
+            //ViewState["tblpayment"] = this.HiddenSameData(dv.ToTable());
+            //this.Data_Bind();
+
+
+
+
+        }
+
+        protected void gvBankIn_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+
+
+                string infcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "infcod")).ToString().Trim();
+
+                if (infcod.Length == 0)
+                    return;
+
+                if (infcod == "520100402001")
+                {
+                    e.Row.FindControl("lnkbtnAdd").Visible = true;
+
+                }
+                else
+                {
+
+                    e.Row.FindControl("lnkbtnAdd").Visible = false;
+
+                }
+            }
         }
 
         protected void FileUploadComplete(object sender, AsyncFileUploadEventArgs e)
