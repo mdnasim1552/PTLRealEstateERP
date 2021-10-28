@@ -1629,6 +1629,42 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        //Same Cheque No
+        private string SameChqValue( string refno1)
+        {
+
+            
+            string sameChqval = "";
+            switch (refno1)
+            {
+                case "BT":
+                    sameChqval = "BT";
+                  
+                    break;
+
+                case "RTGS":
+                    sameChqval = "RTGS";
+                    break;
+                case "BFTEN":
+                    sameChqval = "BFTEN";
+                    break;
+                case "N/A":
+                    sameChqval = "N/A";
+                    break;
+                case "ONLINEDEPOSIT":
+                    sameChqval = "ONLINEDEPOSIT";
+                    break;
+                
+                default:
+                    sameChqval = "";
+                    break;
+            }
+
+
+            return sameChqval;
+
+
+        }
 
 
         private void lnkbtnSave_Click(object sender, EventArgs e)
@@ -1903,6 +1939,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
+            string sameChqval = this.SameChqValue(refnum.ToString().Trim().ToUpper());
 
             string edit = (this.txtCurrntlast6.Enabled ? "" : "EDIT");
             string TgvDrAmt = ((TextBox)this.dgv1.FooterRow.FindControl("txtTgvDrAmt")).Text;
@@ -1929,7 +1966,9 @@ namespace RealERPWEB.F_17_Acc
                             ;
                         else
                         {
-                            if (refnum.ToString().Trim().ToUpper() != "BT")
+                            if (refnum.ToString().Trim().ToUpper() != sameChqval)
+                            //if (refnum.ToString().Trim().ToUpper() != "BT")
+
                             {
                                 DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "CHEQUENOCHECK", refnum, "", "", "", "", "", "", "", "");
                                 if (ds1.Tables[0].Rows.Count > 0)
