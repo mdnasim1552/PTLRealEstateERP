@@ -987,24 +987,6 @@ namespace RealERPWEB.F_12_Inv
             this.Data_Bind_Aprv();
         }
 
-
-        private void SaveApproval()
-        {
-
-            DataTable dt1 = (DataTable)ViewState["tblreqaprv"];
-            for (int i = 0; i < this.grvacc.Rows.Count; i++)
-            {
-                double tqty = Convert.ToDouble("0" + ((Label)this.gvreqaprv.Rows[i].FindControl("lblgvtqty")).Text.Trim());
-                double rat = Convert.ToDouble("0" + ((Label)this.gvreqaprv.Rows[i].FindControl("lblgvrate")).Text.Trim());
-                int rowindex = (this.gvreqaprv.PageSize * this.gvreqaprv.PageIndex) + i;
-                dt1.Rows[rowindex]["tqty"] = tqty;
-                double damt = tqty * rat;
-                dt1.Rows[i]["rate"] = rat;
-                dt1.Rows[i]["amt"] = damt;
-            }
-            ViewState["tblreqaprv"] = dt1;
-        }
-
         protected void lnkbtnApproved_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1018,17 +1000,17 @@ namespace RealERPWEB.F_12_Inv
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-            //this.SaveApproval();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
+            this.SaveApproval();
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
             string APRVBYID = hst["usrid"].ToString();
             string APRVDAT = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string APRVTRMID = hst["compname"].ToString();
             string APRVSESON = hst["session"].ToString();
-           
+
 
             string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblreqaprv"];
+            DataTable dt1 = (DataTable)ViewState["tblreqaprv"];
             DataTable dt2 = (DataTable)ViewState["tblreqprj"];
 
             string mtreqno = this.Request.QueryString["genno"].ToString();
@@ -1036,7 +1018,28 @@ namespace RealERPWEB.F_12_Inv
             string toprj = dt2.Rows[0]["TTPACTCODE"].ToString();
 
 
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL",mtreqno, fromprj, toprj,APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
+            bool result;
+
+            for (int i = 0; i < dt1.Rows.Count; i++)
+            {
+
+                string mRSIRCODE = dt1.Rows[i]["rsircode"].ToString();
+                string mSPCFCOD = dt1.Rows[i]["spcfcod"].ToString();
+                double reqty = Convert.ToDouble(dt1.Rows[i]["tqty"]);
+                double reqamt = Convert.ToDouble(dt1.Rows[i]["amt"]);
+                result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "UPDATEMTRREQAPROVAL", mtreqno, mRSIRCODE, mSPCFCOD, reqty.ToString(), reqamt.ToString(), "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+                }
+
+            }
+
+
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_05", "MTREQAPPROVAL", mtreqno, fromprj, toprj, APRVBYID, APRVDAT, APRVSESON, APRVTRMID, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1048,7 +1051,43 @@ namespace RealERPWEB.F_12_Inv
            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
-           
+
+        }
+
+        protected void lnkaptotal_Click(object sender, EventArgs e)
+        {
+            this.SaveApproval();
+            this.Data_Bind_Aprv();
+        }
+
+        private void SaveApproval()
+        {
+            DataTable tbl1 = (DataTable)ViewState["tblreqaprv"];
+            int index;
+            for (int j = 0; j < this.gvreqaprv.Rows.Count; j++)
+            {
+
+                index = (this.gvreqaprv.PageSize) * (this.gvreqaprv.PageIndex) + j;
+                double reqqty = Convert.ToDouble(tbl1.Rows[index]["tqty"]);
+                double aprvqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvreqaprv.Rows[j].FindControl("txtgvtqty")).Text.Trim()));
+                double rat = Convert.ToDouble("0" + ((Label)this.gvreqaprv.Rows[j].FindControl("lblgvrate")).Text.Trim());
+
+                if (aprvqty > reqqty)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Approved Qty Can't Large Requisition Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);",
+                        true);
+                    return;
+                }
+
+                tbl1.Rows[index]["tqty"] = aprvqty;
+                double damt = aprvqty * rat;
+                tbl1.Rows[j]["rate"] = rat;
+                tbl1.Rows[j]["amt"] = damt;
+            }
+            ViewState["tblreqaprv"] = tbl1;
+
+
         }
     }
 }

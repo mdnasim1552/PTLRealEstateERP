@@ -382,6 +382,11 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
                                                 Width="50px"></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:LinkButton ID="lnkaptotal" runat="server" Font-Bold="True"
+                                                CssClass="btn btn-primary primaryBtn" OnClick="lnkaptotal_Click">Total</asp:LinkButton>
+
+                                        </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Center" />
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
 
@@ -407,13 +412,13 @@
 
                                     <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvtqty" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="txtgvtqty" runat="server" BackColor="Transparent"
                                                 Style="text-align: right; font-size: 11px;"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="70px"></asp:Label>
+                                                Width="70px" BorderStyle="Solid" BorderColor="#660033" BorderWidth="1px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lnkbtnApproved" runat="server" Font-Bold="True"
+                                            <asp:LinkButton ID="lnkbtnApproved" runat="server" Font-Bold="True" 
                                                 CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnApproved_Click">Approved</asp:LinkButton>
 
                                         </FooterTemplate>
