@@ -381,7 +381,7 @@
         .notifsectino .list-group-item-body {
             font-size: 10px !important;
         }
-       /* .checkbox label {
+        /* .checkbox label {
         margin-right:2px;
         
         }*/
@@ -574,11 +574,11 @@
 
                 //Company
 
-                
+
                 var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + numbercom;
                 $(ddlcompany).change(function () {
                     var company = $(this).val();
-                   // console.log(company);
+                    // console.log(company);
                     funCompanyProject(comcod, company);
 
 
@@ -608,7 +608,7 @@
                 var sircode = $('#<%=this.lblnewprospect.ClientID%>').val();
                 var arrgcodl = $('#<%=this.gvPersonalInfo.ClientID %>').find('[id$="lblgvItmCodeper"]');
                 var arraygval = $('#<%=this.gvPersonalInfo.ClientID %>').find('input:text[id$="txtgvVal"]');
-               // console.log(arraygval);
+                // console.log(arraygval);
                 // var txtmobile=arraygval[1];  
                 var txtmobile, txtaltmobile1, txtaltmobile2;
 
@@ -925,9 +925,9 @@
         function CreateTable(data) {
 
             try {
-               // console.log(data);
+                // console.log(data);
                 var adata = JSON.parse(data);
-               // console.log(adata);
+                // console.log(adata);
                 var row = '';
                 var i = 1;
                 $.each(adata,
@@ -1240,10 +1240,8 @@
         }
 
 
-        function funCompanyProject(comcod, company)
-        {
-            try
-            {
+        function funCompanyProject(comcod, company) {
+            try {
                 $.ajax({
                     type: "POST",
                     url: "CrmClientInfo.aspx/GetCompanyProject",
@@ -1270,8 +1268,8 @@
 
                         }
 
-                      
-                        
+
+
                         //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
 
                         var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + numberrl;
@@ -1301,8 +1299,7 @@
 
             }
 
-            catch (e)
-            {
+            catch (e) {
 
                 alert(e.message);
 
@@ -1311,7 +1308,7 @@
 
 
         }
-        
+
 
 
         function funLeadReason(comcod, leadquality) {
@@ -1650,17 +1647,14 @@
 
                         case "810100101007": //Company
                             console.log(data.gdesc1);
-                           
+
                             var ddlcompany = '#ContentPlaceHolder1_gvInfo_ddlCompany_' + number;
 
-                            $(ddlcompany+' > option').each(function (index,item)
-
-                            { 
-                                if ($(item).val() == data.gdesc1)
-                                {
+                            $(ddlcompany + ' > option').each(function (index, item) {
+                                if ($(item).val() == data.gdesc1) {
                                     $(item).attr("selected", true);
                                 }
-                                   
+
 
                             });
 
@@ -1670,7 +1664,7 @@
 
 
                         case "810100101003": //Project
-                          
+
                             var ddlProject = '#ContentPlaceHolder1_gvInfo_ddlProject_' + number;
 
 
@@ -1683,15 +1677,15 @@
 
                             });
 
-                           
-                            
-                          
+
+
+
                             break;
 
 
 
 
-                        
+
 
 
 
@@ -2155,7 +2149,7 @@
                                                                 </div>
 
 
-                                                                
+
                                                                 <div class="form-group mt-2">
 
                                                                     <asp:DropDownList ID="ddlvalpros" runat="server" Width="300px" CssClass="custom-select chzn-select">
@@ -3010,6 +3004,17 @@
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
+                                                <%--24--%>
+
+                                                <asp:TemplateField HeaderText="Retreive" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkbtnRetreive" runat="server" Font-Bold="True" Height="12px" ToolTip="Retreive Prospect" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkbtnRetreive_Click"><span><i class="fa fa-undo" Style="text-align: center"></i></span></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="center" />
+                                                </asp:TemplateField>
+
+
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
                                             <EditRowStyle />
@@ -3470,13 +3475,13 @@
 
                                             </li>
 
-                                             <li>
+                                            <li>
                                                 <asp:HyperLink ID="hlnkalldiscusssion" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientDiscuDetails" runat="server">All Discussion</asp:HyperLink>
 
                                             </li>
 
 
-                                           
+
                                             <li>
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
 
@@ -3487,7 +3492,7 @@
                                             <li>
                                                 <asp:HyperLink ID="hlnkTeamMember" Target="_blank" NavigateUrl="~/F_21_Mkt/MktTeamMember" runat="server">Team Member</asp:HyperLink>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
@@ -4062,7 +4067,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox"  >
+                                                                runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4074,12 +4079,12 @@
                                                         </asp:Panel>
 
 
-                                                         <%-- <asp:Panel ID="Pnlcompany" runat="server">--%>
-                                                            <asp:DropDownList ID="ddlCompany" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
-                                                                TabIndex="12">
-                                                            </asp:DropDownList>
-                                                              <%--</asp:Panel>--%>
-                                                       
+                                                        <%-- <asp:Panel ID="Pnlcompany" runat="server">--%>
+                                                        <asp:DropDownList ID="ddlCompany" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
+                                                            TabIndex="12">
+                                                        </asp:DropDownList>
+                                                        <%--</asp:Panel>--%>
+
 
                                                         <asp:Panel ID="PnlProject" runat="server">
                                                             <asp:DropDownList ID="ddlProject" runat="server" CssClass="inputTxt form-control" Style="width: 300px !important;"
@@ -4088,7 +4093,6 @@
                                                         </asp:Panel>
                                                         <asp:Panel ID="PnlUnit" runat="server">
                                                             <asp:DropDownList ID="ddlUnit" runat="server" CssClass="chzn-select inputTxt form-control" Style="width: 300px !important;"
-                                                                
                                                                 TabIndex="12">
                                                             </asp:DropDownList>
                                                         </asp:Panel>
@@ -4106,7 +4110,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox" >
+                                                                runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
 
