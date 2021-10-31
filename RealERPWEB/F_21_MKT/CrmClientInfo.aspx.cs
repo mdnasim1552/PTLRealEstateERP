@@ -3217,6 +3217,8 @@ namespace RealERPWEB.F_21_MKT
             //    return;
             this.Data_Bind();
 
+            this.gvSummary.Columns[24].Visible = false;
+
             DataView dv = ds3.Tables[0].Copy().DefaultView;
             dv.RowFilter = ("active='False'");
             this.lbtPending.Text = "Pending:" + ((dv.ToTable().Rows.Count == 0) ? "" : dv.ToTable().Rows.Count.ToString());
@@ -4293,6 +4295,15 @@ namespace RealERPWEB.F_21_MKT
             ////if (ds1.Tables[0].Rows.Count != 0)
             ////{
             Session["tblsummData"] = ds1.Tables[0];
+            if(rtype== "databank")
+            {
+                this.gvSummary.Columns[24].Visible = true;
+
+            }
+            else
+            {
+                this.gvSummary.Columns[24].Visible = false;
+            }
             this.Data_Bind();
 
             // }
@@ -5965,7 +5976,51 @@ namespace RealERPWEB.F_21_MKT
             this.Data_Bind();
         }
 
-       
+        protected void lnkbtnRetreive_Click(object sender, EventArgs e)
+        {
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+
+            DataTable dt = (DataTable)Session["tblsummData"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string comcod = this.GetComeCode();
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
+            string proscod = dt.Rows[RowIndex]["sircode"].ToString();
+            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "RETREIVEPROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            if (!result)
+            {
+
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Retreive Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+
+            }
+
+
+            //dt.Rows[RowIndex].Delete();
+            dt.Rows[rowno].Delete();
+
+            DataView dv = dt.DefaultView;
+            Session.Remove("tblsummData");
+            Session["tblsummData"] = dv.ToTable();
+            this.Data_Bind();
+
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Retreived";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        }
     }
 
 
