@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using RealEntity;
 using System.Collections;
 using RealEntity.C_34_Mgt;
+using System.Data;
+using RealERPLIB;
 
 namespace RealERPRDLC
 {
@@ -3963,8 +3965,41 @@ namespace RealERPRDLC
 
         private static LocalReport SetRptProjFeasibilityManama(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.EClassProFeasibility>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.EClassProjectFeasibility>)RptDataSet2));
+
+            DataTable dtm = new DataTable();
+            dtm = ASITUtility03.ListToDataTable((List<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>)RptDataSet);
+            DataView dv = new DataView();
+            dv = dtm.Copy().DefaultView;
+            dv.RowFilter = ("grp like 'A%'");
+            DataTable dt = dv.ToTable();
+
+            DataView dv1 = dtm.Copy().DefaultView;
+            dv1.RowFilter = ("grp like 'B%'");
+            DataTable dt1 = dv1.ToTable();
+
+            DataView dv2 = dtm.Copy().DefaultView;
+            dv2.RowFilter = ("grp like 'C%'");
+            DataTable dt2 = dv2.ToTable();
+
+            DataView dv3 = dtm.Copy().DefaultView;
+            dv3.RowFilter = ("grp like 'D%'");
+            DataTable dt3 = dv3.ToTable();
+
+            DataView dv4 = dtm.Copy().DefaultView;
+            dv4.RowFilter = ("grp like 'E%'");
+            DataTable dt4 = dv4.ToTable();
+
+            var list1 = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list2 = dt1.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list3 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list4 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list5 = dt4.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", list1));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", list2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", list3));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet4", list4));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet5", list5));
             return Rpt1a;
         }
 
