@@ -1161,6 +1161,16 @@ namespace RealERPWEB.F_02_Fea
                         break;
 
 
+                    case "14005": //Saleable Area(Common)                
+                        double conarea2 = dt.Select("prgcod='02011'").Length == 0 ? 0.00 : Convert.ToDouble("0" + dt.Select("prgcod='02011'")[0]["total"]);
+                        double comarea = dt.Select("prgcod='14005'").Length == 0 ? 0.00 : Convert.ToDouble("0" + dt.Select("prgcod='14005'")[0]["prgdesc1"]);
+                      //  dt.Rows[i]["prgdesc1"] = totallarea;
+                        dt.Rows[i]["ratio"] = ratio;
+                        dt.Rows[i]["buildarea"] = 0;
+                        dt.Rows[i]["total"] = Math.Round(((comarea * conarea2*0.01)+ conarea2),0) ;
+                        break;
+
+
 
                     default:
                         dt.Rows[i]["prgdesc1"] = Gvalue;
