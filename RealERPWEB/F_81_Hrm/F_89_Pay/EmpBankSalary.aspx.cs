@@ -774,10 +774,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = this.GetMonthName();
 
-            string banksl = dt.Rows[0]["banksl"].ToString();
+            string motheraccno = dt.Rows[0]["banksl"].ToString();
             string addr = dt.Rows[0]["bankaddr"].ToString();
             string bankname = dt.Rows[0]["bankname"].ToString();
-            string bankAccNo = dt.Rows[0]["acno"].ToString();
+           // string bankAccNo = dt.Rows[0]["acno"].ToString();
+            //string bankAccNo = this.ddlBankName.SelectedValue.ToString();
             string totNoTrans = dt1.Rows[0]["ttrnsecno"].ToString();
            
             string[] add = addr.Split(',');
@@ -816,7 +817,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("totalAmt", sumamt));
             Rpt1.SetParameters(new ReportParameter("InWrd", inwords));
             Rpt1.SetParameters(new ReportParameter("totNoTrans", totNoTrans));
-            Rpt1.SetParameters(new ReportParameter("bankAccNo", bankAccNo));
+            Rpt1.SetParameters(new ReportParameter("bankAccNo", motheraccno));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
