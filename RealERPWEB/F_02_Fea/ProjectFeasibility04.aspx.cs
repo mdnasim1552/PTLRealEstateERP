@@ -206,6 +206,7 @@ namespace RealERPWEB.F_02_Fea
                     break;
 
                 case "3353":
+                case "3101":
                     this.PrintFeasibilityManama();
                     break;
 
@@ -1178,6 +1179,7 @@ namespace RealERPWEB.F_02_Fea
             switch(comcod)
             {
                 case "3353":
+                case "3101":
                     callType = "RPTPROJECTFEASIBILITIESMANAMA";
                     break;
 
@@ -1202,7 +1204,7 @@ namespace RealERPWEB.F_02_Fea
                 this.gvFeaPrjRep.DataBind();
                 return;
             }
-            if(comcod=="3353")
+            if(comcod=="3353" || comcod=="3101")
             {
                 Session["tblfeaprj"] = ds2.Tables[0];                
             }
@@ -1282,7 +1284,7 @@ namespace RealERPWEB.F_02_Fea
                     break;
 
                 case 4:
-                    if(comcod=="3353")
+                    if(comcod=="3353" || comcod=="3101")
                     {
                         this.gvFeaPrjRepManama.Visible = true;
                         this.gvFeaPrjRepManama.DataSource = dt;
