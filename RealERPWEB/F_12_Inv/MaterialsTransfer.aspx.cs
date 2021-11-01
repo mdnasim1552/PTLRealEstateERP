@@ -431,9 +431,12 @@ namespace RealERPWEB.F_12_Inv
                 case "Entry":
                     switch (comcod)
                     {
+                        // todo for audit part
                         case "3101":
                         case "3338":
-
+                        case "1205":
+                        case "3351":
+                        case "3352":
 
                             break;
 
@@ -756,7 +759,7 @@ namespace RealERPWEB.F_12_Inv
                 string gatepno = dr["getpno"].ToString().Trim();
 
                 string appxml = dr["audit"].ToString();
-                string audit = GetReqApproval(appxml);
+                string audit = GetReqApproval(appxml); // todo check audit or not
 
 
 
