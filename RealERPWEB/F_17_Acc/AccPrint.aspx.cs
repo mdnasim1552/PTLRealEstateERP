@@ -597,7 +597,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint6";
                     break;
 
-
+                case "3101":
                 case "3330":
                     vouprint = "VocherPrintBridge";
                     break;
@@ -623,7 +623,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintLei";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     vouprint = "VoucherPrintManama";
                     break;

@@ -153,7 +153,26 @@ namespace RealEntity.C_02_Fea
 
         }
 
-
+        [Serializable]
+        public class ProjectFeasibility
+        {
+            public string comcod { get; set; }
+            public string rowid { get; set; }
+            public string grp { get; set; }
+            public string prgcod { get; set; }
+            public string prgdesc { get; set; }
+            public string prgdesc1 { get; set; }
+            public string unit { get; set; }
+            public double buildarea { get; set; }
+            public double ratio { get; set; }
+            public double total { get; set; }
+            public double irate { get; set; }
+            public double itwlemont { get; set; }
+            public double imonth { get; set; }
+            public double intamt { get; set; }
+            public string percnt { get; set; }
+            public ProjectFeasibility() { }
+        }
 
 
     }

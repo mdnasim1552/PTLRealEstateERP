@@ -93,7 +93,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqAprv.Visible = false;
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background: #430000; display:block; ";
-                    this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "3":
                     this.pnlstatus.Visible = false;
@@ -103,7 +103,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlaccount.Visible = false;
                     this.pnlReqAprv.Visible = false;
 
-                    this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[2].Attributes["style"] = "background: #430000; display:block; ";
                     break;
                 case "4":
@@ -113,7 +113,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlaudit.Visible = true;
                     this.pnlaccount.Visible = false;
                     this.pnlReqAprv.Visible = false;
-                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
                 case "5":
@@ -124,7 +124,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlaccount.Visible = true;
                     this.pnlReqAprv.Visible = false;
 
-                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[3].Attributes["style"] = "background: #430000; display:block; ";
                     break;
 
@@ -161,13 +161,31 @@ namespace RealERPWEB.F_99_Allinterface
 
                 return;
             }
+            string gatePass = "";
+            string approval= "";
+            switch (comcod)
+            {
 
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                    gatePass = "Trans/Gatepass";
+                    approval = "Received By";
+                    break;
+
+                // todo for skip mrtreq approval part
+                default:
+                    gatePass = "Gate Pass";
+                    approval = "Approval";
+                    break;
+            }
 
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Gate Pass</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Approval</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" +gatePass+ "</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>"+ approval + "</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
 
@@ -295,8 +313,24 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             }
+            string callType = "";
+            switch (comcod)
+            {
+                // todo for  mrtreq approval part 
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                    callType = "DELETEMTRREQAPRV";
+                    break;
 
-            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "UPDATEMATTRANS", adno, "", "", "", "", "", "", "", "", "", "");
+                // todo for skip mrtreq approval part
+                default:
+                    callType = "UPDATEMATTRANS";
+                    break;
+            }
+
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", callType, adno, "", "", "", "", "", "", "", "", "", "");
             if (!result1)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
@@ -305,6 +339,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
         protected void lnkremoveap_Click(object sender, EventArgs e)
         {
@@ -336,6 +371,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
 
 
@@ -468,7 +504,34 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkremoverap_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
+            int Rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
+
+            string mtreqno = ((Label)this.gvreqaprv.Rows[Rowindex].FindControl("lbltrnnorap")).Text.Trim();
+            DataSet ds1 = feaData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "PrevMTRInfo", mtreqno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            bool result = log.XmlDataInsertReq(mtreqno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+
+            }
+
+            bool result1 = feaData.UpdateTransInfo(comcod, "[dbo].[SP_REPORT_TRANSFER_INTERFACE]", "UPDATEMATTRANS", mtreqno, "", "", "", "", "", "", "", "", "", "");
+            if (!result1)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Remove failed!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
     }
 }

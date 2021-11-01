@@ -889,7 +889,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             }
                             break;
 
-
+                        case "3354": // edison real
                         case "3347": // Peb Steel
 
                             //if (Gvalue.Length != 15)
