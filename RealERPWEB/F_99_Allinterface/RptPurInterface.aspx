@@ -623,7 +623,7 @@
                         $(".tbMenuWrp table tr td:nth-child(8)").hide()
                         $(".tbMenuWrp table tr td:nth-child(9)").hide();
                         //$(".tbMenuWrp table tr td:nth-child(12)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(17)").hide();
                         break;
 
@@ -1943,10 +1943,10 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrint" runat="server"  ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:HyperLink ID="HyInprPrintCS" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintCS" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
 
