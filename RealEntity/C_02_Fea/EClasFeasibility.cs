@@ -170,6 +170,9 @@ namespace RealEntity.C_02_Fea
             public double itwlemont { get; set; }
             public double imonth { get; set; }
             public double intamt { get; set; }
+            public double conspersft { get; set; }
+            public double salablepersft { get; set; }
+            public double brkpointpersft { get; set; }
             public string percnt { get; set; }
             public ProjectFeasibility() { }
         }

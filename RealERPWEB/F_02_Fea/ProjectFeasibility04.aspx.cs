@@ -1951,9 +1951,6 @@ namespace RealERPWEB.F_02_Fea
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-
-
                 string infcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "infcod")).ToString().Trim();
 
                 if (infcod.Length == 0)
@@ -1968,6 +1965,28 @@ namespace RealERPWEB.F_02_Fea
                 {
 
                     e.Row.FindControl("lnkbtnAdd").Visible = false;
+
+                }
+            }
+        }
+
+        protected void gvFeaPrjRepManama_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string prgcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prgcod")).ToString().Trim();
+
+                if (prgcod.Length == 0)
+                    return;
+
+                if (ASTUtility.Right(prgcod, 3) == "AAA" || ASTUtility.Right(prgcod, 3) == "BAA")
+                {
+                    e.Row.Attributes["style"] = " background-color:#e62284; color:white; font-weight:bold; font-size:12px;";
+
+                }
+                else
+                {
 
                 }
             }
