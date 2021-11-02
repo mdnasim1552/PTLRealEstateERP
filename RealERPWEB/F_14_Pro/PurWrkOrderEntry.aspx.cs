@@ -65,7 +65,7 @@ namespace RealERPWEB.F_14_Pro
                     switch (comcod)
                     {
                         case "3335": //Edison
-                        case "3101": // ptl
+                        //case "3101": // ptl
                         case "3355": // greenwood
 
                             this.GetOrderRange();
@@ -1272,7 +1272,7 @@ namespace RealERPWEB.F_14_Pro
 
                     switch (comcod)
                     {
-                        case "3101": // ptl
+                        //case "3101": // ptl
                         case "3355": // grenwood
                         case "3335":
                             string sappusrid = "";
