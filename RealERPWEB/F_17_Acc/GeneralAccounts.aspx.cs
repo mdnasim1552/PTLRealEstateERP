@@ -1511,18 +1511,20 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        private void columnVisibility()
+        private void columnVisibility()  //vistiyt 314014
         {
             string comcod = this.GetCompCode();
             switch (comcod)
             {
                 //case "1103":
                 case "3101":
+               // case "3348":
+
                 case "3353":
                     this.dgv1.Columns[14].Visible = true;
                     break;
                 default:
-                    this.dgv1.Columns[14].Visible = false;
+                    this.dgv1.Columns[14].Visible = true;
                     break;
             }
           
