@@ -785,7 +785,7 @@
                         </asp:GridView>
 
                         <asp:GridView ID="gvFeaPrjRepManama" runat="server" AutoGenerateColumns="False" Visible="false"
-                            ShowFooter="True" Width="785px" CssClass=" table-striped table-hover table-bordered grvContentarea">
+                            ShowFooter="True" Width="785px" OnRowDataBound="gvFeaPrjRepManama_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -809,7 +809,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Unit">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgUnitnumRep" runat="server" AutoCompleteType="Disabled"
+                                        <asp:Label ID="lgvUnitM" runat="server" AutoCompleteType="Disabled"
                                             BackColor="Transparent" BorderStyle="None"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>'
                                             Width="50px"></asp:Label>
@@ -819,7 +819,7 @@
 
                                 <asp:TemplateField HeaderText="Build Area">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgSizerep" runat="server" BackColor="Transparent"
+                                        <asp:Label ID="lgvBuildArea" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "buildarea")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="70px"></asp:Label>
@@ -830,7 +830,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Ratio">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgnumrep" runat="server" BackColor="Transparent"
+                                        <asp:Label ID="lgvRatioM" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ratio")).ToString("#,##0.00;(#,##0.00); ")+" "+ Convert.ToString(DataBinder.Eval(Container.DataItem, "percnt")) %>'
                                             Width="70px"></asp:Label>
@@ -842,7 +842,7 @@
 
                                 <asp:TemplateField HeaderText="Total Amt/Qty">
                                     <ItemTemplate>
-                                        <asp:Label ID="lgtsizecRep" runat="server" Font-Size="11px"
+                                        <asp:Label ID="lgvTotalM" runat="server" Font-Size="11px"
                                             Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "total")).ToString("#,##0;(#,##0); ") %>'
                                             Width="80px"></asp:Label>
