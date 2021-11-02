@@ -2789,8 +2789,10 @@ namespace RealERPWEB.F_17_Acc
                 string vounum = this.Request.QueryString["vounum"].ToString();
                 string session = hst["session"].ToString();
                 string PrintInstar = this.GetCompInstar();
-                string pouaction = this.Getpouaction(vounum);
-                string Calltype = (pouaction.Length > 0) ? "PRINTDELETEDVOUCHER01" : "PFPRINTVOUCHER01";
+                //string pouaction = this.Getpouaction(vounum);
+                //string Calltype = (pouaction.Length > 0) ? "PRINTDELETEDVOUCHER01" : "PFPRINTVOUCHER01";
+                string Calltype =  "PFPRINTVOUCHER01";
+
 
                 DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, "", "", "", "", "", "", "");
                 //
