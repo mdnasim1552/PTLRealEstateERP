@@ -65,7 +65,9 @@ namespace RealERPWEB.F_14_Pro
                     switch (comcod)
                     {
                         case "3335": //Edison
-                                     //case "3101":
+                        case "3101": // ptl
+                        case "3355": // greenwood
+
                             this.GetOrderRange();
                             this.btnSendmail.Visible = false;
                             break;
@@ -1212,7 +1214,7 @@ namespace RealERPWEB.F_14_Pro
                         case "1205":  //P2P Construction
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
-                                      //  case "3101": // ASIT
+                        case "3101": // ASIT
 
                             break;
                         default:
@@ -1270,6 +1272,8 @@ namespace RealERPWEB.F_14_Pro
 
                     switch (comcod)
                     {
+                        case "3101": // ptl
+                        case "3355": // grenwood
                         case "3335":
                             string sappusrid = "";
                             string sapptrmnid = "";
@@ -1586,10 +1590,12 @@ namespace RealERPWEB.F_14_Pro
 
                 switch (comcod)
                 {
+                    case "1108":// Assure
+                    case "1109":// Assure
                     case "3315":// Assure
                     case "3316":// Assure
                     case "3317":// Assure
-                                //case "3101":
+                    //case "3101":
                     case "5101":
                     case "3330":// Bridge
 
@@ -1825,6 +1831,9 @@ namespace RealERPWEB.F_14_Pro
 
 
         }
+
+
+
         //private void sendSmsFromAPI(string text)
         //{
 
