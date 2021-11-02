@@ -206,6 +206,7 @@ namespace RealERPWEB.F_02_Fea
                     break;
 
                 case "3353":
+                case "3101":
                     this.PrintFeasibilityManama();
                     break;
 
@@ -1178,6 +1179,7 @@ namespace RealERPWEB.F_02_Fea
             switch(comcod)
             {
                 case "3353":
+                case "3101":
                     callType = "RPTPROJECTFEASIBILITIESMANAMA";
                     break;
 
@@ -1202,7 +1204,7 @@ namespace RealERPWEB.F_02_Fea
                 this.gvFeaPrjRep.DataBind();
                 return;
             }
-            if(comcod=="3353")
+            if(comcod=="3353" || comcod=="3101")
             {
                 Session["tblfeaprj"] = ds2.Tables[0];                
             }
@@ -1282,7 +1284,7 @@ namespace RealERPWEB.F_02_Fea
                     break;
 
                 case 4:
-                    if(comcod=="3353")
+                    if(comcod=="3353" || comcod=="3101")
                     {
                         this.gvFeaPrjRepManama.Visible = true;
                         this.gvFeaPrjRepManama.DataSource = dt;
@@ -1951,9 +1953,6 @@ namespace RealERPWEB.F_02_Fea
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
-
-
                 string infcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "infcod")).ToString().Trim();
 
                 if (infcod.Length == 0)
@@ -1968,6 +1967,28 @@ namespace RealERPWEB.F_02_Fea
                 {
 
                     e.Row.FindControl("lnkbtnAdd").Visible = false;
+
+                }
+            }
+        }
+
+        protected void gvFeaPrjRepManama_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string prgcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "prgcod")).ToString().Trim();
+
+                if (prgcod.Length == 0)
+                    return;
+
+                if (ASTUtility.Right(prgcod, 3) == "AAA" || ASTUtility.Right(prgcod, 3) == "BAA")
+                {
+                    e.Row.Attributes["style"] = " background-color:#e62284; color:white; font-weight:bold; font-size:12px;";
+
+                }
+                else
+                {
 
                 }
             }
