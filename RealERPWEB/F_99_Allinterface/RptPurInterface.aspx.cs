@@ -554,14 +554,14 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-                case "3335"://Green Wood
+                case "3335":
                     reqcheck = "Checked";
                     reqforward = "Req. App.";
                     reqapproval = "Req. Final App.";
                     OrderfApproved = "Ord. 1st App";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3355"://  Green Wood
                     reqcheck = "Checked";
                     reqforward = "Forward";
@@ -838,7 +838,7 @@ namespace RealERPWEB.F_99_Allinterface
                         case "3316"://Assure
                         case "3315"://Assure
                         case "3317"://Assure
-                        case "3101"://Assure
+                        //case "3101"://Assure
                         case "1108"://engineering
                         case "1109"://tourism
 

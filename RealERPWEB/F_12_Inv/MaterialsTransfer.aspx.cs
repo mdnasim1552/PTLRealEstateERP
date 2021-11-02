@@ -58,6 +58,10 @@ namespace RealERPWEB.F_12_Inv
                     this.lbtnOk_Click(null, null);
 
                 }
+                if(this.Request.QueryString["Type"] == "Audit")
+                {
+                    this.disableRef();
+                }               
 
 
             }
@@ -80,6 +84,25 @@ namespace RealERPWEB.F_12_Inv
             return (hst["comcod"].ToString());
 
         }
+
+
+        private void disableRef()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                //case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                    this.txtrefno.ReadOnly = true;
+                    break;
+                default:
+                    this.txtrefno.ReadOnly = false;
+                    break;
+            }
+        }
+
         protected void GetMatTrns()
         {
 
@@ -431,9 +454,12 @@ namespace RealERPWEB.F_12_Inv
                 case "Entry":
                     switch (comcod)
                     {
+                        // todo for audit part
                         case "3101":
                         case "3338":
-
+                        case "1205":
+                        case "3351":
+                        case "3352":
 
                             break;
 
@@ -636,7 +662,9 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3340":
                 case "3338":
-                    //case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
 
                     break;
 
@@ -756,7 +784,7 @@ namespace RealERPWEB.F_12_Inv
                 string gatepno = dr["getpno"].ToString().Trim();
 
                 string appxml = dr["audit"].ToString();
-                string audit = GetReqApproval(appxml);
+                string audit = GetReqApproval(appxml); // todo check audit or not
 
 
 
@@ -1414,6 +1442,29 @@ namespace RealERPWEB.F_12_Inv
         {
 
             this.Load_Prev_Trans_List();
+
+        }
+
+        protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                //case "3101": // ptl
+                case "1205":
+                case "3351":
+                case "3352":
+                    if (e.Row.RowType == DataControlRowType.DataRow)
+                    {
+                        TextBox txtqty = (TextBox)e.Row.FindControl("txtqty");
+                        TextBox txtrate = (TextBox)e.Row.FindControl("txtrate");
+                        txtqty.ReadOnly = true;
+                        txtrate.ReadOnly = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
 
         }
     }
