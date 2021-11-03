@@ -1255,15 +1255,14 @@ namespace RealERPWEB.F_12_Inv
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            DataTable dt1 = (DataTable)ViewState["tblmattrns"];
 
-            // General Part
             string transno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + this.txtCurTransDate.Text.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPADDAOTRNINFO", transno, "","", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "RPTMRTREQOAUDIT", transno, "","", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
+            DataTable dt1 = ds1.Tables[0];
             DataTable dt2 = ds1.Tables[1];
 
             string reqsign = dt2.Rows[0]["trnusrnam"].ToString() + "\n" + dt2.Rows[0]["trndeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["transdat"]).ToString("dd-MMM-yyyy");

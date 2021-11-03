@@ -1366,7 +1366,6 @@
                           <Value>=Parameters!reqsign.Value</Value>
                           <Style>
                             <FontFamily>Calibri</FontFamily>
-                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -1402,7 +1401,6 @@
                           <Value>=Parameters!aprvsign.Value</Value>
                           <Style>
                             <FontFamily>Calibri</FontFamily>
-                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -1438,7 +1436,6 @@
                           <Value>=Parameters!gpasign.Value</Value>
                           <Style>
                             <FontFamily>Calibri</FontFamily>
-                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -1474,7 +1471,6 @@
                           <Value>=Parameters!recvsign.Value</Value>
                           <Style>
                             <FontFamily>Calibri</FontFamily>
-                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
