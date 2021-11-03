@@ -222,6 +222,7 @@
     <EmbeddedResource Include="R_12_Inv\rptInResource.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInterComTransStatus.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialsStock.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsferP2P.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsfer.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsferReq.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsGatepass.rdlc" />

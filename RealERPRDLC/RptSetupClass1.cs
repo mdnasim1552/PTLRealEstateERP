@@ -240,6 +240,8 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMaterialTrnsGatepass": Rpt1a = GetRptMaterialTrnsGatepass(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatTransferRec": Rpt1a = GetRptMatTransferRec(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsfer": Rpt1a = GetRptMaterialTrnsfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMaterialTrnsferP2P": Rpt1a = SetRptMaterialTrnsferP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
                 case "R_12_Inv.RptMatIssue": Rpt1a = SetRptMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueBridge": Rpt1a = SetRptMatIssueBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatus": Rpt1a = GetRptMatIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3659,7 +3661,15 @@ namespace RealERPRDLC
             return Rpt1a;
 
         }
+        private static LocalReport SetRptMaterialTrnsferP2P(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.PurMatReq>)RptDataSet));
+            return Rpt1a;
 
+        }
+
+
+        
         private static LocalReport GetrptPurMrrEntryBridge(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>)RptDataSet));
