@@ -263,7 +263,7 @@
 
                              <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True" Width="501px"
-                                OnPageIndexChanging="grvacc_PageIndexChanging"
+                                OnPageIndexChanging="grvacc_PageIndexChanging"  OnRowDataBound="grvacc_RowDataBound"
                                 OnRowDeleting="grvacc_RowDeleting" PageSize="15">
                                 <RowStyle />
                                 <Columns>

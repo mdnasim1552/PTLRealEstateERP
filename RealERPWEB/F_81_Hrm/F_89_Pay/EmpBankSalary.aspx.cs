@@ -374,7 +374,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = (ds2.Tables[0]);
             Session["tblover"] = dt;
-            Session["tblBankTrns"] = ds2.Tables[1];
+            if (ds2.Tables.Count>1)
+            {
+                Session["tblBankTrns"] = ds2.Tables[1];
+            }        
 
             this.Data_Bind();
         }
@@ -463,8 +466,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementAlli();
                     break;
 
+                case "3101":
                 case "3330":
-
                     this.PrintBankStatementBridge();
                     break;
 
@@ -472,7 +475,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementPEB();
                     break;
 
-                case "3101":
                 case "3354":
                     this.PrintBankStatementEdison();
                     break;
@@ -709,7 +711,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatement", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementBridge", lst, null, null);
 
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + ", " + year));
@@ -744,7 +746,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintForwardingLetterGreen();
                     break;
 
-                case "3101":
                 case "3354": //Edison
                     this.PrintForwardingLetterEdison();
                     break;
