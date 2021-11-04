@@ -120,11 +120,19 @@ namespace RealERPWEB.F_12_Inv
                     mREQNO = ds2.Tables[0].Rows[0]["maxmisuno"].ToString();
                     this.lblCurISSNo1.Text = ds2.Tables[0].Rows[0]["maxmisuno1"].ToString().Substring(0, 6);
                     this.txtCurISSNo2.Text = ds2.Tables[0].Rows[0]["maxmisuno1"].ToString().Substring(6, 5);
+
                     this.ddlPrevISSList.DataTextField = "maxmisuno1";
                     this.ddlPrevISSList.DataValueField = "maxmisuno";
                     this.ddlPrevISSList.DataSource = ds2.Tables[0];
-                    this.ddlPrevISSList.DataBind();
+                     this.ddlPrevISSList.DataBind();
+
                 }
+                //else {
+                //    this.ddlPrevISSList.DataTextField = "maxmisuno1";
+                //    this.ddlPrevISSList.DataValueField = "maxmisuno";
+                //    this.ddlPrevISSList.DataSource = ds2.Tables[0];
+                //    this.ddlPrevISSList.DataBind();
+                //}
             }
         }
         private void GetProjectList()
@@ -742,10 +750,8 @@ namespace RealERPWEB.F_12_Inv
             //}
 
             string comcod = this.GetCompCode();
-            if (ddlPrevISSList.Items.Count == 0)
-            {
-                this.GetPerMatIssu();
-            }
+           
+           
 
 
 
@@ -847,7 +853,14 @@ namespace RealERPWEB.F_12_Inv
 
 
             //////////
+            ///
 
+
+
+            if (ddlPrevISSList.Items.Count == 0)
+            {
+                this.GetPerMatIssu();
+            }
 
 
 
