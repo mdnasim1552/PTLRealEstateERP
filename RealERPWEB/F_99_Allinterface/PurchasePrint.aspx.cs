@@ -3853,7 +3853,7 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature            
                 switch (comcod)
                 {
-                    // case "3101"://ASIT
+                    case "3101"://ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -3895,7 +3895,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         sign6 = "Approved By";
                         break;
-                    case "3101": // Asit
+                    //case "3101": // Asit
                     case "3353": //Manama
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -3965,14 +3965,12 @@ namespace RealERPWEB.F_99_Allinterface
                         terms7 = "7. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
 
                         break;
-                    case "1205"://P2P
-                    case "3351"://P2P
-                    case "3352"://P2P
+
+
                     case "3339": // Tropical Home
                     case "3332": // InnStar
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
-
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "2. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
@@ -3980,7 +3978,10 @@ namespace RealERPWEB.F_99_Allinterface
                         terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         break;
 
-                    //case "3101": // ASIT     
+                    case "3101": // ASIT
+                    case "1205"://P2P
+                    case "3351"://P2P
+                    case "3352"://P2P    
                     case "3335": // Edison Properties
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4012,7 +4013,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                     // manama
-                    case "3101": // ASIT
+                    //case "3101": // ASIT
                     case "3353":
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
