@@ -1999,6 +1999,8 @@ namespace RealERPWEB.F_23_CR
                     case "3340":
                     case "3337":
                     case "3101":
+                    case "3353":
+
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {
