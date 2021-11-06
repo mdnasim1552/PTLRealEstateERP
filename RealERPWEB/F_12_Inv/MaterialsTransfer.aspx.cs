@@ -42,26 +42,35 @@ namespace RealERPWEB.F_12_Inv
                 }
                 if ((this.Request.QueryString["genno"].ToString().Length > 0))
                 {
-                    string genno = this.Request.QueryString["genno"].ToString();
-                    if (genno.Substring(0, 3) == "GPN")
+                    if (this.Request.QueryString.AllKeys.Contains("pType"))
                     {
-                        this.chkGatePass.Checked = true;
-                        this.chkGatePass_CheckedChanged(null, null);
-                        this.lbtnGatePassNo_Click(null, null);
+                        //
+                        this.printMtrRecevFAudit();
+
                     }
                     else
                     {
-                        this.Load_Prev_Trans_List();
+                        string genno = this.Request.QueryString["genno"].ToString();
+                        if (genno.Substring(0, 3) == "GPN")
+                        {
+                            this.chkGatePass.Checked = true;
+                            this.chkGatePass_CheckedChanged(null, null);
+                            this.lbtnGatePassNo_Click(null, null);
+                        }
+                        else
+                        {
+                            this.Load_Prev_Trans_List();
+                        }
+
+                        this.lbtnOk_Click(null, null);
                     }
 
 
-                    this.lbtnOk_Click(null, null);
-
                 }
-                if(this.Request.QueryString["Type"] == "Audit")
+                if (this.Request.QueryString["Type"] == "Audit")
                 {
                     this.disableRef();
-                }               
+                }
 
 
             }
@@ -1258,7 +1267,65 @@ namespace RealERPWEB.F_12_Inv
 
             string transno = this.lblCurTransNo1.Text.ToString().Trim().Substring(0, 3) + this.txtCurTransDate.Text.Substring(7, 4) + this.lblCurTransNo1.Text.ToString().Trim().Substring(3, 2) + this.txtCurTransNo2.Text.ToString().Trim();
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "RPTMRTREQOAUDIT", transno, "","", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "RPTMRTREQOAUDIT", transno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            DataTable dt1 = ds1.Tables[0];
+            DataTable dt2 = ds1.Tables[1];
+
+            string reqsign = dt2.Rows[0]["trnusrnam"].ToString() + "\n" + dt2.Rows[0]["trndeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["transdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["transdat"]).ToString("dd-MMM-yyyy"); 
+            string aprvsign = dt2.Rows[0]["gpausrnam"].ToString() + "\n" + dt2.Rows[0]["gpadeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["gpadat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["gpadat"]).ToString("dd-MMM-yyyy");
+            string gpasign = dt2.Rows[0]["mtraprvusrnam"].ToString() + "\n" + dt2.Rows[0]["mtraprvdeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["mtraprvdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["mtraprvdat"]).ToString("dd-MMM-yyyy");
+            string recvsign = dt2.Rows[0]["mtrequsrnam"].ToString() + "\n" + dt2.Rows[0]["mtreqdeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["mtreqdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["mtreqdat"]).ToString("dd-MMM-yyyy");
+
+            string prjfrm = this.ddlprjlistfrom.SelectedItem.Text.Trim().Substring(13);
+            string prjto = this.ddlprjlistto.SelectedItem.Text.Trim().Substring(13);
+
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt1.DataTableToList<RealEntity.C_12_Inv.PurEqisition.RptMatTransReq>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptMaterialTrnsferP2P", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtComAddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtProjectName", "Transfer From: " + prjfrm));
+            Rpt1.SetParameters(new ReportParameter("txtProjectNameto", "Transfer To: " + prjto));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + Convert.ToDateTime(this.txtCurTransDate.Text).ToString("MMMM dd, yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txttrnsno", "Transfer No: " + this.lblCurTransNo1.Text.Trim() + this.txtCurTransNo2.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("narrationname", this.txtNarr.Text.ToString()));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Material Transfer Information"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("reqsign", reqsign));
+            Rpt1.SetParameters(new ReportParameter("aprvsign", aprvsign));
+            Rpt1.SetParameters(new ReportParameter("gpasign", gpasign));
+            Rpt1.SetParameters(new ReportParameter("recvsign", recvsign));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
+
+        private void printMtrRecevFAudit()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string transno = this.Request.QueryString["genno"].ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "RPTMRTREQOAUDIT", transno, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -1294,9 +1361,7 @@ namespace RealERPWEB.F_12_Inv
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
 
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
