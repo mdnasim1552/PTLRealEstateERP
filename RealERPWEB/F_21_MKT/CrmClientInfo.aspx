@@ -2688,6 +2688,14 @@
                                         <div class="cold-md-1 ml-1">
                                             <asp:LinkButton ID="lnkOk" runat="server" Text="OK" OnClick="lnkOk_Click" CssClass="btn btn-success"></asp:LinkButton>
                                         </div>
+                                        
+                                        <div class="col-md-1">
+                                        <asp:CheckBox ID="Chkpdelete" runat="server" CssClass="form-control checkbox"  Text="&nbsp;P.Delete"/>
+
+                                        </div>
+
+
+
                                     </div>
 
 
