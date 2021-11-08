@@ -330,5 +330,20 @@ namespace RealERPWEB.F_14_Pro
             //Session["tblstatus"] = ds1.Tables[0];
 
         }
+
+        protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label supdesc = (Label)e.Row.FindControl("lbldesc");
+                string supcat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "supcat")).ToString();
+                if(supcat== "A")
+                {
+                    supdesc.BackColor = System.Drawing.Color.SkyBlue;
+                }
+              
+               
+            }
+        }
     }
 }

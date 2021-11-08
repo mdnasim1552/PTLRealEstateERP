@@ -1552,7 +1552,8 @@
     </script>
 
 
-
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
 
     <div class="card card-fluid container-data mt-5" id='printarea'>
         <div class="card-body">
@@ -1775,14 +1776,40 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Project Name">
+
+                                    <asp:TemplateField 
+                                                    HeaderText="Project Name">
+                                                    <HeaderTemplate>
+
+                                                         <asp:Label ID="Label4" runat="server" Font-Bold="True"
+                                                                        Text="Project Name" Width="180px"></asp:Label>
+
+
+                                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                                        CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+                                                     
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:HyperLink ID="lblgvItmCode" runat="server"
+                                                            Font-Size="12px" Font-Underline="False" Target="_blank"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
+                                                            Width="300px"></asp:HyperLink>
+                                                    </ItemTemplate>
+
+                                                 
+
+                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                    <ItemStyle HorizontalAlign="left" />
+                                                    <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
+                                                </asp:TemplateField>
+                                    <%--<asp:TemplateField HeaderText="Project Name">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvItmCode" CssClass="desclbll" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
                                                 Width="200px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
 
 
                                     <asp:TemplateField HeaderText="Client Name">
@@ -2408,6 +2435,7 @@
         </div>
     </div>
 
-
+ </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 

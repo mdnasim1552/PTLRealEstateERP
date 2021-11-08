@@ -3251,7 +3251,7 @@ namespace RealERPWEB.F_21_MKT
                 return;
             }
 
-
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataTable dt = (DataTable)Session["tblsummData"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
@@ -3260,18 +3260,47 @@ namespace RealERPWEB.F_21_MKT
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
             string proscod = dt.Rows[RowIndex]["sircode"].ToString();
-            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "DELETEPROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
-
-            if (!result)
+            if (Chkpdelete.Checked)
             {
 
+                bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "DELETEPROSPECTPERMANENT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
+               
+                
+                if (!result)
+                {
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Already Follow up exist !!!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+
+
 
             }
+
+            else
+            {
+                bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "DELETEPROSPECT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+                if (!result)
+                {
+
+
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+            }
+
+
+
+          
 
 
             //dt.Rows[RowIndex].Delete();
