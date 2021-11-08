@@ -105,7 +105,8 @@
 
                         <asp:GridView ID="grvacc" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False" CellPadding="4" Font-Size="12px" PageSize="15" Width="650px"
-                            OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True">
+                            OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" OnRowDataBound="grvacc_RowDataBound">
+
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top" />
                             <FooterStyle BackColor="#5F9467" Font-Bold="True" ForeColor="#000" />
                             <Columns>

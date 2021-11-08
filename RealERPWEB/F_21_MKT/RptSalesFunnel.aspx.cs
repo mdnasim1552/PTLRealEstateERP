@@ -356,8 +356,10 @@ namespace RealERPWEB.F_21_MKT
             this.gvSaleFunnel.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());
             this.gvSaleFunnel.DataSource = dt;
             this.gvSaleFunnel.DataBind();
+            Session["Report1"] = gvSaleFunnel;
+            ((HyperLink)this.gvSaleFunnel.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-             
+
             var jsonSerialiser = new JavaScriptSerializer();
 
             var lst = dtc.DataTableToList<SalFunnelgraph>();
