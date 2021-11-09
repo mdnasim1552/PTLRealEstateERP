@@ -17,6 +17,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using dpant;
+
 namespace RealERPWEB.F_24_CC
 {
     public partial class CustAddWorkCBook : System.Web.UI.Page
@@ -24,6 +26,9 @@ namespace RealERPWEB.F_24_CC
 
         ProcessAccess da = new ProcessAccess();
         //static string tempddl1 = "", tempddl2 = "";
+        protected FullGridPager fullGridPager;
+        protected int MaxVisible = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,6 +43,13 @@ namespace RealERPWEB.F_24_CC
             }
             if (this.ddlOthersBook.Items.Count == 0)
                 this.Load_CodeBooList();
+            if (IsPostBack)
+            {
+
+
+                fullGridPager = new FullGridPager(grvacc, MaxVisible, "Page", "of");
+                fullGridPager.CreateCustomPager(grvacc.BottomPagerRow);
+            }
 
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -146,18 +158,19 @@ namespace RealERPWEB.F_24_CC
         {
             try
             {
-
                 DataTable tbl1 = (DataTable)Session["storedata"];
+                this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
-                ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = false;
-                double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
-                ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-                for (int i = 1; i <= TotalPage; i++)
-                    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-                if (TotalPage > 1)
-                    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = true;
-                ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
+
+                //((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = false;
+                //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
+                //((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Clear();
+                //for (int i = 1; i <= TotalPage; i++)
+                //    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
+                //if (TotalPage > 1)
+                //    ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).Visible = true;
+                //((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.grvacc.PageIndex;
 
 
 
@@ -168,19 +181,19 @@ namespace RealERPWEB.F_24_CC
 
         }
 
-        protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
+        //protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
 
-                this.grvacc.PageIndex = ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
-                this.grvacc.EditIndex = -1;
-                this.grvacc_DataBind();
-            }
-            catch (Exception ex)
-            {
-            }
-        }
+        //        this.grvacc.PageIndex = ((DropDownList)this.grvacc.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
+        //        this.grvacc.EditIndex = -1;
+        //        this.grvacc_DataBind();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    }
+        //}
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
@@ -224,9 +237,34 @@ namespace RealERPWEB.F_24_CC
             }
         }
 
+        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.grvacc_DataBind();
+        }
 
+        protected void grvacc_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.grvacc.PageIndex = e.NewPageIndex;
+            this.grvacc_DataBind();
+        } 
 
+        protected void grvacc_DataBound(object sender, EventArgs e)
+        {
+            if (fullGridPager == null)
+            {
+                fullGridPager = new FullGridPager(grvacc, MaxVisible, "Page", "of");
+            }
+            fullGridPager.CreateCustomPager(grvacc.BottomPagerRow);
+            fullGridPager.PageGroups(grvacc.BottomPagerRow);
+        }
 
-
+        protected void ddlPageGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fullGridPager == null)
+            {
+                fullGridPager = new FullGridPager(grvacc, MaxVisible, "Page", "of");
+            }
+            fullGridPager.PageGroupChanged(grvacc.BottomPagerRow);
+        }
     }
 }
