@@ -374,7 +374,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = (ds2.Tables[0]);
             Session["tblover"] = dt;
-            Session["tblBankTrns"] = ds2.Tables[1];
+            if (ds2.Tables.Count>1)
+            {
+                Session["tblBankTrns"] = ds2.Tables[1];
+            }        
 
             this.Data_Bind();
         }
@@ -463,8 +466,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementAlli();
                     break;
 
+                case "3101":
                 case "3330":
-
                     this.PrintBankStatementBridge();
                     break;
 
@@ -472,7 +475,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintBankStatementPEB();
                     break;
 
-                case "3101":
                 case "3354":
                     this.PrintBankStatementEdison();
                     break;
@@ -709,7 +711,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatement", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptBankStatementBridge", lst, null, null);
 
             Rpt1.SetParameters(new ReportParameter("rptTitle", (this.chkBonus.Checked) ? "Festival Bonus Transfer Statement  " : "Salary Transfer Statement"));
             Rpt1.SetParameters(new ReportParameter("date", "For " + month + ", " + year));
@@ -744,7 +746,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintForwardingLetterGreen();
                     break;
 
-                case "3101":
                 case "3354": //Edison
                     this.PrintForwardingLetterEdison();
                     break;
@@ -774,10 +775,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string year = this.txtDate.Text.Substring(0, 4).ToString();
             string month = this.GetMonthName();
 
-            string banksl = dt.Rows[0]["banksl"].ToString();
+            string motheraccno = dt.Rows[0]["banksl"].ToString();
             string addr = dt.Rows[0]["bankaddr"].ToString();
             string bankname = dt.Rows[0]["bankname"].ToString();
-            string bankAccNo = dt.Rows[0]["acno"].ToString();
+           // string bankAccNo = dt.Rows[0]["acno"].ToString();
+            //string bankAccNo = this.ddlBankName.SelectedValue.ToString();
             string totNoTrans = dt1.Rows[0]["ttrnsecno"].ToString();
            
             string[] add = addr.Split(',');
@@ -816,7 +818,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("totalAmt", sumamt));
             Rpt1.SetParameters(new ReportParameter("InWrd", inwords));
             Rpt1.SetParameters(new ReportParameter("totNoTrans", totNoTrans));
-            Rpt1.SetParameters(new ReportParameter("bankAccNo", bankAccNo));
+            Rpt1.SetParameters(new ReportParameter("bankAccNo", motheraccno));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +

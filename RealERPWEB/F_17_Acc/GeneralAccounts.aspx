@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="GeneralAccounts.aspx.cs" Inherits="RealERPWEB.F_17_Acc.GeneralAccounts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="GeneralAccounts.aspx.cs" Inherits="RealERPWEB.F_17_Acc.GeneralAccounts" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -37,7 +37,7 @@
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
             $('#<%=this.ddlvoucher.ClientID %>').focus();
-            
+
             $("input, select ").not($(":submit, :button")).keypress(function (evt) {
                 evt.preventDefault();
                 alert(evt);
@@ -102,7 +102,7 @@
 
         }
 
-      
+
 
     </script>
 
@@ -301,7 +301,7 @@
                                                 <div class="form-group">
                                                     <div class="col-md-3 ">
                                                         <asp:Label ID="lblspecification" runat="server" CssClass="lblTxt lblName" Visible="false">Specification</asp:Label>
-                                                        <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass=" hidden"  Visible="false"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass=" hidden" Visible="false"></asp:TextBox>
 
 
                                                         <div class="colMdbtn hidden">
@@ -421,15 +421,15 @@
 
                                                                 <div class="col-md-3 pading5px asitCol3">
                                                                     <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">From Voucher</asp:Label>
-                                                                    <asp:TextBox ID="txtScrchcopyvoucher" runat="server" CssClass="inputtextbox" ></asp:TextBox>
-                                                                    <asp:LinkButton ID="ibtnCopyVoucher" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnCopyVoucher_Click" ><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                                    <asp:TextBox ID="txtScrchcopyvoucher" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                                                    <asp:LinkButton ID="ibtnCopyVoucher" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnCopyVoucher_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                                 </div>
 
                                                                 <div class="col-md-7 pading5px">
-                                                                    <asp:DropDownList ID="ddlcopyvoucher" runat="server" CssClass=" ddlPage"  Style="width: 200px;">
+                                                                    <asp:DropDownList ID="ddlcopyvoucher" runat="server" CssClass=" ddlPage" Style="width: 200px;">
                                                                     </asp:DropDownList>
-                                                                    <asp:LinkButton ID="lbtnCopyVoucher" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnCopyVoucher_Click" >Copy</asp:LinkButton>
+                                                                    <asp:LinkButton ID="lbtnCopyVoucher" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnCopyVoucher_Click">Copy</asp:LinkButton>
 
                                                                 </div>
 
@@ -820,7 +820,7 @@
                                             <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px" 
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trnrmrk")) %>'
                                                         Width="80px" ForeColor="Black" TabIndex="83"></asp:TextBox>
                                                 </ItemTemplate>
@@ -922,7 +922,7 @@
         //    // Return `null` if the term should not be displayed
         //    return null;
         //}
-       
+
     </script>
 </asp:Content>
 

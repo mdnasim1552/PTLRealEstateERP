@@ -554,14 +554,14 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-                case "3335"://Green Wood
+                case "3335":
                     reqcheck = "Checked";
                     reqforward = "Req. App.";
                     reqapproval = "Req. Final App.";
                     OrderfApproved = "Ord. 1st App";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3355"://  Green Wood
                     reqcheck = "Checked";
                     reqforward = "Forward";
@@ -838,7 +838,7 @@ namespace RealERPWEB.F_99_Allinterface
                         case "3316"://Assure
                         case "3315"://Assure
                         case "3317"://Assure
-                        case "3101"://Assure
+                        //case "3101"://Assure
                         case "1108"://engineering
                         case "1109"://tourism
 
@@ -1648,7 +1648,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
 
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
@@ -1660,11 +1660,23 @@ namespace RealERPWEB.F_99_Allinterface
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
                 //string imesimeno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mimei")).ToString();
 
-                if(comcod=="3353" || comcod == "3101")
+                switch (comcod)
                 {
-                    hlink1.Visible = false;
-                }
+                    // hide crystal print options
+                    case "3101":
+                    case "3355":
+                    case "3353":
+                    case "1205":
+                    case "3351":
+                    case "3352":
 
+                        hlink1.Visible = false;
+                        break;
+                    default:
+                        hlink1.Visible = true;
+                        break;
+                }
+            
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
                 hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
                 if (orderno.Substring(0, 3) == "POR")
@@ -2908,12 +2920,13 @@ namespace RealERPWEB.F_99_Allinterface
             string delorder = "";
             switch (comcod)
             {
-                //case "3101":
+
+                case "3355":  // Green Wood
                 case "3335":  // Edison
                     delorder = "delforsapp";
                     break;
 
-                case "3355":  // Green Wood
+                
                 case "3354":  // Edison Real Estate
                 case "1205":  //P2P Construction
                 case "3351":  //wecon Properties
@@ -2944,7 +2957,7 @@ namespace RealERPWEB.F_99_Allinterface
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string genno = ((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvorderno")).Text.Trim();
             string toorder = Convert.ToDouble(((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvWoamt")).Text.Trim()).ToString();
-
+          
 
             //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
 
@@ -2964,7 +2977,6 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             }
-
 
             string delorder = this.GetDelOrder();
             bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERNOAAPPROVED", genno, delorder, toorder, "", "", "", "", "", "", "", "", "", "", "", "");
@@ -3017,6 +3029,7 @@ namespace RealERPWEB.F_99_Allinterface
             //Common.LogStatus("Sales Interface", "Order Delete", "Order No: ", orderno + " - " + centrid);
         }
 
+     
         protected void btnDelBill_Click(object sender, EventArgs e)
         {
 
@@ -5026,6 +5039,48 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
 
 
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
+
+
+        protected void btnDelFapproval_Click(object sender, EventArgs e)
+        {
+            string url = "PurWrkOrderEntry?InputType=OrderEntry";
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string genno = ((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvorderno")).Text.Trim();
+            string toorder = Convert.ToDouble(((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvWoamt")).Text.Trim()).ToString();
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", genno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            bool result = this.XmlDataInsertOrder(genno, ds1);
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+            }
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERNOAAPPROVED", genno, "delsapp", toorder, "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
 
             this.PurchaseInfoRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);

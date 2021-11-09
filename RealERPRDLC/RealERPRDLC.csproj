@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+GetWorkOrder.datasource" />
@@ -116,6 +117,10 @@
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
       <Name>RealEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -217,6 +222,7 @@
     <EmbeddedResource Include="R_12_Inv\rptInResource.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInterComTransStatus.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialsStock.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsferP2P.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsfer.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsferReq.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptMaterialTrnsGatepass.rdlc" />
@@ -781,6 +787,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptAitPurposePeb.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptAitPurpose.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptBankFordLetter.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementEdison.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptBankStatementAlli.rdlc" />

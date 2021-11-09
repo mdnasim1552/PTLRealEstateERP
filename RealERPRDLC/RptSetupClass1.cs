@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using RealEntity;
 using System.Collections;
 using RealEntity.C_34_Mgt;
+using System.Data;
+using RealERPLIB;
 
 namespace RealERPRDLC
 {
@@ -238,6 +240,8 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMaterialTrnsGatepass": Rpt1a = GetRptMaterialTrnsGatepass(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatTransferRec": Rpt1a = GetRptMatTransferRec(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsfer": Rpt1a = GetRptMaterialTrnsfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptMaterialTrnsferP2P": Rpt1a = SetRptMaterialTrnsferP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
                 case "R_12_Inv.RptMatIssue": Rpt1a = SetRptMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueBridge": Rpt1a = SetRptMatIssueBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatus": Rpt1a = GetRptMatIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -384,6 +388,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeSuvastuPBL": Rpt1a = SetRptChequeSuvastuPBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptProjCostSales": Rpt1a = SetRptProjCostSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankStatementInfo": Rpt1a = SetRptBankStatementInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                     
                 case "R_17_Acc.RptInterComTransStatu": Rpt1a = SetRptInterComTransStatu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupPayment": Rpt1a = SetRptSupPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupPayment02": Rpt1a = SetRptSupPayment02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -770,6 +775,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptSalSummary2": Rpt1a = SetRptSalSummary2(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSalSummDetails": Rpt1a = SetRptSalSummDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptBankStatementGreenwood": Rpt1a = SetrptBankStatementGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptBankStatementBridge": Rpt1a = SetrptBankStatementBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 // bonus summary
                 case "R_81_Hrm.R_89_Pay.RptBonusSummaryPEB": Rpt1a = SetRptBonusSummaryPEB(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusSummaryBridge": Rpt1a = SetRptBonusSummaryBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1734,6 +1741,12 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetrptBankStatementBridge(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>)RptDataSet));
+            return Rpt1a;
+        }
+
         private static LocalReport SetrptBankStatementPEB(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>)RptDataSet));
@@ -1743,7 +1756,9 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>)RptDataSet));
             return Rpt1a;
-        }
+        }       
+
+
         private static LocalReport SetrptForLetter(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>)RptDataSet));
@@ -2539,8 +2554,7 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.BankStatementInfo>)RptDataSet));
             return Rpt1a;
-        }
-
+        }             
 
         private static LocalReport SetRptInterComTransStatu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -3657,7 +3671,15 @@ namespace RealERPRDLC
             return Rpt1a;
 
         }
+        private static LocalReport SetRptMaterialTrnsferP2P(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.PurEqisition.RptMatTransReq>)RptDataSet));
+            return Rpt1a;
 
+        }
+
+
+        
         private static LocalReport GetrptPurMrrEntryBridge(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>)RptDataSet));
@@ -3963,8 +3985,41 @@ namespace RealERPRDLC
 
         private static LocalReport SetRptProjFeasibilityManama(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_02_Fea.EClasFeasibility.EClassProFeasibility>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_02_Fea.EClasFeasibility.EClassProjectFeasibility>)RptDataSet2));
+
+            DataTable dtm = new DataTable();
+            dtm = ASITUtility03.ListToDataTable((List<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>)RptDataSet);
+            DataView dv = new DataView();
+            dv = dtm.Copy().DefaultView;
+            dv.RowFilter = ("grp like 'A%'");
+            DataTable dt = dv.ToTable();
+
+            DataView dv1 = dtm.Copy().DefaultView;
+            dv1.RowFilter = ("grp like 'B%'");
+            DataTable dt1 = dv1.ToTable();
+
+            DataView dv2 = dtm.Copy().DefaultView;
+            dv2.RowFilter = ("grp like 'C%'");
+            DataTable dt2 = dv2.ToTable();
+
+            DataView dv3 = dtm.Copy().DefaultView;
+            dv3.RowFilter = ("grp like 'D%'");
+            DataTable dt3 = dv3.ToTable();
+
+            DataView dv4 = dtm.Copy().DefaultView;
+            dv4.RowFilter = ("grp like 'E%'");
+            DataTable dt4 = dv4.ToTable();
+
+            var list1 = dt.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list2 = dt1.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list3 = dt2.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list4 = dt3.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+            var list5 = dt4.DataTableToList<RealEntity.C_02_Fea.EClasFeasibility.ProjectFeasibility>();
+
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", list1));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", list2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", list3));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet4", list4));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet5", list5));
             return Rpt1a;
         }
 

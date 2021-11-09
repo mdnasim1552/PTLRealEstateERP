@@ -2291,12 +2291,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
 
+            string txtheader = this.ddlProjectName.SelectedValue.Substring(0, 4) == "9471" ? "Salary Sheet (Security Guard)" : "Salary Sheet";
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryDetailsTropical", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", companyname.ToUpper()));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtHeader2", txtheader));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1));
             Rpt1.SetParameters(new ReportParameter("txtheader", this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "Grand Total - Head Office & All Project" : "Grand Total - " + this.ddlProjectName.SelectedItem.ToString().Substring(13)));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));

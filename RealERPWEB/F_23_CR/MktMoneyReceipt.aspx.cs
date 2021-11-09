@@ -387,23 +387,36 @@ namespace RealERPWEB.F_23_CR
         protected void lbtnusize_Click(object sender, EventArgs e)
         {
 
-            this.MultiView1.ActiveViewIndex = 0;
-            string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
-            DataTable dtOrder = (DataTable)ViewState["tblData"];
-            DataView dv1 = dtOrder.DefaultView;
-            dv1.RowFilter = "usircode like('" + usircode + "')";
-            dtOrder = dv1.ToTable();
-            this.gvSpayment.DataSource = dtOrder;
-            this.gvSpayment.DataBind();
-            this.lblCode.Text = usircode;
-            this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
+            try
+            {
+                this.MultiView1.ActiveViewIndex = 0;
 
-            this.txtPaidamt.Focus();
-            this.PayInf();
-            this.GetCurMrNo();
-            this.PayType();
-            this.PrintDupOrOrginal();
-            this.BankName();
+                string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
+
+
+                DataTable dtOrder = (DataTable)ViewState["tblData"];
+                DataView dv1 = dtOrder.DefaultView;
+                dv1.RowFilter = "usircode like('" + usircode + "')";
+                dtOrder = dv1.ToTable();
+                this.gvSpayment.DataSource = dtOrder;
+                this.gvSpayment.DataBind();
+                this.lblCode.Text = usircode;
+                this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
+
+                this.txtPaidamt.Focus();
+                this.PayInf();
+                this.GetCurMrNo();
+                this.PayType();
+                this.PrintDupOrOrginal();
+                this.BankName();
+
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
 
         }
 
@@ -1986,6 +1999,8 @@ namespace RealERPWEB.F_23_CR
                     case "3340":
                     case "3337":
                     case "3101":
+                    case "3353":
+
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {

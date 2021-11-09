@@ -436,79 +436,79 @@
                   <Width>0.24875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.73958in</Width>
+                  <Width>0.73573in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.1354in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89834in</Width>
+                  <Width>0.89449in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.72792in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.43874in</Width>
+                  <Width>0.43489in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.40626in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.375in</Width>
+                  <Width>0.37115in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.45958in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.40625in</Width>
+                  <Width>0.4024in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.34375in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.39585in</Width>
+                  <Width>0.392in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.49875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.5196in</Width>
+                  <Width>0.51575in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.53002in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.49205in</Width>
+                  <Width>0.4882in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.49875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.49997in</Width>
+                  <Width>0.49612in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.47917in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.52084in</Width>
+                  <Width>0.51699in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.47917in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.53125in</Width>
+                  <Width>0.5274in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.55208in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.55209in</Width>
+                  <Width>0.54824in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.88542in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.91791in</Width>
+                  <Width>0.91406in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -521,16 +521,16 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.25916in</Width>
+                                <Width>0.24875in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.7375in</Width>
+                                <Width>0.73597in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.15416in</Width>
+                                <Width>1.1354in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.87125in</Width>
+                                <Width>0.89473in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.72792in</Width>
@@ -811,19 +811,19 @@
                                 <Width>0.43874in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.40626in</Width>
+                                <Width>0.40241in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.375in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.45958in</Width>
+                                <Width>0.45573in</Width>
                               </TablixColumn>
                               <TablixColumn>
                                 <Width>0.40625in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.34375in</Width>
+                                <Width>0.3399in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1259,19 +1259,19 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.53849in</Width>
+                                <Width>0.51888in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.48614in</Width>
+                                <Width>0.5256in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.51705in</Width>
+                                <Width>0.49133in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.48417in</Width>
+                                <Width>0.49433in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.51456in</Width>
+                                <Width>0.49927in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1339,7 +1339,7 @@
                                                 <Value>Basic</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1354,7 +1354,7 @@
                                                 <Value>Salary</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1390,7 +1390,7 @@
                                                 <Value>House Rent</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1426,7 +1426,7 @@
                                                 <Value>Medical Allow</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1462,7 +1462,7 @@
                                                 <Value>Conv.</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1477,7 +1477,7 @@
                                                 <Value>Allow</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1513,7 +1513,7 @@
                                                 <Value>Arear</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1528,7 +1528,7 @@
                                                 <Value>Bill</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1590,13 +1590,13 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.49306in</Width>
+                                <Width>0.47917in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.49306in</Width>
+                                <Width>0.52084in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.49306in</Width>
+                                <Width>0.47532in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1659,7 +1659,7 @@
                                                 <Value>Absent</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1674,7 +1674,7 @@
                                                 <Value>Amt</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1710,7 +1710,7 @@
                                                 <Value>Tax</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1725,7 +1725,7 @@
                                                 <Value>Deduc.</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1761,7 +1761,7 @@
                                                 <Value>Adv</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -1776,7 +1776,7 @@
                                                 <Value>Amt</Value>
                                                 <Style>
                                                   <FontFamily>Cambria</FontFamily>
-                                                  <FontSize>9pt</FontSize>
+                                                  <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
                                                 </Style>
                                               </TextRun>
@@ -5063,8 +5063,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.05034in</Top>
+            <Left>0.025in</Left>
             <Height>1.89584in</Height>
-            <Width>14.53249in</Width>
+            <Width>14.48249in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
