@@ -411,6 +411,24 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.GridView gvkpi;
 
         /// <summary>
+        /// lblkpiDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblkpiDetails;
+
+        /// <summary>
+        /// gvkpidet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvkpidet;
+
+        /// <summary>
         /// lnkbtnDws control.
         /// </summary>
         /// <remarks>

@@ -226,7 +226,7 @@ namespace RealERPWEB.F_15_DPayReg
                 {
 
 
-                    hbtnvbillno.NavigateUrl = "~/F_09_PImp/LnkPrSubConBillFinal.aspx?Type=BillEdit&genno=" + billno;
+                    hbtnvbillno.NavigateUrl = "~/F_09_PImp/PurSubConBillFinal.aspx?Type=BillEdit&prjcode=&sircode=&genno=" + billno;
 
                 }
 

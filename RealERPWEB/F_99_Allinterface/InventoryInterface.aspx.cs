@@ -287,9 +287,11 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkad");
+                HyperLink hlnkRecv = (HyperLink)e.Row.FindControl("HyInprPrintRecv");
 
                 string mtrfno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "trnno")).ToString();
                 hlnkchk.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Audit&genno=" + mtrfno;
+                hlnkRecv.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + mtrfno + "&pType=" + "MRTRECV";
 
 
             }

@@ -113,7 +113,7 @@
 
                                     <asp:TemplateField HeaderText="Project Name">
                                         <HeaderTemplate>
-                                            <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Supplier Name" Width="160px"></asp:Label>
+                                            <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Project Name" Width="160px"></asp:Label>
 
                                             <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                                             </asp:HyperLink>
@@ -326,7 +326,7 @@
 
                                     <asp:TemplateField HeaderText="Project Name">
                                         <HeaderTemplate>
-                                            <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Supplier Name" Width="160px"></asp:Label>
+                                            <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Project Name" Width="160px"></asp:Label>
 
                                             <asp:HyperLink ID="hlbtntbCdataExceld" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                                             </asp:HyperLink>

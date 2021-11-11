@@ -803,7 +803,7 @@
                                             </div>
 
                                              <div class="tab-pane fade " id="tab3primary">
-                                                <div id="MonthlySalesPie" style="width: 700px; height: 250px; margin: 0 auto"></div>
+                                                <div id="MonthlySalesPie" style="width: 700px; height: 450px; margin: 0 auto"></div>
 
                                             </div>
                                              
@@ -2046,7 +2046,7 @@
                                             </div>
 
                                              <div class="tab-pane fade " id="tabprimary3">
-                                                <div id="MonthlyColPie" style="width: 700px; height: 250px; margin: 0 auto"></div>
+                                                <div id="MonthlyColPie" style="width: 700px; height: 450px; margin: 0 auto"></div>
 
                                             </div>
 
@@ -2391,6 +2391,8 @@
             console.log(JSON.parse(data));
             var sdata = JSON.parse(data);
 
+            console.log(sdata);
+
             Highcharts.setOptions({
                 lang: {
                     decimalPoint: '.',
@@ -2567,72 +2569,92 @@
 
 
                 }]
-
-
             });
+           
+
+
+
+
             $("#MonthlySalesPie").highcharts({
                 chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
                     type: 'pie'
                 },
                 title: {
-                    text: ''
+                    text: 'Month Wise Sales'
                 },
-                subtitle: {
-                    text: 'Month Wise Sales',
-                    style: {
-                        color: '#44994a',
-                        fontWeight: 'bold'
-                    }
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    title: {
-                        text: 'Amount in Crore.'
-                    }
-                },
-                legend: {
-                    enabled: true
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
-                    series: {
-                        borderWidth: 0,
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '{point.y:.1f}'
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
                         }
                     }
                 },
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                },
-
                 series: [{
-                    name: 'Sales',
-                    data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
-                    color: '#1581C1'
-
-
+                    name: 'Months',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Jan',
+                        y: sdata[0]["amt1"]
+                    }, {
+                        name: 'Feb',
+                            y: sdata[0]["amt2"]
+                    }, {
+                        name: 'Mar',
+                            y: sdata[0]["amt3"]
+                        }
+                        , {
+                            name: 'Apr',
+                            y: sdata[0]["amt4"]
+                        }
+                        , {
+                            name: 'May',
+                            y: sdata[0]["amt5"]
+                        }
+                        , {
+                            name: 'Jun',
+                            y: sdata[0]["amt6"]
+                        }
+                        , {
+                            name: 'Jul',
+                            y: sdata[0]["amt7"]
+                        }
+                        , {
+                            name: 'Aug',
+                            y: sdata[0]["amt8"]
+                        }
+                        , {
+                            name: 'Sep',
+                            y: sdata[0]["amt9"]
+                        }
+                        , {
+                            name: 'Oct',
+                            y: sdata[0]["amt10"]
+                        }
+                        , {
+                            name: 'Nov',
+                            y: sdata[0]["amt11"]
+                        }
+                        , {
+                            name: 'Dec',
+                            y: sdata[0]["amt12"]
+                        }
+                    ]
                 }]
-
-
             });
+       
+    
 
 
             
@@ -2810,68 +2832,85 @@
 
 
             });
+            
+
             $("#MonthlyColPie").highcharts({
                 chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
                     type: 'pie'
                 },
                 title: {
-                    text: ''
+                    text: 'Month Wise Collection'
                 },
-                subtitle: {
-                    text: 'Month Wise Collection',
-                    style: {
-                        color: '#44994a',
-                        fontWeight: 'bold'
-                    }
-                },
-                xAxis: {
-                    categories: [
-                        'Jan',
-                        'Feb',
-                        'Mar',
-                        'Apr',
-                        'May',
-                        'Jun',
-                        'Jul',
-                        'Aug',
-                        'Sep',
-                        'Oct',
-                        'Nov',
-                        'Dec'
-                    ],
-                    crosshair: true
-                },
-                yAxis: {
-                    title: {
-                        text: 'Amount in Crore.'
-                    }
-                },
-                legend: {
-                    enabled: true
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                 },
                 plotOptions: {
-                    series: {
-                        borderWidth: 0,
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '{point.y:.1f}'
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
                         }
                     }
                 },
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                },
-
                 series: [{
-                    name: 'Collection',
-                    data: [sdata[0]["amt1"], sdata[0]["amt2"], sdata[0]["amt3"], sdata[0]["amt4"], sdata[0]["amt5"], sdata[0]["amt6"], sdata[0]["amt7"], sdata[0]["amt8"], sdata[0]["amt9"], sdata[0]["amt10"], sdata[0]["amt11"], sdata[0]["amt12"]],
-                    color: '#1581C1'
-
-
+                    name: 'Months',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Jan',
+                        y: sdata[0]["amt1"]
+                    }, {
+                        name: 'Feb',
+                        y: sdata[0]["amt2"]
+                    }, {
+                        name: 'Mar',
+                        y: sdata[0]["amt3"]
+                    }
+                        , {
+                        name: 'Apr',
+                        y: sdata[0]["amt4"]
+                    }
+                        , {
+                        name: 'May',
+                        y: sdata[0]["amt5"]
+                    }
+                        , {
+                        name: 'Jun',
+                        y: sdata[0]["amt6"]
+                    }
+                        , {
+                        name: 'Jul',
+                        y: sdata[0]["amt7"]
+                    }
+                        , {
+                        name: 'Aug',
+                        y: sdata[0]["amt8"]
+                    }
+                        , {
+                        name: 'Sep',
+                        y: sdata[0]["amt9"]
+                    }
+                        , {
+                        name: 'Oct',
+                        y: sdata[0]["amt10"]
+                    }
+                        , {
+                        name: 'Nov',
+                        y: sdata[0]["amt11"]
+                    }
+                        , {
+                        name: 'Dec',
+                        y: sdata[0]["amt12"]
+                    }
+                    ]
                 }]
-
-
             });
         }
 

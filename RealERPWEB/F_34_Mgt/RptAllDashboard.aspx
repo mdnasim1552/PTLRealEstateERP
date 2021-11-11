@@ -29,6 +29,16 @@
                 var wdata = JSON.parse(weeksales);
                 var mdata = JSON.parse(monsales);
                 var sdata = JSON.parse(singldata);
+
+
+                console.log(sdata);
+                console.log(sdata);
+                console.log(sdata);
+                console.log(sdata);
+                console.log(sdata);
+
+
+
                 if (sdata[5] === 0) {
                     $(".progress-bar").html('0');
                     $(".progress-bar").css('color', 'black');
