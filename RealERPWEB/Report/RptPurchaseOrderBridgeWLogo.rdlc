@@ -192,7 +192,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.1875in</Height>
+                  <Height>1.125in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -434,7 +434,7 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox239</rd:DefaultName>
                               <Top>0.41528in</Top>
-                              <Height>0.14583in</Height>
+                              <Height>0.15625in</Height>
                               <Width>0.97917in</Width>
                               <ZIndex>6</ZIndex>
                               <Style>
@@ -582,7 +582,7 @@
                               <rd:DefaultName>Textbox239</rd:DefaultName>
                               <Top>0.58889in</Top>
                               <Left>0.01361in</Left>
-                              <Height>0.14583in</Height>
+                              <Height>0.16666in</Height>
                               <Width>0.97917in</Width>
                               <ZIndex>10</ZIndex>
                               <Style>
@@ -1076,7 +1076,7 @@
                                   <Value>=Parameters!leterdesc.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3627,7 +3627,7 @@
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.20708in</Top>
-            <Height>6.15624in</Height>
+            <Height>6.09374in</Height>
             <Width>8.02377in</Width>
             <Style>
               <Border>
@@ -3641,102 +3641,6 @@
       </Body>
       <Width>8.04458in</Width>
       <Page>
-        <PageHeader>
-          <Height>0.46875in</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <ReportItems>
-            <Textbox Name="compname">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!compname.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>compname</rd:DefaultName>
-              <Left>1.12375in</Left>
-              <Height>0.22917in</Height>
-              <Width>5.73959in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="comadd">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!comadd.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>comadd</rd:DefaultName>
-              <Top>0.22361in</Top>
-              <Left>1.13417in</Left>
-              <Height>0.15625in</Height>
-              <Width>5.70833in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Image Name="Image1">
-              <Source>External</Source>
-              <Value>=Parameters!ComLogo.Value</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.0125in</Top>
-              <Left>0.18625in</Left>
-              <Height>0.40625in</Height>
-              <Width>0.83333in</Width>
-              <ZIndex>2</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-          </ReportItems>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageHeader>
         <PageFooter>
           <Height>0.79792in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>

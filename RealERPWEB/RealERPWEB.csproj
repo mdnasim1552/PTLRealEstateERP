@@ -11686,6 +11686,9 @@
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderBridge.rdlc" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderBridgeWLogo.rdlc" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
