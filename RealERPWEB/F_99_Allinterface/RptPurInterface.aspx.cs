@@ -1669,6 +1669,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "1205":
                     case "3351":
                     case "3352":
+                    case "3330":
 
                         hlink1.Visible = false;
                         break;

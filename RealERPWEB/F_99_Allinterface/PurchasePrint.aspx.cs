@@ -2639,6 +2639,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3101":
                 case "3353":
                 case "3355":
+                case "3330":
                     this.OrderPrintRDLC();
                     break;
 
@@ -3853,7 +3854,7 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature            
                 switch (comcod)
                 {
-                    case "3101"://ASIT
+                    //case "3101"://ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -3978,7 +3979,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         break;
 
-                    case "3101": // ASIT
+                    //case "3101": // ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P    
@@ -4083,9 +4084,13 @@ namespace RealERPWEB.F_99_Allinterface
                     case "2325": //Leisure
                         Reportpath = "~/Report/RptPurchaseOrderLeisure.rdlc";
                         break;
-                    case "3101"://Asit
                     case "3353": //Manama
                         Reportpath = "~/Report/RptPurchaseOrderManama.rdlc";
+                        break;
+
+                    case "3101"://Asit
+                    case "3330": //bridge 
+                        Reportpath = "~/Report/RptPurchaseOrderBridge.rdlc";
                         break;
 
                     //case "3101"://Asit
@@ -4118,12 +4123,21 @@ namespace RealERPWEB.F_99_Allinterface
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
                 }
-                if(comcod=="3353" || comcod == "3101")
+                if(comcod=="3353")
                 {
                     Rpt1.SetParameters(new ReportParameter("refno01", mrfno1));
                     //Rpt1.SetParameters(new ReportParameter("refno01", ""));
-
                 }
+                if (comcod == "3330")
+                {
+                    double balamt = 0.00;
+                    double ntotal = (amtmat + amtcar - amtdis);
+                    double nadvamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]);
+                    balamt = ntotal - nadvamt;
+
+                    Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));                    
+                }
+
 
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
