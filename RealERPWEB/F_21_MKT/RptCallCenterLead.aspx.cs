@@ -350,7 +350,7 @@ namespace RealERPWEB.F_21_MKT
                     DataTable dtpname = (DataTable)ViewState["tblCalldesc"];
                     int i,  j = 3;
 
-                    for (i = 2; i < this.gvCallCenter.Columns.Count-1; i++)
+                    for (i = 3; i < this.gvCallCenter.Columns.Count-1; i++)
                         this.gvCallCenter.Columns[i].Visible = false;
                    
                     
@@ -428,6 +428,12 @@ namespace RealERPWEB.F_21_MKT
                     ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP19")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p19)", "")) ? 0.00 : dt.Compute("sum(p19)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP20")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p20)", "")) ? 0.00 : dt.Compute("sum(p20)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(total)", "")) ? 0.00 : dt.Compute("sum(total)", ""))).ToString("#,##0;(#,##0); ");
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Session["Report1"] = gvCallCenter;
+                        ((HyperLink)this.gvCallCenter.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
                     break;
 
                 case "SalespWise":

@@ -182,7 +182,31 @@
 
 
                                    <asp:TemplateField HeaderText="Team Name">
-                                    <FooterTemplate>
+                                     
+
+                                        <HeaderTemplate>
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                                <asp:Label ID="lblgvheadername" runat="server">Team Name</asp:Label>
+
+                                                            </div>
+
+
+                                                            <div class="col-md-2">
+                                                                <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                                    CssClass="btn   btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+
+                                                            </div>
+
+
+                                                        </div>
+
+
+                                                    </HeaderTemplate>
+
+                                       
+                                       
+                                       <FooterTemplate>
                                         <asp:Label ID="lgvFcluster" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
                                             Style="text-align: right" Width="120px"> Total :</asp:Label>
                                     </FooterTemplate>
