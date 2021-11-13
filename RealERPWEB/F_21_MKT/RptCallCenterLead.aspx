@@ -212,7 +212,7 @@
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgvcluster" runat="server" Style="text-align: left" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))%>'
-                                            Width="180px"></asp:Label>
+                                            Width="120px"></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Right" />

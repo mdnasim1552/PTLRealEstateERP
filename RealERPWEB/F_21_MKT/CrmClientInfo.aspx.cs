@@ -111,6 +111,21 @@ namespace RealERPWEB.F_21_MKT
                     break;
 
 
+              
+                case "3354"://Edison
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[15].Visible = false;
+                    this.gvSummary.Columns[16].Visible = false;
+                    this.gvSummary.Columns[17].Visible = false;
+                    this.gvSummary.Columns[18].Visible = false;
+                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[20].Visible = true;
+                    this.gvSummary.Columns[22].Visible = false;
+                    break;
+
 
                 default:
                     this.gvSummary.Columns[13].Visible = false;
@@ -5498,7 +5513,7 @@ namespace RealERPWEB.F_21_MKT
             }
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTMONTHLYKPI", "8301%", frmdate, todate, empid);
 
-            ViewState["tbltempdt"] = ds1.Tables[0];
+            Session["tbltempdt"] = ds1.Tables[0];
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpi.DataSource = ds1.Tables[0];
@@ -5510,7 +5525,7 @@ namespace RealERPWEB.F_21_MKT
         }
         private void footerCalculations()
         {
-            DataTable dt1 = (DataTable)ViewState["tbltempdt"];
+            DataTable dt1 = (DataTable)Session["tbltempdt"];
             if (dt1.Rows.Count == 0)
                 return;
 
@@ -6073,7 +6088,7 @@ namespace RealERPWEB.F_21_MKT
 
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
 
-            ViewState["tbltempdt"] = ds1.Tables[0];
+           
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpidet.DataSource = ds1.Tables[0];
