@@ -2799,7 +2799,7 @@
 
                                                 <asp:TemplateField HeaderText="Prospect Details">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="ldesc" runat="server" Width="180px"
+                                                        <asp:Label ID="ldesc" runat="server" Width="130px"
                                                             Text='<%# 
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")).Trim()
                                                                          
@@ -2865,7 +2865,7 @@
                                                             Style="text-align: center"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assoc")) %>'></asp:Label>
                                                     </ItemTemplate>
-
+                                                    <ItemStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
                                                 <%--10--%>
@@ -2876,7 +2876,7 @@
                                                             Style="text-align: center"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc")) %>'></asp:Label>
                                                     </ItemTemplate>
-
+                                                    <ItemStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
                                                 <%--11--%>
@@ -2967,7 +2967,7 @@
 
                                                 <asp:TemplateField HeaderText="Source">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvLSrc" runat="server" Width="60px"
+                                                        <asp:Label ID="lblgvLSrc" runat="server" Width="100px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>

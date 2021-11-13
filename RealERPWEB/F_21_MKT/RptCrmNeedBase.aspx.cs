@@ -42,7 +42,8 @@ namespace RealERPWEB.F_21_MKT
             string Area = "%";
             string Block = "%";            
             string Pri = "%";
-            string Other = "%";
+            string Status = "%";
+            string Other = "9";
             string TxtVal = "%";
             string srchempid = "%";           
             string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -55,7 +56,13 @@ namespace RealERPWEB.F_21_MKT
 
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-                Pri, "9", Other, TxtVal, todate, srchempid);
+                Pri, Status, Other, TxtVal, todate, srchempid);
+
+
+           // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+           //Pri, Status, Other, TxtVal, todate, srchempid);
+
+
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
 
