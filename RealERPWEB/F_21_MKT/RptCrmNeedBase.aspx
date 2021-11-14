@@ -183,7 +183,7 @@
                         </div>
                         <div clsss="col-md-2">
 
-                            <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                            <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
                             </asp:HyperLink>
 
                         </div>
@@ -200,9 +200,10 @@
                                 <Columns>
                                     <asp:TemplateField>
                                         <HeaderTemplate>
-
+                                           
                                             <asp:LinkButton ID="lnkgvHeader" runat="server" Font-Bold="True" CssClass="indexing" Height="16px" ToolTip="Edit Header" OnClick="lnkgvHeader_Click"><i class="fa fa-th-large" aria-hidden="true"></i></asp:LinkButton>
-
+  <%--                                          <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                            </asp:HyperLink>--%>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="serialno" runat="server" Style="text-align: left" CssClass="table-data"
