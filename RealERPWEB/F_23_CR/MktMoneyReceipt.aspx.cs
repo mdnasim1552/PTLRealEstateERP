@@ -404,7 +404,9 @@ namespace RealERPWEB.F_23_CR
                 this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
 
                 this.txtPaidamt.Focus();
-                this.PayInf();
+               
+                
+                this.PayInf();              
                 this.GetCurMrNo();
                 this.PayType();
                 this.PrintDupOrOrginal();
@@ -663,6 +665,7 @@ namespace RealERPWEB.F_23_CR
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
+                                 
             this.HiddenSameDate(ds2.Tables[0]);
             this.ShowTotalAmt();
 
