@@ -762,7 +762,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlBillList.Visible = true;
 
 
-                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98")))
+                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98")|| (ASTUtility.Left(lst2[0].rescode, 2) == "93")))
                     this.txtPayto.Text = lst2[0].resdesc;
 
 
