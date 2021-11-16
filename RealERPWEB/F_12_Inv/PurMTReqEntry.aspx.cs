@@ -51,7 +51,7 @@ namespace RealERPWEB.F_12_Inv
                     this.ddlprjlistto.Visible = true;
                     this.lbtnOk.Visible = true;
                     this.pnlprevious.Visible = true;
-                    this.pnlreq.Visible = true;
+                    this.pnlreq.Visible = false;
                     this.pnlreqaprv.Visible = false;
                 }
                 else if (this.Request.QueryString["Type"].ToString() == "ReqApproval")
@@ -585,6 +585,7 @@ namespace RealERPWEB.F_12_Inv
                 this.lblddlProjectTo.Text = this.ddlprjlistto.SelectedItem.Text;
                 this.GetMatTransfer();
                 this.ImgbtnFindRes_Click(null, null);
+                this.lnkselect.Visible = true;
             }
             else
             {
@@ -609,6 +610,7 @@ namespace RealERPWEB.F_12_Inv
                 this.lblVoucherNo.Text = "";
                 lbtnOk.Text = "Ok";
                 this.ddlPrevISSList.Items.Clear();
+                this.lnkselect.Visible = false;
 
 
             }

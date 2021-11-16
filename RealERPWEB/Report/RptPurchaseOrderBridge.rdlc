@@ -1000,7 +1000,6 @@
                                                     <Value>=Parameters!supadd.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
-                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1100,7 +1099,6 @@
                                                     <Value>=First(Fields!proadd.Value)</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
-                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2743,7 +2741,6 @@
                                   <Value>Sub Total</Value>
                                   <Style>
                                     <FontFamily>TImes New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2868,7 +2865,6 @@
                                   <Value>Carring Cost</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2987,7 +2983,6 @@
                                   <Value>=Parameters!discountdesc.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3106,7 +3101,6 @@
                                   <Value>Total Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3272,7 +3266,6 @@
                                   <Value EvaluationMode="Constant">Advanced Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3427,7 +3420,6 @@
                                   <Value EvaluationMode="Constant">Balance Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3617,9 +3609,7 @@
                                 <TextRun>
                                   <Value>=Parameters!pordnar.Value</Value>
                                   <Style>
-                                    <FontStyle>Italic</FontStyle>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3668,9 +3658,7 @@
                                 <TextRun>
                                   <Value>=Fields!reqnar.Value</Value>
                                   <Style>
-                                    <FontStyle>Italic</FontStyle>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontWeight>Normal</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3770,7 +3758,6 @@
                                   <Value>=Parameters!terms1.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3820,7 +3807,6 @@
                                   <Value>=Parameters!terms2.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3870,7 +3856,6 @@
                                   <Value>=Parameters!terms3.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3920,7 +3905,6 @@
                                   <Value>=Parameters!terms4.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3970,7 +3954,6 @@
                                   <Value>=Parameters!terms5.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4020,7 +4003,6 @@
                                   <Value>=Parameters!terms6.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4070,7 +4052,6 @@
                                   <Value>=Parameters!terms7.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4120,7 +4101,6 @@
                                   <Value>=Parameters!terms8.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4170,7 +4150,6 @@
                                   <Value>=Parameters!terms9.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4220,7 +4199,6 @@
                                   <Value>=Parameters!terms10.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4415,7 +4393,7 @@
             <Top>0.04458in</Top>
             <Left>0.00815in</Left>
             <Height>6.31248in</Height>
-            <Width>7.85748in</Width>
+            <Width>7.85746in</Width>
             <Style>
               <Border>
                 <Style>None</Style>

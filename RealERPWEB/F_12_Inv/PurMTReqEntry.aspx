@@ -96,11 +96,12 @@
                                         <asp:Label ID="Label3" runat="server" CssClass="smLbl">MTRF No:</asp:Label>
                                         <asp:TextBox ID="txtrefno" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
-                                    </div>
-                                    <div class="col-md-2 pading5px">
-                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click" Style="margin-left:10px">Ok</asp:LinkButton>
+
+                                     
 
                                     </div>
+                                 
                                     <div class="col-md-3 pull-right">
                                         <asp:Label ID="lblmsg1" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false"></asp:Label>
                                     </div>
@@ -176,7 +177,7 @@
 
                                         </div>
                                         <div class="col-md-1">
-                                            <asp:LinkButton ID="lnkselect0" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkselect_Click">Select</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkselect" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkselect_Click">Select</asp:LinkButton>
 
                                         </div>
                                         <asp:Label ID="lblVoucherNo" runat="server" CssClass="lblTxt lblName"></asp:Label>
