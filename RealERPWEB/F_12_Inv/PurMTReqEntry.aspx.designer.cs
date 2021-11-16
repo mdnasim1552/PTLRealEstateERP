@@ -339,13 +339,13 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.DropDownList ddlResSpcf;
 
         /// <summary>
-        /// lnkselect0 control.
+        /// lnkselect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkselect0;
+        protected global::System.Web.UI.WebControls.LinkButton lnkselect;
 
         /// <summary>
         /// lblVoucherNo control.
