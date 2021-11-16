@@ -447,7 +447,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
+                        //ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302003": //Team Leader
@@ -3754,12 +3754,13 @@ namespace RealERPWEB.F_21_MKT
                 string gcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
                 string gdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gdesc")).ToString();
 
-                if (gcod == "0302003")
+                if (gcod == "0302001")
                 {
                     lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
-
-                    //lgcResDesc.Attributes["style"] = "<span><sup> *</sup></span>";
-
+                }
+                else if(gcod== "0302003")
+                {
+                    lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
 
                 }
 
