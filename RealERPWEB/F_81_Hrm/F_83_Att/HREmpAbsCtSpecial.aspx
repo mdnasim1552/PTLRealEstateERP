@@ -104,7 +104,7 @@
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
 
-                                <div class="form-group">
+                                <%--<div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lbldate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
 
@@ -113,6 +113,18 @@
                                         </asp:DropDownList>
 
                                     </div>
+                                </div>--%>
+
+                                <div class="form-group">
+                                    <div class="col-md-1 pading5px">
+                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Month</asp:Label>
+
+                                    </div>
+                                    <div class="col-md-3 pading5px asitCol3">
+                                        <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control inputTxt"  AutoPostBack="true" TabIndex="2">
+                                        </asp:DropDownList>
+                                    </div>
+                                    
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
@@ -342,7 +354,9 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary"  >Update</button>
+                                       <%-- <asp:Button ID="btnSummary" runat="server" OnClick="btnSummary_Click" Text="Next" />--%>
+                                     <%--   <button type="button" class="btn btn-primary">Update</button>--%>
+                                         <asp:Button ID="btnabsUpdate" runat="server" OnClick="btnabsUpdate_Click" Text="Update" />
                                     </div>
                                
                             </div>
