@@ -1662,7 +1662,7 @@
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=right(Fields!actcode.Value,12)="000000000000"</Hidden>
+                        <Hidden>=len(ltrim(rtrim(Fields!trnrmrk.Value)))=0</Hidden>
                       </Visibility>
                     </TablixMember>
                   </TablixMembers>

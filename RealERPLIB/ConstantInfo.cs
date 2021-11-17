@@ -16,7 +16,7 @@ namespace RealERPLIB
 
     public static class ConstantInfo
     {
-        public static bool LogStatus = false;
+        public static bool LogStatus = true;
         public static bool smssend = false;
         //=================================================
         /// Strt Menu
