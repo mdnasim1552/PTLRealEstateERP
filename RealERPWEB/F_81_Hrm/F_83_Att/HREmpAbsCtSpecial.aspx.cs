@@ -59,23 +59,35 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             return (hst["comcod"].ToString());
 
         }
+
+
         private void GetYearMonth()
         {
-            string comcod = this.GetComeCode();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETYEARMON", "", "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            this.ddlyearmon.DataTextField = "yearmon";
-            this.ddlyearmon.DataValueField = "ymon";
-            this.ddlyearmon.DataSource = ds1.Tables[0];
-
-            this.ddlyearmon.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
-            this.ddlyearmon.DataBind();
-            //this.ddlyearmon.DataBind();
-            //string txtdate = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMMM-yyyy");
-            ds1.Dispose();
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "GETMONTHFORABS", "", "", "", "", "", "", "", "", "");
+            this.ddlMonth.DataTextField = "mnam";
+            this.ddlMonth.DataValueField = "mno";
+            this.ddlMonth.DataSource = ds1.Tables[0];
+            this.ddlMonth.DataBind();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.Month.ToString().Trim();
         }
+        //private void GetYearMonth()
+        //{
+        //    string comcod = this.GetComeCode();
+
+        //    DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETYEARMON", "", "", "", "", "", "", "", "", "");
+        //    if (ds1 == null)
+        //        return;
+        //    this.ddlyearmon.DataTextField = "yearmon";
+        //    this.ddlyearmon.DataValueField = "ymon";
+        //    this.ddlyearmon.DataSource = ds1.Tables[0];
+
+        //    this.ddlyearmon.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
+        //    this.ddlyearmon.DataBind();
+        //    //this.ddlyearmon.DataBind();
+        //    //string txtdate = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMMM-yyyy");
+        //    ds1.Dispose();
+        //}
 
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
@@ -159,8 +171,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string compname = (this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompanyName.SelectedValue.Substring(0, hrcomln).ToString() + "%";
             string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
-            string MonthId = this.ddlyearmon.Text.Trim();
-            string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
+            //  string MonthId = this.ddlyearmon.Text.Trim();
+
+            string MonthId = "";
+            string date = "";
+           // string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
 
@@ -329,14 +344,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             this.chkDate.Items.Clear();
 
-            string comcod = this.GetCompCode();
-            //string date = this.ddlyearmon.SelectedValue.ToString();
+            //string comcod = this.GetCompCode();
+            ////string date = this.ddlyearmon.SelectedValue.ToString();
 
-            string date = "01-Sep-2021";
-            //this.ddlMonth.SelectedItem.Text.Substring(0, 3);
-            //string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            //string date = "01-" + Month + "-" + year;
-            string empid = "930100101001";  //this.ddlEmpName.SelectedValue.ToString();
+            //string date = "01-Sep-2021";
+            ////this.ddlMonth.SelectedItem.Text.Substring(0, 3);
+            ////string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            ////string date = "01-" + Month + "-" + year;
+            //string empid = "930100101001";  //this.ddlEmpName.SelectedValue.ToString();
+
+            string comcod = this.GetCompCode();
+            string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
+            string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            string date = "01-" + Month + "-" + year;
+            string empid = "";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", date, empid, "", "", "", "", "", "", "");
 
             if (ds4 == null)
@@ -377,7 +398,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string PostedByid = userid;
             string Posttrmid = Terminal;
             string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string Monthid = this.ddlyearmon.Text.Trim();
+            string Monthid = ""; // this.ddlyearmon.Text.Trim();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string empid = dt.Rows[i]["empid"].ToString();
@@ -402,7 +423,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tblabscount"];
-            string Monthid = this.ddlyearmon.Text.Trim();
+            string Monthid = ""; //this.ddlyearmon.Text.Trim();
             string empid = ((Label)this.gvabscount.Rows[rownum].FindControl("lgvEmpId")).Text.Trim();
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "DELETEABSENTAUTO",
                        Monthid, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -470,6 +491,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
-       
+        protected void btnabsUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
