@@ -661,7 +661,8 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComCode();
             string UsirCode = this.lblCode.Text;
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+            string date =this.txtReceiveDate.Text.Trim().Length==0?System.DateTime.Today.ToString("dd-MMM-yyyy"): this.txtReceiveDate.Text;
+            //string date =Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
@@ -2336,7 +2337,8 @@ namespace RealERPWEB.F_23_CR
             string paytype = this.ddlpaytype.SelectedValue.ToString();
             if (paytype == "82002" || paytype == "82007")
             {
-                txtpaydate.Text = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+                txtpaydate.Text =this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
+                //txtpaydate.Text = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
             }
         }
         protected void rbtInsType_SelectedIndexChanged(object sender, EventArgs e)
