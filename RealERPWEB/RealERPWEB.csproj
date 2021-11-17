@@ -3040,6 +3040,7 @@
     <Content Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HRDailyAttenUpload.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten.aspx" />
@@ -4013,6 +4014,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx.designer.cs">
       <DependentUpon>HREmpAbsCt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx.cs">
+      <DependentUpon>HREmpAbsCtSpecial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx.designer.cs">
+      <DependentUpon>HREmpAbsCtSpecial.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx.cs">
       <DependentUpon>HREmpAbsCtAuto.aspx</DependentUpon>
