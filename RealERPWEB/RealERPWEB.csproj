@@ -354,9 +354,8 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives" />
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\RealERPRPT.dll</HintPath>
@@ -3040,6 +3039,7 @@
     <Content Include="F_81_Hrm\F_83_Att\HRDailyAttenManually.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HRDailyAttenUpload.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten.aspx" />
@@ -4013,6 +4013,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx.designer.cs">
       <DependentUpon>HREmpAbsCt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx.cs">
+      <DependentUpon>HREmpAbsCtSpecial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx.designer.cs">
+      <DependentUpon>HREmpAbsCtSpecial.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx.cs">
       <DependentUpon>HREmpAbsCtAuto.aspx</DependentUpon>
@@ -11685,6 +11692,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderBridge.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderBridgeWLogo.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

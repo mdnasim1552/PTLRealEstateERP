@@ -195,6 +195,9 @@ namespace RealERPWEB.F_17_Acc
                             0 : dt.Compute("sum(casham)", ""))).ToString("#,##0;(#,##0) ;");
                     ((Label)this.gvcashbook.FooterRow.FindControl("lgvFBankAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankam)", "")) ?
                           0 : dt.Compute("sum(bankam)", ""))).ToString("#,##0;(#,##0) ;");
+
+                    Session["Report1"] = gvcashbook;
+                    ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
 
@@ -203,12 +206,22 @@ namespace RealERPWEB.F_17_Acc
                              0 : dt.Compute("sum(casham)", ""))).ToString("#,##0;(#,##0) ;");
                     ((Label)this.gvcashbookp.FooterRow.FindControl("lgvFBankAmt1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankam)", "")) ?
                            0 : dt.Compute("sum(bankam)", ""))).ToString("#,##0;(#,##0) ;");
+
+                    Session["Report1"] = gvcashbookp;
+                    ((HyperLink)this.gvcashbookp.HeaderRow.FindControl("hlbtntbCdataExcelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
                     break;
                 case "gvcashbookDV":
                     ((Label)this.gvDepUnclr.FooterRow.FindControl("lgvFCashAmtDV")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(casham)", "")) ?
                              0 : dt.Compute("sum(casham)", ""))).ToString("#,##0;(#,##0) ;");
                     ((Label)this.gvDepUnclr.FooterRow.FindControl("lgvFBankAmtDV")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankam)", "")) ?
                            0 : dt.Compute("sum(bankam)", ""))).ToString("#,##0;(#,##0) ;");
+
+                    
+                    Session["Report1"] = gvDepUnclr;
+                    ((HyperLink)this.gvDepUnclr.HeaderRow.FindControl("hlbtntbCdataExcel2")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
                     break;
                 case "gvcashbookPV":
                     ((Label)this.gvWidUnclr.FooterRow.FindControl("lgvFCashAmtpayPV")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(casham)", "")) ?

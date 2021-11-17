@@ -95,7 +95,7 @@
 
                                     </div>
                                     <div class="col-md-3 pading5px">
-                                        <asp:Label ID="lblSchCode" runat="server" Visible="False"></asp:Label>
+                                        <asp:Label ID="lblSchCode" runat="server" Visible="false"></asp:Label>
                                     </div>
 
                                     <div class="clearfix"></div>

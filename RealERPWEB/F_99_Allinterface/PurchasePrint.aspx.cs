@@ -2437,7 +2437,7 @@ namespace RealERPWEB.F_99_Allinterface
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
 
             string reqcheck = dts.Rows[0]["reqchkname"].ToString();
-            string reqrate = dts.Rows[0]["reqratename"].ToString(); 
+            string reqrate = dts.Rows[0]["reqratename"].ToString();
             string reqapv = dts.Rows[0]["reqaprname"].ToString();
             string crmcheck = dts.Rows[0]["crmcheckname"].ToString();
             string crmcheckdat = dts.Rows[0]["crmcheckdat"].ToString();
@@ -2452,14 +2452,14 @@ namespace RealERPWEB.F_99_Allinterface
             string estnarr = dts.Rows[0]["estnarr"].ToString();
 
 
-            
+
 
             //Estimate Check
 
 
             string reqchkname = dts.Rows[0]["reqchkname"].ToString();
             string checkdat = dts.Rows[0]["checkdat"].ToString();
-        
+
 
             // signatory Part 
             /*
@@ -2470,10 +2470,10 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign5 = "Procrument";
             string txtSign6 = "Managing Director";
              */
-            string txtSign1 = postname +"\n"+ postdat;
-            string txtSign2 = ""; 
+            string txtSign1 = postname + "\n" + postdat;
+            string txtSign2 = "";
             string txtSign3 = crmcheck + "\n" + crmcheckdat;
-            string txtSign4 = reqchkname +"\n"+ checkdat;
+            string txtSign4 = reqchkname + "\n" + checkdat;
             string txtSign5 = "";
             string txtSign6 = "";
 
@@ -3806,6 +3806,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string porderno = this.ComOrderNo(orderno, oissueno);
                 string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
 
+
+                string pactcode = _ReportDataSet.Tables[0].Rows[0]["pactcode"].ToString();
+
                 string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
 
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", wrkid, "", "", "", "", "", "", "", "");
@@ -3916,6 +3919,15 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
+                    case "3330": //bridge
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign6 = "Approved By";
+                        break;
+
                     default:
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -3947,11 +3959,19 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     //case "3101": // ASIT      
                     case "3330": // Bridge Holdings
-                        terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
-                        terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
-                        terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
-                        terms4 = "4. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
-                        terms5 = "5. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        //terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        //terms4 = "4. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        //terms5 = "5. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        //cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+
+                        terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
+                        terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
+                        terms3 = termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "";
+                        terms4 = termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "";
+                        terms5 = termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "005")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString()) : "";
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
 
                         break;
 
@@ -4090,7 +4110,14 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3101"://Asit
                     case "3330": //bridge 
-                        Reportpath = "~/Report/RptPurchaseOrderBridge.rdlc";
+                        if (pactcode == "160100010025")
+                        {
+                            Reportpath = "~/Report/RptPurchaseOrderBridgeWLogo.rdlc";
+                        }
+                        else
+                        {
+                            Reportpath = "~/Report/RptPurchaseOrderBridge.rdlc";
+                        }
                         break;
 
                     //case "3101"://Asit
@@ -4123,7 +4150,7 @@ namespace RealERPWEB.F_99_Allinterface
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
                 }
-                if(comcod=="3353")
+                if (comcod == "3353")
                 {
                     Rpt1.SetParameters(new ReportParameter("refno01", mrfno1));
                     //Rpt1.SetParameters(new ReportParameter("refno01", ""));
@@ -4134,8 +4161,7 @@ namespace RealERPWEB.F_99_Allinterface
                     double ntotal = (amtmat + amtcar - amtdis);
                     double nadvamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]);
                     balamt = ntotal - nadvamt;
-
-                    Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));                    
+                    Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
                 }
 
 
@@ -5271,7 +5297,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             }
-            
+
 
             else if (pCompanyBill == "PrintBillCredence")
             {
@@ -5357,7 +5383,7 @@ namespace RealERPWEB.F_99_Allinterface
             rptbill.SetParameters(new ReportParameter("comadd", comadd));
             rptbill.SetParameters(new ReportParameter("Rptname", "Sub-Contractor Bill"));
             rptbill.SetParameters(new ReportParameter("ProjectName", "Project Name : " + dt.Rows[0]["pactdesc"].ToString()));
-            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dt.Rows[0]["csirdesc"].ToString())); 
+            rptbill.SetParameters(new ReportParameter("SubContNam", "Contractor Name : " + dt.Rows[0]["csirdesc"].ToString()));
             rptbill.SetParameters(new ReportParameter("mBillNo", "Bill No: " + dtd.Rows[0]["billno1"].ToString()));
             rptbill.SetParameters(new ReportParameter("Date", "Date: " + Convert.ToDateTime(dtd.Rows[0]["billdate"]).ToString("dd-MMM-yyyy")));
             rptbill.SetParameters(new ReportParameter("SeDep", Convert.ToDouble(dtd.Rows[0]["sdamt"]).ToString("#,##0.00;(#,##0.00); ")));

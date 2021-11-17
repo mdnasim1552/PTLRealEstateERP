@@ -404,7 +404,9 @@ namespace RealERPWEB.F_23_CR
                 this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
 
                 this.txtPaidamt.Focus();
-                this.PayInf();
+               
+                
+                this.PayInf();              
                 this.GetCurMrNo();
                 this.PayType();
                 this.PrintDupOrOrginal();
@@ -663,6 +665,7 @@ namespace RealERPWEB.F_23_CR
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
+                                 
             this.HiddenSameDate(ds2.Tables[0]);
             this.ShowTotalAmt();
 
@@ -1072,6 +1075,10 @@ namespace RealERPWEB.F_23_CR
 
                     paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
                     double disamt = Convert.ToDouble(dt1.Rows[i]["disamt"]);
+
+                    //string type1 = this.Request.QueryString["Type"];
+                    //string management = (type1 == "Management" ? "management" : ""); // mr edit 
+
                     //schamt = schamt + paidamt;
                     if (paidamt != 0 || disamt != 0)
                         result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), chqno,

@@ -182,6 +182,7 @@ namespace RealERPWEB.F_14_Pro
 
 
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
+            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "F_99_Allinterface/";
             string currentptah = "PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";

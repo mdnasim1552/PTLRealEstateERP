@@ -293,19 +293,19 @@ namespace RealERPWEB.F_21_MKT
             switch (Type)
             {
 
-                case "SourceWise":
+                //case "SourceWise":
 
-                    string gcod = dt1.Rows[0]["gcod"].ToString();
-                    for (int j = 1; j < dt1.Rows.Count; j++)
-                    {
-                        if (dt1.Rows[j]["gcod"].ToString() == gcod)
+                //    string gcod = dt1.Rows[0]["gcod"].ToString();
+                //    for (int j = 1; j < dt1.Rows.Count; j++)
+                //    {
+                //        if (dt1.Rows[j]["gcod"].ToString() == gcod)
 
-                            dt1.Rows[j]["gdesc"] = "";
-                        gcod = dt1.Rows[j]["gcod"].ToString();
-                    }
+                //            dt1.Rows[j]["gdesc"] = "";
+                //        gcod = dt1.Rows[j]["gcod"].ToString();
+                //    }
 
 
-                    break;
+                //    break;
 
                 case "SalespWise":
                     string clustid = dt1.Rows[0]["clustid"].ToString();
@@ -344,15 +344,24 @@ namespace RealERPWEB.F_21_MKT
             {
 
                 case "SourceWise":
-                    DataTable dtpname = (DataTable)ViewState["tblCalldesc"];
-                    int j = 4;
-                    for (int i = 0; i < dtpname.Rows.Count; i++)
-                    {
 
+
+
+                    DataTable dtpname = (DataTable)ViewState["tblCalldesc"];
+                    int i,  j = 3;
+
+                    for (i = 3; i < this.gvCallCenter.Columns.Count-1; i++)
+                        this.gvCallCenter.Columns[i].Visible = false;
+                   
+                    
+                    
+                    
+                    for (i = 0; i < dtpname.Rows.Count; i++)
+                    {
+                        this.gvCallCenter.Columns[j].Visible = true;
                         this.gvCallCenter.Columns[j].HeaderText = dtpname.Rows[i]["sourdesc"].ToString();
                         j++;
-                        if (j == 12)
-                            break;
+                      
 
 
                     }
@@ -404,7 +413,26 @@ namespace RealERPWEB.F_21_MKT
                     ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p5)", "")) ? 0.00 : dt.Compute("sum(p5)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP6")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p6)", "")) ? 0.00 : dt.Compute("sum(p6)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP7")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p7)", "")) ? 0.00 : dt.Compute("sum(p7)", ""))).ToString("#,##0;(#,##0); ");
-                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(total)", "")) ? 0.00 : dt.Compute("sum(total)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p8)", "")) ? 0.00 : dt.Compute("sum(p8)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP9")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p9)", "")) ? 0.00 : dt.Compute("sum(p9)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP10")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p10)", "")) ? 0.00 : dt.Compute("sum(p10)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP11")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p11)", "")) ? 0.00 : dt.Compute("sum(p11)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP12")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p12)", "")) ? 0.00 : dt.Compute("sum(p12)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP13")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p13)", "")) ? 0.00 : dt.Compute("sum(p13)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP14")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p14)", "")) ? 0.00 : dt.Compute("sum(p14)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP15")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p15)", "")) ? 0.00 : dt.Compute("sum(p15)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP16")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p16)", "")) ? 0.00 : dt.Compute("sum(p16)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP17")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p17)", "")) ? 0.00 : dt.Compute("sum(p17)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP18")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p18)", "")) ? 0.00 : dt.Compute("sum(p18)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP19")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p19)", "")) ? 0.00 : dt.Compute("sum(p19)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFP20")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(p20)", "")) ? 0.00 : dt.Compute("sum(p20)", ""))).ToString("#,##0;(#,##0); ");
+                    ((Label)this.gvCallCenter.FooterRow.FindControl("lgvFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(total)", "")) ? 0.00 : dt.Compute("sum(total)", ""))).ToString("#,##0;(#,##0); ");
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Session["Report1"] = gvCallCenter;
+                        ((HyperLink)this.gvCallCenter.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
                     break;
 
                 case "SalespWise":

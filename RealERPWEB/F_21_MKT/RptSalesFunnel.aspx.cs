@@ -115,7 +115,7 @@ namespace RealERPWEB.F_21_MKT
             if (this.rbtnlst.SelectedIndex == 0)
             {
                 this.lblcondate.Visible = false;
-                this.txtcondate.Visible = false;
+                this.txtcondate.Visible = false; 
                 this.txtcondate.Text = "";
                // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
               // this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
@@ -182,10 +182,14 @@ namespace RealERPWEB.F_21_MKT
         //-------------------------------DashBoard------------------------------------------------
         private void ModalDataBind()
         {
-
+            string comcod = this.GetComeCode();
             DataTable dt1 = (DataTable)ViewState["tblsubddl"];
             DataTable dtemp = (DataTable)ViewState["tblempsup"];
-            DataTable dtprj = (DataTable)ViewState["tblproject"];
+            DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
+            DataView dvp = dtprj.DefaultView;
+            dvp.RowFilter = ("comcod='" + comcod + "'");
+            dtprj = dvp.ToTable();
+
             DataView dv;
             dv = dt1.Copy().DefaultView;
             string ddlempid = this.ddlEmpid.SelectedValue.ToString();
@@ -193,7 +197,7 @@ namespace RealERPWEB.F_21_MKT
             string userrole = hst["userrole"].ToString();
             string lempid = hst["empid"].ToString();
             //string empid = (userrole == "1" ? "93" : lempid) + "%";
-            string comcod = this.GetComeCode();
+            
             DataTable dtE = new DataTable();
             dv.RowFilter = ("gcod like '93%'");
             if (userrole == "1")
