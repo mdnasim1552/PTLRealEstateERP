@@ -4029,6 +4029,8 @@
 
                                     <p>
                                         <strong><span id="lblprosname" runat="server"></span></strong>
+                                        <br />
+                                        <strong>Contact Person: </strong><span id="lblContactPerson" runat="server"></span>
                                         <br>
                                         <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
                                         <br>

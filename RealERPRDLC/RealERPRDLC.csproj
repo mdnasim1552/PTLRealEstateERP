@@ -90,7 +90,7 @@
     <Folder Include="R_81_Hrm\R_99_MgtAct\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
@@ -578,6 +578,7 @@
     <EmbeddedResource Include="R_22_Sal\RptDummyPaywithoutDiscount02.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptDWiseRealCollection.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptEnvelopNew.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptMoneyReceiptIntech.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt360.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptMoneyReceipt1.rdlc" />

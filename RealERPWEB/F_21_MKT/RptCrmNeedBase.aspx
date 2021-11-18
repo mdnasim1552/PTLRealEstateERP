@@ -223,8 +223,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="P-ID">
                                         <HeaderTemplate>
-
-                                            <asp:TextBox ID="txtsrcA" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="P-ID" onkeyup="Search_Gridview(this,1)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcA" runat="server" Width="60px">P-ID</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcA" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="P-ID" onkeyup="Search_Gridview(this,1)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="pid" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
 
                                         </HeaderTemplate>
@@ -237,7 +237,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Generated">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtsrcB" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Generated" onkeyup="Search_Gridview(this,2)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcB" runat="server" Width="60px">Generated</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcB" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Generated" onkeyup="Search_Gridview(this,2)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="gen" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -250,7 +251,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Prospect Details">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtsrcC" BackColor="Transparent" BorderStyle="None" runat="server" Width="130px" placeholder="Prospect Details" onkeyup="Search_Gridview(this,3)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcC" runat="server" Width="130px">Prospect Details</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcC" BackColor="Transparent" BorderStyle="None" runat="server" Width="130px" placeholder="Prospect Details" onkeyup="Search_Gridview(this,3)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="prospectdet" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -262,7 +264,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Profession">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtsrcG" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="Profession" onkeyup="Search_Gridview(this,4)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcG" runat="server" Width="80px">Profession</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcG" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="Profession" onkeyup="Search_Gridview(this,4)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="prof" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -274,7 +277,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Associate">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtsrcD" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Associate" onkeyup="Search_Gridview(this,5)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcD" runat="server" Width="100px">Associate</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcD" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Associate" onkeyup="Search_Gridview(this,5)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="assoc" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -284,7 +288,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Team Head">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtsrcE" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Team Head" onkeyup="Search_Gridview(this,6)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcE" runat="server" Width="100px">Team Head</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcE" BackColor="Transparent" BorderStyle="None" runat="server" Width="100px" placeholder="Team Head" onkeyup="Search_Gridview(this,6)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="head" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -296,7 +301,8 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Status">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtsrcF" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Status" onkeyup="Search_Gridview(this,7)" Font-Size="12px"></asp:TextBox>
+                                            <asp:Label ID="txtsrcF" runat="server" Width="60px">Status</asp:Label>
+                                            <%--<asp:TextBox ID="txtsrcF" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Status" onkeyup="Search_Gridview(this,7)" Font-Size="12px"></asp:TextBox>--%>
                                             <a id="status" class="filter__link filter__link--number indexing" href="#"><i class="fa fa-sort" aria-hidden="true" onclick="onclicksortbtn()"></i></a>
                                         </HeaderTemplate>
                                         <ItemTemplate>
@@ -345,12 +351,6 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lprefdesc" runat="server" Width="60px" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prefdesc")) %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Lead Source" Visible="false">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lLSrc" runat="server" Width="60px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="App. Size" Visible="false">
