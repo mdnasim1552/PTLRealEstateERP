@@ -70,6 +70,17 @@ namespace RealERPWEB.F_01_LPA
                 this.CreateTable();
                 this.ShowDiscussion();
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = "Click Land Interface (Land CRM)";
+                    string eventdesc = "Click Land Interface (Land CRM)";
+                    string eventdesc2 = "";
+                    string comcod = this.GetCompCode();
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+
 
             }
         }
@@ -95,8 +106,8 @@ namespace RealERPWEB.F_01_LPA
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
-                string eventtype = "Show Information ";
-                string eventdesc = "Show Information";
+                string eventtype = "Show Information (Land CRM) ";
+                string eventdesc = "Show Information (Land CRM)";
                 string eventdesc2 = "";
                 string comcod = this.GetCompCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
@@ -3221,8 +3232,8 @@ namespace RealERPWEB.F_01_LPA
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
-                    string eventtype = "back uption (Land CRM)";
-                    string eventdesc = "back uption (Land CRM)";
+                    string eventtype = "Back Option (Land CRM)";
+                    string eventdesc = "Back Option (Land CRM)";
                     string eventdesc2 = "";
                     string comcod = this.GetCompCode();
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);

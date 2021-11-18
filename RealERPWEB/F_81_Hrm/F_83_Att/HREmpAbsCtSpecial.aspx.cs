@@ -37,7 +37,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 // this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 //this.lblfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "HREmpAbsCtSpecial";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "HR Employee Absent Count Special";
 
 
 
@@ -71,66 +71,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlMonth.DataBind();
             this.ddlMonth.SelectedValue = System.DateTime.Today.Month.ToString().Trim();
         }
-        //private void GetYearMonth()
-        //{
-        //    string comcod = this.GetComeCode();
-
-        //    DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETYEARMON", "", "", "", "", "", "", "", "", "");
-        //    if (ds1 == null)
-        //        return;
-        //    this.ddlyearmon.DataTextField = "yearmon";
-        //    this.ddlyearmon.DataValueField = "ymon";
-        //    this.ddlyearmon.DataSource = ds1.Tables[0];
-
-        //    this.ddlyearmon.SelectedValue = System.DateTime.Today.AddMonths(-1).ToString("yyyyMM");
-        //    this.ddlyearmon.DataBind();
-        //    //this.ddlyearmon.DataBind();
-        //    //string txtdate = Convert.ToDateTime(this.txtDate.Text.Trim()).ToString("dd-MMMM-yyyy");
-        //    ds1.Dispose();
-        //}
+       
 
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
-
             this.ShowAbsCount();
-            //if (this.lnkbtnShow.Text == "Ok")
-            //{
-            //    //this.lnkbtnShow.Text = "New";
-            //   // this.ddlyearmon.Enabled = false;
-            //    //this.ddlCompanyName.Visible = false;
-            //    //this.ddlDepartment.Visible = false;
-            //   // this.ddlSection.Enabled = false;
-
-            //    //this.lblCompanyName.Visible = true;
-            //    //this.lblDeptDesc.Visible = true;
-
-            //    //this.lblPage.Visible = true;
-            //    //this.ddlpagesize.Visible = true;
-
-            //    this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
-            //    this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
-
-            //    return;
-            //}
-
-            //this.lnkbtnShow.Text = "Ok";
-            //this.lblCompanyName.Text = "";
-            //this.ddlyearmon.Enabled = false;
-            //this.ddlCompanyName.Visible = true;
-            //this.ddlDepartment.Visible = true;
-            //this.ddlSection.Enabled = true;
-
-            //this.lblCompanyName.Visible = false;
-            //this.lblDeptDesc.Visible = false;
-            ////this.lblPage.Visible = false;
-            ////this.ddlpagesize.Visible = false;
-            //this.gvabscount.DataSource = null;
-            //this.gvabscount.DataBind();
-
-
-
-
+           
         }
 
 
@@ -173,17 +120,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
             //  string MonthId = this.ddlyearmon.Text.Trim();
 
-            string MonthId = "";
-            string date = "";
+            string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
+            string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            string date = "01-" + Month + "-" + year;
+
+           
            // string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPMANUALABSENTS", compname, MonthId, date, deptname, Empcode, section, "", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "SHOWEMPABSENTSSPECIAL", compname, date, deptname, Empcode, section, "","", "", "");
             if (ds2 == null)
             {
-                this.gvabscount.DataSource = null;
-                this.gvabscount.DataBind();
+                this.gvabsspecialcount.DataSource = null;
+                this.gvabsspecialcount.DataBind();
                 return;
             }
             Session["tblabscount"] = this.HiddenSameData(ds2.Tables[0]);
@@ -196,27 +146,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tblabscount"];
-            this.gvabscount.DataSource = dt;
-            this.gvabscount.DataBind();
-            this.FooterCal();
+            this.gvabsspecialcount.DataSource = dt;
+            this.gvabsspecialcount.DataBind();
+            
 
 
 
         }
 
-        private void FooterCal()
-        {
-            DataTable dt = (DataTable)Session["tblabscount"];
-            if (dt.Rows.Count == 0)
-                return;
-
-
-
-            ((Label)this.gvabscount.FooterRow.FindControl("lgvFabsday")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(absday)", "")) ? 0.00
-                        : dt.Compute("sum(absday)", ""))).ToString("#,##0;(#,##0); ");
-
-
-        }
+        
 
         protected void ibtnFindDepartment_Click(object sender, EventArgs e)
         {
@@ -312,11 +250,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             DataTable dt = (DataTable)Session["tblabscount"];
             int rowindex;
 
-            for (int i = 0; i < this.gvabscount.Rows.Count; i++)
+            for (int i = 0; i < this.gvabsspecialcount.Rows.Count; i++)
             {
 
-                double absday = Convert.ToDouble("0" + ((TextBox)this.gvabscount.Rows[i].FindControl("txtabsday")).Text.Trim());
-                rowindex = (this.gvabscount.PageSize) * (this.gvabscount.PageIndex) + i;
+                double absday = Convert.ToDouble("0" + ((TextBox)this.gvabsspecialcount.Rows[i].FindControl("txtabsday")).Text.Trim());
+                rowindex = (this.gvabsspecialcount.PageSize) * (this.gvabsspecialcount.PageIndex) + i;
                 dt.Rows[rowindex]["absday"] = absday;
             }
 
@@ -382,78 +320,87 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
         }
-        protected void lbntUpdateAbs_Click(object sender, EventArgs e)
+
+
+        protected void btnabsUpdate_Click(object sender, EventArgs e)
         {
-            this.Master.FindControl("lblmsg").Visible = true;
-            this.SaveValue();
-            DataTable dt = (DataTable)Session["tblabscount"];
-
-            //log Entry
-
+           this.Master.FindControl("lblmsg").Visible = true;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string userid = hst["usrid"].ToString();
-            string Terminal = hst["compname"].ToString();
-            string Sessionid = hst["session"].ToString();
-            string PostedByid = userid;
-            string Posttrmid = Terminal;
-            string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-            string Monthid = ""; // this.ddlyearmon.Text.Trim();
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                string empid = dt.Rows[i]["empid"].ToString();
-                double absday = Convert.ToDouble(dt.Rows[i]["absday"]);
+            //string empid = this.ddlEmpName.SelectedValue.ToString();
 
-                if (absday > 0)
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+
+            string empid = ((LinkButton)this.gvabsspecialcount.Rows[index].FindControl("empid")).Text.ToString();
+            string month = this.ddlMonth.SelectedValue.ToString().Trim();
+            string month1 = month.PadLeft(2, '0');
+            string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            string monyr = month1 + year;
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "DELETEABSCT", empid, monyr, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (result == false)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Data was Noted Updated";
+                return;
+
+            }
+
+
+            for (int i = 0; i < this.chkDate.Items.Count; i++)
+            {
+                if (this.chkDate.Items[i].Selected)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEABSAUTO", Monthid, empid, absday.ToString(), PostedByid, Posttrmid, Posteddat, "", "", "", "", "", "", "", "", "");
-                    if (!result)
-                        return;
+
+                    string absdat = Convert.ToDateTime(this.chkDate.Items[i].Value).ToString("dd-MMM-yyyy");
+                    string absfl = "1";
+                    bool result1 = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "INORUPDATEABSENTCT", empid, absdat, absfl, monyr, "", "", "", "", "", "", "", "", "", "", "");
 
                 }
             }
+
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
         }
+        //protected void lbntUpdateAbs_Click(object sender, EventArgs e)
+        //{
+        //    this.Master.FindControl("lblmsg").Visible = true;
+        //    this.SaveValue();
+        //    DataTable dt = (DataTable)Session["tblabscount"];
 
-        protected void lbtnabscountdelete_Click(object sender, EventArgs e)
-        {
+        //    //log Entry
 
-            int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string comcod = this.GetComeCode();
-            DataTable dt = (DataTable)Session["tblabscount"];
-            string Monthid = ""; //this.ddlyearmon.Text.Trim();
-            string empid = ((Label)this.gvabscount.Rows[rownum].FindControl("lgvEmpId")).Text.Trim();
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "DELETEABSENTAUTO",
-                       Monthid, empid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string comcod = hst["comcod"].ToString();
+        //    string userid = hst["usrid"].ToString();
+        //    string Terminal = hst["compname"].ToString();
+        //    string Sessionid = hst["session"].ToString();
+        //    string PostedByid = userid;
+        //    string Posttrmid = Terminal;
+        //    string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+        //    string Monthid = ""; // this.ddlyearmon.Text.Trim();
+        //    for (int i = 0; i < dt.Rows.Count; i++)
+        //    {
+        //        string empid = dt.Rows[i]["empid"].ToString();
+        //        double absday = Convert.ToDouble(dt.Rows[i]["absday"]);
 
-            if (result)
-            {
-                dt.Rows[rownum].Delete();
-            }
+        //        if (absday > 0)
+        //        {
+        //            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEABSAUTO", Monthid, empid, absday.ToString(), PostedByid, Posttrmid, Posteddat, "", "", "", "", "", "", "", "", "");
+        //            if (!result)
+        //                return;
 
-            if (!result)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail !!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        //        }
+        //    }
+        //    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+        //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
-
-            }
-
-
+        //}
 
 
-            DataView dv = dt.DefaultView;
-            Session.Remove("tblabscount");
-            Session["tblabscount"] = dv.ToTable();
-            this.Data_Bind();
-
-        }
         protected void gvabscount_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.SaveValue();
-            this.gvabscount.PageIndex = e.NewPageIndex;
+            this.gvabsspecialcount.PageIndex = e.NewPageIndex;
             this.Data_Bind();
 
         }
@@ -484,16 +431,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
 
 
-        protected void lbtnTotalAbsCount_Click(object sender, EventArgs e)
-        {
-            this.SaveValue();
-            this.Data_Bind();
+     
 
-        }
-
-        protected void btnabsUpdate_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

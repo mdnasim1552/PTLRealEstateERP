@@ -47,7 +47,7 @@
 
 
 
-            var gvabscount = $('#<%=this.gvabscount.ClientID %>');
+            var gvabscount = $('#<%=this.gvabsspecialcount.ClientID %>');
 
             gvabscount.Scrollable();
 
@@ -116,14 +116,12 @@
                                 </div>--%>
 
                                 <div class="form-group">
-                                    <div class="col-md-1 pading5px">
-                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Month</asp:Label>
-
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control inputTxt"  AutoPostBack="true" TabIndex="2">
+                                    <div class="col-md-3 pading5px">
+                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Month Name</asp:Label>
+                                         <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control inputTxt"  Width="150px" AutoPostBack="true" TabIndex="2">
                                         </asp:DropDownList>
                                     </div>
+                                  
                                     
                                 </div>
                                 <div class="form-group">
@@ -222,7 +220,7 @@
                     <div class="row">
 
 
-                        <asp:GridView ID="gvabscount" runat="server" AutoGenerateColumns="False" AllowPaging="false"
+                        <asp:GridView ID="gvabsspecialcount" runat="server" AutoGenerateColumns="False" AllowPaging="false"
                             OnPageIndexChanging="gvabscount_PageIndexChanging" ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnRowDeleting="gvabscount_RowDeleting">
                             <RowStyle />
@@ -235,11 +233,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText=" ">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnabscountdelete" runat="server" OnClick="lbtnabscountdelete_Click"><span class="glyphicon glyphicon-remove"> </span></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                
                                 <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvEmpId" runat="server"
@@ -274,7 +268,7 @@
 
                                 <asp:TemplateField HeaderText="Card #">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotalAbsCount" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnTotalAbsCount_Click">Total</asp:LinkButton>
+                                       <%-- <asp:LinkButton ID="lbtnTotalAbsCount" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnTotalAbsCount_Click">Total</asp:LinkButton>--%>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvCardno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
@@ -288,7 +282,7 @@
                                             Width="200px"></asp:LinkButton>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbntUpdateAbs" runat="server" OnClick="lbntUpdateAbs_Click" CssClass="btn btn-danger primaryBtn">Update</asp:LinkButton>
+                                       <%-- <asp:LinkButton ID="lbntUpdateAbs" runat="server" OnClick="lbntUpdateAbs_Click" CssClass="btn btn-danger primaryBtn">Update</asp:LinkButton>--%>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
@@ -300,24 +294,12 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFDesig" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="160px"> Total :</asp:Label>
+                                            Style="text-align: right" Width="160px"></asp:Label>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Total Absent</br>Day">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="txtabsday" runat="server" BackColor="Transparent" BorderStyle="None"
-                                            Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absday")).ToString("#,##0;(#,##0); ") %>'
-                                            Width="80px" Font-Size="11px"></asp:TextBox>
-                                    </ItemTemplate>
-                                    <FooterTemplate>
-                                        <asp:Label ID="lgvFabsday" runat="server" Font-Bold="True" Font-Size="12px"
-                                            Style="text-align: right" Width="80px"></asp:Label>
-                                    </FooterTemplate>
-                                    <ItemStyle HorizontalAlign="Right" />
-                                    <FooterStyle HorizontalAlign="Right" />
-                                </asp:TemplateField>
+                                
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
@@ -353,10 +335,14 @@
                                         </asp:CheckBoxList> 
                                     </div>
                                     <div class="modal-footer">
+                                        <asp:LinkButton ID="lblbtnSave" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CLoseMOdal();" OnClick="btnabsUpdate_Click">
+                                            <span class="glyphicon glyphicon-save-file"></span> Update </asp:LinkButton>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                        <%-- <asp:Button ID="btnSummary" runat="server" OnClick="btnSummary_Click" Text="Next" />--%>
                                      <%--   <button type="button" class="btn btn-primary">Update</button>--%>
-                                         <asp:Button ID="btnabsUpdate" runat="server" OnClick="btnabsUpdate_Click" Text="Update" />
+                                       <%--  <asp:Button ID="btnabsUpdate" runat="server" OnClick="btnabsUpdate_Click" Text="Update" />--%>
+
+                                        
                                     </div>
                                
                             </div>
