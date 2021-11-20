@@ -15,8 +15,17 @@
         });
 
         function openModal() {
-            $('#modalEmpInfo').modal('show');
+            $('#modalEmpInfo').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+
+            });
+
         }
+
+        //function openModal() {
+        //    $('#modalEmpInfo').modal('show');
+        //}
         function CloseMOdal() {
             $('#modalEmpInfo').modal('hide');
         }
@@ -40,7 +49,8 @@
             $('.modal-backdrop').remove();
             $('.modal ').modal('hide');
 
-            openModal();
+            //openModal();
+
         };
 
         function pageLoaded() {

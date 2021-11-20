@@ -126,7 +126,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
            
            // string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
-            string Empcode = this.txtSrcEmployee.Text.Trim() + "%";
+            string Empcode ="%"+ this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
 
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "SHOWEMPABSENTSSPECIAL", compname, date, deptname, Empcode, section, "","", "", "");
@@ -352,7 +352,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
         }
       
 
@@ -380,14 +381,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
 
         }
-        protected void lnkautocopy_Click(object sender, EventArgs e)
-        {
-
-        }
-        protected void lbtnCalAbsCount_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
 
      
