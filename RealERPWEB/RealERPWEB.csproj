@@ -168,11 +168,11 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealEstate 210809Lu\RealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
@@ -354,8 +354,9 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Win32.Primitives" />
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>G:\_ref\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\RealERPRPT.dll</HintPath>
@@ -2622,6 +2623,7 @@
     <Content Include="F_21_MKT\ToDaysAppointment.aspx" />
     <Content Include="F_21_MKT\TransferClient.aspx" />
     <Content Include="F_21_MKT\YearlyActivitiesTarget.aspx" />
+    <Content Include="F_21_MKT\YearlyTargetVSAchive.aspx" />
     <Content Include="F_22_Sal\AccFlow.aspx" />
     <Content Include="F_22_Sal\AccSumCustPayStatus.aspx" />
     <Content Include="F_22_Sal\AccSummaryInflow.aspx" />
@@ -3546,6 +3548,7 @@
     <Content Include="Image\VoucherPrintBgImage.jpg" />
     <Content Include="Image\waitl.gif" />
     <Content Include="Index.aspx" />
+    <Content Include="index2.aspx" />
     <Content Include="JS02\RealERPScript.js" />
     <Content Include="LandingPage.aspx" />
     <Content Include="landMenu-1.png" />
@@ -3937,6 +3940,13 @@
     <Compile Include="F_21_MKT\YearlyActivitiesTarget.aspx.designer.cs">
       <DependentUpon>YearlyActivitiesTarget.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\YearlyTargetVSAchive.aspx.cs">
+      <DependentUpon>YearlyTargetVSAchive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\YearlyTargetVSAchive.aspx.designer.cs">
+      <DependentUpon>YearlyTargetVSAchive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
       <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4279,6 +4289,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index2.aspx.cs">
+      <DependentUpon>index2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index2.aspx.designer.cs">
+      <DependentUpon>index2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>

@@ -1,12 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="YearlyActivitiesTarget.aspx.cs" Inherits="RealERPWEB.F_21_MKT.YearlyActivitiesTarget" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="YearlyTargetVSAchive.aspx.cs" Inherits="RealERPWEB.F_21_MKT.YearlyTargetVSAchive" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -76,35 +74,7 @@
 
 
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-md-2 d-none">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Copy From</button>
-                                </div>
-                                <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" CssClass="form-control  pl-0 pr-0">
-                                    <asp:ListItem><<   Select Months   >></asp:ListItem>
-                                    <asp:ListItem Value="1">Jan</asp:ListItem>
-                                    <asp:ListItem Value="2">Feb</asp:ListItem>
-                                    <asp:ListItem Value="3">Mar</asp:ListItem>
-                                    <asp:ListItem Value="4">Apr</asp:ListItem>
-                                    <asp:ListItem Value="5">May</asp:ListItem>
-                                    <asp:ListItem Value="6">Jun</asp:ListItem>
-                                    <asp:ListItem Value="7">Jul</asp:ListItem>
-                                    <asp:ListItem Value="8">Aug</asp:ListItem>
-                                    <asp:ListItem Value="9">Sep</asp:ListItem>
-                                    <asp:ListItem Value="10">Oct</asp:ListItem>
-                                    <asp:ListItem Value="11">Nov</asp:ListItem>
-                                    <asp:ListItem Value="12">Dec</asp:ListItem>
-                                </asp:DropDownList>
-
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                                <asp:LinkButton ID="lnkbtnCopyBtn" runat="server" OnClick="lnkbtnCopyBtn_Click" CssClass="btn btn-warning btn-sm primaryBtn">Set same value</asp:LinkButton>
-
-                        </div>
-                    </div>
+                   
                     <div class="row">
                         <div class="table-responsive">
                             
@@ -383,5 +353,4 @@
     </asp:UpdatePanel>
 
    
-
 </asp:Content>

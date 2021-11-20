@@ -11,7 +11,7 @@ namespace RealERPWEB.F_21_MKT
 {
 
 
-    public partial class YearlyActivitiesTarget
+    public partial class YearlyTargetVSAchive
     {
 
         /// <summary>
@@ -58,24 +58,6 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnYearbgd;
-
-        /// <summary>
-        /// ddlMonths control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMonths;
-
-        /// <summary>
-        /// lnkbtnCopyBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCopyBtn;
 
         /// <summary>
         /// gvySalbgd control.

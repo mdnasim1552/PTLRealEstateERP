@@ -568,9 +568,9 @@ namespace RealERPWEB
                         //}
                         //else
                         //{
-                           Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                          // Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
                         //}
-                        // Url1 = "~/Index?pid=";
+                         Url1 = "~/Index?pid=";
 
 
                     }

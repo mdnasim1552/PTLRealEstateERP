@@ -94,7 +94,7 @@ namespace RealERPWEB.F_21_MKT
             {
 
 
-                //case "3348":// Credence 
+                //case "3348":// Credence .
                 //    this.gvSummary.Columns[13].Visible = false;
                 //    this.gvSummary.Columns[14].Visible = false;
                 //    this.gvSummary.Columns[15].Visible = false;
