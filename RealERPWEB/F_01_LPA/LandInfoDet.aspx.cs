@@ -2409,7 +2409,7 @@ namespace RealERPWEB.F_01_LPA
             {
                 string eventtype = "Update Land Information (Land CRM)";
                 string eventdesc = "Update Land Information (Land CRM)";
-                string eventdesc2 = "";
+                string eventdesc2 = lbllandname.Text;
                 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
@@ -5238,6 +5238,8 @@ namespace RealERPWEB.F_01_LPA
             int index = row.RowIndex;
             string comcod = GetComeCode();
             string styleid = ((Label)this.gvSummary.Rows[index].FindControl("lsircode")).Text.ToString();
+            string lidno = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString();
+
             lbllandname.Text = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString() + ':' + ((Label)this.gvSummary.Rows[index].FindControl("ldesc")).Text.ToString();
             ViewState["sircodegrid"] = styleid;
 
@@ -5261,7 +5263,7 @@ namespace RealERPWEB.F_01_LPA
             {
                 string eventtype = "Edit Land & Owner Info Information (Land CRM)";
                 string eventdesc = "Edit Land & Owner Info Information (Land CRM)";
-                string eventdesc2 = "";
+                string eventdesc2 = "Edit Land Id "+ lidno;
                 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
@@ -5739,6 +5741,9 @@ namespace RealERPWEB.F_01_LPA
 
                 string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
                 string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
+                string flidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;
+
+              
                 string cdate = this.txtdate.Text.Trim();
                 DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "SHOWPRELOWNERDISCUSSION", proscod, cdate, "", "", "", "");
 
@@ -5767,7 +5772,7 @@ namespace RealERPWEB.F_01_LPA
                 {
                     string eventtype = "Follow Up (Land CRM) ";
                     string eventdesc = "Follow Up (Land CRM) ";
-                    string eventdesc2 = "";
+                    string eventdesc2 = "Follow Up "+flidno;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 

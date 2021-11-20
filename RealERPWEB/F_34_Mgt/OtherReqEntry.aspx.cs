@@ -265,26 +265,24 @@ namespace RealERPWEB.F_34_Mgt
 
         private void GetProjectName()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             Session.Remove("tblproject");
             string type = this.Request.QueryString["Type"].ToString();
-            string fac = "%%";// ((this.Request.QueryString["prjcode"]).Length == 0) ? "%%" : this.Request.QueryString["prjcode"].ToString() + "%";
+            string fac = "%%";
             string comcod = this.GetCompCode();
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_BUDGET", "PROJECTNAME", fac, type, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
 
-
-            Session["tblproject"] = ds1.Tables[0];
-            this.ddlProjectName.DataTextField = "actdesc";
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlProjectName.DataTextField = TextField;
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
 
-
-
-
+            Session["tblproject"] = ds1.Tables[0];
             ds1.Dispose();
-            // this.ddlProjectName_SelectedIndexChanged(null, null);
-
         }
 
         private void GetBundle()
@@ -1188,7 +1186,7 @@ namespace RealERPWEB.F_34_Mgt
             //  Rpt1.SetParameters(new ReportParameter("CurDate", "Order Date: " + CurDate));
 
             Session["Report1"] = Rpt1;
-            if (comcod == "1102")
+            if (comcod == "1102" && this.Request.QueryString["Type"].ToString()== "OreqPrint")
             {
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";

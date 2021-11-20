@@ -243,10 +243,15 @@ namespace RealERPWEB.F_23_CR
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
+            string ddldesc = hst["ddldesc"].ToString();
             string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
             string txtSProject = qPrjCode.Length > 0 ? qPrjCode : "%" + this.txtSrcPro.Text + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPROJECTNAME", txtSProject, userid, "", "", "", "", "", "", "");
-            this.ddlProjectName.DataTextField = "actdesc";
+            if (ds1 == null)
+                return;
+
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlProjectName.DataTextField = TextField;
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
