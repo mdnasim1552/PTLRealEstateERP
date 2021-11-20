@@ -58,12 +58,17 @@ namespace RealERPWEB.F_22_Sal
         private void GetProjectName()
         {
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
+            Hashtable hst = (Hashtable)Session["tblLogin"]; 
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
+            string ddldesc = hst["ddldesc"].ToString();
             string txtSProject = "%" + this.txtSrcPro.Text + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPROJECTNAME", txtSProject, userid, "", "", "", "", "", "", "");
-            this.ddlProjectName.DataTextField = "actdesc";
+            if (ds1 == null)
+                return;
+
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlProjectName.DataTextField = TextField;
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
@@ -491,6 +496,8 @@ namespace RealERPWEB.F_22_Sal
             string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
             string ComPrint = this.GetComPrint();
             DataTable dt1 = (DataTable)ViewState["tblUnit"];
             DataView dv1 = dt1.DefaultView;
@@ -504,7 +511,7 @@ namespace RealERPWEB.F_22_Sal
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Unit Fixation Report"));
-            Rpt1.SetParameters(new ReportParameter("projectName", this.ddlProjectName.SelectedItem.Text.Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("projectName", TextField));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
 
             Session["Report1"] = Rpt1;
