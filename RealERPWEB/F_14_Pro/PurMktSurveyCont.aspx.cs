@@ -99,11 +99,11 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLIST1_CON", pmSrchTxt, "", "", "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            Session["tblMat"] = ds1.Tables[0];
-            Session["tblSpcf"] = ds1.Tables[1];
+            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLIST1_CON", pmSrchTxt, "", "", "", "", "", "", "", "");
+            //if (ds1 == null)
+            //    return;
+            //Session["tblMat"] = ds1.Tables[0];
+            //Session["tblSpcf"] = ds1.Tables[1];
         }
 
         protected void Resource_ListGen(string pmSrchTxt)
@@ -126,7 +126,7 @@ namespace RealERPWEB.F_14_Pro
             string prjcode = (this.Request.QueryString["pactcode"].ToString()).Length == 0 ? "16" : this.Request.QueryString["pactcode"].ToString();
             string lisuno = (this.Request.QueryString["lisuno"].ToString()).Length == 0 ? "000000000000" : this.Request.QueryString["lisuno"].ToString() ;
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLIST_P2P", prjcode, lisuno, "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLISTP2P", prjcode, lisuno, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return; 
             Session["tblMat"] = ds1.Tables[0];
@@ -1022,7 +1022,7 @@ namespace RealERPWEB.F_14_Pro
                 dtResult.Columns.Add("rsircode", typeof(string));
                 var result = from dataRows1 in dtmat.AsEnumerable()
                              join dataRows2 in dtmainMat.AsEnumerable()
-                             on dataRows1.Field<string>("rsircode") equals dataRows2.Field<string>("rsircode")
+                             on dataRows1.Field<string>("rsircode") equals ASTUtility.Left(dataRows2.Field<string>("rsircode"), 12).ToString()
 
                              select dtResult.LoadDataRow(new object[]
                              {
@@ -1080,8 +1080,8 @@ namespace RealERPWEB.F_14_Pro
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "PRJCODELIST1", prjcode, "", "", userid, "", "", "", "", "");
             if (ds1 == null)
                 return;
-            string TextField = (ddldesc == "True"? "actdesc" : "actdesc1");
-            this.ddlprjlist.DataTextField = TextField;
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlprjlist.DataTextField = "actdesc1";
             this.ddlprjlist.DataValueField = "actcode";
             this.ddlprjlist.DataSource = ds1.Tables[0];
             this.ddlprjlist.DataBind();
@@ -1209,8 +1209,8 @@ namespace RealERPWEB.F_14_Pro
             string mResCode = ASTUtility.Left(mResCode2, 12).ToString();
             string flrcod = ASTUtility.Right(mResCode2, 3).ToString();
 
-            //DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "'");
-            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "' and flrcod='" + flrcod + "' ");
+            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "'");
+            //DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "' and flrcod='" + flrcod + "' ");
 
 
             //DataRow[] drreq = tblreq.Select("rsircode = '" + mResCode);
