@@ -74,18 +74,27 @@ namespace RealERPWEB.F_21_MKT
 
         private void dataBindGV()
         {
+            DataTable dt = (DataTable)ViewState["tblsummData"];
+            DataView dv1 = dt.Copy().DefaultView;
+            dv1.RowFilter = ("active='True'");
+
+            this.gvSummary.DataSource = dv1.ToTable();
+            this.gvSummary.DataBind();
+            this.Excel_Bind();
+
+        }
+
+        private void Excel_Bind()
+        {
 
             DataTable dt = (DataTable)ViewState["tblsummData"];
             if (dt.Rows.Count == 0)
                 return;
-            DataView dv1 = dt.Copy().DefaultView;
-            dv1.RowFilter = ("active='True'");
-
-            this.gvSummary.DataSource = dv1.ToTable();//ds3.Tables[0];//
-            this.gvSummary.DataBind();
 
             Session["Report1"] = gvSummary;
             this.hlbtntbCdataExcel.NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            
+
         }
 
 
@@ -171,6 +180,7 @@ namespace RealERPWEB.F_21_MKT
                 }
 
             }
+            this.Excel_Bind();
             ViewState["tblHeaderCheck"] = dt1;
             ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "onchangetrigger();", true);
         }

@@ -157,37 +157,37 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.31788in</Width>
+                  <Width>0.30178in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.5483in</Width>
+                  <Width>0.5322in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.13163in</Width>
+                  <Width>1.11553in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.03788in</Width>
+                  <Width>1.02178in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.95374in</Width>
+                  <Width>0.93764in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.4858in</Width>
+                  <Width>0.4697in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6733in</Width>
+                  <Width>0.6572in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.64205in</Width>
+                  <Width>0.62595in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.50663in</Width>
+                  <Width>0.49053in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.6733in</Width>
+                  <Width>0.6572in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.0328in</Width>
+                  <Width>1.04795in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -220,7 +220,7 @@
                               </Paragraphs>
                               <rd:DefaultName>grpdesc</rd:DefaultName>
                               <Top>0.05625in</Top>
-                              <Left>6.0025in</Left>
+                              <Left>5.8775in</Left>
                               <Height>0.22917in</Height>
                               <Width>1.96875in</Width>
                               <Style>
@@ -255,7 +255,7 @@
                               </Paragraphs>
                               <rd:DefaultName>Textbox204</rd:DefaultName>
                               <Top>0.05625in</Top>
-                              <Left>1.82167in</Left>
+                              <Left>1.69667in</Left>
                               <Height>0.23959in</Height>
                               <Width>4.07417in</Width>
                               <ZIndex>1</ZIndex>
@@ -273,22 +273,22 @@
                               <TablixBody>
                                 <TablixColumns>
                                   <TablixColumn>
-                                    <Width>1.02859in</Width>
+                                    <Width>1.05984in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.11298in</Width>
+                                    <Width>0.07131in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.58593in</Width>
+                                    <Width>2.5651in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>1.09169in</Width>
+                                    <Width>1.07086in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>0.10518in</Width>
+                                    <Width>0.08435in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>3.05593in</Width>
+                                    <Width>2.98301in</Width>
                                   </TablixColumn>
                                 </TablixColumns>
                                 <TablixRows>
@@ -1000,7 +1000,6 @@
                                                     <Value>=Parameters!supadd.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
-                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1100,7 +1099,6 @@
                                                     <Value>=First(Fields!proadd.Value)</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
-                                                      <FontSize>9pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1288,7 +1286,7 @@
                               <Top>0.36042in</Top>
                               <Left>0.02301in</Left>
                               <Height>0.9625in</Height>
-                              <Width>7.98029in</Width>
+                              <Width>7.83447in</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -1332,17 +1330,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Subject </Value>
+                                  <Value>Subject : </Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                                <TextRun>
-                                  <Value>: </Value>
-                                  <Style>
-                                    <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1350,7 +1340,6 @@
                                   <Value>=Parameters!subject.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <TextDecoration>Underline</TextDecoration>
                                   </Style>
@@ -1448,7 +1437,6 @@
                                   <Value>=Parameters!leterdesc.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2753,7 +2741,6 @@
                                   <Value>Sub Total</Value>
                                   <Style>
                                     <FontFamily>TImes New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2878,7 +2865,6 @@
                                   <Value>Carring Cost</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -2997,7 +2983,6 @@
                                   <Value>=Parameters!discountdesc.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3116,7 +3101,6 @@
                                   <Value>Total Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3242,7 +3226,6 @@
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3283,7 +3266,6 @@
                                   <Value EvaluationMode="Constant">Advanced Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3438,7 +3420,6 @@
                                   <Value EvaluationMode="Constant">Balance Amount</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -3615,7 +3596,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.17708in</Height>
+                  <Height>0.1875in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -3626,11 +3607,9 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!pordnar.Value+" "+Fields!reqnar.Value</Value>
+                                  <Value>=Parameters!pordnar.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Normal</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3639,6 +3618,55 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox220</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>11</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.20833in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!reqnar.Value</Value>
+                                  <Style>
+                                    <FontFamily>times New Roman</FontFamily>
+                                    <TextDecoration>None</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -3730,7 +3758,6 @@
                                   <Value>=Parameters!terms1.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3780,7 +3807,6 @@
                                   <Value>=Parameters!terms2.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3830,7 +3856,6 @@
                                   <Value>=Parameters!terms3.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3880,7 +3905,6 @@
                                   <Value>=Parameters!terms4.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3930,7 +3954,6 @@
                                   <Value>=Parameters!terms5.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -3980,7 +4003,6 @@
                                   <Value>=Parameters!terms6.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4030,7 +4052,6 @@
                                   <Value>=Parameters!terms7.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4080,7 +4101,6 @@
                                   <Value>=Parameters!terms8.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4130,7 +4150,6 @@
                                   <Value>=Parameters!terms9.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4180,7 +4199,6 @@
                                   <Value>=Parameters!terms10.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -4304,6 +4322,9 @@
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
+                    <TablixMember>
                       <Visibility>
                         <Hidden>=iif(Parameters!terms1.Value="",true,false)</Hidden>
                       </Visibility>
@@ -4370,8 +4391,9 @@
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.04458in</Top>
-            <Height>6.09374in</Height>
-            <Width>8.0033in</Width>
+            <Left>0.00815in</Left>
+            <Height>6.31248in</Height>
+            <Width>7.85746in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4379,10 +4401,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.15916in</Height>
+        <Height>6.38831in</Height>
         <Style />
       </Body>
-      <Width>8.00935in</Width>
+      <Width>7.87603in</Width>
       <Page>
         <PageHeader>
           <Height>0.55208in</Height>
@@ -4410,7 +4432,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>compname</rd:DefaultName>
-              <Left>1.12375in</Left>
+              <Left>1.1319in</Left>
               <Height>0.30209in</Height>
               <Width>6.08334in</Width>
               <Style>
@@ -4443,7 +4465,7 @@
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
               <Top>0.29861in</Top>
-              <Left>1.12375in</Left>
+              <Left>1.1319in</Left>
               <Height>0.20417in</Height>
               <Width>6.08334in</Width>
               <ZIndex>1</ZIndex>
@@ -4462,7 +4484,7 @@
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
               <Top>0.0125in</Top>
-              <Left>0.05in</Left>
+              <Left>0.05815in</Left>
               <Height>0.45625in</Height>
               <Width>0.89583in</Width>
               <ZIndex>2</ZIndex>
@@ -4480,7 +4502,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.01669in</Height>
+          <Height>1.03752in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4496,7 +4518,7 @@
                           <Value>=Parameters!footer.Value</Value>
                           <Style>
                             <FontFamily>Times New Roman</FontFamily>
-                            <FontSize>7pt</FontSize>
+                            <FontSize>8pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4504,9 +4526,9 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox134</rd:DefaultName>
-                  <Top>0.60625in</Top>
-                  <Left>0.0125in</Left>
-                  <Height>0.16667in</Height>
+                  <Top>0.63125in</Top>
+                  <Left>0.02292in</Left>
+                  <Height>0.1875in</Height>
                   <Width>5.61459in</Width>
                   <Style>
                     <Border>
@@ -4594,8 +4616,9 @@
                 </Textbox>
                 <Line Name="Line1">
                   <Top>0.60625in</Top>
+                  <Left>0.025in</Left>
                   <Height>0in</Height>
-                  <Width>8.00708in</Width>
+                  <Width>7.81958in</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
                     <Border>
@@ -4625,7 +4648,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
                   <Top>0.03959in</Top>
-                  <Left>1.36917in</Left>
+                  <Left>1.34417in</Left>
                   <Height>0.17917in</Height>
                   <Width>1.325in</Width>
                   <ZIndex>4</ZIndex>
@@ -4663,7 +4686,7 @@
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
                   <Top>0.23959in</Top>
-                  <Left>1.36917in</Left>
+                  <Left>1.34417in</Left>
                   <Height>0.21875in</Height>
                   <Width>1.31458in</Width>
                   <ZIndex>5</ZIndex>
@@ -4699,7 +4722,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
                   <Top>0.03542in</Top>
-                  <Left>2.79417in</Left>
+                  <Left>2.75667in</Left>
                   <Height>0.17292in</Height>
                   <Width>1.29583in</Width>
                   <ZIndex>6</ZIndex>
@@ -4737,7 +4760,7 @@
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
                   <Top>0.23959in</Top>
-                  <Left>2.79417in</Left>
+                  <Left>2.75667in</Left>
                   <Height>0.21875in</Height>
                   <Width>1.29583in</Width>
                   <ZIndex>7</ZIndex>
@@ -4773,7 +4796,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
                   <Top>0.03959in</Top>
-                  <Left>4.19417in</Left>
+                  <Left>4.15667in</Left>
                   <Height>0.17917in</Height>
                   <Width>1.27708in</Width>
                   <ZIndex>8</ZIndex>
@@ -4811,7 +4834,7 @@
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
                   <Top>0.23959in</Top>
-                  <Left>4.18375in</Left>
+                  <Left>4.14625in</Left>
                   <Height>0.21875in</Height>
                   <Width>1.27708in</Width>
                   <ZIndex>9</ZIndex>
@@ -4847,7 +4870,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
                   <Top>0.03542in</Top>
-                  <Left>5.54625in</Left>
+                  <Left>5.50875in</Left>
                   <Height>0.18334in</Height>
                   <Width>1.26458in</Width>
                   <ZIndex>10</ZIndex>
@@ -4885,7 +4908,7 @@
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
                   <Top>0.24896in</Top>
-                  <Left>5.54625in</Left>
+                  <Left>5.50875in</Left>
                   <Height>0.20833in</Height>
                   <Width>1.26458in</Width>
                   <ZIndex>11</ZIndex>
@@ -4920,9 +4943,9 @@
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
                   <Top>0.21805in</Top>
-                  <Left>6.91353in</Left>
+                  <Left>6.85103in</Left>
                   <Height>0.21875in</Height>
-                  <Width>1.0625in</Width>
+                  <Width>1.025in</Width>
                   <ZIndex>12</ZIndex>
                   <Style>
                     <Border>
@@ -4940,9 +4963,8 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0.0125in</Top>
-              <Left>0.00227in</Left>
-              <Height>0.83542in</Height>
-              <Width>8.00708in</Width>
+              <Height>0.86667in</Height>
+              <Width>7.87603in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -4956,9 +4978,12 @@
             </Border>
           </Style>
         </PageFooter>
-        <LeftMargin>0.25in</LeftMargin>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
+        <LeftMargin>0.15in</LeftMargin>
         <RightMargin>0.15in</RightMargin>
-        <TopMargin>0.1in</TopMargin>
+        <TopMargin>0.15in</TopMargin>
+        <BottomMargin>0.1in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
