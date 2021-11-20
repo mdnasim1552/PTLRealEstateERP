@@ -262,6 +262,7 @@ namespace RealERPWEB.F_12_Inv
         protected void Load_Project_Combo()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
             string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
                         : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
@@ -291,7 +292,8 @@ namespace RealERPWEB.F_12_Inv
             if (ds2 == null)
                 return;
 
-            this.ddlProject.DataTextField = "actdesc1";
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlProject.DataTextField =  TextField;
             this.ddlProject.DataValueField = "actcode";
             this.ddlProject.DataSource = ds2.Tables[0];
             this.ddlProject.DataBind();

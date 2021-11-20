@@ -50,6 +50,7 @@
             $('.modal ').modal('hide');
 
             //openModal();
+
         };
 
         function pageLoaded() {
