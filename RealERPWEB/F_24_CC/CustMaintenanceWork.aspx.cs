@@ -1098,6 +1098,7 @@ namespace RealERPWEB.F_24_CC
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
             string paysch = (this.lblSchCode.Text.Trim() == "") ? this.GetSchCode() : this.lblSchCode.Text.Trim();
 
+            //string payschtest = this.GetSchCode();
             this.SaveValue();
             DataTable dt = (DataTable)Session["tbladwork"];
             double schamt = 0;

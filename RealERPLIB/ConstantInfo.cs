@@ -16,7 +16,7 @@ namespace RealERPLIB
 
     public static class ConstantInfo
     {
-        public static bool LogStatus = false;
+        public static bool LogStatus = true;
         public static bool smssend = false;
         //=================================================
         /// Strt Menu
@@ -1990,9 +1990,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102160", "F_81_Hrm/F_91_ACR", "EmpPerAppraisal?", "Type=Edit", "Employee Performance Appraisal (Edit)", "ACR", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102161", "F_81_Hrm/F_83_Att", "HREmpAbsCtAuto", "", "Absent Count (Automatic)", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102162", "F_81_Hrm/F_87_Tra", "HREmpTransferSpecial", "", "Employee Transfer (Special)", "Transfer", "False", "False", "False", "False" }); ;
-
-
             tblObj.Rows.Add(new Object[] { "8102000", "8102163", "F_81_Hrm/F_87_Tra", "HREmpTransferReport", "", "Employee Transfer Report", "Transfer", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102164", "F_81_Hrm/F_83_Att", "HREmpAbsCtSpecial", "", "Absent Count (Special)", "Attendance", "False", "False", "False", "False" }); ;
+
             tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" }); 
 
 
@@ -14507,6 +14507,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0315000000", "C. Attendance System", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0316000000", "01. Employee Off Days", "F_81_Hrm/F_83_Att/HREmpOffDays", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0317000000", "02. Absent Count", "F_81_Hrm/F_83_Att/HREmpAbsCt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0317000000", "02. Absent Count(Special)", "F_81_Hrm/F_83_Att/HREmpAbsCtSpecial", "", true, "" });
+
+
+            
             mnuTbl1.Rows.Add(new Object[] { "0317000000", "02. Absent Count (Automatic)", "F_81_Hrm/F_83_Att/HREmpAbsCtAuto", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0318000000", "03. Daily Attendance - Manually", "F_81_Hrm/F_83_Att/HRDailyAttenManually", "", true, "" });

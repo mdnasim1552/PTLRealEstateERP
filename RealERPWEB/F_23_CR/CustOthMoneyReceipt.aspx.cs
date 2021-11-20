@@ -715,7 +715,7 @@ namespace RealERPWEB.F_23_CR
             DataTable dt = (DataTable)Session["tblfincoll"];
             string mrrno = this.ddlPreMrr.SelectedValue.ToString().Trim();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string usircode = this.ddlCustomer.SelectedValue.ToString();
+            string usircode = this.ddlCustomer.SelectedValue.Trim().Length==0? "000000000000":  this.ddlCustomer.SelectedValue.ToString();
             string chqno = ((TextBox)this.gvMoneyreceipt.Rows[e.RowIndex].FindControl("txtgvCheckno")).Text.Trim();
             bool result = CustData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "DELETEMRRREFNO", mrrno, pactcode, usircode, chqno, "", "", "", "", "", "", "", "", "", "", "");
 
