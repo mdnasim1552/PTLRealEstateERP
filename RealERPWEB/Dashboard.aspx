@@ -3,15 +3,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
 
 
     <script type="text/javascript">
-
-
         //function pageLoaded() {
         //    alert("I m In");
         //    GetData();
@@ -632,7 +628,6 @@
                 w = $(".graph-main").width();
             });
             resizeObserver.observe(elem);
-
         }
 
         function ExecuteUserdata(data1) {
@@ -2253,11 +2248,7 @@
             </div>
 
 
-            
-
-            
-            <a href="NewInterface/dashboard.html" class="d-none" target="_blank">New DashBoard</a>
-
+             
             <!-- /.page-section -->
         </div>
     </div>

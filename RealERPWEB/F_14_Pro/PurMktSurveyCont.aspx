@@ -513,18 +513,18 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Discount">
+                                    <asp:TemplateField HeaderText="Discount (Amt)">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvDiscount" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "discount")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                Width="55px"></asp:TextBox>
+                                                Width="70px"></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Carring Charge">
+                                    <asp:TemplateField HeaderText="Carring Charge (Amt)">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvccharge" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"

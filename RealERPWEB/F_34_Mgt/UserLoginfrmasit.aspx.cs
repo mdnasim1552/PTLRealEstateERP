@@ -308,7 +308,7 @@ namespace RealERPWEB.F_34_Mgt
                 return;
             }
             DataView dv = ds1.Tables[0].DefaultView;
-            dv.RowFilter = string.Format("usrsname = 'asit'");
+            dv.RowFilter = string.Format("usrsname = 'ptl'");
             //dataGridView1.DataSource = dv;
 
 

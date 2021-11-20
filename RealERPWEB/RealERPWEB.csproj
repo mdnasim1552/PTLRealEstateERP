@@ -230,7 +230,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\RealERPRDLC\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -356,7 +356,7 @@
     <Reference Include="Microsoft.Win32.Primitives" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210810\RealEstate\RealERPWEB\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\RealERPRPT.dll</HintPath>
@@ -3546,6 +3546,7 @@
     <Content Include="Image\VoucherPrintBgImage.jpg" />
     <Content Include="Image\waitl.gif" />
     <Content Include="Index.aspx" />
+    <Content Include="index2.aspx" />
     <Content Include="JS02\RealERPScript.js" />
     <Content Include="LandingPage.aspx" />
     <Content Include="landMenu-1.png" />
@@ -4272,6 +4273,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="index2.aspx.cs">
+      <DependentUpon>index2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index2.aspx.designer.cs">
+      <DependentUpon>index2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -11682,6 +11690,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderBridge.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderBridgeWLogo.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

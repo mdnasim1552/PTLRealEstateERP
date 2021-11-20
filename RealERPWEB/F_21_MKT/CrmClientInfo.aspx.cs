@@ -38,7 +38,7 @@ namespace RealERPWEB.F_21_MKT
                 this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
 
                 this.MultiView1.ActiveViewIndex = 1;
-                GetAllSubdata();
+                  GetAllSubdata();
                 this.DataBindStatus();
                 this.GETEMPLOYEEUNDERSUPERVISED();
                 this.companyModalVisible(); // hide user country,district, area etc
@@ -110,6 +110,21 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[22].Visible = false;
                     break;
 
+
+              
+                case "3354"://Edison
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[15].Visible = false;
+                    this.gvSummary.Columns[16].Visible = false;
+                    this.gvSummary.Columns[17].Visible = false;
+                    this.gvSummary.Columns[18].Visible = false;
+                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[20].Visible = true;
+                    this.gvSummary.Columns[22].Visible = false;
+                    break;
 
 
                 default:
@@ -4441,12 +4456,15 @@ namespace RealERPWEB.F_21_MKT
         {
             this.lbltodatekpi.Visible = false;
             this.txtkpitodate.Visible = false;
+            this.lblkpiDetails.Visible = false;
             this.hdnlblattribute.Value = "";
             this.txtVal.Text = "";
             this.GetGridSummary();
             this.GetNotificationinfo();
             this.gvkpi.DataSource = null;
             this.gvkpi.DataBind();
+            this.gvkpidet.DataSource = null;
+            this.gvkpidet.DataBind();
         }
         protected void lbtnView_Click(object sender, EventArgs e)
         {
@@ -5495,7 +5513,7 @@ namespace RealERPWEB.F_21_MKT
             }
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTMONTHLYKPI", "8301%", frmdate, todate, empid);
 
-            ViewState["tbltempdt"] = ds1.Tables[0];
+            Session["tbltempdt"] = ds1.Tables[0];
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpi.DataSource = ds1.Tables[0];
@@ -5507,7 +5525,7 @@ namespace RealERPWEB.F_21_MKT
         }
         private void footerCalculations()
         {
-            DataTable dt1 = (DataTable)ViewState["tbltempdt"];
+            DataTable dt1 = (DataTable)Session["tbltempdt"];
             if (dt1.Rows.Count == 0)
                 return;
 
@@ -5517,33 +5535,35 @@ namespace RealERPWEB.F_21_MKT
                 ((HyperLink)this.gvkpi.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             }
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblFcallsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(call)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFcallsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(call)", "")) ?
                     0.00 : dt1.Compute("sum(call)", ""))).ToString("#,##0;(#,##0);-");
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblFlomesum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(extmeeting)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFexmeetingsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(extmeeting)", "")) ?
             0.00 : dt1.Compute("sum(extmeeting)", ""))).ToString("#,##0;(#,##0);-");
 
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblFlomisum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(intmeeting)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFintmeetingsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(intmeeting)", "")) ?
                     0.00 : dt1.Compute("sum(intmeeting)", ""))).ToString("#,##0;(#,##0);-");
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblproposalsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(proposal)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFvisitsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(visit)", "")) ?
+               0.00 : dt1.Compute("sum(visit)", ""))).ToString("#,##0;(#,##0);-");
+
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFproposalsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(proposal)", "")) ?
                0.00 : dt1.Compute("sum(proposal)", ""))).ToString("#,##0;(#,##0);-");
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblFleadssum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(leads)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFleadssum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(leads)", "")) ?
                 0.00 : dt1.Compute("sum(leads)", ""))).ToString("#,##0;(#,##0);-");
 
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFvisit")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(visit)", "")) ?
-                0.00 : dt1.Compute("sum(visit)", ""))).ToString("#,##0;(#,##0);-");
+           
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFothers")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(others)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFotherssum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(others)", "")) ?
               0.00 : dt1.Compute("sum(others)", ""))).ToString("#,##0;(#,##0);-");
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFclosing")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(close)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFclosingsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(close)", "")) ?
               0.00 : dt1.Compute("sum(close)", ""))).ToString("#,##0;(#,##0);-");
 
-            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFtotal")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(total)", "")) ?
+            ((Label)this.gvkpi.FooterRow.FindControl("lblgvFtotalsum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(total)", "")) ?
                 0.00 : dt1.Compute("sum(total)", ""))).ToString("#,##0;(#,##0);-");
 
 
@@ -6049,6 +6069,100 @@ namespace RealERPWEB.F_21_MKT
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Retreived";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        }
+
+
+        protected void lblgvkpitotal_Click(object sender, EventArgs e)
+        {
+            this.lblkpiDetails.Visible = true;
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string empid = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lblgbempid")).Text.Trim() + "%";
+            string empname = ((Label)this.gvkpi.Rows[RowIndex].FindControl("lowner")).Text.Trim();
+
+            lblkpiDetails.Text = "Kpi Details: " + empname;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string frmdate = this.txttodate.Text.Trim();
+            string todate = this.txtkpitodate.Text.Trim();
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
+
+           
+            this.gvSummary.DataSource = null;
+            this.gvSummary.DataBind();
+            this.gvkpidet.DataSource = ds1.Tables[0];
+            this.gvkpidet.DataBind();
+
+            if (gvkpidet.Rows.Count > 0)
+            {
+                Session["Report1"] = gvkpidet;
+                ((HyperLink)this.gvkpidet.HeaderRow.FindControl("hlbtntbCdataExelkpisum")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+
+        }
+        protected void gvkpidet_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+
+                int index = e.Row.RowIndex;
+                Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowupkpisum");
+                Lbtn.Attributes.Add("onmouseover", "AddButton(" + index + ")");
+                Lbtn.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
+                Lbtn.Attributes.Add("style", "cursor:pointer");
+                LinkButton Lbtn1 = (LinkButton)e.Row.FindControl("lnkEditfollowupkpisum");
+                Lbtn1.Attributes.Add("class", "hiddenb" + index);
+                Lbtn1.Attributes.Add("style", "display:none");
+
+                LinkButton lbtnView = (LinkButton)e.Row.FindControl("lbtnViewkpisum");
+                lbtnView.Attributes.Add("class", "hiddenb" + index);
+                lbtnView.Attributes.Add("style", "display:none");
+
+
+                Label ldesc = (Label)e.Row.FindControl("ldesckpisum");
+                LinkButton lnkDelete = (LinkButton)e.Row.FindControl("lnkDeletekpisum");
+                LinkButton lnkEdit = (LinkButton)e.Row.FindControl("lnkEditkpisum");
+                //  LinkButton lnkAct = (LinkButton)e.Row.FindControl("lnkAct");
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+               // string comcod = hst["comcod"].ToString();
+                string proscod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
+              //  string dealcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dealcode")).ToString();
+                //string Empid = hst["empid"].ToString();
+
+
+
+
+                if (proscod.Length == 7)
+                {
+                    lnkDelete.Visible = false;
+                    lnkEdit.Visible = false;
+                    ldesc.Attributes["style"] = "font-size:13px; font-weight:bold; color:maroon;";
+                }
+
+
+
+            }
+
+        }
+
+        protected void lnkDeletekpisum_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void lbtnViewkpisum_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void lnkEditfollowupkpisum_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void lnkEditkpisum_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
