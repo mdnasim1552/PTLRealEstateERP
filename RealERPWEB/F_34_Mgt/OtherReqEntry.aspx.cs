@@ -1186,7 +1186,7 @@ namespace RealERPWEB.F_34_Mgt
             //  Rpt1.SetParameters(new ReportParameter("CurDate", "Order Date: " + CurDate));
 
             Session["Report1"] = Rpt1;
-            if (comcod == "1102")
+            if (comcod == "1102" && this.Request.QueryString["Type"].ToString()== "OreqPrint")
             {
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
