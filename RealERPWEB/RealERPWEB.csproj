@@ -2706,6 +2706,7 @@
     <Content Include="F_23_CR\RptCustomerDues.aspx" />
     <Content Include="F_23_CR\RptCustomerInvoice.aspx" />
     <Content Include="F_23_CR\RptCustPayStatus.aspx" />
+    <Content Include="F_23_CR\RptCustPayStatusMerge.aspx" />
     <Content Include="F_23_CR\RptDelMonyRec.aspx" />
     <Content Include="F_23_CR\RptDishonourCheque.aspx" />
     <Content Include="F_23_CR\RptInvoice02.aspx" />
@@ -3967,6 +3968,13 @@
     </Compile>
     <Compile Include="F_22_Sal\RptMonthWiseNewSales.aspx.designer.cs">
       <DependentUpon>RptMonthWiseNewSales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_23_CR\RptCustPayStatusMerge.aspx.cs">
+      <DependentUpon>RptCustPayStatusMerge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_23_CR\RptCustPayStatusMerge.aspx.designer.cs">
+      <DependentUpon>RptCustPayStatusMerge.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_23_CR\RptMonthlyCollectionMerge.aspx.cs">
       <DependentUpon>RptMonthlyCollectionMerge.aspx</DependentUpon>
