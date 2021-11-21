@@ -83,7 +83,7 @@
                                     ShowFooter="True" Width="531px" OnRowCreated="gvySalbgd_RowCreated" AllowPaging="True" OnPageIndexChanging="gvySalbgd_PageIndexChanging" PageSize="15">
                                     <RowStyle />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Sl.No.">
+                                        <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
                                                 <asp:Label ID="serialnoidy" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
@@ -91,9 +91,9 @@
                                             <FooterTemplate>
                                                 <%--<asp:LinkButton ID="lbYearbgdTotal" runat="server" OnClick="lbYearbgdTotal_Click" CssClass="btn btn-primary primaryBtn"> Total </asp:LinkButton>--%>
                                             </FooterTemplate>
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" />
+                                            <HeaderStyle  Font-Size="12px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Description">
+                                        <asp:TemplateField HeaderText="">
                                             <FooterTemplate>
                                                <button class="btn btn-sm btn-primary">Total</button> 
                                                 <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-danger d-none btn-sm primaryBtn" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
@@ -106,12 +106,12 @@
                                                     Width="100px"></asp:Label>
 
                                             </ItemTemplate>
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                          
 
-                                        <asp:TemplateField HeaderText="Jan">
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty1" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -122,13 +122,29 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty1")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty1" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty1" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"    
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty1")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Feb">
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty2" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -139,13 +155,29 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty2")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty2" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty2" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"  
+                                                    Style="text-align: right; background-color: Transparent" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty2")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Mar">
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty3" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -156,13 +188,33 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty3")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Apr">
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty3" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty3" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
+                                                    Style="text-align: right; background-color: Transparent" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty3")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+
+
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty4" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -173,13 +225,32 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty4")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="May">
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty4" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty4" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty4")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty5" runat="server"></asp:Label>
                                             </FooterTemplate>
@@ -190,13 +261,31 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty5")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Jun">
+
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty5" runat="server"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty5" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty5")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty6" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -207,13 +296,30 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty6")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Jul">
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty6" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty6" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty6")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty7" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -224,13 +330,29 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty7")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty7" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty7" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty7")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Aug">
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty8" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -241,13 +363,31 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty8")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Sep">
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty8" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty8" runat="server" CssClass="disabled" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty8")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty9" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -258,13 +398,30 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty9")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Oct">
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty9" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty9" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty9")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty10" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -275,62 +432,114 @@
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty10")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Nov">
+
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty10" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty10" runat="server" BorderColor="#99CCFF"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty10")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty11" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvqty11" runat="server" BorderColor="#99CCFF"
+                                                <asp:TextBox ID="txtgvqty11" runat="server" BorderColor="#99CCFF" CssClass="disabled"
                                                     BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
                                                     Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty11")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Dec">
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty11" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty11" runat="server" BorderColor="#99CCFF" CssClass="disabled"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty11")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Target">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFqty12" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvqty12" runat="server" BorderColor="#99CCFF"
+                                                <asp:TextBox ID="txtgvqty12" runat="server" BorderColor="#99CCFF" CssClass="disabled"
                                                     BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
                                                     Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty12")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="40px"></asp:TextBox>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Achive">
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFaqty12" runat="server" Width="40px"></asp:Label>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvaqty12" runat="server" BorderColor="#99CCFF" CssClass="disabled"
+                                                    BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+                                                    Style="text-align: right; background-color: Transparent"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aqty12")).ToString("#,##0;-#,##0; ") %>'
+                                                    Width="40px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
+                                                VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
+                                        </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText=" Total Qty">
+                                        <asp:TemplateField HeaderText="  ">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFtqty" runat="server"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvtqty" runat="server" BorderColor="#99CCFF"
+                                                <asp:Label ID="lblgvtqty" runat="server" BorderColor="#99CCFF" 
                                                     BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" 
                                                     Style="text-align: right; background-color: Transparent"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tqty")).ToString("#,##0;-#,##0; ") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
-                                            <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="right"
+                                            <FooterStyle  Font-Size="12px" HorizontalAlign="right"
                                                 VerticalAlign="Middle" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                            <HeaderStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Center" />
+                                            <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
                                     </Columns>

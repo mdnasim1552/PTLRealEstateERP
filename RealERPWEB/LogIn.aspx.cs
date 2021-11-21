@@ -502,7 +502,7 @@ namespace RealERPWEB
                 hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
-                hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+               // hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
 
 
 
@@ -568,9 +568,9 @@ namespace RealERPWEB
                         //}
                         //else
                         //{
-                          // Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                           Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
                         //}
-                         Url1 = "~/Index?pid=";
+                        // Url1 = "~/Index?pid=";
 
 
                     }
