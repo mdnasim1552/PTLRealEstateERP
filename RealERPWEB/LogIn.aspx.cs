@@ -41,8 +41,8 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
-                
-                
+
+
                 this.Initilize();
 
                 this.getComName();
@@ -155,7 +155,7 @@ namespace RealERPWEB
 
                 if (dt1.Rows.Count == 0)
                 {
-                    
+
                     this.listComName.SelectedIndex = 0;
                 }
                 else
@@ -371,11 +371,11 @@ namespace RealERPWEB
                 //    ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
 
                 //}
-               // else
-              //  {
-                    ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
+                // else
+                //  {
+                ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
 
-               // }
+                // }
 
 
 
@@ -521,7 +521,7 @@ namespace RealERPWEB
                 DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
 
                 DataSet dsmodule = ulogin.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETMODULELIST", userid, "", "", "", "", "", "", "", "");
-              //  DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETMENULISTSIDEBAR", userid, usertype);
+                //  DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETMENULISTSIDEBAR", userid, usertype);
 
                 Session["dsmenu"] = dsmenu.Tables[1];
                 Session["dsmodule"] = dsmodule.Tables[0];
@@ -539,13 +539,13 @@ namespace RealERPWEB
 
 
 
-                
 
-                    string eventtype = "1";
-                    string eventdesc = "Login into the system";
-                    string eventdesc2 = "";
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                
+
+                string eventtype = "1";
+                string eventdesc = "Login into the system";
+                string eventdesc2 = "";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 string Url1 = "";
@@ -568,9 +568,9 @@ namespace RealERPWEB
                         //}
                         //else
                         //{
-                          // Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
                         //}
-                         Url1 = "~/Index?pid=";
+                        // Url1 = "~/Index?pid=";
 
 
                     }
