@@ -1493,6 +1493,19 @@ namespace RealERPWEB.F_17_Acc
             ViewState["StoreTable"] = dt;
             this.dgv2.DataSource = dt;
             this.dgv2.DataBind();
+
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype =  "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+               
+                string eventdesc2 = this.lblHeaderName.Text + " "+ this.lblResName.Text + " "+ this.LblLgResRptPeriod.Text;
+         
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
+
         }
 
         protected void GetDataforledgerprj()
@@ -1625,6 +1638,20 @@ namespace RealERPWEB.F_17_Acc
             lblspclecode.Text = ds1.Tables[1].Rows[0]["spclcode"].ToString();
             ViewState["StoreTable"] = ds1.Tables[0];  //this.HiddenSameData(ds1.Tables[0]);
             this.grvDTB_dataBind();
+
+
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc2 = LblSchReportTitle5.Text;
+
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
 
         }
 

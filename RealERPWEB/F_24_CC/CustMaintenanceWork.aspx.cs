@@ -1096,7 +1096,18 @@ namespace RealERPWEB.F_24_CC
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             string Usircode = this.ddlUnitName.Text.Trim();
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
-            string paysch = (this.lblSchCode.Text.Trim() == "") ? this.GetSchCode() : this.lblSchCode.Text.Trim();
+
+            string paysch = "";
+            if (comcod=="3315" || comcod=="3316"|| comcod=="3317")
+            {
+                paysch = this.GetSchCode();
+            }
+            else
+            {
+                 paysch = (this.lblSchCode.Text.Trim() == "") ? this.GetSchCode() : this.lblSchCode.Text.Trim();
+
+
+            }
 
             //string payschtest = this.GetSchCode();
             this.SaveValue();

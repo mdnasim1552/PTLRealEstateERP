@@ -116,7 +116,18 @@ namespace RealERPWEB.F_17_Acc
 
             double txttoamt = Math.Abs((dramt - cramt));
             this.lblInword.Text = (dtedit.Rows[0]["vounum"].ToString().Substring(0, 2) == "JV") ? "" : "Total:" + (txttoamt > 0 ? txttoamt.ToString("#,##0;(#,##0); ") : "");
+            
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
 
+                string eventdesc2 = " Voucher No "+ this.lblvalVoucherNo.Text + " Date : " + this.lblvalVoucherDate.Text + " Bank Name : " + this.lblValBankDescription.Text;
+
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
 
 
             //-------------------------------------------------//
