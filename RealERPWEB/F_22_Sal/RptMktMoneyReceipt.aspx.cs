@@ -613,8 +613,8 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
                     Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
                     Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
-                    Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                    Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
                     Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
                     Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));

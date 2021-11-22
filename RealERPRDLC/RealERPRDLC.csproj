@@ -94,9 +94,7 @@
     <Folder Include="R_81_Hrm\R_99_MgtAct\" />
   </ItemGroup>
   <ItemGroup>
-
     <None Include="app.config" />
-
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
@@ -252,6 +250,7 @@
     <EmbeddedResource Include="R_12_Inv\rptPurMrrEntryBridge.rdlc" />
     <EmbeddedResource Include="R_12_Inv\rptPurVarAa.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntry02.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptReqEntryiNTECH.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntry02Assure.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntry03.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntry07.rdlc" />

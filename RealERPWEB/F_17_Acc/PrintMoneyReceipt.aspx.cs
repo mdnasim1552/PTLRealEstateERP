@@ -84,6 +84,11 @@ namespace RealERPWEB.F_17_Acc
                     mrprint = "MRPrint360";
                     break;
 
+                case "3356":
+                case "3101":
+                    mrprint = "MRPrintIntech";
+                    break;
+
                 default:
                     mrprint = "MRPrint";
                     break;
@@ -404,6 +409,38 @@ namespace RealERPWEB.F_17_Acc
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                             ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+
+            else if (Type == "MRPrintIntech")
+            {
+                var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptIntech", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+                Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+                Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+                Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+                Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+                Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+                Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0)")));
+                Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
 
             else

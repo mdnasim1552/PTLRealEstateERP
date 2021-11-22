@@ -268,6 +268,7 @@ namespace RealERPRDLC
 
                 case "R_12_Inv.RptReqEntryEdison": Rpt1a = SetRptReqEntryEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntry02Assure": Rpt1a = SetRptReqEntry02Assure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptReqEntryiNTECH": Rpt1a = SetRptReqEntryiNTECH(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 //
 
                 #endregion
@@ -1922,7 +1923,11 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptReqEntryiNTECH(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptProjectPettyCash(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
 
