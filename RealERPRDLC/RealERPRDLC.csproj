@@ -94,7 +94,10 @@
     <Folder Include="R_81_Hrm\R_99_MgtAct\" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+=======
     <None Include="app.config" />
+>>>>>>> ae527c4dc21eea2703e6399ee0f0640576daac03
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
