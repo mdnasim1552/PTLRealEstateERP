@@ -418,7 +418,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
                     string eventdesc = "Show Data Sub-Ledger ";
-                    string eventdesc2 = "Show Data Sub-Ledger " + "(From " + date1 + "To " + date2 + " )";
+                    string eventdesc2 = "Head "+this.ddlConAccHead.SelectedItem.Text.ToString()+ " Resource Head : " +" " +this.ddlConAccResHead.SelectedItem.Text +" "+ "(From " + date1 + "To " + date2 + " )";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -440,7 +440,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
                     string eventdesc = "Show Data Accounts-Ledger ";
-                    string eventdesc2 = "Show Data Accounts-Ledger " + "(From " + date1 + "To " + date2 + " )";
+                    string eventdesc2 = "Account's Head "+ " "+ this.ddlConAccHead.SelectedItem.Text.ToString() +" "+ "( From " + date1 + "To " + date2 + " )";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -497,7 +497,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
                 string eventdesc = "Show Data Special Ledger " ;
-                string eventdesc2 = "Show Data " +"(From " + frmdate + "To "+ todate+ " )";
+                string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To "+ todate+ " )";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
