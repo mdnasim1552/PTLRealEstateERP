@@ -198,7 +198,7 @@
                             </div>
                         </fieldset>
 
-                        <div class="table table-responsive" style="min-height:360px!important">
+                        <div class="table table-responsive" style="min-height: 360px!important">
 
                             <asp:GridView ID="gvMSRInfo2" runat="server" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" ShowFooter="True"
@@ -450,8 +450,8 @@
                                     <asp:TemplateField HeaderText="Previous App.rate">
                                         <ItemTemplate>
                                             <asp:Label ID="lblaprovrate" runat="server"
-                                                Text='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "aprovrate"))=="0.00")?"" :Convert.ToString(DataBinder.Eval(Container.DataItem, "aprovrate"))  %>'
-                                                Width="100px"></asp:Label>
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprovrate")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="80px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Remarks">
@@ -573,7 +573,7 @@
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Credit Period">
+                                    <asp:TemplateField HeaderText="Credit Period">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtcrPeriod" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
