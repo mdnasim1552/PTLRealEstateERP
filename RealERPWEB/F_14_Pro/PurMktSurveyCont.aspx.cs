@@ -80,31 +80,12 @@ namespace RealERPWEB.F_14_Pro
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            switch (comcod)
+            if (this.Request.QueryString["Type"].ToString() == "ConCS")
             {
-                case "1205":
-                case "3351":
-                case "3352":
-                    if (this.Request.QueryString["Type"].ToString() == "ConCS")
-                    {
-                        this.Resource_ListP2P(pmSrchTxt);
-                    }
-                    else
-                    {
-                        this.Resource_ListGen(pmSrchTxt);
-                    }
-                    break;
-                default:
-                    this.Resource_ListGen(pmSrchTxt);
-                    break;
-
+                this.Resource_ListP2P(pmSrchTxt);
             }
 
-            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLIST1_CON", pmSrchTxt, "", "", "", "", "", "", "", "");
-            //if (ds1 == null)
-            //    return;
-            //Session["tblMat"] = ds1.Tables[0];
-            //Session["tblSpcf"] = ds1.Tables[1];
+
         }
 
         protected void Resource_ListGen(string pmSrchTxt)
@@ -296,6 +277,7 @@ namespace RealERPWEB.F_14_Pro
             //  string SupplierList = this.ddlMSRSupl.SelectedItem.Text.Trim().ToString();
             //  string MaterialsList = this.ddlMSRRes.SelectedValue.ToString().Substring(0, 9);
             //   string Specification = this.ddlSpecificationms.SelectedItem.Text.Trim().ToString();
+
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
@@ -777,9 +759,27 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             }
 
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_self');</script>";
+
+
+
+            if (Request.QueryString.AllKeys.Contains("pType"))
+            {
+                if (Request.QueryString["pType"].ToString() == "CSApproval")
+                {
+                    Session["Report1"] = Rpt1;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_self');</script>";
+                }
+            }
+
+            else
+            {
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
+            }
+
+
 
 
         }
@@ -914,6 +914,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
+                string flrcod = tbl1.Rows[i]["flrcod"].ToString();
                 DataTable tbls1 = (DataTable)Session["tblt01"];
 
                 for (int j = 0; j < tbls1.Rows.Count; j++)
@@ -923,10 +924,7 @@ namespace RealERPWEB.F_14_Pro
                     string qty = tbl1.Rows[i]["qty"].ToString();
                     mRESRATE = Convert.ToDouble("0" + tbl1.Rows[i]["resrate" + (j + 1).ToString()]).ToString();
 
-
-
-                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B",
-                    mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, "", "", "", "", "", "", "", "");
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B",  mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, "", "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -960,9 +958,6 @@ namespace RealERPWEB.F_14_Pro
                 string worktime = drr["worktime"].ToString();
                 string notes = drr["notes"].ToString();
                 string crperiod = drr["crperiod"].ToString();
-
-
-
 
                 result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02_CON", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, crperiod, "", "", "", "", "");
             }
@@ -1006,9 +1001,13 @@ namespace RealERPWEB.F_14_Pro
             DataTable dtmainMat = (DataTable)Session["tblMat"];
 
 
+            this.ddlMSRRes.DataTextField = "rsirdesc1";
+            this.ddlMSRRes.DataValueField = "rsircode";
+            this.ddlMSRRes.DataSource = dtmainMat;
+            this.ddlMSRRes.DataBind();
 
 
-
+            /*
             if (dtmat == null)
             {
                 this.ddlMSRRes.DataTextField = "rsirdesc1";
@@ -1059,11 +1058,13 @@ namespace RealERPWEB.F_14_Pro
 
             }
 
+            */
 
 
 
 
             this.GetSpecification01();
+
         }
 
 
@@ -1227,97 +1228,48 @@ namespace RealERPWEB.F_14_Pro
             //string mResCode = ASTUtility.Left(mResCode2, 12).ToString();
             //string flrcod = ASTUtility.Right(mResCode2, 3).ToString();
 
-          
-           
-
-
             //DataRow[] drreq = tblreq.Select("rsircode = '" + mResCode);
             //string reqQty = drreq["qty"].ToString(); 
 
             string comcod = this.GetCompCode();
+            string mResCode1 = this.ddlMSRRes.SelectedValue.ToString();
+            string spcfcod1 = this.ddlSpecificationms.SelectedValue.ToString();
 
-            switch (comcod)
+            string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
+            string flrcod = mResCode1.ToString().Length > 12 ? ASTUtility.Right(mResCode1, 3).ToString() : "";
+
+            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode2 + "' and  spcfcod='" + spcfcod1 + "' and flrcod='" + flrcod + "' ");
+            if (dr2.Length == 0)
             {
-                case "1205":
-                case "3351":
-                case "3352":
-                    string mResCode1 = this.ddlMSRRes.SelectedValue.ToString();
-                    string spcfcod1 = this.ddlSpecificationms.SelectedValue.ToString();
 
-                    string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
-                    string flrcod = mResCode1.ToString().Length > 12 ?  ASTUtility.Right(mResCode1, 3).ToString() : "";
+                DataRow dr1 = tbl1.NewRow();
+                dr1["rsircode"] = mResCode2;
+                dr1["rsirdesc1"] = ASTUtility.Left(this.ddlMSRRes.SelectedItem.Text.Trim(), 12);
+                dr1["spcfcod"] = this.ddlSpecificationms.SelectedValue.ToString();
+                dr1["spcfdesc"] = this.ddlSpecificationms.SelectedItem.Text.Trim();
+                dr1["flrcod"] = flrcod;
 
-                    DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode2 + "' and  spcfcod='" + spcfcod1 + "' and flrcod='" + flrcod + "' ");
-                    if (dr2.Length == 0)
-                    {
+                dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["qty"];
+                dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["bgdrat"];
+                dr1["resrate1"] = 0;
+                dr1["resrate2"] = 0;
+                dr1["resrate3"] = 0;
+                dr1["resrate4"] = 0;
+                dr1["resrate5"] = 0;
+                dr1["amt1"] = 0;
+                dr1["amt2"] = 0;
+                dr1["amt3"] = 0;
+                dr1["amt4"] = 0;
+                dr1["amt5"] = 0;
 
-                        DataRow dr1 = tbl1.NewRow();
-                        dr1["rsircode"] = mResCode2;
-                        dr1["rsirdesc1"] = ASTUtility.Left(this.ddlMSRRes.SelectedItem.Text.Trim(), 12);
-                        dr1["spcfcod"] = this.ddlSpecificationms.SelectedValue.ToString();
-                        dr1["spcfdesc"] = this.ddlSpecificationms.SelectedItem.Text.Trim();
-                        dr1["flrcod"] = flrcod;
+                DataTable tbl2 = (DataTable)Session["tblMat"];
+                DataRow[] dr5 = tbl2.Select("rsircode = '" + mResCode1 + "'");
+                dr1["rsirunit"] = dr5[0]["rsirunit"];
+                dr1["aprovrate"] = dr5[0]["aprovrate"];
+                dr1["msrrmrk"] = "";
+                tbl1.Rows.Add(dr1);
 
-                        dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["qty"];
-                        dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["bgdrat"];
-                        dr1["resrate1"] = 0;
-                        dr1["resrate2"] = 0;
-                        dr1["resrate3"] = 0;
-                        dr1["resrate4"] = 0;
-                        dr1["resrate5"] = 0;
-                        dr1["amt1"] = 0;
-                        dr1["amt2"] = 0;
-                        dr1["amt3"] = 0;
-                        dr1["amt4"] = 0;
-                        dr1["amt5"] = 0;
-
-                        DataTable tbl2 = (DataTable)Session["tblMat"];
-                        DataRow[] dr5 = tbl2.Select("rsircode = '" + mResCode1 + "'");
-                        dr1["rsirunit"] = dr5[0]["rsirunit"];
-                        dr1["aprovrate"] = dr5[0]["aprovrate"];
-                        dr1["msrrmrk"] = "";
-                        tbl1.Rows.Add(dr1);
-                    }
-                    break;
-
-                default:
-
-                    string mResCode = this.ddlMSRRes.SelectedValue.ToString();
-                    string spcfcod = this.ddlSpecificationms.SelectedValue.ToString();
-
-                    DataRow[] dr3 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "'");
-                    if (dr3.Length == 0)
-                    {
-
-                        DataRow dr1 = tbl1.NewRow();
-                        dr1["rsircode"] = mResCode;
-                        dr1["rsirdesc1"] = this.ddlMSRRes.SelectedItem.Text.Trim();
-                        dr1["spcfcod"] = this.ddlSpecificationms.SelectedValue.ToString();
-                        dr1["spcfdesc"] = this.ddlSpecificationms.SelectedItem.Text.Trim();
-
-                        dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode + "'"))[0]["qty"];
-                        dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode + "'"))[0]["bgdrat"];
-                        dr1["resrate1"] = 0;
-                        dr1["resrate2"] = 0;
-                        dr1["resrate3"] = 0;
-                        dr1["resrate4"] = 0;
-                        dr1["resrate5"] = 0;
-                        dr1["amt1"] = 0;
-                        dr1["amt2"] = 0;
-                        dr1["amt3"] = 0;
-                        dr1["amt4"] = 0;
-                        dr1["amt5"] = 0;
-
-                        DataTable tbl2 = (DataTable)Session["tblMat"];
-                        DataRow[] dr4 = tbl2.Select("rsircode = '" + mResCode + "'");
-                        dr1["rsirunit"] = dr4[0]["rsirunit"];
-                        dr1["aprovrate"] = dr4[0]["aprovrate"];
-                        dr1["msrrmrk"] = "";
-                        tbl1.Rows.Add(dr1);
-                    }
-                    break;
             }
-
             Session["tblt02"] = this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
         }
@@ -1372,8 +1324,6 @@ namespace RealERPWEB.F_14_Pro
                     dr1["ssirdesc1"] = this.ddlMSRSupl.SelectedItem.Text.Trim().Substring(15);
                     tbl1.Rows.Add(dr1);
 
-
-
                     // Term
 
                     DataRow drt = tblt.NewRow();
@@ -1397,8 +1347,6 @@ namespace RealERPWEB.F_14_Pro
                 }
 
             }
-
-
 
 
             Session["tblt01"] = (DataTable)tbl1;
@@ -1523,7 +1471,7 @@ namespace RealERPWEB.F_14_Pro
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 6;
+                cell0.ColumnSpan = 7;
                 gvrow.Cells.Add(cell0);
 
 
@@ -1686,8 +1634,6 @@ namespace RealERPWEB.F_14_Pro
                 this.Payterm_DataBind();
 
             }
-
-
 
             if (!result)
             {

@@ -104,11 +104,11 @@
     <%-- <link rel="stylesheet" href="Content/Theme/theme-dark.min.css" data-skin="dark">--%>
 
     <script>
-        //var skin = localStorage.getItem('skin') || 'default';
+        var skin = localStorage.getItem('skin') || 'default';
 
-        //var unusedLink = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
-        //unusedLink.setAttribute('rel', '');
-        //unusedLink.setAttribute('disabled', true);
+        var unusedLink = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
+        unusedLink.setAttribute('rel', '');
+        unusedLink.setAttribute('disabled', true);
 
         function submitform() { document.getElementById("form1").submit(); }
 
@@ -935,18 +935,18 @@
                             <asp:CheckBox ID="CheckBox1" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
 
                         </div>
-                        <div class="float-right">
-                            <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-sm btn-secondary pull-right" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
+                        <div class="pull-right">
+                            <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-sm btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
 
-                            <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon pull-right" Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>
+                            <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>
  New</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btnadd btncommon pull-right" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>
+                            <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btnadd btncommon" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>
  Add</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info pull-right" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon pull-right" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
-                            <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete pull-right btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
-                            <asp:LinkButton ID="btnClose" Visible="false" runat="server" CssClass="buttonClose pull-right btncommon pull-right " OnClick="btnClose_Click" Style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
+                            <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
+                            <asp:LinkButton ID="btnClose" Visible="false" runat="server" CssClass="buttonClose btncommon " OnClick="btnClose_Click" Style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
 Close</asp:LinkButton>
                         </div>
                     </div>
