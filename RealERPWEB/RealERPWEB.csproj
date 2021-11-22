@@ -168,11 +168,11 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\FlashControlV71.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Access">
-      <HintPath>..\..\..\_backup\_interioir\PTLRealEstate 210816\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
+      <HintPath>C:\Users\Administrator\Desktop\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
@@ -356,7 +356,9 @@
     <Reference Include="Microsoft.Win32.Primitives" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+
       <HintPath>..\..\..\Doc\Lib\Newtonsoft.Json.dll</HintPath>
+
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\RealERPRPT.dll</HintPath>
