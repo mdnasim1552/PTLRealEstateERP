@@ -35,7 +35,7 @@ namespace RealERPWEB.F_24_CC
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["WType"].ToString().Trim() == "ReqStatus") ? "REQUISITION STATUS REPORT"
-                    : (this.Request.QueryString["WType"].ToString().Trim() == "ReqAppStatus") ? "REQUISITION APPROVAL STATUS REPORT" : "CLIENT MODIFICATION REPORT";
+                    : (this.Request.QueryString["WType"].ToString().Trim() == "ReqAppStatus") ? "REQUISITION APPROVAL STATUS REPORT" : (this.Request.QueryString["WType"].ToString().Trim() == "CliBillApproval") ? "CLIENT MODIFICATION REPORT (Bill Approval)" : "CLIENT MODIFICATION REPORT";
 
 
                 this.SelectView();
@@ -65,6 +65,10 @@ namespace RealERPWEB.F_24_CC
 
                 case "CliModfi":
                     this.MultiView1.ActiveViewIndex = 0;
+                    break;
+
+                case "CliBillApproval":
+                    this.MultiView1.ActiveViewIndex = 1;
                     break;
             }
         }
@@ -134,6 +138,13 @@ namespace RealERPWEB.F_24_CC
                     this.RptClientMod();
                     break;
 
+                case "CliBillApproval":
+                    this.RptClientModBillApproval();
+                    break;
+
+
+                    
+
 
             }
 
@@ -142,6 +153,34 @@ namespace RealERPWEB.F_24_CC
 
         }
 
+        private void RptClientModBillApproval()
+        {
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            //DataTable dt = (DataTable)Session["tblstatus"];
+
+            //LocalReport Rpt1 = new LocalReport();
+            //var list = dt.DataTableToList<RealEntity.C_23_CRR.EClassCutomer.ClientModification>();
+            //Rpt1 = RptSetupClass1.GetLocalReport("R_23_CR.RptCliMod", list, null, null);
+            //Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            //Rpt1.SetParameters(new ReportParameter("ftDate", "Date: " + fromdate + " To " + todate));
+            //Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            //Rpt1.SetParameters(new ReportParameter("rptTitle", "Client Modification Report"));
+            //Rpt1.SetParameters(new ReportParameter("txtuserinfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
+
+            //Session["Report1"] = Rpt1;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
 
         private void RptClientMod()
         {
@@ -183,6 +222,13 @@ namespace RealERPWEB.F_24_CC
                 case "CliModfi":
                     this.ShowClientMod();
                     break;
+
+                case "CliBillApproval":
+                    this.ShowClientModBillAproval();
+                    break;
+
+
+                    
             }
 
 
@@ -210,6 +256,30 @@ namespace RealERPWEB.F_24_CC
 
 
 
+        private void ShowClientModBillAproval()
+        {
+
+            Session.Remove("tblstatus");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string pactcdoe = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string unitcode = (this.ddlCustomer.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlCustomer.SelectedValue.ToString() + "%";
+
+            string adwno = "%" + this.txtSrcRequisition.Text + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT02", "PRINTCLIENTMODFINALBILLAPPROVAL", frmdate, todate, pactcdoe, unitcode, adwno, "", "", "", "");
+            if (ds1 == null)
+            {
+                this.gvfbillapproval.DataSource = null;
+                this.gvfbillapproval.DataBind();
+                return;
+            }
+            Session["tblstatus"] = ds1.Tables[0];
+            this.Data_Bind();
+            ds1.Dispose();
+
+        }
         private void ShowClientMod()
         {
             Session.Remove("tblstatus");
@@ -248,6 +318,18 @@ namespace RealERPWEB.F_24_CC
                     this.FooterCalculation();
                     break;
 
+                case "CliBillApproval":
+                    this.gvfbillapproval.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvfbillapproval.DataSource = dt;
+                    this.gvfbillapproval.DataBind();
+                    this.FooterCalculation();
+                    Session["Report1"] = gvfbillapproval;
+                    ((HyperLink)this.gvfbillapproval.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
+
+
+                
+
 
             }
         }
@@ -272,6 +354,18 @@ namespace RealERPWEB.F_24_CC
                                 0 : dt1.Compute("sum(netamt)", ""))).ToString("#,##0;(#,##0); ");
                     break;
 
+
+                case "CliBillApproval":
+                    ((Label)this.gvfbillapproval.FooterRow.FindControl("lgvFAmtf")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt)", "")) ?
+                                0 : dt1.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvfbillapproval.FooterRow.FindControl("lgvFDisamtf")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(disamt)", "")) ?
+                                0 : dt1.Compute("sum(disamt)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvfbillapproval.FooterRow.FindControl("lgvFNetamtf")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(netamt)", "")) ?
+                                0 : dt1.Compute("sum(netamt)", ""))).ToString("#,##0;(#,##0); ");
+                    break;
+
             }
 
         }
@@ -279,12 +373,30 @@ namespace RealERPWEB.F_24_CC
         private DataTable HiddenSameDate(DataTable dt1)
         {
             string type = this.Request.QueryString["WType"].ToString().Trim();
+            string pactcode1 = "";
             switch (type)
             {
 
 
                 case "CliModfi":
-                    string pactcode1 = dt1.Rows[0]["pactcode"].ToString();
+                    pactcode1 = dt1.Rows[0]["pactcode"].ToString();
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["pactcode"].ToString() == pactcode1)
+                        {
+                            pactcode1 = dt1.Rows[j]["pactcode"].ToString();
+                            dt1.Rows[j]["pactdesc"] = "";
+                        }
+
+                        else
+                            pactcode1 = dt1.Rows[j]["pactcode"].ToString();
+                    }
+
+                    break;
+
+
+                case "CliBillApproval":
+                     pactcode1 = dt1.Rows[0]["pactcode"].ToString();
                     for (int j = 1; j < dt1.Rows.Count; j++)
                     {
                         if (dt1.Rows[j]["pactcode"].ToString() == pactcode1)
@@ -315,6 +427,14 @@ namespace RealERPWEB.F_24_CC
         {
             this.grvRptCliMod.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void gvfbillapproval_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+            this.gvfbillapproval.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+
         }
 
 
@@ -350,5 +470,7 @@ namespace RealERPWEB.F_24_CC
 
             }
         }
+
+       
     }
 }

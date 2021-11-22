@@ -1275,6 +1275,8 @@ namespace RealERPLIB
                 tblObj.Rows.Add(new Object[] { "2403000", "2403040", "F_24_CC", "RptClientDOBMrrDay?", "Type=ClientBrthDay", "Birth Day", "Customer Care", "False", "False", "False", "False" }); ;
                 tblObj.Rows.Add(new Object[] { "2403000", "2403041", "F_24_CC", "RptClientDOBMrrDay?", "Type=ClientMrgDay", "Marriage Day", "Customer Care", "False", "False", "False", "False" }); ;
                 tblObj.Rows.Add(new Object[] { "2403000", "2403050", "F_24_CC", "RptClientModification?", "WType=CliModfi", "Client Modification Report", "Customer Care", "False", "False", "False", "False" }); ;
+                tblObj.Rows.Add(new Object[] { "2403000", "2403051", "F_24_CC", "RptClientModification?", "WType=CliBillApproval", "Client Modification Report (Bill Approval)", "Customer Care", "False", "False", "False", "False" }); ;
+
                 tblObj.Rows.Add(new Object[] { "2402000", "2402060", "F_24_CC", "CustHandOverLetter", "", "Handover Letter", "Customer Care", "False", "False", "False", "False" }); ;
                 tblObj.Rows.Add(new Object[] { "2401000", "2401070", "F_24_CC", "CustCodeBook", "", "Handover Code Book", "Customer Care", "False", "False", "False", "False" }); ;
                 tblObj.Rows.Add(new Object[] { "2403000", "2403090", "F_24_CC", "RptCustCastHRaSelection", "", "Casting, Reminder, Handover & Selection", "Customer Care", "False", "False", "False", "False" }); ;
@@ -7581,6 +7583,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "Entry Level", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0301010000", "07. Client Modification Report", "F_24_CC/RptClientModification?WType=CliModfi&prjcode=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301010000", "07. Client Modification Report(Bill Approval)", "F_24_CC/RptClientModification?WType=CliBillApproval&prjcode=&Date1=&Date2=", "", true, "" });       
             mnuTbl1.Rows.Add(new Object[] { "0301020000", "08. Casting, Reminder, Handover & Selection", "F_24_CC/RptCustCastHRaSelection", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301030000", "09. Utility & Other Charges", "F_22_Sal/RptTransactionSt?Type=RectypeWise&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301030000", "09. Utility & Other Charges 02", "F_22_Sal/RptTransactionSt?Type=RectypeWise02&prjcode=&Date1=&Date2=", "", true, "" });
