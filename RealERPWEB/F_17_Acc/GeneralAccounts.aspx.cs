@@ -3457,6 +3457,8 @@ namespace RealERPWEB.F_17_Acc
 
         private void CashABankDataBind()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             DataTable dt = ((DataTable)Session["tblbank"]).Copy();
             DataView dv = dt.DefaultView;
             //Session["tblbank"] = ds1.Tables[0];
@@ -3475,8 +3477,9 @@ namespace RealERPWEB.F_17_Acc
                 dv.RowFilter = ("actcode like '1902%' or  actcode like '29%' ");
             }
 
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
             this.ddlConAccHead.DataSource = dv.ToTable();
-            this.ddlConAccHead.DataTextField = "actdesc1";
+            this.ddlConAccHead.DataTextField = TextField;
             this.ddlConAccHead.DataValueField = "actcode";
             this.ddlConAccHead.DataBind();
 
