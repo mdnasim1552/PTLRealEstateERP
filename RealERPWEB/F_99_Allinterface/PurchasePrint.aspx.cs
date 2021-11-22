@@ -3957,7 +3957,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 switch (comcod)
                 {
-                    //case "3101": // ASIT      
+                    case "3101": // ASIT      
                     case "3330": // Bridge Holdings
                         //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
