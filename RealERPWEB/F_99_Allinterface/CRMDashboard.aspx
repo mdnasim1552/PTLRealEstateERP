@@ -3,6 +3,24 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous"/>
+
+    <style>
+        a:hover {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .metric-label {
+            font-weight: bold;
+            font-size: 25px;
+        }
+
+        .textfont16 {
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -37,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Team Lead</button>
@@ -47,11 +65,184 @@
 
                             </div>
                         </div>
-
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-1 float-right">
+                            <asp:HyperLink ID="hpylnkBtn" runat="server" ForeColor="White" CssClass="btn btn-sm btn-primary" Text="Go Interface"></asp:HyperLink>
+                        </div>
 
 
 
                     </div>
+
+
+                     
+
+                    <div class="row mb-2">
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fas fa-users avatar-title font-26 text-white"></i>
+                                            
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-right">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">90</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Prospect</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="text-uppercase">Target <span class="float-right">90%</span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                                <span class="sr-only">90% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fas fa-binoculars avatar-title font-26 text-white"></i>
+                                           
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-right">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">10</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Todays Follow-up</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="text-uppercase">Target <span class="float-right">60%</span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                <span class="sr-only">60% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fas fa-gem avatar-title font-26 text-white"></i>
+                                            
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-right">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">10</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Valuable Prospect</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="text-uppercase">Target <span class="float-right">60%</span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                <span class="sr-only">60% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fas fa-check-circle avatar-title font-26 text-white"></i>
+                                            
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-right">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">10</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Today's Work Done</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="text-uppercase">Target <span class="float-right">60%</span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                <span class="sr-only">60% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fas fa-times-circle avatar-title font-26 text-white"></i>
+                                            
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-right">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">10</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Close/Hold</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="text-uppercase">Target <span class="float-right">60%</span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                                <span class="sr-only">60% Complete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-3">
+                            <div class="card">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fas fa-database avatar-title font-26 text-white"></i>
+                                            
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-right">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span data-plugin="counterup">10</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Data Bank</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="text-uppercase">  <span class="float-right"> </span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span class="sr-only"> </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
