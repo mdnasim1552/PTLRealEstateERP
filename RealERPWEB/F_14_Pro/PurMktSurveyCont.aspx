@@ -265,6 +265,13 @@
                                                 Width="30px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Floor">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMSRFlrcod" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
+                                                Width="30px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Requirement">
                                         <ItemTemplate>

@@ -216,7 +216,12 @@ namespace RealERPWEB.F_22_Sal
             {
                 this.lbtnOk.Text = "New";
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
-                this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string ddldesc = hst["ddldesc"].ToString();             
+                this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
+
+                // this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+
                 this.ddlProjectName.Visible = false;
                 this.lblProjectmDesc.Visible = true;
                 //this.lblProjectdesc.Visible = true;

@@ -271,6 +271,9 @@ namespace RealERPWEB.F_17_Acc
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
+            string postrmid = hst["teamid"].ToString();
+
+            
             string Postdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string code = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
             string actcode = code.Substring(0, 12).ToString();
@@ -295,8 +298,8 @@ namespace RealERPWEB.F_17_Acc
             {
                 // -----------Update Patment A Table-----------------//
 
-                bool resultpa = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "DELETEPDCVOUCHER", "", vounum, actcode, rescode, cactcode, chequeno, "", "", "",
-                                "", "", "", "", "", "");
+                bool resultpa = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "DELETEPDCVOUCHER", "", vounum, actcode, rescode, cactcode, chequeno, userid, Postdat, Sessionid, postrmid,
+                                "", "", "", "");
 
                 if (!resultpa)
                 {
