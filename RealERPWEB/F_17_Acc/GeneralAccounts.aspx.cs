@@ -1848,7 +1848,7 @@ namespace RealERPWEB.F_17_Acc
                         ;
                     else
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date : " + tvoudat;
+                        ((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date  : " + tvoudat;
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                        
 
