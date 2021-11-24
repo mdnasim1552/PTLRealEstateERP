@@ -249,8 +249,7 @@
                                                                          (DataBinder.Eval(Container.DataItem, "spcfdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc1")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")).Trim(): "") 
-                                                                         
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")).Trim(): "")                                                                         
                                                                     %>'
                                                 Width="150px">
                                             </asp:Label>
@@ -265,11 +264,19 @@
                                                 Width="30px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Floor">
+                                    <asp:TemplateField HeaderText="Floor" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvMSRFlrcod" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
-                                                Width="30px"></asp:Label>
+                                                Width="20px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Floor Desc">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMSRFlrdesc" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'
+                                                Width="70px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

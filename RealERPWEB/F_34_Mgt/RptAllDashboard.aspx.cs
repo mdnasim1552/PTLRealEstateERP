@@ -103,6 +103,8 @@ namespace RealERPWEB.F_34_Mgt
             string comcod = this.GetCompCode();
             string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
             DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "SALESANALYSIS_DASHBOARD", "%", dates, "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             List<double> singldata = new List<double>();
             double ttlsalamtyear = ds2.Tables[4].Rows.Count == 0 ? 0 : Convert.ToDouble(ds2.Tables[4].Rows[0]["ttlsalamtyear"].ToString());
             double collamtyear = ds2.Tables[4].Rows.Count == 0 ? 0 : Convert.ToDouble(ds2.Tables[4].Rows[0]["collamtyear"].ToString());
