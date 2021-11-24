@@ -19,7 +19,7 @@ using RealERPRDLC;
 
 namespace RealERPWEB.F_21_MKT
 {
-    public partial class YearlyActivitiesTarget : System.Web.UI.Page
+    public partial class YearlyTargetVSAchive : System.Web.UI.Page
     {
         ProcessAccess SalesData = new ProcessAccess();
 
@@ -31,7 +31,7 @@ namespace RealERPWEB.F_21_MKT
                 //    Response.Redirect("../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Yearly Activities Target ";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Yearly Activities Target VS Achievement ";
 
                 this.GetYear();
                 GetAllSubdata();
@@ -58,8 +58,8 @@ namespace RealERPWEB.F_21_MKT
             //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
 
-            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
 
 
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
@@ -259,7 +259,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "YEARLY_ACTIVITIES_TARGET", Year, teamcode, "", "", "", "", "", "", "");
+            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "YEARLY_ACTIVITIES_TARGET_VS_ACHIVE", Year, teamcode, "", "", "", "", "", "", "");
 
             if (ds1 == null)
             {
@@ -331,55 +331,154 @@ namespace RealERPWEB.F_21_MKT
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFtqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tqty)", "")) ? 0.00
          : dt.Compute("Sum(tqty)", ""))).ToString("#,##0;(#,##0);  ");
 
+
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty1)", "")) ? 0.00
+            : dt.Compute("Sum(aqty1)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty2)", "")) ? 0.00
+               : dt.Compute("Sum(aqty2)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty3)", "")) ? 0.00
+      : dt.Compute("Sum(aqty3)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty4)", "")) ? 0.00
+      : dt.Compute("Sum(aqty4)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty5)", "")) ? 0.00
+      : dt.Compute("Sum(aqty5)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty6")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty6)", "")) ? 0.00
+      : dt.Compute("Sum(aqty6)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty7")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty7)", "")) ? 0.00
+      : dt.Compute("Sum(aqty7)", ""))).ToString("#,##0;(#,##0);  ");
+
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty8)", "")) ? 0.00
+      : dt.Compute("Sum(aqty8)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty9")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty9)", "")) ? 0.00
+      : dt.Compute("Sum(aqty9)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty10")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty10)", "")) ? 0.00
+      : dt.Compute("Sum(aqty10)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty11")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty11)", "")) ? 0.00
+      : dt.Compute("Sum(aqty11)", ""))).ToString("#,##0;(#,##0);  ");
+
+            ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFaqty12")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(aqty12)", "")) ? 0.00
+      : dt.Compute("Sum(aqty12)", ""))).ToString("#,##0;(#,##0);  ");
+
+
+
+
+
         }
 
         protected void gvySalbgd_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            //GridViewRow gvRow = e.Row;
-            //if (gvRow.RowType == DataControlRowType.Header)
-            //{
-            //    GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+                TableCell cell0 = new TableCell();
+                cell0.Text = "Sl";
+                cell0.HorizontalAlign = HorizontalAlign.Center;
+                cell0.RowSpan = 1;
+                gvrow.Cells.Add(cell0);
 
-            //    TableCell cell0 = new TableCell();
-            //    cell0.Text = "";
-            //    cell0.HorizontalAlign = HorizontalAlign.Center;
-            //    cell0.ColumnSpan = 2;
-            //    gvrow.Cells.Add(cell0);
-
-
-            //    DataTable dtymon = (DataTable)ViewState["tblymon"];
-            //    int j = 2;
-            //    //for (int i = 0; i < dtymon.Rows.Count; i++)
-            //    //{
-
-            //    //    TableCell cell = new TableCell();
-            //    //    cell.Text = dtymon.Rows[i]["yearmon"].ToString();
-            //    //    cell.HorizontalAlign = HorizontalAlign.Center;
-            //    //    cell.ColumnSpan = 2;
-            //    //    cell.Font.Bold = true;
-            //    //    gvrow.Cells.Add(cell);
-
-            //    ////    if (j == 26)
-            //    //        break;
+                TableCell cell1 = new TableCell();
+                cell1.Text = "Description";
+                cell1.HorizontalAlign = HorizontalAlign.Center;
+                cell1.RowSpan =1;
+                gvrow.Cells.Add(cell1);
 
 
-            //    //}
+                TableCell cell2 = new TableCell();
+                cell2.Text = "Jan";
+                cell2.HorizontalAlign = HorizontalAlign.Center;
+                cell2.ColumnSpan = 2;
+                gvrow.Cells.Add(cell2);
+
+                TableCell cell3 = new TableCell();
+                cell3.Text = "Feb";
+                cell3.HorizontalAlign = HorizontalAlign.Center;
+                cell3.ColumnSpan = 2;
+                gvrow.Cells.Add(cell3);
 
 
-            //    TableCell celll = new TableCell();
-            //    celll.Text = "";
-            //    celll.HorizontalAlign = HorizontalAlign.Center;
-            //    celll.ColumnSpan = 2;
-            //    gvrow.Cells.Add(celll);
+                 
+                TableCell cell4 = new TableCell();
+                cell4.Text = "Mar";
+                cell4.HorizontalAlign = HorizontalAlign.Center;
+                cell4.ColumnSpan = 2;
+                gvrow.Cells.Add(cell4);
 
 
+                TableCell cell5 = new TableCell();
+                cell5.Text = "Apr";
+                cell5.HorizontalAlign = HorizontalAlign.Center;
+                cell5.ColumnSpan = 2;
+                gvrow.Cells.Add(cell5);
 
-            //    //this.gvHourlyProd.Columns[5 + i].HeaderText = dt2.Rows[i]["gdesc"].ToString();
-            //    //  i++;
+                TableCell cell6 = new TableCell();
+                cell6.Text = "May";
+                cell6.HorizontalAlign = HorizontalAlign.Center;
+                cell6.ColumnSpan = 2;
+                gvrow.Cells.Add(cell6);
+
+                TableCell cell7 = new TableCell();
+                cell7.Text = "Jun";
+                cell7.HorizontalAlign = HorizontalAlign.Center;
+                cell7.ColumnSpan = 2;
+                gvrow.Cells.Add(cell7);
+
+                TableCell cell8 = new TableCell();
+                cell8.Text = "Jul";
+                cell8.HorizontalAlign = HorizontalAlign.Center;
+                cell8.ColumnSpan = 2;
+                gvrow.Cells.Add(cell8);
+
+                TableCell cell9 = new TableCell();
+                cell9.Text = "Aug";
+                cell9.HorizontalAlign = HorizontalAlign.Center;
+                cell9.ColumnSpan = 2;
+                gvrow.Cells.Add(cell9);
+
+                TableCell cell10 = new TableCell();
+                cell10.Text = "Sep";
+                cell10.HorizontalAlign = HorizontalAlign.Center;
+                cell10.ColumnSpan = 2;
+                gvrow.Cells.Add(cell10);
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "Oct";
+                cell11.HorizontalAlign = HorizontalAlign.Center;
+                cell11.ColumnSpan = 2;
+                gvrow.Cells.Add(cell11);
+
+                TableCell cell12 = new TableCell();
+                cell12.Text = "Nov";
+                cell12.HorizontalAlign = HorizontalAlign.Center;
+                cell12.ColumnSpan = 2;
+                gvrow.Cells.Add(cell12);
+
+                TableCell cell13 = new TableCell();
+                cell13.Text = "Dec";
+                cell13.HorizontalAlign = HorizontalAlign.Center;
+                cell13.ColumnSpan = 2;
+                gvrow.Cells.Add(cell13);
+
+                TableCell cell14 = new TableCell();
+                cell14.Text = "Total Qty";
+                cell14.HorizontalAlign = HorizontalAlign.Center;
+                cell14.RowSpan = 1;
+                gvrow.Cells.Add(cell14);
 
 
-            //    gvySalbgd.Controls[0].Controls.AddAt(0, gvrow);
-            //}
+                gvySalbgd.Controls[0].Controls.AddAt(0, gvrow);
+            }
         }
 
         protected void gvySalbgd_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -463,9 +562,9 @@ namespace RealERPWEB.F_21_MKT
             {
 
             }
-           }
+        }
 
-        
+
         private void SaveValue()
         {
             DataTable tbl1 = (DataTable)ViewState["tblsal"];
@@ -507,59 +606,6 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
-        protected void lnkbtnCopyBtn_Click(object sender, EventArgs e)
-        {
-            DataTable tbl1 = (DataTable)ViewState["tblsal"];
-           
-            
-            int rowindex;
-            for (int i = 0; i < this.gvySalbgd.Rows.Count; i++)
-            {
-                rowindex = this.gvySalbgd.PageSize * this.gvySalbgd.PageIndex + i;
-
-                //tbl1.Rows[rowindex]["qty1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty2"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty3"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty4"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty5"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty6"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty7"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty8"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty9"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty10"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty11"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-
-                tbl1.Rows[rowindex]["qty12"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-                //int tqty  Convert.ToInt32(tbl1.Rows[rowindex]["qty1"]) + Convert.ToDouble(tbl1.Rows[rowindex]["qty"]) + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"];
-                double tqty1 = Convert.ToDouble(tbl1.Rows[rowindex]["qty1"]);
-                double tqty2 = Convert.ToDouble(tbl1.Rows[rowindex]["qty2"]);
-                double tqty3 = Convert.ToDouble(tbl1.Rows[rowindex]["qty3"]);
-                double tqty4 = Convert.ToDouble(tbl1.Rows[rowindex]["qty4"]);
-                double tqty5 = Convert.ToDouble(tbl1.Rows[rowindex]["qty5"]);
-                double tqty6 = Convert.ToDouble(tbl1.Rows[rowindex]["qty6"]);
-                double tqty7 = Convert.ToDouble(tbl1.Rows[rowindex]["qty7"]);
-                double tqty8 = Convert.ToDouble(tbl1.Rows[rowindex]["qty8"]);
-                double tqty9 = Convert.ToDouble(tbl1.Rows[rowindex]["qty9"]);
-                double tqty10 = Convert.ToDouble(tbl1.Rows[rowindex]["qty10"]);
-                double tqty11 = Convert.ToDouble(tbl1.Rows[rowindex]["qty11"]);
-                double tqty12 = Convert.ToDouble(tbl1.Rows[rowindex]["qty12"]);
-                tbl1.Rows[rowindex]["tqty"] = tqty1 + tqty2 + tqty3 + tqty4 + tqty5 + tqty6 + tqty7 + tqty8 + tqty9 + tqty10 + tqty11 + tqty12;
-            }
- 
-            ViewState["tblsal"] = tbl1;
-            this.Data_Bind();
-
-             
-        }
+      
     }
 }

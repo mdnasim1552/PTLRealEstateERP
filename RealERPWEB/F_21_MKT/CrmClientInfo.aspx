@@ -1895,7 +1895,7 @@
                     </div>
                 </div>
 
-                <div class="card-body" style="min-height: 600px;">
+                <div class"card-body" style="min-height: 600px;">
                     <div class="row mb-2 justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
@@ -3700,6 +3700,9 @@
                                             </li>
                                             <li>
                                                 <asp:HyperLink ID="hlnkTeamMember" Target="_blank" NavigateUrl="~/F_21_Mkt/MktTeamMember" runat="server">Team Member</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_99_Allinterface/CRMDashboard" runat="server">CRM Dashboard</asp:HyperLink>
                                             </li>
 
                                         </ul>

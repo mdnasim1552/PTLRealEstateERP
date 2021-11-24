@@ -1355,7 +1355,7 @@ namespace RealERPWEB.F_09_PImp
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 5;
+                cell0.ColumnSpan = 6;
                 gvrow.Cells.Add(cell0);
                 DataTable dt = (DataTable)Session["tblt01"];
                 //int j = 5;

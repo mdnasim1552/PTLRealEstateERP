@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_21_MKT
+namespace RealERPWEB.F_99_Allinterface
 {
 
 
-    public partial class YearlyActivitiesTarget
+    public partial class CRMDashboard
     {
 
         /// <summary>
@@ -33,57 +33,39 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// ddlyear control.
+        /// txtfodate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlyear;
+        protected global::System.Web.UI.WebControls.TextBox txtfodate;
 
         /// <summary>
-        /// ddlteam control.
+        /// CalendarExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlteam;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
-        /// lbtnYearbgd control.
+        /// ddlEmpid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnYearbgd;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmpid;
 
         /// <summary>
-        /// ddlMonths control.
+        /// hpylnkBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMonths;
-
-        /// <summary>
-        /// lnkbtnCopyBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnCopyBtn;
-
-        /// <summary>
-        /// gvySalbgd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvySalbgd;
+        protected global::System.Web.UI.WebControls.HyperLink hpylnkBtn;
     }
 }

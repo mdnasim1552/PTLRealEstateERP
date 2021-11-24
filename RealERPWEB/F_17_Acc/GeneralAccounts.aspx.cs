@@ -2139,6 +2139,20 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
+                
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
+                    string eventdesc = this.Request.QueryString["Mod"] == "Accounts" ? "Voucher Entry" : "Voucher Edit" ;
+                    string eventdesc2 = "Voucher: " + this.txtcurrentvou.Text.Trim() + this.txtCurrntlast6.Text.Trim() + " Dated: " + this.txtEntryDate.Text.Trim(); ;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                }
+
+
                 if (ConstantInfo.LogStatus == true)
                 {
 
@@ -3043,6 +3057,8 @@ namespace RealERPWEB.F_17_Acc
             //((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserceacc")).Text = "";
             ((DropDownList)this.dgv1.Rows[e.NewEditIndex].FindControl("ddlrgrdesuorcecode")).Focus();
 
+
+
         }
         protected void dgv1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
@@ -3187,6 +3203,9 @@ namespace RealERPWEB.F_17_Acc
             //  dv.Sort = "actcode,subcode,spclcode";
             dt = dv.ToTable();
             this.Data_Bind();
+
+
+
 
 
 
@@ -3438,6 +3457,8 @@ namespace RealERPWEB.F_17_Acc
 
         private void CashABankDataBind()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             DataTable dt = ((DataTable)Session["tblbank"]).Copy();
             DataView dv = dt.DefaultView;
             //Session["tblbank"] = ds1.Tables[0];
@@ -3456,8 +3477,9 @@ namespace RealERPWEB.F_17_Acc
                 dv.RowFilter = ("actcode like '1902%' or  actcode like '29%' ");
             }
 
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
             this.ddlConAccHead.DataSource = dv.ToTable();
-            this.ddlConAccHead.DataTextField = "actdesc1";
+            this.ddlConAccHead.DataTextField = TextField;
             this.ddlConAccHead.DataValueField = "actcode";
             this.ddlConAccHead.DataBind();
 

@@ -288,7 +288,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvdeleteDat" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deldat")) %>'
-                                                    Width="55px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

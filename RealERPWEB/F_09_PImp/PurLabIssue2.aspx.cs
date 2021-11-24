@@ -195,21 +195,18 @@ namespace RealERPWEB.F_09_PImp
         private void GetProjectList()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
-
             string pactcode = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? ("%" + this.txtSrcPro.Text.Trim() + "%") : (this.Request.QueryString["prjcode"].ToString() + "%");
-
-            //string pactcode = "%" + this.txtSrcPro.Text + "%";
             this.txtCurISSDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string userid = hst["usrid"].ToString();
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETISSUEPRJLIST", pactcode, userid, "", "", "", "", "", "", "");
-
-
-
             if (ds1 == null)
                 return;
-            this.ddlprjlist.DataTextField = "actdesc1";
+
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlprjlist.DataTextField = TextField;
             this.ddlprjlist.DataValueField = "actcode";
             this.ddlprjlist.DataSource = ds1.Tables[0];
             this.ddlprjlist.DataBind();
@@ -350,6 +347,8 @@ namespace RealERPWEB.F_09_PImp
             string comadd = hst["comadd1"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? this.ddlprjlist.SelectedItem.Text.Trim().ToString() : this.ddlprjlist.SelectedItem.Text.Substring(14));
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             LocalReport Rpt1 = new LocalReport();
@@ -359,8 +358,8 @@ namespace RealERPWEB.F_09_PImp
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueSubCon", lst, null, null);
             Rpt1.SetParameters(new ReportParameter("compname", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("Rptname", "Sub Contractor Bill (R/A Wise)"));
-            Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14)));
+            Rpt1.SetParameters(new ReportParameter("Rptname", "Sub Contractor Bill (R/A Wise)"));  
+            Rpt1.SetParameters(new ReportParameter("ProjectName", "Project Name: " + TextField));
             Rpt1.SetParameters(new ReportParameter("SubContNam", "Sub Contractor Name: " + this.ddlcontractorlist.SelectedItem.Text.Substring(13)));
             Rpt1.SetParameters(new ReportParameter("IssueNo", "Issue No: " + this.lblCurISSNo1.Text.Trim() + this.txtCurISSNo2.Text.Trim()));
             Rpt1.SetParameters(new ReportParameter("BillRef", "Bill Ref. No: " + this.txtRefno.Text.Trim()));
@@ -1601,7 +1600,8 @@ namespace RealERPWEB.F_09_PImp
 
         protected void grvissue_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblmatissue"];
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
@@ -1624,7 +1624,7 @@ namespace RealERPWEB.F_09_PImp
             {
                 string eventtype = "Labour Issue Information";
                 string eventdesc = "Delete Labour";
-                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Sub Contractor Name: " +
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlprjlist.SelectedItem.Text : this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Sub Contractor Name: " +
                         this.ddlcontractorlist.SelectedItem.Text.Substring(14) + "- " + "Issue No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
                         ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
                         ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();

@@ -62,6 +62,16 @@ namespace RealERPWEB.F_34_Mgt
                 case "3352":
                 case "3354":
                 case "3355":
+                case "3315": //Asssure
+                case "3316":
+                case "3317":
+                case "1108":
+                case "1109":
+                case "3101":
+
+
+
+
 
                     //case "3101":
                     Calltype = "GETAPROVALLSUPLIST";

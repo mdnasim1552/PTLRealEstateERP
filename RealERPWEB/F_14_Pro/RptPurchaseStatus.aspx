@@ -621,6 +621,16 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvReqno" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
+                                                        Width="70px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvAppDat0" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdate")) %>'
@@ -719,6 +729,20 @@
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+
+                                            <asp:TemplateField HeaderText="Print">
+                                                <ItemTemplate>                                                    
+                                                    <asp:LinkButton ID="btnPrintReqInfo" OnClick="btnPrintReqInfo_Click" runat="server" CssClass="btn btn-default btn-xs" Style="background-color:#C0C0C0"><span style="color:#002bff" class="fa fa-print"></span> </asp:LinkButton>
+
+                                                </ItemTemplate>
+
+                                                <ItemStyle Width="40px" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="40px" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />
                                         <EditRowStyle />
@@ -2133,17 +2157,17 @@
                                                 </div>
 
                                             </div>
-                                        
+
 
                                             <div class="col-md-3">
-                                                <asp:DropDownList ID="ddlOrder" runat="server" CssClass="form-control chzn-select inputTxt" Width="265px" ></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlOrder" runat="server" CssClass="form-control chzn-select inputTxt" Width="265px"></asp:DropDownList>
 
 
                                             </div>
 
                                             <div class="colmd-1">
 
-                                            <asp:LinkButton ID="lbtnOkOrder" runat="server" CssClass="btn btn-primary okBtn"  OnClick="lbtnOkOrder_Click"  >Ok</asp:LinkButton>
+                                                <asp:LinkButton ID="lbtnOkOrder" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOkOrder_Click">Ok</asp:LinkButton>
 
                                             </div>
 

@@ -15,8 +15,17 @@
         });
 
         function openModal() {
-            $('#modalEmpInfo').modal('show');
+            $('#modalEmpInfo').modal('toggle', {
+                backdrop: 'static',
+                keyboard: false
+
+            });
+
         }
+
+        //function openModal() {
+        //    $('#modalEmpInfo').modal('show');
+        //}
         function CloseMOdal() {
             $('#modalEmpInfo').modal('hide');
         }
@@ -33,15 +42,16 @@
 
         //}
 
-        //function CloseModal_AlrtMsg() {
+        function CloseModal_AlrtMsg() {
 
 
-        //    $('body').removeClass('modal-open');
-        //    $('.modal-backdrop').remove();
-        //    $('.modal ').modal('hide');
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
+            $('.modal ').modal('hide');
 
-        //    openModal();
-        //};
+            //openModal();
+
+        };
 
         function pageLoaded() {
 
@@ -221,8 +231,7 @@
 
 
                         <asp:GridView ID="gvabsspecialcount" runat="server" AutoGenerateColumns="False" AllowPaging="false"
-                            OnPageIndexChanging="gvabscount_PageIndexChanging" ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            OnRowDeleting="gvabscount_RowDeleting">
+                            OnPageIndexChanging="gvabscount_PageIndexChanging" ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -327,12 +336,15 @@
                                       <%--  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>--%>
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                         <h5 class="modal-title" id="exampleModalCenterTitle">Absent Employee</h5>
+                                        <asp:Label ID="lblSelectEmpName" runat="server"></asp:Label>
                                     </div>
                                     <div class="modal-body">
                                         <asp:CheckBoxList ID="chkDate" runat="server" Font-Bold="True" CssClass="chkBoxControl"
                                             ForeColor="#000" RepeatDirection="Horizontal" Width="900px"
                                             RepeatColumns="7">
                                         </asp:CheckBoxList> 
+                                         <asp:Label ID="lblselectempid" runat="server" Visible="false"></asp:Label>
+
                                     </div>
                                     <div class="modal-footer">
                                         <asp:LinkButton ID="lblbtnSave" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CLoseMOdal();" OnClick="btnabsUpdate_Click">

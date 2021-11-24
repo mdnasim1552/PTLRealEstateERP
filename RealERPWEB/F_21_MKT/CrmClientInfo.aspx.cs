@@ -51,6 +51,16 @@ namespace RealERPWEB.F_21_MKT
                 this.ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Initializescroll();", true);
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = "Click CRM Interface (Sales CRM)";
+                    string eventdesc = "Click CRM Interface (Sales CRM)";
+                    string eventdesc2 = "";                  
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+
                 // }
 
 
@@ -84,7 +94,7 @@ namespace RealERPWEB.F_21_MKT
             {
 
 
-                //case "3348":// Credence 
+                //case "3348":// Credence .
                 //    this.gvSummary.Columns[13].Visible = false;
                 //    this.gvSummary.Columns[14].Visible = false;
                 //    this.gvSummary.Columns[15].Visible = false;
@@ -2989,7 +2999,7 @@ namespace RealERPWEB.F_21_MKT
             {
                 string eventtype = "Data Updated  Information (Sales CRM)";
                 string eventdesc = "Data Updated  Information (Sales CRM)";
-                string eventdesc2 = "";
+                string eventdesc2 = lbllandname.Text;
                 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
@@ -3302,6 +3312,8 @@ namespace RealERPWEB.F_21_MKT
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
             string proscod = dt.Rows[RowIndex]["sircode"].ToString();
+            string proscod1 = dt.Rows[RowIndex]["sircode1"].ToString();
+
 
             if (Chkpdelete.Checked)
             {
@@ -3362,7 +3374,7 @@ namespace RealERPWEB.F_21_MKT
             {
                 string eventtype = "Delete Row (Sales CRM) ";
                 string eventdesc = "Delete Row (Sales CRM) ";
-                string eventdesc2 = "";
+                string eventdesc2 = proscod1;
                 
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
@@ -3410,6 +3422,8 @@ namespace RealERPWEB.F_21_MKT
             int index = row.RowIndex;
             string comcod = GetComeCode();
             string styleid = ((Label)this.gvSummary.Rows[index].FindControl("lsircode")).Text.ToString();
+            string clintIdno = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString();
+
             lbllandname.Text = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString() + ':' + ((Label)this.gvSummary.Rows[index].FindControl("ldesc")).Text.ToString();
             ViewState["existclientcode"] = styleid;
             this.MultiView1.ActiveViewIndex = 0;
@@ -3432,7 +3446,7 @@ namespace RealERPWEB.F_21_MKT
             {
                 string eventtype = "Edit Client Information (Sales CRM)";
                 string eventdesc = "Edit Client Information (Sales CRM)";
-                string eventdesc2 = "";
+                string eventdesc2 = "Edit "+clintIdno;
                
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
@@ -4659,6 +4673,7 @@ namespace RealERPWEB.F_21_MKT
 
                 string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
                 string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
+                string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;               
                 string cdate = this.txttodate.Text.Trim();
                 DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
 
@@ -4683,9 +4698,9 @@ namespace RealERPWEB.F_21_MKT
                 
                 if (Convert.ToBoolean(events) == true)
                 {
-                    string eventtype = "Click Discussion (sales CRM) ";
-                    string eventdesc = "Click Discussion (sales CRM) ";
-                    string eventdesc2 = "";
+                    string eventtype = "Click Follow UP (Sales CRM) ";
+                    string eventdesc = "Click Follow UP (Sales CRM) ";
+                    string eventdesc2 = follclintidno;
                     
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
