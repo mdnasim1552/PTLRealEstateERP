@@ -350,9 +350,10 @@
                                     </ItemTemplate>
                                     <EditItemTemplate>
                                         <asp:DropDownList ID="ddlUserRole" runat="server">
+                                            <asp:ListItem Selected Value="3">User</asp:ListItem>
                                             <asp:ListItem Value="1">Admin</asp:ListItem>
                                             <asp:ListItem Value="2">Managment</asp:ListItem>
-                                            <asp:ListItem Value="3">User</asp:ListItem>
+                                            
 
                                         </asp:DropDownList>
                                     </EditItemTemplate>

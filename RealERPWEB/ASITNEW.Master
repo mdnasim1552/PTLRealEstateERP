@@ -5,17 +5,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-    <!-- Required meta tags -->
+     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pinovation ERP </title>
     <meta property="og:title" content="Dashboard">
     <meta name="author" content="Pinovation Tech Ltd.">
     <meta property="og:locale" content="en_US">
-    <meta name="description" content="ERP SOFTWARE BY Advance Software and IT Services LTD">
-    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
- 
+    <meta name="description" content="ERP SOFTWARE BY Pinovation Tech Ltd">
+    <meta property="og:description" content="Realstate ERP Pinovation Tech Ltd"> 
     <meta property="og:site_name" content="Realstate ERP">
+    <meta name="theme-color" content="#3063A0">
+     <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
+    
     <asp:PlaceHolder runat="server">
        <%: Styles.Render("~/Content/cssnew") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -34,21 +38,7 @@
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
-
-    
-    <!-- End Required meta tags -->
-    <!-- Begin SEO tag -->
-    
-
-    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
-   
-
-  
-    <meta name="theme-color" content="#3063A0">
-     
+    </asp:ContentPlaceHolder>           
     <script type="application/ld+json">
       {
         "name": "Looper - Bootstrap 4 Admin Theme",

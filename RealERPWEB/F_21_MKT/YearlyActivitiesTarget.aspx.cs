@@ -106,14 +106,15 @@ namespace RealERPWEB.F_21_MKT
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "LANDREFINFODDL", "", "", "", "", "", "", "", "", "");
+            
             ViewState["tblsubddl"] = ds2.Tables[0];
             ds2.Dispose();
 
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
-            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
             ViewState["tblempsup"] = ds1.Tables[0];
             ds1.Dispose();
 
@@ -517,7 +518,7 @@ namespace RealERPWEB.F_21_MKT
             {
                 rowindex = this.gvySalbgd.PageSize * this.gvySalbgd.PageIndex + i;
 
-                //tbl1.Rows[rowindex]["qty1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+                tbl1.Rows[rowindex]["qty1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
 
                 tbl1.Rows[rowindex]["qty2"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
 
