@@ -1840,10 +1840,10 @@ namespace RealERPWEB.F_17_Acc
                      //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
 
                     frmdate =Convert.ToDateTime(ASTUtility.DateFormat("01"+"."+cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
-                     //todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");
+                    todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");
 
-                     string todate1 = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                     todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
+                     //string todate1 = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                     //todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
                      tvoudat = Convert.ToDateTime(voudat);
 
 
