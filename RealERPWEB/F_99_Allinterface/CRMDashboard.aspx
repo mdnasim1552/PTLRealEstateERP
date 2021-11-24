@@ -204,7 +204,7 @@
                                         </div>
                                         <div class="media-body align-self-center">
                                             <div class="text-right">
-                                                <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-danger text-white counterup" data-plugin="counterup">0</span></h4>
+                                                <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-danger text-white counterup" id="lblFreez" runat="server" data-plugin="counterup">0</span></h4>
                                                 <p class="mb-0 mt-1 text-truncate">Close/Hold</p>
                                             </div>
                                         </div>
@@ -258,7 +258,7 @@
                                         </div>
                                         <div class="media-body align-self-center">
                                             <div class="text-right">
-                                                <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-danger text-white counterup" data-plugin="counterup">0
+                                                <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-danger text-white counterup" id="lbllost" runat="server" data-plugin="counterup">0
                                                                                           </span></h4>
                                                 <p class="mb-0 mt-1 text-truncate">Lost</p>
                                             </div>

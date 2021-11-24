@@ -105,6 +105,15 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbldwr;
 
         /// <summary>
+        /// lblFreez control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFreez;
+
+        /// <summary>
         /// lblcsigned control.
         /// </summary>
         /// <remarks>
@@ -112,6 +121,15 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblcsigned;
+
+        /// <summary>
+        /// lbllost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbllost;
 
         /// <summary>
         /// lblDatablank control.

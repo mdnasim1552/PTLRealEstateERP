@@ -176,7 +176,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 Empid = hst["empid"].ToString();
             }
-            //string empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
+            
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "GETCRMCOMPONENTDATA", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
@@ -194,12 +194,12 @@ namespace RealERPWEB.F_99_Allinterface
             //this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
             this.lblprospect.InnerText = ds3.Tables[0].Rows[0]["prospect"].ToString();
             this.lblrating.InnerText = ds3.Tables[0].Rows[0]["rating"].ToString();
-            //this.lblFreez.InnerText = ds3.Tables[0].Rows[0]["freezing"].ToString();
+            this.lblFreez.InnerText = ds3.Tables[0].Rows[0]["freezing"].ToString();
             //this.lblDeadProspect.InnerText = ds3.Tables[0].Rows[0]["deadprospect"].ToString();
             this.lblcsigned.InnerText = ds3.Tables[0].Rows[0]["signed"].ToString();
 
             //this.lblpme.InnerText = ds3.Tables[0].Rows[0]["pme"].ToString();
-            //this.lblpmi.InnerText = ds3.Tables[0].Rows[0]["pmi"].ToString();
+            this.lbllost.InnerText = ds3.Tables[0].Rows[0]["lost"].ToString();
             this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
 
 
