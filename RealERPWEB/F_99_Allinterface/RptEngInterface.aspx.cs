@@ -31,9 +31,20 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                string qusrid = this.Request.QueryString["usrid"] ?? "";
+                if (qusrid.Length > 0)
+                {
+                    this.GetComNameAAdd();
+                    this.GetUserPermission();
+                    this.MasComNameAndAdd();
+
+                }
+
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0,indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "General Bill";//
@@ -45,6 +56,8 @@ namespace RealERPWEB.F_99_Allinterface
                 //this.txFdate.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.gridVisibility();
+
+                
                 this.lbtnOk_Click(null, null);
                 //this.txtIme_TextChanged(null, null);
 
@@ -54,22 +67,149 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+
+        private void GetComNameAAdd()
+        {
+            string comcod = this.GetCompCode();
+            //Access Database (List View)
+            UserLogin ulog = new UserLogin();
+            DataSet ds1 = ulog.GetNameAdd();
+
+            DataView dv = ds1.Tables[0].DefaultView;
+            dv.RowFilter = ("comcod = '"+ comcod + "'");           
+            DataTable dt = dv.ToTable();
+            Session["tbllog"] = dt;
+            ds1.Dispose();
+
+
+        }
+        private void GetUserPermission()
+        {
+            string comcod = this.GetCompCode();
+          
+            string usrid = this.Request.QueryString["usrid"];
+            string HostAddress = Request.UserHostAddress.ToString();
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSERNAMEAPASS", usrid, "", "", "", "", "", "", "", "");
+
+          //  if()
+
+            //  ProcessAccess ulogin = (ASTUtility.Left(this.ddlCompany.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
+           
+            string username = ds1.Tables[0].Rows[0]["username"].ToString();
+            string pass = ds1.Tables[0].Rows[0]["password"].ToString();
+
+            //string decodepass = ASTUtility.EncodePassword(pass);
+
+            //        string pass = ASTUtility.EncodePassword(hst["password"].ToString());
+            string modulid = "AA";
+            string modulename ="All Module";
+            DataSet ds5 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
+            Session["tblusrlog"] = ds5;
+           
+            DataTable dt1 = (DataTable)Session["tbllog"];
+            DataTable dt2 = new DataTable();
+
+            //if ((DataTable)Session["tbllog1"] == null)
+           // {
+                dt2.Columns.Add("comcod", Type.GetType("System.String"));
+                dt2.Columns.Add("comnam", Type.GetType("System.String"));
+                dt2.Columns.Add("comsnam", Type.GetType("System.String"));
+                dt2.Columns.Add("comadd1", Type.GetType("System.String"));
+                dt2.Columns.Add("comadd", Type.GetType("System.String"));
+                dt2.Columns.Add("usrsname", Type.GetType("System.String"));
+                dt2.Columns.Add("session", Type.GetType("System.String"));
+                dt2.Columns.Add("compsms", Type.GetType("System.String"));
+                dt2.Columns.Add("compmail", Type.GetType("System.String"));
+
+                Session["tbllog1"] = dt2;
+           // }
+
+            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
+            // Hashtable hst = (Hashtable)Session["tblLogin"];
+            Hashtable hst = new Hashtable();
+
+            if (dr.Length > 0)
+            {
+
+                hst["comnam"] = dr[0]["comnam"];
+                hst["comnam"] = dr[0]["comnam"];
+                hst["comsnam"] = dr[0]["comsnam"];
+                hst["comadd1"] = dr[0]["comadd1"];
+                hst["comweb"] = dr[0]["comadd3"];
+                hst["combranch"] = dr[0]["combranch"];
+                hst["comadd"] = dr[0]["comadd"];
+
+
+                DataRow dr2 = dt2.NewRow();
+                dr2["comcod"] = comcod;
+                dr2["comnam"] = dr[0]["comnam"];
+                dr2["comsnam"] = dr[0]["comsnam"];
+                dr2["comadd1"] = dr[0]["comadd1"];
+                dr2["comadd"] = dr[0]["comadd"];
+
+                dt2.Rows.Add(dr2);
+
+            }
+            string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
+            hst["comcod"] = comcod;
+            hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
+
+            // hst["comnam"] = ComName;
+            hst["modulenam"] = "";
+            hst["username"] = ds5.Tables[0].Rows[0]["usrsname"];
+            hst["userfname"] = ds5.Tables[0].Rows[0]["usrname"];
+            hst["compname"] = HostAddress;
+            hst["usrid"] = ds5.Tables[0].Rows[0]["usrid"];
+            hst["password"] = pass;
+            hst["session"] = sessionid;
+            hst["trmid"] = "";
+            hst["commod"] = "1";
+            hst["compsms"] = ds5.Tables[0].Rows[0]["compsms"];
+            hst["ssl"] = ds5.Tables[0].Rows[0]["ssl"];
+            hst["opndate"] = ds5.Tables[0].Rows[0]["opndate"];
+            hst["empid"] = ds5.Tables[0].Rows[0]["empid"];
+            hst["teamid"] = ds5.Tables[0].Rows[0]["teamid"];
+            hst["mcomcod"] = ds5.Tables[5].Rows[0]["mcomcod"];
+            hst["usrdesig"] = ds5.Tables[0].Rows[0]["usrdesig"];
+            hst["events"] = ds5.Tables[0].Rows[0]["eventspanel"];
+            hst["usrrmrk"] = ds5.Tables[0].Rows[0]["usrrmrk"];
+            hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
+            hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
+            hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+           
+            Session["tblLogin"] = hst;
+            dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
+            dt2.Rows[0]["session"] = sessionid;
+            Session["tbllog1"] = dt2;
+
+
+
+           
+
+        }
+
+        private void MasComNameAndAdd()
+        {
+            //((Image)this.Master.FindControl("ComLogo")).ImageUrl = "";
+            string comcod = this.GetCompCode();
+            DataTable dt1 = ((DataTable)Session["tbllog"]);
+            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
+            DataTable dt = ((DataTable)Session["tbllog1"]);
+            dt.Rows[0]["comcod"] = comcod;
+            Session["tbllog1"] = dt;
+            ((Label)this.Master.FindControl("LblGrpCompany")).Text = ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
+                                                                                                              //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]
+        }
+
         private void gridVisibility()
         {
 
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                //case "3338":
-                //case "3336":
-
-                // break;
-
-                default:
+                case "2306":
                     this.gvReqInfo.Columns[5].Visible = false;
                     this.gvReqInfo.Columns[8].Visible = false;
-
-
                     this.gvPenApproval.Columns[4].Visible = false;
                     this.gvPenApproval.Columns[7].Visible = false;
                     this.gvPenApproval.Columns[15].Visible = false;
@@ -78,6 +218,23 @@ namespace RealERPWEB.F_99_Allinterface
                     this.gvFinlApproval.Columns[1].Visible = false;
                     this.gvPayOrder.Columns[4].Visible = false;
                     this.gvPayOrder.Columns[7].Visible = false;
+                    this.gvPayOrder.Columns[15].Visible = true;
+
+
+                    break;
+
+                default:
+                    this.gvReqInfo.Columns[5].Visible = false;
+                    this.gvReqInfo.Columns[8].Visible = false;
+                    this.gvPenApproval.Columns[4].Visible = false;
+                    this.gvPenApproval.Columns[7].Visible = false;
+                    this.gvPenApproval.Columns[15].Visible = false;
+                    this.gvFinlApproval.Columns[4].Visible = false;
+                    this.gvFinlApproval.Columns[7].Visible = false;
+                    this.gvFinlApproval.Columns[1].Visible = false;
+                    this.gvPayOrder.Columns[4].Visible = false;
+                    this.gvPayOrder.Columns[7].Visible = false;
+                    this.gvPayOrder.Columns[15].Visible = false;
                     break;
 
 
@@ -190,8 +347,10 @@ namespace RealERPWEB.F_99_Allinterface
         }
         public string GetCompCode()
         {
+            string qcomcod = this.Request.QueryString["comcod"] ?? "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            return (hst["comcod"].ToString());
+            qcomcod = qcomcod.Length > 0 ? qcomcod : hst["comcod"].ToString();
+            return (qcomcod);
         }
 
 
@@ -381,6 +540,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3101":
                 case "1103":
                     FirstApp = "Checked";
+                    frecom = "1st Recom.";
+                    secrecom = "2nd Recom.";
                     break;
 
 
@@ -476,6 +637,7 @@ namespace RealERPWEB.F_99_Allinterface
             //First Recommendate
             dv.RowFilter = ("faprvbyid = '' and frecid='' and appamt > 0 and aprvbyid <>''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
+            dv = dt.DefaultView;
             this.Data_Bind("gvfrec", dv.ToTable());
 
 
@@ -483,6 +645,7 @@ namespace RealERPWEB.F_99_Allinterface
             //Second Recommendate
             dv.RowFilter = ("faprvbyid = '' and  frecid<>''    and  secrecid='' and appamt > 0 and aprvbyid <>''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
+            dv = dt.DefaultView;
             this.Data_Bind("gvsrec", dv.ToTable());
 
 
@@ -490,6 +653,7 @@ namespace RealERPWEB.F_99_Allinterface
             //Third Recommendate
             dv.RowFilter = ("faprvbyid = ''  and  frecid<>''    and  secrecid<>'' and threcid='' and appamt > 0 and aprvbyid <>''");
             //dv.RowFilter = ("empid ='" + usrid + "'");
+            dv = dt.DefaultView;
             this.Data_Bind("gvthrec", dv.ToTable());
 
 
@@ -649,8 +813,8 @@ namespace RealERPWEB.F_99_Allinterface
                 //HyperLink hlnkgvgvmrfno = (HyperLink)e.Row.FindControl("hlnkgvgvmrfno");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("HyInprPrint11");
 
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
+                
+                string comcod = this.GetCompCode();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
 
@@ -834,13 +998,13 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
                 hlink1.NavigateUrl = "~/F_34_Mgt/OtherReqEntry?Type=OreqPrint&prjcode=" + pactcode + "&genno=" + reqno;
-                if ((comcod.Substring(0, 1) == "2" || comcod.Substring(0, 1) == "3") && pactcode.Substring(0, 2) == "16" && supcode.Substring(0, 2) == "99")
+                if ((comcod.Substring(0, 1) == "2" || comcod.Substring(0, 1) == "3") && pactcode.Substring(0, 2) == "26" && supcode.Substring(0, 2) == "99")
                 {
 
                     hlink2.Visible = true;
                     hlink2.NavigateUrl = "~/F_14_Pro/LandOwnerPaymentSch?Type=Report&prjcode=" + pactcode;
                 }
-                if (pactcode.Substring(0, 2) == "16" && supcode.Substring(0, 2) == "99")
+                if (pactcode.Substring(0, 2) == "26" && supcode.Substring(0, 2) == "99")
                 {
 
                     hlink3.Visible = true;

@@ -29,6 +29,18 @@
 
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
+                                <div class="form-group">
+                                <div class="col-md-3 pading5px asitCol3">
+                                    <asp:Label ID="lblSupList" runat="server" CssClass="lblTxt lblName" Text="Supplier Name"></asp:Label>
+                                    <asp:TextBox ID="txtSupPro" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
+                                    <asp:LinkButton ID="ibtnFindSupply" CssClass="btn btn-primary srearchBtn" runat="server" TabIndex="2" OnClick="ibtnFindSupply_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                </div>
+                                <div class="col-md-4 pading5px asitCol4">
+                                    <asp:DropDownList ID="ddlSuplist" runat="server" Width="320" CssClass="chzn-select form-control  inputTxt" TabIndex="3" AutoPostBack="True"></asp:DropDownList>
+                                    <asp:Label ID="lblddlSupplier" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
+
+                                </div>
+                            </div>
 
                                 <div class="form-group">
 

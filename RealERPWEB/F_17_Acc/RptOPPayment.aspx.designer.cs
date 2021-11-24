@@ -114,6 +114,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk0;
 
         /// <summary>
+        /// ddlVaule control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVaule;
+
+        /// <summary>
         /// lblPage control.
         /// </summary>
         /// <remarks>

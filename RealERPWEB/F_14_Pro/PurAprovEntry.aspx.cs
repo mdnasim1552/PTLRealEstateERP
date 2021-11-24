@@ -466,6 +466,12 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblAprov"]);
             this.gvAprovInfo.DataSource = tbl1;
             this.gvAprovInfo.DataBind();
+
+            string comcod = GetCompCode();
+            if (comcod == "3353" || comcod == "3101")
+            {
+                this.gvAprovInfo.Columns[1].Visible = true;                
+            }            
             if (Request.QueryString["InputType"].ToString() == "PurProposal")
             {
                 ((LinkButton)this.gvAprovInfo.FooterRow.FindControl("lbtnDelete")).Visible = false;
@@ -748,6 +754,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["aprovamt"] = Convert.ToDouble(dr3[0]["balqty"]) * Convert.ToDouble(dr3[0]["aprovrate"]);
                 dr1["paytype"] = this.ddlPayType.SelectedItem.Text.Trim();
                 dr1["eusrname"] = "";
+                dr1["rowid"] = dr3[0]["rowid"];
                 tbl1.Rows.Add(dr1);
             }
             else
@@ -822,6 +829,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["aprovamt"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]) * Convert.ToDouble(tbl2.Rows[i]["aprovrate"]);
                     dr1["paytype"] = this.ddlPayType.SelectedItem.Text.Trim();
                     dr1["eusrname"] = "";
+                    dr1["rowid"] = Convert.ToDouble(tbl2.Rows[i]["rowid"]).ToString();
                     tbl1.Rows.Add(dr1);
 
                 }
@@ -1429,5 +1437,6 @@ namespace RealERPWEB.F_14_Pro
                 return;
             }
         }
+
     }
 }

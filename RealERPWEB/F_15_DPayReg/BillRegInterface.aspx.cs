@@ -135,30 +135,12 @@ namespace RealERPWEB.F_15_DPayReg
             if (ds1 == null)
                 return;
 
-            //switch (comcod)
-            //{
-
-            //    case "3335":
-            //        if (RadioButtonList1.Items.Count == 5) 
-            //        {
-            //            this.RadioButtonList1.Items.Add("");
-            //            this.RadioButtonList1.Items.Add("");
-            //            this.RadioButtonList1.Items[5].Value = "5";
-            //            this.RadioButtonList1.Items[6].Value = "6";
-            //        }
-
-
-            //        break;
-
-            //    default:
-            //        break;
-            //}
-
+            string ftype = this.getForwordtype();
 
             this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + ds1.Tables[3].Rows[0]["billqty"].ToString() + "</span>" + "<span class='lbldata2'>" + "Payment Proposal" + "</span>";
 
             this.RadioButtonList1.Items[1].Text = "<span class='fa  fa-cog fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + ds1.Tables[3].Rows[0]["recmqty"].ToString() + "</span>" + "<span class='lbldata2'>" + "Checked" + "</span>";
-            this.RadioButtonList1.Items[2].Text = "<span class='fa  fa-cog fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + ds1.Tables[3].Rows[0]["forward"].ToString() + "</span>" + "<span class='lbldata2'>" + "Forward" + "</span>";
+            this.RadioButtonList1.Items[2].Text = "<span class='fa  fa-cog fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + ds1.Tables[3].Rows[0]["forward"].ToString() + "</span>" + "<span class='lbldata2'>" + ftype + "</span>";
             this.RadioButtonList1.Items[3].Text = "<span class='fa fa-balance-scale fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + ds1.Tables[3].Rows[0]["appqty"].ToString() + "</span>" + "<span class='lbldata2'>" + "Approval" + "</span>";
 
             this.RadioButtonList1.Items[4].Text = "<span class='fa fa-hourglass-end fan'> </span>" + "<br>" + "<span class='lbldata counter'>" + ds1.Tables[3].Rows[0]["issueqty"].ToString() + "</span>" + "<span class='lbldata2'>" + "Cheque Issue" + "</span>";
@@ -247,6 +229,25 @@ namespace RealERPWEB.F_15_DPayReg
             ViewState["tblcqkpary"] = dv.ToTable();
             this.Data_Bind("grvComp", dv.ToTable());
 
+        }
+
+        private string getForwordtype()
+        {
+            string comcod = this.GetCompCode();
+            string ftype = "";
+
+            switch (comcod)
+            {
+                //case "3101":
+                case "3355":
+                    ftype = "Verified";
+                    break;
+
+                default:
+                    ftype = "Forward";
+                    break;
+            }
+            return ftype;
         }
         private void Data_Bind(string gv, DataTable dt)
         {
@@ -534,6 +535,10 @@ namespace RealERPWEB.F_15_DPayReg
                 string pymdate = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "appisedate")).ToString();
                 string slnum = DataBinder.Eval(e.Row.DataItem, "slnum").ToString();
 
+                string actcode = DataBinder.Eval(e.Row.DataItem, "actcode").ToString();
+                string reqno = DataBinder.Eval(e.Row.DataItem, "reqno").ToString();
+                string billno = DataBinder.Eval(e.Row.DataItem, "billno").ToString();
+
 
                 //string centrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "centrid")).ToString();
                 //string recvno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recvno")).ToString();
@@ -549,9 +554,11 @@ namespace RealERPWEB.F_15_DPayReg
                 //    hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
                 //}
 
+                hlink1.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum + "&actcode=" + actcode + "&reqno=" + reqno + "&billno=" + billno;
+
                 hlink2.NavigateUrl = "~/F_15_DPayReg/ChequeSignSheet?Type=Acc&slnum=" + slnum;
 
-                hlink3.NavigateUrl = "~/F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk";
+                hlink3.NavigateUrl = "~/F_14_Pro/RptPurchaseStatus?Type=Purchase&Rpt=Purchasetrk&comcod=&Date1=&Date2=";
 
             }
         }

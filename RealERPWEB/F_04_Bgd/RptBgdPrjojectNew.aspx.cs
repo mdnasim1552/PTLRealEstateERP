@@ -84,6 +84,10 @@ namespace RealERPWEB.F_04_Bgd
             {
 
                 case "MasterBgdGrWise":
+                    this.lblfrmdate.Visible = false;
+                    this.txtfromdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txttodate.Visible = false;
                     this.rptgrp.Visible = true;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Income Statement-Summary";
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
@@ -95,6 +99,10 @@ namespace RealERPWEB.F_04_Bgd
                 //    break;
 
                 case "WrkVsResource":
+                    this.lblfrmdate.Visible = false;
+                    this.txtfromdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txttodate.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Work Vs. Resource";
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
@@ -102,17 +110,35 @@ namespace RealERPWEB.F_04_Bgd
 
 
                 case "BudgetBal":
+                    this.lblfrmdate.Visible = false;
+                    this.txtfromdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txttodate.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance (Resource Basis)";
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
                 case "MasterBgdResGrWiseDet":
+
+                    DateTime curdate = System.DateTime.Today;
+                    DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
+                    DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
+                    this.txtfromdate.Text = frmdate.ToString("dd-MMM-yyyy");
+                    this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                    this.lblfrmdate.Visible = true;
+                    this.txtfromdate.Visible = true;
+                    this.lbltodate.Visible = true;
+                    this.txttodate.Visible = true;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance Information";
                     this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
 
                 case "BgdCostResBasis02":
+                    this.lblfrmdate.Visible = false;
+                    this.txtfromdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txttodate.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Material Group Wise Cost";
                     this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
@@ -124,6 +150,10 @@ namespace RealERPWEB.F_04_Bgd
                 //    break;
 
                 case "MasterBgdFlrDet":
+                    this.lblfrmdate.Visible = false;
+                    this.txtfromdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txttodate.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Details(Catagory Wise)";
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
@@ -131,43 +161,14 @@ namespace RealERPWEB.F_04_Bgd
 
 
                 case "BgdAlocBal":
+                    this.lblfrmdate.Visible = false;
+                    this.txtfromdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txttodate.Visible = false;
                     this.rptgrp.Visible = false;
                     ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance Information";
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     break;
-
-                    //case "MasterBgdAcWk":
-                    //    ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Income Statement -(Work)";                
-                    //    this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
-                    //    break;
-
-
-
-                    //case "BudgetedCost":
-                    //    ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Total Cost";
-                    //    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
-                    //    break;
-
-
-                    //case "BgdWkVsActual":
-                    //    ((Label)this.Master.FindControl("lblTitle")).Text = "Budgeted Income Statement -(Budget Vs Actual)";
-                    //    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
-                    //    break;
-
-
-
-                    //case "BudgetAlocation":
-                    //    ((Label)this.Master.FindControl("lblTitle")).Text = "Budget Balance After Approval";
-                    //    this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
-                    //    break;
-
-
-
-
-
-
-
-
             }
         }
 
@@ -429,7 +430,7 @@ namespace RealERPWEB.F_04_Bgd
 
         protected void lbtOk_Click(object sender, EventArgs e)
         {
-            RadioButtonList1_SelectedIndexChanged(null, null);
+          //  RadioButtonList1_SelectedIndexChanged(null, null);
             string Type = this.RadioButtonList1.SelectedValue.ToString();
             switch (Type)
             {
@@ -954,8 +955,11 @@ namespace RealERPWEB.F_04_Bgd
 
             }
 
+            string frmdate = this.txtfromdate.Text.Trim();
+            string todate = this.txttodate.Text.Trim();
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_PROJECT", "RPTPRJCOSTRESBASIS", "", "", pactcode, "000", summary, grp, "", "", "");
+
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_PROJECT", "RPTPRJCOSTRESBASIS", "", "", pactcode, "000", summary, grp, frmdate, todate, "");
             if (ds2 == null)
             {
                 this.gvbgdgrwisedet.DataSource = null;
@@ -1341,6 +1345,16 @@ namespace RealERPWEB.F_04_Bgd
                 case "MasterBgdResGrWiseDet":
                     this.gvbgrgrpdisedet.DataSource = (DataTable)Session["tblbgd"];
                     this.gvbgrgrpdisedet.DataBind();
+
+
+                    Session["Report1"] = gvbgrgrpdisedet;
+
+                    if (((DataTable)Session["tblbgd"]).Rows.Count > 0)
+                    {
+                        ((HyperLink)this.gvbgrgrpdisedet.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
+                    
+
                     //  this.FooterCalculation((DataTable)Session["tblbgd"]);
                     break;
 
@@ -3250,6 +3264,9 @@ namespace RealERPWEB.F_04_Bgd
 
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvBgdamtgrwisedetres");
                 HyperLink hlnkgvacamgrwisedetres = (HyperLink)e.Row.FindControl("hlnkgvacamgrwisedetres");
+                HyperLink hlnkgvacamdrgrwisedetres = (HyperLink)e.Row.FindControl("hlnkgvacamdrgrwisedetres");
+
+                
                 string sum = this.chkSum.Checked == true ? "Summary" : "";
 
                 string acgcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "acgcode")).ToString();
@@ -3268,6 +3285,7 @@ namespace RealERPWEB.F_04_Bgd
                     acresdesc.Attributes["style"] = "font-weight:bold; font-size:14px; color:maroon;";
                     hlink1.Attributes["style"] = "font-weight:bold; font-size:14px; color:maroon;";
                     hlnkgvacamgrwisedetres.Attributes["style"] = "font-weight:bold; font-size:14px; color:maroon;";
+                    hlnkgvacamdrgrwisedetres.Attributes["style"] = "font-weight:bold; font-size:14px; color:maroon;";
                     acresdesc.Style.Add("text-align", "left");
 
 
@@ -3281,6 +3299,7 @@ namespace RealERPWEB.F_04_Bgd
                     acresdesc.Attributes["style"] = "font-weight:bold; font-size:12px; color:blue;";
                     hlink1.Attributes["style"] = "font-weight:bold; font-size:12px; color:blue;";
                     hlnkgvacamgrwisedetres.Attributes["style"] = "font-weight:bold; font-size:12px; color:blue;";
+                    hlnkgvacamdrgrwisedetres.Attributes["style"] = "font-weight:bold; font-size:12px; color:blue;";
 
 
                 }
@@ -3296,6 +3315,7 @@ namespace RealERPWEB.F_04_Bgd
                     acresdesc.Attributes["style"] = "font-weight:normal; color:black;";
                     hlink1.Attributes["style"] = "font-weight:normal; color:black;";
                     hlnkgvacamgrwisedetres.Attributes["style"] = "font-weight:normal; color:black;";
+                    hlnkgvacamdrgrwisedetres.Attributes["style"] = "font-weight:normal; color:black;";
                     acresdesc.Enabled = false;
 
 

@@ -192,14 +192,14 @@
                             <div class="table table-responsive">
 
 
-                                <asp:GridView ID="gvcashbook" runat="server" AutoGenerateColumns="False" ShowFooter="True" Width="931px"
+                                <asp:GridView ID="gvcashbook" runat="server" AutoGenerateColumns="False" ShowFooter="True" Width="931px"  CssClass="table-striped table-hover table-bordered  grvContentarea"
                                     OnRowDataBound="gvcashbook_RowDataBound">
-                                    <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
+                                <%--    <RowStyle BackColor="#D2FFF7" Font-Size="11px" />--%>
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Style="text-align: right"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -207,7 +207,7 @@
                                         <asp:TemplateField HeaderText="Voucher Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvDate" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "voudat1")) %>'
-                                                    Width="65px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -215,7 +215,7 @@
                                         <asp:TemplateField HeaderText="Cheque Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvchequeDate" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chequedat")) %>'
-                                                    Width="65px"></asp:Label>
+                                                    Width="70px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -233,7 +233,7 @@
                                         <asp:TemplateField HeaderText="Voucher #">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvvnum" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "vounum1")) %>'
-                                                    Width="70px"></asp:Label>
+                                                    Width="80px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Cash/Bank Name">
@@ -297,26 +297,33 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="txtgvDpAmt" runat="server" BackColor="Transparent" BorderStyle="None"
                                                     Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "srcham")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="65px"></asp:Label>
+                                                    Width="80px"></asp:Label>
                                             </ItemTemplate>
 
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle BackColor="#333333" />
+
+                                     <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                            <RowStyle CssClass="grvRows" />
+                                    <%--<FooterStyle BackColor="#333333" />
                                     <PagerStyle HorizontalAlign="Center" />
                                     <HeaderStyle BackColor="#333300" Font-Bold="True" Font-Size="12px" ForeColor="#FFFFCC"
                                         Height="20px" HorizontalAlign="Center" />
                                     <EditRowStyle BackColor="#E2D5CD" VerticalAlign="Top" />
-                                    <AlternatingRowStyle BackColor="#CAE4FF" Font-Size="11px" />
+                                    <AlternatingRowStyle BackColor="#CAE4FF" Font-Size="11px" />--%>
                                 </asp:GridView>
                             </div>
                             <asp:Label ID="lblDetailsCash" runat="server" Font-Bold="True" Font-Size="16px" ForeColor="Black"
                                 Text="Details of Cash &amp; Bank Balance" Width="669px" Height="16px"
                                 Visible="False"></asp:Label>
-                            <asp:GridView ID="gvcashbookDB" runat="server" AutoGenerateColumns="False"
+                            <asp:GridView ID="gvcashbookDB" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered  grvContentarea"
                                 ShowFooter="True">
-                                <RowStyle BackColor="#D2FFF7" Font-Size="11px" />
+                              
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
                                         <ItemTemplate>
@@ -338,7 +345,7 @@
                                                 Width="100px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:Label ID="lblgvFrecam" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="White"
+                                            <asp:Label ID="lblgvFrecam" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="black"
                                                 Style="text-align: right" Width="100px"></asp:Label>
                                         </FooterTemplate>
                                     </asp:TemplateField>
@@ -348,7 +355,7 @@
                                                 Width="100px" Style="text-align: right"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:Label ID="lgvFpayam" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="White"
+                                            <asp:Label ID="lgvFpayam" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="black"
                                                 Style="text-align: right" Width="100px"></asp:Label>
                                         </FooterTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
@@ -357,12 +364,12 @@
                                     </asp:TemplateField>
 
                                 </Columns>
-                                <FooterStyle BackColor="#333333" />
-                                <PagerStyle HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#333300" Font-Bold="True" Font-Size="12px" ForeColor="#FFFFCC"
-                                    Height="20px" HorizontalAlign="Center" />
-                                <EditRowStyle BackColor="#E2D5CD" VerticalAlign="Top" />
-                                <AlternatingRowStyle BackColor="#CAE4FF" Font-Size="11px" />
+                               <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                            <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </asp:View>
 

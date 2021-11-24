@@ -18,7 +18,7 @@ namespace RealERPWEB.Tickets
         {
             if (!IsPostBack)
             {
-                this.Data_Bind();
+                checkUser();
             }
         }
         protected void lnkbtnCreateTicket_Click(object sender, EventArgs e)
@@ -31,7 +31,26 @@ namespace RealERPWEB.Tickets
             return (hst["comcod"].ToString());
 
         }
+        private void checkUser()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
 
+            string userId = hst["usrid"].ToString();
+            string comcod = GetCompCode();
+            DataSet ds1 = _linkVendorDb.GetcheckUser(comcod, userId);
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+            {
+                string Url1 = "Dashboard.aspx";
+                Response.Redirect(Url1);
+            }
+            else
+            {
+                Session["TicketUseId"] = ds1.Tables[0].Rows[0]["USERID"].ToString();
+                this.Data_Bind();
+            }
+
+
+        }
         private void Data_Bind()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -90,7 +109,7 @@ namespace RealERPWEB.Tickets
             }
             string cdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
 
-            string createuser = hst["usrid"].ToString();
+            string createuser = Session["TicketUseId"].ToString();
 
             GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
             int RowIndex = gvr.RowIndex;
@@ -98,7 +117,7 @@ namespace RealERPWEB.Tickets
             string comcod = "";
             string ticketId = ((Label)this.grvQC.Rows[RowIndex].FindControl("lbltaskid")).Text.Trim();
             string ticketType = ((Label)this.grvQC.Rows[RowIndex].FindControl("lbltasktypecode")).Text.Trim();
-            bool resultb = _linkVendorDb.UpdateTicket(comcod, createuser, ticketType, cdate, ticketId, "99209","");
+            bool resultb = _linkVendorDb.UpdateTicket(comcod, createuser, ticketType, cdate, ticketId, "99209", "");
             if (!resultb)
             {
 
@@ -129,7 +148,8 @@ namespace RealERPWEB.Tickets
             }
             string cdate = System.DateTime.Now.ToString("yyyy-MM-dd h:mm:ss tt");
 
-            string createuser = hst["usrid"].ToString();
+            string createuser = Session["TicketUseId"].ToString();
+
 
             GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
             int RowIndex = gvr.RowIndex;
@@ -137,7 +157,7 @@ namespace RealERPWEB.Tickets
             string comcod = "";
             string ticketId = ((Label)this.grvQC.Rows[RowIndex].FindControl("lbltaskid")).Text.Trim();
             string ticketType = ((Label)this.grvQC.Rows[RowIndex].FindControl("lbltasktypecode")).Text.Trim();
-            bool resultb = _linkVendorDb.TicketBack(comcod, createuser, ticketType, cdate, ticketId, "99204", "Back");
+            bool resultb = _linkVendorDb.UpdateTicket(comcod, createuser, ticketType, cdate, ticketId, "99204", "Back");
             if (!resultb)
             {
 

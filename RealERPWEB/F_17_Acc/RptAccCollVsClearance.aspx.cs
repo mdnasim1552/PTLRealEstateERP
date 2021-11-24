@@ -5,22 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Configuration;
 using System.Collections;
 using System.Web.Script.Serialization;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using CrystalDecisions.ReportSource;
-using Microsoft.Office.Interop.Access;
 using Microsoft.Reporting.WinForms;
-using RealEntity.C_17_Acc;
 using RealERPLIB;
 using RealERPRDLC;
-using RealERPRPT;
 using Label = System.Web.UI.WebControls.Label;
-using System.Drawing;
 namespace RealERPWEB.F_17_Acc
 {
     public partial class RptAccCollVsClearance : System.Web.UI.Page

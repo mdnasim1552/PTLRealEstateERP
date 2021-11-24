@@ -14,8 +14,8 @@
 
         function pageLoaded() {
 
-
-            $(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+            $('.chzn-select').chosen({ search_contains: true });
+           
 
         }
 
@@ -24,7 +24,7 @@
 
     
     
-<<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
        <ContentTemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">

@@ -250,7 +250,7 @@ namespace RealERPWEB.F_34_Mgt
             this.gvUseForm.Visible = false;
             this.MultiView1.ActiveViewIndex = 0;
             string comcod = this.GetComeCode();
-            string usrid = Convert.ToString(((LinkButton)sender).Text.Trim());
+            string usrid = "3101001";//Convert.ToString(((LinkButton)sender).Text.Trim());
             this.lblusrid.Text = usrid;
             ///-------------------------///////////
             this.lblId.Visible = true;
@@ -258,8 +258,11 @@ namespace RealERPWEB.F_34_Mgt
             DataTable tbl01 = (DataTable)Session["tblUsrinfo"];
             DataRow[] dr1 = tbl01.Select("usrid='" + usrid + "'");
             this.txtuserid.Text = dr1[0]["usrname"].ToString();
+
+            string wdtype = this.ddlType.SelectedValue.ToString();
+
             ///-------------------------///////////
-            DataSet ds2 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWUSERPERFORMASITUSERACTIVE_NAHID", "", "", "", "", "", "", "", "", "");
+            DataSet ds2 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GET_MENU_MASTER_MENU_NAHID", wdtype, "", "", "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvPermission.DataSource = null;
@@ -271,14 +274,16 @@ namespace RealERPWEB.F_34_Mgt
             else
             {
 
-                DataSet ds3 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWUSERPERFORMASITUSER_NAHID", "", "", "", "", "", "", "", "", "");
+                DataSet ds3 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GET_MENU_MASTER_MENU_NAHID", wdtype, "", "", "", "", "", "", "", "");
 
                 Session["tblusrper"] = this.HiddenSameData(ds3.Tables[0]);
 
             }
+            
             this.ShowPer();
 
         }
+        
 
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -396,7 +401,7 @@ namespace RealERPWEB.F_34_Mgt
             DataView dv = new DataView();
             DataSet ds1 = new DataSet("ds1");
             dv = dt1.DefaultView;
-            dv.RowFilter = "chkper=True";
+            //dv.RowFilter = "chkper=True";
             dt1 = dv.ToTable();
 
             ds1.Tables.Add(dt1);
@@ -767,8 +772,22 @@ namespace RealERPWEB.F_34_Mgt
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+               
+                CheckBox chper = (CheckBox)e.Row.FindControl("chkPermit");
+
+                string menuparentid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "menuparentid")).ToString();
+                if (menuparentid== "0" || menuparentid == "")
+                {
+                    e.Row.Style.Add("color", "red");
+                    chper.Visible = false;
+                }
 
             }
+        }
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbtnUserId_Click(null, null);
         }
     }
 }

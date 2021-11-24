@@ -213,7 +213,11 @@ namespace RealERPWEB.F_17_Acc
             string paytype = this.ChboxPayee.Checked ? "0" : "1";
 
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
-            string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
+            //string currentptah = "AccPrint.aspx?Type=PostDatVou&vounum=" + vounum;
+            string currentptah = "AccPrint.aspx?Type=accVou&vounum=" + vounum;
+
+
+            
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
 

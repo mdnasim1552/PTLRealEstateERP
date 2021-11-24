@@ -1,14 +1,22 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ASITMaster.master.cs" Inherits="RealERPWEB.ASITMaster" %>
 
-
-
-
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head runat="server">
-
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pinovation ERP </title>
+    <meta property="og:title" content="Dashboard">
+    <meta name="author" content="Pinovation Tech Ltd.">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="ERP SOFTWARE BY Pinovation Tech Ltd">
+    <meta property="og:description" content="Realstate ERP Pinovation Tech Ltd">
+    <meta property="og:site_name" content="Realstate ERP">
+    <meta name="theme-color" content="#3063A0">
+    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
 
     <asp:PlaceHolder runat="server">
 
@@ -30,15 +38,6 @@
         
     </asp:PlaceHolder>
 
-
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Pinovation ERP</title>
-   <%-- <link rel="icon" type="image/ico" href="favicon.ico" />--%>
-    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png"/>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style>
@@ -901,7 +900,8 @@
                         <div class="asit_ComLogo">
                             <h1>
                                 <%--<asp:Image ID="Image1" CssClass="Companylogo" runat="server" ImageUrl="~/Image/LOGO1.PNG" />--%>
-                                <asp:HyperLink runat="server" ID="LogoBar"><asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" /></asp:HyperLink>
+                                <asp:HyperLink runat="server" ID="LogoBar">
+                                    <asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" /></asp:HyperLink>
                             </h1>
                         </div>
                         <div class="asit_ComInfo">
@@ -915,7 +915,7 @@
                                 <ul>
                                     <li class="dropdown">
                                         <a data-toggle="dropdown" data-target="#" href="#">
-                                       
+
 
                                             <asp:Image ID="userimg" CssClass="img-circle" ImageUrl="~/image/profile_img.png" runat="server" AlternateText="Image Not Found" Style="width: 60px; height: 50px;" /></a>
                                         <ul class="dropdown-menu">
@@ -928,9 +928,9 @@
                                             <li><a href="<%=this.ResolveUrl("~/home.aspx")%>">Modules</a></li>
                                             <li class="divider"></li>
                                             <li><a href="<%=this.ResolveUrl("~/F_33_Doc/GroupChat.aspx")%>">Chat Box<span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                                    
+
                                             <li><a href="<%=this.ResolveUrl("~/StepofOperationNew.aspx?moduleid=0")%>">Old Modules</a></li>
-                                            
+
                                             <li class="divider"></li>
                                             <li><a href="<%=this.ResolveUrl("~/Logout.aspx")%>">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
                                         </ul>
@@ -1097,11 +1097,10 @@ Close</asp:LinkButton>
                 <div class="row">
                     <div class="col-sm-12 text-right copyR">
                         <%--<p><a href="DocumentAttached.aspx">Documents Attached </a></p>--%>
-                        
-                           <p><a href="http://www.pintechltd.com/#contact-us" target="_blank">Contact us</a><a href="http://www.pintechltd.com/#about-us" target="_blank">About us</a> <a href="#">Terms of use</a><a href="http://www.pintechltd.com" target="_blank">©Pinovation Tech Ltd.</a></p>
-                        
-                        <%--<p><a href="#">Contact us</a><a href="#">About us</a> <a href="#">Terms of use</a> <span>©</span> 2015-2021 ASIT Services Ltd., All  Rights  Reserved.  </p>--%>
 
+                        <p><a href="http://www.pintechltd.com/#contact-us" target="_blank">Contact us</a><a href="http://www.pintechltd.com/#about-us" target="_blank">About us</a> <a href="#">Terms of use</a><a href="http://www.pintechltd.com" target="_blank">©Pinovation Tech Ltd.</a></p>
+
+                        <%--<p><a href="#">Contact us</a><a href="#">About us</a> <a href="#">Terms of use</a> <span>©</span> 2015-2021 ASIT Services Ltd., All  Rights  Reserved.  </p>--%>
                     </div>
 
                 </div>

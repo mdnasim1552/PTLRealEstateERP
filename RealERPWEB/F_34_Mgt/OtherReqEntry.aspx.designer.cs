@@ -132,6 +132,33 @@ namespace RealERPWEB.F_34_Mgt
         protected global::System.Web.UI.WebControls.RadioButtonList RbtnPrint;
 
         /// <summary>
+        /// chkbod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl chkbod;
+
+        /// <summary>
+        /// chkAdvanced control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkAdvanced;
+
+        /// <summary>
+        /// lbladvanced control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbladvanced;
+
+        /// <summary>
         /// txtSrchMrfNo control.
         /// </summary>
         /// <remarks>

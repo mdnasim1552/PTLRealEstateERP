@@ -62,15 +62,28 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-
-                if (ConstantInfo.LogStatus)
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
                 {
+                    string eventtype = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                    string eventdesc = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                    string eventdesc2 = "";
                     string comcod = this.GetComcod();
-                    string eventdesc = "View " + ((Label)this.Master.FindControl("lblTitle")).Text;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, "");
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 }
+
+
+                //if (ConstantInfo.LogStatus)
+                //{
+                //    string comcod = this.GetComcod();
+                //    string eventdesc = "View " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, "");
+
+
+                //}
 
                 this.ViewSection();
 
@@ -263,13 +276,26 @@ namespace RealERPWEB.F_17_Acc
                     this.MultiView1.ActiveViewIndex = 8;
                     break;
             }
-            //if (ConstantInfo.LogStatus == true)
+
+            //string events = hst["events"].ToString();
+            //if (Convert.ToBoolean(events) == true)
             //{
             //    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
             //    string eventdesc = "Show Report: " + Type;
             //    string eventdesc2 = "";
             //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
             //}
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
+                string eventdesc = "Show Report: " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc2 = "";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
 
 
@@ -308,7 +334,16 @@ namespace RealERPWEB.F_17_Acc
                     string level = this.ddlReportLevel.SelectedValue.ToString();
                     string CallType = (this.chknetbalance.Checked ? "TBNET_COMPANY_0" : "TB_COMPANY_0") + level;
                     ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TB", CallType, date1, date2, "", "", "", "", "", "", "");
-                    break;
+
+                    string events = hst["events"].ToString();
+                    if (Convert.ToBoolean(events) == true)
+                    {
+                        string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                        string eventdesc = "Show Report: " + eventtype;
+                        string eventdesc2 = "From: " + this.txtDatefrom.Text + " To: " + this.txtDateto.Text;
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                    }
+                        break;
 
                 case "Details":
                 case "TBDetails":
@@ -456,6 +491,8 @@ namespace RealERPWEB.F_17_Acc
 
             Session["Report1"] = dgv1;
             ((HyperLink)this.dgv1.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            
+           
 
 
 
@@ -509,14 +546,25 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
+            //string events = hst["events"].ToString();
+            //if (Convert.ToBoolean(events) == true)
+            //{
+            //    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
+            //    string eventdesc = "Print Report: " + eventtype;
+            //    string eventdesc2 = "";
+            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-            if (ConstantInfo.LogStatus)
-            {
-                string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
-                string eventdesc = "Print Report: " + Type;
-                string eventdesc2 = "";
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }
+
+
+            //}
+
+            //if (ConstantInfo.LogStatus)
+            //{
+            //    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
+            //    string eventdesc = "Print Report: " + Type;
+            //    string eventdesc2 = "";
+            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //}
         }
         private void PrintRptIncomStatement()
         {
@@ -718,6 +766,18 @@ namespace RealERPWEB.F_17_Acc
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Print Report: " + eventtype;
+                 string eventdesc2 = "Trail Balance Data print From: " + Convert.ToDateTime(this.txtDatefrom.Text.Trim()).ToString("dd-MMM-yyyy") + " To: " + Convert.ToDateTime(this.txtDateto.Text.Trim()).ToString("dd-MMM-yyyy"); ;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
         }
 
 

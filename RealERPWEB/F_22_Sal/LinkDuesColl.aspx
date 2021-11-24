@@ -29,6 +29,16 @@
 
 
                                     </div>
+                                    <div class="col-md-1">
+                                         <div class="col-md-4 pading5px">
+
+                                        <asp:CheckBox ID="chkConsolidate" runat="server" TabIndex="10" Text="Consolidate" Visible="false" CssClass="btn btn-primary checkBox" />
+                                    </div>
+
+                                    </div>
+
+
+
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="form-group">

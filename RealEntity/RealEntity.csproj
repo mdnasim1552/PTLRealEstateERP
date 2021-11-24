@@ -136,6 +136,7 @@
     <Compile Include="C_81_Hrm\C_93_AnnInc\AnnIncReport.cs" />
     <Compile Include="C_81_Hrm\IndvPf.cs" />
     <Compile Include="C_99_AllInterface\SalesJournal.cs" />
+    <Compile Include="EClassCommon.cs" />
     <Compile Include="EClassModule.cs" />
     <Compile Include="EntityClassGeneral.cs" />
     <Compile Include="EntityClassProject.cs" />
@@ -153,6 +154,7 @@
     </Compile>
     <Compile Include="UserManBudget.cs" />
     <Compile Include="UserManGenAccount.cs" />
+    <Compile Include="UserManLand.cs" />
     <Compile Include="UserManMAccount.cs" />
     <Compile Include="UserManMgtAct.cs" />
     <Compile Include="UserManMkt.cs" />
@@ -191,6 +193,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptSubConBillOverAll.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

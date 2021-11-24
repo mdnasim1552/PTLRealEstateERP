@@ -31,10 +31,15 @@ namespace RealERPWEB.F_23_CR
             this.lbtnUpdate.Attributes.Add("onClick", " javascript:return confirm('You sure you want to Save the record?');");
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                //this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                ////this.lbtnPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 Session.Remove("Unit");
                 this.tableintosession();
                 if (this.Request.QueryString["Type"] == "CustCare")
@@ -45,6 +50,11 @@ namespace RealERPWEB.F_23_CR
                 this.InforInitialize();
                 this.GetProjectName();
                 this.GetInsType();
+                string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
+                if(qPrjCode.Length>0)
+                {
+                    this.lbtnOk_Click(null, null);
+                }
                 // this.GetCollectTeam();
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
@@ -213,10 +223,17 @@ namespace RealERPWEB.F_23_CR
                // case "3101":
                     mrprint = "MRPrint4";
                     break;
+
                 case "3339":
-                    //case "3101":
+                //case "3101":
                     mrprint = "MRPrint5";
                     break;
+
+                case "3356":
+                case "3101":
+                    mrprint = "MRPrintIntech";
+                    break;
+
                 default:
                     mrprint = "MRPrint";
                     break;
@@ -233,9 +250,15 @@ namespace RealERPWEB.F_23_CR
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string txtSProject = "%" + this.txtSrcPro.Text + "%";
+            string ddldesc = hst["ddldesc"].ToString();
+            string qPrjCode = this.Request.QueryString["prjcode"] ?? "";
+            string txtSProject = qPrjCode.Length > 0 ? qPrjCode : "%" + this.txtSrcPro.Text + "%";
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPROJECTNAME", txtSProject, userid, "", "", "", "", "", "", "");
-            this.ddlProjectName.DataTextField = "actdesc";
+            if (ds1 == null)
+                return;
+
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlProjectName.DataTextField = TextField;
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
@@ -350,7 +373,8 @@ namespace RealERPWEB.F_23_CR
 
             string comcod = this.GetComCode();
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string srchunit = "%" + this.txtsrchunit.Text.Trim() + "%";
+            string qusirCode = this.Request.QueryString["usircode"] ?? "";
+            string srchunit = qusirCode.Length > 0 ? qusirCode : "%" + this.txtsrchunit.Text.Trim() + "%";
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "DETAILSUSERINFINFO", PactCode, srchunit, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -375,23 +399,38 @@ namespace RealERPWEB.F_23_CR
         protected void lbtnusize_Click(object sender, EventArgs e)
         {
 
-            this.MultiView1.ActiveViewIndex = 0;
-            string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
-            DataTable dtOrder = (DataTable)ViewState["tblData"];
-            DataView dv1 = dtOrder.DefaultView;
-            dv1.RowFilter = "usircode like('" + usircode + "')";
-            dtOrder = dv1.ToTable();
-            this.gvSpayment.DataSource = dtOrder;
-            this.gvSpayment.DataBind();
-            this.lblCode.Text = usircode;
-            this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
+            try
+            {
+                this.MultiView1.ActiveViewIndex = 0;
 
-            this.txtPaidamt.Focus();
-            this.PayInf();
-            this.GetCurMrNo();
-            this.PayType();
-            this.PrintDupOrOrginal();
-            this.BankName();
+                string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
+
+
+                DataTable dtOrder = (DataTable)ViewState["tblData"];
+                DataView dv1 = dtOrder.DefaultView;
+                dv1.RowFilter = "usircode like('" + usircode + "')";
+                dtOrder = dv1.ToTable();
+                this.gvSpayment.DataSource = dtOrder;
+                this.gvSpayment.DataBind();
+                this.lblCode.Text = usircode;
+                this.lblPhone.Text = dv1.ToTable().Rows[0]["custphn"].ToString();
+
+                this.txtPaidamt.Focus();
+               
+                
+                this.PayInf();              
+                this.GetCurMrNo();
+                this.PayType();
+                this.PrintDupOrOrginal();
+                this.BankName();
+
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
 
         }
 
@@ -520,40 +559,6 @@ namespace RealERPWEB.F_23_CR
                 //if (empselect.Length > 0)
                 //{
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 if (hst["empid"].ToString().Length > 0)
                 {
 
@@ -668,10 +673,12 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComCode();
             string UsirCode = this.lblCode.Text;
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+            string date =this.txtReceiveDate.Text.Trim().Length==0?System.DateTime.Today.ToString("dd-MMM-yyyy"): this.txtReceiveDate.Text;
+            //string date =Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
             string ProcName = this.chkConsolidate.Checked ? "SP_REPORT_SALSMGT01" : "SP_ENTRY_SALSMGT";
             string CallType = this.chkConsolidate.Checked ? "RPTCLIENTLEDGER" : "INSTALLMANTWITHMRR";
             DataSet ds2 = MktData.GetTransInfo(comcod, ProcName, CallType, PactCode, UsirCode, date, "", "", "", "", "", "");
+                                 
             this.HiddenSameDate(ds2.Tables[0]);
             this.ShowTotalAmt();
 
@@ -1081,6 +1088,10 @@ namespace RealERPWEB.F_23_CR
 
                     paidamt = (RecType == "54097") ? paidamt * -1 : paidamt;
                     double disamt = Convert.ToDouble(dt1.Rows[i]["disamt"]);
+
+                    //string type1 = this.Request.QueryString["Type"];
+                    //string management = (type1 == "Management" ? "management" : ""); // mr edit 
+
                     //schamt = schamt + paidamt;
                     if (paidamt != 0 || disamt != 0)
                         result = MktData.UpdateTransInfo01(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEMRINF", PactCode, Usircode, mrno, type, mrdate, paidamt.ToString(), chqno,
@@ -1683,6 +1694,37 @@ namespace RealERPWEB.F_23_CR
 
 
                     }
+                    else if (Type == "MRPrintIntech")
+                    {
+                        var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptIntech", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+                        Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                        Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+                        Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+                        Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+                        Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+                        Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+                        Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+                        Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka","").Replace("Only","Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                        Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+                        Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+                        Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+                        Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                        Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+                        Session["Report1"] = Rpt1;
+                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                    }
                     else
                     {
 
@@ -2008,6 +2050,8 @@ namespace RealERPWEB.F_23_CR
                     case "3340":
                     case "3337":
                     case "3101":
+                    case "3353":
+
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {
@@ -2336,7 +2380,8 @@ namespace RealERPWEB.F_23_CR
             string paytype = this.ddlpaytype.SelectedValue.ToString();
             if (paytype == "82002" || paytype == "82007")
             {
-                txtpaydate.Text = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+                txtpaydate.Text =this.txtReceiveDate.Text.Trim().Length == 0 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtReceiveDate.Text;
+                //txtpaydate.Text = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
             }
         }
         protected void rbtInsType_SelectedIndexChanged(object sender, EventArgs e)

@@ -62,6 +62,15 @@
                 });
                 $('.chosen-continer').css({ 'width': '600px', "height": "20px" });
 
+
+                //$(".chosen-select").chosen({
+                //    search_contains: true,
+                //    no_results_text: "Sorry, no match!",
+                //    allow_single_deselect: true
+                //});
+                //$('.chosen-continer').css('width', '600px');
+
+
                 $('.chzn-select').chosen({ search_contains: true });
 
 
@@ -165,51 +174,42 @@
     </div>
     <div class="card card-fluid" style="min-height: 450px;">
         <div class="card-body">
-            <div class="row">
+            <div class="row mt-2">
+
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label  lblmargin-top9px ml-3" id="lblwork" runat="server">Work</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <asp:DropDownList ID="ddlwork" runat="server" CssClass="form-control chzn-select ddlPage">
+                        </asp:DropDownList>
+                    </div>
+                </div>
 
 
                 <div class="col-md-1">
                     <div class="form-group">
                         <label class="control-label  lblmargin-top9px" for="project" id="lblproject" runat="server">Project Name</label>
-
                     </div>
                 </div>
-
-
                 <div class="col-md-4">
                     <div class="form-group">
-
                         <asp:DropDownList ID="ddlPrjName" runat="server" CssClass=" form-control chzn-select">
                         </asp:DropDownList>
-
                     </div>
                 </div>
 
                 <div class="col-md-1">
                     <div class="form-group">
-                        <label class="control-label  lblmargin-top9px" id="lblwork" runat="server">Work</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-
-                        <asp:DropDownList ID="ddlwork" runat="server" CssClass="form-control chzn-select">
-                        </asp:DropDownList>
-
-                    </div>
-                </div>
-
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary  " OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
+                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass=" btn btn-primary ml-1 btn-xs" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
                     </div>
                 </div>
 
             </div>
 
-                 <%--<asp:Panel runat="server" ID="pnlJob" Visible="false">
+            <%--<asp:Panel runat="server" ID="pnlJob" Visible="false">
 
 
                 <div class="row">
@@ -271,7 +271,7 @@
 
                     <asp:TemplateField HeaderText="Estimate Amount">
 
-                       
+
 
                         <ItemTemplate>
                             <asp:TextBox ID="txtgvestamt" runat="server" BackColor="Transparent"
@@ -290,7 +290,7 @@
                     <asp:TemplateField HeaderText="Advanced Amount">
 
                         <FooterTemplate>
-                            
+
                             <asp:LinkButton ID="lnkgvTotal" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lnkgvTotal_Click">Total</asp:LinkButton>
                         </FooterTemplate>
 
@@ -311,8 +311,8 @@
                     <asp:TemplateField HeaderText="Due Amount">
 
 
-                         <FooterTemplate>
-                            
+                        <FooterTemplate>
+
                             <asp:LinkButton ID="lnkgvUpdate" runat="server" CssClass="btn btn-primary btn-xs" OnClick="lnkgvUpdate_Click">Update</asp:LinkButton>
                         </FooterTemplate>
 
@@ -333,9 +333,9 @@
 
 
                     <asp:TemplateField HeaderText="job1">
-                        
-                     
-                        
+
+
+
                         <ItemTemplate>
                             <asp:Label ID="lblgvjob1" runat="server" BackColor="Transparent"
                                 BorderStyle="None"
@@ -353,20 +353,20 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd1"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser1" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser1" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
-                           
+
 
 
                         </ItemTemplate>
                         <FooterTemplate>
 
-                            <asp:LinkButton ID="lbtnDeleteJob1" runat="server" OnClick="lbtnDeleteJob_Click"  CommandArgument="1" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnDeleteJob1" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="1" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
+
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                         <FooterStyle HorizontalAlign="Center" />
                     </asp:TemplateField>
@@ -378,7 +378,7 @@
                                 Width="100px"></asp:Label>
 
 
-                             <asp:TextBox ID="txtgvjob2" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob2" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job2")) %>'></asp:TextBox>
 
 
@@ -389,18 +389,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd2"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser2" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser2" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob2" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="2" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -411,7 +411,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job3").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob3" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob3" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job3")) %>'></asp:TextBox>
 
 
@@ -422,19 +422,19 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd3"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser3" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser3" runat="server"  SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
                         </ItemTemplate>
 
 
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob3" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="3" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
 
 
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -447,7 +447,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job4").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob4" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob4" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job4")) %>'></asp:TextBox>
 
 
@@ -458,18 +458,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd4"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser4" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser4" runat="server"  SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob4" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="4" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="job5">
@@ -478,7 +478,7 @@
                                 BorderStyle="None"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job5").ToString())%>'
                                 Width="100px"></asp:Label>
-                             <asp:TextBox ID="txtgvjob5" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob5" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job5")) %>'></asp:TextBox>
 
 
@@ -489,19 +489,19 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd5"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser5" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser5" runat="server"  SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob5" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="5" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="job6">
@@ -511,7 +511,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job6").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob6" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob6" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job6")) %>'></asp:TextBox>
 
 
@@ -522,17 +522,17 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd6"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser6" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser6" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob6" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="6" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -543,7 +543,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job7").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob7" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob7" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job7")) %>'></asp:TextBox>
 
 
@@ -554,18 +554,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd7"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser7" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser7" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob7" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="7" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -578,7 +578,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job8").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob8" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob8" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job8")) %>'></asp:TextBox>
 
 
@@ -589,18 +589,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd8"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser8" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser8" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob8" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="8" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -611,7 +611,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job9").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob9" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob9" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job9")) %>'></asp:TextBox>
 
 
@@ -622,18 +622,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd9"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser9" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser9" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob9" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="9" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -644,7 +644,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job10").ToString())%>'
                                 Width="80px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob10" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob10" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job10")) %>'></asp:TextBox>
 
 
@@ -655,18 +655,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd10"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser10" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser10" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob10" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="10" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -678,9 +678,9 @@
                                 Width="100px"></asp:Label>
 
 
-                             <asp:TextBox ID="txtgvjob11" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob11" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job11")) %>'></asp:TextBox>
-                            
+
 
 
 
@@ -690,17 +690,17 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd11"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser11" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser11" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
-                            <asp:LinkButton ID="lbtnDeleteJob11" runat="server" OnClick="lbtnDeleteJob_Click"  CommandArgument="11" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnDeleteJob11" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="11" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
                     <asp:TemplateField HeaderText="job12">
@@ -709,7 +709,7 @@
                                 BorderStyle="None"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job12").ToString())%>'
                                 Width="100px"></asp:Label>
-                             <asp:TextBox ID="txtgvjob12" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob12" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job12")) %>'></asp:TextBox>
 
 
@@ -720,19 +720,19 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd12"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser12" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser12" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob12" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="12" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -743,7 +743,7 @@
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job13").ToString())%>'
                                 Width="100px"></asp:Label>
 
-                             <asp:TextBox ID="txtgvjob13" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob13" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job13")) %>'></asp:TextBox>
 
 
@@ -754,18 +754,18 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd13"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser13" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser13" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob13" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="13" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
@@ -778,7 +778,7 @@
                                 Width="100px"></asp:Label>
 
 
-                             <asp:TextBox ID="txtgvjob14" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
+                            <asp:TextBox ID="txtgvjob14" runat="server" BorderWidth="0" Style="width: 100px; float: left;" BackColor="Transparent"
                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "job14")) %>'></asp:TextBox>
 
 
@@ -789,26 +789,26 @@
                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvjobd14"></cc1:CalendarExtender>
 
 
-                            <asp:DropDownList ID="ddlassignuser14" runat="server" CssClass=" inputTxt form-control"
+                            <asp:ListBox ID="ddlassignuser14" runat="server" SelectionMode="Multiple" data-placeholder="Choose Person......" multiple="true" class="form-control chosen-select"
                                 TabIndex="12">
-                            </asp:DropDownList>
+                            </asp:ListBox>
 
                         </ItemTemplate>
-                         <FooterTemplate>
+                        <FooterTemplate>
 
                             <asp:LinkButton ID="lbtnDeleteJob14" runat="server" OnClick="lbtnDeleteJob_Click" CommandArgument="14" ToolTip="Remove Job"><i  style="color:red"  class=" fa fa-trash"></i></asp:LinkButton>
 
                         </FooterTemplate>
-                      
-                      <FooterStyle HorizontalAlign="Center" />
+
+                        <FooterStyle HorizontalAlign="Center" />
                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                     </asp:TemplateField>
 
 
-                    
+
                     <asp:TemplateField HeaderText="Code">
 
-                       
+
 
                         <ItemTemplate>
                             <asp:Label ID="lblgvcode" runat="server" BackColor="Transparent"

@@ -41,6 +41,8 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
+
+
                 this.Initilize();
 
                 this.getComName();
@@ -158,7 +160,8 @@ namespace RealERPWEB
                 }
                 else
                 {
-                    this.listComName.SelectedValue = dt1.Rows[0]["comcod"].ToString();
+                    //nahid vs uzzal
+                    this.listComName.SelectedValue = (Session["ixComcod"] == null ? dt1.Rows[0]["comcod"].ToString() : Session["ixComcod"].ToString());
 
                 }
             }
@@ -368,11 +371,11 @@ namespace RealERPWEB
                 //    ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
 
                 //}
-               // else
-              //  {
-                    ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
+                // else
+                //  {
+                ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
 
-               // }
+                // }
 
 
 
@@ -499,6 +502,8 @@ namespace RealERPWEB
                 hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+              //  hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+
 
 
                 // hst["permission"] = ds5.Tables[0].Rows[0]["permission"];
@@ -516,7 +521,7 @@ namespace RealERPWEB
                 DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
 
                 DataSet dsmodule = ulogin.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETMODULELIST", userid, "", "", "", "", "", "", "", "");
-              //  DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETMENULISTSIDEBAR", userid, usertype);
+                //  DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETMENULISTSIDEBAR", userid, usertype);
 
                 Session["dsmenu"] = dsmenu.Tables[1];
                 Session["dsmodule"] = dsmodule.Tables[0];
@@ -534,13 +539,13 @@ namespace RealERPWEB
 
 
 
-                
 
-                    string eventtype = "1";
-                    string eventdesc = "Login into the system";
-                    string eventdesc2 = "";
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                
+
+                string eventtype = "1";
+                string eventdesc = "Login into the system";
+                string eventdesc2 = "";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 string Url1 = "";
@@ -563,7 +568,9 @@ namespace RealERPWEB
                         //}
                         //else
                         //{
-                           Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                        
+                        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+
                         //}
                         // Url1 = "~/Index?pid=";
 
@@ -607,10 +614,10 @@ namespace RealERPWEB
                         {
                             Url1 = "DeafultMenu?Type=9000";
                         }
-                        else if (comcod.Substring(0, 1) == "1")
-                        {
-                            Url1 = "DashboardAll?Type=7000";
-                        }
+                        //else if (comcod.Substring(0, 1) == "1")
+                        //{
+                        //    Url1 = "DashboardAll?Type=7000";
+                        //}
                         else
                         {
                             Url1 = "MyDashboard?Type=";

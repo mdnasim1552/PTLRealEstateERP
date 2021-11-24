@@ -27,11 +27,33 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
 
-                this.GetEmployeeName();
-                // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Entry All Employee Marketing ";
+                string ctype = this.Request.QueryString["Type"].ToString();
+                string title = "";
+                if (ctype == "EmpMarket")
+                {
+                    this.GetEmployeeName();
+                    this.ShowEmployee();
+                    title= "Entry All Employee Marketing ";
+                    this.pnlplanemp.Visible = false;
+                    this.pnlmarketemp.Visible = true;
+                }
 
-                this.ShowEmployee();
+                else if(ctype == "EmpPlan")
+                {
+                    this.GetEmployeeNamePlan();
+                    this.ShowEmployeePlan();
+                    title = "Entry All Employee Planning ";
+                    this.pnlplanemp.Visible = true;
+                    this.pnlmarketemp.Visible = false;
+
+                }
+
+
+                // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = title;
+
+
+
 
             }
         }
@@ -66,7 +88,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
             Session["tblsalemp"] = ds1.Tables[0];
             this.Data_Bind();
-        }
+        }      
 
         private void Data_Bind()
         {
@@ -74,6 +96,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvEmpSal.DataSource = dt;
             this.gvEmpSal.DataBind();
         }
+
+     
 
         protected void lnkbtnOk_OnClick(object sender, EventArgs e)
         {
@@ -143,6 +167,73 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             dv.RowFilter = ("empid not like '" + empid + "%'");
             Session["tblsalemp"] = dv.ToTable();
             this.Data_Bind();
+
+        }
+
+        private void ShowEmployeePlan()
+        {
+            string comcod = this.GetCompCode();
+            //string empid = this.ddlEmpName.SelectedValue;
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETPLANEMP", "", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblplanemp"] = ds1.Tables[0];
+            this.Data_Bind();
+        }
+
+        private void GetEmployeeNamePlan()
+        {
+
+            string comcod = this.GetCompCode();
+            // string IdCard = "%" + this.txtSrcEmpCode.Text.Trim () + "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", "%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds1.Tables[0];
+            this.ddlEmpName.DataBind();
+            Session["tblpempinfo"] = ds1.Tables[0];
+        }
+
+        private void Data_BindPlan()
+        {
+            DataTable dt = (DataTable)Session["tblplanemp"];
+            this.gvEmpPlan.DataSource = dt;
+            this.gvEmpPlan.DataBind();
+        }
+
+        protected void lnkbtnOkPlan_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblplanemp"];
+            string empid = this.ddlEmpName.SelectedValue;
+            DataRow[] dr = dt.Select("empid='" + empid + "'");
+            DataTable dt1 = (DataTable)Session["tblpempinfo"];
+            if (dr.Length == 0)
+            {
+
+                DataRow dr1 = dt.NewRow();
+                dr1["comcod"] = this.GetCompCode();
+                dr1["empid"] = this.ddlEmpName.SelectedValue;
+                dr1["empname"] = this.ddlEmpName.SelectedItem;
+                dr1["desig"] = (dt1.Select("empid='" + empid + "'"))[0]["desig"].ToString();
+                dr1["section"] = (dt1.Select("empid='" + empid + "'"))[0]["secdesc"];
+                dr1["idcardno"] = (dt1.Select("empid='" + empid + "'"))[0]["idcardno"];
+                dt.Rows.Add(dr1);
+
+            }
+
+            Session["tblplanemp"] = dt;
+            this.Data_BindPlan();
+        }
+
+        protected void btndeletep_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbntUpdateOtherDedp_Click(object sender, EventArgs e)
+        {
 
         }
     }

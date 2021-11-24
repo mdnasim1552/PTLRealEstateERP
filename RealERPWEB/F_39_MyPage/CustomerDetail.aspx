@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
         .lblHead {
             color: blue;
@@ -267,7 +267,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-9">
+                        <div class="col-md-8">
                             <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 ShowFooter="True" Width="831px" Visible="True" OnRowDataBound="gvPersonalInfo_RowDataBound">
                                 <RowStyle />
@@ -275,8 +275,8 @@
                                     <asp:TemplateField HeaderText="Sl.No.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
-                                                Style="text-align: right"
-                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"
+                                                Style="text-align: right; font-size: 12px;"
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"
                                                 ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -293,7 +293,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lgcResDesc1" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                Width="200px" ForeColor="Black" Font-Size="11px"></asp:Label>
+                                                Width="220px" ForeColor="Black" Font-Size="12px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -311,21 +311,18 @@
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent"
-                                                Width="210px" BorderStyle="None"
+                                                Width="130px" BorderStyle="None"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                                Height="20px" Font-Size="11px"></asp:TextBox>
-
+                                                Height="20px" Font-Size="12px"></asp:TextBox>
 
                                             <asp:TextBox
                                                 ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                                Width="300px"></asp:TextBox>
-
+                                                Width="130px" Font-Size="12px"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender_txtgvdVal" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
 
-                                            <%--  <asp:TextBox ID="txtVal" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "gdesc1")).ToString("dd-MMM-yyyy") %>'  runat="server" CssClass=" inputDateBox "></asp:TextBox>
-                                        <cc1:CalendarExtender ID="txtVal_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtVal">
-                                        </cc1:CalendarExtender>--%>
+                                            <asp:DropDownList ID="ddlFileNo" runat="server" CssClass="form-control inputTxt"></asp:DropDownList>
+
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -335,9 +332,9 @@
 
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvValbn" runat="server" BackColor="Transparent"
-                                                Width="510px" BorderStyle="None"
+                                                Width="130px" BorderStyle="None"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc2")) %>'
-                                                Height="20px" Font-Size="11px"></asp:TextBox>
+                                                Height="20px" Font-Size="12px"></asp:TextBox>
 
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -346,17 +343,20 @@
                                 </Columns>
 
 
-                                <FooterStyle CssClass="grvFooter" />
+                                <%--<FooterStyle CssClass="grvFooter" />--%>
                                 <EditRowStyle />
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
-                                <HeaderStyle CssClass="grvHeader" />
+                                <FooterStyle BackColor="#23cc94" />
+                                <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" Height="30px" />
                             </asp:GridView>
                         </div>
+                        <div class="col-md-1">
+                            <a href="../F_22_Sal/ProjectFileDetailsEntry"  class="btn btn-success"  target="_blank" ><i class="fas fa-layer-plus">&nbsp;Add Files</i></a>
+                            <%--<asp:LinkButton ID="LinkButton1" runat="server" CssClass="btn btn-success" NavigateUrl="~/F_22_Sal/ProjectFileDetailsEntry"><i class="fas fa-layer-plus">&nbsp;Add Files</i></asp:LinkButton>--%>
+                        </div>
                         <div class="col-md-3">
-
                             <div class="row-fluid">
-
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <span class="glyphicon glyphicon-picture"></span>Image Upload
@@ -389,19 +389,10 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="row">
-
                                                     <asp:Label ID="lblMesg" runat="server" Text=""></asp:Label>
-
-
-
                                                 </div>
-
-
-
                                             </div>
-
                                         </div>
                                         <asp:ListView ID="ListViewEmpAll" runat="server" ItemPlaceholderID="itemplaceholder" OnItemDataBound="ListViewEmpAll_ItemDataBound">
                                             <LayoutTemplate>
@@ -433,12 +424,7 @@
                                         </asp:ListView>
                                     </div>
                                 </div>
-
-
                             </div>
-
-
-
                         </div>
                         <!-- The Modal -->
                         <div class="col-md-6 col-md-offset-3">

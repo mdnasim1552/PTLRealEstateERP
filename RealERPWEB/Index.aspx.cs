@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -31,13 +32,20 @@ namespace RealERPWEB
                 (this.Master.FindControl("lnkPrint")).Visible = false;
                 this.GetCompCode();
 
+
+
+                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                this.txtDateFrom.Text = "01" + date.Substring(2);
+                this.txtDateto.Text = date;
+
+
                 string comcod = this.GetCompCode();
                 if (comcod.Substring(0, 1) == "8")
                 {
                     this.div_groupUSers.Visible = true;
                     this.getComName();
                     this.ddlCompcode_SelectedIndexChanged(null, null);
-
                 }
                 else
                 {
@@ -46,28 +54,12 @@ namespace RealERPWEB
                     this.getGraphComponent();
                     this.getUserLogData();
                     this.getHomeWidget();
-                   // GetGraphFilterData();
-                    
-                   // this.ddlyearSale_SelectedIndexChanged(null, null);
-
+                    //ddlyearSale.SelectedIndex = 1;
+                     this.ddlyearSale_SelectedIndexChanged(null, null);
                 }
 
 
-                //if (Session["sesspid"] == null)
-                //{
-                string pid = Request.QueryString["pid"].ToString();
-                Session["sesspid"] = pid;           // }
 
-                //  string usertype = (string)Session["sesspid"].ToString();
-                if (comcod == "3101")
-                {
-                    ((HyperLink)this.Master.FindControl("LogoBar")).NavigateUrl = "~/Index.aspx" + pid;
-
-                }
-                else
-                {
-                    ((HyperLink)this.Master.FindControl("LogoBar")).NavigateUrl = "~/Dashboard.aspx";
-                }
 
             }
         }
@@ -131,7 +123,7 @@ namespace RealERPWEB
                 {
                     string compamount = Convert.ToDouble(row["amount"]) == 0 ? "&nbsp;" : Convert.ToDouble(row["amount"]).ToString("#,##;(#,##);");
                     string compQty = Convert.ToDouble(row["qty"]) == 0 ? "<span class='  tile-lg'></span>" : "<span class='  tile tile-lg bg-gray'>" + row["qty"] + "</span>";
-                    component += "<div class='col-12 col-sm-2 col-lg-2'><div class='card-metric'><a id='menuid_" + row["menuid"] + "' runat=server href='" + row["url"] + "'><div class='metric metric_cus badge " + row["bgcolor"] + " text-purpule'><div class='has-badge'><h5 id='id_" + row["menuid"] + "' class='text-gray textfont16' runat='server'>" + compamount + "</h5><h2 class='metric-label text-primary '>" + row["title"] + "</h2>" + compQty + "</div></div></a></div></div>";
+                    component += "<div class='col-12 col-sm-2 col-lg-2'><div class='card-metric'><a id='menuid_" + row["menuid"] + "' runat=server href='" + row["url"] + "' target='_blank'><div class='metric metric_cus badge " + row["bgcolor"] + " text-purpule'><div class='has-badge'><h5 id='id_" + row["menuid"] + "' class='text-gray textfont16' runat='server'>" + compamount + "</h5><h2 class='metric-label text-primary '>" + row["title"] + "</h2>" + compQty + "</div></div></a></div></div>";
 
 
                 }
@@ -163,18 +155,66 @@ namespace RealERPWEB
             {
                 if (i == 0)
                 {
-                    component += "<li class='nav-item'><a class='nav-link show active' data-toggle='tab' href='#tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
+                    component += "<li class='nav-item'><a class='nav-link show active' data-toggle='tab' href='#ContentPlaceHolder1_tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
+
+                    if (row["MENUID"].ToString() == "1343")
+                    {
+                        tab_1343.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1232") {
+
+                        tab_1232.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1231")
+                    {
+
+                        tab_1231.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1233")
+                    {
+
+                        tab_1233.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1234")
+                    {
+
+                        tab_1234.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1235")
+                    {
+
+                        tab_1235.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else if (row["MENUID"].ToString() == "1236")
+                    {
+
+                        tab_1236.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+                    else
+                    {
+                        tab_1231.Attributes["class"] = "tab-pane fade show active";
+
+                    }
+
+
 
                 }
                 else
                 {
-                    component += "<li class='nav-item'><a class='nav-link show' data-toggle='tab' href='#tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
-
+                    component += "<li class='nav-item'><a class='nav-link' data-toggle='tab' href='#ContentPlaceHolder1_tab_" + row["MENUID"] + "'>" + row["title"] + "</a></li>";
+                    
+                    
                 }
                 i++;
             }
             this.userGraph.InnerHtml = component;
-
             this.Hypersales.NavigateUrl = "CompanyOverAllReport?comcod=" + comcod + "&Type=sales";
             this.HyperProcurement.NavigateUrl = "CompanyOverAllReport?comcod=" + comcod + "&Type=Procurement";
             this.HypAccounts.NavigateUrl = "CompanyOverAllReport?comcod=" + comcod + "&Type=Accounts";
@@ -190,7 +230,7 @@ namespace RealERPWEB
                 string fxdate = System.DateTime.Today.ToString("MMM");
 
                // this.ddlMonths.SelectedValue = "00";//fxdate.ToString();
-                ddlyearSale_SelectedIndexChanged(null, null);
+                //ddlyearSale_SelectedIndexChanged(null, null);
 
             }
             else
@@ -222,6 +262,8 @@ namespace RealERPWEB
             int wkpresence = (from DataRow dr in dt.Rows
                               where (int)dr["menuid"] == 1256
                               select (int)dr["menuid"]).FirstOrDefault();
+
+      
 
             //int tmntatt = (from DataRow dr in dt.Rows
             //               where (int)dr["menuid"] == 108
@@ -557,10 +599,6 @@ namespace RealERPWEB
             string pdate = "01-Jan-" + ddlyear;
             // string tdate = "01-Jan-" + ddlyear;
 
-
-
-
-
             if (Cache["dsinterface"] == null)
             {
                 ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
@@ -568,8 +606,6 @@ namespace RealERPWEB
                     return;
                 int minute = this.GetCacheTimeinMinute();
                 Cache.Remove("dsinterface");
-                //Cache.Remove("dsinterface");
-                // Cache.Insert("dsalllogin", ds1, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
                 Cache.Insert("dsinterface", ds2, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
             }
 
@@ -577,9 +613,7 @@ namespace RealERPWEB
             {
 
 
-                ds2 = (DataSet)Cache["dsinterface"];
-                // ds1 = (DataSet)Cache["dsalllogin"];
-
+                ds2 = (DataSet)Cache["dsinterface"];   
                 string pcomod = ds2.Tables[0].Rows.Count == 0 ? comcod : ds2.Tables[0].Rows[0]["comcod"].ToString();
                 if (pcomod != comcod)
                 {
@@ -588,9 +622,7 @@ namespace RealERPWEB
                     if (ds2 == null)
                         return;
                     int minute = this.GetCacheTimeinMinute();
-                    Cache.Remove("dsinterface");
-                    //Cache.Remove("dsinterface");
-                    // Cache.Insert("dsalllogin", ds1, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
+                    Cache.Remove("dsinterface");                     
                     Cache.Insert("dsinterface", ds2, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
 
                 }
@@ -604,10 +636,12 @@ namespace RealERPWEB
             }
 
 
-            string empid ="%%";
-            string prjcode ="%%";
-            string professioncode = "%%";                       
-            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, "");
+            string empid ="%";
+            string prjcode ="%";
+            string professioncode = "%";
+            string sourceref = "%";
+ 
+            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref,"","95%");
             if(ds2CRM2==null)
             {
                 return;
@@ -636,13 +670,7 @@ namespace RealERPWEB
             
 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + gtype + "','" + crm + "')", true);
-
-            //}
-            //else
-            //{ 
-            // divuser.Visible = true; 
-            //  }
-
+             
 
             ds2.Dispose();
             ds2CRM2.Dispose();
@@ -700,10 +728,7 @@ namespace RealERPWEB
             var datacons = jsonSerialiser.Serialize(lst4);
             var datasubcons = jsonSerialiser.Serialize(lst5);
 
-            var ttsalemonths = lst.Select(p => p.ttlsalamtcore).Sum().ToString("#,##0;(#,##0); ");
-
-
-
+            var ttsalemonths = lst.Select(p => p.ttlsalamtcore).Sum().ToString("#,##0;(#,##0); "); 
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "')", true);
 
         }
@@ -925,10 +950,7 @@ namespace RealERPWEB
             return json;
         }
 
-
-
-
-
+         
         [Serializable]
         public class Salgraph
         {
@@ -1075,7 +1097,69 @@ namespace RealERPWEB
             public decimal finalnego { get; set; }
             public decimal nego { get; set; }
             public decimal win { get; set; }
+            public decimal total { get; set; }
         }
 
+        // hr data
+        [WebMethod(EnableSession = false)]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public static string GetAllDataHR(string date1, string date2)
+        {
+            Common ObjCommon = new Common();
+            string comcod = ObjCommon.GetCompCode();
+            ProcessAccess purData = new ProcessAccess();
+            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HRM_DASHBOARD", "HRMDETAILSDASH", date1, date2, "", "", "", "", "", "", "");
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst2 = ds1.Tables[2].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst3 = ds1.Tables[3].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst4 = ds1.Tables[4].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst5 = ds1.Tables[5].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst6 = ds1.Tables[6].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst7 = ds1.Tables[7].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            var lst8 = ds1.Tables[8].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales>();
+            //var lst9 = ds1.Tables[9].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales> ();
+            //var lst10 = ds1.Tables[10].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales> ();
+            //var lst11 = ds1.Tables[11].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.sales> ();
+            //var datalist = new MyAllData (lst, lst1, lst2, lst3, lst4, lst5, lst6, lst7, lst8, lst9, lst10, lst11);
+            var datalist = new MyAllData(lst, lst1, lst2, lst3, lst4, lst5, lst6, lst7, lst8);
+            var jsonSerialiser = new JavaScriptSerializer();
+            var json = jsonSerialiser.Serialize(datalist);
+            return json;
+        }
+
+
+        public class MyAllData
+        {
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> member { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> attendance { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> salary { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> leave { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> confirm { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> separation { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> loan { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> pffund { get; set; }
+            public List<RealEntity.C_22_Sal.EClassSales_02.sales> empjoining { get; set; }
+
+
+
+            public MyAllData()
+            {
+
+            }
+            public MyAllData(List<RealEntity.C_22_Sal.EClassSales_02.sales> member, List<RealEntity.C_22_Sal.EClassSales_02.sales> attendance, List<RealEntity.C_22_Sal.EClassSales_02.sales> salary, List<RealEntity.C_22_Sal.EClassSales_02.sales> leave, List<RealEntity.C_22_Sal.EClassSales_02.sales> confirm, List<RealEntity.C_22_Sal.EClassSales_02.sales> separation, List<RealEntity.C_22_Sal.EClassSales_02.sales> loan, List<RealEntity.C_22_Sal.EClassSales_02.sales> pffund, List<RealEntity.C_22_Sal.EClassSales_02.sales> empjoining)
+            {
+                this.member = member;
+                this.attendance = attendance;
+                this.salary = salary;
+                this.leave = leave;
+                this.confirm = confirm;
+                this.separation = separation;
+                this.loan = loan;
+                this.pffund = pffund;
+                this.empjoining = empjoining;
+                 
+            }
+        }
     }
 }

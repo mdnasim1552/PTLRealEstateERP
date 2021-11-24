@@ -15,6 +15,8 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+using System.Drawing;
+
 namespace RealERPWEB.F_14_Pro
 {
     public partial class PurMktSurveyCont : System.Web.UI.Page
@@ -35,6 +37,13 @@ namespace RealERPWEB.F_14_Pro
                 //  this.TableCreate();
                 this.GetProjects();
                 this.GetReqNo();
+                if (Request.QueryString.AllKeys.Contains("pType"))
+                {
+                    if (Request.QueryString["pType"].ToString() == "CSApproval")
+                    {
+                        this.csAprrovalPrint();
+                    }
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -42,6 +51,12 @@ namespace RealERPWEB.F_14_Pro
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+        }
+
+        private void csAprrovalPrint()
+        {
+            this.printP2P_cs_approval();
+
         }
 
         private string GetCompCode()
@@ -62,14 +77,46 @@ namespace RealERPWEB.F_14_Pro
         }
         protected void Resource_List(string pmSrchTxt)
         {
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            if (this.Request.QueryString["Type"].ToString() == "ConCS")
+            {
+                this.Resource_ListP2P(pmSrchTxt);
+            }
+
+
+        }
+
+        protected void Resource_ListGen(string pmSrchTxt)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLIST1_CON", pmSrchTxt, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             Session["tblMat"] = ds1.Tables[0];
             Session["tblSpcf"] = ds1.Tables[1];
+
         }
+
+        protected void Resource_ListP2P(string pmSrchTxt)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string prjcode = (this.Request.QueryString["pactcode"].ToString()).Length == 0 ? "16" : this.Request.QueryString["pactcode"].ToString();
+            string lisuno = (this.Request.QueryString["lisuno"].ToString()).Length == 0 ? "000000000000" : this.Request.QueryString["lisuno"].ToString();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRRESLISTP2P", prjcode, lisuno, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            Session["tblMat"] = ds1.Tables[0];
+            Session["tblSpcf"] = ds1.Tables[1];
+
+        }
+
+
         protected string GetStdDate(string Date1)
         {
             Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
@@ -230,6 +277,7 @@ namespace RealERPWEB.F_14_Pro
             //  string SupplierList = this.ddlMSRSupl.SelectedItem.Text.Trim().ToString();
             //  string MaterialsList = this.ddlMSRRes.SelectedValue.ToString().Substring(0, 9);
             //   string Specification = this.ddlSpecificationms.SelectedItem.Text.Trim().ToString();
+
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
@@ -240,7 +288,35 @@ namespace RealERPWEB.F_14_Pro
             /// SP_ENTRY_PURCHASE_01 '3101','RPTMARKETSURVEY02','MSR20180200003', '',''
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
-            if (lst1.Count == 4)
+
+            if (lst1.Count == 5)
+            {
+                if (comcod == "3353")
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyManama05", lst, lst1, null);
+                }
+                else
+                {
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurvey05", lst, lst1, null);
+                }
+
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", "Date: " + CurDate1));
+                Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("narration", "Comments : " + narration));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+            else if (lst1.Count == 4)
             {
                 if (comcod == "3353")
                 {
@@ -367,7 +443,43 @@ namespace RealERPWEB.F_14_Pro
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
 
-            if (lst1.Count == 4)
+            if (lst1.Count == 5)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P05", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+
+            else if (lst1.Count == 4)
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P02", lst, lst1, null);
                 Rpt1.EnableExternalImages = true;
@@ -437,7 +549,7 @@ namespace RealERPWEB.F_14_Pro
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
 
 
         }
@@ -450,13 +562,225 @@ namespace RealERPWEB.F_14_Pro
                 case "3351":
                 case "3352":
                 case "1205":
-                    // case "3101":
-                    this.printP2P_cs();
+                case "3101":
+                    this.printP2P_cs_approval();
                     break;
                 default:
                     this.printAll_cs();
                     break;
             }
+
+        }
+
+        protected void printP2P_cs_approval()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string CurDate1 = this.GetStdDate(this.txtCurMSRDate.Text.Trim());
+            string comments = this.txtMSRNarr.Text.Trim();
+            // string mMSRNo = this.ddlPrevMSRList.SelectedValue.ToString();
+            string mMSRNo = "";
+            if (Request.QueryString.AllKeys.Contains("msrno"))
+            {
+                mMSRNo = Request.QueryString["msrno"].ToString() == "" ? "NEWMSR" : Request.QueryString["msrno"].ToString();
+            }
+            else
+            {
+                DataTable dt = (DataTable)Session["tblmsr01"];
+                mMSRNo = dt.Rows[0]["maxmsrno"].ToString();
+            }
+
+
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            LocalReport Rpt1 = new LocalReport();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "RPTMARKETSURVEYP02PCSApproval", mMSRNo, CurDate1, "", "", "", "", "", "", "");
+
+            string Projectname = "";
+            string Projectlocat = "";
+            string Username = "";
+            string userdesig = "";
+            string rsirdesc = "";
+
+            if (ds1.Tables[3].Rows.Count > 0)
+            {
+                Projectname = ds1.Tables[3].Rows[0]["pactdesc"].ToString();
+                Projectlocat = ds1.Tables[3].Rows[0]["projectadd"].ToString();
+                Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
+                userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
+                rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+            }
+
+            string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
+
+            DataTable dtdetails = (DataTable)Session["tblt02"];
+
+            var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
+            var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
+
+            string reqinfo = ds1.Tables[3].Rows[0]["reqno"].ToString();
+            string csinfo = ds1.Tables[2].Rows[0]["msrno"].ToString() + ", " + Convert.ToDateTime(ds1.Tables[2].Rows[0]["msrdat"]).ToString("dd-MMM-yyyy");
+
+
+            if (lst1.Count == 5)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P05", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+                    Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+
+                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+
+            else if (lst1.Count == 4)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP2P02", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+                    Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
+
+
+
+
+                    i++;
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+
+                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptPurMktSurveyP_2_P", lst, lst1, null);
+                Rpt1.EnableExternalImages = true;
+                DataTable dt = (DataTable)Session["tblt01"];
+                int i = 1;
+                foreach (RealEntity.C_14_Pro.EClassPur.MkrServay03 lsts in lst1)
+                {
+                    Rpt1.SetParameters(new ReportParameter("f" + i.ToString() + "head", lsts.ssirdesc.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("mobile" + i.ToString() + "", lsts.contact.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("qdate" + i.ToString() + "", lsts.qutdate.ToString("dd-MMM-yyyy")));
+                    Rpt1.SetParameters(new ReportParameter("worktime" + i.ToString() + "", lsts.worktime.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("note" + i.ToString() + "", lsts.notes.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("payment" + i.ToString() + "", lsts.payterm.ToString()));
+                    Rpt1.SetParameters(new ReportParameter("tvs" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
+                    Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
+                    Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
+
+
+                    i++;
+
+                }
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                // Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
+                Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
+                Rpt1.SetParameters(new ReportParameter("Username", Username));
+                Rpt1.SetParameters(new ReportParameter("userdesig", userdesig));
+                Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+
+                //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
+                Rpt1.SetParameters(new ReportParameter("comments", comments));
+                //Rpt1.SetParameters(new ReportParameter("surveyNo", surveyNo));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            }
+
+
+
+
+            if (Request.QueryString.AllKeys.Contains("pType"))
+            {
+                if (Request.QueryString["pType"].ToString() == "CSApproval")
+                {
+                    Session["Report1"] = Rpt1;
+                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_self');</script>";
+                }
+            }
+
+            else
+            {
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "',  target='_blank');</script>";
+            }
+
+
+
 
         }
 
@@ -517,6 +841,7 @@ namespace RealERPWEB.F_14_Pro
 
             //    return;
             //}
+            this.lbtnTotal_Click(null, null);
             bool result;
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
@@ -542,6 +867,8 @@ namespace RealERPWEB.F_14_Pro
                     this.ddlPrevMSRList.DataValueField = "maxmsrno";
                     this.ddlPrevMSRList.DataSource = ds2.Tables[0];
                     this.ddlPrevMSRList.DataBind();
+
+                    Session["tblmsr01"] = ds2.Tables[0];
                 }
                 else
                     return;
@@ -570,10 +897,10 @@ namespace RealERPWEB.F_14_Pro
             string postseson = hst["session"].ToString();
             string posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
 
-
+            string recomsup = this.ddlrecomsup.SelectedValue.ToString() == "000000000000" ? "" : this.ddlrecomsup.SelectedValue.ToString();
 
             result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02A",
-                             mMSRNO, mMSRDAT, mRefno, mRemarks, prjcode, lreqno, postedbyid, postrmid, postseson, posteddat, "", "", "", "");
+                             mMSRNO, mMSRDAT, mRefno, mRemarks, prjcode, lreqno, postedbyid, postrmid, postseson, posteddat, recomsup, "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -587,6 +914,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string spcfcod = tbl1.Rows[i]["spcfcod"].ToString();
+                string flrcod = tbl1.Rows[i]["flrcod"].ToString();
                 DataTable tbls1 = (DataTable)Session["tblt01"];
 
                 for (int j = 0; j < tbls1.Rows.Count; j++)
@@ -596,10 +924,7 @@ namespace RealERPWEB.F_14_Pro
                     string qty = tbl1.Rows[i]["qty"].ToString();
                     mRESRATE = Convert.ToDouble("0" + tbl1.Rows[i]["resrate" + (j + 1).ToString()]).ToString();
 
-
-
-                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B",
-                    mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, "", "", "", "", "", "", "", "");
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATE_PUR_MSR_INFO1_CON", "PURMSR02B",  mMSRNO, mRSIRCODE, spcfcod, mSSIRCODE, mRESRATE, qty, flrcod, "", "", "", "", "", "", "");
                 }
 
                 if (!result)
@@ -632,11 +957,9 @@ namespace RealERPWEB.F_14_Pro
                 string qutdate = drr["qutdate"].ToString();
                 string worktime = drr["worktime"].ToString();
                 string notes = drr["notes"].ToString();
+                string crperiod = drr["crperiod"].ToString();
 
-
-
-
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02_CON", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, "", "", "", "", "", "");
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "INSERTORUPDATEMSURVEY02_CON", mMSRNO, ssircode, discount, ccharge, payterm, qutdate, worktime, notes, crperiod, "", "", "", "", "");
             }
 
 
@@ -669,18 +992,22 @@ namespace RealERPWEB.F_14_Pro
         protected void ImgbtnFindMat_Click(object sender, EventArgs e)
         {
             string mSrchTxt = this.txtMSRResSearch.Text.Trim() + "%";
+            string comcod = this.GetCompCode();
+
             this.Resource_List(mSrchTxt);
-
-
 
 
             DataTable dtmat = (DataTable)Session["tblremat"];
             DataTable dtmainMat = (DataTable)Session["tblMat"];
 
 
+            this.ddlMSRRes.DataTextField = "rsirdesc1";
+            this.ddlMSRRes.DataValueField = "rsircode";
+            this.ddlMSRRes.DataSource = dtmainMat;
+            this.ddlMSRRes.DataBind();
 
 
-
+            /*
             if (dtmat == null)
             {
                 this.ddlMSRRes.DataTextField = "rsirdesc1";
@@ -690,35 +1017,54 @@ namespace RealERPWEB.F_14_Pro
             }
             else
             {
-                DataTable dtResult = new DataTable();
-                dtResult.Columns.Add("rsirdesc1", typeof(string));
-                dtResult.Columns.Add("rsircode", typeof(string));
-                var result = from dataRows1 in dtmat.AsEnumerable()
-                             join dataRows2 in dtmainMat.AsEnumerable()
-                             on dataRows1.Field<string>("rsircode") equals dataRows2.Field<string>("rsircode")
+                switch (comcod)
+                {
+                    case "1205":
+                    case "3351":
+                    case "3352":
 
-                             select dtResult.LoadDataRow(new object[]
-                             {
-                dataRows1.Field<string>("rsirdesc1"),
+                        this.ddlMSRRes.DataTextField = "rsirdesc1";
+                        this.ddlMSRRes.DataValueField = "rsircode";
+                        this.ddlMSRRes.DataSource = dtmainMat;
+                        this.ddlMSRRes.DataBind();
 
-                dataRows1.Field<string>("rsircode"),
+                        break;
 
-                              }, false);
-                result.CopyToDataTable();
+                    default:
+
+                        DataTable dtResult = new DataTable();
+                        dtResult.Columns.Add("rsirdesc1", typeof(string));
+                        dtResult.Columns.Add("rsircode", typeof(string));
+                        var result = from dataRows1 in dtmat.AsEnumerable()
+                                     join dataRows2 in dtmainMat.AsEnumerable()
+                                     on dataRows1.Field<string>("rsircode") equals ASTUtility.Left(dataRows2.Field<string>("rsircode"), 12).ToString()
+
+                                     select dtResult.LoadDataRow(new object[]
+                                     {
+                                        dataRows1.Field<string>("rsirdesc1"),
+                                        dataRows1.Field<string>("rsircode"),
+
+                                      }, false);
+                        result.CopyToDataTable();
 
 
-                this.ddlMSRRes.DataTextField = "rsirdesc1";
-                this.ddlMSRRes.DataValueField = "rsircode";
-                this.ddlMSRRes.DataSource = dtResult;
-                this.ddlMSRRes.DataBind();
+                        this.ddlMSRRes.DataTextField = "rsirdesc1";
+                        this.ddlMSRRes.DataValueField = "rsircode";
+                        this.ddlMSRRes.DataSource = dtResult;
+                        this.ddlMSRRes.DataBind();
+                        break;
+                }
+
 
             }
 
+            */
 
 
 
 
             this.GetSpecification01();
+
         }
 
 
@@ -745,6 +1091,7 @@ namespace RealERPWEB.F_14_Pro
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
+            string ddldesc = hst["ddldesc"].ToString();
 
 
             string prjcode = (this.Request.QueryString["pactcode"].ToString()).Length == 0 ? "16%" : this.Request.QueryString["pactcode"].ToString() + "%";
@@ -752,8 +1099,8 @@ namespace RealERPWEB.F_14_Pro
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "PRJCODELIST1", prjcode, "", "", userid, "", "", "", "", "");
             if (ds1 == null)
                 return;
-
-            this.ddlprjlist.DataTextField = "actdesc";
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlprjlist.DataTextField = "actdesc1";
             this.ddlprjlist.DataValueField = "actcode";
             this.ddlprjlist.DataSource = ds1.Tables[0];
             this.ddlprjlist.DataBind();
@@ -779,7 +1126,9 @@ namespace RealERPWEB.F_14_Pro
             this.ddlReqNo.DataBind();
 
             Session["tblremat"] = ds1.Tables[1];
-            Session["tblt02"] = this.HiddenSameData(ds1.Tables[1]);
+            //Session["tblt02"] = this.HiddenSameData(ds1.Tables[1]);
+            Session["tblreq01"] = this.HiddenSameData(ds1.Tables[1]);
+
 
 
         }
@@ -847,6 +1196,7 @@ namespace RealERPWEB.F_14_Pro
                 string payterm = ((TextBox)this.gvterm.Rows[j].FindControl("txtgvpayterm")).Text.Trim();
                 string worktime = ((TextBox)this.gvterm.Rows[j].FindControl("txtworkline")).Text.Trim();
                 string notes = ((TextBox)this.gvterm.Rows[j].FindControl("txtNotes")).Text.Trim();
+                string crperiod = ((TextBox)this.gvterm.Rows[j].FindControl("txtcrPeriod")).Text.Trim();
 
                 string qtdate = Convert.ToDateTime(((TextBox)this.gvterm.Rows[j].FindControl("txtCurQuTDate")).Text).ToString("dd-MMM-yyyy");
 
@@ -856,6 +1206,7 @@ namespace RealERPWEB.F_14_Pro
                 tbl1.Rows[j]["qutdate"] = qtdate;
                 tbl1.Rows[j]["worktime"] = worktime;
                 tbl1.Rows[j]["notes"] = notes;
+                tbl1.Rows[j]["crperiod"] = crperiod;
 
 
             }
@@ -868,22 +1219,38 @@ namespace RealERPWEB.F_14_Pro
         {
             this.Session_tblMSR_Update();
             DataTable tbl1 = (DataTable)Session["tblt02"];
+            DataTable tblreq = (DataTable)Session["tblreq01"];
             //tbl1.Columns.Add("resrate5", typeof(System.Double), "'0'");
             //tbl1.Columns.Add("amt5", typeof(System.Double), "'0'");
 
-            string mResCode = this.ddlMSRRes.SelectedValue.ToString();
-            string spcfcod = this.ddlSpecificationms.SelectedValue.ToString();
-            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and  spcfcod='" + spcfcod + "'");
+            //string mResCode2 = this.ddlMSRRes.SelectedValue.ToString();
+            //string spcfcod = this.ddlSpecificationms.SelectedValue.ToString();
+            //string mResCode = ASTUtility.Left(mResCode2, 12).ToString();
+            //string flrcod = ASTUtility.Right(mResCode2, 3).ToString();
+
+            //DataRow[] drreq = tblreq.Select("rsircode = '" + mResCode);
+            //string reqQty = drreq["qty"].ToString(); 
+
+            string comcod = this.GetCompCode();
+            string mResCode1 = this.ddlMSRRes.SelectedValue.ToString();
+            string spcfcod1 = this.ddlSpecificationms.SelectedValue.ToString();
+
+            string mResCode2 = ASTUtility.Left(mResCode1, 12).ToString();
+            string flrcod = mResCode1.ToString().Length > 12 ? ASTUtility.Right(mResCode1, 3).ToString() : "";
+
+            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode2 + "' and  spcfcod='" + spcfcod1 + "' and flrcod='" + flrcod + "' ");
             if (dr2.Length == 0)
             {
 
                 DataRow dr1 = tbl1.NewRow();
-                dr1["rsircode"] = this.ddlMSRRes.SelectedValue.ToString();
-                dr1["rsirdesc1"] = this.ddlMSRRes.SelectedItem.Text.Trim();
+                dr1["rsircode"] = mResCode2;
+                dr1["rsirdesc1"] = ASTUtility.Left(this.ddlMSRRes.SelectedItem.Text.Trim(), 12);
                 dr1["spcfcod"] = this.ddlSpecificationms.SelectedValue.ToString();
                 dr1["spcfdesc"] = this.ddlSpecificationms.SelectedItem.Text.Trim();
+                dr1["flrcod"] = flrcod;
 
-                dr1["qty"] = 0;
+                dr1["qty"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["qty"];
+                dr1["bgdrat"] = (((DataTable)Session["tblreq01"]).Select("rsircode='" + mResCode2 + "'"))[0]["bgdrat"];
                 dr1["resrate1"] = 0;
                 dr1["resrate2"] = 0;
                 dr1["resrate3"] = 0;
@@ -896,11 +1263,12 @@ namespace RealERPWEB.F_14_Pro
                 dr1["amt5"] = 0;
 
                 DataTable tbl2 = (DataTable)Session["tblMat"];
-                DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "'");
-                dr1["rsirunit"] = dr3[0]["rsirunit"];
-                dr1["aprovrate"] = dr3[0]["aprovrate"];
+                DataRow[] dr5 = tbl2.Select("rsircode = '" + mResCode1 + "'");
+                dr1["rsirunit"] = dr5[0]["rsirunit"];
+                dr1["aprovrate"] = dr5[0]["aprovrate"];
                 dr1["msrrmrk"] = "";
                 tbl1.Rows.Add(dr1);
+
             }
             Session["tblt02"] = this.HiddenSameData(tbl1);   //tblMSR
             this.gvMSRInfo_DataBind();
@@ -920,10 +1288,8 @@ namespace RealERPWEB.F_14_Pro
             {
                 if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
                 {
-
                     dt1.Rows[j]["rsirdesc1"] = "";
                 }
-
 
                 rsircode = dt1.Rows[j]["rsircode"].ToString();
 
@@ -958,8 +1324,6 @@ namespace RealERPWEB.F_14_Pro
                     dr1["ssirdesc1"] = this.ddlMSRSupl.SelectedItem.Text.Trim().Substring(15);
                     tbl1.Rows.Add(dr1);
 
-
-
                     // Term
 
                     DataRow drt = tblt.NewRow();
@@ -971,6 +1335,7 @@ namespace RealERPWEB.F_14_Pro
                     drt["qutdate"] = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     drt["worktime"] = "";
                     drt["notes"] = "";
+                    drt["crperiod"] = "";
                     tblt.Rows.Add(drt);
 
                 }
@@ -984,8 +1349,6 @@ namespace RealERPWEB.F_14_Pro
             }
 
 
-
-
             Session["tblt01"] = (DataTable)tbl1;
             Session["tblterm"] = (DataTable)tblt;
             this.Payterm_DataBind();
@@ -995,17 +1358,17 @@ namespace RealERPWEB.F_14_Pro
         private void Recom_Bind()
         {
             DataTable dt1 = (DataTable)Session["tblterm"];
-            dt1.Rows.Add("", "000000000000", 0, " ", " ", "Select Recommeded Supplier") ;
-            this.ddlrecom.DataTextField = "ssirdesc";
-            this.ddlrecom.DataValueField = "ssircode";
-            this.ddlrecom.DataSource = dt1;
-            this.ddlrecom.DataBind();
-            this.ddlrecom.SelectedValue = "000000000000";
-            //ListItem li = new ListItem();
-            //li.Text = "Select Recommeded Supplier";
-            //li.Value = "";
-            //ddlrecom.Items.Add(li);
-            //this.ddlrecom.SelectedValue = "0";
+            //dt1.Rows.Add("", "000000000000", 0, " ", " ", "Select Recommeded Supplier") ;
+            this.ddlrecomsup.DataTextField = "ssirdesc";
+            this.ddlrecomsup.DataValueField = "ssircode";
+            this.ddlrecomsup.DataSource = dt1;
+            this.ddlrecomsup.DataBind();
+            // this.ddlrecomsup.SelectedValue = "000000000000";
+            ListItem li = new ListItem();
+            li.Text = "Select Recommeded Supplier";
+            li.Value = "000000000000";
+            ddlrecomsup.Items.Add(li);
+            this.ddlrecomsup.SelectedValue = "000000000000";
         }
 
         private void Payterm_DataBind()
@@ -1032,6 +1395,23 @@ namespace RealERPWEB.F_14_Pro
                 TextBox txtrate4 = (TextBox)e.Row.FindControl("txtrate4");
                 TextBox txtrate5 = (TextBox)e.Row.FindControl("txtrate5");
 
+
+                Label txtamt1 = (Label)e.Row.FindControl("lblgvAmount1");
+                Label txtamt2 = (Label)e.Row.FindControl("lblgvAmount2");
+                Label txtamt3 = (Label)e.Row.FindControl("lblgvAmount3");
+                Label txtamt4 = (Label)e.Row.FindControl("lblgvAmount4");
+                Label txtamt5 = (Label)e.Row.FindControl("lblgvAmount5");
+
+                TextBox txtbgdrat = (TextBox)e.Row.FindControl("txtgvMSRbgdrat");
+
+                double bdgrate = Convert.ToDouble("0" + txtbgdrat.Text.Trim());
+                double rate1 = Convert.ToDouble("0" + txtrate1.Text.Trim());
+                double rate2 = Convert.ToDouble("0" + txtrate2.Text.Trim());
+                double rate3 = Convert.ToDouble("0" + txtrate3.Text.Trim());
+                double rate4 = Convert.ToDouble("0" + txtrate4.Text.Trim());
+                double rate5 = Convert.ToDouble("0" + txtrate5.Text.Trim());
+
+
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rsircode")).ToString();
                 if (code == "")
                 {
@@ -1044,6 +1424,31 @@ namespace RealERPWEB.F_14_Pro
                     txtrate3.Style.Add("text-align", "Left");
                     txtrate4.Style.Add("text-align", "Left");
                     txtrate5.Style.Add("text-align", "Left");
+                }
+                if (rate1 > bdgrate)
+                {
+                    txtrate1.ForeColor = Color.Red;
+                    txtamt1.ForeColor = Color.Red;
+                }
+                if (rate2 > bdgrate)
+                {
+                    txtrate2.ForeColor = Color.Red;
+                    txtamt2.ForeColor = Color.Red;
+                }
+                if (rate3 > bdgrate)
+                {
+                    txtrate3.ForeColor = Color.Red;
+                    txtamt3.ForeColor = Color.Red;
+                }
+                if (rate4 > bdgrate)
+                {
+                    txtrate4.ForeColor = Color.Red;
+                    txtamt4.ForeColor = Color.Red;
+                }
+                if (rate5 > bdgrate)
+                {
+                    txtrate5.ForeColor = Color.Red;
+                    txtamt5.ForeColor = Color.Red;
                 }
 
             }
@@ -1066,7 +1471,7 @@ namespace RealERPWEB.F_14_Pro
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 5;
+                cell0.ColumnSpan = 7;
                 gvrow.Cells.Add(cell0);
 
 
@@ -1229,8 +1634,6 @@ namespace RealERPWEB.F_14_Pro
                 this.Payterm_DataBind();
 
             }
-
-
 
             if (!result)
             {

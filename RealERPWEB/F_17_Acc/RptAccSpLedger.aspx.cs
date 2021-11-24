@@ -88,6 +88,21 @@ namespace RealERPWEB.F_17_Acc
                 {
                     this.Checknarration.Visible = true;
                     this.Checkdaywise.Visible = true;
+                    string comcod = hst["comcod"].ToString();
+                    string events = hst["events"].ToString();
+
+                    if (Convert.ToBoolean(events) == true)
+                    {
+                        string eventtype = "Click Special Ledger ";
+                        string eventdesc = "Click Special Ledger";
+                        string eventdesc2 = "";
+
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                    }
+
 
                 }
 
@@ -249,6 +264,22 @@ namespace RealERPWEB.F_17_Acc
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+          
+            string events = hst["events"].ToString();
+
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Print Special Ledger ";
+                string eventdesc = "Print Special Ledger ";
+                string eventdesc2 = "Report Print Head  : "+ this.ddlConAccResHead.SelectedItem.ToString().Substring(13)+ " " +
+                    "(From " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy") +")" ;
+
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
         }
 
 
@@ -893,6 +924,21 @@ namespace RealERPWEB.F_17_Acc
             Session["Report1"] = gvSpledger;
             if (dt1.Rows.Count > 0)
                 ((HyperLink)this.gvSpledger.HeaderRow.FindControl("hlbtntbCdataExelsp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+          
+            string events = hst["events"].ToString();
+
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Data (Special Ledger) ";
+                string eventdesc = "Show Data (Special Ledger) ";
+                string eventdesc2 = "";
+
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
 
             //this.FooterCal();
 

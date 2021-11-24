@@ -36,11 +36,13 @@ namespace RealERPWEB.F_08_PPlan
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 string qType = this.Request.QueryString["Type"].ToString();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (qType == "Architecture") ? "Project Design" : (qType == "Legal") ? "Project Interior"
-                    : (qType == "Logistic") ? "Project Pre-Planning-Logistic" : (qType == "Design") ? "Project Pre-Planning-Design" : "Project Pre-Planning-Brand";
+                    : (qType == "Logistic") ? "Project Pre-Planning-Logistic" : (qType == "Design") ? "Project Pre-Planning-Design" 
+                    : (qType == "Landscape") ? "Landscape Design" : (qType == "MasterPlan") ? "Master Plan" : "Project Pre-Planning-Brand";
 
-                this.GetProjectName();
                 this.GetWork();
-                this.GetJOB();
+                this.GetProjectName();
+                
+                //this.GetJOB();
                 this.Getuser();
                 // this.CreateTable();
 
@@ -62,25 +64,16 @@ namespace RealERPWEB.F_08_PPlan
 
         }
 
-        private void CreateTable()
-        {
-            Session.Remove("tbljob");
-            DataTable tblt01 = new DataTable();
-            tblt01.Columns.Add("jobcode", Type.GetType("System.String"));
-            tblt01.Columns.Add("jobdesc", Type.GetType("System.String"));
-            Session["tbljob"] = tblt01;
-
-
-        }
-
+       
         private void GetWork()
         {
 
             try
             {
                 string comcod = this.GetCompcode();
-                string Type = this.Request.QueryString["Type"] == "Architecture" ? "Architecture" : "Interior";
-                DataSet ds1 = this.MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETPROJECTDESIGNWORK", Type, "", "", "", "", "", "", "", "");
+                string Type = this.Request.QueryString["Type"].ToString();
+                string SType = Type == "Architecture" ? "Architecture" : Type == "Interior" ? "Interior" : Type== "Landscape" ? "Landscape" : "MasterPlan";
+                DataSet ds1 = this.MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETPROJECTDESIGNWORK", SType, "", "", "", "", "", "", "", "");
 
                 this.ddlwork.DataTextField = "actdesc";
                 this.ddlwork.DataValueField = "actcode";
@@ -171,7 +164,8 @@ namespace RealERPWEB.F_08_PPlan
 
             string comcod = this.GetComCode();
             string txtSProject = "%" + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "GETEXPRJNAME", txtSProject, "", "", "", "", "", "", "", "");
+            string wokcode = this.ddlwork.SelectedValue.ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTACUSTOMER", txtSProject, wokcode, "", "", "", "", "", "", "");
             this.ddlPrjName.DataTextField = "actdesc";
             this.ddlPrjName.DataValueField = "actcode";
             this.ddlPrjName.DataSource = ds1.Tables[0];
@@ -225,15 +219,37 @@ namespace RealERPWEB.F_08_PPlan
         {
             Session.Remove("tbljob");
             string comcod = this.GetComCode();
-            string ProjectCode = this.ddlPrjName.SelectedValue.ToString();
+            string ProjectCode = this.ddlPrjName.SelectedValue.ToString().Substring(0,12);
             string workcode = this.ddlwork.SelectedValue.ToString();
+            string usircode = this.ddlPrjName.SelectedValue.ToString().Substring(12);
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDESIGNINFO", ProjectCode, workcode, "", "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDESIGNINFO", ProjectCode, usircode, workcode, "", "", "", "", "", "", "");
             if (ds1.Tables[0].Rows.Count == 0)
                 return;
+            this.GetDues();
             Session["tblprocom"] = this.HiddenSameData(ds1.Tables[0]);
             Session["tbljob"] = ds1.Tables[1];
             this.Data_Bind();
+        }
+
+        private void GetDues()
+        {
+
+            Session.Remove("tbljob");
+            string comcod = this.GetComCode();
+            string ProjectCode ="18"+ this.ddlPrjName.SelectedValue.ToString().Substring(2,10);
+            string usircode = this.ddlPrjName.SelectedValue.ToString().Substring(12);
+            string workcode = this.ddlwork.SelectedValue.ToString();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PROJECTCOMFCHART", "SHOWPROJECTDUES", ProjectCode, workcode, date, usircode, "", "", "", "", "");
+            if (ds1.Tables[0].Rows.Count == 0)
+                return;
+           
+            Session["tblprodues"] = ds1.Tables[0];
+           
+
+
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -280,6 +296,12 @@ namespace RealERPWEB.F_08_PPlan
             DataTable dt = (DataTable)Session["tblprocom"];
             DataTable dtj = (DataTable)Session["tbljob"];
             DataTable dtusr = (DataTable)Session["tbluser"];
+            DataTable dtdues = (DataTable)Session["tblprodues"];
+            double paidamt = 0;
+            DateTime schdate;
+            DateTime curdate = System.DateTime.Today;
+            string jobcode ;
+
 
             int i, j = 4, k;
             for (i = 4; i < this.gvPrjInfo.Columns.Count; i++)
@@ -287,9 +309,36 @@ namespace RealERPWEB.F_08_PPlan
 
             foreach (DataRow dr1 in dtj.Rows)
             {
-
+                jobcode = dr1["jobcode"].ToString();
+                paidamt = dtdues.Select("jobcode='" + jobcode + "'").Length == 0 ? 0 : Convert.ToDouble(dtdues.Select("jobcode='" + jobcode + "'")[0]["paidamt"]);
+                schdate = dtdues.Select("jobcode='" + jobcode + "'").Length == 0 ?Convert.ToDateTime("01-Jan-1900") : Convert.ToDateTime(dtdues.Select("jobcode='" + jobcode + "'")[0]["schdate"]);
                 this.gvPrjInfo.Columns[j].Visible = true;
-                this.gvPrjInfo.Columns[j].HeaderText = dr1["jobdesc"].ToString();
+
+                if (paidamt > 0)
+                {
+
+                    this.gvPrjInfo.Columns[j].HeaderText = dr1["jobdesc"].ToString();
+                    this.gvPrjInfo.Columns[j].HeaderStyle.ForeColor = System.Drawing.Color.Green;
+                    this.gvPrjInfo.Columns[j].HeaderStyle.Font.Bold = true ;
+
+
+                }
+
+              else   if (paidamt == 0 && schdate <= curdate)
+                {
+                    this.gvPrjInfo.Columns[j].HeaderText = dr1["jobdesc"].ToString();
+                    this.gvPrjInfo.Columns[j].HeaderStyle.ForeColor = System.Drawing.Color.Red;
+
+                }
+
+              else  
+                {
+                    this.gvPrjInfo.Columns[j].HeaderText = dr1["jobdesc"].ToString();
+                    
+
+                }
+
+
                 j++;
 
 
@@ -302,7 +351,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-            DropDownList ddlassignuser;
+            ListBox ddlassignuser;
             i = 0;
             foreach (DataRow dr1 in dt.Rows)
             {
@@ -324,7 +373,7 @@ namespace RealERPWEB.F_08_PPlan
 
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).Visible = true;
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjobd" + k.ToString())).Visible = false;
-                            ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
+                            ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
                             ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Visible = false;
 
                         }
@@ -345,7 +394,7 @@ namespace RealERPWEB.F_08_PPlan
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).Attributes["style"] = "textmode:multiline;";
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).TextMode = TextBoxMode.MultiLine;
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjobd" + k.ToString())).Visible = false;
-                            ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
+                            ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
                             ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Visible = false;
 
                         }
@@ -363,7 +412,7 @@ namespace RealERPWEB.F_08_PPlan
                         {
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).Visible = false;
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjobd" + k.ToString())).Visible = false;
-                            ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
+                            ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
                             ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Visible = true;
                         }
                         break;
@@ -374,18 +423,71 @@ namespace RealERPWEB.F_08_PPlan
                         {
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).Visible = false;
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjobd" + k.ToString())).Visible = false;
-                            ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = true;
+                            ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = true;
                             ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Visible = false;
-                            ddlassignuser = ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString()));
+                            ddlassignuser = ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString()));
                             ddlassignuser.DataTextField = "usrname";
                             ddlassignuser.DataValueField = "usrid";
                             ddlassignuser.DataSource = dtusr;
                             ddlassignuser.DataBind();
-                            ddlassignuser.SelectedValue = ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Text.Trim();
+
+                            string assignuser = dt.Rows[i]["job" + k.ToString()].ToString();
+                            int count = assignuser.Length;
+                            string data = "";
+                            int st = 0;
+                            for (j = 0; j < count / 7; j++)
+                            {
+                               
+                                data = assignuser.Substring(st, 7);
+                                foreach (ListItem item in ddlassignuser.Items)
+                                {
+                                    if (item.Value == data)
+                                    {
+                                        item.Selected = true;
+                                    }
+
+                                }
+                                st = st + 7;
+                            }
+
+
+
+                           // ddlassignuser.SelectedValue = ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Text.Trim();
                         }
 
 
-                        break;
+                        // int count = Convert.ToInt32(dt.Rows[i]["gdesc1"].ToString().Count());
+                        //if (count == 0)
+                        //{
+
+
+                        //    if (empid.Length == 13)
+                        //    {
+
+                        //        empid = empid.Replace("%", "");
+                        //        ddlPartic.SelectedValue = empid;
+
+
+                        //    }
+                        //}
+
+
+                            //for (j = 0; j < count / 12; j++)
+                            //{
+                            //    data = dt.Rows[i]["gdesc1"].ToString().Substring(k, 12);
+                            //    foreach (ListItem item in ddlPartic.Items)
+                            //    {
+                            //        if (item.Value == data)
+                            //        {
+                            //            item.Selected = true;
+                            //        }
+
+                            //    }
+                            //    k = k + 12;
+                            //}
+
+
+                            break;
 
 
                     case "1001006": //Target Start Date Value, 
@@ -397,7 +499,7 @@ namespace RealERPWEB.F_08_PPlan
 
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).Visible = false;
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjobd" + k.ToString())).Visible = true;
-                            ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
+                            ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
                             ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Visible = false;
                         }
                         break;
@@ -409,7 +511,7 @@ namespace RealERPWEB.F_08_PPlan
 
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjob" + k.ToString())).Visible = false;
                             ((TextBox)this.gvPrjInfo.Rows[i].FindControl("txtgvjobd" + k.ToString())).Visible = false;
-                            ((DropDownList)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
+                            ((ListBox)this.gvPrjInfo.Rows[i].FindControl("ddlassignuser" + k.ToString())).Visible = false;
                             ((Label)this.gvPrjInfo.Rows[i].FindControl("lblgvjob" + k.ToString())).Visible = true;
                         }
 
@@ -1065,25 +1167,47 @@ namespace RealERPWEB.F_08_PPlan
 
                         for (k = 1; k <= 14; k++)
                         {
-                            double dueam = Convert.ToDouble(dt.Rows[0]["dueam"]);
-                            int indexofper = dt.Rows[0]["job" + k.ToString()].ToString().IndexOf("%");
-                            if (indexofper == -1)
-                            {
-                                dt.Rows[i]["job" + k.ToString()] = "";
-                                continue;
-                            }
-                            double percnt = Convert.ToDouble(dt.Rows[0]["job" + k.ToString()].ToString().Substring(0, indexofper).Trim());
-                            double jobam = percnt * dueam * 0.01;
-                            dt.Rows[i]["job" + k.ToString()] = jobam.ToString("#,##0.00;(#,##)0.00; ");
+                            //double dueam = Convert.ToDouble(dt.Rows[0]["dueam"]);
+                            //int indexofper = dt.Rows[0]["job" + k.ToString()].ToString().IndexOf("%");
+                            //if (indexofper == -1)
+                            //{
+                            //    dt.Rows[i]["job" + k.ToString()] = "";
+                            //    continue;
+                            //}
+                            //double percnt = Convert.ToDouble(dt.Rows[0]["job" + k.ToString()].ToString().Substring(0, indexofper).Trim());
+                            //double jobam = percnt * dueam * 0.01;
+                           // dt.Rows[i]["job" + k.ToString()] = jobam.ToString("#,##0.00;(#,##)0.00; ");
+                            dt.Rows[i]["job" + k.ToString()] = ((TextBox)gv1.FindControl("txtgvjob" + k.ToString())).Text.ToString();
+                           
                         }
                         break;
 
 
                     case "1001004": //Dropdown Concern Person, 
+                      
+                        
+
+
                         for (k = 1; k <= 14; k++)
                         {
 
-                            dt.Rows[i]["job" + k.ToString()] = ((DropDownList)gv1.FindControl("ddlassignuser" + k.ToString())).SelectedValue.ToString();
+                            ListBox ddlassignperson = ((ListBox)gv1.FindControl("ddlassignuser"+k.ToString()));
+                            string assigperson = "";
+                            foreach (ListItem item in ddlassignperson.Items)
+                            {
+
+                                if (item.Selected)
+                                {
+                                    assigperson += item.Value;
+                                }
+
+                            }
+
+                            dt.Rows[i]["job" + k.ToString()] = assigperson;
+
+
+
+
                         }
 
                         break;
@@ -1133,7 +1257,8 @@ namespace RealERPWEB.F_08_PPlan
             DataTable dtj = (DataTable)Session["tbljob"];
             int lenj = dtj.Rows.Count;
             int i = 0, k, j;
-            string pactcode = this.ddlPrjName.SelectedValue.ToString();
+            string pactcode = this.ddlPrjName.SelectedValue.ToString().Substring(0,12);
+            string usircode = this.ddlPrjName.SelectedValue.ToString().Substring(12);
             string actcode = this.ddlwork.SelectedValue.ToString();
             string proesam = dt.Rows[0]["proesam"].ToString();
             string proadam = dt.Rows[0]["proadam"].ToString();
@@ -1145,7 +1270,7 @@ namespace RealERPWEB.F_08_PPlan
 
             //-----------Update pdesignb-----------------//
             bool resultb = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNB", pactcode, actcode, proesam, proadam, dueam,
-                            PostbyId, Posteddat, posttrmid, postsesson, "", "", "", "", "", "", "", "", "", "", "", "");
+                            PostbyId, Posteddat, posttrmid, postsesson, usircode, "", "", "", "", "", "", "", "", "", "", "");
 
             if (!resultb)
             {
@@ -1187,7 +1312,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobvalue = dt.Rows[i]["job" + k.ToString()].ToString();
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                            jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1210,7 +1335,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobvalue = Convert.ToDouble("0" + dt.Rows[i]["job" + k.ToString()].ToString()).ToString();
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                               jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                               jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1233,7 +1358,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             jobvalue = dt.Rows[i]["job" + k.ToString()].ToString();
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                               jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                               jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1258,7 +1383,7 @@ namespace RealERPWEB.F_08_PPlan
                             jobcode = dtj.Rows[k - 1]["jobcode"].ToString();
                             jobvalue = dt.Rows[i]["job" + k.ToString()].ToString().Trim().Length == 0 ? "01-Jan-1900" : Convert.ToDateTime(dt.Rows[i]["job" + k.ToString()].ToString()).ToString("dd-MMM-yyyy");
                             bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNA", pactcode, actcode, jobcode, gcod, gval,
-                               jobvalue, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                               jobvalue, usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                             if (!resulta)
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
@@ -1285,10 +1410,11 @@ namespace RealERPWEB.F_08_PPlan
             {
 
 
+                string rowid =dr1["rowid"].ToString();
                 jobcode = dr1["jobcode"].ToString();
                 jobvalue = dr1["jobdesc"].ToString();
-                bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNC", pactcode, actcode, jobcode, jobvalue, "",
-                   "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                bool resulta = MktData.UpdateTransInfo2(comcod, "SP_ENTRY_PROJECTCOMFCHART", "INSERTORUPDATEPDESIGNC", pactcode, actcode, jobcode, jobvalue, rowid,
+                   usircode, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
                 if (!resulta)
                 {

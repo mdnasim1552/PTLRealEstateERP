@@ -3,15 +3,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
 
 
     <script type="text/javascript">
-
-
         //function pageLoaded() {
         //    alert("I m In");
         //    GetData();
@@ -632,7 +628,6 @@
                 w = $(".graph-main").width();
             });
             resizeObserver.observe(elem);
-
         }
 
         function ExecuteUserdata(data1) {
@@ -1214,10 +1209,7 @@
             resizeObserver.observe(elem);
 
         }
-
-
-        /// group graph
-
+          
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
@@ -1906,12 +1898,17 @@
                                             <!-- metric column -->
                                             <div class="col">
                                                 <!-- .metric -->
-                                                <a href="F_33_Doc/GroupChat.aspx" class="metric metric-bordered align-items-center card p-1">
-                                                    <h2 class="metric-label">Task Management</h2>
+
+                                                  <a href="#" target="_self" runat="server" id="noProj" class="metric metric-bordered align-items-center card p-1">
+                                                    <h2 class="metric-label">No of Projects </h2>
+                                                    <%--Teams--%>
                                                     <p class="metric-value h3">
-                                                        <sub><i class="fa fa-tasks"></i></sub><span class="value"></span>
+                                                        <sub><i class="oi oi-people"></i></sub><span class="value" runat="server" id="noProjCount">0</span>
                                                     </p>
                                                 </a>
+
+
+                                               
                                                 <!-- /.metric -->
                                             </div>
 
@@ -2251,11 +2248,7 @@
             </div>
 
 
-            
-
-            
-            <a href="NewInterface/dashboard.html" class="d-none" target="_blank">New DashBoard</a>
-
+             
             <!-- /.page-section -->
         </div>
     </div>
@@ -2318,7 +2311,7 @@
     </div>
 
 
-    </div>
+   
 
    
 

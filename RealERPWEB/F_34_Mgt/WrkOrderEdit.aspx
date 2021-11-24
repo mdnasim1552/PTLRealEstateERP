@@ -237,7 +237,7 @@
 
 
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddlspecification" runat="server" Width="120px">
+                                    <asp:DropDownList ID="ddlspecification" runat="server" Width="120px" CssClass="chzn-select">
                                     </asp:DropDownList>
                                 </EditItemTemplate>
 

@@ -121,9 +121,10 @@ namespace RealERPWEB.F_34_Mgt
         {
             string comcod = this.GetComeCode();
             string usrid = this.Request.QueryString["Userid"].ToString();
+            string ddlType = (this.ddlType.SelectedValue.Trim() == "0" ? "0" : this.ddlType.SelectedValue.ToString());
 
             string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
-            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USERALL", modname, usrid, "", "", "", "", "", "", "");
+            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USERALL", ddlType, usrid, "", "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvPermission.DataSource = null;
@@ -141,7 +142,8 @@ namespace RealERPWEB.F_34_Mgt
             string usrid = this.Request.QueryString["Userid"].ToString();
 
             string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
-            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USER", usrid, modname, "", "", "", "", "", "", "");
+            string ddlType = (this.ddlType.SelectedValue.Trim() == "0" ? "0" : this.ddlType.SelectedValue.ToString());
+            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USER", usrid, ddlType, "", "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvPermission.DataSource = null;
@@ -490,5 +492,36 @@ namespace RealERPWEB.F_34_Mgt
             this.ShowData();
 
         }
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.chkShowall.Checked)
+            {
+                this.ShowAllData();
+            }
+            else
+            {
+                this.ShowData();
+            }
+        }
+
+        protected void gvPermission_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                
+                CheckBox chper = (CheckBox)e.Row.FindControl("chkPermit");
+
+                string menuparentid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "menuparentid")).ToString();
+                if (menuparentid == "0" || menuparentid == "")
+                {
+                    e.Row.Style.Add("color", "red");
+                    chper.Visible = false;
+                }
+
+            }
+        }
+
     }
 }

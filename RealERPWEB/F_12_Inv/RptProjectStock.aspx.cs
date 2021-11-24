@@ -58,9 +58,7 @@ namespace RealERPWEB.F_12_Inv
 
         private string Complength()
         {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
+            string comcod = this.GetCompCode();
             string Complength = "";
             switch (comcod)
             {
@@ -75,10 +73,15 @@ namespace RealERPWEB.F_12_Inv
                     break;
             }
 
-
-
             return Complength;
 
+
+        }
+
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
 
         }
 
@@ -274,6 +277,7 @@ namespace RealERPWEB.F_12_Inv
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tbMatStc"];
+            string comcod = this.GetCompCode();
             string type = this.Request.QueryString["Type"].ToString();
             switch (type)
             {
@@ -285,9 +289,16 @@ namespace RealERPWEB.F_12_Inv
 
                     if (type == "inv")
                     {
-                        this.gvMatStock.Columns[3].Visible = true;
-                        this.gvMatStock.Columns[12].Visible = true;
-
+                        if (comcod == "3340")
+                        {
+                            this.gvMatStock.Columns[3].Visible = false;
+                            this.gvMatStock.Columns[12].Visible = false;
+                        }
+                        else
+                        {
+                            this.gvMatStock.Columns[3].Visible = true;
+                            this.gvMatStock.Columns[12].Visible = true;
+                        }                      
                     }
 
                     this.FooterCalculation();
@@ -424,8 +435,6 @@ namespace RealERPWEB.F_12_Inv
             string tdate = this.txttodate.Text.ToString();
             string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
 
-
-
             string Headertitle = "";
             if (this.Request.QueryString["Type"].ToString() == "inv")
             {
@@ -460,17 +469,6 @@ namespace RealERPWEB.F_12_Inv
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-            //ReportDocument rptstk = new RealERPRPT.R_12_Inv.rptProMatStock();
-            //TextObject rptHeader = rptstk.ReportDefinition.ReportObjects["header"] as TextObject;
-            //TextObject rptProjectName = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //rptProjectName.Text = this.ddlProName.SelectedItem.Text;
-            //TextObject rpttxtdate = rptstk.ReportDefinition.ReportObjects["date"] as TextObject;
-            //rpttxtdate.Text = "From: " + fdate + " To: " + tdate;
-
-            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            //rptstk.SetDataSource(dt);
-
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
@@ -478,13 +476,6 @@ namespace RealERPWEB.F_12_Inv
                 string eventdesc2 = "Project Name: " + this.ddlProName.SelectedItem.ToString();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //rptstk.SetParameterValue("ComLogo", ComLogo);
-
-            //Session["Report1"] = rptstk;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
         {

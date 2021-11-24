@@ -286,26 +286,28 @@ namespace RealERPWEB.F_17_Acc
                 string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
                 string txtMode = (cheqeno.Length > 0) ? "Paid By Cheque" : "";
                 LocalReport Rpt1 = new LocalReport();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptPaySlipSupplier", null, null, null);
-                Rpt1.EnableExternalImages = true;
-                Rpt1.SetParameters(new ReportParameter("compname", comnam));
-                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-                Rpt1.SetParameters(new ReportParameter("Rpttitle", "SUPPLIER PAYMENT SLIP"));
+                var list = new  List<RealEntity.C_32_Mis.EClassAcc_03.CollectionBrackDown>(); 
 
-                Rpt1.SetParameters(new ReportParameter("cheqeno", cheqeno));
-                Rpt1.SetParameters(new ReportParameter("cheqedat", chequedat));
-                Rpt1.SetParameters(new ReportParameter("payto", payto));
-                Rpt1.SetParameters(new ReportParameter("pactname", pactname));
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptPaySlipSupplier", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "SUPPLIER PAYMENT SLIP"));
+                Rpt1.SetParameters(new ReportParameter("txtDate", printdat));
+                Rpt1.SetParameters(new ReportParameter("cheqDate", chequedat));
+                Rpt1.SetParameters(new ReportParameter("cheqNo", cheqeno));
+                Rpt1.SetParameters(new ReportParameter("suppName", payto));
+                Rpt1.SetParameters(new ReportParameter("pactName", pactname));
+                Rpt1.SetParameters(new ReportParameter("txtAmt", amtstr));
+                Rpt1.SetParameters(new ReportParameter("txtMode", txtMode));
+                Rpt1.SetParameters(new ReportParameter("txtInWord", amt1));
+                Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("bankname", bankname));
                 Rpt1.SetParameters(new ReportParameter("amt", amtstr));
-                Rpt1.SetParameters(new ReportParameter("tamt", amtstr));
-                Rpt1.SetParameters(new ReportParameter("txtMode", txtMode));
                 Rpt1.SetParameters(new ReportParameter("narration", naration));
-                Rpt1.SetParameters(new ReportParameter("inword", amt1));
-                Rpt1.SetParameters(new ReportParameter("paidby", ""));
-                Rpt1.SetParameters(new ReportParameter("txtdate", printdat));
-                Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+                //Rpt1.SetParameters(new ReportParameter("paidby", ""));
+                //Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

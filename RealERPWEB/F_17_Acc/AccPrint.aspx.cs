@@ -104,12 +104,13 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2305":
                     vouprint = "VocherPrint4";
                     break;
 
-
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -148,10 +149,24 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintP2P";
                     break;
 
-                //case"3101":
+                //case "3101":
+                case "3353":
+                    vouprint = "VocherPrintManama";
+                    break;
+
+
                 case "3325":
                 case "2325":
                     vouprint = "VocherPrintLeisure";
+                    break;
+
+                //case "3101":
+                case "3338":
+                    vouprint = "VocherPrintAcme";
+                    break;
+
+                case "1103":
+                    vouprint = "VocherPrintTanvir";
                     break;
 
                 default:
@@ -179,6 +194,9 @@ namespace RealERPWEB.F_17_Acc
                 case "3309":// HOlding
                 case "3310":// RCU
                 case "2305":// land
+
+                case "1108"://  Assure(engineering)
+                case "1109"://  Assure(tourism)
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
@@ -324,10 +342,8 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
-
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher5", list, null, null);
                     Rpt1.EnableExternalImages = true;
-
 
 
                 }
@@ -414,6 +430,32 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
+                else if (Type == "VocherPrintAcme")
+                {
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherAcme", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                }
+
+
+
+                else if (Type == "VocherPrintManama")
+                {
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherManama", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                }
+
+                else if(Type== "VocherPrintTanvir")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherTanvir", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtPay", (vounum.Substring(0, 2).ToString() == "PV") ? "Pay To " : "Receive From"));
+
+                }
+
                 else
                 {
 
@@ -489,12 +531,15 @@ namespace RealERPWEB.F_17_Acc
                 case "3310":// RHEL(ctg)
 
                 case "3306":// Ratul
-                case "3309":// HOlding
+                case "3309":// Holding
                 case "2305":// land
+                case "1108"://  Assure(Engineering)
+                case "1109"://  Assure(Tourism)
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
-                            // case "3101"://  ASIT (Check)
+                case "3353":
+                case "3101"://  ASIT (Check)
                     break;
 
 
@@ -534,12 +579,13 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint3";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2305": // rupayan land
                     vouprint = "VocherPrint4";
                     break;
 
-
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -551,7 +597,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint6";
                     break;
 
-
+                //case "3101":
                 case "3330":
                     vouprint = "VocherPrintBridge";
                     break;
@@ -577,6 +623,10 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintLei";
                     break;
 
+                case "3101":
+                case "3353":
+                    vouprint = "VoucherPrintManama";
+                    break;
 
                 case "1103":// Tanvir
                     vouprint = "VocherPrintTanvir";
@@ -588,11 +638,41 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintCredence";
                     break;
 
+
+                //case "1102": // islam brothers 
+                //    vouprint = "VocherPrintIBCEL";
+                //    break;
+
+                //manama, p2p 
                 default:
                     vouprint = "VocherPrintMod";
                     break;
             }
             return vouprint;
+        }
+
+
+        private string GetCompNarration()
+        {
+
+            string comcod = this.GetCompCode();
+            string ntype = "";
+            switch (comcod)
+            {
+                case "1103":// Tanvir
+                case "3353": // manama
+                case "3101":// ptl
+                    ntype = "ShowNarration";
+                    break;
+
+
+                default:
+                    ntype = "";
+                    break;
+
+
+            }
+            return ntype;
         }
 
 
@@ -627,10 +707,12 @@ namespace RealERPWEB.F_17_Acc
                 string vounum = this.Request.QueryString["vounum"].ToString();
                 string session = hst["session"].ToString();
                 string PrintInstar = this.GetCompInstar();
+                string ntype = this.GetCompNarration();
+
                 string pouaction = this.Getpouaction(vounum);
                 string Calltype = (pouaction.Length > 0) ? "PRINTUNPOSTEDVOUCHER01" : "PRINTVOUCHER01";
                 //string Calltype =  "PRINTVOUCHER01";
-                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, "", "", "", "", "", "", "");
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, ntype, "", "", "", "", "", "");
                 if (_ReportDataSet == null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Data Not Found');", true);
@@ -689,9 +771,6 @@ namespace RealERPWEB.F_17_Acc
                 string aprvbyst1 = dts.Select("gcod='01009'").Length > 0 ? (dts.Select("gcod='01009'")[0]["stdgdesc"]).ToString().Trim() : "";
                 string authorizeby = dts.Select("gcod='01010'").Length > 0 ? (dts.Select("gcod='01010'")[0]["gdesc"]).ToString().Trim() : "";
                 // string authorizeby = dts.Select("gcod='01010'").Length > 0 ? (dts.Select("gcod='01010'")[0]["gdesc"]).ToString() : "";
-
-
-
 
 
 
@@ -1064,32 +1143,7 @@ namespace RealERPWEB.F_17_Acc
                             case "3352":// P2P
                                 aprvby1 = aprvbyst1;
                                 break;
-
                         }
-
-
-                        string voutype1 = "";
-                        if (comcod == "3353") // for manama
-                        {
-                            string vouno = vounum.Substring(0, 2);
-                            if (vouno == "BC")
-                            {
-                                voutype1 = "Bank Receive Voucher";
-                            }
-                            else if (vouno == "CC")
-                            {
-                                voutype1 = "Cash Receive Voucher";
-                            }
-                            else
-                            {
-                                voutype1 = voutype;
-                            }
-                        }
-                        else
-                        {
-                            voutype1 = voutype;
-                        }
-
 
                         var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
 
@@ -1105,7 +1159,6 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("txtcheckby", (comcod == "3344") ? aprvby2 : Checkby));
                         Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
                         Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
-
 
 
                     }
@@ -1217,6 +1270,38 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
+                else if (Type == "VoucherPrintManama")
+                {
+                    string voutype1 = "";
+                    string vouno = vounum.Substring(0, 2);
+                    if (vouno == "BC")
+                    {
+                        voutype1 = "Bank Receive Voucher";
+                    }
+                    else if (vouno == "CC")
+                    {
+                        voutype1 = "Cash Receive Voucher";
+                    }
+                    else
+                    {
+                        voutype1 = voutype;
+                    }                   
+                    
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherManama", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("txtissuno", "Issue No: " + Isunum));
+                    Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
+                    Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
+                    Rpt1.SetParameters(new ReportParameter("voutype", voutype1));
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                    Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
+                }
+
 
                 else
                 {
@@ -1243,23 +1328,35 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-
-                if (ConstantInfo.LogStatus == true)
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
                 {
-
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
                     string eventdesc = "Print Voucher";
                     string eventdesc2 = "Voucher: " + vounum + " Dated: " + voudat;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, eventdesc2);
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 }
+
+
+                //if (ConstantInfo.LogStatus == true)
+                //{
+
+                //    string eventdesc = "Print Voucher";
+                //    string eventdesc2 = "Voucher: " + vounum + " Dated: " + voudat;
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, eventdesc2);
+
+
+                //}
 
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, potseson, Posteddat, compname, username, printdate, session)));
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate, session)));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
@@ -1459,6 +1556,8 @@ namespace RealERPWEB.F_17_Acc
                 //case "3306":
                 //    chequeprint = "PrintCheque03";
                 //    break;
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -1510,8 +1609,11 @@ namespace RealERPWEB.F_17_Acc
                 //    this.PrinCheque();
                 //    break;
 
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
+                case "3317":
 
                     PrinChequeAssure();
                     break;
@@ -1745,6 +1847,8 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "1108":
+                case "1109":
                 case "3315":// Assure Builders
                 case "3316": //Assure Builders
                     this.PrintChequePostAssure();
@@ -2025,7 +2129,7 @@ namespace RealERPWEB.F_17_Acc
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeTCL", hshtbl, null, null);
                 }
-                else if(comcod=="3348" || comcod == "3101")
+                else if (comcod == "3348")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptCheqCredence", hshtbl, null, null);
                 }
@@ -2697,8 +2801,10 @@ namespace RealERPWEB.F_17_Acc
                 string vounum = this.Request.QueryString["vounum"].ToString();
                 string session = hst["session"].ToString();
                 string PrintInstar = this.GetCompInstar();
-                string pouaction = this.Getpouaction(vounum);
-                string Calltype = (pouaction.Length > 0) ? "PRINTDELETEDVOUCHER01" : "PFPRINTVOUCHER01";
+                //string pouaction = this.Getpouaction(vounum);
+                //string Calltype = (pouaction.Length > 0) ? "PRINTDELETEDVOUCHER01" : "PFPRINTVOUCHER01";
+                string Calltype =  "PFPRINTVOUCHER01";
+
 
                 DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, "", "", "", "", "", "", "");
                 //

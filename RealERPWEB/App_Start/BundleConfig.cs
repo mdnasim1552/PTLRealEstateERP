@@ -42,7 +42,7 @@ namespace RealERPWEB
                  "~/Content/Theme/vendor/chart.js/Chart.min.js",
                  //"~/Content/Theme/theme.min.js",
                  "~/Content/Theme/vendor/toastr/toastr.min.js",
-                 "~/Content/Theme/dashboard-demo.js",
+                 //"~/Content/Theme/dashboard-demo.js",
                  "~/Content/Theme/vendor/toastr/toastr-demo.js"                            
               ));
            

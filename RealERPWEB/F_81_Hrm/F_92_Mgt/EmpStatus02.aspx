@@ -679,7 +679,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Gross Salary">
+                                        <%--<asp:TemplateField HeaderText="Gross Salary">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvgsal" runat="server" BackColor="Transparent"
                                                     BorderStyle="None" Font-Size="11px"
@@ -688,7 +688,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />

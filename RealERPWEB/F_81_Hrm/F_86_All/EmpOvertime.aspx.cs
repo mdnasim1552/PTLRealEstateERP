@@ -879,6 +879,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "otherearn":
                     this.gvothearn.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvothearn.DataSource = dt;
+                    if (comcod == "3339" || comcod == "3101")
+                    {
+                        gvothearn.Columns[9].HeaderText = "Trans/Entr";
+
+                    }
                     this.gvothearn.DataBind();
                     this.FooterCalculation();
                     if (comcod == "3347" || comcod == "3101")
@@ -888,9 +893,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvothearn.Columns[15].Visible = true;
                         this.gvothearn.Columns[16].Visible = true;
 
-
                     }
-
+                    
                     break;
                 case "dayadj":
                     this.grvAdjDay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
@@ -2742,5 +2746,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             //this.SaveValue();
 
         }
+
+       
+       
     }
 }

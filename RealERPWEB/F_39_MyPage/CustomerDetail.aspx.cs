@@ -35,6 +35,7 @@ namespace RealERPWEB.F_39_MyPage
                 //    Response.Redirect("../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Customer Details Information";
                 if (this.ddlPrjName.Items.Count == 0)
                 {
                     this.GetClientName();
@@ -139,7 +140,7 @@ namespace RealERPWEB.F_39_MyPage
 
 
             ViewState["tblcustinf"] = dt;
-
+            ViewState["tblFileNo"] = ds1.Tables[10];
             this.gvPersonalInfo.DataSource = dt;
             this.gvPersonalInfo.DataBind();
             this.GridTextDDLVisible();
@@ -148,8 +149,6 @@ namespace RealERPWEB.F_39_MyPage
         }
         private void GetClientID()
         {
-
-
             string comcod = this.GetComdCode();
             // string UsirCode = this.Request.QueryString["genno"].ToString().Trim();
             string PactCode = this.Request.QueryString["prjcode"].ToString().Trim();
@@ -158,11 +157,6 @@ namespace RealERPWEB.F_39_MyPage
             this.lblcustomerid.Text = customerid;
             //DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETCLIENTID", PactCode, UsirCode, "", "", "", "", "", "", "");
 
-
-
-
-
-
         }
 
 
@@ -170,7 +164,8 @@ namespace RealERPWEB.F_39_MyPage
         {
 
             DataTable dt = ((DataTable)ViewState["tblcustinf"]).Copy();
-
+            DataTable dtFile = (DataTable)ViewState["tblFileNo"];
+            DropDownList ddlgvFile;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -179,21 +174,28 @@ namespace RealERPWEB.F_39_MyPage
                 switch (Gcode)
                 {
                     case "01009": //BirthDay              
-                    case "01010": //MarriageDay              
-
+                    case "01010": //MarriageDay
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = true;
-
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
                         break;
 
-
-
-
-
+                    case "01021": //File No
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = true;
+                        ddlgvFile = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo"));
+                        ddlgvFile.DataTextField = "fileno";
+                        ddlgvFile.DataValueField = "id";
+                        ddlgvFile.DataSource = dtFile;
+                        ddlgvFile.DataBind();
+                        ddlgvFile.SelectedValue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        break;
 
                     default:
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = true;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
                         break;
 
                 }
@@ -276,6 +278,10 @@ namespace RealERPWEB.F_39_MyPage
                 if (Gcode == "01009" || Gcode == "01010")
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                }
+                else if(Gcode=="01021")
+                {
+                    Gvalue = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).SelectedValue;
                 }
                 else
                 {
@@ -454,7 +460,6 @@ namespace RealERPWEB.F_39_MyPage
             ListViewEmpAll.DataBind();
 
         }
-
     }
 }
 

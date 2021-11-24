@@ -604,17 +604,28 @@ namespace RealERPWEB.F_29_Fxt
         protected void btnde_click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-
+            string comcod = hst["comcod"].ToString();        
+            DataTable dt = (DataTable)ViewState["tblDoChallan"];
             GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
             int RowIndex = gvr.RowIndex;
 
             string slno = ((HyperLink)this.gvProSlInfo.Rows[RowIndex].FindControl("lgcSlCode")).Text.Trim();
-            string Pactcod = this.ddlProjectName.SelectedValue.ToString();
+            //string Pactcod = this.ddlProjectName.SelectedValue.ToString();
+
+            string Pactcod=((Label) this.gvProSlInfo.Rows[RowIndex].FindControl("lgpactcode")).Text.Trim();
             string rsircode = this.Request.QueryString["rsircode"].ToString();
 
             bool result = PurData.UpdateXmlTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO", "DELETEALLOCATEDASST", null, null, null, Pactcod, rsircode, slno, "", "",
                  "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+
+                dt.Rows[RowIndex].Delete();
+            }
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblDoChallan");
+            ViewState["tblDoChallan"] = dv.ToTable();
 
             this.LoadGrid();
         }

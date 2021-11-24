@@ -19,8 +19,9 @@ namespace RealERPWEB.Notices
             {
                 this.GetDepartment();
                 this.GetUser();
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Create Notices";
                 this.txtStartDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy h: mm tt");
+                this.txtEndDate.Text = System.DateTime.Today.AddDays(30).ToString("dd-MMM-yyyy h: mm tt");
             }
         }
 

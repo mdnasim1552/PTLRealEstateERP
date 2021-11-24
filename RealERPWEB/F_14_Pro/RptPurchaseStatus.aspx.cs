@@ -336,10 +336,10 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "Ordertrk":
-                    this.lblProjectName.Visible = false;
-                    this.txtSrcProject.Visible = false;
-                    this.ddlProjectName.Visible = false;
-                    this.imgbtnFindProject.Visible = false;
+                    this.lblProjectName.Visible = true;
+                    this.txtSrcProject.Visible = true;
+                    this.ddlProjectName.Visible = true;
+                    this.imgbtnFindProject.Visible = true;
                     this.lbldateto.Visible = false;
                     this.txttodate.Visible = false;
                     this.lblRptGroup.Visible = false;
@@ -1089,6 +1089,7 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt = this.HiddenSameData(ds1.Tables[0]);
             Session["tblpurchase"] = ds1.Tables[0];
             Session["tblreqDescrip"] = ds1.Tables[2];
+            Session["tblproject"] = ds1.Tables[1];
 
             this.txtReqNarr.Text = ds1.Tables[1].Rows.Count == 0 ? "" : ds1.Tables[1].Rows[0]["reqnar"].ToString();
             ///this.lblshipsupdate.Text = ds1.Tables[0].Rows[0]["shipsupdat"].ToString();
@@ -1102,7 +1103,7 @@ namespace RealERPWEB.F_14_Pro
         {
             string comcod = this.GetComeCode();
 
-            if(comcod=="3315"|| comcod=="3316"|| comcod=="3101")
+            if (comcod == "3315" || comcod == "3316" || comcod == "3101")
             {
                 PnlDescrip.Visible = true;
             }
@@ -1118,7 +1119,7 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-           
+
 
         private void BillRegTrack()
         {
@@ -1561,6 +1562,14 @@ namespace RealERPWEB.F_14_Pro
                         this.gvPurStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                         this.gvPurStatus.DataSource = dt;
                         this.gvPurStatus.DataBind();
+                        if (comcod == "3340" || comcod == "3101")
+                        {
+                            this.gvPurStatus.Columns[17].Visible = true;
+                            this.gvPurStatus.Columns[18].Visible = true;
+                            this.gvPurStatus.Columns[19].Visible = true;
+
+
+                        }
                         ((Label)this.gvPurStatus.FooterRow.FindControl("lgvFAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ?
                                              0 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
                         if (ddlProjectName.SelectedValue.ToString() != "000000000000")
@@ -1573,6 +1582,9 @@ namespace RealERPWEB.F_14_Pro
                             }
 
                         }
+
+                        Session["Report1"] = gvPurStatus;
+                        ((HyperLink)this.gvPurStatus.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                         break;
 
                     case "PurSum":
@@ -1744,8 +1756,6 @@ namespace RealERPWEB.F_14_Pro
 
 
 
-
-
         protected void imgbtnFindReqno02_Click(object sender, EventArgs e)
         {
             this.GetReqno02();
@@ -1782,10 +1792,7 @@ namespace RealERPWEB.F_14_Pro
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You Have No Permission');", true);
                 return;
-
             }
-
-
 
             string comcod = this.GetComeCode();
             string Billno = this.ddlBillno.SelectedValue.ToString();
@@ -1811,34 +1818,103 @@ namespace RealERPWEB.F_14_Pro
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-
-
-
                 string grpdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "grpdesc")).ToString().Trim();
+                LinkButton btnPrint = (LinkButton)e.Row.FindControl("btnPrintReqInfo");
 
                 if (grpdesc == "")
-                    return;
-
-
-                if (grpdesc == "1. Requisition" || grpdesc == "2. Requisition Checked" || grpdesc == "3. Requisition Approved" || grpdesc == "4. Order Process"
-                        || grpdesc == "5. Purchase Order" || grpdesc == "6. Materials Received" || grpdesc == "7. Bill Confirmation" || grpdesc == "11. Cheque Preparation" || grpdesc == "12. Reconcilation")
                 {
-
-
-                    e.Row.Attributes["style"] = "background-color:#C0C0C0; font-weight:bold;";
-
-
-
-
-
+                    btnPrint.Visible = false;
+                    return;                 
+                    
                 }
+                else
+                {
+                    e.Row.Attributes["style"] = "background-color:#C0C0C0; font-weight:bold;";
+                    btnPrint.Visible = true;
 
 
+                    /*
+                    if (grpdesc == "1. Requisition" || grpdesc == "2. Requisition Checked" || grpdesc == "3. Requisition Approved" || grpdesc == "4. Order Process"
+                      || grpdesc == "5. Purchase Order" || grpdesc == "6. Materials Received" || grpdesc == "7. Bill Confirmation" || grpdesc == "11. Cheque Preparation" || grpdesc == "12. Reconcilation")
+                    {
+
+                        e.Row.Attributes["style"] = "background-color:#C0C0C0; font-weight:bold;";
+
+                    }*/
+                }
 
             }
 
 
         }
+
+
+
+
+        protected void btnPrintReqInfo_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string reqno = ((Label)this.gvPurstk01.Rows[RowIndex].FindControl("lgvReqno")).Text.Trim();
+            string reqdate = ((Label)this.gvPurstk01.Rows[RowIndex].FindControl("lgvAppDat0")).Text.Trim();
+
+            //string grpdesc = ((Label)this.gvPurstk01.Rows[RowIndex].FindControl("lgvReqno")).Text.Trim();
+
+            DataTable dt = (DataTable)Session["tblproject"];
+            string pactcode = dt.Rows[0]["pactcode"].ToString();
+            string reqinfo = ASTUtility.Left(reqno, 3);
+            string path = ResolveUrl("~/F_99_Allinterface/PurchasePrint?Type=");
+            string url = "";
+
+
+            switch (reqinfo)
+            {
+                case "REQ":
+                    url = path + "ReqPrint&reqno=" + reqno + "&reqdat=" + reqdate;
+                    break;
+                case "PAP":
+                    url = path + "PurApproval&approvno=" + reqno + "&approvdat=" + reqdate;
+                    break;
+                case "POR":
+                    url = path + "OrderPrintNew&orderno" + reqno;
+                    break;
+                case "MRR":
+                    url = path + "MRReceipt&mrno=" + reqno + "&reqdat=" + reqdate;
+                    //Type=MRReceipt&mrno=MRR20210400002&sircode=990100101012&supname=Kapita%20Auto%20Bricks%20Limited.&prjname=
+                    break;
+                case "PBL":
+                    url = path + "ReqPrint&reqno=" + reqno + "&reqdat=" + reqdate;
+                    break;
+                default:// JV
+                    url = path + "ReqPrint&reqno=" + reqno + "&reqdat=" + reqdate;
+
+                    break;
+            }
+
+
+            Response.Redirect(url);
+
+
+
+
+
+            //Response.Redirect("~/F_12_Inv/PurReqApproval?Type=RateInput&prjcode="+pactcode+ "&genno=" + reqno);
+
+
+            //bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP", null, null, null, msrno, refno, usrid, trmnid, session, Date, reqno, "", "", "", "", "", "", "", "");
+
+
+
+        }
+
+
 
         protected void ddlProjectName_OnSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1866,9 +1942,9 @@ namespace RealERPWEB.F_14_Pro
             Session.Remove("tblorder");
             string comcod = this.GetComeCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            string date = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            //string date = Convert.ToDateTime(this.tos.Text).ToString("dd-MMM-yyyy");
             string orderno = "%" + this.txtsrchorder.Text.Trim() + "%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETORDER", pactcode, date, orderno, "", "", "", "", "", "");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETORDER", pactcode, "", orderno, "", "", "", "", "", "");
             this.ddlOrder.DataTextField = "orderno1";
             this.ddlOrder.DataValueField = "orderno";
             this.ddlOrder.DataSource = ds1.Tables[0];
@@ -1933,5 +2009,7 @@ namespace RealERPWEB.F_14_Pro
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
+       
     }
 }

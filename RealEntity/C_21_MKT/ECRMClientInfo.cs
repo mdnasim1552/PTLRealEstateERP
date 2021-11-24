@@ -24,5 +24,28 @@ namespace RealEntity.C_21_Mkt
 
             public CrmClientInfo() { }
         }
+
+        [Serializable]
+        public class EClassLeadReason
+
+        {
+
+            public string gcod { get; set; }
+            public string gdesc { get; set; }
+
+
+            public EClassLeadReason()
+            { 
+            
+            
+            }
+
+
+
+
+
+        }
+
+
     }
 }

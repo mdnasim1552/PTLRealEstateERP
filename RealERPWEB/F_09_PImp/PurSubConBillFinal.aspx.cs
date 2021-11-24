@@ -158,7 +158,7 @@ namespace RealERPWEB.F_09_PImp
             if (this.ddlPrevBillList.Items.Count > 0)
                 mREQNO = this.ddlPrevBillList.SelectedValue.ToString();
 
-            string mREQDAT = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString();
+            string mREQDAT = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
             if (mREQNO == "NEWBILL")
             {
                 DataSet ds2 = PurData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "LASTCBILLNO", mREQDAT,
@@ -1362,8 +1362,7 @@ namespace RealERPWEB.F_09_PImp
 
 
                 DataTable dt = (DataTable)Session["tblbill"];
-                if (ddlPrevBillList.Items.Count == 0)
-                    this.GetSubConBiFin();
+               
                 if (this.txtCBillRefNo.Text.Trim() == "")
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Ref. No";
@@ -1409,6 +1408,13 @@ namespace RealERPWEB.F_09_PImp
                     }
                 }
 
+
+
+                if (ddlPrevBillList.Items.Count == 0)
+                    this.GetSubConBiFin();
+
+
+            
 
                 string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
                 string billno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();

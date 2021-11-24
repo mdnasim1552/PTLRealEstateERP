@@ -119,7 +119,7 @@ namespace RealERPWEB.F_17_Acc
             if (dt.Rows.Count == 0)
                 return;
             ((Label)this.gvBgdvsExpense.FooterRow.FindControl("lgvFqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(trnqty)", "")) ?
-                                 0 : dt.Compute("sum(trnqty)", ""))).ToString("#,##0.00;-#,##0.00; ");
+                                 0 : dt.Compute("sum(trnqty)", ""))).ToString("#,##0.00; #,##0.00; ");
             ((Label)this.gvBgdvsExpense.FooterRow.FindControl("lgvFamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(trnam)", "")) ?
                          0 : dt.Compute("sum(trnam)", ""))).ToString("#,##0.00;(#,##0.00); ");
             
