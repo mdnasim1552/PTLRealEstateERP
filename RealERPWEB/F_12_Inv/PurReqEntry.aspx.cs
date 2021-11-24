@@ -2193,13 +2193,14 @@ namespace RealERPWEB.F_12_Inv
 
                             SendSmsProcess sms = new SendSmsProcess();
                             string comnam = hst["comnam"].ToString();
-                            string compname = hst["compname"].ToString();
+                            string compname = hst["compname"].ToString(); 
+                            string ddldesc = hst["ddldesc"].ToString();
                             string frmname = "PurReqEntry.aspx?InputType=ReqCheck";
 
                             string SMSHead = "Ready for Check, ";
 
 
-                            string SMSText = comnam + ":\n" + SMSHead + "\n" + ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRF No: " + txtMRFNo.Text;
+                            string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRF No: " + txtMRFNo.Text;
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
 
 
@@ -2610,11 +2611,12 @@ namespace RealERPWEB.F_12_Inv
                     default:
                         SendSmsProcess sms = new SendSmsProcess();
                         string comnam = hst["comnam"].ToString();
+                        string ddldesc = hst["ddldesc"].ToString();
                         string compname = hst["compname"].ToString();
                         string frmname = "PurReqApproval.aspx?Type=RateInput";
 
                         string SMSHead = "Ready To Rate Proposal, ";
-                        string SMSText = comnam + ":\n" + SMSHead + "\n" + ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRR No: " + txtMRFNo.Text + "\n" + "Thanks";
+                        string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRR No: " + txtMRFNo.Text + "\n" + "Thanks";
                         bool resultsms = sms.SendSmms(SMSText, checkusrid, frmname);
                         break;
                 }
@@ -2674,10 +2676,11 @@ namespace RealERPWEB.F_12_Inv
                         SendSmsProcess sms = new SendSmsProcess();
                         string comnam = hst["comnam"].ToString();
                         string compname = hst["compname"].ToString();
+                        string ddldesc = hst["ddldesc"].ToString();
                         string frmname = "PurReqApproval.aspx?Type=RateInput";
 
                         string SMSHead = "Ready To Rate Proposal, ";
-                        string SMSText = comnam + ":\n" + SMSHead + "\n" + ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRR No: " + txtMRFNo.Text + "\n" + "Thanks";
+                        string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRR No: " + txtMRFNo.Text + "\n" + "Thanks";
                         bool resultsms = sms.SendSmms(SMSText, faprvusrid, frmname);
                         break;
                 }

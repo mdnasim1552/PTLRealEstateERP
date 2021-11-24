@@ -1600,7 +1600,8 @@ namespace RealERPWEB.F_09_PImp
 
         protected void grvissue_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["tblmatissue"];
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
@@ -1623,7 +1624,7 @@ namespace RealERPWEB.F_09_PImp
             {
                 string eventtype = "Labour Issue Information";
                 string eventdesc = "Delete Labour";
-                string eventdesc2 = "Project Name: " + this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Sub Contractor Name: " +
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlprjlist.SelectedItem.Text : this.ddlprjlist.SelectedItem.Text.Substring(14) + "- " + "Sub Contractor Name: " +
                         this.ddlcontractorlist.SelectedItem.Text.Substring(14) + "- " + "Issue No: " + this.lblCurISSNo1.Text.Trim().Substring(0, 3) +
                         ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim() + "- " +
                         ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();

@@ -411,9 +411,11 @@ namespace RealERPWEB.F_22_Sal
 
             if (ConstantInfo.LogStatus == true)
             {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string ddldesc = hst["ddldesc"].ToString();
                 string eventtype = "Unit Fixation";
                 string eventdesc = "Update Fixation";
-                string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13);
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlProjectName.SelectedItem.ToString() : this.ddlProjectName.SelectedItem.ToString().Substring(13);
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
@@ -556,7 +558,8 @@ namespace RealERPWEB.F_22_Sal
 
         protected void gvUnit_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
             string UsirCode = ((Label)this.gvUnit.Rows[e.RowIndex].FindControl("lblgvItmCod")).Text.Trim();
@@ -579,7 +582,7 @@ namespace RealERPWEB.F_22_Sal
             {
                 string eventtype = "Unit Fixation";
                 string eventdesc = "Delete Fixation";
-                string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13);
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlProjectName.SelectedItem.ToString() : this.ddlProjectName.SelectedItem.ToString().Substring(13);
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
