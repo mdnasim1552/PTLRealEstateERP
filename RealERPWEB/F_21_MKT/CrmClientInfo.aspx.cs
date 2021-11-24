@@ -3956,13 +3956,9 @@ namespace RealERPWEB.F_21_MKT
                 Empid = hst["empid"].ToString();
             }
             //string empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
-
-
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONNUMBER", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
-
-
         }
 
         protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)

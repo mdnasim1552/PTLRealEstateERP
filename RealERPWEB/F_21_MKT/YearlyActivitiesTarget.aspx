@@ -125,7 +125,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Description">
                                             <FooterTemplate>
-                                               <button class="btn btn-sm btn-primary">Total</button> 
+                                               <button  >Total</button> 
                                                 <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-danger d-none btn-sm primaryBtn" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
