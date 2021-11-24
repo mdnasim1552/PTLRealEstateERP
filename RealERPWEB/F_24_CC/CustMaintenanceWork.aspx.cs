@@ -805,6 +805,8 @@ namespace RealERPWEB.F_24_CC
                         case "3340": // Urban                   
                         case "3344": // Terranova
                         case "3101": // Asit Own
+                        case "3354": // ERL Own
+
 
                             if (approval == "")
                             {

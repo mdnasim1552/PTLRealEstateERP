@@ -682,9 +682,10 @@ namespace RealERPWEB.F_22_Sal
 
             if (ConstantInfo.LogStatus == true)
             {
+                string ddldesc = hst["ddldesc"].ToString();
                 string eventtype = "Sales With Payment Schedule";
                 string eventdesc = "Update Personal Info";
-                string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlProjectName.SelectedItem.ToString() : this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
@@ -766,9 +767,10 @@ namespace RealERPWEB.F_22_Sal
             ScriptManager.RegisterStartupScript(this, GetType(), "showalert", "alert('Updated Successfully');", true);
             if (ConstantInfo.LogStatus == true)
             {
+                string ddldesc = hst["ddldesc"].ToString();
                 string eventtype = "Sales With Payment Schedule";
                 string eventdesc = "Update Revenue Info";
-                string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlProjectName.SelectedItem.ToString() : this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
@@ -1002,7 +1004,8 @@ namespace RealERPWEB.F_22_Sal
                 {
                     string eventtype = "Sales With Payment Schedule";
                     string eventdesc = "Update Payment Schedule";
-                    string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
+                    string ddldesc = hst["ddldesc"].ToString();
+                    string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlProjectName.SelectedItem.ToString() : this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
@@ -1306,9 +1309,10 @@ namespace RealERPWEB.F_22_Sal
 
             if (ConstantInfo.LogStatus == true)
             {
+                string ddldesc = hst["ddldesc"].ToString();
                 string eventtype = "Loan Info";
                 string eventdesc = "Update Loan Info";
-                string eventdesc2 = "Project Name: " + this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
+                string eventdesc2 = "Project Name: " + ddldesc == "True" ? this.ddlProjectName.SelectedItem.ToString() : this.ddlProjectName.SelectedItem.ToString().Substring(13) + " - " + Usircode;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
@@ -1625,13 +1629,15 @@ namespace RealERPWEB.F_22_Sal
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string ddldesc = hst["ddldesc"].ToString();
                 Label txt01 = (Label)e.Row.FindControl("lblgvRemarks");
                 LinkButton lbtn1 = (LinkButton)e.Row.FindControl("lbtnusize");
                 HyperLink hypcustlink = (HyperLink)e.Row.FindControl("hypcustomer");
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
-                string pactdesc = this.ddlProjectName.SelectedItem.Text.ToString().Substring(13);
+                string pactdesc = ddldesc=="True"?this.ddlProjectName.SelectedItem.Text.ToString(): this.ddlProjectName.SelectedItem.Text.ToString().Substring(13);
 
                 string custname = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "custname")).ToString();
 
