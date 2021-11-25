@@ -101,8 +101,11 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-
-
+                                          <asp:TemplateField HeaderText=" ">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtdeleteorderno" runat="server" OnClick="lbtdeleteorderno_Click" ><span class="glyphicon glyphicon-remove"> </span></asp:LinkButton>
+                                    </ItemTemplate>
+                                   </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Name of Supplier">
                                             <ItemTemplate>
@@ -136,10 +139,20 @@
                                             <HeaderStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
                                         
+                                           <asp:TemplateField HeaderText="Order No" Visible="false" >
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblorderno" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno")) %>'
+                                                    Width="70"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                            <HeaderStyle VerticalAlign="Top" />
+                                            <HeaderStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
 
                                          <asp:TemplateField HeaderText="Order No">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblorderno" runat="server"
+                                                <asp:Label ID="lblorderno1" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "orderno1")) %>'
                                                     Width="70"></asp:Label>
                                             </ItemTemplate>
