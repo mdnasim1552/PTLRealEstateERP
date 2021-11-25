@@ -136,6 +136,42 @@ namespace RealERPWEB.F_17_Acc
             this.Data_Bind();
         }
 
+        protected void lbtdeleteorderno_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblsupbill"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rownum = (this.grvMWiseSupBill.PageSize) * (this.grvMWiseSupBill.PageIndex) + RowIndex;
+      
+           
+            string ordreno = ((Label)this.grvMWiseSupBill.Rows[rownum].FindControl("lblorderno")).Text.Trim();
+            bool result = accData.UpdateTransInfo(comcod, "SP_REPORT_PURCHASE", "MONTHSUPPLIERTAXDELETE",
+                       ordreno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result)
+            {
+                dt.Rows[rownum].Delete();
+            }
+
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail !!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
+
+
+
+
+            DataView dv = dt.DefaultView;
+            Session.Remove("tblsupbill");
+            Session["tblsupbill"] = dv.ToTable();
+            this.Data_Bind();
+
+        }
+
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
 
@@ -169,5 +205,7 @@ namespace RealERPWEB.F_17_Acc
             this.grvMWiseSupBill.PageIndex = e.NewPageIndex;
             this.Data_Bind();
         }
+
+       
     }
 }

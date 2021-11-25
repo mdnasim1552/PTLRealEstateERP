@@ -5737,9 +5737,6 @@ namespace RealERPWEB.F_21_MKT
             this.gvkpi.DataSource = ds1.Tables[0];
             this.gvkpi.DataBind();
             this.footerCalculations();
-
-
-
         }
         private void footerCalculations()
         {

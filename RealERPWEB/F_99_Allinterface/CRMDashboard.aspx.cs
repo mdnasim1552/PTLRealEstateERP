@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -24,8 +25,15 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Dashboard";
 
+              //  string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                //this.txtfodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                this.txtfodate.Text = "01" + date.Substring(2);
+               
+
+
                 GetAllSubdata();
                 //this.DataBindStatus();
                 GETEMPLOYEEUNDERSUPERVISED();
@@ -39,6 +47,9 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string comcod = GetComeCode();
             DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+
             ViewState["tblsubddl"] = ds2.Tables[0];
             ViewState["tblstatus"] = ds2.Tables[1];
             ViewState["tblproject"] = ds2.Tables[2];
@@ -180,6 +191,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "GETCRMCOMPONENTDATA", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
+            this.EmpMonthlyKPI(ddlempid);
         }
         private void bindDataIntoLabel()
         {
@@ -203,6 +215,82 @@ namespace RealERPWEB.F_99_Allinterface
             this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
 
 
+        }
+
+        private void EmpMonthlyKPI(string empid)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
+            string frmdate = this.txtfodate.Text.Trim();
+            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+             
+            // string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
+            if (userrole == "1")
+            {
+                empid = "%";
+            }
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid);
+            if (ds1 == null)
+                return;
+
+            ViewState["tbldataCount"] = ds1.Tables[0];
+            Data_bind();
+        }
+
+        private void Data_bind()
+        {
+           
+            DataTable dtc = ((DataTable)ViewState["tbldataCount"]).Copy();
+            DataTable dtw = ((DataTable)ViewState["tbldataCount"]).Copy();
+            DataTable dtd = ((DataTable)ViewState["tbldataCount"]).Copy();
+
+            DataView dvp = dtc.DefaultView;
+            dvp.RowFilter = ("grp='M'");
+            dtc = dvp.ToTable();
+
+            DataView dvw = dtw.DefaultView;
+            dvw.RowFilter = ("grp='W'");
+            dtw = dvw.ToTable();
+
+            DataView dvd = dtd.DefaultView;
+            dvd.RowFilter = ("grp='D'");
+            dtd = dvd.ToTable();
+
+
+
+            var jsonSerialiser = new JavaScriptSerializer();
+
+            var lst = dtc.DataTableToList<CrmLeadData>();
+            var lstw = dtw.DataTableToList<CrmLeadData>();
+            var lstd = dtd.DataTableToList<CrmLeadData>();
+            
+
+
+            var data = jsonSerialiser.Serialize(lst);
+            var dataw = jsonSerialiser.Serialize(lstw);
+            var datad = jsonSerialiser.Serialize(lstd);
+            
+
+            var gtype = "column";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + dataw + "','" + datad + "','" + gtype + "')", true);
+
+        }
+
+        [Serializable]
+        public class CrmLeadData
+        {
+            public decimal total { get; set; }
+            public decimal call { get; set; }
+            public decimal extmeeting { get; set; }
+            public decimal intmeeting { get; set; }
+            public decimal proposal { get; set; }
+            public decimal leads { get; set; }
+            public decimal close { get; set; }
+            public decimal visit { get; set; }
+            public decimal others { get; set; }           
+            public string empid { get; set; }
+            public string empname { get; set; }
         }
 
     }
