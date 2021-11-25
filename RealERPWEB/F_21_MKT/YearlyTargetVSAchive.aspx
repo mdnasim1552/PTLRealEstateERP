@@ -16,7 +16,17 @@
       
     </script>
 
-
+    <style>
+        input {
+  font: inherit;
+  padding: 0.2em 0.5em;
+  border:none;
+}
+        :focus{
+            border:none !important;
+            outline:none !important;
+        }
+    </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -116,7 +126,7 @@
                                                 <asp:Label ID="lgvFqty1" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvqty1" runat="server" BorderColor="#99CCFF"
+                                                <asp:TextBox ID="txtgvqty1" runat="server" BorderColor="#99CCFF" ReadOnly="true" CssClass="disabled "
                                                     BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"  onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
                                                     Style="text-align: right; background-color: Transparent"    
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty1")).ToString("#,##0;-#,##0; ") %>'
@@ -127,7 +137,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty1" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -160,7 +170,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty2" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -194,7 +204,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty3" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -231,7 +241,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty4" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -268,7 +278,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty5" runat="server"></asp:Label>
                                             </FooterTemplate>
@@ -302,7 +312,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty6" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -335,7 +345,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty7" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -369,7 +379,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty8" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -404,7 +414,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty9" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -439,7 +449,7 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty10" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -474,7 +484,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty11" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
@@ -508,7 +518,7 @@
                                             <HeaderStyle  Font-Size="12px" HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Achive">
+                                        <asp:TemplateField HeaderText="Achieve">
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFaqty12" runat="server" Width="40px"></asp:Label>
                                             </FooterTemplate>
