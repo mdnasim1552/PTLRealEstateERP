@@ -697,8 +697,6 @@ namespace RealERPWEB.F_22_Sal
                 ((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text = Convert.ToDouble((Convert.IsDBNull(dtstatus.Compute("Sum(paidamt)", "")) ? 0.00 : dtstatus.Compute("Sum(paidamt)", ""))).ToString("#,##0;-#,##0; ");
                 ((Label)this.grvacc.FooterRow.FindControl("lblgvFdisamt")).Text = Convert.ToDouble((Convert.IsDBNull(dtstatus.Compute("Sum(disamt)", "")) ? 0.00 : dtstatus.Compute("Sum(disamt)", ""))).ToString("#,##0;-#,##0; ");
 
-
-                //this.lbtnUpdate.Visible = true;
             }
             if (Request.QueryString["Type"].Trim() == "CustCare" || Request.QueryString["Type"].Trim() == "Billing")
             {

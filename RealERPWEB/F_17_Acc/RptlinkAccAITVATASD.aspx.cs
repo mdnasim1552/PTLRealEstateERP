@@ -329,49 +329,6 @@ namespace RealERPWEB.F_17_Acc
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-
-
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //ReportDocument rptsl = new RealERPRPT.R_17_Acc.RptAccAITVATASD();
-            //string opam = ((Label)this.gvaitvsd.FooterRow.FindControl("lgvFOpAmt")).Text;
-            //string dram = ((Label)this.gvaitvsd.FooterRow.FindControl("lgvFDrAmt")).Text;
-            //string cram = ((Label)this.gvaitvsd.FooterRow.FindControl("lgvFCrAmt")).Text;
-            //string clsam = ((Label)this.gvaitvsd.FooterRow.FindControl("lgvFClsAmt")).Text;
-            //TextObject txtCompany = rptsl.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-            //TextObject txtOpam = rptsl.ReportDefinition.ReportObjects["opening"] as TextObject;
-            //txtOpam.Text = opam;
-            //TextObject txtDr = rptsl.ReportDefinition.ReportObjects["dr"] as TextObject;
-            //txtDr.Text = dram;
-            //TextObject txtCr = rptsl.ReportDefinition.ReportObjects["cr"] as TextObject;
-            //txtCr.Text = cram;
-            //TextObject txtCloseing = rptsl.ReportDefinition.ReportObjects["closeing"] as TextObject;
-            //txtCloseing.Text = clsam;
-            //TextObject txtdate = rptsl.ReportDefinition.ReportObjects["txtdate"] as TextObject;
-            //txtdate.Text = "( From: " + this.Request.QueryString["frmdate"].ToString() + "  To: " + this.Request.QueryString["todate"].ToString() +" )";
-
-            //TextObject Resource = rptsl.ReportDefinition.ReportObjects["txtResource"] as TextObject;
-            //Resource.Text = this.lblValresDescription.Text.Trim();
-            //TextObject txtSupCon = rptsl.ReportDefinition.ReportObjects["txtSupCon"] as TextObject;
-            //txtSupCon.Text = this.lblValSubDescription.Text;
-
-
-            //TextObject txtuserinfo = rptsl.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            //rptsl.SetDataSource((DataTable)Session["tblaitvatsd"]);
-            //Session["Report1"] = rptsl;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
         }
 
 

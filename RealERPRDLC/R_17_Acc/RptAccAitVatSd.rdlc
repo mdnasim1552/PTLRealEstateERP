@@ -1085,17 +1085,20 @@ Fields!clsam.Value = 0,""
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox39">
+                        <Textbox Name="opam1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!opam.Value</Value>
+                                  <Value>=Switch(
+Sum(Fields!opam.Value) &gt; 0,Math.Round(Sum(Fields!opam.Value),0,MidPointRounding.AwayFromZero),
+Sum(Fields!opam.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!opam.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
+Sum(Fields!opam.Value) = 0,""
+)</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1105,7 +1108,7 @@ Fields!clsam.Value = 0,""
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox39</rd:DefaultName>
+                          <rd:DefaultName>opam1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1129,10 +1132,13 @@ Fields!clsam.Value = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!dram.Value</Value>
+                                  <Value>=Switch(
+Sum(Fields!dram.Value) &gt; 0,Math.Round(Sum(Fields!dram.Value),0,MidPointRounding.AwayFromZero),
+Sum(Fields!dram.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!dram.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
+Sum(Fields!dram.Value) = 0,""
+)</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1166,10 +1172,13 @@ Fields!clsam.Value = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!cram.Value</Value>
+                                  <Value>=Switch(
+Sum(Fields!cram.Value) &gt; 0,Math.Round(Sum(Fields!cram.Value),0,MidPointRounding.AwayFromZero),
+Sum(Fields!cram.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!cram.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
+Sum(Fields!cram.Value) = 0,""
+)</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1203,10 +1212,13 @@ Fields!clsam.Value = 0,""
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!clsam.Value</Value>
+                                  <Value>=Switch(
+Sum(Fields!clsam.Value) &gt; 0,Math.Round(Sum(Fields!clsam.Value),0,MidPointRounding.AwayFromZero),
+Sum(Fields!clsam.Value) &lt; 0,"("&amp; Math.Round(Math.Abs(Sum(Fields!clsam.Value)),0,MidPointRounding.AwayFromZero) &amp;")",
+Sum(Fields!clsam.Value) = 0,""
+)</Value>
                                   <Style>
                                     <FontFamily>Calibri</FontFamily>
-                                    <FontSize>11pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>

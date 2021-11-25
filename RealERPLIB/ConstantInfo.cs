@@ -1082,6 +1082,7 @@ namespace RealERPLIB
             
             tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2151000", "2151003", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
 
 
 
@@ -6823,11 +6824,13 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0208000000", "08. Client Assign", "F_21_Mkt/ClientAssign?Type=MktClAss", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0209000000", "08. Accept Prospective  Client", "F_21_Mkt/ClientAssign?Type=MktAcceptClient", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0210000000", "	Client All Information", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "01. Client Details", "F_21_MKT/CrmClientInfo?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0212000000", "02. Suspect Notification", "F_21_MKT/RptClientInitial?Type=MktLead", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "03. Client Transfer List ", "F_21_MKT/ClientTransfer", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "04. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" }); 
+            mnuTbl1.Rows.Add(new Object[] { "0210000000", "Client All Information", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000000", "01. CRM Dashboard", "F_99_Allinterface/CRMDashboard", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0213000000", "02. Client Details", "F_21_MKT/CrmClientInfo?Type=Entry", "", true, "" });
+            
+            mnuTbl1.Rows.Add(new Object[] { "0214000000", "03. Suspect Notification", "F_21_MKT/RptClientInitial?Type=MktLead", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0215000000", "04. Client Transfer List ", "F_21_MKT/ClientTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0216000000", "05. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" }); 
 
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });//"03. Basic Information Field", "F_21_Mkt/MktGenCodeBook", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });//"06. Discussion Field", "F_64_Mgt/GenCodeBook?Type=81", "", true, "" });
