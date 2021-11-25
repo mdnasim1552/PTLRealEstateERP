@@ -1846,7 +1846,7 @@ namespace RealERPWEB.F_17_Acc
                      todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
                      tvoudat = Convert.ToDateTime(voudat);
 
-
+                    
 
                     //tvoudat = Convert.ToDateTime(voudat);
 
@@ -1854,8 +1854,8 @@ namespace RealERPWEB.F_17_Acc
                         ;
                     else
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date  : " + tvoudat;
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        //((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date  : " + tvoudat;
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                        
 
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Voucher can be eidited during the date range of that particular month');", true);
