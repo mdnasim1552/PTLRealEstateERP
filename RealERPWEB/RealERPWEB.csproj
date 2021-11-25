@@ -3121,6 +3121,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpStatus02.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HREmpConfirmation.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
@@ -3133,6 +3134,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\RetiredEmployee.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptEmpIncrAPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptEmpStatus03.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\RptUserLogDetails.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\UserImage.aspx" />
     <Content Include="F_81_Hrm\F_93_AnnInc\AnnualIncrement.aspx" />
@@ -4291,6 +4293,20 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
+      <DependentUpon>EmpSettlement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.designer.cs">
+      <DependentUpon>EmpSettlement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.cs">
+      <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
+      <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
