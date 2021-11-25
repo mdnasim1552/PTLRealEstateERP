@@ -624,11 +624,19 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Floor">
+                                      <asp:TemplateField HeaderText="Floor" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvMSRFlrcod" runat="server"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
-                                                Width="30px"></asp:Label>
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Floor Desc">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMSRFlrdesc" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'
+                                                Width="70px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 

@@ -439,7 +439,7 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim()==null ? "" : this.ddlprjlist.SelectedItem.Text.Trim() == "" ? "" : this.ddlprjlist.SelectedItem.Text.Trim();
 
             this.ddlprjlist.Visible = false;
             this.lblddlProject.Visible = true;

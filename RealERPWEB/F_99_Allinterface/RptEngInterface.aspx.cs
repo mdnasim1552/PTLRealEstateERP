@@ -1056,12 +1056,16 @@ namespace RealERPWEB.F_99_Allinterface
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
 
                 //  dt.Rows[rowindex].Delete();
+
+
+
             }
 
             else
             {
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Update Fail');", true);
+                return;
 
             }
 
@@ -1081,6 +1085,14 @@ namespace RealERPWEB.F_99_Allinterface
             //            ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
             //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)ViewState["tblLogin"]), eventtype, eventdesc, eventdesc2);
             //}
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Final Approval";
+                string eventdesc = "Final Approval Delete";
+                string eventdesc2 = "Requisition No: " + reqno;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
 
         }
 
@@ -1130,7 +1142,16 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Update Fail');", true);
+                return;
 
+            }
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Order Bil";
+                string eventdesc = "Delete Order Bill";
+                string eventdesc2 = "General Bill No: " + reqno;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
 
@@ -1221,7 +1242,14 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Update Fail');", true);
-
+                return;
+            }
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = " General Bill";
+                string eventdesc = "General Bill Delete First Recom";
+                string eventdesc2 = "General Bill No: " + reqno;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
 
@@ -1269,9 +1297,16 @@ namespace RealERPWEB.F_99_Allinterface
 
             else
             {
-
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Update Fail');", true);
+                return;
+            }
 
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = " General Bill";
+                string eventdesc = "General Bill Delete Second Recom";
+                string eventdesc2 = "General Bill No: " + reqno;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
 
