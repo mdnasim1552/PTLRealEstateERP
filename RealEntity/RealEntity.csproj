@@ -120,6 +120,8 @@
     <Compile Include="C_47_Kpi\UserManagerKPI.cs" />
     <Compile Include="C_62_Mis\EClassSales_02.cs" />
     <Compile Include="C_81_Hrm\BankFor.cs" />
+    <Compile Include="C_81_Hrm\C_81_Rec\BL_ClassManPower.cs" />
+    <Compile Include="C_81_Hrm\C_81_Rec\BO_ClassManPower.cs" />
     <Compile Include="C_81_Hrm\C_81_Rec\CreateOffLt.cs" />
     <Compile Include="C_81_Hrm\C_83_Att\BO_ClassLate.cs" />
     <Compile Include="C_81_Hrm\C_83_Att\EClassAttendance.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="C_81_Hrm\C_90_PF\PFAlliance.cs" />
     <Compile Include="C_81_Hrm\C_91_ACR\EMpEvaluation.cs" />
     <Compile Include="C_81_Hrm\C_92_Mgt\BO_ClassEmployee.cs" />
+    <Compile Include="C_81_Hrm\C_92_Mgt\EClassHrInterface.cs" />
     <Compile Include="C_81_Hrm\C_92_Mgt\EmpSettlmnt.cs" />
     <Compile Include="C_81_Hrm\C_93_AnnInc\AnnIncReport.cs" />
     <Compile Include="C_81_Hrm\IndvPf.cs" />

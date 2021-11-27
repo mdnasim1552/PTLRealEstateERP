@@ -2150,7 +2150,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2226,7 +2226,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2264,7 +2264,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4298,7 +4298,7 @@
       <Width>8.11564in</Width>
       <Page>
         <PageFooter>
-          <Height>1.10002in</Height>
+          <Height>1.13127in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4322,7 +4322,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox134</rd:DefaultName>
-                  <Top>0.61875in</Top>
+                  <Top>0.53125in</Top>
                   <Left>0.02292in</Left>
                   <Height>0.1875in</Height>
                   <Width>5.61459in</Width>
@@ -4360,7 +4360,7 @@
                   <Top>0.03959in</Top>
                   <Left>0.02292in</Left>
                   <Height>0.16875in</Height>
-                  <Width>1.26042in</Width>
+                  <Width>1.29792in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border>
@@ -4398,7 +4398,7 @@
                   <Top>0.23959in</Top>
                   <Left>0.02292in</Left>
                   <Height>0.21875in</Height>
-                  <Width>1.23958in</Width>
+                  <Width>1.28958in</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
@@ -4411,7 +4411,7 @@
                   </Style>
                 </Textbox>
                 <Line Name="Line1">
-                  <Top>0.61875in</Top>
+                  <Top>0.53125in</Top>
                   <Left>0.025in</Left>
                   <Height>0in</Height>
                   <Width>8.03208in</Width>
@@ -4444,7 +4444,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
                   <Top>0.03959in</Top>
-                  <Left>1.33167in</Left>
+                  <Left>1.34417in</Left>
                   <Height>0.17917in</Height>
                   <Width>1.3875in</Width>
                   <ZIndex>4</ZIndex>
@@ -4482,7 +4482,7 @@
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
                   <Top>0.23959in</Top>
-                  <Left>1.33167in</Left>
+                  <Left>1.34417in</Left>
                   <Height>0.21875in</Height>
                   <Width>1.37708in</Width>
                   <ZIndex>5</ZIndex>
@@ -4759,7 +4759,7 @@
               </ReportItems>
               <KeepTogether>true</KeepTogether>
               <Top>0.0125in</Top>
-              <Height>1.02292in</Height>
+              <Height>1.075in</Height>
               <Width>8.05708in</Width>
               <Style>
                 <Border>

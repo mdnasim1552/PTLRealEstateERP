@@ -252,7 +252,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
-            string postDat = System.DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss");
+            string postDat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string sessionid = hst["session"].ToString();
             string trmid = hst["compname"].ToString();
             DataTable dt = (DataTable)Session["tblover"];

@@ -1080,9 +1080,9 @@ namespace RealERPLIB
             
             
             
-            tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2151000", "2151003", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
 
 
 
@@ -1862,10 +1862,12 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8101000", "8101011", "F_81_Hrm/F_94_Task", "TaskCodeBook", "", "Daily Work CodeBook", "Daily Activities", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101012", "F_81_Hrm/F_94_Task", "TaskInfoDet", "", "Daily Work Information", "Daily Activities", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8101000", "8101013", "F_81_Hrm/F_82_App", "EmpDesignationlinkDeptWise", "", "Designation link Dept Wise", "Appointment", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8101000", "8101014", "F_81_Hrm/F_92_Mgt", "RptSettlementStatus", "", "Employee Settlement Top Sheet", "Employee Settlement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8101000", "8101015", "F_81_Hrm/F_92_Mgt", "EmpSettlement?", "Type=Entry", "Employee Settlement Entry", "Employee Settlement", "False", "False", "False", "False" });
 
-            
-            
-            
+
+
+
             //Entry option 
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102001", "F_81_Hrm/F_81_Rec", "ApplicantInfo", "", "Applicent Information", "Recruitment", "False", "False", "False", "False" }); ;
@@ -14471,26 +14473,29 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0251000000", "01. Employee Resign", "F_81_Hrm/F_92_Mgt/RetiredEmployee", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0257000000", "02. Employee Final Settelement", "F_81_Hrm/F_92_Mgt/RetiredEmpFinalSett", "", true, "" });
 
-
+            //I. Promotion
             mnuTbl1.Rows.Add(new Object[] { "0252000000", "I. Promotion", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0253000000", "01. Promotion", "F_81_Hrm/F_92_Mgt/EmpPro", "", true, "" });
 
-            // I. Annual Increment
-
-            mnuTbl1.Rows.Add(new Object[] { "0254000000", "L. Annual Increment", "", "", false, "mb" });
+            //J. Annual Increment
+            mnuTbl1.Rows.Add(new Object[] { "0254000000", "J. Annual Increment", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0255000000", "01. Annual Increment", "F_81_Hrm/F_93_AnnInc/AnnualIncrement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0256000000", "02. Annual Increment Updated", "F_81_Hrm/F_93_AnnInc/HrIncrementUpdate", "", true, "" });
 
             
-             // I. Task CodeBook
-            mnuTbl1.Rows.Add(new Object[] { "0257000000", "L. Daily Activities", "", "", false, "mb" });
-             mnuTbl1.Rows.Add(new Object[] { "0258000000", "02. Daily Work CodeBook", "F_81_Hrm/F_94_Task/TaskCodeBook", "", true, "" });
-             mnuTbl1.Rows.Add(new Object[] { "0258000000", "03. Daily Work Information", "F_81_Hrm/F_94_Task/TaskInfoDet", "", true, "" });
-            
-            
+             //K. Task CodeBook
+            mnuTbl1.Rows.Add(new Object[] { "0257000000", "K. Daily Activities", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0258000000", "02. Daily Work CodeBook", "F_81_Hrm/F_94_Task/TaskCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0258000000", "03. Daily Work Information", "F_81_Hrm/F_94_Task/TaskInfoDet", "", true, "" });
+
+
+            //L. Employee Settlement
+            mnuTbl1.Rows.Add(new Object[] { "0259000000", "L. Employee Settlement", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0260000000", "01. Employee Settlement Top Sheet", "F_81_Hrm/F_92_Mgt/RptSettlementStatus", "", true, "" });
+
+
+
             //Input Operational menu
-
-
 
 
             // A. Recruitment
