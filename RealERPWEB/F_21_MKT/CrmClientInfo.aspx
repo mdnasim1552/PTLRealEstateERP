@@ -3705,6 +3705,13 @@
                                                 <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_99_Allinterface/CRMDashboard" runat="server">CRM Dashboard</asp:HyperLink>
                                             </li>
 
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink5" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget?Type=CRM" runat="server">Yearly Activities Target Set</asp:HyperLink>
+                                            </li>
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=CRM" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
+                                            </li>
+
                                         </ul>
                                     </div>
                                 </div>
