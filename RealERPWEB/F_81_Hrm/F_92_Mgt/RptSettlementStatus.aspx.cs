@@ -36,11 +36,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Employee Settlement Top Sheet";
 
-                ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
-
-                ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = true;
-                ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
-
+                this.CommonButton();
                 this.txtDatefrom.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtDatefrom.Text = "01" + this.txtDatefrom.Text.Trim().Substring(2);
                 this.txtdateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -67,7 +63,27 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         }
 
+        private void CommonButton()
+        {
 
+            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = true;
+
+            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
+            ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
+            ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
+            ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
+
+        }
 
         private string GetComCode()
         {
@@ -87,15 +103,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string fdate = this.txtDatefrom.Text.ToString();
             string tdate = this.txtdateto.Text.ToString();
 
-            string empType = this.ddlWstation.SelectedValue.ToString().Substring(0, 4) + "%";
-            string div = (this.ddlDivision.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDivision.SelectedValue.ToString().Substring(0, 7) + "%";
+            string empType = this.ddlWstation.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string div = (this.ddlDivision.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDivision.SelectedValue.ToString().Substring(0, 7) + "%";
+            string div = "%";
             string Dept = (this.ddlDept.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDept.SelectedValue.ToString().Substring(0, 9) + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-
-
-
-
-
 
             DataSet ds2 = feaData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACR_EMPLOYEE", "SHOW_SEPERATED_EMP", fdate, tdate, empType, div, Dept, section, "", "", "");
 
@@ -120,6 +132,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.gvSettInfo.DataBind();
 
             this.FooterCal();
+            Session["Report1"] = gvSettInfo;
+            if (sttlmntinfo.Count > 0)
+            {
+                ((HyperLink)this.gvSettInfo.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
         }
 
         private void FooterCal()
@@ -244,18 +261,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             var lst1 = ds3.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>();
             var list1 = lst1.FindAll(p => p.hrgcod.Substring(0, 3) == "351");
             var list2 = lst1.FindAll(p => p.hrgcod.Substring(0, 3) == "352");
-
-
-
-
-
-
-
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-
-
-
 
             string billDate = emplist[0].billdate.ToString("dd-MMM-yyyy");
             billDate = GetMonthName(GetBanglaNumber(Convert.ToInt16(Convert.ToDateTime(billDate).ToString("dd"))) + "-" + (Convert.ToDateTime(billDate).ToString("MMM"))) + "-" + GetBanglaNumber(Convert.ToInt16(Convert.ToDateTime(billDate).ToString("yyyy")));
@@ -270,9 +276,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string sepdate = emplist[0].retdat.ToString("dd-MMM-yyyy");
             sepdate = GetMonthName(GetBanglaNumber(Convert.ToInt16(Convert.ToDateTime(sepdate).ToString("dd"))) + "-" + (Convert.ToDateTime(sepdate).ToString("MMM"))) + "-" + GetBanglaNumber(Convert.ToInt16(Convert.ToDateTime(sepdate).ToString("yyyy")));
             double netamount = Convert.ToDouble("0" + (lst1.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - lst1.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)));
-            string servicelength = emplist[0].servleng.ToString();//Convert.ToDateTime(emplist[0].servleng).ToString("dd-MMM-yyyy");
-                                                                  //string servicelength1 = Convert.ToDateTime(emplist[0].servleng).ToString("MM");
-                                                                  //string servicelength2 = Convert.ToDateTime(emplist[0].servleng).ToString("yyyyy");
+            string servicelength = emplist[0].servleng.ToString();
 
             double netpay = Convert.ToDouble(netamount);
 
@@ -356,22 +360,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     servicelength += item + " ";
 
                 }
-                rpt1 = RptSetupClass1.GetLocalReport("RD_81_HRM.RD_92_MGT.RptEmpSattelmentBangla", list1, list2, null);
+                rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelmentBangla", list1, list2, null);
+                rpt1.SetParameters(new ReportParameter("rpttitle", "চূড়ান্ত নিষ্পত্তিকরন বিল"));
             }
             else
             {
-                rpt1 = RptSetupClass1.GetLocalReport("RD_81_HRM.RD_92_MGT.RptEmpSattelment", list1, list2, null);
+                rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelment", list1, list2, null);
+                rpt1.SetParameters(new ReportParameter("rpttitle", "Employee Final Sattelment"));
             }
             rpt1.EnableExternalImages = true;
-
             rpt1.SetParameters(new ReportParameter("comnam", comnam));
             rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            rpt1.SetParameters(new ReportParameter("rpttitle", ""));
             rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             rpt1.SetParameters(new ReportParameter("netamount", netamount.ToString("#,##0.00;(#,##0.00); ")));
             rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat("", username, printdate)));
-
-
             rpt1.SetParameters(new ReportParameter("billDate", billDate));
             rpt1.SetParameters(new ReportParameter("name", name.ToString().Trim()));
             rpt1.SetParameters(new ReportParameter("Desgin", Desgin));
@@ -382,7 +384,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             rpt1.SetParameters(new ReportParameter("sepdate", sepdate));
             rpt1.SetParameters(new ReportParameter("servicelength", servicelength));
             rpt1.SetParameters(new ReportParameter("inwords", inword));
-
 
 
             Session["Report1"] = rpt1;
@@ -429,33 +430,33 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddlWstation_SelectedIndexChanged(null, null);
 
         }
-        private void GetDivision()
-        {
+        //private void GetDivision()
+        //{
 
-            string wstation = this.ddlWstation.SelectedValue.ToString();//940100000000
-            string comcod = GetComCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userid = hst["usrid"].ToString();
-            List<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf> lst = (List<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf>)ViewState["lstOrganoData"];
+        //    string wstation = this.ddlWstation.SelectedValue.ToString();//940100000000
+        //    string comcod = GetComCode();
+        //    Hashtable hst = (Hashtable)Session["tblLogin"];
+        //    string userid = hst["usrid"].ToString();
+        //    List<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf> lst = (List<RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf>)ViewState["lstOrganoData"];
 
 
-            var lst1 = lst.FindAll(x => x.actcode.Substring(0, 4) == wstation.Substring(0, 4) && x.actcode.Substring(7) == "00000" && x.actcode != wstation);
-            RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf all = new RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf { actcode = "000000000000", actdesc = "All Division" };
-            lst1.Add(all);
+        //    var lst1 = lst.FindAll(x => x.actcode.Substring(0, 4) == wstation.Substring(0, 4) && x.actcode.Substring(7) == "00000" && x.actcode != wstation);
+        //    RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf all = new RealEntity.C_81_Hrm.C_81_Rec.BO_ClassManPower.HrSirInf { actcode = "000000000000", actdesc = "All Division" };
+        //    lst1.Add(all);
 
-            this.ddlDivision.DataTextField = "actdesc";
-            this.ddlDivision.DataValueField = "actcode";
-            this.ddlDivision.DataSource = lst1;
-            this.ddlDivision.DataBind();
-            this.ddlDivision.SelectedValue = "000000000000";
+        //    this.ddlDivision.DataTextField = "actdesc";
+        //    this.ddlDivision.DataValueField = "actcode";
+        //    this.ddlDivision.DataSource = lst1;
+        //    this.ddlDivision.DataBind();
+        //    this.ddlDivision.SelectedValue = "000000000000";
 
-            this.ddlDivision_SelectedIndexChanged(null, null);
+        //    this.ddlDivision_SelectedIndexChanged(null, null);
 
-        }
+        //}
 
         private void GetDeptList()
         {
-            string wstation = this.ddlDivision.SelectedValue.ToString();//940100000000
+            string wstation = this.ddlWstation.SelectedValue.ToString();//940100000000
 
             string comcod = GetComCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -498,13 +499,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void ddlWstation_SelectedIndexChanged(object sender, EventArgs e)
         {
             GetAllOrganogramList();
-            this.GetDivision();
-        }
-
-        protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
-        {
             this.GetDeptList();
         }
+
+        //protected void ddlDivision_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    this.GetDeptList();
+        //}
         protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetSectionList();

@@ -896,6 +896,8 @@
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpListBirthDateWise.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpListJDateWise.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpListJoinDateWise.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelment.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSattelmentBangla.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptEmpSpList.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInactiveEmplist.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_92_Mgt\RptInactiveEmplists.rdlc" />

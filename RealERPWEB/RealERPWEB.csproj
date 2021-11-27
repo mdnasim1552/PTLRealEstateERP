@@ -3085,6 +3085,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\EmpLoanInfo.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpMonthSummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpOverTimeSalary.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RpHRtPayroll.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptBankStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptEmpLeaveStatus.aspx" />
@@ -4293,6 +4294,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.cs">
+      <DependentUpon>PrintPaySlip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
+      <DependentUpon>PrintPaySlip.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>

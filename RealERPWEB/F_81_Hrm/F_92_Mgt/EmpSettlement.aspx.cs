@@ -14,6 +14,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 {
     public partial class EmpSettlement : System.Web.UI.Page
     {
+        static string prevPage = String.Empty;
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE FINAL SETTLEMENT";
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
                 CommonButton();
                 this.GetEmployeeName();
                 if (this.Request.QueryString["actcode"].ToString().Length != 0)
@@ -42,13 +44,17 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdate_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkbtnRecalculate_Click);
+            ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Click += new EventHandler(lnkbtnLedger_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).OnClientClick = "return confirm('Do You want to Approve?')";
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
 
-
+        protected void btnClose_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(prevPage);
+        }
 
         private void lnkbtnRecalculate_Click(object sender, EventArgs e)
         {
@@ -60,14 +66,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
 
             ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Text = "Approve";
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Text = "Save";
-            ((LinkButton)this.Master.FindControl("btnClose")).Visible = true;
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Text = "Approve";
 
-
+            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
+            ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
+            ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
         }
         private void GetEmployeeName()
         {
@@ -268,16 +281,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string joining = emplist[0].joindat.ToString("dd-MMM-yyyy");
             string sepdate = emplist[0].retdat.ToString("dd-MMM-yyyy");
             var netamount = (sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "351").Sum(p => p.ttlamt) - sttlmntinfo.FindAll(s => s.hrgcod.Substring(0, 3) == "352").Sum(p => p.ttlamt)).ToString("#,##0.00;(#,##0.00); ");
-            string servicelength = emplist[0].servleng.ToString();//Convert.ToDateTime(emplist[0].servleng).ToString("dd-MMM-yyyy");
-                                                                  //string servicelength1 = Convert.ToDateTime(emplist[0].servleng).ToString("MM");
-                                                                  //string servicelength2 = Convert.ToDateTime(emplist[0].servleng).ToString("yyyyy");
+            string servicelength = emplist[0].servleng.ToString();
 
             double netpay = Convert.ToDouble(netamount);
 
 
 
             LocalReport rpt1 = new LocalReport();
-            rpt1 = RptSetupClass1.GetLocalReport("RD_81_HRM.RD_92_MGT.RptEmpSattelment", list1, list2, null);
+            rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelment", list1, list2, null);
             rpt1.EnableExternalImages = true;
 
             rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -343,7 +354,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
             LocalReport rpt1 = new LocalReport();
-            rpt1 = RptSetupClass1.GetLocalReport("RD_81_HRM.RD_92_MGT.RptEmpSattelmentBangla", list1, list2, null);
+            rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptEmpSattelmentBangla", list1, list2, null);
             rpt1.EnableExternalImages = true;
 
             rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -375,7 +386,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.Save_Value();
                 var sttlmntinfo = (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)ViewState["tblsttlmnt"];
 
-                this.lblmsg.Visible = true;
                 string comcod = this.GetComeCode();
                 string empid = this.ddlEmpName.SelectedValue.ToString();
                 string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
@@ -393,13 +403,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 if (!result)
                     return;
 
-                this.lblmsg.Text = "Updated Successfully";
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
             }
             catch (Exception ex)
             {
-                this.lblmsg.Text = "Error: " + ex.Message;
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.ToString() + "');", true);
             }
 
         }
@@ -415,7 +423,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         private void lnkbtnLedger_Click(object sender, EventArgs e)
         {
-            this.lblmsg.Visible = true;
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -427,11 +435,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (!result)
                 return;
 
-            this.lblmsg.Text = "Approve Successfully";
-            ////this.GetEmployeeName();
-            //this.ddlEmpName.Items.Clear();
-            //this.lbtnOk_Click(null,null);
-
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Approve Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
         }
 
         protected void gvsettlemntcredit_RowDataBound(object sender, GridViewRowEventArgs e)
