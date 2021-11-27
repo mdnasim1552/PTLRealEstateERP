@@ -135,8 +135,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string comnam = this.ddlDeptName.SelectedValue.Substring(0, 2).ToString();
             string deptname = this.ddlDepartment.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, "", "", "", "", "", "");
+            string chkbal = this.Chkbalance.Checked ? "Length" : "";
+            
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, chkbal, "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;
