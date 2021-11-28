@@ -63,9 +63,7 @@
                 };
             });
 
-        });
-
-        
+        });        
         function GetData() {
             try {
                
@@ -629,7 +627,6 @@
             });
             resizeObserver.observe(elem);
         }
-
         function ExecuteUserdata(data1) {
             //userdata
             console.log(JSON.parse(data1));
@@ -1208,8 +1205,7 @@
             });
             resizeObserver.observe(elem);
 
-        }
-          
+        }          
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
