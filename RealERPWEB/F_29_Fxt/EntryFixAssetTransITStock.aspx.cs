@@ -287,10 +287,7 @@ namespace RealERPWEB.F_29_Fxt
                 string comcod = hst["comcod"].ToString();
                 ProcessAccess pa = new ProcessAccess();
                 DataTable dt = (DataTable)Session["sessionforgrid"];
-                if (ddlPrevISSList.Items.Count == 0)
-                {
-                    this.GetPreTrnNm();
-                }
+                
 
 
                 string curdate = this.GetStdDate(this.txtCurTransDate.Text.ToString().Trim());
@@ -319,6 +316,10 @@ namespace RealERPWEB.F_29_Fxt
                     return;
                 }
 
+                if (ddlPrevISSList.Items.Count == 0)
+                {
+                    this.GetPreTrnNm();
+                }
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -328,7 +329,13 @@ namespace RealERPWEB.F_29_Fxt
                     string tqty = dt.Rows[i]["qty"].ToString().Trim();
                     bool result = pa.UpdateTransInfo(comcod, "SP_ENTRY_FIXEDASSET_INFO03", "INSERTORUPDATE_ASSTTRASNSINFOITDEPT", tansno, frmdept, todept, trsircode,
                          empid, empidto,tqty, curdate, refno, "", "", "", "", "", "");
+
+
+
+
                 }
+
+
                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 

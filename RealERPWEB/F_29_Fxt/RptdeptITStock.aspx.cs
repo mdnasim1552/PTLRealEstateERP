@@ -307,5 +307,161 @@ namespace RealERPWEB.F_29_Fxt
         {
 
         }
+
+
+
+        private void GetEmployeeDetails(string empid, string deptno)
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_FXTASSET_STOCK", "GETFTXEMPLOYEEDETAILS", deptno, empid, "", "", "", "", "", "", "");
+            Session["tblempmaterial"] = (ds1.Tables[0]);
+
+            this.Data_Bind02();
+
+
+
+        }
+
+        private void Data_Bind02()
+        {
+            DataTable dt = (DataTable)Session["tblempmaterial"];
+            this.gvMatDetails.DataSource = dt;
+            this.gvMatDetails.DataBind();
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+
+            this.FooterCal();
+
+
+        }
+
+        private void FooterCal()
+        {
+            DataTable dt = (DataTable)Session["tblempmaterial"];
+            if (dt.Rows.Count == 0)
+            {
+                return;
+            }
+
+            ((Label)this.gvMatDetails.FooterRow.FindControl("gvFqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(qty)", "")) ? 0.00 : dt.Compute("sum(qty)", ""))).ToString("#,##0;(#,##0); ");
+
+
+        }
+
+
+        protected void btngvempName_Click(object sender, EventArgs e)
+        {
+            // this.lbmodalheading.Text = "Individual Monthly Over Time Details Information";
+            GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int RowIndex = gvr.RowIndex;
+            int rownumber = this.gvDeptITStock.PageSize * this.gvDeptITStock.PageIndex + RowIndex;
+            string empid = ((DataTable)Session["tblStock"]).Rows[RowIndex]["empid"].ToString();
+            string deptcode = ((DataTable)Session["tblStock"]).Rows[RowIndex]["deptno"].ToString();
+
+
+            this.GetEmployeeDetails(empid, deptcode);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+        }
+        protected void btnIssueno_Click(object sender, EventArgs e)
+        {
+            int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            DataTable dt = (DataTable)Session["tblempmaterial"];
+            string comcod = this.GetComeCode();
+
+
+            string issueno = dt.Rows[rownum]["issueno"].ToString();
+            string deptno = dt.Rows[rownum]["deptno"].ToString();
+            string rsircode = dt.Rows[rownum]["rsircode"].ToString();
+            string empid = dt.Rows[rownum]["empid"].ToString();
+
+
+
+            bool result = HRData.UpdateTransInfo(comcod, "SP_REPORT_FXTASSET_STOCK", "DELETEISSUENO", issueno, deptno, rsircode, empid, "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result)
+            {
+                dt.Rows[rownum].Delete();
+            }
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Main Head";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal();", true);
+
+            }
+
+
+            DataView dv = dt.DefaultView;
+            Session.Remove("tblempmaterial");
+            Session["tblempmaterial"] = dv.ToTable();
+            this.Data_Bind02();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+            this.lblheadermsg.Text = "delete Successfully";
+        }
+
+        private void SaveValue()
+        {
+            DataTable dt = (DataTable)Session["tblempmaterial"];
+            int rowindex;
+
+            for (int i = 0; i < this.gvMatDetails.Rows.Count; i++)
+            {
+
+                double gvtxtqty = Convert.ToDouble("0" + ((TextBox)this.gvMatDetails.Rows[i].FindControl("gvtxtqty")).Text.Trim());
+
+
+                rowindex = (this.gvMatDetails.PageSize) * (this.gvMatDetails.PageIndex) + i;
+                dt.Rows[rowindex]["qty"] = gvtxtqty;
+
+            }
+
+            Session["tblempmaterial"] = dt;
+        }
+
+        protected void lbtnUpdatMat_Click(object sender, EventArgs e)
+        {
+
+            this.SaveValue();
+            DataTable dt = (DataTable)Session["tblempmaterial"];
+            string comcod = this.GetComeCode();
+            bool result = false;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+
+                string issueno = dt.Rows[i]["issueno"].ToString();
+                string deptno = dt.Rows[i]["deptno"].ToString();
+                string rsircode = dt.Rows[i]["rsircode"].ToString();
+                string empid = dt.Rows[i]["empid"].ToString();
+                string issuedate = dt.Rows[i]["issuedate"].ToString();
+
+                string qty = dt.Rows[i]["qty"].ToString();
+
+
+                result = HRData.UpdateTransInfo(comcod, "SP_REPORT_FXTASSET_STOCK", "INSERTORUPDATE_IssueNo", issueno, deptno, rsircode, empid, issuedate, qty, "", "", "", "", "", "", "", "", "");
+                if (!result)
+                    return;
+
+
+            }
+
+            this.Data_Bind02();
+
+            this.lblheadermsg.Text = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal();", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+
+            // ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
+
+
+        }
+        protected void btnTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            this.Data_Bind02();
+
+
+        }
     }
 }
