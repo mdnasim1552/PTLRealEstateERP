@@ -61,12 +61,12 @@
                                     <div class="col-md-3 pull-right">
                                          <div class="col-md-12">
 
-                                        <asp:RadioButtonList ID="rbtnstatement" runat="server" AutoPostBack="True"
+                                        <asp:RadioButtonList ID="rbtnstatement" runat="server" AutoPostBack="True" Visible="false"
                                             BackColor="#DFF0D8" BorderColor="#000" CssClass="rbtnList1 margin5px"
                                             Font-Bold="True" Font-Size="11px" ForeColor="Black" OnSelectedIndexChanged="rbtnstatement_OnSelectedIndexChanged"
                                             RepeatDirection="Horizontal">
                                             <asp:ListItem Selected="True">English</asp:ListItem>
-                                            <asp:ListItem>বাংলা</asp:ListItem>
+                                            <%--<asp:ListItem>বাংলা</asp:ListItem>--%>
                                         </asp:RadioButtonList>
 
                                     </div>

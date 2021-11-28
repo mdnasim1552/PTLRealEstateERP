@@ -31,7 +31,10 @@ namespace RealERPWEB.F_21_MKT
                 //    Response.Redirect("../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Yearly Activities Target ";
+                string qtype = this.Request.QueryString["Type"].ToString();
+
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = qtype=="CRM"? "CRM Yearly Activities Target ": "Land CRM Yearly Activities Target ";
 
                 this.GetYear();
                 GetAllSubdata();
@@ -106,17 +109,41 @@ namespace RealERPWEB.F_21_MKT
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "LANDREFINFODDL", "", "", "", "", "", "", "", "", "");
+            string qtype = this.Request.QueryString["Type"].ToString();
             
-            ViewState["tblsubddl"] = ds2.Tables[0];
-            ds2.Dispose();
+
+            if (qtype=="CRM")
+            {
+                DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+
+                ViewState["tblsubddl"] = ds2.Tables[0];
+                ds2.Dispose();
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = hst["empid"].ToString();
+                DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+                ViewState["tblempsup"] = ds1.Tables[0];
+                ds1.Dispose();
+
+            }
+            else
+            {
+
+                DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "LANDREFINFODDL", "", "", "", "", "", "", "", "", "");
+
+                ViewState["tblsubddl"] = ds2.Tables[0];
+                ds2.Dispose();
 
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
-            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
-            ViewState["tblempsup"] = ds1.Tables[0];
-            ds1.Dispose();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = hst["empid"].ToString();
+                DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+                ViewState["tblempsup"] = ds1.Tables[0];
+                ds1.Dispose();
+            }
+
+
+            
 
         }
 
@@ -253,14 +280,24 @@ namespace RealERPWEB.F_21_MKT
         }
         private void ShowYearlyTarget()
         {
+            string qtype = this.Request.QueryString["Type"].ToString();
 
             string comcod = this.GetComeCode();
             string Year = this.ddlyear.SelectedValue.ToString();
             string teamcode = this.ddlteam.SelectedValue.ToString();
+            
+            string ctype = "";
+            if(qtype=="CRM")
+            {
+                ctype = "YEARLY_ACTIVITIES_TARGETCRM";
+            }
+            else
+            {
+                ctype = "YEARLY_ACTIVITIES_TARGET";
 
+            }
 
-
-            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "YEARLY_ACTIVITIES_TARGET", Year, teamcode, "", "", "", "", "", "", "");
+            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", ctype, Year, teamcode, qtype, "", "", "", "", "", "");
 
             if (ds1 == null)
             {
@@ -403,6 +440,7 @@ namespace RealERPWEB.F_21_MKT
             //}
             try
             {
+                string qtype = this.Request.QueryString["type"].ToString();
 
                 string comcod = this.GetComeCode();
                 this.SaveValue();
@@ -410,7 +448,7 @@ namespace RealERPWEB.F_21_MKT
                 string Year = this.ddlyear.SelectedValue.ToString();
                 string teamcode = this.ddlteam.SelectedValue.ToString();
                 bool result = true;
-                result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "DELATESALCOLLTARINF", Year, Year, teamcode, "", "", "", "", "", "", "", "", "", "", "", "");
+                result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "DELATEMPACTIVITIESTARBYEMP", Year, Year, teamcode, qtype, "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = SalesData.ErrorObject["Msg"].ToString();
@@ -434,7 +472,7 @@ namespace RealERPWEB.F_21_MKT
                         string monthid = this.ddlyear.SelectedValue.ToString() + ASTUtility.Right("0" + j.ToString(), 2);
                         if (qty != 0)
                         {
-                            result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "INSERTEMPACTIVITIESTARGET", "", monthid, teamcode, pactcode, qty.ToString(), "", "", "", "", "", "", "", "", "", "");
+                            result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "INSERTEMPACTIVITIESTARGET", "", monthid, teamcode, pactcode, qty.ToString(), qtype, "", "", "", "", "", "", "", "", "");
 
                             if (result == false)
                             {

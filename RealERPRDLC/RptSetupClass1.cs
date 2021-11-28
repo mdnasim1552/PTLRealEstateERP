@@ -882,6 +882,10 @@ namespace RealERPRDLC
 
                 case "R_81_Hrm.R_93_AnnInc.RptIncrementStatus": Rpt1a = SetRptIncrementStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
+                case "R_81_Hrm.R_92_Mgt.RptEmpSattelment": Rpt1a = SetRptEmpSattelment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_92_Mgt.RptEmpSattelmentBangla": Rpt1a = SetRptEmpSattelmentBangla(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
+
 
                 #endregion
 
@@ -5253,6 +5257,20 @@ namespace RealERPRDLC
         private static LocalReport SetRptGbFinalApproval(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_99_AllInterface.GbFinalApproval>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptEmpSattelment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)RptDataSet));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptEmpSattelmentBangla(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_92_Mgt.EClassHrInterface.EclassSttlemntInfo>)RptDataSet));
             return Rpt1a;
         }
 

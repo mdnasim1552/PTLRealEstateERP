@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-   
+
     <br />
     <br />
     <style>
@@ -14,22 +14,22 @@
     </style>
     <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">--%><%-- <ContentTemplate>--%>
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
 
@@ -51,20 +51,17 @@
                                             <asp:DropDownList ID="ddlCompany" runat="server" CssClass="chzn-select form-control inputTxt pull-left" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                             </asp:DropDownList>
                                             <asp:Label ID="lblCompanyName" runat="server" Width="233" CssClass="dataLblview" Visible="False"></asp:Label>
-                                           
+
                                         </div>
 
 
-                                         <div class="col-md-3 pading5px">
-                                    <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-warning btn-sm" Style="padding: 0 10px">Online Leave</asp:HyperLink>
-                                    
-                                    
-                                    
-                                  <%--   <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry02.aspx?InputType=FxtAstEntry" CssClass="btn btn-success btn-sm" Style="padding: 0 10px">CW Requsition</asp:HyperLink>--%>
-                                     
+                                        <div class="col-md-3 pading5px">
+                                            <asp:HyperLink ID="HyperLink1" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-warning btn-sm" Style="padding: 0 10px">Online Leave</asp:HyperLink>
 
-                                 
-                                </div>
+
+
+                                            <%--   <asp:HyperLink ID="HyperLink3" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry02.aspx?InputType=FxtAstEntry" CssClass="btn btn-success btn-sm" Style="padding: 0 10px">CW Requsition</asp:HyperLink>--%>
+                                        </div>
 
                                     </div>
 
@@ -204,7 +201,8 @@
                         </div>
                         <div class="col-md-3">
                             <p>
-                                <asp:Image ID="EmpUserImg" runat="server" Visible="false" ImageUrl="~/Image/empImg.png" Height="105" Width="105" CssClass="img-thumbnail img-responsive" /></p>
+                                <asp:Image ID="EmpUserImg" runat="server" Visible="false" ImageUrl="~/Image/empImg.png" Height="105" Width="105" CssClass="img-thumbnail img-responsive" />
+                            </p>
 
                             <asp:LinkButton ID="hyplPreviewCv" CssClass="btn btn-success  btn-circle" Visible="false" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-search fa-spin"></i> </asp:LinkButton>
 
@@ -232,8 +230,8 @@
                                                 <th>Intime</th>
                                                 <th>Late </th>
                                                 <th>Absent </th>
-                                                <th>Leave </th>  
-                                                <th>Leave Adjusted </th>   
+                                                <th>Leave </th>
+                                                <th>Leave Adjusted </th>
                                                 <th>Late Approval </th>
                                             </tr>
                                     </HeaderTemplate>
@@ -241,9 +239,9 @@
                                         <tr>
                                             <td style="width: 80px">
                                                 <asp:Label ID="lblymonid" runat="server" Visible="false" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ymonid")).ToString() %>'></asp:Label>
-                                              
-                                            <asp:HyperLink ID="hlnkbtnadd" runat="server"  Target="_blank" Text='<%# Eval("yearmon") %>'></asp:HyperLink>
-                                                
+
+                                                <asp:HyperLink ID="hlnkbtnadd" runat="server" Target="_blank" Text='<%# Eval("yearmon") %>'></asp:HyperLink>
+
                                             </td>
                                             <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lblacintimed" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "acintime")).ToString("#, ##0;(#, ##0); ") %>'></asp:Label>
@@ -259,7 +257,7 @@
                                                 <asp:Label ID="lblLeave" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leave")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
                                             </td>
 
-                                             <td style="width: 80px; text-align: right !important;">
+                                            <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lbllvadj" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lvadj")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
                                             </td>
 
@@ -286,14 +284,14 @@
                                             <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lbltotalleave" runat="server" Style="text-align: right"></asp:Label></td>
 
-                                               <td style="width: 80px; text-align: right !important;">
+                                            <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lbltolvadj" runat="server" Style="text-align: right"></asp:Label></td>
 
-                                             <td style="width: 80px; text-align: right !important;">
+                                            <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lblfrtolateapp" runat="server" Style="text-align: right"></asp:Label></td>
 
                                         </tr>
-                                         <tr>
+                                        <tr>
                                             <td style="width: 80px">
                                                 <asp:Label ID="Label2" runat="server" CssClass=" smLbl_to" Text="In %"></asp:Label></td>
                                             <td style="width: 80px; text-align: right !important;">
@@ -308,10 +306,10 @@
                                             <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lblperleave" runat="server" Style="text-align: right"></asp:Label></td>
 
-                                             <td style="width: 80px; text-align: right !important;">
+                                            <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lblfperlvadj" runat="server" Style="text-align: right"></asp:Label></td>
 
-                                              <td style="width: 80px; text-align: right !important;">
+                                            <td style="width: 80px; text-align: right !important;">
                                                 <asp:Label ID="lblfrperlateapp" runat="server" Style="text-align: right"></asp:Label></td>
 
                                         </tr>
@@ -390,10 +388,9 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Desription">
                                 <HeaderTemplate>
-                                    <asp:Label ID="lblgvDescr" runat="server" Text='Desription'
-                                       ></asp:Label>
+                                    <asp:Label ID="lblgvDescr" runat="server" Text='Desription'></asp:Label>
 
-                                     <asp:HyperLink ID="hlnkbtnNext" runat="server" NavigateUrl="#" Target="_blank"  CssClass="btn btn-primary primaryBtn pull-right" Text="Next">
+                                    <asp:HyperLink ID="hlnkbtnNext" runat="server" NavigateUrl="#" Target="_blank" CssClass="btn btn-primary primaryBtn pull-right" Text="Next">
 
                                     </asp:HyperLink>
                                 </HeaderTemplate>
@@ -401,7 +398,7 @@
 
                                     <asp:Label ID="lblgvDescription0" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
                                         Width="120px"></asp:Label>
-                                   
+
 
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" />
@@ -536,11 +533,7 @@
 
                                     <asp:Label ID="lgvgval1Job" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobresp")) %>'></asp:Label>
-
                                 </ItemTemplate>
-
-
-
                                 <HeaderStyle HorizontalAlign="Center" />
                                 <ItemStyle HorizontalAlign="Left" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -561,15 +554,65 @@
                         <HeaderStyle CssClass="grvHeader" />
                     </asp:GridView>
 
+                    <fieldset>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <asp:Label ID="lblPaySlip" runat="server" Visible="false" CssClass="btn btn-success btn-sm headPart">Pay Slip</asp:Label>
+
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <asp:GridView ID="gvPaySlip" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowDataBound="gvPaySlip_RowDataBound"
+                        ShowFooter="True">
+                        <RowStyle />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sl.No.">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvPaySlipSlNo" runat="server" Font-Bold="True" Height="16px"
+                                        Style="text-align: right"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Month">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvpayslipmonth" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthdesc")) %>' Width="80px"></asp:Label>
+                                     <asp:Label ID="lblgvmonthid" runat="server" Visible="false"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "monthid")) %>' Width="80px"></asp:Label>
+                                     <asp:Label ID="lblgvempid" runat="server" Visible="false"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Left" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Amount">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvnetamt" runat="server"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netpay")).ToString("#,##0;(#,##0); ") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <ItemStyle HorizontalAlign="Right" />
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="hlnkPrintPaySlip" runat="server" Target="_blank" CssClass="btn btn-xs btn-danger" ToolTip="Print Pay Slip"><span class="glyphicon glyphicon-print"></span>
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <FooterStyle CssClass="grvFooter" />
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle CssClass="grvHeader" />
+                    </asp:GridView>
+
                 </asp:View>
-
-
-
-
-
-
-
-
 
             </asp:MultiView>
 
