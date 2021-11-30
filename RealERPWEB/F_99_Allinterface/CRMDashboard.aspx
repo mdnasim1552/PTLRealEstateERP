@@ -342,7 +342,7 @@
 
             <div class="row mb-2">
                 <div class="col-md-6 col-xl-3">
-                    <div class="card  mb-1 ">
+                    <div class="card  mb-2 ">
                         <div class="card-body mb-2">
                             <div class="media">
                                 <div class="avatar-md xbg-dark rounded-circle mr-2">
@@ -369,7 +369,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-xl-3">
-                    <div class="card  mb-1 ">
+                    <div class="card  mb-2 ">
                         <div class="card-body mb-2">
                             <div class="media">
                                 <div class="avatar-md xbg-info rounded-circle mr-2">
