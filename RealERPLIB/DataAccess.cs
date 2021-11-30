@@ -24,7 +24,7 @@ namespace RealERPLIB
         public DataAccess(string mDBName) 
         {
             m_Conn = new SqlConnection(this.DBConnstr());
-            m_Conn.ConnectionString = m_Conn.ConnectionString.Replace("ASITINTERIORDB", mDBName + "DB");
+            m_Conn.ConnectionString = m_Conn.ConnectionString.Replace("ASITINTERIORDB_OLD", mDBName + "DB");
         
         }
         
