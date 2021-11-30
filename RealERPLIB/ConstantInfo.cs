@@ -1043,11 +1043,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2101000", "2101110", "F_21_MKT", "SalesPaymentCodeBook?", "Type=Mkt", "Payment ProPosal Code", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2101000", "2101115", "F_22_Sal", "AdvertisementCode?", "Type=MktCode", "Advertisement Code", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102120", "F_21_MKT", "MktSalsPaymentPro", "", "Sales Permission", "CRM", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
 
             //kpi 
             // 05. My Marketing Interface(Sales)
-            
+
             tblObj.Rows.Add(new Object[] { "2102000", "2102121", "F_39_MyPage", "ClientCodeBook", "", "Client Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102122", "F_39_MyPage", "LandOwnerCodeBook", "", "Landowner Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102123", "F_39_MyPage", "ClientDetail?", "Type=Client", "Client Details", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
@@ -1081,7 +1081,7 @@ namespace RealERPLIB
             
             
             tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2151000", "2151003", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
+            
             tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
 
 
