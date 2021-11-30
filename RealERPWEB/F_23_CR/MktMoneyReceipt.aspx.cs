@@ -452,13 +452,16 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComCode();
             switch (comcod)
             {
+                // rupayan
                 case "2305":
                 case "3305":
                 case "3306":
                 case "3309":
                 case "3310":
-
                 case "3311":
+                //leisure
+                //case "2325":
+                //case "3325":
                     dt = ds1.Tables[3];
                     break;
 
@@ -1876,7 +1879,7 @@ namespace RealERPWEB.F_23_CR
                 this.txtremarks.Text = dr1[0]["rmrks"].ToString();
                 this.txtbookno.Text = dr1[0]["bookno"].ToString();
                 this.ddlCollType.SelectedValue = dr1[0]["collfrm"].ToString();
-                this.ddlRecType.SelectedValue = dr1[0]["recType"].ToString();
+                this.ddlRecType.SelectedValue = dr1[0]["recType"].ToString(); 
                 this.lblSchCode.Text = dr1[0]["schcode"].ToString();
                 string instypecode = ((dr1[0]["schcode"].ToString() == "") ?
                     ((this.ddlRecType.SelectedValue == "54001") ? "07"

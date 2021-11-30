@@ -1968,7 +1968,7 @@ namespace RealERPWEB.F_14_Pro
 
             this.Get_Pur_Order_Info();
             string comcod = this.GetCompCode();
-            if (comcod == "3335" || comcod == "3101")
+            if (comcod == "3335")
             {
                 this.ddltypecod.Visible = true;
                 this.lnkselect.Visible = true;
@@ -2240,11 +2240,34 @@ namespace RealERPWEB.F_14_Pro
             }
 
             this.MultiView1.ActiveViewIndex = 1;
+            this.hideTermsConditions();
+
             ViewState["tblOrder"] = this.HiddenSameData(dt1);
             this.gvOrderInfo_DataBind();
 
             this.ShowProjectFiles();
 
+        }
+
+        private void hideTermsConditions()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                    this.divtermsp2p.Visible = true;
+                    this.divterms.Visible = false;
+                    this.ImagePanel.Visible = false;
+                    break;
+
+                default:
+                    this.divtermsp2p.Visible = false;
+                    this.divterms.Visible = true;
+                    this.ImagePanel.Visible = true;
+                    break;
+            }
         }
 
 
