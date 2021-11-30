@@ -1055,10 +1055,7 @@
                 if (!confirm("Are you sure you want to delete this  Item?")) {
                     return;
                 }
-
-
-
-
+                 
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
@@ -1202,9 +1199,6 @@
                 var empid =<%=this.GetEmpID()%>;
                 var lblschedulenumber = '#ContentPlaceHolder1_gvInfo_lblschedulenumber_' + number;
 
-
-
-
                 $.ajax({
 
                     url: "CrmClientInfo.aspx/GetSchedulenumber",
@@ -1321,7 +1315,6 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-
                         var data = JSON.parse(response.d);
 
                         var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
@@ -1335,28 +1328,20 @@
                                 case '810100101012':
                                     numberrl = i;
                                     break;
-
                             }
-
                         }
 
                         //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-
                         var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
                         $(ddllreason).html('');
                         $.each(data, function (key, data) {
 
                             $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
                         });
-
-
-
-
+                         
                         // console.log(data);
                         //  funDataBind(data);                      
-
-
-
+                         
                     },
 
 
@@ -1853,7 +1838,52 @@
             $('#modalKpiDetials').modal('toggle');
         }
 
+        function RateUpdate() {
 
+            try {
+
+
+
+                var comcod =<%=this.GetComeCode()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+                var ratevalue = $('#ddlRating option:selected').val();               
+
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/UpdateRate",
+                    data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", ratevalue:"' + ratevalue + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+
+                    success: function (response) {
+ 
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+
+
+
+        }
 
 
     </script>
@@ -4035,7 +4065,7 @@
 
                             <div class="row">
 
-                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                <div class="col-xs-7 col-sm-7 col-md-7">
 
                                     <p>
                                         <strong><span id="lblprosname" runat="server"></span></strong>
@@ -4061,6 +4091,22 @@
                                         <asp:HiddenField ID="lbleditempid" runat="server" />
                                     </p>
                                 </div>
+
+                                <div class="col-xs-2 col-sm-2 col-md-2 ">
+                                     <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-secondary ml-1" type="button">Rate</button>
+                                        </div>
+
+                                <asp:DropDownList ID="ddlRating" runat="server"   OnSelectedIndexChanged="ddlRating_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="0.00">0</asp:ListItem>                                                     
+                                            <asp:ListItem Value="5.00">5</asp:ListItem>
+                                        </asp:DropDownList>
+
+                                    </div>
+                                 
+
+                                    </div>
 
                                 <div class="col-xs-3 col-sm-3 col-md-3 ">
 

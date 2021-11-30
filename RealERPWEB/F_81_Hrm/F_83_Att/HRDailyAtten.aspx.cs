@@ -214,6 +214,26 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             //this.LoadGrid();
         }
+
+        private void GetTBLAttnLogData()
+        {
+            Session.Remove("ShowAtten");
+
+            string comcod = this.GetCompCode();
+
+            string date = this.txtdate.Text;
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "SHOWEMPATTEN", "", "", date, "", "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.gvDailyAttn.DataSource = null;
+                this.gvDailyAttn.DataBind();
+                return;
+            }
+
+            Session["ShowAtten"] = HiddenSameData(ds4.Tables[0]);
+            this.LoadGrid();
+        }
+
         private void ShowData()
         {
 
@@ -285,19 +305,26 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3330": // Bridge
                 case "3355": // Greenwood
                 case "3347": // Peb Steel
+              
                              // case "3353": // Greenwood
 
 
                     this.InsertDailyAttnAlliance();
                     break;
 
+                case "3354": // edidison real
+                    this.GetTBLAttnLogData();
+
+                    break;
 
                 case "3315"://Assure
 
                     this.InsertDailyAttnAssure();
                     break;
 
-
+                default:
+                    this.InsertDailyAttnAlliance();
+                    break;
 
 
 

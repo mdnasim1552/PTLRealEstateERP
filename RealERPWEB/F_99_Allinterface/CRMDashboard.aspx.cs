@@ -89,7 +89,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 dtE = dv.ToTable();
-                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                dtE.Rows.Add("000000000000", "All Employee", "");
 
             }
 
@@ -106,7 +106,7 @@ namespace RealERPWEB.F_99_Allinterface
                              }).ToList();
                 dtE = ASITUtility03.ListToDataTable(query);
                 if (dtE.Rows.Count >= 2)
-                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                    dtE.Rows.Add("000000000000", "All Employee", "");
                 // if(dtE.Rows.Count>1)
                 //dtE.Rows.Add("000000000000", "Choose Employee..", "");
             }
@@ -189,9 +189,10 @@ namespace RealERPWEB.F_99_Allinterface
             string Empid = "";
             if (userrole != "1")
             {
-                Empid = hst["empid"].ToString();
+                Empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
             }
-            
+            ddlempid = (ddlempid == "0000000000" ? "93%" : ddlempid);
+
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "GETCRMCOMPONENTDATA", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
@@ -221,21 +222,24 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        private void EmpMonthlyKPI(string empid)
+        private void EmpMonthlyKPI(string ddlempid)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
             string comcod = this.GetComeCode();
-            
+
+      
             string todate = this.txtfodate.Text.Trim();
          //   string frmdate = this.txtfodate.Text.Trim();
             string frmdate = Convert.ToDateTime("01" + todate.Substring(2)).ToString("dd-MMM-yyyy");
-            // string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
-            if (userrole == "1")
+            string empid = "";
+            if (userrole != "1")
             {
-                empid = "%";
+                empid = (hst["empid"].ToString() == "" ? "93%" : hst["empid"].ToString());
             }
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid);
+            ddlempid = (ddlempid == "0000000000" ? "93%" : ddlempid);
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid, ddlempid);
             if (ds1 == null)
                 return;
 
@@ -280,7 +284,8 @@ namespace RealERPWEB.F_99_Allinterface
             
 
             var gtype = "column";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + dataw + "','" + datad + "','" + gtype + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "chart", "ExecuteGraph('" + data + "','" + dataw + "','" + datad + "','" + gtype + "')", true);
+
 
         }
 
@@ -298,12 +303,21 @@ namespace RealERPWEB.F_99_Allinterface
             public decimal others { get; set; }           
             public string empid { get; set; }
             public string empname { get; set; }
+            public decimal tcall { get; set; }
+            public decimal textmeeting { get; set; }
+            public decimal tintmeeting { get; set; }
+            public decimal tproposal { get; set; }
+            public decimal tleads { get; set; }
+            public decimal tclose { get; set; }
+            public decimal tvisit { get; set; }
+            public decimal tothers { get; set; }
+
         }
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             string empid = this.ddlEmpid.SelectedValue.ToString();
-            if (empid != "000000000000")
+            //if (empid != "000000000000")
                 // this.GetGridSummary();
                 GetNotificationByEmployee(empid);
         }

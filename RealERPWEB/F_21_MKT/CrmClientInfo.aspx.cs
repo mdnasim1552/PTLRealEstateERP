@@ -4308,9 +4308,7 @@ namespace RealERPWEB.F_21_MKT
             ProcessAccess JData = new ProcessAccess();
 
             bool result = JData.UpdateXmlTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "UPDATELASTEMPSTATUS", null, null, null, empid, proscod, gcod, statusid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
             //bool result = KpiData.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "UPDATE_COMM", empid, Client, "000000000000", "", "000000000000", cdate, gcod, "T", Gvalue, Comments, userid, Posteddat);
-
 
             if (!result)
             {
@@ -4329,10 +4327,6 @@ namespace RealERPWEB.F_21_MKT
                 var json = jsonSerialiser.Serialize(lst);
                 return json;
             }
-
-
-
-
         }
 
 
@@ -4685,6 +4679,7 @@ namespace RealERPWEB.F_21_MKT
                 this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 this.lbleditempid.Value = gempid;
+                this.ddlRating.SelectedValue= ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
@@ -6395,6 +6390,28 @@ namespace RealERPWEB.F_21_MKT
         {
 
         }
+
+        protected void ddlRating_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string ratevalue = this.ddlRating.SelectedValue.ToString();
+
+            
+            string clientid = this.lblproscod.Value.ToString();
+
+            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLINT_RATE", null, null, null, clientid, ratevalue);
+            if (result == true)
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+            else
+            {
+                
+            
+            }
+        } 
+
     }
 
 

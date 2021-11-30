@@ -144,7 +144,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "2325":
                 case "3325":
-                    //case "3101":
+                //case "3101":
                     mrprint = "MRPrint2";
                     break;
 
@@ -174,7 +174,7 @@ namespace RealERPWEB.F_22_Sal
                 //case "3101":
                     mrprint = "MRPrint360";
                     break;
-
+                case "3101":
                 case "3356":
                     mrprint = "MRPrintIntech";
                     break;
@@ -404,7 +404,7 @@ namespace RealERPWEB.F_22_Sal
                 }
 
 
-
+                // leisure
                 else if (Type == "MRPrint2")
                 {
 
@@ -424,6 +424,10 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd)));
                     Rpt1.SetParameters(new ReportParameter("takainword", "BDT. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "Only " + "AS " + ((Installment == "") ? rectype : Installment)));
                     Rpt1.SetParameters(new ReportParameter("takainword1", "BDT. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "Only " + "AS " + ((Installment == "") ? rectype : Installment)));
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                    //txtuserinfo
+                    //txtcominfo
 
                     Session["Report1"] = Rpt1;
                     ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -619,9 +623,10 @@ namespace RealERPWEB.F_22_Sal
                     Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                    Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                    Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                    Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                     Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
 
                     Session["Report1"] = Rpt1;
                     ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +

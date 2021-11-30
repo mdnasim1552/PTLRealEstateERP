@@ -946,6 +946,8 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="form-group" style="margin-top: 10px;">
                                             <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Text="Type:"></asp:Label>
                                             <div class="col-md-2 pading5px">
@@ -965,17 +967,12 @@
                                                     <div class="input-group">
                                                         <span class="input-group-addon glypingraddon">
                                                             <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName" Text="Terms &amp; Conditions:"></asp:Label>
-
                                                         </span>
-
                                                     </div>
-
-
                                                 </div>
                                                 <div class="col-md-1">
                                                     <asp:LinkButton ID="lnkAddTerms" runat="server" CssClass="pull-right btn btn-xs btn-success" OnClick="lnkAddTerms_Click" ToolTip="Add New Terms and Conditions" Width="65px"> <span class="glyphicon glyphicon-plus"></span> </asp:LinkButton>
                                                     <asp:Label ID="lssircode" runat="server" Visible="False"></asp:Label></td>
-
                                                 </div>
                                             </div>
                                         </div>

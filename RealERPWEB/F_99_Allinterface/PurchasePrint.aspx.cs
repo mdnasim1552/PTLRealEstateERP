@@ -1389,7 +1389,6 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             string txttoamt = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
-
             string txttoamt02 = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
             string rpttxtnaration = dt1.Rows[0]["reqnar"].ToString();
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
@@ -1661,57 +1660,19 @@ namespace RealERPWEB.F_99_Allinterface
             double aprvamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(areqamt)", "")) ? 0.00 : dtr.Compute("Sum(areqamt)", "")));
             double reqoapamt = aprvamt > 0 ? aprvamt : reqamt;
 
-
             string txttoamt = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
-
             string txttoamt02 = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
+
             string rpttxtnaration = dt1.Rows[0]["reqnar"].ToString();
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
-            string txtSign1 = "";
-            string txtSign2 = "";
-            string txtSign3 = "";
-            string txtSign4 = "";
-            string txtSign5 = "";
-            string txtSign6 = "";
-            string txtSign7 = "";
-
-            if (comcod == "3330")
-            {
-
-                txtSign1 = "Store In-charge";
-
-                txtSign2 = "Project Incharge";
-
-                txtSign3 = "DPM/PM (Operation)";
-
-                txtSign4 = "Procurement";
-
-                txtSign5 = "Cost & Budget";
-
-                txtSign6 = "Head Of Construction";
-
-                txtSign7 = "Approved By";
-            }
-
-
-            else
-            {
-
-                txtSign1 = "S.K";
-
-                txtSign2 = "Project Incharge";
-
-                txtSign3 = "DPM/PM/AGM/DGM";
-
-                txtSign4 = "Procurement";
-
-                txtSign5 = "Cost & Budget";
-
-                txtSign6 = "Head Of Construction";
-
-                txtSign7 = "Managing Director";
-            }
-
+            string txtSign1 = "S.K";
+            string txtSign2 = "Project Incharge";
+            string txtSign3 = "DPM/PM/AGM/DGM";
+            string txtSign4 = "Procurement";
+            string txtSign5 = "Cost & Budget";
+            string txtSign6 = "Head Of Construction";
+            string txtSign7 = "DMD";
+            string txtSign8 = "Chairman";
 
             var list = dtr.DataTableToList<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>();
             LocalReport Rpt1 = new LocalReport();
@@ -1738,124 +1699,11 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("txtSign5", txtSign5));
             Rpt1.SetParameters(new ReportParameter("txtSign6", txtSign6));
             Rpt1.SetParameters(new ReportParameter("txtSign7", txtSign7));
+            Rpt1.SetParameters(new ReportParameter("txtSign8", txtSign8));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
-
-
-            //DataTable dt1 = ds1.Tables[1];
-
-            ////string txtcrno = dt1.Rows[0]["reqno1"].ToString(); 
-
-            ////string txtcrdate = Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy"); 
-
-            ////string txtmrfno = dt1.Rows[0]["mrfno"].ToString(); 
-
-            ////string txtprojectname = dt1.Rows[0]["pactdesc"].ToString();
-            ////string txtAddress = dt1.Rows[0]["paddress"].ToString();
-
-
-            //ReportDocument rptstk = new RealERPRPT.R_12_Inv.RptReqEntry03();
-            //TextObject txtCompanyName = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompanyName.Text = comnam;
-
-            //TextObject txtcrno = rptstk.ReportDefinition.ReportObjects["crno"] as TextObject;
-            //txtcrno.Text = dt1.Rows[0]["reqno1"].ToString();
-            //TextObject txtcrdate = rptstk.ReportDefinition.ReportObjects["crdate"] as TextObject;
-            //txtcrdate.Text = Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy");
-
-            //TextObject txtmrfno = rptstk.ReportDefinition.ReportObjects["mrfno"] as TextObject;
-            //txtmrfno.Text = dt1.Rows[0]["mrfno"].ToString();
-
-            //TextObject txtprojectname = rptstk.ReportDefinition.ReportObjects["projectname"] as TextObject;
-            //txtprojectname.Text = dt1.Rows[0]["pactdesc"].ToString();
-            //TextObject txtAddress = rptstk.ReportDefinition.ReportObjects["txtAddress"] as TextObject;
-            //txtAddress.Text = dt1.Rows[0]["paddress"].ToString();//dt.Rows[2]["termsdesc"].ToString(); Session["tblUserReq"]
-
-            //// DataTable dt = (DataTable)ViewState["tblreqdesc"];
-
-            //DataTable dt = ds1.Tables[2];
-
-
-            //TextObject txtbuildno = rptstk.ReportDefinition.ReportObjects["txtbuildno"] as TextObject;
-            //txtbuildno.Text = dt.Rows[0]["termsdesc"].ToString();
-            //TextObject txtfloorno = rptstk.ReportDefinition.ReportObjects["txtfloorno"] as TextObject;
-            //txtfloorno.Text = dt.Rows[1]["termsdesc"].ToString() + ((dt.Rows[2]["termsdesc"].ToString().Length == 0) ? "" : " , ") + dt.Rows[2]["termsdesc"].ToString(); ;
-            ////TextObject txtflatno = rptstk.ReportDefinition.ReportObjects["txtflatno"] as TextObject;
-            ////txtflatno.Text = dt.Rows[2]["termsdesc"].ToString();
-            //TextObject txtpforused = rptstk.ReportDefinition.ReportObjects["txtpforused"] as TextObject;
-            //txtpforused.Text = dt.Rows[3]["termsdesc"].ToString();
-
-            //DataTable dtr = ds1.Tables[0];
-
-            //double reqamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(preqamt)", "")) ? 0.00 : dtr.Compute("Sum(preqamt)", "")));
-            //double aprvamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(areqamt)", "")) ? 0.00 : dtr.Compute("Sum(areqamt)", "")));
-            //double reqoapamt = aprvamt > 0 ? aprvamt : reqamt;
-
-            //TextObject txttoamt = rptstk.ReportDefinition.ReportObjects["txttoamt"] as TextObject;
-            //txttoamt.Text = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
-            //TextObject txttoamt02 = rptstk.ReportDefinition.ReportObjects["txttoamt02"] as TextObject;
-            //txttoamt02.Text = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
-
-
-            ////TextObject txttoamt = rptstk.ReportDefinition.ReportObjects["txttoamt"] as TextObject;
-            ////txttoamt.Text = ((Label)this.gvReqInfo.FooterRow.FindControl("lblgvFooterTAprAmt")).Text.Trim();
-            ////TextObject txttoamt02 = rptstk.ReportDefinition.ReportObjects["txttoamt02"] as TextObject;
-            ////txttoamt02.Text = ((Label)this.gvReqInfo.FooterRow.FindControl("lblgvFooterTAprAmt")).Text.Trim();
-
-            //TextObject rpttxtnaration = rptstk.ReportDefinition.ReportObjects["narrationname"] as TextObject;
-            //rpttxtnaration.Text = dt1.Rows[0]["reqnar"].ToString(); ;
-
-
-            //if (comcod == "3330")
-            //{
-            //    TextObject txtSign1 = rptstk.ReportDefinition.ReportObjects["txtSign1"] as TextObject;
-            //    txtSign1.Text = "Store In-charge";
-            //    TextObject txtSign2 = rptstk.ReportDefinition.ReportObjects["txtSign2"] as TextObject;
-            //    txtSign2.Text = "Project Incharge";
-            //    TextObject txtSign3 = rptstk.ReportDefinition.ReportObjects["txtSign3"] as TextObject;
-            //    txtSign3.Text = "DPM/PM (Operation)";
-            //    TextObject txtSign4 = rptstk.ReportDefinition.ReportObjects["txtSign4"] as TextObject;
-            //    txtSign4.Text = "Procurement";
-            //    TextObject txtSign5 = rptstk.ReportDefinition.ReportObjects["txtSign5"] as TextObject;
-            //    txtSign5.Text = "Cost & Budget";
-            //    TextObject txtSign6 = rptstk.ReportDefinition.ReportObjects["txtSign6"] as TextObject;
-            //    txtSign6.Text = "Head Of Construction";
-            //    TextObject txtSign7 = rptstk.ReportDefinition.ReportObjects["txtSign7"] as TextObject;
-            //    txtSign7.Text = "Approved By";
-            //}
-            //else
-            //{
-            //    TextObject txtSign1 = rptstk.ReportDefinition.ReportObjects["txtSign1"] as TextObject;
-            //    txtSign1.Text = "S.K";
-            //    TextObject txtSign2 = rptstk.ReportDefinition.ReportObjects["txtSign2"] as TextObject;
-            //    txtSign2.Text = "Project Incharge";
-            //    TextObject txtSign3 = rptstk.ReportDefinition.ReportObjects["txtSign3"] as TextObject;
-            //    txtSign3.Text = "DPM/PM/AGM/DGM";
-            //    TextObject txtSign4 = rptstk.ReportDefinition.ReportObjects["txtSign4"] as TextObject;
-            //    txtSign4.Text = "Procurement";
-            //    TextObject txtSign5 = rptstk.ReportDefinition.ReportObjects["txtSign5"] as TextObject;
-            //    txtSign5.Text = "Cost & Budget";
-            //    TextObject txtSign6 = rptstk.ReportDefinition.ReportObjects["txtSign6"] as TextObject;
-            //    txtSign6.Text = "Head Of Construction";
-            //    TextObject txtSign7 = rptstk.ReportDefinition.ReportObjects["txtSign7"] as TextObject;
-            //    txtSign7.Text = "Managing Director";
-            //}
-
-
-
-
-
-            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            //rptstk.SetDataSource(dtr);
-            ////string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            ////rptstk.SetParameterValue("ComLogo", ComLogo);
-            //Session["Report1"] = rptstk;
-
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //                  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";           
 
         }
 
