@@ -264,6 +264,7 @@
     <EmbeddedResource Include="R_12_Inv\rptTopSheetCashPurchase.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptAdvancedVsPayment.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillAlliInfo.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptBillConfirmation02 Test.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillConfirmation02.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillConfirmation03.rdlc" />
     <EmbeddedResource Include="R_14_Pro\RptBillConfirmationBridge.rdlc" />
