@@ -452,13 +452,16 @@ namespace RealERPWEB.F_23_CR
             string comcod = this.GetComCode();
             switch (comcod)
             {
+                // rupayan
                 case "2305":
                 case "3305":
                 case "3306":
                 case "3309":
                 case "3310":
-
                 case "3311":
+                //leisure
+                //case "2325":
+                //case "3325":
                     dt = ds1.Tables[3];
                     break;
 
@@ -1314,501 +1317,514 @@ namespace RealERPWEB.F_23_CR
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            string comnam = hst["comnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            if (this.rbtnList1.SelectedIndex == 0)
-            {
-
-                string UsirCode = this.lblCode.Text;
-                string PactCode = this.ddlProjectName.SelectedValue.ToString();
-                string mrno = this.lblReceiveNo.Text.Trim();
-                string date = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
-
-                if (this.chkAllSchedul.Checked == true)  // New
-                {
-                    DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSTALLMANTWITHMRR", PactCode, UsirCode, date, "", "", "", "", "", "");
-                    DataTable dtstatus = ds2.Tables[0];
-                    DataView dv1 = dtstatus.DefaultView;
-                    dv1.RowFilter = "mrno='" + mrno + "'";
-                    DataTable dtmr = dv1.ToTable();
-                    Double amount = 0.00;
-                    for (int i = 0; i < dtmr.Rows.Count; i++)
-                    {
-                        amount += Convert.ToDouble(dtmr.Rows[i]["paidamt"]);
-                    }
-
-                    DataSet ds4 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", PactCode, UsirCode, mrno, "", "", "", "", "", "");
-                    if (ds4 == null)
-                        return;
-                    DataTable dtrpt = ds4.Tables[0];
-                    string custadd = dtrpt.Rows[0]["custadd"].ToString();
-                    string custid = dtrpt.Rows[0]["usircode"].ToString();
-                    string receptno = dtrpt.Rows[0]["mrno"].ToString();
-                    string project = dtrpt.Rows[0]["pactdesc"].ToString();
-                    string receivdate = Convert.ToDateTime(dtrpt.Rows[0]["mrdate"]).ToString("dd-MMM-yyy");
-                    string refe = dtrpt.Rows[0]["refno"].ToString();
-                    string txtcustName = dtrpt.Rows[0]["custname"].ToString();
-                    string udesc = dtrpt.Rows[0]["udesc"].ToString();
-                    string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
-                    string munit = dtrpt.Rows[0]["munit"].ToString();
-                    string paytype = dtrpt.Rows[0]["paytype"].ToString();
-                    string chqno = dtrpt.Rows[0]["chqno"].ToString();
-                    string bankname = dtrpt.Rows[0]["bankname"].ToString();
-                    string branch = dtrpt.Rows[0]["bbranch"].ToString();
-                    string refno = dtrpt.Rows[0]["refno"].ToString();
-                    string custteam = dtrpt.Rows[0]["custteam"].ToString();
-                    string rmrks = dtrpt.Rows[0]["rmrks"].ToString();
-                    double disamt = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("lblgvFdisamt")).Text.Trim());
-                    double netamt1 = amount == 0.00 ? disamt : amount;
-
-                    string amt1t = ASTUtility.Trans(netamt1, 2);
-
-                    string Typedes = "";
-                    if (paytype == "CHEQUE" || paytype == "P.O")
-                    {
-                        Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
-                    }
-                    else
-                    {
-                        Typedes = paytype;
-                    }
-
-                    LocalReport Rpt1 = new LocalReport();
-                    var list = dtstatus.DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                    Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptDetailMoneyRecept", list, null, null);
-                    Rpt1.EnableExternalImages = true;
-                    Rpt1.SetParameters(new ReportParameter("txtReceptNo", receptno));
-                    Rpt1.SetParameters(new ReportParameter("txtUnit", udesc + ", " + usize + " " + munit));
-                    Rpt1.SetParameters(new ReportParameter("txtProjectName", project));
-                    Rpt1.SetParameters(new ReportParameter("txtReceivedDate", receivdate));
-                    Rpt1.SetParameters(new ReportParameter("txtRefNo", refno));
-                    Rpt1.SetParameters(new ReportParameter("txtCustID", custid));
-                    Rpt1.SetParameters(new ReportParameter("txtCustFrom", txtcustName));
-                    Rpt1.SetParameters(new ReportParameter("txtCustAdd", custadd));
-                    Rpt1.SetParameters(new ReportParameter("txtCustName1", txtcustName));
-                    Rpt1.SetParameters(new ReportParameter("txtTakaInWord", amt1t));
-                    Rpt1.SetParameters(new ReportParameter("rptTitle", "Money Receipts"));
-                    Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                    Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
-                    if (ConstantInfo.LogStatus == true)
-                    {
-                        string eventtype = "Money Receipt Info";
-                        string eventdesc = "Print MR";
-                        string eventdesc2 = receptno;
-                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                    }
-
-
-                    Session["Report1"] = Rpt1;
-                    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-                }
-                else
-                {
-                    DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSTALLMANTWITHMRR", PactCode, UsirCode, date, "", "", "", "", "", "");
-                    DataTable dtstatus = ds2.Tables[0];
-                    DataView dv1 = dtstatus.DefaultView;
-                    dv1.RowFilter = "mrno='" + mrno + "'";
-                    DataTable dtmr = dv1.ToTable();
-                    string Installment = "";
-                    for (int i = 0; i < dtmr.Rows.Count; i++)
-                    {
-                        if (i == 0)
-                        {
-                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
-                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                            else
-                                if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
-                                Installment = Installment + "REFUNDABLE COLLECTION, ";
-                            else
-                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-
-                        }
-                        else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
-                        {
-                            if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
-                                Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-
-                            else
-                                if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
-                                Installment = Installment + "REFUNDABLE COLLECTION, ";
-                            else
-                                Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-
-
-
-                        }
-
-                    }
-
-
-
-
-                    DataSet ds4 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", PactCode, UsirCode, mrno, "", "", "", "", "", "");
-                    if (ds4 == null)
-                        return;
-                    //Other Type;
-                    DataTable dtot = ds4.Tables[0].Copy();
-                    DataView dv = dtot.DefaultView;
-                    dv.RowFilter = ("pactcode like '25%'");
-                    dtot = dv.ToTable();
-                    for (int i = 0; i < dtot.Rows.Count; i++)
-                    {
-
-
-                        Installment = Installment + dtot.Rows[i]["rectype"] + ", ";
-                    }
-                    int len = Installment.Length;
-                    Installment = ASTUtility.Left(Installment, len - 2);
-
-
-
-                    DataTable dtrpt = ds4.Tables[0];
-                    string custadd = dtrpt.Rows[0]["custadd"].ToString();
-                    string custmob = dtrpt.Rows[0]["custmob"].ToString();
-                    string udesc = dtrpt.Rows[0]["udesc"].ToString();
-                    string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
-                    string munit = dtrpt.Rows[0]["munit"].ToString();
-                    string paytype = dtrpt.Rows[0]["paytype"].ToString();
-                    string chqno = dtrpt.Rows[0]["chqno"].ToString();
-                    string bankname = dtrpt.Rows[0]["bankname"].ToString();
-                    string branch = dtrpt.Rows[0]["bbranch"].ToString();
-                    string refno = dtrpt.Rows[0]["refno"].ToString();
-                    string bookno = dtrpt.Rows[0]["bookno"].ToString();
-                    string custteam = dtrpt.Rows[0]["custteam"].ToString();
-                    string rmrks = dtrpt.Rows[0]["rmrks"].ToString();
-                    string repchqno = dtrpt.Rows[0]["repchqno"].ToString();
-                    string collfrm = dtrpt.Rows[0]["collfrm"].ToString();
-                    string rectype = dtrpt.Rows[0]["rectype"].ToString();
-                    string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
-
-
-                    double amt1 = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text);
-                    double disamt = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("lblgvFdisamt")).Text.Trim());
-
-                    double netamt1 = amt1 == 0.00 ? disamt : amt1;
-
-                    string amt1t = ASTUtility.Trans(netamt1, 2);
-
-
-                    string Typedes = "";
-                    if (paytype == "CHEQUE" || paytype == "P.O")
-                    {
-                        Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
-
-                    }
-
-                    else
-                    {
-
-                        Typedes = paytype;
-                    }
-                    string Type = this.CompanyPrintMR();
-                    ReportDocument rptMoneyRcpt = new ReportDocument();
-                    LocalReport Rpt1 = new LocalReport();
-                    if (Type == "MRPrint1")
-                    {
-                        if (this.chkOrginal.Checked && this.chkOrginal.Enabled)
-                            this.MoneyReceiptPrint();
-
-
-                        var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceipt1", lst, null, null);
-                        Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
-                        Rpt1.SetParameters(new ReportParameter("CompAdd1", comadd));
-                        Rpt1.SetParameters(new ReportParameter("txtmontype1", (rectcode == "54097") ? rectype : (rectcode == "54099") ? rectype : "MONEY RECEIPT"));
-                        Rpt1.SetParameters(new ReportParameter("txtmontype2", (rectcode == "54097") ? rectype : (rectcode == "54099") ? rectype : "MONEY RECEIPT"));
-                        Rpt1.SetParameters(new ReportParameter("txtptintable", (this.chkOrginal.Checked && this.chkOrginal.Enabled) ? "Orginal" : "Duplicate"));
-                        Rpt1.SetParameters(new ReportParameter("txtptintable1", (this.chkOrginal.Checked && this.chkOrginal.Enabled) ? "Orginal" : "Duplicate"));
-                        Rpt1.SetParameters(new ReportParameter("txtrecno1", (rectcode == "54097") ? "Refund No" : (rectcode == "54099") ? "Adjustment No" : "Receipt No"));
-                        Rpt1.SetParameters(new ReportParameter("txtrecno2", (rectcode == "54097") ? "Refund No" : (rectcode == "54099") ? "Adjustment No" : "Receipt No"));
-                        Rpt1.SetParameters(new ReportParameter("txtamttitle1", (rectcode == "54097") ? "Being the amount Refunded" : (rectcode == "54099") ? "Being the amount Adjusted" : "Received with thanks a sum of"));
-                        Rpt1.SetParameters(new ReportParameter("txtamttitle2", (rectcode == "54097") ? "Being the amount Refunded" : (rectcode == "54099") ? "Being the amount Adjusted" : "Received with thanks a sum of"));
-                        Rpt1.SetParameters(new ReportParameter("txtpayorroradajnst1", (rectcode == "54097") ? "Refund Against" : (rectcode == "54099") ? "Adjusted Against" : "Payment Received Against"));
-                        Rpt1.SetParameters(new ReportParameter("txtpayorroradajnst2", (rectcode == "54097") ? "Refund Against" : (rectcode == "54099") ? "Adjusted Against" : "Payment Received Against"));
-                        Rpt1.SetParameters(new ReportParameter("takainword", "Inwords: " + amt1t));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", "Inwords: " + amt1t));
-                        Rpt1.SetParameters(new ReportParameter("txtsignature", (rectcode == "54097") ? "Client Signature" : (rectcode == "54099") ? "Client Signature" : "Prepared By"));
-                        Rpt1.SetParameters(new ReportParameter("txtnote1", (rectcode == "54097") ? "" : (rectcode == "54099") ? "" : "Note: This Money Receipt will be valid Subject to Encashment of the Cheque/DD/Advice/Pay Order"));
-                        Rpt1.SetParameters(new ReportParameter("txtnote2", (rectcode == "54097") ? "" : (rectcode == "54099") ? "" : "Note: This Money Receipt will be valid Subject to Encashment of the Cheque/DD/Advice/Pay Order"));
-                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " /-  "));
-                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " /-  "));
-                        Rpt1.SetParameters(new ReportParameter("paytype", paytype));
-                        Rpt1.SetParameters(new ReportParameter("paytype1", paytype));
-                        Rpt1.SetParameters(new ReportParameter("paydesc", (rectcode == "54097") ? rmrks : (rectcode == "54099") ? rmrks : (rectcode == "54009") ? rectype : Installment));
-                        Rpt1.SetParameters(new ReportParameter("paydesc1", (rectcode == "54097") ? rmrks : (rectcode == "54099") ? rmrks : (rectcode == "54009") ? rectype : Installment));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-                    }
-
-
-
-                    else if (Type == "MRPrint2")
-                    {
-
-                        if (this.chkOrginal.Checked && this.chkOrginal.Enabled)
-                            this.MoneyReceiptPrint();
-
-                        var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptLeisure", lst, null, null);
-
-                        amt1t = amt1t.Replace("Only", "");
-                        amt1t = amt1t.Replace("Taka", "");
-
-                        Rpt1.SetParameters(new ReportParameter("usize", udesc));
-                        Rpt1.SetParameters(new ReportParameter("usize1", udesc));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd)));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd)));
-                        Rpt1.SetParameters(new ReportParameter("takainword", "BDT. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", "BDT. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-                    }
-
-                    else if (Type == "MRPrint3")
-                    {
-                        var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptEdison", lst, null, null);
-                        Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
-
-                        Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-
-                        Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-
-                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-
-                        Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-                    }
-
-
-                    else if (Type == "MRPrint4")
-                    {
-
-                        var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptSuvastu", lst, null, null);
-                        Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
-                        Rpt1.SetParameters(new ReportParameter("txtAddress", comadd));
-                        Rpt1.SetParameters(new ReportParameter("txtAddress1", comadd));
-                        Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("usize", udesc));
-                        Rpt1.SetParameters(new ReportParameter("usize1", udesc));
-                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-                    }
-                    else if (Type == "MRPrint5")
-                    {
-
-                        var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptTro", lst, null, null);
-                        Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("bookno", bookno));
-                        Rpt1.SetParameters(new ReportParameter("bookno1", bookno));
-                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-                    }
-                    else if (Type == "MRPrintIntech")
-                    {
-                        var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptIntech", list, null, null);
-                        Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka","").Replace("Only","Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-                    }
-                    else
-                    {
-
-
-                        var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
-                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceipt", list, null, null);
-                        Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("CompName", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
-                        Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
-                        Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
-                        Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
-                        Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
-                        Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
-                        Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
-                        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-
-                        Session["Report1"] = Rpt1;
-                        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-                    }
-
-                }
-
-
-
-            }
-            else
-            {
-                DataTable dtstatus = (DataTable)Session["rptstatus"];
-                ReportDocument rptStatus = new RealERPRPT.R_22_Sal.RptPaymentStatus();
-                string UsirCode = this.lblCode.Text;
-                string PactCode = this.ddlProjectName.SelectedValue.ToString();
-                DataSet ds5 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTPAYMENTSTATUS", PactCode, UsirCode, "", "", "", "", "", "", "");
-                if (ds5 == null)
-                    return;
-                DataTable dtcust = ds5.Tables[0];
-                string custname = dtcust.Rows[0]["custname"].ToString();
-                string custadd = dtcust.Rows[0]["custadd"].ToString();
-                string custmob = dtcust.Rows[0]["custmob"].ToString();
-                string pactdesc = dtcust.Rows[0]["pactdesc"].ToString();
-                string munit = dtcust.Rows[0]["munit"].ToString();
-                string udesc = dtcust.Rows[0]["udesc"].ToString();
-                string usize = Convert.ToDouble(dtcust.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
-                TextObject rptCname = rptStatus.ReportDefinition.ReportObjects["CompName"] as TextObject;
-                rptCname.Text = comnam;
-                double SAmount = Convert.ToDouble("0" + ((Label)this.gvPayment.FooterRow.FindControl("lfAmt")).Text);
-                double PAmount = Convert.ToDouble("0" + ((Label)this.gvPayment.FooterRow.FindControl("lgvfpayamt")).Text);
-                TextObject rptcustname = rptStatus.ReportDefinition.ReportObjects["custname"] as TextObject;
-                rptcustname.Text = custname;
-                TextObject rptCustAdd = rptStatus.ReportDefinition.ReportObjects["CustAdd"] as TextObject;
-                rptCustAdd.Text = custadd + ", " + "Mobile: " + custmob;
-                TextObject rptpactdesc = rptStatus.ReportDefinition.ReportObjects["pactdesc"] as TextObject;
-                rptpactdesc.Text = pactdesc;
-                TextObject txtbalamt = rptStatus.ReportDefinition.ReportObjects["txtbalamt"] as TextObject;
-                txtbalamt.Text = (SAmount - PAmount).ToString("#,##0;(#,##0); "); ;
-                TextObject rptUsize = rptStatus.ReportDefinition.ReportObjects["usize"] as TextObject;
-                rptUsize.Text = udesc + ", " + usize + " " + munit;
-                TextObject txtuserinfo = rptStatus.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-                txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-                rptStatus.SetDataSource(dtstatus);
-
-                string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-                rptStatus.SetParameterValue("ComLogo", ComLogo);
-                //  }
-                Session["Report1"] = rptStatus;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-            }
-           
+            string pactcode = this.ddlProjectName.SelectedValue.ToString();
+            string usircode = this.lblCode.Text;
+            string mrno = this.lblReceiveNo.Text.Trim();
+            string mrdate = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_17_Acc/";
+            string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
+            string totalpath = hostname + currentptah;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+
+            #region MRPrint
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            //if (this.rbtnList1.SelectedIndex == 0)
+            //{
+
+            //    string UsirCode = this.lblCode.Text;
+            //    string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            //    string mrno = this.lblReceiveNo.Text.Trim();
+            //    string date = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
+
+            //    if (this.chkAllSchedul.Checked == true)  // New
+            //    {
+            //        DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSTALLMANTWITHMRR", PactCode, UsirCode, date, "", "", "", "", "", "");
+            //        DataTable dtstatus = ds2.Tables[0];
+            //        DataView dv1 = dtstatus.DefaultView;
+            //        dv1.RowFilter = "mrno='" + mrno + "'";
+            //        DataTable dtmr = dv1.ToTable();
+            //        Double amount = 0.00;
+            //        for (int i = 0; i < dtmr.Rows.Count; i++)
+            //        {
+            //            amount += Convert.ToDouble(dtmr.Rows[i]["paidamt"]);
+            //        }
+
+            //        DataSet ds4 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", PactCode, UsirCode, mrno, "", "", "", "", "", "");
+            //        if (ds4 == null)
+            //            return;
+            //        DataTable dtrpt = ds4.Tables[0];
+            //        string custadd = dtrpt.Rows[0]["custadd"].ToString();
+            //        string custid = dtrpt.Rows[0]["usircode"].ToString();
+            //        string receptno = dtrpt.Rows[0]["mrno"].ToString();
+            //        string project = dtrpt.Rows[0]["pactdesc"].ToString();
+            //        string receivdate = Convert.ToDateTime(dtrpt.Rows[0]["mrdate"]).ToString("dd-MMM-yyy");
+            //        string refe = dtrpt.Rows[0]["refno"].ToString();
+            //        string txtcustName = dtrpt.Rows[0]["custname"].ToString();
+            //        string udesc = dtrpt.Rows[0]["udesc"].ToString();
+            //        string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
+            //        string munit = dtrpt.Rows[0]["munit"].ToString();
+            //        string paytype = dtrpt.Rows[0]["paytype"].ToString();
+            //        string chqno = dtrpt.Rows[0]["chqno"].ToString();
+            //        string bankname = dtrpt.Rows[0]["bankname"].ToString();
+            //        string branch = dtrpt.Rows[0]["bbranch"].ToString();
+            //        string refno = dtrpt.Rows[0]["refno"].ToString();
+            //        string custteam = dtrpt.Rows[0]["custteam"].ToString();
+            //        string rmrks = dtrpt.Rows[0]["rmrks"].ToString();
+            //        double disamt = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("lblgvFdisamt")).Text.Trim());
+            //        double netamt1 = amount == 0.00 ? disamt : amount;
+
+            //        string amt1t = ASTUtility.Trans(netamt1, 2);
+
+            //        string Typedes = "";
+            //        if (paytype == "CHEQUE" || paytype == "P.O")
+            //        {
+            //            Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+            //        }
+            //        else
+            //        {
+            //            Typedes = paytype;
+            //        }
+
+            //        LocalReport Rpt1 = new LocalReport();
+            //        var list = dtstatus.DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //        Rpt1 = RptSetupClass1.GetLocalReport("R_22_Sal.RptDetailMoneyRecept", list, null, null);
+            //        Rpt1.EnableExternalImages = true;
+            //        Rpt1.SetParameters(new ReportParameter("txtReceptNo", receptno));
+            //        Rpt1.SetParameters(new ReportParameter("txtUnit", udesc + ", " + usize + " " + munit));
+            //        Rpt1.SetParameters(new ReportParameter("txtProjectName", project));
+            //        Rpt1.SetParameters(new ReportParameter("txtReceivedDate", receivdate));
+            //        Rpt1.SetParameters(new ReportParameter("txtRefNo", refno));
+            //        Rpt1.SetParameters(new ReportParameter("txtCustID", custid));
+            //        Rpt1.SetParameters(new ReportParameter("txtCustFrom", txtcustName));
+            //        Rpt1.SetParameters(new ReportParameter("txtCustAdd", custadd));
+            //        Rpt1.SetParameters(new ReportParameter("txtCustName1", txtcustName));
+            //        Rpt1.SetParameters(new ReportParameter("txtTakaInWord", amt1t));
+            //        Rpt1.SetParameters(new ReportParameter("rptTitle", "Money Receipts"));
+            //        Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            //        Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+            //        if (ConstantInfo.LogStatus == true)
+            //        {
+            //            string eventtype = "Money Receipt Info";
+            //            string eventdesc = "Print MR";
+            //            string eventdesc2 = receptno;
+            //            bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //        }
+
+
+            //        Session["Report1"] = Rpt1;
+            //        ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            //    }
+            //    else
+            //    {
+            //        DataSet ds2 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSTALLMANTWITHMRR", PactCode, UsirCode, date, "", "", "", "", "", "");
+            //        DataTable dtstatus = ds2.Tables[0];
+            //        DataView dv1 = dtstatus.DefaultView;
+            //        dv1.RowFilter = "mrno='" + mrno + "'";
+            //        DataTable dtmr = dv1.ToTable();
+            //        string Installment = "";
+            //        for (int i = 0; i < dtmr.Rows.Count; i++)
+            //        {
+            //            if (i == 0)
+            //            {
+            //                if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+            //                    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+            //                else
+            //                    if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+            //                    Installment = Installment + "REFUNDABLE COLLECTION, ";
+            //                else
+            //                    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+
+            //            }
+            //            else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
+            //            {
+            //                if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+            //                    Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
+
+            //                else
+            //                    if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+            //                    Installment = Installment + "REFUNDABLE COLLECTION, ";
+            //                else
+            //                    Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+
+
+
+            //            }
+
+            //        }
+
+
+
+
+            //        DataSet ds4 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", PactCode, UsirCode, mrno, "", "", "", "", "", "");
+            //        if (ds4 == null)
+            //            return;
+            //        //Other Type;
+            //        DataTable dtot = ds4.Tables[0].Copy();
+            //        DataView dv = dtot.DefaultView;
+            //        dv.RowFilter = ("pactcode like '25%'");
+            //        dtot = dv.ToTable();
+            //        for (int i = 0; i < dtot.Rows.Count; i++)
+            //        {
+
+
+            //            Installment = Installment + dtot.Rows[i]["rectype"] + ", ";
+            //        }
+            //        int len = Installment.Length;
+            //        Installment = ASTUtility.Left(Installment, len - 2);
+
+
+
+            //        DataTable dtrpt = ds4.Tables[0];
+            //        string custadd = dtrpt.Rows[0]["custadd"].ToString();
+            //        string custmob = dtrpt.Rows[0]["custmob"].ToString();
+            //        string udesc = dtrpt.Rows[0]["udesc"].ToString();
+            //        string usize = Convert.ToDouble(dtrpt.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
+            //        string munit = dtrpt.Rows[0]["munit"].ToString();
+            //        string paytype = dtrpt.Rows[0]["paytype"].ToString();
+            //        string chqno = dtrpt.Rows[0]["chqno"].ToString();
+            //        string bankname = dtrpt.Rows[0]["bankname"].ToString();
+            //        string branch = dtrpt.Rows[0]["bbranch"].ToString();
+            //        string refno = dtrpt.Rows[0]["refno"].ToString();
+            //        string bookno = dtrpt.Rows[0]["bookno"].ToString();
+            //        string custteam = dtrpt.Rows[0]["custteam"].ToString();
+            //        string rmrks = dtrpt.Rows[0]["rmrks"].ToString();
+            //        string repchqno = dtrpt.Rows[0]["repchqno"].ToString();
+            //        string collfrm = dtrpt.Rows[0]["collfrm"].ToString();
+            //        string rectype = dtrpt.Rows[0]["rectype"].ToString();
+            //        string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
+
+
+            //        double amt1 = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text);
+            //        double disamt = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("lblgvFdisamt")).Text.Trim());
+
+            //        double netamt1 = amt1 == 0.00 ? disamt : amt1;
+
+            //        string amt1t = ASTUtility.Trans(netamt1, 2);
+
+
+            //        string Typedes = "";
+            //        if (paytype == "CHEQUE" || paytype == "P.O")
+            //        {
+            //            Typedes = paytype + ", " + "No: " + chqno + ", Bank: " + bankname + ", Branch: " + branch;
+
+            //        }
+
+            //        else
+            //        {
+
+            //            Typedes = paytype;
+            //        }
+            //        string Type = this.CompanyPrintMR();
+            //        ReportDocument rptMoneyRcpt = new ReportDocument();
+            //        LocalReport Rpt1 = new LocalReport();
+            //        if (Type == "MRPrint1")
+            //        {
+            //            if (this.chkOrginal.Checked && this.chkOrginal.Enabled)
+            //                this.MoneyReceiptPrint();
+
+
+            //            var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceipt1", lst, null, null);
+            //            Rpt1.EnableExternalImages = true;
+            //            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompAdd", comadd));
+            //            Rpt1.SetParameters(new ReportParameter("CompAdd1", comadd));
+            //            Rpt1.SetParameters(new ReportParameter("txtmontype1", (rectcode == "54097") ? rectype : (rectcode == "54099") ? rectype : "MONEY RECEIPT"));
+            //            Rpt1.SetParameters(new ReportParameter("txtmontype2", (rectcode == "54097") ? rectype : (rectcode == "54099") ? rectype : "MONEY RECEIPT"));
+            //            Rpt1.SetParameters(new ReportParameter("txtptintable", (this.chkOrginal.Checked && this.chkOrginal.Enabled) ? "Orginal" : "Duplicate"));
+            //            Rpt1.SetParameters(new ReportParameter("txtptintable1", (this.chkOrginal.Checked && this.chkOrginal.Enabled) ? "Orginal" : "Duplicate"));
+            //            Rpt1.SetParameters(new ReportParameter("txtrecno1", (rectcode == "54097") ? "Refund No" : (rectcode == "54099") ? "Adjustment No" : "Receipt No"));
+            //            Rpt1.SetParameters(new ReportParameter("txtrecno2", (rectcode == "54097") ? "Refund No" : (rectcode == "54099") ? "Adjustment No" : "Receipt No"));
+            //            Rpt1.SetParameters(new ReportParameter("txtamttitle1", (rectcode == "54097") ? "Being the amount Refunded" : (rectcode == "54099") ? "Being the amount Adjusted" : "Received with thanks a sum of"));
+            //            Rpt1.SetParameters(new ReportParameter("txtamttitle2", (rectcode == "54097") ? "Being the amount Refunded" : (rectcode == "54099") ? "Being the amount Adjusted" : "Received with thanks a sum of"));
+            //            Rpt1.SetParameters(new ReportParameter("txtpayorroradajnst1", (rectcode == "54097") ? "Refund Against" : (rectcode == "54099") ? "Adjusted Against" : "Payment Received Against"));
+            //            Rpt1.SetParameters(new ReportParameter("txtpayorroradajnst2", (rectcode == "54097") ? "Refund Against" : (rectcode == "54099") ? "Adjusted Against" : "Payment Received Against"));
+            //            Rpt1.SetParameters(new ReportParameter("takainword", "Inwords: " + amt1t));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", "Inwords: " + amt1t));
+            //            Rpt1.SetParameters(new ReportParameter("txtsignature", (rectcode == "54097") ? "Client Signature" : (rectcode == "54099") ? "Client Signature" : "Prepared By"));
+            //            Rpt1.SetParameters(new ReportParameter("txtnote1", (rectcode == "54097") ? "" : (rectcode == "54099") ? "" : "Note: This Money Receipt will be valid Subject to Encashment of the Cheque/DD/Advice/Pay Order"));
+            //            Rpt1.SetParameters(new ReportParameter("txtnote2", (rectcode == "54097") ? "" : (rectcode == "54099") ? "" : "Note: This Money Receipt will be valid Subject to Encashment of the Cheque/DD/Advice/Pay Order"));
+            //            Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " /-  "));
+            //            Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " /-  "));
+            //            Rpt1.SetParameters(new ReportParameter("paytype", paytype));
+            //            Rpt1.SetParameters(new ReportParameter("paytype1", paytype));
+            //            Rpt1.SetParameters(new ReportParameter("paydesc", (rectcode == "54097") ? rmrks : (rectcode == "54099") ? rmrks : (rectcode == "54009") ? rectype : Installment));
+            //            Rpt1.SetParameters(new ReportParameter("paydesc1", (rectcode == "54097") ? rmrks : (rectcode == "54099") ? rmrks : (rectcode == "54009") ? rectype : Installment));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            //        }
+
+
+
+            //        else if (Type == "MRPrint2")
+            //        {
+
+            //            if (this.chkOrginal.Checked && this.chkOrginal.Enabled)
+            //                this.MoneyReceiptPrint();
+
+            //            var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptLeisure", lst, null, null);
+
+            //            amt1t = amt1t.Replace("Only", "");
+            //            amt1t = amt1t.Replace("Taka", "");
+
+            //            Rpt1.SetParameters(new ReportParameter("usize", udesc));
+            //            Rpt1.SetParameters(new ReportParameter("usize1", udesc));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd)));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword", "BDT. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", "BDT. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            //        }
+
+            //        else if (Type == "MRPrint3")
+            //        {
+            //            var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptEdison", lst, null, null);
+            //            Rpt1.EnableExternalImages = true;
+            //            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+
+            //            Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+
+            //            Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+
+            //            Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            //        }
+
+
+            //        else if (Type == "MRPrint4")
+            //        {
+
+            //            var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptSuvastu", lst, null, null);
+            //            Rpt1.EnableExternalImages = true;
+            //            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("txtAddress", comadd));
+            //            Rpt1.SetParameters(new ReportParameter("txtAddress1", comadd));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("usize", udesc));
+            //            Rpt1.SetParameters(new ReportParameter("usize1", udesc));
+            //            Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            //        }
+            //        else if (Type == "MRPrint5")
+            //        {
+
+            //            var lst = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptTro", lst, null, null);
+            //            Rpt1.EnableExternalImages = true;
+            //            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("bookno", bookno));
+            //            Rpt1.SetParameters(new ReportParameter("bookno1", bookno));
+            //            Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+            //        }
+            //        else if (Type == "MRPrintIntech")
+            //        {
+            //            var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceiptIntech", list, null, null);
+            //            Rpt1.EnableExternalImages = true;
+            //            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("takainword", amt1t.Replace("Taka","").Replace("Only","Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", amt1t.Replace("Taka", "").Replace("Only", "Taka Only") + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
+            //            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            //        }
+            //        else
+            //        {
+
+
+            //            var list = ds4.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.CustomerMoneyrecipt>();
+            //            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptMoneyReceipt", list, null, null);
+            //            Rpt1.EnableExternalImages = true;
+            //            Rpt1.SetParameters(new ReportParameter("CompName", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CompName1", comnam));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd + ", " + "Mobile: " + custmob)));
+            //            Rpt1.SetParameters(new ReportParameter("custteam", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("custteam1", "Received by: " + custteam));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("rmrks1", "Remarks: " + rmrks));
+            //            Rpt1.SetParameters(new ReportParameter("usize", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("usize1", udesc + ", " + usize + " " + munit));
+            //            Rpt1.SetParameters(new ReportParameter("amount", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("amount1", "TK. " + Convert.ToDouble(netamt1).ToString("#,##0;(#,##0)")));
+            //            Rpt1.SetParameters(new ReportParameter("takainword", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
+            //            Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+            //            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+
+            //            Session["Report1"] = Rpt1;
+            //            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            //        }
+
+            //    }
+
+
+
+            //}
+            //else
+            //{
+            //    DataTable dtstatus = (DataTable)Session["rptstatus"];
+            //    ReportDocument rptStatus = new RealERPRPT.R_22_Sal.RptPaymentStatus();
+            //    string UsirCode = this.lblCode.Text;
+            //    string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            //    DataSet ds5 = MktData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTPAYMENTSTATUS", PactCode, UsirCode, "", "", "", "", "", "", "");
+            //    if (ds5 == null)
+            //        return;
+            //    DataTable dtcust = ds5.Tables[0];
+            //    string custname = dtcust.Rows[0]["custname"].ToString();
+            //    string custadd = dtcust.Rows[0]["custadd"].ToString();
+            //    string custmob = dtcust.Rows[0]["custmob"].ToString();
+            //    string pactdesc = dtcust.Rows[0]["pactdesc"].ToString();
+            //    string munit = dtcust.Rows[0]["munit"].ToString();
+            //    string udesc = dtcust.Rows[0]["udesc"].ToString();
+            //    string usize = Convert.ToDouble(dtcust.Rows[0]["usize"]).ToString("#,##0;(#,##0); -");
+            //    TextObject rptCname = rptStatus.ReportDefinition.ReportObjects["CompName"] as TextObject;
+            //    rptCname.Text = comnam;
+            //    double SAmount = Convert.ToDouble("0" + ((Label)this.gvPayment.FooterRow.FindControl("lfAmt")).Text);
+            //    double PAmount = Convert.ToDouble("0" + ((Label)this.gvPayment.FooterRow.FindControl("lgvfpayamt")).Text);
+            //    TextObject rptcustname = rptStatus.ReportDefinition.ReportObjects["custname"] as TextObject;
+            //    rptcustname.Text = custname;
+            //    TextObject rptCustAdd = rptStatus.ReportDefinition.ReportObjects["CustAdd"] as TextObject;
+            //    rptCustAdd.Text = custadd + ", " + "Mobile: " + custmob;
+            //    TextObject rptpactdesc = rptStatus.ReportDefinition.ReportObjects["pactdesc"] as TextObject;
+            //    rptpactdesc.Text = pactdesc;
+            //    TextObject txtbalamt = rptStatus.ReportDefinition.ReportObjects["txtbalamt"] as TextObject;
+            //    txtbalamt.Text = (SAmount - PAmount).ToString("#,##0;(#,##0); "); ;
+            //    TextObject rptUsize = rptStatus.ReportDefinition.ReportObjects["usize"] as TextObject;
+            //    rptUsize.Text = udesc + ", " + usize + " " + munit;
+            //    TextObject txtuserinfo = rptStatus.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
+            //    txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
+            //    rptStatus.SetDataSource(dtstatus);
+
+            //    string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
+            //    rptStatus.SetParameterValue("ComLogo", ComLogo);
+            //    //  }
+            //    Session["Report1"] = rptStatus;
+            //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
+            //               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+            //}
+            #endregion
 
         }
 
@@ -1876,7 +1892,7 @@ namespace RealERPWEB.F_23_CR
                 this.txtremarks.Text = dr1[0]["rmrks"].ToString();
                 this.txtbookno.Text = dr1[0]["bookno"].ToString();
                 this.ddlCollType.SelectedValue = dr1[0]["collfrm"].ToString();
-                this.ddlRecType.SelectedValue = dr1[0]["recType"].ToString();
+                this.ddlRecType.SelectedValue = dr1[0]["recType"].ToString(); 
                 this.lblSchCode.Text = dr1[0]["schcode"].ToString();
                 string instypecode = ((dr1[0]["schcode"].ToString() == "") ?
                     ((this.ddlRecType.SelectedValue == "54001") ? "07"

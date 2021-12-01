@@ -18,7 +18,7 @@
         function CloseModal() {
             $('#detialsinfo').modal('hide');
 
-
+             
         }
 
 
