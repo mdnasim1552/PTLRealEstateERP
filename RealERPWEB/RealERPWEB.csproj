@@ -2237,6 +2237,7 @@
     <Content Include="F_05_Busi\BgdCodeBook.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningBudget.aspx" />
     <Content Include="F_05_Busi\YearlyPlanningSt.aspx" />
+    <Content Include="F_07_Ten\CivilConBOQ.aspx" />
     <Content Include="F_07_Ten\LinkBudATenAnaLysis.aspx" />
     <Content Include="F_07_Ten\LinkRptPrjSchAnaLysis.aspx" />
     <Content Include="F_07_Ten\LinkTasAccDetAnalysis.aspx" />
@@ -3867,6 +3868,13 @@
     </Compile>
     <Compile Include="F_01_LPA\RptLandInventory.aspx.designer.cs">
       <DependentUpon>RptLandInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_07_Ten\CivilConBOQ.aspx.cs">
+      <DependentUpon>CivilConBOQ.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_07_Ten\CivilConBOQ.aspx.designer.cs">
+      <DependentUpon>CivilConBOQ.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
