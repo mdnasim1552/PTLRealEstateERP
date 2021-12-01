@@ -136,12 +136,14 @@ namespace RealERPWEB
             string ddlyear = this.ddlyearSale.SelectedValue.ToString();
             string pdate = "01-Jan-" + ddlyear;
             // string tdate = "01-Jan-" + ddlyear;
+            var jsonSerialiser = new JavaScriptSerializer();
+
+            if (userrole == "admin")
+            {
 
 
 
-
-
-            if (Cache["dsinterface"] == null)
+                if (Cache["dsinterface"] == null)
             {
                 ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
                 if (ds2 == null)
@@ -185,12 +187,8 @@ namespace RealERPWEB
 
             }
 
-            ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-            var jsonSerialiser = new JavaScriptSerializer();
-            if (userrole == "admin")
-            {
+           
+           
 
                 var lst = ds2.Tables[0].DataTableToList<Salgraph>();
                 var lst1 = ds2.Tables[1].DataTableToList<Purgraph>();
@@ -208,11 +206,83 @@ namespace RealERPWEB
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + gtype + "')", true);
 
+                ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+
+                this.todaywrkcount.InnerHtml = ds1.Tables[2].Rows[0]["tcount"].ToString();
+                //this.TaskRemaining.InnerHtml = ds1.Tables [2].Rows [0] ["tasks"].ToString();
+                this.todaywrk.Attributes.Add("href", "F_34_Mgt/RptUserLogDetails");    //?Type=Entry&genno=" + usrid);
+
+                if (ds1.Tables[3] == null)
+                    return;
+                //if (ds1.Tables[3] == null || ds1.Tables[3].Rows.Count == 0)
+                //    return;
+                string innHTML = "";
+                int i = 0;
+                foreach (DataRow dr in ds1.Tables[3].Rows)
+                {
+                    string url1 = dr["usrimg"].ToString();
+                    url1 = url1.Substring(2, url1.Length - 2);
+                    i++;
+                    innHTML += @"<div class='card mb-2'>" +
+                            "<div class='card-body'>" +
+                              "<div class='row align-items-center'>" +
+                                "<div class='col-auto'>" +
+                                  "<a href = 'user-profile.html' class='user-avatar user-avatar-lg'><img src = '" + url1 + "' alt=''><span class='avatar-badge offline' title='offline'></span></a> </div>" +
+                                "<div class='col'>" +
+                                  "<h3 class='card-title'>" +
+                                    "<a href = 'user-profile.html' >" + dr["usrname"] + "</a> <small class='text-muted'>@</small></h3>" +
+                                  "<h6 class='card-subtitle text-muted'>" + dr["usrdesig"] + "</h6> </div>" +
+                                "<div class='col-auto'>" +
+                                  "<button type = 'button' class='btn btn-icon btn-secondary mr-1' data-toggle='tooltip' title='' data-original-title='Private message'><i class='far fa-comment-alt'></i></button>" +
+                                  "<div class='dropdown d-inline-block'>" +
+                                    "<button class='btn btn-icon btn-secondary' data-toggle='dropdown'><i class='fa fa-fw fa-ellipsis-h'></i></button>" +
+                                    "<div class='dropdown-menu dropdown-menu-right'>" +
+                                      "<div class='dropdown-arrow'></div><button type = 'button' class='dropdown-item'>Invite to a team</button> <button type = 'button' class='dropdown-item'>Copy member ID</button>" +
+                                      "<div class='dropdown-divider'></div><button type = 'button' class='dropdown-item'>Remove</button>" +
+                                    "</div> </div>  </div>  </div>  </div>  </div>";
+
+
+                }
+                string prjcount = ds1.Tables[2].Rows[0]["pcount"].ToString();
+                this.offlineUserCount.InnerHtml = Convert.ToString(i);
+                this.OfflineUsers.InnerHtml = innHTML;
+                int l = 0;
+                string toactivity = "";
+                string modaldata = "";
+                foreach (DataRow dr in ds1.Tables[4].Rows)
+                {
+
+                    string url = dr["usrimg"].ToString();
+
+
+                    toactivity += @"<a id='myModal" + l + "' class='list-group-item list-group-item-action'>" +
+                                  "<div class='list-group-item-figure'>" +
+                                    "<div class='user-avatar'>" +
+                                      "<img src ='" + url + "' alt=''></div></div>" +
+
+                                  "<div class='list-group-item-body'>" +
+                                    "<h4 class='list-group-item-title font-size-sm'> " + dr["usersname"] + "</h4>" +
+                                    "<p class='list-group-item-text text-truncate'>" +
+                                    "<span class='text-dark font-size-sm'>" + dr["usrdesig"] + "</span> – <span class='badge badge-success'>" + dr["tcount"] + "</span> </p>" +
+                                  "</div></a>";
+
+
+                }
+                TopActivity.InnerHtml = toactivity;
+                this.noProjCount.InnerHtml = prjcount;
+                this.noProj.Attributes.Add("href", "F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" + comcod);    //?Type=Entry&genno=" + usrid);
+
+
+
             }
             else
             {
 
-
+                ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
                 divuser.Visible = true;
                 this.divgraph.Visible = false;
                 DataView dv = ds1.Tables[1].DefaultView;
@@ -228,97 +298,7 @@ namespace RealERPWEB
 
 
 
-            this.todaywrkcount.InnerHtml = ds1.Tables[2].Rows[0]["tcount"].ToString();
-            //this.TaskRemaining.InnerHtml = ds1.Tables [2].Rows [0] ["tasks"].ToString();
-            this.todaywrk.Attributes.Add("href", "F_34_Mgt/RptUserLogDetails");    //?Type=Entry&genno=" + usrid);
-
-            if (ds1.Tables[3] == null)
-                return;
-            //if (ds1.Tables[3] == null || ds1.Tables[3].Rows.Count == 0)
-            //    return;
-            string innHTML = "";
-            int i = 0;
-            foreach (DataRow dr in ds1.Tables[3].Rows)
-            {
-                string url1 = dr["usrimg"].ToString();
-                url1 = url1.Substring(2, url1.Length - 2);
-
-                //if (dr["usrimg"] != null && dr["usrimg"].ToString() != "")
-                //{
-
-                //    byte[] ifff = (byte[])dr["usrimg"];
-                //    url1 = "data:image;base64," + Convert.ToBase64String(ifff);
-                //}
-                //else
-                //{
-                //    url1 = "Content/Theme/images/avatars/human_avatar.png";
-                //}
-                i++;
-                innHTML += @"<div class='card mb-2'>" +
-                        "<div class='card-body'>" +
-                          "<div class='row align-items-center'>" +
-                            "<div class='col-auto'>" +
-                              "<a href = 'user-profile.html' class='user-avatar user-avatar-lg'><img src = '" + url1 + "' alt=''><span class='avatar-badge offline' title='offline'></span></a> </div>" +
-                            "<div class='col'>" +
-                              "<h3 class='card-title'>" +
-                                "<a href = 'user-profile.html' >" + dr["usrname"] + "</a> <small class='text-muted'>@</small></h3>" +
-                              "<h6 class='card-subtitle text-muted'>" + dr["usrdesig"] + "</h6> </div>" +
-                            "<div class='col-auto'>" +
-                              "<button type = 'button' class='btn btn-icon btn-secondary mr-1' data-toggle='tooltip' title='' data-original-title='Private message'><i class='far fa-comment-alt'></i></button>" +
-                              "<div class='dropdown d-inline-block'>" +
-                                "<button class='btn btn-icon btn-secondary' data-toggle='dropdown'><i class='fa fa-fw fa-ellipsis-h'></i></button>" +
-                                "<div class='dropdown-menu dropdown-menu-right'>" +
-                                  "<div class='dropdown-arrow'></div><button type = 'button' class='dropdown-item'>Invite to a team</button> <button type = 'button' class='dropdown-item'>Copy member ID</button>" +
-                                  "<div class='dropdown-divider'></div><button type = 'button' class='dropdown-item'>Remove</button>" +
-                                "</div> </div>  </div>  </div>  </div>  </div>";
-
-
-            }
-            string prjcount = ds1.Tables[2].Rows[0]["pcount"].ToString();
-            this.offlineUserCount.InnerHtml = Convert.ToString(i);
-            this.OfflineUsers.InnerHtml = innHTML;
-            int l = 0;
-            string toactivity = "";
-            string modaldata = "";
-            foreach (DataRow dr in ds1.Tables[4].Rows)
-            {
-
-                string url = dr["usrimg"].ToString();
-
-                //if (dr["usrimg"] != null && dr["usrimg"].ToString() != "")
-                //{
-
-                //    byte[] ifff = (byte[])dr["usrimg"];
-                //    url = "data:image;base64," + Convert.ToBase64String(ifff);
-                //}
-                //else
-                //{
-                //    url = "Content/Theme/images/avatars/human_avatar.png";
-                //}
-
-
-
-                //  Response.BinaryWrite(ifff);
-
-
-                toactivity += @"<a id='myModal" + l + "' class='list-group-item list-group-item-action'>" +
-                              "<div class='list-group-item-figure'>" +
-                                "<div class='user-avatar'>" +
-                                  "<img src ='" + url + "' alt=''></div></div>" +
-
-                              "<div class='list-group-item-body'>" +
-                                "<h4 class='list-group-item-title font-size-sm'> " + dr["usersname"] + "</h4>" +
-                                "<p class='list-group-item-text text-truncate'>" +
-                                "<span class='text-dark font-size-sm'>" + dr["usrdesig"] + "</span> – <span class='badge badge-success'>" + dr["tcount"] + "</span> </p>" +
-                              "</div></a>";
-
-
-            }
-            TopActivity.InnerHtml = toactivity;
-            this.noProjCount.InnerHtml = prjcount;
-            this.noProj.Attributes.Add("href", "F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" + comcod);    //?Type=Entry&genno=" + usrid);
-
-
+           
             ds1.Dispose();
             ds2.Dispose();
 
@@ -326,7 +306,7 @@ namespace RealERPWEB
 
         private void ShowData_Column()
         {
-
+            var jsonSerialiser = new JavaScriptSerializer();
             // For Cache Data
             DataSet ds1 = new DataSet();
             DataSet ds2 = new DataSet();
@@ -343,9 +323,9 @@ namespace RealERPWEB
 
 
 
-
-
-            if (Cache["dsinterface"] == null)
+            if (userrole == "admin")
+            {
+                if (Cache["dsinterface"] == null)
             {
                 ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
                 if (ds2 == null)
@@ -359,8 +339,6 @@ namespace RealERPWEB
 
             else
             {
-
-
                 ds2 = (DataSet)Cache["dsinterface"];
                 // ds1 = (DataSet)Cache["dsalllogin"];
 
@@ -378,26 +356,17 @@ namespace RealERPWEB
                     Cache.Insert("dsinterface", ds2, null, DateTime.Now.AddMinutes(minute), TimeSpan.Zero);
 
                 }
-
                 else
                 {
                     ds2 = (DataSet)Cache["dsinterface"];
-
+                }
                 }
 
+           
+           
 
-
-            }
-
-            ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            var listhr = ds1.Tables[5].DataTableToList<ManPowerStatus>();
-            var jsonSerialiser = new JavaScriptSerializer();
-            if (userrole == "admin")
-            {
-
+            
+           
                 var lst = ds2.Tables[0].DataTableToList<Salgraph>();
                 var lst1 = ds2.Tables[1].DataTableToList<Purgraph>();
                 var lst2 = ds2.Tables[2].DataTableToList<Accgraph>();
@@ -414,11 +383,86 @@ namespace RealERPWEB
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph_column('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "')", true);
 
+                ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
+                 var listhr = ds1.Tables[5].DataTableToList<ManPowerStatus>();
+                this.todaywrkcount.InnerHtml = ds1.Tables[2].Rows[0]["tcount"].ToString();
+                //this.TaskRemaining.InnerHtml = ds1.Tables [2].Rows [0] ["tasks"].ToString();
+                this.todaywrk.Attributes.Add("href", "F_34_Mgt/RptUserLogDetails");    //?Type=Entry&genno=" + usrid);
+
+                if (ds1.Tables[3] == null)
+                    return;
+                //if (ds1.Tables[3] == null || ds1.Tables[3].Rows.Count == 0)
+                //    return;
+                string innHTML = "";
+                int i = 0;
+                foreach (DataRow dr in ds1.Tables[3].Rows)
+                {
+
+                    string url1 = dr["usrimg"].ToString();
+                    url1 = url1.Length == 0 ? "" : url1.Substring(2, url1.Length - 2);
+
+
+                    i++;
+                    innHTML += @"<div class='card mb-2'>" +
+                            "<div class='card-body'>" +
+                              "<div class='row align-items-center'>" +
+                                "<div class='col-auto'>" +
+                                  "<a href = 'user-profile.html' class='user-avatar user-avatar-lg'><img src = '" + url1 + "' alt=''><span class='avatar-badge offline' title='offline'></span></a> </div>" +
+                                "<div class='col'>" +
+                                  "<h3 class='card-title'>" +
+                                    "<a href = 'user-profile.html' >" + dr["usrname"] + "</a> <small class='text-muted'>@</small></h3>" +
+                                  "<h6 class='card-subtitle text-muted'>" + dr["usrdesig"] + "</h6> </div>" +
+                                "<div class='col-auto'>" +
+                                  "<button type = 'button' class='btn btn-icon btn-secondary mr-1' data-toggle='tooltip' title='' data-original-title='Private message'><i class='far fa-comment-alt'></i></button>" +
+                                  "<div class='dropdown d-inline-block'>" +
+                                    "<button class='btn btn-icon btn-secondary' data-toggle='dropdown'><i class='fa fa-fw fa-ellipsis-h'></i></button>" +
+                                    "<div class='dropdown-menu dropdown-menu-right'>" +
+                                      "<div class='dropdown-arrow'></div><button type = 'button' class='dropdown-item'>Invite to a team</button> <button type = 'button' class='dropdown-item'>Copy member ID</button>" +
+                                      "<div class='dropdown-divider'></div><button type = 'button' class='dropdown-item'>Remove</button>" +
+                                    "</div> </div>  </div>  </div>  </div>  </div>";
+
+
+                }
+                string prjcount = ds1.Tables[2].Rows[0]["pcount"].ToString();
+
+                this.offlineUserCount.InnerHtml = Convert.ToString(i);
+                this.OfflineUsers.InnerHtml = innHTML;
+                int l = 0;
+                string toactivity = "";
+                string modaldata = "";
+                foreach (DataRow dr in ds1.Tables[4].Rows)
+                {
+
+                    string url = dr["usrimg"].ToString();
+                    url = url.Substring(2, url.Length - 2);
+                    //  Response.BinaryWrite(ifff);
+                    toactivity += @"<a id='myModal" + l + "' class='list-group-item list-group-item-action'>" +
+                                  "<div class='list-group-item-figure'>" +
+                                    "<div class='user-avatar'>" +
+                                      "<img src ='" + url + "' alt=''></div></div>" +
+
+                                  "<div class='list-group-item-body'>" +
+                                    "<h4 class='list-group-item-title font-size-sm'> " + dr["usersname"] + "</h4>" +
+                                    "<p class='list-group-item-text text-truncate'>" +
+                                    "<span class='text-dark font-size-sm'>" + dr["usrdesig"] + "</span> – <span class='badge badge-success'>" + dr["tcount"] + "</span> </p>" +
+                                  "</div></a>";
+
+
+                }
+                TopActivity.InnerHtml = toactivity;
+                this.noProjCount.InnerHtml = prjcount;
+                this.noProj.Attributes.Add("href", "F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" + comcod);    //?Type=Entry&genno=" + usrid);
+
+
             }
             else
             {
 
-
+                ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", "", "", "", "", "");
+                if (ds1 == null)
+                    return;
                 divuser.Visible = true;
                 this.divgraph.Visible = false;
                 DataView dv = ds1.Tables[1].DefaultView;
@@ -429,104 +473,9 @@ namespace RealERPWEB
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteUserdata('" + data1 + "')", true);
 
 
-
             }
 
 
-
-            this.todaywrkcount.InnerHtml = ds1.Tables[2].Rows[0]["tcount"].ToString();
-            //this.TaskRemaining.InnerHtml = ds1.Tables [2].Rows [0] ["tasks"].ToString();
-            this.todaywrk.Attributes.Add("href", "F_34_Mgt/RptUserLogDetails");    //?Type=Entry&genno=" + usrid);
-
-            if (ds1.Tables[3] == null)
-                return;
-            //if (ds1.Tables[3] == null || ds1.Tables[3].Rows.Count == 0)
-            //    return;
-            string innHTML = "";
-            int i = 0;
-            foreach (DataRow dr in ds1.Tables[3].Rows)
-            {
-
-                string url1 = dr["usrimg"].ToString();
-                url1 = url1.Length==0?"" :url1.Substring(2, url1.Length - 2);
-
-
-                //if (dr["usrimg"] != null && dr["usrimg"].ToString() != "")
-                //{
-
-                //    byte[] ifff = (byte[])dr["usrimg"];
-                //    url1 = "data:image;base64," + Convert.ToBase64String(ifff);
-                //}
-                //else
-                //{
-                //    url1 = "Content/Theme/images/avatars/human_avatar.png";
-                //}
-                i++;
-                innHTML += @"<div class='card mb-2'>" +
-                        "<div class='card-body'>" +
-                          "<div class='row align-items-center'>" +
-                            "<div class='col-auto'>" +
-                              "<a href = 'user-profile.html' class='user-avatar user-avatar-lg'><img src = '" + url1 + "' alt=''><span class='avatar-badge offline' title='offline'></span></a> </div>" +
-                            "<div class='col'>" +
-                              "<h3 class='card-title'>" +
-                                "<a href = 'user-profile.html' >" + dr["usrname"] + "</a> <small class='text-muted'>@</small></h3>" +
-                              "<h6 class='card-subtitle text-muted'>" + dr["usrdesig"] + "</h6> </div>" +
-                            "<div class='col-auto'>" +
-                              "<button type = 'button' class='btn btn-icon btn-secondary mr-1' data-toggle='tooltip' title='' data-original-title='Private message'><i class='far fa-comment-alt'></i></button>" +
-                              "<div class='dropdown d-inline-block'>" +
-                                "<button class='btn btn-icon btn-secondary' data-toggle='dropdown'><i class='fa fa-fw fa-ellipsis-h'></i></button>" +
-                                "<div class='dropdown-menu dropdown-menu-right'>" +
-                                  "<div class='dropdown-arrow'></div><button type = 'button' class='dropdown-item'>Invite to a team</button> <button type = 'button' class='dropdown-item'>Copy member ID</button>" +
-                                  "<div class='dropdown-divider'></div><button type = 'button' class='dropdown-item'>Remove</button>" +
-                                "</div> </div>  </div>  </div>  </div>  </div>";
-
-
-            }
-            string prjcount =ds1.Tables[2].Rows[0]["pcount"].ToString();
-
-            this.offlineUserCount.InnerHtml = Convert.ToString(i);
-            this.OfflineUsers.InnerHtml = innHTML;
-            int l = 0;
-            string toactivity = "";
-            string modaldata = "";
-            foreach (DataRow dr in ds1.Tables[4].Rows)
-            {
-
-                string url = dr["usrimg"].ToString();
-                url = url.Substring(2, url.Length - 2);
-
-                //if (dr["usrimg"] != null && dr["usrimg"].ToString() != "")
-                //{
-
-                //    byte[] ifff = (byte[])dr["usrimg"];
-                //    url = "data:image;base64," + Convert.ToBase64String(ifff);
-                //}
-                //else
-                //{
-                //    url = "Content/Theme/images/avatars/human_avatar.png";
-                //}
-
-
-
-                //  Response.BinaryWrite(ifff);
-
-
-                toactivity += @"<a id='myModal" + l + "' class='list-group-item list-group-item-action'>" +
-                              "<div class='list-group-item-figure'>" +
-                                "<div class='user-avatar'>" +
-                                  "<img src ='" + url + "' alt=''></div></div>" +
-
-                              "<div class='list-group-item-body'>" +
-                                "<h4 class='list-group-item-title font-size-sm'> " + dr["usersname"] + "</h4>" +
-                                "<p class='list-group-item-text text-truncate'>" +
-                                "<span class='text-dark font-size-sm'>" + dr["usrdesig"] + "</span> – <span class='badge badge-success'>" + dr["tcount"] + "</span> </p>" +
-                              "</div></a>";
-
-
-            }
-            TopActivity.InnerHtml = toactivity;
-            this.noProjCount.InnerHtml = prjcount;
-            this.noProj.Attributes.Add("href", "F_32_Mis/RptMisMasterBgd.aspx?Type=InvPlan&comcod=" + comcod);    //?Type=Entry&genno=" + usrid);
 
             ds1.Dispose();
             ds2.Dispose();
