@@ -2254,6 +2254,7 @@
     <Content Include="F_07_Ten\TASSchduleRate.aspx" />
     <Content Include="F_07_Ten\TASStdAnalysis.aspx" />
     <Content Include="F_07_Ten\TASSurvRate.aspx" />
+    <Content Include="F_07_Ten\UnitConversion.aspx" />
     <Content Include="F_08_PPlan\ConstructionInfo.aspx" />
     <Content Include="F_08_PPlan\ConstructionInfoOld.aspx" />
     <Content Include="F_08_PPlan\Default.aspx" />
@@ -3874,6 +3875,13 @@
     </Compile>
     <Compile Include="F_07_Ten\TasQuotEntry.aspx.designer.cs">
       <DependentUpon>TasQuotEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_07_Ten\UnitConversion.aspx.cs">
+      <DependentUpon>UnitConversion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
+      <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\PurMktSurveyCont.aspx.cs">
       <DependentUpon>PurMktSurveyCont.aspx</DependentUpon>
