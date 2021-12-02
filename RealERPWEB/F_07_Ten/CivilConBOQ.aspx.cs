@@ -90,8 +90,8 @@ namespace RealERPWEB.F_07_Ten
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETWORKLIST", "%%", "", "", "", "", "", "", "", "");
+            string workgrp = this.ddlWorkGroup.SelectedValue.ToString();
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETWORKLIST", workgrp, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlWorkList.DataTextField = "workdesc";
