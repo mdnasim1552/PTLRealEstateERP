@@ -32,7 +32,7 @@
                     }
                 },
                 xAxis: {
-                    categories: ['Call', 'Ext.Meeting', 'Int. Meeting', 'Visit', 'Proposal', 'Leads', 'Close'],
+                    categories: ['Call', 'Ext.Meeting', 'Int. Meeting', 'Visit', 'Proposal', 'Close'],
                     crosshair: true
                 },
                 yAxis: {
@@ -69,13 +69,13 @@
                     {
                         name: "Target",
                         color: "#A50200",
-                        data: [lead_m[0].tcall, lead_m[0].textmeeting, lead_m[0].tintmeeting, lead_m[0].tvisit, lead_m[0].tproposal, lead_m[0].tleads, lead_m[0].tclose]
+                        data: [lead_m[0].tcall, lead_m[0].textmeeting, lead_m[0].tintmeeting, lead_m[0].tvisit, lead_m[0].tproposal, lead_m[0].tclose]
 
                         
                     }, {
                         name: "Achive",
                         color: "#00A28A",
-                        data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal, lead_m[0].leads, lead_m[0].close] 
+                        data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal,  lead_m[0].close] 
                     }
                 ],
 
@@ -149,10 +149,7 @@
                                 name: "Proposal",
                                 y: parseFloat(lead_w[0].proposal)
                             },
-                            {
-                                name: "Leads",
-                                y: parseFloat(lead_w[0].leads)
-                            },
+                          
                             {
                                 name: "Close",
                                 y: parseFloat(lead_w[0].close)
@@ -228,10 +225,7 @@
                                 name: "Proposal",
                                 y: parseFloat(lead_d[0].proposal)
                             },
-                            {
-                                name: "Leads",
-                                y: parseFloat(lead_d[0].leads)
-                            },
+                           
                             {
                                 name: "Close",
                                 y: parseFloat(lead_d[0].close)
@@ -334,8 +328,14 @@
                 <div class="col-md-2">
                     <asp:LinkButton ID="lnkbtnOk" OnClick="lnkbtnOk_Click" Class="btn btn-sm btn-primary" runat="server">Ok</asp:LinkButton>
                 </div>
-                <div class="col-md-2 float-right">
+                <div class="col-md-1">
                     <a href="../F_21_MKT/CrmClientInfo?Type=Entry" target="_blank" class="btn btn-sm btn-primary float-right">Go Interface</a>
+                    
+
+                </div>
+                <div class="col-md-1">
+                    
+                    <asp:HyperLink ID="HyperLink2" class="btn btn-sm btn-success float-right" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                 </div>
             </div>

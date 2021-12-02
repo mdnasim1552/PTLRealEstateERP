@@ -2100,6 +2100,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
 
+            // 9401 -head office , 9451- project, 9452- factory
             if (this.ddlProjectName.SelectedValue.Substring(0, 4) == "9401")
             {
 

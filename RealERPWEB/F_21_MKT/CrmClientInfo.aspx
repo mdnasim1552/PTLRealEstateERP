@@ -3703,7 +3703,7 @@
                                                 <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">Code Book</asp:HyperLink>
+                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">CRM Code Entry</asp:HyperLink>
 
                                             </li>
                                             <li>
