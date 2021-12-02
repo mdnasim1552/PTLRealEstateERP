@@ -2222,7 +2222,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string date1 = "";
             if (this.ddlProjectName.SelectedValue.Substring(0, 4) == "9401")
             {
-                date1 = "Salary for the month of " + todate1 + " (Head Office)" + " (" + paytype + ") ";
+                date1 = "Salary for the month of " + todate1 + " - " + " (" + paytype + ") ";
             }
             else
             {
