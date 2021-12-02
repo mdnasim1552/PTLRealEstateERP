@@ -2837,8 +2837,8 @@ PEBSAL</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0.4675in</Top>
-              <Left>9.31252in</Left>
+              <Top>0.42719in</Top>
+              <Left>9.26044in</Left>
               <Height>0.35417in</Height>
               <Width>1.6354in</Width>
               <ZIndex>1</ZIndex>
@@ -2945,7 +2945,7 @@ PEBSAL</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.4675in</Top>
-              <Left>2.0752in</Left>
+              <Left>2.23827in</Left>
               <Height>0.35417in</Height>
               <Width>1.53122in</Width>
               <ZIndex>4</ZIndex>
@@ -2969,7 +2969,7 @@ PEBSAL</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Company Secretary</Value>
+                      <Value>Company Secretary ( A&amp; F)</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -2983,48 +2983,10 @@ PEBSAL</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.4675in</Top>
-              <Left>5.87862in</Left>
+              <Left>4.39808in</Left>
               <Height>0.35417in</Height>
-              <Width>1.4479in</Width>
+              <Width>1.79302in</Width>
               <ZIndex>5</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <TopBorder>
-                  <Style>Solid</Style>
-                </TopBorder>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox12">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Account &amp; Finance</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>0.4675in</Top>
-              <Left>4.03416in</Left>
-              <Height>0.35417in</Height>
-              <Width>1.37209in</Width>
-              <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -3045,7 +3007,7 @@ PEBSAL</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Head of Account</Value>
+                      <Value>Head of Accounts &amp; Finance</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -3059,10 +3021,10 @@ PEBSAL</Value>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.4675in</Top>
-              <Left>7.69014in</Left>
-              <Height>0.35417in</Height>
-              <Width>1.31655in</Width>
-              <ZIndex>7</ZIndex>
+              <Left>6.85068in</Left>
+              <Height>0.31386in</Height>
+              <Width>1.86112in</Width>
+              <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>

@@ -5876,7 +5876,6 @@ Number</Value>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
-            <Left>0in</Left>
             <Height>1.70834in</Height>
             <Width>14.57293in</Width>
             <Style>
@@ -6006,7 +6005,6 @@ Number</Value>
               <Source>External</Source>
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0in</Left>
               <Height>0.67361in</Height>
               <Width>1.125in</Width>
               <ZIndex>2</ZIndex>
@@ -6024,7 +6022,7 @@ Number</Value>
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.26562in</Height>
+          <Height>1.17812in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -6048,7 +6046,7 @@ Number</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>1.01562in</Top>
+              <Top>0.92812in</Top>
               <Left>0.11333in</Left>
               <Height>0.25in</Height>
               <Width>11.66792in</Width>
@@ -6081,7 +6079,7 @@ Number</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>1.01562in</Top>
+              <Top>0.92812in</Top>
               <Left>11.92709in</Left>
               <Height>0.25in</Height>
               <Width>2.61458in</Width>
@@ -6098,7 +6096,7 @@ Number</Value>
             </Textbox>
             <Rectangle Name="Rectangle1">
               <ReportItems>
-                <Textbox Name="Textbox33">
+                <Textbox Name="Textbox4">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -6135,14 +6133,14 @@ Number</Value>
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox35">
+                <Textbox Name="Textbox6">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Head of Accounts</Value>
+                          <Value>Head of Accounts &amp; Finance</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -6156,7 +6154,7 @@ Number</Value>
                   </Paragraphs>
                   <rd:DefaultName>Textbox4</rd:DefaultName>
                   <Top>0.45833in</Top>
-                  <Left>10.15717in</Left>
+                  <Left>9.33425in</Left>
                   <Height>0.25in</Height>
                   <Width>1.86112in</Width>
                   <ZIndex>1</ZIndex>
@@ -6173,7 +6171,7 @@ Number</Value>
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox37">
+                <Textbox Name="Textbox7">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -6194,7 +6192,7 @@ Number</Value>
                   </Paragraphs>
                   <rd:DefaultName>Textbox4</rd:DefaultName>
                   <Top>0.45833in</Top>
-                  <Left>12.48786in</Left>
+                  <Left>12.22744in</Left>
                   <Height>0.25in</Height>
                   <Width>2.0347in</Width>
                   <ZIndex>2</ZIndex>
@@ -6211,7 +6209,7 @@ Number</Value>
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox38">
+                <Textbox Name="Textbox11">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -6232,7 +6230,7 @@ Number</Value>
                   </Paragraphs>
                   <rd:DefaultName>Textbox4</rd:DefaultName>
                   <Top>0.45833in</Top>
-                  <Left>2.70952in</Left>
+                  <Left>2.83452in</Left>
                   <Height>0.25in</Height>
                   <Width>1.92707in</Width>
                   <ZIndex>3</ZIndex>
@@ -6249,14 +6247,14 @@ Number</Value>
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox40">
+                <Textbox Name="Textbox33">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Accounts &amp; Finance</Value>
+                          <Value>Company Secretary (A &amp; F)</Value>
                           <Style>
                             <FontFamily>cambria</FontFamily>
                             <FontWeight>Bold</FontWeight>
@@ -6270,48 +6268,10 @@ Number</Value>
                   </Paragraphs>
                   <rd:DefaultName>Textbox4</rd:DefaultName>
                   <Top>0.45833in</Top>
-                  <Left>7.61785in</Left>
-                  <Height>0.25in</Height>
-                  <Width>1.91666in</Width>
-                  <ZIndex>4</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <TopBorder>
-                      <Style>Solid</Style>
-                    </TopBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox46">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Company Secretary</Value>
-                          <Style>
-                            <FontFamily>cambria</FontFamily>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox4</rd:DefaultName>
-                  <Top>0.45833in</Top>
-                  <Left>5.15327in</Left>
+                  <Left>5.81994in</Left>
                   <Height>0.25in</Height>
                   <Width>1.92707in</Width>
-                  <ZIndex>5</ZIndex>
+                  <ZIndex>4</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -6327,8 +6287,8 @@ Number</Value>
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>0.075in</Top>
-              <Left>0.00869in</Left>
+              <Top>0.0625in</Top>
+              <Left>0.01563in</Left>
               <Height>0.82292in</Height>
               <Width>14.54167in</Width>
               <ZIndex>2</ZIndex>
