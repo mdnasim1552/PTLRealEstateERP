@@ -711,6 +711,7 @@ namespace RealERPWEB.F_14_Pro
             this.Get_Pur_Order_Info();
             //this.lbtnPrevOrderList_Click(null, null);
             this.ShowProjectFiles();
+            this.hideTermsConditions();
         }
 
 
@@ -960,6 +961,8 @@ namespace RealERPWEB.F_14_Pro
             this.txtOrderNarr.Text = ds1.Tables[3].Rows[0]["pordnar"].ToString();
             this.txtadvAmt.Text = Convert.ToDouble(ds1.Tables[3].Rows[0]["advamt"]).ToString("#,##0;(#,##0); ");
             this.lblissueno.Text = ds1.Tables[3].Rows[0]["oissueno"].ToString();
+
+            this.txtOrderNarrP.Text = ds1.Tables[3].Rows[0]["terms"].ToString();
 
             this.gvOrderInfo_DataBind();
         }
@@ -1735,11 +1738,26 @@ namespace RealERPWEB.F_14_Pro
             }
 
 
-
+            string terms = "";
+            bool istxtTerms;
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                    terms = txtOrderNarrP.Text.Trim().ToString();
+                    istxtTerms = false;
+                    break;
+                default:
+                    terms = "";
+                    istxtTerms = true;
+                    break;
+            }
 
             string forward = (tbl1.Rows[0]["forward"].ToString().Trim().Length == 0) ? "False" : tbl1.Rows[0]["forward"].ToString();
-            result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERB",
-                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward, "");
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERB",
+                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward, 
+                             terms,"","");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1802,22 +1820,28 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
 
-            for (int j = 0; j < this.gvOrderTerms.Rows.Count; j++)
+            // todo for p2p terms and conditions in text box
+            if (istxtTerms)
             {
-                string mTERMSID = ((Label)this.gvOrderTerms.Rows[j].FindControl("lblgvTermsID")).Text.Trim();
-                string mTERMSSUBJ = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvSubject")).Text.Trim();
-                string mTERMSDESC = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvDesc")).Text.Trim();
-                string mTERMSRMRK = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvRemarks")).Text.Trim();
-                result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERC",
-                        mORDERNO, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                if (!result)
+                for (int j = 0; j < this.gvOrderTerms.Rows.Count; j++)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
-                }
+                    string mTERMSID = ((Label)this.gvOrderTerms.Rows[j].FindControl("lblgvTermsID")).Text.Trim();
+                    string mTERMSSUBJ = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvSubject")).Text.Trim();
+                    string mTERMSDESC = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvDesc")).Text.Trim();
+                    string mTERMSRMRK = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvRemarks")).Text.Trim();
+                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERC",
+                            mORDERNO, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+                    }
 
+                }
             }
+
+           
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
@@ -2259,13 +2283,13 @@ namespace RealERPWEB.F_14_Pro
                 case "3352":
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
-                    this.ImagePanel.Visible = false;
+                    //this.ImagePanel.Visible = false;
                     break;
 
                 default:
                     this.divtermsp2p.Visible = false;
                     this.divterms.Visible = true;
-                    this.ImagePanel.Visible = true;
+                    //this.ImagePanel.Visible = true;
                     break;
             }
         }

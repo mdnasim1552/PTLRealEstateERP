@@ -280,8 +280,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0702000", "0701120", "F_07_Ten", "LinkTasAccDetAnalysis", "", "Project Schedule Vs Analysis", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0703000", "0701130", "F_07_Ten", "TasPrjInformation", "", "Project Information", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0703000", "0701140", "F_07_Ten", "TasQuotEntry?", "Type=Entry", "Tender-Quotation", "Tender", "False", "False", "False", "False" });
-            tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "CivilConBOQ?", "Type=Entry", "Civil Construction BOQ", "Tender", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0703000", "0701142", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
 
             #endregion
 
@@ -4323,8 +4323,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "06.Survey Qty Input", "F_07_Ten/TASSurvRate?Type=Rate", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "07.Schedule Rate", "F_07_Ten/TASSchduleRate", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0307000000", "08.Tender-Quotation", "F_07_Ten/TasQuotEntry?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0308000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0309000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000000", "09. Civil Construction BOQ", "F_07_Ten/CivilConBOQ?Type=Entry", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0310000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });

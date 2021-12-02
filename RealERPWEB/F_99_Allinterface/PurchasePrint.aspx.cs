@@ -2575,6 +2575,11 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3353":
                 case "3355":
                 case "3330":
+
+                case "1205":
+                case "3351":
+                case "3352":
+
                     this.OrderPrintRDLC();
                     break;
 
@@ -3884,6 +3889,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
                 string podate = Convert.ToDateTime(_ReportDataSet.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
                 string pordnar = _ReportDataSet.Tables[4].Rows[0]["pordnar"].ToString();
+                string terms = _ReportDataSet.Tables[4].Rows[0]["terms"].ToString();
+
+
                 // Terms & Conditions Variables//
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
@@ -3937,7 +3945,10 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101": // ASIT
                     case "1205"://P2P
                     case "3351"://P2P
-                    case "3352"://P2P    
+                    case "3352"://P2P 
+                        terms1 = terms.ToString();
+                        break;
+
                     case "3335": // Edison Properties
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
