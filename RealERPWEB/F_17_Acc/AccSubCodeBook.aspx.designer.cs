@@ -222,6 +222,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.TextBox txtunit;
 
         /// <summary>
+        /// ddlUnits control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnits;
+
+        /// <summary>
         /// chkbod control.
         /// </summary>
         /// <remarks>
@@ -247,6 +256,15 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblchild;
+
+        /// <summary>
+        /// lblsdrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblsdrate;
 
         /// <summary>
         /// txtstdrate control.
