@@ -2575,6 +2575,11 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3353":
                 case "3355":
                 case "3330":
+
+                case "1205":
+                case "3351":
+                case "3352":
+
                     this.OrderPrintRDLC();
                     break;
 
@@ -3884,6 +3889,11 @@ namespace RealERPWEB.F_99_Allinterface
                 string cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
                 string podate = Convert.ToDateTime(_ReportDataSet.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
                 string pordnar = _ReportDataSet.Tables[4].Rows[0]["pordnar"].ToString();
+
+                string terms = _ReportDataSet.Tables[4].Rows[0]["terms"].ToString();
+                string costdesc = _ReportDataSet.Tables[4].Rows[0]["rsirdesc"].ToString();
+
+
                 // Terms & Conditions Variables//
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
@@ -3892,7 +3902,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 switch (comcod)
                 {
-                    case "3101": // ASIT      
+                    //case "3101": // ASIT      
                     case "3330": // Bridge Holdings
                         //terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         //terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -3937,7 +3947,10 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101": // ASIT
                     case "1205"://P2P
                     case "3351"://P2P
-                    case "3352"://P2P    
+                    case "3352"://P2P 
+                        terms1 = terms.ToString();
+                        break;
+
                     case "3335": // Edison Properties
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4043,7 +4056,6 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderManama.rdlc";
                         break;
 
-                    case "3101"://Asit
                     case "3330": //bridge 
                         if (pactcode == "160100010025")
                         {
@@ -4097,6 +4109,11 @@ namespace RealERPWEB.F_99_Allinterface
                     double nadvamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]);
                     balamt = ntotal - nadvamt;
                     Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
+                }
+
+                if (comcod == "3354" || comcod == "3101")
+                {
+                    Rpt1.SetParameters(new ReportParameter("costdesc", costdesc));
                 }
 
 
@@ -4159,9 +4176,6 @@ namespace RealERPWEB.F_99_Allinterface
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
-
-
             }
         }
         void LoadSubReport(object sender, SubreportProcessingEventArgs e)

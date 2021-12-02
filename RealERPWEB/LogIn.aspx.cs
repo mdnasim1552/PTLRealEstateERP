@@ -502,7 +502,7 @@ namespace RealERPWEB
                 hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
-                hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+                //hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
 
 
 
