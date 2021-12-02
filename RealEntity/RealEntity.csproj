@@ -100,6 +100,7 @@
     <Compile Include="C_33_Doc\EClassDoc.cs" />
     <Compile Include="C_34_Mgt\EClassSalPurAcc.cs" />
     <Compile Include="C_34_Mgt\EClassUserLog.cs" />
+    <Compile Include="C_34_Mgt\EntityClassConversion.cs" />
     <Compile Include="C_34_Mgt\SalPurAccCombo.cs" />
     <Compile Include="C_34_Mgt\SalPurAccComboManager.cs" />
     <Compile Include="C_35_MgtAct\EClassMisOverall.cs" />
