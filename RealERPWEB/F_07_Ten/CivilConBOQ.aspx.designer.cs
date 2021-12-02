@@ -51,6 +51,15 @@ namespace RealERPWEB.F_07_Ten
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnOK;
 
         /// <summary>
+        /// divResource control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResource;
+
+        /// <summary>
         /// ddlWorkGroup control.
         /// </summary>
         /// <remarks>
@@ -85,5 +94,14 @@ namespace RealERPWEB.F_07_Ten
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdd;
+
+        /// <summary>
+        /// gvCivilBoq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvCivilBoq;
     }
 }
