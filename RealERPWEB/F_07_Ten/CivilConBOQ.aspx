@@ -220,7 +220,7 @@
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Amount in TK">
+                                    <asp:TemplateField HeaderText="Amount in <br> TK">
 
                                         <ItemTemplate>
                                             <asp:Label ID="lblordam" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -232,7 +232,7 @@
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="submit Rate 10% ">
+                                    <asp:TemplateField HeaderText="submit  <br> Rate 10% ">
 
                                         <ItemTemplate>
                                             <asp:Label ID="lblsbtrate" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -244,7 +244,7 @@
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText=" Actual Cost (7.5%)">
+                                    <asp:TemplateField HeaderText=" Actual  <br> Cost (7.5%)">
                                        
 
                                         <ItemTemplate>
@@ -256,7 +256,7 @@
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Actual Cost with Vat+OH">
+                                    <asp:TemplateField HeaderText="Actual Cost <br> with Vat+OH">
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFcostvatoh" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px" Style="text-align: right"
@@ -273,7 +273,7 @@
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Actual Amount">
+                                    <asp:TemplateField HeaderText="Actual  <br> Amount">
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFactamt" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px" Style="text-align: right"
@@ -290,7 +290,7 @@
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Difference Amount">
+                                    <asp:TemplateField HeaderText="Difference  <br> Amount">
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFdiffamt" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px" Style="text-align: right"
