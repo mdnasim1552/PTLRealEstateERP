@@ -146,12 +146,16 @@ namespace RealERPWEB.F_32_Mis
              Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(bgdprofit)", "")) ?
              0.00 : dt.Compute("Sum(bgdprofit)", ""))).ToString("#,##0;(#,##0); ");
 
+           
+
         }
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblprojanalysis"];
             this.gvprjanalysis.DataSource = dt;
             this.gvprjanalysis.DataBind();
+            Session["Report1"] = gvprjanalysis;
+            ((HyperLink)this.gvprjanalysis.FooterRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
             this.FooterCalculation();
             this.ShowGraph();
 
