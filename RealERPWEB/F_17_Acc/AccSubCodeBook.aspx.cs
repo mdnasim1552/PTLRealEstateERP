@@ -312,9 +312,10 @@ namespace RealERPWEB.F_17_Acc
                 string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string txtsirtype = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgridsirtype")).Text.Trim();
                 string txtsirtdesc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirtdesc")).Text.Trim();
-                string txtsirunit = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirunit")).Text.Trim();
+                string txtsirunit = ((ASTUtility.Left(sircode, 2) == "45") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedItem.Text.Trim() : ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirunit")).Text.Trim());
                 string txtsirval = Convert.ToDouble("0" + ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirval")).Text.Trim()).ToString();
                 string psircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod1")).Text.Trim();
+                string unitCode = ((ASTUtility.Left(sircode, 2) == "45") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
 
                 DataTable tbl1 = (DataTable)Session["storedata"];//check whether it is needed or not
 
@@ -398,7 +399,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, Descbn,
-                        "", "", "", "", "");
+                        unitCode, "", "", "", "");
                     this.ShowInformation();
                     if (result)
                     {
