@@ -1041,16 +1041,15 @@ namespace RealERPWEB.F_17_Acc
                     ddlUnits.DataValueField = "gcod";
                     ddlUnits.DataSource = ds1;
                     ddlUnits.DataBind();
-                    ddlUnits.SelectedValue = actcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+                    ddlUnits.SelectedValue = actcode; 
                     ddlUnits.Visible = true;
                     txtunit.Visible = false;
                 }
                 else
                 {
                     this.lblsdrate.InnerText = "Standard  Rate";
-
-                    ddlUnits.Visible = true;
-                    txtunit.Visible = false;
+                    ddlUnits.Visible = false ;
+                    txtunit.Visible = true;
                 }
 
 
@@ -1093,10 +1092,11 @@ namespace RealERPWEB.F_17_Acc
                 string txtsirtdesc = "";
                 string txtsirunit = (sircode.Substring(0, 2) == "45" ? this.ddlUnits.SelectedItem.ToString() : this.txtunit.Text.ToString()) ;
                 string valusirunit = this.ddlUnits.SelectedValue.ToString();
-               
+                
 
                 string txtsirval = Convert.ToDouble("0" + this.txtstdrate.Text.Trim()).ToString();
                 string actcode = this.ddlProject.Items.Count == 0 ? "" : this.ddlProject.SelectedValue.ToString();
+                string txtTDetails = this.txtTDetails.Text.Trim();
                 // return;
 
                 if (Desc.Length == 0)
@@ -1114,7 +1114,7 @@ namespace RealERPWEB.F_17_Acc
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
                         sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber,
-                      DescBN, valusirunit, "", "", "");
+                      DescBN, valusirunit, txtTDetails, "", "");
 
                     if (!result)
                     {
