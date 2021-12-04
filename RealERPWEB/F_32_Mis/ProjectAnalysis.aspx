@@ -130,6 +130,9 @@
                                         Width="115px" OnClick="lnkgvprjanalysis_OnClick"></asp:LinkButton>
                                 </ItemTemplate>
                                 <FooterTemplate>
+                                    
+                                         <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                           CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
                                     <asp:Label runat="server">Total Amount</asp:Label>
                                 </FooterTemplate>
                                 <FooterStyle Font-Bold="True" HorizontalAlign="Center" />
