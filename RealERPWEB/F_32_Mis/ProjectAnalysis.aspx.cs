@@ -336,25 +336,29 @@ namespace RealERPWEB.F_32_Mis
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
             string compname = hst["compname"].ToString();
             string comsnam = hst["comsnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string txtDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
 
             DataTable dt = (DataTable)Session["tblprojanalysis"];
-            var lst = dt.DataTableToList<RealEntity.C_32_Mis.EClassAcc_03>();
+            var list = dt.DataTableToList<RealEntity.C_32_Mis.EClassAcc_03.RptProjectAnalysis>();
 
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjectWisResource", lst, null, null);
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjectAnalysis", list, null, null);
+            Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Ana"));
-            Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
-            Rpt1.SetParameters(new ReportParameter("PFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Analysis"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "As On Date: "+txtDate));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
 
 
             Session["Report1"] = Rpt1;

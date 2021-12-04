@@ -914,5 +914,33 @@ namespace RealEntity.C_32_Mis
             public double netamt { get; set; }
            
         }
+
+        [Serializable]
+        public class RptProjectAnalysis
+        {
+            public string pactcode { get; set; }
+            public string actdesc { get; set; }
+            public string prjgrp { get; set; }
+            public string grpdesc { get; set; }
+            public double salstg { get; set; }
+            public double tosalval { get; set; }
+            public double salamt { get; set; }
+            public double tsaldue { get; set; }
+            public double collamt { get; set; }
+            public double tcoldue { get; set; }
+            public double tsalcoldue { get; set; }
+            public double salperstg { get; set; }
+            public double colpersal { get; set; }
+            public double colperstg { get; set; }
+            public double bgdamt { get; set; }
+            public double conarea { get; set; }
+            public double acbgdamt { get; set; }
+            public double cbgdamt { get; set; }
+            public double bgdprofit { get; set; }
+            public double colst { get; set; }
+
+            public RptProjectAnalysis() { }
+
+        }
     }
 }

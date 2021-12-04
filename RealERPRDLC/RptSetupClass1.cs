@@ -705,6 +705,7 @@ namespace RealERPRDLC
                 case "R_32_Mis.RptPrjIncomeSt": Rpt1a = SetRptPrjIncomeSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_32_Mis.RptProSummary": Rpt1a = SetRptProSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_32_Mis.RptMonProjectStatus": Rpt1a = SetRptMonProjectStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_32_Mis.RptProjectAnalysis": Rpt1a = SetRptProjectAnalysis(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -1610,6 +1611,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptMonProjectStatus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataSet)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_32_Mis.EClassAcc_03.MontWiseProjectStatus>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptProjectAnalysis(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataSet)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_32_Mis.EClassAcc_03.RptProjectAnalysis>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptCallCenterLead(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
