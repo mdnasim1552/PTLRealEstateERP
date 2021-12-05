@@ -768,7 +768,7 @@ namespace RealERPWEB.F_22_Sal
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = GetComocd();
-                string fromDtae = this.txttodate.Text;
+                string fromDtae = this.txtDate.Text;
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string usircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
 

@@ -100,6 +100,7 @@
     <Compile Include="C_33_Doc\EClassDoc.cs" />
     <Compile Include="C_34_Mgt\EClassSalPurAcc.cs" />
     <Compile Include="C_34_Mgt\EClassUserLog.cs" />
+    <Compile Include="C_34_Mgt\EntityClassConversion.cs" />
     <Compile Include="C_34_Mgt\SalPurAccCombo.cs" />
     <Compile Include="C_34_Mgt\SalPurAccComboManager.cs" />
     <Compile Include="C_35_MgtAct\EClassMisOverall.cs" />
@@ -200,6 +201,7 @@
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptSubConBillOverAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

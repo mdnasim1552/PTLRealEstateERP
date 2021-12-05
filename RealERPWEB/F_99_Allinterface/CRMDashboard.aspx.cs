@@ -191,7 +191,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 Empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
             }
-            ddlempid = (ddlempid == "0000000000" ? "93%" : ddlempid);
+            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
 
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "GETCRMCOMPONENTDATA", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
@@ -237,7 +237,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 empid = (hst["empid"].ToString() == "" ? "93%" : hst["empid"].ToString());
             }
-            ddlempid = (ddlempid == "0000000000" ? "93%" : ddlempid);
+            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
 
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid, ddlempid);
             if (ds1 == null)

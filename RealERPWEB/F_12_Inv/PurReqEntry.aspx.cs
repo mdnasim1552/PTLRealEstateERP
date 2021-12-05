@@ -3154,7 +3154,9 @@ namespace RealERPWEB.F_12_Inv
 
         private void ddlResourceBound()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? "rsirdesc" : "rsirdesc1");
             DataTable dt = (DataTable)ViewState["tblMat"];
             this.ddlResList.Items.Clear();
             string catcode = this.ddlCatagory.SelectedValue.ToString();
@@ -3166,20 +3168,12 @@ namespace RealERPWEB.F_12_Inv
                 dv.RowFilter = ("rsircode  like '" + catcode + "'");
             }
 
-
-            this.ddlResList.DataTextField = "rsirdesc1";
+            this.ddlResList.DataTextField = TextField;
             this.ddlResList.DataValueField = "rsircode";
             this.ddlResList.DataSource = dv.ToTable();
             this.ddlResList.DataBind();
 
-
             this.ImgbtnSpecification_Click(null, null);
-
-            //this.ddlItem.Items.Clear();
-            //this.ddlItem.DataTextField = "isirdesc1";
-            //this.ddlItem.DataValueField = "isircode";
-            //this.ddlItem.DataSource = dt;
-            //this.ddlItem.DataBind();
         }
 
 
