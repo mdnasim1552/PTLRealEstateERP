@@ -293,6 +293,67 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
+                                              <asp:TemplateField HeaderText="Parking">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvparking" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "parking")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="70px" Style="text-align: right"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFParking" runat="server" Font-Bold="True"
+                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                              <asp:TemplateField HeaderText="Utility">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvutility" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "utility")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="70px" Style="text-align: right"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFutility" runat="server" Font-Bold="True"
+                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Others">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvother" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "cooperative")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="70px" Style="text-align: right"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFothers" runat="server" Font-Bold="True"
+                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Total">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvtotal" runat="server"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tacsalamt")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="70px" Style="text-align: right"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFtotal" runat="server" Font-Bold="True"
+                                                        ForeColor="Black" Style="text-align: right" Width="35px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
 
                                             <asp:TemplateField HeaderText="Sold Date">
                                                 <ItemTemplate>
