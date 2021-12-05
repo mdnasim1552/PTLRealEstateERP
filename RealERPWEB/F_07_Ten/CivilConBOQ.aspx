@@ -111,7 +111,7 @@
                                 <div class="input-group-prepend">
                                     <label class="btn btn-secondary" type="button">Profit Rate %</label>
                                 </div>
-                                <asp:TextBox ID="txtSbtRate_Per" TabIndex="2" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtSbtRate_Per" TabIndex="2" onkeypress="return IsNumberWithOneDecimal(this,event);" runat="server" CssClass="form-control"></asp:TextBox>
 
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                 <div class="input-group-prepend">
                                     <label class="btn btn-secondary" type="button">Overhead %</label>
                                 </div>
-                                <asp:TextBox ID="txtACCost_Per" TabIndex="3" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtACCost_Per" TabIndex="3" runat="server" onkeypress="return IsNumberWithOneDecimal(this,event);" CssClass="form-control"></asp:TextBox>
 
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                                 <div class="input-group-prepend">
                                     <label class="btn btn-secondary pl-0 pr-0" type="button">Taxt & Vat  %</label>
                                 </div>
-                                <asp:TextBox ID="txtACCostVatOH_Per" TabIndex="4" runat="server" CssClass="form-control   pr-0"></asp:TextBox>
+                                <asp:TextBox ID="txtACCostVatOH_Per" TabIndex="4" runat="server" onkeypress="return IsNumberWithOneDecimal(this,event);" CssClass="form-control   pr-0"></asp:TextBox>
 
                             </div>
                         </div>
@@ -196,25 +196,43 @@
                     </div>
 
                     <div class="row mb-2">
-                        <div class="table table-responsive">
+                        
                             <asp:GridView ID="gvCivilBoq" runat="server" AllowPaging="True"
-                                AutoGenerateColumns="False" Visible="false"
+                                AutoGenerateColumns="False" Visible="false" HeaderStyle-VerticalAlign="Middle" 
                                 OnPageIndexChanging="gvCivilBoq_PageIndexChanging" PageSize="20"
-                                ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCreated="gvCivilBoq_RowCreated">
+                                ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea" OnRowCreated="gvCivilBoq_RowCreated">
                                 <PagerSettings PageButtonCount="20" Mode="NumericFirstLast" />
                                 <RowStyle Font-Size="11px" />
                                 <Columns>
 
-                                    <asp:TemplateField HeaderText="Sl#">
+                                    <asp:TemplateField HeaderText="#">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="False" Font-Size="12px"
                                                 Style="text-align: right"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle" HorizontalAlign="Right" />
 
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText=" ">
+                                        
+                                        <ItemTemplate>
+                                           <asp:LinkButton ID="lnkDelrow" Width="30px" ForeColor="Red" runat="server" OnClick="lnkDelrow_Click" ToolTip="Delete"><i class=" fa fa-trash"></i></a></asp:LinkButton>
+
+                                                                        
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px"  Width="50px"  VerticalAlign="Middle"   />
+                                         <HeaderStyle Width="30px" />
+                                    </asp:TemplateField>
                                       <asp:TemplateField HeaderText="" Visible="false">
                                         <ItemTemplate>
+                                            <asp:Label ID="lblbyid" runat="server" Font-Bold="False" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemid")) %>'
+                                                Width="30px"></asp:Label>
+                                             <asp:Label ID="lbconvrate" runat="server" Font-Bold="False" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "convrate")) %>'
+                                                Width="30px"></asp:Label>
                                             <asp:Label ID="lblgvactcode" runat="server" Font-Bold="False" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'
                                                 Width="30px"></asp:Label>
@@ -222,35 +240,44 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subcode")) %>'
                                                 Width="30px"></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle" />
+
                                     </asp:TemplateField>
-
-
 
                                     <asp:TemplateField HeaderText="Work <br> Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvsubdesc" runat="server" Font-Bold="False" Font-Size="12px"
+                                            <asp:Label ID="lblgvsubdesc" runat="server" Font-Bold="False" Font-Size="12px" Width="350px"
                                                 Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "subdesc").ToString().Trim().Length>0 ? 
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
-                                                                         
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim(): "") 
-                                                                         
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")).Trim().Length>0 ?  "<br>" : "")+                                                                                                                                      
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim(): "")                                                                          
                                                                     %>'></asp:Label>
                                         </ItemTemplate>
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle" />
+
                                         <HeaderStyle HorizontalAlign="Left" />
                                         <FooterStyle Font-Bold="true" Font-Size="14px" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Item Code">
+
+                                        <ItemTemplate>                                            
+                                            <asp:TextBox ID="txItemCode" Width="80px" OnTextChanged="txItemCode_TextChanged" style="background:none;" runat="server" Font-Size="12px" Height="28px" CssClass="form-control" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcode")) %>'></asp:TextBox>
+                                        </ItemTemplate>
+                                         
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle" HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Qty">
 
-                                        <ItemTemplate>
-                                            
-                                            <asp:TextBox ID="txtqty" Width="80px" style="background:none;" OnTextChanged="txtqty_TextChanged" 
+                                        <ItemTemplate>                                            
+                                            <asp:TextBox ID="txtqty" Width="80px"  style="background:none; text-align:right" OnTextChanged="txtqty_TextChanged"  onkeypress="return IsNumberWithOneDecimal(this,event);"
                                                 AutoPostBack="true" runat="server" Font-Size="12px" Height="28px" CssClass="form-control" 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.000;(#,##0.000); ") %>'></asp:TextBox>
                                         </ItemTemplate>
 
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Unit">
@@ -258,26 +285,25 @@
                                             <asp:Label ID="lblgvUnit" runat="server" Font-Bold="False" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "unit")) %>'
                                                 Width="30px"></asp:Label>
-
-
-
                                         </ItemTemplate>
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle"  />
+
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Rate">
 
                                         <ItemTemplate>
-                                             <asp:TextBox ID="txtrate" Width="80px" style="background:none;" OnTextChanged="txtrate_TextChanged" 
+                                             <asp:TextBox ID="txtrate" Width="80px" style="background:none; text-align:right" OnTextChanged="txtrate_TextChanged"  onkeypress="return IsNumberWithOneDecimal(this,event);"
                                                 AutoPostBack="true" runat="server" Font-Size="12px" Height="28px" CssClass="form-control" 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.000;(#,##0.000); ") %>'></asp:TextBox>
 
                                  
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"   />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Amount in <br> TK">
+                                    <asp:TemplateField HeaderText="Amount <br> in <br> TK">
 
                                         <ItemTemplate>
                                             <asp:Label ID="lblordam" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -286,12 +312,12 @@
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"   />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Actual <br> Cost">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtsbamt" Width="80px" style="background:none;" OnTextChanged="txtsbamt_TextChanged" 
+                                            <asp:TextBox ID="txtsbamt" Width="80px" style="background:none; text-align:right" OnTextChanged="txtsbamt_TextChanged"  onkeypress="return IsNumberWithOneDecimal(this,event);"
                                                 AutoPostBack="true" runat="server" Font-Size="12px" Height="28px" CssClass="form-control" 
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sbtamt")).ToString("#,##0.000;(#,##0.000); ") %>'></asp:TextBox>
                                         </ItemTemplate>
@@ -301,7 +327,7 @@
 
                                     <asp:TemplateField HeaderText="Profit ">
                                         <ItemTemplate>
-                                                <asp:Label ID="lblgvProfit" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                <asp:Label ID="lblgvProfit"   runat="server" BackColor="Transparent" BorderStyle="None"
                                                 BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sbtrate")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="60px"></asp:Label>
@@ -309,42 +335,42 @@
                                             
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" VerticalAlign="Middle" HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Overhead  <br> Rate 10% ">
+                                    <asp:TemplateField HeaderText="Overhead  <br> Rate">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvOH" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sbtrate")).ToString("#,##0.000;(#,##0.000); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ohamt")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"  />
                                     </asp:TemplateField>
 
                                        <asp:TemplateField HeaderText="Total Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblttlamt" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sbtrate")).ToString("#,##0.000;(#,##0.000); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttamt")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"  />
                                     </asp:TemplateField>
                                      <asp:TemplateField HeaderText="Vat + Tax">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvVatTax" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 BorderWidth="1px" Font-Size="11px" Height="16px" Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sbtrate")).ToString("#,##0.000;(#,##0.000); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "taxvatamt")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"  />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Actual Cost <br> with Vat+OH">
+                                    <asp:TemplateField HeaderText="Actual Cost <br> with <br>  Vat+OH">
 
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFcostvatoh" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px" Style="text-align: right"
@@ -358,7 +384,7 @@
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"/>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Actual  <br> Amount">
@@ -375,10 +401,10 @@
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"   />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Difference  <br> Amount">
+                                    <asp:TemplateField HeaderText="Difference <br> Amount">
                                         <FooterTemplate>
                                             <asp:Label ID="lblgvFdiffamt" runat="server" BackColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Bold="True" Font-Size="11px" Height="16px" Style="text-align: right"
                                                 Width="70px"></asp:Label>
@@ -390,8 +416,9 @@
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Right" />
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle Font-Size="12px" HorizontalAlign="Right" VerticalAlign="Middle"   />
                                     </asp:TemplateField>
+                                     
                                 </Columns>
 
                                 <FooterStyle CssClass="grvFooter" />
@@ -400,7 +427,7 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-                        </div>
+                         
                     </div>
                 </div>
             </div>
