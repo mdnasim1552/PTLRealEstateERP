@@ -662,7 +662,7 @@
                                             <div class="table-responsive col-lg-12" style="min-height: 550px;">
 
                                                 <asp:GridView ID="gvSalesUpdate" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                    ShowFooter="True" OnRowDataBound="gvSalesUpdate_RowDataBound1">
+                                                    ShowFooter="True" OnRowDataBound="gvSalesUpdate_RowDataBound">
                                                     <RowStyle />
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Sl">
@@ -758,6 +758,16 @@
                                                             </ItemTemplate>
 
                                                             <ItemStyle HorizontalAlign="center" Width="120px" />
+                                                            <FooterStyle HorizontalAlign="left" Font-Bold="true" />
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderText="Schedule Code" Visible="false">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvschcode" runat="server" Style="text-align: center; width: 40px;"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schcode")) %>'></asp:Label>
+                                                            </ItemTemplate>
+
+                                                            <ItemStyle HorizontalAlign="center" Width="40px" />
                                                             <FooterStyle HorizontalAlign="left" Font-Bold="true" />
                                                         </asp:TemplateField>
 

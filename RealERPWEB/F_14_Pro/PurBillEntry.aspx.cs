@@ -161,7 +161,7 @@ namespace RealERPWEB.F_14_Pro
             string PrintReq = "";
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "1101": //Rupayan
                 case "2305":
                 case "3305":
@@ -184,7 +184,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                 // case "3336":
-                //case "3101":
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill04";
 
