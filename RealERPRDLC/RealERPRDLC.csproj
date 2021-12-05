@@ -723,6 +723,7 @@
     <EmbeddedResource Include="R_32_Mis\RptProBalSheetCredence.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptProjCancellationUnit.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptProjCost.rdlc" />
+    <EmbeddedResource Include="R_32_Mis\RptProjectAnalysis.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptProjectRemainingCost.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptProjectReport02.rdlc" />
     <EmbeddedResource Include="R_32_Mis\RptProjectStatus.rdlc" />

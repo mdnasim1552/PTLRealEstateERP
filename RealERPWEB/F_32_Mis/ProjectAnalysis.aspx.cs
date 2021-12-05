@@ -8,6 +8,7 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using Microsoft.Reporting.WinForms;
 using RealEntity.C_32_Mis;
 using RealERPLIB;
 using Label = System.Web.UI.WebControls.Label;
@@ -37,7 +38,14 @@ namespace RealERPWEB.F_32_Mis
                 this.GetProjectGroup();
             }
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
         private string GetComecod()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -228,23 +236,6 @@ namespace RealERPWEB.F_32_Mis
             Session["tblprojanalysis"] = dv.ToTable();
             this.Data_Bind();
 
-
-
-
-
-
-            //DataTable dtb = ((DataTable)Session["tblbprojanalysis"]).Copy ();
-            //dv = dtb.DefaultView;
-            //dv.RowFilter = ("prjgrp='" + prjgrp + "' and pactcode<>'000000000000'");
-            //dtb = dv.ToTable ();
-            //dt.Merge (dtb);
-
-
-            //dv = dt.DefaultView;
-            //dv.Sort = ("prjgrp, pactcode");
-            //DataTable dt1 = dv.ToTable ();
-            //Session["tblprojanalysis"] =dv.ToTable ();
-            //this.Data_Bind ();
         }
 
         protected void gvprjanalysis_OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -340,6 +331,39 @@ namespace RealERPWEB.F_32_Mis
 
                 }
             }
+        }
+        protected void lnkPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string txtDate = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
+
+            DataTable dt = (DataTable)Session["tblprojanalysis"];
+            var list = dt.DataTableToList<RealEntity.C_32_Mis.EClassAcc_03.RptProjectAnalysis>();
+
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_32_Mis.RptProjectAnalysis", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Project Analysis"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "As On Date: "+txtDate));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
     }
 }
