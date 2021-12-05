@@ -328,6 +328,8 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3101":
+                case "1101":
+                   
                 case "3340": //Urban 
                 case "3333"://Alliance
                 case "3354": // Edison  

@@ -18,7 +18,7 @@
         function CloseModal() {
             $('#detialsinfo').modal('hide');
 
-             
+
         }
 
 
@@ -655,8 +655,12 @@
                                 <asp:TextBox ID="txtbrand" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                       
-
+                        <div class="form-group">
+                             <label class="col-md-4">Details</label>
+                            <div class="col-md-8">
+                             <asp:TextBox ID="txtTDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label id="lblddlproject" runat="server" class="col-md-4">Department</label>
@@ -664,10 +668,7 @@
                                 <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
                             </div>
                         </div>
-
-
                     </div>
-
 
                 </div>
                 <div class="modal-footer ">

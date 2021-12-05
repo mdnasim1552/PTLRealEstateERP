@@ -27,9 +27,12 @@ namespace RealERPWEB.F_07_Ten
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Civil Construction BOQ";
 
+                DateTime curdate = System.DateTime.Today;
+                this.txtfodate.Text = curdate.ToString("dd-MMM-yyyy");
+
                 this.GetProjectsList();
                 this.GetWorksGroup();
-
+                this.UnitConvr();
                 this.CreateTable();
             }
         }
@@ -48,6 +51,7 @@ namespace RealERPWEB.F_07_Ten
             tblt01.Columns.Add("sdetails", Type.GetType("System.String"));
             tblt01.Columns.Add("qty", Type.GetType("System.Double"));
             tblt01.Columns.Add("unit", Type.GetType("System.String"));
+            tblt01.Columns.Add("convrate", Type.GetType("System.Double"));
             tblt01.Columns.Add("rate", Type.GetType("System.Double"));
             tblt01.Columns.Add("ordam", Type.GetType("System.Double"));
             tblt01.Columns.Add("sbtrate", Type.GetType("System.Double"));
@@ -56,6 +60,12 @@ namespace RealERPWEB.F_07_Ten
             tblt01.Columns.Add("actamt", Type.GetType("System.Double"));
             tblt01.Columns.Add("diffamt", Type.GetType("System.Double"));
             tblt01.Columns.Add("rmrks", Type.GetType("System.String"));
+
+            tblt01.Columns.Add("sbtrate_per", Type.GetType("System.Double"));
+            tblt01.Columns.Add("actamt_per", Type.GetType("System.Double"));
+            tblt01.Columns.Add("costvatoh_per", Type.GetType("System.Double"));
+
+
 
             ViewState["tblt01"] = tblt01;
         }
@@ -72,6 +82,19 @@ namespace RealERPWEB.F_07_Ten
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
         }
+
+        private void UnitConvr()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETUNITCONVERSION", "%%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ViewState["tblUnitconv"] = ds1.Tables[0];
+        }
+
+
 
         private void GetWorksGroup()
         {
@@ -101,6 +124,8 @@ namespace RealERPWEB.F_07_Ten
             this.ddlWorkList.DataSource = ds1.Tables[0];
             this.ddlWorkList.DataBind();
 
+
+            ViewState["tblworklist"] = ds1.Tables[0];
             //this.DropCheck1.DataTextField = "workdesc";
             //this.DropCheck1.DataValueField = "workcode";
             //this.DropCheck1.DataSource = ds1.Tables[0];
@@ -117,29 +142,41 @@ namespace RealERPWEB.F_07_Ten
                 this.ddlProject.Enabled = false;
                 this.divResource.Visible = true;
                 this.gvCivilBoq.Visible = true;
-
+                this.txtSbtRate_Per.Enabled = false;
+                this.txtACCost_Per.Enabled = false;
+                this.txtACCostVatOH_Per.Enabled = false;
                 return;
             }
+
             this.lnkbtnOK.Text = "Ok";
             this.divResource.Visible = false;
             this.gvCivilBoq.Visible = false;
-
+            this.txtSbtRate_Per.Enabled = true;
+            this.txtACCost_Per.Enabled = true;
+            this.txtACCostVatOH_Per.Enabled = true;
             this.ddlProject.Enabled = true;
-            
+
 
 
         }
 
         protected void lnkbtnAdd_Click(object sender, EventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
 
             DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
+            DataTable tblunit = (DataTable)ViewState["tblUnitconv"];
+            DataTable tblwlist = (DataTable)ViewState["tblworklist"];
+            
             string actcode = this.ddlProject.SelectedValue.ToString();
             string actdesc = this.ddlProject.SelectedItem.ToString();
-            string workcode =  this.ddlWorkList.SelectedValue.ToString();
-            string subdesc =  this.ddlWorkList.SelectedItem.ToString();
+            string workcode = this.ddlWorkList.SelectedValue.ToString();
+            string subdesc = this.ddlWorkList.SelectedItem.ToString();
+
+            string txtsbtrate_per = this.txtSbtRate_Per.Text.Trim().ToString();
+            string txtactamt_per = this.txtACCost_Per.Text.Trim().ToString();
+            string txtcostvatoh_per = this.txtACCostVatOH_Per.Text.Trim().ToString();
 
             DataRow[] dr2 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
             if (dr2.Length > 0)
@@ -148,25 +185,53 @@ namespace RealERPWEB.F_07_Ten
                 return;
             }
 
+
+           
+               
+            double convrate = 0.00;
+            
+
+            DataRow[] drwork = tblwlist.Select("workcode='" + workcode + "'");
+            if (drwork.Length < 0)
+                return;
+            string baseUnit = drwork[0]["baseUnit"].ToString();
+            string baseUnitDesc = drwork[0]["isirunit"].ToString();
+            string sdetails = drwork[0]["sdetails"].ToString();
+            
+            DataRow[] dr3 = tblunit.Select("bcod='" + baseUnit + "'");
+            convrate = Convert.ToDouble(dr3[0]["conrat"].ToString());
+            string convUnitDesc = dr3[0]["uconvdesc"].ToString();
+            string convUnitcode = dr3[0]["ccod"].ToString();
+
+
+
+
+            
+
+
             DataRow dr1 = tblt01.NewRow();
             dr1["actcode"] = actcode;
             dr1["actdesc"] = actdesc;
             dr1["subcode"] = workcode;
             dr1["subdesc"] = subdesc;
-            dr1["sdetails"] = "";
+            dr1["sdetails"] = sdetails;
 
             dr1["qty"] = 0.00;
-            dr1["unit"] = "";
+            dr1["unit"] = baseUnitDesc;
             dr1["rate"] = 0.00;
+            dr1["convrate"] = convrate; 
+            
             dr1["ordam"] = 0.00;
             dr1["sbtrate"] = 0.00;
             dr1["sbtamt"] = 0.00;
             dr1["costvatoh"] = 0.00;
             dr1["actamt"] = 0.00;
             dr1["diffamt"] = 0.00;
+            dr1["sbtrate_per"] = Convert.ToDouble("0" + txtsbtrate_per);
+            dr1["actamt_per"] = Convert.ToDouble("0" + txtactamt_per);
+            dr1["costvatoh_per"] = Convert.ToDouble("0" + txtcostvatoh_per);
             dr1["rmrks"] = "";
             tblt01.Rows.Add(dr1);
-
 
             ViewState["tblt01"] = tblt01;
             this.Data_Bind();
@@ -202,5 +267,143 @@ namespace RealERPWEB.F_07_Ten
         {
 
         }
+
+        protected void txtqty_TextChanged(object sender, EventArgs e)
+        {
+           // ViewState_update();
+
+            DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+
+            Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
+            Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
+
+            string actcode = lblactcode.Text;
+            string workcode = lblWcode.Text;
+
+            TextBox Quntity = (TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty") as TextBox;
+            TextBox lRate = (TextBox)this.gvCivilBoq.Rows[index].FindControl("txtrate") as TextBox;
+            Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
+            double qty = Convert.ToDouble("0"+Quntity.Text.ToString());
+            double rate = Convert.ToDouble("0" + lRate.Text.ToString());
+            double ammount = qty * rate;
+            lTotalRate.Text = ammount.ToString();
+
+
+
+            DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
+
+            dr1[index]["qty"] = qty;
+            dr1[index]["rate"] = rate;
+            dr1[index]["ordam"] = ammount;
+
+
+            //var lst = (List<EComRpEntity.Both.EclassBoth_BO.GetOrderPlace>)ViewState["tblOrderData"];
+            //lst[index].count = qty;
+            //lst[index].cstotalam = ammount;
+
+
+
+            tblt01.Rows.Add(dr1);
+
+             ViewState["tblt01"] = tblt01;
+             this.Data_Bind();
+        }
+
+        protected void txtrate_TextChanged(object sender, EventArgs e)
+        {
+            ViewState_update();
+
+
+            //DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+            //int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+
+            //Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
+            //Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
+
+            //string actcode = lblactcode.Text;
+            //string workcode = lblWcode.Text;
+
+            //TextBox Quntity = (TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty") as TextBox;
+            //Label lRate = (Label)this.gvCivilBoq.Rows[index].FindControl("txtrate") as Label;
+            //Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
+            //double qty = Convert.ToDouble(Quntity.Text.ToString());
+            //double rate = Convert.ToDouble(lRate.Text.ToString());
+            //double ammount = qty * rate;
+            //lTotalRate.Text = ammount.ToString();
+
+
+
+            //   DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
+
+
+
+
+            //var lst = (List<EComRpEntity.Both.EclassBoth_BO.GetOrderPlace>)ViewState["tblOrderData"];
+            //lst[index].count = qty;
+            //lst[index].cstotalam = ammount;
+
+
+
+
+
+            //ViewState["tblt01"] = tblt01;
+            //this.Data_Bind();
+
+        }
+
+        protected void txtsbamt_TextChanged(object sender, EventArgs e)
+        {
+
+            ViewState_update();
+        }
+
+        private void ViewState_update()
+        {
+            DataTable dt = (DataTable)ViewState["tblt01"];
+            int index;
+            for (int i = 0; i < this.gvCivilBoq.Rows.Count; i++)
+            {
+                TextBox Quntity = (TextBox)this.gvCivilBoq.Rows[i].FindControl("txtqty") as TextBox;
+                TextBox lRate = (TextBox)this.gvCivilBoq.Rows[i].FindControl("txtrate") as TextBox;
+                Label lTotalRate = (Label)this.gvCivilBoq.Rows[i].FindControl("lblordam") as Label;
+                double qty = Convert.ToDouble(Quntity.Text.ToString());
+                double rate = Convert.ToDouble(lRate.Text.ToString());
+                double ammount = qty * rate;
+                lTotalRate.Text = ammount.ToString();
+                string txtqty = Quntity.Text;
+                string txtrate = lRate.Text;                
+                string txtamt = lTotalRate.Text;
+
+                index = (this.gvCivilBoq.PageSize) * (this.gvCivilBoq.PageIndex) + i;
+                 
+                dt.Rows[index]["qty"] = txtqty;
+                dt.Rows[index]["rate"] = txtrate;
+                dt.Rows[index]["ordam"] = txtamt;
+
+
+                //tblt01.Columns.Add("qty", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("unit", Type.GetType("System.String"));
+                //tblt01.Columns.Add("convrate", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("rate", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("ordam", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("sbtrate", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("sbtamt", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("costvatoh", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("actamt", Type.GetType("System.Double"));
+                //tblt01.Columns.Add("diffamt", Type.GetType("System.Double"));
+
+            }
+
+            ViewState["tblt01"] = dt;
+            this.DataBind();
+
+
+
+        }
+
+
     }
 }
