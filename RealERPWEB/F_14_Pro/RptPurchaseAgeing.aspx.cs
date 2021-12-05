@@ -83,6 +83,18 @@ namespace RealERPWEB.F_14_Pro
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string suptype = this.ddlSupCategory.SelectedValue.ToString();
 
+           // string 
+            switch (comcod)
+            {
+                case "3354":
+                    break;
+
+                default:
+                    break;
+            }
+
+
+
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "PURCHASEAGEINGSTATUS", suptype, todate, "", "", "", "", "", "");
             if (ds1.Tables[0] == null)
             {
@@ -96,8 +108,8 @@ namespace RealERPWEB.F_14_Pro
 
             this.Data_Bind();
 
-
         }
+       
 
         private DataTable HiddenSameData(DataTable dt1)
         {
