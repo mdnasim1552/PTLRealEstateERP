@@ -619,32 +619,32 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-        protected void gvSalesUpdate_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                string astatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sostatus")).ToString();
-                //   HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnEditIN");
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnApp");
+        //protected void gvSalesUpdate_RowDataBound(object sender, GridViewRowEventArgs e)
+        //{
+        //    if (e.Row.RowType == DataControlRowType.DataRow)
+        //    {
+        //        string astatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sostatus")).ToString();
+        //        //   HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnEditIN");
+        //        HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnApp");
 
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string centrid = ""; //Convert.ToString(DataBinder.Eval(e.Row.DataItem, "centrid")).ToString();
-                string orderno = ""; //Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+        //        Hashtable hst = (Hashtable)Session["tblLogin"];
+        //        string comcod = hst["comcod"].ToString();
+        //        string centrid = ""; //Convert.ToString(DataBinder.Eval(e.Row.DataItem, "centrid")).ToString();
+        //        string orderno = ""; //Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
 
 
 
-                if (astatus != "Approved")
-                {
+        //        if (astatus != "Approved")
+        //        {
 
-                    hlink2.Font.Bold = true;
-                    hlink2.Style.Add("color", "Red");
-                    hlink2.ToolTip = "Approval";
-                    hlink2.NavigateUrl = "SalesOrderApproval?Type=Ind&centrid=" + centrid + "&orderno=" + orderno;
+        //            hlink2.Font.Bold = true;
+        //            hlink2.Style.Add("color", "Red");
+        //            hlink2.ToolTip = "Approval";
+        //            hlink2.NavigateUrl = "SalesOrderApproval?Type=Ind&centrid=" + centrid + "&orderno=" + orderno;
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         protected void gvCollUpdate_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -1584,7 +1584,7 @@ namespace RealERPWEB.F_99_Allinterface
             Common.LogStatus("Sales Interface", "DO Delete", "DO No: ", Delorderno + " - " + centrid);
         }
 
-        protected void gvSalesUpdate_RowDataBound1(object sender, GridViewRowEventArgs e)
+        protected void gvSalesUpdate_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
 
@@ -1597,8 +1597,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string usircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "schdate")).ToString("dd-MMM-yyyy");
-                hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Details&prjcode=" + pactcode + "&usircode=" +
-                                     usircode + "&Date1=" + date;
+                string schcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "schcode")).ToString();
+
+                hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Details&prjcode=" + pactcode + "&usircode=" + usircode + "&Date1=" + date + "&schcode" + schcode;
 
                 // hlink2.ToolTip = "Consolidate";
 

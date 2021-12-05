@@ -200,6 +200,11 @@ namespace RealERPWEB.F_22_Sal
             string currentptah = "PrintMoneyReceipt?Type=moneyReceipt&pactcode=" + pactcode + "&usircode=" + usircode + "&mrno=" + mrno + "&mrdate=" + mrdate;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+            //Response.Redirect("~/F_17_Acc/"+ currentptah);
+
+
+
+
             #region MRPrint
             //Hashtable hst = (Hashtable)Session["tblLogin"];
             //string comcod = hst["comcod"].ToString();
