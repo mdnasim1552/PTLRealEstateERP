@@ -502,6 +502,12 @@ namespace RealERPWEB.F_17_Acc
                     Calltype = "GETACCDETBRISGESALESJOURNAL";
                     break;
 
+                case "3101":
+                case "3351":
+                    Calltype = "GETACCDETSALESJOURNALSCH";
+                    break;
+                    
+
                 default:
                     Calltype = "GETACCDETSALESJOURNAL";
                     break;
@@ -522,8 +528,9 @@ namespace RealERPWEB.F_17_Acc
             string Type = this.Request.QueryString["Type"].ToString().Trim();
 
             string CallType = (Type == "Consolidate") ? "GETACCSALESJOURNAL" : this.ComSalesJournal();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, Pactcode,
-                          UnitCode, "", "", "", "", "", "", "");
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, Pactcode, UnitCode, "", "", "", "", "", "", "");
+
             DataTable dt1 = ds1.Tables[0];
             DataTable tblt01 = (DataTable)Session["tblt01"];
 

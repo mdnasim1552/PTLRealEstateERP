@@ -116,34 +116,76 @@ namespace RealERPWEB.F_17_Acc
             dv1.RowFilter = "mrno='" + mrno + "'";
             DataTable dtmr = dv1.ToTable();
             string Installment = "";
+            string Installment2 = "";
+            bool isMoneyRecpt=false;
             for (int i = 0; i < dtmr.Rows.Count; i++)
             {
                 if (i == 0)
                 {
                     if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                    {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                    else
-                        if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                    }
+
+                    else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                    {
                         Installment = Installment + "REFUNDABLE COLLECTION, ";
+                    }
+
                     else
+                    {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                    }
+                        
 
                 }
                 else if (dtmr.Rows[i - 1]["gdesc"].ToString().Trim() != dtmr.Rows[i]["gdesc"].ToString().Trim())
                 {
                     if (Convert.ToDouble(dtmr.Rows[i]["schamt"].ToString()) == Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()))
+                    {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + ", ";
-                    else
-                        if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                        isMoneyRecpt = true;
+                    }
+
+                    else if (Convert.ToDouble(dtmr.Rows[i]["paidamt"].ToString()) < 0)
+                    {
                         Installment = Installment + "REFUNDABLE COLLECTION, ";
+                    }
                     else
+                    {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                        isMoneyRecpt = true;
+                    }                        
 
                 }
 
             }
             int len = Installment.Length;
-            Installment = (len == 0) ? "" : ASTUtility.Left(Installment, len - 2);
+            Installment2 = (len == 0) ? "" : ASTUtility.Left(Installment, len - 2);
+
+            switch (comcod)
+            {
+                case "3101":
+                case "3356":
+                case "3325":
+                case "2325":
+                    if (isMoneyRecpt)
+                    {
+                        string part1 = ASTUtility.Left(Installment2, 5);
+                        string part2 = ASTUtility.Right(Installment2, 16);
+                        Installment = part1 + " - " + part2;
+                    }
+                    else
+                    {
+                        Installment = Installment2;
+                    }
+
+                    break;
+                default:
+                    Installment = Installment2;
+                    break;
+            }
+
             DataSet ds4 = accData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "REPORTMONEYRECEIPT", pactCode, usirCode, mrno, "", "", "", "", "", "");
             if (ds4 == null)
                 return;
@@ -167,7 +209,7 @@ namespace RealERPWEB.F_17_Acc
 
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
-            string amt1t = ASTUtility.Trans(amt1,2);
+            string amt1t = ASTUtility.Trans(amt1, 2);
             string Typedes = "";
             if (paytype == "CHEQUE")
             {
@@ -243,6 +285,9 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("CustAdd1", (custmob == "") ? custadd : (custadd)));
                 Rpt1.SetParameters(new ReportParameter("takainword", "BDT. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "Only " + "AS " + ((Installment == "") ? rectype : Installment)));
                 Rpt1.SetParameters(new ReportParameter("takainword1", "BDT. " + Convert.ToDouble(paidamt).ToString("#,##0;(#,##0);") + " " + amt1t + " " + "Only " + "AS " + ((Installment == "") ? rectype : Installment)));
+
+                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
