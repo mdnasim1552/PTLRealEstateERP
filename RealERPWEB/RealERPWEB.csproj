@@ -3053,6 +3053,7 @@
     <Content Include="F_81_Hrm\F_83_Att\HREmpOffDays.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptAttendenceSheet.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptDeptEmpDailyAttendance.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\RptEmpAbsCount.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptEmpDailyAttendance.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptEmpDailyAttendance02.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptEmpMonthPresent.aspx" />
@@ -4108,6 +4109,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptDeptEmpDailyAttendance.aspx.designer.cs">
       <DependentUpon>RptDeptEmpDailyAttendance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\RptEmpAbsCount.aspx.cs">
+      <DependentUpon>RptEmpAbsCount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\RptEmpAbsCount.aspx.designer.cs">
+      <DependentUpon>RptEmpAbsCount.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptEmpDailyAttendance.aspx.cs">
       <DependentUpon>RptEmpDailyAttendance.aspx</DependentUpon>
