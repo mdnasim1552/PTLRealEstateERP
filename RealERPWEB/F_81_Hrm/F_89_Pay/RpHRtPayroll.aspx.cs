@@ -660,6 +660,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
 
                 ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, "");
+
+
             }
             if (ds3 == null)
             {
@@ -2092,6 +2094,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string companyname = this.ddlCompany.SelectedItem.Text.Trim();
             double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+            
+
 
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
 
