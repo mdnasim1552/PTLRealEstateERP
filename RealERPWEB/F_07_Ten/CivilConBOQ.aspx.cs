@@ -35,6 +35,9 @@ namespace RealERPWEB.F_07_Ten
                 this.UnitConvr();
                 this.CreateTable();
                 CommonButton();
+
+
+
             }
         }
         public void CommonButton()
@@ -62,13 +65,13 @@ namespace RealERPWEB.F_07_Ten
         protected void Page_PreInit(object sender, EventArgs e)
         {
             //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
-            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+           // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
         private void CreateTable()
         {
             DataTable tblt01 = new DataTable();
-            
+
 
             tblt01.Columns.Add("itemid", Type.GetType("System.String"));
             tblt01.Columns.Add("actcode", Type.GetType("System.String"));
@@ -81,7 +84,7 @@ namespace RealERPWEB.F_07_Ten
             tblt01.Columns.Add("itemcode", Type.GetType("System.String"));
             tblt01.Columns.Add("unit", Type.GetType("System.String"));
             tblt01.Columns.Add("baseUnit", Type.GetType("System.String"));
-            
+
 
             tblt01.Columns.Add("convrate", Type.GetType("System.Double"));
             tblt01.Columns.Add("rate", Type.GetType("System.Double"));
@@ -98,7 +101,6 @@ namespace RealERPWEB.F_07_Ten
             tblt01.Columns.Add("costvatoh", Type.GetType("System.Double"));
             tblt01.Columns.Add("actamt", Type.GetType("System.Double"));
             tblt01.Columns.Add("diffamt", Type.GetType("System.Double"));
-            tblt01.Columns.Add("rmrks", Type.GetType("System.String"));
 
             tblt01.Columns.Add("sbtrate_per", Type.GetType("System.Double"));
             tblt01.Columns.Add("actamt_per", Type.GetType("System.Double"));
@@ -113,10 +115,10 @@ namespace RealERPWEB.F_07_Ten
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
 
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_ENTRY_PRJ_BUDGET", "PRJCODELIST", "%%", "", "", "", "", "", "", "", "");
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TAS_ENTRY_PRJ_ANALYSIS", "PRJCODELIST", "%%", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-            this.ddlProject.DataTextField = "prjdesc2";
+            this.ddlProject.DataTextField = "infdesc";
             this.ddlProject.DataValueField = "prjcod";
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
@@ -175,18 +177,29 @@ namespace RealERPWEB.F_07_Ten
 
         protected void lnkbtnOK_Click(object sender, EventArgs e)
         {
+            if (this.ddlProject.SelectedValue == "000000000000")
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Select Projects" + "');", true);
+
+                return;
+            }
+
+
             if (this.lnkbtnOK.Text == "Ok")
             {
+                ViewState.Remove("tblt01");
                 this.lnkbtnOK.Text = "New";
+                this.CreateTable();
                 this.ddlProject.Enabled = false;
                 this.divResource.Visible = true;
                 this.gvCivilBoq.Visible = true;
                 this.txtSbtRate_Per.Enabled = false;
                 this.txtACCost_Per.Enabled = false;
                 this.txtACCostVatOH_Per.Enabled = false;
-                
 
-
+                this.ddlPrevReqList.Visible = false; //
+                this.txtfodate.Enabled = false;
+                this.ddlProject_SelectedIndexChanged(null, null);
                 return;
             }
 
@@ -197,7 +210,7 @@ namespace RealERPWEB.F_07_Ten
             this.txtACCost_Per.Enabled = true;
             this.txtACCostVatOH_Per.Enabled = true;
             this.ddlProject.Enabled = true;
-
+            this.txtfodate.Enabled = true;
 
 
         }
@@ -242,8 +255,8 @@ namespace RealERPWEB.F_07_Ten
             string convUnitcode = dr3[0]["ccod"].ToString();
 
             DataRow dr1 = tblt01.NewRow();
-            
-            dr1["itemid"] = "";
+
+            dr1["itemid"] = 0;
             dr1["actcode"] = actcode;
             dr1["actdesc"] = actdesc;
             dr1["subcode"] = workcode;
@@ -270,7 +283,7 @@ namespace RealERPWEB.F_07_Ten
             dr1["sbtrate_per"] = Convert.ToDouble("0" + txtsbtrate_per);
             dr1["actamt_per"] = Convert.ToDouble("0" + txtactamt_per);
             dr1["costvatoh_per"] = Convert.ToDouble("0" + txtcostvatoh_per);
-            dr1["rmrks"] = "";
+
             tblt01.Rows.Add(dr1);
 
             ViewState["tblt01"] = tblt01;
@@ -284,11 +297,21 @@ namespace RealERPWEB.F_07_Ten
         protected void Data_Bind()
         {
             DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
-
             this.gvCivilBoq.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvCivilBoq.DataSource = tblt01;
             this.gvCivilBoq.DataBind();
+            FooterCalcultion();
+
+        }
+        private void FooterCalcultion()
+        {
+            DataTable tblt01 = (DataTable)ViewState["tblt01"];
+
+            ((Label)this.gvCivilBoq.FooterRow.FindControl("lblgvFAmtInTk")).Text =  Convert.ToDouble((Convert.IsDBNull(tblt01.Compute("Sum(ordam)", "")) ? 0.00 : tblt01.Compute("Sum(ordam)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            ((Label)this.gvCivilBoq.FooterRow.FindControl("lblgvFactamt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt01.Compute("Sum(actamt)", "")) ? 0.00 : tblt01.Compute("Sum(actamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+            ((Label)this.gvCivilBoq.FooterRow.FindControl("lblgvFdiffamt")).Text = Convert.ToDouble((Convert.IsDBNull(tblt01.Compute("Sum(diffamt)", "")) ? 0.00 : tblt01.Compute("Sum(diffamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+
 
         }
         protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
@@ -317,95 +340,17 @@ namespace RealERPWEB.F_07_Ten
             // ViewState_update();
 
             DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
             int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-
             Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
             Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
-
             string actcode = lblactcode.Text;
             string workcode = lblWcode.Text;
-
             Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
-
             double qty = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty")).Text.Trim());
             double rate = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtrate")).Text.Trim());
-
             double ammount = qty * rate;
             lTotalRate.Text = ammount.ToString();
 
-            DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
-
-            dr1[0]["qty"] = qty;
-            dr1[0]["rate"] = rate;
-            dr1[0]["ordam"] = ammount;
-
-
-            tblt01.AcceptChanges();
-
-            //tblt01.Rows.Add(dr1);
-
-            ViewState["tblt01"] = tblt01;
-            this.Data_Bind();
-        }
-
-        protected void txtrate_TextChanged(object sender, EventArgs e)
-        {
-            DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
-            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-
-            Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
-            Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
-
-            string actcode = lblactcode.Text;
-            string workcode = lblWcode.Text;
-
-            Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
-
-            double qty = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty")).Text.Trim());
-            double rate = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtrate")).Text.Trim());
-
-            double ammount = qty * rate;
-            lTotalRate.Text = ammount.ToString();
-
-            DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
-
-            dr1[0]["qty"] = qty;
-            dr1[0]["rate"] = rate;
-            dr1[0]["ordam"] = ammount;
-
-
-
-
-            //var lst = (List<EComRpEntity.Both.EclassBoth_BO.GetOrderPlace>)ViewState["tblOrderData"];
-            //lst[index].count = qty;
-            //lst[index].cstotalam = ammount;
-
-
-            tblt01.AcceptChanges();
-
-            //tblt01.Rows.Add(dr1);
-
-            ViewState["tblt01"] = tblt01;
-            this.Data_Bind();
-
-        }
-
-        protected void txtsbamt_TextChanged(object sender, EventArgs e)
-        {
-
-            DataTable tblt01 = (DataTable)ViewState["tblt01"];
-
-            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-           
-            Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
-            Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
-
-            
-
-            string actcode = lblactcode.Text;
-            string workcode = lblWcode.Text;
 
             Label txtprft_rate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvProfit") as Label;
             Label txtTtl_amt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblttlamt") as Label;
@@ -414,38 +359,31 @@ namespace RealERPWEB.F_07_Ten
             Label txtactamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactamt") as Label;
             Label txtdiffamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvdiffamt") as Label;
 
-
-
             double actCost = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtsbamt")).Text.Trim());
-            double qty = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty")).Text.Trim());
             double ordam = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lblordam")).Text.Trim());
             double convrate = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lbconvrate")).Text.Trim());
-            
-           
+
             double proft_per = Convert.ToDouble("0" + this.txtSbtRate_Per.Text.Trim());
             double ohamt_per = Convert.ToDouble("0" + this.txtACCost_Per.Text.Trim());
             double taxVat_per = Convert.ToDouble("0" + this.txtACCostVatOH_Per.Text.Trim());
-            //(DisAmt * 100) / amt;
             double prft_rate = (proft_per * actCost) / 100;
-
-
             double ohamt_rate = (ohamt_per * actCost) / 100;
             double ttamt = actCost + prft_rate + ohamt_rate;
             double taxvatamt = (ttamt * taxVat_per) / 100;
-
             double actamtvo = ttamt + taxvatamt;
-            double actamt = (qty * actamtvo* convrate);
+            double actamt = (qty * actamtvo * convrate);
             double diff = ordam - actamt;
-
             txtprft_rate.Text = prft_rate.ToString();
             txtTtl_amt.Text = ttamt.ToString();
             txtVATTax.Text = taxvatamt.ToString();
             txtcostvatoh.Text = actamtvo.ToString();
             txtactamt.Text = actamt.ToString();
             txtdiffamt.Text = diff.ToString();
-
-
             DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
+            dr1[0]["qty"] = qty;
+            dr1[0]["rate"] = rate;
+            dr1[0]["ordam"] = ammount;
+
             dr1[0]["sbtamt"] = actCost;
             dr1[0]["sbtrate"] = prft_rate;
             dr1[0]["ohamt"] = ohamt_rate;
@@ -455,6 +393,129 @@ namespace RealERPWEB.F_07_Ten
             dr1[0]["actamt"] = actamt;
             dr1[0]["diffamt"] = diff;
 
+            tblt01.AcceptChanges();
+            ViewState["tblt01"] = tblt01;
+            this.Data_Bind();
+        }
+
+        protected void txtrate_TextChanged(object sender, EventArgs e)
+        {
+            DataTable tblt01 = (DataTable)ViewState["tblt01"];
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
+            Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
+            string actcode = lblactcode.Text;
+            string workcode = lblWcode.Text;
+            Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
+            double qty = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty")).Text.Trim());
+            double rate = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtrate")).Text.Trim());
+            double ammount = qty * rate;
+            lTotalRate.Text = ammount.ToString();
+
+
+            Label txtprft_rate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvProfit") as Label;
+            Label txtTtl_amt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblttlamt") as Label;
+            Label txtVATTax = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvVatTax") as Label;
+            Label txtcostvatoh = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvcostvatoh") as Label;
+            Label txtactamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactamt") as Label;
+            Label txtdiffamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvdiffamt") as Label;
+
+            double actCost = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtsbamt")).Text.Trim());
+            double ordam = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lblordam")).Text.Trim());
+            double convrate = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lbconvrate")).Text.Trim());
+
+            double proft_per = Convert.ToDouble("0" + this.txtSbtRate_Per.Text.Trim());
+            double ohamt_per = Convert.ToDouble("0" + this.txtACCost_Per.Text.Trim());
+            double taxVat_per = Convert.ToDouble("0" + this.txtACCostVatOH_Per.Text.Trim());
+            double prft_rate = (proft_per * actCost) / 100;
+            double ohamt_rate = (ohamt_per * actCost) / 100;
+            double ttamt = actCost + prft_rate + ohamt_rate;
+            double taxvatamt = (ttamt * taxVat_per) / 100;
+            double actamtvo = ttamt + taxvatamt;
+            double actamt = (qty * actamtvo * convrate);
+            double diff = ordam - actamt;
+            txtprft_rate.Text = prft_rate.ToString();
+            txtTtl_amt.Text = ttamt.ToString();
+            txtVATTax.Text = taxvatamt.ToString();
+            txtcostvatoh.Text = actamtvo.ToString();
+            txtactamt.Text = actamt.ToString();
+            txtdiffamt.Text = diff.ToString();
+            DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
+            dr1[0]["qty"] = qty;
+            dr1[0]["rate"] = rate;
+            dr1[0]["ordam"] = ammount;
+
+            dr1[0]["sbtamt"] = actCost;
+            dr1[0]["sbtrate"] = prft_rate;
+            dr1[0]["ohamt"] = ohamt_rate;
+            dr1[0]["ttamt"] = ttamt;
+            dr1[0]["taxvatamt"] = taxvatamt;
+            dr1[0]["costvatoh"] = actamtvo;
+            dr1[0]["actamt"] = actamt;
+            dr1[0]["diffamt"] = diff;
+
+            tblt01.AcceptChanges();
+            ViewState["tblt01"] = tblt01;
+            this.Data_Bind();
+
+        }
+
+        protected void txtsbamt_TextChanged(object sender, EventArgs e)
+        {
+
+            DataTable tblt01 = (DataTable)ViewState["tblt01"];
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
+            Label lblWcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode") as Label;
+            string actcode = lblactcode.Text;
+            string workcode = lblWcode.Text;
+            Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
+            double qty = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtqty")).Text.Trim());
+            double rate = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtrate")).Text.Trim());
+            double ammount = qty * rate;
+            lTotalRate.Text = ammount.ToString();
+
+
+            Label txtprft_rate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvProfit") as Label;
+            Label txtTtl_amt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblttlamt") as Label;
+            Label txtVATTax = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvVatTax") as Label;
+            Label txtcostvatoh = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvcostvatoh") as Label;
+            Label txtactamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactamt") as Label;
+            Label txtdiffamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvdiffamt") as Label;
+
+            double actCost = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtsbamt")).Text.Trim());
+            double ordam = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lblordam")).Text.Trim());
+            double convrate = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lbconvrate")).Text.Trim());
+
+            double proft_per = Convert.ToDouble("0" + this.txtSbtRate_Per.Text.Trim());
+            double ohamt_per = Convert.ToDouble("0" + this.txtACCost_Per.Text.Trim());
+            double taxVat_per = Convert.ToDouble("0" + this.txtACCostVatOH_Per.Text.Trim());
+            double prft_rate = (proft_per * actCost) / 100;
+            double ohamt_rate = (ohamt_per * actCost) / 100;
+            double ttamt = actCost + prft_rate + ohamt_rate;
+            double taxvatamt = (ttamt * taxVat_per) / 100;
+            double actamtvo = ttamt + taxvatamt;
+            double actamt = (qty * actamtvo * convrate);
+            double diff = ordam - actamt;
+            txtprft_rate.Text = prft_rate.ToString();
+            txtTtl_amt.Text = ttamt.ToString();
+            txtVATTax.Text = taxvatamt.ToString();
+            txtcostvatoh.Text = actamtvo.ToString();
+            txtactamt.Text = actamt.ToString();
+            txtdiffamt.Text = diff.ToString();
+            DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
+            dr1[0]["qty"] = qty;
+            dr1[0]["rate"] = rate;
+            dr1[0]["ordam"] = ammount;
+
+            dr1[0]["sbtamt"] = actCost;
+            dr1[0]["sbtrate"] = prft_rate;
+            dr1[0]["ohamt"] = ohamt_rate;
+            dr1[0]["ttamt"] = ttamt;
+            dr1[0]["taxvatamt"] = taxvatamt;
+            dr1[0]["costvatoh"] = actamtvo;
+            dr1[0]["actamt"] = actamt;
+            dr1[0]["diffamt"] = diff;
 
             tblt01.AcceptChanges();
             ViewState["tblt01"] = tblt01;
@@ -491,15 +552,19 @@ namespace RealERPWEB.F_07_Ten
                 double proft_per = Convert.ToDouble("0" + this.txtSbtRate_Per.Text.Trim());
                 double ohamt_per = Convert.ToDouble("0" + this.txtACCost_Per.Text.Trim());
                 double taxVat_per = Convert.ToDouble("0" + this.txtACCostVatOH_Per.Text.Trim());
-                string boqid = GetLastID();
 
-                result = ImpleData.UpdateTransInfo(comcod, "SP_TANDER_PROCESS", "INSERTTENDERDATA", boqid, actcode, boqdate, proft_per.ToString(), ohamt_per.ToString(),
-                   taxVat_per.ToString(), userid, "");
+
+
+                result = ImpleData.UpdateTransInfo2(comcod, "SP_TANDER_PROCESS", "INSERTTENDERDATA", "", actcode, boqdate, proft_per.ToString(), ohamt_per.ToString(),
+                    taxVat_per.ToString(), userid, "", "", "", "", "", "",
+                          "", "", "", "", "", "", "TENBOQB", "");
+
+
                 if (result == true)
                 {
                     foreach (DataRow dr in dt1.Rows)
                     {
- 
+
                         string subcode = dr["subcode"].ToString();
                         string itemcode = dr["itemcode"].ToString();
                         string qty = dr["qty"].ToString();
@@ -519,9 +584,9 @@ namespace RealERPWEB.F_07_Ten
                         string actamt_per = dr["actamt_per"].ToString();
                         string costvatoh_per = dr["costvatoh_per"].ToString();
                         string unitcode = dr["baseUnit"].ToString();
-                        
-                        result = ImpleData.UpdateTransInfo2(comcod, "SP_TANDER_PROCESS", "INSERTTENDERDATADETAILS", boqid, actcode, itemcode, subcode, qty, rate, oramt, sbtamt, sbtrate, ohamt, ttamt, taxvatamt, costvatoh,
-                            actamt, diffamt, unitcode,"","","","","");
+
+                        result = ImpleData.UpdateTransInfo2(comcod, "SP_TANDER_PROCESS", "INSERTTENDERDATA", "", actcode, itemcode, subcode, qty, rate, oramt, sbtamt, sbtrate, ohamt, ttamt, taxvatamt, costvatoh,
+                            actamt, diffamt, unitcode, "", "", "", "TENBOQA", "");
 
 
 
@@ -548,15 +613,44 @@ namespace RealERPWEB.F_07_Ten
 
         }
 
-        private string GetLastID()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();
-            string boqdate = this.txtfodate.Text.Substring(0, 11);
 
-            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETLASTBOQNO", boqdate, "", "", "", "", "", "", "", "");
-            return comcod = ds1.Tables[0].Rows[0]["boqid"].ToString();
+
+        private string GetCompCode()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+
         }
+        protected void GetReqNo()
+        {
+            //string comcod = this.GetCompCode();
+            //string mREQNO = "NEWREQ";
+            //if (this.ddlPrevReqList.Items.Count > 0)
+            //    mREQNO = this.ddlPrevReqList.SelectedValue.ToString();
+            //string boqdate = this.txtfodate.Text.Substring(0, 11);
+
+            //if (mREQNO == "NEWREQ")
+            //{
+            //    DataSet ds2 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETLASTBOQNO", boqdate,
+            //           "", "", "", "", "", "", "", "");
+            //    if (ds2 == null)
+            //        return;
+            //    if (ds2.Tables[0].Rows.Count > 0)
+            //    {
+
+            //        this.lblCurReqNo1.Text = ds2.Tables[0].Rows[0]["maxbgdno1"].ToString().Substring(0, 6);
+            //        this.txtCurTndNo.Text = ds2.Tables[0].Rows[0]["maxbgdno1"].ToString().Substring(6, 5);
+
+            //        this.ddlPrevReqList.DataTextField = "maxbgdno1";
+            //        this.ddlPrevReqList.DataValueField = "boqid";
+            //        this.ddlPrevReqList.DataSource = ds2.Tables[0];
+            //        this.ddlPrevReqList.DataBind();
+            //    }
+            //}
+
+        }
+
 
         protected void txItemCode_TextChanged(object sender, EventArgs e)
         {
@@ -572,13 +666,11 @@ namespace RealERPWEB.F_07_Ten
 
             Label lTotalRate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblordam") as Label;
 
-            string itemcode =  ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txItemCode")).Text.ToString();
-            
+            string itemcode = ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txItemCode")).Text.ToString();
+
 
 
             DataRow[] dr1 = tblt01.Select("actcode='" + actcode + "'  and subcode='" + workcode + "'");
-
-          
             dr1[0]["itemcode"] = itemcode;
 
 
@@ -596,12 +688,13 @@ namespace RealERPWEB.F_07_Ten
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
-            string itemid = ((TextBox)this.gvCivilBoq.Rows[index].FindControl("lblbyid")).Text.ToString();
+            int index = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string actcode = ((Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode")).Text.ToString();
+            string subcode = ((Label)this.gvCivilBoq.Rows[index].FindControl("lblGvworkcode")).Text.ToString();
 
 
             bool result = ImpleData.UpdateTransInfo2(comcod, "SP_TANDER_PROCESS", "DELBOQIDBYID",
-                             itemid, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                             actcode, subcode, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
@@ -614,6 +707,72 @@ namespace RealERPWEB.F_07_Ten
             this.Data_Bind();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Data Updated successfully');", true);
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+
+        }
+
+        protected void ImgbtnFindReq_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            string boqdate = this.txtfodate.Text.Substring(0, 11);
+
+
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_PREV_TND_LIST", boqdate,
+                          "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlPrevReqList.Items.Clear();
+            this.ddlPrevReqList.DataTextField = "boqid1";
+            this.ddlPrevReqList.DataValueField = "boqid";
+            this.ddlPrevReqList.DataSource = ds1.Tables[0];
+            this.ddlPrevReqList.DataBind();
+        }
+
+        protected void ddlPrevReqList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            string prevtndid = this.ddlPrevReqList.SelectedValue.ToString();
+
+            DataSet ds2 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETTNDDATABYID", prevtndid,
+                      "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+
+            ViewState["tblt01"] = ds2.Tables[0];
+            this.Data_Bind();
+            this.divResource.Visible = true;
+
+        }
+
+        protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            string prjcode = this.ddlProject.SelectedValue.ToString();
+
+
+            DataSet ds2 = ImpleData.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GETTNDDATABYID", prjcode,
+                      "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+            {
+                this.gvCivilBoq.DataSource = null;
+                this.gvCivilBoq.DataBind();
+                return;
+            }
+            else
+            {
+                ViewState["tblt01"] = ds2.Tables[0];
+                this.txtSbtRate_Per.Text = ds2.Tables[1].Rows.Count > 0 ? Convert.ToDouble(ds2.Tables[1].Rows[0]["profitper"]).ToString("#,##0.00;(#,##0.00); ") : this.txtSbtRate_Per.Text;
+                this.txtACCost_Per.Text = ds2.Tables[1].Rows.Count > 0 ? Convert.ToDouble(ds2.Tables[1].Rows[0]["ohper"]).ToString("#,##0.00;(#,##0.00); ") : this.txtACCost_Per.Text;
+                this.txtACCostVatOH_Per.Text = ds2.Tables[1].Rows.Count > 0 ? Convert.ToDouble(ds2.Tables[1].Rows[0]["taxvatper"]).ToString("#,##0.00;(#,##0.00); ") : this.txtACCostVatOH_Per.Text;
+
+                this.Data_Bind();
+            }
 
 
         }
