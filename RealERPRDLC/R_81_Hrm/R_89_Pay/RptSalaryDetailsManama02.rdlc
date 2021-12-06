@@ -2739,7 +2739,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value-Fields!adv.Value-Fields!itax.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value+Fields!adv.Value+Fields!itax.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3467,7 +3467,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value-Fields!adv.Value-Fields!itax.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value+Fields!adv.Value+Fields!itax.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4248,7 +4248,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value-Fields!adv.Value-Fields!itax.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value+Fields!adv.Value+Fields!itax.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
