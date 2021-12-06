@@ -141,7 +141,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //dv = dt.DefaultView;
             // dv.RowFilter=("usrid='" + usrid + "'");
             //dv.Sort = ("Supcode");
-
+            ViewState["tbltotalleav"] = dt;
 
             this.Data_Bind("gvLvReq", dt);
 
@@ -449,10 +449,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
                 string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
-
-
-
-
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print.aspx?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
@@ -464,9 +460,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void gvfiApproved_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-
-
+            { 
                 DataTable dte = (DataTable)Session["tblmaproved"];
                 DataTable dt = (DataTable)Session["tbleaproved"];
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnAppfi");
@@ -478,8 +472,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string urefno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
-
-
                 switch (comcod)
                 {
                     case "3348": //Credence
@@ -491,21 +483,109 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         hlink3.Enabled = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
                         hlink3.Attributes["style"] = (dre.Length > 0) ? "background:blue;" : ((dr1.Length > 0) ? "background:blue;" : " background:red;");
                         break;
-
-
-
-
                 }
-
-
-
-
                 // Session["tblaproved"] = ds1.Tables[2];
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat;
 
 
 
             }
+        }
+
+        protected void lnkRemove_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string usrid = hst["usrid"].ToString();
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvInprocess.Rows[index].FindControl("lblgvempid")).Text.ToString();
+            string leavid = ((Label)this.gvInprocess.Rows[index].FindControl("lblLeavId")).Text.ToString();
+          
+            DataTable dt = (DataTable)ViewState["tbltotalleav"];
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
+            if (result)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
+                int ins = this.gvInprocess.PageSize * this.gvInprocess.PageIndex + index;
+                dt.Rows[ins].Delete();
+                ViewState.Remove("tbltotalleav");
+                DataView dv = dt.DefaultView;
+                ViewState["tbltotalleav"] = dv.ToTable();
+            }
+            this.SaleRequRpt();
+
+
+        }
+
+        protected void lnkRemoveApp_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string usrid = hst["usrid"].ToString();
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvApproved.Rows[index].FindControl("lblgvempid")).Text.ToString();
+            string leavid = ((Label)this.gvApproved.Rows[index].FindControl("lblLeavId")).Text.ToString();
+            //ViewState["tbltotalleav"] = dt;
+            DataTable dt = (DataTable)ViewState["tbltotalleav"];
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
+            if (result)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
+                int ins = this.gvApproved.PageSize * this.gvApproved.PageIndex + index;
+                dt.Rows[ins].Delete();
+                ViewState.Remove("tbltotalleav");
+                DataView dv = dt.DefaultView;
+                ViewState["tbltotalleav"] = dv.ToTable();
+            }
+            this.SaleRequRpt();
+
+        }
+
+        protected void lnkRemoveFAp_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string usrid = hst["usrid"].ToString();
+            int index = row.RowIndex;
+            string empid = ((Label)this.gvfiApproved.Rows[index].FindControl("lblgvempid")).Text.ToString();
+            string leavid = ((Label)this.gvfiApproved.Rows[index].FindControl("lblLeavId")).Text.ToString();
+            //ViewState["tbltotalleav"] = dt;
+            DataTable dt = (DataTable)ViewState["tbltotalleav"];
+            bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
+            if (result)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "success", "alert('Data deleted successfully')", true);
+                int ins = this.gvfiApproved.PageSize * this.gvfiApproved.PageIndex + index;
+                dt.Rows[ins].Delete();
+                ViewState.Remove("tbltotalleav");
+                DataView dv = dt.DefaultView;
+                ViewState["tbltotalleav"] = dv.ToTable();
+            }
+            this.SaleRequRpt();
         }
     }
 }
