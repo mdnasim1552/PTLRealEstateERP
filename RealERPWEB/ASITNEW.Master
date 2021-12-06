@@ -85,12 +85,6 @@
     <link href="Content/bootstrap-multiselect.css" rel="stylesheet" />
     <link href="Content/GridViewScrooling.css" rel="stylesheet" />
     <link href="Content/progressbar.css" rel="stylesheet" />--%>
-
-
-
-
-
-
     <%-- <link rel="stylesheet" href="Content/Theme/theme-dark.min.css" data-skin="dark">--%>
 
     <script>
@@ -101,11 +95,10 @@
         unusedLink.setAttribute('disabled', true);
 
         function submitform() { document.getElementById("form1").submit(); }
-
         // setTimeout(function () { manipulate(); }, 3000);
         //  manipulate();
-
-        function manipulate() {
+        function manipulate()
+        {
             var itemname = localStorage.getItem("itemname");
             // alert(itemname);
 
