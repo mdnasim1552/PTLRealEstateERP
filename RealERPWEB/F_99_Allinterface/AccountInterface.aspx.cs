@@ -600,10 +600,6 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-
-
-
-
                 }
 
                 ds1.Dispose();
@@ -1599,7 +1595,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string date = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "schdate")).ToString("dd-MMM-yyyy");
                 string schcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "schcode")).ToString();
 
-                hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Details&prjcode=" + pactcode + "&usircode=" + usircode + "&Date1=" + date + "&schcode" + schcode;
+                hlink1.NavigateUrl = "~/F_17_Acc/AccSalJournal?Type=Details&prjcode=" + pactcode + "&usircode=" + usircode + "&Date1=" + date + "&schcode=" + schcode;
 
                 // hlink2.ToolTip = "Consolidate";
 
