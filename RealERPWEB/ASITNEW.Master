@@ -929,7 +929,7 @@
                 <!-- .app-footer -->
                 <footer class="app-footer fixed-bottom" style="background-color: #EEEEEE;">
                     <div class="col-md-12">
-                        <div class="pull-left">
+                        <div class="float-left">
                             <asp:LinkButton ID="lnkbtnLedger" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btngl btncommon" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnHisprice" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnTranList" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
@@ -937,7 +937,7 @@
                             <asp:CheckBox ID="CheckBox1" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
 
                         </div>
-                        <div class="pull-right">
+                        <div class="float-right">
                             <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-sm btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
 
                             <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>
