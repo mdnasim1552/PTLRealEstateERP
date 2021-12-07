@@ -566,9 +566,10 @@ namespace RealERPWEB.F_24_CC
             DataTable dt = (DataTable)Session["tbladwork"];
             string gcod = this.ddlItemName.SelectedValue.ToString();
             DataRow[] dr = dt.Select("gcod='" + gcod + "'");
-            if (dr.Length == 0)
-            {
+            //if (dr.Length == 0)
+            //{
                 DataRow dr1 = dt.NewRow();
+                dr1["id"] = 0;
                 dr1["gcod"] = gcod;
                 dr1["gdesc"] = this.ddlItemName.SelectedItem.Text.Trim();
                 dr1["unit"] = (((DataTable)ViewState["tblwrk"]).Select("gcod='" + gcod + "'"))[0]["unit"];
@@ -590,8 +591,11 @@ namespace RealERPWEB.F_24_CC
                 dr1["nrefund"] = 0.00;
                 dr1["ndemand"] = 0.00;
                 dr1["location"] = "";
+             //   dr1["seq"] = "0";
+                
+            
                 dt.Rows.Add(dr1);
-            }
+            //}
             this.SaveValue();
 
 
@@ -604,7 +608,8 @@ namespace RealERPWEB.F_24_CC
             for (int i = 0; i < this.gvAddWork.Rows.Count; i++)
             {
                 TblRowIndex = (gvAddWork.PageIndex) * gvAddWork.PageSize + i;
-
+                string seq = ((Label)this.gvAddWork.Rows[i].FindControl("lblgvSlNo3")).Text.Trim();
+                
                 string wrkdesc = ((TextBox)this.gvAddWork.Rows[i].FindControl("txtgvdesclchoice")).Text.Trim();
                 string txtgvlocateion = ((TextBox)this.gvAddWork.Rows[i].FindControl("txtgvlocateion")).Text.Trim();
                 double qty = Convert.ToDouble("0" + ((TextBox)this.gvAddWork.Rows[i].FindControl("txtgvqty")).Text.Trim());
@@ -664,6 +669,7 @@ namespace RealERPWEB.F_24_CC
                 dt1.Rows[TblRowIndex]["comamt"] = comamt;
                 dt1.Rows[TblRowIndex]["clamt"] = clamt;
                 dt1.Rows[TblRowIndex]["location"] = txtgvlocateion;
+                //dt1.Rows[TblRowIndex]["seq"] = seq;
 
             }
             Session["tbladwork"] = dt1;
@@ -887,7 +893,7 @@ namespace RealERPWEB.F_24_CC
                     {
                         this.CreateDataTable();
                         DataTable dt = (DataTable)ViewState["tblapproval"];
-                        if (comcod == "3315" || comcod == "3316")
+                        if (comcod == "3315" || comcod == "3316" )
                         {
                             DataRow dr1 = dt.NewRow();
                             dr1["chkbyid"] = usrid;
@@ -1016,7 +1022,7 @@ namespace RealERPWEB.F_24_CC
 
                     switch (comcod)
                     {
-                        // case "3101":
+                        //case "3101":
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
@@ -1100,7 +1106,7 @@ namespace RealERPWEB.F_24_CC
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
 
             string paysch = "";
-            if (comcod=="3315" || comcod=="3316"|| comcod=="3317")
+            if (comcod=="3315" || comcod=="3316"|| comcod=="3317" )
             {
                 paysch = this.GetSchCode();
             }
@@ -1126,6 +1132,9 @@ namespace RealERPWEB.F_24_CC
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Gcode = dt.Rows[i]["gcod"].ToString();
+                
+                string seq = (i+1).ToString();
+                string id = dt.Rows[i]["id"].ToString();
                 string wrkdesc = dt.Rows[i]["wrkdesc"].ToString();
                 string location = dt.Rows[i]["location"].ToString();
                 string qty = Convert.ToDouble(dt.Rows[i]["qty"].ToString()).ToString();
@@ -1150,7 +1159,7 @@ namespace RealERPWEB.F_24_CC
                 string cllrate = Convert.ToDouble(dt.Rows[i]["cllrate"].ToString()).ToString();
 
                 //if (amt > 0)
-                bool ressult2 = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEADWORK", addno, PactCode, Usircode, Gcode, curdate, qty, amt.ToString(), paysch, comamt, wrkdesc, narration, disamt.ToString(), comqty, clamt, location, crate, comlrate, clrate, cllrate, Approval);
+                bool ressult2 = MktData.UpdateTransInfo3(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEADWORK", addno, PactCode, Usircode, Gcode, curdate, qty, amt.ToString(), paysch, comamt, wrkdesc, narration, disamt.ToString(), comqty, clamt, location, crate, comlrate, clrate, cllrate, Approval, seq);
 
                 if (!ressult2)
                 {
@@ -1265,13 +1274,17 @@ namespace RealERPWEB.F_24_CC
             int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tbladwork"];
-            string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
-            string addno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
-            string PactCode = this.ddlProjectName.SelectedValue.ToString();
-            string Usircode = this.ddlUnitName.Text.Trim();
-            string gcod = ((Label)this.gvAddWork.Rows[rownum].FindControl("lblgvGcodAdd")).Text.Trim();
+            //string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
+            //string addno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
+            //string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            //string Usircode = this.ddlUnitName.Text.Trim();
+            //string gcod = ((Label)this.gvAddWork.Rows[rownum].FindControl("lblgvGcodAdd")).Text.Trim();
+            string id = ((Label)this.gvAddWork.Rows[rownum].FindControl("lblgbID")).Text.Trim();
+
+
+            
             bool result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "DELETEADDWRK",
-                       addno, PactCode, Usircode, gcod, "", "", "", "", "", "", "", "", "", "", "");
+                       id, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result)
             {
@@ -1280,11 +1293,12 @@ namespace RealERPWEB.F_24_CC
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail !!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Data Delete Fail" + "');", true);
 
-
+                return;
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Delete Success" + "');", true);
 
 
             DataView dv = dt.DefaultView;
