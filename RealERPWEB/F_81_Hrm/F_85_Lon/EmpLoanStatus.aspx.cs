@@ -194,8 +194,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt.EmpLoanStatus>();
 
-            LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_85_Loan.rptEmpLoanStatus", lst, null, null);
+            LocalReport Rpt1 = new LocalReport(); //rptEmpLoanStatus rptEmpLoanStatus
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_85_Lon.rptEmpLoanStatus", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
