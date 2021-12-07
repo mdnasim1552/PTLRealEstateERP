@@ -286,6 +286,12 @@ namespace RealERPWEB.F_17_Acc
             string vtcode = "98";
             string edit = "";
 
+            string schcode = "";
+            if (this.Request.QueryString["Type"].ToString() == "Details")
+            {
+                schcode = this.Request.QueryString.AllKeys.Contains("schcode") ? this.Request.QueryString["schcode"].ToString() : "";
+            }
+
 
             //Existing   Purchase No  
 
@@ -298,7 +304,7 @@ namespace RealERPWEB.F_17_Acc
                 if (ASTUtility.Left(actcode, 2) == "18")
                 {
 
-                    ds4 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "EXISTINGSVOUCHER", actcode, rescode, "", "", "", "", "", "", "");
+                    ds4 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "EXISTINGSVOUCHER", actcode, rescode, schcode, "", "", "", "", "", "");
                     if (ds4.Tables[0].Rows.Count == 0) continue;
                     else
                     {
@@ -348,11 +354,9 @@ namespace RealERPWEB.F_17_Acc
                         return;
                     }
 
-
                     if (ASTUtility.Left(actcode, 2) == "18")
-                    {
-                        resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "INORUPSALJOURNAL",
-                                actcode, rescode, vounum, "", "", "", "", "", "", "", "", "", "", "", "");
+                    {                   
+                        resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "INORUPSALJOURNAL", actcode, rescode, vounum, schcode, "", "", "", "", "", "", "", "", "", "", "");
                         if (!resulta)
                         {
                             ((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
@@ -384,6 +388,45 @@ namespace RealERPWEB.F_17_Acc
             }
 
         }
+
+        private string chkExitingVoucher()
+        {
+            string type = "";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3352":    // p2p 360
+                    type = "EXISTINGSVOUCHERSCH";
+                    break;
+                default:
+                    type = "EXISTINGSVOUCHER";
+                    break;
+            }
+            return type;
+
+        }
+        private string getVoucherCallType()
+        {
+            string type = "";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3352":    // p2p 360
+
+                    type = "INORUPSALJOURNALSCH";
+                    break;
+                default:
+                    type = "INORUPSALJOURNAL";
+                    break;
+            }
+            return type;
+
+        }
+
+
+
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
             try
@@ -502,6 +545,12 @@ namespace RealERPWEB.F_17_Acc
                     Calltype = "GETACCDETBRISGESALESJOURNAL";
                     break;
 
+                case "3101":
+                case "3351":
+                    Calltype = "GETACCDETSALESJOURNALSCH";
+                    break;
+                    
+
                 default:
                     Calltype = "GETACCDETSALESJOURNAL";
                     break;
@@ -522,8 +571,14 @@ namespace RealERPWEB.F_17_Acc
             string Type = this.Request.QueryString["Type"].ToString().Trim();
 
             string CallType = (Type == "Consolidate") ? "GETACCSALESJOURNAL" : this.ComSalesJournal();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, Pactcode,
-                          UnitCode, "", "", "", "", "", "", "");
+            string schcode = "";
+            if (this.Request.QueryString["Type"].ToString() == "Details")
+            {
+                schcode = this.Request.QueryString.AllKeys.Contains("schcode") ? this.Request.QueryString["schcode"].ToString() : "";
+            }
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", CallType, Pactcode, UnitCode, schcode, "", "", "", "", "", "");
+
             DataTable dt1 = ds1.Tables[0];
             DataTable tblt01 = (DataTable)Session["tblt01"];
 

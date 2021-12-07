@@ -844,8 +844,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptSalaryDetailsManamaBN": Rpt1a = SetRptSalaryDetailsManamaBN(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_87_Tra.RptEmployeeTransfer": Rpt1a = SetRptEmployeeTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_87_Tra.RptEmployeeTransfer02": Rpt1a = SetRptEmployeeTransfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_81_Hrm.R_85_Loan.rptEmpLoanStatus": Rpt1a = SetrptEmpLoanStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_81_Hrm.R_85_Loan.rptEmpLoanInsDetails": Rpt1a = SetrptEmpLoanStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_85_Lon.rptEmpLoanStatus": Rpt1a = SetrptEmpLoanStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_85_Lon.rptEmpLoanInsDetails": Rpt1a = SetrptEmpLoanStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptMonthlyLateAttn03": Rpt1a = SetRptMonthlyLateAttn03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptDeptWiseEmp": Rpt1a = SetRptDeptWiseEmp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptAttendanceSummary": Rpt1a = SetRptAttendanceSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;

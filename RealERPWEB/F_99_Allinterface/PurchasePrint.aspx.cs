@@ -1174,12 +1174,13 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //Adding End
 
+                case "3101":
                 case "3353":
                     PrintReq = "PrintReque08";
                     break;
 
                 case "3356":
-                case "3101":
+                //case "3101":
                     PrintReq = "PrintReqiNTECH";
                     break;
 
