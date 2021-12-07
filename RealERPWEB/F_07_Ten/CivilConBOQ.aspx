@@ -238,7 +238,7 @@
                                 <asp:TemplateField HeaderText=" ">
 
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lnkDelrow" Width="20px" ForeColor="Red" runat="server" OnClick="lnkDelrow_Click" ToolTip="Delete"><i class=" fa fa-trash"></i></a></asp:LinkButton>
+                                        <asp:LinkButton ID="lnkDelrow" Width="20px" ForeColor="Red" runat="server" OnClientClick="return confirm('Do You want to Delete?');" OnClick="lnkDelrow_Click" ToolTip="Delete"><i class=" fa fa-trash"></i></a></asp:LinkButton>
 
 
                                     </ItemTemplate>
