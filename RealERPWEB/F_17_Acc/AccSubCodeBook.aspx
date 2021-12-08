@@ -625,7 +625,7 @@
                         <div class="form-group">
                             <label class="col-md-4">Unit </label>
                             <div class="col-md-5">
-                                <asp:TextBox ID="txtunit" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtunit" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
                                  <asp:DropDownList ID="ddlUnits" CssClass="chzn-select form-control" Visible="false" runat="server">
                                             </asp:DropDownList>
 
