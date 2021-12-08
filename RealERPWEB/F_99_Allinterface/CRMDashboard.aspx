@@ -1,25 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/fontawesome.css" integrity="sha384-eHoocPgXsiuZh+Yy6+7DsKAerLXyJmu2Hadh4QYyt+8v86geixVYwFqUvMU8X90l" crossorigin="anonymous" />
     
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+  <%--  <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
- 
+ --%>
 
-    <script type="text/javascript">
-
+<script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+             
+            document.getElementById('<%= lnkbtnOk.ClientID %>').click();
+             
+         });
         function ExecuteGraph(data, data1, data2, gtype) {
             var lead_m = JSON.parse(data);
             var lead_w = JSON.parse(data1);
             var lead_d = JSON.parse(data2);
-            
+
 
             $('#chartleadMonths').highcharts({
-           
+
                 chart: {
                     type: 'column'
                 },
@@ -71,11 +73,11 @@
                         color: "#A50200",
                         data: [lead_m[0].tcall, lead_m[0].textmeeting, lead_m[0].tintmeeting, lead_m[0].tvisit, lead_m[0].tproposal, lead_m[0].tclose]
 
-                        
+
                     }, {
                         name: "Achive",
                         color: "#00A28A",
-                        data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal,  lead_m[0].close] 
+                        data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal, lead_m[0].close]
                     }
                 ],
 
@@ -149,7 +151,7 @@
                                 name: "Proposal",
                                 y: parseFloat(lead_w[0].proposal)
                             },
-                          
+
                             {
                                 name: "Close",
                                 y: parseFloat(lead_w[0].close)
@@ -225,7 +227,7 @@
                                 name: "Proposal",
                                 y: parseFloat(lead_d[0].proposal)
                             },
-                           
+
                             {
                                 name: "Close",
                                 y: parseFloat(lead_d[0].close)
@@ -234,20 +236,20 @@
                     }
                 ]
             });
-           
+
 
 
 
             let w = $(".graph-main").width();
             let h = 350;
-            
-           
+
+
             chartlead_w.setSize(w, h);
             chartlead_d.setSize(w, h);
             const elem = $(".graph-main")[0];
 
             let resizeObserver = new ResizeObserver(function () {
-              
+
                 chartlead_w.setSize(w, h);
                 chartlead_d.setSize(w, h);
                 w = $(".graph-main").width();
@@ -257,7 +259,7 @@
 
         };
 
-    </script>
+</script>
     <style>
         a:hover {
             text-decoration: none;
@@ -298,7 +300,7 @@
 
 
 
-    <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+      <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
     
     <div class="card card-fluid container-data mt-5">
@@ -591,6 +593,6 @@
 
 
 
-    <%-- </ContentTemplate>
+     <%--</ContentTemplate>
     </asp:UpdatePanel>--%>
 </asp:Content>

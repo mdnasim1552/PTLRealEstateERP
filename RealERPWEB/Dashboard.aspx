@@ -1,18 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="RealERPWEB.Dashboard" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
+   <%-- <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
+--%>
 
-
-    <script type="text/javascript">
-        //function pageLoaded() {
-        //    alert("I m In");
-        //    GetData();
-        //    //GetData();
-        //}
+    <script type="text/javascript">        
         $(document).ready(function () {
             var url = $('#<%=this.ParentDir.ClientID %>').val();
             GetData();
@@ -83,7 +76,6 @@
 
         }
         function ExecuteGraph(data, data1, data2, data3, data4, gtype) {
-
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
             var accdata = JSON.parse(data2);
@@ -628,7 +620,7 @@
             resizeObserver.observe(elem);
         }
         function ExecuteUserdata(data1) {
-            //userdata
+            
             console.log(JSON.parse(data1));
             var userdata = JSON.parse(data1);
             var descdata = [];
@@ -676,26 +668,13 @@
 
 
 
-        }
-        //function myFunction() {
-        //    $('input[type=checkbox]:checked').each(function () {
-        //        //var status = (this.checked ? $(this).val() : "");
-        //        var id = $(this).attr("id");                
-        //        $("#div1").toggle();
-        //        //$("#" + id+"").hide();
-        //    });
-
-        //}
-
+        }         
         function ExecuteGraph_column(data, data1, data2, data3, data4, data5) {
-
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
             var accdata = JSON.parse(data2);
             var consdata = JSON.parse(data3);
-            var sucondata = JSON.parse(data4);
-            //var hrdata=JSON.parse(data5);
-            //console.log(data5);
+            var sucondata = JSON.parse(data4);            
             var chartsal= Highcharts.chart('salchart', {
                 chart: {
                     type: 'column'
@@ -1093,8 +1072,6 @@
                     color: 'Black'
                 }]
             });
-
-
             var chartsubcon= Highcharts.chart('subconchart', {
                 chart: {
                     type: 'column'
@@ -1194,7 +1171,6 @@
             chartcons.setSize(w, h);
             chartsubcon.setSize(w, h);
             const elem = $(".graph-main")[0];
-
             let resizeObserver = new ResizeObserver(function () {
                 chartsal.setSize(w, h);
                 chartpur.setSize(w, h);
@@ -1811,7 +1787,7 @@
             <div style="display: none;">
                 <asp:TextBox ID="ParentDir" runat="server" CssClass="hide"></asp:TextBox>
             </div>
-            <%-- <div class="mb-5" id="EventNotice" runat="server">--%>
+           
             <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
                 <div class="row">
                     <!--Breaking box-->
@@ -2306,11 +2282,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-
-   
-
-   
-
+     
     <!-- /.page -->
 </asp:Content>
 
