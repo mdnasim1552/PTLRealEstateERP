@@ -154,7 +154,6 @@ namespace RealERPWEB.F_17_Acc
                     else
                     {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
-                        isMoneyRecpt = true;
                     }                        
 
                 }
