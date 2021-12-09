@@ -1658,8 +1658,10 @@ namespace RealERPWEB.F_22_Sal
                                     schdate = Convert.ToDateTime(dt1.Rows[j - 1]["schdate"]);
                                 }
 
+                                //string date1 = this.Request.QueryString["Date1"].ToString()?? System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                                DateTime date = Convert.ToDateTime(this.Request.QueryString["Date1"].ToString());
+
+                                DateTime date =Convert.ToDateTime(this.Request.QueryString["Date1"].ToString()) ;
 
 
                                 if (ppaidamt > 0)

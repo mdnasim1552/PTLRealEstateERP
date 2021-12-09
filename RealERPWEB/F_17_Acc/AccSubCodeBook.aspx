@@ -54,6 +54,26 @@
 
         }
 
+        function IsNumberWithOneDecimal(txt, evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+                return false;
+            } else {
+                var len = txt.value.length;
+                var index = txt.value.indexOf('.');
+                if (index > 0 && charCode == 46) {
+                    return false;
+                }
+                if (index > 0) {
+                    if ((len + 1) - index > 3) {
+                        return false;
+                    }
+                }
+
+            }
+            return true;
+        }
+
     </script>
 
 
@@ -339,9 +359,13 @@
 
                                     <asp:TemplateField HeaderText="Unit">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="txtgvsirunit" runat="server" MaxLength="100"
+                                            <asp:TextBox ID="txtgvsirunit" runat="server" MaxLength="100" Visible="false"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
                                                 Width="40px"></asp:TextBox>
+
+                                            <asp:DropDownList ID="ddlUnit" CssClass="chzn-select form-control" Visible="false" runat="server">
+                                            </asp:DropDownList>
+
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
@@ -602,6 +626,10 @@
                             <label class="col-md-4">Unit </label>
                             <div class="col-md-5">
                                 <asp:TextBox ID="txtunit" runat="server" CssClass="form-control"></asp:TextBox>
+                                 <asp:DropDownList ID="ddlUnits" CssClass="chzn-select form-control" Visible="false" runat="server">
+                                            </asp:DropDownList>
+
+
                             </div>
 
 
@@ -616,9 +644,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-4">Standard Rate </label>
+                            <label class="col-md-4" id="lblsdrate" runat="server">Standard Rate </label>
                             <div class="col-md-8">
-                                <asp:TextBox ID="txtstdrate" runat="server" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtstdrate" runat="server" CssClass="form-control" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group">
@@ -627,8 +655,12 @@
                                 <asp:TextBox ID="txtbrand" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                       
-
+                        <div class="form-group">
+                             <label class="col-md-4">Details</label>
+                            <div class="col-md-8">
+                             <asp:TextBox ID="txtTDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </div>
 
                         <div class="form-group">
                             <label id="lblddlproject" runat="server" class="col-md-4">Department</label>
@@ -636,10 +668,7 @@
                                 <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
                             </div>
                         </div>
-
-
                     </div>
-
 
                 </div>
                 <div class="modal-footer ">

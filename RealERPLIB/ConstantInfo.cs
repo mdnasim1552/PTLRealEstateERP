@@ -280,7 +280,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0702000", "0701120", "F_07_Ten", "LinkTasAccDetAnalysis", "", "Project Schedule Vs Analysis", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0703000", "0701130", "F_07_Ten", "TasPrjInformation", "", "Project Information", "Tender", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "0703000", "0701140", "F_07_Ten", "TasQuotEntry?", "Type=Entry", "Tender-Quotation", "Tender", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "CivilConBOQ?", "Type=Entry", "Civil Construction BOQ", "Tender", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0703000", "0701142", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
 
             #endregion
 
@@ -1004,7 +1005,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2101000", "2101030", "F_21_MKT", "ProsclntCodeBook?", "Type=Entry", "Client Code", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102040", "F_21_MKT", "MktTeamCodeBook?Type=MktTeam", "", "Sales Team", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2101000", "2101041", "F_21_MKT", "MktTeamCodeBook?Type=MktLetter", "", "Letter Creation CRM", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2101000", "2101050", "F_21_MKT", "MktGenCodeBook", "", "Basic Information Field ", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2101000", "2101050", "F_21_MKT", "MktGenCodeBook", "", "CRM Code Entry ", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103060", "F_21_MKT", "RptMktAppointment?", "Type=Todaysdis&UType=Client", "Todays Discussion", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103061", "F_21_MKT", "RptMktAppointment?", "Type=Todaysdis&UType=Mgt", "Todays Discussion (Management)", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103062", "F_21_MKT", "RptMktAppointment?", "Type=DiscussHis&UType=Client", "Client History", "CRM", "False", "False", "False", "False" }); ;
@@ -1043,11 +1044,11 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2101000", "2101110", "F_21_MKT", "SalesPaymentCodeBook?", "Type=Mkt", "Payment ProPosal Code", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2101000", "2101115", "F_22_Sal", "AdvertisementCode?", "Type=MktCode", "Advertisement Code", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102120", "F_21_MKT", "MktSalsPaymentPro", "", "Sales Permission", "CRM", "False", "False", "False", "False" });
-
+            tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
 
             //kpi 
             // 05. My Marketing Interface(Sales)
-            
+
             tblObj.Rows.Add(new Object[] { "2102000", "2102121", "F_39_MyPage", "ClientCodeBook", "", "Client Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102122", "F_39_MyPage", "LandOwnerCodeBook", "", "Landowner Code", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102123", "F_39_MyPage", "ClientDetail?", "Type=Client", "Client Details", "My Marketing Interface(Sales)", "False", "False", "False", "False" }); ;
@@ -1081,7 +1082,7 @@ namespace RealERPLIB
             
             
             tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "2151000", "2151003", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
+            
             tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
 
 
@@ -4255,7 +4256,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "05. Standard Analysis", "F_04_Bgd/BgdStdAna", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "06. Margin Code", "F_07_Ten/TasGenCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "07.Project Code", "F_07_Ten/TASCodeBooks?BookName=Project", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "08. Unit Conversion", "F_07_Ten/UnitConversion", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
@@ -4322,8 +4323,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "06.Survey Qty Input", "F_07_Ten/TASSurvRate?Type=Rate", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0306000000", "07.Schedule Rate", "F_07_Ten/TASSchduleRate", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0307000000", "08.Tender-Quotation", "F_07_Ten/TasQuotEntry?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0308000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0309000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000000", "09. Civil Construction BOQ", "F_07_Ten/CivilConBOQ?Type=Entry", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0310000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0311000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0312000000", "", "", "", true, "" });

@@ -537,6 +537,42 @@ namespace RealERPWEB.F_14_Pro
         protected global::System.Web.UI.WebControls.TextBox txtOrderNarr;
 
         /// <summary>
+        /// divtermsp2p control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divtermsp2p;
+
+        /// <summary>
+        /// lblReqNarrP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblReqNarrP;
+
+        /// <summary>
+        /// txtOrderNarrP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtOrderNarrP;
+
+        /// <summary>
+        /// divterms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divterms;
+
+        /// <summary>
         /// Label8 control.
         /// </summary>
         /// <remarks>

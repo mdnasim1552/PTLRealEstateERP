@@ -81,7 +81,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             switch (comcod)
             {
-                case "3101": //own 
+                //case "3101": //own 
                 case "3333"://Alliance
                 case "3354": // Edison
                 case "3353"://Manama
@@ -141,6 +141,8 @@ namespace RealERPWEB.F_99_Allinterface
             string refno = "%" + this.txtrefno.Text.Trim() + "%";
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+
+
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", refno, frmdate, "%",
                 todate, "", "", "", "", "");
             Session["alltable"] = ds1;

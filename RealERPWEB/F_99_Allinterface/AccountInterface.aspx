@@ -659,7 +659,7 @@
 
                                     <asp:Panel ID="pnlUpSales" runat="server" Visible="false">
                                         <div class="row">
-                                            <div class="table-responsive col-lg-12" style="min-height: 350px;">
+                                            <div class="table-responsive col-lg-12" style="min-height: 550px;">
 
                                                 <asp:GridView ID="gvSalesUpdate" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                                     ShowFooter="True" OnRowDataBound="gvSalesUpdate_RowDataBound1">
@@ -749,6 +749,16 @@
 
                                                             <ItemStyle HorizontalAlign="Right" Width="80px" />
                                                             <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
+                                                        </asp:TemplateField>
+
+                                                        <asp:TemplateField HeaderText="Schedule Desc">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblgvschdesc" runat="server" Style="text-align: center; width: 120px;"
+                                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "schdesc")) %>'></asp:Label>
+                                                            </ItemTemplate>
+
+                                                            <ItemStyle HorizontalAlign="center" Width="120px" />
+                                                            <FooterStyle HorizontalAlign="left" Font-Bold="true" />
                                                         </asp:TemplateField>
 
 
