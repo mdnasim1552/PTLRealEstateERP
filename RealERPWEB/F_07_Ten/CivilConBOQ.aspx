@@ -5,6 +5,8 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -199,10 +201,8 @@
                                     <asp:ListItem Text="test2"></asp:ListItem>
                                     <asp:ListItem Text="test3"></asp:ListItem>
                                 </asp:ListBox>--%>
-
-
-
-                                <asp:ListBox ID="DropCheck1" runat="server" SelectionMode="Multiple" CssClass="chzn-select form-control  pl-0 pr-0"
+                                 
+                                <asp:ListBox ID="DropCheck1" runat="server" SelectionMode="Single" CssClass="chzn-select form-control  pl-0 pr-0"
                                     Style="min-width: 100px !important;"></asp:ListBox>
                             </div>
                         </div>

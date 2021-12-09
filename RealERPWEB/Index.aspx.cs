@@ -1161,5 +1161,10 @@ namespace RealERPWEB
                  
             }
         }
+
+        protected void lnkbtnOk_Click(object sender, EventArgs e)
+        {
+            GetGraphFilterData();
+        }
     }
 }
