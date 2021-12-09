@@ -1632,8 +1632,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.gvleaveInfo.DataBind();
         }
 
-
-
-
+        protected void lnkRule_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/F_81_Hrm/F_84_Lea/CreateLeavRule?Type=");
+        }
     }
 }

@@ -129,6 +129,12 @@
 
                                     </div>
                                 </div>
+
+                                <div class="col-md-1">
+                                            <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-primary pull-left" OnClick="lnkRule_Click" Text="Create Rule"></asp:LinkButton>
+
+                                </div>
+
                             </div>
                         </fieldset>
                     </div>
