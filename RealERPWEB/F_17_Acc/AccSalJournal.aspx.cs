@@ -564,12 +564,6 @@ namespace RealERPWEB.F_17_Acc
                     Calltype = "GETACCDETBRISGESALESJOURNAL";
                     break;
 
-                case "3101":
-                case "3351":
-                    Calltype = "GETACCDETSALESJOURNALSCH";
-                    break;
-                    
-
                 default:
                     Calltype = "GETACCDETSALESJOURNAL";
                     break;
