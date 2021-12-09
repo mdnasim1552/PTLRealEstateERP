@@ -63,32 +63,22 @@ namespace RealERPWEB.F_15_DPayReg
                     string cactcode = this.ddlBankName.SelectedValue.ToString();
                     Cache.Insert("cactcode", cactcode, null, DateTime.Now.AddHours(2), TimeSpan.Zero);
                 }
-
                 else
                 {
-
-
                     string ccactcode = (string)Cache["cactcode"];
                     this.ddlBankName.SelectedValue = ccactcode;
 
                 }
-
                 string comcod = this.GetCompCode();
-
                 if (comcod == "3336" || comcod == "3337")
                 {
                     this.checkpb.Visible = true;
                     this.withoutchqdate.Visible = true;
-
                 }
                 else
                 {
                     this.checkpb.Visible = false;
                 }
-
-
-
-
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Cheque Preparation";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             }
@@ -416,7 +406,15 @@ namespace RealERPWEB.F_15_DPayReg
 
                 else
                 {
-                    this.previousnar();
+                    if(comcod=="3333" || comcod == "3101")
+                    {
+                        this.txtNarration.Text = ds1.Tables[2].Rows[0]["billnar"].ToString();
+                    }
+                    else
+                    {
+                        this.previousnar();
+
+                    }
                 }
                 //   Session["UserLog"] = ds1.Tables[2];
 
