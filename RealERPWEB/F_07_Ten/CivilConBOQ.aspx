@@ -190,7 +190,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Work List</button>
@@ -232,6 +232,26 @@
                         <div class="col-md-2">
                             <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
 
+                        </div>
+                        <div class="col-md-2">
+                             <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Print Type</button>
+                                </div>
+
+                         
+
+
+                                 
+                        <asp:DropDownList ID="txtPrintId" runat="server" CssClass="   form-control  pl-0 pr-0">
+                            <asp:ListItem Value="">---Print type</asp:ListItem>
+                            <asp:ListItem Value="management">Management </asp:ListItem>
+                            <asp:ListItem Value="tender">Tender</asp:ListItem>
+
+
+                        </asp:DropDownList>
+
+                            </div>
                         </div>
 
                     </div>
