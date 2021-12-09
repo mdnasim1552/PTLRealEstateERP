@@ -448,6 +448,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt = (DataTable)Session["YearLeav"];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                 
+
                 dt.Rows[i]["ernleave"] = ernleave;
                 dt.Rows[i]["csleave"] = csleave;
                 dt.Rows[i]["skleave"] = skleave;
