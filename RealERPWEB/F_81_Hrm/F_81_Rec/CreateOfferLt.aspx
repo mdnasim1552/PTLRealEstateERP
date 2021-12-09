@@ -123,7 +123,7 @@
                                     
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Gross Salary</label>
+                                    <label class="control-label" id="lblSalary" runat="server"></label>
                                     <asp:TextBox ID="txtgross" runat="server" CssClass="form-control"></asp:TextBox>
                                     
                                 </div>

@@ -52,6 +52,7 @@ namespace RealERPWEB.F_14_Pro
         {
 
             string Type = Request.QueryString["Type"].ToString();
+            string comcod = this.GetCompCode();
             string title = "";
             switch (Type)
             {
@@ -72,13 +73,35 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
                 case "mon4amt":
-                    title = "Bill Days 120 Over";
+                    if (comcod == "3354" || comcod=="3101")
+                    {
+                        title = "Bill Days 60 Over";
+                    }
+                    else
+                    {
+                        title = "Bill Days 120 Over";
+                    }                   
                     break;
                 case "mon34amt":
-                    title = "Bill Days 90 to 120 Days";
+                    if (comcod == "3354" || comcod == "3101")
+                    {
+                        title = "Bill Days 45 to 60 Days";
+                    }
+                    else
+                    {
+                        title = "Bill Days 90 to 120 Days";
+                    }
                     break;
                 case "mon13amt":
-                    title = "Bill Days up to 90 Days";
+                    if (comcod == "3354" || comcod == "3101")
+                    {
+                        title = "Bill Days up to 30 Days";
+                    }
+                    else
+                    {
+                        title = "Bill Days up to 90 Days";
+                    }
+                    
                     break;
                 default:
                     title = "";
@@ -111,6 +134,8 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+
+
         private void getSupplierData()
         {
             string comcod = this.GetCompCode();
@@ -140,8 +165,28 @@ namespace RealERPWEB.F_14_Pro
             string pactcode = this.Request.QueryString["pactcode"].ToString();
             string type = this.Request.QueryString["Type"].ToString();
             string todate = this.Request.QueryString["todate"].ToString();
+            string day1 = "";
+            string day2 = "";
+            string day3 = "";
+            // string 
+            switch (comcod)
+            {
+                case "3101":
+                case "3354":
+                    day1 = "30";
+                    day2 = "45";
+                    day3 = "60";
+                    break;
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "SUPPLIERDETAILSDAYWISE", pactcode, type, todate, "", "", "", "", "", "");
+                default: // For Rupayan
+                    day1 = "30";
+                    day2 = "90";
+                    day3 = "120";
+                    break;
+            }
+
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "SUPPLIERDETAILSDAYWISE", pactcode, type, todate, day1, day2, day3, "", "", "");
             if (ds1.Tables[0] == null)
             {
                 this.gvsupdayswise.DataSource = null;
