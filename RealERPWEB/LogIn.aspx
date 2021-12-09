@@ -514,7 +514,7 @@
 
                                     </div>
 
-                                    <div style="margin-bottom: 1px" class="input-group">
+                                    <div style="margin-bottom: 1px" class="input-group" id="pwdDiv" runat="server">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <%-- <asp:TextBox ID="txtuserpass" runat="server" class="form-control" name="txtuserpass" TextMode="Password" required="required" placeholder="Password" AutoCompleteType="Cellular" >
                             </asp:TextBox>
@@ -540,7 +540,7 @@
                                     <div class="asituloginnerIn">
                                         <div style="margin-bottom: 1px" class="input-group">
                                             <span id="lbloldPass" runat="server" visible="false" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <asp:TextBox ID="txtuserOldrpass" runat="server" AutoCompleteType="Disabled" class="form-control" Visible="False" name="txtuserpass" TextMode="Password" placeholder="Password" TabIndex="6"></asp:TextBox>
+                                            <asp:TextBox ID="txtuserOldrpass" runat="server" AutoCompleteType="Disabled" class="form-control" Visible="False" name="txtuserpass" TextMode="Password" placeholder="Old Password" TabIndex="6"></asp:TextBox>
 
                                         </div>
 
