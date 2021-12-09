@@ -116,6 +116,7 @@ namespace RealERPWEB.F_17_Acc
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
             ds1.Dispose();
+            ViewState["tblSchedule"] = ds1.Tables[1];            
             this.GetUnitName();
 
         }
@@ -125,7 +126,25 @@ namespace RealERPWEB.F_17_Acc
             string pactcode = this.ddlProject.SelectedValue.ToString();
             string Unit = (this.Request.QueryString["usircode"].ToString()).Length == 0 ? "%" + this.txtSrchUnit.Text.Trim() + "%" : this.Request.QueryString["usircode"].ToString() + "%";
             // string Unit = this.txtSrchUnit.Text.Trim() + "%";
-            DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETUNITNAME", pactcode, Unit, "", "", "", "", "", "", "");
+            string schcode = (this.Request.QueryString["schcode"].ToString()).Length == 0 ? "" : this.Request.QueryString["schcode"].ToString();
+
+
+            DataTable dt = (DataTable)ViewState["tblSchedule"];
+            string schdesc = dt.Rows.Count == 0 ? "" : dt.Rows[0]["schdesc"].ToString();
+            string callType = "";
+            if (schdesc.Trim().Length == 0)
+            {
+                callType = "GETUNITNAME";
+            }
+            else
+            {
+                callType = "GETUNITNAMESCH";
+            }
+
+            DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", callType, pactcode, Unit, schcode, "", "", "", "", "", "");
+            if (ds2 == null)
+                return;        
+
             this.ddlUnitName.DataTextField = "usirdesc";
             this.ddlUnitName.DataValueField = "usircode";
             this.ddlUnitName.DataSource = ds2.Tables[0];

@@ -165,7 +165,11 @@
             var url = $('#<%=this.ParentDir.ClientID %>').val();
             GetData();           
             
-             $("#<%= ddlMonths.ClientID%>").trigger("click");
+            
+            document.getElementById('<%= lnkbtnOk.ClientID %>').click();
+
+            
+
         });
 
         
@@ -1929,6 +1933,7 @@
                 </asp:UpdateProgress>
             </div>
 
+                    <asp:LinkButton ID="lnkbtnOk" OnClick="lnkbtnOk_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
 
             <div class="page">
                 <div class="page-inner">
