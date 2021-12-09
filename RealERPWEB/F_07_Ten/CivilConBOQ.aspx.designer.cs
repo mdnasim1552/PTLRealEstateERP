@@ -132,13 +132,13 @@ namespace RealERPWEB.F_07_Ten
         protected global::System.Web.UI.WebControls.DropDownList ddlWorkGroup;
 
         /// <summary>
-        /// ddlWorkList control.
+        /// DropCheck1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlWorkList;
+        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
 
         /// <summary>
         /// ddlpagesize control.
@@ -157,6 +157,15 @@ namespace RealERPWEB.F_07_Ten
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdd;
+
+        /// <summary>
+        /// txtPrintId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtPrintId;
 
         /// <summary>
         /// gvCivilBoq control.
