@@ -86,6 +86,8 @@ namespace RealERPRDLC
                 #endregion
                 #region Tender
                 case "R_07_Ten.RptTenderProposal": Rpt1a = SetRptTenderProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_07_Ten.RptCivilConBOQ": Rpt1a = SetRptCivilConBOQ(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_07_Ten.RptCivilConBOQTender": Rpt1a = SetRptCivilConBOQTender(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
                 #region Project Design
 
@@ -1047,6 +1049,17 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_08_PPlan.BO_Class_Con.RptTenderProposal>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptCivilConBOQ(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_07_Ten.RptCivilConBOQ>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptCivilConBOQTender(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_07_Ten.RptCivilConBOQ>)RptDataSet));
+            return Rpt1a;
+        }
+
         private static LocalReport SetRptProjectDesign(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_08_PPlan.BO_Class_Con.ProjectDesign>)RptDataSet));

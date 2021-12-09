@@ -267,6 +267,9 @@ namespace RealERPWEB
             {
                 this.lblmsg.Text = "Successfully Updated";
                 this.ChkChangePass.Checked = false;
+                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;
+
+               // this.loginBtn.Text = "Sign In";
                 this.ChkChangePass_CheckedChanged(null, null);
             }
 
@@ -303,7 +306,8 @@ namespace RealERPWEB
             this.lblNewPass.Visible = this.ChkChangePass.Checked;
             this.txtuserOldrpass.Visible = this.ChkChangePass.Checked;
             this.txtuserNewrpass.Visible = this.ChkChangePass.Checked;
-
+            this.pwdDiv.Visible = this.ChkChangePass.Checked==true?false: true;
+            this.loginBtn.Text = this.ChkChangePass.Checked == true ? "Update" : "Sign in";
             //if (this.ChkChangePass.Checked)
             //{
             //    this.lblPass.Text = "New Password";
@@ -546,7 +550,7 @@ namespace RealERPWEB
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-
+                
 
                 string Url1 = "";
 
