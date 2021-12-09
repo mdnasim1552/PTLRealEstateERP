@@ -63,11 +63,11 @@
         body {
             font-family: 'Century Gothic' !important;
         }
-        .chzn-container-multi .chzn-choices{
-            line-height:35px;
-            height:35px;
+
+        .chzn-container-multi .chzn-choices {
+            line-height: 35px;
+            height: 35px;
         }
-        
     </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -190,24 +190,24 @@
 
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Work List</button>
                                 </div>
-                               
+
                                 <%--<asp:ListBox  runat="server" ID="ddlWorkList" SelectionMode="Multiple" CssClass="chzn-select form-control  pl-0 pr-0">
                                     <asp:ListItem Text="test1"></asp:ListItem>
                                     <asp:ListItem Text="test2"></asp:ListItem>
                                     <asp:ListItem Text="test3"></asp:ListItem>
                                 </asp:ListBox>--%>
-                                 
+
                                 <asp:ListBox ID="DropCheck1" runat="server" SelectionMode="Single" CssClass="chzn-select form-control  pl-0 pr-0"
                                     Style="min-width: 100px !important;"></asp:ListBox>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            
+
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Page</button>
@@ -229,27 +229,22 @@
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
 
                         </div>
                         <div class="col-md-2">
-                             <div class="input-group input-group-alt">
+                            <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Print Type</button>
                                 </div>
-
-                         
-
-
-                                 
-                        <asp:DropDownList ID="txtPrintId" runat="server" CssClass="   form-control  pl-0 pr-0">
-                            <asp:ListItem Value="">---Print type</asp:ListItem>
-                            <asp:ListItem Value="management">Management </asp:ListItem>
-                            <asp:ListItem Value="tender">Tender</asp:ListItem>
+                                <asp:DropDownList ID="txtPrintId" runat="server" CssClass="   form-control  pl-0 pr-0">
+                                    <asp:ListItem Value="">---Print type</asp:ListItem>
+                                    <asp:ListItem Value="management">Management </asp:ListItem>
+                                    <asp:ListItem Value="tender">Tender</asp:ListItem>
 
 
-                        </asp:DropDownList>
+                                </asp:DropDownList>
 
                             </div>
                         </div>
@@ -323,7 +318,7 @@
                                     <asp:TemplateField HeaderText="Item Code">
 
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txItemCode" AutoCompleteType="None" Width="80px" OnTextChanged="txItemCode_TextChanged" Style="background: none;" runat="server" Font-Size="12px" Height="28px" CssClass="form-control"
+                                            <asp:TextBox ID="txItemCode" autocomplete="off" Width="80px" OnTextChanged="txItemCode_TextChanged" AutoPostBack="true" Style="background: none;" runat="server" Font-Size="12px" Height="28px" CssClass="form-control"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "itemcode")) %>'></asp:TextBox>
                                         </ItemTemplate>
 
@@ -333,7 +328,7 @@
                                     <asp:TemplateField HeaderText="Qty">
 
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtqty" Width="80px" AutoCompleteType="None" Style="background: none; text-align: right" onkeypress="return isNumberKey(this,event);" OnTextChanged="txtqty_TextChanged"
+                                            <asp:TextBox ID="txtqty" Width="80px" autocomplete="off" Style="background: none; text-align: right" onkeypress="return isNumberKey(this,event);" OnTextChanged="txtqty_TextChanged"
                                                 AutoPostBack="true" runat="server" Font-Size="12px" Height="28px" CssClass="form-control"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:TextBox>
                                         </ItemTemplate>
@@ -354,7 +349,7 @@
                                     <asp:TemplateField HeaderText="Rate">
 
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtrate" Width="80px" Style="background: none; text-align: right" OnTextChanged="txtrate_TextChanged" onkeypress="return isNumberKey(this,event);"
+                                            <asp:TextBox ID="txtrate" Width="80px" autocomplete="off" Style="background: none; text-align: right" OnTextChanged="txtrate_TextChanged" onkeypress="return isNumberKey(this,event);"
                                                 AutoPostBack="true" runat="server" Font-Size="12px" Height="28px" CssClass="form-control"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "rate")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:TextBox>
 
@@ -381,7 +376,7 @@
 
                                     <asp:TemplateField HeaderText="Actual <br> Cost">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtsbamt" Width="80px" Style="background: none; text-align: right" OnTextChanged="txtsbamt_TextChanged" onkeypress="return isNumberKey(this,event);"
+                                            <asp:TextBox ID="txtsbamt" Width="80px" autocomplete="off" Style="background: none; text-align: right" OnTextChanged="txtsbamt_TextChanged" onkeypress="return isNumberKey(this,event);"
                                                 AutoPostBack="true" runat="server" Font-Size="12px" Height="28px" CssClass="form-control"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "sbtamt")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:TextBox>
                                         </ItemTemplate>

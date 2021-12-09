@@ -179,7 +179,7 @@ namespace RealERPWEB.F_07_Ten
 
         protected void lnkbtnOK_Click(object sender, EventArgs e)
         {
-            if (this.ddlProject.SelectedValue == "000000000000")
+            if (this.ddlProject.SelectedValue == "")
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Select Projects" + "');", true);
 
@@ -192,6 +192,8 @@ namespace RealERPWEB.F_07_Ten
                 ViewState.Remove("tblt01");
                 this.lnkbtnOK.Text = "New";
                 this.CreateTable();
+                this.gvCivilBoq.DataSource = null;
+                this.gvCivilBoq.DataBind();
                 this.ddlProject.Enabled = false;
                 this.divResource.Visible = true;
                 this.gvCivilBoq.Visible = true;
@@ -202,6 +204,8 @@ namespace RealERPWEB.F_07_Ten
                 this.ddlPrevReqList.Visible = false; //
                 this.txtfodate.Enabled = false;
                 this.ddlProject_SelectedIndexChanged(null, null);
+                GetWorksGroup();
+                GetWorksList();
                 return;
             }
 
@@ -423,6 +427,7 @@ namespace RealERPWEB.F_07_Ten
             double ammount = qty * rate;
             lTotalRate.Text = ammount.ToString();
             txtboxqty.Text = qty.ToString();
+            string itemcode = ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txItemCode")).Text.ToString();
 
 
             Label txtprft_rate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvProfit") as Label;
@@ -456,6 +461,7 @@ namespace RealERPWEB.F_07_Ten
             dr1[0]["qty"] = qty;
             dr1[0]["rate"] = rate;
             dr1[0]["ordam"] = ammount;
+            dr1[0]["itemcode"] = itemcode;
 
             dr1[0]["sbtamt"] = actCost;
             dr1[0]["sbtrate"] = prft_rate;
@@ -492,6 +498,7 @@ namespace RealERPWEB.F_07_Ten
             Label txtcostvatoh = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvcostvatoh") as Label;
             Label txtactamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactamt") as Label;
             Label txtdiffamt = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvdiffamt") as Label;
+            string itemcode = ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txItemCode")).Text.ToString();
 
             double actCost = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtsbamt")).Text.Trim());
             double ordam = Convert.ToDouble("0" + ((Label)this.gvCivilBoq.Rows[index].FindControl("lblordam")).Text.Trim());
@@ -517,6 +524,7 @@ namespace RealERPWEB.F_07_Ten
             dr1[0]["qty"] = qty;
             dr1[0]["rate"] = rate;
             dr1[0]["ordam"] = ammount;
+            dr1[0]["itemcode"] = itemcode;
 
             dr1[0]["sbtamt"] = actCost;
             dr1[0]["sbtrate"] = prft_rate;
@@ -547,6 +555,7 @@ namespace RealERPWEB.F_07_Ten
             double rate = Convert.ToDouble("0" + ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txtrate")).Text.Trim());
             double ammount = qty * rate;
             lTotalRate.Text = ammount.ToString();
+            string itemcode = ((TextBox)this.gvCivilBoq.Rows[index].FindControl("txItemCode")).Text.ToString();
 
 
             Label txtprft_rate = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvProfit") as Label;
@@ -580,6 +589,7 @@ namespace RealERPWEB.F_07_Ten
             dr1[0]["qty"] = qty;
             dr1[0]["rate"] = rate;
             dr1[0]["ordam"] = ammount;
+            dr1[0]["itemcode"] = itemcode;
 
             dr1[0]["sbtamt"] = actCost;
             dr1[0]["sbtrate"] = prft_rate;
@@ -894,7 +904,7 @@ namespace RealERPWEB.F_07_Ten
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
     }
