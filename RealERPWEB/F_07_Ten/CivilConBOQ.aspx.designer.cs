@@ -159,6 +159,15 @@ namespace RealERPWEB.F_07_Ten
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdd;
 
         /// <summary>
+        /// txtPrintId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtPrintId;
+
+        /// <summary>
         /// gvCivilBoq control.
         /// </summary>
         /// <remarks>

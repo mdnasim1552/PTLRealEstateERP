@@ -20,7 +20,7 @@ namespace RealERPWEB
 {
     public partial class RDLCViewer : System.Web.UI.Page
     {
-        ReportDocument rpt1 = new ReportDocument();
+       // ReportDocument rpt1 = new ReportDocument();
         private LocalReport rt;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,12 +57,12 @@ namespace RealERPWEB
 
         protected void Page_UnLoad(object sender, EventArgs e)
         {
-            if (rpt1 != null)
-            {
-                rpt1.Close();
-                rpt1.Dispose();
-                GC.Collect();
-            }
+            //if (rpt1 != null)
+            //{
+            //    rpt1.Close();
+            //    rpt1.Dispose();
+            //    GC.Collect();
+            //}
         }
 
 
@@ -88,19 +88,19 @@ namespace RealERPWEB
             Response.ContentType = "Application/pdf";
             Response.BinaryWrite(bytes);
         }
-        protected void RptHtml()
-        {
-            rpt1 = (ReportDocument)Session["Report1"];
-            MemoryStream oStream;
-            oStream = (MemoryStream)rpt1.ExportToStream(CrystalDecisions.Shared.ExportFormatType.HTML40);
-            Response.Clear();
-            Response.Buffer = true;
-            Response.ContentType = "text/html";
-            Response.BinaryWrite(oStream.ToArray());
-            Response.End();
+        //protected void RptHtml()
+        //{
+        //    rpt1 = (ReportDocument)Session["Report1"];
+        //    MemoryStream oStream;
+        //    oStream = (MemoryStream)rpt1.ExportToStream(CrystalDecisions.Shared.ExportFormatType.HTML40);
+        //    Response.Clear();
+        //    Response.Buffer = true;
+        //    Response.ContentType = "text/html";
+        //    Response.BinaryWrite(oStream.ToArray());
+        //    Response.End();
 
 
-        }
+        //}
 
         protected void RptMSWord()
         {
