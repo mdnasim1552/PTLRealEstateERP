@@ -244,7 +244,7 @@ namespace RealERPWEB.F_17_Acc
 
             TextBox txtUnit = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgvsirunit");
             DropDownList ddlUnit = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlUnit");
-            if  (sircode.Substring(0, 2) == "45" && (ASTUtility.Right(sircode, 3) != "000"))
+            if  (sircode.Substring(0, 2) == "45")
             {
                  
                 DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");
@@ -1034,7 +1034,7 @@ namespace RealERPWEB.F_17_Acc
                     this.ddlProject.Visible = false;
                 }
 
-                if (sircode.Substring(0, 2) == "45" && (ASTUtility.Right(sircode, 3) != "000"))
+                if (sircode.Substring(0, 2) == "45")
                 {
                     this.lblsdrate.InnerText = "Standard  Qty";
                     DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");

@@ -466,6 +466,9 @@ namespace RealERPWEB.F_17_Acc
         protected void lnkAcccode_Click(object sender, EventArgs e)
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
 
             List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead> lst = (List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead>)Session["HeadAcc1"];
             string vounum = this.ddlvoucher.SelectedValue.ToString();
@@ -498,7 +501,7 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                this.ddlacccode.DataTextField = "actdesc1";
+                this.ddlacccode.DataTextField = TextField;
                 this.ddlacccode.DataValueField = "actcode";
                 this.ddlacccode.DataSource = ProjectQuery;
                 this.ddlacccode.DataBind();
@@ -508,7 +511,7 @@ namespace RealERPWEB.F_17_Acc
 
             else
             {
-                this.ddlacccode.DataTextField = "actdesc1";
+                this.ddlacccode.DataTextField = TextField;
                 this.ddlacccode.DataValueField = "actcode";
                 this.ddlacccode.DataSource = lst;
                 this.ddlacccode.DataBind();
@@ -593,6 +596,8 @@ namespace RealERPWEB.F_17_Acc
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
+                string ddldesc = hst["ddldesc"].ToString();
+                string TextField = (ddldesc == "True" ? "resdesc" : "resdesc1");
                 string actcode = this.ddlacccode.SelectedValue.ToString();
                 string filter1 = "%" + this.txtserchReCode.Text.Trim() + "%";
 
@@ -641,7 +646,7 @@ namespace RealERPWEB.F_17_Acc
                 Session["HeadRsc1"] = lst;
 
                 this.ddlresuorcecode.DataSource = lst;
-                this.ddlresuorcecode.DataTextField = "resdesc1";
+                this.ddlresuorcecode.DataTextField = TextField;
                 this.ddlresuorcecode.DataValueField = "rescode";
                 this.ddlresuorcecode.DataBind();
                 List<RealEntity.C_17_Acc.EClassAccVoucher.EClassResHead> lst1 = lst.FindAll((p => p.rescode == oldRescode));

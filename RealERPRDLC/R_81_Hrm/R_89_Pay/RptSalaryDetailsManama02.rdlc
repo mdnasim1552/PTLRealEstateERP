@@ -1359,7 +1359,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>(-)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1397,6 +1397,21 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Adjust</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>(+)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2483,6 +2498,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2592,14 +2608,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox68">
+                        <Textbox Name="gssal1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format((Fields!wd.Value+Fields!wld.Value)-(Fields!absday.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!netwday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2611,7 +2627,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox68</rd:DefaultName>
+                          <rd:DefaultName>gssal1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Style>Solid</Style>
@@ -2739,7 +2755,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value-Fields!adv.Value-Fields!itax.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value+Fields!adv.Value+Fields!itax.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3467,7 +3483,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value-Fields!adv.Value-Fields!itax.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value+Fields!adv.Value+Fields!itax.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4248,7 +4264,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value-Fields!adv.Value-Fields!itax.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(sum((Fields!gssal.Value)+(Fields!adjustamt.Value)-Fields!tdeduc.Value+Fields!adv.Value+Fields!itax.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4279,7 +4295,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>

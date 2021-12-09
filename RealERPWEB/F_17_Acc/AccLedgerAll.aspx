@@ -68,37 +68,39 @@
                             </div>
 
 
-                        
-                               
-                             <div class="col-md-3 padding5px">
-                                            <asp:Label ID="Label3" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
-                        
-                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt" Width="70px"
-                                                Visible="true" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                                <asp:ListItem >10</asp:ListItem>
-                                                <asp:ListItem>15</asp:ListItem>
-                                                <asp:ListItem>20</asp:ListItem>
-                                                <asp:ListItem >30</asp:ListItem>
-                                                <asp:ListItem>50</asp:ListItem>
-                                               <asp:ListItem>100</asp:ListItem>
-                                                <asp:ListItem>150</asp:ListItem>
-                                                <asp:ListItem>200</asp:ListItem>
-                                                <asp:ListItem Selected="True">300</asp:ListItem>
-                                                <asp:ListItem>600</asp:ListItem>
-                                                <asp:ListItem>900</asp:ListItem>
-                                                <asp:ListItem>1200</asp:ListItem>
-                                                <asp:ListItem>1500</asp:ListItem>                                               
-                                            </asp:DropDownList>
+
+
+                            <div class="col-md-3 padding5px">
+                                <asp:Label ID="Label3" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
+
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt" Width="70px"
+                                    Visible="true" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem Selected="True">300</asp:ListItem>
+                                    <asp:ListItem>600</asp:ListItem>
+                                    <asp:ListItem>900</asp:ListItem>
+                                    <asp:ListItem>1200</asp:ListItem>
+                                    <asp:ListItem>1500</asp:ListItem>
+                                    <asp:ListItem>3000</asp:ListItem>
+                                    <asp:ListItem>5000</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
-                                  
-
-                                  
 
 
-                               
 
 
-                          
+
+
+
+
+
 
 
 
@@ -139,8 +141,8 @@
 
                                             <asp:CheckBox ID="chksum" runat="server" CssClass="checkBox" Text="Sum" />
                                             <asp:CheckBox ID="chkwitoutopn" runat="server" CssClass="checkBox" Text="Witout Opening" />
-                                          
-                           
+
+
 
 
 
@@ -280,10 +282,10 @@
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Bill No">
+                                        <asp:TemplateField HeaderText="Bill No">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblbillNox" runat="server" CssClass="GridLebelL"
-                                                   Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
                                                     Width="85px"></asp:Label>
 
                                             </ItemTemplate>
@@ -294,11 +296,7 @@
                                         <asp:TemplateField HeaderText="Description">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldescription0" runat="server" CssClass="GridLebelL textwrap"
-                                                    
-                                                    
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) + (Convert.ToString(DataBinder.Eval(Container.DataItem, "resdesc")).Trim().Length > 0? "<br>" + DataBinder.Eval(Container.DataItem, "resdesc"):"") + (Convert.ToString(DataBinder.Eval(Container.DataItem, "cactcode")).ToString()=="Narration:  "?(DataBinder.Eval(Container.DataItem, "venar1")  +" "+ DataBinder.Eval(Container.DataItem, "venar2")):"") %>'
-                                                    
-                                                    
                                                     Width="250px"></asp:Label>
 
                                             </ItemTemplate>
@@ -408,7 +406,7 @@
                                             <div class="col-md-3  pading5px ">
                                                 <asp:CheckBox ID="chkwithoutopen" runat="server" CssClass="checkBox" Text="Witout Opening" />
 
-                                                  <asp:CheckBox ID="Checkdaywise" runat="server"    Text="  Day Wise"  />
+                                                <asp:CheckBox ID="Checkdaywise" runat="server" Text="  Day Wise" />
                                             </div>
 
                                         </div>
@@ -448,7 +446,7 @@
 
                                         </div>
 
-                                      <%--  <div class="col-md-3">
+                                        <%--  <div class="col-md-3">
                                             <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to" Text="Page Size"></asp:Label>
                         
                                             <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control inputTxt" Width="70px"
@@ -461,19 +459,16 @@
                                               
                                             </asp:DropDownList>
                                         </div>--%>
-
-
-
                                     </div>
                                 </div>
                             </fieldset>
 
-                           <%-- PageSize="20" AllowPaging="true" OnPageIndexChanging="gvSpledger_PageIndexChanging"--%>
+                            <%-- PageSize="20" AllowPaging="true" OnPageIndexChanging="gvSpledger_PageIndexChanging"--%>
 
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvSpledger" runat="server" AutoGenerateColumns="False"
                                     CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" OnRowDataBound="gvSpledger_RowDataBound1"   PageSize="20" AllowPaging="true" OnPageIndexChanging="gvSpledger_PageIndexChanging" >
+                                    ShowFooter="True" OnRowDataBound="gvSpledger_RowDataBound1" PageSize="20" AllowPaging="true" OnPageIndexChanging="gvSpledger_PageIndexChanging">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Group Description">
                                             <ItemTemplate>
@@ -581,7 +576,7 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFCrAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    Style="text-align: right" Width="80px" ></asp:Label>
+                                                    Style="text-align: right" Width="80px"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -595,7 +590,7 @@
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:Label ID="lgvFClsAmt" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    Style="text-align: right" Width="80px" ></asp:Label>
+                                                    Style="text-align: right" Width="80px"></asp:Label>
                                             </FooterTemplate>
                                             <FooterStyle HorizontalAlign="Right" />
                                             <ItemStyle HorizontalAlign="Right" />
@@ -611,10 +606,10 @@
                                             <HeaderStyle VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Bill No">
+                                        <asp:TemplateField HeaderText="Bill No">
                                             <ItemTemplate>
                                                 <asp:Label ID="Label5" runat="server" CssClass="GridLebelL"
-                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "billno")) %>'
                                                     Width="65px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />

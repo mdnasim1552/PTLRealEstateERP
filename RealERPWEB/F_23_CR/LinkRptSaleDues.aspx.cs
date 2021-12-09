@@ -722,7 +722,10 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtngacuname_Click(object sender, EventArgs e)
         {
-            string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
+            //string usircode = Convert.ToString(((LinkButton)sender).CommandArgument).Trim();
+
+            int rownum = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;      
+            string usircode = ((Label)this.dgvAccRec02.Rows[rownum].FindControl("lgusircode")).Text.Trim();           
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tblAccRec"];
             DataView dv1 = dt.DefaultView;
