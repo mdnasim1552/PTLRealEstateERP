@@ -258,8 +258,8 @@ namespace RealERPWEB.F_17_Acc
             }
             else
             {
-                ddlUnit.Visible = true;
-                txtUnit.Visible = false; 
+                ddlUnit.Visible = false;
+                txtUnit.Visible = true; 
             }
 
 
