@@ -2547,6 +2547,7 @@
     <Content Include="F_17_Acc\RptAllAccDTransaction.aspx" />
     <Content Include="F_17_Acc\RptAllExport.aspx" />
     <Content Include="F_17_Acc\RptATITaxIndProj.aspx" />
+    <Content Include="F_17_Acc\LinkRptATITaxIndProj01.aspx" />
     <Content Include="F_17_Acc\RptATITaxIndProj01.aspx" />
     <Content Include="F_17_Acc\RptBankCheque.aspx" />
     <Content Include="F_17_Acc\RptBillAdjStatus.aspx" />
@@ -3941,6 +3942,13 @@
     </Compile>
     <Compile Include="F_17_Acc\RptAccPayUpdate.aspx.designer.cs">
       <DependentUpon>RptAccPayUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_17_Acc\LinkRptATITaxIndProj01.aspx.cs">
+      <DependentUpon>LinkRptATITaxIndProj01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_17_Acc\LinkRptATITaxIndProj01.aspx.designer.cs">
+      <DependentUpon>LinkRptATITaxIndProj01.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\MktTeamMember.aspx.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
