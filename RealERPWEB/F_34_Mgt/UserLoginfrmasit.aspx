@@ -328,11 +328,13 @@
                                                                          "<B>"+"<span class=cl1>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdesc")).Trim() + "</span>" + "</B>": "")  + 
                                                                          (DataBinder.Eval(Container.DataItem, "dscrption").ToString().Trim().Length>0 ? 
                                                                           (Convert.ToString(DataBinder.Eval(Container.DataItem, "modulename")).Trim().Length>0 ?   "<br>" 
-                                                                          :(Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdesc")).Trim().Length>0 ? "<br>":"")) + 
-                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "dscrption")).Trim(): "")
+                                                                          :(Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdesc")).Trim().Length>0 ? "<br>":"")) : "")
                                                                     %>'
                                                     Width="280px"></asp:Label>
+
+
+                                                <asp:TextBox ID="txtDescription" runat="server" style="margin-left:30px; width:80%; border:none; background:none;" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dscrption")) %>'></asp:TextBox>
+
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="lbtnUpPer" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn" OnClick="lbtnUpPer_Click">Update</asp:LinkButton>

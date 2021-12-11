@@ -71,7 +71,7 @@
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary" type="button">Year</button>
                         </div>
-                        <asp:DropDownList ID="ddlyear" ClientIDMode="Static" data-placeholder="Choose year" runat="server" CssClass="form-control">
+                        <asp:DropDownList ID="ddlyear" ClientIDMode="Static" data-placeholder="Choose year" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlyear_SelectedIndexChanged">
                             <asp:ListItem Value="2020">2020</asp:ListItem>
                             <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
                             <asp:ListItem Value="2022">2022</asp:ListItem>
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class="clearfix"></div>
-            <br />
+          
             <hr />
             <div class="row">
                 <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
@@ -161,7 +161,7 @@
                             <ItemTemplate>
                                 <asp:TextBox ID="TxtLeav" runat="server" Font-Size="12px" AutoCompleteType="None" onkeypress="return isNumberKey(this,event);"
                                     Style="font-size: 12px"
-                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdescbn")) %>'
+                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdescval")) %>'
                                     Width="200px"></asp:TextBox>
                             </ItemTemplate>
                             <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
@@ -175,7 +175,8 @@
                     <AlternatingRowStyle BackColor="" />
                 </asp:GridView>
             </div>
-
+            <div class="clearfix"></div>
+            <br />
         </div>
     </div>
 
