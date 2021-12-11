@@ -98,6 +98,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             ViewState["tblmatissue2"] = ds1.Tables[0];
             ViewState["tblbillinfo1"] = ds1.Tables[1];
+            ViewState["tblsign"] = ds1.Tables[3];
             this.SubConReqBillP2pprint();
 
         }
@@ -105,6 +106,7 @@ namespace RealERPWEB.F_99_Allinterface
         private void SubConReqBillP2pprint()
         {
             DataTable dt1 = (DataTable)ViewState["tblbillinfo1"];
+            DataTable dt2 = (DataTable)ViewState["tblsign"];
             string refno = dt1.Rows[0]["lreqno"].ToString();
             string pactdesc = dt1.Rows[0]["pactdesc"].ToString();
             string csirdsec = dt1.Rows[0]["psirdesc"].ToString();
@@ -123,6 +125,8 @@ namespace RealERPWEB.F_99_Allinterface
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
+            string txtsign1= dt2.Rows[0]["USRNAME"].ToString()+ "\n" + dt2.Rows[0]["USRDESIG"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["REQDAT"]).ToString("dd-MMM-yyyy");
+
             ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
             var lst = dt.DataTableToList<RealEntity.C_09_PIMP.SubConBill.SubConBillReq>();
@@ -137,6 +141,8 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("date", "Date: " + isudat));
             Rpt1.SetParameters(new ReportParameter("narrationname", rmrks));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+            Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
