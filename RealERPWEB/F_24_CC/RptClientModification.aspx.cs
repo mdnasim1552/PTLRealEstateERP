@@ -81,7 +81,7 @@ namespace RealERPWEB.F_24_CC
 
         }
         private void GetProjectName()
-        {
+         {
 
             string comcod = this.GetCompCode();
             string txtSProject = "%%";
@@ -155,30 +155,36 @@ namespace RealERPWEB.F_24_CC
 
         private void RptClientModBillApproval()
         {
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //string fromdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
-            //string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            //string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            //DataTable dt = (DataTable)Session["tblstatus"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comadd = hst["comadd1"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString(); 
+            string compname = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + comnam + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string frmdate = Convert.ToDateTime(this.txtFDate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            //LocalReport Rpt1 = new LocalReport();
-            //var list = dt.DataTableToList<RealEntity.C_23_CRR.EClassCutomer.ClientModification>();
-            //Rpt1 = RptSetupClass1.GetLocalReport("R_23_CR.RptCliMod", list, null, null);
-            //Rpt1.EnableExternalImages = true;
-            //Rpt1.SetParameters(new ReportParameter("compName", comnam));
-            //Rpt1.SetParameters(new ReportParameter("ftDate", "Date: " + fromdate + " To " + todate));
-            //Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            //Rpt1.SetParameters(new ReportParameter("rptTitle", "Client Modification Report"));
-            //Rpt1.SetParameters(new ReportParameter("txtuserinfo", "Printed from Computer Name:" + compname + ", User:" + username + ", Dated:" + printdate));
+            DataTable dt = (DataTable)Session["tblstatus"];
 
-            //Session["Report1"] = Rpt1;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            LocalReport Rpt1 = new LocalReport();
+            var list = dt.DataTableToList<RealEntity.C_24_CC.RptClientModification>();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_24_CC.RptClientModification", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("frmDate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("toDate", todate));
+            Rpt1.SetParameters(new ReportParameter("comAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Client Modification Report"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -275,7 +281,7 @@ namespace RealERPWEB.F_24_CC
                 this.gvfbillapproval.DataBind();
                 return;
             }
-            Session["tblstatus"] = ds1.Tables[0];
+            Session["tblstatus"] = this.HiddenSameDate(ds1.Tables[0]);
             this.Data_Bind();
             ds1.Dispose();
 
@@ -403,6 +409,8 @@ namespace RealERPWEB.F_24_CC
                         {
                             pactcode1 = dt1.Rows[j]["pactcode"].ToString();
                             dt1.Rows[j]["pactdesc"] = "";
+                            dt1.Rows[j]["pactcode"] = "";
+
                         }
 
                         else

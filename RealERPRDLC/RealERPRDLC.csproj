@@ -117,6 +117,7 @@
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
@@ -687,6 +688,7 @@
     <EmbeddedResource Include="R_24_CC\RptAddWorkSuvastu.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptCastingLeltter.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptClientChoice.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptClientModification.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptComplain.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptCostRegistration.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptCustLetter.rdlc" />
