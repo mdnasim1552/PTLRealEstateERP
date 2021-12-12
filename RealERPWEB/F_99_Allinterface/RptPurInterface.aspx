@@ -611,7 +611,7 @@
                         break;
 
                     case 3355:   // Green Wood  
-                    //case 3101:   //ASIT
+                        //case 3101:   //ASIT
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
@@ -3331,12 +3331,12 @@
                                                                     </asp:HyperLink>
 
                                                                     <%--<asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
-                                                                     <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click"   OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
-                                                                    
+
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="110px" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
