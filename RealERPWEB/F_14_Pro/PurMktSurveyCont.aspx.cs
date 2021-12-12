@@ -609,6 +609,9 @@ namespace RealERPWEB.F_14_Pro
             string Username = "";
             string userdesig = "";
             string rsirdesc = "";
+            string txtsign1 = "";
+            string txtsign2 = "";
+            string txtsign3 = "";
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -617,6 +620,11 @@ namespace RealERPWEB.F_14_Pro
                 Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+
+                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[3].Rows[0]["reqdat"]).ToString("dd-MMM-yyyy");
+                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[3].Rows[0]["csdat"]).ToString("dd-MMM-yyyy"); 
+                txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[3].Rows[0]["appdat"]).ToString("dd-MMM-yyyy"); 
+
             }
 
             string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
@@ -691,9 +699,6 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
 
-
-
-
                     i++;
                 }
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -733,7 +738,6 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("security" + i.ToString() + "", ""));
                     Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
-
 
                     i++;
 

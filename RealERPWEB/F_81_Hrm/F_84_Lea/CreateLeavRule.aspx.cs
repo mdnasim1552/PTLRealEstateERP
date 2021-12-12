@@ -76,8 +76,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetCompCode();
             string tempddl1 = "51"; //Leave code 
             string tempddl2 = "5"; // Details 
-            DataSet ds1 = this.da.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "OACCOUNTHRCODEDETAIL", tempddl1,
-                            tempddl2, "", "", "", "", "", "", "");
+            string year = this.ddlyear.SelectedValue.ToString();
+            DataSet ds1 = this.da.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "GETLEAVEINFORMATION", tempddl1,
+                            tempddl2, year, "", "", "", "", "", "");
 
             //Session["storedata"] = ds1.Tables[0];
 
@@ -161,6 +162,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
        
             ViewState["tblleavinfo"] = dt;
+        }
+
+        protected void ddlyear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ShowInformation();
         }
     }
 }
