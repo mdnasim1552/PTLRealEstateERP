@@ -215,5 +215,23 @@ namespace RealERPWEB.F_17_Acc
         {
             this.ProjectName();
         }
+
+        protected void gvaitvsd_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkgvchqhamt = (HyperLink)e.Row.FindControl("hlnkgvchqhamt");
+
+                //string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                //string rescode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode")).ToString();
+                //string frmdate = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy");
+                //string todate = Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+
+                //hlnkgvchqhamt.Style.Add("color", "blue");
+                //hlnkgvchqhamt.NavigateUrl = "~/F_14_Pro/RptPurchaseAgeingDetails?pactcode=" + pactcode + "&SupName=" + ssirdesc + "&Type=" + "chqhamt" + "&todate=" + Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+
+
+            }
+        }
     }
 }

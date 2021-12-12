@@ -345,7 +345,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3315":
                 case "3316":
                 case "3317":
-                    this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-6).ToString("dd-MMM-yyyy");
+                    this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
                     break;
 
 
