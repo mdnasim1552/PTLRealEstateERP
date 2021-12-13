@@ -59,15 +59,29 @@ namespace RealERPWEB.F_17_Acc
                     this.Panel1.Visible = true;
                 }
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];                
+                string events = hst["events"].ToString();
 
-                if (ConstantInfo.LogStatus)
+                if (Convert.ToBoolean(events) == true)
                 {
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                    string eventdesc = ((Label)this.Master.FindControl("lblTitle")).Text;
+                    string eventdesc2 = "";
                     string comcod = this.GetCompcode();
-                    string eventdesc = "View " + ((Label)this.Master.FindControl("lblTitle")).Text;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, "");
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 }
+
+                //if (ConstantInfo.LogStatus)
+                //{
+                //    string comcod = this.GetCompcode();
+                //    string eventdesc = "View " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, "");
+
+
+                //}
 
                 this.rbtnList1.SelectedIndex = 0;
             }
@@ -424,14 +438,26 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-
-            if (ConstantInfo.LogStatus)
+            
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Account Ledger";
                 string eventdesc = "Print " + ((Label)this.Master.FindControl("lblTitle")).Text; ;
                 string eventdesc2 = "From: " + this.txtDateFrom.Text + " To: " + this.txtDateto.Text;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
             }
+
+            //if (ConstantInfo.LogStatus)
+            //{
+            //    string eventtype = "Account Ledger";
+            //    string eventdesc = "Print " + ((Label)this.Master.FindControl("lblTitle")).Text; ;
+            //    string eventdesc2 = "From: " + this.txtDateFrom.Text + " To: " + this.txtDateto.Text;
+            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            //}
 
 
         }

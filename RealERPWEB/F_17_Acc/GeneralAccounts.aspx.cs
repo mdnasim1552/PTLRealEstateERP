@@ -466,6 +466,9 @@ namespace RealERPWEB.F_17_Acc
         protected void lnkAcccode_Click(object sender, EventArgs e)
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
 
             List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead> lst = (List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead>)Session["HeadAcc1"];
             string vounum = this.ddlvoucher.SelectedValue.ToString();
@@ -498,7 +501,7 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                this.ddlacccode.DataTextField = "actdesc1";
+                this.ddlacccode.DataTextField = TextField;
                 this.ddlacccode.DataValueField = "actcode";
                 this.ddlacccode.DataSource = ProjectQuery;
                 this.ddlacccode.DataBind();
@@ -508,7 +511,7 @@ namespace RealERPWEB.F_17_Acc
 
             else
             {
-                this.ddlacccode.DataTextField = "actdesc1";
+                this.ddlacccode.DataTextField = TextField;
                 this.ddlacccode.DataValueField = "actcode";
                 this.ddlacccode.DataSource = lst;
                 this.ddlacccode.DataBind();
@@ -593,6 +596,8 @@ namespace RealERPWEB.F_17_Acc
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
+                string ddldesc = hst["ddldesc"].ToString();
+                string TextField = (ddldesc == "True" ? "resdesc" : "resdesc1");
                 string actcode = this.ddlacccode.SelectedValue.ToString();
                 string filter1 = "%" + this.txtserchReCode.Text.Trim() + "%";
 
@@ -641,7 +646,7 @@ namespace RealERPWEB.F_17_Acc
                 Session["HeadRsc1"] = lst;
 
                 this.ddlresuorcecode.DataSource = lst;
-                this.ddlresuorcecode.DataTextField = "resdesc1";
+                this.ddlresuorcecode.DataTextField = TextField;
                 this.ddlresuorcecode.DataValueField = "rescode";
                 this.ddlresuorcecode.DataBind();
                 List<RealEntity.C_17_Acc.EClassAccVoucher.EClassResHead> lst1 = lst.FindAll((p => p.rescode == oldRescode));
@@ -762,7 +767,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlBillList.Visible = true;
 
 
-                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98")))
+                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98")|| (ASTUtility.Left(lst2[0].rescode, 2) == "93")))
                     this.txtPayto.Text = lst2[0].resdesc;
 
 
@@ -1839,15 +1844,25 @@ namespace RealERPWEB.F_17_Acc
                     DateTime frmdate, todate, tvoudat;
                      //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
 
-                     frmdate =Convert.ToDateTime(ASTUtility.DateFormat("01"+"."+cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
+                    frmdate =Convert.ToDateTime(ASTUtility.DateFormat("01"+"."+cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
                     todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");
-                    tvoudat = Convert.ToDateTime(voudat);
 
+                     //string todate1 = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                     //todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
+                     tvoudat = Convert.ToDateTime(voudat);
+
+                    
+
+                    //tvoudat = Convert.ToDateTime(voudat);
 
                     if (tvoudat >= frmdate && tvoudat <= todate)
                         ;
                     else
                     {
+                        //((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date  : " + tvoudat;
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                       
+
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Voucher can be eidited during the date range of that particular month');", true);
                         return;
 
@@ -2135,6 +2150,20 @@ namespace RealERPWEB.F_17_Acc
                         break;
                     default:
                         break;
+
+                }
+
+
+                
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
+                    string eventdesc = this.Request.QueryString["Mod"] == "Accounts" ? "Voucher Entry" : "Voucher Edit" ;
+                    string eventdesc2 = "Voucher: " + this.txtcurrentvou.Text.Trim() + this.txtCurrntlast6.Text.Trim() + " Dated: " + this.txtEntryDate.Text.Trim(); ;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
 
                 }
 
@@ -3043,6 +3072,8 @@ namespace RealERPWEB.F_17_Acc
             //((TextBox)this.dgv1.Rows[e.NewEditIndex].FindControl("txtgrdserceacc")).Text = "";
             ((DropDownList)this.dgv1.Rows[e.NewEditIndex].FindControl("ddlrgrdesuorcecode")).Focus();
 
+
+
         }
         protected void dgv1_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
@@ -3187,6 +3218,9 @@ namespace RealERPWEB.F_17_Acc
             //  dv.Sort = "actcode,subcode,spclcode";
             dt = dv.ToTable();
             this.Data_Bind();
+
+
+
 
 
 
@@ -3438,6 +3472,8 @@ namespace RealERPWEB.F_17_Acc
 
         private void CashABankDataBind()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             DataTable dt = ((DataTable)Session["tblbank"]).Copy();
             DataView dv = dt.DefaultView;
             //Session["tblbank"] = ds1.Tables[0];
@@ -3456,8 +3492,9 @@ namespace RealERPWEB.F_17_Acc
                 dv.RowFilter = ("actcode like '1902%' or  actcode like '29%' ");
             }
 
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
             this.ddlConAccHead.DataSource = dv.ToTable();
-            this.ddlConAccHead.DataTextField = "actdesc1";
+            this.ddlConAccHead.DataTextField = TextField;
             this.ddlConAccHead.DataValueField = "actcode";
             this.ddlConAccHead.DataBind();
 

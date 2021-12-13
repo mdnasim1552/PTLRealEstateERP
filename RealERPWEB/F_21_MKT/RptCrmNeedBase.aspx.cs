@@ -42,7 +42,8 @@ namespace RealERPWEB.F_21_MKT
             string Area = "%";
             string Block = "%";            
             string Pri = "%";
-            string Other = "%";
+            string Status = "%";
+            string Other = "9";
             string TxtVal = "%";
             string srchempid = "%";           
             string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -55,20 +56,48 @@ namespace RealERPWEB.F_21_MKT
 
 
             DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
-                Pri, "9", Other, TxtVal, todate, srchempid);
+                Pri, Status, Other, TxtVal, todate, srchempid);
+
+
+           // DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "CLNTINFOSUM", null, null, null, "8301%", Empid, Country, Dist, Zone, PStat, Block, Area,
+           //Pri, Status, Other, TxtVal, todate, srchempid);
+
+
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
 
 
             ViewState["tblsummData"] = ds3.Tables[0];
-            if (ds3.Tables[0].Rows.Count == 0)
-                return;
-            DataView dv1 = ds3.Tables[0].Copy().DefaultView;
+            this.dataBindGV();
+         
+        }
+
+        private void dataBindGV()
+        {
+            DataTable dt = (DataTable)ViewState["tblsummData"];
+            DataView dv1 = dt.Copy().DefaultView;
             dv1.RowFilter = ("active='True'");
 
-            this.gvSummary.DataSource = dv1.ToTable();//ds3.Tables[0];//
+            this.gvSummary.DataSource = dv1.ToTable();
             this.gvSummary.DataBind();
+            this.Excel_Bind();
+
         }
+
+        private void Excel_Bind()
+        {
+
+            DataTable dt = (DataTable)ViewState["tblsummData"];
+            if (dt.Rows.Count == 0)
+                return;
+
+            Session["Report1"] = gvSummary;
+            this.hlbtntbCdataExcel.NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            
+
+        }
+
+
 
         protected void lnkgvHeader_Click(object sender, EventArgs e)
         {
@@ -151,10 +180,12 @@ namespace RealERPWEB.F_21_MKT
                 }
 
             }
+            this.Excel_Bind();
             ViewState["tblHeaderCheck"] = dt1;
             ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "onchangetrigger();", true);
         }
 
+      
 
     }
 }

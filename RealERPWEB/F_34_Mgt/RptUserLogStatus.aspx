@@ -187,7 +187,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvTrmid" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "logintrmid")) %>'
-                                                    Width="60px"></asp:Label>
+                                                    Width="100px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

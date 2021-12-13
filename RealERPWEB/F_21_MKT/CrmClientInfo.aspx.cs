@@ -51,6 +51,16 @@ namespace RealERPWEB.F_21_MKT
                 this.ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Initializescroll();", true);
 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = "Click CRM Interface (Sales CRM)";
+                    string eventdesc = "Click CRM Interface (Sales CRM)";
+                    string eventdesc2 = "";                  
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
+
                 // }
 
 
@@ -84,7 +94,7 @@ namespace RealERPWEB.F_21_MKT
             {
 
 
-                //case "3348":// Credence 
+                //case "3348":// Credence .
                 //    this.gvSummary.Columns[13].Visible = false;
                 //    this.gvSummary.Columns[14].Visible = false;
                 //    this.gvSummary.Columns[15].Visible = false;
@@ -110,6 +120,21 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[22].Visible = false;
                     break;
 
+
+              
+                case "3354"://Edison
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[15].Visible = false;
+                    this.gvSummary.Columns[16].Visible = false;
+                    this.gvSummary.Columns[17].Visible = false;
+                    this.gvSummary.Columns[18].Visible = false;
+                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[20].Visible = true;
+                    this.gvSummary.Columns[22].Visible = false;
+                    break;
 
 
                 default:
@@ -306,6 +331,21 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
 
                 this.lblnewprospect.Value = "";
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = "Add Lead (Sales CRM)";
+                    string eventdesc = "Add Lead (Sales CRM)";
+                    string eventdesc2 = "";                   
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                }
+
+
                 //  }
             }
             else
@@ -432,7 +472,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
+                        //ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302003": //Team Leader
@@ -2951,6 +2991,18 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
 
             }
+
+
+          
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Data Updated  Information (Sales CRM)";
+                string eventdesc = "Data Updated  Information (Sales CRM)";
+                string eventdesc2 = lbllandname.Text;
+                
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
             //  }
 
             //else
@@ -3260,6 +3312,8 @@ namespace RealERPWEB.F_21_MKT
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowno = (this.gvSummary.PageSize) * (this.gvSummary.PageIndex) + RowIndex;
             string proscod = dt.Rows[RowIndex]["sircode"].ToString();
+            string proscod1 = dt.Rows[RowIndex]["sircode1"].ToString();
+
 
             if (Chkpdelete.Checked)
             {
@@ -3314,6 +3368,20 @@ namespace RealERPWEB.F_21_MKT
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Deleted";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
+            
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Delete Row (Sales CRM) ";
+                string eventdesc = "Delete Row (Sales CRM) ";
+                string eventdesc2 = proscod1;
+                
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
+
 
         }
 
@@ -3354,6 +3422,8 @@ namespace RealERPWEB.F_21_MKT
             int index = row.RowIndex;
             string comcod = GetComeCode();
             string styleid = ((Label)this.gvSummary.Rows[index].FindControl("lsircode")).Text.ToString();
+            string clintIdno = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString();
+
             lbllandname.Text = ((Label)this.gvSummary.Rows[index].FindControl("lsircode1")).Text.ToString() + ':' + ((Label)this.gvSummary.Rows[index].FindControl("ldesc")).Text.ToString();
             ViewState["existclientcode"] = styleid;
             this.MultiView1.ActiveViewIndex = 0;
@@ -3369,6 +3439,20 @@ namespace RealERPWEB.F_21_MKT
             string faclass = "fa-file";
             string Message = "Edit Client Form";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Edit Client Information (Sales CRM)";
+                string eventdesc = "Edit Client Information (Sales CRM)";
+                string eventdesc2 = "Edit "+clintIdno;
+               
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
 
         }
         protected void btmodal_Click(object sender, EventArgs e)
@@ -3572,6 +3656,20 @@ namespace RealERPWEB.F_21_MKT
             this.lprjname.Text = "";
             this.ldesc.Text = "";
             ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "openViewModal();", true);
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Data view (Sales CRM) ";
+                string eventdesc = "Data view (Sales CRM) ";
+                string eventdesc2 = "";
+               
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
         }
         protected void lnkgvHeader_Click(object sender, EventArgs e)
         {
@@ -3739,12 +3837,13 @@ namespace RealERPWEB.F_21_MKT
                 string gcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gcod")).ToString();
                 string gdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "gdesc")).ToString();
 
-                if (gcod == "0302003")
+                if (gcod == "0302001")
                 {
                     lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
-
-                    //lgcResDesc.Attributes["style"] = "<span><sup> *</sup></span>";
-
+                }
+                else if(gcod== "0302003")
+                {
+                    lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
 
                 }
 
@@ -3857,13 +3956,9 @@ namespace RealERPWEB.F_21_MKT
                 Empid = hst["empid"].ToString();
             }
             //string empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
-
-
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONNUMBER", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
-
-
         }
 
         protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
@@ -4213,9 +4308,7 @@ namespace RealERPWEB.F_21_MKT
             ProcessAccess JData = new ProcessAccess();
 
             bool result = JData.UpdateXmlTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "UPDATELASTEMPSTATUS", null, null, null, empid, proscod, gcod, statusid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
             //bool result = KpiData.UpdateTransInfo3(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "UPDATE_COMM", empid, Client, "000000000000", "", "000000000000", cdate, gcod, "T", Gvalue, Comments, userid, Posteddat);
-
 
             if (!result)
             {
@@ -4234,10 +4327,6 @@ namespace RealERPWEB.F_21_MKT
                 var json = jsonSerialiser.Serialize(lst);
                 return json;
             }
-
-
-
-
         }
 
 
@@ -4360,24 +4449,68 @@ namespace RealERPWEB.F_21_MKT
 
             }
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show  Information (sales CRM)";
+                string eventdesc = "Show Crm Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
+
 
         }
         protected void lnkbtnDws_Click(object sender, EventArgs e)
         {
             string rtype = "dws";
             this.ShowNotifications(rtype);
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Daily work Schedule (sales CRM)";
+                string eventdesc = "Daily work Schedule (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
 
         }
         protected void lnkBtnDwr_Click(object sender, EventArgs e)
         {
             string rtype = "dwr";
             this.ShowNotifications(rtype);
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Daily work Report (sales CRM)";
+                string eventdesc = "Daily work Report (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
         protected void lnkBtnCall_Click(object sender, EventArgs e)
         {
             string rtype = "call";
             this.ShowNotifications(rtype);
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Call Information (sales CRM)";
+                string eventdesc = "Show Call Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
 
         protected void lbtnpme_Click(object sender, EventArgs e)
@@ -4396,11 +4529,32 @@ namespace RealERPWEB.F_21_MKT
             string rtype = "visit";
             this.ShowNotifications(rtype);
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show visit Information (sales CRM)";
+                string eventdesc = "Show visit Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
         }
         protected void lnkBtnDaypassed_Click(object sender, EventArgs e)
         {
             string rtype = "daypassed";
             this.ShowNotifications(rtype);
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show daypass Information (sales CRM)";
+                string eventdesc = "Show daypass Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
 
         }
 
@@ -4408,6 +4562,17 @@ namespace RealERPWEB.F_21_MKT
         {
             string rtype = "freezing";
             this.ShowNotifications(rtype);
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show freezing Information (sales CRM)";
+                string eventdesc = "Show freezing Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
 
 
@@ -4415,13 +4580,33 @@ namespace RealERPWEB.F_21_MKT
         {
             string rtype = "deadprospect";
             this.ShowNotifications(rtype);
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show dead prospect Information (sales CRM)";
+                string eventdesc = "Show dead prospect Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
 
         protected void lbtnSigned_Click(object sender, EventArgs e)
         {
             string rtype = "signed";
             this.ShowNotifications(rtype);
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Signed Information (sales CRM)";
+                string eventdesc = "Show Signed Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
 
 
@@ -4434,6 +4619,16 @@ namespace RealERPWEB.F_21_MKT
         {
             string rtype = "databank";
             this.ShowNotifications(rtype);
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Data Bank Information (sales CRM)";
+                string eventdesc = "Show Data Bank Information (sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
 
 
@@ -4468,12 +4663,14 @@ namespace RealERPWEB.F_21_MKT
 
                 string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
                 string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
+                string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;               
                 string cdate = this.txttodate.Text.Trim();
                 DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
 
                 this.rpclientinfo.DataSource = ds1.Tables[0];
                 this.rpclientinfo.DataBind();
                 this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
+                this.lblContactPerson.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["conperson"].ToString() : ds1.Tables[0].Rows[0]["conperson"].ToString();
                 this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
                 this.lblprosaddress.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["haddress"].ToString() : ds1.Tables[0].Rows[0]["haddress"].ToString();
                 this.lblnotes.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["virnotes"].ToString() : ds1.Tables[0].Rows[0]["virnotes"].ToString();
@@ -4482,8 +4679,25 @@ namespace RealERPWEB.F_21_MKT
                 this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 this.lbleditempid.Value = gempid;
+                this.ddlRating.SelectedValue= ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+                
+                if (Convert.ToBoolean(events) == true)
+                {
+                    string eventtype = "Click Follow UP (Sales CRM) ";
+                    string eventdesc = "Click Follow UP (Sales CRM) ";
+                    string eventdesc2 = follclintidno;
+                    
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                }
 
             }
 
@@ -5414,11 +5628,14 @@ namespace RealERPWEB.F_21_MKT
 
                 this.clearModalField();
 
-                if (ConstantInfo.LogStatus == true)
+                
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
                 {
-                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
-                    string eventdesc = "Update Info";
+                    string eventtype = "Update Discussion Information (sales CRM)";
+                    string eventdesc = "Update Discussion Information (sales CRM)";
                     string eventdesc2 = "";
+                   
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
@@ -5480,6 +5697,17 @@ namespace RealERPWEB.F_21_MKT
             this.hdnlblattribute.Value = "Kpi";
             this.EmpMonthlyKPI();
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Key Performance Indicator (Sales CRM)";
+                string eventdesc = "Show Key Performance Indicator (Sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+
 
         }
 
@@ -5498,19 +5726,16 @@ namespace RealERPWEB.F_21_MKT
             }
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTMONTHLYKPI", "8301%", frmdate, todate, empid);
 
-            ViewState["tbltempdt"] = ds1.Tables[0];
+            Session["tbltempdt"] = ds1.Tables[0];
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpi.DataSource = ds1.Tables[0];
             this.gvkpi.DataBind();
             this.footerCalculations();
-
-
-
         }
         private void footerCalculations()
         {
-            DataTable dt1 = (DataTable)ViewState["tbltempdt"];
+            DataTable dt1 = (DataTable)Session["tbltempdt"];
             if (dt1.Rows.Count == 0)
                 return;
 
@@ -5634,6 +5859,22 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "closeComModal();", true);
                 this.GetNotificationinfo();
             }
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Data Saved (Sales CRM)";
+                string eventdesc = "Data Saved (Sales CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
+
+
 
         }
 
@@ -6073,7 +6314,7 @@ namespace RealERPWEB.F_21_MKT
 
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
 
-            ViewState["tbltempdt"] = ds1.Tables[0];
+           
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpidet.DataSource = ds1.Tables[0];
@@ -6149,6 +6390,28 @@ namespace RealERPWEB.F_21_MKT
         {
 
         }
+
+        protected void ddlRating_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            string ratevalue = this.ddlRating.SelectedValue.ToString();
+
+            
+            string clientid = this.lblproscod.Value.ToString();
+
+            bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLINT_RATE", null, null, null, clientid, ratevalue);
+            if (result == true)
+            {
+                Page.Response.Redirect(Page.Request.Url.ToString(), true);
+            }
+            else
+            {
+                
+            
+            }
+        } 
+
     }
 
 

@@ -14,8 +14,6 @@
 
         });
         function pageLoaded() {
-
-
         }
       
     </script>
@@ -69,6 +67,7 @@
                                 
                             </div>
                         </div>
+                         
                         <div class="col-md-2">
                                                 <span id="error" style="color: Red; display: none">* Input digits (0 - 9)</span>
 
@@ -77,7 +76,35 @@
 
 
                     </div>
+                    <div class="row mb-2">
+                        <div class="col-md-2 d-none">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Copy From</button>
+                                </div>
+                                <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" CssClass="form-control  pl-0 pr-0">
+                                    <asp:ListItem><<   Select Months   >></asp:ListItem>
+                                    <asp:ListItem Value="1">Jan</asp:ListItem>
+                                    <asp:ListItem Value="2">Feb</asp:ListItem>
+                                    <asp:ListItem Value="3">Mar</asp:ListItem>
+                                    <asp:ListItem Value="4">Apr</asp:ListItem>
+                                    <asp:ListItem Value="5">May</asp:ListItem>
+                                    <asp:ListItem Value="6">Jun</asp:ListItem>
+                                    <asp:ListItem Value="7">Jul</asp:ListItem>
+                                    <asp:ListItem Value="8">Aug</asp:ListItem>
+                                    <asp:ListItem Value="9">Sep</asp:ListItem>
+                                    <asp:ListItem Value="10">Oct</asp:ListItem>
+                                    <asp:ListItem Value="11">Nov</asp:ListItem>
+                                    <asp:ListItem Value="12">Dec</asp:ListItem>
+                                </asp:DropDownList>
 
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                                <asp:LinkButton ID="lnkbtnCopyBtn" runat="server" OnClick="lnkbtnCopyBtn_Click" CssClass="btn btn-warning btn-sm primaryBtn">Set same value</asp:LinkButton>
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="table-responsive">
                             
@@ -96,9 +123,10 @@
                                             </FooterTemplate>
                                             <HeaderStyle Font-Bold="True" Font-Size="12px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Serial">
+                                        <asp:TemplateField HeaderText="Description">
                                             <FooterTemplate>
-                                                <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
+                                               <asp:Label ID="lblttl" runat="server">Total</asp:Label>
+                                                <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-danger d-none btn-sm primaryBtn" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvDepartmentyb" runat="server" BorderColor="#99CCFF"

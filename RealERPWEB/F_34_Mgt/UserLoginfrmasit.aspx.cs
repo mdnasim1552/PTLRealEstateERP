@@ -525,7 +525,7 @@ namespace RealERPWEB.F_34_Mgt
         {
             DataTable dt = (DataTable)Session["tblusrper"];
             this.gvPermission.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvPermission.DataSource = (DataTable)Session["tblusrper"];
+            this.gvPermission.DataSource = dt;
             this.gvPermission.DataBind();
 
         }
@@ -556,12 +556,13 @@ namespace RealERPWEB.F_34_Mgt
                 string chkper = (((CheckBox)gvPermission.Rows[i].FindControl("chkPermit")).Checked) ? "True" : "False";
                 string chkEntry = (((CheckBox)gvPermission.Rows[i].FindControl("chkEntry")).Checked) ? "True" : "False";
                 string chkPrint = (((CheckBox)gvPermission.Rows[i].FindControl("chkPrint")).Checked) ? "True" : "False";
+                string txtDesc = ((TextBox)gvPermission.Rows[i].FindControl("txtDescription")).Text.Trim().ToString();
 
                 index = (this.gvPermission.PageSize) * (this.gvPermission.PageIndex) + i;
                 dt.Rows[index]["chkper"] = chkper;
                 dt.Rows[index]["entry"] = chkEntry;
                 dt.Rows[index]["printable"] = chkPrint;
-
+                dt.Rows[index]["dscrption"] = txtDesc;
             }
             Session["tblusrper"] = dt;
         }
@@ -583,10 +584,6 @@ namespace RealERPWEB.F_34_Mgt
             //DataView dv = dt.DefaultView;
             //dv.RowFilter = "frmid like '" + modname + "'";
             //DataTable dt1 = dv.ToTable();
-
-
-
-
 
 
 
@@ -744,7 +741,7 @@ namespace RealERPWEB.F_34_Mgt
                     dt.Rows[index]["entry"] = "True";
                     dt.Rows[index]["printable"] = "True";
                     dt.Rows[index]["delete"] = "True";
-
+                    
                 }
 
 
@@ -851,7 +848,7 @@ namespace RealERPWEB.F_34_Mgt
                 string entry = dt1.Rows[i]["entry"].ToString().Trim();
                 string printable = dt1.Rows[i]["printable"].ToString().Trim();
                 string delete = dt1.Rows[i]["delete"].ToString().Trim();
-                // string dscrption = dt1.Rows[i]["dscrption"].ToString().Trim();
+                //string dscrption = dt1.Rows[i]["dscrption"].ToString().Trim();
                 string confrmqry = frmname + qrytype;
                 DataRow[] dr1 = dt2.Select("(frmname+qrytype)='" + confrmqry + "'");
                 if (dr1.Length > 0)
@@ -860,7 +857,7 @@ namespace RealERPWEB.F_34_Mgt
                     dr1[0]["entry"] = entry;
                     dr1[0]["printable"] = printable;
                     dr1[0]["delete"] = delete;
-                    //  dr1[0]["dscrption"] = dscrption;
+                    //dr1[0]["dscrption"] = dscrption;
 
 
                     //dr1[0]["delete"] = delete;

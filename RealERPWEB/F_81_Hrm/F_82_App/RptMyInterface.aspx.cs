@@ -182,6 +182,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.AttHistoryGraph.Visible = true;
             this.hyplPreviewCv.Visible = true;
             this.Lbljobres.Visible = true;
+            this.lblPaySlip.Visible = true;
 
 
             this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgUser";
@@ -206,6 +207,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Session["tblEmpimg"] = ds1.Tables[3];
             ViewState["tblJobRespon"] = ds1.Tables[4];
             ViewState["tblAttHistGraph"] = ds1.Tables[5];
+            ViewState["tblPaySlip"] = ds1.Tables[6];
 
 
 
@@ -264,6 +266,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.gvLeaveStatus.DataBind();
 
 
+                DataTable dt6 = (DataTable)ViewState["tblPaySlip"];
+                this.gvPaySlip.DataSource = dt6;
+                this.gvPaySlip.DataBind();
 
 
                 //HyperLink lnknextbtn = (HyperLink)this.gvLeaveStatus.HeaderRow.FindControl("hlnkbtnNext");
@@ -549,5 +554,17 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         }
 
+        protected void gvPaySlip_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkPrintPaySlip = (HyperLink)e.Row.FindControl("hlnkPrintPaySlip");
+                string monthid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "monthid")).ToString();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+
+                hlnkPrintPaySlip.NavigateUrl = "~/F_81_Hrm/F_89_Pay/PrintPaySlip.aspx?Type=paySlip&monthid=" + monthid + "&empid=" +empid ;
+
+            }
+        }
     }
 }

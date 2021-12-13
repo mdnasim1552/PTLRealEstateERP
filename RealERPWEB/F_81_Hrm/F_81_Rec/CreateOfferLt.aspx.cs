@@ -403,12 +403,41 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             string desig = this.txtdesignation.Text.Trim();
             double gross = Convert.ToDouble(this.txtgross.Text.Trim());
 
-            double hrent = gross == 0 ? 0 : (gross / 100) * 30;
-            double bsal = gross == 0 ? 0 : (gross / 100) * 30;
-            double medall = gross == 0 ? 0 : (gross / 100) * 20;
-            double tpt = gross == 0 ? 0 : (gross / 100) * 12;
-            double mob = gross == 0 ? 0 : (gross / 100) * 5;
-            double internet = gross == 0 ? 0 : (gross / 100) * 3;
+
+            double hrent = 0;
+            double bsal = 0;
+            double medall = 0;
+            double tpt = 0;
+            double mob = 0;
+            double internet = 0;
+            double acbsal = 0; 
+
+            switch (comcod)
+            {
+                case "3101":
+                case "3338":
+                    acbsal = gross;  // todo for acme calculate based on basic salary
+                    hrent = acbsal == 0 ? 0 : (acbsal / 100) * 100;
+                    bsal = acbsal;
+                    medall = acbsal == 0 ? 0 : (acbsal / 100) * 60;
+                    tpt = acbsal == 0 ? 0 : (acbsal / 100) * 35;
+                    mob = acbsal == 0 ? 0 : (acbsal / 100) * 15;
+                    internet = acbsal == 0 ? 0 : (acbsal / 100) * 10;
+                    gross = bsal + hrent + medall + tpt + mob + internet;
+                    break;
+
+
+                default:
+
+                    hrent = gross == 0 ? 0 : (gross / 100) * 30;
+                    bsal = gross == 0 ? 0 : (gross / 100) * 30;
+                    medall = gross == 0 ? 0 : (gross / 100) * 20;
+                    tpt = gross == 0 ? 0 : (gross / 100) * 12;
+                    mob = gross == 0 ? 0 : (gross / 100) * 5;
+                    internet = gross == 0 ? 0 : (gross / 100) * 3;
+                    break;
+            }
+
 
             string rmks = this.txtrmks.Text.Trim();
             bool result;
@@ -436,6 +465,18 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
             this.txtdesignation.Text = dt.Rows.Count > 0 ? dt.Rows[0]["desig"].ToString() : "";
             this.txtgross.Text = dt.Rows.Count > 0 ? dt.Rows[0]["gross"].ToString() : "";
             this.txtrmks.Text = dt.Rows.Count > 0 ? dt.Rows[0]["rmks"].ToString() : "";
+
+            switch (this.GetComeCode())
+            {
+                case "3101":
+                case "3338":
+                    this.lblSalary.InnerText = "Basic Salary";
+                    break;
+                default:
+                    this.lblSalary.InnerText = "Gross Salary";
+                    break;
+            }
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ShowModal();", true);
         }
     }

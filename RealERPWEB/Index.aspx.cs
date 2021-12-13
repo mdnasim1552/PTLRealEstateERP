@@ -46,7 +46,6 @@ namespace RealERPWEB
                     this.div_groupUSers.Visible = true;
                     this.getComName();
                     this.ddlCompcode_SelectedIndexChanged(null, null);
-
                 }
                 else
                 {
@@ -55,16 +54,12 @@ namespace RealERPWEB
                     this.getGraphComponent();
                     this.getUserLogData();
                     this.getHomeWidget();
-                    ddlyearSale.SelectedIndex = 1;
-
-
-                    this.ddlyearSale_SelectedIndexChanged(null, null);
-
-
+                    //ddlyearSale.SelectedIndex = 1;
+                     this.ddlyearSale_SelectedIndexChanged(null, null);
                 }
 
 
-                 
+
 
             }
         }
@@ -1165,6 +1160,11 @@ namespace RealERPWEB
                 this.empjoining = empjoining;
                  
             }
+        }
+
+        protected void lnkbtnOk_Click(object sender, EventArgs e)
+        {
+            GetGraphFilterData();
         }
     }
 }

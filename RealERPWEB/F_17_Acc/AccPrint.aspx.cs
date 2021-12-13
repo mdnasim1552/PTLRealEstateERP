@@ -597,7 +597,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint6";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3330":
                     vouprint = "VocherPrintBridge";
                     break;
@@ -632,7 +632,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintTanvir";
                     break;
 
-
+                case "3101":
                 case "3349":
                 case "3348":
                     vouprint = "VocherPrintCredence";
@@ -1328,16 +1328,28 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-
-                if (ConstantInfo.LogStatus == true)
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
                 {
-
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
                     string eventdesc = "Print Voucher";
                     string eventdesc2 = "Voucher: " + vounum + " Dated: " + voudat;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, eventdesc2);
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 }
+
+
+                //if (ConstantInfo.LogStatus == true)
+                //{
+
+                //    string eventdesc = "Print Voucher";
+                //    string eventdesc2 = "Voucher: " + vounum + " Dated: " + voudat;
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, eventdesc2);
+
+
+                //}
 
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));

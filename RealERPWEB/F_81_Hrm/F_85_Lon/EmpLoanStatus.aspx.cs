@@ -135,8 +135,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string comnam = this.ddlDeptName.SelectedValue.Substring(0, 2).ToString();
             string deptname = this.ddlDepartment.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, "", "", "", "", "", "");
+            string chkbal = this.Chkbalance.Checked ? "Length" : "";
+            
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, chkbal, "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;
@@ -193,8 +194,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt.EmpLoanStatus>();
 
-            LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_85_Loan.rptEmpLoanStatus", lst, null, null);
+            LocalReport Rpt1 = new LocalReport(); //rptEmpLoanStatus rptEmpLoanStatus
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_85_Lon.rptEmpLoanStatus", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));

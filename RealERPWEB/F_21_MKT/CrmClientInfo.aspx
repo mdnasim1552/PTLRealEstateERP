@@ -1055,10 +1055,7 @@
                 if (!confirm("Are you sure you want to delete this  Item?")) {
                     return;
                 }
-
-
-
-
+                 
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
@@ -1202,9 +1199,6 @@
                 var empid =<%=this.GetEmpID()%>;
                 var lblschedulenumber = '#ContentPlaceHolder1_gvInfo_lblschedulenumber_' + number;
 
-
-
-
                 $.ajax({
 
                     url: "CrmClientInfo.aspx/GetSchedulenumber",
@@ -1321,7 +1315,6 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-
                         var data = JSON.parse(response.d);
 
                         var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
@@ -1335,28 +1328,20 @@
                                 case '810100101012':
                                     numberrl = i;
                                     break;
-
                             }
-
                         }
 
                         //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-
                         var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
                         $(ddllreason).html('');
                         $.each(data, function (key, data) {
 
                             $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
                         });
-
-
-
-
+                         
                         // console.log(data);
                         //  funDataBind(data);                      
-
-
-
+                         
                     },
 
 
@@ -1853,7 +1838,52 @@
             $('#modalKpiDetials').modal('toggle');
         }
 
+        function RateUpdate() {
 
+            try {
+
+
+
+                var comcod =<%=this.GetComeCode()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+                var ratevalue = $('#ddlRating option:selected').val();               
+
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/UpdateRate",
+                    data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", ratevalue:"' + ratevalue + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+
+                    success: function (response) {
+ 
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+
+
+
+        }
 
 
     </script>
@@ -1895,7 +1925,7 @@
                     </div>
                 </div>
 
-                <div class="card-body" style="min-height: 600px;">
+                <div class"card-body" style="min-height: 600px;">
                     <div class="row mb-2 justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
@@ -2799,7 +2829,7 @@
 
                                                 <asp:TemplateField HeaderText="Prospect Details">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="ldesc" runat="server" Width="180px"
+                                                        <asp:Label ID="ldesc" runat="server" Width="130px"
                                                             Text='<%# 
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")).Trim()
                                                                          
@@ -2865,7 +2895,7 @@
                                                             Style="text-align: center"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assoc")) %>'></asp:Label>
                                                     </ItemTemplate>
-
+                                                    <ItemStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
                                                 <%--10--%>
@@ -2876,7 +2906,7 @@
                                                             Style="text-align: center"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "teamdesc")) %>'></asp:Label>
                                                     </ItemTemplate>
-
+                                                    <ItemStyle HorizontalAlign="Left" />
 
                                                 </asp:TemplateField>
                                                 <%--11--%>
@@ -2967,7 +2997,7 @@
 
                                                 <asp:TemplateField HeaderText="Source">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvLSrc" runat="server" Width="60px"
+                                                        <asp:Label ID="lblgvLSrc" runat="server" Width="100px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "LeadSrc")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -3673,7 +3703,7 @@
                                                 <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">Code Book</asp:HyperLink>
+                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">CRM Code Entry</asp:HyperLink>
 
                                             </li>
                                             <li>
@@ -3700,6 +3730,16 @@
                                             </li>
                                             <li>
                                                 <asp:HyperLink ID="hlnkTeamMember" Target="_blank" NavigateUrl="~/F_21_Mkt/MktTeamMember" runat="server">Team Member</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_99_Allinterface/CRMDashboard" runat="server">CRM Dashboard</asp:HyperLink>
+                                            </li>
+
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink5" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget?Type=CRM" runat="server">Yearly Activities Target Set</asp:HyperLink>
+                                            </li>
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=CRM" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
 
                                         </ul>
@@ -4025,10 +4065,12 @@
 
                             <div class="row">
 
-                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                <div class="col-xs-7 col-sm-7 col-md-7">
 
                                     <p>
                                         <strong><span id="lblprosname" runat="server"></span></strong>
+                                        <br />
+                                        <strong>Contact Person: </strong><span id="lblContactPerson" runat="server"></span>
                                         <br>
                                         <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
                                         <br>
@@ -4049,6 +4091,22 @@
                                         <asp:HiddenField ID="lbleditempid" runat="server" />
                                     </p>
                                 </div>
+
+                                <div class="col-xs-2 col-sm-2 col-md-2 ">
+                                     <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-secondary ml-1" type="button">Rate</button>
+                                        </div>
+
+                                <asp:DropDownList ID="ddlRating" runat="server"   OnSelectedIndexChanged="ddlRating_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="0.00">0</asp:ListItem>                                                     
+                                            <asp:ListItem Value="5.00">5</asp:ListItem>
+                                        </asp:DropDownList>
+
+                                    </div>
+                                 
+
+                                    </div>
 
                                 <div class="col-xs-3 col-sm-3 col-md-3 ">
 

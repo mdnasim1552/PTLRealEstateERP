@@ -214,7 +214,7 @@ namespace RealERPWEB.F_32_Mis
 
 
             string advance = String.Empty;
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101" || comcod=="3353")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101" || comcod=="3353" || comcod== "1102")
             {
                 advance = "ADVANCE";
             }

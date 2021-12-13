@@ -210,9 +210,7 @@ namespace RealERPWEB.F_34_Mgt
             int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
             int rowindex = (this.gvProLinkInfo.PageSize) * (this.gvProLinkInfo.PageIndex) + gvRowIndex;
             string actcode = dt.Rows[rowindex]["actcode"].ToString();
-
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELETEPROJECTCLOSING", actcode, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-
             if (result == true)
             {
                 dt.Rows[rowindex].Delete();

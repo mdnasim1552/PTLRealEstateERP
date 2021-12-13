@@ -462,8 +462,8 @@
 
 
                                     <asp:TemplateField HeaderText="Rate">
-                                        <ItemTemplate> 
-                                            <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"  
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtlabrate" runat="server" Font-Size="11px"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqrat")).ToString("#,##0.000;(#,##0.000); ") %>'
                                                 Width="60px" BackColor="Transparent"
                                                 BorderStyle="None" BorderWidth="1px" Style="text-align: right"></asp:TextBox>
@@ -480,7 +480,7 @@
 
 
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvamount" runat="server" BackColor="Transparent" BorderStyle="None" 
+                                            <asp:TextBox ID="txtgvamount" runat="server" BackColor="Transparent" BorderStyle="None"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "reqamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="70px" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
@@ -624,6 +624,22 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+                                      <asp:TemplateField HeaderText="Floor" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMSRFlrcod" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Floor Desc">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMSRFlrdesc" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'
+                                                Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Requirement">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvMSRqty" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
@@ -634,7 +650,7 @@
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="BOQ Rate">
+                                    <asp:TemplateField HeaderText="BOQ Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvMSRbgdrat" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Bold="True" Font-Size="11px" Style="text-align: right; background-color: Transparent"
@@ -870,7 +886,7 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvccharge" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
-                                                Style="text-align: left; background-color: Transparent"                                              
+                                                Style="text-align: left; background-color: Transparent"
                                                 Text='<%# DataBinder.Eval(Container.DataItem, "ccharge").ToString() %>'
                                                 Width="120px"></asp:TextBox>
                                         </ItemTemplate>
@@ -896,10 +912,10 @@
                                             <asp:TextBox ID="txtCurQuTDate" runat="server" BorderColor="#99CCFF"
                                                 BorderStyle="Solid" BorderWidth="0px" Font-Size="11px"
                                                 Style="text-align: center; background-color: Transparent"
-                                                 Text='<%#(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).Year==1900?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).ToString("dd-MMM-yyyy")) %>'>
+                                                Text='<%#(Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).Year==1900?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem,"qutdate")).ToString("dd-MMM-yyyy")) %>'>
                                                 Width="80px">
                                             </asp:TextBox>
-    
+
                                         </ItemTemplate>
                                         <FooterStyle HorizontalAlign="Center" />
                                         <HeaderStyle HorizontalAlign="Left" />

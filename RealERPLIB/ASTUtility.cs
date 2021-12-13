@@ -294,10 +294,17 @@ namespace RealERPLIB
         public static string Cominformation() 
         {
 
-            return "Developed By: Pinovation Tech Ltd. , Phone:58150934, 58151900,48121389";
+            return "Developed By: Pinovation Tech Ltd. , Phone:09611677682, 09611677683";
         
         }
-         
+
+        public static string ComInfoWithoutNumber()
+        {
+
+            return "Developed By: Pinovation Tech Ltd.";
+
+        }
+
         public static bool PagePermission(string frmname, DataSet ds)
         {
             if (ds.Tables.Count == 7)

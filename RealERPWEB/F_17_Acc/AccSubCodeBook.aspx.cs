@@ -129,7 +129,7 @@ namespace RealERPWEB.F_17_Acc
 
                 string coderange = (Querytype == "res") ? "sircode like '[0-9]%'" : (Querytype == "Overhead") ? "sircode like '0[89]%'  or  sircode like '1[0-9]%' or sircode like '20%'"
                    : (Querytype == "Assets") ? "sircode like '2[1-9]%'" : (Querytype == "Liabilities") ? "sircode like '31%'" : (Querytype == "HOverhead") ? "sircode like '32%'"
-                   : (Querytype == "Wrkschedule") ? "sircode like '4[1-3]%'" : (Querytype == "UnitCode") ? "sircode like '5[1-9]%'" : (Querytype == "customer") ? "sircode like '6[1-9]%'"
+                   : (Querytype == "Wrkschedule") ? "sircode like '4[1-5]%'" : (Querytype == "UnitCode") ? "sircode like '5[1-9]%'" : (Querytype == "customer") ? "sircode like '6[1-9]%'"
                    : (Querytype == "Subcontractor") ? "sircode like '98%'" : (Querytype == "ResCodePrint") ? "sircode like '99%'" : (Querytype == "Supplier") ? "sircode like '99%'" : (Querytype == "Mat") ? "sircode like '01'"
                    : (Querytype == "TaxVatAndSd") ? "sircode like '97%'" : (Querytype == "GenAdv") ? "sircode like '9[56]%'" : (Querytype == "Labour") ? "sircode like '04%'" : (Querytype == "Materials") ? "sircode like '01%'"
                    : (Querytype == "Employee") ? "sircode like '93%'" : (Querytype == "DeptCode") ? "sircode like '94%'" : "sircode like '%'";
@@ -216,15 +216,16 @@ namespace RealERPWEB.F_17_Acc
             // string teamcode = ((DataTable)Session["CodeBook"]).Rows[rowindex]["catcode"].ToString();
 
             DropDownList ddl2 = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlProName");
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
 
 
             Panel pnl02 = (Panel)this.grvacc.Rows[e.NewEditIndex].FindControl("Panel2");
             if (sircode.Substring(0, 2) == "94" && (ASTUtility.Right(sircode, 3) != "000"))
             {
                 ViewState["gindex"] = e.NewEditIndex;
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
+
+
                 string SearchProject = "%"; //+ ((TextBox)gvCodeBook.Rows[e.NewEditIndex].FindControl("txtSerachProject")).Text.Trim() + "%";
                 DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETHEADANDDEPT", SearchProject, "", "", "", "", "", "", "", "");
                 ddl2.DataTextField = "actdesc";
@@ -235,12 +236,31 @@ namespace RealERPWEB.F_17_Acc
                 pnl02.Visible = true;
             }
             else
-            {
+            { 
                 pnl02.Visible = false;
                 ddl2.Items.Clear();
 
             }
 
+            TextBox txtUnit = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgvsirunit");
+            DropDownList ddlUnit = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlUnit");
+            if  (sircode.Substring(0, 2) == "45")
+            {
+                 
+                DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");
+                ddlUnit.DataTextField = "gdesc";
+                ddlUnit.DataValueField = "gcod";
+                ddlUnit.DataSource = ds1;
+                ddlUnit.DataBind();
+                ddlUnit.SelectedValue = actcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+                ddlUnit.Visible = true;
+                txtUnit.Visible = false;
+            }
+            else
+            {
+                ddlUnit.Visible = false;
+                txtUnit.Visible = true; 
+            }
 
 
             //int rowindex = (this.grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
@@ -292,9 +312,10 @@ namespace RealERPWEB.F_17_Acc
                 string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string txtsirtype = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgridsirtype")).Text.Trim();
                 string txtsirtdesc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirtdesc")).Text.Trim();
-                string txtsirunit = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirunit")).Text.Trim();
+                string txtsirunit = ((ASTUtility.Left(sircode, 2) == "45") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedItem.Text.Trim() : ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirunit")).Text.Trim());
                 string txtsirval = Convert.ToDouble("0" + ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirval")).Text.Trim()).ToString();
                 string psircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod1")).Text.Trim();
+                string unitCode = ((ASTUtility.Left(sircode, 2) == "45") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
 
                 DataTable tbl1 = (DataTable)Session["storedata"];//check whether it is needed or not
 
@@ -378,7 +399,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, Descbn,
-                        "", "", "", "", "");
+                        unitCode, "", "", "", "");
                     this.ShowInformation();
                     if (result)
                     {
@@ -491,7 +512,7 @@ namespace RealERPWEB.F_17_Acc
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            switch(comcod)
+            switch (comcod)
             {
                 case "3338":
                     this.PrintResCodeAcme();
@@ -586,7 +607,7 @@ namespace RealERPWEB.F_17_Acc
                     grvacc.Columns[7].HeaderText = (tempddl1 == "01") ? "Std.Rate" : (tempddl1 == "02") ? "Std.Rate"
                                 : (tempddl1 == "03") ? "Std.Rate" : (tempddl1 == "04") ? "Std.Rate" : (tempddl1 == "41") ? "Qty. Considered" : "";
 
-
+                    this.GetBaseUnit();
                     this.ShowInformation();
                 }
                 else
@@ -616,6 +637,16 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
+
+        private void GetBaseUnit()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetComeCode();
+
+
+
+        }
         private void ShowInformation()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -699,9 +730,6 @@ namespace RealERPWEB.F_17_Acc
         protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-
-
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
@@ -712,39 +740,33 @@ namespace RealERPWEB.F_17_Acc
                 int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + index;
                 DataTable dt = ((DataTable)Session["storedata"]);
 
+                string comcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
                 string Code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
                 int additem = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "additem"));
-
-
-
-
 
                 if (Code == "")
                     return;
 
-
-                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41")
+                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "45")
 
                 {
-
-
 
                     LinkButton lbtnDetails = (LinkButton)e.Row.FindControl("lbtnDetails");
 
                     if (ASTUtility.Right(Code, 3) != "000")
                     {
                         lbtnDetails.Visible = true;
-
                     }
                     else
                     {
                         lbtnDetails.Visible = false;
 
                     }
-
-
-
                 }
+
+
+                
+
                 if (ASTUtility.Right(Code, 8) == "00000000" && ASTUtility.Right(Code, 10) != "0000000000")
                 {
 
@@ -975,7 +997,8 @@ namespace RealERPWEB.F_17_Acc
                 GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
                 int RowIndex = gvr.RowIndex;
 
-
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
                 int index = this.grvacc.PageSize * this.grvacc.PageIndex + RowIndex;
 
                 string sircode = ((DataTable)Session["storedata"]).Rows[index]["sircode"].ToString();
@@ -994,8 +1017,7 @@ namespace RealERPWEB.F_17_Acc
                 if (sircode.Substring(0, 2) == "94" && (ASTUtility.Right(sircode, 3) != "000"))
                 {
 
-                    Hashtable hst = (Hashtable)Session["tblLogin"];
-                    string comcod = hst["comcod"].ToString();
+                  
                     string SearchProject = "%"; //+ ((TextBox)gvCodeBook.Rows[e.NewEditIndex].FindControl("txtSerachProject")).Text.Trim() + "%";
                     DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETHEADANDDEPT", SearchProject, "", "", "", "", "", "", "", "");
                     this.ddlProject.DataTextField = "actdesc";
@@ -1011,6 +1033,28 @@ namespace RealERPWEB.F_17_Acc
                     this.lblddlproject.Visible = false;
                     this.ddlProject.Visible = false;
                 }
+
+                if (sircode.Substring(0, 2) == "45")
+                {
+                    this.lblsdrate.InnerText = "Standard  Qty";
+                    DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");
+                    ddlUnits.DataTextField = "gdesc";
+                    ddlUnits.DataValueField = "gcod";
+                    ddlUnits.DataSource = ds1;
+                    ddlUnits.DataBind();
+                    ddlUnits.SelectedValue = actcode; 
+                    ddlUnits.Visible = true;
+                    txtunit.Visible = false;
+                }
+                else
+                {
+                    this.lblsdrate.InnerText = "Standard  Rate";
+                    ddlUnits.Visible = false ;
+                    txtunit.Visible = true;
+                }
+
+
+
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
             }
@@ -1047,9 +1091,13 @@ namespace RealERPWEB.F_17_Acc
 
                 string txtsirtype = "";
                 string txtsirtdesc = "";
-                string txtsirunit = this.txtunit.Text.Trim();
+                string txtsirunit = (sircode.Substring(0, 2) == "45" ? this.ddlUnits.SelectedItem.ToString() : this.txtunit.Text.ToString()) ;
+                string valusirunit = this.ddlUnits.SelectedValue.ToString();
+                
+
                 string txtsirval = Convert.ToDouble("0" + this.txtstdrate.Text.Trim()).ToString();
                 string actcode = this.ddlProject.Items.Count == 0 ? "" : this.ddlProject.SelectedValue.ToString();
+                string txtTDetails = this.txtTDetails.Text.Trim();
                 // return;
 
                 if (Desc.Length == 0)
@@ -1067,7 +1115,7 @@ namespace RealERPWEB.F_17_Acc
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
                         sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber,
-                      DescBN, "", "", "", "");
+                      DescBN, valusirunit, txtTDetails, "", "");
 
                     if (!result)
                     {

@@ -24,7 +24,7 @@
 
             $('.chzn-select').chosen({ search_contains: true });
 
-           
+
 
 
         };
@@ -134,6 +134,23 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Group" Visible="False">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvGroup" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'
+                                        Width="30px"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Reqno" Visible="False">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvRqno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno")) %>'
+                                        Width="30px"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+
                             <asp:TemplateField HeaderText="Res Code" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvResCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
@@ -176,8 +193,8 @@
 
 
                                 </ItemTemplate>
-                             
-                           
+
+
                             </asp:TemplateField>
 
 
@@ -237,7 +254,7 @@
 
 
                                 <EditItemTemplate>
-                                    <asp:DropDownList ID="ddlspecification" runat="server" Width="120px">
+                                    <asp:DropDownList ID="ddlspecification" runat="server" Width="120px" CssClass="chzn-select">
                                     </asp:DropDownList>
                                 </EditItemTemplate>
 
@@ -264,7 +281,7 @@
                             <asp:TemplateField HeaderText="Qty">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtgvreqty01" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                        Width="60px" BorderStyle="none"></asp:TextBox>
+                                        Width="60px" BorderStyle="none" OnTextChanged="txtgvreqty01_TextChanged" AutoPostBack="true"></asp:TextBox>
                                 </ItemTemplate>
                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

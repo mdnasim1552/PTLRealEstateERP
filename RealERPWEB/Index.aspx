@@ -2,27 +2,177 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+ 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    <style>
+        .tblh {
+            background: #DFF0D8;
+            height: 30px;
+            text-align: center;
+        }
+
+        .th1 {
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .th2 {
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .th3 {
+            min-width: 40px;
+            text-align: center;
+        }
+
+        a:hover {
+            background-color: #D8E7D1;
+        }
+
+        .saldeshtml {
+            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
+        }
+
+        .purdeshtml {
+            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
+            /*background-image: -webkit-linear-gradient(270deg, #11998e 0%, #38ef7d 100%);*/
+        }
+
+        .accdeshtml {
+            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
+            /*background-image: -webkit-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);*/
+        }
+
+        .consdeshtml {
+            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
+            /*background-image: -webkit-linear-gradient(270deg, #45b649 0%, #dce35b 100%);*/
+        }
+
+        .crmdeshtml {
+            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
+            /*background: linear-gradient(to right, #01a9ac, #01dbdf);*/
+        }
+
+        .list-group-divider .list-group-item-body {
+            padding: 0;
+        }
+
+        .has-badge > .tile:last-child {
+            line-height: 2.05;
+            border-radius: 15px;
+        }
+
+        .metric-row a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+            .metric-row a:hover {
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+        .textfont16 {
+            font-size: 15px;
+        }
+
+        .metric_cus {
+            padding: 10px;
+            margin: 0 0 10px 0 !important;
+        }
+
+            .metric_cus .tile-lg {
+                font-size: 14px;
+                background-color: gray;
+                color: #fff;
+                width: 2rem;
+                height: 2rem;
+            }
+
+        .userGraph .card-header {
+            padding: 5px 15px;
+        }
+
+        .userGraphNav .active > .userGraphNav .nav-link, .userGraphNav .nav-link.active {
+            background-color: #D8E7D1 !important;
+        }
+
+        .bestemp {
+            position: absolute;
+            top: -20px;
+            left: 42%;
+            width: 30px;
+            margin: 0 auto;
+            color: gold;
+        }
+
+        .table td, .table th {
+            padding: 10px 5px;
+            border: 1px solid #dddddd !important;
+        }
+
+            .table td span {
+                float: right;
+            }
+
+        .table th {
+            font-weight: 500 !important;
+        }
+
+        .grpattn {
+            width: 100%;
+        }
+
+        .grMoreMenu .btn {
+            outline: 0;
+            box-shadow: 0 0 0 1px #346cb0;
+        }
+
+        .grMoreMenu ul {
+            top: 30px !important;
+            left: -40px !important;
+        }
+
+            .grMoreMenu ul li {
+                padding: 5px;
+            }
+
+                .grMoreMenu ul li a {
+                    display: block;
+                    padding: 0 12px;
+                    line-height: 18px;
+                    color: #363642;
+                }
+
+                    .grMoreMenu ul li a:hover {
+                        color: #346cb0 !important;
+                        background: none;
+                    }
+    </style>
+     
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+     
     <script type="text/javascript">
 
 
 
         $(document).ready(function () {
+           
             var url = $('#<%=this.ParentDir.ClientID %>').val();
-            GetData();
-            GetHRData();
+            GetData();           
+            
+            
+            document.getElementById('<%= lnkbtnOk.ClientID %>').click();
+
+            
+
         });
 
-
+        
         function createItem(selyear) {
             localStorage.setItem("year", selyear);
         }
@@ -32,9 +182,7 @@
                 comcod = <%=this.GetCompCode()%>;
                 var temp = comcod.toString();
                 var com = temp.slice(0, 1);
-
                 if (com == "1") {
-
                     $("#dpSales").hide();
                     $("#dpCRM").hide();
                 }
@@ -44,38 +192,9 @@
             }
 
         };
-        function GetHRData() {
-            try {
-                comcod = <%=this.GetCompCode()%>;
-                Date1 = $('#txtDateFrom').val();
-                Date2 = $('#txtDateto').val();
-                 
-                $.ajax({
-                    type: "POST",
-                    url: "index.aspx/GetAllDataHR",
-                    data: '{date1: "' + $('#<%=this.txtDateFrom.ClientID%>').val() + '" , date2: "' + $('#<%=this.txtDateto.ClientID%>').val() + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        console.log(JSON.parse(response.d));
-                        var data = response.d;
-
-                        //console.log(data['account']);
-                        ExecuteGraphHR(data);
-                    },
-                    failure: function (response) {
-                        //  alert(response);
-                        alert("f");
-                    }
-                });
-             }
-             catch (e) {
-                 alert(e);
-             }
-
-         }
+       
         function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm) {
-            gtype = gtype == "" ? "column" : gtype;
+            gtype = (gtype == "" ? "column" : gtype);
             // ExcuteEmpStatus();
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
@@ -732,35 +851,35 @@
             }
 
 
-            Highcharts.chart('empdata', {
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: ''
-                },
-                xAxis: {
-                    categories: descdata
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: ''
-                    }
-                },
-                legend: {
-                    reversed: true
-                },
-                plotOptions: {
-                    series: {
-                        stacking: 'normal'
-                    }
-                },
-                series: [{
-                    name: 'Count',
-                    data: cdata
-                }]
-            });
+            //Highcharts.chart('empdata', {
+            //    chart: {
+            //        type: 'bar'
+            //    },
+            //    title: {
+            //        text: ''
+            //    },
+            //    xAxis: {
+            //        categories: descdata
+            //    },
+            //    yAxis: {
+            //        min: 0,
+            //        title: {
+            //            text: ''
+            //        }
+            //    },
+            //    legend: {
+            //        reversed: true
+            //    },
+            //    plotOptions: {
+            //        series: {
+            //            stacking: 'normal'
+            //        }
+            //    },
+            //    series: [{
+            //        name: 'Count',
+            //        data: cdata
+            //    }]
+            //});
 
 
 
@@ -771,7 +890,7 @@
             var today = new Date(),
                 day = 1000 * 60 * 60 * 24;
             //console.log(day);
-            ExcuteEmpStatus();
+           // ExcuteEmpStatus();
             // Set to 00:00:00:000 today
             today.setUTCHours(0);
             today.setUTCMinutes(0);
@@ -1206,7 +1325,7 @@
 
 
 
-        function ExcuteEmpStatus() {
+     <%--   function ExcuteEmpStatus() {
 
             var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
                 var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
@@ -1242,7 +1361,7 @@
 
                 chart.draw(data, options);
             }
-        };
+        };--%>
 
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
@@ -1789,1179 +1908,13 @@
             });
             resizeObserver.observe(elem);
 
-        }
-
-
-        function ExecuteGraphHR(bgd) {
-            try {
-
-                Highcharts.setOptions({
-                    lang: {
-                        decimalPoint: '.',
-                        thousandsSep: ' '
-                    }
-                });
-
-                var bgddata = JSON.parse(bgd);
-                console.log(bgddata);
-
-                //Leave Legend
-                var leavedata = bgddata['leave'];
-
-                var armainhead = [];
-                for (var i = 0; i < leavedata.length; i++) {
-                    armainhead[i] = leavedata[i]["head"];
-                }
-
-             
-                var row = '';
-            
-
-                $.each(leavedata,
-                    function (i, item) {
-                        //ar1 = (item.grp == "A")? '<a target=_blank href=' + encodeURI('F_17_Acc/LinkRptReciptPayment.aspx?Type=receipt&comcod=' + comcod + '&Date1=' +Date1 + '&Date2=' + Date2) + '>'
-                        //    : item.grp == "B"? '<a target=_blank href=' + encodeURI('F_17_Acc/LinkRptReciptPayment.aspx?Type=payment&comcod=' + comcod + '&Date1=' +Date1 + '&Date2=' + Date2) + '>'
-                        //    : '';
-                        //ar2 = (item.grp == "A") || (item.grp == "B") ? '</a>' : '';
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.amount == 0)
-                                ? ''
-                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
-                        row += "</tr>";
-                        $("#leave tbody").html(row);
-                    });
-
-
-                //Sales Legend
-                var memberdata = bgddata['member'];
-
-                var saleshead = [];
-                for (var i = 0; i < memberdata.length; i++) {
-                    saleshead[i] = memberdata[i]["head"];
-                }
-
-                //var ar1 = '';
-                //var ar2 = '';
-                var row = '';
-                $.each(memberdata,
-                    function (i, item) {
-                        //ar1 = (item.gcod == "01001")
-                        //    ? '<a target=_blank href=' + encodeURI('F_22_Sal/RptSaleMonYear.aspx') + '>'
-                        //    : item.gcod == "01002"
-                        //    ? '<a target=_blank href=' + encodeURI('F_22_Sal/RptCollMonYear.aspx') + '>'
-                        //    : '';
-                        //ar2 = (item.gcod == "01001") || (item.gcod == "01002") ? '</a>' : '';
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.amount == 0)
-                                ? ''
-                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) +
-                            "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) +
-                            "</td>";
-                        row += "</tr>";
-                        $("#member tbody").html(row);
-                    });
-
-                //Purchase Legend
-                var attendata = bgddata['attendance'];
-                console.log(attendata);
-                var purchasehead = [];
-                for (var i = 0; i < attendata.length; i++) {
-                    purchasehead[i] = attendata[i]["head"];
-                }
-
-
-                //var ar1 = '';
-                //var ar2 = '';
-                var row = '';
-                $.each(attendata,
-                    function (i, item) {
-                        //ar1 = (item.gcod == "01001")
-                        //    ? '<a target=_blank href=' + encodeURI('F_14_Pro/PurSumMatWise.aspx') + '>'
-                        //    : '';
-                        //ar2 = (item.gcod == "01001") ? '</a>' : '';
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.amount == 0)
-                                ? ''
-                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) +
-                            "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) +
-                            "</td>";
-                        row += "</tr>";
-                        $("#atten tbody").html(row);
-                    });
-
-
-                //Salary Legend
-                var salarydata = bgddata['salary'];
-                var conshead = [];
-                for (var i = 0; i < salarydata.length; i++) {
-                    conshead[i] = salarydata[i]["head"];
-                }
-                //var ar1 = '';
-                //var ar2 = '';
-                var row = '';
-                $.each(salarydata,
-                    function (i, item) {
-                        
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.amount == 0)
-                                ? ''
-                                : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) +
-                            "</td>";
-                        row += "<td style=text-align:right;>" +
-                            ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) +
-                            "</td>";
-                        row += "</tr>";
-                        $("#salary tbody").html(row);
-                    });
-
-
-                ////Confirmation Legend
-                var confirmdata = bgddata['confirm'];
-                var bankhead = [];
-                for (var i = 0; i < confirmdata.length; i++) {
-                    bankhead[i] = confirmdata[i]["head"];
-                }
-
-                var ar1 = '';
-                var ar2 = '';
-                var row = '';
-                $.each(confirmdata,
-                    function (i, item) {
-                        ar1 = (item.gcod == "01002")
-                            ? '<a target=_blank href=' + encodeURI('/F_81_Hrm/F_92_Mgt/HREmpConfirmation.aspx') + '>'
-                            : item.gcod == "01003"
-                                ? '<a target=_blank href=' +
-                                encodeURI('/F_81_Hrm/F_92_Mgt/HREmpConfirmation.aspx') +
-                                '>'
-                                : '';
-                        ar2 = (item.gcod == "01002") || (item.gcod == "01003") ? '</a>' : '';
-                        row += "<tr>";
-                        row += "<td>" + ar1 + item.head + ar2 + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
-                        row += "</tr>";
-                        $("#confirm tbody").html(row);
-                    });
-
-                //Loan Legend
-                var loandata = bgddata['loan'];
-                var stockhead = [];
-                for (var i = 0; i < loandata.length; i++) {
-                    stockhead[i] = loandata[i]["head"];
-                }
-
-                var row = '';
-                $.each(loandata,
-                    function (i, item) {
-
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
-                        row += "</tr>";
-                        $("#loan tbody").html(row);
-                    });
-
-
-
-                ////PF Account
-                var pffunddata = bgddata['pffund'];
-                var dueshead = [];
-                for (var i = 0; i < pffunddata.length; i++) {
-                    dueshead[i] = pffunddata[i]["head"];
-                }
-
-                var row = '';
-                $.each(pffunddata,
-                    function (i, item) {
-
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
-                        row += "</tr>";
-                        $("#pffund tbody").html(row);
-                    });
-
-
-
-                ////Separation Legend
-                var sepdata = bgddata['separation'];
-                var penbilhead = [];
-                for (var i = 0; i < sepdata.length; i++) {
-                    penbilhead[i] = sepdata[i]["head"];
-                }
-                var row = '';
-                $.each(sepdata,
-                    function (i, item) {
-
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
-                        row += "</tr>";
-                        $("#sep tbody").html(row);
-                    });
-
-
-                //////Employee Joining
-                var empjoindata = bgddata['empjoining'];
-                var dueshead = [];
-                for (var i = 0; i < empjoindata.length; i++) {
-                    dueshead[i] = empjoindata[i]["head"];
-                }
-
-                var row = '';
-                $.each(empjoindata,
-                    function (i, item) {
-
-                        row += "<tr>";
-                        row += "<td>" + item.head + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.amount == 0) ? '' : (item.amount.toFixed(2)).toLocaleString('en-US', { minimumFractionDigits: 2 })) + "</td>";
-                        row += "<td style=text-align:right;>" + ((item.peramt == 0) ? '' : (item.peramt.toFixed(2)).toLocaleString('en-US')) + "</td>";
-                        row += "</tr>";
-                        $("#empjoin tbody").html(row);
-                    });
-
-
-
-
-                 
-
-                //Leave
-                Highcharts.chart('leavedt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, armainhead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in leavedata) {
-                                            if (leavedata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    leavedata[key].head,
-                                                    leavedata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-                //Member
-                Highcharts.chart('memberdt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, saleshead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in memberdata) {
-                                            if (memberdata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    memberdata[key].head,
-                                                    memberdata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-                //Attendance
-                Highcharts.chart('attendt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, purchasehead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in attendata) {
-                                            if (attendata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    attendata[key].head,
-                                                    attendata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-                ////Salary
-                Highcharts.chart('salarydt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, conshead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in salarydata) {
-                                            if (salarydata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    salarydata[key].head,
-                                                    salarydata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-                ////Confirmation
-                Highcharts.chart('confirmdt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, bankhead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in confirmdata) {
-                                            if (confirmdata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    confirmdata[key].head,
-                                                    confirmdata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-                ////Loan
-                Highcharts.chart('loandt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, stockhead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in loandata) {
-                                            if (loandata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    loandata[key].head,
-                                                    loandata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-                
-
-                ////Separation
-                Highcharts.chart('sepdt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, penbilhead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in sepdata) {
-                                            if (sepdata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    sepdata[key].head,
-                                                    sepdata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-                ////Man Power
-                Highcharts.chart('pffunddt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, dueshead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in pffunddata) {
-                                            if (pffunddata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    pffunddata[key].head,
-                                                    pffunddata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-
-                ////Employee Joining
-                Highcharts.chart('joindt',
-                    {
-                        chart: {
-                            type: 'bar'
-                        },
-                        title: {
-                            text: ''
-                        },
-                        subtitle: {
-                            text: '',
-                            style: {
-                                color: '#44994a',
-                                fontWeight: 'bold'
-                            }
-                        },
-
-
-                        xAxis: {
-                            type: 'category',
-                            labels:
-                            {
-                                formatter: function () {
-                                    if ($.inArray(this.value, dueshead) !== -1) {
-                                        return '<span style="fill: maroon;">' + this.value + '</span>';
-                                    } else {
-                                        return this.value;
-                                    }
-                                },
-                                style: {
-                                    color: '#000',
-
-                                }
-                            }
-                        },
-                        yAxis: {
-                            title: {
-                                text: ''
-                            }
-
-                        },
-                        legend: {
-                            enabled: false
-                        },
-                        plotOptions: {
-                            series: {
-                                borderWidth: 0,
-                                dataLabels: {
-                                    enabled: true,
-                                    format: '{point.y:.2f}'
-                                }
-                            }
-                        },
-                        tooltip: {
-                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                            pointFormat:
-                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
-                        },
-
-                        "series": [
-                            {
-                                "name": "",
-                                "colorByPoint": true,
-                                "data":
-                                    (function () {
-                                        // generate an array of random data
-                                        var data = [],
-
-                                            i;
-
-                                        for (var key in empjoindata) {
-                                            if (empjoindata.hasOwnProperty(key)) {
-                                                data.push([
-                                                    empjoindata[key].head,
-                                                    empjoindata[key].amount, false
-                                                ]);
-                                            }
-                                        }
-                                        return data;
-                                    }())
-                            }
-                        ]
-                    });
-
-
-                
-
-            } catch (e) {
-
-                alert(e);
-            }
-
-
-        }
-
+        };
+         
     </script>
+    
 
-    <style>
-        .tblh {
-            background: #DFF0D8;
-            height: 30px;
-            text-align: center;
-        }
-
-        .th1 {
-            min-width: 100px;
-            text-align: center;
-        }
-
-        .th2 {
-            min-width: 200px;
-            text-align: center;
-        }
-
-        .th3 {
-            min-width: 40px;
-            text-align: center;
-        }
-
-        a:hover {
-            background-color: #D8E7D1;
-        }
-
-        .saldeshtml {
-            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
-        }
-
-        .purdeshtml {
-            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
-            /*background-image: -webkit-linear-gradient(270deg, #11998e 0%, #38ef7d 100%);*/
-        }
-
-        .accdeshtml {
-            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
-            /*background-image: -webkit-linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);*/
-        }
-
-        .consdeshtml {
-            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
-            /*background-image: -webkit-linear-gradient(270deg, #45b649 0%, #dce35b 100%);*/
-        }
-
-        .crmdeshtml {
-            /*background-image: -webkit-linear-gradient(270deg, #334466 100%, #346CB0 100%);*/
-            /*background: linear-gradient(to right, #01a9ac, #01dbdf);*/
-        }
-
-        .list-group-divider .list-group-item-body {
-            padding: 0;
-        }
-
-        .has-badge > .tile:last-child {
-            line-height: 2.05;
-            border-radius: 15px;
-        }
-
-        .metric-row a {
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-            .metric-row a:hover {
-                cursor: pointer;
-                text-decoration: none;
-            }
-
-        .textfont16 {
-            font-size: 15px;
-        }
-
-        .metric_cus {
-            padding: 10px;
-            margin: 0 0 10px 0 !important;
-        }
-
-            .metric_cus .tile-lg {
-                font-size: 14px;
-                background-color: gray;
-                color: #fff;
-                width: 2rem;
-                height: 2rem;
-            }
-
-        .userGraph .card-header {
-            padding: 5px 15px;
-        }
-
-        .userGraphNav .active > .userGraphNav .nav-link, .userGraphNav .nav-link.active {
-            background-color: #D8E7D1 !important;
-        }
-
-        .bestemp {
-            position: absolute;
-            top: -20px;
-            left: 42%;
-            width: 30px;
-            margin: 0 auto;
-            color: gold;
-        }
-
-        .table td, .table th {
-            padding: 10px 5px;
-            border: 1px solid #dddddd !important;
-        }
-
-            .table td span {
-                float: right;
-            }
-
-        .table th {
-            font-weight: 500 !important;
-        }
-
-        .grpattn {
-            width: 100%;
-        }
-
-        .grMoreMenu .btn {
-            outline: 0;
-            box-shadow: 0 0 0 1px #346cb0;
-        }
-
-        .grMoreMenu ul {
-            top: 30px !important;
-            left: -40px !important;
-        }
-
-            .grMoreMenu ul li {
-                padding: 5px;
-            }
-
-                .grMoreMenu ul li a {
-                    display: block;
-                    padding: 0 12px;
-                    line-height: 18px;
-                    color: #363642;
-                }
-
-                    .grMoreMenu ul li a:hover {
-                        color: #346cb0 !important;
-                        background: none;
-                    }
-    </style>
-
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+  <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>--%>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
@@ -2980,12 +1933,12 @@
                 </asp:UpdateProgress>
             </div>
 
+                    <asp:LinkButton ID="lnkbtnOk" OnClick="lnkbtnOk_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
 
             <div class="page">
                 <div class="page-inner">
                     <div style="display: none;">
                         <asp:TextBox ID="ParentDir" runat="server" CssClass="hide"></asp:TextBox>
-
                           <div class="col-md-4">
                                          
                                         <div>
@@ -3008,8 +1961,6 @@
                                         </div>
                                             </div>
                                     </div>
-
-
                     </div>
                     <%-- <div class="mb-5" id="EventNotice" runat="server">--%>
                     <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
@@ -3106,14 +2057,14 @@
 
                                                             </asp:DropDownList>
                                                             <asp:DropDownList ID="ddlMonths" runat="server" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                                <asp:ListItem Selected Value="00">All Months</asp:ListItem>
+                                                                <asp:ListItem  Value="00">All Months</asp:ListItem>
                                                                 <asp:ListItem Value="Jan">Jan</asp:ListItem>
                                                                 <asp:ListItem Value="Feb">Feb</asp:ListItem>
                                                                 <asp:ListItem Value="Mar">Mar</asp:ListItem>
                                                                 <asp:ListItem Value="Apr">Apr</asp:ListItem>
                                                                 <asp:ListItem Value="May">May</asp:ListItem>
                                                                 <asp:ListItem Value="Jun">Jun</asp:ListItem>
-                                                                <asp:ListItem Value="Jul">Jul</asp:ListItem>
+                                                                <asp:ListItem Selected Value="Jul">Jul</asp:ListItem>
                                                                 <asp:ListItem Value="Aug">Aug</asp:ListItem>
                                                                 <asp:ListItem Value="Sep">Sep</asp:ListItem>
                                                                 <asp:ListItem Value="Oct">Oct</asp:ListItem>
@@ -3781,7 +2732,7 @@
                 <!-- /.modal-dialog -->
             </div>
 
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        <%--</ContentTemplate>
+    </asp:UpdatePanel>--%>
 </asp:Content>
 

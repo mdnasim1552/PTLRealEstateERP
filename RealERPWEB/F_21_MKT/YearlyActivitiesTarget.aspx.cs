@@ -31,11 +31,15 @@ namespace RealERPWEB.F_21_MKT
                 //    Response.Redirect("../AcceessError.aspx");
                 //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Yearly Activities Target ";
+                string qtype = this.Request.QueryString["Type"].ToString();
+
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = qtype=="CRM"? "CRM Yearly Activities Target ": "Land CRM Yearly Activities Target ";
 
                 this.GetYear();
                 GetAllSubdata();
                 this.GetTeamCode();
+                CommonButton();
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -43,10 +47,42 @@ namespace RealERPWEB.F_21_MKT
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
-            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkbtnRecalculate_Click);
+
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnUpdate_Click);
+            // ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
+
 
         }
+        public void CommonButton()
+        {
 
+            //((Label)this.Master.FindControl("lblmsg")).Visible = false;
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+
+
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+
+
+            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
+            ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
+            ((CheckBox)this.Master.FindControl("CheckBox1")).Visible = false;
+
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
+
+
+
+
+
+
+        }
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -54,7 +90,7 @@ namespace RealERPWEB.F_21_MKT
 
 
         }
-       
+
         private void GetYear()
         {
             string comcod = this.GetComeCode();
@@ -73,16 +109,41 @@ namespace RealERPWEB.F_21_MKT
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
-            DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
-            ViewState["tblsubddl"] = ds2.Tables[0];            
-            ds2.Dispose();
+            string qtype = this.Request.QueryString["Type"].ToString();
+            
+
+            if (qtype=="CRM")
+            {
+                DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "CLNTREFINFODDL", "", "", "", "", "", "", "", "", "");
+
+                ViewState["tblsubddl"] = ds2.Tables[0];
+                ds2.Dispose();
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = hst["empid"].ToString();
+                DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+                ViewState["tblempsup"] = ds1.Tables[0];
+                ds1.Dispose();
+
+            }
+            else
+            {
+
+                DataSet ds2 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "LANDREFINFODDL", "", "", "", "", "", "", "", "", "");
+
+                ViewState["tblsubddl"] = ds2.Tables[0];
+                ds2.Dispose();
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string empid = hst["empid"].ToString();
+                DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "GETGENEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+                ViewState["tblempsup"] = ds1.Tables[0];
+                ds1.Dispose();
+            }
+
 
             
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
-            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
-            ViewState["tblempsup"] = ds1.Tables[0];
-            ds1.Dispose();
 
         }
 
@@ -131,7 +192,7 @@ namespace RealERPWEB.F_21_MKT
             this.ddlteam.DataSource = dtE;
             this.ddlteam.DataBind();
             this.ddlteam.SelectedValue = "000000000000";
-             
+
         }
 
 
@@ -190,7 +251,7 @@ namespace RealERPWEB.F_21_MKT
             {
                 this.ddlteam.Focus();
                 return;
-            }  
+            }
 
             if (this.lbtnYearbgd.Text == "Ok")
             {
@@ -210,7 +271,7 @@ namespace RealERPWEB.F_21_MKT
             this.gvySalbgd.DataSource = null;
             this.gvySalbgd.DataBind();
             ((Label)this.Master.FindControl("lblmsg")).Text = "";
-             
+
         }
         protected void ImgbtnFindteam_Click(object sender, EventArgs e)
         {
@@ -219,14 +280,24 @@ namespace RealERPWEB.F_21_MKT
         }
         private void ShowYearlyTarget()
         {
+            string qtype = this.Request.QueryString["Type"].ToString();
 
             string comcod = this.GetComeCode();
             string Year = this.ddlyear.SelectedValue.ToString();
             string teamcode = this.ddlteam.SelectedValue.ToString();
-          
+            
+            string ctype = "";
+            if(qtype=="CRM")
+            {
+                ctype = "YEARLY_ACTIVITIES_TARGETCRM";
+            }
+            else
+            {
+                ctype = "YEARLY_ACTIVITIES_TARGET";
 
+            }
 
-            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "YEARLY_ACTIVITIES_TARGET", Year, teamcode, "", "", "", "", "", "", "");
+            DataSet ds1 = SalesData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", ctype, Year, teamcode, qtype, "", "", "", "", "", "");
 
             if (ds1 == null)
             {
@@ -260,44 +331,44 @@ namespace RealERPWEB.F_21_MKT
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty1)", "")) ? 0.00
             : dt.Compute("Sum(qty1)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty2")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty2)", "")) ? 0.00
                : dt.Compute("Sum(qty2)", ""))).ToString("#,##0;(#,##0);  ");
-            
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty3")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty3)", "")) ? 0.00
       : dt.Compute("Sum(qty3)", ""))).ToString("#,##0;(#,##0);  ");
-          
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty4")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty4)", "")) ? 0.00
       : dt.Compute("Sum(qty4)", ""))).ToString("#,##0;(#,##0);  ");
-            
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty5")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty5)", "")) ? 0.00
       : dt.Compute("Sum(qty5)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty6")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty6)", "")) ? 0.00
       : dt.Compute("Sum(qty6)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty7")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty7)", "")) ? 0.00
       : dt.Compute("Sum(qty7)", ""))).ToString("#,##0;(#,##0);  ");
-          
+
 
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty8")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty8)", "")) ? 0.00
       : dt.Compute("Sum(qty8)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty9")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty9)", "")) ? 0.00
       : dt.Compute("Sum(qty9)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty10")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty10)", "")) ? 0.00
       : dt.Compute("Sum(qty10)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty11")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty11)", "")) ? 0.00
       : dt.Compute("Sum(qty11)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFqty12")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(qty12)", "")) ? 0.00
       : dt.Compute("Sum(qty12)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
             ((Label)this.gvySalbgd.FooterRow.FindControl("lgvFtqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(tqty)", "")) ? 0.00
          : dt.Compute("Sum(tqty)", ""))).ToString("#,##0;(#,##0);  ");
-           
+
         }
 
         protected void gvySalbgd_RowCreated(object sender, GridViewRowEventArgs e)
@@ -369,6 +440,7 @@ namespace RealERPWEB.F_21_MKT
             //}
             try
             {
+                string qtype = this.Request.QueryString["type"].ToString();
 
                 string comcod = this.GetComeCode();
                 this.SaveValue();
@@ -376,14 +448,14 @@ namespace RealERPWEB.F_21_MKT
                 string Year = this.ddlyear.SelectedValue.ToString();
                 string teamcode = this.ddlteam.SelectedValue.ToString();
                 bool result = true;
-                result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT02", "DELATESALCOLLTARINF", Year, Year, teamcode, "", "", "", "", "", "", "", "", "", "", "", "");
+                result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "DELATEMPACTIVITIESTARBYEMP", Year, Year, teamcode, qtype, "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = SalesData.ErrorObject["Msg"].ToString();
                     return;
                 }
 
-                
+
 
                 //Details
 
@@ -396,11 +468,11 @@ namespace RealERPWEB.F_21_MKT
                     while (j <= 12)
                     {
                         double qty = Convert.ToDouble(dt1.Rows[i]["qty" + j.ToString()].ToString());
-                    
+
                         string monthid = this.ddlyear.SelectedValue.ToString() + ASTUtility.Right("0" + j.ToString(), 2);
                         if (qty != 0)
                         {
-                            result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "INSERTEMPACTIVITIESTARGET", "", monthid, teamcode, pactcode, qty.ToString(), "", "", "", "", "", "", "", "", "", "");
+                            result = SalesData.UpdateTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "INSERTEMPACTIVITIESTARGET", "", monthid, teamcode, pactcode, qty.ToString(), qtype, "", "", "", "", "", "", "", "", "");
 
                             if (result == false)
                             {
@@ -420,6 +492,19 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        protected void lnkbtnRecalculate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+           }
+
+        
         private void SaveValue()
         {
             DataTable tbl1 = (DataTable)ViewState["tblsal"];
@@ -429,29 +514,29 @@ namespace RealERPWEB.F_21_MKT
                 rowindex = this.gvySalbgd.PageSize * this.gvySalbgd.PageIndex + i;
 
                 tbl1.Rows[rowindex]["qty1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty2"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty2")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty3"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty3")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty4"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty4")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty5"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty5")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty6"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty6")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty7"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty7")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty8"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty8")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty9"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty9")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty10"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty10")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty11"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty11")).Text.Trim()).ToString();
-                
+
                 tbl1.Rows[rowindex]["qty12"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty12")).Text.Trim()).ToString();
-                 
+
                 //    Convert.ToDouble(tbl1.Rows[rowindex]["amt1"]) + tbl1.Rows[rowindex]["amt2"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"];
             }
 
@@ -461,5 +546,59 @@ namespace RealERPWEB.F_21_MKT
 
         }
 
+        protected void lnkbtnCopyBtn_Click(object sender, EventArgs e)
+        {
+            DataTable tbl1 = (DataTable)ViewState["tblsal"];
+           
+            
+            int rowindex;
+            for (int i = 0; i < this.gvySalbgd.Rows.Count; i++)
+            {
+                rowindex = this.gvySalbgd.PageSize * this.gvySalbgd.PageIndex + i;
+
+                tbl1.Rows[rowindex]["qty1"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty2"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty3"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty4"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty5"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty6"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty7"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty8"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty9"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty10"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty11"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+
+                tbl1.Rows[rowindex]["qty12"] = Convert.ToDouble("0" + ((TextBox)this.gvySalbgd.Rows[i].FindControl("txtgvqty1")).Text.Trim()).ToString();
+                //int tqty  Convert.ToInt32(tbl1.Rows[rowindex]["qty1"]) + Convert.ToDouble(tbl1.Rows[rowindex]["qty"]) + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"] + tbl1.Rows[rowindex]["amt1"];
+                double tqty1 = Convert.ToDouble(tbl1.Rows[rowindex]["qty1"]);
+                double tqty2 = Convert.ToDouble(tbl1.Rows[rowindex]["qty2"]);
+                double tqty3 = Convert.ToDouble(tbl1.Rows[rowindex]["qty3"]);
+                double tqty4 = Convert.ToDouble(tbl1.Rows[rowindex]["qty4"]);
+                double tqty5 = Convert.ToDouble(tbl1.Rows[rowindex]["qty5"]);
+                double tqty6 = Convert.ToDouble(tbl1.Rows[rowindex]["qty6"]);
+                double tqty7 = Convert.ToDouble(tbl1.Rows[rowindex]["qty7"]);
+                double tqty8 = Convert.ToDouble(tbl1.Rows[rowindex]["qty8"]);
+                double tqty9 = Convert.ToDouble(tbl1.Rows[rowindex]["qty9"]);
+                double tqty10 = Convert.ToDouble(tbl1.Rows[rowindex]["qty10"]);
+                double tqty11 = Convert.ToDouble(tbl1.Rows[rowindex]["qty11"]);
+                double tqty12 = Convert.ToDouble(tbl1.Rows[rowindex]["qty12"]);
+                tbl1.Rows[rowindex]["tqty"] = tqty1 + tqty2 + tqty3 + tqty4 + tqty5 + tqty6 + tqty7 + tqty8 + tqty9 + tqty10 + tqty11 + tqty12;
+            }
+ 
+            ViewState["tblsal"] = tbl1;
+            this.Data_Bind();
+
+             
+        }
     }
 }
