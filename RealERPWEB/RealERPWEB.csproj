@@ -2830,6 +2830,7 @@
     <Content Include="F_34_Mgt\RptUserLogStatus.aspx" />
     <Content Include="F_34_Mgt\ShareEquity.aspx" />
     <Content Include="F_34_Mgt\SMCodeBook.aspx" />
+    <Content Include="F_34_Mgt\SMSTypeEntry.aspx" />
     <Content Include="F_34_Mgt\Tranlimitdate.aspx" />
     <Content Include="F_34_Mgt\Trigger.aspx" />
     <Content Include="F_34_Mgt\UserfrmGroup.aspx" />
@@ -4015,6 +4016,13 @@
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.designer.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\SMSTypeEntry.aspx.cs">
+      <DependentUpon>SMSTypeEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\SMSTypeEntry.aspx.designer.cs">
+      <DependentUpon>SMSTypeEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
