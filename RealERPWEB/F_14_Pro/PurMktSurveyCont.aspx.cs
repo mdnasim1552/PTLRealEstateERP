@@ -621,9 +621,9 @@ namespace RealERPWEB.F_14_Pro
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
 
-                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[3].Rows[0]["reqdat"]).ToString("dd-MMM-yyyy");
-                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[3].Rows[0]["csdat"]).ToString("dd-MMM-yyyy"); 
-                txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + Convert.ToDateTime(ds1.Tables[3].Rows[0]["appdat"]).ToString("dd-MMM-yyyy"); 
+                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString(); 
+                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString(); 
+                txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
 
             }
 
@@ -668,7 +668,9 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
                 Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
 
@@ -710,6 +712,10 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
 
                 Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
                 Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
@@ -754,6 +760,10 @@ namespace RealERPWEB.F_14_Pro
 
                 Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
                 Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
 
                 //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));

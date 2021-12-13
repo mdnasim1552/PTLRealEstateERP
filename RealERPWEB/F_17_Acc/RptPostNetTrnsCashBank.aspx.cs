@@ -247,7 +247,7 @@ namespace RealERPWEB.F_17_Acc
         }
 
         private void PrintCashBook02()
-        {
+              {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -256,18 +256,37 @@ namespace RealERPWEB.F_17_Acc
             string comadd = hst["comadd1"].ToString();
             string session = hst["session"].ToString();
             string username = hst["username"].ToString();
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string printType = rbtnGroup.SelectedValue;
 
             DataTable dt = (DataTable)Session["cashbank"];
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptCashBank>();
  
             LocalReport Rpt1 = new LocalReport();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptCashBank", list, null, null);
-            Rpt1.EnableExternalImages = true;
+
+
+            if (printType == "Deposit")
+            {
+
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptCashBank", list, null, null);
+                Rpt1.EnableExternalImages = true;
+            }
+            else
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptCashBank", list, null, null);
+                Rpt1.EnableExternalImages = true;
+            }
+
+
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-        
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Deposit Information"));
+
 
 
             Session["Report1"] = Rpt1;

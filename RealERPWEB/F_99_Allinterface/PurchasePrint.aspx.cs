@@ -2587,6 +2587,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3351":
                 case "3352":
 
+                case "3336": // shuvastu
+                case "3337":
                     this.OrderPrintRDLC();
                     break;
 
@@ -4050,6 +4052,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderInnstar.rdlc";
                         break;
 
+                    case "3101": // Suvastu
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
                         Reportpath = "~/Report/RptPurchaseOrderSuvastu.rdlc";

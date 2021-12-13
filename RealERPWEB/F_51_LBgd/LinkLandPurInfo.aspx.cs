@@ -67,7 +67,11 @@ namespace RealERPWEB.F_51_LBgd
             string comcod = hst["comcod"].ToString();
             string patcode = this.Request.QueryString["patcode"].ToString();
             string Lsircode = this.Request.QueryString["sircode"].ToString();
-            string type = this.Request.QueryString["type"].ToString();
+            string type = "";
+            if (this.Request.QueryString.AllKeys.Contains("type"))
+            {
+                type = this.Request.QueryString["type"].ToString();
+            }
             string cDate = (type == "DocUpload") ? "0201%" : "0202%";
             DataSet ds1 = CustData.GetTransInfo(comcod, "SP_ENTRY_LPROCUREMENT", "SHOWLANDHISTORY", patcode, Lsircode, cDate, "", "", "", "", "", "");
             Session["Cust"] = ds1.Tables[1];
