@@ -33,6 +33,7 @@ namespace RealERPWEB.F_07_Ten
 
                 this.GetProjectsList();
                 this.GetWorksGroup();
+                this.GetFlorList();
                 this.UnitConvr();
                 this.CreateTable();
                 CommonButton();
@@ -123,6 +124,23 @@ namespace RealERPWEB.F_07_Ten
             this.ddlProject.DataValueField = "prjcod";
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
+        }
+
+
+        
+
+       private void GetFlorList()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
+            DataSet ds1 = ImpleData.GetTransInfo(comcod, "SP_TAS_ENTRY_PRJ_ANALYSIS", "GETFLOORINFORMATION", "%%", "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.listFloor.DataTextField = "infdesc";
+            this.listFloor.DataValueField = "prjcod";
+            this.listFloor.DataSource = ds1.Tables[0];
+            this.listFloor.DataBind();
         }
 
         private void UnitConvr()
