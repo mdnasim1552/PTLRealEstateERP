@@ -95,6 +95,7 @@
     <Compile Include="C_23_CR\EClassSalesStatus.cs" />
     <Compile Include="C_23_CR\EClassSales_03.cs" />
     <Compile Include="C_24_CC\EClassAddwork.cs" />
+    <Compile Include="C_24_CC\EClassBillApproval.cs" />
     <Compile Include="C_24_CC\RptCostRegistration.cs" />
     <Compile Include="C_24_CC\RptSalesPermissionCost.cs" />
     <Compile Include="C_29_Fxt\EClassFixedAsset.cs" />
@@ -202,6 +203,7 @@
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+RptSubConBillOverAll.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
   </ItemGroup>
