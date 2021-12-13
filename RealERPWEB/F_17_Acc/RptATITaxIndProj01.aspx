@@ -86,7 +86,6 @@
                                         <asp:TextBox ID="txtSrchRes" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="ibtnFindRes" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindRes_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
                                         </div>
 
                                     </div>
@@ -96,13 +95,7 @@
                                         </asp:DropDownList>
 
                                     </div>
-                                    <%--  <div class="col-md-2 pading5px">
 
-                                        <asp:LinkButton ID="lbtnOk0" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-
-
-                                    </div>--%>
                                 </div>
 
 
@@ -115,7 +108,6 @@
                                             <asp:LinkButton ID="lblprj" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lblprj_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
-
                                     </div>
 
                                     <div class="col-md-5 pading5px ">
@@ -123,29 +115,18 @@
                                         </asp:DropDownList>
 
                                     </div>
-
-
                                     <div class="col-md-1 pading5px">
                                         <asp:LinkButton ID="lbtnOk0" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
                                     </div>
-
-
                                 </div>
-
-
-
-
-
 
                             </div>
                         </fieldset>
                     </div>
 
-                    <%--  <div class="table-responsive">--%>
-
                     <asp:GridView ID="gvaitvsd" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" Width="518px"
-                         OnRowDataBound="gvaitvsd_RowDataBound" >
+                        OnRowDataBound="gvaitvsd_RowDataBound">
 
                         <RowStyle />
                         <Columns>
@@ -235,7 +216,7 @@
                                 <HeaderStyle VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="Project Code" Visible="false">
+                            <asp:TemplateField HeaderText="Project Code" Visible="false">
                                 <ItemTemplate>
                                     <asp:Label ID="lblpactcode" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
