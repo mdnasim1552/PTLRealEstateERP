@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptATITaxIndProj01.aspx.cs" Inherits="RealERPWEB.F_17_Acc.RptATITaxIndProj01" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="LinkRptATITaxIndProj01.aspx.cs" Inherits="RealERPWEB.F_17_Acc.LinkRptATITaxIndProj01" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -17,21 +17,6 @@
            <%-- var gv = $('#<%=this.dgvAccRec.ClientID %>');
             gv.Scrollable();--%>
 
-
-            var gvaitvsd = $('#<%=this.gvaitvsd.ClientID %>');
-
-            gvaitvsd.gridviewScroll({
-                width: 1160,
-                height: 420,
-                arrowsize: 30,
-                railsize: 16,
-                barsize: 8,
-                varrowtopimg: "../Image/arrowvt.png",
-                varrowbottomimg: "../Image/arrowvb.png",
-                harrowleftimg: "../Image/arrowhl.png",
-                harrowrightimg: "../Image/arrowhr.png",
-                freezesize: 3
-            });
 
         }
     </script>
@@ -79,57 +64,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblcontrolAccResCode" runat="server" CssClass="lblTxt lblName" Text="Resource"></asp:Label>
-                                        <asp:TextBox ID="txtSrchRes" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                        <div class="colMdbtn">
-                                            <asp:LinkButton ID="ibtnFindRes" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindRes_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-md-5 pading5px ">
-                                        <asp:DropDownList ID="ddlConAccResHead" runat="server" CssClass="form-control inputTxt">
-                                        </asp:DropDownList>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Project Name"></asp:Label>
-                                        <asp:TextBox ID="txtProj" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                        <div class="colMdbtn">
-                                            <asp:LinkButton ID="lblprj" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lblprj_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-5 pading5px ">
-                                        <asp:DropDownList ID="ddlProj" runat="server" CssClass="form-control inputTxt">
-                                        </asp:DropDownList>
-
-                                    </div>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lbtnOk0" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
-                                    </div>
-                                </div>
 
                             </div>
                         </fieldset>
                     </div>
 
-                    <asp:GridView ID="gvaitvsd" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea" Width="518px"
-                        OnRowDataBound="gvaitvsd_RowDataBound">
+        <%--           
+                    <asp:GridView ID="gvaitvsd" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
+                        Width="518px">
 
                         <RowStyle />
+
                         <Columns>
+
                             <asp:TemplateField HeaderText="Sl.No.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvSlNo" runat="server" Font-Bold="True" Height="16px"
@@ -141,11 +88,10 @@
 
                             <asp:TemplateField HeaderText="Supplier Name">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="hlnkSupname" runat="server" Font-Underline="false" Target="_blank"
+                                    <asp:Label ID="lblSupname" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")) %>'
-                                        Width="200px"></asp:HyperLink>
+                                        Width="200px"></asp:Label>
                                 </ItemTemplate>
-
                                 <FooterTemplate>
                                     <asp:Label ID="lgvFOpAmt" runat="server" Font-Bold="True" Font-Size="12px"
                                         ForeColor="#000" Style="text-align: right" Width="80px">Total :</asp:Label>
@@ -186,6 +132,8 @@
                                 <HeaderStyle VerticalAlign="Top" />
                             </asp:TemplateField>
 
+
+
                             <asp:TemplateField HeaderText="paid <br>Amount">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPayment" runat="server"
@@ -200,6 +148,11 @@
                                 <ItemStyle HorizontalAlign="Right" />
                                 <HeaderStyle VerticalAlign="Top" />
                             </asp:TemplateField>
+
+
+
+
+
 
                             <asp:TemplateField HeaderText="Payable Amount">
                                 <ItemTemplate>
@@ -216,23 +169,6 @@
                                 <HeaderStyle VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Project Code" Visible="false">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblpactcode" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pactcode")) %>'
-                                        Width="50px"></asp:Label>
-                                </ItemTemplate>
-                                <HeaderStyle VerticalAlign="Top" />
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Supplier Code" Visible="false">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblrescode" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rescode")) %>'
-                                        Width="50px"></asp:Label>
-                                </ItemTemplate>
-                                <HeaderStyle VerticalAlign="Top" />
-                            </asp:TemplateField>
-
 
                         </Columns>
 
@@ -241,8 +177,9 @@
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
                         <HeaderStyle CssClass="grvHeader" />
-                    </asp:GridView>
-                    <%-- </div>--%>
+                    </asp:GridView>--%>
+
+                  
                 </div>
 
             </div>

@@ -51,6 +51,7 @@
     <Compile Include="C_04_Bgd\EClassBudget.cs" />
     <Compile Include="C_04_Bgd\EClassEmployee.cs" />
     <Compile Include="C_04_Bgd\EClassProProgress.cs" />
+    <Compile Include="C_07_Ten\EClassTender.cs" />
     <Compile Include="C_08_PPlan\BL_UserManage_Con.cs" />
     <Compile Include="C_08_PPlan\BO_Class_Con.cs" />
     <Compile Include="C_08_PPlan\E_CLassPaymetSch.cs" />
@@ -172,7 +173,6 @@
   <ItemGroup>
     <Folder Include="C_03_Fin\" />
     <Folder Include="C_05_Busi\" />
-    <Folder Include="C_07_Ten\" />
     <Folder Include="C_13_Cen\" />
     <Folder Include="C_15_DPayReg\" />
     <Folder Include="C_18_MAcc\" />

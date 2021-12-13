@@ -215,5 +215,22 @@ namespace RealERPWEB.F_17_Acc
         {
             this.ProjectName();
         }
+
+        protected void gvaitvsd_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlnkSupname = (HyperLink)e.Row.FindControl("hlnkSupname");
+
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string rescode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "rescode")).ToString();
+                string frmdate = Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy");
+                string todate = Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+
+                hlnkSupname.Style.Add("color", "blue");
+                hlnkSupname.NavigateUrl = "~/F_17_Acc/LinkRptATITaxIndProj01?pactcode=" + pactcode + "&rescode=" + rescode + "&frmdate=" + frmdate + "&todate=" + todate;
+
+            }
+        }
     }
 }

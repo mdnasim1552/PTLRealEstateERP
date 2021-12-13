@@ -448,6 +448,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt = (DataTable)Session["YearLeav"];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
+                 
+
                 dt.Rows[i]["ernleave"] = ernleave;
                 dt.Rows[i]["csleave"] = csleave;
                 dt.Rows[i]["skleave"] = skleave;
@@ -1630,8 +1632,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.gvleaveInfo.DataBind();
         }
 
-
-
-
+        protected void lnkRule_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/F_81_Hrm/F_84_Lea/CreateLeavRule?Type=");
+        }
     }
 }
