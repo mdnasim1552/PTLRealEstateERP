@@ -28,7 +28,7 @@ namespace RealERPWEB.F_17_Acc
                 ((Label)this.Master.FindControl("lblTitle")).Text = "TDS VDS SD Deduction Supplier Wise  Details";
                 this.Master.Page.Title = "TDS VDS SD Deduction Supplier Wise  Details";
                 string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
+                this.LoadSupplierData();
             }
 
         }
@@ -47,6 +47,28 @@ namespace RealERPWEB.F_17_Acc
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
+        }
+
+        private void LoadSupplierData() 
+        {
+            string comcod = this.GetCompCode();
+            string pactcode = this.Request.QueryString["pactcode"].ToString();
+            string rescode = this.Request.QueryString["rescode"].ToString();
+            string frmdate = this.Request.QueryString["frmdate"].ToString();
+            string todate = this.Request.QueryString["todate"].ToString();
+
+
+            DataSet ds1 = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTINDSUPPTVSDETAILS", pactcode, rescode, frmdate, todate, "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                //this.gvaitvsd.DataSource = null;
+                //this.gvaitvsd.DataBind();
+                return;
+            }
+
+            //Session["tblaitvatsd"] = ds1.Tables[0];
+            //this.Data_Bind();
 
         }
 
