@@ -88,6 +88,8 @@ namespace RealERPRDLC
                 case "R_07_Ten.RptTenderProposal": Rpt1a = SetRptTenderProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_07_Ten.RptCivilConBOQ": Rpt1a = SetRptCivilConBOQ(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_07_Ten.RptCivilConBOQTender": Rpt1a = SetRptCivilConBOQTender(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_24_CC.RptClientModification": Rpt1a = SetRptClientModification(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptCashBank": Rpt1a = SetRptCashBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 #endregion
                 #region Project Design
 
@@ -1059,6 +1061,19 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_07_Ten.RptCivilConBOQ>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptClientModification(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.RptClientModification>)RptDataSet));
+            return Rpt1a;
+        }
+    
+      private static LocalReport SetRptCashBank(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptCashBank>)RptDataSet));
+            return Rpt1a;
+        }
+
 
         private static LocalReport SetRptProjectDesign(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
