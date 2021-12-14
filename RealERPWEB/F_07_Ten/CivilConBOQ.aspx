@@ -206,6 +206,19 @@
                                     Style="min-width: 100px !important;"></asp:ListBox>
                             </div>
                         </div>
+                            <div class="col-md-3">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-secondary" type="button">Floor List</button>
+                                </div>
+                                 
+                                <asp:ListBox ID="listFloor" runat="server" SelectionMode="Single" CssClass="chzn-select form-control  pl-0 pr-0"
+                                    Style="min-width: 100px !important;"></asp:ListBox>
+                            </div>
+                        </div>
+
+
+
                         <div class="col-md-2">
 
                             <div class="input-group input-group-alt">
