@@ -24,7 +24,7 @@ namespace RealERPLIB
         /// Strt Menu
         /// <returns></returns>
 
-
+        
         #region General Menu
         public static DataTable WebObjTable()
         {
@@ -2023,10 +2023,13 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103015", "F_81_Hrm/F_84_Lea", "RptHREmpLeave?", "Type=EmpLeaveSt", "Individual Employee Leave Status", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103016", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=EmpLeaveStatus", "Employee Leave- Company Wise", "Leave", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); ;
-         
             
-            
+            tblObj.Rows.Add(new Object[] { "8102000", "8102111", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employee Leave Record", "HR Management", "False", "False", "False", "False" }); ;
+          //tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
+
+            //tblObj.Rows.Add(new Object[] { "8103000", "8103113", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employees Leave Record", "HR Management", "False", "False", "False", "False" }); 
+
+
             tblObj.Rows.Add(new Object[] { "8103000", "8103018", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=CashPay", "Cash Payment", "PayRoll", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103019", "F_81_Hrm/F_83_Att", "RptHREmpStatus?", "Type=Payroll", "Employee Status", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103020", "F_81_Hrm/F_89_Pay", "RptSalarySummary?", "Type=SalSum", "Salary Summary", "PayRoll", "False", "False", "False", "False" }); ;
@@ -2102,6 +2105,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103110", "F_81_Hrm/F_81_Rec", "RptEmpAssessment", "", "Employee Assessment Report", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103112", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetPID", "Salary Top Sheet(Project)", "PayRoll", "False", "False", "False", "False" }); ;
+            
+
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103140", "F_81_Hrm/F_92_Mgt", "InterfaceHR", "", "General Letter", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102085", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Ind", "HR Leave Interface(Individual)", "HR Management", "False", "False", "False" });
@@ -14692,7 +14697,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0419000000", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0420000000", "02. Leave Status- Company Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=EmpLeaveStatus&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0421000000", "03. Employee Leave- Month Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=MonWiseLeave&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0422000000", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0422000000", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });       
+            mnuTbl1.Rows.Add(new Object[] { "0423000000", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
 
             // Employee Transfer report
             mnuTbl1.Rows.Add(new Object[] { "0422100000", "Employee Transfer Info", "", "", false, "mb" });
