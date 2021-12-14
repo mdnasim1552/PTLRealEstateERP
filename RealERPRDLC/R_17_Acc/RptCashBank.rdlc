@@ -1178,6 +1178,31 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
+<<<<<<< HEAD
+            <Textbox Name="Textbox3">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!comnam.Value</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.26736in</Top>
+              <Left>1.49064in</Left>
+              <Height>0.19792in</Height>
+              <Width>4.92595in</Width>
+=======
             <Image Name="Image1">
               <Source>External</Source>
               <Value>=Parameters!comLogo.Value</Value>
@@ -1186,13 +1211,59 @@
               <Left>0in</Left>
               <Height>0.54806in</Height>
               <Width>1.04042in</Width>
+>>>>>>> adce56e40d34e655c344c07a60294724d9c92848
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+<<<<<<< HEAD
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox5">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!comnam.Value</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.46528in</Top>
+              <Left>1.50453in</Left>
+              <Height>0.25222in</Height>
+              <Width>4.92595in</Width>
+              <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+=======
               </Style>
             </Image>
+>>>>>>> adce56e40d34e655c344c07a60294724d9c92848
           </ReportItems>
           <Style>
             <Border>
