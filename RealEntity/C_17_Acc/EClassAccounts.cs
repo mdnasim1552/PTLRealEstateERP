@@ -1148,14 +1148,14 @@ namespace RealEntity.C_17_Acc
             public string actcode { get; set; }
             public string cactcode { get; set; }
             public string rescode { get; set; }
-            public string depam { get; set; }
+            public double depam { get; set; }
             public string actdesc { get; set; }
             public string cactdesc { get; set; }
             public string resdesc { get; set; }
-            public string paynam { get; set; }
-            public string casham { get; set; }
-            public string bankam { get; set; }
-            public string srcham { get; set; }
+            public double payam { get; set; }
+            public double casham { get; set; }
+            public double bankam { get; set; }
+            public double srcham { get; set; }
             public string tmmrk { get; set; }
             public string refnum { get; set; }
 

@@ -260,6 +260,9 @@ namespace RealERPWEB.F_17_Acc
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string printType = rbtnGroup.SelectedValue;
+            string frmDate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string toDate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string txtDate = "(From " + frmDate + " To " + toDate + ")";
 
             DataTable dt = (DataTable)Session["cashbank"];
             var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.RptCashBank>();
@@ -285,7 +288,8 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", printFooter));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Deposit Information"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Cash & Bank Balance"));
 
 
 
