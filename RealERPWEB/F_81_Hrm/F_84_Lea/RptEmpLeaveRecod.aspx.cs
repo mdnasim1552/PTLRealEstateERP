@@ -19,7 +19,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
-                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE LEAVE RECORD REPORT";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE'S LEAVE RECORD";
                 DateTime curdate = System.DateTime.Today;
                 DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
                 DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
@@ -27,7 +27,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
                 this.GetCompName();
 
-                //this.ShowValue();
+                this.ShowValue();
+                
             }
           
         }
