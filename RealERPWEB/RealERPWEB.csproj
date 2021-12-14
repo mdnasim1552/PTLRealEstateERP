@@ -212,7 +212,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Files\Real ERP BIN 210811\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>C:\Users\HP\OneDrive\Desktop\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Files\Real ERP BIN 210811\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -11741,20 +11741,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
-      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
-      <Name>RealEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
-      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
-      <Name>RealERPLIB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
-      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
-      <Name>RealERPRDLC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Report\RptPaymentSchedule.rdlc" />
     <Content Include="Report\RptPurchaseOrder.rdlc" />
     <Content Include="Report\RptPurchaseOrderAcme.rdlc" />
@@ -11789,6 +11775,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderBridgeWLogo.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
+      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
+      <Name>RealEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
+      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
+      <Name>RealERPRDLC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
