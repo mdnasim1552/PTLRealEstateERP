@@ -1498,19 +1498,6 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Image Name="Image1">
-              <Source>External</Source>
-              <Value>=</Value>
-              <Sizing>FitProportional</Sizing>
-              <Height>0.67583in</Height>
-              <Width>1.49064in</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
           </ReportItems>
           <Style>
             <Border>
