@@ -597,9 +597,6 @@ namespace RealERPWEB.F_34_Mgt
                 return;
             }
 
-
-
-
             DataView dv = new DataView();
             DataSet ds1 = new DataSet("ds1");
             dv = dt1.DefaultView;
@@ -631,20 +628,12 @@ namespace RealERPWEB.F_34_Mgt
            //    string entry = dt1.Rows[i]["entry"].ToString ().Trim ();
            //    string printable = dt1.Rows[i]["printable"].ToString ().Trim ();
            //    string delete = dt1.Rows[i]["delete"].ToString ().Trim ();
-
-
-
            //    if (chkper == "True")
            //    {
            //        result = User.UpdateTransInfo (comcod, "SP_UTILITY_LOGIN_MGT", "INSERTCOMPPER", usrid, frmid, frmname,
            //             qrytype, description, modulename, entry, printable, delete, "", "", "", "", "", "");
-
-
            //    }
            //}
-
-
-
            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 

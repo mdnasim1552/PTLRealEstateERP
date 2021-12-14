@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="UserLoginfrmasit.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.UserLoginfrmasit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="UserLoginfrmasit.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.UserLoginfrmasit" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -239,6 +239,7 @@
                                                     <asp:ListItem Value="200">200</asp:ListItem>
                                                     <asp:ListItem Value="300">300</asp:ListItem>
                                                     <asp:ListItem Value="900">900</asp:ListItem>
+                                                    <asp:ListItem Value="1500">1500</asp:ListItem>
                                                 </asp:DropDownList>
 
                                             </div>
