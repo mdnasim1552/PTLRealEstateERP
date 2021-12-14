@@ -212,7 +212,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>C:\Users\HP\OneDrive\Desktop\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\GITRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> adce56e40d34e655c344c07a60294724d9c92848
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Files\Real ERP BIN 210811\Microsoft.ScriptManager.MSAjax.dll</HintPath>
