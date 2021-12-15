@@ -26,7 +26,7 @@ namespace RealERPWEB.F_17_Acc
         protected FullGridPager fullGridPager;
         protected int MaxVisible = 0;
         static string prevPage = String.Empty;
-        ProcessRAccess Rprss = new ProcessRAccess();
+       // ProcessRAccess Rprss = new ProcessRAccess();
         ProcessAccess da = new ProcessAccess();
         static string[] CarArray = new string[3] { "Sub Code-1", "Sub Code-2", "Details Code" };
         //static string tempddl1 = "", tempddl2 = "";
@@ -34,44 +34,36 @@ namespace RealERPWEB.F_17_Acc
         {
 
 
-            if (IsPostBack)
-            {
+            //if (IsPostBack)
+            //{
 
 
-                fullGridPager = new FullGridPager(grvacc, MaxVisible, "Page", "of");
-                fullGridPager.CreateCustomPager(grvacc.BottomPagerRow);
-            }
+            //    fullGridPager = new FullGridPager(grvacc, MaxVisible, "Page", "of");
+            //    fullGridPager.CreateCustomPager(grvacc.BottomPagerRow);
+            //}
 
 
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);//"Resource Code";
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);//"Resource Code";
 
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));  //"Resource Code"
-                string title = (this.Request.QueryString["InputType"].ToString() == "res") ? "Resource Code"
-                    : (this.Request.QueryString["InputType"].ToString() == "Overhead") ? "Design & Consultancy"
-                    : (this.Request.QueryString["InputType"].ToString() == "Wrkschedule") ? "Work List"
-                    : (this.Request.QueryString["InputType"].ToString() == "Employee") ? "Employee Code"
-                    : (this.Request.QueryString["InputType"].ToString() == "DeptCode") ? "Department Code"
-                    : (this.Request.QueryString["InputType"].ToString() == "Supplier") ? "Supplier Code"
-                    : (this.Request.QueryString["InputType"].ToString() == "UnitCode") ? "New Unit Code" : "Sub -Contractor Code";
+               // ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));  //"Resource Code"
+                //string title = (this.Request.QueryString["InputType"].ToString() == "res") ? "Resource Code"
+                //    : (this.Request.QueryString["InputType"].ToString() == "Overhead") ? "Design & Consultancy"
+                //    : (this.Request.QueryString["InputType"].ToString() == "Wrkschedule") ? "Work List"
+                //    : (this.Request.QueryString["InputType"].ToString() == "Employee") ? "Employee Code"
+                //    : (this.Request.QueryString["InputType"].ToString() == "DeptCode") ? "Department Code"
+                //    : (this.Request.QueryString["InputType"].ToString() == "Supplier") ? "Supplier Code"
+                //    : (this.Request.QueryString["InputType"].ToString() == "UnitCode") ? "New Unit Code" : "Sub -Contractor Code";
 
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = title;
-                this.Master.Page.Title = title;
+                //((Label)this.Master.FindControl("lblTitle")).Text = title;
+                //this.Master.Page.Title = title;
                 CommonButton();
-                if (this.ddlOthersBook.Items.Count == 0)
-                {
-                    this.Load_CodeBooList();
-                    this.GetResCodeleb2();
-                    this.SelectResCodeLeb2();
-                }
+              
             }
-
-
-
             //((Label)this.Master.FindControl("lblmsg")).Text= "";
         }
         public void CommonButton()
@@ -244,7 +236,7 @@ namespace RealERPWEB.F_17_Acc
 
             TextBox txtUnit = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgvsirunit");
             DropDownList ddlUnit = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlUnit");
-            if  (sircode.Substring(0, 2) == "45")
+            if  (sircode.Substring(0, 2) == "41")
             {
                  
                 DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");
@@ -312,10 +304,10 @@ namespace RealERPWEB.F_17_Acc
                 string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string txtsirtype = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgridsirtype")).Text.Trim();
                 string txtsirtdesc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirtdesc")).Text.Trim();
-                string txtsirunit = ((ASTUtility.Left(sircode, 2) == "45") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedItem.Text.Trim() : ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirunit")).Text.Trim());
+                string txtsirunit = ((ASTUtility.Left(sircode, 2) == "41") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedItem.Text.Trim() : ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirunit")).Text.Trim());
                 string txtsirval = Convert.ToDouble("0" + ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvsirval")).Text.Trim()).ToString();
                 string psircode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lbgrcod1")).Text.Trim();
-                string unitCode = ((ASTUtility.Left(sircode, 2) == "45") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
+                string unitCode = ((ASTUtility.Left(sircode, 2) == "41") ? ((DropDownList)grvacc.Rows[e.RowIndex].FindControl("ddlUnit")).SelectedValue.Trim() : "");
 
                 DataTable tbl1 = (DataTable)Session["storedata"];//check whether it is needed or not
 
@@ -747,7 +739,7 @@ namespace RealERPWEB.F_17_Acc
                 if (Code == "")
                     return;
 
-                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "45")
+                if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "41")
 
                 {
 
@@ -1034,7 +1026,7 @@ namespace RealERPWEB.F_17_Acc
                     this.ddlProject.Visible = false;
                 }
 
-                if (sircode.Substring(0, 2) == "45")
+                if (sircode.Substring(0, 2) == "41")
                 {
                     this.lblsdrate.InnerText = "Standard  Qty";
                     DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");
@@ -1091,7 +1083,7 @@ namespace RealERPWEB.F_17_Acc
 
                 string txtsirtype = "";
                 string txtsirtdesc = "";
-                string txtsirunit = (sircode.Substring(0, 2) == "45" ? this.ddlUnits.SelectedItem.ToString() : this.txtunit.Text.ToString()) ;
+                string txtsirunit = (sircode.Substring(0, 2) == "41" ? this.ddlUnits.SelectedItem.ToString() : this.txtunit.Text.ToString()) ;
                 string valusirunit = this.ddlUnits.SelectedValue.ToString();
                 
 
@@ -1146,5 +1138,14 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        protected void lnkPageloadData_Click(object sender, EventArgs e)
+        {
+            if (this.ddlOthersBook.Items.Count == 0)
+            {
+                this.Load_CodeBooList();
+                this.GetResCodeleb2();
+                this.SelectResCodeLeb2();
+            }
+        }
     }
 }

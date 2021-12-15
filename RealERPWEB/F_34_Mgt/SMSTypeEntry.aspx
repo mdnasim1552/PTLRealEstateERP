@@ -5,40 +5,40 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script>
-        $(document).ready(function () {
-            // $(".TxtDateVal").on("change",function (){ 
-            //     alert("The text has been changed2.");
-            // });
-            // $("#txtgvdValdis").change(function(){
-            //     alert("The text has been changed.");
-            //});
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        //$(document).ready(function () {
+        //    // $(".TxtDateVal").on("change",function (){ 
+        //    //     alert("The text has been changed2.");
+        //    // });
+        //    // $("#txtgvdValdis").change(function(){
+        //    //     alert("The text has been changed.");
+        //    //});
+        //    Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-        });
-        function pageLoaded() {
-            // document.getElementById("divscroll").scrollTop = 0;
-            try {
-                $("input, select").bind("keydown", function (event) {
-                    var k1 = new KeyPress();
-                    k1.textBoxHandler(event);
-                });
+        //});
+        //function pageLoaded() {
+        //    // document.getElementById("divscroll").scrollTop = 0;
+        //    try {
+        //        $("input, select").bind("keydown", function (event) {
+        //            var k1 = new KeyPress();
+        //            k1.textBoxHandler(event);
+        //        });
 
-                $(".chosen-select").chosen({
-                    search_contains: true,
-                    no_results_text: "Sorry, no match!",
-                    allow_single_deselect: true
-                });
-                $('.chosen-continer').css('width', '600px');
-                $('.chosen-continer').css('height', '50px');
+        //        $(".chosen-select").chosen({
+        //            search_contains: true,
+        //            no_results_text: "Sorry, no match!",
+        //            allow_single_deselect: true
+        //        });
+        //        $('.chosen-continer').css('width', '600px');
+        //        $('.chosen-continer').css('height', '50px');
 
-                $('.chzn-select').chosen({ search_contains: true });
-            }
+        //        $('.chzn-select').chosen({ search_contains: true });
+        //    }
 
-            catch (e)
-            {
+        //    catch (e)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
 
     </script>
@@ -67,7 +67,7 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">SMS Code</button>
                                 </div>
-                                <asp:TextBox ID="txtCode" runat="server" placeholder="Enter code.. start(51001)" onchange="checkcode()"  CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtCode" runat="server" placeholder="Enter code.. start(51001)" onchange="checkcode()"  ClientIDMode="Static"  CssClass="form-control"></asp:TextBox>
                                    
                                  <asp:RequiredFieldValidator ID="rqValidcode" runat="server" CssClass="ValidationError" ErrorMessage="*Field Is Required" Display="Dynamic" ControlToValidate="txtCode" ForeColor="Red" ValidationGroup="savcheck"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidatorNum" runat="server" Display="Dynamic" ErrorMessage="Accepts only numbers with digit 5" ValidationGroup="savcheck" ForeColor="Red" ControlToValidate="txtCode" ValidationExpression="[0-9]{5}">
@@ -89,7 +89,7 @@
             <div class="col-md-6">
                 <div class="table table-responsive">
                     <asp:GridView runat="server" ID="GvSpecification" AutoGenerateColumns="False" CssClass="table-condensed table-hover table-bordered grvContentarea"
-                      AllowPaging="true">
+                      AllowPaging="true" OnPageIndexChanging="GvSpecification_PageIndexChanging">
                         <RowStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.No.">
@@ -160,6 +160,8 @@
                         msg.style.display = "block";
                         msg.style.color = "red";
                         msg.innerHTML = "Code already exist ";
+                      <%--  $("#<%=txtCode.ClientID%>").innerHTML = "";--%>
+                        document.getElementById('txtCode').value = "";
                         $('#<%=lnkSave.ClientID %>').attr("disabled", "disabled");
                         break;
                     case "false":
