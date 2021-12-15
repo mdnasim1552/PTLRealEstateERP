@@ -1123,6 +1123,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.05556in</Top>
+
             <Left>0in</Left>
             <Height>0.53124in</Height>
             <Width>7.87503in</Width>
@@ -1136,7 +1137,9 @@
         <Height>0.75347in</Height>
         <Style />
       </Body>
+
       <Width>7.90628in</Width>
+
       <Page>
         <PageHeader>
           <Height>0.60986in</Height>
@@ -1165,9 +1168,11 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.01736in</Top>
+
               <Left>1.49064in</Left>
               <Height>0.375in</Height>
               <Width>4.92594in</Width>
+
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1178,7 +1183,6 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-<<<<<<< HEAD
             <Textbox Name="Textbox3">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -1199,25 +1203,15 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.26736in</Top>
-              <Left>1.49064in</Left>
+              <Left>1.50453in</Left>
               <Height>0.19792in</Height>
               <Width>4.92595in</Width>
-=======
-            <Image Name="Image1">
-              <Source>External</Source>
-              <Value>=Parameters!comLogo.Value</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.01736in</Top>
-              <Left>0in</Left>
-              <Height>0.54806in</Height>
-              <Width>1.04042in</Width>
->>>>>>> adce56e40d34e655c344c07a60294724d9c92848
+
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-<<<<<<< HEAD
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1246,7 +1240,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.46528in</Top>
-              <Left>1.50453in</Left>
+              <Left>1.51842in</Left>
               <Height>0.25222in</Height>
               <Width>4.92595in</Width>
               <ZIndex>2</ZIndex>
@@ -1260,10 +1254,9 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-=======
               </Style>
             </Image>
->>>>>>> adce56e40d34e655c344c07a60294724d9c92848
+
           </ReportItems>
           <Style>
             <Border>
@@ -1295,9 +1288,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox26</rd:DefaultName>
+
               <Top>0.05556in</Top>
               <Height>0.21875in</Height>
               <Width>5.97329in</Width>
+
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1327,10 +1322,12 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox27</rd:DefaultName>
+
               <Top>0.06944in</Top>
               <Left>5.97329in</Left>
               <Height>0.16667in</Height>
               <Width>1.93299in</Width>
+
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
