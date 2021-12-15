@@ -66,35 +66,35 @@ namespace RealERPWEB.F_01_LPA
 
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetComCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-            string category1 = this.ddlcatag.SelectedItem.Text.Trim().ToString();
+            //string comcod = this.GetComCode();
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string comsnam = hst["comsnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string session = hst["session"].ToString();
+            //string username = hst["username"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            //string category1 = this.ddlcatag.SelectedItem.Text.Trim().ToString();
 
-            DataTable dt = (DataTable)Session["tblfeaprjLand"];
+            //DataTable dt = (DataTable)Session["tblfeaprjLand"];
 
-            LocalReport Rpt1 = new LocalReport();
+            //LocalReport Rpt1 = new LocalReport();
 
-            var lst = dt.DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.Landdatabank01>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_01_LPA.RptlandDataBank", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTital", "LAND DATA BANK"));
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("category1", "Category Name: " + category1));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            //var lst = dt.DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.Landdatabank01>();
+            //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_01_LPA.RptlandDataBank", lst, null, null);
+            //Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("RptTital", "LAND DATA BANK"));
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("category1", "Category Name: " + category1));
+            //Session["Report1"] = Rpt1;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
 
 

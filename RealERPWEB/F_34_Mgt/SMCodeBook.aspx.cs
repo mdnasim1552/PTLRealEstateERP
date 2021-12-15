@@ -419,9 +419,20 @@ namespace RealERPWEB.F_34_Mgt
             this.grvacc_DataBind();
         }
 
+        protected void lnkAddSms_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.grvacc.Rows[index].FindControl("lbgrcod1")).Text.ToString();
+            Response.Redirect("~/F_34_Mgt/ContentSetupEntry?Type=" + "&id="+id +"&dfor=S" );
+        }
 
-
-
-
+        protected void lnkAddmail_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string id = ((Label)this.grvacc.Rows[index].FindControl("lbgrcod1")).Text.ToString();
+            Response.Redirect("~/F_34_Mgt/ContentSetupEntry?Type=" + "&id=" + id + "&dfor=M");
+        }
     }
 }

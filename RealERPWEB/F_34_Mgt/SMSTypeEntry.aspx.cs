@@ -37,7 +37,7 @@ namespace RealERPWEB.F_34_Mgt
             }
             this.Txtsmsfor.Text = ds1.Tables[0].Rows[0]["typedesc"].ToString();
             this.txtCode.Text = ds1.Tables[0].Rows[0]["code"].ToString();
-            this.txtCode.Visible = false;
+            this.txtCode.Enabled = false;
 
         }
 
@@ -85,6 +85,12 @@ namespace RealERPWEB.F_34_Mgt
                 this.txtCode.Text = "";
                 this.Txtsmsfor.Text = "";
                 this.GetSMSfor();
+                string Code = this.Request.QueryString["Code"] ?? "";
+                if (code.Length > 0)
+                {
+                    Response.Redirect("~/F_34_Mgt/SMSTypeEntry?Type=");
+                }
+
             }
 
         }
@@ -121,6 +127,11 @@ namespace RealERPWEB.F_34_Mgt
             }
 
             return retval;
+        }        
+        protected void GvSpecification_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.GvSpecification.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
         }
     }
 }

@@ -248,6 +248,20 @@
                                 <ItemStyle Font-Size="12px" />
                             </asp:TemplateField>
 
+
+                            <asp:TemplateField HeaderText="For SMS">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkAddSms" runat="server" Text="Add Template" OnClick="lnkAddSms_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                            </asp:TemplateField>
+
+                              <asp:TemplateField HeaderText="For Mail">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkAddmail" runat="server" Text="Add Template" OnClick="lnkAddmail_Click"
+                                        ></asp:LinkButton>
+                                    </ItemTemplate>
+                            </asp:TemplateField>
+
                             <%--<asp:TemplateField HeaderText="Code">
                                 <EditItemTemplate>
                                     <asp:Panel ID="Paneldata" runat="server">
