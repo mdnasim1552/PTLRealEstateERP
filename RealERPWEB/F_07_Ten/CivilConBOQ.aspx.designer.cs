@@ -147,7 +147,7 @@ namespace RealERPWEB.F_07_Ten
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox listFloor;
+        protected global::System.Web.UI.WebControls.DropDownList listFloor;
 
         /// <summary>
         /// ddlpagesize control.
