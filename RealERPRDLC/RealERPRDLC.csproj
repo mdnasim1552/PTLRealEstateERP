@@ -123,6 +123,7 @@
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
@@ -795,6 +796,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatusBR.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmpLeavStatus.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecord.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave02.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave03.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptMonWiseEmpLeave.rdlc" />

@@ -1144,7 +1144,7 @@ namespace RealEntity.C_17_Acc
             public string voudat1 { get; set; }
             public string recndt1 { get; set; }
             public string isunum { get; set; }
-            public string checquedat { get; set; }
+            public string chequedat { get; set; }
             public string actcode { get; set; }
             public string cactcode { get; set; }
             public string rescode { get; set; }
