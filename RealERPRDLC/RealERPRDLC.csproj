@@ -421,6 +421,7 @@
     <EmbeddedResource Include="R_17_Acc\RptBgdvsExpense.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBillRegister.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBudVsAchivDet.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCashBankWithdraw.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBank.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankGrpMonthDts.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankPosGrp.rdlc" />
@@ -494,6 +495,7 @@
     <EmbeddedResource Include="R_17_Acc\RptPaymentChqClearance.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaymentIncSch.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSubContractor.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplierShuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplier.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplierLeisure.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPendingBill.rdlc" />
