@@ -7,6 +7,7 @@
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+            document.getElementById('<%= lnkPageloadData.ClientID %>').click();
 
 
 
@@ -143,6 +144,27 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="RealProgressbar">
+                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+                    <ProgressTemplate>
+                        <div id="loader">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="lading"></div>
+                        </div>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
+            </div>
+
+                    <asp:LinkButton ID="lnkPageloadData" style="display:none" OnClick="lnkPageloadData_Click" Class="btn btn-sm btn-primary d-none" runat="server">lnkPageloadData</asp:LinkButton>
+
+
             <div class="container moduleItemWrpper">
                 <div class="contentPart">
                     <div class="row">                       
