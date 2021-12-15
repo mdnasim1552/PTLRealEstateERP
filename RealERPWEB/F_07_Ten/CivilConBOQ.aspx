@@ -68,6 +68,9 @@
             line-height: 35px;
             height: 35px;
         }
+        .ddlFloor{
+            width:250px !important;
+        }
     </style>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -206,20 +209,21 @@
                                     Style="min-width: 100px !important;"></asp:ListBox>
                             </div>
                         </div>
-                            <div class="col-md-3">
+                        <div class="col-md-3">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Floor List</button>
                                 </div>
-                                 
-                                <asp:ListBox ID="listFloor" runat="server" SelectionMode="Single" CssClass="chzn-select form-control  pl-0 pr-0"
-                                    Style="min-width: 100px !important;"></asp:ListBox>
+                               
+
+                                  <asp:DropDownList ID="listFloor" runat="server" AutoPostBack="True"   Font-Bold="True" Font-Size="12px" CssClass="form-control  pl-0 pr-0"></asp:DropDownList>
+
                             </div>
                         </div>
 
 
 
-                        <div class="col-md-2">
+                        <div class="col-md-2 d-none">
 
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
@@ -242,17 +246,19 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1">
-                            <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
-
-                        </div>
+                       
                         <div class="col-md-2">
                             <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                            <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
+
+                                    <button class="btn btn-secondary" type="button">Print Type</button>
+                                </div>
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Print Type</button>
                                 </div>
                                 <asp:DropDownList ID="txtPrintId" runat="server" CssClass="   form-control  pl-0 pr-0">
-                                    <asp:ListItem Value="">---Print type</asp:ListItem>
+                                    <asp:ListItem Value="">-Print type</asp:ListItem>
                                     <asp:ListItem Value="management">Management </asp:ListItem>
                                     <asp:ListItem Value="tender">Tender</asp:ListItem>
 
@@ -308,6 +314,9 @@
                                             <asp:Label ID="lblGvworkcode" runat="server" Font-Bold="False" Font-Size="12px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subcode")) %>'
                                                 Width="30px"></asp:Label>
+                                            <asp:Label ID="lblflorcode" runat="server" Font-Bold="False" Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrcod")) %>'
+                                                Width="30px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="12px" VerticalAlign="Middle" />
 
@@ -315,12 +324,15 @@
 
                                     <asp:TemplateField HeaderText="Work <br> Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvsubdesc" runat="server" CssClass="pl-1 pr-1" Font-Bold="False" Font-Size="12px" Width="450px"
+                                            <asp:Label ID="lblgvsubdesc" runat="server" Font-Bold="False" Font-Size="12px"   CssClass="d-block" 
                                                 Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "subdesc").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")).Trim().Length>0 ?  "<br>" : "")+                                                                                                                                      
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim(): "")                                                                          
                                                                     %>'></asp:Label>
+                                            <asp:Label ID="lblfloredesc" runat="server" CssClass="d-block"  Font-Size="12px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'
+                                                ></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Justify" VerticalAlign="Middle" />
 

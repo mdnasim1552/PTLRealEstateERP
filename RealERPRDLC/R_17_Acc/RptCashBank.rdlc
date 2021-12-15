@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>e33ec4fb-07fc-4f47-bd4b-1cda291e8eeb</rd:DataSourceID>
+      <rd:DataSourceID>33f25e05-7fea-4724-bde3-e45220020630</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -27,7 +27,7 @@
         </Field>
         <Field Name="bankam">
           <DataField>bankam</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="cactcode">
           <DataField>cactcode</DataField>
@@ -39,7 +39,7 @@
         </Field>
         <Field Name="casham">
           <DataField>casham</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="checquedat">
           <DataField>checquedat</DataField>
@@ -63,7 +63,7 @@
         </Field>
         <Field Name="payam">
           <DataField>payam</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="payto">
           <DataField>payto</DataField>
@@ -87,7 +87,7 @@
         </Field>
         <Field Name="srcham">
           <DataField>srcham</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="tmmrk">
           <DataField>tmmrk</DataField>
@@ -263,22 +263,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Received</Value>
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Date</Value>
+                                  <Value>Cheque Dae</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -315,22 +300,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MR</Value>
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Center</TextAlign>
-                              </Style>
-                            </Paragraph>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>No</Value>
+                                  <Value>Issue</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -560,7 +530,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Received From</Value>
+                                  <Value>Party/Suppliers/Receivers Name</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -597,7 +567,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Received From(clients)</Value>
+                                  <Value>Pay To</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -778,14 +748,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="recndt1">
+                        <Textbox Name="checquedat">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!recndt1.Value</Value>
+                                  <Value>=Fields!checquedat.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -797,7 +767,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>recndt1</rd:DefaultName>
+                          <rd:DefaultName>checquedat</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1625,7 +1595,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.23611in</Top>
+              <Top>0.25in</Top>
               <Left>1.51147in</Left>
               <Height>0.13889in</Height>
               <Width>4.7801in</Width>
@@ -1655,7 +1625,7 @@
                       </Style>
                     </TextRun>
                     <TextRun>
-                      <Value> (Deposit)</Value>
+                      <Value> (Withdraw)</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
                         <FontSize>12pt</FontSize>
@@ -1684,7 +1654,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.40278in</Top>
+              <Top>0.41667in</Top>
               <Left>1.51147in</Left>
               <Height>0.16194in</Height>
               <Width>4.7801in</Width>
