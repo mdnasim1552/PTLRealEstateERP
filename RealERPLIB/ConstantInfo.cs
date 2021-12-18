@@ -282,6 +282,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0703000", "0701140", "F_07_Ten", "TasQuotEntry?", "Type=Entry", "Tender-Quotation", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "CivilConBOQ?", "Type=Entry", "Civil Construction BOQ", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701142", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0703000", "0701143", "F_22_Sal", "SalesCodeBook?", "Type=Sales&Code=", "Unit Code Book ", "Tender", "False", "False", "False", "False" }); ;
 
             #endregion
 
@@ -2023,6 +2024,7 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103015", "F_81_Hrm/F_84_Lea", "RptHREmpLeave?", "Type=EmpLeaveSt", "Individual Employee Leave Status", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103016", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=EmpLeaveStatus", "Employee Leave- Company Wise", "Leave", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); ;
             
             tblObj.Rows.Add(new Object[] { "8102000", "8102111", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employee Leave Record", "HR Management", "False", "False", "False", "False" }); ;
           //tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
@@ -4255,8 +4257,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "05. Standard Analysis", "F_04_Bgd/BgdStdAna", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "06. Margin Code", "F_07_Ten/TasGenCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "07.Project Code", "F_07_Ten/TASCodeBooks?BookName=Project", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "08. Unit Conversion", "F_07_Ten/UnitConversion", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "08. Unit Code Book", "F_22_Sal/SalesCodeBook?Type=Sales&Code=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "09. Unit Conversion", "F_07_Ten/UnitConversion", "", true, "" });
+           
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
@@ -9143,7 +9146,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0246000000", "Sales", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0247000000", "01. New Unit Code", "F_17_Acc/AccSubCodeBook?InputType=UnitCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0248000000", "02. Sales Code Book ", "F_22_Sal/SalesCodeBook?Type=Sales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0248000000", "02. Sales Code Book ", "F_22_Sal/SalesCodeBook?Type=Sales&Code=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0249000000", "03. Payment Schedule Code", "F_22_Sal/SalesPaymentCodeBook?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0250000000", "04. Sales Planning Code Book", "F_22_Sal/SalesPlaningCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0251000000", "05. Sales & Collection Opening", "F_22_Sal/SalesOpening?Type=Consolidate", "", true, "" });

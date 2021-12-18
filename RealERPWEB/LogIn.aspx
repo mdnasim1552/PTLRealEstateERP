@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PTL ERP Login</title>
     <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
@@ -249,9 +249,7 @@
         img {
             vertical-align: bottom;
         }
-    </style>
-
-    <style>
+     
         .appsContinerLogin {
             width: 100%;
         }
@@ -358,105 +356,7 @@
 
 
     </script>
-    <%--<script type="text/javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-        function pageLoaded() {
-            $('.chzn-select').chosen({ search_contains: true });
-
-
-
-        }
-
-<%--        $(document).ready(function () {
-            try {
-
-               // alert("Programmer");
-
-            }
-
-            catch (e) {
-
-
-                alert(e);
-            }
-
-
-
-            //   $('#WCModal').modal('show');
-
-
-            // Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            //$('#ForgetPass').click(function () {
-            // $('#myModal').modal('toggle');//.modal('show')/.modal('hide');
-            //});
-            //$('#myModal').on('hidden.bs.modal', function () { $('#ForgetPass').removeAttr('checked'); })
-
-            pageLoaded();
-
-
-
-
-
-        });
-        function leave() {    ///// using festival option
-            //  window.location = "http://webdesign.about.com";
-
-            // $('#WCModal').modal('hide');
-        }
-        setTimeout("leave()", 8000);  ///// using festival option
-        $('.chzn-select').chosen({ search_contains: true });
-      
-
-
-        function pageLoaded() {
-
-
-           
-            try {
-
-              
-
-                $('#<%=this.txtuserid.ClientID%>').focus();
-
-
-                   $("input, select").bind("keydown", function (event) {
-                       var k1 = new KeyPress();
-                       k1.TxtLogin(event);
-                   });
-
-
-
-
-                   $(".toggle-password").click(function () {
-                      
-                      
-                       var input = $($(this).attr("toggle"));                       
-                       if (input.attr("type") == "password") {
-
-                          // alert('dd');
-                           $(this).removeClass("glyphicon glyphicon-eye-open");
-                           $(this).addClass("glyphicon glyphicon-eye-close");
-                           input.attr("type", "text");
-                           //alert('hi');
-                       }
-                       else {
-                           
-                           $(this).removeClass("glyphicon glyphicon-eye-close");
-                           $(this).addClass("glyphicon glyphicon-eye-open");
-                           input.attr("type", "password");
-                           //alert('ki')
-                       }
-                   });
-               }
-               catch (e) {
-                   alert(e);
-               }
-
-
-           };--%>
+     
 </head>
 <body>
 
