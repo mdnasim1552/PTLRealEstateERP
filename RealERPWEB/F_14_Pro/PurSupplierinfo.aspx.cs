@@ -22,6 +22,7 @@ namespace RealERPWEB.F_14_Pro
     public partial class PurSupplierinfo : System.Web.UI.Page
     {
         ProcessAccess MktData = new ProcessAccess();
+        ProcessAccess _processAccessMsgdb = new ProcessAccess("ASTREALERPMSG");
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -174,7 +175,110 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
+        protected void lnkMesSend_Click(object sender, EventArgs e)
+        {
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string ssirCode = this.ddlSName.SelectedValue.ToString();
 
+            for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
+            {
+                string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
+                string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
+                string Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();              
+                if (Gcode == "71003" &&  Gvalue.Length > 11)
+                {
+                   ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    return;
+                }
+                else if (Gcode == "71003" && Gvalue.Length < 11)
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    return;
+                }
+                else if (Gcode == "71003" && Gvalue != "")
+                {
+                    string cellphone = Gvalue.ToString();
+                    // send sms code
+
+                    switch (comcod)
+                    {
+
+                        case "3101": // Pintech                   
+                        case "2325"://Liesure
+                            this.SMSSendforSupplier(comcod, cellphone);
+                            break;
+
+
+                        default:
+                            break;
+                    }
+                    
+
+                }
+            }
+        }
+
+        private void SMSSendforSupplier(string comcod, string cellphone)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "ASTREALERPMSGDB.dbo.SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", "140202%", "", "", "", "", "", "", "", "");
+
+
+
+            string supcode = this.ddlSName.SelectedValue.ToString();
+            string supname = this.ddlSName.SelectedItem.ToString();
+         
+            string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
+            tempeng = tempeng.Replace("[compname]", supname);
+            tempeng = tempeng.Replace("[username]", comnam);
+            //tempeng = tempeng.Replace("[date]", paymentdate);
+            //tempeng = tempeng.Replace("[payamt]", payableamt);
+            //tempeng = tempeng.Replace("[duesamt]", dues);
+            //tempeng = tempeng.Replace("[paymode]", paymod);
+            //tempeng = tempeng.Replace("[chequeno]", cheq);
+
+            string smtext = tempeng;
+
+            SendSmsProcess sms = new SendSmsProcess();
+            string ntype = ds1.Tables[0].Rows[0]["gcod"].ToString();
+            string smsstatus = (ds1.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
+            bool resultsms = sms.SendSMSClient("", smtext, cellphone);
+            if (resultsms == true)
+            {
+                bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), supcode, "", "", "", ntype, smsstatus, smtext, "",
+                           "", "", cellphone, "");
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                return;
+            }
+
+        }
+
+        protected void gvPersonalInfo_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string gcode = ((Label)e.Row.FindControl("lblgvItmCode")).Text.ToString();
+                string gText = ((TextBox)e.Row.FindControl("txtgvVal")).Text.ToString();
+                if (gcode == "71003")
+                {
+                    ((TextBox)e.Row.FindControl("txtgvVal")).Attributes.Add("class", "chkmobile");
+                }
+            }
+        }
     }
 }
 

@@ -390,6 +390,7 @@ namespace RealERPWEB.F_23_CR
                 if (lbtn1 != null)
                     if (lbtn1.Text.Trim().Length > 0)
                         lbtn1.CommandArgument = usircode;
+                ViewState["usricode"] = usircode;
             }
             this.rbtnList1.SelectedIndex = 0;
 
@@ -859,13 +860,6 @@ namespace RealERPWEB.F_23_CR
 
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
-
-
-
-
-
-
-
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -875,16 +869,12 @@ namespace RealERPWEB.F_23_CR
                 Session["UserLog"] = ds3.Tables[0];
                 this.SaveValue();
 
-
-
                 DataTable tbl2 = (DataTable)Session["status"];
                 string SchCode = "";
 
                 if (ddlPreMrr.Items.Count == 0)
                     this.GetddlMrNo();
                 string mrno = this.lblReceiveNo.Text.Trim();
-
-
                 string compcod = this.GetComCode();
                 switch (compcod)
                 {
@@ -896,13 +886,8 @@ namespace RealERPWEB.F_23_CR
                         string refno = this.txtrefid.Text.Trim();
                         DataSet ds1 = MktData.GetTransInfo(compcod, "SP_ENTRY_PURCHASE_01", "CHECKMRRREFNO", refno, "", "", "",
                             "", "", "", "", "");
-
-
-
                         if (ds1.Tables[0].Rows.Count == 0)
                             ;
-
-
                         else
                         {
 
@@ -910,7 +895,7 @@ namespace RealERPWEB.F_23_CR
                             dv1.RowFilter = ("mrno <>'" + mrno + "'");
                             DataTable dtc = dv1.ToTable();
                             if (dtc.Rows.Count == 0)
-                                ;
+                                return;
                             else
                             {
                                 ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate M.R No";
@@ -950,12 +935,6 @@ namespace RealERPWEB.F_23_CR
                 }
 
 
-
-
-
-
-
-
                 // string SchCode=
                 string mrdate = Convert.ToDateTime(this.txtReceiveDate.Text).ToString("dd-MMM-yyyy");
                 //////////////////////userlog
@@ -977,15 +956,12 @@ namespace RealERPWEB.F_23_CR
 
                 DataTable dt1 = ((DataTable)Session["sessionforgrid"]).Copy();
 
-
                 // Company Balance
 
                 switch (comcod)
                 {
                     case "3340"://Urban
-                    case "3101"://Urban
-
-
+                    case "3101"://Pintech
                         double SAmount = 0;
                         double PAmount = 0, BalAmt = 0;
                         DataTable dt = ((DataTable)Session["status"]).Copy();
@@ -999,11 +975,6 @@ namespace RealERPWEB.F_23_CR
                         DataView dvm = dem.DefaultView;
                         dvm.RowFilter = ("recType not in ('54004', '54006', '54008', '54009', '54012', '54015', '54020')");
                         dem = dvm.ToTable();
-
-
-
-
-
 
                         SAmount = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", "")));
                         PAmount = Convert.ToDouble((Convert.IsDBNull(dep.Compute("Sum(paidamt)", "")) ? 0.00 : dep.Compute("Sum(paidamt)", "")));
@@ -1020,9 +991,6 @@ namespace RealERPWEB.F_23_CR
                             return;
 
                         }
-
-
-
                         break;
                     default:
                         break;
@@ -1046,16 +1014,12 @@ namespace RealERPWEB.F_23_CR
 
                     switch (comcod)
                     {
-
-
                         case "3305": // Housing
                         case "2305": // land
                         case "3306": // Ratul
                         case "3309": // Holding
                         case "3311": // chitagong
                         case "3310": // Rcu
-
-
                         case "3325":// Leisure
                         case "2325"://Liesure
                             PactCode = this.ddlProjectName.SelectedValue.ToString();
@@ -1075,8 +1039,6 @@ namespace RealERPWEB.F_23_CR
 
                     //string PactCode = (comcod == "3325" || comcod == "2325") ? this.ddlProjectName.SelectedValue.ToString() :
                     //    (RecType == "54004" || RecType == "54006" || RecType == "54008" || RecType == "54009" || RecType == "54012" || RecType == "54015" || RecType == "54020") ? ("25" + this.ddlProjectName.SelectedValue.ToString().Substring(2)) : this.ddlProjectName.SelectedValue.ToString();
-
-
                     string type = dt1.Rows[i]["paytypecod"].ToString(); // this.ddlpaytype.SelectedValue.ToString();repchqno
                     double paidamt = Convert.ToDouble(dt1.Rows[i]["paidamount"]);
                     string chqno = dt1.Rows[i]["chequeno"].ToString();
@@ -1136,9 +1098,6 @@ namespace RealERPWEB.F_23_CR
 
                             foreach (DataRow dr2 in dt1.Rows)
                             {
-
-
-
                                 string chqno = dr2["chequeno"].ToString();
                                 bool result1 = MktData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE",
                                     "INSERTRECPTAPPROVAL", appid, appdate,
@@ -1161,14 +1120,8 @@ namespace RealERPWEB.F_23_CR
 
                             }
                             break;
-
                     }
-
-
                 }
-
-
-
                 if (Type == "Management")
                 {
 
@@ -1183,9 +1136,6 @@ namespace RealERPWEB.F_23_CR
 
                     foreach (DataRow dr2 in dt1.Rows)
                     {
-
-
-
                         string chqno = dr2["chequeno"].ToString();
                         bool result1 = MktData.UpdateTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE",
                             "INSERTRECPTAPPROVAL", appid, appdate,
@@ -1207,11 +1157,6 @@ namespace RealERPWEB.F_23_CR
                         }
 
                     }
-
-
-
-
-
                 }
 
                 //Log Report
@@ -1225,32 +1170,47 @@ namespace RealERPWEB.F_23_CR
                 // this.ddlType.Enabled = false;
 
                 //
-                string compsms = hst["compsms"].ToString();
-                if (compsms == "True")
+                //string compsms = hst["compsms"].ToString();
+                //if (compsms == "True")
+                //{
+                //    DataSet dsSm = CALogRecord.CheckStatus(comcod, "2301");
+                //    if (dsSm.Tables[0].Rows.Count == 0)
+                //        return;
+                //    if (dsSm.Tables[0].Rows[0]["sactive"].ToString() == "True")
+                //    {
+                //        //string Phone = this.lblPhone.Text.Trim();
+                //        //double amt = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text);
+                //        //string ntype = dsSm.Tables[0].Rows[0]["gcod"].ToString();
+                //        //string smsstatus = (dsSm.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
+                //        //string smscontent = dsSm.Tables[0].Rows[0]["smscont"].ToString().Replace("XXXXX", amt.ToString());
+                //        //string mailstatus = (dsSm.Tables[0].Rows[0]["mactive"].ToString() == "True") ? "Y" : "N";
+                //        //string mailcontent = dsSm.Tables[0].Rows[0]["mailcont"].ToString();
+                //        //string mailattch = "";
+
+
+                //        //bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smscontent.Replace("YYYYY", mrno), mailstatus,
+                //        //        mailcontent, mailattch, Phone, "");
+                //    }
+
+                //}
+                PactCode = this.ddlProjectName.SelectedValue.ToString();
+                string usercode = ViewState["usricode"].ToString();
+                switch (comcod)
                 {
-                    DataSet dsSm = CALogRecord.CheckStatus(comcod, "2301");
-                    if (dsSm.Tables[0].Rows.Count == 0)
-                        return;
 
-                    if (dsSm.Tables[0].Rows[0]["sactive"].ToString() == "True")
-                    {
-                        string Phone = this.lblPhone.Text.Trim();
-                        double amt = Convert.ToDouble("0" + ((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text);
-                        string ntype = dsSm.Tables[0].Rows[0]["gcod"].ToString();
-                        string smsstatus = (dsSm.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-                        string smscontent = dsSm.Tables[0].Rows[0]["smscont"].ToString().Replace("XXXXX", amt.ToString());
-                        string mailstatus = (dsSm.Tables[0].Rows[0]["mactive"].ToString() == "True") ? "Y" : "N";
-                        string mailcontent = dsSm.Tables[0].Rows[0]["mailcont"].ToString();
-                        string mailattch = "";
-                        bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smscontent.Replace("YYYYY", mrno), mailstatus,
-                                mailcontent, mailattch, Phone, "");
-                    }
+                    case "3101": // Pintech                   
+                    case "2325"://Liesure
+                        
 
-                }
+                        this.SMSSendMoneyRecipt(comcod, PactCode, usercode,  mrno,  mrdate);
+                        break;
 
 
-
-
+                    default:
+                        break;
+                }              
+               
+             
             }
             catch (Exception ex)
             {
@@ -1259,14 +1219,55 @@ namespace RealERPWEB.F_23_CR
             }
         }
 
+        private void SMSSendMoneyRecipt(string comcod, string PactCode, string Usircode, string mrno, string mrdate)
+        {
+            DataSet ds = MktData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_SALMGT", "GETOUTSTANDAMT", PactCode, Usircode,
+                      "", "", "", "", "", "", "");
+            if (ds == null)
+            {
+                return;
+            }
+
+            DataSet dssms = CALogRecord.CheckStatus(comcod, "2301");
+            string payableamt = Convert.ToDouble(((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text).ToString("#,##0.00; (#,##0.00) ");
+            string cutname = ds.Tables[0].Rows[0]["custname"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custname"].ToString();
+            string custphone = ds.Tables[0].Rows[0]["custphone"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custphone"].ToString();
+            string trcvamt = ds.Tables[0].Rows[0]["trecvamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["trecvamt"]).ToString("#,##0.00;(#,##0.00) "); ;
+            string payment = ds.Tables[0].Rows[0]["payamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["payamt"]).ToString("#,##0.00;(#,##0.00) ");
+            string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString() == "" ? "" : Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");
+            string dues = ds.Tables[0].Rows[0]["duesamt"].ToString() == "" ? "" : Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
+
+            string paymod = this.ddlpaytype.SelectedItem.Text.ToString();
+            string cheq = this.txtchqno.Text.ToString();
+
+            string tempeng = dssms.Tables[0].Rows[0]["smscont"].ToString();
+            tempeng = tempeng.Replace("[name]", cutname);
+            tempeng = tempeng.Replace("[date]", paymentdate);
+            tempeng = tempeng.Replace("[payamt]", payableamt);
+            tempeng = tempeng.Replace("[duesamt]", dues);
+            tempeng = tempeng.Replace("[paymode]", paymod);
+            tempeng = tempeng.Replace("[chequeno]", cheq);
+
+            string smtext = tempeng;
+
+            SendSmsProcess sms = new SendSmsProcess();
+            string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
+            string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
+            bool resultsms = sms.SendSMSClient("", smtext, custphone);
+            if (resultsms == true)
+            {
+                bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smtext, "",
+                           "", "", custphone, "");
+            }
+
+        }
+
         private string GetSchCode(string instype)
         {
             string SchCode = "";
             if (instype.Length == 0)
                 return SchCode;
             string sindex = instype.Substring(0, 2);
-
-
             switch (sindex)
             {
 
