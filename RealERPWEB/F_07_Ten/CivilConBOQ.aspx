@@ -1,12 +1,81 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CivilConBOQ.aspx.cs" Inherits="RealERPWEB.F_07_Ten.CivilConBOQ" %>
 
-<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
+
+    <!-- Include the plugin's CSS and JS: -->
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css" />
+
+    <style>
+        .multiselect {
+            width: 270px !important;
+            text-wrap: initial !important;
+            height: 27px !important;
+        }
+
+        .multiselect-text {
+            width: 200px !important;
+        }
+
+        .multiselect-container {
+            height: 250px !important;
+            width: 300px !important;
+            overflow-y: scroll !important;
+        }
+
+        span.multiselect-selected-text {
+            width: 200px !important;
+        }
+
+        span.multiselect-native-select{
+            border:1px solid #808080 !important;
+            width: 200px !important;
+        }
+
+
+        #ContentPlaceHolder1_divgrp {
+            width: 395px !important;
+        }
+
+        .form-control {
+            height: 34px;
+        }
+
+        .btn-group .dropdown-menu {
+            top: 34px !important;
+        }
+   
+        .chzn-container-single {
+            width: 350px !important;
+        }
+
+            .chzn-container-single .chzn-single {
+                height: 36px !important;
+                line-height: 36px;
+            }
+
+        body {
+            font-family: 'Century Gothic' !important;
+        }
+
+        .chzn-container-multi .chzn-choices {
+            line-height: 35px;
+            height: 35px;
+        }
+
+        .ddlFloor {
+            width: 250px !important;
+        }
+    </style>
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -22,15 +91,17 @@
             //    });
 
             //});
-        }
 
-        $(".js-select2").select2({
-            closeOnSelect: false,
-            placeholder: "Placeholder",
-            // allowHtml: true,
-            allowClear: true,
-            tags: true // создает новые опции на лету
-        });
+            $(function () {
+                $('[id*=DropCheck]').multiselect({
+                    includeSelectAllOption: true,
+
+
+                    enableCaseInsensitiveFiltering: true,
+                });
+
+            });
+        }
 
 
         function isNumberKey(txt, evt) {
@@ -49,29 +120,12 @@
             }
             return true;
         }
+
+
+
+
     </script>
-    <style>
-        .chzn-container-single {
-            width: 350px !important;
-        }
-
-            .chzn-container-single .chzn-single {
-                height: 36px !important;
-                line-height: 36px;
-            }
-
-        body {
-            font-family: 'Century Gothic' !important;
-        }
-
-        .chzn-container-multi .chzn-choices {
-            line-height: 35px;
-            height: 35px;
-        }
-        .ddlFloor{
-            width:250px !important;
-        }
-    </style>
+    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -193,43 +247,37 @@
 
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Work List</button>
                                 </div>
+                                <asp:DropDownList ID="ddlWorkList" runat="server" AutoPostBack="True" CssClass="   form-control  pl-0 pr-0">
+                                </asp:DropDownList>
 
-                                <%--<asp:ListBox  runat="server" ID="ddlWorkList" SelectionMode="Multiple" CssClass="chzn-select form-control  pl-0 pr-0">
-                                    <asp:ListItem Text="test1"></asp:ListItem>
-                                    <asp:ListItem Text="test2"></asp:ListItem>
-                                    <asp:ListItem Text="test3"></asp:ListItem>
-                                </asp:ListBox>--%>
 
-                                <asp:ListBox ID="DropCheck1" runat="server" SelectionMode="Single" CssClass="chzn-select form-control  pl-0 pr-0"
-                                    Style="min-width: 100px !important;"></asp:ListBox>
+
                             </div>
                         </div>
-                        <div class="col-md-3">
+
+                        <div class="col-md-3" style="position: relative">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Floor List</button>
                                 </div>
-                               
+                                <asp:ListBox ID="DropCheck" runat="server" CssClass="form-control" Style="min-width: 100px !important;" SelectionMode="Multiple"></asp:ListBox>
 
-                                  <asp:DropDownList ID="listFloor" runat="server" AutoPostBack="True"   Font-Bold="True" Font-Size="12px" CssClass="form-control  pl-0 pr-0"></asp:DropDownList>
+
 
                             </div>
+
                         </div>
 
-
-
                         <div class="col-md-2 d-none">
-
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Page</button>
                                 </div>
-
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
                                     Font-Bold="True" Font-Size="12px" CssClass="form-control  pl-0 pr-0"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
@@ -246,13 +294,13 @@
 
                             </div>
                         </div>
-                       
-                        <div class="col-md-2">
+
+                        <div class="col-md-3">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
-                            <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
 
-                                    <button class="btn btn-secondary" type="button">Print Type</button>
+                                     
                                 </div>
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Print Type</button>
@@ -324,20 +372,20 @@
 
                                     <asp:TemplateField HeaderText="Work <br> Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvsubdesc" runat="server" Font-Bold="False" Font-Size="12px"   CssClass="d-block" 
-                                                Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")) + "</B>"+
-                                                                         (DataBinder.Eval(Container.DataItem, "subdesc").ToString().Trim().Length>0 ? 
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")).Trim().Length>0 ?  "<br>" : "")+                                                                                                                                      
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")).Trim(): "")                                                                          
-                                                                    %>'></asp:Label>
-                                            <asp:Label ID="lblfloredesc" runat="server" CssClass="d-block"  Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'
-                                                ></asp:Label>
-                                        </ItemTemplate>
-                                        <ItemStyle Font-Size="12px" HorizontalAlign="Justify" VerticalAlign="Middle" />
+                                            <asp:Label ID="lblsubdesc" runat="server" Font-Bold="true" Font-Size="12px" CssClass="d-block"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")) %>'
+                                                Width="400px"></asp:Label>
 
-                                        <HeaderStyle HorizontalAlign="Left" />
-                                        <FooterStyle Font-Bold="true" Font-Size="14px" />
+                                            <asp:TextBox ID="txtSdetials" Width="400px" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails"))==""?false:true %>'
+                                                runat="server" CssClass="form-control d-block" TextMode="MultiLine" Rows="3" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")) %>'></asp:TextBox>
+
+                                            <asp:Label ID="lblfloredesc" runat="server" CssClass="d-block" Font-Size="12px" Width="400px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle Font-Size="12px" Width="400px" HorizontalAlign="Justify" VerticalAlign="Middle" />
+
+                                        <HeaderStyle HorizontalAlign="Left" Width="400px" />
+                                        <FooterStyle Font-Bold="true" Width="400px" Font-Size="14px" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Item Code">

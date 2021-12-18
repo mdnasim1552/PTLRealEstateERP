@@ -132,22 +132,22 @@ namespace RealERPWEB.F_07_Ten
         protected global::System.Web.UI.WebControls.DropDownList ddlWorkGroup;
 
         /// <summary>
-        /// DropCheck1 control.
+        /// ddlWorkList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox DropCheck1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWorkList;
 
         /// <summary>
-        /// listFloor control.
+        /// DropCheck control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList listFloor;
+        protected global::System.Web.UI.WebControls.ListBox DropCheck;
 
         /// <summary>
         /// ddlpagesize control.
