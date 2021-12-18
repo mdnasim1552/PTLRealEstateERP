@@ -60,9 +60,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
 
-
                 this.RadioButtonList1.SelectedIndex = 0;
-
                 this.GetCompanyName();
 
 
