@@ -308,6 +308,17 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Absent Day">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvEmpabsday" runat="server" Height="16px" Text='<%#   Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absday")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="50px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFEmpabsday" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Width="50px"></asp:Label>
+                                    </FooterTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
                                 
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
