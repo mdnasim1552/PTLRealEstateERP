@@ -60,9 +60,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
 
-
                 this.RadioButtonList1.SelectedIndex = 0;
-
                 this.GetCompanyName();
 
 
@@ -2950,19 +2948,19 @@ namespace RealERPWEB.F_99_Allinterface
         }
         protected void btnDelOrder_Click(object sender, EventArgs e)
         {
-            string url = "";
+            string url = "PurWrkOrderEntry?InputType=OrderEntry";
             string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-                case "1205":
-                case "3351":
-                case "3352":
-                    url = "PurMRREntry?Type=Entry";
-                    break;
-                default:
-                    url = "PurWrkOrderEntry?InputType=OrderEntry"; // PurMRREntry?Entry
-                    break;
-            }
+            //switch (comcod)
+            //{
+            //    case "1205":
+            //    case "3351":
+            //    case "3352":
+            //        url = "PurMRREntry?Type=Entry";
+            //        break;
+            //    default:
+            //        url = "PurWrkOrderEntry?InputType=OrderEntry"; // PurMRREntry?Entry
+            //        break;
+            //}
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
@@ -3048,9 +3046,22 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void btnDelBill_Click(object sender, EventArgs e)
         {
-
-            string url = "PurMRREntry?Type=Entry";
             string comcod = this.GetCompCode();
+            string url = "";
+            switch (comcod)
+            {
+                // p2p
+                case "1205":
+                case "3351":
+                case "3352":
+                    url = "PurBillEntry?Type=BillEntry";
+                    break;
+                default:
+                    url = "PurMRREntry?Type=Entry";
+                    break;
+            }
+            //hlink2.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillEntry&genno=" + orderno + "&sircode=" + sircode;
+
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
