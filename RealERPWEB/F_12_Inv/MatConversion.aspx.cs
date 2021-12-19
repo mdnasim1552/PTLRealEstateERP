@@ -950,12 +950,12 @@ namespace RealERPWEB.F_12_Inv
                 DataTable dt1 = dv1.ToTable();
                 if (dt1.Rows.Count == 0)
                     ;
-                else
-                {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Conversion. No !!!";
+                //else
+                //{
+                //    ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Conversion. No !!!";
 
-                    return;
-                }
+                //    return;
+                //}
             }
 
 
