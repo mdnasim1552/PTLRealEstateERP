@@ -421,8 +421,15 @@
     <EmbeddedResource Include="R_17_Acc\RptBgdvsExpense.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBillRegister.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBudVsAchivDet.rdlc" />
+<<<<<<< HEAD
     <EmbeddedResource Include="R_17_Acc\RptCashBankWithdraw.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBank.rdlc" />
+=======
+
+    <EmbeddedResource Include="R_17_Acc\RptCashBankWithdraw.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCashBank.rdlc" />
+
+>>>>>>> 57d2820423c287fa49f514600f8d4239fcb85afb
     <EmbeddedResource Include="R_17_Acc\RptCashBankGrpMonthDts.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankPosGrp.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashCrPur.rdlc" />
