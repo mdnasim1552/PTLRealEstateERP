@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -779,6 +779,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptDailyAttendenceCHL011.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptDailyLateAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptDeptWiseEmp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptEmpAbsCtAuto.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptEmpConfirmation.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptEmpMonthPresence.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptHRAllEmpStatus.rdlc" />
