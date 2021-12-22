@@ -3838,6 +3838,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         break;
 
+                    case "3101":
                     case "3332": // InnStar
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
@@ -3941,7 +3942,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-
+                    case "3101":
                     case "3339": // Tropical Home
                     case "3332": // InnStar
                     case "3336": // Suvastu
@@ -4121,7 +4122,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
                 }
 
-                if (comcod == "3354" || comcod == "3101")
+                if (comcod == "3354")
                 {
                     Rpt1.SetParameters(new ReportParameter("costdesc", costdesc));
                 }
