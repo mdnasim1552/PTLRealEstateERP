@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CivilConBOQ.aspx.cs" Inherits="RealERPWEB.F_07_Ten.CivilConBOQ" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" EnableEventValidation="false" ValidateRequest="false" AutoEventWireup="true" CodeBehind="CivilConBOQ.aspx.cs" Inherits="RealERPWEB.F_07_Ten.CivilConBOQ" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
@@ -36,8 +36,8 @@
             width: 200px !important;
         }
 
-        span.multiselect-native-select{
-            border:1px solid #808080 !important;
+        span.multiselect-native-select {
+            border: 1px solid #808080 !important;
             width: 200px !important;
         }
 
@@ -53,7 +53,7 @@
         .btn-group .dropdown-menu {
             top: 34px !important;
         }
-   
+
         .chzn-container-single {
             width: 350px !important;
         }
@@ -74,6 +74,11 @@
 
         .ddlFloor {
             width: 250px !important;
+        }
+
+        textarea {          
+            overflow-y: auto;
+            word-wrap: break-word;
         }
     </style>
     <script type="text/javascript">
@@ -121,11 +126,10 @@
             return true;
         }
 
-
-
+ 
 
     </script>
-    
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -182,7 +186,7 @@
                                 <div class="input-group-prepend">
                                     <label class="btn btn-secondary" type="button">Profit Rate %</label>
                                 </div>
-                                <asp:TextBox ID="txtSbtRate_Per" TabIndex="2" onkeypress="return isNumberKey(this, event);" runat="server" CssClass="form-control">0</asp:TextBox>
+                                <asp:TextBox ID="txtSbtRate_Per" TabIndex="2" onkeypress="return isNumberKey(this, event);" runat="server" CssClass="form-control">10</asp:TextBox>
 
                             </div>
                         </div>
@@ -192,7 +196,7 @@
                                 <div class="input-group-prepend">
                                     <label class="btn btn-secondary" type="button">Overhead %</label>
                                 </div>
-                                <asp:TextBox ID="txtACCost_Per" TabIndex="3" runat="server" onkeypress="return isNumberKey(this,event);" CssClass="form-control">0</asp:TextBox>
+                                <asp:TextBox ID="txtACCost_Per" TabIndex="3" runat="server" onkeypress="return isNumberKey(this,event);" CssClass="form-control">7.50</asp:TextBox>
 
                             </div>
                         </div>
@@ -202,7 +206,7 @@
                                 <div class="input-group-prepend">
                                     <label class="btn btn-secondary" type="button">Taxt & Vat  %</label>
                                 </div>
-                                <asp:TextBox ID="txtACCostVatOH_Per" TabIndex="4" runat="server" onkeypress="return isNumberKey(this,event);" CssClass="form-control   pr-0">0</asp:TextBox>
+                                <asp:TextBox ID="txtACCostVatOH_Per" TabIndex="4" runat="server" onkeypress="return isNumberKey(this,event);" CssClass="form-control   pr-0">12.5</asp:TextBox>
 
                             </div>
                         </div>
@@ -300,7 +304,7 @@
                                 <div class="input-group-prepend">
                                     <asp:LinkButton ID="lnkbtnAdd" runat="server" OnClick="lnkbtnAdd_Click" CssClass="btn btn-primary btn-md primaryBtn">Add</asp:LinkButton>
 
-                                     
+
                                 </div>
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary" type="button">Print Type</button>
@@ -372,12 +376,12 @@
 
                                     <asp:TemplateField HeaderText="Work <br> Description">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblsubdesc" runat="server" Font-Bold="true" Font-Size="12px" CssClass="d-block"
+                                            <asp:Label ID="lblsubdesc" runat="server" Font-Bold="true" Font-Size="14px" CssClass="d-block"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "subdesc")) %>'
                                                 Width="400px"></asp:Label>
 
                                             <asp:TextBox ID="txtSdetials" Width="400px" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails"))==""?false:true %>'
-                                                runat="server" CssClass="form-control d-block" TextMode="MultiLine" Rows="3" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")) %>'></asp:TextBox>
+                                                runat="server" CssClass="form-control txtSdetials d-block" TextMode="MultiLine" Height='<%# Eval("sdetails").ToString().Length*0.5%>'  Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sdetails")) %>'></asp:TextBox>
 
                                             <asp:Label ID="lblfloredesc" runat="server" CssClass="d-block" Font-Size="12px" Width="400px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flrdesc")) %>'></asp:Label>
