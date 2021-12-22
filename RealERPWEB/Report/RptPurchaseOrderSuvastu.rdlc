@@ -187,12 +187,12 @@
                   <Width>0.60618in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.93345in</Width>
+                  <Width>0.89941in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.44281in</Height>
+                  <Height>1.41401in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -278,7 +278,7 @@
                                     <Width>0.12187in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
-                                    <Width>2.59701in</Width>
+                                    <Width>2.70118in</Width>
                                   </TablixColumn>
                                   <TablixColumn>
                                     <Width>1.10277in</Width>
@@ -724,7 +724,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Phone Number</Value>
+                                                    <Value>Supplier Address</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -750,7 +750,7 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox42">
+                                          <Textbox Name="Textbox27">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
@@ -768,7 +768,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox42</rd:DefaultName>
+                                            <rd:DefaultName>Textbox27</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -784,14 +784,14 @@
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox32">
+                                          <Textbox Name="Textbox22">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Parameters!supmobile.Value</Value>
+                                                    <Value>=Parameters!supadd.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
@@ -800,7 +800,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox32</rd:DefaultName>
+                                            <rd:DefaultName>Textbox22</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -922,14 +922,14 @@
                                     <TablixCells>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox54">
+                                          <Textbox Name="Textbox78">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Supplier Address</Value>
+                                                    <Value>Attn</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -939,7 +939,7 @@
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox54</rd:DefaultName>
+                                            <rd:DefaultName>Textbox63</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -996,13 +996,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value xml:space="preserve"> </Value>
-                                                    <Style>
-                                                      <FontFamily>times New Roman</FontFamily>
-                                                    </Style>
-                                                  </TextRun>
-                                                  <TextRun>
-                                                    <Value>=Parameters!supadd.Value</Value>
+                                                    <Value>=Parameters!cperson.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
@@ -1138,7 +1132,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Attn</Value>
+                                                    <Value>Phone Number</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1205,7 +1199,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Parameters!cperson.Value</Value>
+                                                    <Value>=Parameters!supmobile.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
@@ -1304,7 +1298,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Parameters!cperson.Value</Value>
+                                                    <Value>=Parameters!cperson2.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                     </Style>
@@ -1353,7 +1347,7 @@
                               <DataSetName>DataSet1</DataSetName>
                               <Top>0.37617in</Top>
                               <Height>0.9625in</Height>
-                              <Width>8.04458in</Width>
+                              <Width>8.14875in</Width>
                               <ZIndex>2</ZIndex>
                               <Style>
                                 <Border>
@@ -2023,6 +2017,7 @@
                                   <Value>=Fields!rsirdesc.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2063,6 +2058,7 @@
                                   <Value>=Fields!spcfdesc.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2103,6 +2099,7 @@
                                   <Value>=Fields!reqno.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2143,6 +2140,7 @@
                                   <Value>=Fields!rsirunit.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
+                                    <FontSize>9pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -3547,7 +3545,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Parameters!pordnar.Value+"\n"+Fields!reqnar.Value</Value>
+                                  <Value>=Parameters!pordnar.Value+System.Environment.NewLine+Fields!reqnar.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -4400,8 +4398,8 @@
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.20708in</Top>
-            <Height>6.87502in</Height>
-            <Width>8.18276in</Width>
+            <Height>6.84625in</Height>
+            <Width>8.14875in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4409,10 +4407,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>7.15119in</Height>
+        <Height>7.11583in</Height>
         <Style />
       </Body>
-      <Width>8.18276in</Width>
+      <Width>8.14875in</Width>
       <Page>
         <PageHeader>
           <Height>0.60417in</Height>
@@ -5212,6 +5210,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="cperson2">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -5412,6 +5416,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>19</RowIndex>
           <ParameterName>faxnumber</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>19</RowIndex>
+          <ParameterName>cperson2</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
