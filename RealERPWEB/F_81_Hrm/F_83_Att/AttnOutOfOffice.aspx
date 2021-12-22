@@ -4,29 +4,65 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     
-
     <script type="text/javascript">
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
+
         function pageLoaded() {
+            //$('.datepicker').datepicker({
+            //    format: 'mm/dd/yyyy',
+            //});
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $(".chosen-select").chosen({
+                search_contains: true,
+                no_results_text: "Sorry, no match!",
+                allow_single_deselect: true
+            });
+
+
             $('.chzn-select').chosen({ search_contains: true });
-        }
+
+
+
+           <%-- var gvSummary = $('#<%=this.gvSaleFunnel.ClientID %>');
+            gvSummary.Scrollable();--%>
+
+
+        };
 
     </script>
 
     <style>
+
         .chzn-container-single {
-            width: 365px !important;
+            width: 200px !important;
+            height: 34px !important;
+        }
+         .chzn-container-single .chzn-single {
+                height: 36px !important;
+                line-height: 36px;
+            }
+
+        /*  .project-slect  .chzn-container-single{
+         width: 100px !important;
+            height: 34px !important;
+        
+        }*/
+        .profession-slect .chzn-container-single {
+            height: 34px !important;
         }
     </style>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+  <%--  <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>--%>
             <div class="card card-fluid container-data mt-5" id='printarea'>
                 <div class="card-body">
                     <div class="row" id="topPanle" runat="server" visible="false">
@@ -35,7 +71,7 @@
 
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary ml-1 pr-0 pl-0" type="button">Date</button>
+                                    <button class="btn btn-secondary " type="button">Date</button>
                                 </div>
 
                                 <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control " AutoComplete="off"></asp:TextBox>
@@ -44,12 +80,12 @@
 
                             </div>
                         </div>
-                        <div class="col-md-3 d-none p-0">
+                        <div class="col-md-3 p-0">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Company</button>
                                 </div>
-                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control  chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
 
                             </div>
@@ -59,7 +95,7 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Department</button>
                                 </div>
-                                <asp:DropDownList ID="ddlDpt" runat="server" CssClass="form-control inputTxt " OnSelectedIndexChanged="ddlDpt_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlDpt" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlDpt_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
 
                             </div>
@@ -69,7 +105,7 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Section</button>
                                 </div>
-                                <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control inputTxt" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlSection" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
 
                             </div>
@@ -77,9 +113,9 @@
                         <div class="col-md-4 p-0">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary ml-1 PL-0 PR-0" type="button">Emp</button>
+                                    <button class="btn btn-secondary ml-1" type="button">Emp</button>
                                 </div>
-                                <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
 
                             </div>
@@ -106,9 +142,8 @@
 
 
                 </div>
-            </div>
-            </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+           </div>
+      <%--  </ContentTemplate>
+    </asp:UpdatePanel>--%>
 
 </asp:Content>
