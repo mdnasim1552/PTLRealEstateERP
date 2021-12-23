@@ -17,11 +17,11 @@ using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 namespace RealERPWEB.F_12_Inv
 {
-       
+
     public partial class PurMatIssue : System.Web.UI.Page
     {
 
-        
+
         int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
         ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace RealERPWEB.F_12_Inv
                     this.ddlPrevISSList.DataTextField = "maxmisuno1";
                     this.ddlPrevISSList.DataValueField = "maxmisuno";
                     this.ddlPrevISSList.DataSource = ds2.Tables[0];
-                     this.ddlPrevISSList.DataBind();
+                    this.ddlPrevISSList.DataBind();
 
                 }
                 //else {
@@ -750,9 +750,6 @@ namespace RealERPWEB.F_12_Inv
             //}
 
             string comcod = this.GetCompCode();
-           
-           
-
 
 
             string mRef = this.txtMIsuRef.Text;
@@ -868,10 +865,15 @@ namespace RealERPWEB.F_12_Inv
             string mISURNAR = this.txtISSNarr.Text.Trim();
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UPDATEPURMISSUEINFO", "PURMISSUEB",
                              mISUNO, mISUDAT, mPACTCODE, mISURNAR, mRef, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Editdat, mSmcr, "", "");
+            //if (!result)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //    return;
+            //}
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
 
@@ -894,16 +896,23 @@ namespace RealERPWEB.F_12_Inv
                         Rsircode, Spcfcod, Isuqty.ToString(), txtlocation, txtremarks, "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                         return;
                     }
                 }
             }
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            string CurDate1= System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DataSet dsx = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURMISSUEINFO", mISUNO, CurDate1, mPACTCODE, "", "", "", "", "", "");
+            if (dsx == null)
+                return;
+            this.XmlDataInsert(mISUNO, dsx);
+
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Data Updated successfully');", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
 
             this.txtCurISSDate.Enabled = false;
             if (ConstantInfo.LogStatus == true)
@@ -949,6 +958,14 @@ namespace RealERPWEB.F_12_Inv
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
             string MatCode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblitemcode")).Text.Trim();
             string spcfcode = ((Label)this.grvissue.Rows[e.RowIndex].FindControl("lblgvspcfcode")).Text.Trim();
+
+            if (dt.Rows.Count > 0)
+            {
+                DataSet ds1 = new DataSet();
+                ds1.Tables.Add(dt);
+                this.XmlDataInsert(mISUNO, ds1);
+            }
+
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUE", mISUNO, MatCode, spcfcode, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
@@ -972,16 +989,35 @@ namespace RealERPWEB.F_12_Inv
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + ASTUtility.Right((this.txtCurISSDate.Text.Trim()), 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUEALL", mISUNO, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
+
+            if (tbl1.Rows.Count > 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                DataSet ds1 = new DataSet();
+                ds1.Tables.Add(tbl1);
+                this.XmlDataInsert(mISUNO, ds1);
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Delete  successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUEALL", mISUNO, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            //if (!result)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //    return;
+            //}
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Delete Successfully" + "');", true);
+            }
+
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Delete  successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
         }
@@ -1006,6 +1042,49 @@ namespace RealERPWEB.F_12_Inv
         protected void lbtnPrevOk_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private bool XmlDataInsert(string Reqno, DataSet ds)
+        {
+            //Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+            DataSet ds1 = new DataSet("ds1");
+            DataTable dt1 = new DataTable();
+            dt1.Columns.Add("delbyid", typeof(string));
+            dt1.Columns.Add("delseson", typeof(string));
+            dt1.Columns.Add("deltrmnid", typeof(string));
+            dt1.Columns.Add("deldate", typeof(DateTime));
+
+            DataRow dr1 = dt1.NewRow();
+            dr1["delbyid"] = usrid;
+            dr1["delseson"] = session;
+            dr1["deltrmnid"] = trmnid;
+            dr1["deldate"] = Date;
+            dt1.Rows.Add(dr1);
+            dt1.TableName = "tbl1";
+
+            ds1.Merge(dt1);
+            ds1.Merge(ds.Tables[0]);
+            ds1.Tables[0].TableName = "tbl1";
+            ds1.Tables[1].TableName = "tbl2";
+
+            bool resulta = purData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATEXML01", ds1, null, null, Reqno);
+
+            if (!resulta)
+            {
+
+                return false;
+            }
+
+
+            return true;
         }
     }
 }
