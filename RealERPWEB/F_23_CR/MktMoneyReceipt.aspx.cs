@@ -1199,7 +1199,7 @@ namespace RealERPWEB.F_23_CR
                 {
 
                     case "3101": // Pintech                   
-                    case "2325"://Liesure
+                    case "3356": //Intech
                         
 
                         this.SMSSendMoneyRecipt(comcod, PactCode, usercode,  mrno,  mrdate);

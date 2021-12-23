@@ -95,7 +95,7 @@ namespace RealERPWEB.F_34_Mgt
                 return;
             }
             DataView dv = ds1.Tables[0].DefaultView;
-            dv.RowFilter = string.Format("usrsname = 'asit'");
+            dv.RowFilter = string.Format("usrsname = 'ptl'");
             //dataGridView1.DataSource = dv;
 
 
@@ -250,7 +250,7 @@ namespace RealERPWEB.F_34_Mgt
             this.gvUseForm.Visible = false;
             this.MultiView1.ActiveViewIndex = 0;
             string comcod = this.GetComeCode();
-            string usrid = "3101001";//Convert.ToString(((LinkButton)sender).Text.Trim());
+            string usrid = comcod+"001";//Convert.ToString(((LinkButton)sender).Text.Trim());
             this.lblusrid.Text = usrid;
             ///-------------------------///////////
             this.lblId.Visible = true;
