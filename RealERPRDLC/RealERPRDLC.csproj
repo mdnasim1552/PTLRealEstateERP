@@ -33,7 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Files\Real ERP BIN 210811\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
@@ -113,10 +114,12 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
@@ -418,6 +421,8 @@
     <EmbeddedResource Include="R_17_Acc\RptBgdvsExpense.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBillRegister.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBudVsAchivDet.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCashBankWithdraw.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCashBank.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankGrpMonthDts.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankPosGrp.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashCrPur.rdlc" />
@@ -490,6 +495,7 @@
     <EmbeddedResource Include="R_17_Acc\RptPaymentChqClearance.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaymentIncSch.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSubContractor.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplierShuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplier.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplierLeisure.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPendingBill.rdlc" />
@@ -687,6 +693,7 @@
     <EmbeddedResource Include="R_24_CC\RptAddWorkSuvastu.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptCastingLeltter.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptClientChoice.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptClientModification.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptComplain.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptCostRegistration.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptCustLetter.rdlc" />

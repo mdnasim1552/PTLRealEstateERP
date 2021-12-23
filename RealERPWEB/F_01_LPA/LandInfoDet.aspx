@@ -318,10 +318,9 @@
 
         $(document).ready(function () {
 
-
-
-
+             
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            document.getElementById('<%= Btn_tempBTN.ClientID %>').click();
 
         });
 
@@ -1198,6 +1197,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
+                    <asp:LinkButton ID="Btn_tempBTN" OnClick="Btn_tempBTN_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
 
 
             <div class="card card-fluid ">

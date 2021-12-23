@@ -3838,6 +3838,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         break;
 
+                    case "3101":
                     case "3332": // InnStar
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
@@ -3902,6 +3903,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string terms = _ReportDataSet.Tables[4].Rows[0]["terms"].ToString();
                 string costdesc = _ReportDataSet.Tables[4].Rows[0]["rsirdesc"].ToString();
 
+                string cperson2 = "";
 
                 // Terms & Conditions Variables//
 
@@ -3941,9 +3943,14 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-
+                    case "3101":
                     case "3339": // Tropical Home
                     case "3332": // InnStar
+                        terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "2. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms3 = "3. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        break;
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
 
@@ -3951,6 +3958,8 @@ namespace RealERPWEB.F_99_Allinterface
                         terms2 = "2. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
                         terms3 = "3. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
                         terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+
                         break;
 
                     //case "3101": // ASIT
@@ -4121,9 +4130,14 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
                 }
 
-                if (comcod == "3354" || comcod == "3101")
+                if (comcod == "3354")
                 {
                     Rpt1.SetParameters(new ReportParameter("costdesc", costdesc));
+                }
+                if (comcod == "3336" || comcod == "3337")
+                {
+                    Rpt1.SetParameters(new ReportParameter("cperson2", cperson2));
+                   
                 }
 
 

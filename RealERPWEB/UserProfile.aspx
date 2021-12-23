@@ -24,12 +24,12 @@
             function drawChart() {
 
                 var data = google.visualization.arrayToDataTable([
-                  ['Task', 'Attendance status'],
+                    ['Task', 'Attendance status'],
 
-                  ['Present', present],
-                  ['Absent', abs],
-                  ['Late', late],
-                  ['On leave', onleave],
+                    ['Present', present],
+                    ['Absent', abs],
+                    ['Late', late],
+                    ['On leave', onleave],
 
 
                 ]);
@@ -297,9 +297,9 @@
                                 <!-- .card-header-control -->
 
                                 <div class="form-group dropdown">
-                                     <asp:HyperLink ID="hlnkbtnNext" runat="server" NavigateUrl="#" Target="_blank" CssClass="btn btn-info primaryBtn pull-right" Text="Next">
+                                    <asp:HyperLink ID="hlnkbtnNext" runat="server" NavigateUrl="#" Target="_blank" CssClass="btn btn-info primaryBtn pull-right" Text="Next">
 
-                            </asp:HyperLink>
+                                    </asp:HyperLink>
                                 </div>
 
 
@@ -385,7 +385,7 @@
 
                             </asp:GridView>
                             <!-- /.table -->
-                          
+
                         </div>
 
                         <!-- /.card-footer -->

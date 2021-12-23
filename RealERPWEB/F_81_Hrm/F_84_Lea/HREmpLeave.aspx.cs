@@ -282,7 +282,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Session.Remove("YearLeav");
 
             string comcod = this.GetComeCode();
-            string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
+         
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string nozero = (hrcomln == 4) ? "0000" : "00";
+            string company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"%";//(this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string yearid = this.txtdate.Text;
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             string empcode = this.txtEmpSearch.Text.Trim() + "%";

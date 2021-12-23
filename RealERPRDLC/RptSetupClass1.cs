@@ -88,6 +88,10 @@ namespace RealERPRDLC
                 case "R_07_Ten.RptTenderProposal": Rpt1a = SetRptTenderProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_07_Ten.RptCivilConBOQ": Rpt1a = SetRptCivilConBOQ(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_07_Ten.RptCivilConBOQTender": Rpt1a = SetRptCivilConBOQTender(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_24_CC.RptClientModification": Rpt1a = SetRptClientModification(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptCashBank": Rpt1a = SetRptCashBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptCashBankWithdraw": Rpt1a = SetRptCashBankWithdraw(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 #endregion
                 #region Project Design
 
@@ -415,6 +419,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccAitVatSd": Rpt1a = SetRptAccATIVatDeduction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAitVatProjWise": Rpt1a = SetRptAccATITxVatProjWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptPaySlipSupplier": Rpt1a = SetRptPaySlipSupplier(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptPaySlipSupplierShuvastu":
+                    Rpt1a = SetRptPaySlipSupplierShuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break; 
+
                 case "R_17_Acc.RptPaySlipSubContractor": Rpt1a = SetRptPaySlipSubContractor(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptDailyProjectTransactionList": Rpt1a = SetRptProjectTransaction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankReconc": Rpt1a = SetRptBankReconc(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1059,6 +1066,26 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_07_Ten.RptCivilConBOQ>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptClientModification(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.RptClientModification>)RptDataSet));
+            return Rpt1a;
+        }
+    
+      private static LocalReport SetRptCashBank(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptCashBank>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptCashBankWithdraw(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptCashBank>)RptDataSet));
+            return Rpt1a;
+        }
+        
+
+
 
         private static LocalReport SetRptProjectDesign(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -2022,7 +2049,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_32_Mis.EClassAcc_03.CollectionBrackDown>)RptDataSet));
             return Rpt1a;
         }
+        private static LocalReport SetRptPaySlipSupplierShuvastu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_32_Mis.EClassAcc_03.CollectionBrackDown>)RptDataSet));
+            return Rpt1a;
+        }
 
+        
         private static LocalReport SetRptAccATITxVatProjWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptAitTaxVatProjectWise>)RptDataSet));

@@ -306,7 +306,7 @@ namespace RealERPWEB
 
 
 
-                ((HyperLink)this.gvLeaveStatus.HeaderRow.FindControl("hlnkbtnNext")).NavigateUrl = "../F_82_App/LinkMyHRLeave.aspx?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+                this.hlnkbtnNext.NavigateUrl = "../F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
