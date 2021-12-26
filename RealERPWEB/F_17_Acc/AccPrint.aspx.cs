@@ -204,7 +204,8 @@ namespace RealERPWEB.F_17_Acc
                 case "3338"://  ACME
                 case "3339"://  Tropical
                 case "3340"://  Urban
-                            //  
+                case "3101":// Pintech  
+                case "3353":// manama  
                     break;
 
 
@@ -268,7 +269,9 @@ namespace RealERPWEB.F_17_Acc
                 string postrmid = dt1.Rows[0]["entryid"].ToString();
                 string postuser = dt1.Rows[0]["entryPerson"].ToString();
                 //string postseson = dt1.Rows[0]["chequeno"].ToString();
-                string Posteddat = dt1.Rows[0]["entryDate"].ToString();
+                string Posteddat = Convert.ToDateTime(dt1.Rows[0]["entryDate"]).ToString("dd-MMM-yyyy"); 
+                string postdesig =  dt1.Rows[0]["entrydesig"].ToString();
+                string txtsign1 = postuser + "\n" + postdesig + "\n" + Posteddat;
 
 
                 if (dramt > 0 && cramt > 0)
@@ -450,6 +453,8 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("chqno", "Cheque No : " + chequeno));
                     Rpt1.SetParameters(new ReportParameter("voutype1", " Bank Payment Voucher "));
+                    Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                    
                 }
 
                 else if(Type== "VocherPrintTanvir")
