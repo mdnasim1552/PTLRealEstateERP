@@ -213,7 +213,7 @@ namespace RealERPWEB.F_14_Pro
                     switch (comcod)
                     {
                         case "3101": // Pintech                   
-                        case "2325"://Liesure
+                        case "3356"://Liesure
                             this.SMSSendforSupplier(comcod, cellphone);
                             break;
 

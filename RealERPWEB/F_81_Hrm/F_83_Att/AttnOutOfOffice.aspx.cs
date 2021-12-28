@@ -86,7 +86,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetCompCode();
             string ProjectCode = (this.ddlSection.SelectedValue.Trim().Length > 0) ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
             string txtSProject = "%%";
-            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPAYSLIPEMPNAMEALL", ProjectCode, txtSProject, "", "", "", "", "", "", "");
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEEINOUTLIST", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpNameAllInfo.DataTextField = "empname";
             this.ddlEmpNameAllInfo.DataValueField = "empid";
             this.ddlEmpNameAllInfo.DataSource = ds5.Tables[0];

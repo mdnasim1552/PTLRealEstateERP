@@ -170,7 +170,7 @@ namespace RealERPWEB.F_17_Acc
                 case "2325":
                     if (isMoneyRecpt)
                     {
-                        string part1 = ASTUtility.Left(Installment2, 5);
+                        string part1 = ASTUtility.Left(Installment2, 4);
                         string part2 = ASTUtility.Right(Installment2, 16);
                         Installment = part1 + " - " + part2;
                     }
