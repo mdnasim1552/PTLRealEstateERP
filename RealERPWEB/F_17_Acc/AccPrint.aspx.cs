@@ -149,7 +149,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintP2P";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     vouprint = "VocherPrintManama";
                     break;
@@ -206,6 +206,9 @@ namespace RealERPWEB.F_17_Acc
                 case "3340"://  Urban
                 case "3101":// Pintech  
                 case "3353":// manama  
+
+                case "3357":// Cube   
+
                     break;
 
 
@@ -561,6 +564,10 @@ namespace RealERPWEB.F_17_Acc
                 case "3317"://  Assure(Aggro)
                 case "3353":
                 case "3101"://  ASIT (Check)
+
+                case "3357"://  Cube Holding
+
+
                     break;
 
 
@@ -638,7 +645,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintSuvastu";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "2325":
                 case "3325":
                     vouprint = "VocherPrintLei";
@@ -1379,7 +1386,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
-                if(comcod=="2325" || comcod == "3325" || comcod == "3101")
+                if(comcod=="2325" || comcod == "3325")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, postseson, Posteddat,compname, username, printdate, session))); 
                 }
