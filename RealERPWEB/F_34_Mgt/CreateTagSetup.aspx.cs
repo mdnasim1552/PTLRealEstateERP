@@ -46,7 +46,7 @@ namespace RealERPWEB.F_34_Mgt
             string tagname = this.TxtTag.Text.ToString();
             string pid = this.Request.QueryString["Type"] ?? "";
             string id = (pid.Length > 0) ? pid.ToString() : "";
-
+            string tid = this.Request.QueryString["tid"].ToString();
             bool result = AccData.UpdateTransInfo("", "SP_TAS_ENTRY_CODEBOOK", "INSERTUPDATETAGINFO", id, tagname);
             if (!result)
             {
@@ -64,7 +64,7 @@ namespace RealERPWEB.F_34_Mgt
                 string tagid = this.Request.QueryString["Type"] ?? "";
                 if (tagid.Length > 0)
                 {
-                    Response.Redirect("~/F_34_Mgt/CreateTagSetup?Type=");
+                    Response.Redirect("~/F_34_Mgt/CreateTagSetup?Type=" +"&tid="+ tid);
                 }
             }
 
@@ -105,6 +105,12 @@ namespace RealERPWEB.F_34_Mgt
         {
             this.GvTagSetup.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void lnkBack_Click(object sender, EventArgs e)
+        {
+            string tid =this.Request.QueryString["tid"].ToString();
+            Response.Redirect("~/F_34_Mgt/ContentSetupEntry?Type=" + "&id=" + tid + "&dfor=S");
         }
     }
 }
