@@ -629,7 +629,14 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spclcode")) %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Head of Accounts">
+                                            <asp:TemplateField HeaderText="">
+                                                <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Head of Accounts" Width="230px"></asp:Label>
+
+                                                    <asp:HyperLink ID="hlbtntbGrdExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                    </asp:HyperLink>
+                                                </HeaderTemplate>
+
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True"
                                                         OnClick="lnkTotal_Click" CssClass="btn btn-primary primarygrdBtn pull-right">Total :</asp:LinkButton>
