@@ -127,6 +127,7 @@ namespace RealERPWEB.F_12_Inv
                     this.ddlPrevISSList.DataBind();
 
                 }
+
                 //else {
                 //    this.ddlPrevISSList.DataTextField = "maxmisuno1";
                 //    this.ddlPrevISSList.DataValueField = "maxmisuno";
