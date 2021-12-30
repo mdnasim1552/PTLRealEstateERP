@@ -242,7 +242,7 @@
                                 <asp:TemplateField HeaderText="Specifition">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lnkupdate" runat="server" CssClass="btn btn-danger primaryBtn" 
-                                             OnClick="lnkupdate_Click">Update</asp:LinkButton>
+                                             OnClick="lnkupdate_Click" OnClientClick="javascript:return FunConfirmSave();">Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvspecifition" runat="server"

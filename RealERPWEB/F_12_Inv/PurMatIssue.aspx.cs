@@ -718,6 +718,9 @@ namespace RealERPWEB.F_12_Inv
 
                 return;
             }
+
+            ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Enabled = false;
+          
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string sessionid = hst["session"].ToString();
@@ -904,7 +907,7 @@ namespace RealERPWEB.F_12_Inv
             }
 
             string CurDate1= System.DateTime.Today.ToString("dd-MMM-yyyy");
-            DataSet dsx = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURMISSUEINFO", mISUNO, CurDate1, mPACTCODE, "", "", "", "", "", "");
+            DataSet dsx = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURMISSUEINFO", mISUNO, "", "", "", "", "", "", "", "");
             if (dsx == null)
                 return;
             this.XmlDataInsert(mISUNO, dsx);
@@ -964,7 +967,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 DataSet ds1 = new DataSet();
                 ds1.Tables.Add(dt);
-                this.XmlDataInsert(mISUNO, ds1);
+                //this.XmlDataDeleted(mISUNO, ds1);
             }
 
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "DELETEMATISUE", mISUNO, MatCode, spcfcode, "", "", "", "", "", "", "", "", "", "", "", "");
@@ -995,7 +998,7 @@ namespace RealERPWEB.F_12_Inv
             {
                 DataSet ds1 = new DataSet();
                 ds1.Tables.Add(tbl1);
-                this.XmlDataInsert(mISUNO, ds1);
+                //this.XmlDataDeleted(mISUNO, ds1);
             }
 
 
@@ -1045,8 +1048,9 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
-        private bool XmlDataInsert(string Reqno, DataSet ds)
+        private bool XmlDataDeleted(string Reqno, DataSet ds)
         {
+            //Log Data
             //Log Data
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
@@ -1073,8 +1077,56 @@ namespace RealERPWEB.F_12_Inv
 
             ds1.Merge(dt1);
             ds1.Merge(ds.Tables[0]);
+            ds1.Merge(ds.Tables[1]);
             ds1.Tables[0].TableName = "tbl1";
             ds1.Tables[1].TableName = "tbl2";
+            ds1.Tables[2].TableName = "tbl3";
+
+            bool resulta = purData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATEXML01", ds1, null, null, Reqno);
+
+            if (!resulta)
+            {
+
+                return false;
+            }
+
+
+            return true;
+
+        }
+
+        private bool XmlDataInsert(string Reqno, DataSet ds)
+        {
+            //Log Data
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompCode();
+            string usrid = hst["usrid"].ToString();
+            string trmnid = hst["compname"].ToString();
+            string session = hst["session"].ToString();
+            string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+
+            DataSet ds1 = new DataSet("ds1");
+            DataTable dt1 = new DataTable();
+            dt1.Columns.Add("postedbyid", typeof(string));
+            dt1.Columns.Add("postedseson", typeof(string));
+            dt1.Columns.Add("postedtrmnid", typeof(string));
+            dt1.Columns.Add("posteddate", typeof(DateTime));
+
+            DataRow dr1 = dt1.NewRow();
+            dr1["postedbyid"] = usrid;
+            dr1["postedseson"] = session;
+            dr1["postedtrmnid"] = trmnid;
+            dr1["posteddate"] = Date;
+            dt1.Rows.Add(dr1);
+            dt1.TableName = "tbl1";
+
+            ds1.Merge(dt1);
+            ds1.Merge(ds.Tables[0]);
+            ds1.Merge(ds.Tables[1]);
+            ds1.Tables[0].TableName = "tbl1";
+            ds1.Tables[1].TableName = "tbl2";
+            ds1.Tables[2].TableName = "tbl3";
 
             bool resulta = purData.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "UPDATEXML01", ds1, null, null, Reqno);
 
