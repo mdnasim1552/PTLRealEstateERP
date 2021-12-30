@@ -62,30 +62,16 @@
 
 
     <script type="text/javascript">
-
-
-
-
         $(document).ready(function () {
-
-
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
         });
-
-
         $('.chzn-container').css('width', '250px');
 
 
-        function pageLoaded() {
-
-
-
+        function pageLoaded() {             
             //$('.datepicker').datepicker({
             //    format: 'mm/dd/yyyy',
             //});
-
-
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
