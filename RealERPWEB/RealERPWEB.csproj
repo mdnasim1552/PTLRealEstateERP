@@ -2580,6 +2580,7 @@
     <Content Include="F_21_MKT\MktSalsPaymentPro.aspx" />
     <Content Include="F_21_MKT\MktTeamCodeBook.aspx" />
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
+    <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
@@ -3939,6 +3940,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\MonthsWiseSale.aspx.cs">
+      <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
+      <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.cs">
       <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
