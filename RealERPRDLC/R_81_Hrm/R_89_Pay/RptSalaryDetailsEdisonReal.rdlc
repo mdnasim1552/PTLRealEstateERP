@@ -2881,7 +2881,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!adv.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!adv.Value+Fields!loanins.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3750,7 +3750,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!adv.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(sum(Fields!adv.Value+Fields!loanins.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -4749,7 +4749,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!adv.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(sum(Fields!adv.Value+Fields!loanins.Value),"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>6pt</FontSize>
@@ -5065,7 +5065,7 @@
             <Top>0.05034in</Top>
             <Left>0.025in</Left>
             <Height>1.89584in</Height>
-            <Width>14.48249in</Width>
+            <Width>14.48244in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
