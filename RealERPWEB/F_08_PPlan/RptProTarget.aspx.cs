@@ -1346,11 +1346,11 @@ namespace RealERPWEB.F_08_PPlan
             this.gvresdet.DataBind();
 
 
-            string radalertscript = "<script language='javascript'>function f(){loadModal(); Sys.Application.remove_load(f);}; Sys.Application.add_load(f);</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "radalert", radalertscript);
+            //string radalertscript = "<script language='javascript'>function f(){loadModal(); Sys.Application.remove_load(f);}; Sys.Application.add_load(f);</script>";
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "radalert", radalertscript);
 
 
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
         }
     }
 }
