@@ -374,12 +374,14 @@
                                                     <Value xml:space="preserve"> </Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
+                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                   <TextRun>
                                                     <Value>=Parameters!porderno.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
+                                                      <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1202,6 +1204,7 @@
                                                     <Value>=Parameters!supmobile.Value</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
+                                                      <FontSize>11pt</FontSize>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -4430,7 +4433,7 @@
                       <Value>=Parameters!compname.Value</Value>
                       <Style>
                         <FontFamily>times New Roman</FontFamily>
-                        <FontSize>16pt</FontSize>
+                        <FontSize>18pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
