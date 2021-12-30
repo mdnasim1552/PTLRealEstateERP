@@ -96,6 +96,24 @@ namespace RealERPWEB.F_07_Ten
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnOK;
 
         /// <summary>
+        /// ImgbtnFindReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindReq;
+
+        /// <summary>
+        /// ddlPrevReqList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrevReqList;
+
+        /// <summary>
         /// divResource control.
         /// </summary>
         /// <remarks>
@@ -123,6 +141,15 @@ namespace RealERPWEB.F_07_Ten
         protected global::System.Web.UI.WebControls.DropDownList ddlWorkList;
 
         /// <summary>
+        /// DropCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox DropCheck;
+
+        /// <summary>
         /// ddlpagesize control.
         /// </summary>
         /// <remarks>
@@ -139,6 +166,15 @@ namespace RealERPWEB.F_07_Ten
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdd;
+
+        /// <summary>
+        /// txtPrintId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtPrintId;
 
         /// <summary>
         /// gvCivilBoq control.

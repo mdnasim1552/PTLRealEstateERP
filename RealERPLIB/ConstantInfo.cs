@@ -24,7 +24,7 @@ namespace RealERPLIB
         /// Strt Menu
         /// <returns></returns>
 
-
+        
         #region General Menu
         public static DataTable WebObjTable()
         {
@@ -282,6 +282,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "0703000", "0701140", "F_07_Ten", "TasQuotEntry?", "Type=Entry", "Tender-Quotation", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701141", "F_07_Ten", "CivilConBOQ?", "Type=Entry", "Civil Construction BOQ", "Tender", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "0703000", "0701142", "F_07_Ten", "UnitConversion", "", "Unit Conversion", "Tender", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "0703000", "0701143", "F_22_Sal", "SalesCodeBook?", "Type=Sales&Code=", "Unit Code Book ", "Tender", "False", "False", "False", "False" }); ;
 
             #endregion
 
@@ -1947,6 +1948,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102067", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpList", "Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102068", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=InActiveEmpList", "Inactive Employee List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102069", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TotalEmplist", "Total Employee List", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102070", "F_81_Hrm/F_92_Mgt", "EmpEvaluationFrm", "", "Employee Evaluation For Confirmation", "ACR", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102071", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=PenEmpCon", "Pending Employee Confirmation", "HR Management", "False", "False", "False", "False" }); ;
@@ -2023,9 +2025,13 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103015", "F_81_Hrm/F_84_Lea", "RptHREmpLeave?", "Type=EmpLeaveSt", "Individual Employee Leave Status", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103016", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=EmpLeaveStatus", "Employee Leave- Company Wise", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); ;
-         
             
-            
+            tblObj.Rows.Add(new Object[] { "8102000", "8102111", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employee Leave Record", "HR Management", "False", "False", "False", "False" }); ;
+          //tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
+
+            //tblObj.Rows.Add(new Object[] { "8103000", "8103113", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employees Leave Record", "HR Management", "False", "False", "False", "False" }); 
+
+
             tblObj.Rows.Add(new Object[] { "8103000", "8103018", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=CashPay", "Cash Payment", "PayRoll", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103019", "F_81_Hrm/F_83_Att", "RptHREmpStatus?", "Type=Payroll", "Employee Status", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103020", "F_81_Hrm/F_89_Pay", "RptSalarySummary?", "Type=SalSum", "Salary Summary", "PayRoll", "False", "False", "False", "False" }); ;
@@ -2101,6 +2107,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103110", "F_81_Hrm/F_81_Rec", "RptEmpAssessment", "", "Employee Assessment Report", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103112", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetPID", "Salary Top Sheet(Project)", "PayRoll", "False", "False", "False", "False" }); ;
+            
+
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103140", "F_81_Hrm/F_92_Mgt", "InterfaceHR", "", "General Letter", "Accounts", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102085", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Ind", "HR Leave Interface(Individual)", "HR Management", "False", "False", "False" });
@@ -3831,15 +3839,7 @@ namespace RealERPLIB
 
         }
         private static void MenuBGD(DataTable mnuTbl1)
-        {
-
-
-
-
-
-  
-           
-            
+        {       
             mnuTbl1.Rows.Add(new Object[] { "0201000000", "Code Book", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "01. Resource Code", "F_17_Acc/AccSubCodeBook?InputType=Res", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "02. Design & Consultancy", "F_17_Acc/AccSubCodeBook?InputType=Overhead", "", true, "" });
@@ -3858,11 +3858,12 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0214000000", "08. Additional Budget", "F_04_Bgd/AddBudget?Type=Entry&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0215000000", "08. Additional Budget Approval", "F_04_Bgd/AddBudget?Type=Mgt&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0216000000", "09. Pay Slip (Land)", "F_51_LBgd/AccLandPaySlip?Type=Report&prjcode=&sircode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0217000000", "10. Project Budget Approval", "F_04_Bgd/BgdPrjAna?InputType=BgdSub&prjcode=&sircode=", "", true, "" });
 
 
 
 
-            
+
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });//"01. Resource Code", "F_17_Acc/AccSubCodeBook?InputType=Res", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });//"02. Design & Consultancy", "F_17_Acc/AccSubCodeBook?InputType=Overhead", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });//"03. Work List", "F_17_Acc/AccSubCodeBook?InputType=Wrkschedule", "", true, "" });
@@ -4256,8 +4257,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0205000000", "05. Standard Analysis", "F_04_Bgd/BgdStdAna", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "06. Margin Code", "F_07_Ten/TasGenCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "07.Project Code", "F_07_Ten/TASCodeBooks?BookName=Project", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "08. Unit Conversion", "F_07_Ten/UnitConversion", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "08. Unit Code Book", "F_22_Sal/SalesCodeBook?Type=Sales&Code=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "09. Unit Conversion", "F_07_Ten/UnitConversion", "", true, "" });
+           
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
@@ -9144,7 +9146,7 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0246000000", "Sales", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0247000000", "01. New Unit Code", "F_17_Acc/AccSubCodeBook?InputType=UnitCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0248000000", "02. Sales Code Book ", "F_22_Sal/SalesCodeBook?Type=Sales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0248000000", "02. Sales Code Book ", "F_22_Sal/SalesCodeBook?Type=Sales&Code=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0249000000", "03. Payment Schedule Code", "F_22_Sal/SalesPaymentCodeBook?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0250000000", "04. Sales Planning Code Book", "F_22_Sal/SalesPlaningCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0251000000", "05. Sales & Collection Opening", "F_22_Sal/SalesOpening?Type=Consolidate", "", true, "" });
@@ -14438,6 +14440,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0224000000", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0225000000", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0226000000", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
+           
 
             mnuTbl1.Rows.Add(new Object[] { "0226000000", "08. Pending Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=PenEmpCon&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0227000000", "09. Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpCon&comcod=", "", true, "" });
@@ -14691,13 +14694,14 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0418000000", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0419000000", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0420000000", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
-
+            mnuTbl1.Rows.Add(new Object[] { "0423000000", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
             // d. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0418000000", "D. Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0419000000", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0420000000", "02. Leave Status- Company Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=EmpLeaveStatus&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0421000000", "03. Employee Leave- Month Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=MonWiseLeave&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0422000000", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0422000000", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });       
+            mnuTbl1.Rows.Add(new Object[] { "0423000000", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
 
             // Employee Transfer report
             mnuTbl1.Rows.Add(new Object[] { "0422100000", "Employee Transfer Info", "", "", false, "mb" });

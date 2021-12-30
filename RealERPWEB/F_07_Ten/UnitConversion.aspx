@@ -225,6 +225,8 @@
                             </div>
                         </div>
                         <div class="modal-footer ">
+                            <a href="<%=this.ResolveUrl("~/F_22_Sal/SalesCodeBook?Type=Sales&Code=")%>" target="_blank" Class="btn btn-sm btn-deafult" >View All Unit</a>
+                            
                             <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModal();" OnClick="lbtnAddCode_Click"><i class="fas fa-badge-check"></i>&nbsp;Update </asp:LinkButton>
                         </div>
                     </div>

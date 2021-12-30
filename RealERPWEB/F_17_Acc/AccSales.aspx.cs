@@ -22,6 +22,7 @@ namespace RealERPWEB.F_17_Acc
 
         public static double TAmount = 0;
         ProcessAccess accData = new ProcessAccess();
+        ProcessAccess _processAccessMsgdb = new ProcessAccess("ASTREALERPMSG");
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,10 +37,7 @@ namespace RealERPWEB.F_17_Acc
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
-
-
-
+           
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Collection Update";
                 this.Master.Page.Title = "Collection Update";
                 this.GetProjectName();
@@ -1193,7 +1191,21 @@ namespace RealERPWEB.F_17_Acc
                     }
 
 
+                    //string comcod = this.GetCompCode();
+                   
+                    switch (comcod)
+                    {
+                        case "3101":
+                        case "3356": // intech
+                            this.CollectionUpdateSMS(pactcode, usircode);
+                            break;
 
+                        default:
+                           
+                            break;
+
+
+                    }
 
 
 
@@ -1333,7 +1345,6 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
-
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
@@ -1354,12 +1365,7 @@ namespace RealERPWEB.F_17_Acc
                     }
 
                 }
-
-
-
                 Session["tblMrr"] = dt;
-
-
 
                 double cramtd = Convert.ToDouble(dt.Rows[0]["cramt"]);
 
@@ -1418,6 +1424,51 @@ namespace RealERPWEB.F_17_Acc
 
 
         }
+
+        private void CollectionUpdateSMS(string pactcode, string usercode)       
+        {
+            string comcod = this.GetCompCode();
+
+            DataSet ds = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_SALMGT", "GETOUTSTANDAMT", pactcode, usercode,
+                    "", "", "", "", "", "", "");
+            if(ds==null)
+            {
+                return;
+            }
+            string Data1 = "1703%"; // Update collection 
+            string Data2 = "";
+            DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "ASTREALERPMSGDB.dbo.SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", Data1, Data2, "", "", "", "", "", "", "");
+          
+            string cutname = ds.Tables[0].Rows[0]["custname"].ToString()==""?"": ds.Tables[0].Rows[0]["custname"].ToString();    
+            string custphone = ds.Tables[0].Rows[0]["custphone"].ToString()==""?"": ds.Tables[0].Rows[0]["custphone"].ToString();    
+            string trcvamt = ds.Tables[0].Rows[0]["trecvamt"].ToString()==""?"": Convert.ToDouble(ds.Tables[0].Rows[0]["trecvamt"]).ToString("#,##0.00;(#,##0.00) "); ;    
+            string payment = ds.Tables[0].Rows[0]["payamt"].ToString()==""?"": Convert.ToDouble(ds.Tables[0].Rows[0]["payamt"]).ToString("#,##0.00;(#,##0.00) ");
+            string paymentdate = ds.Tables[0].Rows[0]["paydate"].ToString()==""?"": Convert.ToDateTime(ds.Tables[0].Rows[0]["paydate"]).ToString("dd-MMM-yyyy");    
+            string dues = ds.Tables[0].Rows[0]["duesamt"].ToString()==""?"": Convert.ToDouble(ds.Tables[0].Rows[0]["duesamt"]).ToString("#,##0.00;(#,##0.00) ");
+
+            string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
+            tempeng = tempeng.Replace("[name]", cutname);
+            tempeng = tempeng.Replace("[date]", paymentdate);
+            tempeng = tempeng.Replace("[payamt]", payment);
+            tempeng = tempeng.Replace("[duesamt]", dues);
+
+            string  smtext = tempeng;
+
+            SendSmsProcess sms = new SendSmsProcess();
+
+            bool resultsms = sms.SendSMSClient("", smtext, custphone);
+            if (resultsms == true)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Message sent Successfully.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Message sent Failed.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
         protected void ibtnFindProject_Click(object sender, EventArgs e)
         {
             this.GetProjectName();

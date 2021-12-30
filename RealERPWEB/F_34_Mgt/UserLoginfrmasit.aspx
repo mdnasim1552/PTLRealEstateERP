@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="UserLoginfrmasit.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.UserLoginfrmasit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" ValidateRequest="false" AutoEventWireup="true" CodeBehind="UserLoginfrmasit.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.UserLoginfrmasit" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -239,6 +239,7 @@
                                                     <asp:ListItem Value="200">200</asp:ListItem>
                                                     <asp:ListItem Value="300">300</asp:ListItem>
                                                     <asp:ListItem Value="900">900</asp:ListItem>
+                                                    <asp:ListItem Value="1500">1500</asp:ListItem>
                                                 </asp:DropDownList>
 
                                             </div>
@@ -328,11 +329,13 @@
                                                                          "<B>"+"<span class=cl1>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdesc")).Trim() + "</span>" + "</B>": "")  + 
                                                                          (DataBinder.Eval(Container.DataItem, "dscrption").ToString().Trim().Length>0 ? 
                                                                           (Convert.ToString(DataBinder.Eval(Container.DataItem, "modulename")).Trim().Length>0 ?   "<br>" 
-                                                                          :(Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdesc")).Trim().Length>0 ? "<br>":"")) + 
-                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "dscrption")).Trim(): "")
+                                                                          :(Convert.ToString(DataBinder.Eval(Container.DataItem, "frmdesc")).Trim().Length>0 ? "<br>":"")) : "")
                                                                     %>'
                                                     Width="280px"></asp:Label>
+
+
+                                                <asp:TextBox ID="txtDescription" runat="server" style="margin-left:30px; width:80%; border:none; background:none;" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dscrption")) %>'></asp:TextBox>
+
                                             </ItemTemplate>
                                             <FooterTemplate>
                                                 <asp:LinkButton ID="lbtnUpPer" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn" OnClick="lbtnUpPer_Click">Update</asp:LinkButton>

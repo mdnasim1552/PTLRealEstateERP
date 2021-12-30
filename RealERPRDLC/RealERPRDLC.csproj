@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,7 +33,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Files\Real ERP BIN 210811\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
@@ -40,8 +42,13 @@
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RealERPWEB\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Files\Real Estate Bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
@@ -97,6 +104,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RealEntity.C_02_Fea.EClasFeasibility+ProjectFeasibility.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_04_Bgd.EClassBudget+BudMasterResGroupWiseDate.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_07_Ten.RptCivilConBOQ.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_08_PPlan.BO_Class_Con+RptTenderProposal.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.EClassOrder+GetWorkOrder.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_09_PIMP.SubConBill+SubConAllBill.datasource" />
@@ -106,9 +114,12 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
@@ -171,6 +182,8 @@
     <EmbeddedResource Include="R_04_Bgd\RptWorkVsResource.rdlc" />
     <EmbeddedResource Include="R_04_Bgd\RptWorkVsResVsAllocDet.rdlc" />
     <EmbeddedResource Include="R_05_Busi\RptYePlanIncomeSt.rdlc" />
+    <EmbeddedResource Include="R_07_Ten\RptCivilConBOQTender.rdlc" />
+    <EmbeddedResource Include="R_07_Ten\RptCivilConBOQ.rdlc" />
     <EmbeddedResource Include="R_07_Ten\RptTenderProposal.rdlc" />
     <EmbeddedResource Include="R_08_PPlan\RptProjectDesign.rdlc" />
     <EmbeddedResource Include="R_08_PPlan\RptProTargetTimeBasis.rdlc" />
@@ -408,6 +421,8 @@
     <EmbeddedResource Include="R_17_Acc\RptBgdvsExpense.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBillRegister.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBudVsAchivDet.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCashBankWithdraw.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptCashBank.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankGrpMonthDts.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashBankPosGrp.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCashCrPur.rdlc" />
@@ -480,6 +495,7 @@
     <EmbeddedResource Include="R_17_Acc\RptPaymentChqClearance.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaymentIncSch.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSubContractor.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplierShuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplier.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPaySlipSupplierLeisure.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptPendingBill.rdlc" />
@@ -677,6 +693,7 @@
     <EmbeddedResource Include="R_24_CC\RptAddWorkSuvastu.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptCastingLeltter.rdlc" />
     <EmbeddedResource Include="R_24_CC\rptClientChoice.rdlc" />
+    <EmbeddedResource Include="R_24_CC\RptClientModification.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptComplain.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptCostRegistration.rdlc" />
     <EmbeddedResource Include="R_24_CC\RptCustLetter.rdlc" />

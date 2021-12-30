@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="SMCodeBook.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.SMCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="SMCodeBook.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.SMCodeBook" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -246,6 +246,20 @@
                                     </asp:DropDownList>
                                 </EditItemTemplate>
                                 <ItemStyle Font-Size="12px" />
+                            </asp:TemplateField>
+
+
+                            <asp:TemplateField HeaderText="For SMS">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkAddSms" runat="server" Text="Add Template" OnClick="lnkAddSms_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                            </asp:TemplateField>
+
+                              <asp:TemplateField HeaderText="For Mail">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkAddmail" runat="server" Text="Add Template" OnClick="lnkAddmail_Click"
+                                        ></asp:LinkButton>
+                                    </ItemTemplate>
                             </asp:TemplateField>
 
                             <%--<asp:TemplateField HeaderText="Code">

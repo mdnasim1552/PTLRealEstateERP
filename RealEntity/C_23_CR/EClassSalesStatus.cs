@@ -178,6 +178,7 @@ namespace RealEntity.C_23_CRR
           public double cpaocost { get; set; }
           public double tocost { get; set; }
           public double todues { get; set; }
+          public double vtodues { get; set; }
           public double atodues { get; set; }
           public double reconamt { get; set; }
           public double retcheque { get; set; }

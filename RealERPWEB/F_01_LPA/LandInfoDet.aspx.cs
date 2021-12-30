@@ -53,39 +53,43 @@ namespace RealERPWEB.F_01_LPA
 
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
-                this.GetInformation();
+               
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Land/Owner Information";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-                GetAllSubdata();
-                this.DataBindStatus();
-                GetYEARLAND();
-                this.GETEMPLOYEEUNDERSUPERVISED();
-                this.GetGridSummary();
-                this.ModalDataBind();
-                this.GetNotificationinfo();
-                divexland.Visible = false;
-                divddlinfo.Visible = false;
-                divLaOw.Visible = false;
-                this.CreateTable();
-                this.ShowDiscussion();
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string events = hst["events"].ToString();
-                if (Convert.ToBoolean(events) == true)
-                {
-                    string eventtype = "Click Land Interface (Land CRM)";
-                    string eventdesc = "Click Land Interface (Land CRM)";
-                    string eventdesc2 = "";
-                    string comcod = this.GetCompCode();
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                }
+               
 
 
             }
         }
 
+        private void autoClickBtn_tempBTN()
+        {
+            this.GetInformation();
+            GetAllSubdata();
+            this.DataBindStatus();
+            GetYEARLAND();
+            this.GETEMPLOYEEUNDERSUPERVISED();
+            this.GetGridSummary();
+            this.ModalDataBind();
+           // this.GetNotificationinfo();
+            divexland.Visible = false;
+            divddlinfo.Visible = false;
+            divLaOw.Visible = false;
+            this.CreateTable();
+            this.ShowDiscussion();
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Click Land Interface (Land CRM)";
+                string eventdesc = "Click Land Interface (Land CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
 
         protected void lnkOk_Click(object sender, EventArgs e)
         {
@@ -5461,7 +5465,8 @@ namespace RealERPWEB.F_01_LPA
             this.ddlEmpid.DataValueField = "gcod";
             this.ddlEmpid.DataSource = dtE;
             this.ddlEmpid.DataBind();
-            this.ddlEmpid.SelectedValue = "000000000000";
+            if (dtE.Rows.Count >= 2)
+                this.ddlEmpid.SelectedValue = "000000000000";
 
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '52%'");
@@ -7673,6 +7678,11 @@ namespace RealERPWEB.F_01_LPA
         protected void lnkBtnVisit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Btn_tempBTN_Click(object sender, EventArgs e)
+        {
+           this.autoClickBtn_tempBTN();
         }
     }
 }

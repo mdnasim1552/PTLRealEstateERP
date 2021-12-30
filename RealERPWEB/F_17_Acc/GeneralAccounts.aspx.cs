@@ -1360,7 +1360,8 @@ namespace RealERPWEB.F_17_Acc
                 // Index Coloring 
                 if (cindex >= 0)
                     this.dgv1.Rows[cindex].Attributes["style"] = "background-color:#3399FF; font-weight:bold;";
-                this.CalculatrGridTotal();
+                this.CalculatrGridTotal();              
+
                 //this.ddlacccode.BackColor = System.Drawing.Color.Beige;
                 //this.ddlresuorcecode.BackColor = System.Drawing.Color.Beige;
                 //this.ddlSpclinf.BackColor = System.Drawing.Color.Beige;
@@ -1511,7 +1512,11 @@ namespace RealERPWEB.F_17_Acc
             double cramt = Convert.ToDouble("0" + ((TextBox)this.dgv1.FooterRow.FindControl("txtTgvCrAmt")).Text);
             string vouchertype = this.txtcurrentvou.Text == "" ? "" : this.txtcurrentvou.Text.Substring(0, 2);
             double txttoamt = Math.Abs((dramt - cramt));
-            this.lblInword.Text = (vouchertype == "JV") ? "" : (txttoamt > 0 ? ASTUtility.Trans(txttoamt, 2) : "");                 
+            this.lblInword.Text = (vouchertype == "JV") ? "" : (txttoamt > 0 ? ASTUtility.Trans(txttoamt, 2) : "");
+
+
+            Session["Report1"] = dgv1;
+            ((HyperLink)this.dgv1.HeaderRow.FindControl("hlbtntbGrdExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
 
         }

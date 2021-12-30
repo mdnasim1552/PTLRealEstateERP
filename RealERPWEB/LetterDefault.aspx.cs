@@ -155,50 +155,50 @@ namespace RealERPWEB
 
         private void mgtprint()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string comcod = GetCompCode();
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string username = hst["username"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string comcod = GetCompCode();
 
-            string msg = this.txtml.Text;
-
-
-
-            DataTable dt1 = (DataTable)ViewState["letter"];
+            //string msg = this.txtml.Text;
 
 
 
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            //DataTable dt1 = (DataTable)ViewState["letter"];
 
-            LocalReport Rpt1 = new LocalReport();
-            string img = string.Empty;
-            try
-            {
-                if (!(dt1.Rows[0]["EMPSIGN"] is DBNull))
-                    img = Convert.ToBase64String((byte[])dt1.Rows[0]["EMPSIGN"]);
-            }
-            catch (Exception)
-            {
-                img = string.Empty;
 
-            }
 
-            Rpt1 = RptHRSetup.GetLocalReport("RD_81_Hrm.LetterDefault01", null, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("rpetext", msg));
-            Rpt1.SetParameters(new ReportParameter("ComImg", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("comName", comnam));
-            Rpt1.SetParameters(new ReportParameter("Comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("ApprvDesig", (string)dt1.Rows[0]["apprvdesig"]));
-            Rpt1.SetParameters(new ReportParameter("ApprvName", (string)dt1.Rows[0]["apprvname"]));
-            Rpt1.SetParameters(new ReportParameter("Apprasign", img));
-            Session["Report1"] = Rpt1;
+            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('RDLCViewerWin.aspx?PrintOpt=" +
-                     ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            //LocalReport Rpt1 = new LocalReport();
+            //string img = string.Empty;
+            //try
+            //{
+            //    if (!(dt1.Rows[0]["EMPSIGN"] is DBNull))
+            //        img = Convert.ToBase64String((byte[])dt1.Rows[0]["EMPSIGN"]);
+            //}
+            //catch (Exception)
+            //{
+            //    img = string.Empty;
+
+            //}
+
+            //Rpt1 = RptHRSetup.GetLocalReport("RD_81_Hrm.LetterDefault01", null, null, null);
+            //Rpt1.EnableExternalImages = true;
+            //Rpt1.SetParameters(new ReportParameter("rpetext", msg));
+            //Rpt1.SetParameters(new ReportParameter("ComImg", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("comName", comnam));
+            //Rpt1.SetParameters(new ReportParameter("Comadd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("ApprvDesig", (string)dt1.Rows[0]["apprvdesig"]));
+            //Rpt1.SetParameters(new ReportParameter("ApprvName", (string)dt1.Rows[0]["apprvname"]));
+            //Rpt1.SetParameters(new ReportParameter("Apprasign", img));
+            //Session["Report1"] = Rpt1;
+
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('RDLCViewerWin.aspx?PrintOpt=" +
+            //         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 

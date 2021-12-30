@@ -1086,6 +1086,7 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+            //txtgvRemarks
 
 
             string vounum = this.txtcurrentvou.Text.Trim().Substring(0, 2) + voudat.Substring(6, 4) +
