@@ -200,7 +200,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2580,6 +2582,7 @@
     <Content Include="F_21_MKT\MktSalsPaymentPro.aspx" />
     <Content Include="F_21_MKT\MktTeamCodeBook.aspx" />
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
+    <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
@@ -3939,6 +3942,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MktTeamMember.aspx.designer.cs">
       <DependentUpon>MktTeamMember.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\MonthsWiseSale.aspx.cs">
+      <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
+      <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.cs">
       <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
