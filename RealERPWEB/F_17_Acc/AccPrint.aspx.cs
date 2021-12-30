@@ -138,6 +138,8 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 //case "3101":
+
+
                 case "3349":
                 case "3348":
                     vouprint = "VocherPrintCredence";
@@ -168,6 +170,16 @@ namespace RealERPWEB.F_17_Acc
                 case "1103":
                     vouprint = "VocherPrintTanvir";
                     break;
+
+
+                case "3101":
+                case "3358":
+                case "3359":
+                case "3360":
+                case "3361":
+                    vouprint = "VocherPrintEntrust";
+                    break;
+
 
                 default:
                     vouprint = "VocherPrint";
@@ -410,7 +422,6 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
-
                 else if (Type == "VocherPrintSuvastu")
                 {
 
@@ -469,6 +480,18 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtPay", (vounum.Substring(0, 2).ToString() == "PV") ? "Pay To " : "Receive From"));
 
                 }
+
+                else if (Type == "VocherPrintEntrust")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherEntrust", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+
+
+                }
+
 
                 else
                 {
@@ -672,6 +695,16 @@ namespace RealERPWEB.F_17_Acc
                 //    break;
 
                 //manama, p2p 
+                // Entrust Collection
+                case "3101":
+                case "3358":
+                case "3359":
+                case "3360":
+                case "3361":
+                    vouprint = "VocherPrintEntrust";
+                    break;
+
+
                 default:
                     vouprint = "VocherPrintMod";
                     break;
@@ -1331,6 +1364,26 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
                 }
 
+
+                else if (Type == "VocherPrintEntrust")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherEntrust", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("txtissuno", "Issue No: " + Isunum));
+                    Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
+                    Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
+                    Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
+
+
+                }
 
                 else
                 {
