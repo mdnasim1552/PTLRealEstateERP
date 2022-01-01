@@ -95,7 +95,8 @@ namespace RealERPWEB.F_21_MKT
         private void FooterCalculation()
         {
             DataTable ddt = (DataTable)ViewState["tblSales"];
-
+            if (ddt.Rows.Count == 0)
+                return;
            
             ((Label)this.gvMonhtlySales.FooterRow.FindControl("lgvFtqty")).Text = Convert.ToDouble((Convert.IsDBNull(ddt.Compute("sum(tqty)", "")) ?
                              0 : ddt.Compute("sum(tqty)", ""))).ToString("#,##0;(#,##0); ");
