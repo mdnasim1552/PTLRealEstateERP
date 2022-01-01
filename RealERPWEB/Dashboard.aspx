@@ -1929,7 +1929,9 @@
                                                 <label class="control-label" for="ddlUserName">Year</label>
                                                 <asp:DropDownList ID="ddlyearSale" runat="server" OnSelectedIndexChanged="ddlyearSale_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                     <asp:ListItem Value="2020">2020</asp:ListItem>
-                                                    <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
+                                                    <asp:ListItem Value="2021">2021</asp:ListItem>
+                                                    <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
+                                                   
 
                                                 </asp:DropDownList>
 

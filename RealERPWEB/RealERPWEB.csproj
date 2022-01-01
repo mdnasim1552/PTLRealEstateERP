@@ -3537,7 +3537,6 @@
     <Content Include="Image\VoucherPrintBgImage.jpg" />
     <Content Include="Image\waitl.gif" />
     <Content Include="Index.aspx" />
-    <Content Include="index2.aspx" />
     <Content Include="JS02\RealERPScript.js" />
     <Content Include="LandingPage.aspx" />
     <Content Include="landMenu-1.png" />
@@ -4404,13 +4403,6 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="index2.aspx.cs">
-      <DependentUpon>index2.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="index2.aspx.designer.cs">
-      <DependentUpon>index2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
