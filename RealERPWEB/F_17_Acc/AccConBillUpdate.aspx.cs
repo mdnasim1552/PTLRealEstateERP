@@ -331,7 +331,7 @@ namespace RealERPWEB.F_17_Acc
         {
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
+            
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
 
 

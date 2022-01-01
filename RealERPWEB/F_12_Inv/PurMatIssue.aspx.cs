@@ -338,26 +338,6 @@ namespace RealERPWEB.F_12_Inv
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         protected void lbtnPrevISSList_Click(object sender, EventArgs e)
         {
 

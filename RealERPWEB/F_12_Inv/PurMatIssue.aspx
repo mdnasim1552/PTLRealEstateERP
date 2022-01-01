@@ -59,7 +59,7 @@
                                     <div class="col-md-12 pading5px">
                                         <asp:Label ID="lblCurNo" runat="server" CssClass="lblTxt lblName" Text="Issue No:"></asp:Label>
                                         <asp:Label ID="lblCurISSNo1" runat="server" CssClass="inputTxt inputBox50px"></asp:Label>
-                                        <asp:TextBox ID="txtCurISSNo2" runat="server" CssClass="inputTxt inputBox50px" TabIndex="3">000</asp:TextBox>
+                                        <asp:TextBox ID="txtCurISSNo2" runat="server" ReadOnly="true" CssClass="inputTxt inputBox50px" TabIndex="3">000</asp:TextBox>
 
                                         <asp:Label ID="Label7" runat="server" CssClass=" smLbl_to" Text="Date"></asp:Label>
                                         <asp:TextBox ID="txtCurISSDate" runat="server" CssClass="inputTxt inputDateBox"></asp:TextBox>
