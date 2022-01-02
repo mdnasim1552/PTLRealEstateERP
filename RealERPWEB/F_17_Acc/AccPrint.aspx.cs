@@ -1679,6 +1679,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3336":
                     this.PrintchKSuvastu();
                     break;
+
                 case "3344":
                     this.PrinChequeTarraNova();
                     break;
@@ -2222,6 +2223,10 @@ namespace RealERPWEB.F_17_Acc
                 else if (comcod == "3348")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptCheqCredence", hshtbl, null, null);
+                }
+                else if (comcod == "3355") // Cheque Greenwood
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
                 }
                 else
                 {

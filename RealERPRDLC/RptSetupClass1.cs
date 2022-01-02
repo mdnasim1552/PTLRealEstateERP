@@ -317,6 +317,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeAcme": Rpt1a = SetRptChequeAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeManama": Rpt1a = SetRptChequeManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptChequeTCL": Rpt1a = SetRptChequeTCL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptChequeGreenwood": Rpt1a = SetRptChequeGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_17_Acc.RptTrialBl1": Rpt1a = SetRptTrialBl1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptVoucherPrint": Rpt1a = SetRptVoucherPrint(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4932,7 +4933,18 @@ namespace RealERPRDLC
             Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptChequeGreenwood(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Hashtable hshParm = (Hashtable)RptDataSet;
+            Rpt1a.SetParameters(new ReportParameter("bankName", hshParm["bankName"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("payTo", hshParm["payTo"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord", hshParm["amtWord"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("date", hshParm["date"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amt", hshParm["amt"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("amtWord1", hshParm["amtWord1"].ToString()));
+            Rpt1a.SetParameters(new ReportParameter("acpayee", hshParm["acpayee"].ToString()));
+            return Rpt1a;
+        }
 
         private static LocalReport SetRptTrnPrint(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
