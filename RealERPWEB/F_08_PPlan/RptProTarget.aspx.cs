@@ -681,7 +681,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-                if (code.Substring(2) == "0000000000")
+                if (code.Substring(2) == "00")
                 {
 
                     //  lgvResDescd.Font.Bold = true;
@@ -1033,7 +1033,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-                if (code.Substring(2) == "0000000000")
+                if (code.Substring(2) == "00")
                 {
 
                     //  lgvResDescd.Font.Bold = true;
@@ -1325,8 +1325,6 @@ namespace RealERPWEB.F_08_PPlan
 
             for (i = 4; i < this.gvresdet.Columns.Count; i++)
                 this.gvresdet.Columns[i].Visible = false;
-
-
 
 
             j = 4;
