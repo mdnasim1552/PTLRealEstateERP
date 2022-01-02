@@ -3095,7 +3095,8 @@ namespace RealERPWEB.F_21_MKT
             this.ddlEmpid.DataValueField = "gcod";
             this.ddlEmpid.DataSource = dtE;
             this.ddlEmpid.DataBind();
-            this.ddlEmpid.SelectedValue = "000000000000";
+            if (dtE.Rows.Count >= 2)                
+             this.ddlEmpid.SelectedValue = "000000000000";
 
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '52%'");

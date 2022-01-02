@@ -153,7 +153,7 @@
                         <asp:GridView ID="gvUseForm" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Width="918px" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnPageIndexChanging="gvUseForm_PageIndexChanging"
-                            OnRowCancelingEdit="gvUseForm_RowCancelingEdit"
+                            OnRowCancelingEdit="gvUseForm_RowCancelingEdit" 
                             OnRowEditing="gvUseForm_RowEditing" OnRowUpdating="gvUseForm_RowUpdating"
                             PageSize="100">
                             <RowStyle />

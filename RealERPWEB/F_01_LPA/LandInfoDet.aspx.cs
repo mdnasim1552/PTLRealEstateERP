@@ -53,11 +53,11 @@ namespace RealERPWEB.F_01_LPA
 
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
-               
+
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Land/Owner Information";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-               
+
 
 
             }
@@ -72,7 +72,7 @@ namespace RealERPWEB.F_01_LPA
             this.GETEMPLOYEEUNDERSUPERVISED();
             this.GetGridSummary();
             this.ModalDataBind();
-           // this.GetNotificationinfo();
+            // this.GetNotificationinfo();
             divexland.Visible = false;
             divddlinfo.Visible = false;
             divLaOw.Visible = false;
@@ -97,7 +97,7 @@ namespace RealERPWEB.F_01_LPA
             {
                 this.GetGridSummary();
                 this.ModalDataBind();
-              //  this.GetNotificationinfo();
+                //  this.GetNotificationinfo();
             }
             else
             {
@@ -120,7 +120,7 @@ namespace RealERPWEB.F_01_LPA
 
             }
 
-            
+
 
 
         }
@@ -439,19 +439,19 @@ namespace RealERPWEB.F_01_LPA
             ds1.Dispose();
             bindDataIntoLabel();
 
-          
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Add Land (Land CRM)";
                 string eventdesc = "Add Land (Land CRM)";
-                string eventdesc2 = "";               
+                string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
 
             }
-            
+
 
 
         }
@@ -470,7 +470,7 @@ namespace RealERPWEB.F_01_LPA
             //this.cpro.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["pro"].ToString();
             this.lblDayPass.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["daypassed"].ToString();
             this.lblCall.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["call"].ToString();
-           // this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
+            // this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
             this.lblLome.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lome"].ToString();
             this.lblLomi.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lomi"].ToString();
             //this.csurvey.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["survey"].ToString();
@@ -1628,7 +1628,7 @@ namespace RealERPWEB.F_01_LPA
                 }
 
 
-                
+
 
             }
             catch (Exception ex)
@@ -2065,7 +2065,7 @@ namespace RealERPWEB.F_01_LPA
             string empid = hst["empid"].ToString();
 
 
-            DataTable dt = new DataTable();            
+            DataTable dt = new DataTable();
             DataTable dtowner = new DataTable();
             DataTable dthomadd = new DataTable();
             DataTable dtbusinesadd = new DataTable();
@@ -2094,7 +2094,7 @@ namespace RealERPWEB.F_01_LPA
             dtowner.Columns.Add("gvalue");
 
 
-            
+
 
             string landplotinfo = "";
             string landid = (divexland.Visible == false) ? LandNewCode() : (string)ViewState["sircodegrid"]; //newlandcode
@@ -2115,7 +2115,7 @@ namespace RealERPWEB.F_01_LPA
 
             //DataTable dtpersonal = dsloinfo.Tables[3];
             //dtpersonal.TableName = "tbl4";
-           
+
             string Name = "";
             string Phone = "";
 
@@ -2178,7 +2178,7 @@ namespace RealERPWEB.F_01_LPA
                 DataRow dr = dt.NewRow();
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                 string gval = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgvalper")).Text.Trim();
-                
+
                 string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
@@ -2186,7 +2186,7 @@ namespace RealERPWEB.F_01_LPA
                 dt.Rows.Add(dr);
 
             }
-        
+
             for (int i = 0; i < this.gvplot.Rows.Count; i++)
             {
                 DataRow dr = dt.NewRow();
@@ -2233,7 +2233,8 @@ namespace RealERPWEB.F_01_LPA
                 else if (Gcode == "0302012")
                 {
                     Gvalue = ((DropDownList)this.gvplot.Rows[i].FindControl("ddlpnlr")).SelectedValue.ToString();
-                    landplotinfo += ((DropDownList)this.gvplot.Rows[i].FindControl("ddlpnlr")).SelectedItem.Text + ", Plot: ";
+                    string val = Gvalue.Length == 0 ? "" : ((DropDownList)this.gvplot.Rows[i].FindControl("ddlpnlr")).SelectedItem.Text;
+                    landplotinfo += val + ", Plot: ";
 
                 }
                 else if (Gcode == "0302013")
@@ -2332,7 +2333,7 @@ namespace RealERPWEB.F_01_LPA
             //ds.Tables.Add(dt3);
 
 
-            
+
             foreach (DataRow dr1 in dtowner.Rows)
             {
                 dtlowoinfo.ImportRow(dr1);
@@ -2344,22 +2345,22 @@ namespace RealERPWEB.F_01_LPA
             }
 
 
-            ds2.Merge(dtlowoinfo);           
+            ds2.Merge(dtlowoinfo);
             //dtlohom = dtlohom.Copy();
             //ds2.Merge(dtlohom);
             //ds2.Merge(dtbusiness);
             //ds2.Merge(dtpersonal);
 
 
-            
+
 
             ds1.Tables[0].TableName = "tbl1";
-            ds2.Tables[0].TableName = "tbl1";         
+            ds2.Tables[0].TableName = "tbl1";
             //string xml = ds1.GetXml();
             //string xml1 = ds2.GetXml();
 
-        
-         
+
+
 
             string landinfo = landplotinfo;
             //Check Duplicate
@@ -2407,14 +2408,14 @@ namespace RealERPWEB.F_01_LPA
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             // return;
 
-            
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Update Land Information (Land CRM)";
                 string eventdesc = "Update Land Information (Land CRM)";
                 string eventdesc2 = lbllandname.Text;
-                
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -3140,6 +3141,9 @@ namespace RealERPWEB.F_01_LPA
                         DataView dv7;
                         dv7 = dt1.DefaultView;
                         dv7.RowFilter = ("code='" + block + "'");
+                        //DataTable dtE = dv7.ToTable();
+                        //if (dtE.Rows.Count == 0)
+                        //    dtE.Rows.Add("0000000", "Choose One..", "");
 
                         ddlgval = ((DropDownList)this.gvplot.Rows[i].FindControl("ddlpnlr"));
                         ddlgval.DataTextField = "gdesc";
@@ -3214,7 +3218,7 @@ namespace RealERPWEB.F_01_LPA
 
 
                 }
-                
+
 
             }
             else
@@ -5267,8 +5271,8 @@ namespace RealERPWEB.F_01_LPA
             {
                 string eventtype = "Edit Land & Owner Info Information (Land CRM)";
                 string eventdesc = "Edit Land & Owner Info Information (Land CRM)";
-                string eventdesc2 = "Edit Land Id "+ lidno;
-                
+                string eventdesc2 = "Edit Land Id " + lidno;
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -5317,7 +5321,7 @@ namespace RealERPWEB.F_01_LPA
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
-        
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
@@ -5362,7 +5366,7 @@ namespace RealERPWEB.F_01_LPA
                 string proscod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
                 string dealcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dealcode")).ToString();
                 string Empid = hst["empid"].ToString();
-                string landst= Convert.ToString(DataBinder.Eval(e.Row.DataItem, "active"));
+                string landst = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "active"));
                 LinkButton lnkAct = (LinkButton)e.Row.FindControl("lnkAct");
 
                 if (landst == "False")
@@ -5465,7 +5469,8 @@ namespace RealERPWEB.F_01_LPA
             this.ddlEmpid.DataValueField = "gcod";
             this.ddlEmpid.DataSource = dtE;
             this.ddlEmpid.DataBind();
-            this.ddlEmpid.SelectedValue = "000000000000";
+            if (dtE.Rows.Count >= 2)
+                this.ddlEmpid.SelectedValue = "000000000000";
 
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '52%'");
@@ -5710,19 +5715,19 @@ namespace RealERPWEB.F_01_LPA
             //this.txtComm.Text = "";
             this.GetGridSummary();
 
-           
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Update land Information (Land CRM)";
                 string eventdesc = "Update land Information (Land CRM)";
-                string eventdesc2 = "";                
+                string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
 
             }
-           
+
 
 
         }
@@ -5747,7 +5752,7 @@ namespace RealERPWEB.F_01_LPA
                 string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
                 string flidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;
 
-              
+
                 string cdate = this.txtdate.Text.Trim();
                 DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_LANDPROCUREMENT", "SHOWPRELOWNERDISCUSSION", proscod, cdate, "", "", "", "");
 
@@ -5776,7 +5781,7 @@ namespace RealERPWEB.F_01_LPA
                 {
                     string eventtype = "Follow Up (Land CRM) ";
                     string eventdesc = "Follow Up (Land CRM) ";
-                    string eventdesc2 = "Follow Up "+flidno;
+                    string eventdesc2 = "Follow Up " + flidno;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -5975,14 +5980,14 @@ namespace RealERPWEB.F_01_LPA
                         }
 
 
-                      
+
                         // }
-                   // }
+                        // }
 
-                    remarks = (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
+                        remarks = (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
 
 
-                }
+                    }
 
 
 
@@ -6047,19 +6052,19 @@ namespace RealERPWEB.F_01_LPA
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
                 this.clearModalField(); // clear modal 
 
-                
+
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
                     string eventtype = "Update Discuss Information (Land CRM)";
                     string eventdesc = "Show Discuss Information (Land CRM)";
-                    string eventdesc2 = "";                    
+                    string eventdesc2 = "";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
 
                 }
-              
+
 
                 //this.ShowData();
 
@@ -6475,7 +6480,7 @@ namespace RealERPWEB.F_01_LPA
             {
                 string eventtype = "Show DWR Information";
                 string eventdesc = "Show  DWR Information";
-                string eventdesc2 = "";                
+                string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
@@ -6517,7 +6522,7 @@ namespace RealERPWEB.F_01_LPA
             hdnfrpttype.Value = "call";
             //string rtype = "dws";
             this.ShowDetNotification(this.hdnfrpttype.Value.ToString());
-           
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
@@ -6530,10 +6535,10 @@ namespace RealERPWEB.F_01_LPA
 
             }
 
-            
 
 
-            
+
+
 
         }
         protected void lnkbtnDws_Click(object sender, EventArgs e)
@@ -6564,7 +6569,7 @@ namespace RealERPWEB.F_01_LPA
             hdnfrpttype.Value = "daypassed";
             this.ShowDetNotification(this.hdnfrpttype.Value.ToString());
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string events = hst["events"].ToString();         
+            string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Show daypass Information (Land CRM)";
@@ -6630,7 +6635,7 @@ namespace RealERPWEB.F_01_LPA
                 string eventdesc2 = "";
                 string comcod = this.GetCompCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            }          
+            }
         }
 
         protected void lbtnSigned_Click(object sender, EventArgs e)
@@ -6650,7 +6655,7 @@ namespace RealERPWEB.F_01_LPA
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
-                   
+
 
 
         }
@@ -6685,8 +6690,8 @@ namespace RealERPWEB.F_01_LPA
                 string comcod = this.GetCompCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
- 
-                      
+
+
 
         }
         protected void lnkbtnLomi_Click(object sender, EventArgs e)
@@ -6705,7 +6710,7 @@ namespace RealERPWEB.F_01_LPA
                 string comcod = this.GetCompCode();
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
-            
+
 
         }
         protected void lnkbtnServey_Click(object sender, EventArgs e)
@@ -6719,8 +6724,8 @@ namespace RealERPWEB.F_01_LPA
         {
             hdnfrpttype.Value = "Others";
             this.ShowDetNotification(this.hdnfrpttype.Value.ToString());
-            
-            
+
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
@@ -6732,7 +6737,7 @@ namespace RealERPWEB.F_01_LPA
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
-          
+
 
 
         }
@@ -7591,18 +7596,18 @@ namespace RealERPWEB.F_01_LPA
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
                 this.clearModalField(); // clear modal 
-                
+
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
                     string eventtype = "Update Info (Land CRM)";
                     string eventdesc = "Update Info (Land CRM)";
                     string eventdesc2 = "";
-                   
+
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
 
-               
+
 
 
                 //this.ShowData();
@@ -7681,7 +7686,7 @@ namespace RealERPWEB.F_01_LPA
 
         protected void Btn_tempBTN_Click(object sender, EventArgs e)
         {
-           this.autoClickBtn_tempBTN();
+            this.autoClickBtn_tempBTN();
         }
     }
 }

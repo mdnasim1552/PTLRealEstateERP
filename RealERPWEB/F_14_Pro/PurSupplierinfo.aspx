@@ -12,16 +12,21 @@
 
         $(document).ready(function () {
 
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);    
 
         });
 
-        function pageLoaded() {
-
-
+        function pageLoaded()
+        {
             $('.chzn-select').chosen({ search_contains: true });
 
-        }
+             $(".chkmobile").keyup(function () {
+                var $this = $(this);
+                $this.val($this.val().replace(/[^\d.]/g, ''));
+        });
+    }
+    
+   
 
 </script>
 
@@ -65,7 +70,7 @@
                             </div>
                     </div>
                     <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True" Width="831px">
+                            ShowFooter="True" Width="831px" OnRowDataBound="gvPersonalInfo_RowDataBound">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -111,6 +116,9 @@
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lUpdatPerInfo" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdatPerInfo_Click"
                                            >Update Information</asp:LinkButton>
+
+
+                                        <asp:LinkButton ID="lnkMesSend" runat="server" OnClick="lnkMesSend_Click" CssClass="btn btn-success btn-xs okbtn pull-right">Send SMS</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent"
@@ -130,12 +138,7 @@
                             <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
                 </div>
-            </div>
-
-
-
-
-            
+            </div>            
         </ContentTemplate>
     </asp:UpdatePanel>
 

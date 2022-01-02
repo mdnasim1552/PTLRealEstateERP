@@ -407,6 +407,7 @@
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1Rup.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher2.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher3.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherEntrust.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherTanvir.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher4.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucherManama.rdlc" />
@@ -526,6 +527,7 @@
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher3.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher4 old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher4.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVoucherEntrust.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucherManama.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher5.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVoucher6.rdlc" />

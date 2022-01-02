@@ -61,9 +61,11 @@ namespace RealERPWEB.F_22_Sal
                 //string comcod = hst["comcod"].ToString();
                 string comcod = this.GetCompCode();
                 string Type = this.Request.QueryString["Type"].ToString().Trim();
+               
+                string code = this.Request.QueryString["Code"] == "22" ? "22%" : "%%";
 
                 DataSet dsone = this.da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTSALECODE", Type,
-                                "", "", "", "", "", "", "", "");
+                                code, "", "", "", "", "", "", "");
                 this.ddlOthersBook.DataTextField = "gdesc";
                 this.ddlOthersBook.DataValueField = "gcod";
                 this.ddlOthersBook.DataSource = dsone.Tables[0];

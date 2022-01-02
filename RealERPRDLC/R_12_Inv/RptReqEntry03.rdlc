@@ -2300,7 +2300,7 @@ Require</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!tbbgdqty.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!bgdqty.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2408,7 +2408,7 @@ Require</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!bgdqty.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!tbbgdqty.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2469,6 +2469,7 @@ Require</Value>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -3832,7 +3833,6 @@ Require</Value>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.025in</Top>
-            <Left>0in</Left>
             <Height>1.85938in</Height>
             <Width>13.45322in</Width>
             <Style>

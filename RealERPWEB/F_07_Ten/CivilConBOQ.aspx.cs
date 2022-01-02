@@ -270,12 +270,14 @@ namespace RealERPWEB.F_07_Ten
             string subdesc = this.ddlWorkList.SelectedItem.ToString();
 
             string FLRCOD = this.DropCheck.SelectedValue.ToString();
-            string floredesc = this.DropCheck.SelectedItem.ToString();
 
             string txtsbtrate_per = this.txtSbtRate_Per.Text.Trim().ToString();
             string txtactamt_per = this.txtACCost_Per.Text.Trim().ToString();
             string txtcostvatoh_per = this.txtACCostVatOH_Per.Text.Trim().ToString();
             double convrate = 0.00;
+ 
+            string floredesc = this.DropCheck.SelectedItem.ToString();
+
             if (workcode != "000000000000")
             {
                 foreach (ListItem lab1 in DropCheck.Items)
@@ -358,28 +360,27 @@ namespace RealERPWEB.F_07_Ten
 
 
 
-            string actcode;
+            
             string subcode;
+            subcode = dt1.Rows[0]["subcode"].ToString();
 
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                actcode = dt1.Rows[j]["actcode"].ToString();
-                subcode = dt1.Rows[j]["subcode"].ToString();
+                
+                
 
-                if (dt1.Rows[j]["actcode"].ToString() == actcode && dt1.Rows[j]["subcode"].ToString() == subcode)
+                if ( dt1.Rows[j]["subcode"].ToString() == subcode)
                 {
-                    actcode = dt1.Rows[j]["actcode"].ToString();
-                    subcode = dt1.Rows[j]["subcode"].ToString();
-                    dt1.Rows[j]["actdesc"] = "";
+                   
+                    
                     dt1.Rows[j]["subdesc"] = "";
                     dt1.Rows[j]["sdetails"] = "";
                 }
 
-                else
-                {
-                    actcode = dt1.Rows[j]["actcode"].ToString();
-                    subcode = dt1.Rows[j]["subcode"].ToString();
-                }
+               
+                   
+              subcode = dt1.Rows[j]["subcode"].ToString();
+                
 
             }
 
