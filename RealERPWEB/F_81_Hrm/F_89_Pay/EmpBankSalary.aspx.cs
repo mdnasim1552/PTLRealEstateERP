@@ -374,10 +374,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             DataTable dt = (ds2.Tables[0]);
             Session["tblover"] = dt;
-            if (ds2.Tables.Count>1)
+            if (ds2.Tables.Count > 1)
             {
                 Session["tblBankTrns"] = ds2.Tables[1];
-            }        
+            }
 
             this.Data_Bind();
         }
@@ -461,7 +461,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "4301":
                     this.PrintBankStatementSan();
                     break;
-                
+
                 case "3333":
                     this.PrintBankStatementAlli();
                     break;
@@ -769,7 +769,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comname = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
             string compname = hst["compname"].ToString();
-            string username = hst["username"].ToString();           
+            string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtcuDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
             string year = this.txtDate.Text.Substring(0, 4).ToString();
@@ -778,10 +778,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string motheraccno = dt.Rows[0]["banksl"].ToString();
             string addr = dt.Rows[0]["bankaddr"].ToString();
             string bankname = dt.Rows[0]["bankname"].ToString();
-           // string bankAccNo = dt.Rows[0]["acno"].ToString();
+            // string bankAccNo = dt.Rows[0]["acno"].ToString();
             //string bankAccNo = this.ddlBankName.SelectedValue.ToString();
             string totNoTrans = dt1.Rows[0]["ttrnsecno"].ToString();
-           
+
             string[] add = addr.Split(',');
 
             string Badd = "";
@@ -794,19 +794,19 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string sumamt = "";
             sumamt = ((Label)this.gvBankPayment.FooterRow.FindControl("lgvFBamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00
             : dt.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00); ");
-            
+
             string inwords = ASTUtility.Trans(Convert.ToDouble(sumamt), 2);
             string subject = "";
             subject = "Subject: Request for Disbursement of Salary- " + month + "-" + year + " as Per Attached Sheet.";
 
             string Det1 = "";
             Det1 = "I/We hereby request you to take the necessary initiatives to proceed with bulk salary transfer. The transfer detail is attached herewith duly signed by the signatory.";
-            
+
             string Det2 = "";
             Det2 = "I/We take the responsibility for the attached sheet for its detailed information given to the bank, which is fair and free from any anti-money laundering issue.";
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>();
-            LocalReport Rpt1 = new LocalReport();        
+            LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptForLetterEdison", list, null, null);
             Rpt1.SetParameters(new ReportParameter("BankAdd", addr));
             Rpt1.SetParameters(new ReportParameter("Date", Convert.ToDateTime(txtcuDate).ToString("MMMM dd, yyyy")));
@@ -1073,7 +1073,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string[] add = addr.Split(',');
 
             string Badd = "";
-
             foreach (string add1 in add)
                 Badd = Badd + add1 + "," + "\n";
             Badd = Badd.Substring(1, Badd.Length - 1);
@@ -1085,6 +1084,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string[] add2 = bankacc2.Split('#');
             string bank2 = add2[1];
+            string bank1 = add2[0];
 
             string empType = "";
             string Det1 = "";
@@ -1104,9 +1104,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Det1 = "We are maintaining an SND account with your branch (AC/ #" + bank2 + " ) of our company and all of our employees are also maintaining their respective accounts with your branch. Now we like to pay off their salaries through their respective bank accounts.";
                 Det2 = "Such, we would request you to debit our (AC/ #" + bank2 + " ) and transfer the same amount to the respective employee’s personal accounts as per attached list.";
                 attn = "The Assistant Vice President & Manager";
-                bank = "Shahajalal Islami Bank Ltd.";
-                branch = "Mirpur Branch";
-                address = "Dhaka";
+                //bank = "Shahajalal Islami Bank Ltd.";
+                //branch = "Mirpur Branch";
+                //address = "Dhaka";
+                bank = bank1;
+                branch = add.Length > 0 ? add[0].ToString(): "";
+                var list = new List<string>(add);                
+                list.RemoveAt(0);
+                foreach (var item in list)
+                {
+                    address += item + ", ";
+                }
+
 
             }
 
@@ -1116,9 +1125,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Det1 = "We are maintaining a current account with your branch (AC/ #" + bank2 + " ) of our company and some of our managements are also maintaining their respective accounts with your branch. Now we like to pay off their salaries through their respective bank accounts.";
                 Det2 = "As such, we would request you to debit our (AC/ #" + bank2 + " ) and transfer the same amount to the respective management’s personal accounts as per attached list.";
                 attn = "The Manager";
-                bank = "Trust Bank Ltd.	";
-                branch = "Dilkhusha Corporate Branch";
-                address = "Dhaka";
+                //bank = "Trust Bank Ltd.	";
+                //branch = "Dilkhusha Corporate Branch";
+                //address = "Dhaka";
+                bank = bank1;
+                branch = add.Length > 0 ? add[0].ToString() : "";
+                var list = new List<string>(add);
+                list.RemoveAt(0);
+                foreach (var item in list)
+                {
+                    address += item + ", ";
+                }
 
             }
             else
@@ -1127,9 +1144,17 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Det1 = "We are maintaining an SND account with your branch (AC/ #" + bank2 + " ) of our company and all of our employees are also maintaining their respective accounts with your branch. Now we like to pay off their salaries through their respective bank accounts.";
                 Det2 = "Such, we would request you to debit our (AC/ #" + bank2 + " ) and transfer the same amount to the respective employee’s personal accounts as per attached list.";
                 attn = "The Assistant Vice President & Manager";
-                bank = bankacc;
-                branch = "Mirpur Branch";
-                address = addr;
+                //bank = bankacc;
+                //branch = "Mirpur Branch";
+                //address = addr;
+                bank = bank1;
+                branch = add.Length > 0 ? add[0].ToString() : "";
+                var list = new List<string>(add);
+                list.RemoveAt(0);
+                foreach (var item in list)
+                {
+                    address += item + ", ";
+                }
             }
 
             string sumamt = "";
@@ -1173,6 +1198,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
+
+
 
         private void PrintForwardingLetterAlli()
         {
