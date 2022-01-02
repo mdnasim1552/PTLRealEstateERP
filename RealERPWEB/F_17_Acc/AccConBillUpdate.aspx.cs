@@ -347,6 +347,7 @@ namespace RealERPWEB.F_17_Acc
                 return;
             }
 
+            SaveValue();
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
