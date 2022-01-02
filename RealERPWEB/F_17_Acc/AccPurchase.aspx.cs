@@ -400,7 +400,8 @@ namespace RealERPWEB.F_17_Acc
             string aprvtrmid = "";
             string aprvseson = "";
             string aprvdat = "01-jan-1900";
-            string Payto = "";
+            //this.txtPayto.Text.Trim() == ""
+            string Payto = txtPayto.Text.Trim();
             string isunum = "";
             string recndt = "01-Jan-1900";
             string rpcode = "";
@@ -1217,10 +1218,19 @@ namespace RealERPWEB.F_17_Acc
             this.GridColoumnVisible();
             calculation();
             this.GetNarration();
+            string comcod = this.GetCompCode();
+            if(comcod=="3355")
+            {
+                this.SelectPaytoName();
 
-
-
+            }
         }
+
+        private void SelectPaytoName()
+        {
+            this.txtPayto.Text = ddlSupList.SelectedItem.Text.Trim();
+        }
+
 
         private void GetNarration()
         {

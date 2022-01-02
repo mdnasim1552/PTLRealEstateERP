@@ -58,6 +58,7 @@ namespace RealERPWEB
                      this.ddlyearSale_SelectedIndexChanged(null, null);
                 }
 
+                this.Get_Events();
 
 
 
@@ -223,7 +224,7 @@ namespace RealERPWEB
             this.hypCrmDetails.NavigateUrl = "F_21_MKT/RptSalesFunnel";
 
 
-
+            ViewState["tblgrpMenu"] = ds2.Tables[0];
 
             if (dt.Rows.Count > 0)
             {
@@ -569,6 +570,7 @@ namespace RealERPWEB
         }
         private void ShowData()
         {
+             
             this.pnlMonthlySales.Visible = false;
             this.pnlsalchart.Visible = true;
             this.Panel2.Visible = true;
@@ -679,6 +681,8 @@ namespace RealERPWEB
 
         private void showDataMonthly(string months)
         {
+
+            DataTable dt = (DataTable)ViewState["tblgrpMenu"];
             this.pnlMonthlySales.Visible = true;
             this.pnlsalchart.Visible = false;
 
@@ -708,8 +712,9 @@ namespace RealERPWEB
             string ddlMonths = this.ddlMonths.SelectedValue.ToString();
             string pdate = "01-Jan-" + ddlyear;
 
+             
 
-            ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSEMONTHLY", ddlyear, ddlMonths, "", "", "", "", "", "", "");
+            ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSEMONTHLY", ddlyear, ddlMonths, usrid, "", "", "", "", "", "");
             if (ds2 == null)
                 return;
 
