@@ -237,6 +237,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Cr.Amount">
                                     <FooterTemplate>
                                         <asp:TextBox ID="txtTgvCrAmt" runat="server" BackColor="Transparent"

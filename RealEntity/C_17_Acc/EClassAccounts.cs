@@ -1165,5 +1165,22 @@ namespace RealEntity.C_17_Acc
             public RptCashBank() { }
         }
 
+
+        [Serializable]
+
+        public class AccOpening
+        {
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string actelev { get; set; }
+            public string acttype { get; set; }
+            public double Dr { get; set; }
+            public double Cr { get; set; }
+            public string spcfdesc { get; set; }
+            public int qty { get; set; }
+            public double rate { get; set; }
+            public AccOpening() { }
+        }
+
     }
 }
