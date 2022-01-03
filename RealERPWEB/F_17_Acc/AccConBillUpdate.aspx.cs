@@ -331,7 +331,7 @@ namespace RealERPWEB.F_17_Acc
         {
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
+            
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
 
 
@@ -347,6 +347,7 @@ namespace RealERPWEB.F_17_Acc
                 return;
             }
 
+            SaveValue();
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();

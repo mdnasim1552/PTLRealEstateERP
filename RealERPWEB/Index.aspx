@@ -2053,7 +2053,8 @@
                                                             <asp:DropDownList ID="ddlyearSale" runat="server" OnSelectedIndexChanged="ddlyearSale_SelectedIndexChanged" ClientIDMode="Static" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                                 <asp:ListItem Value="2019">2019</asp:ListItem>
                                                                 <asp:ListItem Value="2020">2020</asp:ListItem>
-                                                                <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
+                                                                <asp:ListItem Value="2021">2021</asp:ListItem>
+                                                                <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
 
                                                             </asp:DropDownList>
                                                             <asp:DropDownList ID="ddlMonths" runat="server" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
@@ -2064,7 +2065,7 @@
                                                                 <asp:ListItem Value="Apr">Apr</asp:ListItem>
                                                                 <asp:ListItem Value="May">May</asp:ListItem>
                                                                 <asp:ListItem Value="Jun">Jun</asp:ListItem>
-                                                                <asp:ListItem Selected Value="Jul">Jul</asp:ListItem>
+                                                                <asp:ListItem Value="Jul" Selected>Jul</asp:ListItem>
                                                                 <asp:ListItem Value="Aug">Aug</asp:ListItem>
                                                                 <asp:ListItem Value="Sep">Sep</asp:ListItem>
                                                                 <asp:ListItem Value="Oct">Oct</asp:ListItem>

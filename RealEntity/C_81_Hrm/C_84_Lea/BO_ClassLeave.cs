@@ -348,5 +348,35 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public DateTime lrentdat { get; set; }
             public EmpLeaveAPP() { }
         }
+
+
+        [Serializable]
+        public class EmpLeaveRecord
+        {
+            public string empid { get; set; }
+            public string empnar { get; set; }
+            public string deptid { get; set; }
+            public string secname { get; set; }
+            public string desig { get; set; }
+            public string idcardno { get; set; }
+            public string joindate { get; set; }
+            public string monjoin { get; set; }
+            public string servday { get; set; }
+            public double oplv { get; set; }
+            public string ernid { get; set; }
+            public double ernleave { get; set; }
+            public string csid { get; set; }
+            public double csleave { get; set; }
+            public string skid { get; set; }
+            public double skleave { get; set; }
+            public string cleavenj { get; set; }
+            public string sckenjoy { get; set; }
+            public string ernenjoy { get; set; }
+            public double balernlv { get; set; }
+            public double balclv { get; set; }
+            public double balsklv { get; set; }
+            public string empname { get; set; }
+            public EmpLeaveRecord() { }
+        }
     }
 }
