@@ -791,7 +791,7 @@
                                             <asp:TemplateField HeaderText="Dr.Amount" HeaderStyle-Width="70px">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvDrAmt" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"  
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="81"></asp:TextBox>
@@ -826,7 +826,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
+                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent" 
+                                                         
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trnrmrk")) %>'
                                                         Width="80px" ForeColor="Black" TabIndex="83"></asp:TextBox>

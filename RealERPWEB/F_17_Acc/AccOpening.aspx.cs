@@ -17,6 +17,8 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using System.Data.OleDb;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_17_Acc
 {
     public partial class AccOpening : System.Web.UI.Page
@@ -148,7 +150,7 @@ namespace RealERPWEB.F_17_Acc
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkbtnSave_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(LnkfTotal_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(lnkSubmit_Click);
@@ -687,10 +689,6 @@ namespace RealERPWEB.F_17_Acc
             ((Label)this.dgv2.FooterRow.FindControl("lblgvFCr")).Text = (Balance < 0) ? "" : Math.Abs(Balance).ToString("#,##0.00;(#,##0.00);  ");
         }
 
-        protected void lnkPrint_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
         protected void dgv2ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
@@ -912,5 +910,59 @@ namespace RealERPWEB.F_17_Acc
             //ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "showwindow('" + data + "');", true);
             return data;
         }
+
+
+        protected void lnkPrint_Click(object sender, EventArgs e)
+        {
+            string openingDate = this.txtdate.Text;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string branch = hst["combranch"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+      
+
+            DataTable dt = (DataTable)Session["AccTbl01"];
+            DataView  dv = dt.DefaultView;
+            dv.RowFilter=("Dr>0 or Cr>0");
+
+   
+            dt = dv.ToTable();
+           
+            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccOpening>();
+
+           
+           
+
+
+            LocalReport Rpt1 = new LocalReport();
+
+
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccOpening", list, null, null);
+            Rpt1.EnableExternalImages = true;
+
+            Rpt1.SetParameters(new ReportParameter("openingDate", openingDate));
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Opening Voucher"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("branch", branch));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+
     }
 }

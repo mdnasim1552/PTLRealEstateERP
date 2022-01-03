@@ -50,8 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Files\Real Estate Bin\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -114,6 +115,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay03.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.EClassPur+MkrServay031.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
@@ -123,6 +125,7 @@
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
@@ -379,6 +382,7 @@
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerBridge.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerRup.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerTerra.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccOpening.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccountCode2.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccProjectReport.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccProjectReport01.rdlc" />
@@ -442,6 +446,7 @@
     <EmbeddedResource Include="R_17_Acc\RptChequeSBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeSuvastu.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeSuvastuPBL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeGreenwood.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeTCL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChqIssuedGrpWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptCollChqStatus.rdlc" />
@@ -780,6 +785,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptDailyAttendenceCHL011.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptDailyLateAtt.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptDeptWiseEmp.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptEmpAbsCtAuto.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptEmpConfirmation.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptEmpMonthPresence.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_83_Att\RptHRAllEmpStatus.rdlc" />
@@ -797,6 +803,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatus.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptAllEmpLeavStatusBR.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmpLeavStatus.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptEmployeeLeaveRecord.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave02.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptHrEmpLeave03.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_84_Lea\RptMonWiseEmpLeave.rdlc" />
