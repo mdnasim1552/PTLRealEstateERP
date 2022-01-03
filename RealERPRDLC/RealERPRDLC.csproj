@@ -382,6 +382,7 @@
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerBridge.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerRup.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerTerra.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccOpeningDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccOpening.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccountCode2.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccProjectReport.rdlc" />

@@ -915,6 +915,7 @@ namespace RealERPWEB.F_17_Acc
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
             string openingDate = this.txtdate.Text;
+            string reportType = this.GetReportType();
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string branch = hst["combranch"].ToString();
@@ -927,41 +928,101 @@ namespace RealERPWEB.F_17_Acc
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-      
-
-            DataTable dt = (DataTable)Session["AccTbl01"];
-            DataView  dv = dt.DefaultView;
-            dv.RowFilter=("Dr>0 or Cr>0");
-
-   
-            dt = dv.ToTable();
+            string fdr= ((Label)this.dgv2.FooterRow.FindControl("lblgvFDr")).Text;
+            string fcr= ((Label)this.dgv2.FooterRow.FindControl("lblgvFCr")).Text;
+            string acchead = "";
            
-            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccOpening>();
+            for (var i = 0; i < dgv2.Rows.Count; i++)
+            {
+                string ah = ((Label)this.dgv2.Rows[i].FindControl("lblAccdesc")).Text;
+                acchead = ah.Remove(0, 13);
+            }
 
-           
-           
+
+            if (fdr == "")
+            {
+                fdr = "0";
+            }
+            if (fcr == "")
+            {
+                fcr = "0";
+            }
 
 
             LocalReport Rpt1 = new LocalReport();
+            if(reportType == "Summary")
+            {
+                DataTable dt = (DataTable)Session["AccTbl01"];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("Dr>0 or Cr>0");
+                dt = dv.ToTable();
+                var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccOpening>();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccOpening", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("openingDate", openingDate));
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Opening Voucher"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("branch", branch));
+                Rpt1.SetParameters(new ReportParameter("fdr", fdr));
+                Rpt1.SetParameters(new ReportParameter("fcr", fcr));
+            }
+            else
+            {
+                DataTable dt = (DataTable)Session["AccTbl02"];
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("Dr>0 or Cr>0");
+                dt = dv.ToTable();
+                var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassAccounts.AccOpening>();
+
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccOpeningDetails", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("openingDate", openingDate));
+                Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("RptTitle", "Opening Voucher Details"));
+                Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+                Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("branch", branch));
+                Rpt1.SetParameters(new ReportParameter("acchead", acchead));
+
+            }
 
 
 
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccOpening", list, null, null);
-            Rpt1.EnableExternalImages = true;
 
-            Rpt1.SetParameters(new ReportParameter("openingDate", openingDate));
-            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Opening Voucher"));
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
-            Rpt1.SetParameters(new ReportParameter("branch", branch));
+
+
 
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
+        }
+
+        private string GetReportType()
+        {
+            string Type = "";
+            int index = this.ddreportType.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    Type = "Summary";
+                    break;
+
+                case 1:
+                    Type = "Details";
+                    break;
+
+                default:
+                    Type = "Summary";
+                    break;
+            }
+            return Type;
         }
 
     }
