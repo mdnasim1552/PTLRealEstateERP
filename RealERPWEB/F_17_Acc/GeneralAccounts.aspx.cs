@@ -2810,6 +2810,8 @@ namespace RealERPWEB.F_17_Acc
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                string comcod = this.GetCompCode();
+
                 HyperLink hlnkAccdesc1 = (HyperLink)e.Row.FindControl("hlnkAccdesc1");
                 //start nahid
                 TextBox tnrRemarks = (TextBox)e.Row.FindControl("txtgvRemarks");
@@ -2820,9 +2822,10 @@ namespace RealERPWEB.F_17_Acc
                 string txtRemarks = tnrRemarks.Text.Trim();
                 string dramt = txtgvDrAmt.Text.Trim();
                 double Dramt = Convert.ToDouble("0" + dramt);
+
                 string remktype = txtRemarks.Length > 0 ? ASTUtility.Left(txtRemarks, 3).Trim().ToString() : "";
-                LinkButton Delete = (LinkButton)e.Row.Cells[1].Controls[0];
-                LinkButton Edit = (LinkButton)e.Row.Cells[2].Controls[0];
+
+
                 //end nahid
                 string actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString();
                 string subcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "subcode")).ToString();
@@ -2846,32 +2849,42 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                string comcod = this.GetCompCode();
-                switch (comcod)
-                {
-                    case "3305":
-                    case "3306":
-                    case "2305":
-                    case "3310":
-                    case "3311":
+                //switch (comcod)
+                //{
+                //    case "3305":
+                //    case "3306":
+                //    case "2305":
+                //    case "3310":
+                //    case "3311":
+                //    case "3355":
+                //    case "3101":
+                //        if (this.ddlPrivousVou.Items.Count > 0)
+                //        {
+                         
+                            
 
-                    case "3101":
-                        if (this.ddlPrivousVou.Items.Count > 0)
-                        {
-                            tnrRemarks.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
-                            txtgvDrAmt.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
-                            txtgvQty.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
-                            txtgvRate.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
-                            txtgvCrAmt.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //            LinkButton Delete = e.Row.Cells[1].Controls[0] as LinkButton;
+                //            LinkButton Edit = e.Row.Cells[2].Controls[0] as LinkButton;
 
-                            Edit.Visible = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
-                            Delete.Visible = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
-                        }
-                        break;
-                    default:
-                        tnrRemarks.ReadOnly = true;
-                        break;
-                }
+
+                //            //HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkapp");
+                //            //LinkButton Delete = (LinkButton)e.Row.Cells[1].Controls[0];
+                //            //LinkButton Edit = (LinkButton)e.Row.Cells[2].Controls[0];
+
+                //            tnrRemarks.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //            txtgvDrAmt.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //            txtgvQty.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //            txtgvRate.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //            txtgvCrAmt.Enabled = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+
+                //            Edit.Visible = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //            Delete.Visible = ((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0) ? false : true;
+                //        }
+                //        break;
+                //    default:
+                //        tnrRemarks.ReadOnly = true;
+                //        break;
+                //}
 
             }
         }

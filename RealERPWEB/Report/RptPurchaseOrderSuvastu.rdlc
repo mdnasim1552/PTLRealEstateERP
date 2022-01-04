@@ -2227,7 +2227,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2313,7 +2313,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
