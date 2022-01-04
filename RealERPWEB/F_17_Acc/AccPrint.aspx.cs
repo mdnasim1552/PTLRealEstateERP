@@ -181,6 +181,11 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "3355":
+                    vouprint = "VocherPrintGreenwood";
+                    break;
+
+
                 default:
                     vouprint = "VocherPrint";
                     break;
@@ -492,6 +497,17 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
+                else if (Type == "VocherPrintGreenwood")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherGreenwood", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+
+                }
+
+
 
                 else
                 {
@@ -520,19 +536,20 @@ namespace RealERPWEB.F_17_Acc
                 {
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                 }
-
-                Rpt1.SetParameters(new ReportParameter("voutype", VouType));
+                
                 Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
-                if (comcod == "2325" || comcod == "3325" || comcod == "3101")
+                if (comcod == "2325" || comcod == "3325" || comcod == "3101" || comcod == "3355")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, "", Posteddat, compname, username, printdate, "")));
+                    Rpt1.SetParameters(new ReportParameter("voutype", "PDC "+VouType));
                 }
                 else
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("voutype", VouType));
                 }
 
                 //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
@@ -674,7 +691,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintLei";
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3353":
                     vouprint = "VoucherPrintManama";
                     break;
@@ -696,7 +713,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //manama, p2p 
                 // Entrust Collection
-                case "3101":
+                //case "3101":
                 case "3358":
                 case "3359":
                 case "3360":
@@ -1383,10 +1400,8 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
                     Rpt1.SetParameters(new ReportParameter("txtissuno", "Issue No: " + Isunum));
                     Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
-                    Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                     Rpt1.SetParameters(new ReportParameter("voutype", voutype));
                     Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
-                    Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
 
 
                 }
@@ -1445,7 +1460,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
-                if (comcod == "2325" || comcod == "3325")
+                if (comcod == "2325" || comcod == "3325" || comcod == "3353" || comcod == "3101")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, postseson, Posteddat, compname, username, printdate, session)));
                 }

@@ -406,6 +406,7 @@
     <EmbeddedResource Include="R_17_Acc\RptBankPosition.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankReconc.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptBankStatementInfo.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptBankVoucherGreenwood.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptBankVoucher1Rup.rdlc" />

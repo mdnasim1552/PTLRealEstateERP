@@ -86,12 +86,14 @@ namespace RealERPWEB.F_24_CC
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             if (this.lbtnOk.Text == "Ok")
             {
                 this.lbtnOk.Text = "New";
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
-                this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
+                //this.lblProjectmDesc.Text = ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim() : this.ddlProjectName.SelectedItem.Text.Substring(13);
+                this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.ToString();
                 this.ddlProjectName.Visible = false;
                 this.lblProjectmDesc.Visible = true;
                 //this.lblProjectdesc.Visible = true;
