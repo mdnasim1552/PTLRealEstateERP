@@ -598,7 +598,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="13px" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" ControlStyle-Width="30px">
+                                            <asp:CommandField ShowDeleteButton="True" ButtonType="Link" ControlStyle-Width="30px">
                                                 <ControlStyle Width="30px" />
                                                 <HeaderStyle Width="30px" />
                                                 <ItemStyle Width="30px" />

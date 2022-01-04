@@ -52,7 +52,11 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+<<<<<<< HEAD
       <HintPath>C:\Users\HP\OneDrive\Desktop\Bin_real\Microsoft.ReportViewer.WinForms.dll</HintPath>
+=======
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+>>>>>>> 1842dc686fa2739fb9a35c57049d019a5b0a39b6
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -382,6 +386,7 @@
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerBridge.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerRup.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerTerra.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptAccOpeningDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccOpening.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccountCode2.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccProjectReport.rdlc" />
