@@ -516,6 +516,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptCashBank": Rpt1a = SetRptCashBank(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptCashBankWithdraw": Rpt1a = SetRptCashBankWithdraw(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccOpening": Rpt1a = SetRptAccOpening(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptAccOpeningDetails": Rpt1a = SetRptAccOpeningDetails(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -1098,7 +1099,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.AccOpening>)RptDataSet));
             return Rpt1a;
         }
-        
+
+        private static LocalReport SetRptAccOpeningDetails(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.AccOpening>)RptDataSet));
+            return Rpt1a;
+        }
+
 
 
 
