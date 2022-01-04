@@ -2703,6 +2703,9 @@
                                                 <asp:ListItem>3000</asp:ListItem>
                                                 <asp:ListItem>4000</asp:ListItem>
                                                 <asp:ListItem>5000</asp:ListItem>
+                                                <asp:ListItem>7000</asp:ListItem>
+                                                <asp:ListItem>8000</asp:ListItem>
+                                                <asp:ListItem>10000</asp:ListItem>
                                             </asp:DropDownList>
 
 
