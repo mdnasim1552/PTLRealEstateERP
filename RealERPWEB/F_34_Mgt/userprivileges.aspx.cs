@@ -36,23 +36,11 @@ namespace RealERPWEB.F_34_Mgt
 
                 //((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 //((Label)this.Master.FindControl("lblmsg")).Visible = false;
-                //this.ShowUserInfo();
+                
 
-                this.getListModulename();
+               // this.getListModulename();
                 this.ShowAllData();
-                //if (this.chkShowall.Checked)
-                //{
-
-                //    //   this.ShowAllData();
-
-                //}
-                //else
-                //{
-                //    this.ShowData();
-                //}
-
-                ////this.ModuleVisible();
-                //this.GetCompPermission();
+                 
             }
         }
 
@@ -94,29 +82,13 @@ namespace RealERPWEB.F_34_Mgt
         }
         protected void chkShowall_CheckedChanged(object sender, EventArgs e)
         {
-            this.getListModulename();
+            
             ShowAllData();
-            //if (this.chkShowall.Checked)
-            //{
-
-            //    this.ShowAllData();
-
-            //}
-            //else
-            //{
-            //    this.ShowData();
-            //}
+             
         }
         protected void ddlModuleName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (this.chkShowall.Checked)
-            //{
-            //    this.ShowAllData();
-            //}
-            //else
-            //{
-            //    this.ShowData();
-            //}
+            
             ShowAllData();
         }
         private void ShowAllData()
@@ -138,25 +110,7 @@ namespace RealERPWEB.F_34_Mgt
             this.ShowPer();
         }
 
-        private void ShowData()
-        {
-
-            //string comcod = this.GetComeCode();
-            //string usrid = this.Request.QueryString["Userid"].ToString();
-
-            //string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
-            //string ddlType = (this.ddlType.SelectedValue.Trim() == "0" ? "0" : this.ddlType.SelectedValue.ToString());
-            //DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USER", usrid, ddlType, "", "", "", "", "", "", "");
-            //if (ds4 == null)
-            //{
-            //    this.gvPermission.DataSource = null;
-            //    this.gvPermission.DataBind();
-            //    return;
-            //}
-            //Session["tblusrper"] = this.HiddenSameData(ds4.Tables[0]);
-
-            //this.ShowPer();
-        }
+       
         private DataTable HiddenSameData(DataTable dt1)
         {
 
@@ -498,14 +452,7 @@ namespace RealERPWEB.F_34_Mgt
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (this.chkShowall.Checked)
-            //{
-            //    this.ShowAllData();
-            //}
-            //else
-            //{
-            //    this.ShowData();
-            //}
+             
             ShowAllData();
         }
 
