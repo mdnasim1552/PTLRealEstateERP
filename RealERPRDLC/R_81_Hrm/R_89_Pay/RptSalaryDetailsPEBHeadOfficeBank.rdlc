@@ -2748,6 +2748,7 @@ Arear/ Special Allowances</Value>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -5116,7 +5117,6 @@ Arear/ Special Allowances</Value>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.06944in</Top>
-            <Left>0in</Left>
             <Height>1.95834in</Height>
             <Width>14.54167in</Width>
             <Style>
@@ -5147,7 +5147,6 @@ Arear/ Special Allowances</Value>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.08056in</Top>
-            <Left>0in</Left>
             <Height>0.1875in</Height>
             <Width>11.75125in</Width>
             <ZIndex>1</ZIndex>
@@ -5246,7 +5245,6 @@ Arear/ Special Allowances</Value>
               <Source>External</Source>
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0in</Left>
               <Height>0.67361in</Height>
               <Width>1.125in</Width>
               <ZIndex>2</ZIndex>
