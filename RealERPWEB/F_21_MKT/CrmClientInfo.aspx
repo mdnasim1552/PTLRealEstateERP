@@ -2006,11 +2006,8 @@
                                                             <asp:Panel ID="Panegrd" runat="server">
 
                                                                 <div class="form-group">
-
-                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    <asp:DropDownList ID="ddlval" runat="server"  ondatabound="ddlval_DataBound" Width="300px" CssClass="custom-select chzn-select">
                                                                     </asp:DropDownList>
-
-
                                                                 </div>
 
 
@@ -2041,7 +2038,7 @@
                                                 ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow" OnRowDataBound="gvSourceInfo_RowDataBound">
                                                 <RowStyle />
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                    <asp:TemplateField HeaderText="Code"  >
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvItmCode" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
@@ -2088,7 +2085,7 @@
 
                                                                 <div class="form-group mt-2">
 
-                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" OnSelectedIndexChanged="ddlval_SelectedIndexChanged" AutoPostBack="true" CssClass="custom-select chzn-select">
                                                                     </asp:DropDownList>
 
 
