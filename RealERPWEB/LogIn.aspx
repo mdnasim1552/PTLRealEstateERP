@@ -332,7 +332,7 @@
                 }
             });
 
-            $('#WCModal').modal('show');
+            //$('#WCModal').modal('show');
 
             $('#ForgetPass').click(function () {
                 $('#myModal').modal('toggle');//.modal('show')/.modal('hide');

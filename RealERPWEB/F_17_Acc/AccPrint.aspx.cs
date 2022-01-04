@@ -1335,12 +1335,18 @@ namespace RealERPWEB.F_17_Acc
                 else if (Type == "VoucherPrintManama")
                 {
                     string voutype1 = "";
+
                     string vouno = vounum.Substring(0, 2);
                     if (vouno == "BC")
                     {
                         voutype1 = "Bank Receive Voucher";
                     }
                     else if (vouno == "CC")
+                    {
+                        voutype1 = "Cash Receive Voucher";
+                    }
+
+                    else if (vouno == "JV")
                     {
                         voutype1 = "Cash Receive Voucher";
                     }
@@ -1674,7 +1680,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
+
                 case "3337":
                 case "3336":
                     this.PrintchKSuvastu();
@@ -1708,7 +1714,7 @@ namespace RealERPWEB.F_17_Acc
 
                     PrinChequeAssure();
                     break;
-
+                case "3101":
                 case "3355":
 
                     PrinChequeGreenWood();
@@ -1988,8 +1994,6 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
                 string banktype = dt1.Rows[0]["bnkcode"].ToString();
-
-
                 rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
 
                 Session["Report1"] = rpt1;
@@ -2303,10 +2307,6 @@ namespace RealERPWEB.F_17_Acc
                 else if (comcod == "3348")
                 {
                     rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptCheqCredence", hshtbl, null, null);
-                }
-                else if (comcod == "3355") // Cheque Greenwood
-                {
-                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
                 }
                 else
                 {
