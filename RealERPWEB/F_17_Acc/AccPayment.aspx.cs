@@ -398,7 +398,7 @@ namespace RealERPWEB.F_17_Acc
                 DataRow[] dr1 = dt3.Select("rescode='" + seaRes + "'");
                 if (dr1.Length == 0)
                     return;
-
+                
                 if (ASTUtility.Left(dr1[0]["rescode"].ToString(), 1) == "9")
                 {
 
@@ -486,7 +486,7 @@ namespace RealERPWEB.F_17_Acc
             }
             this.GetSpecification();
             this.GetBillNo();
-            // this.lnkSpecification_Click(null, null);
+             this.lnkSpecification_Click(null, null);
         }
 
         protected void lnkOk_Click(object sender, EventArgs e)
