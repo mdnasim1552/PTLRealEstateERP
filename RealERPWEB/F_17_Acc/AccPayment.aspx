@@ -262,7 +262,7 @@
 
                                             <asp:Label ID="lblDramt" runat="server" CssClass="lblName lblTxt">Amount</asp:Label>
 
-                                            <asp:TextBox ID="txtDrAmt" runat="server" TabIndex="19" CssClass=" inputtextbox"></asp:TextBox>
+                                            <asp:TextBox ID="txtDrAmt" runat="server"  CssClass=" inputtextbox"></asp:TextBox>
 
                                         </div>
                                         <div class="col-md-9 pading5px">

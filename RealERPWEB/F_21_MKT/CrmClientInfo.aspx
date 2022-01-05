@@ -3004,12 +3004,12 @@
                                                 <%--20--%>
 
 
-                                                <%--  <asp:TemplateField HeaderText="Progress">
+                                                  <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvfeedback" runat="server" Width="60px" Font-Size="10px"
+                                                        <asp:Label ID="lblgvfeedback" runat="server" Width="100px" Font-Size="10px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
                                                     </ItemTemplate>
-                                                </asp:TemplateField>--%>
+                                                </asp:TemplateField>
 
 
 
