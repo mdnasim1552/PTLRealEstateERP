@@ -229,7 +229,7 @@
 
                                             <asp:Label ID="Label2" runat="server" CssClass="lblName lblTxt" Text="Sub of Account"></asp:Label>
 
-                                            <asp:TextBox ID="txtserchReCode" runat="server" CssClass="inputtextbox" TabIndex="15" ></asp:TextBox>
+                                            <asp:TextBox ID="txtserchReCode" runat="server" CssClass="inputtextbox" ></asp:TextBox>
                                             <asp:LinkButton ID="lnkRescode" runat="server" OnClick="lnkRescode_Click" CssClass="btn btn-primary srearchBtn " TabIndex="16"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
@@ -243,15 +243,15 @@
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lblspecification" runat="server" CssClass="lblTxt lblName" Visible="false">Specification</asp:Label>
-                                            <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass="inputtextbox " TabIndex="17" ></asp:TextBox>
-                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" TabIndex="18" ><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass="inputtextbox " ></asp:TextBox>
+                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="btn btn-primary srearchBtn"   OnClick="lnkSpecification_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
 
 
                                         </div>
                                         <div class="col-md-5 pading5px asitCol5">
-                                            <asp:DropDownList ID="ddlSpclinf" runat="server" CssClass="form-control inputTxt chzn-select"
-                                                TabIndex="19" Visible="false">
+                                            <asp:DropDownList ID="ddlSpclinf"  runat="server" CssClass="form-control inputTxt chzn-select"
+                                                  Visible="false">
                                             </asp:DropDownList>
 
                                         </div>
@@ -262,14 +262,14 @@
 
                                             <asp:Label ID="lblDramt" runat="server" CssClass="lblName lblTxt">Amount</asp:Label>
 
-                                            <asp:TextBox ID="txtDrAmt" runat="server" CssClass=" inputtextbox" TabIndex="18"></asp:TextBox>
+                                            <asp:TextBox ID="txtDrAmt" runat="server" TabIndex="19" CssClass=" inputtextbox"></asp:TextBox>
 
                                         </div>
                                         <div class="col-md-9 pading5px">
 
                                             <asp:Label ID="lblChequeNo" runat="server" CssClass="smLbl_to">Cheque No.</asp:Label>
 
-                                            <asp:TextBox ID="txtChequeNo" runat="server" CssClass=" inputtextbox" TabIndex="19"></asp:TextBox>
+                                            <asp:TextBox ID="txtChequeNo" runat="server" CssClass=" inputtextbox" TabIndex="20"></asp:TextBox>
 
 
 
@@ -394,7 +394,7 @@
 
                                                 <div class="col-md-3 pading5px asitCol3">
                                                     <asp:Label ID="lblcontrolAccHead0" runat="server" CssClass="lblTxt lblName">Details Head</asp:Label>
-                                                    <asp:TextBox ID="txtgrdserresource" runat="server" CssClass="inputtextbox" TabIndex="29"></asp:TextBox>
+                                                    <asp:TextBox ID="txtgrdserresource" runat="server" CssClass="inputtextbox" ></asp:TextBox>
 
 
                                                     <div class="colMdbtn">
@@ -406,7 +406,7 @@
 
                                                 <div class="col-md-3 pading5px">
                                                     <asp:DropDownList ID="ddlrgrdesuorcecode" runat="server" CssClass="form-control inputTxt chzn-select"
-                                                        TabIndex="31" Style="width: 213px;">
+                                                        TabIndex="29" Style="width: 213px;">
                                                     </asp:DropDownList>
 
                                                 </div>
