@@ -455,6 +455,8 @@ namespace RealERPWEB.F_21_MKT
             this.gvSourceInfo.DataBind();
             DropDownList ddlgval;
             string gempid = "";
+            string assEmpid = "";
+
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -498,12 +500,12 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = gempid;
 
                         break;
+
                     case "0302005": //Assign Persion   
 
                         dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView;
                         if (userrole == "1")
                             dv1.RowFilter = ("gcod like '93%'");
-
                         else
                         {
                             DataTable dts = dv1.ToTable();
@@ -518,7 +520,6 @@ namespace RealERPWEB.F_21_MKT
                                              code = dtl1.Field<string>("code")
                                          }).ToList();
                             dv1 = ASITUtility03.ListToDataTable(query).DefaultView;
-
                         }
 
 
@@ -536,6 +537,10 @@ namespace RealERPWEB.F_21_MKT
                         // empid = gempid.Length == 0 ? empid : gempid;
                         ddlgval.SelectedValue = gempid;
                         // ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        
+                        assEmpid = gempid;
+
+
                         break;
                     case "0302009": //Rating
                         dv1 = dt1.DefaultView;
@@ -6411,8 +6416,53 @@ namespace RealERPWEB.F_21_MKT
                 
             
             }
-        } 
+        }
 
+        protected void ddlval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
+
+
+            int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+            string empid = ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlval")).SelectedValue ;            
+            string Gcode = ((Label)this.gvSourceInfo.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
+
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSUPERVISORLISTBYID", empid, "", "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
+            string teamid =(ds2.Tables[0].Rows[0]["teamid"].ToString()==""?"93%": ds2.Tables[0].Rows[0]["teamid"].ToString());
+
+
+            DataView dv1;
+            dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView; ;
+            //if (userrole == "1")
+            //    dv1.RowFilter = ("gcod like '93%'");
+            //else
+
+                dv1.RowFilter = ("gcod like '" + teamid + "'");
+
+
+
+            ((TextBox)this.gvSourceInfo.Rows[RowIndex-1].FindControl("txtgvVal")).Visible = false;
+            ((TextBox)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("txtgvdVal")).Visible = false;
+            ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("ddlval"));
+            ddlgval.DataTextField = "gdesc";
+            ddlgval.DataValueField = "gcod";
+            ddlgval.DataSource = dv1.ToTable();
+            ddlgval.DataBind();
+            
+            ddlgval.SelectedValue = teamid;
+
+
+
+        }
+
+        protected void ddlval_DataBound(object sender, EventArgs e)
+        {
+
+        }
     }
 
 

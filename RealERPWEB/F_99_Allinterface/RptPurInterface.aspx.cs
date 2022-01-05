@@ -4103,17 +4103,21 @@ namespace RealERPWEB.F_99_Allinterface
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntryosapp");
                 HyperLink hlnkPrintosapp = (HyperLink)e.Row.FindControl("HyInprPrintosapp");
 
+                HyperLink hlnkPrintosappReq = (HyperLink)e.Row.FindControl("HyInprPrintosappReq"); 
+
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
 
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
 
 
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink2.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=SecondApp&genno=" + orderno;
                 hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
+               // hlnkPrintosappReq.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
 
 
             }
