@@ -578,6 +578,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public DateTime prodat { get; set; }
             public DateTime incrdate { get; set; }
             public string predeg { get; set; }
+
             public RptSalarySheet ()
             {
 
