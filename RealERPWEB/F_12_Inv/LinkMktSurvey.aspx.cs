@@ -65,6 +65,7 @@ namespace RealERPWEB.F_12_Inv
                 case "1205":
                 case "3351":
                 case "3352":
+                case "3364": //JBS
                     msrType = "MSR02";
                     break;
 
@@ -84,6 +85,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3352":
                 case "3101":
                 case "3353"://Manama
+                case "3364": //JBS
                     this.Multiview1.ActiveViewIndex = 1;
                     this.Get_Survey_Info();
                     break;
@@ -149,6 +151,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3352":
                 case "3101":
                 case "3353"://Manama
+                case "3364": //JBS
+
                     this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
                     this.gvMSRInfo2.DataBind();
 
