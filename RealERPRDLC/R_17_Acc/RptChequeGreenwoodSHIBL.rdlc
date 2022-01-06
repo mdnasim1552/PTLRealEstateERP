@@ -89,7 +89,7 @@
                     <Value>=" ="&amp;Space(1) &amp; Format(Parameters!amt.Value)</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>

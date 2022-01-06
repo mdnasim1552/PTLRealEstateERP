@@ -2009,7 +2009,32 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
                 string banktype = dt1.Rows[0]["bnkcode"].ToString();
-                rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                
+                // defult Trust Bank 
+                if (banktype == "TBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+                // Shimanto Bank RptChequeGreenwoodSHBL
+                else if (banktype == "SHBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHBL", hshtbl, null, null);
+                }
+                // Shahjalal Islami Bank Ltd RptChequeGreenwoodSHIBL
+                else if (banktype == "SHIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHIBL", hshtbl, null, null);
+                }
+                // Fast Security Bank Ltd RptChequeGreenwoodFSIBL
+                else if (banktype == "FSIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodFSIBL", hshtbl, null, null);
+                }
+                else
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+               
 
                 Session["Report1"] = rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
@@ -2044,7 +2069,7 @@ namespace RealERPWEB.F_17_Acc
                     this.PrintChequePostAssure();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3336":// Assure Builders
                 case "3337": //Assure Builders
                     this.PrintChequePostSuvastu();
@@ -2063,6 +2088,11 @@ namespace RealERPWEB.F_17_Acc
 
                     this.RptPostDatChq1(); //Rupayan
 
+                    break;
+
+                case "3101":// Assure Builders
+                case "3355": //Assure Builders
+                    this.PrintChequePostGreenwood();
                     break;
 
 
@@ -2973,6 +3003,107 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+
+        private void PrintChequePostGreenwood()
+        {
+
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string vounum = this.Request.QueryString["vounum"].ToString().Substring(0, 14);
+                string chqno = this.Request.QueryString["vounum"].ToString().Substring(14);
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "RPTPOSTDATCHECK", vounum, chqno, "", "", "", "", "", "", "");
+                if (_ReportDataSet == null)
+                    return;
+                DataTable dt1 = _ReportDataSet.Tables[0];
+
+
+                double toamt, dramt, cramt;
+                string voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                string payto = dt1.Rows[0]["payto"].ToString(); //this.txtRecAndPayto.Text.Trim();
+                toamt = Convert.ToDouble(dt1.Rows[0]["trnam"].ToString());
+                string amt1 = ASTUtility.Trans(Math.Round(toamt), 2);
+                int len = amt1.Length;
+                string amt2 = amt1.Substring(7, (len - 8));
+                string wam1 = string.Empty;
+                string wam2 = string.Empty;
+                string Chequeprint = this.CompanyPrintCheque();
+                string[] amtWrd1 = ASTUtility.Trans(Math.Round(toamt, 0), 2).Split('(', ')');
+                string[] amtdivide = amtWrd1[1].Split(' ');
+                string value = (this.Request.QueryString["paytype"] == "0") ? "A/C Payee" : "";
+
+
+
+
+
+
+                for (int i = 2; i <= amtdivide.Length - 1; i++)
+                {
+                    if (i == amtdivide.Length)
+                    {
+                        return;
+                    }
+                    else if (i > 7)
+                    {
+                        wam1 += " " + amtdivide[i].ToString();
+                    }
+                    else
+                    {
+                        wam2 += " " + amtdivide[i].ToString();
+                    }
+                }
+
+
+                Hashtable hshtbl = new Hashtable();
+                hshtbl["bankName"] = "";
+                hshtbl["payTo"] = payto;
+                hshtbl["acpayee"] = value;
+                hshtbl["date"] = voudat;
+                hshtbl["amtWord"] = wam2;//.ToUpper();
+                hshtbl["amtWord1"] = wam1;//.ToUpper();
+                                          // hshtbl["payble"] = value;
+                hshtbl["amt"] = Convert.ToDouble(toamt).ToString("#,##0;(#,##0); ") + "/-";
+                LocalReport rpt1 = new LocalReport();
+
+                string banktype = dt1.Rows[0]["bnkcode"].ToString();
+
+                // defult Trust Bank 
+                if (banktype == "TBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+                // Shimanto Bank RptChequeGreenwoodSHBL
+                else if (banktype == "SHBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHBL", hshtbl, null, null);
+                }
+                // Shahjalal Islami Bank Ltd RptChequeGreenwoodSHIBL
+                else if (banktype == "SHIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHIBL", hshtbl, null, null);
+                }
+                // Fast Security Bank Ltd RptChequeGreenwoodFSIBL
+                else if (banktype == "FSIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodFSIBL", hshtbl, null, null);
+                }
+                else
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+
+                Session["Report1"] = rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
 
         private void PfVoucherPrint()
         {
