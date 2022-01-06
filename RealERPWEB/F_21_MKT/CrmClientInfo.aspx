@@ -2038,7 +2038,7 @@
                                                 ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow" OnRowDataBound="gvSourceInfo_RowDataBound">
                                                 <RowStyle />
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="Code"  >
+                                                    <asp:TemplateField HeaderText="Code"  Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvItmCode" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
