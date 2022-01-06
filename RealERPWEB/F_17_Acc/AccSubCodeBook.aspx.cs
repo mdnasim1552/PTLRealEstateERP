@@ -244,7 +244,7 @@ namespace RealERPWEB.F_17_Acc
                 ddlUnit.DataValueField = "gcod";
                 ddlUnit.DataSource = ds1;
                 ddlUnit.DataBind();
-                ddlUnit.SelectedValue = actcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
+                ddlUnit.SelectedItem.Text = txtUnit.Text; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
                 ddlUnit.Visible = true;
                 txtUnit.Visible = false;
             }
