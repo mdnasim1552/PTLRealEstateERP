@@ -641,7 +641,7 @@ namespace RealERPWEB.F_34_Mgt
             switch (grp)
             {
                 case "A":
-                    dr1 = tbl1.Select("grp ='B' or grp ='C' or grp ='D' or grp ='E' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                    dr1 = tbl1.Select("(grp ='B' or grp ='C' or grp ='D' or grp ='E') and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
                     if (dr1.Length != 0)
                     {
                         reqty = Convert.ToDouble(dr1[0]["qty"]);

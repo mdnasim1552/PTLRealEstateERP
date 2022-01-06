@@ -38,7 +38,7 @@ namespace RealERPWEB.F_21_MKT
                 this.txtkpitodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
 
                 this.MultiView1.ActiveViewIndex = 1;
-                  GetAllSubdata();
+                GetAllSubdata();
                 this.DataBindStatus();
                 this.GETEMPLOYEEUNDERSUPERVISED();
                 this.companyModalVisible(); // hide user country,district, area etc
@@ -57,7 +57,7 @@ namespace RealERPWEB.F_21_MKT
                 {
                     string eventtype = "Click CRM Interface (Sales CRM)";
                     string eventdesc = "Click CRM Interface (Sales CRM)";
-                    string eventdesc2 = "";                  
+                    string eventdesc2 = "";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
 
@@ -121,7 +121,7 @@ namespace RealERPWEB.F_21_MKT
                     break;
 
 
-              
+
                 case "3354"://Edison
                     this.gvSummary.Columns[13].Visible = false;
                     this.gvSummary.Columns[12].Visible = false;
@@ -338,7 +338,7 @@ namespace RealERPWEB.F_21_MKT
                 {
                     string eventtype = "Add Lead (Sales CRM)";
                     string eventdesc = "Add Lead (Sales CRM)";
-                    string eventdesc2 = "";                   
+                    string eventdesc2 = "";
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -537,7 +537,7 @@ namespace RealERPWEB.F_21_MKT
                         // empid = gempid.Length == 0 ? empid : gempid;
                         ddlgval.SelectedValue = gempid;
                         // ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-                        
+
                         assEmpid = gempid;
 
 
@@ -660,7 +660,7 @@ namespace RealERPWEB.F_21_MKT
                             ddlgval.DataValueField = "pactcode";
                             ddlgval.DataSource = dv1.ToTable();
                             ddlgval.DataBind();
-                           //ddlgval.SelectedValue = ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                            //ddlgval.SelectedValue = ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                             break;
 
 
@@ -679,7 +679,7 @@ namespace RealERPWEB.F_21_MKT
 
             }
 
-            
+
 
 
         }
@@ -697,7 +697,7 @@ namespace RealERPWEB.F_21_MKT
             DropDownList ddlgval;
             DropDownList ddlvalcom;
             ListBox location;
-            string prjcomcod="" ;
+            string prjcomcod = "";
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -708,7 +708,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-                
+
                     case "0303002": //Company                    
                         ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
@@ -723,9 +723,9 @@ namespace RealERPWEB.F_21_MKT
                         ddlvalcom.DataBind();
                         ddlvalcom.SelectedValue = ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         prjcomcod = ddlvalcom.SelectedValue.ToString();
-                     break;
-                    
-                    
+                        break;
+
+
                     case "0303003": //Apartment Type
                         dv1 = dt1.DefaultView;
                         dv1.RowFilter = ("gcod like '32%'");
@@ -787,8 +787,8 @@ namespace RealERPWEB.F_21_MKT
                         prjcomcod = prjcomcod.Trim().Length == 0 ? this.GetComeCode() : prjcomcod;
                         DataTable dtp = ((DataTable)ViewState["tblproject"]).Copy();
                         dv1 = dtp.DefaultView;
-                        dv1.RowFilter=("comcod='" + prjcomcod + "'");
-                        
+                        dv1.RowFilter = ("comcod='" + prjcomcod + "'");
+
                         ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvpinfo.Rows[i].FindControl("txtgvdVal")).Visible = false;
                         ((Panel)this.gvpinfo.Rows[i].FindControl("pnlMullocation")).Visible = false;
@@ -2656,7 +2656,7 @@ namespace RealERPWEB.F_21_MKT
                 dr["gvalue"] = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 dt1.Rows.Add(dr);
             }
-          
+
             for (int i = 0; i < this.gvSourceInfo.Rows.Count; i++)
             {
                 DataRow dr = dt1.NewRow();
@@ -2681,7 +2681,7 @@ namespace RealERPWEB.F_21_MKT
                 {
                     empid = ((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
                 }
-                
+
                 dr["gcod"] = Gcode;
                 dr["gval"] = gval;
                 dr["gvalue"] = (((DropDownList)this.gvSourceInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() :
@@ -2724,14 +2724,14 @@ namespace RealERPWEB.F_21_MKT
                             if (item.Selected)
                             {
                                 Gvalue += item.Value;
-                                remarks= remarks+item.Text+", ";
+                                remarks = remarks + item.Text + ", ";
                             }
                         }
                     }
 
 
 
-                    dr["remarks"] = remarks.Length==0?"": remarks.Substring(0, remarks.Length-2);
+                    dr["remarks"] = remarks.Length == 0 ? "" : remarks.Substring(0, remarks.Length - 2);
                     dr["gvalue"] = Gvalue;
 
 
@@ -2935,8 +2935,8 @@ namespace RealERPWEB.F_21_MKT
             string comcod = this.GetComeCode();
             string clientid = (string)ViewState["newclientcode"];
             bool active = this.GetComPanyProsActivein();
-            
-           
+
+
             //string number = "";
             //number = Phone.Length > 0 ? Phone + "," : "";
             //number = number + (altphone1.Length > 0 ? altphone1 + "," : "");
@@ -2958,7 +2958,7 @@ namespace RealERPWEB.F_21_MKT
             //if (this.lbllandname.Visible == true)
             //{
             lbllandname.Visible = false;
-            
+
             //this is automatic kpi first discussion entry . recomended by Rahian for all company 20210804 dev by NAHID
             string kpidiscu = "";
             switch (comcod)
@@ -2969,11 +2969,11 @@ namespace RealERPWEB.F_21_MKT
                 case "3354":
                     kpidiscu = "1";
                     break;
-                    
+
             }
             string Posteddat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-          //  string xml = ds.GetXml();
-           
+            //  string xml = ds.GetXml();
+
 
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat);
             if (result == true)
@@ -2998,14 +2998,14 @@ namespace RealERPWEB.F_21_MKT
             }
 
 
-          
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Data Updated  Information (Sales CRM)";
                 string eventdesc = "Data Updated  Information (Sales CRM)";
                 string eventdesc2 = lbllandname.Text;
-                
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
             //  }
@@ -3100,8 +3100,8 @@ namespace RealERPWEB.F_21_MKT
             this.ddlEmpid.DataValueField = "gcod";
             this.ddlEmpid.DataSource = dtE;
             this.ddlEmpid.DataBind();
-            if (dtE.Rows.Count >= 2)                
-             this.ddlEmpid.SelectedValue = "000000000000";
+            if (dtE.Rows.Count >= 2)
+                this.ddlEmpid.SelectedValue = "000000000000";
 
             dv = dt1.Copy().DefaultView;
             dv.RowFilter = ("gcod like '52%'");
@@ -3325,8 +3325,8 @@ namespace RealERPWEB.F_21_MKT
             {
 
                 bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_XML_INFO_01", "DELETEPROSPECTPERMANENT", null, null, null, proscod, userid, Posteddat, "", "", "", "", "", "", "", "", "", "", "", "", "");
-               
-                
+
+
                 if (!result)
                 {
 
@@ -3360,7 +3360,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-          
+
 
 
             //dt.Rows[RowIndex].Delete();
@@ -3374,14 +3374,14 @@ namespace RealERPWEB.F_21_MKT
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Deleted";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
-            
+
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Delete Row (Sales CRM) ";
                 string eventdesc = "Delete Row (Sales CRM) ";
                 string eventdesc2 = proscod1;
-                
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -3452,8 +3452,8 @@ namespace RealERPWEB.F_21_MKT
             {
                 string eventtype = "Edit Client Information (Sales CRM)";
                 string eventdesc = "Edit Client Information (Sales CRM)";
-                string eventdesc2 = "Edit "+clintIdno;
-               
+                string eventdesc2 = "Edit " + clintIdno;
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -3670,7 +3670,7 @@ namespace RealERPWEB.F_21_MKT
                 string eventtype = "Data view (Sales CRM) ";
                 string eventdesc = "Data view (Sales CRM) ";
                 string eventdesc2 = "";
-               
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -3847,7 +3847,7 @@ namespace RealERPWEB.F_21_MKT
                 {
                     lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
                 }
-                else if(gcod== "0302003")
+                else if (gcod == "0302003")
                 {
                     lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
 
@@ -4106,7 +4106,7 @@ namespace RealERPWEB.F_21_MKT
             ProcessAccess _processAccess = new ProcessAccess();
 
             DataSet ds2 = _processAccess.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", mobile, "", "", "", "", "", "", "", "");
-            if (ds2.Tables[0].Rows.Count == 0 || ds2==null)
+            if (ds2.Tables[0].Rows.Count == 0 || ds2 == null)
             {
                 var result = new { Message = "Success", result = true };
                 var jsonSerialiser = new JavaScriptSerializer();
@@ -4265,7 +4265,7 @@ namespace RealERPWEB.F_21_MKT
         public static string GetLeadReason(string comcod, string leadquality)
         {
 
-          
+
             ProcessAccess _processAccess = new ProcessAccess();
 
             DataSet ds2 = _processAccess.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETLEADREASON", leadquality, "", "", "", "", "", "", "", "", "");
@@ -4285,7 +4285,7 @@ namespace RealERPWEB.F_21_MKT
             {
 
                 var lst = ds2.Tables[0].DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.EClassLeadReason>().ToList();
-                var jsonSerialiser = new JavaScriptSerializer();               
+                var jsonSerialiser = new JavaScriptSerializer();
                 var json = jsonSerialiser.Serialize(lst);
                 return json;
 
@@ -4293,7 +4293,7 @@ namespace RealERPWEB.F_21_MKT
             }
 
 
-            
+
 
 
 
@@ -4419,7 +4419,7 @@ namespace RealERPWEB.F_21_MKT
             ////if (ds1.Tables[0].Rows.Count != 0)
             ////{
             Session["tblsummData"] = ds1.Tables[0];
-            if(rtype== "databank")
+            if (rtype == "databank")
             {
                 this.gvSummary.Columns[24].Visible = true;
 
@@ -4669,7 +4669,7 @@ namespace RealERPWEB.F_21_MKT
 
                 string proscod = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode")).Text;
                 string gempid = ((Label)this.gvSummary.Rows[rowindex].FindControl("lblgvempid")).Text;
-                string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;               
+                string follclintidno = ((Label)this.gvSummary.Rows[rowindex].FindControl("lsircode1")).Text;
                 string cdate = this.txttodate.Text.Trim();
                 DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
 
@@ -4685,20 +4685,20 @@ namespace RealERPWEB.F_21_MKT
                 this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
                 this.lbleditempid.Value = gempid;
-                this.ddlRating.SelectedValue= ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
+                this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string events = hst["events"].ToString();
-                
+
                 if (Convert.ToBoolean(events) == true)
                 {
                     string eventtype = "Click Follow UP (Sales CRM) ";
                     string eventdesc = "Click Follow UP (Sales CRM) ";
                     string eventdesc2 = follclintidno;
-                    
+
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
 
@@ -4809,11 +4809,11 @@ namespace RealERPWEB.F_21_MKT
             dv.RowFilter = ("gcod like '95%'");
             DataTable dts = dv.ToTable();
 
-           
 
 
 
-           
+
+
 
 
 
@@ -4823,7 +4823,7 @@ namespace RealERPWEB.F_21_MKT
             DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
 
 
-           
+
             //DataView dv1;
 
 
@@ -4977,8 +4977,8 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.DataBind();
                         ddlgval.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
                         break;
-                   
-                    
+
+
                     case "810100101004": //Unit
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
@@ -5068,7 +5068,7 @@ namespace RealERPWEB.F_21_MKT
                         dv.RowFilter = ("gcod like '42%'");
                         DataTable dtlq = dv.ToTable();
 
-                       
+
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlVisit")).Visible = true;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvdValdis")).Visible = false;
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
@@ -5082,13 +5082,13 @@ namespace RealERPWEB.F_21_MKT
                         ddlVisitor = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlVisit"));
                         ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
-                       
+
                         dtlq.Rows.Add();
                         ddlVisitor.DataTextField = "gdesc";
                         ddlVisitor.DataValueField = "gcod";
                         ddlVisitor.DataSource = dtlq;
-                        ddlVisitor.DataBind();                        
-                        ddlVisitor.Items.Insert(0, new ListItem("None", "")) ;
+                        ddlVisitor.DataBind();
+                        ddlVisitor.Items.Insert(0, new ListItem("None", ""));
                         ddlVisitor.SelectedValue = ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Text.Trim();
                         break;
 
@@ -5232,7 +5232,7 @@ namespace RealERPWEB.F_21_MKT
 
 
 
-                  
+
 
                     case "810100101015": //Summary
                     case "810100101025": //Discussion
@@ -5263,7 +5263,7 @@ namespace RealERPWEB.F_21_MKT
 
 
                         ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvValdis")).Visible = false;
-                       // ((Panel)this.gvInfo.Rows[i].FindControl("Pnlcompany")).Visible = false;
+                        // ((Panel)this.gvInfo.Rows[i].FindControl("Pnlcompany")).Visible = false;
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Clear();
                         ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Visible = false;
 
@@ -5466,7 +5466,7 @@ namespace RealERPWEB.F_21_MKT
                     return;
 
                 }
-                
+
 
                 for (int i = 0; i < this.gvInfo.Rows.Count; i++)
                 {
@@ -5500,7 +5500,7 @@ namespace RealERPWEB.F_21_MKT
                     else if (Gcode == "810100101007")
                     {
 
-                        Gvalue = (((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Count == 0) ?this.GetComeCode()
+                        Gvalue = (((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).Items.Count == 0) ? this.GetComeCode()
                                     : ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlCompany")).SelectedValue.ToString();
                     }
 
@@ -5524,7 +5524,7 @@ namespace RealERPWEB.F_21_MKT
                     else if (Gcode == "810100101012")
                     {
 
-                        Gvalue = (((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Items.Count == 0) ?""
+                        Gvalue = (((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).Items.Count == 0) ? ""
                             : ((DropDownList)this.gvInfo.Rows[i].FindControl("checkboxReson")).SelectedValue.ToString();
                     }
 
@@ -5570,7 +5570,7 @@ namespace RealERPWEB.F_21_MKT
                             // }
                         }
 
-                      remarks= (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
+                        remarks = (remarks.Length == 0) ? "" : remarks.Substring(0, remarks.Length - 2);
 
 
                         //Gvalue = (((ListBox)this.gvInfo.Rows[i].FindControl("ddlPartic")).Items.Count == 0) ? ((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Text.Trim()
@@ -5634,14 +5634,14 @@ namespace RealERPWEB.F_21_MKT
 
                 this.clearModalField();
 
-                
+
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
                     string eventtype = "Update Discussion Information (sales CRM)";
                     string eventdesc = "Update Discussion Information (sales CRM)";
                     string eventdesc2 = "";
-                   
+
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
                 }
             }
@@ -5771,7 +5771,7 @@ namespace RealERPWEB.F_21_MKT
                 0.00 : dt1.Compute("sum(leads)", ""))).ToString("#,##0;(#,##0);-");
 
 
-           
+
 
             ((Label)this.gvkpi.FooterRow.FindControl("lblgvFotherssum")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(others)", "")) ?
               0.00 : dt1.Compute("sum(others)", ""))).ToString("#,##0;(#,##0);-");
@@ -6053,11 +6053,11 @@ namespace RealERPWEB.F_21_MKT
         {
             try
             {
- 
+
                 string comcod = this.GetComeCode();
                 int rowindex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
                 string gempid = ((Label)this.gvkpi.Rows[rowindex].FindControl("lblgbempid")).Text;
-                string folltype = "9601001"; 
+                string folltype = "9601001";
                 GetGridSummary_FollowupTye(gempid, folltype);
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenKpiDetailsModal();", true);
 
@@ -6084,7 +6084,7 @@ namespace RealERPWEB.F_21_MKT
 
             string frmdate = this.txtfrmdate.Text.ToString();
             string todate = this.txttodate.Text.ToString();
-            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "RPT_MONTHLY_KPI_DETAILS", null, null, null, "8301%", todate, frmdate,  Empid, Followuptype);
+            DataSet ds3 = instcrm.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "RPT_MONTHLY_KPI_DETAILS", null, null, null, "8301%", todate, frmdate, Empid, Followuptype);
             if (ds3 == null)
             {
                 this.gvKpiDetials.DataSource = null;
@@ -6320,7 +6320,7 @@ namespace RealERPWEB.F_21_MKT
 
             DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "RPTEMPKPIDETAILS", "8301%", frmdate, todate, empid);
 
-           
+
             this.gvSummary.DataSource = null;
             this.gvSummary.DataBind();
             this.gvkpidet.DataSource = ds1.Tables[0];
@@ -6359,9 +6359,9 @@ namespace RealERPWEB.F_21_MKT
                 //  LinkButton lnkAct = (LinkButton)e.Row.FindControl("lnkAct");
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-               // string comcod = hst["comcod"].ToString();
+                // string comcod = hst["comcod"].ToString();
                 string proscod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "sircode")).ToString();
-              //  string dealcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dealcode")).ToString();
+                //  string dealcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dealcode")).ToString();
                 //string Empid = hst["empid"].ToString();
 
 
@@ -6403,7 +6403,7 @@ namespace RealERPWEB.F_21_MKT
             string comcod = this.GetComeCode();
             string ratevalue = this.ddlRating.SelectedValue.ToString();
 
-            
+
             string clientid = this.lblproscod.Value.ToString();
 
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLINT_RATE", null, null, null, clientid, ratevalue);
@@ -6413,8 +6413,8 @@ namespace RealERPWEB.F_21_MKT
             }
             else
             {
-                
-            
+
+
             }
         }
 
@@ -6426,34 +6426,37 @@ namespace RealERPWEB.F_21_MKT
 
 
             int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
-            string empid = ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlval")).SelectedValue ;            
+            string empid = ((DropDownList)this.gvSourceInfo.Rows[RowIndex].FindControl("ddlval")).SelectedValue;
             string Gcode = ((Label)this.gvSourceInfo.Rows[RowIndex].FindControl("lblgvItmCode")).Text.Trim();
+            if (Gcode == "0302005")
+            {
+                DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSUPERVISORLISTBYID", empid, "", "", "", "", "", "", "", "");
+                if (ds2 == null)
+                    return;
+                string teamid = (ds2.Tables[0].Rows[0]["teamid"].ToString() == "" ? "93%" : ds2.Tables[0].Rows[0]["teamid"].ToString());
 
-            DataSet ds2 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSUPERVISORLISTBYID", empid, "", "", "", "", "", "", "", "");
-            if (ds2 == null)
-                return;
-            string teamid =(ds2.Tables[0].Rows[0]["teamid"].ToString()==""?"93%": ds2.Tables[0].Rows[0]["teamid"].ToString());
 
-
-            DataView dv1;
-            dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView; ;
-            //if (userrole == "1")
-            //    dv1.RowFilter = ("gcod like '93%'");
-            //else
+                DataView dv1;
+                dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView; ;
+                //if (userrole == "1")
+                //    dv1.RowFilter = ("gcod like '93%'");
+                //else
 
                 dv1.RowFilter = ("gcod like '" + teamid + "'");
 
 
 
-            ((TextBox)this.gvSourceInfo.Rows[RowIndex-1].FindControl("txtgvVal")).Visible = false;
-            ((TextBox)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("txtgvdVal")).Visible = false;
-            ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("ddlval"));
-            ddlgval.DataTextField = "gdesc";
-            ddlgval.DataValueField = "gcod";
-            ddlgval.DataSource = dv1.ToTable();
-            ddlgval.DataBind();
-            
-            ddlgval.SelectedValue = teamid;
+                ((TextBox)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("txtgvVal")).Visible = false;
+                ((TextBox)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("txtgvdVal")).Visible = false;
+                ddlgval = ((DropDownList)this.gvSourceInfo.Rows[RowIndex - 1].FindControl("ddlval"));
+                ddlgval.DataTextField = "gdesc";
+                ddlgval.DataValueField = "gcod";
+                ddlgval.DataSource = dv1.ToTable();
+                ddlgval.DataBind();
+
+                ddlgval.SelectedValue = teamid;
+            }
+
 
 
 
