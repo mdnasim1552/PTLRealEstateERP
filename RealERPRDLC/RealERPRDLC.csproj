@@ -129,6 +129,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
@@ -441,6 +442,10 @@
     <EmbeddedResource Include="R_17_Acc\RptChequeAcme.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeDepositAllBank.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeDepositBank02.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeGreenwoodFSIBL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeGreenwoodSHIBL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeGreenwoodSHBL.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptChequeGreenwood _Old.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeIBBL.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeInHand.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptChequeManama.rdlc" />
