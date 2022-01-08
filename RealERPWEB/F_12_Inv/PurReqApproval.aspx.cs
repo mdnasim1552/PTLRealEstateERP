@@ -1559,6 +1559,7 @@ namespace RealERPWEB.F_12_Inv
                         case "3101":
                         case "3353"://Manama
                         case "3354"://Edison Real Estate
+                        case "3364"://Edison Real Estate
 
                             survey.Visible = false;
                             break;
@@ -1570,7 +1571,8 @@ namespace RealERPWEB.F_12_Inv
                 }
                 else
                 {
-                    survey.NavigateUrl = "~/F_12_Inv/LinkShowMktSurvey.aspx?Type=TarVsAch&msrno=" + msrno;
+                    survey.NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno;
+                   // survey.NavigateUrl = "~/F_12_Inv/LinkShowMktSurvey.aspx?Type=TarVsAch&msrno=" + msrno;
 
                 }
 
