@@ -3046,6 +3046,7 @@
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpLeaveStatus02.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptHREmpLeave.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
@@ -4261,6 +4262,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\RptHREmpLeave.aspx.designer.cs">
       <DependentUpon>RptHREmpLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx.cs">
+      <DependentUpon>RptYearlyLeaveRecord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx.designer.cs">
+      <DependentUpon>RptYearlyLeaveRecord.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx.cs">
       <DependentUpon>EmpAllow.aspx</DependentUpon>
