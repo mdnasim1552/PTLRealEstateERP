@@ -3051,11 +3051,11 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 // p2p
-                case "1205":
-                case "3351":
-                case "3352":
-                    url = "PurBillEntry?Type=BillEntry";
-                    break;
+                //case "1205":
+                //case "3351":
+                //case "3352":
+                //    url = "PurBillEntry?Type=BillEntry";
+                //    break;
                 default:
                     url = "PurMRREntry?Type=Entry";
                     break;

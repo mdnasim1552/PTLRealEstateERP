@@ -57,6 +57,7 @@
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -398,6 +399,7 @@
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
