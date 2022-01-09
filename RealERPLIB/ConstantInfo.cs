@@ -2027,7 +2027,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); ;
             
             tblObj.Rows.Add(new Object[] { "8102000", "8102111", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employee Leave Record", "HR Management", "False", "False", "False", "False" }); ;
-          //tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102112", "F_81_Hrm/F_84_Lea", "RptYearlyLeaveRecord", "", "Yearly Leave Record", "HR Management", "False", "False", "False", "False" }); ;
+
+            //tblObj.Rows.Add(new Object[] { "8102000", "8102110", "F_81_Hrm/F_83_Att", "RptEmpAbsCount?", "Type=", "Employee Absent Count List", "HR Management", "False", "False", "False", "False" }); ;
 
             //tblObj.Rows.Add(new Object[] { "8103000", "8103113", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employees Leave Record", "HR Management", "False", "False", "False", "False" }); 
 
@@ -14702,7 +14704,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0421000000", "03. Employee Leave- Month Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=MonWiseLeave&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0422000000", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });       
             mnuTbl1.Rows.Add(new Object[] { "0423000000", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0423000000", "05. Yearly Leave Record", "F_81_Hrm/F_84_Lea/RptYearlyLeaveRecord", "", true, "" });
 
+
+            
             // Employee Transfer report
             mnuTbl1.Rows.Add(new Object[] { "0422100000", "Employee Transfer Info", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0422200000", "01. Employee Transfer Report", "F_81_Hrm/F_87_Tra/HREmpTransferReport", "", true, "" }); 
