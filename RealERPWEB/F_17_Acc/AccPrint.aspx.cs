@@ -3066,7 +3066,7 @@ namespace RealERPWEB.F_17_Acc
                 hshtbl["amt"] = Convert.ToDouble(toamt).ToString("#,##0;(#,##0); ") + "/-";
                 LocalReport rpt1 = new LocalReport();
 
-                string banktype = dt1.Rows[0]["bnkcode"].ToString();
+                string banktype = _ReportDataSet.Tables[1].Rows[0]["bnkcode"].ToString();
 
                 // defult Trust Bank 
                 if (banktype == "TBL")
