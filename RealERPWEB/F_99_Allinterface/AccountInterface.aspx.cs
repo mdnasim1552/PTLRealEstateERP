@@ -19,6 +19,7 @@ using Microsoft.Reporting.WinForms;
 using RealERPLIB;
 using RealERPRDLC;
 using RealERPRPT;
+using AjaxControlToolkit;
 
 //using MFGOBJ.C_22_Sal;
 namespace RealERPWEB.F_99_Allinterface
@@ -1203,7 +1204,8 @@ namespace RealERPWEB.F_99_Allinterface
                 //Label sign = (Label)e.Row.FindControl("gvsign");
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "typesum")).ToString().Trim();
-
+                TextBox recondat = (TextBox)e.Row.FindControl("txtgvReconDat");
+                CalendarExtender calrecondat = (CalendarExtender)e.Row.FindControl("CalendarExtender_txtgvReconDat");
 
                 if (code == "")
                 {
@@ -1216,6 +1218,8 @@ namespace RealERPWEB.F_99_Allinterface
                     amt.Font.Bold = true;
                     //sign.Font.Bold = true;
                     prodesc.Style.Add("text-align", "right");
+                    recondat.ReadOnly = true;
+                    calrecondat.Enabled = false;
 
                 }
 
@@ -2299,6 +2303,25 @@ namespace RealERPWEB.F_99_Allinterface
             this.SaleRequRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);
 
+        }
+
+        protected void txtgvReconDat_TextChanged(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;   
+            string voudat = ((Label)this.dgPdc.Rows[index].FindControl("lgvPVDate")).Text.Trim();
+            string recondat = ((TextBox)this.dgPdc.Rows[index].FindControl("txtgvReconDat")).Text.Trim();
+            DateTime dtvou = Convert.ToDateTime(voudat);
+            DateTime dtrecon = Convert.ToDateTime(recondat);
+            if(dtvou > dtrecon)
+            {
+                this.RiseError("Reconcilation Date Should be larger than Voucher Date");
+            }            
+        }
+
+        private void RiseError(string msg)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Text = msg;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
         }
     }
 }
