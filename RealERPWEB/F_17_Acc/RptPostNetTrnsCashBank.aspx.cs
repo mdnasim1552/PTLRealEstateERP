@@ -279,7 +279,7 @@ namespace RealERPWEB.F_17_Acc
             }
             else
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptCashBank", list, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptCashBankWithdraw", list, null, null);
                 Rpt1.EnableExternalImages = true;
             }
 

@@ -146,6 +146,17 @@
                                             </asp:DropDownList>
 
                                         </div>
+                                                        <div class="col-md-3">
+                                     <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to" Text="Report Type"></asp:Label>
+
+                                            <asp:DropDownList ID="ddreportType" runat="server" AutoPostBack="True" CssClass="ddlPage" OnSelectedIndexChanged="ddlpagem_SelectedIndexChanged" TabIndex="3">
+                                                <asp:ListItem>Summary</asp:ListItem>
+                                                 <asp:ListItem>Details</asp:ListItem>
+         
+                                            </asp:DropDownList>
+                                                            
+                                        </div>
+
 
 <%--                                    <div class="col-md-2 ">
                                         <a id="BtnLink" runat="server">Help</a>
@@ -237,6 +248,7 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Cr.Amount">
                                     <FooterTemplate>
                                         <asp:TextBox ID="txtTgvCrAmt" runat="server" BackColor="Transparent"
@@ -324,6 +336,10 @@
                                                 <%--<asp:LinkButton ID="lnkSubmit" runat="server" CssClass="btn btn-primary  primaryBtn" OnClick="lnkSubmit_Click">Home</asp:LinkButton>--%>
 
                                             </div>
+                                        </div>
+                    
+
+              
                                         </div>
 
                                     </div>

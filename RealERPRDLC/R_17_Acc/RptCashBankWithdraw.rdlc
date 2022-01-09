@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>33f25e05-7fea-4724-bde3-e45220020630</rd:DataSourceID>
+      <rd:DataSourceID>5ed70e7b-74ae-4bc7-8061-9aa200b4ef9d</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -41,8 +41,8 @@
           <DataField>casham</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="checquedat">
-          <DataField>checquedat</DataField>
+        <Field Name="chequedat">
+          <DataField>chequedat</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="depam">
@@ -748,14 +748,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="checquedat">
+                        <Textbox Name="chequedat">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!checquedat.Value</Value>
+                                  <Value>=Fields!chequedat.Value</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -767,7 +767,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>checquedat</rd:DefaultName>
+                          <rd:DefaultName>chequedat</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1402,7 +1402,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!srcham.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Fields!depam.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1439,7 +1439,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FORMAT(Sum(Fields!payam.Value),"#,##0.00;(#,##0.00); ")</Value>
+                                  <Value>=FORMAT(Fields!payam.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1538,11 +1538,25 @@
       <Width>7.7292in</Width>
       <Page>
         <PageHeader>
-          <Height>1.01264in</Height>
+          <Height>1.43972in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Textbox Name="Textbox1">
+            <Image Name="Image3">
+              <Source>External</Source>
+              <Value>=Parameters!comLogo.Value</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.01389in</Top>
+              <Left>0.02083in</Left>
+              <Height>0.7557in</Height>
+              <Width>1.45244in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox17">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
@@ -1562,43 +1576,11 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Left>1.46981in</Left>
-              <Height>0.22222in</Height>
-              <Width>4.82176in</Width>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!comnam.Value</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.25in</Top>
-              <Left>1.51147in</Left>
-              <Height>0.13889in</Height>
-              <Width>4.7801in</Width>
+              <rd:DefaultName>Textbox17</rd:DefaultName>
+              <Top>0.01389in</Top>
+              <Left>1.49063in</Left>
+              <Height>0.19792in</Height>
+              <Width>4.90047in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1610,41 +1592,16 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Textbox Name="Textbox5">
+            <Textbox Name="Textbox23">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!RptTitle.Value</Value>
+                      <Value>=Parameters!comadd.Value</Value>
                       <Style>
                         <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                    <TextRun>
-                      <Value> (Withdraw)</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>12pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value />
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>14pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1653,11 +1610,11 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.41667in</Top>
-              <Left>1.51147in</Left>
-              <Height>0.16194in</Height>
-              <Width>4.7801in</Width>
+              <rd:DefaultName>Textbox17</rd:DefaultName>
+              <Top>0.27431in</Top>
+              <Left>1.48716in</Left>
+              <Height>0.19792in</Height>
+              <Width>4.90046in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -1669,30 +1626,23 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Image Name="Image3">
-              <Source>External</Source>
-              <Value>=Parameters!comLogo.Value</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.01389in</Top>
-              <Left>0.02083in</Left>
-              <Height>0.77653in</Height>
-              <Width>1.46286in</Width>
-              <ZIndex>3</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
-            <Textbox Name="Textbox65">
+            <Textbox Name="Textbox28">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
               <Paragraphs>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!txtDate.Value</Value>
+                      <Value>=Parameters!RptTitle.Value</Value>
                       <Style>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value> (Deposit)</Value>
+                      <Style>
+                        <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1702,11 +1652,46 @@
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <rd:DefaultName>Textbox65</rd:DefaultName>
-              <Top>0.56472in</Top>
-              <Left>1.4837in</Left>
+              <rd:DefaultName>Textbox17</rd:DefaultName>
+              <Top>0.47569in</Top>
+              <Left>1.48716in</Left>
               <Height>0.19792in</Height>
-              <Width>4.80787in</Width>
+              <Width>4.90046in</Width>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox29">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!txtDate.Value</Value>
+                      <Style>
+                        <FontFamily>cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox17</rd:DefaultName>
+              <Top>0.72917in</Top>
+              <Left>1.47674in</Left>
+              <Height>0.19792in</Height>
+              <Width>4.90047in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>

@@ -576,7 +576,7 @@
                                             <asp:Label ID="lblBillType" runat="server"
                                                 Text="Bill Type" CssClass="  smLbl_to"></asp:Label>
                                             <asp:DropDownList ID="ddlbilltype" runat="server"
-                                                CssClass=" ddlPage" Style="width: 115px;">
+                                                CssClass=" ddlPage" Style="width: 115px; background-color:orange">
                                             </asp:DropDownList>
 
 

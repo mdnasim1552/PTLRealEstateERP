@@ -337,7 +337,7 @@
                                        
 
                                     </div>
-                                    <div class="col-md-6 pading5px">
+                                    <div class="col-md-8 pading5px">
 
                                         <asp:Label ID="lblSrInfo" runat="server" CssClass="lblTxt lblName" Text="Other ref.(if any)"></asp:Label>
                                         <asp:TextBox ID="txtSrinfo" runat="server" CssClass="inputtextbox" ></asp:TextBox>
@@ -348,6 +348,9 @@
 
                                         <asp:HyperLink ID="lbtnBalance" runat="server" Target="_blank" Style="margin-left:10px; color:blue; font-weight:bold; font-size:14px;" ></asp:HyperLink>
                                        
+                                         <asp:Label ID="lblpayto" runat="server" CssClass="lblTxt lblName" Text="Pay To :"></asp:Label>
+                                        
+                                         <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="100px"></asp:TextBox>
 
                                     </div>
                                                                     

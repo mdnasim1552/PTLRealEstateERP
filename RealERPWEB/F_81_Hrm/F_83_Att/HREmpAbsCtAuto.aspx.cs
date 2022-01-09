@@ -52,7 +52,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
-
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
+        }
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -413,6 +418,41 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             this.SaveValue();
             this.Data_Bind();
+
+        }
+
+
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string comcod = hst["comcod"].ToString();
+            //string comnam = hst["comnam"].ToString();
+            //string compname = hst["compname"].ToString();
+            //string comsnam = hst["comsnam"].ToString();
+            //string comadd = hst["comadd1"].ToString();
+            //string session = hst["session"].ToString();
+            //string username = hst["username"].ToString();
+            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            //string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            //DataTable dt = (DataTable)Session["tblabscount"];
+            //var list = dt.DataTableToList<RealEntity.C_07_Ten.RptCivilConBOQ>();
+
+
+            //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_07_Ten.RptCivilConBOQ", list, null, null);
+            //    Rpt1.EnableExternalImages = true;
+
+            //Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            //Rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Absent Report"));
+            //Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            //Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            //Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+
+            //Session["Report1"] = Rpt1;
+            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            //  ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 

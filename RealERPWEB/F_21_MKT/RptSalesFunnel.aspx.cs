@@ -85,11 +85,13 @@ namespace RealERPWEB.F_21_MKT
             DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
             if (this.rbtnlst.SelectedIndex == 0)
             {
-                this.lblcondate.Visible = false;
-                this.txtcondate.Visible = false;
-                this.txtcondate.Text = "";
+                this.lblcondate.Visible = true;
+                this.txtcondate.Visible = true;
+                //this.txtcondate.Text = "";
                 this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
-                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");                
+                this.txtcondate.Text = curdate.ToString("dd-MMM-yyyy");
+
 
             }
             else
@@ -108,29 +110,31 @@ namespace RealERPWEB.F_21_MKT
         protected void rbtnlst_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //string opndate = (string)ViewState["tblopndate"];
-            DateTime curdate = System.DateTime.Today;
-            DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
-            DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
-            if (this.rbtnlst.SelectedIndex == 0)
-            {
-                this.lblcondate.Visible = false;
-                this.txtcondate.Visible = false; 
-                this.txtcondate.Text = "";
-               // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
-              // this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
-
-            }
-            else
-            {
-                this.lblcondate.Visible = true;
-                this.txtcondate.Visible = true;
-               // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy"); ;
-                //this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
-                this.txtcondate.Text = todate.ToString("dd-MMM-yyyy");
+            ////string opndate = (string)ViewState["tblopndate"];
+            //DateTime curdate = System.DateTime.Today;
+            //DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
+            //DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
+            //if (this.rbtnlst.SelectedIndex == 0)
+            //{
+            //    this.lblcondate.Visible = true;
+            //    this.txtcondate.Visible = true; 
+            //   // this.txtcondate.Text = "";
+            //    // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
+            //    // this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+            //    this.txtcondate.Text = curdate.ToString("dd-MMM-yyyy");
 
 
-            }
+            //}
+            //else
+            //{
+            //    this.lblcondate.Visible = true;
+            //    this.txtcondate.Visible = true;
+            //   // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy"); ;
+            //    //this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+            //    this.txtcondate.Text = curdate.ToString("dd-MMM-yyyy");
+
+
+            //}
         }
 
 
@@ -308,7 +312,9 @@ namespace RealERPWEB.F_21_MKT
             string leadstatus = (this.ddlleadstatus.SelectedValue.ToString().Trim() == "" ? "95" : this.ddlleadstatus.SelectedValue.ToString()) + "%";
             string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
             string condate =this.txtcondate.Text;
+            
             string calltype = condate.Length == 0 ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION";
+
             DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
             if (ds1 == null)
             {
