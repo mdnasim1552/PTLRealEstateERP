@@ -453,6 +453,18 @@
               </Border>
             </Style>
           </Rectangle>
+          <Rectangle Name="Rectangle4">
+            <KeepTogether>true</KeepTogether>
+            <Left>1.6875in</Left>
+            <Height>1.36667in</Height>
+            <Width>0.25506in</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
         </ReportItems>
         <Height>10.78125in</Height>
         <Style />
