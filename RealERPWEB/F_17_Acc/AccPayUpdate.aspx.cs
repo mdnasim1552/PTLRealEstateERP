@@ -476,7 +476,7 @@ namespace RealERPWEB.F_17_Acc
                     string trnamt = (dt1.Rows[i]["vounum"].ToString().Substring(0, 2) == "PV" ? amount.ToString() : (amount * -1).ToString());
                     // string recndt = "01-Jan-1900"; 
                     string recndt = Convert.ToDateTime(dt1.Rows[i]["recndt"]).ToString("dd-MMM-yyyy");
-                    string rpcode = dt1.Rows[i]["rpcode"].ToString().Trim() ;
+                    string rpcode = dt1.Rows[i]["rpcode"].ToString().Trim();
                     string sectcode = "000000000000";
                     //bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVUPDATE", acvounum, actcode, rescode, cactcode,
                     //                       voudat, "0", Remarks, vtcode, trnamt, spclcode, recondat, "", billno, "", "");
@@ -936,6 +936,25 @@ namespace RealERPWEB.F_17_Acc
             this.lblCurPage.ToolTip = "Page 1 of " + pageCount;
         }
 
+        protected void txtgvReconDat_TextChanged(object sender, EventArgs e)
+        {
+
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            string voudat = ((Label)this.dgv1.Rows[index].FindControl("lgvPVDate")).Text.Trim();
+            string recondat = ((TextBox)this.dgv1.Rows[index].FindControl("txtgvReconDat")).Text.Trim();
+            DateTime dtvou = Convert.ToDateTime(voudat);
+            DateTime dtrecon = Convert.ToDateTime(recondat);
+            if (dtvou > dtrecon)                                                                              
+            {
+                this.RiseError("Reconcilation Date Should be larger than Voucher Date");
+            }
+        }
+
+        private void RiseError(string msg)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Text = msg;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+        }
     }
 }
 

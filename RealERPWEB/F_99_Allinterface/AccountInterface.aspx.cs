@@ -2323,5 +2323,10 @@ namespace RealERPWEB.F_99_Allinterface
             ((Label)this.Master.FindControl("lblmsg")).Text = msg;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
         }
+
+        protected void btnokpdc_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
