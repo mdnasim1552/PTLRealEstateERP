@@ -117,7 +117,7 @@ namespace RealERPWEB.F_12_Inv
                     return;
                 if (ds2.Tables[0].Rows.Count > 0)
                 {
-                    mREQNO = ds2.Tables[0].Rows[0]["maxmisuno"].ToString();
+                   
                     this.lblCurISSNo1.Text = ds2.Tables[0].Rows[0]["maxmisuno1"].ToString().Substring(0, 6);
                     this.txtCurISSNo2.Text = ds2.Tables[0].Rows[0]["maxmisuno1"].ToString().Substring(6, 5);
 
@@ -699,7 +699,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
             }
 
-            ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Enabled = false;
+           // ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Enabled = false;
           
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
@@ -738,68 +738,8 @@ namespace RealERPWEB.F_12_Inv
 
             string mRef = this.txtMIsuRef.Text;
             string mSmcr = this.txtsmcr.Text;
-            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
-            string mISUDAT = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+           
             string dmirfno = this.txtsmcr.Text;
-
-
-
-
-
-            // Duplicate 
-            switch (comcod)
-            {
-                case "3315":
-                case "3316":
-                case "3317":
-                case "3101":
-                    break;
-
-                default:
-
-                    if (mRef.Length == 0)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "SMCR No Should Not Be Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
-                        return;
-                    }
-
-                    else if (dmirfno.Length == 0)
-                    {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "DMIRF No Should Not Be Empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
-                        return;
-                    }
-
-
-                    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                    {
-                    }
-
-                    else
-                    {
-
-                        DataView dv1 = ds2.Tables[0].DefaultView;
-                        dv1.RowFilter = ("isuno <>'" + mISUNO + "'");
-                        DataTable dt = dv1.ToTable();
-                        if (dt.Rows.Count == 0)
-                        { }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Found Duplicate SMCR.No');", true);
-
-                            //this.ddlPrevReqList.Items.Clear();
-                            return;
-                        }
-                    }
-
-                    break;
-
-            }
-
 
 
             if (this.Request.QueryString["type"] == "Entry")
@@ -833,16 +773,73 @@ namespace RealERPWEB.F_12_Inv
             }
 
 
-            //////////
-            ///
-
-
-
             if (ddlPrevISSList.Items.Count == 0)
             {
                 this.GetPerMatIssu();
             }
 
+            string mISUNO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
+            string mISUDAT = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString("dd-MMM-yyyy");
+
+            // Duplicate 
+            switch (comcod)
+            {
+                case "3315":
+                case "3316":
+                case "3317":
+               // case "3101":
+
+                    break;
+
+                default:
+
+                    if (mRef.Length == 0)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "SMCR No Should Not Be Empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        this.ddlPrevISSList.Items.Clear();
+                        return;
+                    }
+
+                    else if (dmirfno.Length == 0)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "DMIRF No Should Not Be Empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        this.ddlPrevISSList.Items.Clear();
+                        return;
+                    }
+
+
+                    DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKEDDUPISUMRFNO", mRef, "", "", "", "", "", "", "", "");
+                    if (ds2.Tables[0].Rows.Count == 0)
+                    {
+                    }
+
+                    else
+                    {
+
+                        DataView dv1 = ds2.Tables[0].DefaultView;
+                        dv1.RowFilter = ("isuno <>'" + mISUNO + "'");
+                        DataTable dt = dv1.ToTable();
+                        if (dt.Rows.Count == 0)
+                        { }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Found Duplicate SMCR.No');", true);                           
+                            this.ddlPrevISSList.Items.Clear();
+                            return;
+                        }
+                    }
+
+                    break;
+
+            }
+
+
+
+
+
+          
 
 
             string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
