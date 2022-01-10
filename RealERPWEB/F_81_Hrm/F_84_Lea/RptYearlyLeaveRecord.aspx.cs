@@ -27,7 +27,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     Response.Redirect("../../AcceessError.aspx");
                 //this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 //this.txtpatplacedate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Degination Like Dept Wise ";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Yearly Leave Record ";
                 //this.Get_Trnsno();
                 //this.tableintosession();
 
@@ -190,15 +190,27 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             for (int i = 0; i < this.gvEmplvStatus.Rows.Count; i++)
             {
 
-                double txtallocation = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
-                double txtExercise = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtExercise")).Text.Trim());
-                double txtbalance = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtbalance")).Text.Trim());
-                double txtcarryfoward = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtcarryfoward")).Text.Trim());
-              
+                //ASTUtility.StrPosOrNagative(((TextBox)this.dgv1.Rows[i].FindControl("txtgvCrAmt")).Text.Trim());
+
+                double txtallocation = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
+                double txtExercise = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtExercise")).Text.Trim());
+                double txtbalance = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtbalance")).Text.Trim());
+                double txtcarryfoward = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtcarryfoward")).Text.Trim());
+
+
+                //Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
+               
+
+
+                //double txtallocation = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
+                //double txtExercise = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtExercise")).Text.Trim());
+                //double txtbalance = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtbalance")).Text.Trim());
+                //double txtcarryfoward = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtcarryfoward")).Text.Trim());
+
                 rowindex = (this.gvEmplvStatus.PageSize) * (this.gvEmplvStatus.PageIndex) + i;
                 dt.Rows[rowindex]["earnlv"] = txtallocation;
                 dt.Rows[rowindex]["enjoylv"] = txtExercise;
-                dt.Rows[rowindex]["ballv"] = txtbalance;
+                dt.Rows[rowindex]["ballv"] = txtallocation- txtExercise;
                 dt.Rows[rowindex]["carrfor"] = txtcarryfoward;
 
             }
@@ -230,7 +242,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     
 
-                        bool result = purData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "INSERTORUPDATEYEARLYLV", yearid, empid, earnlv.ToString(), enjoylv.ToString(), ballv.ToString(), carrfor.ToString(), "", "", "", "", "", "", "", "", "");
+                        bool result = purData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "INSERTORUPDATEYEARLYLV", yearid, empid, earnlv.ToString(), enjoylv.ToString(), carrfor.ToString(),"", "", "", "", "", "", "", "", "", "");
 
                         if (!result)
                             return;
@@ -275,6 +287,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-       
+        protected void btnTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            this.grvacc_DataBind();
+        }
     }
 }
