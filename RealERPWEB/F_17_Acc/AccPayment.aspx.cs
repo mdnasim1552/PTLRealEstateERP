@@ -572,6 +572,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //this.ddlConAccHead.BackColor = System.Drawing.Color.Pink;
                 //this.txtEntryDate.BackColor = System.Drawing.Color.Aqua;
+                lnkAcccode_Click(null,null);
             }
             else
             {
@@ -621,6 +622,7 @@ namespace RealERPWEB.F_17_Acc
                 this.Refrsh();
 
             }
+
         }
         private void Refrsh()
         {
@@ -1380,6 +1382,8 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlSpclinf.Items.Clear();
 
             }
+
+            lnkRescode_Click(null,null);
         }
         protected void ibtnvounu_Click(object sender, ImageClickEventArgs e)
         {

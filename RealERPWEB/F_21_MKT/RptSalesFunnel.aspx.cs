@@ -312,8 +312,11 @@ namespace RealERPWEB.F_21_MKT
             string leadstatus = (this.ddlleadstatus.SelectedValue.ToString().Trim() == "" ? "95" : this.ddlleadstatus.SelectedValue.ToString()) + "%";
             string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
             string condate =this.txtcondate.Text;
-            
-            string calltype = condate.Length == 0 ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION";
+
+            string type = this.rbtnlst.SelectedValue.ToString();
+
+
+            string calltype = (type == "Stand By" ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION");
 
             DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
             if (ds1 == null)
