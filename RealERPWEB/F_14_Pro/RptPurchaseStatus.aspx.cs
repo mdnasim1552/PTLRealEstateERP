@@ -1646,6 +1646,13 @@ namespace RealERPWEB.F_14_Pro
                                             0 : dt.Compute("sum(ordrqty)", ""))).ToString("#,##0;(#,##0); ");
                         ((Label)this.gvBgdBal.FooterRow.FindControl("lgvFmrrqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mrrqty)", "")) ?
                                             0 : dt.Compute("sum(mrrqty)", ""))).ToString("#,##0;(#,##0); ");
+
+                        ((Label)this.gvBgdBal.FooterRow.FindControl("lgvFordradjqty")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(oadjqty)", "")) ?
+                                           0 : dt.Compute("sum(oadjqty)", ""))).ToString("#,##0;(#,##0); ");
+
+
+
+                        
                         break;
 
 
