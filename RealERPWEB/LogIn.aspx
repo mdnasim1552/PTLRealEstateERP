@@ -309,10 +309,10 @@
 
 
         //Welcome Modal 
-        function leave() {
-            $('#WCModal').modal('hide');
-        }
-        setTimeout("leave()", 5000);
+        //function leave() {
+        //    $('#WCModal').modal('hide');
+        //}
+        //setTimeout("leave()", 5000);
 
         $(document).ready(function () {
             $(".toggle-password").click(function () {

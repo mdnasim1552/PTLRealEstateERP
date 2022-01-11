@@ -33,7 +33,7 @@
             </Paragraphs>
             <rd:DefaultName>payTo</rd:DefaultName>
             <Top>0.83625in</Top>
-            <Left>2.06667in</Left>
+            <Left>2.05417in</Left>
             <Height>5.54062in</Height>
             <Width>0.26041in</Width>
             <Style>
@@ -57,7 +57,6 @@
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -66,7 +65,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
             <Top>1.3675in</Top>
-            <Left>1.6875in</Left>
+            <Left>1.675in</Left>
             <Height>4.28993in</Height>
             <Width>0.27848in</Width>
             <ZIndex>1</ZIndex>
@@ -90,7 +89,6 @@
                     <Value>=" ="&amp;Space(1) &amp; Format(Parameters!amt.Value)</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -129,7 +127,6 @@
                         <Value>=Format(Parameters!date.Value).Substring(0,1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -160,7 +157,6 @@
                         <Value>=Format(Parameters!date.Value).Substring(1,1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -192,7 +188,6 @@
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(2,1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -224,7 +219,6 @@
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(3,1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -256,7 +250,6 @@
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(4,1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -288,7 +281,6 @@
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(5, 1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -320,7 +312,6 @@
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(7, 1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -352,7 +343,6 @@
                         <Value>=Microsoft.VisualBasic.Strings.Format(Parameters!date.Value).Substring(6, 1)</Value>
                         <Style>
                           <FontFamily>cambria</FontFamily>
-                          <FontSize>11pt</FontSize>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -399,7 +389,6 @@
                     <Style>
                       <FontFamily>cambria</FontFamily>
                       <FontSize>11pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -442,23 +431,11 @@
           </Image>
           <Rectangle Name="Rectangle3">
             <KeepTogether>true</KeepTogether>
-            <Top>1.3675in</Top>
+            <Top>1.38195in</Top>
             <Left>2.588in</Left>
-            <Height>4.32187in</Height>
+            <Height>4.30742in</Height>
             <Width>0.259in</Width>
             <ZIndex>6</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
-          <Rectangle Name="Rectangle4">
-            <KeepTogether>true</KeepTogether>
-            <Left>1.69842in</Left>
-            <Height>1.36667in</Height>
-            <Width>0.25506in</Width>
-            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

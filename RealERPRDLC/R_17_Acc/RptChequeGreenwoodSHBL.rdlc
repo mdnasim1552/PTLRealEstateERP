@@ -90,7 +90,7 @@
                     <Value>=" ="&amp;Space(1) &amp; Format(Parameters!amt.Value)</Value>
                     <Style>
                       <FontFamily>cambria</FontFamily>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -442,9 +442,9 @@
           </Image>
           <Rectangle Name="Rectangle3">
             <KeepTogether>true</KeepTogether>
-            <Top>1.3675in</Top>
+            <Top>1.38195in</Top>
             <Left>2.588in</Left>
-            <Height>4.32187in</Height>
+            <Height>4.30742in</Height>
             <Width>0.259in</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -455,7 +455,7 @@
           </Rectangle>
           <Rectangle Name="Rectangle4">
             <KeepTogether>true</KeepTogether>
-            <Left>1.69842in</Left>
+            <Left>1.6875in</Left>
             <Height>1.36667in</Height>
             <Width>0.25506in</Width>
             <ZIndex>7</ZIndex>

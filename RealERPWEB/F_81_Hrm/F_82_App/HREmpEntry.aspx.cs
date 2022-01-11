@@ -597,7 +597,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //case "3338": //Acme 
                 case "3347": //PEB           
                 case "3348": //Credence           
-                case "3355": //GreenWood           
+                case "3355": //GreenWood
+                case "3365": // BTI
 
                     // this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 2;
@@ -659,7 +660,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 // break;
 
 
-                case "3101": 
+                //case "3101": 
                 case "3338": //Acme
                     this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 3;
@@ -1080,7 +1081,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                             break;
 
-                        case "3101":
+                        //case "3101":
                         case "3338":// Acme
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
@@ -1095,6 +1096,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                             break;
+
+
+                        case "3365":// PTI
+
+                            toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            break;
+
 
                         default:
 

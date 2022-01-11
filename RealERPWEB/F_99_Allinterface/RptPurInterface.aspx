@@ -3322,7 +3322,7 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
                                                                     <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
