@@ -538,26 +538,31 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkbtnEdit_Click(object sender, EventArgs e)
         {
-            string url = "PurMTReqGatePass?Type=Entry";
-            string comcod = this.GetCompCode();
-            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["delete"]))
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
-                return;
-            }
+            //string url = "PurMTReqGatePass?Type=Entry";
+            //string comcod = this.GetCompCode();
+            //((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            //DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
 
-            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string mtrno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lbltrnnog")).Text.Trim();
-            string mrefno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgpmanual")).Text.Trim();
-            string mtrdat = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgp")).Text.Trim();
+            //int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //string mtrno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lbltrnnog")).Text.Trim();
+            //string mrefno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgpmanual")).Text.Trim();
+            //string mtrdat = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgp")).Text.Trim();
 
 
 
         }
 
         protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvMtrReInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
         }
