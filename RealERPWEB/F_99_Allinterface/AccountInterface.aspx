@@ -425,7 +425,7 @@
 
                     case '14':
                         tblData = document.getElementById("<%=this.gvAccUnPostedtrn.ClientID %>");
-                        break;  
+                        break;
 
                     default:
                         tblData = document.getElementById("<%=gvSalesUpdate.ClientID %>");
@@ -1494,7 +1494,7 @@
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
 
-                                                         <asp:TemplateField HeaderText="Ref No">
+                                                        <asp:TemplateField HeaderText="Ref No">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lgptrefno" runat="server"
                                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "refno")) %>'
@@ -1874,14 +1874,24 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Reconcilaition Date">
                                                             <ItemTemplate>
-                                                                <asp:TextBox ID="txtgvReconDat" runat="server" BackColor="Transparent"
+                                                                <%--<asp:TextBox ID="txtgvReconDat" runat="server" BackColor="Transparent"
                                                                     BorderStyle="None" Style="text-align: left; font-size: 11px;"
                                                                     Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd-MMM-yyyy")=="01-Jan-1900")?""
                                                                     :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd-MMM-yyyy")%>'
-                                                                    Width="70px"></asp:TextBox>
+                                                                    Width="70px"></asp:TextBox>--%>
+
+                                                                <asp:TextBox ID="txtgvReconDat" runat="server" CssClass="inputDateBox" Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd-MMM-yyyy")=="01-Jan-1900")?""
+                                                                    :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd-MMM-yyyy")%>'
+                                                                    Style="text-align: center; font-size: 11px;" OnTextChanged="txtgvReconDat_TextChanged" AutoPostBack="true">
+
+                                                                </asp:TextBox>
+                                                                <cc1:CalendarExtender ID="CalendarExtender_txtgvReconDat" runat="server" Enabled="True"
+                                                                    Format="dd-MMM-yyyy" TargetControlID="txtgvReconDat"></cc1:CalendarExtender>
+
 
                                                             </ItemTemplate>
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                                                         </asp:TemplateField>
                                                         <asp:TemplateField>
                                                             <ItemTemplate>
@@ -1892,8 +1902,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="lbok" runat="server" CommandArgument="lbok"
-                                                                    Width="30px">OK</asp:LinkButton>
+                                                                <asp:LinkButton ID="btnokpdc" runat="server"  OnClick="btnokpdc_Click" Width="30px">OK</asp:LinkButton>
                                                             </ItemTemplate>
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>
