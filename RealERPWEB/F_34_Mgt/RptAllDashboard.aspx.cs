@@ -156,8 +156,10 @@ namespace RealERPWEB.F_34_Mgt
             var monthly = purmonth.Concat(curmonth).Concat(weeklypur).ToList();
             var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
+
             var pur_json = jsonSerialiser.Serialize(monthly);
             var pur_json1 = jsonSerialiser.Serialize(top5data);
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecutePurchaseGraph('" + pur_json + "','" + pur_json1 + "')", true);
 
         }
