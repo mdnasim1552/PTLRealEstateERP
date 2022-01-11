@@ -328,7 +328,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Leve Allocation">
+                                         <asp:TemplateField HeaderText="Leave Allocation">
                                            
                                                  <ItemTemplate>
                                                     <asp:TexTBox ID="txtallocation" runat="server" Style="text-align: right"

@@ -378,5 +378,38 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string empname { get; set; }
             public EmpLeaveRecord() { }
         }
+
+        [Serializable]
+        public class YearlyLeaveRecord
+        {
+            public string comcod { get; set; }
+            public string companycode { get; set; }
+            public string departcode { get; set; }
+            public string secid { get; set; }
+        
+            public string empid { get; set; }
+            public string desigid { get; set; }
+            public double opnbal { get; set; }
+            public double earnlv { get; set; }
+            public double enjoylv { get; set; }
+            public double carrfor { get; set; }
+            public double ballv { get; set; }
+      
+            public string desig { get; set; }
+
+            public string idcardno { get; set; }
+            public string joindat { get; set; }
+            public string empname { get; set; }
+            public string companyname { get; set; }
+          
+            public string deptdesc { get; set; }
+          
+            public string sectionname { get; set; }
+            public YearlyLeaveRecord() { }
+        }
+
+
+
+
     }
 }
