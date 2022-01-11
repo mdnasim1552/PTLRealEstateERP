@@ -1022,8 +1022,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkremovegp" CssClass="btn btn-xs btn-default" OnClientClick="return confirm('Are you sure you want delete');" runat="server" ToolTip="Cancel" OnClick="lnkremovegp_Click"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                 <asp:HyperLink ID="lnkgpass" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Gate Pass"><span class=" fa fa-check"></span> </asp:HyperLink>
-                                                <asp:LinkButton ID="lnkbtnEdit" CssClass="btn btn-xs btn-default" OnClientClick="return confirm('Are you sure to edit Requisition..');" runat="server" ToolTip="Edit Requisition" OnClick="lnkbtnEdit_Click" Visible="false"><span style="color:red" class="fa fa-edit"></span> </asp:LinkButton>
-
+                                                
                                             </ItemTemplate>
                                             <ItemStyle Width="120px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
@@ -1416,7 +1415,7 @@
             </div>
 
 
-            <div id="modalReqEdit" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
+<%--            <div id="modalReqEdit" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content modal-content">
                         <div class="modal-header">
@@ -1427,8 +1426,8 @@
                         </div>
                         <div class="modal-body ">
                             <div class="row">
-                                <asp:GridView ID="gvAprovInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" Width="16px" OnRowDeleting="gvAprovInfo_RowDeleting">
+                                <asp:GridView ID="gvMtrReInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                    ShowFooter="True" Width="16px" OnRowDeleting="gvMtrReInfo_RowDeleting">
                                     <PagerSettings Visible="False" />
                                     <RowStyle />
                                     <Columns>
@@ -1586,13 +1585,13 @@
                         </div>
 
                         <div class="modal-footer">
-                            <%--<asp:LinkButton ID="btnSaveComments" runat="server" OnClientClick="CloseModal();" CssClass="btn btn-primary">Save</asp:LinkButton>--%>
+                            <asp:LinkButton ID="btnSaveComments" runat="server" OnClientClick="CloseModal();" CssClass="btn btn-primary">Save</asp:LinkButton>
                             <button class="btn btn-primary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+--%>
 
 
         </ContentTemplate>
