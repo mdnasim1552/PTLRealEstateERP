@@ -2720,7 +2720,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryEntrust", list, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+            //Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("compName", comname));
+
+
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Month of " + todate));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
