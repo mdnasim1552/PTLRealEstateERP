@@ -13,6 +13,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using Microsoft.Reporting.WinForms;
 using System.Web.SessionState;
+using System.Text.RegularExpressions;
 
 namespace RealERPWEB.F_21_MKT
 {
@@ -3402,11 +3403,11 @@ namespace RealERPWEB.F_21_MKT
                 dv.RowFilter = ("empid='" + empid + "' or  empid=''");
             }
 
-            if (this.ddlStatus.SelectedValue != "0000000")
-            {
-                string LeadScod = this.ddlStatus.SelectedValue.ToString();
-                dv.RowFilter = ("LeadScod='" + LeadScod + "'");
-            }
+            //if (this.ddlStatus.SelectedValue != "0000000")
+            //{
+            //    string LeadScod = this.ddlStatus.SelectedValue.ToString();
+            //    dv.RowFilter = ("LeadScod='" + LeadScod + "'");
+            //}
 
 
 
@@ -3790,10 +3791,12 @@ namespace RealERPWEB.F_21_MKT
                     //lgcResDesc.Attributes["style"] = "<span><sup> *</sup></span>";
                 }
                 TextBox txtbx = (TextBox)e.Row.FindControl("txtgvVal");
+
                 if (gcod == "0301003")
                 {
 
-
+                    txtbx.Attributes.Add("minimum","11");
+                    txtbx.Attributes.Add("maximum", "11");
                     txtbx.Attributes.Add("OnTextChanged", "txtgvVal_TextChanged");
                 }
                 else
@@ -6474,6 +6477,30 @@ namespace RealERPWEB.F_21_MKT
         protected void ddlval_DataBound(object sender, EventArgs e)
         {
 
+        }
+ 
+
+        protected void txtgvVal_TextChanged1(object sender, EventArgs e)
+        {
+            int RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            string Gcode = ((Label)this.gvPersonalInfo.Rows[RowIndex].FindControl("lblgvItmCodeper")).Text.Trim();
+            if (Gcode == "0301003")
+            {
+                string txtgvVal = ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text.Trim();
+                //txtgvVal = Regex.Match(txtgvVal, @"\d+").Value;
+
+                if (txtgvVal.Length != 11)
+                {
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).BorderColor = Color.Red;
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Focus();
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).ForeColor= System.Drawing.Color.Red;
+
+                    return;
+                }
+
+
+            }
         }
     }
 
