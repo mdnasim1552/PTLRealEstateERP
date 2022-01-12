@@ -2546,27 +2546,38 @@ namespace RealERPWEB.F_12_Inv
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
 
             int index = 0;
-            //txtgvReqQty
-            for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
+            string pactcode1 = this.Request.QueryString["prjcode"].ToString();
+            string pactcode = ASTUtility.Left(pactcode1, 4);
+            //  todo for check central inventory
+            switch (pactcode)
             {
-                index = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
+                case "1102":
+                    break;
 
-                double dgvBgdQty = Convert.ToDouble(tbl1.Rows[index]["bbgdqty1"]);
-                double dgvReqQty =
-                        Convert.ToDouble(
-                            ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
-
-                if (this.Request.QueryString["InputType"] == "ReqCheck")
-                {
-                    if (dgvBgdQty < dgvReqQty)
+                default:
+                    //txtgvReqQty
+                    for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
+                        index = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
+
+                        double dgvBgdQty = Convert.ToDouble(tbl1.Rows[index]["bbgdqty1"]);
+                        double dgvReqQty =
+                                Convert.ToDouble(
+                                    ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
+
+                        if (this.Request.QueryString["InputType"] == "ReqCheck")
+                        {
+                            if (dgvBgdQty < dgvReqQty)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
+
+                            }
+                        }
 
                     }
-                }
-
+                    break;
             }
 
             string appxml = ((DataTable)Session["tblUserReq"]).Rows[0]["rapproval"].ToString();
