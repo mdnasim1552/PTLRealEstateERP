@@ -126,13 +126,13 @@
                                     </div>
                                     <div class="col-md-6 pading5px">
                                         <asp:LinkButton ID="lnkPrivVou" runat="server" CssClass="btn btn-primary  primaryBtn"
-                                            TabIndex="1">Prev.Voucher</asp:LinkButton>
-                                        <asp:TextBox ID="txtScrchPre" runat="server" TabIndex="2" CssClass="smltxtBox"></asp:TextBox>
+                                             >Prev.Voucher</asp:LinkButton>
+                                        <asp:TextBox ID="txtScrchPre" runat="server"   CssClass="smltxtBox"></asp:TextBox>
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="ibtnFindPrv" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindPrv_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
-                                        <asp:DropDownList ID="ddlPrivousVou" runat="server" CssClass="ddlistPull chzn-select" TabIndex="4" Style="width: 193px;">
+                                        <asp:DropDownList ID="ddlPrivousVou" runat="server" CssClass="ddlistPull chzn-select"  Style="width: 193px;">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -140,20 +140,19 @@
 
                                     <div class="col-md-3 pading5px asitCol3" style="padding-right: 0;">
                                         <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblName lblTxt" Text="Control Accounts"></asp:Label>
-                                        <asp:TextBox ID="txtScrchConCode" runat="server" TabIndex="5" CssClass="inputtextbox"></asp:TextBox>
+                                        <asp:TextBox ID="txtScrchConCode" runat="server"  CssClass="inputtextbox hidden"></asp:TextBox>
 
-                                        <asp:LinkButton ID="ibtnFindConCode" runat="server" CssClass="btn btn-primary srearchBtn" TabIndex="6" OnClick="ibtnFindConCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:LinkButton ID="ibtnFindConCode" runat="server" CssClass="btn btn-primary srearchBtn hidden"  OnClick="ibtnFindConCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                     </div>
                                     <div class="col-md-5 pading5px asitCol5">
-                                        <asp:DropDownList ID="ddlConAccHead" runat="server"
-                                            OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select"
-                                            TabIndex="7">
+                                        <asp:DropDownList ID="ddlConAccHead" runat="server"  TabIndex="1"
+                                            OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
                                         <div class="colMdbtn">
-                                            <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click" TabIndex="8">Ok</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click" TabIndex="2">Ok</asp:LinkButton>
 
                                         </div>
 
@@ -212,14 +211,14 @@
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="Label1" runat="server" CssClass="lblName lblTxt" Text="Head of Account"></asp:Label>
 
-                                            <asp:TextBox ID="txtserceacc" runat="server" TabIndex="12" CssClass=" inputtextbox"></asp:TextBox>
+                                            <asp:TextBox ID="txtserceacc" runat="server"  CssClass=" inputtextbox hidden"></asp:TextBox>
 
-                                            <asp:LinkButton ID="lnkAcccode" runat="server" OnClick="lnkAcccode_Click" CssClass="btn btn-primary srearchBtn " TabIndex="13"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:LinkButton ID="lnkAcccode" runat="server" OnClick="lnkAcccode_Click" CssClass="btn btn-primary hidden srearchBtn "><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
                                         <div class="col-md-5 pading5px asitCol5">
                                             <asp:DropDownList ID="ddlacccode" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlacccode_SelectedIndexChanged"
-                                                CssClass="form-control inputTxt chzn-select" TabIndex="14">
+                                                CssClass="form-control inputTxt chzn-select" TabIndex="1">
                                             </asp:DropDownList>
 
                                         </div>
@@ -229,8 +228,8 @@
 
                                             <asp:Label ID="Label2" runat="server" CssClass="lblName lblTxt" Text="Sub of Account"></asp:Label>
 
-                                            <asp:TextBox ID="txtserchReCode" runat="server" CssClass="inputtextbox" ></asp:TextBox>
-                                            <asp:LinkButton ID="lnkRescode" runat="server" OnClick="lnkRescode_Click" CssClass="btn btn-primary srearchBtn " TabIndex="16"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:TextBox ID="txtserchReCode" runat="server" CssClass="inputtextbox hidden" ></asp:TextBox>
+                                            <asp:LinkButton ID="lnkRescode" runat="server" OnClick="lnkRescode_Click" CssClass="btn btn-primary hidden srearchBtn " TabIndex="16"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
                                         <div class="col-md-5 pading5px asitCol5">
@@ -243,8 +242,8 @@
                                     <div class="form-group">
                                         <div class="col-md-3 pading5px asitCol3">
                                             <asp:Label ID="lblspecification" runat="server" CssClass="lblTxt lblName" Visible="false">Specification</asp:Label>
-                                            <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass="inputtextbox " ></asp:TextBox>
-                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="btn btn-primary srearchBtn"   OnClick="lnkSpecification_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass="inputtextbox hidden" ></asp:TextBox>
+                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="btn btn-primary hidden srearchBtn"   OnClick="lnkSpecification_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
 
 
@@ -262,7 +261,7 @@
 
                                             <asp:Label ID="lblDramt" runat="server" CssClass="lblName lblTxt">Amount</asp:Label>
 
-                                            <asp:TextBox ID="txtDrAmt" runat="server"  CssClass=" inputtextbox"></asp:TextBox>
+                                            <asp:TextBox ID="txtDrAmt" runat="server" TabIndex="19" CssClass=" inputtextbox"></asp:TextBox>
 
                                         </div>
                                         <div class="col-md-9 pading5px">
