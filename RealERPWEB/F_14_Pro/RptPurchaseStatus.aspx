@@ -967,6 +967,9 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Mrr. Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvmrrqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mrrqty")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -982,6 +985,23 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+
+                                          <asp:TemplateField HeaderText="Order Adjust">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvOrdradjQty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "oadjqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterTemplate>
+                                                <asp:Label ID="lgvFordradjqty" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                    Style="text-align: right; margin-top: 0px" Width="70px"></asp:Label>
+                                            </FooterTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="Right" />
+                                            <FooterStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                     </Columns>
                                     <FooterStyle BackColor="#F5F5F5" />
                                     <EditRowStyle />

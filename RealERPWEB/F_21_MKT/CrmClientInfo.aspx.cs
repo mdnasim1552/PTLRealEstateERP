@@ -3402,6 +3402,15 @@ namespace RealERPWEB.F_21_MKT
                 dv.RowFilter = ("empid='" + empid + "' or  empid=''");
             }
 
+            if (this.ddlStatus.SelectedValue != "0000000")
+            {
+                string LeadScod = this.ddlStatus.SelectedValue.ToString();
+                dv.RowFilter = ("LeadScod='" + LeadScod + "'");
+            }
+
+
+
+
             this.gvSummary.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvSummary.DataSource = dv.ToTable();
             this.gvSummary.DataBind();

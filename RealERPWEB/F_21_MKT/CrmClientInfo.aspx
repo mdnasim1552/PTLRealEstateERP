@@ -3716,10 +3716,12 @@
 
                                             <li>
                                                 <asp:HyperLink ID="hlnkalldiscusssion" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientDiscuDetails" runat="server">All Discussion</asp:HyperLink>
-
                                             </li>
 
-
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink8" Target="_blank" NavigateUrl="~/F_21_MKT/RptCrmNeedBase?Type=Report" runat="server"> Client Need Base
+</asp:HyperLink>
+                                            </li>
 
                                             <li>
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
