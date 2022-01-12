@@ -4482,9 +4482,6 @@
                                                                 Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
 
 
-
-
-
                                                             Subject:
                                                     <textarea name="lblsubjects" id="lblsubjects" style="width: 300px"></textarea>
                                                             Reason:

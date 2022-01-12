@@ -534,6 +534,7 @@ namespace RealERPRDLC
                 case "R_21_Mkt.RptCallCenterLead": SetRptCallCenterLead(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_Mkt.RptSourceWiseLeads": SetRptSourceWiseLeads(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_Mkt.RptCRMClientInfo": SetRptCrmClientInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.RptYearlySales": SetRptYearlySales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
                 #region Sales
@@ -5443,13 +5444,17 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-      private static LocalReport SetRptEmployeeLeaveRecord(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetRptEmployeeLeaveRecord(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpLeaveRecord>)RptDataSet));
             return Rpt1a;
         }
-        
 
+        private static LocalReport SetRptYearlySales(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.EClassYearlySalesCRM>)RptDataSet));
+            return Rpt1a;
+        }
 
     }
 }
