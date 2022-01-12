@@ -88,8 +88,8 @@ namespace RealERPRDLC
                 case "R_07_Ten.RptTenderProposal": Rpt1a = SetRptTenderProposal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_07_Ten.RptCivilConBOQ": Rpt1a = SetRptCivilConBOQ(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_07_Ten.RptCivilConBOQTender": Rpt1a = SetRptCivilConBOQTender(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-              
-               
+
+
                 #endregion
                 #region Project Design
 
@@ -245,7 +245,7 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMatTransferRec": Rpt1a = GetRptMatTransferRec(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsfer": Rpt1a = GetRptMaterialTrnsfer(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMaterialTrnsferP2P": Rpt1a = SetRptMaterialTrnsferP2P(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    
+
                 case "R_12_Inv.RptMatIssue": Rpt1a = SetRptMatIssue(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueBridge": Rpt1a = SetRptMatIssueBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatIssueStatus": Rpt1a = GetRptMatIssueStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -333,8 +333,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAccIncomeSt": Rpt1a = SetRptAccIncomeSt(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptVouTopSheet": Rpt1a = SetRptRptVouTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptLedger": Rpt1a = SetRptLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.RptLedgerTanvir":Rpt1a = SetRptLedgerTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    
+                case "R_17_Acc.RptLedgerTanvir": Rpt1a = SetRptLedgerTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 case "R_17_Acc.RptAccLedger": Rpt1a = SetRptAccLedger(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerBridge": Rpt1a = SetRptAccLedgerBridge(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccLedgerTerra": Rpt1a = SetRptAccLedgerTerra(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -400,7 +400,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptChequeSuvastuPBL": Rpt1a = SetRptChequeSuvastuPBL(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptProjCostSales": Rpt1a = SetRptProjCostSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankStatementInfo": Rpt1a = SetRptBankStatementInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                     
+
                 case "R_17_Acc.RptInterComTransStatu": Rpt1a = SetRptInterComTransStatu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupPayment": Rpt1a = SetRptSupPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptSupPayment02": Rpt1a = SetRptSupPayment02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -425,7 +425,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptAitVatProjWise": Rpt1a = SetRptAccATITxVatProjWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptPaySlipSupplier": Rpt1a = SetRptPaySlipSupplier(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptPaySlipSupplierShuvastu":
-                    Rpt1a = SetRptPaySlipSupplierShuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break; 
+                    Rpt1a = SetRptPaySlipSupplierShuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_17_Acc.RptPaySlipSubContractor": Rpt1a = SetRptPaySlipSubContractor(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptDailyProjectTransactionList": Rpt1a = SetRptProjectTransaction(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -478,10 +478,11 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptPrintVocherAlli02Credence": Rpt1a = SetrptPrintVocherAlli02Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherAlli03Credence": Rpt1a = SetrptPrintVocherAlli03Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherDefault": Rpt1a = SetrptPrintVoucherDefault(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptPrintVoucherManama": Rpt1a = SetrptPrintVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-
-                case "R_17_Acc.rptPrintVoucherEntrust": Rpt1a = SetrptPrintVoucherEntrust(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;//
-
+                case "R_17_Acc.rptPrintVoucherManama": Rpt1a = SetrptPrintVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
+                    //
+                case "R_17_Acc.rptPrintVocherEntrust01":Rpt1a = SetrptPrintVocherEntrust01(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherEntrust02": Rpt1a = SetrptPrintVocherEntrust02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVocherEntrust03": Rpt1a = SetrptPrintVocherEntrust03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 // Post Voucher Print
                 case "R_17_Acc.rptBankVoucher": Rpt1a = SetrptBankVoucher(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -502,7 +503,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptBankVoucherManama": Rpt1a = SetrptBankVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptBankVoucherTanvir": Rpt1a = SetrptBankVoucherTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptBankVoucherGreenwood":
-                    Rpt1a = SetrptBankVoucherGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break; 
+                    Rpt1a = SetrptBankVoucherGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptAccCashbook1": Rpt1a = SetRptAccCashbook1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -888,7 +889,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptPaySlipEdisonReal":
                     Rpt1a = SetRptPaySlipEdisonReal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
-                    
+
                 //Bonus Sheet
                 case "R_81_Hrm.R_89_Pay.RptBonusBridge1": Rpt1a = SetRptBonusBridge1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptBonusAlli": Rpt1a = SetRptBonusAlli(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -912,9 +913,9 @@ namespace RealERPRDLC
 
                 case "R_81_Hrm.R_92_Mgt.RptEmpSattelment": Rpt1a = SetRptEmpSattelment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptEmpSattelmentBangla": Rpt1a = SetRptEmpSattelmentBangla(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                    
+
                 case "R_81_Hrm.R_84_Lea.RptEmployeeLeaveRecord": Rpt1a = SetRptEmployeeLeaveRecord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_81_Hrm.R_84_Lea.RptYearlyLeaveRecord" : Rpt1a = SetRptYearlyLeaveRecord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_84_Lea.RptYearlyLeaveRecord": Rpt1a = SetRptYearlyLeaveRecord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
 
@@ -946,7 +947,7 @@ namespace RealERPRDLC
 
                     #endregion
 
-   
+
 
             }
 
@@ -1101,8 +1102,8 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_24_CC.RptClientModification>)RptDataSet));
             return Rpt1a;
         }
-    
-      private static LocalReport SetRptCashBank(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+
+        private static LocalReport SetRptCashBank(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptCashBank>)RptDataSet));
             return Rpt1a;
@@ -1241,7 +1242,7 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
-        }       
+        }
 
 
         private static LocalReport SetrptPrintVocherAlli02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -1286,20 +1287,31 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-        
+
         private static LocalReport SetrptPrintVoucher6(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
-        }
+        }     
 
-
-        private static LocalReport SetrptPrintVoucherEntrust(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetrptPrintVocherEntrust01(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
         }
-        
+        private static LocalReport SetrptPrintVocherEntrust02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        }
+
+
+        private static LocalReport SetrptPrintVocherEntrust03(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        }
+
         private static LocalReport SetrptPrintVoucher7(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
@@ -1355,12 +1367,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
             return Rpt1a;
         }
-        private static LocalReport SetrptBankVoucherGreenwood(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
+        private static LocalReport SetrptBankVoucherGreenwood(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
             return Rpt1a;
         }
-        
+
         private static LocalReport SetrptBankVoucherAcme(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
@@ -1372,7 +1384,7 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
             return Rpt1a;
         }
-        
+
         private static LocalReport SetrptBankVoucherAlliance(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
@@ -1447,7 +1459,7 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-        
+
 
         private static LocalReport SetRptAccCashbook1(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -1870,7 +1882,7 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.bnkStatement>)RptDataSet));
             return Rpt1a;
-        }       
+        }
 
 
         private static LocalReport SetrptForLetter(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
@@ -1926,7 +1938,7 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
             return Rpt1a;
         }
-        private static LocalReport  SetRptPaySlipEdisonReal(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetRptPaySlipEdisonReal(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>)RptDataSet));
             return Rpt1a;
@@ -2111,13 +2123,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_32_Mis.EClassAcc_03.CollectionBrackDown>)RptDataSet));
             return Rpt1a;
         }
-        private static LocalReport SetRptPaySlipSupplierShuvastu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset) 
+        private static LocalReport SetRptPaySlipSupplierShuvastu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_32_Mis.EClassAcc_03.CollectionBrackDown>)RptDataSet));
             return Rpt1a;
         }
 
-        
+
         private static LocalReport SetRptAccATITxVatProjWise(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassAccounts.RptAitTaxVatProjectWise>)RptDataSet));
@@ -2678,7 +2690,7 @@ namespace RealERPRDLC
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.BankStatementInfo>)RptDataSet));
             return Rpt1a;
-        }             
+        }
 
         private static LocalReport SetRptInterComTransStatu(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -3808,7 +3820,7 @@ namespace RealERPRDLC
         }
 
 
-        
+
         private static LocalReport GetrptPurMrrEntryBridge(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EClassIDCode.EClasPurMrr>)RptDataSet));
@@ -4245,7 +4257,7 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-        
+
 
         private static LocalReport SetRptAccLedger(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
@@ -4486,8 +4498,8 @@ namespace RealERPRDLC
         }
 
 
-        
-       private static LocalReport SetRptRptCashPay02Edison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+
+        private static LocalReport SetRptRptCashPay02Edison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptCashPay02>)RptDataSet));
             return Rpt1a;
@@ -5443,12 +5455,12 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
-      private static LocalReport SetRptEmployeeLeaveRecord(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        private static LocalReport SetRptEmployeeLeaveRecord(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.EmpLeaveRecord>)RptDataSet));
             return Rpt1a;
         }
-        
+
 
 
     }
