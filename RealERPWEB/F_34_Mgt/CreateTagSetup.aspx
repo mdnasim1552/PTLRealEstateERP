@@ -72,6 +72,12 @@
                 </div>
             </div>
 
+            <div class="col-md-1">
+                        <asp:LinkButton ID="lnkBack" runat="server"  OnClick="lnkBack_Click" CssClass="btn btn-primary okBtn">Back</asp:LinkButton>
+
+            </div>
+
+
             </div>
 
         </div>
