@@ -3838,7 +3838,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign6 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
                         break;
 
-                    case "3101":
+                    //case "3101":
                     case "3332": // InnStar
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
@@ -3943,7 +3943,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    case "3101":
+                    //case "3101":
                     case "3339": // Tropical Home
                     case "3332": // InnStar
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4061,7 +4061,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderInnstar.rdlc";
                         break;
 
-                    case "3101": // Suvastu
+                    //case "3101": // Suvastu
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
                         Reportpath = "~/Report/RptPurchaseOrderSuvastu.rdlc";

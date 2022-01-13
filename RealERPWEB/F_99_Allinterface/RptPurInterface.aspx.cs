@@ -1672,6 +1672,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3330":
                     case "3336":// shuvastu
                     case "3337":
+                    case "3364": // JBS
 
                         hlink1.Visible = false;
                         break;
