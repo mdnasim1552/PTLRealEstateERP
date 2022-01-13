@@ -635,14 +635,23 @@
                     }
 
                 }
-                $(txtmobile).keyup(function () {
-                    var mobile = $(this).val();
-                    if (mobile.length != 11) {
 
+                $(txtmobile).keydown(function () {
+                    var mobile = $(this).val();
+
+                    if (!($.isNumeric(mobile))) {
+
+                        alert("Mobile Number must be numeric");
 
                         return false;
                     }
+                    
 
+                });
+
+                $(txtmobile).keyup(function () {
+                    var mobile = $(this).val();
+                     
                     if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
@@ -652,6 +661,31 @@
                     funDupMobile(comcod, sircode, mobile);
 
                 });
+
+                function IsMobileNumber(txtMobId) {
+                    Regex obj9 = new Regex("^[0-9]*$");
+
+                    if (!obj9.IsMatch(txtMobId)) {
+                        //error Message here    
+                    }
+                    else {
+
+                    }
+
+
+
+                    var mob = /^[1-9]{1}[0-9]{9}$/;
+                    var txtMobile = txtMobId;
+                    alert(txtMobile);
+                    if (mob.test(txtMobile) == false) {
+                        alert("Please enter valid mobile number.");
+                        txtMobile.focus();
+                        return false;
+                    }
+                    return true;
+                };
+
+              
 
 
                 $(txtaltmobile1).keyup(function () {
@@ -1055,7 +1089,7 @@
                 if (!confirm("Are you sure you want to delete this  Item?")) {
                     return;
                 }
-                 
+
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
@@ -1338,10 +1372,10 @@
 
                             $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
                         });
-                         
+
                         // console.log(data);
                         //  funDataBind(data);                      
-                         
+
                     },
 
 
@@ -1846,7 +1880,7 @@
 
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
-                var ratevalue = $('#ddlRating option:selected').val();               
+                var ratevalue = $('#ddlRating option:selected').val();
 
                 $.ajax({
                     type: "POST",
@@ -1857,7 +1891,7 @@
 
 
                     success: function (response) {
- 
+
 
                     },
 
@@ -1995,8 +2029,9 @@
                                                         <ItemTemplate>
 
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
-                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2074,9 +2109,11 @@
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
 
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
@@ -2157,6 +2194,7 @@
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2256,9 +2294,15 @@
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+
+
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                               
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
 
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"

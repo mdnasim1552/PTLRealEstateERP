@@ -365,22 +365,24 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                     
                                     <asp:TemplateField HeaderText="App. Floor" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblAppfl" runat="server" Width="60px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "flordesc1")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Facing" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblFacing" runat="server" Width="60px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "facedesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="View" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblView" runat="server" Width="60px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "viewdesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Budget" Visible="false">
@@ -392,7 +394,7 @@
                                     <asp:TemplateField HeaderText="Interest Project	" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblInterest" runat="server" Width="60px" Font-Size="12px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "apttyp")) %>'></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "bgddesc")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
