@@ -635,64 +635,29 @@
                     }
 
                 }
-
-                $(txtmobile).keydown(function () {
-                    var mobile = $(this).val();
-
-                    if (!($.isNumeric(mobile))) {
-
-                        alert("Mobile Number must be numeric");
-
-                        return false;
-                    }
-                    
-
-                });
+ 
 
                 $(txtmobile).keyup(function () {
                     var mobile = $(this).val();
-                     
+                   
                     if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
 
                         return false;
                     }
-                    funDupMobile(comcod, sircode, mobile);
+                   // funDupMobile(comcod, sircode, mobile);
 
                 });
 
-                function IsMobileNumber(txtMobId) {
-                    Regex obj9 = new Regex("^[0-9]*$");
 
-                    if (!obj9.IsMatch(txtMobId)) {
-                        //error Message here    
-                    }
-                    else {
-
-                    }
-
-
-
-                    var mob = /^[1-9]{1}[0-9]{9}$/;
-                    var txtMobile = txtMobId;
-                    alert(txtMobile);
-                    if (mob.test(txtMobile) == false) {
-                        alert("Please enter valid mobile number.");
-                        txtMobile.focus();
-                        return false;
-                    }
-                    return true;
-                };
-
+            
               
 
 
                 $(txtaltmobile1).keyup(function () {
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
-
-
                         return false;
                     }
 
