@@ -3795,7 +3795,7 @@ namespace RealERPWEB.F_21_MKT
                 if (gcod == "0301003")
                 {
 
-                    txtbx.Attributes.Add("minimum","11");
+                    txtbx.Attributes.Add("minimum", "11");
                     txtbx.Attributes.Add("maximum", "11");
                     txtbx.Attributes.Add("OnTextChanged", "txtgvVal_TextChanged");
                 }
@@ -6478,7 +6478,7 @@ namespace RealERPWEB.F_21_MKT
         {
 
         }
- 
+
 
         protected void txtgvVal_TextChanged1(object sender, EventArgs e)
         {
@@ -6499,34 +6499,26 @@ namespace RealERPWEB.F_21_MKT
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).BorderColor = Color.Red;
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Focus();
-                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).ForeColor= System.Drawing.Color.Red;
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).ForeColor = System.Drawing.Color.Red;
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Please enter valid mobile number');", true);
 
                     return;
                 }
                 DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", mobile, "", "", "", "", "", "", "", "");
-                if (ds2.Tables[0].Rows.Count != 0 || ds2 != null)
-                {
-                    string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
-                    string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
-                    string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
-                    string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
+                if (ds2.Tables[0].Rows.Count == 0)
+                    return;
 
-                    //string holdername = " His/Her Name " + mobilename;
-                    string Message = "Duplicate : ";
-                    string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor;
-                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
+                string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
+                string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
+                string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
+                string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
+                //string holdername = " His/Her Name " + mobilename;
+                string Message = "Duplicate : ";
+                string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor;
+                ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
 
-                }
-
-
-
-
-
-
-                 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
 
 
             }
