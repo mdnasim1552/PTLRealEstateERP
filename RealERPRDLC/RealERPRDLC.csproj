@@ -52,7 +52,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+
       <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -117,6 +119,7 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+CustomerMoneyrecipt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDuesIndPro.datasource" />
@@ -594,6 +597,7 @@
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSumCustPayStatus.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAccSummaryInflow.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptAllProDuesColl02.rdlc" />
