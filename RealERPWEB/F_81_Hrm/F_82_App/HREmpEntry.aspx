@@ -23,7 +23,7 @@
         });
         function pageLoaded() {
 
-            $("input, select").bind("keydown", function (event) {
+            $("input, select").bind("keydown", fuEmp.Namenction (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
 
@@ -199,10 +199,10 @@
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblnewEmp" runat="server" CssClass="lblTxt lblName" Visible="false">Emp.Name:</asp:Label>
                                         <asp:TextBox ID="txtNSrcEmp" runat="server" CssClass="inputTxt inputName inpPixedWidth" Visible="false"></asp:TextBox>
-                                        <asp:LinkButton ID="ibtnNFindEmp" Visible="false" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn chzn-select" OnClick="ibtnNFindEmp_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                        <asp:LinkButton ID="ibtnNFindEmp" Visible="false" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ibtnNFindEmp_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-4 pading5px">
-                                        <asp:DropDownList ID="ddlNPEmpName" Visible="false" runat="server" AutoPostBack="True" CssClass="form-control inputTxt" TabIndex="2">
+                                        <asp:DropDownList ID="ddlNPEmpName" Visible="false" runat="server" AutoPostBack="True" CssClass="form-control inputTxt chzn-select" TabIndex="2">
                                         </asp:DropDownList>
                                     </div>
 
