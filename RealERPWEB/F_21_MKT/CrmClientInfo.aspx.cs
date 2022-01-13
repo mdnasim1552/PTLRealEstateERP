@@ -2578,7 +2578,7 @@ namespace RealERPWEB.F_21_MKT
 
                     else
                     {
-                        if (Phone.Trim().Length > 11)
+                        if (Phone.Trim().Length != 11)
                         {
                             ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile Number Must be 11 digit";
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
@@ -6482,22 +6482,51 @@ namespace RealERPWEB.F_21_MKT
 
         protected void txtgvVal_TextChanged1(object sender, EventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
             int RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
             string Gcode = ((Label)this.gvPersonalInfo.Rows[RowIndex].FindControl("lblgvItmCodeper")).Text.Trim();
             if (Gcode == "0301003")
             {
-                string txtgvVal = ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text.Trim();
+                string mobile = ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text.Trim();
+                string sircode = this.lblnewprospect.Value;
                 //txtgvVal = Regex.Match(txtgvVal, @"\d+").Value;
 
-                if (txtgvVal.Length != 11)
+
+                if (mobile.Length != 11)
                 {
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).BorderColor = Color.Red;
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Focus();
                     ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).ForeColor= System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Please enter valid mobile number');", true);
 
                     return;
                 }
+                DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", mobile, "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count != 0 || ds2 != null)
+                {
+                    string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
+                    string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
+                    string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
+                    string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
+
+                    //string holdername = " His/Her Name " + mobilename;
+                    string Message = "Duplicate : ";
+                    string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor;
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
+
+                }
+
+
+
+
+
+
+                 
 
 
             }
