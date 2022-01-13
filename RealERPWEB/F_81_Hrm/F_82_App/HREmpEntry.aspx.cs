@@ -1327,6 +1327,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //-------------------------////
 
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
+
+            if(projectcode=="000000000000")
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Section !!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+
+            }
+
             string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
             string desigid = this.ddlDesignation.SelectedValue.ToString();
             string designame = this.ddlDesignation.SelectedItem.Text;
