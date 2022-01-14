@@ -8,6 +8,24 @@
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
+
+      <%--  function pageLoaded() {
+
+            var gv1 = $('#<%=this.gvReqStatus.ClientID %>');
+            //gv1.Scrollable();
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+
+
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+
+
+
+
+        };--%>
         function pageLoaded() {
           
            
@@ -194,10 +212,10 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Adjustment">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px"
+                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px" OnTextChanged="txtgvadjqty_TextChanged"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adjstqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="65px" BackColor="White"
-                                                        BorderStyle="None" Style="text-align: right"></asp:TextBox>
+                                                        BorderStyle="None" Style="text-align: right" AutoPostBack="true"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" Width="65px" />
                                             </asp:TemplateField>
