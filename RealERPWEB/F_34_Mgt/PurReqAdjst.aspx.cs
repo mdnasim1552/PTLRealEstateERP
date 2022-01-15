@@ -525,5 +525,21 @@ namespace RealERPWEB.F_34_Mgt
             this.ShowData();
 
         }
+
+        protected void txtgvadjqty_TextChanged(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;                             
+            double balqty = Convert.ToDouble("0" + ((Label)this.gvReqStatus.Rows[index].FindControl("lblgvBalqty")).Text.Trim());
+            double adjqty = Convert.ToDouble("0" + ((TextBox)this.gvReqStatus.Rows[index].FindControl("txtgvadjqty")).Text.Trim());
+
+            if (balqty<adjqty)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
+                return;
+            }
+
+
+
+        }
     }
 }
