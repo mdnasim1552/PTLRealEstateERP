@@ -4410,7 +4410,7 @@
 
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    <ItemStyle Width="600px" />
+                                                    <ItemStyle Width="700px" />
                                                 </asp:TemplateField>
 
 
