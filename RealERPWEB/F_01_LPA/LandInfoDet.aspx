@@ -990,14 +990,14 @@
                             }
                             else {
                                 var ar = new Array();
-                                alert(newfollowup);
+                              //  alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);
                                 }
 
-                                console.log(ar);
-                                alert(ar.length);
+                                //console.log(ar);
+                              //  alert(ar.length);
 
                                 for (i = 0; i < ar.length; i++) {
 
@@ -3584,7 +3584,7 @@
                                                         <%--<asp:Button Text="Re-Schdule" CssClass="btn btn-primary btn-xs" OnClientClick="javascript:CloseModaldisReschedule();" runat="server" OnClick="GetValue" />--%>
 
 
-                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schedule</button>
 
 
                                                         <asp:LinkButton ID="lbtnCancel" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnCancel_Click"> Cancel</asp:LinkButton>
