@@ -269,6 +269,9 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptMatTransStatus": Rpt1a = SetRptMatTransStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptPurchaseOrder": Rpt1a = SetRptPurchaseOrder(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptMatTransStatusUrban": Rpt1a = SetRptMatTransStatusUrban(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptPurchaseOrderJBS":
+                    Rpt1a = SetRptPurchaseOrderJBS(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
 
                 case "R_12_Inv.RptReqEntryEdison": Rpt1a = SetRptReqEntryEdison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntry02Assure": Rpt1a = SetRptReqEntry02Assure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1770,6 +1773,14 @@ namespace RealERPRDLC
 
             return Rpt1a;
         }
+        private static LocalReport SetRptPurchaseOrderJBS(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EclassPurchase.PurchaseOrderInfo>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition>)RptDataSet2));
+
+            return Rpt1a;
+        }
+        
         private static LocalReport SetRptPurVarAa(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptPurVarA>)RptDataSet));

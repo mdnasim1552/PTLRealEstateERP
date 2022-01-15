@@ -125,7 +125,7 @@ namespace RealERPWEB.F_99_Allinterface
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
-            string txtsign1= dt2.Rows[0]["USRNAME"].ToString()+ "\n" + dt2.Rows[0]["USRDESIG"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["REQDAT"]).ToString("dd-MMM-yyyy");
+            string txtsign1 = dt2.Rows[0]["USRNAME"].ToString() + "\n" + dt2.Rows[0]["USRDESIG"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["REQDAT"]).ToString("dd-MMM-yyyy");
 
             ReportDocument rptstk = new ReportDocument();
             LocalReport Rpt1 = new LocalReport();
@@ -1186,7 +1186,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3356":
-                //case "3101":
+                    //case "3101":
                     PrintReq = "PrintReqiNTECH";
                     break;
 
@@ -1710,7 +1710,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";           
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
         }
 
@@ -2589,6 +2589,10 @@ namespace RealERPWEB.F_99_Allinterface
 
                 case "3336": // shuvastu
                 case "3337":
+                case "3364": // jbs
+
+
+
                     this.OrderPrintRDLC();
                     break;
 
@@ -3770,7 +3774,6 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt3;
 
 
-
                 // Carring
                 DataView dv1 = dtorder1.DefaultView;
                 dv1.RowFilter = ("rsircode  like '019999901%'");
@@ -3785,6 +3788,12 @@ namespace RealERPWEB.F_99_Allinterface
                 dv1 = dtorder1.DefaultView;
                 dv1.RowFilter = ("rsircode not like '0199999%'");
                 dt3 = dv1.ToTable();
+
+                // Carring cost details brfeak
+                DataTable dt4;                
+                DataView dv4 = dtorder1.DefaultView;
+                dv4.RowFilter = ("rsircode  like '0199%'");
+                dt4 = dv4.ToTable();
 
                 string discountdesc = dtorder1.Select("rsircode like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("rsircode like '019999902003%'")[0]["rsirdesc1"].ToString();
 
@@ -4010,6 +4019,13 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
+                    case "3101": // ASIT
+                    case "3364": //JBS
+                        terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        break;
+
 
                     default: //Default
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4090,6 +4106,12 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3355": //Greenwood
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
+
+                    case "3101": //Greenwood
+                    case "3364": //Greenwood
+                        Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
+                        break;
+
                     default:
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
                         break;
@@ -4137,7 +4159,7 @@ namespace RealERPWEB.F_99_Allinterface
                 if (comcod == "3336" || comcod == "3337")
                 {
                     Rpt1.SetParameters(new ReportParameter("cperson2", cperson2));
-                   
+
                 }
 
 
