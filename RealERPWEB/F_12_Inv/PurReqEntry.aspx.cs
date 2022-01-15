@@ -3099,6 +3099,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rowid"] = rowid;
                     dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
                     dr1["rsircode"] = dt.Rows[i]["rsircode"].ToString();
+                    dr1["rsirdesc"] = dt.Rows[i]["rsirdesc"].ToString();
                     dr1["rsirdesc1"] = dt.Rows[i]["rsirdesc1"].ToString();
                     dr1["rsirdesc2"] = dt.Rows[i]["rsirdesc2"].ToString();
                     dr1["rsirunit"] = dt.Rows[i]["rsirunit"].ToString();
@@ -3126,6 +3127,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rowid"] = rowid;
                     dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
                     dr1["rsircode"] = dt.Rows[i]["rsircode"].ToString();
+                    dr1["rsirdesc"] = dt.Rows[i]["rsirdesc"].ToString();
                     dr1["rsirdesc1"] = dt.Rows[i]["rsirdesc1"].ToString();
                     dr1["rsirdesc2"] = dt.Rows[i]["rsirdesc2"].ToString();
                     dr1["rsirunit"] = dt.Rows[i]["rsirunit"].ToString();
