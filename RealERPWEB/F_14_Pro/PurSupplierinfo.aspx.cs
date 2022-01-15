@@ -212,7 +212,6 @@ namespace RealERPWEB.F_14_Pro
 
                     switch (comcod)
                     {
-
                         case "3101": // Pintech                   
                         case "3356"://Liesure
                             this.SMSSendforSupplier(comcod, cellphone);
@@ -221,9 +220,7 @@ namespace RealERPWEB.F_14_Pro
 
                         default:
                             break;
-                    }
-                    
-
+                    }                   
                 }
             }
         }

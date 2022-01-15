@@ -20,7 +20,7 @@ namespace RealERPWEB.F_34_Mgt
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "CREATE SMS TEMPALTE";
 
-                string smsid = this.Request.QueryString["Type"] ?? "";
+                string smsid = this.Request.QueryString["id"] ?? "";
 
                 if (smsid.Length > 0)
                 {
@@ -49,17 +49,17 @@ namespace RealERPWEB.F_34_Mgt
         private void GetPrevSMSContent()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-           
-            string smsid = this.Request.QueryString["Type"]??"";
-            DataSet ds1 = AccData.GetTransInfo("", "SP_ADMIN_SMS_INFO", "GETSMSCONTENTEMPLATE", smsid, "ind", "", "", "", "");
+            string comcod = hst["comcod"].ToString();
+            string smsid = this.Request.QueryString["id"]??"";
+            DataSet ds1 = _SMRecord.GetTransInfo(comcod, "SP_ENTRY_SMS_MAIL_INFO", "GETSMSCONTENTEMPLATE", smsid, "ind", "", "", "", "");
 
             DataTable dt = ds1.Tables[0];
-            string smsfor = ds1.Tables[0].Rows[0]["smsfor"].ToString();
-            ViewState["smsfor"] = smsfor;
-            this.txtilebn.Text = ds1.Tables[0].Rows[0]["nameban"].ToString();
-            this.TxtTitle.Text = ds1.Tables[0].Rows[0]["nameeng"].ToString();
-            this.txtdescBn.Text = ds1.Tables[0].Rows[0]["tempban"].ToString();
-            this.txtdesceng.Text = ds1.Tables[0].Rows[0]["tempeng"].ToString();
+            //string smsfor = ds1.Tables[0].Rows[0]["smsfor"].ToString();
+            //ViewState["smsfor"] = smsfor;
+            //this.txtilebn.Text = ds1.Tables[0].Rows[0]["nameban"].ToString();
+            this.TxtTitle.Text = ds1.Tables[0].Rows[0]["gdesc"].ToString();
+            //this.txtdescBn.Text = ds1.Tables[0].Rows[0]["tempban"].ToString();
+            this.txtdesceng.Text = ds1.Tables[0].Rows[0]["smscont"].ToString();
         }
 
         private void GetSMSFORNOTIFICATION()
@@ -136,6 +136,12 @@ namespace RealERPWEB.F_34_Mgt
             }
 
             // Response.Redirect("~/Admin/AllViewTemplate");
+        }
+
+        protected void lnkTag_Click(object sender, EventArgs e)
+        {
+            string tempid = this.Request.QueryString["id"].ToString();
+            Response.Redirect("~/F_34_Mgt/CreateTagSetup?Type="+"&tid="+ tempid);
         }
     }
 }
