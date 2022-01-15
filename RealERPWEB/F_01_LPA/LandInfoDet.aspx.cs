@@ -361,7 +361,8 @@ namespace RealERPWEB.F_01_LPA
             string kpigrp = "000000000000";
             string wrkdpt = "000000000000";
             ProcessAccess JData = new ProcessAccess();
-            DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", empid, proscod, kpigrp, "", wrkdpt, cdate, "", "", "", "");
+            string reschedule = "reschedule";
+            DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", empid, proscod, kpigrp, "", wrkdpt, cdate, reschedule, "", "", "");
 
 
             //   DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", Empid, Client, kpigrp, "", wrkdpt, cdate);
@@ -539,7 +540,9 @@ namespace RealERPWEB.F_01_LPA
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
-            string Empid = ((hst["empid"].ToString() == "") ? "" : hst["empid"].ToString()) + "%";
+            //string Empid = ((hst["empid"].ToString() == "") ? "" : hst["empid"].ToString()) + "%";
+
+            string Empid = ((hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString());
             if (userrole == "1")
             {
                 Empid = "%";
