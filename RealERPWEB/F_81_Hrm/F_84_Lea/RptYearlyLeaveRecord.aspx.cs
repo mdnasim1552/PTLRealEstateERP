@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_81_Hrm.F_84_Lea
 {
     public partial class RptYearlyLeaveRecord : System.Web.UI.Page
@@ -27,7 +29,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     Response.Redirect("../../AcceessError.aspx");
                 //this.txtCurTransDate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
                 //this.txtpatplacedate.Text = System.DateTime.Today.ToString("dd.MM.yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Degination Like Dept Wise ";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Yearly Leave Record ";
                 //this.Get_Trnsno();
                 //this.tableintosession();
 
@@ -44,11 +46,56 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+           ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            string year = this.ddlyear.SelectedValue.ToString();
+
+
+            DataTable dt2 = (DataTable)Session["tbllvRecord"];
+            //var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.YearlyLeaveRecord>)Session["tbllvRecord"];
+
+            var lst = dt2.DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.YearlyLeaveRecord>();
+
+
+            LocalReport Rpt1 = new LocalReport();
+
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_84_Lea.RptYearlyLeaveRecord", lst, null, null);
+
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("RptHead", "Yearly Leave Record"));
+            Rpt1.SetParameters(new ReportParameter("year", "Year : " + year));
+            
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+
+
+
+
+
+
+
 
         private void GetCompany()
         {
@@ -85,32 +132,67 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private DataTable HiddenSameData(DataTable dt1)
         {
-            if (dt1.Rows.Count == 0)
-                return dt1;
+            string companycode = dt1.Rows[0]["companycode"].ToString();
+            string departcode = dt1.Rows[0]["departcode"].ToString();
+            string secid = dt1.Rows[0]["secid"].ToString();
 
-            string section;
 
-            int j;
-
-            section = dt1.Rows[0]["section"].ToString();
-            for (j = 1; j < dt1.Rows.Count; j++)
+            //section = dt1.Rows[0]["section"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["section"].ToString() == section)
+
+                if (dt1.Rows[j]["companycode"].ToString() == companycode &&  dt1.Rows[j]["departcode"].ToString() == departcode && dt1.Rows[j]["secid"].ToString() == secid)
                 {
-                    section = dt1.Rows[j]["section"].ToString();
+                    companycode = dt1.Rows[j]["companycode"].ToString();
+                    departcode = dt1.Rows[j]["departcode"].ToString();
+                    secid = dt1.Rows[j]["secid"].ToString();
+                    dt1.Rows[j]["companyname"] = "";
                     dt1.Rows[j]["sectionname"] = "";
+                    dt1.Rows[j]["deptdesc"] = "";
+
                 }
 
+                else if (dt1.Rows[j]["companycode"].ToString() == companycode && dt1.Rows[j]["departcode"].ToString() == departcode && dt1.Rows[j]["secid"].ToString() != secid)
+                {
+                    companycode = dt1.Rows[j]["companycode"].ToString();
+                    departcode = dt1.Rows[j]["departcode"].ToString();
+                    secid = dt1.Rows[j]["secid"].ToString();
+
+                    dt1.Rows[j]["companyname"] = "";
+                    dt1.Rows[j]["deptdesc"] = "";
+
+                }
+               
+                else if (dt1.Rows[j]["departcode"].ToString() == departcode && dt1.Rows[j]["secid"].ToString() == secid)
+                {
+                    departcode = dt1.Rows[j]["departcode"].ToString();
+                    secid = dt1.Rows[j]["secid"].ToString();
+                    dt1.Rows[j]["sectionname"] = "";
+                    dt1.Rows[j]["deptdesc"] = "";
+
+                }
+                else if ( dt1.Rows[j]["secid"].ToString() == secid)
+                {
+                    secid = dt1.Rows[j]["secid"].ToString();
+                    dt1.Rows[j]["sectionname"] = "";
+
+                }
                 else
                 {
-                    section = dt1.Rows[j]["section"].ToString();
+                    companycode = dt1.Rows[j]["companycode"].ToString();
+                    departcode = dt1.Rows[j]["departcode"].ToString();
+                    secid = dt1.Rows[j]["secid"].ToString();
                 }
-
             }
+
 
             return dt1;
 
         }
+
+            
+
+      
 
 
         private void ShowAllEmp()
@@ -130,8 +212,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             }
 
-            Session["tbllvRecord"] = ds4.Tables[0];
-            //Session["tblempdesig"] = HiddenSameData(ds4.Tables[0]);
+             //Session["tbllvRecord"] = ds4.Tables[0];
+            
+
+            Session["tbllvRecord"] = HiddenSameData(ds4.Tables[0]);
+
             this.grvacc_DataBind();
 
 
@@ -190,15 +275,27 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             for (int i = 0; i < this.gvEmplvStatus.Rows.Count; i++)
             {
 
-                double txtallocation = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
-                double txtExercise = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtExercise")).Text.Trim());
-                double txtbalance = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtbalance")).Text.Trim());
-                double txtcarryfoward = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtcarryfoward")).Text.Trim());
-              
+                //ASTUtility.StrPosOrNagative(((TextBox)this.dgv1.Rows[i].FindControl("txtgvCrAmt")).Text.Trim());
+
+                double txtallocation = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
+                double txtExercise = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtExercise")).Text.Trim());
+                double txtbalance = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtbalance")).Text.Trim());
+                double txtcarryfoward = ASTUtility.StrPosOrNagative(((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtcarryfoward")).Text.Trim());
+
+
+                //Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
+               
+
+
+                //double txtallocation = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtallocation")).Text.Trim());
+                //double txtExercise = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtExercise")).Text.Trim());
+                //double txtbalance = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtbalance")).Text.Trim());
+                //double txtcarryfoward = Convert.ToDouble("0" + ((TextBox)this.gvEmplvStatus.Rows[i].FindControl("txtcarryfoward")).Text.Trim());
+
                 rowindex = (this.gvEmplvStatus.PageSize) * (this.gvEmplvStatus.PageIndex) + i;
                 dt.Rows[rowindex]["earnlv"] = txtallocation;
                 dt.Rows[rowindex]["enjoylv"] = txtExercise;
-                dt.Rows[rowindex]["ballv"] = txtbalance;
+                dt.Rows[rowindex]["ballv"] = txtallocation- txtExercise;
                 dt.Rows[rowindex]["carrfor"] = txtcarryfoward;
 
             }
@@ -230,7 +327,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     
 
-                        bool result = purData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "INSERTORUPDATEYEARLYLV", yearid, empid, earnlv.ToString(), enjoylv.ToString(), ballv.ToString(), carrfor.ToString(), "", "", "", "", "", "", "", "", "");
+                        bool result = purData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "INSERTORUPDATEYEARLYLV", yearid, empid, earnlv.ToString(), enjoylv.ToString(), carrfor.ToString(),"", "", "", "", "", "", "", "", "", "");
 
                         if (!result)
                             return;
@@ -275,6 +372,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-       
+        protected void btnTotal_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            this.grvacc_DataBind();
+        }
     }
 }

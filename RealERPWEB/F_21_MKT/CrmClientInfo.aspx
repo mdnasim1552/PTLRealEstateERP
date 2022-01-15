@@ -635,30 +635,29 @@
                     }
 
                 }
+ 
+
                 $(txtmobile).keyup(function () {
                     var mobile = $(this).val();
-                    if (mobile.length != 11) {
-
-
-                        return false;
-                    }
-
+                   
                     if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
 
                         return false;
                     }
-                    funDupMobile(comcod, sircode, mobile);
+                   // funDupMobile(comcod, sircode, mobile);
 
                 });
+
+
+            
+              
 
 
                 $(txtaltmobile1).keyup(function () {
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
-
-
                         return false;
                     }
 
@@ -1055,7 +1054,7 @@
                 if (!confirm("Are you sure you want to delete this  Item?")) {
                     return;
                 }
-                 
+
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
@@ -1338,10 +1337,10 @@
 
                             $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
                         });
-                         
+
                         // console.log(data);
                         //  funDataBind(data);                      
-                         
+
                     },
 
 
@@ -1846,7 +1845,7 @@
 
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
-                var ratevalue = $('#ddlRating option:selected').val();               
+                var ratevalue = $('#ddlRating option:selected').val();
 
                 $.ajax({
                     type: "POST",
@@ -1857,7 +1856,7 @@
 
 
                     success: function (response) {
- 
+
 
                     },
 
@@ -1995,8 +1994,9 @@
                                                         <ItemTemplate>
 
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
-                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2074,9 +2074,11 @@
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
 
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
@@ -2157,6 +2159,7 @@
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2256,9 +2259,15 @@
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+
+
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                               
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
 
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
@@ -3716,10 +3725,12 @@
 
                                             <li>
                                                 <asp:HyperLink ID="hlnkalldiscusssion" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientDiscuDetails" runat="server">All Discussion</asp:HyperLink>
-
                                             </li>
 
-
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink8" Target="_blank" NavigateUrl="~/F_21_MKT/RptCrmNeedBase?Type=Report" runat="server"> Client Need Base
+</asp:HyperLink>
+                                            </li>
 
                                             <li>
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
@@ -4399,7 +4410,7 @@
 
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    <ItemStyle Width="600px" />
+                                                    <ItemStyle Width="700px" />
                                                 </asp:TemplateField>
 
 
@@ -4478,9 +4489,6 @@
                                                             <asp:TextBox ID="txtdate" runat="server" ClientIDMode="Static" CssClass=""></asp:TextBox>
                                                             <cc1:CalendarExtender ID="Cal2" runat="server"
                                                                 Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-
-
-
 
 
                                                             Subject:

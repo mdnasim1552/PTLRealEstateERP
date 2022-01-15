@@ -162,6 +162,14 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="File Code">
+                                <ItemTemplate>
+                                     <asp:Label ID="lgvfilecode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
+                                        Width="100px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />

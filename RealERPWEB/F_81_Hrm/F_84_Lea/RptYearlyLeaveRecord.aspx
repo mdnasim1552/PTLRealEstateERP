@@ -277,6 +277,10 @@
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sectionname")) %>'
                                                     Width="150px"></asp:Label>
                                             </ItemTemplate>
+
+                                            <FooterTemplate>
+                                            <asp:LinkButton ID="btnTotal" runat="server" OnClick="btnTotal_Click" CssClass="btn btn-primary primaryBtn" >Total</asp:LinkButton>
+                                        </FooterTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -328,11 +332,11 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Leve Allocation">
+                                         <asp:TemplateField HeaderText="Leave Allocation">
                                            
                                                  <ItemTemplate>
                                                     <asp:TexTBox ID="txtallocation" runat="server" Style="text-align: right"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "earnlv")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "earnlv")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="60px"></asp:TexTBox>
                                                 </ItemTemplate>
                                                                                         
@@ -344,7 +348,7 @@
                                            
                                              <ItemTemplate>
                                                     <asp:TexTBox ID="txtExercise" runat="server" Style="text-align: right"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "enjoylv")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "enjoylv")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="60px"></asp:TexTBox>
                                                 </ItemTemplate> 
                                               
@@ -357,7 +361,7 @@
 
                                                <ItemTemplate>
                                                     <asp:TexTBox ID="txtbalance" runat="server" Style="text-align: right"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ballv")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ballv")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="60px"></asp:TexTBox>
                                                 </ItemTemplate> 
                                         
@@ -368,7 +372,7 @@
                                            <asp:TemplateField HeaderText="Carry Forward">
                                               <ItemTemplate>
                                                     <asp:TexTBox ID="txtcarryfoward" runat="server" Style="text-align: right"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "carrfor")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "carrfor")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="60px"></asp:TexTBox>
                                                 </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />

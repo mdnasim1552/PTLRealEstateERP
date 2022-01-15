@@ -361,6 +361,11 @@
 
 
 
+                var gvSummary = $('#<%=this.gvSummary.ClientID %>');
+                gvSummary.Scrollable();
+
+
+
 
 
                 var gcod;
@@ -1295,6 +1300,11 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>2000</asp:ListItem>
+                                    <asp:ListItem>4000</asp:ListItem>
+                                    <asp:ListItem>5000</asp:ListItem>
+                                    <asp:ListItem Selected="True">10000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

@@ -1902,8 +1902,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="lbok" runat="server" CommandArgument="lbok"
-                                                                    Width="30px">OK</asp:LinkButton>
+                                                                <asp:LinkButton ID="btnokpdc" runat="server"  OnClick="btnokpdc_Click" Width="30px">OK</asp:LinkButton>
                                                             </ItemTemplate>
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>

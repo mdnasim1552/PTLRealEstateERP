@@ -13,6 +13,7 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using Microsoft.Reporting.WinForms;
 using System.Web.SessionState;
+using System.Text.RegularExpressions;
 
 namespace RealERPWEB.F_21_MKT
 {
@@ -2577,7 +2578,7 @@ namespace RealERPWEB.F_21_MKT
 
                     else
                     {
-                        if (Phone.Trim().Length > 11)
+                        if (Phone.Trim().Length != 11)
                         {
                             ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile Number Must be 11 digit";
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
@@ -2937,22 +2938,33 @@ namespace RealERPWEB.F_21_MKT
             bool active = this.GetComPanyProsActivein();
 
 
-            //string number = "";
-            //number = Phone.Length > 0 ? Phone + "," : "";
-            //number = number + (altphone1.Length > 0 ? altphone1 + "," : "");
-            //number = number + (altphone2.Length > 0 ? altphone2 + "," : "");
-            //number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
+            string number = "";
+            number = Phone.Length > 0 ? Phone + "," : "";
+            number = number + (altphone1.Length > 0 ? altphone1 + "," : "");
+            number = number + (altphone2.Length > 0 ? altphone2 + "," : "");
+            number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
-            //Check Duplicate
-            //DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", number, "", "", "", "", "", "", "", "");
-
-
-            //if (ds2 == null)
-            //{
-            //    return;
-            //}
+           // Check Duplicate
+            DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", number, "", "", "", "", "", "", "", "");
 
 
+            if (ds2.Tables[0].Rows.Count != 0)
+            {
+                string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
+                string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
+                string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
+                string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
+
+                //string holdername = " His/Her Name " + mobilename;
+                string Message = "Duplicate : ";
+                string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor;               
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
+                return;
+            }
+                
+
+           
             clientid = this.lbllandname.Visible ? clientid : (this.lblnewprospect.Value.Length == 0 ? this.GetNewId() : this.lblnewprospect.Value);
 
             //if (this.lbllandname.Visible == true)
@@ -3402,6 +3414,12 @@ namespace RealERPWEB.F_21_MKT
                 dv.RowFilter = ("empid='" + empid + "' or  empid=''");
             }
 
+            //if (this.ddlStatus.SelectedValue != "0000000")
+            //{
+            //    string LeadScod = this.ddlStatus.SelectedValue.ToString();
+            //    dv.RowFilter = ("LeadScod='" + LeadScod + "'");
+            //}
+             
             this.gvSummary.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvSummary.DataSource = dv.ToTable();
             this.gvSummary.DataBind();
@@ -3781,10 +3799,12 @@ namespace RealERPWEB.F_21_MKT
                     //lgcResDesc.Attributes["style"] = "<span><sup> *</sup></span>";
                 }
                 TextBox txtbx = (TextBox)e.Row.FindControl("txtgvVal");
+
                 if (gcod == "0301003")
                 {
 
-
+                    txtbx.Attributes.Add("minimum", "11");
+                    txtbx.Attributes.Add("maximum", "11");
                     txtbx.Attributes.Add("OnTextChanged", "txtgvVal_TextChanged");
                 }
                 else
@@ -3852,7 +3872,10 @@ namespace RealERPWEB.F_21_MKT
                     lgcResDesc.Text = gdesc + "<span class='manField'><sup> *</sup></span>";
 
                 }
-
+                if ((gcod == "0302017") || (gcod == "0302019"))
+                {
+                    e.Row.Visible = false;
+                }
 
             }
         }
@@ -4687,9 +4710,10 @@ namespace RealERPWEB.F_21_MKT
                 this.lbleditempid.Value = gempid;
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+               ShowDiscussion();
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
 
-
+                
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string events = hst["events"].ToString();
 
@@ -6466,6 +6490,71 @@ namespace RealERPWEB.F_21_MKT
         {
 
         }
+
+
+        protected void txtgvVal_TextChanged1(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
+            int RowIndex = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+            string Gcode = ((Label)this.gvPersonalInfo.Rows[RowIndex].FindControl("lblgvItmCodeper")).Text.Trim();
+            if (Gcode == "0301003")
+            {
+                string mobile = ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text.Trim();
+                string sircode = this.lblnewprospect.Value;
+                //txtgvVal = Regex.Match(txtgvVal, @"\d+").Value;
+
+
+                if (mobile.Length != 11)
+                {
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).BorderColor = Color.Red;
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Focus();
+                    ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).ForeColor = System.Drawing.Color.Red;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Please enter valid mobile number');", true);
+
+                    return;
+                }
+                DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", mobile, "", "", "", "", "", "", "", "");
+                if (ds2.Tables[0].Rows.Count == 0)
+                    return;
+
+                string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
+                string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
+                string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
+                string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
+                string creatDate = ds2.Tables[0].Rows[0]["creatDate"].ToString();
+                string lststdate = ds2.Tables[0].Rows[0]["lststdate"].ToString();
+
+                //string holdername = " His/Her Name " + mobilename;
+                string Message = "Duplicate : ";
+                string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor + ", Create Date: " + creatDate + ", Last Followup Date: " + lststdate;
+                ((TextBox)this.gvPersonalInfo.Rows[RowIndex].FindControl("txtgvVal")).Text = "";
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
+
+
+            }
+        }
+
+        ////protected void ChkBoxLstFollow_SelectedIndexChanged(object sender, EventArgs e)
+        ////{
+        ////    Hashtable hst = (Hashtable)Session["tblLogin"];
+        ////    string userrole = hst["userrole"].ToString();
+        ////    string comcod = this.GetComeCode();
+
+
+        ////    int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+
+        ////    string Gcode = ((Label)this.gvInfo.Rows[RowIndex].FindControl("lblgvItmCodedis")).Text.Trim();
+        ////    string gvalue = ((CheckBoxList)this.gvInfo.Rows[RowIndex].FindControl("ChkBoxLstStatus")).SelectedValue.ToString();
+        ////    if (Gcode == "810100101016" && gvalue=="")
+        ////    {
+
+        ////    }
+
+        ////}
     }
 
 

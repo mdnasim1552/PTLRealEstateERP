@@ -44,9 +44,9 @@ namespace RealERPWEB
                     this.RptMSExcel();
                     break;
 
-                    //case "GRIDTOEXCEL":
-                    //    this.ExportGridToExcel();
-                    //    break;
+                case "GRIDTOEXCEL":
+                    this.ExportGridToExcel();
+                    break;
             }
         }
         protected void LoadReportSceleton()

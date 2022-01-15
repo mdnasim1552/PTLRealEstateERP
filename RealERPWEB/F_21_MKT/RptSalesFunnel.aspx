@@ -64,6 +64,8 @@
     <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            document.getElementById('<%= lbtnOk.ClientID %>').click();
+
         });
         $('.chzn-container').css('width', '250px');
 

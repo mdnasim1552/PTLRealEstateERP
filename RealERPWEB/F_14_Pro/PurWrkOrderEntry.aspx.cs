@@ -1998,6 +1998,31 @@ namespace RealERPWEB.F_14_Pro
                 this.lnkselect.Visible = true;
 
             }
+            switch (comcod)
+            {
+                case "3335":
+                    this.ddltypecod.Visible = true;
+                    this.lnkselect.Visible = true;
+                    this.txtSubject.Text = "Purchase Order For Materials";
+                    this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
+                    break;
+
+                case "3101":
+                case "3364":
+                    this.txtSubject.Text = "Purchase Order For ";
+                    this.txtLETDES.Text = "This is an reference to your discussion had with us today, we are pleased to place an order for supplying Rmc at our project under the following terms & conditions.";
+                    break;
+
+                default:
+                    this.txtSubject.Text = "Purchase Order For Materials";
+                    this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
+
+                    break;
+
+            }
+
+
+
             DataTable dt1 = (DataTable)ViewState["tblOrder"];
             DataTable dtResP = (DataTable)ViewState["tblResP"];
             int i;

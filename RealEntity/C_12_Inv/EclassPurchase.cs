@@ -56,5 +56,16 @@ namespace RealEntity.C_12_Inv
             public string rmrks { get; set; }
             public string rmrks02 { get; set; }
         }
+
+        [Serializable]
+        public class PaymentOtherCost
+        {
+            public string pactcode { get; set; }
+            public string rsircode { get; set; }
+            public string rsirdesc1 { get; set; }
+            public string ssircode { get; set; }
+            public string ssirdesc1 { get; set; }
+            public double ordramt { get; set; }
+        }
     }
 }

@@ -234,10 +234,10 @@
                                             <asp:LinkButton ID="ImgbtnSpecification" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnSpecification_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>--%>
 
 
-                                            <cc1:ListSearchExtender ID="ListSearchExt1" runat="server"
+                                           <%-- <cc1:ListSearchExtender ID="ListSearchExt1" runat="server"
                                                 QueryPattern="Contains" TargetControlID="ddlResList">
-                                            </cc1:ListSearchExtender>
-                                            <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass=" ddlPage chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlResList_SelectedIndexChanged" TabIndex="3" Width="100px"></asp:DropDownList>
+                                            </cc1:ListSearchExtender>--%>
+                                            <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass=" ddlPage chzn-select"  TabIndex="3" Width="100px"></asp:DropDownList>
 
 
 

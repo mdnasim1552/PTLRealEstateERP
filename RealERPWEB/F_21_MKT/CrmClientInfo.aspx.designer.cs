@@ -735,6 +735,15 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.HyperLink hlnkalldiscusssion;
 
         /// <summary>
+        /// HyperLink8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink8;
+
+        /// <summary>
         /// HyperLink2 control.
         /// </summary>
         /// <remarks>

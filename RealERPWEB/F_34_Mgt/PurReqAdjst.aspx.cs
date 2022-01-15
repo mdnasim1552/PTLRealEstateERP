@@ -285,7 +285,10 @@ namespace RealERPWEB.F_34_Mgt
                 case "ReqAdjust":
                     for (int i = 0; i < this.gvReqStatus.Rows.Count; i++)
                     {
+                        double balqty = Convert.ToDouble("0" + ((Label)this.gvReqStatus.Rows[i].FindControl("lblgvBalqty")).Text.Trim());
                         double adjstqty = Convert.ToDouble("0" + ((TextBox)this.gvReqStatus.Rows[i].FindControl("txtgvadjqty")).Text.Trim());
+                        adjstqty = balqty >= adjstqty ? adjstqty : 0.00;
+                      //  if (balqty<= adjstqty)
                         int rowindex = (this.gvReqStatus.PageSize) * (this.gvReqStatus.PageIndex) + i;
                         dt.Rows[rowindex]["adjstqty"] = adjstqty;
                     }
@@ -361,7 +364,10 @@ namespace RealERPWEB.F_34_Mgt
                     }
                 }
             }
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated successfully";
+
+           
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated successfully";
+            ((LinkButton)this.gvReqStatus.FooterRow.FindControl("lbtnFinalUpdate")).Enabled = false;
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -517,6 +523,22 @@ namespace RealERPWEB.F_34_Mgt
         protected void imgbtnFindmrfno_Click(object sender, EventArgs e)
         {
             this.ShowData();
+
+        }
+
+        protected void txtgvadjqty_TextChanged(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;                             
+            double balqty = Convert.ToDouble("0" + ((Label)this.gvReqStatus.Rows[index].FindControl("lblgvBalqty")).Text.Trim());
+            double adjqty = Convert.ToDouble("0" + ((TextBox)this.gvReqStatus.Rows[index].FindControl("txtgvadjqty")).Text.Trim());
+
+            if (balqty<adjqty)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Adjusted quantity must be equal or less balance quantity');", true);
+                return;
+            }
+
+
 
         }
     }
