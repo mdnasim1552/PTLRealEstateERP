@@ -202,9 +202,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.lblLastCardNo.Visible = true;
                     this.addOcupation.Visible = false;
 
-                    this.UploadCV.Visible = true;
-                    this.FileUploadControl.Visible = true;
-                    this.lblUploadCV.Visible = true;
+                    this.UploadCV.Visible = false;
+                    this.FileUploadControl.Visible = false;
+                    this.lblUploadCV.Visible = false;
 
                     this.btnUpload.Visible = true;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;

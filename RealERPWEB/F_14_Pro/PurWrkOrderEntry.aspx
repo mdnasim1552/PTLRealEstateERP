@@ -389,7 +389,7 @@
                                                 <span class="input-group-addon glypingraddon">
                                                     <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName" Text="Subject:"></asp:Label>
                                                 </span>
-                                                <asp:TextBox ID="txtSubject" runat="server" class="form-control inputTxt">Purchase Order For Materials</asp:TextBox>
+                                                <asp:TextBox ID="txtSubject" runat="server" class="form-control inputTxt"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div>
@@ -411,7 +411,7 @@
                                                 <span class="input-group-addon glypingraddon">
                                                     <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Text=":"></asp:Label>
                                                 </span>
-                                                <asp:TextBox ID="txtLETDES" runat="server" class="form-control inputTxt">Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions</asp:TextBox>
+                                                <asp:TextBox ID="txtLETDES" runat="server" class="form-control inputTxt"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="col-md-2 pading5px">
