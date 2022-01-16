@@ -109,7 +109,7 @@ namespace RealERPWEB.F_34_Mgt
             switch (comcod)
             {
                 case "1103"://Tanvir
-                case "3101":
+                //case "3101":
                     this.chkAdvanced.Checked = true;
                     this.chkAdvanced_CheckedChanged(null, null);
                     this.chkbod.Visible = true;
@@ -934,7 +934,7 @@ namespace RealERPWEB.F_34_Mgt
                     string comcod = this.GetCompCode();
                     switch (comcod)
                     {
-                        case"3101":
+                        //case"3101":
                         case"1103":
                             dr2 = tbl1.Select("pactcode = '" + actcode + "' and rsircode = '" + rescode + "' and spcfcod = '" + spcfcod + "' and billno= '" + Billno + "'");
                             break;
@@ -1798,7 +1798,7 @@ namespace RealERPWEB.F_34_Mgt
             {
                 switch (comcod)
                 {
-                    case "3101":
+                   // case "3101":
                     case "1103":
                         //if (bankcode != "000000000000")
                         //{
@@ -2391,7 +2391,7 @@ namespace RealERPWEB.F_34_Mgt
             this.GeResVisibility();
 
             string comcod = this.GetCompCode();
-            if (comcod == "3338")
+            if (comcod == "3338" || comcod=="3101" || comcod=="3348")
                 return;
 
             this.ProjectData();
