@@ -3303,7 +3303,7 @@
                                                             <asp:TemplateField HeaderText="Total Amount">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvWoamtosapp" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "woamt")).ToString("#,##0;(#,##0);") %>'
+                                                                        Text='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3101" || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3355" ? true : false %>'
                                                                         Width="50px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
@@ -3322,10 +3322,10 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs"> <span  style="color:green" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
 
@@ -3342,8 +3342,8 @@
 
 
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="110px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
+                                                                <ItemStyle Width="150px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText=" Req. No" Visible="false">
