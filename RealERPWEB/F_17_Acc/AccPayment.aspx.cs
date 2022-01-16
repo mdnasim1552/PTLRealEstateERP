@@ -321,6 +321,7 @@ namespace RealERPWEB.F_17_Acc
             this.ddlacccode.DataTextField = "actdesc1";
             this.ddlacccode.DataValueField = "actcode";
             this.ddlacccode.DataBind();
+            this.ddlacccode.SelectedValue = "260100010001"; // req by rahin uzzal dev by nahid
             //----Show Resource code and Specification Code------------// 
 
             DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
@@ -486,7 +487,8 @@ namespace RealERPWEB.F_17_Acc
             }
             this.GetSpecification();
             this.GetBillNo();
-             this.lnkSpecification_Click(null, null);
+             this.lnkSpecification_Click(null, null);  
+            this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue,2)=="99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98"?  this.ddlresuorcecode.SelectedItem.ToString().Substring(13):"");
         }
 
         protected void lnkOk_Click(object sender, EventArgs e)
@@ -1361,8 +1363,8 @@ namespace RealERPWEB.F_17_Acc
 
 
                 this.lblspecification.Visible = true;
-                // this.txtSearchSpeci.Visible = true;
-                //this.lnkSpecification.Visible = true;
+                this.txtSearchSpeci.Visible = true;
+                this.lnkSpecification.Visible = true;
                 this.ddlSpclinf.Visible = true;
                 this.GetResource();
 
@@ -1376,8 +1378,8 @@ namespace RealERPWEB.F_17_Acc
 
 
                 this.lblspecification.Visible = false;
-                // this.txtSearchSpeci.Visible = false;
-                //this.lnkSpecification.Visible = false;
+                this.txtSearchSpeci.Visible = false;
+                this.lnkSpecification.Visible = false;
                 this.ddlSpclinf.Visible = false;
                 this.ddlSpclinf.Items.Clear();
 

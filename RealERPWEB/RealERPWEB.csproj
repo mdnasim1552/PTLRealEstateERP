@@ -165,13 +165,8 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
-
       <HintPath>..\..\..\Backup\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2796,6 +2791,7 @@
     <Content Include="F_34_Mgt\SMSTypeEntry.aspx" />
     <Content Include="F_34_Mgt\Tranlimitdate.aspx" />
     <Content Include="F_34_Mgt\Trigger.aspx" />
+    <Content Include="F_34_Mgt\UserCompPagePrivilegesPtl.aspx" />
     <Content Include="F_34_Mgt\UserfrmGroup.aspx" />
     <Content Include="F_34_Mgt\UserImage.aspx" />
     <Content Include="F_34_Mgt\UserLoginfrm.aspx" />
@@ -4016,6 +4012,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\SMSTypeEntry.aspx.designer.cs">
       <DependentUpon>SMSTypeEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\UserCompPagePrivilegesPtl.aspx.cs">
+      <DependentUpon>UserCompPagePrivilegesPtl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\UserCompPagePrivilegesPtl.aspx.designer.cs">
+      <DependentUpon>UserCompPagePrivilegesPtl.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
