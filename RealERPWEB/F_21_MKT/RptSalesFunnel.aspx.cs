@@ -283,6 +283,8 @@ namespace RealERPWEB.F_21_MKT
             this.ddlleadstatus.DataBind();
             this.ddlleadstatus.Items.Insert(0, new ListItem("Choose Status", ""));
 
+            
+
         }
 
         protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
@@ -340,7 +342,8 @@ namespace RealERPWEB.F_21_MKT
             ViewState["tblleadSrc"] = ds1.Tables[8];
             ViewState["tblleadSrcEmp"] = ds1.Tables[9];
             ViewState["tblteamlead"] = ds1.Tables[10];
-
+            ViewState["tblleadStatus"] = ds1.Tables[11];
+            
             Data_bind();
 
 
@@ -360,8 +363,8 @@ namespace RealERPWEB.F_21_MKT
             DataTable dtcsrc = (DataTable)ViewState["tblleadSrc"];
             DataTable dtcsrcemp = (DataTable)ViewState["tblleadSrcEmp"];
             DataTable dtteamlead = (DataTable)ViewState["tblteamlead"];
-
-
+            DataTable tbllead = (DataTable)ViewState["tblleadStatus"];
+            
 
 
             if (dt.Rows.Count == 0)
@@ -386,6 +389,7 @@ namespace RealERPWEB.F_21_MKT
             var lst8 = dtcsrc.DataTableToList<kpiPrjgraph>();
             var lst9 = dtcsrcemp.DataTableToList<kpiPrjgraph>();
             var lst10 = dtteamlead.DataTableToList<kpiTeamsgraph>();
+            var lst11 = tbllead.DataTableToList<kpiLead>();
 
 
             var data = jsonSerialiser.Serialize(lst);
@@ -402,10 +406,11 @@ namespace RealERPWEB.F_21_MKT
             var data9 = jsonSerialiser.Serialize(lst9);
             var data10 = jsonSerialiser.Serialize(lst10);
             var data11 = jsonSerialiser.Serialize(lst10);
+            var data12 = jsonSerialiser.Serialize(lst11);
 
 
             var gtype = this.ddlgrpType.SelectedValue.ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + data10 + "','" + data11 + "','" + gtype + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + data10 + "','" + data11 + "','" + gtype + "','" + data12 + "')", true);
 
         }
 
@@ -507,6 +512,17 @@ namespace RealERPWEB.F_21_MKT
             public decimal win { get; set; }
         }
 
+        [Serializable]
+        public class kpiLead
+        {
+            public string la { get;set;}
+            public string lb { get;set;}
+            public string lc { get;set;}
+            public string ld { get;set;}
+            public string le { get;set;}
+            public string lf { get;set;}
+             
+        }
         protected void ddlgrpType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Data_bind();

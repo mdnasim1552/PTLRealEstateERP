@@ -105,7 +105,7 @@ namespace RealEntity
 
 
 
-            DataTable dtdb = ((DataSet)Session["tblusrlog"]).Tables[1];
+             DataTable dtdb = ((DataSet)Session["tblusrlog"]).Tables[1];
 
             DataTable dtpage = (DataTable)Session["tblpageinfo"];
             int i = 1;
