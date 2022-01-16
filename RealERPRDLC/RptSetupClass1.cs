@@ -481,8 +481,9 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptPrintVocherAlli02Credence": Rpt1a = SetrptPrintVocherAlli02Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherAlli03Credence": Rpt1a = SetrptPrintVocherAlli03Credence(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVoucherDefault": Rpt1a = SetrptPrintVoucherDefault(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptPrintVoucherManama": Rpt1a = SetrptPrintVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;  
-                    //
+                case "R_17_Acc.rptPrintVoucherManama": Rpt1a = SetrptPrintVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptPrintVoucherCube": Rpt1a = SetrptPrintVoucherCube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                //
                 case "R_17_Acc.rptPrintVocherEntrust01":Rpt1a = SetrptPrintVocherEntrust01(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherEntrust02": Rpt1a = SetrptPrintVocherEntrust02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptPrintVocherEntrust03": Rpt1a = SetrptPrintVocherEntrust03(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1290,6 +1291,14 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetrptPrintVoucherCube(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>)RptDataSet));
+            return Rpt1a;
+        }
+
+        
 
 
         private static LocalReport SetrptPrintVoucher6(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
