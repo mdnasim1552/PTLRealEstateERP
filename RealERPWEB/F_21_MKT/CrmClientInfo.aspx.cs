@@ -6538,23 +6538,27 @@ namespace RealERPWEB.F_21_MKT
             }
         }
 
-        ////protected void ChkBoxLstFollow_SelectedIndexChanged(object sender, EventArgs e)
-        ////{
-        ////    Hashtable hst = (Hashtable)Session["tblLogin"];
-        ////    string userrole = hst["userrole"].ToString();
-        ////    string comcod = this.GetComeCode();
 
 
-        ////    int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+        protected void ChkBoxLstFollow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userrole = hst["userrole"].ToString();
+            string comcod = this.GetComeCode();
 
-        ////    string Gcode = ((Label)this.gvInfo.Rows[RowIndex].FindControl("lblgvItmCodedis")).Text.Trim();
-        ////    string gvalue = ((CheckBoxList)this.gvInfo.Rows[RowIndex].FindControl("ChkBoxLstStatus")).SelectedValue.ToString();
-        ////    if (Gcode == "810100101016" && gvalue=="")
-        ////    {
 
-        ////    }
+            int RowIndex = ((GridViewRow)((CheckBoxList)sender).NamingContainer).RowIndex;
 
-        ////}
+            string Gcode = ((Label)this.gvInfo.Rows[RowIndex].FindControl("lblgvItmCodedis")).Text.Trim();
+            string gvalue = ((CheckBoxList)this.gvInfo.Rows[RowIndex].FindControl("ChkBoxLstStatus")).SelectedValue.ToString();
+            if (Gcode == "810100101002" && gvalue == "9601050")
+            {
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+
+            }
+
+        }
     }
 
 

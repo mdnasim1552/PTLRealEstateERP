@@ -495,7 +495,6 @@
                     default:
                         $('#<%=this.lblheadprospect.ClientID%>').text(" Prospect's Preference	");
                         break;
-
                 }
 
                 var gcod;
@@ -558,7 +557,7 @@
                 $('#' + ChkBoxLstFollow).change(function () {
                     var followupdate = $(txtgvdValdis).val();
                     var lastfollowup = "";
-
+                    alet(followupdate);
                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
 
                         lastfollowup = $(item).val();
@@ -1578,6 +1577,7 @@
 
                         case "810100101002": //New Followup
                             var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            alert(data.gdesc1);
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length <= 7) {
 
@@ -1876,13 +1876,9 @@
                 alert(e.message);
 
             }
+        };
 
-
-
-
-
-
-        }
+        //// for selected follow then selected lead status 
 
 
     </script>
@@ -4347,7 +4343,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox">
+                                                                runat="server" CssClass="form-control checkbox"  >
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4389,7 +4385,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal" 
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
