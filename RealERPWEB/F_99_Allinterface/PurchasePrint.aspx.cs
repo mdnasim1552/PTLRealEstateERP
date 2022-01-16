@@ -3795,6 +3795,8 @@ namespace RealERPWEB.F_99_Allinterface
                 dv4.RowFilter = ("rsircode  like '0199%'");
                 dt4 = dv4.ToTable();
 
+                List<RealEntity.C_12_Inv.EclassPurchase.PaymentOtherCost> otherCost = dt4.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PaymentOtherCost>();
+
                 string discountdesc = dtorder1.Select("rsircode like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("rsircode like '019999902003%'")[0]["rsirdesc1"].ToString();
 
                 double amtcar = (dt1.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(ordramt)", "")) ? 0.00 : dt1.Compute("Sum(ordramt)", "")));
@@ -3960,13 +3962,19 @@ namespace RealERPWEB.F_99_Allinterface
                         terms3 = "3. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
                         terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         break;
+
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
-                        terms2 = "2. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
-                        terms3 = "3. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
-                        terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "4. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "5. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        terms6 = "6. " + termscondition[5].termssubj.ToString() + ":" + termscondition[5].termsdesc.ToString();
+                        terms7 = "7. " + termscondition[6].termssubj.ToString() + ":" + termscondition[6].termsdesc.ToString();
+                        terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
+                        terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
 
                         break;
