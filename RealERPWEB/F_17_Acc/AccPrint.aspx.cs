@@ -1149,6 +1149,7 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
                         Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
                         Rpt1.SetParameters(new ReportParameter("username", postuser));
+                        Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                         Rpt1.SetParameters(new ReportParameter("voutype", voutype));
                         Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
 
@@ -1416,7 +1417,7 @@ namespace RealERPWEB.F_17_Acc
                     }
 
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
-                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherManama", list, null, null);
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherCube", list, null, null);
                     Rpt1.EnableExternalImages = true;
                     Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
                     Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
