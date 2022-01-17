@@ -603,7 +603,7 @@ namespace RealERPWEB
 
             if (Cache["dsinterface"] == null)
             {
-                ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
+                ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "ALLGRAPHDASHBOARD", pdate, "", usrid, tdate, "", "", "", "", "");
                 if (ds2 == null)
                     return;
                 int minute = this.GetCacheTimeinMinute();
@@ -620,7 +620,7 @@ namespace RealERPWEB
                 if (pcomod != comcod)
                 {
 
-                    ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
+                    ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "ALLGRAPHDASHBOARD", pdate, "", usrid, tdate, "", "", "", "", "");
                     if (ds2 == null)
                         return;
                     int minute = this.GetCacheTimeinMinute();
@@ -638,16 +638,16 @@ namespace RealERPWEB
             }
 
 
-            string empid ="%";
-            string prjcode ="%";
-            string professioncode = "%";
-            string sourceref = "%";
+            //string empid ="%";
+            //string prjcode ="%";
+            //string professioncode = "%";
+            //string sourceref = "%";
  
-            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref,"","95%");
-            if(ds2CRM2==null)
-            {
-                return;
-            }
+            //DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref,"","95%");
+            //if(ds2CRM2==null)
+            //{
+            //    return;
+            //}
 
             var jsonSerialiser = new JavaScriptSerializer();
             //if (userrole == "admin")
@@ -659,7 +659,7 @@ namespace RealERPWEB
             var lst3 = ds2.Tables[3].DataTableToList<Consgraph>();
             var lst4 = ds2.Tables[4].DataTableToList<Scongraph>();
 
-            var lst5 = ds2CRM2.Tables[1].DataTableToList<SalFunnelgraph>();
+            var lst5 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
 
            
 
@@ -675,7 +675,7 @@ namespace RealERPWEB
              
 
             ds2.Dispose();
-            ds2CRM2.Dispose();
+            
 
         }
 
