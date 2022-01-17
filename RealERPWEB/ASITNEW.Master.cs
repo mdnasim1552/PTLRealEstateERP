@@ -69,7 +69,7 @@ namespace RealERPWEB
                 this.GetAdminUserMenu();
                 string comcod = this.GetCompCode();
 
-                if ((comcod == "3365") || (comcod == "3347"))
+                if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
                 {
                     BindMenu();
                 }
