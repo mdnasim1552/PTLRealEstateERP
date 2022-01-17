@@ -1185,6 +1185,7 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("username", postuser));
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
 
 
 
@@ -1208,7 +1209,7 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("username", postuser));
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
-
+                            Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
 
 
                         }
