@@ -3262,7 +3262,7 @@
 
                                         </asp:LinkButton>
 
-                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server">
+                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDatablank_Click">
                                             <div class="list-group-item-figure">
                                                 <div class="tile tile-circle bg-primary">DB</div>
                                             </div>

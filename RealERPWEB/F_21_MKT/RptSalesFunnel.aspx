@@ -122,7 +122,7 @@
 
 
         // Create the chart
-        function ExecuteGraph(data, data1, data2, data3, data4, data5, data6, data8, data9, data10, data11, gtype) {
+        function ExecuteGraph(data, data1, data2, data3, data4, data5, data6, data8, data9, data10, data11, gtype, data12) {
 
             try {
 
@@ -130,7 +130,7 @@
                 // alert(gtype); 
 
                 //var rbtn = $("input[name='ctl00$ContentPlaceHolder1$rbtnlst']:checked").val();;
-                //alert(rbtn);
+               
 
 
                 var saldata = JSON.parse(data);
@@ -146,10 +146,10 @@
                 var srcleads = JSON.parse(data8);// Source wise leads deatails
                 var srcleadsTeam = JSON.parse(data9);// Source TEam wise leads deatails
                 var teamlead = JSON.parse(data10);// Source TEam wise leads deatails
+                var leadlist = JSON.parse(data12);// Source TEam wise leads deatails
 
 
-
-
+               
                 var rbtn = $("#<%=this.rbtnlst.ClientID %> input[type='radio']:checked").val();
                 var leadstatus = $('#<%=this.ddlleadstatus.ClientID%>').val();
 
@@ -206,29 +206,27 @@
                                     colorByPoint: true,
                                     data: [
                                         {
-                                            name: "Query",
+                                            name: leadlist[0].la,
                                             y: parseFloat(saldata[0].query)
                                         },
                                         {
-                                            name: "Lead",
+                                            name: leadlist[0].lb,
                                             y: parseFloat(saldata[0].lead)
                                         },
                                         {
-                                            name: "Qualified Lead",
+                                            name: leadlist[0].lc,
                                             y: parseFloat(saldata[0].qualiflead)
                                         },
                                         {
-                                            name: "Negotiation",
+                                            name: leadlist[0].ld,
                                             y: parseFloat(saldata[0].nego)
                                         },
                                         {
-                                            name: "Final Negotiation",
+                                            name: leadlist[0].ld,
                                             y: parseFloat(saldata[0].finalnego)
                                         },
-
-
                                         {
-                                            name: "Win",
+                                            name: leadlist[0].lf,
                                             y: parseFloat(saldata[0].win)
                                         }
 
@@ -292,29 +290,33 @@
                                     colorByPoint: true,
                                     data: [
                                         {
-                                            name: "Query",
+                                            name: leadlist[0].la,
+
                                             y: parseFloat(saldata[0].query)
                                         },
                                         {
-                                            name: "Lead",
+                                            name: leadlist[0].lb,
                                             y: parseFloat(saldata[0].lead)
                                         },
                                         {
-                                            name: "Qualified Lead",
+                                            name: leadlist[0].lc,
+
                                             y: parseFloat(saldata[0].qualiflead)
                                         },
                                         {
-                                            name: "Negotiation",
+                                            name: leadlist[0].ld,
+
                                             y: parseFloat(saldata[0].nego)
                                         },
                                         {
-                                            name: "Final Negotiation",
+                                            name: leadlist[0].le,
+
                                             y: parseFloat(saldata[0].finalnego)
                                         },
 
 
                                         {
-                                            name: "Win",
+                                            name: leadlist[0].lf,
                                             y: parseFloat(saldata[0].win)
                                         }
                                         ,
