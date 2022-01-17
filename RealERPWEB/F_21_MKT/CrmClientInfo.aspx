@@ -2707,7 +2707,7 @@
                                                 <asp:ListItem>5000</asp:ListItem>
                                                 <asp:ListItem>7000</asp:ListItem>
                                                 <asp:ListItem>8000</asp:ListItem>
-                                                <asp:ListItem>10000</asp:ListItem>
+                                                <asp:ListItem Selected="true">10000</asp:ListItem>
                                             </asp:DropDownList>
 
 
@@ -3420,7 +3420,7 @@
                                                 </HeaderTemplate>--%>
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="120px" Style="text-align: left"
+                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="110px" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsta"))%>'></asp:Label>
                                                 </ItemTemplate>
                                                  <ItemStyle HorizontalAlign="Left" />

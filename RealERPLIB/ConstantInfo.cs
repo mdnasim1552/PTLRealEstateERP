@@ -1109,6 +1109,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2202000", "2202027", "F_22_Sal", "MktDummySalsPayment?Type=Sales", "", "Dummy Payment Schedule", "Sales & Recovery", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "2202000", "2202030", "F_22_Sal", "MktDummySalsPayment02?Type=Sales", "", "Dummy Payment Schedule-02", "Sales & Recovery", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2202000", "2202035", "F_22_Sal", "MktDummySalsPayment03?Type=Sales", "", "Dummy Payment Schedule(User Wise)", "Sales & Recovery", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2201000", "2201040", "F_22_Sal", "SalesCodeBook?Type=Sales", "", "Sales Code Book ", "Sales & Recovery", "False", "False", "False", "False" }); ;
@@ -7047,28 +7048,24 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Sales Register", "F_22_Sal/SalesRegister?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "01. Dummy Payment Schedule", "F_22_Sal/MktDummySalsPayment?Type=Sales", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0204000000", "01. Dummy Payment Schedule-02", "F_22_Sal/MktDummySalsPayment02?Type=Sales", "", true, "" });
-
-
-            mnuTbl1.Rows.Add(new Object[] { "0205000000", "01. Booking Application", "F_22_Sal/MktBookigApp?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0217000000", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0218000000", "14. Yearly  Sales Budget", "F_22_Sal/MonthlySalesBudget02", "", true, "" });
-             mnuTbl1.Rows.Add(new Object[] { "0219000000", "14. Yearly  Sales Budget(All Employee)", "F_22_Sal/MonthlySalesBudget03", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000000", "01. Dummy Payment Schedule(User Wise)", "F_22_Sal/MktDummySalsPayment03?Type=Sales", "", true, "" }); 
+            mnuTbl1.Rows.Add(new Object[] { "0206000000", "01. Booking Application", "F_22_Sal/MktBookigApp?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000000", "03. Sales With Payment Schedule", "F_22_Sal/MktSalsPayment?Type=Sales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "14. Monthly Budget (Sales & Collection)", "F_22_Sal/MonthlySalesBudget?Type=Monthly", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "14. Yearly  Sales Budget", "F_22_Sal/MonthlySalesBudget02", "", true, "" });
+             mnuTbl1.Rows.Add(new Object[] { "0210000000", "14. Yearly  Sales Budget(All Employee)", "F_22_Sal/MonthlySalesBudget03", "", true, "" });
             
-            mnuTbl1.Rows.Add(new Object[] { "0220000000", "16. Trigger Information", "F_34_Mgt/Trigger", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0221000000", "08. Sales Increase Info", "F_24_CC/CustMaintenanceWork?Type=EntrySales&Date1=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0222000000", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0223000000", "16. Project File Details", "F_22_Sal/ProjectFileDetailsEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0211000000", "16. Trigger Information", "F_34_Mgt/Trigger", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000000", "08. Sales Increase Info", "F_24_CC/CustMaintenanceWork?Type=EntrySales&Date1=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0213000000", "15. Customer Bill Info", "F_22_Sal/RptCustomerBill?Type=CustBill", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0214000000", "16. Project File Details", "F_22_Sal/ProjectFileDetailsEntry", "", true, "" });
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0224000000", "Modification-Landowner's ", "", "", false, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0225000000", "01. Landowner's Unit Fixation", "F_22_Sal/MktLOnerUnitEntry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0226000000", "02. Modification Details", "F_22_Sal/MktLandOwnerDetails", "", true, "" });
-            
-
-            mnuTbl1.Rows.Add(new Object[] { "0305000000", "04. Rent Payment Schedule", "F_22_Sal/MktRentPaymentSchdule?Type=Sales", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0305000000", "05. Monthly Charges", "F_22_Sal/EntryMonCharges", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0215000000", "Modification-Landowner's ", "", "", false, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0216000000", "01. Landowner's Unit Fixation", "F_22_Sal/MktLOnerUnitEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0217000000", "02. Modification Details", "F_22_Sal/MktLandOwnerDetails", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0218000000", "04. Rent Payment Schedule", "F_22_Sal/MktRentPaymentSchdule?Type=Sales", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0219000000", "05. Monthly Charges", "F_22_Sal/EntryMonCharges", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0306000000", "06. Dues Input - Finishing Project", "F_22_Sal/EntryDuesFProject", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0307000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0308000000", "07. Unsold Unit- Finishing Project", "F_22_Sal/MktEntryUnitFH", "", true, "" });
@@ -7089,25 +7086,7 @@ namespace RealERPLIB
             //---------------Above Reports already Off before Change///////////////  18-04-2020
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0201000000", "", "", "", true, "" });//"01. New Unit Code", "F_17_Acc/AccSubCodeBook?InputType=UnitCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });//"02. Sales Code Book ", "F_22_Sal/SalesCodeBook?Type=Sales", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });//"03. Payment Schedule Code", "F_22_Sal/SalesPaymentCodeBook?Type=Sales", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0204000000", "", "", "", true, "" });//"04. Sales Planning Code Book", "F_22_Sal/SalesPlaningCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0205000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "", "", "", true, "" });//"05. Sales & Collection Opening", "F_22_Sal/SalesOpening?Type=Consolidate", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "", "", "", true, "" });//"06. Collection Break Down (Project Wise)", "F_22_Sal/SalesOpening?Type=Details", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });//"07. Collection Break Down (All Project)", "F_22_Sal/SalesOpening?Type=Details02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0210000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0217000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0218000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0219000000", "", "", "", true, "" });
+         
             mnuTbl1.Rows.Add(new Object[] { "0220000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0221000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0222000000", "", "", "", true, "" });
