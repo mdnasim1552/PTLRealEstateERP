@@ -196,7 +196,7 @@ namespace RealERPWEB.F_04_Bgd
                         ddlcataloc.DataValueField = "prgcod";
                         ddlcataloc.DataSource = dsloc.Tables[0];
                         ddlcataloc.DataBind();
-                        ddlcataloc.SelectedValue = val;
+                        ddlcataloc.SelectedValue = val.Length==3 ? "17"+val : val;
                         break;
 
                     case "02045": //Category                  
@@ -211,7 +211,7 @@ namespace RealERPWEB.F_04_Bgd
                         ddlcatag.DataValueField = "prgcod";
                         ddlcatag.DataSource = dscatg.Tables[0];
                         ddlcatag.DataBind();
-                        ddlcatag.SelectedValue = val;
+                        ddlcatag.SelectedValue = val.Length == 3 ? "99" + val : val;
                         break;
 
                     case "02050": //Construcation                  
@@ -322,8 +322,9 @@ namespace RealERPWEB.F_04_Bgd
 
                     if (Gcode == "02041" || Gcode == "02045" || Gcode == "02050")
                     {
-                        //Gvalue = ddlloc.SelectedValue.ToString();
-                        Gvalue = ddlloc.SelectedItem.Text.ToString();
+                        Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
+                        //Gvalue = ddlloc.SelectedItem.Text.ToString();  comment by tarik 
+
                     }
                     else
                     {
