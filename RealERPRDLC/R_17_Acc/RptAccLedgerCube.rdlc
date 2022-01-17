@@ -384,13 +384,13 @@
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>0.96973in</Width>
+                                <Width>0.94087in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>0.93849in</Width>
+                                <Width>1.00555in</Width>
                               </TablixColumn>
                               <TablixColumn>
-                                <Width>1.1205in</Width>
+                                <Width>1.0823in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1288,9 +1288,9 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
               <Top>0.02764in</Top>
-              <Left>6.06289in</Left>
+              <Left>6.25039in</Left>
               <Height>0.25in</Height>
-              <Width>1.98958in</Width>
+              <Width>1.80208in</Width>
               <ZIndex>3</ZIndex>
               <Visibility>
                 <Hidden>=IIf(Globals!PageNumber = Globals!TotalPages,False,True)</Hidden>
@@ -1332,7 +1332,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               <Top>0.02764in</Top>
               <Left>3.00059in</Left>
               <Height>0.25in</Height>
-              <Width>2.41482in</Width>
+              <Width>2.14399in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1358,6 +1358,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
         <PageWidth>8.27in</PageWidth>
         <LeftMargin>0.15in</LeftMargin>
         <TopMargin>0.25in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

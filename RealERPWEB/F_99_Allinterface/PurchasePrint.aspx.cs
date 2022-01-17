@@ -3817,7 +3817,7 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature            
                 switch (comcod)
                 {
-                    //case "3101"://ASIT
+                    case "3101"://ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -3979,7 +3979,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    //case "3101": // ASIT
+                    case "3101": // ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -4027,7 +4027,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // ASIT
+                    //case "3101": // ASIT
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4065,6 +4065,8 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3335": // Edison Properties
                         Reportpath = "~/Report/RptPurchaseOrderEdison.rdlc";
                         break;
+
+                    case "3101": //Pintech
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P
@@ -4115,8 +4117,8 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                    case "3101": //Greenwood
-                    case "3364": //Greenwood
+                   
+                    case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
