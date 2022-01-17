@@ -53,8 +53,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "All Employe Details";
-
-
+                this.lbtnOk_Click(null,null);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
