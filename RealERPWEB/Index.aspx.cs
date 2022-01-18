@@ -815,6 +815,7 @@ namespace RealERPWEB
             {
                 this.showDataMonthly(ddlmonths);
             }
+            ShowAttHistoryGraph();
         }
 
         //////////////////////////////// For Group Users
