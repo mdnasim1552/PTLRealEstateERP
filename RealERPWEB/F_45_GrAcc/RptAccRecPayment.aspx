@@ -1283,9 +1283,10 @@
                                                     <asp:Label ID="lblfamt01BS" runat="server" Font-Bold="True" Width="80px" Font-Size="12px" ForeColor="Black" Style="text-align: right"></asp:Label>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvamt01BS" runat="server"
+                                                    <asp:LinkButton 
+                                                     ID="lblgvamt01BS" runat="server"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "amt01")).ToString("#,##0;(#,##0); ") %>'
-                                                        Width="80px"></asp:Label>
+                                                        Width="80px"> </asp:LinkButton>
                                                 </ItemTemplate>
                                                 <FooterStyle Width="80" Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                                 <ItemStyle Width="80" HorizontalAlign="Right" />

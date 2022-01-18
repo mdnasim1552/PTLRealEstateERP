@@ -495,7 +495,6 @@
                     default:
                         $('#<%=this.lblheadprospect.ClientID%>').text(" Prospect's Preference	");
                         break;
-
                 }
 
                 var gcod;
@@ -558,7 +557,7 @@
                 $('#' + ChkBoxLstFollow).change(function () {
                     var followupdate = $(txtgvdValdis).val();
                     var lastfollowup = "";
-
+                    alet(followupdate);
                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
 
                         lastfollowup = $(item).val();
@@ -635,64 +634,29 @@
                     }
 
                 }
-
-                $(txtmobile).keydown(function () {
-                    var mobile = $(this).val();
-
-                    if (!($.isNumeric(mobile))) {
-
-                        alert("Mobile Number must be numeric");
-
-                        return false;
-                    }
-                    
-
-                });
+ 
 
                 $(txtmobile).keyup(function () {
                     var mobile = $(this).val();
-                     
+                   
                     if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
 
                         return false;
                     }
-                    funDupMobile(comcod, sircode, mobile);
+                   // funDupMobile(comcod, sircode, mobile);
 
                 });
 
-                function IsMobileNumber(txtMobId) {
-                    Regex obj9 = new Regex("^[0-9]*$");
 
-                    if (!obj9.IsMatch(txtMobId)) {
-                        //error Message here    
-                    }
-                    else {
-
-                    }
-
-
-
-                    var mob = /^[1-9]{1}[0-9]{9}$/;
-                    var txtMobile = txtMobId;
-                    alert(txtMobile);
-                    if (mob.test(txtMobile) == false) {
-                        alert("Please enter valid mobile number.");
-                        txtMobile.focus();
-                        return false;
-                    }
-                    return true;
-                };
-
+            
               
 
 
                 $(txtaltmobile1).keyup(function () {
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
-
-
                         return false;
                     }
 
@@ -1613,6 +1577,7 @@
 
                         case "810100101002": //New Followup
                             var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            alert(data.gdesc1);
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length <= 7) {
 
@@ -1911,13 +1876,9 @@
                 alert(e.message);
 
             }
+        };
 
-
-
-
-
-
-        }
+        //// for selected follow then selected lead status 
 
 
     </script>
@@ -2746,7 +2707,7 @@
                                                 <asp:ListItem>5000</asp:ListItem>
                                                 <asp:ListItem>7000</asp:ListItem>
                                                 <asp:ListItem>8000</asp:ListItem>
-                                                <asp:ListItem>10000</asp:ListItem>
+                                                <asp:ListItem Selected="true">10000</asp:ListItem>
                                             </asp:DropDownList>
 
 
@@ -3459,7 +3420,7 @@
                                                 </HeaderTemplate>--%>
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="120px" Style="text-align: left"
+                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="110px" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsta"))%>'></asp:Label>
                                                 </ItemTemplate>
                                                  <ItemStyle HorizontalAlign="Left" />
@@ -4382,7 +4343,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox">
+                                                                runat="server" CssClass="form-control checkbox"  >
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4424,7 +4385,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal" 
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
@@ -4445,7 +4406,7 @@
 
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    <ItemStyle Width="600px" />
+                                                    <ItemStyle Width="700px" />
                                                 </asp:TemplateField>
 
 

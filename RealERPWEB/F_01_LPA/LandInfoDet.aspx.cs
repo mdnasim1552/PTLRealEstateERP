@@ -361,7 +361,8 @@ namespace RealERPWEB.F_01_LPA
             string kpigrp = "000000000000";
             string wrkdpt = "000000000000";
             ProcessAccess JData = new ProcessAccess();
-            DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", empid, proscod, kpigrp, "", wrkdpt, cdate, "", "", "", "");
+            string reschedule = "reschedule";
+            DataSet ds1 = JData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", empid, proscod, kpigrp, "", wrkdpt, cdate, reschedule, "", "", "");
 
 
             //   DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "DAILYLANDOWNERDISCUS", Empid, Client, kpigrp, "", wrkdpt, cdate);
@@ -478,6 +479,8 @@ namespace RealERPWEB.F_01_LPA
             this.lblFreez.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["freezing"].ToString();
             this.lblDeadProspect.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deadl"].ToString();
             this.lblcsigned.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["signed"].ToString();
+            this.lblDatablank.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["databank"].ToString();
+            
             //lblDatablank
 
         }
@@ -539,7 +542,9 @@ namespace RealERPWEB.F_01_LPA
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
-            string Empid = ((hst["empid"].ToString() == "") ? "" : hst["empid"].ToString()) + "%";
+            //string Empid = ((hst["empid"].ToString() == "") ? "" : hst["empid"].ToString()) + "%";
+
+            string Empid = ((hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString());
             if (userrole == "1")
             {
                 Empid = "%";
@@ -6659,6 +6664,22 @@ namespace RealERPWEB.F_01_LPA
 
 
         }
+
+        protected void lnkBtnDatablank_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            hdnfrpttype.Value = "databank";
+            this.ShowDetNotification(this.hdnfrpttype.Value.ToString());           
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Data Bank Information (Land CRM)";
+                string eventdesc = "Show Data Bank Information (Land CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
         protected void lnkbtnProposal_Click(object sender, EventArgs e)
         {
 
@@ -7688,6 +7709,8 @@ namespace RealERPWEB.F_01_LPA
         {
             this.autoClickBtn_tempBTN();
         }
+
+       
     }
 }
 

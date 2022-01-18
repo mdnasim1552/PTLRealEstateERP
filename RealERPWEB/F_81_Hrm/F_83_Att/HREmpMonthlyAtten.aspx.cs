@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
     public partial class HREmpMonthlyAtten : System.Web.UI.Page
@@ -98,6 +100,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+
+            
 
         }
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)

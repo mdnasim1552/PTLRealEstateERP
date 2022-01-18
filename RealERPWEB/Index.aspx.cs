@@ -603,7 +603,7 @@ namespace RealERPWEB
 
             if (Cache["dsinterface"] == null)
             {
-                ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
+                ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "ALLGRAPHDASHBOARD", pdate, "", usrid, tdate, "", "", "", "", "");
                 if (ds2 == null)
                     return;
                 int minute = this.GetCacheTimeinMinute();
@@ -620,7 +620,7 @@ namespace RealERPWEB
                 if (pcomod != comcod)
                 {
 
-                    ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSE", pdate, "", "", "", "", "", "", "", "");
+                    ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "ALLGRAPHDASHBOARD", pdate, "", usrid, tdate, "", "", "", "", "");
                     if (ds2 == null)
                         return;
                     int minute = this.GetCacheTimeinMinute();
@@ -638,16 +638,16 @@ namespace RealERPWEB
             }
 
 
-            string empid ="%";
-            string prjcode ="%";
-            string professioncode = "%";
-            string sourceref = "%";
+            //string empid ="%";
+            //string prjcode ="%";
+            //string professioncode = "%";
+            //string sourceref = "%";
  
-            DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref,"","95%");
-            if(ds2CRM2==null)
-            {
-                return;
-            }
+            //DataSet ds2CRM2 = ulogin.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETSALESFUNNEL", empid, pdate, prjcode, professioncode, tdate, sourceref,"","95%");
+            //if(ds2CRM2==null)
+            //{
+            //    return;
+            //}
 
             var jsonSerialiser = new JavaScriptSerializer();
             //if (userrole == "admin")
@@ -659,7 +659,7 @@ namespace RealERPWEB
             var lst3 = ds2.Tables[3].DataTableToList<Consgraph>();
             var lst4 = ds2.Tables[4].DataTableToList<Scongraph>();
 
-            var lst5 = ds2CRM2.Tables[1].DataTableToList<SalFunnelgraph>();
+            var lst5 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
 
            
 
@@ -675,7 +675,7 @@ namespace RealERPWEB
              
 
             ds2.Dispose();
-            ds2CRM2.Dispose();
+            
 
         }
 
@@ -714,7 +714,7 @@ namespace RealERPWEB
 
              
 
-            ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSEMONTHLY", ddlyear, ddlMonths, usrid, "", "", "", "", "", "");
+            ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "ALLGRAPHDASHBOARDMONTHLY", ddlyear, ddlMonths, usrid, pdate, tdate, "", "", "", "");
             if (ds2 == null)
                 return;
 
@@ -727,14 +727,18 @@ namespace RealERPWEB
             var lst4 = ds2.Tables[3].DataTableToList<ConsDayGrphDay>();
             var lst5 = ds2.Tables[4].DataTableToList<SubConGrphDay>();
 
+            var lst6 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
+
+
             var dataSale = jsonSerialiser.Serialize(lst);
             var dataPur = jsonSerialiser.Serialize(lst2);
             var dataacc = jsonSerialiser.Serialize(lst3);
             var datacons = jsonSerialiser.Serialize(lst4);
             var datasubcons = jsonSerialiser.Serialize(lst5);
+            var crm = jsonSerialiser.Serialize(lst6);
 
             var ttsalemonths = lst.Select(p => p.ttlsalamtcore).Sum().ToString("#,##0;(#,##0); "); 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "','" + crm + "')", true);
 
         }
 
@@ -811,6 +815,7 @@ namespace RealERPWEB
             {
                 this.showDataMonthly(ddlmonths);
             }
+            ShowAttHistoryGraph();
         }
 
         //////////////////////////////// For Group Users
@@ -918,6 +923,28 @@ namespace RealERPWEB
             this.Purchaselink.NavigateUrl = "F_34_Mgt/RptAllDashboard.aspx?Type=Purchase&comcod=" + comcod;
             this.Accountsglink.NavigateUrl = "F_34_Mgt/RptAllDashboard.aspx?Type=Accounts&comcod=" + comcod;
             this.Constructionglink.NavigateUrl = "F_34_Mgt/RptAllDashboard.aspx?Type=Construction&comcod=" + comcod;
+
+
+
+
+        }
+
+        private void ShowAttHistoryGraph()
+        {
+            DataTable dt4 = (DataTable)ViewState["tblAttHistGraph"];
+
+
+            double present = Convert.ToDouble(dt4.Rows[0]["perpontow"].ToString());
+            double late = Convert.ToDouble(dt4.Rows[0]["perlate"].ToString());
+            //  double eleave = Convert.ToDouble(dt4.Rows[0]["earlyLev"].ToString());
+            double onlaeve = Convert.ToDouble(dt4.Rows[0]["perleave"].ToString());
+            double absent = Convert.ToDouble(dt4.Rows[0]["perab"].ToString());
+
+            this.lblpresent.Text = present.ToString("#,##0.00;(#,##0.00);");
+            this.lbllate.Text = late.ToString("#,##0.00;(#,##0.00);");
+            //  this.lbleleave.Text = eleave.ToString("#,##0.00;(#,##0.00);");
+            this.lblonleave.Text = onlaeve.ToString("#,##0.00;(#,##0.00);");
+            this.lblabs.Text = absent.ToString("#,##0.00;(#,##0.00);");
 
 
 

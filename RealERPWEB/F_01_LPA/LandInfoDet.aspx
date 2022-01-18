@@ -361,6 +361,11 @@
 
 
 
+                var gvSummary = $('#<%=this.gvSummary.ClientID %>');
+                gvSummary.Scrollable();
+
+
+
 
 
                 var gcod;
@@ -985,14 +990,14 @@
                             }
                             else {
                                 var ar = new Array();
-                                alert(newfollowup);
+                              //  alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);
                                 }
 
-                                console.log(ar);
-                                alert(ar.length);
+                                //console.log(ar);
+                              //  alert(ar.length);
 
                                 for (i = 0; i < ar.length; i++) {
 
@@ -1295,6 +1300,11 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>2000</asp:ListItem>
+                                    <asp:ListItem>4000</asp:ListItem>
+                                    <asp:ListItem>5000</asp:ListItem>
+                                    <asp:ListItem Selected="True">10000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -3252,7 +3262,7 @@
 
                                         </asp:LinkButton>
 
-                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server">
+                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDatablank_Click">
                                             <div class="list-group-item-figure">
                                                 <div class="tile tile-circle bg-primary">DB</div>
                                             </div>
@@ -3574,7 +3584,7 @@
                                                         <%--<asp:Button Text="Re-Schdule" CssClass="btn btn-primary btn-xs" OnClientClick="javascript:CloseModaldisReschedule();" runat="server" OnClick="GetValue" />--%>
 
 
-                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schedule</button>
 
 
                                                         <asp:LinkButton ID="lbtnCancel" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnCancel_Click"> Cancel</asp:LinkButton>
