@@ -3789,13 +3789,44 @@ namespace RealERPWEB.F_99_Allinterface
                 dv1.RowFilter = ("rsircode not like '0199999%'");
                 dt3 = dv1.ToTable();
 
-                // Carring cost details brfeak
-                DataTable dt4;                
+                // Carring cost details brfeak p2p
+                DataTable dt4;
                 DataView dv4 = dtorder1.DefaultView;
-                dv4.RowFilter = ("rsircode  like '0199%'");
+                dv4.RowFilter = ("rsircode  like '019999901%'");
                 dt4 = dv4.ToTable();
 
-                List<RealEntity.C_12_Inv.EclassPurchase.PaymentOtherCost> otherCost = dt4.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PaymentOtherCost>();
+                string costa = "", costb = "", costc = "", costd = "", coste = "";
+                string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
+
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
+                {
+                    if (dt4.Rows.Count > 0)
+                    {
+                        costa = dt4.Rows[0]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[0]["rsirdesc1"].ToString();
+                        cost1 = dt4.Rows[0]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[0]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+                    if (dt4.Rows.Count > 1)
+                    {
+                        costb = dt4.Rows[1]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[1]["rsirdesc1"].ToString();
+                        cost2 = dt4.Rows[1]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[1]["ordramt"]).ToString("#,##0.00;(#,##0.00); "); ;
+                    }
+                    if (dt4.Rows.Count > 2)
+                    {
+                        costc = dt4.Rows[2]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[2]["rsirdesc1"].ToString();
+                        cost3 = dt4.Rows[2]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[2]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+                    if (dt4.Rows.Count > 3)
+                    {
+                        costd = dt4.Rows[3]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[3]["rsirdesc1"].ToString();
+                        cost4 = dt4.Rows[3]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[3]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+                    if (dt4.Rows.Count > 4)
+                    {
+                        coste = dt4.Rows[4]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[4]["rsirdesc1"].ToString();
+                        cost5 = dt4.Rows[4]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[4]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+
+                }
 
                 string discountdesc = dtorder1.Select("rsircode like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("rsircode like '019999902003%'")[0]["rsirdesc1"].ToString();
 
@@ -3805,7 +3836,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string nettotalamt = (amtmat + amtcar - amtdis).ToString("#,##0.00;(#,##0.00);");
-                string advamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); "); ;
+                string advamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ");
 
 
 
@@ -4117,7 +4148,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                   
+
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
@@ -4143,10 +4174,24 @@ namespace RealERPWEB.F_99_Allinterface
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseOrder", purlist, termscondition, null);
                 Rpt1.EnableExternalImages = true;
 
-                if (comcod == "3351" || comcod == "1205" || comcod == "3352")
+                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "3101")
                 {
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
+
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+
+
                 }
                 if (comcod == "3353")
                 {
