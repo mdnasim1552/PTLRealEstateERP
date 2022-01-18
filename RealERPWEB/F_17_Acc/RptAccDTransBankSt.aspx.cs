@@ -119,6 +119,13 @@ namespace RealERPWEB.F_17_Acc
                     this.lblDepUnclr.Visible = true;
                     this.lblWidUnclr.Visible = false;
 
+                    this.divPaymentCash.Visible = false;
+                    this.divDepUnclr.Visible = true;
+                    this.divWidUnclr.Visible = false;
+                    this.divDetailsCash.Visible = true;
+
+
+
                     break;
                 case "Withdraw":
                     this.lblReceiptCash.Visible = false;
@@ -126,6 +133,11 @@ namespace RealERPWEB.F_17_Acc
                     this.lblDetailsCash.Visible = true;
                     this.lblDepUnclr.Visible = false;
                     this.lblWidUnclr.Visible = true;
+
+                    this.divPaymentCash.Visible = true;
+                    this.divDepUnclr.Visible = false;
+                    this.divWidUnclr.Visible = true;
+                    this.divDetailsCash.Visible = true;
                     break;
 
                 case "Both":
@@ -134,6 +146,11 @@ namespace RealERPWEB.F_17_Acc
                     this.lblDepUnclr.Visible = true;
                     this.lblWidUnclr.Visible = true;
                     this.lblDetailsCash.Visible = (this.ddlVoucharCash.SelectedValue == "ALL Voucher");
+
+                    this.divPaymentCash.Visible = true;
+                    this.divDepUnclr.Visible = true;
+                    this.divWidUnclr.Visible = true;
+                    this.divDetailsCash.Visible = (this.ddlVoucharCash.SelectedValue == "ALL Voucher");
                     break;
             }
 
@@ -175,7 +192,8 @@ namespace RealERPWEB.F_17_Acc
 
             this.gvcashbookDB.DataSource = ds1.Tables[1];
             this.gvcashbookDB.DataBind();
-            this.FooterCalculation(ds1.Tables[1], "gvcashbookDB");
+            this.FooterCalculation(ds1.Tables[1], "gvcashbookDB");        
+        
         }
 
 
@@ -196,8 +214,8 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.gvcashbook.FooterRow.FindControl("lgvFBankAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankam)", "")) ?
                           0 : dt.Compute("sum(bankam)", ""))).ToString("#,##0;(#,##0) ;");
 
-                    Session["Report1"] = gvcashbook;
-                    ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    //Session["Report1"] = gvcashbook;
+                    //((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
 
@@ -207,8 +225,8 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.gvcashbookp.FooterRow.FindControl("lgvFBankAmt1")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bankam)", "")) ?
                            0 : dt.Compute("sum(bankam)", ""))).ToString("#,##0;(#,##0) ;");
 
-                    Session["Report1"] = gvcashbookp;
-                    ((HyperLink)this.gvcashbookp.HeaderRow.FindControl("hlbtntbCdataExcelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    //Session["Report1"] = gvcashbookp;
+                    //((HyperLink)this.gvcashbookp.HeaderRow.FindControl("hlbtntbCdataExcelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
 
                     break;
@@ -219,8 +237,8 @@ namespace RealERPWEB.F_17_Acc
                            0 : dt.Compute("sum(bankam)", ""))).ToString("#,##0;(#,##0) ;");
 
                     
-                    Session["Report1"] = gvDepUnclr;
-                    ((HyperLink)this.gvDepUnclr.HeaderRow.FindControl("hlbtntbCdataExcel2")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    //Session["Report1"] = gvDepUnclr;
+                    //((HyperLink)this.gvDepUnclr.HeaderRow.FindControl("hlbtntbCdataExcel2")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
                     break;
                 case "gvcashbookPV":
@@ -414,7 +432,6 @@ namespace RealERPWEB.F_17_Acc
         {
             this.LoadAcccombo();
         }
-
 
     }
 }
