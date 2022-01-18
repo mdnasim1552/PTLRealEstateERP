@@ -562,6 +562,12 @@ namespace RealERPWEB
                 {
                     Url1 = "AllGraph";
                 }
+                else if(userrole == "3" )
+                {
+                    Url1 = "UserProfile";
+
+                }
+              
                 else
                 {
                     if (masterurl != "")
