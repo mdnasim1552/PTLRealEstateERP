@@ -25,9 +25,36 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.GetCompany();
                     this.topPanle.Visible = true;
                 }
+                
                 this.txtfromdate.Text= System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                this.GetEmpAttandance();
             }
         }
+
+        private void GetEmpAttandance()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();            
+            string userrole = hst["userrole"].ToString();
+            string empid = (userrole == "3" ? hst["empid"].ToString() : this.ddlEmpNameAllInfo.SelectedValue.ToString());
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "GETATTANDANCEINFOINDIVIDUAL", empid, "", "", "", "", "", "", "", "");
+            if (ds5 == null)
+            {
+                return;
+            }
+
+            if (ds5.Tables[0].Rows.Count > 0)
+            {
+                this.btnSaveAttn.Text = "punch Out";
+            }
+            else
+            {
+                this.btnSaveAttn.Text = "punch In";
+            }
+
+
+        }
+
         private void GetCompany()
         {
             Session.Remove("tblcompany");
@@ -152,7 +179,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         protected void ddlEmpNameAllInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            this.GetEmpAttandance();
         }
     }
 }
