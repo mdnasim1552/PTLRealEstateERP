@@ -95,17 +95,32 @@ namespace RealERPWEB.F_21_MKT
             {
 
 
-                //case "3348":// Credence .
-                //    this.gvSummary.Columns[13].Visible = false;
-                //    this.gvSummary.Columns[14].Visible = false;
-                //    this.gvSummary.Columns[15].Visible = false;
-                //    this.gvSummary.Columns[16].Visible = false;
-                //    this.gvSummary.Columns[17].Visible = false;
-                //    this.gvSummary.Columns[18].Visible = false;
-                //    this.gvSummary.Columns[19].Visible = false;
+                case "3348":// Credence .
+                            //this.gvSummary.Columns[13].Visible = false;
+                            //this.gvSummary.Columns[14].Visible = false;
+                            //this.gvSummary.Columns[15].Visible = false;
+                            //this.gvSummary.Columns[16].Visible = false;
+                            //this.gvSummary.Columns[17].Visible = false;
+                            //this.gvSummary.Columns[18].Visible = false;
+                            //this.gvSummary.Columns[19].Visible = false;
 
 
-                //    break;
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[15].Visible = false;
+                    this.gvSummary.Columns[16].Visible = false;
+                    this.gvSummary.Columns[17].Visible = false;
+                    this.gvSummary.Columns[18].Visible = false;
+                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[20].Visible = false;
+                    this.gvSummary.Columns[21].Visible = false;
+                    this.gvSummary.Columns[22].Visible = true;
+                    this.gvSummary.Columns[23].Visible = true;
+
+
+                    break;
 
                 case "3315"://Assure Builders
                 case "3316"://Assure Development
@@ -3573,12 +3588,14 @@ namespace RealERPWEB.F_21_MKT
                         int day = lfollowup.ToString("dd-MMM-yyyy") == "01-Jan-1900" ? 0 : Convert.ToInt32((today - lfollowup).TotalDays.ToString());
                         if (day >= 25 && day < 35)
                         {
-                            e.Row.Attributes["style"] = "background-color:#DDF7D7";
+                            e.Row.Attributes["style"] = "background-color:yellow; ";
                         }
                         else if (day >= 35)
                         {
+
                             // ;
-                            e.Row.Attributes["style"] = "background-color:#E0D9E9;";
+                             e.Row.Attributes["style"] = "background-color:#FF6347;";
+                            // e.Row.Attributes["style"] = "background-color:#E0D9E9;";
 
 
                         }
