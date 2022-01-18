@@ -177,6 +177,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.DropDownList ddlConAccHead;
 
         /// <summary>
+        /// divReceiptCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divReceiptCash;
+
+        /// <summary>
         /// lblReceiptCash control.
         /// </summary>
         /// <remarks>
@@ -184,6 +193,15 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblReceiptCash;
+
+        /// <summary>
+        /// hltbnReceiptCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hltbnReceiptCash;
 
         /// <summary>
         /// gvcashbook control.
@@ -195,6 +213,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.GridView gvcashbook;
 
         /// <summary>
+        /// divPaymentCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPaymentCash;
+
+        /// <summary>
         /// lblPaymentCash control.
         /// </summary>
         /// <remarks>
@@ -202,6 +229,15 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPaymentCash;
+
+        /// <summary>
+        /// hlbtnPaymentCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlbtnPaymentCash;
 
         /// <summary>
         /// gvcashbookp control.
@@ -213,6 +249,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.GridView gvcashbookp;
 
         /// <summary>
+        /// divDepUnclr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDepUnclr;
+
+        /// <summary>
         /// lblDepUnclr control.
         /// </summary>
         /// <remarks>
@@ -220,6 +265,15 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDepUnclr;
+
+        /// <summary>
+        /// hlbtnDepUnclr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlbtnDepUnclr;
 
         /// <summary>
         /// gvDepUnclr control.
@@ -231,6 +285,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.GridView gvDepUnclr;
 
         /// <summary>
+        /// divWidUnclr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divWidUnclr;
+
+        /// <summary>
         /// lblWidUnclr control.
         /// </summary>
         /// <remarks>
@@ -238,6 +301,15 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblWidUnclr;
+
+        /// <summary>
+        /// HyperLink1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
 
         /// <summary>
         /// gvWidUnclr control.
@@ -249,6 +321,15 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.GridView gvWidUnclr;
 
         /// <summary>
+        /// divDetailsCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDetailsCash;
+
+        /// <summary>
         /// lblDetailsCash control.
         /// </summary>
         /// <remarks>
@@ -256,6 +337,15 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDetailsCash;
+
+        /// <summary>
+        /// hlbtnDetailsCash control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlbtnDetailsCash;
 
         /// <summary>
         /// gvcashbookDB control.
