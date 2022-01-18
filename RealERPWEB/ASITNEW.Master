@@ -799,7 +799,7 @@ Close</asp:LinkButton>
         }
 
         //toster
-        function showContent(msg) {
+        function (msg) {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -818,7 +818,7 @@ Close</asp:LinkButton>
             toastr["success"](msg);
 
         };
-        function showContentFail(msg) {
+        function Fail(msg) {
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
