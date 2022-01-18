@@ -167,7 +167,7 @@
 
 
             document.getElementById('<%= lnkbtnOk.ClientID %>').click();
-
+            ExcuteEmpStatus();
 
 
         });
@@ -886,7 +886,7 @@
         };
 
 
-        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype) {
+        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype, crm) {
             var today = new Date(),
                 day = 1000 * 60 * 60 * 24;
             //console.log(day);
@@ -904,6 +904,7 @@
             var dataacc = JSON.parse(dataacc);
             var datacons = JSON.parse(datacons);
             var datasubcons = JSON.parse(datasubcons);
+            var cmrData = JSON.parse(crm);
 
             var total = 0;
             //for (var i = 0; i < sdata1.length; i++) {
@@ -1298,6 +1299,93 @@
                 }]
             });
 
+
+
+            var chartcmrData = Highcharts.chart('crmChart', {
+
+
+                chart: {
+                    type: gtype
+                },
+                title: {
+                    text: 'Sales Funnel'
+                },
+                subtitle: {
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Sales Funnel Stages'
+                    }
+
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total ' + parseFloat(cmrData[0].query) + '<br/>'
+                },
+
+                series: [
+                    {
+                        name: "Sales Funnel",
+                        colorByPoint: true,
+                        data: [
+                            {
+                                name: "Query",
+                                y: parseFloat(cmrData[0].query)
+                            },
+                            {
+                                name: "Lead",
+                                y: parseFloat(cmrData[0].lead)
+                            },
+                            {
+                                name: "Qualified Lead",
+                                y: parseFloat(cmrData[0].qualiflead)
+                            },
+                            {
+                                name: "Negotiation",
+                                y: parseFloat(cmrData[0].nego)
+                            },
+                            {
+                                name: "Final Negotiation",
+                                y: parseFloat(cmrData[0].finalnego)
+                            },
+                            {
+                                name: "Win",
+                                y: parseFloat(cmrData[0].win)
+                            }
+                            ,
+                            {
+                                name: "Total",
+                                y: parseFloat(cmrData[0].total)
+                            }
+                        ]
+                    }
+                ]
+
+            });
+
+
             let w = $(".graph-main").width();
             let h = 325;
             MonthlySalesline.setSize(w, h);
@@ -1305,7 +1393,7 @@
             MonthlyAccounts.setSize(w, h);
             Monthlyconschart.setSize(w, h);
             Monthlysubconchart.setSize(w, h);
-
+            chartcmrData.setSize(w, h);
             const elem = $(".graph-main")[0];
 
             let resizeObserver = new ResizeObserver(function () {
@@ -1314,6 +1402,7 @@
                 MonthlyAccounts.setSize(w, h);
                 Monthlyconschart.setSize(w, h);
                 Monthlysubconchart.setSize(w, h);
+                chartcmrData.setSize(500, h);
 
                 w = $(".graph-main").width();
             });
@@ -1322,47 +1411,7 @@
 
 
         };
-
-
-
-     <%--   function ExcuteEmpStatus() {
-
-            var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
-                var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
-                var eleave = this.parseFloat($("#<%=this.lbleleave.ClientID %>").val());
-                var onleave = this.parseFloat($("#<%=this.lblonleave.ClientID %>").val());
-                var abs = this.parseFloat($("#<%=this.lblabs.ClientID %>").val());
-
-
-
-            google.charts.load('current', { 'packages': ['corechart'] });
-            google.charts.setOnLoadCallback(drawChart);
-
-            function drawChart() {
-
-                var data = google.visualization.arrayToDataTable([
-                    ['Task', 'Attendance status'],
-
-                    ['Present', present],
-                    ['Absent', abs],
-                    ['Late', late],
-                    ['Early Leave', eleave],
-                    ['On leave', onleave],
-
-
-                ]);
-
-                var options = {
-                    title: 'Today Attendance status',
-                    is3D: true,
-                };
-
-                var chart = new google.visualization.PieChart(document.getElementById('piechartEMPStatus'));
-
-                chart.draw(data, options);
-            }
-        };--%>
-
+         
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
@@ -1909,7 +1958,42 @@
             resizeObserver.observe(elem);
 
         };
+        function ExcuteEmpStatus() {
 
+            var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
+             var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
+
+            var onleave = this.parseFloat($("#<%=this.lblonleave.ClientID %>").val());
+             var abs = this.parseFloat($("#<%=this.lblabs.ClientID %>").val());
+
+
+
+             google.charts.load('current', { 'packages': ['corechart'] });
+             google.charts.setOnLoadCallback(drawChart);
+
+             function drawChart() {
+
+                 var data = google.visualization.arrayToDataTable([
+                     ['Task', 'Attendance status'],
+
+                     ['Present', present],
+                     ['Absent', abs],
+                     ['Late', late],
+                     ['On leave', onleave],
+
+
+                 ]);
+
+                 var options = {
+                     title: 'Attendance status',
+                     is3D: true,
+                 };
+
+                 var chart = new google.visualization.PieChart(document.getElementById('piechartEMPStatus'));
+
+                 chart.draw(data, options);
+             }
+         }
     </script>
 
 
@@ -2286,17 +2370,19 @@
 
 
                                             <div class="tab-pane fade show" id="tab_1236" runat="server">
-                                                <div class="col-md-12 xtext-right pt-1 pb-1">
+
+                                                <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
+                                                <div class="d-none">
+                                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+
+                                                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+                                                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
+
                                                 </div>
-
-
-                                                
-
-
-
                                             </div>
 
-                                            <div class="tab-pane fade show" id="tab_1343" runat="server">
+                                            <div class="tab-pane fade show graph-main" id="tab_1343" runat="server">
                                                 <div class="col-md-12 xtext-right pt-1 pb-1">
                                                     <h5>
 
