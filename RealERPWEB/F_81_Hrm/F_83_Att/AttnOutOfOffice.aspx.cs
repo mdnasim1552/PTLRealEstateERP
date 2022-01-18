@@ -119,10 +119,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Date = this.txtfromdate.Text;
             string userrole= hst["userrole"].ToString();
             string empid = (userrole=="3"? hst["empid"].ToString():this.ddlEmpNameAllInfo.SelectedValue.ToString());
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUTOFOFFICEATTENDANCE", usrid, Sessionid, Date, empid, "", "", "", "", "", "", "", "", "", "", "");
+            string reason = this.ddlReson.SelectedValue.ToString();
+
+
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTOUTOFOFFICEATTENDANCE", usrid, Sessionid, Date, empid, reason, "", "", "", "", "", "", "", "", "", "");
             if (result == true)
             {
-                
+
                 string eventtype = "999";
                 string eventdesc = this.txtNote.Text.Trim();
                 string eventdesc2 = empid;
