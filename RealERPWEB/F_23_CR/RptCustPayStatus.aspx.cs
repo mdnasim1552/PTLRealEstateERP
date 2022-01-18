@@ -1726,7 +1726,12 @@ namespace RealERPWEB.F_23_CR
             string udesc = drc[0]["udesc"].ToString();
             string usize = Convert.ToDouble(drc[0]["usize"].ToString()).ToString("#,##0;(#,##0); ") + " " + drc[0]["unit"].ToString();
 
+           
+            double totalreceived = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ? 0.00 : dt.Compute("Sum(paidamt)", "")));
 
+            double totalscheduleamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", "")));
+
+            string balance = (totalscheduleamt - totalreceived).ToString("#,##0;(#,##0); ");
 
             //  Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("txtComName", comnam));
@@ -1736,6 +1741,7 @@ namespace RealERPWEB.F_23_CR
             Rpt1.SetParameters(new ReportParameter("txtunit", udesc));
             Rpt1.SetParameters(new ReportParameter("txtunitsize", usize));
             Rpt1.SetParameters(new ReportParameter("txtdisinfo", disinfo));
+            Rpt1.SetParameters(new ReportParameter("balance", balance));
             Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
