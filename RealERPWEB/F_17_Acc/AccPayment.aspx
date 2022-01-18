@@ -39,7 +39,17 @@
             $('#<%=this.txtScrchConCode.ClientID %>').focus();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-           
+            $("input, select ").not($(":submit, :button")).keypress(function (evt) {
+                evt.preventDefault();
+                alert(evt);
+                if (evt.keyCode == 13) {
+                    var next = $('[tabindex="' + (this.tabIndex + 1) + '"]');
+                    if (next.length)
+                        next.focus()
+                    else
+                        $('[tabindex="1"]').focus();
+                }
+            });
 
 
 
@@ -47,18 +57,9 @@
         function pageLoaded() {
 
 
-           $('.chzn-select').chosen({ search_contains: true });
-
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                var ter = k1.textBoxHandlerPost(event);
-
-
-
-
-
-
-
+            $('.chzn-select').chosen({
+                search_contains: true,
+                enable_escape_special_char: false
             });
 
             var gridview = $('#<%=this.dgv1.ClientID %>');
@@ -262,14 +263,14 @@
 
                                             <asp:Label ID="lblDramt" runat="server" CssClass="lblName lblTxt">Amount</asp:Label>
 
-                                            <asp:TextBox ID="txtDrAmt" runat="server"  CssClass=" inputtextbox"></asp:TextBox>
+                                            <asp:TextBox ID="txtDrAmt" runat="server" TabIndex="4"  CssClass=" inputtextbox"></asp:TextBox>
 
                                         </div>
                                         <div class="col-md-9 pading5px">
 
                                             <asp:Label ID="lblChequeNo" runat="server" CssClass="smLbl_to">Cheque No.</asp:Label>
 
-                                            <asp:TextBox ID="txtChequeNo" runat="server" CssClass=" inputtextbox"  ></asp:TextBox>
+                                            <asp:TextBox ID="txtChequeNo" runat="server" TabIndex="5" CssClass=" inputtextbox"  ></asp:TextBox>
 
 
 
@@ -287,7 +288,7 @@
                                             <asp:Label ID="lblremarks" runat="server" CssClass="smLbl_to" Width="100">Remarks</asp:Label>
 
                                             <asp:TextBox ID="txtremarks" runat="server" CssClass=" inputtextbox"  ></asp:TextBox>
-                                            <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnAdd_Click">Add Table</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnAdd" runat="server" TabIndex="5" CssClass="btn btn-primary primaryBtn" OnClick="lbtnAdd_Click">Add Table</asp:LinkButton>
 
                                         </div>
 
