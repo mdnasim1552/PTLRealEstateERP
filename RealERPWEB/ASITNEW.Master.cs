@@ -296,7 +296,16 @@ namespace RealERPWEB
 
             string usrid = hst["usrid"].ToString();
             // string usrperm = "1";
-            this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+            if (comcod == "3365" || comcod == "3347")
+            {
+                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
+
+            }
+            else
+            {
+                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+            }
+          //  this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
             //this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
 
             this.CompanyHome();

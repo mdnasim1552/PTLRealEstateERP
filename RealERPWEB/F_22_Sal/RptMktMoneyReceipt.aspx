@@ -7,7 +7,26 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
+
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+            //$(".chzn-select").chosen(); $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
+
+            $('.chzn-select').chosen({ search_contains: true });
+
+            
+        }
+
+    </script>
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -71,12 +90,12 @@
                                         <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <asp:LinkButton ID="ibtnFindProject" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindProject_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
-                                    <div class="col-md-4 asitCol4 pading5px">
+                                 <div class="col-md-4 asitCol4 pading5px">
 
 
 
 
-                                        <asp:DropDownList ID="ddlMRNO" runat="server" Font-Bold="True" CssClass="ddlistPull"
+                                        <asp:DropDownList ID="ddlMRNO" runat="server" Font-Bold="True" CssClass="chzn-select form-control inputTxt" Width="250px"
                                             AutoPostBack="True" OnSelectedIndexChanged="ddlMRNO_SelectedIndexChanged">
                                         </asp:DropDownList>
 
@@ -88,8 +107,7 @@
                                                 <asp:Label ID="lusircode" runat="server" CssClass="lblName lblTxt" Visible="False"></asp:Label>
 
                                         <asp:Label ID="lmsg" runat="server" CssClass="lblmsg"></asp:Label>
-
-                                    </div>
+                                  </div>
                                 </div>
                             </div>
                         </fieldset>
