@@ -170,6 +170,14 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Customer Id">
+                                <ItemTemplate>
+                                     <asp:Label ID="lgvCustid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custid")) %>'
+                                        Width="70px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                            </asp:TemplateField>
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />
