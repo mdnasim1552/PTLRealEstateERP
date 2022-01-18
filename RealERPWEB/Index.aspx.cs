@@ -395,34 +395,34 @@ namespace RealERPWEB
 
         private void Data_Bind()
         {
-            var jsonSerialiser = new JavaScriptSerializer();
+          //  var jsonSerialiser = new JavaScriptSerializer();
 
-            DataTable dt5 = (DataTable)ViewState["tblgroupAttendace"];
-            // DataTable dt6 = (DataTable)ViewState["tblgroupAttenPersen"];
-            this.gvRptAttn.DataSource = dt5;
-            this.gvRptAttn.DataBind();
+          //  DataTable dt5 = (DataTable)ViewState["tblgroupAttendace"];
+          //  // DataTable dt6 = (DataTable)ViewState["tblgroupAttenPersen"];
+          //  this.gvRptAttn.DataSource = dt5;
+          //  this.gvRptAttn.DataBind();
 
-            double present = Convert.ToDouble(dt5.Rows[0]["present"].ToString());
-            double late = Convert.ToDouble(dt5.Rows[0]["late"].ToString());
-            double eleave = Convert.ToDouble(dt5.Rows[0]["earlyLev"].ToString());
-            double onlaeve = Convert.ToDouble(dt5.Rows[0]["onlev"].ToString());
-            double absent = Convert.ToDouble(dt5.Rows[0]["absnt"].ToString());
+          //  double present = Convert.ToDouble(dt5.Rows[0]["present"].ToString());
+          //  double late = Convert.ToDouble(dt5.Rows[0]["late"].ToString());
+          //  double eleave = Convert.ToDouble(dt5.Rows[0]["earlyLev"].ToString());
+          //  double onlaeve = Convert.ToDouble(dt5.Rows[0]["onlev"].ToString());
+          //  double absent = Convert.ToDouble(dt5.Rows[0]["absnt"].ToString());
 
-            this.lblpresent.Text = present.ToString("#,##0.00;(#,##0.00);");
-            this.lbllate.Text = late.ToString("#,##0.00;(#,##0.00);");
-            this.lbleleave.Text = eleave.ToString("#,##0.00;(#,##0.00);");
-            this.lblonleave.Text = onlaeve.ToString("#,##0.00;(#,##0.00);");
-            this.lblabs.Text = absent.ToString("#,##0.00;(#,##0.00);");
-
-
+          //  this.lblpresent.Text = present.ToString("#,##0.00;(#,##0.00);");
+          //  this.lbllate.Text = late.ToString("#,##0.00;(#,##0.00);");
+          ////  this.lbleleave.Text = eleave.ToString("#,##0.00;(#,##0.00);");
+          //  this.lblonleave.Text = onlaeve.ToString("#,##0.00;(#,##0.00);");
+          //  this.lblabs.Text = absent.ToString("#,##0.00;(#,##0.00);");
 
 
 
-            //string l = dt5.Rows[0]["late"].ToString();
 
-            var lst9 = dt5.DataTableToList<EmpHRStatus>();
-            var empStatusData = jsonSerialiser.Serialize(lst9);
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExcuteEmpStatus()", true);
+
+          //  //string l = dt5.Rows[0]["late"].ToString();
+
+          //  var lst9 = dt5.DataTableToList<EmpHRStatus>();
+          //  var empStatusData = jsonSerialiser.Serialize(lst9);
+          //  ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExcuteEmpStatus()", true);
 
 
         }
@@ -660,6 +660,8 @@ namespace RealERPWEB
             var lst4 = ds2.Tables[4].DataTableToList<Scongraph>();
 
             var lst5 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
+            var lst17 = ds2.Tables[17].DataTableToList<EmpHRStatus>();// HR data
+           // var lst18 = ds2.Tables[18].DataTableToList<EmpHRDptStatus>();// HR data
 
            
 
@@ -670,8 +672,11 @@ namespace RealERPWEB
             var data4 = jsonSerialiser.Serialize(lst4);
             var crm = jsonSerialiser.Serialize(lst5);
             
+            var hrAttn = jsonSerialiser.Serialize(lst17);
+            //var hrDptEmp = jsonSerialiser.Serialize(lst18);
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + gtype + "','" + crm + "')", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + gtype + "','" + crm + "','" + hrAttn + "')", true);
              
 
             ds2.Dispose();
@@ -688,14 +693,10 @@ namespace RealERPWEB
 
             this.Panel2.Visible = false;
             this.Panel1.Visible = true;
-
-
             this.Panel3.Visible = true;
             this.Panel4.Visible = false;
-
             this.Panel5.Visible = true;
             this.Panel6.Visible = false;
-
             this.Panel7.Visible = true;
             this.Panel8.Visible = false;
             string gtype = this.ddlGraphtype.SelectedValue.ToString();
@@ -726,8 +727,10 @@ namespace RealERPWEB
             var lst3 = ds2.Tables[2].DataTableToList<AccoutnsGrphDay>();
             var lst4 = ds2.Tables[3].DataTableToList<ConsDayGrphDay>();
             var lst5 = ds2.Tables[4].DataTableToList<SubConGrphDay>();
-
             var lst6 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
+            var lst17 = ds2.Tables[17].DataTableToList<EmpHRStatus>();// HR data
+          //  var lst18 = ds2.Tables[18].DataTableToList<EmpHRDptStatus>();// HR data
+
 
 
             var dataSale = jsonSerialiser.Serialize(lst);
@@ -736,10 +739,13 @@ namespace RealERPWEB
             var datacons = jsonSerialiser.Serialize(lst4);
             var datasubcons = jsonSerialiser.Serialize(lst5);
             var crm = jsonSerialiser.Serialize(lst6);
+            var hrAttn = jsonSerialiser.Serialize(lst17);
+          //  var hrDptEmp = jsonSerialiser.Serialize(lst18);
 
-            var ttsalemonths = lst.Select(p => p.ttlsalamtcore).Sum().ToString("#,##0;(#,##0); "); 
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "','" + crm + "')", true);
-
+            var ttsalemonths = lst.Select(p => p.ttlsalamtcore).Sum().ToString("#,##0;(#,##0); ");           
+         
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "','" + crm + "','" + hrAttn + "')", true);
+             
         }
 
 
@@ -815,7 +821,7 @@ namespace RealERPWEB
             {
                 this.showDataMonthly(ddlmonths);
             }
-            ShowAttHistoryGraph();
+            
         }
 
         //////////////////////////////// For Group Users
@@ -929,27 +935,7 @@ namespace RealERPWEB
 
         }
 
-        private void ShowAttHistoryGraph()
-        {
-            DataTable dt4 = (DataTable)ViewState["tblAttHistGraph"];
-
-
-            double present = Convert.ToDouble(dt4.Rows[0]["perpontow"].ToString());
-            double late = Convert.ToDouble(dt4.Rows[0]["perlate"].ToString());
-            //  double eleave = Convert.ToDouble(dt4.Rows[0]["earlyLev"].ToString());
-            double onlaeve = Convert.ToDouble(dt4.Rows[0]["perleave"].ToString());
-            double absent = Convert.ToDouble(dt4.Rows[0]["perab"].ToString());
-
-            this.lblpresent.Text = present.ToString("#,##0.00;(#,##0.00);");
-            this.lbllate.Text = late.ToString("#,##0.00;(#,##0.00);");
-            //  this.lbleleave.Text = eleave.ToString("#,##0.00;(#,##0.00);");
-            this.lblonleave.Text = onlaeve.ToString("#,##0.00;(#,##0.00);");
-            this.lblabs.Text = absent.ToString("#,##0.00;(#,##0.00);");
-
-
-
-
-        }
+  
 
         [WebMethod]
         public static string GetTopData()
@@ -1106,18 +1092,24 @@ namespace RealERPWEB
             public double staff { get; set; }
         }
 
+        public class EmpHRDptStatus
+        {
+            public string dptdesc { get; set; }
+            public double qty { get; set; }
+            
+        }
 
         public class EmpHRStatus
         {
 
-            public double ttlstap { get; set; }
+            public double ttlprsnt { get; set; }
 
-            public double present { get; set; }
-            public double late { get; set; }
-            public double earlyLev { get; set; }
+            public double ttlabs { get; set; }
+            public double ttllate { get; set; }
+            public double ttlleave { get; set; }
             public double earlyLevnl { get; set; }
-            public double onlev { get; set; }
-            public double absnt { get; set; }
+            public double ttlearlv { get; set; }
+          
 
         }
         [Serializable]
