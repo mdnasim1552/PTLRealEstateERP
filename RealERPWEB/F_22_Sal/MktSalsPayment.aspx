@@ -536,6 +536,25 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
+
+
+                                              <asp:TemplateField HeaderText="Discount">
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFDiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvdiscount" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "disamt")).ToString("#,##0;-#,##0; ") %>'
+                                                        Width="60px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <FooterStyle HorizontalAlign="right" />
+                                            </asp:TemplateField>
+
+
                                             <asp:TemplateField HeaderText="Amount">
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px"
