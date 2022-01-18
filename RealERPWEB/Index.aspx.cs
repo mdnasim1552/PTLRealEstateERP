@@ -714,7 +714,7 @@ namespace RealERPWEB
 
              
 
-            ds2 = ulogin.GetTransInfo(comcod, "SP_REPORT_PURCHASE_INTERFACE02", "RPTPURCHASEALLTESTPURPOSEMONTHLY", ddlyear, ddlMonths, usrid, "", "", "", "", "", "");
+            ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "ALLGRAPHDASHBOARDMONTHLY", ddlyear, ddlMonths, usrid, tdate, "", "", "", "", "");
             if (ds2 == null)
                 return;
 
