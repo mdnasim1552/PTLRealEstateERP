@@ -4,7 +4,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
+
 
     <style>
         .tblh {
@@ -156,7 +156,7 @@
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
-    
+
     <script type="text/javascript">
 
 
@@ -168,7 +168,7 @@
 
 
             document.getElementById('<%= lnkbtnOk.ClientID %>').click();
-            
+
 
 
         });
@@ -194,7 +194,7 @@
 
         };
 
-        function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm, hrm) {
+        function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm, leadname, emplead, hrm, deptwise, last7days) {
             gtype = (gtype == "" ? "column" : gtype);
             // ExcuteEmpStatus();
             var saldata = JSON.parse(data);
@@ -202,9 +202,15 @@
             var accdata = JSON.parse(data2);
             var consdata = JSON.parse(data3);
             var sucondata = JSON.parse(data4);
+            var cmrData = JSON.parse(crm);
+
+            var leadlist = JSON.parse(leadname);
+            var emplead = JSON.parse(emplead);
+
             var hrmData = JSON.parse(hrm);
 
-            var cmrData = JSON.parse(crm);
+            var deptwise = JSON.parse(deptwise);
+            var last7days = JSON.parse(last7days);
 
             var chartsal = Highcharts.chart('salchart', {
                 chart: {
@@ -775,34 +781,31 @@
                         colorByPoint: true,
                         data: [
                             {
-                                name: "Query",
+                                name: leadlist[0].la,
                                 y: parseFloat(cmrData[0].query)
                             },
                             {
-                                name: "Lead",
+                                name: leadlist[0].lb,
                                 y: parseFloat(cmrData[0].lead)
                             },
                             {
-                                name: "Qualified Lead",
+                                name: leadlist[0].lc,
                                 y: parseFloat(cmrData[0].qualiflead)
                             },
                             {
-                                name: "Negotiation",
+                                name: leadlist[0].ld,
                                 y: parseFloat(cmrData[0].nego)
                             },
                             {
-                                name: "Final Negotiation",
+                                name: leadlist[0].le,
                                 y: parseFloat(cmrData[0].finalnego)
                             },
                             {
-                                name: "Win",
+                                name: leadlist[0].lf,
                                 y: parseFloat(cmrData[0].win)
                             }
-                            ,
-                            {
-                                name: "Total",
-                                y: parseFloat(cmrData[0].total)
-                            }
+
+
                         ]
                     }
                 ]
@@ -857,6 +860,181 @@
                 }]
 
             });
+
+
+
+            ///Khalil 
+
+
+            /// Department wise employee
+            var sumdeptemp = 0;
+            var alldeptemp = [];
+            for (var i = 0; i < deptwise.length; i++) {
+                alldeptemp.push({ "name": deptwise[i].deptname, "y": parseFloat(deptwise[i].total) })
+                sumdeptemp += parseFloat(deptwise[i].total);
+
+            }
+            //console.log(allempdata);
+
+            var deptemp = Highcharts.chart('deptWisEmp', {
+                chart: {
+                    type: gtype
+                },
+                title: {
+                    text: 'Department Wise Employee, Total:-  ' + sumdeptemp
+                },
+                subtitle: {
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Employee'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+                },
+
+                series: [
+                    {
+                        name: "Total Employee",
+                        colorByPoint: true,
+                        data: alldeptemp
+                    }
+                ]
+
+            });
+
+            //End Department wise employee
+
+
+            /// Last Seven days 
+            //sales
+            var dayseries = [];
+            var dayprsnt = [];
+            var dayabs = [];
+            var dayleav = [];
+            $.each(last7days, function (i, item) {
+                dayseries.push(item.ymonddesc);
+                dayprsnt.push(item.present);
+                dayabs.push(item.absnt);
+                dayleav.push(item.onleave);
+                total = item.staff;
+            });
+            var levAtt7days = Highcharts.chart('lst7daysatt', {
+
+                //   $('#MonthlySales').highcharts({
+                chart: {
+                    // type: 'line'
+                    type: gtype
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: 'Last 07 Days',
+                    style: {
+                        color: '#44994a',
+                        fontWeight: 'bold'
+                    }
+                },
+                xAxis: {
+                    categories:
+                        dayseries,
+                    //  minTickInterval: 60 * 1000,
+                    //  tickMarkPlacement: 'on',
+
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Employee'
+                    }
+                },
+
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true,
+
+
+
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.1,
+                        borderWidth: 0
+
+
+                    }
+                },
+                series: [{
+
+                    name: 'Present',
+                    data: dayprsnt, //[daysalcol[2]['totalamt'], daysalcol[3]['totalamt'], daysalcol[4]['totalamt'], daysalcol[5]['totalamt'], daysalcol[6]['totalamt'], daysalcol[7]['totalamt'], daysalcol[8]['totalamt']],
+                    color: '#008000'
+
+                },
+                {
+
+                    name: 'Absent',
+                    //color:red,
+                    data: dayabs, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
+                    color: '#FF0000'
+                }
+                    ,
+                {
+
+                    name: 'Leave',
+                    //color:red,
+                    data: dayleav, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
+                    color: '#A52A2A'
+                }
+
+                ]
+            });
+
+            ///End Last seven days 
+
+
+
+
+
+
+
+
+            ///End Khalil
+
+
+
+
             let w = $(".graph-main").width();
             let h = 325;
             chartsal.setSize(w, h);
@@ -864,8 +1042,11 @@
             chartacc.setSize(w, h);
             chartcons.setSize(w, h);
             chartsubcon.setSize(w, h);
-            chartcmrData.setSize(w, h);
-            chartHrmData.setSize(w, h);
+
+            chartcmrData.setSize(500, 325);
+            chartHrmData.setSize(400, 325);
+            deptemp.setSize(500, 325);
+            levAtt7days.setSize(400, 325);
 
 
             const elem = $(".graph-main")[0];
@@ -876,8 +1057,10 @@
                 chartacc.setSize(w, h);
                 chartcons.setSize(w, h);
                 chartsubcon.setSize(w, h);
-                chartcmrData.setSize(520, h);
-                chartHrmData.setSize(400, h);
+                chartcmrData.setSize(500, 325);
+                chartHrmData.setSize(400, 325);
+                deptemp.setSize(500, 325);
+                levAtt7days.setSize(400, 325);
 
                 w = $(".graph-main").width();
             });
@@ -938,7 +1121,7 @@
         };
 
 
-        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype, crm,hrm) {
+        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype, crm, leadname, emplead, hrm, deptwise, last7days) {
             var today = new Date(),
                 day = 1000 * 60 * 60 * 24;
             //console.log(day);
@@ -957,7 +1140,16 @@
             var datacons = JSON.parse(datacons);
             var datasubcons = JSON.parse(datasubcons);
             var cmrData = JSON.parse(crm);
+
+
+            var leadlist = JSON.parse(leadname);
+            var emplead = JSON.parse(emplead);
+
+
             var hrmData = JSON.parse(hrm);
+
+            var deptwise = JSON.parse(deptwise);
+            var last7days = JSON.parse(last7days);
 
             var total = 0;
             //for (var i = 0; i < sdata1.length; i++) {
@@ -1404,37 +1596,35 @@
                         colorByPoint: true,
                         data: [
                             {
-                                name: "Query",
+                                name: leadlist[0].la,
                                 y: parseFloat(cmrData[0].query)
                             },
                             {
-                                name: "Lead",
+                                name: leadlist[0].lb,
                                 y: parseFloat(cmrData[0].lead)
                             },
                             {
-                                name: "Qualified Lead",
+                                name: leadlist[0].lc,
                                 y: parseFloat(cmrData[0].qualiflead)
                             },
                             {
-                                name: "Negotiation",
+                                name: leadlist[0].ld,
                                 y: parseFloat(cmrData[0].nego)
                             },
                             {
-                                name: "Final Negotiation",
+                                name: leadlist[0].le,
                                 y: parseFloat(cmrData[0].finalnego)
                             },
                             {
-                                name: "Win",
+                                name: leadlist[0].lf,
                                 y: parseFloat(cmrData[0].win)
                             }
-                            ,
-                            {
-                                name: "Total",
-                                y: parseFloat(cmrData[0].total)
-                            }
+
+
                         ]
                     }
                 ]
+
 
             });
 
@@ -1451,7 +1641,7 @@
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.y}</b>'
                 },
-               
+
                 plotOptions: {
                     pie: {
                         allowPointSelect: true,
@@ -1471,23 +1661,196 @@
                         sliced: true,
                         selected: true
                     }, {
-                            name: 'Absent',
-                            y: hrmData[0].ttlabs,
+                        name: 'Absent',
+                        y: hrmData[0].ttlabs,
                     }, {
-                            name: 'Leave',
-                            y: hrmData[0].ttlleave,
+                        name: 'Leave',
+                        y: hrmData[0].ttlleave,
                     }, {
-                            name: 'Late',
-                            y: hrmData[0].ttllate,
+                        name: 'Late',
+                        y: hrmData[0].ttllate,
                     }, {
-                            name: 'Early Leave',
-                            y: hrmData[0].ttlearlv,
+                        name: 'Early Leave',
+                        y: hrmData[0].ttlearlv,
                     }]
                 }]
 
             });
 
 
+
+            ///Khalil 
+
+
+            /// Department wise employee
+            var sumdeptemp = 0;
+            var alldeptemp = [];
+            for (var i = 0; i < deptwise.length; i++) {
+                alldeptemp.push({ "name": deptwise[i].deptname, "y": parseFloat(deptwise[i].total) })
+                sumdeptemp += parseFloat(deptwise[i].total);
+
+            }
+            //console.log(allempdata);
+
+            var deptemp = Highcharts.chart('deptWisEmp', {
+                chart: {
+                    type: gtype
+                },
+                title: {
+                    text: 'Department Wise Employee, Total:-  ' + sumdeptemp
+                },
+                subtitle: {
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Employee'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+                },
+
+                series: [
+                    {
+                        name: "Total Employee",
+                        colorByPoint: true,
+                        data: alldeptemp
+                    }
+                ]
+
+            });
+
+            //End Department wise employee
+
+
+            /// Last Seven days 
+            //sales
+            var dayseries = [];
+            var dayprsnt = [];
+            var dayabs = [];
+            var dayleav = [];
+            $.each(last7days, function (i, item) {
+                dayseries.push(item.ymonddesc);
+                dayprsnt.push(item.present);
+                dayabs.push(item.absnt);
+                dayleav.push(item.onleave);
+                total = item.staff;
+            });
+            var MonthlySalesline = Highcharts.chart('lst7daysatt', {
+
+                //   $('#MonthlySales').highcharts({
+                chart: {
+                    // type: 'line'
+                    type: gtype
+                },
+                title: {
+                    text: ''
+                },
+                subtitle: {
+                    text: 'Last 07 Days',
+                    style: {
+                        color: '#44994a',
+                        fontWeight: 'bold'
+                    }
+                },
+                xAxis: {
+                    categories:
+                        dayseries,
+                    //  minTickInterval: 60 * 1000,
+                    //  tickMarkPlacement: 'on',
+
+                    crosshair: true
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total Employee'
+                    }
+                },
+
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true,
+
+
+
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.1,
+                        borderWidth: 0
+
+
+                    }
+                },
+                series: [{
+
+                    name: 'Present',
+                    data: dayprsnt, //[daysalcol[2]['totalamt'], daysalcol[3]['totalamt'], daysalcol[4]['totalamt'], daysalcol[5]['totalamt'], daysalcol[6]['totalamt'], daysalcol[7]['totalamt'], daysalcol[8]['totalamt']],
+                    color: '#008000'
+
+                },
+                {
+
+                    name: 'Absent',
+                    //color:red,
+                    data: dayabs, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
+                    color: '#FF0000'
+                }
+                    ,
+                {
+
+                    name: 'Leave',
+                    //color:red,
+                    data: dayleav, //[daysalcol[2]['colamt'], daysalcol[3]['colamt'], daysalcol[4]['colamt'], daysalcol[5]['colamt'], daysalcol[6]['colamt'], daysalcol[7]['colamt'], daysalcol[8]['colamt']],
+                    color: '#A52A2A'
+                }
+
+                ]
+            });
+
+            ///End Last seven days 
+
+
+
+
+
+
+
+
+            ///End Khalil
+
+
+
+          
 
             let w = $(".graph-main").width();
             let h = 325;
@@ -1496,8 +1859,12 @@
             MonthlyAccounts.setSize(w, h);
             Monthlyconschart.setSize(w, h);
             Monthlysubconchart.setSize(w, h);
-            chartcmrData.setSize(w, h);
-            chartHrmData.setSize(w, h);
+
+            //chartcmrData.setSize(500, 325);
+            //chartHrmData.setSize(400, 325);
+            //deptemp.setSize(500, 325);
+            //levAtt7days.setSize(400, 325);
+
             const elem = $(".graph-main")[0];
 
             let resizeObserver = new ResizeObserver(function () {
@@ -1506,8 +1873,13 @@
                 MonthlyAccounts.setSize(w, h);
                 Monthlyconschart.setSize(w, h);
                 Monthlysubconchart.setSize(w, h);
-                chartcmrData.setSize(500, h);
-                chartHrmData.setSize(400, h);
+
+                //chartcmrData.setSize(500, 325);
+                //chartHrmData.setSize(400, 325);
+                //deptemp.setSize(500, 325);
+                //levAtt7days.setSize(200, 325);
+
+
 
                 w = $(".graph-main").width();
             });
@@ -2064,7 +2436,7 @@
 
         };
 
-      
+
     </script>
 
 
@@ -2220,7 +2592,7 @@
                                                         <asp:ListItem Value="Apr">Apr</asp:ListItem>
                                                         <asp:ListItem Value="May">May</asp:ListItem>
                                                         <asp:ListItem Value="Jun">Jun</asp:ListItem>
-                                                        <asp:ListItem Value="Jul" >Jul</asp:ListItem>
+                                                        <asp:ListItem Value="Jul">Jul</asp:ListItem>
                                                         <asp:ListItem Value="Aug">Aug</asp:ListItem>
                                                         <asp:ListItem Value="Sep">Sep</asp:ListItem>
                                                         <asp:ListItem Value="Oct">Oct</asp:ListItem>
@@ -2250,10 +2622,10 @@
                                     <!-- .card-body -->
                                     <div class="card-body pt-0 pb-0">
                                         <!-- .tab-content -->
-                                        <div id="myTabContent" class="tab-content graph-main" style="width: 100%; height: 375px;">
+                                        <div id="myTabContent" class="tab-content " style="width: 100%; height: 375px;">
 
 
-                                            <div class="tab-pane fade show" id="tab_1231" runat="server">
+                                            <div class="tab-pane fade show graph-main" id="tab_1231" runat="server">
                                                 <div class="row ">
 
                                                     <div class="col-md-12 xtext-righ pt-1 pb-1">
@@ -2288,7 +2660,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1232" runat="server">
+                                            <div class="tab-pane fade show graph-main" id="tab_1232" runat="server">
 
                                                 <div class="row ">
 
@@ -2325,7 +2697,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1233" runat="server">
+                                            <div class="tab-pane fade show graph-main" id="tab_1233" runat="server">
                                                 <div class="row ">
                                                     <div class="col-md-12 xtext-right pt-1 pb-1">
                                                         <h5><small class="float-right">
@@ -2361,7 +2733,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1234" runat="server">
+                                            <div class="tab-pane fade show graph-main" id="tab_1234" runat="server">
 
 
                                                 <div class="row ">
@@ -2401,7 +2773,7 @@
 
 
                                             </div>
-                                            <div class="tab-pane fade show" id="tab_1235" runat="server">
+                                            <div class="tab-pane fade show graph-main" id="tab_1235" runat="server">
                                                 <div class="col-md-12 xtext-right pt-1 pb-1">
                                                     <h5>
 
@@ -2442,17 +2814,19 @@
 
                                             <div class="tab-pane fade show" id="tab_1236" runat="server">
                                                 <div class="row">
-                                                    <div class="col-md-4 col-sm-4 col-lg-4">
-                                                            <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
+                                                    <div class="col-md-3 col-sm-12 col-lg-3">
+                                                        <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-4 col-lg-4">
-                                                             s
+                                                    <div class="col-md-5 col-sm-12 col-lg-5">
+                                                        <div id="deptWisEmp" style="width: 100%; height: 250px;"></div>
+
                                                     </div>
-                                                    <div class="col-md-4 col-sm-4 col-lg-4">
-                                                            s 
+                                                    <div class="col-md-4 col-sm-12 col-lg-4">
+                                                        <div id="lst7daysatt" style="width: 400px; height: 250px;"></div>
+
                                                     </div>
                                                 </div>
-                                              
+
                                             </div>
 
                                             <div class="tab-pane fade show graph-main" id="tab_1343" runat="server">

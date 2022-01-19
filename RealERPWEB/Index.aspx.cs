@@ -659,8 +659,15 @@ namespace RealERPWEB
             var lst3 = ds2.Tables[3].DataTableToList<Consgraph>();
             var lst4 = ds2.Tables[4].DataTableToList<Scongraph>();
 
-            var lst5 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
-            var lst17 = ds2.Tables[17].DataTableToList<EmpHRStatus>();// HR data
+            var lst5 = ds2.Tables[5].DataTableToList<SalFunnelgraph>();// crm data old 17
+            var lst6 = ds2.Tables[6].DataTableToList<LeadName>();// new class add lead name 
+            var lst7 = ds2.Tables[7].DataTableToList<EmpLeadInfo>();// new class add employee lead
+
+            var lst8 = ds2.Tables[8].DataTableToList<EmpHRStatus>();// HR data
+            var lst9 = ds2.Tables[9].DataTableToList<Eclassdeptwisedata>();// HR data
+            var lst10 = ds2.Tables[10].DataTableToList<EClass7daysinfo>();// HR data
+
+
            // var lst18 = ds2.Tables[18].DataTableToList<EmpHRDptStatus>();// HR data
 
            
@@ -671,12 +678,15 @@ namespace RealERPWEB
             var data = jsonSerialiser.Serialize(lst);
             var data4 = jsonSerialiser.Serialize(lst4);
             var crm = jsonSerialiser.Serialize(lst5);
+            var leadname = jsonSerialiser.Serialize(lst6);
+            var emplead = jsonSerialiser.Serialize(lst7);
             
-            var hrAttn = jsonSerialiser.Serialize(lst17);
-            //var hrDptEmp = jsonSerialiser.Serialize(lst18);
+            var hrAttn = jsonSerialiser.Serialize(lst8);
+            var hrempdepwise = jsonSerialiser.Serialize(lst9);
+            var last7days = jsonSerialiser.Serialize(lst10);
+           
 
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + gtype + "','" + crm + "','" + hrAttn + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + gtype + "','" + crm + "','" + leadname + "','" + emplead + "','" + hrAttn + "','"+ hrempdepwise + "','"+ last7days + "')", true);
              
 
             ds2.Dispose();
@@ -723,29 +733,51 @@ namespace RealERPWEB
             var jsonSerialiser = new JavaScriptSerializer();
 
             var lst = ds2.Tables[0].DataTableToList<SalesGrphDay>();
-            var lst2 = ds2.Tables[1].DataTableToList<PurchaseGrphDay>();
-            var lst3 = ds2.Tables[2].DataTableToList<AccoutnsGrphDay>();
-            var lst4 = ds2.Tables[3].DataTableToList<ConsDayGrphDay>();
-            var lst5 = ds2.Tables[4].DataTableToList<SubConGrphDay>();
-            var lst6 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
-            var lst17 = ds2.Tables[17].DataTableToList<EmpHRStatus>();// HR data
+            var lst1 = ds2.Tables[1].DataTableToList<PurchaseGrphDay>();
+            var lst2 = ds2.Tables[2].DataTableToList<AccoutnsGrphDay>();
+            var lst3 = ds2.Tables[3].DataTableToList<ConsDayGrphDay>();
+            var lst4 = ds2.Tables[4].DataTableToList<SubConGrphDay>();
+
+
+
+            var lst5 = ds2.Tables[5].DataTableToList<SalFunnelgraph>();// crm data old 17
+            var lst6 = ds2.Tables[6].DataTableToList<LeadName>();// new class add lead name 
+            var lst7 = ds2.Tables[7].DataTableToList<EmpLeadInfo>();// new class add employee lead
+
+            var lst8 = ds2.Tables[8].DataTableToList<EmpHRStatus>();// HR data
+
+            var lst9 = ds2.Tables[9].DataTableToList<Eclassdeptwisedata>();// HR data
+            var lst10 = ds2.Tables[10].DataTableToList<EClass7daysinfo>();// HR data
+
+
+            //var lst6 = ds2.Tables[5].DataTableToList<EmpHRStatus>();// HR data old 17
+
+
+            //var lst7 = ds2.Tables[6].DataTableToList<SalFunnelgraph>();// crm data
+            //var lst17 = ds2.Tables[17].DataTableToList<EmpHRStatus>();// HR data
           //  var lst18 = ds2.Tables[18].DataTableToList<EmpHRDptStatus>();// HR data
 
 
 
             var dataSale = jsonSerialiser.Serialize(lst);
-            var dataPur = jsonSerialiser.Serialize(lst2);
-            var dataacc = jsonSerialiser.Serialize(lst3);
-            var datacons = jsonSerialiser.Serialize(lst4);
-            var datasubcons = jsonSerialiser.Serialize(lst5);
-            var crm = jsonSerialiser.Serialize(lst6);
-            var hrAttn = jsonSerialiser.Serialize(lst17);
-          //  var hrDptEmp = jsonSerialiser.Serialize(lst18);
+            var dataPur = jsonSerialiser.Serialize(lst1);
+            var dataacc = jsonSerialiser.Serialize(lst2);
+            var datacons = jsonSerialiser.Serialize(lst3);
+            var datasubcons = jsonSerialiser.Serialize(lst4);
+
+            var crm = jsonSerialiser.Serialize(lst5);
+            var leadname = jsonSerialiser.Serialize(lst6);
+            var emplead = jsonSerialiser.Serialize(lst7);
+       
+            var hrAttn = jsonSerialiser.Serialize(lst8);
+            var hrempdepwise = jsonSerialiser.Serialize(lst9);
+            var last7days = jsonSerialiser.Serialize(lst10);
+
 
             var ttsalemonths = lst.Select(p => p.ttlsalamtcore).Sum().ToString("#,##0;(#,##0); ");           
          
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "','" + crm + "','" + hrAttn + "')", true);
-             
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteMotnhsGraph('" + dataSale + "','" + dataPur + "','" + dataacc + "','" + datacons + "','" + datasubcons + "','" + gtype + "','" + crm + "','" + leadname + "','" + emplead + "','" + hrAttn + "','" + hrempdepwise + "','" + last7days + "')", true);
+
         }
 
 
@@ -1097,6 +1129,8 @@ namespace RealERPWEB
             
         }
 
+
+
         public class EmpHRStatus
         {
 
@@ -1120,6 +1154,59 @@ namespace RealERPWEB
             public decimal nego { get; set; }
             public decimal win { get; set; }
             public decimal total { get; set; }
+        }
+
+        [Serializable]
+
+        public class LeadName
+        {          
+        public string comcod { get; set; }
+        public string la { get; set; }
+        public string lb { get; set; }
+        public string lc { get; set; }
+        public string ld { get; set; }
+        public string le { get; set; }
+        public string lf { get; set; }
+
+        }
+
+        [Serializable]
+
+        public class EmpLeadInfo
+        {
+            //teamcode='0', total=0, usrname='',lead=0,qualiflead=0,finalnego=0,nego=0,win=0 
+            public string teamcode { get; set; }
+            public int total { get; set; }
+            public string usrname { get; set; }
+            public string lead { get; set; }
+            public string qualiflead { get; set; }
+            public string finalnego { get; set; }
+            public string nego { get; set; }
+            public string win { get; set; }
+
+        }
+        [Serializable]
+
+        public class Eclassdeptwisedata 
+        {
+            public string comcod { get; set; }
+            public string deptcode { get; set; }
+            public string deptname { get; set; }
+            public int total { get; set; }
+        }
+
+        [Serializable]
+
+        public class EClass7daysinfo
+        {
+            public string comcod { get; set; }
+            public string ymonday { get; set; }
+            public string ymonddesc { get; set; }
+            public decimal staff { get; set; }
+            public decimal present { get; set; }
+            public decimal absnt { get; set; }
+            public decimal oabsnt { get; set; }
+            public decimal onleave { get; set; }
         }
 
         // hr data
