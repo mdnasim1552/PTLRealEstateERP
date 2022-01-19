@@ -114,43 +114,40 @@ namespace RealERPWEB.F_17_Acc
             {
                 case "Deposit":
                     this.lblReceiptCash.Visible = true;
+                    this.hltbnReceiptCash.Visible = true;
                     this.lblPaymentCash.Visible = false;
+                    this.hlbtnPaymentCash.Visible = false;
                     this.lblDetailsCash.Visible = true;
+                    this.hlbtnDetailsCash.Visible = true;
                     this.lblDepUnclr.Visible = true;
+                    this.hlbtnDepUnclr.Visible = true;
                     this.lblWidUnclr.Visible = false;
-
-                    this.divPaymentCash.Visible = false;
-                    this.divDepUnclr.Visible = true;
-                    this.divWidUnclr.Visible = false;
-                    this.divDetailsCash.Visible = true;
-
-
-
+                    this.hlbtnWidUnclr.Visible = false;
                     break;
                 case "Withdraw":
                     this.lblReceiptCash.Visible = false;
+                    this.hltbnReceiptCash.Visible = false;
                     this.lblPaymentCash.Visible = true;
+                    this.hlbtnPaymentCash.Visible = true;
                     this.lblDetailsCash.Visible = true;
+                    this.hlbtnDetailsCash.Visible = true;
                     this.lblDepUnclr.Visible = false;
+                    this.hlbtnDepUnclr.Visible = false;
                     this.lblWidUnclr.Visible = true;
-
-                    this.divPaymentCash.Visible = true;
-                    this.divDepUnclr.Visible = false;
-                    this.divWidUnclr.Visible = true;
-                    this.divDetailsCash.Visible = true;
+                    this.hlbtnWidUnclr.Visible = true;
                     break;
 
                 case "Both":
                     this.lblReceiptCash.Visible = true;
+                    this.hltbnReceiptCash.Visible = true;
                     this.lblPaymentCash.Visible = true;
+                    this.hlbtnPaymentCash.Visible = true;
                     this.lblDepUnclr.Visible = true;
+                    this.hlbtnDepUnclr.Visible = true;
                     this.lblWidUnclr.Visible = true;
+                    this.hlbtnWidUnclr.Visible = true;
                     this.lblDetailsCash.Visible = (this.ddlVoucharCash.SelectedValue == "ALL Voucher");
-
-                    this.divPaymentCash.Visible = true;
-                    this.divDepUnclr.Visible = true;
-                    this.divWidUnclr.Visible = true;
-                    this.divDetailsCash.Visible = (this.ddlVoucharCash.SelectedValue == "ALL Voucher");
+                    this.hlbtnDetailsCash.Visible = (this.ddlVoucharCash.SelectedValue == "ALL Voucher");
                     break;
             }
 
@@ -168,6 +165,12 @@ namespace RealERPWEB.F_17_Acc
             this.gvcashbook.DataSource = dtr1;
             this.gvcashbook.DataBind();
             this.FooterCalculation(dtr1, "gvcashbook");
+            if (dtr1.Rows.Count == 0)
+            {
+                this.lblReceiptCash.Visible = false;
+                this.hltbnReceiptCash.Visible = false;
+
+            }
 
             dvr = ds1.Tables[0].DefaultView;
             dvr.RowFilter = ("grp1='B'");
@@ -175,6 +178,11 @@ namespace RealERPWEB.F_17_Acc
             this.gvcashbookp.DataSource = dtr2;
             this.gvcashbookp.DataBind();
             this.FooterCalculation(dtr2, "gvcashbookp");
+            if (dtr2.Rows.Count == 0)
+            {
+                this.lblPaymentCash.Visible = false;
+                this.hlbtnPaymentCash.Visible = false;
+            }
 
             dvr = ds1.Tables[0].DefaultView;
             dvr.RowFilter = ("grp1='D'");
@@ -182,6 +190,11 @@ namespace RealERPWEB.F_17_Acc
             this.gvDepUnclr.DataSource = dtr3;
             this.gvDepUnclr.DataBind();
             this.FooterCalculation(dtr3, "gvcashbookDV");
+            if (dtr3.Rows.Count == 0)
+            {
+                this.lblDepUnclr.Visible = false;
+                this.hlbtnDepUnclr.Visible = false;
+            }
 
             dvr = ds1.Tables[0].DefaultView;
             dvr.RowFilter = ("grp1='E'");
@@ -189,11 +202,22 @@ namespace RealERPWEB.F_17_Acc
             this.gvWidUnclr.DataSource = dtr4;
             this.gvWidUnclr.DataBind();
             this.FooterCalculation(dtr4, "gvcashbookPV");
+            if (dtr4.Rows.Count == 0)
+            {
+                this.lblWidUnclr.Visible = false;
+                this.hlbtnWidUnclr.Visible = false;
+            }
+
 
             this.gvcashbookDB.DataSource = ds1.Tables[1];
             this.gvcashbookDB.DataBind();
-            this.FooterCalculation(ds1.Tables[1], "gvcashbookDB");        
-        
+            this.FooterCalculation(ds1.Tables[1], "gvcashbookDB");
+            if (ds1.Tables[1].Rows.Count == 0)
+            {
+                this.lblDetailsCash.Visible = false;
+                this.hlbtnDetailsCash.Visible = false;
+            }
+
         }
 
 
@@ -303,6 +327,89 @@ namespace RealERPWEB.F_17_Acc
             return dt1;
         }
 
+        protected void hltbnReceiptCash_Click(object sender, EventArgs e)
+        {
+            DataSet ds1 = (DataSet)Session["cashbank"];
+            DataView dvr = new DataView();
+            dvr = ds1.Tables[0].DefaultView;
+            dvr.RowFilter = ("grp1 = 'A'");
+            DataTable dtr1 = HiddenSameDate(dvr.ToTable());
+            this.gvcashbook.DataSource = dtr1;
+            this.gvcashbook.DataBind();
+            this.FooterCalculation(dtr1, "gvcashbook");
+
+            Session["Report1"] = gvcashbook;
+            string type = "GRIDTOEXCEL";
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);   
+            
+
+        }
+
+        protected void hlbtnPaymentCash_Click(object sender, EventArgs e)
+        {
+            DataSet ds1 = (DataSet)Session["cashbank"];
+            DataView dvr = new DataView();
+            dvr = ds1.Tables[0].DefaultView;
+            dvr.RowFilter = ("grp1='B'");
+            DataTable dtr2 = HiddenSameDate(dvr.ToTable());
+            this.gvcashbookp.DataSource = dtr2;
+            this.gvcashbookp.DataBind();
+            this.FooterCalculation(dtr2, "gvcashbookp");
+
+            Session["Report1"] = gvcashbookp;
+            string type = "GRIDTOEXCEL";
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+
+
+        }
+
+        protected void hlbtnDepUnclr_Click(object sender, EventArgs e)
+        {
+            DataSet ds1 = (DataSet)Session["cashbank"];
+            DataView dvr = new DataView();
+
+            dvr = ds1.Tables[0].DefaultView;
+            dvr.RowFilter = ("grp1='D'");
+            DataTable dtr3 = HiddenSameDate(dvr.ToTable());
+            this.gvDepUnclr.DataSource = dtr3;
+            this.gvDepUnclr.DataBind();
+            this.FooterCalculation(dtr3, "gvcashbookDV");
+
+
+            Session["Report1"] = gvDepUnclr;
+            string type = "GRIDTOEXCEL";
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+        }
+
+        protected void hlbtnWidUnclr_Click(object sender, EventArgs e)
+        {
+            DataSet ds1 = (DataSet)Session["cashbank"];
+            DataView dvr = new DataView();
+
+            dvr = ds1.Tables[0].DefaultView;
+            dvr.RowFilter = ("grp1='E'");
+            DataTable dtr4 = HiddenSameDate(dvr.ToTable());
+            this.gvWidUnclr.DataSource = dtr4;
+            this.gvWidUnclr.DataBind();
+            this.FooterCalculation(dtr4, "gvcashbookPV");
+
+            Session["Report1"] = gvWidUnclr;
+            string type = "GRIDTOEXCEL";
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+        }
+
+        protected void hlbtnDetailsCash_Click(object sender, EventArgs e)
+        {
+            DataSet ds1 = (DataSet)Session["cashbank"];
+
+            this.gvcashbookDB.DataSource = ds1.Tables[1];
+            this.gvcashbookDB.DataBind();
+            this.FooterCalculation(ds1.Tables[1], "gvcashbookDB");
+
+            Session["Report1"] = gvcashbookDB;
+            string type = "GRIDTOEXCEL";
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "SetTarget('" + type + "');", true);
+        }
 
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
