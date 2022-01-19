@@ -124,7 +124,9 @@
             });
         }
 
-
+        function SetTarget(type) {
+            window.open('../RptViewer.aspx?PrintOpt=' + type, '_blank');
+        }
 
     </script>
 
@@ -236,18 +238,17 @@
 
                 </asp:Panel>
             </div>
-            <div class="row">
-                <fieldset class="scheduler-border fieldset_A">
-                    <div class="form-horizontal">
-                        <div class="row" runat="server" id="divReceiptCash">
-                            <asp:Label ID="lblReceiptCash" runat="server" Font-Bold="True" Font-Size="16px" Text="Deposit" Width="162px" Visible="False"></asp:Label>
-                            <asp:HyperLink ID="hltbnReceiptCash" runat="server" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                            </asp:HyperLink>
-                        </div>
 
-                    </div>
-                </fieldset>
+
+            <div class="row" style="width: 669px;">
+                <asp:Label ID="lblReceiptCash" runat="server" Font-Bold="True" Font-Size="16px" Text="Deposit" Visible="False"></asp:Label>
+                <asp:LinkButton ID="hltbnReceiptCash" runat="server" OnClick="hltbnReceiptCash_Click" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel" Visible="False"><i  class=" fa fa-file-excel "></i>
+                </asp:LinkButton>
+
             </div>
+
+
+
             <div class="row table-responsive">
                 <asp:GridView ID="gvcashbook" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                     Width="931px" CssClass="table-striped table-hover table-bordered grvContentarea">
@@ -370,10 +371,11 @@
                 </asp:GridView>
             </div>
 
-            <div class="row" runat="server" id="divPaymentCash">
+            <div class="row" style="width: 669px;">
                 <asp:Label ID="lblPaymentCash" runat="server" Font-Bold="True" Font-Size="16px" Text="Withdraw" Visible="False"></asp:Label>
-                <asp:HyperLink ID="hlbtnPaymentCash" runat="server" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                </asp:HyperLink>
+                <asp:LinkButton ID="hlbtnPaymentCash" runat="server" OnClick="hlbtnPaymentCash_Click" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel" Visible="False"><i  class=" fa fa-file-excel "></i>
+                </asp:LinkButton>
+
             </div>
 
             <div class="row table-responsive">
@@ -507,10 +509,12 @@
                 </asp:GridView>
             </div>
 
-            <div class="row" runat="server" id="divDepUnclr">
+            <div class="row" style="width: 669px;">
                 <asp:Label ID="lblDepUnclr" runat="server" Font-Bold="True" Font-Size="16px" Text="Deposit Uncleared" Visible="False"></asp:Label>
-                <asp:HyperLink ID="hlbtnDepUnclr" runat="server" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                </asp:HyperLink>
+                <asp:LinkButton ID="hlbtnDepUnclr" runat="server" OnClick="hlbtnDepUnclr_Click" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel" Visible="False"><i  class=" fa fa-file-excel "></i>
+                </asp:LinkButton>
+
+            </div>
             </div>
 
             <div class="row table-responsive">
@@ -635,10 +639,10 @@
             </div>
 
 
-            <div class="row" runat="server" id="divWidUnclr" style="width:669px;">
+            <div class="row" style="width: 669px;">
                 <asp:Label ID="lblWidUnclr" runat="server" Font-Bold="True" Font-Size="16px" Text="Withdraw Uncleared" Visible="False"></asp:Label>
-                <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                </asp:HyperLink>
+                <asp:LinkButton ID="hlbtnWidUnclr" runat="server" OnClick="hlbtnWidUnclr_Click" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel" Visible="False"><i  class=" fa fa-file-excel "></i>
+                </asp:LinkButton>
             </div>
 
             <div class="row table-responsive">
@@ -766,12 +770,12 @@
                 </asp:GridView>
             </div>
 
-            <div class="row" runat="server" id="divDetailsCash" style="width:669px;">
-                 <asp:Label ID="lblDetailsCash" runat="server" Font-Bold="True" Font-Size="16px" Text="Details of Cash &amp; Bank Balance" Height="16px" Visible="False"></asp:Label>
-                <asp:HyperLink ID="hlbtnDetailsCash" runat="server" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
-                </asp:HyperLink>
+            <div class="row" style="width: 669px;">
+                <asp:Label ID="lblDetailsCash" runat="server" Font-Bold="True" Font-Size="16px" Text="Details of Cash &amp; Bank Balance" Height="16px" Visible="False"></asp:Label>
+                <asp:LinkButton ID="hlbtnDetailsCash" runat="server" OnClick="hlbtnDetailsCash_Click" CssClass="btn  btn-success btn-sm" ToolTip="Export Excel" Visible="False"><i  class=" fa fa-file-excel "></i>
+                </asp:LinkButton>
             </div>
-            
+
             <div class="row table-responsive">
                 <asp:GridView ID="gvcashbookDB" runat="server" AutoGenerateColumns="False"
                     ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
