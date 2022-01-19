@@ -122,8 +122,23 @@
                         </div>
 
                     </div>
-                    <div class="row">
+                    <div class=" clearfix"><br /></div>
 
+                    <div class="row">
+                        <div class="col-md-3">
+
+
+                            <div class="form-group">
+                                <label for="txtNote">Reason</label>
+                             <asp:DropDownList ID="ddlReson" CssClass="form-control" runat="server">
+                                 <asp:ListItem Value="F.V">Factory Visit (FV)</asp:ListItem>
+                                 <asp:ListItem Value="P.V">Project Visit (PV)</asp:ListItem>
+                                 <asp:ListItem Value="C.M">Client Metting (CM)</asp:ListItem>
+                                 <asp:ListItem Value="O.W">Office Work (OW)</asp:ListItem>
+                                 <asp:ListItem Value="O">Other (O)</asp:ListItem>
+                             </asp:DropDownList>
+                        </div>
+                            </div>
                         <div class="col-md-12">
 
 
@@ -133,7 +148,7 @@
 
                             </div>
                             <div class="form-group">
-                                <asp:Button ID="btnSaveAttn" runat="server" OnClick="btnSaveAttn_Click" Text="Save" CssClass="btn btn-sm btn-success float-right" />
+                                <asp:Button ID="btnSaveAttn" runat="server" OnClick="btnSaveAttn_Click" Text="Punch In" CssClass="btn btn-sm btn-success float-right" />
                             </div>
 
                         </div>

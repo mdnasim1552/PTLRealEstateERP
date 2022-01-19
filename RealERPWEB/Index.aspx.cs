@@ -821,7 +821,11 @@ namespace RealERPWEB
             {
                 this.showDataMonthly(ddlmonths);
             }
+<<<<<<< HEAD
             
+=======
+            //ShowAttHistoryGraph();
+>>>>>>> 7f8dd1c1ab52ddb5610b764dae4fee449ae13bd0
         }
 
         //////////////////////////////// For Group Users
@@ -935,7 +939,31 @@ namespace RealERPWEB
 
         }
 
+<<<<<<< HEAD
   
+=======
+        //private void ShowAttHistoryGraph()
+        //{
+        //    DataTable dt4 = (DataTable)ViewState["tblAttHistGraph"];
+
+
+        //    double present = Convert.ToDouble(dt4.Rows[0]["perpontow"].ToString());
+        //    double late = Convert.ToDouble(dt4.Rows[0]["perlate"].ToString());
+        //    //  double eleave = Convert.ToDouble(dt4.Rows[0]["earlyLev"].ToString());
+        //    double onlaeve = Convert.ToDouble(dt4.Rows[0]["perleave"].ToString());
+        //    double absent = Convert.ToDouble(dt4.Rows[0]["perab"].ToString());
+
+        //    this.lblpresent.Text = present.ToString("#,##0.00;(#,##0.00);");
+        //    this.lbllate.Text = late.ToString("#,##0.00;(#,##0.00);");
+        //    //  this.lbleleave.Text = eleave.ToString("#,##0.00;(#,##0.00);");
+        //    this.lblonleave.Text = onlaeve.ToString("#,##0.00;(#,##0.00);");
+        //    this.lblabs.Text = absent.ToString("#,##0.00;(#,##0.00);");
+
+
+
+
+        //}
+>>>>>>> 7f8dd1c1ab52ddb5610b764dae4fee449ae13bd0
 
         [WebMethod]
         public static string GetTopData()

@@ -296,7 +296,11 @@ namespace RealERPWEB
 
             string usrid = hst["usrid"].ToString();
             // string usrperm = "1";
+<<<<<<< HEAD
             if(comcod=="3365" || comcod == "3347")
+=======
+            if (comcod == "3365" || comcod == "3347")
+>>>>>>> 7f8dd1c1ab52ddb5610b764dae4fee449ae13bd0
             {
                 this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
 
@@ -305,7 +309,11 @@ namespace RealERPWEB
             {
                 this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
             }
+<<<<<<< HEAD
            // this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+=======
+          //  this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+>>>>>>> 7f8dd1c1ab52ddb5610b764dae4fee449ae13bd0
             //this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
 
             this.CompanyHome();
