@@ -4,6 +4,7 @@
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
 
     <style>
         .tblh {
@@ -155,7 +156,7 @@
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
-
+    
     <script type="text/javascript">
 
 
@@ -167,7 +168,7 @@
 
 
             document.getElementById('<%= lnkbtnOk.ClientID %>').click();
-            ExcuteEmpStatus();
+            
 
 
         });
@@ -193,7 +194,7 @@
 
         };
 
-        function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm) {
+        function ExecuteGraph(data, data1, data2, data3, data4, gtype, crm, hrm) {
             gtype = (gtype == "" ? "column" : gtype);
             // ExcuteEmpStatus();
             var saldata = JSON.parse(data);
@@ -201,6 +202,7 @@
             var accdata = JSON.parse(data2);
             var consdata = JSON.parse(data3);
             var sucondata = JSON.parse(data4);
+            var hrmData = JSON.parse(hrm);
 
             var cmrData = JSON.parse(crm);
 
@@ -807,6 +809,54 @@
 
             });
 
+            var chartHrmData = Highcharts.chart('piechartEMPStatus', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'//gtype
+                },
+                title: {
+                    text: 'Today Attendance'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y}</b>'
+                },
+
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y}'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Today Attendance Status',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Present',
+                        y: hrmData[0].ttlprsnt,
+                        sliced: true,
+                        selected: true
+                    }, {
+                        name: 'Absent',
+                        y: hrmData[0].ttlabs,
+                    }, {
+                        name: 'Leave',
+                        y: hrmData[0].ttlleave,
+                    }, {
+                        name: 'Late',
+                        y: hrmData[0].ttllate,
+                    }, {
+                        name: 'Early Leave',
+                        y: hrmData[0].ttlearlv,
+                    }]
+                }]
+
+            });
             let w = $(".graph-main").width();
             let h = 325;
             chartsal.setSize(w, h);
@@ -815,6 +865,7 @@
             chartcons.setSize(w, h);
             chartsubcon.setSize(w, h);
             chartcmrData.setSize(w, h);
+            chartHrmData.setSize(w, h);
 
 
             const elem = $(".graph-main")[0];
@@ -826,6 +877,7 @@
                 chartcons.setSize(w, h);
                 chartsubcon.setSize(w, h);
                 chartcmrData.setSize(520, h);
+                chartHrmData.setSize(400, h);
 
                 w = $(".graph-main").width();
             });
@@ -886,7 +938,7 @@
         };
 
 
-        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype, crm) {
+        function ExecuteMotnhsGraph(data, purdata, dataacc, datacons, datasubcons, gtype, crm,hrm) {
             var today = new Date(),
                 day = 1000 * 60 * 60 * 24;
             //console.log(day);
@@ -905,6 +957,7 @@
             var datacons = JSON.parse(datacons);
             var datasubcons = JSON.parse(datasubcons);
             var cmrData = JSON.parse(crm);
+            var hrmData = JSON.parse(hrm);
 
             var total = 0;
             //for (var i = 0; i < sdata1.length; i++) {
@@ -1385,6 +1438,56 @@
 
             });
 
+            var chartHrmData = Highcharts.chart('piechartEMPStatus', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'//gtype
+                },
+                title: {
+                    text: 'Today Attendance'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y}</b>'
+                },
+               
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.y}'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Today Attendance Status',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Present',
+                        y: hrmData[0].ttlprsnt,
+                        sliced: true,
+                        selected: true
+                    }, {
+                            name: 'Absent',
+                            y: hrmData[0].ttlabs,
+                    }, {
+                            name: 'Leave',
+                            y: hrmData[0].ttlleave,
+                    }, {
+                            name: 'Late',
+                            y: hrmData[0].ttllate,
+                    }, {
+                            name: 'Early Leave',
+                            y: hrmData[0].ttlearlv,
+                    }]
+                }]
+
+            });
+
+
 
             let w = $(".graph-main").width();
             let h = 325;
@@ -1394,6 +1497,7 @@
             Monthlyconschart.setSize(w, h);
             Monthlysubconchart.setSize(w, h);
             chartcmrData.setSize(w, h);
+            chartHrmData.setSize(w, h);
             const elem = $(".graph-main")[0];
 
             let resizeObserver = new ResizeObserver(function () {
@@ -1403,6 +1507,7 @@
                 Monthlyconschart.setSize(w, h);
                 Monthlysubconchart.setSize(w, h);
                 chartcmrData.setSize(500, h);
+                chartHrmData.setSize(400, h);
 
                 w = $(".graph-main").width();
             });
@@ -1411,7 +1516,7 @@
 
 
         };
-         
+
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
@@ -1958,42 +2063,8 @@
             resizeObserver.observe(elem);
 
         };
-        function ExcuteEmpStatus() {
 
-            var present = this.parseFloat($("#<%=this.lblpresent.ClientID %>").val());
-             var late = this.parseFloat($("#<%=this.lbllate.ClientID %>").val());
-
-            var onleave = this.parseFloat($("#<%=this.lblonleave.ClientID %>").val());
-             var abs = this.parseFloat($("#<%=this.lblabs.ClientID %>").val());
-
-
-
-             google.charts.load('current', { 'packages': ['corechart'] });
-             google.charts.setOnLoadCallback(drawChart);
-
-             function drawChart() {
-
-                 var data = google.visualization.arrayToDataTable([
-                     ['Task', 'Attendance status'],
-
-                     ['Present', present],
-                     ['Absent', abs],
-                     ['Late', late],
-                     ['On leave', onleave],
-
-
-                 ]);
-
-                 var options = {
-                     title: 'Attendance status',
-                     is3D: true,
-                 };
-
-                 var chart = new google.visualization.PieChart(document.getElementById('piechartEMPStatus'));
-
-                 chart.draw(data, options);
-             }
-         }
+      
     </script>
 
 
@@ -2142,14 +2213,14 @@
 
                                                     </asp:DropDownList>
                                                     <asp:DropDownList ID="ddlMonths" runat="server" OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
-                                                        <asp:ListItem Value="00">All Months</asp:ListItem>
+                                                        <asp:ListItem Value="00" Selected>All Months</asp:ListItem>
                                                         <asp:ListItem Value="Jan">Jan</asp:ListItem>
                                                         <asp:ListItem Value="Feb">Feb</asp:ListItem>
                                                         <asp:ListItem Value="Mar">Mar</asp:ListItem>
                                                         <asp:ListItem Value="Apr">Apr</asp:ListItem>
                                                         <asp:ListItem Value="May">May</asp:ListItem>
                                                         <asp:ListItem Value="Jun">Jun</asp:ListItem>
-                                                        <asp:ListItem Value="Jul" Selected>Jul</asp:ListItem>
+                                                        <asp:ListItem Value="Jul" >Jul</asp:ListItem>
                                                         <asp:ListItem Value="Aug">Aug</asp:ListItem>
                                                         <asp:ListItem Value="Sep">Sep</asp:ListItem>
                                                         <asp:ListItem Value="Oct">Oct</asp:ListItem>
@@ -2370,16 +2441,18 @@
 
 
                                             <div class="tab-pane fade show" id="tab_1236" runat="server">
-
-                                                <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
-                                                <div class="d-none">
-                                                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-                                                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
-
-                                                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
-                                                    <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox>
-
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                                            <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                                             s
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4 col-lg-4">
+                                                            s 
+                                                    </div>
                                                 </div>
+                                              
                                             </div>
 
                                             <div class="tab-pane fade show graph-main" id="tab_1343" runat="server">
@@ -2691,18 +2764,6 @@
                             </div>
                             <div class="col-md-6 col-lg-6">
                                 <div class="card card-fluid p-2 grpattn">
-
-                                    <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
-                                    <div class="d-none">
-
-
-                                        <asp:TextBox ID="lblpresent" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lbllate" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lbleleave" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lblonleave" runat="server"></asp:TextBox>
-                                        <asp:TextBox ID="lblabs" runat="server"></asp:TextBox>
-
-                                    </div>
                                 </div>
 
                             </div>

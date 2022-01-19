@@ -1929,7 +1929,7 @@
                         </div>
                         <div class="col-3" runat="server" id="divexland">
                             <div class="form-group">
-                                <asp:Label runat="server" ID="lbllandname" Font-Size="12px" class="form-control margin-top30px" Visible="false"></asp:Label>
+                                <asp:Label runat="server" ID="lbllandname" Font-Size="16px" class="form-control bg-danger font-weight-bold text-white margin-top30px" Visible="false"></asp:Label>
                             </div>
                         </div>
 
@@ -2868,7 +2868,7 @@
 
                                                             </asp:Label>
 
-                                                            <asp:LinkButton ID="lbtnView" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lbtnView" Visible="false" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
 
                                                             <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
 
