@@ -174,8 +174,8 @@ namespace RealERPWEB.F_22_Sal
 
             DataTable dt2 = (DataTable)Session["tblshusel"];
             DataTable dt3 = ((DataTable)Session["tblactive"]).Copy();
-            DataTable dt4 = (DataTable)Session["tblact01"];
-            DataTable dt5 = (DataTable)Session["tblintcol"];
+           DataTable dt4 = (DataTable)Session["tblact01"];
+          // DataTable dt5 = (DataTable)Session["tblintcol"];
             DataTable dt6 = (DataTable)Session["tblintcol01"];
 
 
@@ -271,15 +271,18 @@ namespace RealERPWEB.F_22_Sal
         private void ShowData()
         {
             string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
             string usircode = this.lblCode.Text;
             string pactcode = this.ddlProjectName.SelectedValue.ToString();
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "SHOWDUMMYSCHDULE02", pactcode, usircode, "", "", "", "", "", "", "");
+            string usrid = hst["usrid"].ToString();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "SHOWDUMMYSCHDULEUSERWISE", pactcode, usircode, usrid, date, "", "", "", "", "");
             if (ds1 == null)
             {
                 return;
             }
             var lst1 = ds1.Tables[0].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>();
-            var lst2 = ds1.Tables[7].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>();
+            var lst2 = ds1.Tables[6].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassDumPaSchdule>();
             var lst = lst1.Count == 0 ? lst2 : lst1;
             Session["tbldschamt"] = lst;
             Session["tblacamt"] = ds1.Tables[1].DataTableToList<RealEntity.C_22_Sal.EClassSales_02.EClassAcPaSchdule>();
@@ -287,8 +290,8 @@ namespace RealERPWEB.F_22_Sal
             Session["tblshusel"] = ds1.Tables[2];
             Session["tblactive"] = ds1.Tables[3];
             Session["tblact01"] = ds1.Tables[4];
-            Session["tblintcol"] = ds1.Tables[5];
-            Session["tblintcol01"] = ds1.Tables[6];
+           // Session["tblintcol"] = ds1.Tables[5];
+            Session["tblintcol01"] = ds1.Tables[5];
 
             if (lst1.Count > 0)
             {
@@ -329,13 +332,13 @@ namespace RealERPWEB.F_22_Sal
             this.txtdiscount.Text = (ds1.Tables[4].Rows.Count == 0) ? "" : Convert.ToDouble(ds1.Tables[4].Rows[0]["disrate"]).ToString("#,##0.00;(#,##0.00); ");
             this.txtParking.Text = (ds1.Tables[4].Rows.Count == 0) ? "" : Convert.ToDouble(ds1.Tables[4].Rows[0]["parking"]).ToString("#,##0;(#,##0); ");
 
-            DataTable dt = ds1.Tables[5];
-            this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Select("code='001'")[0]["charge"]).ToString("#,##0.00;(#,##0.00); ");
-            this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Select("code='002'")[0]["charge"]).ToString("#,##0.00;(#,##0.00); ");
-            Session["tblinterest"] = this.HiddenSameData(ds1.Tables[6]);
-            this.gvInterest.DataSource = ds1.Tables[6];
+            DataTable dt = ds1.Tables[4];
+            this.txtentryben.Text = (dt.Rows.Count == 0) ? "" : Convert.ToDouble(dt.Rows[0]["earlyben"]).ToString("#,##0.00;(#,##0.00); ");
+            this.txtdelaychrg.Text = (dt.Rows.Count < 1) ? "" : Convert.ToDouble(dt.Rows[0]["delaychrge"]).ToString("#,##0.00;(#,##0.00); ");
+            Session["tblinterest"] = this.HiddenSameData(ds1.Tables[5]);
+            this.gvInterest.DataSource = ds1.Tables[5];
             this.gvInterest.DataBind();
-            this.FooterCal(ds1.Tables[6]);
+            this.FooterCal(ds1.Tables[5]);
         }
 
 
@@ -717,17 +720,23 @@ namespace RealERPWEB.F_22_Sal
             {
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
+
                 string usircode = this.lblCode.Text.Trim();
+              
 
                 //Log Data
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = this.GetCompCode();
                 string usrid = hst["usrid"].ToString();
+                string Postusrid = hst["usrid"].ToString();
                 string trmnid = hst["compname"].ToString();
                 string session = hst["session"].ToString();
-                string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+                string PostedDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 string entryben = Convert.ToDouble("0" + this.txtentryben.Text.Trim()).ToString();
                 string delaychrg = Convert.ToDouble("0" + this.txtdelaychrg.Text.Trim()).ToString();
+
+                string discount = Convert.ToDouble("0" + this.txtdiscount.Text).ToString() ;
+                string Parking = Convert.ToDouble("0" + this.txtParking.Text).ToString();
 
 
                 DataSet ds1 = new DataSet("ds1");
@@ -744,21 +753,21 @@ namespace RealERPWEB.F_22_Sal
                 dt2.Columns.Add("schdate", typeof(DateTime));
 
 
-                DataTable dt3 = new DataTable();
-                dt3.Columns.Add("postedbyid", typeof(string));
-                dt3.Columns.Add("postseson", typeof(string));
-                dt3.Columns.Add("posttrmnid", typeof(string));
-                dt3.Columns.Add("posteddate", typeof(DateTime));
+                //DataTable dt3 = new DataTable();
+                //dt3.Columns.Add("postedbyid", typeof(string));
+                //dt3.Columns.Add("postseson", typeof(string));
+                //dt3.Columns.Add("posttrmnid", typeof(string));
+                //dt3.Columns.Add("posteddate", typeof(DateTime));
 
 
-                DataTable dt4 = new DataTable();
-                dt4.Columns.Add("disrate", typeof(double));
-                dt4.Columns.Add("parking", typeof(double));
+                //DataTable dt4 = new DataTable();
+                //dt4.Columns.Add("disrate", typeof(double));
+                //dt4.Columns.Add("parking", typeof(double));
 
 
-                DataTable dt5 = new DataTable();
-                dt5.Columns.Add("code", typeof(string));
-                dt5.Columns.Add("charge", typeof(double));
+                //DataTable dt5 = new DataTable();
+                //dt5.Columns.Add("code", typeof(string));
+                //dt5.Columns.Add("charge", typeof(double));
 
 
 
@@ -773,49 +782,47 @@ namespace RealERPWEB.F_22_Sal
                 dt1 = ASITUtility03.ListToDataTable(lstd);
                 dt2 = ASITUtility03.ListToDataTable(lsta);
 
-                DataRow dr1 = dt3.NewRow();
-                dr1["postedbyid"] = usrid;
-                dr1["postseson"] = session;
-                dr1["posttrmnid"] = trmnid;
-                dr1["posteddate"] = Date;
-                dt3.Rows.Add(dr1);
-                dt3.TableName = "tbl3";
+                //DataRow dr1 = dt3.NewRow();
+                //dr1["postedbyid"] = usrid;
+                //dr1["postseson"] = session;
+                //dr1["posttrmnid"] = trmnid;
+                //dr1["posteddate"] = Date;
+                //dt3.Rows.Add(dr1);
+                //dt3.TableName = "tbl3";
 
-                DataRow dr2 = dt4.NewRow();
-                dr2["disrate"] = Convert.ToDouble("0" + this.txtdiscount.Text);
-                dr2["parking"] = Convert.ToDouble("0" + this.txtParking.Text);
-                dt4.Rows.Add(dr2);
-                dt4.TableName = "tbl4";
+                //DataRow dr2 = dt4.NewRow();
+                //dr2["disrate"] = Convert.ToDouble("0" + this.txtdiscount.Text);
+                //dr2["parking"] = Convert.ToDouble("0" + this.txtParking.Text);
+                //dt4.Rows.Add(dr2);
+                //dt4.TableName = "tbl4";
 
 
 
-                DataRow drd;
-                drd = dt5.NewRow();
-                drd["code"] = "001";
-                drd["charge"] = entryben;
-                dt5.Rows.Add(drd);
-                drd = dt5.NewRow();
-                drd["code"] = "002";
-                drd["charge"] = delaychrg;
-                dt5.Rows.Add(drd);
+                //DataRow drd;
+                //drd = dt5.NewRow();
+                //drd["code"] = "001";
+                //drd["charge"] = entryben;
+                //dt5.Rows.Add(drd);
+                //drd = dt5.NewRow();
+                //drd["code"] = "002";
+                //drd["charge"] = delaychrg;
+                //dt5.Rows.Add(drd);
 
 
 
 
                 ds1.Merge(dt1);
                 ds1.Merge(dt2);
-                ds1.Merge(dt3);
-                ds1.Merge(dt3);
-                ds1.Merge(dt4);
-                ds1.Merge(dt5);
+                //ds1.Merge(dt3);
+                //ds1.Merge(dt3);
+                //ds1.Merge(dt4);
+                //ds1.Merge(dt5);
                 ds1.Tables[0].TableName = "tbl1";
                 ds1.Tables[1].TableName = "tbl2";
-                ds1.Tables[2].TableName = "tbl3";
-                ds1.Tables[3].TableName = "tbl4";
-                ds1.Tables[4].TableName = "tbl5";
 
-
-                bool resulta = MktData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "UPDATEDUMMYPAYMENT", ds1, null, null, pactcode, usircode);
+                //string xml = ds1.GetXml();
+                //return;
+                bool resulta = MktData.UpdateXmlTransInfo(comcod, "SP_ENTRY_DUMMYSALSMGT", "UPDATEDUMMYPAYMENTUSERWISE", ds1, null, null, pactcode, usircode,usrid, discount, Parking, entryben, delaychrg, Postusrid, trmnid, session, PostedDate);
 
                 if (!resulta)
                 {
