@@ -198,6 +198,7 @@ namespace RealERPWEB.F_17_Acc
                 // case "3101": // Test
                 case "3332":
                 case "3339":
+                case "3356": // intech 
                     this.chkpost.Checked = true;
                     break;
 
