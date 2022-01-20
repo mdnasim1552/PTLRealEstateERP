@@ -1197,7 +1197,7 @@ namespace RealERPWEB.F_17_Acc
                     {
                         case "3101":
                         case "3356": // intech
-                            this.CollectionUpdateSMS(pactcode, usircode);
+                            //this.CollectionUpdateSMS(pactcode, usircode);
                             break;
 
                         default:
