@@ -173,7 +173,6 @@
 
         });
 
-
         function createItem(selyear) {
             localStorage.setItem("year", selyear);
         }
@@ -865,6 +864,70 @@
 
             ///Khalil 
 
+            /// Start Lead Info Emplyee wise 
+
+            var sumleademp = 0;
+            var allleademp = [];
+            for (var i = 0; i < emplead.length; i++) {
+                allleademp.push({ "name": emplead[i].usrname, "y": parseFloat(emplead[i].total) })
+                sumleademp += parseFloat(emplead[i].total);
+
+            }
+            //console.log(allempdata);
+
+            var empwiselead = Highcharts.chart('leadempwise', {
+                chart: {
+                    type: gtype
+                },
+                title: {
+                    text: 'Employee Wise Lead, Total:-  ' + sumleademp
+                },
+                subtitle: {
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Lead'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+                },
+
+                series: [
+                    {
+                        name: "Total Lead",
+                        colorByPoint: true,
+                        data: allleademp
+                    }
+                ]
+
+            });
+
+            //End Lead Info Emloyee wise
+
 
             /// Department wise employee
             var sumdeptemp = 0;
@@ -954,11 +1017,11 @@
                     text: ''
                 },
                 subtitle: {
-                    text: 'Last 07 Days',
-                    style: {
-                        color: '#44994a',
-                        fontWeight: 'bold'
-                    }
+                    text: 'Last 07 Days ',
+                    //style: {
+                    //    color: '#44994a',
+                    //    fontWeight: 'bold'
+                    //}
                 },
                 xAxis: {
                     categories:
@@ -1023,13 +1086,6 @@
 
             ///End Last seven days 
 
-
-
-
-
-
-
-
             ///End Khalil
 
 
@@ -1045,8 +1101,10 @@
 
             chartcmrData.setSize(500, 325);
             chartHrmData.setSize(400, 325);
-            deptemp.setSize(500, 325);
-            levAtt7days.setSize(400, 325);
+
+            /* empwiselead.setSize(500, 325);*/
+     /*       deptemp.setSize(500, 325);*/
+            //levAtt7days.setSize(400, 325);
 
 
             const elem = $(".graph-main")[0];
@@ -1059,8 +1117,10 @@
                 chartsubcon.setSize(w, h);
                 chartcmrData.setSize(500, 325);
                 chartHrmData.setSize(400, 325);
-                deptemp.setSize(500, 325);
-                levAtt7days.setSize(400, 325);
+
+                /* empwiselead.setSize(500, 325);*/
+            /*    deptemp.setSize(500, 325);*/
+                //levAtt7days.setSize(400, 325);
 
                 w = $(".graph-main").width();
             });
@@ -1143,7 +1203,7 @@
 
 
             var leadlist = JSON.parse(leadname);
-            var emplead = JSON.parse(emplead);
+            var empleadmon = JSON.parse(emplead);
 
 
             var hrmData = JSON.parse(hrm);
@@ -1156,9 +1216,9 @@
             //    total += sdata1[i].ttlsalamtcore;
             //}
 
-            console.log(total);
-            console.log(gtype);
-            console.log("Nahid");
+            //console.log(total);
+            //console.log(gtype);
+            //console.log("Nahid");
             //sales
             var monthseries = [];
             var monsaleamt = [];
@@ -1680,6 +1740,69 @@
 
 
             ///Khalil 
+            /// Start Lead Info Emplyee wise 
+
+            var sumleadempmonth = 0;
+            var allleadempmonth = [];
+            for (var i = 0; i < empleadmon.length; i++) {
+                allleadempmonth.push({ "name": empleadmon[i].usrname, "y": parseFloat(empleadmon[i].total) })
+                sumleadempmonth += parseFloat(empleadmon[i].total);
+
+            }
+            //console.log(allempdata);
+
+            var empwiselead = Highcharts.chart('leadempwise', {
+                chart: {
+                    type: gtype
+                },
+                title: {
+                    text: 'Employee Wise Lead, Total:-  ' + sumleadempmonth
+                },
+                subtitle: {
+                    text: ''
+                },
+                accessibility: {
+                    announceNewData: {
+                        enabled: true
+                    }
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total Lead'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y}'
+                        }
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>'
+                },
+
+                series: [
+                    {
+                        name: "Total Lead",
+                        colorByPoint: true,
+                        data: allleadempmonth
+                    }
+                ]
+
+            });
+
+            //End Lead Info Emloyee wise
 
 
             /// Department wise employee
@@ -1759,7 +1882,7 @@
                 dayleav.push(item.onleave);
                 total = item.staff;
             });
-            var MonthlySalesline = Highcharts.chart('lst7daysatt', {
+            var lst7leavatt = Highcharts.chart('lst7daysatt', {
 
                 //   $('#MonthlySales').highcharts({
                 chart: {
@@ -1771,10 +1894,10 @@
                 },
                 subtitle: {
                     text: 'Last 07 Days',
-                    style: {
-                        color: '#44994a',
-                        fontWeight: 'bold'
-                    }
+                    //style: {
+                    //    color: '#44994a',
+                    //    fontWeight: 'bold'
+                    //}
                 },
                 xAxis: {
                     categories:
@@ -1840,17 +1963,11 @@
             ///End Last seven days 
 
 
-
-
-
-
-
-
             ///End Khalil
 
 
 
-          
+            /// this part for Width set part 
 
             let w = $(".graph-main").width();
             let h = 325;
@@ -1859,11 +1976,11 @@
             MonthlyAccounts.setSize(w, h);
             Monthlyconschart.setSize(w, h);
             Monthlysubconchart.setSize(w, h);
-
+/*            deptemp.setSize(w, h);*/
             //chartcmrData.setSize(500, 325);
             //chartHrmData.setSize(400, 325);
-            //deptemp.setSize(500, 325);
-            //levAtt7days.setSize(400, 325);
+
+            //lst7leavatt.setSize(400, 325);
 
             const elem = $(".graph-main")[0];
 
@@ -1877,7 +1994,7 @@
                 //chartcmrData.setSize(500, 325);
                 //chartHrmData.setSize(400, 325);
                 //deptemp.setSize(500, 325);
-                //levAtt7days.setSize(200, 325);
+                //lst7leavatt.setSize(200, 325);
 
 
 
@@ -2822,7 +2939,7 @@
 
                                                     </div>
                                                     <div class="col-md-4 col-sm-12 col-lg-4">
-                                                        <div id="lst7daysatt" style="width: 400px; height: 250px;"></div>
+                                                        <div id="lst7daysatt" style="width: 100%; height: 250px;"></div>
 
                                                     </div>
                                                 </div>
@@ -2853,14 +2970,29 @@
                                                     </h5>
 
                                                 </div>
+                                                <asp:Panel ID="Panel9" runat="server">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
+                                                            <div id="crmChart" style="height: 280px;"></div>
+
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
+                                                            <div id="leadempwise" style="height: 280px;"></div>
+
+                                                        </div>
+                                                    </div>
 
 
-                                                <asp:Panel ID="Panel9" runat="server" Width="500" Style="margin: 0 auto;">
-                                                    <div id="crmChart" style="height: 280px; width: 450px; margin: 0 auto"></div>
+
+
                                                 </asp:Panel>
 
                                                 <asp:Panel ID="Panel10" runat="server">
-                                                    <div id="crmChartMonthly" style="height: 280px; margin: 0 auto"></div>
+                                                   
+                                                        
+                                                            <div id="crmChartMonthly" style="height: 280px; margin: 0 auto"></div>
+                                                       
+                                                    
                                                 </asp:Panel>
 
 
