@@ -1202,7 +1202,7 @@ namespace RealERPWEB.F_23_CR
                     case "3356": //Intech
                         
 
-                        this.SMSSendMoneyRecipt(comcod, PactCode, usercode,  mrno,  mrdate);
+                        //this.SMSSendMoneyRecipt(comcod, PactCode, usercode,  mrno,  mrdate);
                         break;
 
 
