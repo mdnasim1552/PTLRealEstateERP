@@ -46,19 +46,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
@@ -88,13 +88,13 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -107,25 +107,29 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\EnvDTE80.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Interop.Microsoft.Office.Interop.Access">
+      <HintPath>..\..\..\_bin\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Backup\Real Estate Bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
+      <HintPath>..\..\..\_bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
@@ -139,7 +143,7 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.MSXML, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -167,10 +171,10 @@
       <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -264,7 +268,7 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />

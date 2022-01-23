@@ -308,10 +308,44 @@ namespace RealEntity
 
 
         }
-    
+
+        [Serializable]
+        public class userNotification
+        {
+            public int notifyid { get; set; }
+            public string meassage { get; set; }
+            public int userid { get; set; }
+           
+          
+            public string sendname { get; set; }
+            public string sendphoto { get; set; }
+            public string refid { get; set; }
+            public string notiytype { get; set; }
+            public string ntype { get; set; }
+            public userNotification()
+            {
+
+            }
+            public userNotification(int notifyid, string meassage, int userid,     string sendname, string sendphoto, string refid, string notiytype, string ntype)
+            {
+                this.notifyid = notifyid;
+                this.meassage = meassage;
+                this.userid = userid;
+              
+                 
+                this.sendname = sendname;
+                this.sendphoto = sendphoto;
+                this.refid = refid;
+                this.notiytype = notiytype;
+                this.ntype = ntype;
+
+            }
+        }
+
+
     }
 
-    
 
-       
+
+
 }
