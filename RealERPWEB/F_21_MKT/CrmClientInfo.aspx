@@ -1577,7 +1577,7 @@
 
                         case "810100101002": //New Followup
                             var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
-                            alert(data.gdesc1);
+                            //alert(data.gdesc1);
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length <= 7) {
 
@@ -1599,7 +1599,7 @@
                             }
                             else {
                                 var ar = new Array();
-                                alert(newfollowup);
+                               // alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);

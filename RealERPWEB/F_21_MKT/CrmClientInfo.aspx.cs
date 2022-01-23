@@ -3015,6 +3015,7 @@ namespace RealERPWEB.F_21_MKT
             //  string xml = ds.GetXml();
 
 
+
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat);
             if (result == true)
             {
@@ -3029,6 +3030,9 @@ namespace RealERPWEB.F_21_MKT
                 ViewState["existclientcode"] = null;
                 this.MultiView1.ActiveViewIndex = 1;
             }
+
+           
+
             else
             {
                 
@@ -3036,6 +3040,17 @@ namespace RealERPWEB.F_21_MKT
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
  
             }
+
+            //First Time Discussion
+            if (this.lbllandname.Visible == false)
+            {
+                this.GetFirstTimeDiscussion(clientid, empid);
+            
+            }
+
+            
+
+
 
 
 
@@ -4711,6 +4726,60 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void lbtnView_Click(object sender, EventArgs e)
         {
+
+        }
+        private void GetFirstTimeDiscussion(string proscod, string empid)
+        {
+            try
+            {
+
+
+
+                string comcod = this.GetComeCode();                    
+                string cdate = this.txttodate.Text.Trim();
+                DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+
+                this.rpclientinfo.DataSource = ds1.Tables[0];
+                this.rpclientinfo.DataBind();
+                this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
+                this.lblContactPerson.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["conperson"].ToString() : ds1.Tables[0].Rows[0]["conperson"].ToString();
+                this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
+                this.lblprosaddress.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["haddress"].ToString() : ds1.Tables[0].Rows[0]["haddress"].ToString();
+                this.lblnotes.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["virnotes"].ToString() : ds1.Tables[0].Rows[0]["virnotes"].ToString();
+                this.lblpreferloc.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["preferloc"].ToString() : ds1.Tables[0].Rows[0]["preferloc"].ToString();
+                this.lblaptsize.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["aptsize"].ToString() : ds1.Tables[0].Rows[0]["aptsize"].ToString();
+                this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                this.lbleditempid.Value = empid;
+                this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
+                this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+                ShowDiscussion();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+
+                //if (Convert.ToBoolean(events) == true)
+                //{
+                //    string eventtype = "Click Follow UP (Sales CRM) ";
+                //    string eventdesc = "Click Follow UP (Sales CRM) ";
+                //    string eventdesc2 = follclintidno;
+
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                //}
+
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+            }
 
         }
         protected void lnkEditfollowup_Click(object sender, EventArgs e)
