@@ -322,6 +322,35 @@
                         <!-- /.top-bar-item -->
                         <!-- .top-bar-item -->
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+                            <ul class="header-nav nav">
+                                <li class="nav-item dropdown header-nav-dropdown has-notified">
+                                    
+
+                                     <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-bell "></i>
+                                            <span class="label label-success" id="lblallpop" runat="server">0</span>
+                                        </a>
+                                    
+                                    <!-- .dropdown-menu -->
+                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
+                                        <h6 class="dropdown-header stop-propagation">
+                                            <span>Notification</span>
+                                            
+                                        </h6>
+                                        <!-- .dropdown-scroll -->
+                                        <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
+                                             </div>
+                                        <a href="app-messages.html" class="dropdown-footer">All Notification
+                     
+                                        <i class="fa fa-fw fa-long-arrow-alt-right"></i>
+                                        </a>
+                                    </div>
+                                    <!-- /.dropdown-menu -->
+                                </li>
+                            </ul>
+
+
+
 
                             <asp:DropDownList ID="DDPrintOpt" Width="80px" runat="server" CssClass="custom-select">
                                 <asp:ListItem Selected="True" Value="PDF">PDF</asp:ListItem>
@@ -469,7 +498,7 @@
                                     <ul class="menu" id="Module" runat="server"></ul>
 
                                 </li>
-                                 <!-- /.menu-item -->
+                                <!-- /.menu-item -->
                                 <!-- .menu-item -->
                                 <li class="menu-item has-child Interface" onclick="SetItemStorage('Interface')">
                                     <a href="javascript:void(0);" class="menu-link"><span class="menu-icon fa fa-list" title="Interfaces"></span><span class="menu-text">Interfaces</span></a>
@@ -483,8 +512,8 @@
 
 
                             <ul class="menu mt-0" id="lstFeturedMenu" runat="server">
-                                
-                               
+
+
 
 
                                 <li class="menu-item has-child">
@@ -674,20 +703,7 @@ Close</asp:LinkButton>
             //auto complete
 
 
-
-
-
-            $("input").not($(":submit, :button")).keypress(function (evt) {
-                evt.preventDefault();
-                if (evt.keyCode == 13) {
-                    var next = $('[tabindex="' + (this.tabIndex + 1) + '"]');
-                    if (next.length)
-                        next.focus()
-                    else
-                        $('[tabindex="1"]').focus();
-                }
-            });
-
+            GetNotifications();
 
 
         });
@@ -836,6 +852,58 @@ Close</asp:LinkButton>
             }
             toastr["error"](msg);
         };
+
+        function GetNotifications() {
+            try {
+                var userid = "3101015";<%-- <%=this.GetUserId()%>;--%>
+                 $.ajax({
+                     type: "POST",
+                     url: "../Service/UserService.asmx/GetNotAndMessage",
+                     data: '{userid:"' + userid + '"}',
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     success: function (response) {
+                         var data = response.d;
+                         var row = "";
+                         var img = "";
+                         var count = 0;
+                         var all = "";
+                         var imgstrng = "";
+                         var imgextract = "";
+                         $("#repNotificmsg").html("");
+                         $.each(data, function (k, v) {
+                             if (v.ntype == "") {
+                                 imgstrng = v.sendphoto;
+                                 imgextract = imgstrng.substring(2);
+                                 //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                                 row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                                     '<div class="user-avatar">' +
+                                     '<img src="' + imgextract + '" alt="">' +
+                                     '</div>' +
+                                     '<div class="dropdown-item-body">' +
+                                     '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                                     '</div>' +
+
+                                     '</a>';
+                                 count++;
+                             }
+                         });
+                         $("#repNotificmsg").append(row);
+                         
+                         $("#lblallpop").text(count);
+                         var counting = count == 0 ? 0 : count;
+
+                         
+                     },
+                     failure: function (response) {
+                         alert("f");
+                     }
+                 });
+             }
+             catch (e) {
+                 alert(e);
+             }
+         }
     </script>
 
 </body>

@@ -332,6 +332,18 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                          <asp:TemplateField HeaderText="Carry Foward">
+                                           
+                                                 <ItemTemplate>
+                                                    <asp:Label ID="lblOpnlv" runat="server" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "opnlv")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                        Width="60px"></asp:Label >
+                                                </ItemTemplate>
+                                                                                        
+                                            <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>
+
                                          <asp:TemplateField HeaderText="Leave Allocation">
                                            
                                                  <ItemTemplate>
