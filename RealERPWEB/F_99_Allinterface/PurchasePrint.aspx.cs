@@ -1146,7 +1146,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                     PrintReq = "PrintReque09";
                     break;
-
+                case "3101":
                 case "3325":
                 case "2325":
                     PrintReq = "PrintReque03";
@@ -1180,7 +1180,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //Adding End
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     PrintReq = "PrintReque08";
                     break;
@@ -1210,7 +1210,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.PrintRequisition01();
 
             }
-
+            // leisure
             else if (printcomreq == "PrintReque03")
             {
                 this.PrintRequisition03();
@@ -1676,8 +1676,8 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign2 = "Project Incharge";
             string txtSign3 = "DPM/PM/AGM/DGM";
             string txtSign4 = "Procurement";
-            string txtSign5 = "Cost & Budget";
-            string txtSign6 = "Head Of Construction";
+            string txtSign5 = "Head Of Construction";
+            string txtSign6 = "Cost & Budget";
             string txtSign7 = "DMD";
             string txtSign8 = "Chairman";
 
