@@ -14,6 +14,8 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_12_Inv
 {
     public partial class RptIndPrjAmtBasisRes : System.Web.UI.Page
@@ -30,6 +32,13 @@ namespace RealERPWEB.F_12_Inv
                 this.lbtnOk_Click(null, null);
 
             }
+        }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
         }
 
         private string GetCompCod()
@@ -131,6 +140,45 @@ namespace RealERPWEB.F_12_Inv
         {
             this.gvMatStock.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string projectName = this.ddlProjectName.SelectedItem.Text;
+            string frmdate = this.txtFDate.Text;
+            string todate = this.txttoDate.Text;
+
+            LocalReport Rpt1 = new LocalReport();
+
+                DataTable dt = (DataTable)Session["amtbasis"];
+                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenAmtBasisDetails", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Amount Basis Details"));
+
+            Rpt1.SetParameters(new ReportParameter("projectName", projectName));
+            Rpt1.SetParameters(new ReportParameter("comNam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("footer", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("todate", todate));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
         }
     }
 }
