@@ -345,6 +345,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "3101":
                 case "3365"://BTI
                     this.rbtSalSheet.SelectedIndex = 21;
+                    this.gvpayroll.Columns[17].HeaderText = "W.F Fund";
 
                     break;
 
@@ -686,6 +687,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt = HiddenSameData(ds3.Tables[0]);
             Session["tblpay"] = dt;
 
+            
+            
             this.LoadGrid();
 
         }
@@ -1155,6 +1158,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         this.gvpayroll.Columns[9].Visible = true;
                     }
 
+                   
+
                     if (Request.QueryString["Entry"].ToString() == "Payroll")
                     {
                         ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? false : true;
@@ -1239,6 +1244,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = gvpayroll;
                     ((HyperLink)this.gvpayroll.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
+                   
                     break;
 
                 case "Bonus":
