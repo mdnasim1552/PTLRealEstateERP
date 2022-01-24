@@ -11767,6 +11767,15 @@
     <Content Include="Report\RptPurchaseOrderBridgeWLogo.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderJBS.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
       <Name>RealEntity</Name>
@@ -11779,15 +11788,6 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Report\RptPurchaseOrderJBS.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
