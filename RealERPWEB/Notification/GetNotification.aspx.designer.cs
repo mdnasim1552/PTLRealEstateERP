@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace RealERPWEB.Message
+namespace RealERPWEB.Notification
 {
     public partial class GetNotification
     {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace RealERPWEB.Message
+namespace RealERPWEB.Notification
 {
     public partial class GetNotification : System.Web.UI.Page
     {

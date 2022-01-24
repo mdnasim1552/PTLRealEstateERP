@@ -3499,6 +3499,7 @@
     <Content Include="NewInterface\dashboard.html" />
     <Content Include="Notices\CreateNotice.aspx" />
     <Content Include="Notices\Notice.aspx" />
+    <Content Include="Notification\GetNotification.aspx" />
     <Content Include="p1.PNG" />
     <Content Include="p2.PNG" />
     <Content Include="p3.PNG" />
@@ -4385,6 +4386,13 @@
     </Compile>
     <Compile Include="Notices\Notice.aspx.designer.cs">
       <DependentUpon>Notice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notification\GetNotification.aspx.cs">
+      <DependentUpon>GetNotification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notification\GetNotification.aspx.designer.cs">
+      <DependentUpon>GetNotification.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLCViewerWin.aspx.cs">
       <DependentUpon>RDLCViewerWin.aspx</DependentUpon>

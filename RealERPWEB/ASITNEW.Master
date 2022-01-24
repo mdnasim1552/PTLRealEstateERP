@@ -876,11 +876,12 @@ Close</asp:LinkButton>
                                  imgstrng = v.sendphoto;
                                  imgextract = imgstrng.substring(2);
                                  //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
-                                 row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                                 row += '<a href="' + encodeURI('../../Notification/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
                                      '<div class="user-avatar">' +
                                      '<img src="' + imgextract + '" alt="">' +
                                      '</div>' +
                                      '<div class="dropdown-item-body">' +
+                                     ' <p class="subject">' + v.eventitle + ' </p>'+
                                      '<p class="product-name text-truncate">' + v.meassage + '</p>' +
                                      '</div>' +
 
