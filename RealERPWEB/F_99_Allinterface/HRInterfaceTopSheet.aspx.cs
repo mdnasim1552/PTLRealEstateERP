@@ -523,12 +523,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        private void
-
-
-
-
-           ShowOtherDeduction()
+        private void ShowOtherDeduction()
         {
             Session.Remove("tblover");
             string comcod = this.GetComeCode();
@@ -780,6 +775,9 @@ namespace RealERPWEB.F_99_Allinterface
                           : dt.Compute("sum(fallded)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvEmpOtherded.FooterRow.FindControl("lblgvFotermbill")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(mbillded)", "")) ? 0.00
                          : dt.Compute("sum(mbillded)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvEmpOtherded.FooterRow.FindControl("lblgvFoterTransDed")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(transded)", "")) ? 0.00
+     : dt.Compute("sum(transded)", ""))).ToString("#,##0;(#,##0); ");
                     break;
 
                 case "loan":
@@ -1412,6 +1410,7 @@ namespace RealERPWEB.F_99_Allinterface
                         double otherded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("txtlgvotherded")).Text.Trim());
                         double mbillded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("gvtxtmbill")).Text.Trim());
                         double fallded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("gvtxtfallow")).Text.Trim());
+                        double transded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("gvTransDed")).Text.Trim());
 
 
                         double toamt = otherded + lvded + arded + saladv + mbillded + fallded;
@@ -1422,6 +1421,7 @@ namespace RealERPWEB.F_99_Allinterface
                         dt.Rows[rowindex]["otherded"] = otherded;
                         dt.Rows[rowindex]["mbillded"] = mbillded;
                         dt.Rows[rowindex]["fallded"] = fallded;
+                        dt.Rows[rowindex]["transded"] = transded;
                         dt.Rows[rowindex]["toamt"] = toamt;
                     }
 
@@ -1747,6 +1747,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string fine = dt.Rows[i]["fine"].ToString();
                 string finedays = dt.Rows[i]["finedays"].ToString();
                 string cashded = dt.Rows[i]["cashded"].ToString();
+                string transded = dt.Rows[i]["transded"].ToString();
 
 
 
@@ -1754,13 +1755,13 @@ namespace RealERPWEB.F_99_Allinterface
                 double fineday = Convert.ToDouble(dt.Rows[i]["finedays"]);
                 if (toamt > 0)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
                     if (!result)
                         return;
                 }
                 else if (toamt == 0 && fineday > 0)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
                     if (!result)
                         return;
                 }
