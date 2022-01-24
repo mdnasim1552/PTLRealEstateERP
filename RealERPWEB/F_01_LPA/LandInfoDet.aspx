@@ -570,12 +570,13 @@
         //    $('#lbtntfollowup').click();
         //}
 
+        //Comment Emdad 20.01.2022
 
-        function OpenModal() {
-            $('#detnotification').modal('show');
+        //function OpenModal() {
+        //    $('#detnotification').modal('show');
 
 
-        }
+        //}
 
         function AddButton(id) {
 
