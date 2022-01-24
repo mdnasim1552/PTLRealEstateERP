@@ -855,50 +855,89 @@ Close</asp:LinkButton>
 
         function GetNotifications() {
             try {
-                var userid = "3101015";<%-- <%=this.GetUserId()%>;--%>
-                 $.ajax({
-                     type: "POST",
-                     url: "../Service/UserService.asmx/GetNotAndMessage",
-                     data: '{userid:"' + userid + '"}',
-                     contentType: "application/json; charset=utf-8",
-                     dataType: "json",
-                     success: function (response) {
-                         var data = response.d;
-                         var row = "";
-                         var img = "";
-                         var count = 0;
-                         var all = "";
-                         var imgstrng = "";
-                         var imgextract = "";
-                         $("#repNotificmsg").html("");
-                         $.each(data, function (k, v) {
-                             if (v.ntype == "") {
-                                 imgstrng = v.sendphoto;
-                                 imgextract = imgstrng.substring(2);
-                                 //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
-                                 row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
-                                     '<div class="user-avatar">' +
-                                     '<img src="' + imgextract + '" alt="">' +
-                                     '</div>' +
-                                     '<div class="dropdown-item-body">' +
-                                     '<p class="product-name text-truncate">' + v.meassage + '</p>' +
-                                     '</div>' +
 
-                                     '</a>';
-                                 count++;
-                             }
-                         });
-                         $("#repNotificmsg").append(row);
+              <%--  var userid = <%=this.GetUserId()%>;
+                var objnotification = new RealERPScript();
+                var data = objnotification.GetNotifications(userid);               
+                var row = "";
+                var img = "";
+                var count = 0;
+                var all = "";
+                var imgstrng = "";
+                var imgextract = "";
+                $("#repNotificmsg").html("");
+                $.each(data, function (k, v) {
+                    if (v.ntype == "") {
+                        imgstrng = v.sendphoto;
+                        imgextract = imgstrng.substring(2);
+                        //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                        row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                            '<div class="user-avatar">' +
+                            '<img src="' + imgextract + '" alt="">' +
+                            '</div>' +
+                            '<div class="dropdown-item-body">' +
+                            '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                            '</div>' +
+
+                            '</a>';
+                        count++;
+                    }
+                });
+                $("#repNotificmsg").append(row);
+
+                $("#lblallpop").text(count);
+                var counting = count == 0 ? 0 : count;--%>
+               
+
+
+                
+
+
+
+
+                 //$.ajax({
+                 //    type: "POST",
+                 //    url: "Service/UserService.asmx/GetNotAndMessage",
+                 //    data: '{userid:"' + userid + '"}',
+                 //    contentType: "application/json; charset=utf-8",
+                 //    dataType: "json",
+                 //    success: function (response) {
+                 //        var data = response.d;
+                 //        var row = "";
+                 //        var img = "";
+                 //        var count = 0;
+                 //        var all = "";
+                 //        var imgstrng = "";
+                 //        var imgextract = "";
+                 //        $("#repNotificmsg").html("");
+                 //        $.each(data, function (k, v) {
+                 //            if (v.ntype == "") {
+                 //                imgstrng = v.sendphoto;
+                 //                imgextract = imgstrng.substring(2);
+                 //                //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                 //                row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                 //                    '<div class="user-avatar">' +
+                 //                    '<img src="' + imgextract + '" alt="">' +
+                 //                    '</div>' +
+                 //                    '<div class="dropdown-item-body">' +
+                 //                    '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                 //                    '</div>' +
+
+                 //                    '</a>';
+                 //                count++;
+                 //            }
+                 //        });
+                 //        $("#repNotificmsg").append(row);
                          
-                         $("#lblallpop").text(count);
-                         var counting = count == 0 ? 0 : count;
+                 //        $("#lblallpop").text(count);
+                 //        var counting = count == 0 ? 0 : count;
 
                          
-                     },
-                     failure: function (response) {
-                         alert("f");
-                     }
-                 });
+                 //    },
+                 //    failure: function (response) {
+                 //        alert("f");
+                 //    }
+                 //});
              }
              catch (e) {
                  alert(e);
