@@ -781,9 +781,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         private void SalaryReduction()
         {
-
-
-
             Session.Remove("tblover");
             string comcod = this.GetComeCode();
             string MonthId = this.ddlyearmon.Text.Trim();
@@ -879,9 +876,15 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "otherearn":
                     this.gvothearn.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvothearn.DataSource = dt;
-                    if (comcod == "3339" || comcod == "3101")
+
+                    if (comcod == "3339")
                     {
                         gvothearn.Columns[9].HeaderText = "Trans/Entr";
+
+                    }
+                    if (comcod == "3365" || comcod == "3101")
+                    {
+                        gvothearn.Columns[9].HeaderText = "Car Allowance";
 
                     }
                     this.gvothearn.DataBind();
@@ -969,6 +972,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         : dt.Compute("sum(cashded)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvEmpOtherded.FooterRow.FindControl("lblgvfinededucdays")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(finedays)", "")) ? 0.00
                          : dt.Compute("sum(finedays)", ""))).ToString("#,##0;(#,##0); ");
+
+                    ((Label)this.gvEmpOtherded.FooterRow.FindControl("lblgvFoterTransDed")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(transded)", "")) ? 0.00
+                      : dt.Compute("sum(transded)", ""))).ToString("#,##0;(#,##0); ");
 
                     Session["Report1"] = gvEmpOtherded;
                     ((HyperLink)this.gvEmpOtherded.HeaderRow.FindControl("hlbtntbCdataExeldeduct")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
@@ -1442,6 +1448,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double fine = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("txtlgvfineDeduction")).Text.Trim());
                         double finedays = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("txtlgvfineDeducdays")).Text.Trim());
                         double cashded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("txtlgvCashDeduc")).Text.Trim());
+                        double trnsded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("gvTransDed")).Text.Trim());
 
 
                         double toamt = otherded + lvded + arded + saladv + mbillded + fallded + cashded + fine;
@@ -1457,8 +1464,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         dt.Rows[rowindex]["fine"] = fine;
                         dt.Rows[rowindex]["finedays"] = finedays;
                         dt.Rows[rowindex]["paystatus"] = paystatus;
-
-
+                        dt.Rows[rowindex]["transded"] = trnsded;
 
                     }
 
@@ -1829,6 +1835,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 string fine = dt.Rows[i]["fine"].ToString();
                 string finedays = dt.Rows[i]["finedays"].ToString();
                 string cashded = dt.Rows[i]["cashded"].ToString();
+                string transded = dt.Rows[i]["transded"].ToString();
 
 
 
@@ -1836,13 +1843,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 double fineday = Convert.ToDouble(dt.Rows[i]["finedays"]);
                 if (toamt > 0)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
                     if (!result)
                         return;
                 }
                 else if (toamt == 0 && fineday > 0)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPOTHERDED", Monthid, empid, lvded, arded, saladv, otherded, mbillded, fallded, paystatus, fine, cashded, finedays, transded, "", "");
                     if (!result)
                         return;
                 }
