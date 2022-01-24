@@ -980,6 +980,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Employee Name & Designation">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvEmpName" runat="server"
@@ -992,8 +993,6 @@
                                         </FooterTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-
-
 
                                     <asp:TemplateField HeaderText="Leave Deduction">
                                         <ItemTemplate>
@@ -1011,7 +1010,6 @@
                                         </FooterTemplate>
                                     </asp:TemplateField>
 
-
                                     <asp:TemplateField HeaderText="Arrear Deduccion">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvarairded" runat="server" BackColor="Transparent"
@@ -1027,8 +1025,6 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-
-
 
                                     <asp:TemplateField HeaderText=" Advanced deduction">
                                         <ItemTemplate>
@@ -1076,8 +1072,22 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Transport">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="gvTransDed" runat="server" BackColor="Transparent"
+                                                BorderStyle="None" Font-Size="12px" Style="text-align: right"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "transded")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="65px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblgvFoterTransDed" runat="server" Font-Bold="True" Font-Size="12px"
+                                                Style="text-align: right" Width="65px"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <FooterStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
 
-                                      <asp:TemplateField HeaderText="Other Deduction">
+                                    <asp:TemplateField HeaderText="Other Deduction">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlgvotherded" runat="server" BackColor="Transparent"
                                                 BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1092,7 +1102,7 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Fine Deduc. Amount">
+                                    <asp:TemplateField HeaderText="Fine Deduc. Amount">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlgvfineDeduction" runat="server" BackColor="Transparent"
                                                 BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1106,6 +1116,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Fine Deduc. Days">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlgvfineDeducdays" runat="server" BackColor="Transparent"
@@ -1121,8 +1132,7 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-
-                                     <asp:TemplateField HeaderText="Cash Deduc.">
+                                    <asp:TemplateField HeaderText="Cash Deduc.">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtlgvCashDeduc" runat="server" BackColor="Transparent"
                                                 BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1179,8 +1189,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
-                                      <asp:TemplateField HeaderText="Payment Status" Visible="false">
+                                    <asp:TemplateField HeaderText="Payment Status" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblpaystatus" runat="server" BackColor="Transparent"
                                                 BorderStyle="None" Style="text-align: right" BorderColor="#660033" BorderWidth="1px"
@@ -1195,19 +1204,18 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-
-<%--                                     <asp:TemplateField>
-                                            <ItemTemplate>
-                                                <asp:CheckBox ID="chkCash" runat="server"
-                                                    Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkcash"))=="True" %>'
-                                                    Width="60px" />
-                                            </ItemTemplate>
+                                    <%--                                     <asp:TemplateField>
+                                                                                <ItemTemplate>
+                                                                                    <asp:CheckBox ID="chkCash" runat="server"
+                                                                                        Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chkcash"))=="True" %>'
+                                                                                        Width="60px" />
+                                                                                </ItemTemplate>
                                             
-                                            <HeaderTemplate>
-                                                <asp:CheckBox ID="chkAllfrm" runat="server" AutoPostBack="True" 
-                                                    OnCheckedChanged="chkAllfrm_CheckedChanged" Text="Cash Salary" Width="60px" />
-                                            </HeaderTemplate>
-                                        </asp:TemplateField>--%>
+                                                                                <HeaderTemplate>
+                                                                                    <asp:CheckBox ID="chkAllfrm" runat="server" AutoPostBack="True" 
+                                                                                        OnCheckedChanged="chkAllfrm_CheckedChanged" Text="Cash Salary" Width="60px" />
+                                                                                </HeaderTemplate>
+                                                                            </asp:TemplateField>--%>
 
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />

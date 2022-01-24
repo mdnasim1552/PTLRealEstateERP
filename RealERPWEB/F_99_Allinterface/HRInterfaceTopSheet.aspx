@@ -1164,7 +1164,7 @@
 
 
 
-                                            <asp:TemplateField HeaderText=" Advanced deduction">
+                                            <asp:TemplateField HeaderText="Advanced deduction">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvsaladv" runat="server" BackColor="Transparent"
                                                         BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1195,7 +1195,7 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Mobile bill  ">
+                                            <asp:TemplateField HeaderText="Mobile bill">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="gvtxtmbill" runat="server" BackColor="Transparent"
                                                         BorderStyle="None" Font-Size="12px" Style="text-align: right"
@@ -1210,7 +1210,20 @@
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-
+                                            <asp:TemplateField HeaderText="Transport">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="gvTransDed" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="12px" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "transded")).ToString("#,##0;(#,##0); ") %>'
+                                                        Width="65px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lblgvFoterTransDed" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        Style="text-align: right" Width="65px"></asp:Label>
+                                                </FooterTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Other Deduction">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtlgvotherded" runat="server" BackColor="Transparent"
@@ -1624,7 +1637,7 @@
                                                     <FooterStyle HorizontalAlign="Right" />
                                                 </asp:TemplateField>
 
-                                                <asp:TemplateField HeaderText="Hair Cutt.">                                                  
+                                                <asp:TemplateField HeaderText="Hair Cutt.">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txgvhaircut" runat="server" BackColor="Transparent"
                                                             BorderStyle="None" Font-Size="11px" Style="text-align: right"
