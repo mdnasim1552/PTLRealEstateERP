@@ -95,17 +95,32 @@ namespace RealERPWEB.F_21_MKT
             {
 
 
-                //case "3348":// Credence .
-                //    this.gvSummary.Columns[13].Visible = false;
-                //    this.gvSummary.Columns[14].Visible = false;
-                //    this.gvSummary.Columns[15].Visible = false;
-                //    this.gvSummary.Columns[16].Visible = false;
-                //    this.gvSummary.Columns[17].Visible = false;
-                //    this.gvSummary.Columns[18].Visible = false;
-                //    this.gvSummary.Columns[19].Visible = false;
+                case "3348":// Credence .
+                            //this.gvSummary.Columns[13].Visible = false;
+                            //this.gvSummary.Columns[14].Visible = false;
+                            //this.gvSummary.Columns[15].Visible = false;
+                            //this.gvSummary.Columns[16].Visible = false;
+                            //this.gvSummary.Columns[17].Visible = false;
+                            //this.gvSummary.Columns[18].Visible = false;
+                            //this.gvSummary.Columns[19].Visible = false;
 
 
-                //    break;
+                    this.gvSummary.Columns[13].Visible = false;
+                    this.gvSummary.Columns[12].Visible = false;
+                    this.gvSummary.Columns[9].Visible = true;
+                    this.gvSummary.Columns[14].Visible = false;
+                    this.gvSummary.Columns[15].Visible = false;
+                    this.gvSummary.Columns[16].Visible = false;
+                    this.gvSummary.Columns[17].Visible = false;
+                    this.gvSummary.Columns[18].Visible = false;
+                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[20].Visible = false;
+                    this.gvSummary.Columns[21].Visible = false;
+                    this.gvSummary.Columns[22].Visible = true;
+                    this.gvSummary.Columns[23].Visible = true;
+
+
+                    break;
 
                 case "3315"://Assure Builders
                 case "3316"://Assure Development
@@ -327,9 +342,10 @@ namespace RealERPWEB.F_21_MKT
                 Showbusinfo();
                 ShowMoreInfo();
                 btnaddland.Text = "Cancel";
-                string faclass = "fa-file";
-                string Message = "Add Client Form";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
+               
+                string Message = "Add Client Form";               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
 
                 this.lblnewprospect.Value = "";
 
@@ -2547,9 +2563,10 @@ namespace RealERPWEB.F_21_MKT
 
                     if (Name.Trim().Length == 0)
                     {
+                        string Message = "Name field is not empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
 
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Name field is not empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                       
                         return;
 
                     }
@@ -2561,9 +2578,9 @@ namespace RealERPWEB.F_21_MKT
 
                     if (Phone.Trim().Length == 0)
                     {
-
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Phone field is not empty";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        string Message = "Phone field is not empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                         
                         return;
 
 
@@ -2580,8 +2597,10 @@ namespace RealERPWEB.F_21_MKT
                     {
                         if (Phone.Trim().Length != 11)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile Number Must be 11 digit";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            string Message = "Mobile Number Must be 11 digit";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+
+                             
                             return;
 
 
@@ -2671,8 +2690,11 @@ namespace RealERPWEB.F_21_MKT
                     if (teamleader.Trim().Length == 0)
                     {
 
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Team Leader";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        string Message = "Please Select Team Leader";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+
+
+                       
                         return;
 
                     }
@@ -2944,32 +2966,38 @@ namespace RealERPWEB.F_21_MKT
             number = number + (altphone2.Length > 0 ? altphone2 + "," : "");
             number = number.Length > 0 ? number.Substring(0, number.Length - 1) : number;
 
-           // Check Duplicate
-            DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", number, "", "", "", "", "", "", "", "");
-
-
-            if (ds2.Tables[0].Rows.Count != 0)
-            {
-                string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
-                string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
-                string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
-                string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
-
-                //string holdername = " His/Her Name " + mobilename;
-                string Message = "Duplicate : ";
-                string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor;               
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
-                return;
-            }
-                
+          
 
            
             clientid = this.lbllandname.Visible ? clientid : (this.lblnewprospect.Value.Length == 0 ? this.GetNewId() : this.lblnewprospect.Value);
 
             //if (this.lbllandname.Visible == true)
             //{
-            lbllandname.Visible = false;
+            //lbllandname.Visible = false;
+            if(this.lbllandname.Visible == false)
+            {
+                // Check Duplicate
+                DataSet ds2 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_CODEBOOK_NEW", "CHECKEDDUPUCLIENT", number, "", "", "", "", "", "", "", "");
+
+                if (ds2.Tables[0].Rows.Count != 0)
+                {
+                    string pid = ds2.Tables[0].Rows[0]["pid"].ToString();
+                    string sirdesc = ds2.Tables[0].Rows[0]["sirdesc"].ToString();
+                    string supervisor = ds2.Tables[0].Rows[0]["superviser"].ToString();
+                    string phone = ds2.Tables[0].Rows[0]["phone"].ToString();
+
+                    //string holdername = " His/Her Name " + mobilename;
+                    string Message = "Duplicate : ";
+                    string totmsg = Message + phone + ", " + pid + ", Associate: " + sirdesc + ", Team Leader: " + supervisor;
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + totmsg + "');", true);
+                    return;
+                }
+            }
+            
+
+
+
 
             //this is automatic kpi first discussion entry . recomended by Rahian for all company 20210804 dev by NAHID
             string kpidiscu = "";
@@ -2987,12 +3015,14 @@ namespace RealERPWEB.F_21_MKT
             //  string xml = ds.GetXml();
 
 
+
             bool result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "UPDATE_CLNTINFO", ds, null, null, clientid, Name, usrid, Phone, email, empid, maddress, active.ToString(), kpidiscu, Posteddat);
             if (result == true)
             {
-                faclass = "fa-check";
-                string Message = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
+                 
+                string totmsg = "Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + totmsg + "');", true);
+                 
                 btnaddland.Text = "Add Client";
 
                 GetGridSummary();
@@ -3000,14 +3030,27 @@ namespace RealERPWEB.F_21_MKT
                 ViewState["existclientcode"] = null;
                 this.MultiView1.ActiveViewIndex = 1;
             }
+
+           
+
             else
             {
-                faclass = "fa-times";
+                
                 string Message = "Updated Failed";
-
-                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+ 
             }
+
+            //First Time Discussion
+            if (this.lbllandname.Visible == false)
+            {
+                this.GetFirstTimeDiscussion(clientid, empid);
+            
+            }
+
+            
+
+
 
 
 
@@ -3460,9 +3503,11 @@ namespace RealERPWEB.F_21_MKT
             Showbusinfo();
             ShowMoreInfo();
             btnaddland.Text = "Back";
-            string faclass = "fa-file";
+          
             string Message = "Edit Client Form";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
+           
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string events = hst["events"].ToString();
@@ -3493,16 +3538,18 @@ namespace RealERPWEB.F_21_MKT
             string faclass = "";
             if (!result)
             {
-                faclass = "fa-times";
+                
                 Message = "Activation Failed";
-                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
+                
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+
                 return;
             }
 
 
-            faclass = "fa-file";
-            Message = "Activated SuccessFully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alertmsg('" + Message + "','" + faclass + "');", true);
+           
+            Message = "Activated SuccessFully";           
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
 
             this.GetGridSummary();
 
@@ -3573,12 +3620,14 @@ namespace RealERPWEB.F_21_MKT
                         int day = lfollowup.ToString("dd-MMM-yyyy") == "01-Jan-1900" ? 0 : Convert.ToInt32((today - lfollowup).TotalDays.ToString());
                         if (day >= 25 && day < 35)
                         {
-                            e.Row.Attributes["style"] = "background-color:#DDF7D7";
+                            e.Row.Attributes["style"] = "background-color:yellow; ";
                         }
                         else if (day >= 35)
                         {
+
                             // ;
-                            e.Row.Attributes["style"] = "background-color:#E0D9E9;";
+                             e.Row.Attributes["style"] = "background-color:#FF6347;";
+                            // e.Row.Attributes["style"] = "background-color:#E0D9E9;";
 
 
                         }
@@ -4677,6 +4726,60 @@ namespace RealERPWEB.F_21_MKT
         }
         protected void lbtnView_Click(object sender, EventArgs e)
         {
+
+        }
+        private void GetFirstTimeDiscussion(string proscod, string empid)
+        {
+            try
+            {
+
+
+
+                string comcod = this.GetComeCode();                    
+                string cdate = this.txttodate.Text.Trim();
+                DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "SHOWPROSPECTIVEDISCUSSION", proscod, cdate, "", "", "", "");
+
+                this.rpclientinfo.DataSource = ds1.Tables[0];
+                this.rpclientinfo.DataBind();
+                this.lblprosname.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["prosdesc"].ToString() : ds1.Tables[0].Rows[0]["prosdesc"].ToString();
+                this.lblContactPerson.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["conperson"].ToString() : ds1.Tables[0].Rows[0]["conperson"].ToString();
+                this.lblprosphone.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["phone"].ToString() : ds1.Tables[0].Rows[0]["phone"].ToString();
+                this.lblprosaddress.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["haddress"].ToString() : ds1.Tables[0].Rows[0]["haddress"].ToString();
+                this.lblnotes.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["virnotes"].ToString() : ds1.Tables[0].Rows[0]["virnotes"].ToString();
+                this.lblpreferloc.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["preferloc"].ToString() : ds1.Tables[0].Rows[0]["preferloc"].ToString();
+                this.lblaptsize.InnerText = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["aptsize"].ToString() : ds1.Tables[0].Rows[0]["aptsize"].ToString();
+                this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                //this.lblproscod.Value = ds1.Tables[0].Rows.Count == 0 ? proscod : ds1.Tables[0].Rows[0]["proscod"].ToString();
+                this.lbleditempid.Value = empid;
+                this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
+                this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
+                ShowDiscussion();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string events = hst["events"].ToString();
+
+                //if (Convert.ToBoolean(events) == true)
+                //{
+                //    string eventtype = "Click Follow UP (Sales CRM) ";
+                //    string eventdesc = "Click Follow UP (Sales CRM) ";
+                //    string eventdesc2 = follclintidno;
+
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+                //}
+
+            }
+
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+            }
 
         }
         protected void lnkEditfollowup_Click(object sender, EventArgs e)
@@ -6538,23 +6641,27 @@ namespace RealERPWEB.F_21_MKT
             }
         }
 
-        ////protected void ChkBoxLstFollow_SelectedIndexChanged(object sender, EventArgs e)
-        ////{
-        ////    Hashtable hst = (Hashtable)Session["tblLogin"];
-        ////    string userrole = hst["userrole"].ToString();
-        ////    string comcod = this.GetComeCode();
 
 
-        ////    int RowIndex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
+        protected void ChkBoxLstFollow_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string userrole = hst["userrole"].ToString();
+            //string comcod = this.GetComeCode();
 
-        ////    string Gcode = ((Label)this.gvInfo.Rows[RowIndex].FindControl("lblgvItmCodedis")).Text.Trim();
-        ////    string gvalue = ((CheckBoxList)this.gvInfo.Rows[RowIndex].FindControl("ChkBoxLstStatus")).SelectedValue.ToString();
-        ////    if (Gcode == "810100101016" && gvalue=="")
-        ////    {
 
-        ////    }
+            //int RowIndex = ((GridViewRow)((CheckBoxList)sender).NamingContainer).RowIndex;
 
-        ////}
+            //string Gcode = ((Label)this.gvInfo.Rows[RowIndex].FindControl("lblgvItmCodedis")).Text.Trim();
+            //string gvalue = ((CheckBoxList)this.gvInfo.Rows[RowIndex].FindControl("ChkBoxLstStatus")).SelectedValue.ToString();
+            //if (Gcode == "810100101002" && gvalue == "9601050")
+            //{
+
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModaldis();", true);
+
+            //}
+
+        }
     }
 
 

@@ -495,7 +495,6 @@
                     default:
                         $('#<%=this.lblheadprospect.ClientID%>').text(" Prospect's Preference	");
                         break;
-
                 }
 
                 var gcod;
@@ -558,7 +557,7 @@
                 $('#' + ChkBoxLstFollow).change(function () {
                     var followupdate = $(txtgvdValdis).val();
                     var lastfollowup = "";
-
+                    alet(followupdate);
                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
 
                         lastfollowup = $(item).val();
@@ -1578,6 +1577,7 @@
 
                         case "810100101002": //New Followup
                             var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            //alert(data.gdesc1);
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length <= 7) {
 
@@ -1599,7 +1599,7 @@
                             }
                             else {
                                 var ar = new Array();
-                                alert(newfollowup);
+                               // alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);
@@ -1876,13 +1876,9 @@
                 alert(e.message);
 
             }
+        };
 
-
-
-
-
-
-        }
+        //// for selected follow then selected lead status 
 
 
     </script>
@@ -1933,7 +1929,7 @@
                         </div>
                         <div class="col-3" runat="server" id="divexland">
                             <div class="form-group">
-                                <asp:Label runat="server" ID="lbllandname" Font-Size="12px" class="form-control margin-top30px" Visible="false"></asp:Label>
+                                <asp:Label runat="server" ID="lbllandname" Font-Size="16px" class="form-control bg-danger font-weight-bold text-white margin-top30px" Visible="false"></asp:Label>
                             </div>
                         </div>
 
@@ -2711,7 +2707,7 @@
                                                 <asp:ListItem>5000</asp:ListItem>
                                                 <asp:ListItem>7000</asp:ListItem>
                                                 <asp:ListItem>8000</asp:ListItem>
-                                                <asp:ListItem>10000</asp:ListItem>
+                                                <asp:ListItem Selected="true">10000</asp:ListItem>
                                             </asp:DropDownList>
 
 
@@ -2872,7 +2868,7 @@
 
                                                             </asp:Label>
 
-                                                            <asp:LinkButton ID="lbtnView" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lbtnView" Visible="false" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
 
                                                             <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
 
@@ -3424,7 +3420,7 @@
                                                 </HeaderTemplate>--%>
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="120px" Style="text-align: left"
+                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="110px" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsta"))%>'></asp:Label>
                                                 </ItemTemplate>
                                                  <ItemStyle HorizontalAlign="Left" />
@@ -4347,7 +4343,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox">
+                                                                runat="server" CssClass="form-control checkbox"  >
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4389,7 +4385,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal" 
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 

@@ -46,19 +46,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
@@ -88,13 +88,13 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\EASendMail.dll</HintPath>
     </Reference>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -107,25 +107,29 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\EnvDTE80.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Interop.Microsoft.Office.Interop.Access">
+      <HintPath>..\..\..\_bin\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\Backup\Real Estate Bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
+      <HintPath>..\..\..\_bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Framework">
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.Build.Framework.dll</HintPath>
@@ -139,7 +143,7 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.MSXML, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -148,36 +152,30 @@
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.MSXML.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ReportViewer.Common.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
-
-      <HintPath>..\..\..\Backup\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
 
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -225,18 +223,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.VisualStudio.ProjectAggregator.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.10.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.11.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.11.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.12.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.12.0.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Immutable.14.0, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Immutable.14.0.dll</HintPath>
@@ -245,23 +231,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Interop.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.VisualStudio.Shell.Interop.10.0.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.Shell.Interop.11.0, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.VisualStudio.Shell.Interop.11.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.Shell.Interop.9.0.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.TemplateWizardInterface, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -275,10 +248,6 @@
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.VisualStudio.TextManager.Interop.10.0.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TextManager.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualStudio.VSHelp, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
@@ -297,10 +266,10 @@
     <Reference Include="Microsoft.Win32.Primitives" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\_bin\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -2584,6 +2553,7 @@
     <Content Include="F_22_Sal\LinkRptSaleSoldunsoldUnit.aspx" />
     <Content Include="F_22_Sal\MktBookigApp.aspx" />
     <Content Include="F_22_Sal\MktDummySalsPayment.aspx" />
+    <Content Include="F_22_Sal\MktDummySalsPayment03.aspx" />
     <Content Include="F_22_Sal\MktDummySalsPayment02.aspx" />
     <Content Include="F_22_Sal\MktEntryUnit.aspx" />
     <Content Include="F_22_Sal\MktEntryUnitFH.aspx" />
@@ -2796,6 +2766,7 @@
     <Content Include="F_34_Mgt\SMSTypeEntry.aspx" />
     <Content Include="F_34_Mgt\Tranlimitdate.aspx" />
     <Content Include="F_34_Mgt\Trigger.aspx" />
+    <Content Include="F_34_Mgt\UserCompPagePrivilegesPtl.aspx" />
     <Content Include="F_34_Mgt\UserfrmGroup.aspx" />
     <Content Include="F_34_Mgt\UserImage.aspx" />
     <Content Include="F_34_Mgt\UserLoginfrm.aspx" />
@@ -3940,6 +3911,13 @@
     <Compile Include="F_21_MKT\YearlyTargetVSAchive.aspx.designer.cs">
       <DependentUpon>YearlyTargetVSAchive.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_22_Sal\MktDummySalsPayment03.aspx.cs">
+      <DependentUpon>MktDummySalsPayment03.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_22_Sal\MktDummySalsPayment03.aspx.designer.cs">
+      <DependentUpon>MktDummySalsPayment03.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_22_Sal\ProjectFileDetailsEntry.aspx.cs">
       <DependentUpon>ProjectFileDetailsEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4016,6 +3994,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\SMSTypeEntry.aspx.designer.cs">
       <DependentUpon>SMSTypeEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_34_Mgt\UserCompPagePrivilegesPtl.aspx.cs">
+      <DependentUpon>UserCompPagePrivilegesPtl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_34_Mgt\UserCompPagePrivilegesPtl.aspx.designer.cs">
+      <DependentUpon>UserCompPagePrivilegesPtl.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
@@ -11756,7 +11741,6 @@
     <Content Include="Report\RptPurchaseOrderInnstar.rdlc" />
     <Content Include="Report\RptPurchaseOrderLeisure.rdlc" />
     <Content Include="Report\RptPurchaseOrderManama.rdlc" />
-    <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
     <Content Include="Report\RptPurchaseOrderRupayon.rdlc" />
     <Content Include="Report\RptPurchaseOrderSuvastu.rdlc" />
     <Content Include="Report\RptSalesInv.rdlc" />
@@ -11799,6 +11783,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderJBS.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

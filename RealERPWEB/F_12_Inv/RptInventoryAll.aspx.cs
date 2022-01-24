@@ -1,4 +1,5 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,6 +34,13 @@ namespace RealERPWEB.F_12_Inv
             }
         }
 
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
+            // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lbtnTotal_Click);
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lbtnUpdate_Click);
+        }
         private string GetCompCod()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -343,5 +351,94 @@ namespace RealERPWEB.F_12_Inv
 
 
         }
+
+        private void lnkPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string frmdate = this.txtFDate.Text;
+            string todate = this.txttoDate.Text;
+            string reportType = GetReportType();
+
+            LocalReport Rpt1 = new LocalReport();
+            if (reportType == "amtbasis")
+            {
+                DataTable dt = (DataTable)Session["amtbasis"];
+                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenAmtBasis", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Amount Basis"));
+            }else if(reportType== "qtybasis")
+            {
+                DataTable dt = (DataTable)Session["qtybasis"];
+                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenQtyBasis", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Quantity Basis"));
+            }else if(reportType == "amtbasisp")
+            {
+                DataTable dt = (DataTable)Session["amtbasisp"];
+                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenAmtBasisPeriodic", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Amount Basis Periodic"));
+            }
+            else if (reportType== "qtybasisp")
+            {
+                DataTable dt = (DataTable)Session["qtybasisp"];
+                var list = dt.DataTableToList<RealEntity.C_12_Inv.EclassPurchase.InventoryQtyBasisPeriodic>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptInvenQtyBasisPeriodic", list, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("rptTitle", "Inventory Report Quantity Basis Periodic"));
+            }
+            Rpt1.SetParameters(new ReportParameter("comNam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("footer", printFooter));
+            Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("frmdate", frmdate));
+            Rpt1.SetParameters(new ReportParameter("todate", todate));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
+        private string GetReportType()
+        {
+            string Type = "";
+            int index = this.ddlReport.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    Type = "amtbasis";
+                    break;
+
+                case 1:
+                    Type = "qtybasis";
+                    break;
+
+                case 2:
+                    Type = "amtbasisp";
+                    break;
+
+                default:
+                    Type = "qtybasisp";
+                    break;
+            }
+            return Type;
+        }
+
+
+
+
     }
 }

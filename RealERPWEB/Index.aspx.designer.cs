@@ -375,15 +375,6 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl tab_1236;
 
         /// <summary>
-        /// HyperLink1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
-
-        /// <summary>
         /// tab_1343 control.
         /// </summary>
         /// <remarks>
@@ -544,51 +535,6 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRptAttn;
-
-        /// <summary>
-        /// lblpresent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblpresent;
-
-        /// <summary>
-        /// lbllate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lbllate;
-
-        /// <summary>
-        /// lbleleave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lbleleave;
-
-        /// <summary>
-        /// lblonleave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblonleave;
-
-        /// <summary>
-        /// lblabs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblabs;
 
         /// <summary>
         /// pnlTdayWork control.

@@ -67,5 +67,42 @@ namespace RealEntity.C_12_Inv
             public string ssirdesc1 { get; set; }
             public double ordramt { get; set; }
         }
+
+        [Serializable]
+        public class InventoryAmountBasis
+        {
+            public string pactcode { get; set; }
+            public string rsircode { get; set; }
+            public string pactdesc { get; set; }
+            public string resdesc{ get; set; }
+            public double rcvamt { get; set; }
+            public double tminamt { get; set; }
+            public double tmoutamt { get; set; }
+            public double lsamt { get; set; }
+            public double netrcvamt { get; set; }
+            public double issueamt { get; set; }
+            public double bgdconamt { get; set; }
+            public double actstock { get; set; }
+            public double bgdstock { get; set; }
+            public double varamt { get; set; }
+            public double opamt { get; set; }
+        }
+        public class InventoryQtyBasisPeriodic
+        {
+            public string rsircode { get; set; }
+            public string sircode { get; set; }
+            public string sirdesc { get; set; }
+           
+            public double opqty { get; set; }
+            public double rcvqty { get; set; }
+            public double tminqty { get; set; }
+            public double tmoutqty { get; set; }
+            public double lqty { get; set; }
+            public double netrcvqty { get; set; }
+      
+            public double issueqty { get; set; }
+            public double actstock { get; set; }
+
+        }
     }
 }

@@ -61,6 +61,7 @@ namespace RealERPWEB.F_17_Acc
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);
 
+            
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }

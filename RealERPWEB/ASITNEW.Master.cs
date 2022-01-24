@@ -54,7 +54,7 @@ namespace RealERPWEB
                 //{
                     this.MenuDynamic.Visible = true;
                 //    this.oldMenu.Visible = false;
-                  //  BindMenu();
+                    
 
                 //}
                 //else
@@ -67,6 +67,13 @@ namespace RealERPWEB
 
                 this.GetShortCut();
                 this.GetAdminUserMenu();
+                string comcod = this.GetCompCode();
+
+                if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
+                {
+                    BindMenu();
+                }
+
             }
 
             string Cont = "Copyright © " + System.DateTime.Today.ToString("yyyy") + ".";
@@ -289,8 +296,18 @@ namespace RealERPWEB
 
             string usrid = hst["usrid"].ToString();
             // string usrperm = "1";
-            this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
-            //this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
+ 
+            if (comcod == "3365" || comcod == "3347")
+ 
+            {
+                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
+
+            }
+            else
+            {
+                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
+            }
+ 
 
             this.CompanyHome();
             this.CompanyMaster();
@@ -336,10 +353,20 @@ namespace RealERPWEB
             }
             //string
             //this.dbGraph.InnerHtml = dashboardhtml;
+            
+            //this for only HR 
+            if((comcod=="3365") || (comcod== "3347"))
+            {
+                lstFeturedMenu.Visible = false;
+            }
 
-            dbAllinOne.HRef = "CompanyOverAllReport?comcod=" + comcod;
-            prjdash.HRef = "F_99_Allinterface/ProjectDashBoardAllNew?comcod=" + comcod;
-            PrjSummary.HRef = "F_99_Allinterface/ProjectDashBoard?comcod=" + comcod;
+
+                dbAllinOne.HRef = "CompanyOverAllReport?comcod=" + comcod;
+                prjdash.HRef = "F_99_Allinterface/ProjectDashBoardAllNew?comcod=" + comcod;
+                PrjSummary.HRef = "F_99_Allinterface/ProjectDashBoard?comcod=" + comcod;
+             
+            
+            
 
 
             Designation.InnerHtml = hst["usrdesig"].ToString();
@@ -467,7 +494,7 @@ namespace RealERPWEB
             if (adminUid == "001")
             {
                 this.hypCompagPerm.Visible = true;
-                this.hypCompagPerm.NavigateUrl = "~/F_34_Mgt/UserLoginfrmasitNew";
+                this.hypCompagPerm.NavigateUrl = "~/F_34_Mgt/UserCompPagePrivilegesPtl";
 
                 this.hypPagPerm.Visible = true;
                 this.hypPagPerm.NavigateUrl = "~/F_34_Mgt/UserLoginfrmNew";
@@ -530,12 +557,13 @@ namespace RealERPWEB
             DataView view = new DataView(Menus);
             //if (usertype != null)
             //{
-                view.RowFilter = ("ParentMenuId='0' and sidebar='True' and moduleid= '0'");
+              view.RowFilter = ("sidebar='True' and moduleid= '1243'");
+            // view.RowFilter = ("sidebar='True'");
 
 
 
 
-                DataTable dtt = view.ToTable();
+            DataTable dtt = view.ToTable();
                 string mainmenu = "";
                 int i = 0;
                 foreach (DataRow dr in view.ToTable().Rows)

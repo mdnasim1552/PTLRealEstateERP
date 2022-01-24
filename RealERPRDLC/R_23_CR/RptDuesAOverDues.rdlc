@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>1e9cd89f-93b4-4c89-aa39-fbd0c36a4c52</rd:DataSourceID>
+      <rd:DataSourceID>e60165e6-380d-4f9a-83db-63c170c13a41</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -27,6 +27,10 @@
         </Field>
         <Field Name="atodues">
           <DataField>atodues</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="balamt">
+          <DataField>balamt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="bamt">
@@ -137,7 +141,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RealEntity.C_23_CRR</rd:DataSetName>
         <rd:TableName>EClassDuesAOverDues</rd:TableName>
-        <rd:ObjectDataSourceType>RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDues, RealEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>RealEntity.C_23_CRR.EClassSalesStatus+EClassDuesAOverDues, RealERPEntity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -149,28 +153,31 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.45833in</Width>
+                  <Width>0.31666in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.70708in</Width>
+                  <Width>1.50708in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89125in</Width>
+                  <Width>0.84958in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.92708in</Width>
+                  <Width>0.86041in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.89583in</Width>
+                  <Width>0.8125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.875in</Width>
+                  <Width>0.76667in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.80833in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.86in</Width>
+                  <Width>0.90833in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.76833in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -186,7 +193,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sl No</Value>
+                                  <Value>Sl </Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>No</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -205,6 +226,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -222,7 +244,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Project Name</Value>
+                                  <Value>Project </Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Name</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -241,6 +277,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -258,7 +295,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Value</Value>
+                                  <Value>Total </Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -277,6 +328,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -294,7 +346,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Sold Value</Value>
+                                  <Value>Sold </Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -313,6 +379,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -349,6 +416,44 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Balance </Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -385,6 +490,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -402,7 +508,21 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Over Dues</Value>
+                                  <Value> Over</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Dues</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -421,6 +541,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -457,6 +578,7 @@
                               <Style>None</Style>
                             </Border>
                             <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -482,7 +604,7 @@
                                   <Value>=RowNumber(nothing)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -516,7 +638,7 @@
                                   <Value>=Fields!pactdesc.Value</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -550,7 +672,7 @@
                                   <Value>=Format(Fields!tstkam.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -586,7 +708,7 @@
                                   <Value>=Format(Fields!tocost.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -622,7 +744,7 @@
                                   <Value>=Format(Fields!ramt.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -632,6 +754,42 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ramt</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>=iif(RowNumber(nothing) mod 2=0, "WhiteSmoke", "White")</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="balamt">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Fields!balamt.Value, "#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>balamt</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -658,7 +816,7 @@
                                   <Value>=Format(Fields!ctodues.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -694,7 +852,7 @@
                                   <Value>=Format(Fields!ptodues.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -730,7 +888,7 @@
                                   <Value>=Format(Fields!bamt.Value, "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -771,7 +929,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -806,7 +964,7 @@
                                   <Value>Total</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -841,7 +999,7 @@
                                   <Value>= Format(Sum(Fields!tstkam.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -878,7 +1036,7 @@
                                   <Value>=format(Sum(Fields!tocost.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -915,7 +1073,7 @@
                                   <Value>=Format(Sum(Fields!ramt.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -942,6 +1100,43 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Format(Sum(Fields!balamt.Value), "#,##0;(#,##0); ")</Value>
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>7pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox29">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -952,7 +1147,7 @@
                                   <Value>=format(Sum(Fields!ctodues.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -989,7 +1184,7 @@
                                   <Value>=format(Sum(Fields!ptodues.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1026,7 +1221,7 @@
                                   <Value>=format(Sum(Fields!bamt.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -1065,6 +1260,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -1084,7 +1280,7 @@
             <Top>0.05556in</Top>
             <Left>0.0325in</Left>
             <Height>0.88542in</Height>
-            <Width>7.61457in</Width>
+            <Width>7.5979in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1095,7 +1291,7 @@
         <Height>0.94792in</Height>
         <Style />
       </Body>
-      <Width>7.64708in</Width>
+      <Width>7.6304in</Width>
       <Page>
         <PageHeader>
           <Height>0.88417in</Height>

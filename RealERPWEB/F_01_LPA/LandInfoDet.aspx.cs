@@ -479,6 +479,8 @@ namespace RealERPWEB.F_01_LPA
             this.lblFreez.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["freezing"].ToString();
             this.lblDeadProspect.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["deadl"].ToString();
             this.lblcsigned.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["signed"].ToString();
+            this.lblDatablank.InnerText = dt.Rows.Count == 0 ? "" : dt.Rows[0]["databank"].ToString();
+            
             //lblDatablank
 
         }
@@ -572,27 +574,24 @@ namespace RealERPWEB.F_01_LPA
                 return;
 
 
+
             lblIntputtype.Value = "Active";
 
-            //DataView dv1 = ds3.Tables[0].Copy().DefaultView;
-            //dv1.RowFilter = ("active='True'");
-            //this.gvSummary.DataSource = dv1.ToTable();
-            //this.gvSummary.DataBind();
 
             DataView dv = ds3.Tables[0].Copy().DefaultView;
-            dv.RowFilter = ("active='False'");
+            string pempid = hst["empid"].ToString();
+            if (pempid.Length == 0)
+            {
+                dv.RowFilter = ("active='False'");
+            }
+            else
+            {
+                dv.RowFilter=("dealcode='" + pempid + "' and active='False'");
+            
+            }
             this.lbtPending.Text = "Pending:" + ((dv.ToTable().Rows.Count == 0) ? "" : dv.ToTable().Rows.Count.ToString());
 
-            //if (gvSummary.Rows.Count > 0)
-            //{
-            //    Session["Report1"] = gvSummary;
-            //    ((HyperLink)this.gvSummary.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-            //}
-
-            //if (ds3.Tables[0].Rows.Count == 0)
-            //    return;
-            //DataTable dt2 = ds3.Tables[0];
-            //ViewState["tblsummData"] = dt2;
+          
             this.Data_Bind();
 
         }
@@ -615,7 +614,19 @@ namespace RealERPWEB.F_01_LPA
 
                     break;
                 case "Pending":
-                    dv.RowFilter = ("active='False'");
+
+                    Hashtable hst = (Hashtable)Session["tblLogin"];
+                    string pempid = hst["empid"].ToString();
+                    if (pempid.Length == 0)
+                    {
+                        dv.RowFilter = ("active='False'");
+                    }
+                    else
+                    {
+                        dv.RowFilter = ("dealcode='" + pempid + "' and active='False'");
+
+                    }
+                    
                     break;
 
                 default:
@@ -656,17 +667,10 @@ namespace RealERPWEB.F_01_LPA
                 this.gvSummary.Columns[0].Visible = false;
                 this.gvSummary.Columns[6].Visible = false;
                 this.gvSummary.Columns[13].Visible = true;
-
-                //if (gvSummary.Rows.Count > 0)
-                //{
-                //    Session["Report1"] = gvSummary;
-                //    ((HyperLink)this.gvSummary.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-                //}
             }
             else
             {
                 this.lblIntputtype.Value = "Active";
-                //this.GetGridSummary();
                 this.gvSummary.Columns[0].Visible = true;
                 this.gvSummary.Columns[6].Visible = true;
                 this.gvSummary.Columns[13].Visible = false;
@@ -5715,8 +5719,13 @@ namespace RealERPWEB.F_01_LPA
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
                 return;
             }
-            //this.txtComm.Text = "";
-            this.GetGridSummary();
+
+            DataTable dt = ((DataTable)ViewState["tblsummData"]).Copy();
+            DataRow[] dr1 = dt.Select("sircode='" + Procode + "'");
+            dr1[0]["active"] = true;
+            ViewState["tblsummData"] = dt;
+            this.Data_Bind();
+            //this.GetGridSummary();
 
 
             string events = hst["events"].ToString();
@@ -6661,6 +6670,22 @@ namespace RealERPWEB.F_01_LPA
 
 
 
+        }
+
+        protected void lnkBtnDatablank_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string events = hst["events"].ToString();
+            hdnfrpttype.Value = "databank";
+            this.ShowDetNotification(this.hdnfrpttype.Value.ToString());           
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = "Show Data Bank Information (Land CRM)";
+                string eventdesc = "Show Data Bank Information (Land CRM)";
+                string eventdesc2 = "";
+                string comcod = this.GetCompCode();
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
         }
         protected void lnkbtnProposal_Click(object sender, EventArgs e)
         {
@@ -7691,6 +7716,8 @@ namespace RealERPWEB.F_01_LPA
         {
             this.autoClickBtn_tempBTN();
         }
+
+       
     }
 }
 

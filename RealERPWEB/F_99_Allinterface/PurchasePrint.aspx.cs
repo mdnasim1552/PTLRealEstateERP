@@ -1146,7 +1146,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                     PrintReq = "PrintReque09";
                     break;
-
+                case "3101":
                 case "3325":
                 case "2325":
                     PrintReq = "PrintReque03";
@@ -1180,7 +1180,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //Adding End
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     PrintReq = "PrintReque08";
                     break;
@@ -1210,7 +1210,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.PrintRequisition01();
 
             }
-
+            // leisure
             else if (printcomreq == "PrintReque03")
             {
                 this.PrintRequisition03();
@@ -1676,8 +1676,8 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign2 = "Project Incharge";
             string txtSign3 = "DPM/PM/AGM/DGM";
             string txtSign4 = "Procurement";
-            string txtSign5 = "Cost & Budget";
-            string txtSign6 = "Head Of Construction";
+            string txtSign5 = "Head Of Construction";
+            string txtSign6 = "Cost & Budget";
             string txtSign7 = "DMD";
             string txtSign8 = "Chairman";
 
@@ -3789,11 +3789,44 @@ namespace RealERPWEB.F_99_Allinterface
                 dv1.RowFilter = ("rsircode not like '0199999%'");
                 dt3 = dv1.ToTable();
 
-                // Carring cost details brfeak
-                DataTable dt4;                
+                // Carring cost details brfeak p2p
+                DataTable dt4;
                 DataView dv4 = dtorder1.DefaultView;
-                dv4.RowFilter = ("rsircode  like '0199%'");
+                dv4.RowFilter = ("rsircode  like '019999901%'");
                 dt4 = dv4.ToTable();
+
+                string costa = "", costb = "", costc = "", costd = "", coste = "";
+                string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
+
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
+                {
+                    if (dt4.Rows.Count > 0)
+                    {
+                        costa = dt4.Rows[0]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[0]["rsirdesc1"].ToString();
+                        cost1 = dt4.Rows[0]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[0]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+                    if (dt4.Rows.Count > 1)
+                    {
+                        costb = dt4.Rows[1]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[1]["rsirdesc1"].ToString();
+                        cost2 = dt4.Rows[1]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[1]["ordramt"]).ToString("#,##0.00;(#,##0.00); "); ;
+                    }
+                    if (dt4.Rows.Count > 2)
+                    {
+                        costc = dt4.Rows[2]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[2]["rsirdesc1"].ToString();
+                        cost3 = dt4.Rows[2]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[2]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+                    if (dt4.Rows.Count > 3)
+                    {
+                        costd = dt4.Rows[3]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[3]["rsirdesc1"].ToString();
+                        cost4 = dt4.Rows[3]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[3]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+                    if (dt4.Rows.Count > 4)
+                    {
+                        coste = dt4.Rows[4]["rsirdesc1"].ToString() == null ? "" : dt4.Rows[4]["rsirdesc1"].ToString();
+                        cost5 = dt4.Rows[4]["ordramt"].ToString() == null ? "" : Convert.ToDouble(dt4.Rows[4]["ordramt"]).ToString("#,##0.00;(#,##0.00); ");
+                    }
+
+                }
 
                 string discountdesc = dtorder1.Select("rsircode like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("rsircode like '019999902003%'")[0]["rsirdesc1"].ToString();
 
@@ -3803,7 +3836,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string nettotalamt = (amtmat + amtcar - amtdis).ToString("#,##0.00;(#,##0.00);");
-                string advamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); "); ;
+                string advamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ");
 
 
 
@@ -3815,7 +3848,7 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature            
                 switch (comcod)
                 {
-                    //case "3101"://ASIT
+                    case "3101"://ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -3960,18 +3993,24 @@ namespace RealERPWEB.F_99_Allinterface
                         terms3 = "3. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
                         terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         break;
+
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
 
                         terms1 = "1. " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
-                        terms2 = "2. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
-                        terms3 = "3. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
-                        terms4 = "4. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        terms2 = "2. " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "3. " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "4. " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "5. " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        terms6 = "6. " + termscondition[5].termssubj.ToString() + ":" + termscondition[5].termsdesc.ToString();
+                        terms7 = "7. " + termscondition[6].termssubj.ToString() + ":" + termscondition[6].termsdesc.ToString();
+                        terms8 = "8. " + termscondition[7].termssubj.ToString() + ":" + termscondition[7].termsdesc.ToString();
+                        terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         cperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
 
                         break;
 
-                    //case "3101": // ASIT
+                    case "3101": // ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -4019,7 +4058,7 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
-                    case "3101": // ASIT
+                    //case "3101": // ASIT
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
@@ -4057,6 +4096,8 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3335": // Edison Properties
                         Reportpath = "~/Report/RptPurchaseOrderEdison.rdlc";
                         break;
+
+                    case "3101": //Pintech
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P
@@ -4107,8 +4148,8 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                    case "3101": //Greenwood
-                    case "3364": //Greenwood
+
+                    case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
@@ -4133,10 +4174,24 @@ namespace RealERPWEB.F_99_Allinterface
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseOrder", purlist, termscondition, null);
                 Rpt1.EnableExternalImages = true;
 
-                if (comcod == "3351" || comcod == "1205" || comcod == "3352")
+                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "3101")
                 {
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
+
+                    Rpt1.SetParameters(new ReportParameter("costa", costa));
+                    Rpt1.SetParameters(new ReportParameter("costb", costb));
+                    Rpt1.SetParameters(new ReportParameter("costc", costc));
+                    Rpt1.SetParameters(new ReportParameter("costd", costd));
+                    Rpt1.SetParameters(new ReportParameter("coste", coste));
+
+                    Rpt1.SetParameters(new ReportParameter("cost1", cost1));
+                    Rpt1.SetParameters(new ReportParameter("cost2", cost2));
+                    Rpt1.SetParameters(new ReportParameter("cost3", cost3));
+                    Rpt1.SetParameters(new ReportParameter("cost4", cost4));
+                    Rpt1.SetParameters(new ReportParameter("cost5", cost5));
+
+
                 }
                 if (comcod == "3353")
                 {

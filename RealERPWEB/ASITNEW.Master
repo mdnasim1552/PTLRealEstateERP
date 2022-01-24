@@ -322,6 +322,35 @@
                         <!-- /.top-bar-item -->
                         <!-- .top-bar-item -->
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
+                            <ul class="header-nav nav">
+                                <li class="nav-item dropdown header-nav-dropdown has-notified">
+                                    
+
+                                     <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-bell "></i>
+                                            <span class="label label-success" id="lblallpop" runat="server">0</span>
+                                        </a>
+                                    
+                                    <!-- .dropdown-menu -->
+                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
+                                        <h6 class="dropdown-header stop-propagation">
+                                            <span>Notification</span>
+                                            
+                                        </h6>
+                                        <!-- .dropdown-scroll -->
+                                        <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
+                                             </div>
+                                        <a href="app-messages.html" class="dropdown-footer">All Notification
+                     
+                                        <i class="fa fa-fw fa-long-arrow-alt-right"></i>
+                                        </a>
+                                    </div>
+                                    <!-- /.dropdown-menu -->
+                                </li>
+                            </ul>
+
+
+
 
                             <asp:DropDownList ID="DDPrintOpt" Width="80px" runat="server" CssClass="custom-select">
                                 <asp:ListItem Selected="True" Value="PDF">PDF</asp:ListItem>
@@ -365,7 +394,7 @@
 
                                     <a class="dropdown-item" href="<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>">Group Chat Center</a>
 
-                                <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'><span class="dropdown-icon oi oi-account-logout"></span>Give Attendance</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'><span class="dropdown-icon oi oi-account-logout"></span>Give Attendance</a>
 
                                     <a class="dropdown-item" href="https://pintechltd.com/#contact-us">Ask Forum</a>
                                     <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
@@ -461,11 +490,6 @@
                                     <a href="StepofOperationNew?moduleid=" id="amaster" runat="server" target="_self" class="menu-link"><span class="menu-icon fas fa-file" title="Master"></span><span class="menu-text">Master</span></a>
                                 </li>
 
-
-
-
-
-
                                 <!-- /.menu-item -->
                                 <!-- .menu-item -->
                                 <li class="menu-item has-child Module" onclick="SetItemStorage('Module')">
@@ -480,100 +504,17 @@
                                     <a href="javascript:void(0);" class="menu-link"><span class="menu-icon fa fa-list" title="Interfaces"></span><span class="menu-text">Interfaces</span></a>
                                     <!-- child menu -->
                                     <ul class="menu" id="Interface" runat="server">
-                                        <%--<li class="menu-item">
-                      <a href="auth-comingsoon-v1.html" class="menu-link">Coming Soon v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-comingsoon-v2.html" class="menu-link">Coming Soon v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-cookie-consent.html" class="menu-link">Cookie Consent</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-empty-state.html" class="menu-link">Empty State</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v1.html" class="menu-link">Error Page v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v2.html" class="menu-link">Error Page v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v3.html" class="menu-link">Error Page v3</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-maintenance.html" class="menu-link">Maintenance</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-page-message.html" class="menu-link">Page Message</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-session-timeout.html" class="menu-link">Session Timeout</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signin-v1.html" class="menu-link">Sign In v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signin-v2.html" class="menu-link">Sign In v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signup.html" class="menu-link">Sign Up</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-recovery-username.html" class="menu-link">Recovery Username</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-recovery-password.html" class="menu-link">Recovery Password</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-lockscreen.html" class="menu-link">Screen Locked</a>
-                    </li>--%>
                                     </ul>
                                     <!-- /child menu -->
                                 </li>
-                                <!-- /.menu-item -->
-                                <!-- .menu-item -->
 
-                                <!-- .menu-item -->
-                                <%-- <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Layouts</span> <span class="badge badge-subtle badge-success">+4</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="layout-blank.html" class="menu-link">Blank Page</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-nosearch.html" class="menu-link">Header no Search</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-horizontal-menu.html" class="menu-link">Horizontal Menu</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-fullwidth.html" class="menu-link">Full Width</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagenavs.html" class="menu-link">Page Navs</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover.html" class="menu-link">Page Cover</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover-img.html" class="menu-link">Cover Image</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar.html" class="menu-link">Page Sidebar</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar-fluid.html" class="menu-link">Sidebar Fluid</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar-hidden.html" class="menu-link">Sidebar Hidden</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-custom.html" class="menu-link">Custom</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
-                                <!-- .menu-item -->
+                            </ul>
+
+
+                            <ul class="menu mt-0" id="lstFeturedMenu" runat="server">
+
+
+
 
                                 <li class="menu-item has-child">
                                     <a href="#" class="menu-link"><span class="menu-icon fas fa-table" title="Archive"></span><span class="menu-text">Archive</span></a>
@@ -614,58 +555,7 @@
                                 <!-- /.menu-item -->
                                 <!-- .menu-header -->
                                 <li class="menu-header">Analysis </li>
-                                <!-- /.menu-header -->
-                                <!-- .menu-item -->
-                                <%--  <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Components</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="component-general.html" class="menu-link">General</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-icons.html" class="menu-link">Icons</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-rich-media.html" class="menu-link">Rich Media</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-list-views.html" class="menu-link">List Views</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-sortable-nestable.html" class="menu-link">Sortable & Nestable</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-activity.html" class="menu-link">Activity</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-steps.html" class="menu-link">Steps</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-tasks.html" class="menu-link">Tasks</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-metrics.html" class="menu-link">Metrics</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
-                                <!-- .menu-item -->
-                                <%--<li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-pencil"></span> <span class="menu-text">Forms</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="form-basic.html" class="menu-link">Basic Elements</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-autocompletes.html" class="menu-link">Autocompletes</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-pickers.html" class="menu-link">Pickers</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-editors.html" class="menu-link">Editors</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
+
                                 <!-- .menu-item -->
                                 <li class="menu-item has-active">
                                     <a runat="server" id="dbAllinOne" href="#" target="_blank" class="menu-link"><span class="menu-icon fa fa-th" title="All In One"></span><span class="menu-text">All In One</span></a>
@@ -696,12 +586,7 @@
                                         <li class="menu-item">
                                             <a runat="server" id="PrjSummary" class="menu-link">Project Summary</a>
                                         </li>
-                                        <%--  <li class="menu-item">
-                                            <a href="table-responsive-datatables.html" class="menu-link">Production</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="table-filters-datatables.html" class="menu-link">Accounts</a>
-                                        </li>--%>
+
                                     </ul>
                                     <!-- /child menu -->
                                 </li>
@@ -711,84 +596,8 @@
                                 <li class="menu-item">
                                     <a href="Tickets/Index" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>
                                 </li>
-
-                                <!-- /.menu-item -->
-                                <!-- .menu-item -->
-                                <%--   <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Collections</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Chart.js</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="collection-chartjs-line.html" class="menu-link">Line</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-bar.html" class="menu-link">Bar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-radar-scatter.html" class="menu-link">Radar & Scatter</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-others.html" class="menu-link">Others</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-flot-charts.html" class="menu-link">Flot</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-inline-charts.html" class="menu-link">Inline charts</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-jqvmap.html" class="menu-link">Vector Map</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
-                                <!-- .menu-item -->
-                                <%-- <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-list-rich"></span> <span class="menu-text">Level Menu</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Menu item</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item has-child">
-                          <a href="#" class="menu-link">Child item</a> <!-- grand child menu -->
-                          <ul class="menu">
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                          </ul><!-- /grand child menu -->
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
                             </ul>
+
 
                             <ul class="menu" id="MenuDynamic" visible="false" runat="server">
                             </ul>
@@ -892,6 +701,10 @@ Close</asp:LinkButton>
 
             // setTimeout($("#AlertArea").fadeOut(5000), 5000);
             //auto complete
+
+
+            GetNotifications();
+
 
         });
         function clickinside() {
@@ -1039,6 +852,58 @@ Close</asp:LinkButton>
             }
             toastr["error"](msg);
         };
+
+        function GetNotifications() {
+            try {
+                var userid = "3101015";<%-- <%=this.GetUserId()%>;--%>
+                 $.ajax({
+                     type: "POST",
+                     url: "../Service/UserService.asmx/GetNotAndMessage",
+                     data: '{userid:"' + userid + '"}',
+                     contentType: "application/json; charset=utf-8",
+                     dataType: "json",
+                     success: function (response) {
+                         var data = response.d;
+                         var row = "";
+                         var img = "";
+                         var count = 0;
+                         var all = "";
+                         var imgstrng = "";
+                         var imgextract = "";
+                         $("#repNotificmsg").html("");
+                         $.each(data, function (k, v) {
+                             if (v.ntype == "") {
+                                 imgstrng = v.sendphoto;
+                                 imgextract = imgstrng.substring(2);
+                                 //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                                 row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                                     '<div class="user-avatar">' +
+                                     '<img src="' + imgextract + '" alt="">' +
+                                     '</div>' +
+                                     '<div class="dropdown-item-body">' +
+                                     '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                                     '</div>' +
+
+                                     '</a>';
+                                 count++;
+                             }
+                         });
+                         $("#repNotificmsg").append(row);
+                         
+                         $("#lblallpop").text(count);
+                         var counting = count == 0 ? 0 : count;
+
+                         
+                     },
+                     failure: function (response) {
+                         alert("f");
+                     }
+                 });
+             }
+             catch (e) {
+                 alert(e);
+             }
+         }
     </script>
 
 </body>
