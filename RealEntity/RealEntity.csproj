@@ -118,6 +118,7 @@
     <Compile Include="C_45_GrAcc\CompanyManager.cs" />
     <Compile Include="C_45_GrAcc\RptGrpMisDailyActiviteis.cs" />
     <Compile Include="C_45_GrAcc\RptGrpMisDailyActiviteisMan.cs" />
+    <Compile Include="C_45_GrAcc\RptGrpMis.cs" />
     <Compile Include="C_46_GrMgtInter\DailyGrpRpt.cs" />
     <Compile Include="C_46_GrMgtInter\DailyGrpRptMan.cs" />
     <Compile Include="C_47_Kpi\BL_EntryKpi.cs" />

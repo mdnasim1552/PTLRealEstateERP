@@ -49,7 +49,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
+            <div class="container moduleItemWrpper" style="height:1010px;>
                 <div class="contentPart">
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">

@@ -331,18 +331,18 @@
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
                             <ul class="header-nav nav">
                                 <li class="nav-item dropdown header-nav-dropdown has-notified">
-                                    
 
-                                     <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-bell "></i>
-                                            <span class="label label-success" id="lblallpop" runat="server">0</span>
-                                        </a>
-                                    
+
+                                    <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bell "></i>
+                                        <span class="label label-success" id="lblallpop" runat="server">0</span>
+                                    </a>
+
                                     <!-- .dropdown-menu -->
                                     <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right" style="overflow:hidden">
                                         <h6 class="dropdown-header stop-propagation">
                                             <span>Notification</span>
-                                            
+
                                         </h6>
                                         <!-- .dropdown-scroll -->
                                         <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
@@ -859,11 +859,10 @@ Close</asp:LinkButton>
             }
             toastr["error"](msg);
         };
-
         function GetNotifications() {
             try {
                 var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
-                 var userid = <%=this.GetUserId()%>;
+                var userid = <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
                
@@ -902,9 +901,12 @@ Close</asp:LinkButton>
                 
              }
              catch (e) {
-                 alert(e);
+                 showContentFail('Notification Not Found');
              }
          }
+
+        
+       
     </script>
 
 </body>
