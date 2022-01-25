@@ -893,9 +893,12 @@ Close</asp:LinkButton>
                          $("#repNotificmsg").append(row);
 =======
 
-              <%--  var userid = <%=this.GetUserId()%>;
+
+                var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
+                 var userid = <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
-                var data = objnotification.GetNotifications(userid);               
+                var data = objnotification.GetNotifications(userid, url);
+               
                 var row = "";
                 var img = "";
                 var count = 0;
@@ -923,7 +926,7 @@ Close</asp:LinkButton>
                 $("#repNotificmsg").append(row);
 
                 $("#lblallpop").text(count);
-                var counting = count == 0 ? 0 : count;--%>
+                var counting = count == 0 ? 0 : count;
                
 
 
