@@ -169,7 +169,6 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\_bin\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3069,6 +3068,7 @@
     <Content Include="F_81_Hrm\F_94_Task\RptTaskInfoDet.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_94_Task\TaskInfoDet.aspx" />
+    <Content Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\LinkMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptMgtInterface.aspx" />
     <Content Include="F_81_Hrm\F_97_MIS\RptNewJoingInfo.aspx" />
@@ -3500,6 +3500,7 @@
     <Content Include="NewInterface\dashboard.html" />
     <Content Include="Notices\CreateNotice.aspx" />
     <Content Include="Notices\Notice.aspx" />
+    <Content Include="Notification\GetNotification.aspx" />
     <Content Include="p1.PNG" />
     <Content Include="p2.PNG" />
     <Content Include="p3.PNG" />
@@ -4352,6 +4353,13 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.designer.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.cs">
+      <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
+      <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4386,6 +4394,13 @@
     </Compile>
     <Compile Include="Notices\Notice.aspx.designer.cs">
       <DependentUpon>Notice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notification\GetNotification.aspx.cs">
+      <DependentUpon>GetNotification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notification\GetNotification.aspx.designer.cs">
+      <DependentUpon>GetNotification.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLCViewerWin.aspx.cs">
       <DependentUpon>RDLCViewerWin.aspx</DependentUpon>
@@ -11768,6 +11783,15 @@
     <Content Include="Report\RptPurchaseOrderBridgeWLogo.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderJBS.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RealEntity\RealEntity.csproj">
       <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
       <Name>RealEntity</Name>
@@ -11780,15 +11804,6 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Report\RptPurchaseOrderJBS.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

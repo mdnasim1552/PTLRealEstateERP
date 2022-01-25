@@ -53,7 +53,6 @@
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -91,7 +90,6 @@
     <Folder Include="R_33_Doc\" />
     <Folder Include="R_35_MgtAct\" />
     <Folder Include="R_39_MyPage\" />
-    <Folder Include="R_45_GrAcc\" />
     <Folder Include="R_46_GrMgtInter\" />
     <Folder Include="R_50_CMIS\" />
     <Folder Include="R_51_LBgd\" />
@@ -129,6 +127,8 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassRevenue.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_34_Mgt.Userinfo.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPayment.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord.datasource" />
@@ -796,6 +796,7 @@
     <EmbeddedResource Include="R_34_Mgt\UserLogDetails.rdlc" />
     <EmbeddedResource Include="R_34_Mgt\UserLoginInfo.rdlc" />
     <EmbeddedResource Include="R_41_GAcc\RptProProgBillStatus.rdlc" />
+    <EmbeddedResource Include="R_45_GrAcc\RptGrpMisRecPayment.rdlc" />
     <EmbeddedResource Include="R_47_Kpi\RptKeyResultArea.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\LetterDefault01.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_81_Rec\RptAssYearly.rdlc" />

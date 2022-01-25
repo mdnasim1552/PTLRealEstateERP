@@ -420,6 +420,22 @@ namespace RealERPWEB
             //strign comcod= qcomcod.Length>0? qcomcod:hst["comcod"].ToString()
             //return (hst["comcod"].ToString());
         }
+
+
+        public string GetUserId()
+        {
+
+            
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+          
+            return (hst["usrid"].ToString());
+
+
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string qcomcod = this.Request.QueryString["comcod"] ?? "";
+            //strign comcod= qcomcod.Length>0? qcomcod:hst["comcod"].ToString()
+            //return (hst["comcod"].ToString());
+        }
         protected void lnkbtnLedger_Click(object sender, EventArgs e)
         {
 

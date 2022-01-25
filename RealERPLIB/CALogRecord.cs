@@ -7,12 +7,15 @@ using System.Data;
 
 namespace RealERPLIB
 {   // ProcessAccess _logdata = new ProcessAccess("");
+
     public static class CALogRecord
     {
+        
+
         //public static DataSet GetLogRecord(string Comp1, string eventtime1, string eventtime2, string SrchStr)
         //{
         //    //CAProcessAccess Proc1 = new CAProcessAccess("MSG");
-          
+
         //    //DataSet ds1 = Proc1.GetRecords(Comp1, "SP_ENTRY_EVENTLOG", "GPWISERESBUDGET", eventtime1, eventtime2, SrchStr, "", "", "", "", "", "", "", "", "", "", "");
         //    //if (ds1 == null)
         //    //    return null;
@@ -63,5 +66,20 @@ namespace RealERPLIB
 
         //return _result;
         //}
+
+        public static bool AddSMRecords(string comcod, Hashtable hst, string ntitle, string ndetails, string usrid, string trdate, string ntype, string smsstatus, string smscontent,
+               string mailstatus, string mailcontent, string mailattch, string phone, string email)
+        {
+            string TermID = hst["compname"].ToString();
+            string ncreatedby = hst["usrid"].ToString();
+            //string sesionid = hst["session"].ToString();
+            string ncreated = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            ProcessAccess _LogRecord = new ProcessAccess("ASITINTERIORDB");
+            bool _result = _LogRecord.UpdateTransInfo3(comcod, "SP_REPORT_NOTICE", "INSERTUPDATESM", ntitle, ndetails, ncreated, ncreatedby, ntype, smsstatus, smscontent, mailstatus,
+                    mailcontent, mailattch, usrid, TermID, phone, email);
+            return _result;
+        }
+
+
     }
 }

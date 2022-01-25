@@ -360,10 +360,13 @@ namespace RealERPWEB.Service
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public List<RealEntity.UserManager.userNotification> GetNotAndMessage(string userid)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
             List<RealEntity.UserManager.userNotification> lst = new List<RealEntity.UserManager.userNotification>();
             string todate = DateTime.Today.ToString("dd-MMM-yyyy");
 
-            SqlDataReader sdr = accData.GetSqlReader("3101", "SP_REPORT_NOTICE", "GETEVENTLOG", todate, userid, "", "", "", "", "", "", "");
+            SqlDataReader sdr = accData.GetSqlReader(comcod, "SP_REPORT_NOTICE", "GETEVENTLOG", todate, userid, "", "", "", "", "", "", "");
             if (sdr == null)
             {
                 return lst;
@@ -371,7 +374,7 @@ namespace RealERPWEB.Service
             while (sdr.Read())
             {
                 RealEntity.UserManager.userNotification typuser = new RealEntity.UserManager.userNotification(Convert.ToInt32(sdr["notifyid"].ToString()),
-                    sdr["meassage"].ToString(), Convert.ToInt32(sdr["userid"].ToString()),   sdr["sendname"].ToString(), sdr["sendphoto"].ToString(), sdr["refid"].ToString(), sdr["notiytype"].ToString(), sdr["ntype"].ToString());
+                    sdr["meassage"].ToString(), sdr["eventitle"].ToString(), Convert.ToInt32(sdr["userid"].ToString()),   sdr["sendname"].ToString(), sdr["sendphoto"].ToString(), sdr["refid"].ToString(), sdr["notiytype"].ToString(), sdr["ntype"].ToString());
                 lst.Add(typuser);
             }
             return lst;
