@@ -135,7 +135,15 @@
                                  <asp:ListItem Value="P.V">Project Visit (PV)</asp:ListItem>
                                  <asp:ListItem Value="C.M">Client Metting (CM)</asp:ListItem>
                                  <asp:ListItem Value="O.W">Office Work (OW)</asp:ListItem>
-                                 <asp:ListItem Value="O">Other (O)</asp:ListItem>
+                                <asp:ListItem Value="VAT.V">VAT Office Visit  (OW)</asp:ListItem>
+                                <asp:ListItem Value="DEDO.V">DEDO Office Visit</asp:ListItem>     
+                                <asp:ListItem Value="Tax.V">Tax Office Visit</asp:ListItem>
+                                <asp:ListItem Value="CTG.V">CTG Port Visi</asp:ListItem>
+                                 <asp:ListItem Value="Beana.V">Beanpole Port Visi</asp:ListItem>
+                                 <asp:ListItem Value="A.L">Annual Leave </asp:ListItem>
+                                 <asp:ListItem Value="M.L">Medical Leave </asp:ListItem>
+                                 <asp:ListItem Value="I.V">India Visit </asp:ListItem>
+                                 <asp:ListItem Value="Oth">Other (O)</asp:ListItem>
                              </asp:DropDownList>
                         </div>
                             </div>
