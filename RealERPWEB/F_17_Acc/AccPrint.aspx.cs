@@ -1463,7 +1463,7 @@ namespace RealERPWEB.F_17_Acc
 
                     else if (vouno == "JV")
                     {
-                        voutype1 = "Jounal Voucher";
+                        voutype1 = "Journal Voucher";
                     }
                     else
                     {

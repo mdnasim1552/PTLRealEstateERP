@@ -324,22 +324,22 @@
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
                             <ul class="header-nav nav">
                                 <li class="nav-item dropdown header-nav-dropdown has-notified">
-                                    
 
-                                     <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-bell "></i>
-                                            <span class="label label-success" id="lblallpop" runat="server">0</span>
-                                        </a>
-                                    
+
+                                    <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bell "></i>
+                                        <span class="label label-success" id="lblallpop" runat="server">0</span>
+                                    </a>
+
                                     <!-- .dropdown-menu -->
                                     <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
                                         <h6 class="dropdown-header stop-propagation">
                                             <span>Notification</span>
-                                            
+
                                         </h6>
                                         <!-- .dropdown-scroll -->
                                         <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
-                                             </div>
+                                        </div>
                                         <a href="app-messages.html" class="dropdown-footer">All Notification
                      
                                         <i class="fa fa-fw fa-long-arrow-alt-right"></i>
@@ -855,7 +855,7 @@ Close</asp:LinkButton>
         function GetNotifications() {
             try {
                 var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
-                 var userid = <%=this.GetUserId()%>;
+                var userid = <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
                
@@ -871,9 +871,9 @@ Close</asp:LinkButton>
                         imgstrng = v.sendphoto;
                         imgextract = imgstrng.substring(2);
                         //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
-                        row += '<a href="' + encodeURI('../../Message/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                        row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
                             '<div class="user-avatar">' +
-                            '<img src="'<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%> '" alt="">' +
+                            '<img src="' + imgextract + '" alt="">' +
                             '</div>' +
                             '<div class="dropdown-item-body">' +
                             '<p class="product-name text-truncate">' + v.meassage + '</p>' +
@@ -884,14 +884,15 @@ Close</asp:LinkButton>
                     }
                 });
                 $("#repNotificmsg").append(row);
-                $("#lblallpop").text(count);
-                
+
+                $("#lblallpop").text(count);         
              }
              catch (e) {
-                 alert(e);
+                 showContentFail('Notification Not Found');
              }
          }
 
+        
        
     </script>
 
