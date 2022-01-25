@@ -20,6 +20,7 @@ namespace RealERPWEB.F_34_Mgt
     public partial class UserLoginfrm : System.Web.UI.Page
     {
         ProcessAccess User = new ProcessAccess();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -394,13 +395,19 @@ namespace RealERPWEB.F_34_Mgt
             this.gvUseForm.EditIndex = -1;
             this.ShowUserInfo();
 
+
+            string eventtype = "User Login From";
+            string eventdesc = "Update ID";
+            string eventdesc2 = "Your profile Updated,";
+
             if (ConstantInfo.LogStatus == true)
-            {
-                string eventtype = "User Login From";
-                string eventdesc = "Update ID";
-                string eventdesc2 = usrsname;
-                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            {               
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);                 
             }
+            // for notification
+            // title  details recvier id
+            bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+             
 
         }
         protected void gvUseForm_RowEditing(object sender, GridViewEditEventArgs e)
@@ -668,6 +675,13 @@ namespace RealERPWEB.F_34_Mgt
             //             qrytype, description, modulename, entry, printable, delete, "", "", "", "", "", "");
             //    }
             //}
+
+            
+            string eventdesc = "Page Permission Update";
+            string eventdesc2 = "Dear User, Some Permission Updated, Please Check, ";
+            
+            bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+             
 
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
