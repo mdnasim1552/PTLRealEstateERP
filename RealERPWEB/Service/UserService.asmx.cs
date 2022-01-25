@@ -360,10 +360,13 @@ namespace RealERPWEB.Service
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public List<RealEntity.UserManager.userNotification> GetNotAndMessage(string userid)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+
             List<RealEntity.UserManager.userNotification> lst = new List<RealEntity.UserManager.userNotification>();
             string todate = DateTime.Today.ToString("dd-MMM-yyyy");
 
-            SqlDataReader sdr = accData.GetSqlReader("3101", "SP_REPORT_NOTICE", "GETEVENTLOG", todate, userid, "", "", "", "", "", "", "");
+            SqlDataReader sdr = accData.GetSqlReader(comcod, "SP_REPORT_NOTICE", "GETEVENTLOG", todate, userid, "", "", "", "", "", "", "");
             if (sdr == null)
             {
                 return lst;

@@ -118,6 +118,7 @@ namespace RealERPWEB.F_17_Acc
             string Installment = "";
             string Installment2 = "";
             bool isMoneyRecpt=false;
+            bool isPartial = false;
             for (int i = 0; i < dtmr.Rows.Count; i++)
             {
                 if (i == 0)
@@ -154,6 +155,7 @@ namespace RealERPWEB.F_17_Acc
                     else
                     {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                        isPartial = true;
                     }                        
 
                 }
@@ -171,7 +173,7 @@ namespace RealERPWEB.F_17_Acc
                     if (isMoneyRecpt)
                     {
                         string part1 = ASTUtility.Left(Installment2, 4);
-                        string part2 = ASTUtility.Right(Installment2, 16);
+                        string part2 = isPartial==true ? ASTUtility.Right(Installment2, 25) : ASTUtility.Right(Installment2, 16);
                         Installment = part1 + " - " + part2;
                     }
                     else
