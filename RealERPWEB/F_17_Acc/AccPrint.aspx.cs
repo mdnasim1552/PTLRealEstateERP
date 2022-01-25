@@ -610,7 +610,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
                 case "3353":
-                case "3101"://  ASIT (Check)
+              //  case "3101"://  ASIT (Check)
 
                 case "3357"://  Cube Holding
 
@@ -733,7 +733,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                case "3101":
+              
                 case "3364":
                     vouprint = "VocherPrintJBS";
                     break;
