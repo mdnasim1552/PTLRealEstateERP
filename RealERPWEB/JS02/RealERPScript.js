@@ -310,15 +310,12 @@
 
 
 
-    this.GetNotifications = function (userid) {
-
+    this.GetNotifications = function (userid, url) {
         var results = new Array();
-
         jQuery.ajax({
             type: "POST",
             async: false,
-            url: 'Service/UserService.asmx/GetNotAndMessage',
-
+            url: url,
             data: Sys.Serialization.JavaScriptSerializer.serialize({ 'userid': userid}),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
