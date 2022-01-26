@@ -392,6 +392,8 @@ namespace RealERPWEB.F_22_Sal
             this.lblwork.Text = dtOrder.Rows[0]["design"].ToString();
             this.lblCode.Text = usircode;
 
+            this.gvSpayment.Columns[17].Visible = false;
+
 
             this.lblvoucher.Text = dtOrder.Rows[0]["vounum"].ToString();
             this.lblAcAmt.Text = Convert.ToDouble(dtOrder.Rows[0]["tamt"]).ToString("#,##0;(#,##0); ");
