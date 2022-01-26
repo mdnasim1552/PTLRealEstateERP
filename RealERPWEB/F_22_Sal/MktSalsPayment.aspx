@@ -357,7 +357,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="File code">
+                                <asp:TemplateField HeaderText="File code" Visible="false">
                                     <EditItemTemplate>
                                     </EditItemTemplate>
                                     <ItemTemplate>
@@ -369,6 +369,14 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
+                                <asp:TemplateField HeaderText="Car Parking">
+                                    <EditItemTemplate></EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCarParking" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cparking")) %>'  Width="70px"  ></asp:Label>
+                                    </ItemTemplate>
+                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
 
                             </Columns>
