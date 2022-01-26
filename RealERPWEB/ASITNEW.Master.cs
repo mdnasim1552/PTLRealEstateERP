@@ -573,9 +573,9 @@ namespace RealERPWEB
             DataView view = new DataView(Menus);
             //if (usertype != null)
             //{
-              view.RowFilter = ("sidebar='True' and moduleid= '1243'");
+            //view.RowFilter = ("sidebar='True' and moduleid= '1243'");
             // view.RowFilter = ("sidebar='True'");
-
+            view.RowFilter = ("moduleid=0");
 
 
 
