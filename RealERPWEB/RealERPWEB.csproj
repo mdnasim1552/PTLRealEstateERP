@@ -11761,22 +11761,6 @@
     <Content Include="Report\RptSalesInv.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://123.200.23.58/WebReference/HRDailyAtten.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\HrWebService\</RelPath>
-      <UpdateFromURL>http://123.200.23.58/WebReference/HRDailyAtten.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Report\RptPurchaseOrderBridge.rdlc" />
   </ItemGroup>
   <ItemGroup>
@@ -11804,6 +11788,22 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/WebReference/HRDailyAtten.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\HrWebService\</RelPath>
+      <UpdateFromURL>http://localhost/WebReference/HRDailyAtten.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

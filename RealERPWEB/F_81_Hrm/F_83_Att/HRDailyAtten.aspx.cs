@@ -318,9 +318,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 case "3315"://Assure
-
                     this.InsertDailyAttnAssure();
                     break;
+
+
+                case "3365"://Assure
+                    this.GetDailyAttenDanceZKT();
+                    break;
+
+
+
 
                 default:
                     this.InsertDailyAttnAlliance();
@@ -892,5 +899,63 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
         }
+
+        private void GetDailyAttenDanceZKT()
+        {
+            try
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+
+                Session.Remove("DayAtten");
+                bool result;
+                string pdate = Convert.ToDateTime(this.txtdate.Text).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                string date1 = "#" + this.txtdate.Text + " 12:00:00 AM" + "#";
+                string date2 = "#" + this.txtdate.Text + " 11:59:00 PM" + "#";
+
+
+
+                HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
+                DataSet ds = DailyAttendance.GetDailyAttenDanceZKT(date1, date2);
+                //DataSet ds = DailyAttendance.GetDailyAttenDanceAssure(date1, date2);
+                //string count = DailyAttendance.Country();
+
+                Session["DayAtten"] = ds.Tables[0];
+                DataTable dt = (DataTable)Session["DayAtten"];
+                string comcod = this.GetCompCode();
+                string date = this.txtdate.Text;
+
+                // result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "DELETEATTEN", date, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string idcardno1 = dt.Rows[i]["din"].ToString();
+                    string idcardno = ASTUtility.Right(("00000" + idcardno1.Trim()), 5);
+                    string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
+
+                }
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
+                // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                this.ShowData();
+
+
+            }
+
+            catch (Exception ex)
+            {
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error in exception";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
+        }
+
+        
     }
 }
