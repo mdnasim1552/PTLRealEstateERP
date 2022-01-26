@@ -2829,124 +2829,132 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         }
         protected void btnExportOtherEarnExcel_Click(object sender, EventArgs e)
         {
-
-            this.Data_Binds();
-            Response.Clear();
-            Response.Buffer = true;
-
-            Response.AddHeader("content-disposition", "attachment;filename=Clientlist.xls");
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
-            StringWriter sw = new StringWriter();
-            HtmlTextWriter hw = new HtmlTextWriter(sw);
-            gvothearn.AllowPaging = false;
-
-            //GridView1.DataBind();
-            gvothearn.HeaderRow.Style.Add("background-color", "#FFFFFF");
-            gvothearn.HeaderRow.Style.Add("color", "#FFFFFF");
-            gvothearn.HeaderRow.Style.Add("vertical-align", "middle");
-            gvothearn.HeaderRow.Cells[4].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[5].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[6].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[7].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[8].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[9].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[10].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[11].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[12].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[12].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[14].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[15].Style.Add("background-color", "green");
-            gvothearn.HeaderRow.Cells[16].Style.Add("background-color", "green");
-            //gvothearn.HeaderRow.Cells[13].Style.Add("background-color", "green");
-            //gvothearn.HeaderRow.Cells[14].Style.Add("background-color", "green");
-
-            ArrayList arr = (ArrayList)ViewState["States"];
-
-            gvothearn.HeaderRow.Cells[4].Visible = Convert.ToBoolean(arr[0]);
-            gvothearn.HeaderRow.Cells[5].Visible = Convert.ToBoolean(arr[1]);
-            gvothearn.HeaderRow.Cells[6].Visible = Convert.ToBoolean(arr[2]);
-            gvothearn.HeaderRow.Cells[7].Visible = Convert.ToBoolean(arr[3]);
-            gvothearn.HeaderRow.Cells[8].Visible = Convert.ToBoolean(arr[4]);
-            gvothearn.HeaderRow.Cells[9].Visible = Convert.ToBoolean(arr[5]);
-            gvothearn.HeaderRow.Cells[10].Visible = Convert.ToBoolean(arr[6]);
-            gvothearn.HeaderRow.Cells[11].Visible = Convert.ToBoolean(arr[7]);
-            gvothearn.HeaderRow.Cells[12].Visible = Convert.ToBoolean(arr[8]);
-            gvothearn.HeaderRow.Cells[13].Visible = Convert.ToBoolean(arr[9]);
-            gvothearn.HeaderRow.Cells[14].Visible = Convert.ToBoolean(arr[10]);
-            gvothearn.HeaderRow.Cells[15].Visible = Convert.ToBoolean(arr[11]);
-            gvothearn.HeaderRow.Cells[16].Visible = Convert.ToBoolean(arr[12]);
-            //gvothearn.HeaderRow.Cells[13].Visible = Convert.ToBoolean(arr[13]);
-            //gvothearn.HeaderRow.Cells[14].Visible = Convert.ToBoolean(arr[14]);
-
-            gvothearn.HeaderRow.Cells[4].FindControl("chkCol0").Visible = false; // company 4
-            gvothearn.HeaderRow.Cells[5].FindControl("chkCol1").Visible = false; // fullname 5
-            gvothearn.HeaderRow.Cells[6].FindControl("chkCol2").Visible = false; // email 6
-            gvothearn.HeaderRow.Cells[7].FindControl("chkCol3").Visible = false; // mobile 7
-            gvothearn.HeaderRow.Cells[8].FindControl("chkCol4").Visible = false; // username 8
-            gvothearn.HeaderRow.Cells[9].FindControl("chkCol5").Visible = false; // password -9
-            gvothearn.HeaderRow.Cells[10].FindControl("chkCol6").Visible = false; // registration 13
-            gvothearn.HeaderRow.Cells[11].FindControl("chkCol7").Visible = false; // active date 14
-            gvothearn.HeaderRow.Cells[12].FindControl("chkCol8").Visible = false;  //expire 15 
-            gvothearn.HeaderRow.Cells[12].FindControl("chkCol9").Visible = false; // user type-16
-            gvothearn.HeaderRow.Cells[14].FindControl("chkCol10").Visible = false; // reaming -17
-            gvothearn.HeaderRow.Cells[15].FindControl("chkCol11").Visible = false; // user role -18
-            gvothearn.HeaderRow.Cells[16].FindControl("chkCol12").Visible = false; // status -19
-            //gvothearn.HeaderRow.Cells[13].FindControl("chkCol13").Visible = false; // Action -20
-
-            for (int i = 0; i < gvothearn.Rows.Count; i++)
+            try
             {
-                GridViewRow row = gvothearn.Rows[i];
-                row.Cells[4].Visible = Convert.ToBoolean(arr[0]);
-                row.Cells[5].Visible = Convert.ToBoolean(arr[1]);
-                row.Cells[6].Visible = Convert.ToBoolean(arr[2]);
-                row.Cells[7].Visible = Convert.ToBoolean(arr[3]);
-                row.Cells[8].Visible = Convert.ToBoolean(arr[4]);
-                row.Cells[9].Visible = Convert.ToBoolean(arr[5]);
-                row.Cells[10].Visible = Convert.ToBoolean(arr[6]);
-                row.Cells[11].Visible = Convert.ToBoolean(arr[7]);
-                row.Cells[12].Visible = Convert.ToBoolean(arr[8]);
-                row.Cells[12].Visible = Convert.ToBoolean(arr[9]);
-                row.Cells[14].Visible = Convert.ToBoolean(arr[10]);
-                row.Cells[15].Visible = Convert.ToBoolean(arr[11]);
-                row.Cells[16].Visible = Convert.ToBoolean(arr[12]);
-                //row.Cells[13].Visible = Convert.ToBoolean(arr[13]);
-                //row.Cells[14].Visible = Convert.ToBoolean(arr[14]);
+                this.Data_Binds();
+                Response.Clear();
+                Response.Buffer = true;
 
-                row.BackColor = System.Drawing.Color.White;
-                row.Attributes.Add("class", "textmode");
-                if (i % 2 != 0)
+                Response.AddHeader("content-disposition", "attachment;filename=Clientlist.xls");
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
+                StringWriter sw = new StringWriter();
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                gvothearn.AllowPaging = false;
+
+                //GridView1.DataBind();
+                gvothearn.HeaderRow.Style.Add("background-color", "#FFFFFF");
+                gvothearn.HeaderRow.Style.Add("color", "#FFFFFF");
+                gvothearn.HeaderRow.Style.Add("vertical-align", "middle");
+                gvothearn.HeaderRow.Cells[4].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[5].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[6].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[7].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[8].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[9].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[10].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[11].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[12].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[12].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[14].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[15].Style.Add("background-color", "green");
+                gvothearn.HeaderRow.Cells[16].Style.Add("background-color", "green");
+                //gvothearn.HeaderRow.Cells[13].Style.Add("background-color", "green");
+                //gvothearn.HeaderRow.Cells[14].Style.Add("background-color", "green");
+
+                ArrayList arr = (ArrayList)ViewState["States"];
+
+                gvothearn.HeaderRow.Cells[4].Visible = Convert.ToBoolean(arr[0]);
+                gvothearn.HeaderRow.Cells[5].Visible = Convert.ToBoolean(arr[1]);
+                gvothearn.HeaderRow.Cells[6].Visible = Convert.ToBoolean(arr[2]);
+                gvothearn.HeaderRow.Cells[7].Visible = Convert.ToBoolean(arr[3]);
+                gvothearn.HeaderRow.Cells[8].Visible = Convert.ToBoolean(arr[4]);
+                gvothearn.HeaderRow.Cells[9].Visible = Convert.ToBoolean(arr[5]);
+                gvothearn.HeaderRow.Cells[10].Visible = Convert.ToBoolean(arr[6]);
+                gvothearn.HeaderRow.Cells[11].Visible = Convert.ToBoolean(arr[7]);
+                gvothearn.HeaderRow.Cells[12].Visible = Convert.ToBoolean(arr[8]);
+                gvothearn.HeaderRow.Cells[13].Visible = Convert.ToBoolean(arr[9]);
+                gvothearn.HeaderRow.Cells[14].Visible = Convert.ToBoolean(arr[10]);
+                gvothearn.HeaderRow.Cells[15].Visible = Convert.ToBoolean(arr[11]);
+                gvothearn.HeaderRow.Cells[16].Visible = Convert.ToBoolean(arr[12]);
+                //gvothearn.HeaderRow.Cells[13].Visible = Convert.ToBoolean(arr[13]);
+                //gvothearn.HeaderRow.Cells[14].Visible = Convert.ToBoolean(arr[14]);
+
+                gvothearn.HeaderRow.Cells[4].FindControl("chkCol0").Visible = false; // company 4
+                gvothearn.HeaderRow.Cells[5].FindControl("chkCol1").Visible = false; // fullname 5
+                gvothearn.HeaderRow.Cells[6].FindControl("chkCol2").Visible = false; // email 6
+                gvothearn.HeaderRow.Cells[7].FindControl("chkCol3").Visible = false; // mobile 7
+                gvothearn.HeaderRow.Cells[8].FindControl("chkCol4").Visible = false; // username 8
+                gvothearn.HeaderRow.Cells[9].FindControl("chkCol5").Visible = false; // password -9
+                gvothearn.HeaderRow.Cells[10].FindControl("chkCol6").Visible = false; // registration 13
+                gvothearn.HeaderRow.Cells[11].FindControl("chkCol7").Visible = false; // active date 14
+                gvothearn.HeaderRow.Cells[12].FindControl("chkCol8").Visible = false;  //expire 15 
+                gvothearn.HeaderRow.Cells[12].FindControl("chkCol9").Visible = false; // user type-16
+                gvothearn.HeaderRow.Cells[14].FindControl("chkCol10").Visible = false; // reaming -17
+                gvothearn.HeaderRow.Cells[15].FindControl("chkCol11").Visible = false; // user role -18
+                gvothearn.HeaderRow.Cells[16].FindControl("chkCol12").Visible = false; // status -19
+                                                                                       //gvothearn.HeaderRow.Cells[13].FindControl("chkCol13").Visible = false; // Action -20
+
+                for (int i = 0; i < gvothearn.Rows.Count; i++)
                 {
-                    row.Cells[4].Style.Add("background-color", "#C2D69B");
-                    row.Cells[5].Style.Add("background-color", "#C2D69B");
-                    row.Cells[6].Style.Add("background-color", "#C2D69B");
-                    row.Cells[7].Style.Add("background-color", "#C2D69B");
-                    row.Cells[8].Style.Add("background-color", "#C2D69B");
-                    row.Cells[9].Style.Add("background-color", "#C2D69B");
-                    row.Cells[10].Style.Add("background-color", "#C2D69B");
-                    row.Cells[11].Style.Add("background-color", "#C2D69B");
-                    row.Cells[12].Style.Add("background-color", "#C2D69B");
-                    row.Cells[12].Style.Add("background-color", "#C2D69B");
-                    row.Cells[14].Style.Add("background-color", "#C2D69B");
-                    row.Cells[15].Style.Add("background-color", "#C2D69B");
-                    row.Cells[16].Style.Add("background-color", "#C2D69B");
-                    //row.Cells[13].Style.Add("background-color", "#C2D69B");
-                    //row.Cells[14].Style.Add("background-color", "#C2D69B");
+                    GridViewRow row = gvothearn.Rows[i];
+                    row.Cells[4].Visible = Convert.ToBoolean(arr[0]);
+                    row.Cells[5].Visible = Convert.ToBoolean(arr[1]);
+                    row.Cells[6].Visible = Convert.ToBoolean(arr[2]);
+                    row.Cells[7].Visible = Convert.ToBoolean(arr[3]);
+                    row.Cells[8].Visible = Convert.ToBoolean(arr[4]);
+                    row.Cells[9].Visible = Convert.ToBoolean(arr[5]);
+                    row.Cells[10].Visible = Convert.ToBoolean(arr[6]);
+                    row.Cells[11].Visible = Convert.ToBoolean(arr[7]);
+                    row.Cells[12].Visible = Convert.ToBoolean(arr[8]);
+                    row.Cells[12].Visible = Convert.ToBoolean(arr[9]);
+                    row.Cells[14].Visible = Convert.ToBoolean(arr[10]);
+                    row.Cells[15].Visible = Convert.ToBoolean(arr[11]);
+                    row.Cells[16].Visible = Convert.ToBoolean(arr[12]);
+                    //row.Cells[13].Visible = Convert.ToBoolean(arr[13]);
+                    //row.Cells[14].Visible = Convert.ToBoolean(arr[14]);
 
+                    row.BackColor = System.Drawing.Color.White;
+                    row.Attributes.Add("class", "textmode");
+                    if (i % 2 != 0)
+                    {
+                        row.Cells[4].Style.Add("background-color", "#C2D69B");
+                        row.Cells[5].Style.Add("background-color", "#C2D69B");
+                        row.Cells[6].Style.Add("background-color", "#C2D69B");
+                        row.Cells[7].Style.Add("background-color", "#C2D69B");
+                        row.Cells[8].Style.Add("background-color", "#C2D69B");
+                        row.Cells[9].Style.Add("background-color", "#C2D69B");
+                        row.Cells[10].Style.Add("background-color", "#C2D69B");
+                        row.Cells[11].Style.Add("background-color", "#C2D69B");
+                        row.Cells[12].Style.Add("background-color", "#C2D69B");
+                        row.Cells[12].Style.Add("background-color", "#C2D69B");
+                        row.Cells[14].Style.Add("background-color", "#C2D69B");
+                        row.Cells[15].Style.Add("background-color", "#C2D69B");
+                        row.Cells[16].Style.Add("background-color", "#C2D69B");
+                        //row.Cells[13].Style.Add("background-color", "#C2D69B");
+                        //row.Cells[14].Style.Add("background-color", "#C2D69B");
+
+                    }
                 }
+
+
+                //Session["Report1"]=gvothearn;
+                //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=GRIDTOEXCEL', target='_blank');</script>";
+                // DataTable dt = (DataTable)Session["tblover"];
+
+
+                gvothearn.RenderControl(hw);
+                string style = @"<style> .textmode { } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.End();
             }
+            catch (Exception ex)
+            {
 
-
-            //Session["Report1"]=gvothearn;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=GRIDTOEXCEL', target='_blank');</script>";
-            // DataTable dt = (DataTable)Session["tblover"];
-
-
-            gvothearn.RenderControl(hw);
-            string style = @"<style> .textmode { } </style>";
-            Response.Write(style);
-            Response.Output.Write(sw.ToString());
-            Response.End();
+                throw ex;
+            }
+            
 
             //try
             //{
