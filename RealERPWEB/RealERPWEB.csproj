@@ -136,9 +136,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -227,7 +225,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
@@ -11723,22 +11721,6 @@
     <Content Include="Report\RptSalesInv.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="http://123.200.23.58/WebReference/HRDailyAtten.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\HrWebService\</RelPath>
-      <UpdateFromURL>http://123.200.23.58/WebReference/HRDailyAtten.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
-    </WebReferenceUrl>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Report\RptPurchaseOrderBridge.rdlc" />
   </ItemGroup>
   <ItemGroup>
@@ -11766,6 +11748,22 @@
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
       <Name>RealERPRDLC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/WebReference/HRDailyAtten.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\HrWebService\</RelPath>
+      <UpdateFromURL>http://localhost/WebReference/HRDailyAtten.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -26,7 +26,7 @@ namespace RealERPWEB.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://123.200.23.58/WebReference/HRDailyAtten.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost/WebReference/HRDailyAtten.asmx")]
         public string RealERPWEB_HrWebService_HrDailyAtten {
             get {
                 return ((string)(this["RealERPWEB_HrWebService_HrDailyAtten"]));

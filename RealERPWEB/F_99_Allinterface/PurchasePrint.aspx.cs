@@ -2580,7 +2580,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "3101":
                 case "3353":
-                case "3355":
+                case "3355"://green wood
                 case "3330":
 
                 case "1205":
@@ -4030,6 +4030,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
 
+
                         break;
 
 
@@ -4057,6 +4058,19 @@ namespace RealERPWEB.F_99_Allinterface
                         terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
+
+
+                    case "3355": // Green Wood
+
+                        terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "* " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+
+                        break;
+
 
                     //case "3101": // ASIT
                     case "3364": //JBS
