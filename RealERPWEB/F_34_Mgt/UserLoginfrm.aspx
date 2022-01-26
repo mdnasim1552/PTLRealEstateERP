@@ -1,12 +1,10 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="UserLoginfrm.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.UserLoginfrm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="UserLoginfrm.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.UserLoginfrm" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
 
     <script type="text/javascript">
 
@@ -15,8 +13,7 @@
 
         });
 
-  
-      
+
         function pageLoaded() {
 
 
@@ -33,7 +30,32 @@
 
 
         }
+        //User Modal
+        function openUserModal() {
+            $('#modalAddUser').modal('toggle');
+        }
+        function closeUserModal() {
+            $('#modalAddUser').modal('hide');
+        }
+        function IsNumberWithOneDecimal(txt, evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+                return false;
+            } else {
+                var len = txt.value.length;
+                var index = txt.value.indexOf('.');
+                if (index > 0 && charCode == 46) {
+                    return false;
+                }
+                if (index > 0) {
+                    if ((len + 1) - index > 3) {
+                        return false;
+                    }
+                }
 
+            }
+            return true;
+        }
        <%-- function Search_Gridview(strKey, cellNr, gvname) {
             try {
 
@@ -78,12 +100,6 @@
 
         }
 
-
-
-
-
-
-
     </script>
 
     <style>
@@ -96,10 +112,6 @@
             color: #ff006e;
         }
     </style>
-
-
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -124,7 +136,6 @@
                 <div class="contentPart">
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
-
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
@@ -135,16 +146,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3 pading5px">
-
                                         <asp:Label ID="lblId" CssClass=" lblName" runat="server" Visible="False" Text="User Name"></asp:Label>
                                         <asp:Label ID="txtuserid" CssClass=" lblName" runat="server" Visible="False" Text="User Name"></asp:Label>
-                                         
                                     </div>
-                                  
-                                    
-                                  
-
-
+                                    <div class="col-md-2 pading5px pull-right">
+                                        <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-success btn-xs" OnClick="lnkbtnAdd_Click" ToolTip="Add New User"><i class="fas fa-plus-octagon"></i>&nbsp;Add New User</asp:LinkButton>
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
@@ -153,7 +160,7 @@
                         <asp:GridView ID="gvUseForm" runat="server" AutoGenerateColumns="False"
                             ShowFooter="True" Width="918px" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnPageIndexChanging="gvUseForm_PageIndexChanging"
-                            OnRowCancelingEdit="gvUseForm_RowCancelingEdit" 
+                            OnRowCancelingEdit="gvUseForm_RowCancelingEdit"
                             OnRowEditing="gvUseForm_RowEditing" OnRowUpdating="gvUseForm_RowUpdating"
                             PageSize="100">
                             <RowStyle />
@@ -270,7 +277,7 @@
                                 <asp:TemplateField HeaderText="Web Mail PassWord">
 
 
-                                   
+
                                     <ItemTemplate>
                                         <asp:TextBox ID="TxtWebmailPWD" runat="server" BackColor="Transparent" TextMode="Password"
                                             BorderStyle="None" Width="80px"
@@ -353,7 +360,7 @@
                                             <asp:ListItem Selected Value="3">User</asp:ListItem>
                                             <asp:ListItem Value="1">Admin</asp:ListItem>
                                             <asp:ListItem Value="2">Managment</asp:ListItem>
-                                            
+
 
                                         </asp:DropDownList>
                                     </EditItemTemplate>
@@ -363,16 +370,16 @@
                                     <ItemStyle Font-Size="12px" HorizontalAlign="Left" />
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="Copy">
+                                <asp:TemplateField HeaderText="Copy">
                                     <%--   <HeaderTemplate>
                                           <asp:TextBox ID="txtSearchUser" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="Copy User Name" onkeyup="Search_Gridview(this,2,'gvUseForm')"></asp:TextBox>
 
                                        </HeaderTemplate>--%>
 
-                                     <ItemTemplate>
-                                    <asp:LinkButton ID="lbtnLink" OnClick="lbtnLink_Click" ToolTip="Copy From " runat="server" CssClass="btn btn-xs btn-info"><span class="fa fa-copy"></span></asp:LinkButton>
-                                   </ItemTemplate>
-                               </asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnLink" OnClick="lbtnLink_Click" ToolTip="Copy From " runat="server" CssClass="btn btn-xs btn-info"><span class="fa fa-copy"></span></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
 
                             </Columns>
@@ -387,11 +394,7 @@
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1" runat="server">
                             <div class="row">
-
                                 <fieldset class="scheduler-border fieldset_A">
-
-
-
                                     <div class="form-horizontal">
                                         <div class="form-group">
                                             <div class="col-md-3 pading5px asitCol3">
@@ -441,7 +444,7 @@
                                                 <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn  btn-primary primaryBtn"
                                                     OnClick="lnkbtnBack_Click">Back</asp:LinkButton>
                                             </div>
-                                          
+
                                         </div>
                                     </div>
                                 </fieldset>
@@ -656,60 +659,167 @@
 
 
 
-                                
+
 
                             </div>
-
-
-
-
                         </asp:View>
                     </asp:MultiView>
 
                 </div>
             </div>
-               <div id="myModal" class="modal animated slideInLeft" role="dialog">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content  ">
-                                            <div class="modal-header">
-                                                <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                                                <h2 class="modal-title">
-                                                    <span class="fa fa-table"></span> <span class="fa fa-copy" ></span> Copy From</h2>
-                                            </div>
-                                           
-                                            <div class="modal-body">
-                                                <div class="row-fluid">
-                                                    <div class="form-group">
-                                                        <asp:Label ID="Label3" runat="server" CssClass="col-md-4" Font-Bold="true" Font-Size="20px">Select From : </asp:Label>
-                                                      <div class="col-md-6">
-                                                          <asp:DropDownList ID="ddlUser" CssClass="form-control chzn-select" runat="server"></asp:DropDownList>
-                                                          <asp:Label ID="fromUserid" runat="server" Visible="false"></asp:Label>
-                                                      </div>
-                                                    </div>
-                                                    <br />
-                                               
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer ">
+            <%--Modal Copy Start--%>
+            <div id="myModal" class="modal animated slideInLeft" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
+                            <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                            <h2 class="modal-title">
+                                <span class="fa fa-table"></span><span class="fa fa-copy"></span>Copy From</h2>
+                        </div>
 
-                                                <asp:LinkButton ID="lblbtnSave" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CLoseMOdal();" OnClick="lblbtnSave_Click"><span class="glyphicon glyphicon-save-file"></span> Update </asp:LinkButton>
-
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-
-                                            </div>
-                                              
-                                                
-                                          
-                                        </div>
+                        <div class="modal-body">
+                            <div class="row-fluid">
+                                <div class="form-group">
+                                    <asp:Label ID="Label3" runat="server" CssClass="col-md-4" Font-Bold="true" Font-Size="20px">Select From : </asp:Label>
+                                    <div class="col-md-6">
+                                        <asp:DropDownList ID="ddlUser" CssClass="form-control chzn-select" runat="server"></asp:DropDownList>
+                                        <asp:Label ID="fromUserid" runat="server" Visible="false"></asp:Label>
                                     </div>
-
                                 </div>
+                                <br />
 
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
 
+                            <asp:LinkButton ID="lblbtnSave" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CLoseMOdal();" OnClick="lblbtnSave_Click"><span class="glyphicon glyphicon-save-file"></span> Update </asp:LinkButton>
 
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
 
+            </div>
+            <%--Modal Copy End--%>
 
+            <%--Modal User Start--%>
+            <div id="modalAddUser" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fas fa-times-circle"></i></button>
+                            <h5 class="modal-title"><span class="fa fa-table"></span>&nbsp;User Information</h5>
+                        </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row">
+                                <asp:Label ID="lblmUserId" runat="server" Visible="false"></asp:Label>
+                                <div class="col-md-2">
+                                    <label>User ID </label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmUesrId" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Short Name</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmShortName" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Full Name</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmFullName" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Designation</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmDesignation" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Password</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmPassword" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Active</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:CheckBox ID="chkmUserActive" runat="server" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Email ID</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmUserEmail" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>W.M Password</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmWebMailPass" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Graph</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:TextBox ID="txtmGraph" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>Employee ID</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:DropDownList ID="ddlmEmpId" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>User Role</label>
+                                </div>
+                                <div class="col-md-10">
+                                    <asp:DropDownList ID="ddlmUserRole" runat="server" CssClass="form-control">
+                                        <asp:ListItem Value="1">Admin</asp:ListItem>
+                                        <asp:ListItem Value="2">Managment</asp:ListItem>
+                                        <asp:ListItem Selected Value="3">User</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lbtnSaveUser" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="closeUserModal();" OnClick="lbtnSaveUser_Click"><i class="fas fa-badge-check"></i>&nbsp;Update </asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%-- Usr Modal End--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 
