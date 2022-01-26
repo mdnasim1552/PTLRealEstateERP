@@ -195,8 +195,9 @@ namespace RealEntity.C_23_CRR
           public double cdelay { get; set; }
           public double discharge { get; set; }
           public double ntodues { get; set; }
+          public double balamt { get; set; }
 
-          public EClassDuesAOverDuesIndPro()
+            public EClassDuesAOverDuesIndPro()
           {
 
 
