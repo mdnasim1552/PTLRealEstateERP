@@ -314,6 +314,7 @@ namespace RealEntity
         {
             public int notifyid { get; set; }
             public string meassage { get; set; }
+            public string eventitle { get; set; }
             public int userid { get; set; }
            
           
@@ -326,10 +327,11 @@ namespace RealEntity
             {
 
             }
-            public userNotification(int notifyid, string meassage, int userid,     string sendname, string sendphoto, string refid, string notiytype, string ntype)
+            public userNotification(int notifyid, string meassage, string eventitle, int userid,     string sendname, string sendphoto, string refid, string notiytype, string ntype)
             {
                 this.notifyid = notifyid;
                 this.meassage = meassage;
+                this.eventitle = eventitle;
                 this.userid = userid;
               
                  

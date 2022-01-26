@@ -57,6 +57,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.Company();
                 }
 
+                this.lbtnOk_Click(null,null);
+
             }
 
         }
@@ -352,10 +354,27 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             // string Company = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+
+
+
+
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
+
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETEMPLISTJDATEWISE", Company, Deptid, DesigFrom, DesigTo, Fdate, Tdate, "", "", "");
             if (ds4 == null)
             {
@@ -376,8 +395,24 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
+
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Todate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTALLINACTIVEEMPLIST", Company, Deptid, DesigFrom, DesigTo, Fdate, Todate, "", "", "");
@@ -401,8 +436,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
             // string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTALLEMPLIST", Company, Deptid, DesigFrom, DesigTo, "", "", "", "", "");
             if (ds4 == null)
             {
@@ -423,8 +473,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTTOTALEMPLIST", Company, Deptid, DesigFrom, DesigTo, "", "", "", "", "");
             if (ds4 == null)
             {
@@ -443,8 +508,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETEMPTRANSFERLIST", Fdate, Tdate, Company, Deptid, DesigFrom, DesigTo, "", "", "");
@@ -467,8 +547,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTPENCONFIRMATION", Company, Deptid, DesigFrom, DesigTo, Fdate, Tdate, "", "", "");
@@ -492,8 +587,23 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTEMPCONFIRMATION", Company, Deptid, DesigFrom, DesigTo, Fdate, Tdate, "", "", "");
@@ -535,8 +645,26 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
+
+
+
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             string sptype = (this.ddlSepType.SelectedValue.ToString() == "00000") ? "%" : this.ddlSepType.SelectedValue.ToString() + "%";
@@ -561,8 +689,22 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            //added nahid
+            string DesigFrom = "0399999";
+            string DesigTo = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    pnlDesig.Visible = true;
+
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    pnlDesig.Visible = false;
+                    break;
+            }
+            //emd nahid
             string Fdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
             string Tdate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTPEMPHOLDLIST", Company, Deptid, DesigFrom, DesigTo, Fdate, Tdate, "", "", "");
@@ -585,9 +727,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string GradeFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string GradeTo = this.ddlToDesig.SelectedValue.ToString();
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GRDEGWISESALARYDET", Company, Deptid, GradeFrom, GradeTo, "", "", "", "", "");
+            //added nahid
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            //emd nahid
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GRDEGWISESALARYDET", Company, Deptid, DesigFrom, DesigTo, "", "", "", "", "");
             if (ds4 == null)
             {
                 this.grvEmpLHSal.DataSource = null;

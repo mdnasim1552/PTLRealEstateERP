@@ -374,7 +374,7 @@ namespace RealERPWEB.Service
             while (sdr.Read())
             {
                 RealEntity.UserManager.userNotification typuser = new RealEntity.UserManager.userNotification(Convert.ToInt32(sdr["notifyid"].ToString()),
-                    sdr["meassage"].ToString(), Convert.ToInt32(sdr["userid"].ToString()),   sdr["sendname"].ToString(), sdr["sendphoto"].ToString(), sdr["refid"].ToString(), sdr["notiytype"].ToString(), sdr["ntype"].ToString());
+                    sdr["meassage"].ToString(), sdr["eventitle"].ToString(), Convert.ToInt32(sdr["userid"].ToString()),   sdr["sendname"].ToString(), sdr["sendphoto"].ToString(), sdr["refid"].ToString(), sdr["notiytype"].ToString(), sdr["ntype"].ToString());
                 lst.Add(typuser);
             }
             return lst;
