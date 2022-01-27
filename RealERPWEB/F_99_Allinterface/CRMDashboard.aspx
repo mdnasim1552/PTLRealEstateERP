@@ -327,17 +327,17 @@
 
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <asp:LinkButton ID="lnkbtnOk" OnClick="lnkbtnOk_Click" Class="btn btn-sm btn-primary" runat="server">Ok</asp:LinkButton>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <a href="../F_21_MKT/CrmClientInfo?Type=Entry" target="_blank" class="btn btn-sm btn-primary float-right">Go Interface</a>
                     
 
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     
-                    <asp:HyperLink ID="HyperLink2" class="btn btn-sm btn-success float-right" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" class="btn btn-sm btn-success float-left" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                 </div>
             </div>
@@ -506,7 +506,7 @@
                         <!-- end card-box-->
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+                <div class="col-md-2 col-xl-2">
                     <div class="card  mb-1 ">
                         <div class="card-body mb-2">
                             <div class="media">
@@ -534,7 +534,12 @@
                         <!-- end card-box-->
                     </div>
                 </div>
-                <div class="col-md-6 col-xl-3">
+
+                
+
+
+
+                <div class="col-md-3 col-xl-2">
                     <div class="card  mb-1 ">
                         <div class="card-body mb-2">
                             <div class="media">
@@ -557,6 +562,27 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <!-- end card-box-->
+                    </div>
+                </div>
+                <div class="col-md-2 col-xl-2">
+                    <div class="card  mb-1 ">
+                        <div class="card-body mb-2">
+                            <div class="media">
+                                <div class="avatar-md xbg-info rounded-circle mr-2">
+                                    <i class="fas fa-birthday-cake avatar-title font-26 text-red"></i>
+
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <div class="text-center">
+                                        <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-red text-white counterup" id="Span1" runat="server" data-plugin="counterup">0
+                                        </span></h4>
+                                        <p class="mb-0 mt-1 text-truncate">Let’s Celebrate</p>
+                                    </div>
+                                </div>
+                            </div>
+                           
                         </div>
                         <!-- end card-box-->
                     </div>

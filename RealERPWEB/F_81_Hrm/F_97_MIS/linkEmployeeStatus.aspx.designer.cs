@@ -33,6 +33,15 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
+        /// fmdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl fmdate;
+
+        /// <summary>
         /// txtFdate control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender txtFdate_CalendarExtender;
+
+        /// <summary>
+        /// tdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tdate;
 
         /// <summary>
         /// txtTdate control.
@@ -103,5 +121,23 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
+
+        /// <summary>
+        /// lnkOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkOk;
+
+        /// <summary>
+        /// gvDailyLateAttn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDailyLateAttn;
     }
 }

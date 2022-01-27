@@ -21,7 +21,8 @@ namespace RealERPWEB
                  "~/Scripts/jquery-ui.min.js",
                   "~/Scripts/bootstrap.min.js",
                   "~/Scripts/moment-with-locales.js",
-                    "~/Scripts/bootstrap-datetimepicker.js"
+                    "~/Scripts/bootstrap-datetimepicker.js",
+                    "~/Scripts/Extension.min.js"
               ));
             
             bundles.Add(new ScriptBundle("~/bundles/Versionnew").Include(
@@ -86,8 +87,7 @@ namespace RealERPWEB
 
             bundles.Add(new ScriptBundle("~/bundles/Counter").Include(
                 "~/Scripts/waypoints.min.js",
-                "~/Scripts/jquery.counterup.min.js"
-                
+                "~/Scripts/jquery.counterup.min.js"                
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/highchart").Include(
