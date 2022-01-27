@@ -164,7 +164,7 @@ namespace RealERPWEB.F_21_MKT
                     this.gvSummary.Columns[16].Visible = false;
                     this.gvSummary.Columns[17].Visible = false;
                     this.gvSummary.Columns[18].Visible = false;
-                    this.gvSummary.Columns[19].Visible = false;
+                    this.gvSummary.Columns[19].Visible = true;
                     this.gvSummary.Columns[20].Visible = false;
                     this.gvSummary.Columns[22].Visible = true;
                     break;
@@ -4815,7 +4815,7 @@ namespace RealERPWEB.F_21_MKT
                 this.lbleditempid.Value = gempid;
 
                 
-                this.lblgeneratedate.Value= ds1.Tables[0].Rows.Count == 0 ? "01-Jan-1900" : Convert.ToDateTime(ds1.Tables[1].Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
+                this.lblgeneratedate.Value= ds1.Tables[1].Rows.Count == 0 ? "01-Jan-1900" : Convert.ToDateTime(ds1.Tables[1].Rows[0]["createdate"]).ToString("dd-MMM-yyyy");
 
                 this.ddlRating.SelectedValue = ds1.Tables[0].Rows.Count == 0 ? ds1.Tables[1].Rows[0]["rating"].ToString() : ds1.Tables[1].Rows[0]["rating"].ToString();
                 this.lbllaststatus.InnerHtml = "Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>" + (ds1.Tables[0].Rows.Count == 0 ? "" : ds1.Tables[0].Rows[0]["lastlsdesc"].ToString()) + "</span>";
@@ -4993,6 +4993,7 @@ namespace RealERPWEB.F_21_MKT
                         ((Panel)this.gvInfo.Rows[i].FindControl("pnlTime")).Visible = true;
 
 
+                        
 
                         ((Label)this.gvInfo.Rows[i].FindControl("lblschedulenumber")).Visible = false;
 
@@ -5011,23 +5012,21 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval3 = ((DropDownList)this.gvInfo.Rows[i].FindControl("ddlslb"));
                         ddlgval3.SelectedValue = (gTime.Length == 0) ? datetime.ToString("tt") : ASTUtility.Right(gTime, 2);
 
+                         
+                        if (this.lblgeneratedate.Value.Length>0)
+                        {
+                            DataSet copSetup = compUtility.GetCompUtility();                           
+                            bool bakdatain = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["crm_backdatain"]);
 
+                            if (bakdatain==false)
+                            {
+                                AjaxControlToolkit.CalendarExtender CalendarExtendere21 = (AjaxControlToolkit.CalendarExtender)gvInfo.Rows[i].FindControl("txtgvdValdis_CalendarExtender");
+                                CalendarExtendere21.StartDate = Convert.ToDateTime(this.lblgeneratedate.Value);
+                                 
+                            }
+                        }
 
-
-
-
-
-
-                        //string gendate = Convert.ToDateTime(this.lblgeneratedate.Value).ToString("dd-MMM-yyyy");
-                        //DataSet copSetup = compUtility.GetCompUtility();
-                        //if (copSetup == null)
-                        //    return;
-                        //bool bakdatain = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["crm_backdatain"]);
-                        //if (bakdatain == true && (gendate > datetime.ToString("dd-MMM-yyyy")))
-                        //{
-
-                        //}
-                        //((TextBox)this.gvInfo.Rows[i].FindControl("txtgvVal")).Height=100;
+                         
                         break;
 
 
