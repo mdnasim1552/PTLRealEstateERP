@@ -227,11 +227,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Newtonsoft.Json.dll</HintPath>
-=======
       <HintPath>C:\Users\HP\OneDrive\Desktop\Newtonsoft.Json.dll</HintPath>
->>>>>>> 0716349b31b20e91e2441f8b6b878237d2324d50
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
