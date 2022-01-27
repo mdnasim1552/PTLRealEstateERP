@@ -901,7 +901,7 @@ Close</asp:LinkButton>
                 
              }
              catch (e) {
-                 showContentFail('Notification Not Found');
+                 /*showContentFail('Notification Not Found');*/
              }
          }
 

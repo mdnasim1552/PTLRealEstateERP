@@ -3492,6 +3492,7 @@
     <Content Include="Scripts\drilldown.js" />
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
+    <Content Include="Scripts\Extension.min.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
     <Content Include="Scripts\highchart2.js" />
