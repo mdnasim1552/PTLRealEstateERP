@@ -33,7 +33,7 @@ namespace RealEntity.C_47_Kpi
         }
 
     }
-      [Serializable]
+    [Serializable]
     public class GradeWise
     {
         public string mrange { set; get; }
