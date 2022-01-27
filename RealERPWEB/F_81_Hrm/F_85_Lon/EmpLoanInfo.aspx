@@ -67,7 +67,6 @@
                                         <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt lblName">Loan No</asp:Label>
                                         <asp:Label ID="lblCurNo1" runat="server" CssClass="smLbl_to"></asp:Label>
                                         <asp:Label ID="lblCurNo2" runat="server" CssClass="smLbl_to"></asp:Label>
-                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
                                     </div>
 
                                 </div>
@@ -96,6 +95,7 @@
                                         
                                     </div>
 
+                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
 
                                     <div class="col-md-3 pading5px">
                                         <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
