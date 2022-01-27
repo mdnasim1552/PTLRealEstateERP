@@ -1560,6 +1560,7 @@
                             var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
                             $(txtgvdValdis).val(data.gdesc1);
                             $(txtgvdValdis).attr("disabled", true);
+
                             //var dropdown
                             var dtimehour = data.gtime;
                             var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
@@ -3057,6 +3058,7 @@
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
 
+                                               
 
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
@@ -3948,7 +3950,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">View Details</button>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -4069,7 +4071,8 @@
 
                         </div>
                         <div class="modal-body ">
-
+                                 
+                             
 
 
                             <div class="row">
@@ -4082,6 +4085,7 @@
                                         <strong>Contact Person: </strong><span id="lblContactPerson" runat="server"></span>
                                         <br>
                                         <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
+                                        
                                         <br>
                                         <strong>Home Address: </strong><span id="lblprosaddress" runat="server"></span>
                                         <br>
@@ -4098,6 +4102,7 @@
 
                                         <asp:HiddenField ID="lblproscod" runat="server" />
                                         <asp:HiddenField ID="lbleditempid" runat="server" />
+                                        <asp:HiddenField ID="lblgeneratedate" runat="server" />
                                     </p>
                                 </div>
 
@@ -4241,7 +4246,7 @@
 
 
 
-                                                        <asp:TextBox ID="txtgvdValdis" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                        <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
                                                         <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
                                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>

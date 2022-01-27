@@ -163,16 +163,7 @@
                                 <div class="colMdbtn pading5px">
                                     <asp:LinkButton ID="btnUploadovrtime" runat="server" Text="UPload Data" OnClick="btnUploadovrtime_Click" CssClass="btn btn-primary okBtn" Width="100px" TabIndex="9" Visible="false"></asp:LinkButton>
                                 </div>
-
-
-
-
-
-                            </div>
-                            <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
-                            </div>
-
+                            </div>                 
                             <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                 Font-Size="14px" Height="16px" RepeatColumns="14" RepeatDirection="Horizontal"
                                 Width="380px" Visible="false">
@@ -181,20 +172,23 @@
                                 <asp:ListItem>Both</asp:ListItem>
                             </asp:RadioButtonList>
 
+                            <asp:Panel ID="pnlDedEarnExcel" CssClass="col-md-4" runat="server" Visible="false">
+                                <div class="input-group">    
+                                    <asp:FileUpload ID="fileuploadExcel" runat="server" class="form-control btn" style="height:34px; padding:5px" onchange="submitform();" />
+                                    <span class="input-group-addon bg-primary" style="background:#00ffff !important" id="basic-addons1">
+                                        <asp:LinkButton ID="lbtnDedorOtherEernExcelAdjust" runat="server" CssClass="" ToolTip="Adjust Deduction" OnClick="lbtnDedorOtherEernExcelAdjust_Click">
+                                            <i class="fas fa-file-excel"></i>&nbsp;&nbsp;Adjust</asp:LinkButton>
+                                    </span>
+                                </div>
+                            </asp:Panel>
                         </div>
                     </div>
                 </fieldset>
             </div>
 
-
-
-
             <div class="row">
                 <asp:MultiView ID="MultiView1" runat="server">
                     <asp:View ID="ViewOvertime" runat="server">
-
-
-
 
                         <asp:GridView ID="gvEmpOverTime" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -867,26 +861,16 @@
                     </asp:View>
 
                     <asp:View ID="ViewOtherDeduction" runat="server">
-
-
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
-
-
-
                                 <asp:Panel ID="Pnlother" runat="server" Visible="false" Style="border: 1px solid blue;">
 
                                     <div class="form-group">
                                         <div class="col-md-5 pading5px ">
                                             <asp:Label ID="Label5" runat="server" CssClass=" smLbl_to" Text="Month:"></asp:Label>
-
                                             <asp:DropDownList ID="ddlpreyearmonoth" runat="server" AutoPostBack="True"
                                                 TabIndex="11" CssClass=" ddlPage">
                                             </asp:DropDownList>
-
-
-
-
                                             <div class="colMdbtn pading5px">
                                                 <asp:LinkButton ID="lblbtncopyoth" runat="server" Text="Copy" OnClick="lblbtncopyoth_Click" CssClass="btn btn-primary okBtn" TabIndex="9"></asp:LinkButton>
                                             </div>
@@ -896,21 +880,13 @@
                                 </asp:Panel>
 
                                 <div class="form-group">
-                                    <div class="col-md-5 pading5px ">
+                                    <div class="col-md-1 pading5px ">
                                         <asp:CheckBox ID="Chkother" runat="server" TabIndex="10" Text="Copy " CssClass="btn btn-primary checkBox" AutoPostBack="True" OnCheckedChanged="Chkother_CheckedChanged" />
 
                                     </div>
-
-
-                                    <div class="col-md-2 pading5px asitCol3">
-                                    </div>
                                 </div>
-
-
-
                             </div>
                         </fieldset>
-
                         <asp:GridView ID="gvEmpOtherded" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                             AutoGenerateColumns="False" OnPageIndexChanging=" gvEmpOtherded_PageIndexChanging"
                             ShowFooter="True" Width="685px" OnRowDeleting="gvEmpOtherded_RowDeleting" OnRowDataBound="gvEmpOtherded_RowDataBound">
@@ -1504,44 +1480,24 @@
 
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
-
-
-
                                 <asp:Panel ID="PnlEarn" runat="server" Visible="false" Style="border: 1px solid blue;">
-
                                     <div class="form-group">
                                         <div class="col-md-5 pading5px ">
                                             <asp:Label ID="Label6" runat="server" CssClass=" smLbl_to" Text="Month:"></asp:Label>
-
                                             <asp:DropDownList ID="ddlPremEarn" runat="server" AutoPostBack="True"
                                                 TabIndex="11" CssClass=" ddlPage">
                                             </asp:DropDownList>
-
-
-
-
                                             <div class="colMdbtn pading5px">
                                                 <asp:LinkButton ID="btnCopyEarn" runat="server" Text="Copy" OnClick="btnCopyEarn_Click" CssClass="btn btn-primary okBtn" TabIndex="9"></asp:LinkButton>
                                             </div>
                                         </div>
-
                                     </div>
                                 </asp:Panel>
-
                                 <div class="form-group">
-                                    <div class="col-md-5 pading5px ">
+                                    <div class="col-md-1 pading5px ">
                                         <asp:CheckBox ID="ChkEarn" runat="server" TabIndex="10" Text="Copy " CssClass="btn btn-primary checkBox" AutoPostBack="True" OnCheckedChanged="ChkEarn_CheckedChanged" />
-
-                                    </div>
-
-
-                                    <div class="col-md-2 pading5px">
-                                        <%--<asp:Button ID="lbtnExportOtherEarnExcel" runat="server" Text="Export To Excel" OnClick="lbtnExportOtherEarnExcel_Click" CssClass="btn btn-primary"></asp:Button>--%>
                                     </div>
                                 </div>
-
-
-
                             </div>
                         </fieldset>
                         <div class="table-responsive">
@@ -1586,7 +1542,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="Card #">
                                         <HeaderTemplate>
                                             <asp:Label ID="lblCol0" runat="server" Text="Card #" />
                                             <asp:CheckBox ID="chkCol0" runat="server" Checked="true" Class="hidden" />
@@ -1601,7 +1557,7 @@
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="Employee Name &amp; Designation">
                                         <HeaderTemplate>
                                             <asp:Label ID="lblCol1" runat="server" Text="Employee Name &amp; Designation" />
                                             <asp:CheckBox ID="chkCol1" runat="server" Checked="true" Class="hidden" />
@@ -1671,7 +1627,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="">
+                                    <asp:TemplateField HeaderText="Hair Cut.">
                                         <HeaderTemplate>
                                             <asp:Label ID="lblCol5" runat="server" Text="Hair Cut." />
                                             <asp:CheckBox ID="chkCol5" runat="server" Checked="true" Class="hidden" />
@@ -1846,7 +1802,7 @@
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
                             </asp:GridView>
-                            <asp:Button ID="btnExportOtherEarnExcel" runat="server" Text="Export To Excel" OnClick="btnExportOtherEarnExcel_Click" CssClass="btn btn-success btn-xs" />
+                            <%--  <asp:Button ID="btnExportOtherEarnExcel" runat="server" Text="Export To Excel" OnClick="btnExportOtherEarnExcel_Click" CssClass="btn btn-success btn-xs" />--%>
                         </div>
                     </asp:View>
 
