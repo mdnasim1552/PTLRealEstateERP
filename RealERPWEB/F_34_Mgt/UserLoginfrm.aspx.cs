@@ -1184,25 +1184,9 @@ namespace RealERPWEB.F_34_Mgt
         {
             DataTable dt = (DataTable)Session["tblUsrinfo1"];
             this.txtmUesrId.Text = dt.Rows[0]["userid"].ToString();
-            this.Bind_Modal();
             this.Bind_EmpId();
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
         }
-
-        private void Bind_Modal()
-        {
-            DataTable dt = (DataTable)Session["tblUsrinfo"];
-            //this.txtmShortName.Text = dt.Rows[0]["usrsname"].ToString();
-            //this.txtmFullName.Text = dt.Rows[0]["usrname"].ToString();
-            //this.txtmDesignation.Text = dt.Rows[0]["usrdesig"].ToString();
-            //this.txtmPassword.Text = dt.Rows[0]["usrpass"].ToString();
-            //this.chkmUserActive.Checked = dt.Rows[0]["usractive"].ToString()=="True";
-            //this.txtmUserEmail.Text = dt.Rows[0]["mailid"].ToString();
-            //this.txtmWebMailPass.Text = dt.Rows[0]["mailpass"].ToString();
-            //this.txtmGraph.Text = dt.Rows[0]["usrrmrk"].ToString();
-            this.ddlmUserRole.Text = dt.Rows[0]["roledesc"].ToString();                                                                                                                                                                                                                                                                                                                                                                      
-        }
-
         private void Bind_EmpId()
         {
             string comcod = this.GetComeCode();
@@ -1240,12 +1224,12 @@ namespace RealERPWEB.F_34_Mgt
             if (!result)
             {
                 msg = User.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+"New User Created Failed!"+"');", true);
                 return;
 
             }
 
-            msg="User Information Updated Successfully";
+            msg="New User Created Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
             this.gvUseForm.EditIndex = -1;
             this.ShowUserInfo();
