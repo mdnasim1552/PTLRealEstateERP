@@ -16,12 +16,14 @@ using Microsoft.Reporting.WinForms;
 using RealERPLIB;
 using RealERPRPT;
 using System.IO;
+using System.Data.OleDb;
 
 namespace RealERPWEB.F_81_Hrm.F_86_All
 {
     public partial class EmpOvertime : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -53,6 +55,72 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 this.GetYearMonth();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
 
+            }
+            //Excel Upload (Deduction Upload)
+            if (fileuploadExcel.HasFile)
+            {
+                try
+                {
+                    Session.Remove("ExcelData");
+                    string connString = "";
+                    string StrFileName = string.Empty;
+                    if (fileuploadExcel.PostedFile != null && fileuploadExcel.PostedFile.FileName != "")
+                    {
+                        StrFileName = fileuploadExcel.PostedFile.FileName.Substring(fileuploadExcel.PostedFile.FileName.LastIndexOf("\\") + 1);
+                        string StrFileType = fileuploadExcel.PostedFile.ContentType;
+                        int IntFileSize = fileuploadExcel.PostedFile.ContentLength;
+                        if (IntFileSize <= 0)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            string savelocation = Server.MapPath("~") + "\\ExcelFile\\";
+                            string[] filePaths = Directory.GetFiles(savelocation);
+                            foreach (string filePath in filePaths)
+                                File.Delete(filePath);
+                            fileuploadExcel.PostedFile.SaveAs(Server.MapPath("~") + "\\ExcelFile\\" + StrFileName);
+                        }
+                    }
+
+                    string strFileType = Path.GetExtension(fileuploadExcel.FileName).ToLower();
+                    string apppath = System.Web.Hosting.HostingEnvironment.ApplicationPhysicalPath.ToString();
+                    string path = Server.MapPath("~") + ("\\ExcelFile\\" + StrFileName);
+
+                    //Connection String to Excel Workbook
+                    if (strFileType.Trim() == ".xls")
+                    {
+                        connString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + path + ";Extended Properties=\"Excel 8.0;HDR=Yes;IMEX=2\"";
+                    }
+                    else if (strFileType.Trim() == ".xlsx")
+                    {
+
+                        connString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+                    }
+
+                    string query = "";
+                    query = "SELECT * FROM [Sheet1$]";
+                    OleDbConnection conn = new OleDbConnection(connString);
+                    if (conn.State == ConnectionState.Closed)
+                        conn.Open();
+                    OleDbCommand cmd = new OleDbCommand(query, conn);
+                    OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+
+                    DataView dv = ds.Tables[0].DefaultView;
+                    dv.RowFilter = ("Card<>''");
+                    Session["ExcelData"] = dv.ToTable();
+                    da.Dispose();
+                    conn.Close();
+                    conn.Dispose();
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
             }
 
             if (IsPostBack)
@@ -310,7 +378,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     this.ddlyearmon.Text = System.DateTime.Today.ToString("yyyyMM");
                     this.lbldate.Text = "Month Id:";
-
+                    this.pnlDedEarnExcel.Visible=true;
                     //this.txtDate_CalendarExtender.Format = "yyyyMM";
                     // this.txtDate.MaxLength = 6;
                     break;
@@ -331,6 +399,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "otherearn":
                     this.ddlyearmon.Text = System.DateTime.Today.ToString("yyyyMM");
                     this.lbldate.Text = "Month Id:";
+                    this.pnlDedEarnExcel.Visible=true;
                     //this.txtDate_CalendarExtender.Format = "yyyyMM";
                     //this.txtDate.MaxLength = 6;
                     break;
@@ -861,6 +930,17 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.gvEmpOtherded.DataSource = dt;
                     this.gvEmpOtherded.DataBind();
                     this.FooterCalculation();
+                    if (comcod == "3365" || comcod == "3101")//For BTI
+                    {
+                        this.gvEmpOtherded.Columns[6].Visible = false;
+                        this.gvEmpOtherded.Columns[7].Visible = false;
+                        this.gvEmpOtherded.Columns[10].Visible = false;
+                        this.gvEmpOtherded.Columns[12].Visible = false;
+                        this.gvEmpOtherded.Columns[13].Visible = false;
+                        this.gvEmpOtherded.Columns[14].Visible = false;
+                        this.gvEmpOtherded.Columns[15].Visible = false;
+                        this.gvEmpOtherded.Columns[9].HeaderText = "Food";
+                    }
 
                     break;
 
@@ -882,29 +962,35 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 case "otherearn":
                     this.gvothearn.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvothearn.DataSource = dt;
-
-                    if (comcod == "3339")
-                    {
-                        gvothearn.Columns[9].HeaderText = "Trans/Entr";
-
-                    }
-                    if (comcod == "3365" || comcod == "3101") //BTI
-                    {
-                        gvothearn.Columns[9].HeaderText = "Car Allowance";
-
-                    }
                     this.gvothearn.DataBind();
                     this.FooterCalculation();
-                    if (comcod == "3347" || comcod == "3101")
+                    switch (comcod)
                     {
-                        this.gvothearn.Columns[11].Visible = true;
-                        this.gvothearn.Columns[14].Visible = true;
-                        this.gvothearn.Columns[15].Visible = true;
-                        this.gvothearn.Columns[16].Visible = true;
+                        case "3339":
+                            gvothearn.Columns[9].HeaderText = "Trans/Entr";
+                            break;
 
+                        case "3356"://For BTI
+                        case "3101":
+                            this.gvothearn.HeaderRow.Cells[9].Text="Car Allowance";
+                            this.gvothearn.Columns[6].Visible = false;
+                            this.gvothearn.Columns[7].Visible = false;
+                            this.gvothearn.Columns[8].Visible = false;
+                            this.gvothearn.Columns[12].Visible = false;
+                            break;
+
+                        case "3347":
+                            this.gvothearn.Columns[11].Visible = true;
+                            this.gvothearn.Columns[14].Visible = true;
+                            this.gvothearn.Columns[15].Visible = true;
+                            this.gvothearn.Columns[16].Visible = true;
+                            break;
+
+                        default:
+                            break;
                     }
-
                     break;
+
                 case "dayadj":
                     this.grvAdjDay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.grvAdjDay.DataSource = dt;
@@ -1461,7 +1547,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         double trnsded = Convert.ToDouble("0" + ((TextBox)this.gvEmpOtherded.Rows[i].FindControl("gvTransDed")).Text.Trim());
 
 
-                        double toamt = otherded + lvded + arded + saladv + mbillded + fallded + cashded + fine;
+                        double toamt = otherded + lvded + arded + saladv + mbillded + fallded + cashded + fine+trnsded;
                         rowindex = (this.gvEmpOtherded.PageSize) * (this.gvEmpOtherded.PageIndex) + i;
                         dt.Rows[rowindex]["lvded"] = lvded;
                         dt.Rows[rowindex]["arded"] = arded;
@@ -1651,8 +1737,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 }
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
         }
 
@@ -1741,8 +1827,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
         }
         protected void gvEmpMbill_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -1777,8 +1863,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 //}
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
         protected void lbtnTotalmBill_Click(object sender, EventArgs e)
         {
@@ -1816,8 +1902,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 }
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
         protected void lbtnTotalOtherDed_Click(object sender, EventArgs e)
         {
@@ -1864,8 +1950,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         return;
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
         protected void gvEmpOtherded_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -1906,8 +1992,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
@@ -2004,8 +2090,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
 
 
@@ -2077,8 +2163,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         return;
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
 
 
@@ -2097,8 +2183,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (!result)
                 return;
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
             if (result == true)
             {
@@ -2125,8 +2211,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (!result)
                 return;
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
             if (result == true)
             {
@@ -2151,8 +2237,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (!result)
                 return;
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
             if (result == true)
             {
@@ -2177,8 +2263,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (!result)
                 return;
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
             if (result == true)
             {
@@ -2242,8 +2328,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         return;
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
         }
 
@@ -2288,8 +2374,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     return;
                 //  }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
         protected void grvAdjDay_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -2303,8 +2389,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             if (!result)
                 return;
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
             if (result == true)
             {
@@ -2574,17 +2660,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                 if (!result)
                 {
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = HRData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
 
                     return;
                 }
 
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
+            msg="Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
         }
 
 
@@ -2816,11 +2901,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
         }
 
-        //protected void lbtnExportOtherEarnExcel_Click(object sender, EventArgs e)
-        //{
-
-        //}
-
         private void Data_Binds()
         {
             DataTable dt = (DataTable)Session["tblover"];
@@ -2954,85 +3034,53 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 throw ex;
             }
-            
+ 
+        }
 
-            //try
-            //{
-            //    this.Data_Bind();
-            //    Response.Clear();
-            //    Response.Buffer = true;
-            //    Response.AddHeader("content-disposition",
-            //     "attachment;filename=OtherEarning.xls");
-            //    Response.Charset = "";
-            //    Response.ContentType = "application/vnd.ms-excel";
-            //    StringWriter sw = new StringWriter();
-            //    HtmlTextWriter hw = new HtmlTextWriter(sw);
-            //    gvothearn.AllowPaging = false;
-            //    ArrayList arr = (ArrayList)ViewState["States"];
-            //    gvothearn.HeaderRow.Cells[4].Visible = Convert.ToBoolean(arr[0]);
-            //    gvothearn.HeaderRow.Cells[5].Visible = Convert.ToBoolean(arr[1]);
-            //    gvothearn.HeaderRow.Cells[6].Visible = Convert.ToBoolean(arr[2]);
-            //    gvothearn.HeaderRow.Cells[7].Visible = Convert.ToBoolean(arr[3]);
-            //    gvothearn.HeaderRow.Cells[8].Visible = Convert.ToBoolean(arr[4]);
-            //    gvothearn.HeaderRow.Cells[9].Visible = Convert.ToBoolean(arr[5]);
-            //    gvothearn.HeaderRow.Cells[10].Visible = Convert.ToBoolean(arr[6]);
-            //    gvothearn.HeaderRow.Cells[11].Visible = Convert.ToBoolean(arr[7]);
-            //    gvothearn.HeaderRow.Cells[12].Visible = Convert.ToBoolean(arr[8]);
-            //    gvothearn.HeaderRow.Cells[13].Visible = Convert.ToBoolean(arr[9]);
-            //    gvothearn.HeaderRow.Cells[14].Visible = Convert.ToBoolean(arr[10]);
-            //    gvothearn.HeaderRow.Cells[15].Visible = Convert.ToBoolean(arr[11]);
-            //    gvothearn.HeaderRow.Cells[16].Visible = Convert.ToBoolean(arr[12]);
-            //    gvothearn.HeaderRow.Cells[4].FindControl("chkCol0").Visible = false;
-            //    gvothearn.HeaderRow.Cells[5].FindControl("chkCol1").Visible = false;
-            //    gvothearn.HeaderRow.Cells[6].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[7].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[8].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[9].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[10].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[11].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[12].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[13].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[14].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[15].FindControl("chkCol2").Visible = false;
-            //    gvothearn.HeaderRow.Cells[16].FindControl("chkCol2").Visible = false;
-            //    for (int i = 0; i < gvothearn.Rows.Count; i++)
-            //    {
-            //        GridViewRow row = gvothearn.Rows[i];
-            //        row.Cells[4].Visible = Convert.ToBoolean(arr[0]);
-            //        row.Cells[5].Visible = Convert.ToBoolean(arr[1]);
-            //        row.Cells[6].Visible = Convert.ToBoolean(arr[2]);
-            //        row.BackColor = System.Drawing.Color.White;
-            //        row.Attributes.Add("class", "textmode");
-            //        if (i % 2 != 0)
-            //        {
-            //            row.Cells[4].Style.Add("background-color", "#C2D69B");
-            //            row.Cells[5].Style.Add("background-color", "#C2D69B");
-            //            row.Cells[6].Style.Add("background-color", "#C2D69B");
-            //        }
-            //    }
+        protected void lbtnDedorOtherEernExcelAdjust_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["ExcelData"];
+            DataTable dt1 = (DataTable)Session["tblover"];
+            if (dt.Rows.Count == 0 || dt1.Rows.Count == 0)
+            {
+                return;
+            }
+            string Type = this.Request.QueryString["Type"].ToString().Trim();
+            switch (Type)
+            {
+                case "OtherDeduction":
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        DataRow[] rows = dt.Select("Card ='" + dt1.Rows[i]["idcardno"] + "'");
 
+                        if (rows.Length > 0)
+                        {
+                            dt1.Rows[i]["saladv"] = Convert.ToDouble(rows[0]["Adv_Deduction"]);
+                            dt1.Rows[i]["fallded"] = Convert.ToDouble(rows[0]["Food"]);
+                            dt1.Rows[i]["transded"] = Convert.ToDouble(rows[0]["Transport"]);
+                        }
 
-            //    Page page = new Page();
-            //    HtmlForm form = new HtmlForm();
-            //    page.Controls.Add(form);
-            //    form.Controls.Add(gvothearn);
+                    }
+                    break;
 
-            //    gvothearn.RenderControl(hw);
-            //    string style = @"<style> .textmode { mso-number-format:\@; } </style>";
-            //    Response.Write(style);
-            //    Response.Output.Write(sw.ToString());
-            //    Response.End();
+                case "otherearn":
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        DataRow[] rows = dt.Select("Card ='" + dt1.Rows[i]["idcardno"] + "'");
 
+                        if (rows.Length > 0)
+                        {
+                            dt1.Rows[i]["haircutal"] = Convert.ToDouble(rows[0]["Car_Allow"]);
+                            dt1.Rows[i]["foodal"] = Convert.ToDouble(rows[0]["Fooding"]);
+                            dt1.Rows[i]["othearn"] = Convert.ToDouble(rows[0]["Others"]);
+                        }
 
+                    }
+                    break;
+            }          
 
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw ex;
-            //    this.lblmsg.Text = ex.Message.ToString();
-            //}           
+            Session["tblover"] = dt1;
+            this.Data_Bind();
         }
     }
 }
