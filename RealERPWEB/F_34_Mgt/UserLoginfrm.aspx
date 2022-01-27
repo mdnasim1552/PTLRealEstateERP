@@ -111,6 +111,9 @@
             font-size: 14px !important;
             color: #ff006e;
         }
+        .modal-open .modal{
+            overflow-y:hidden !important;
+        }
     </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -775,13 +778,13 @@
                             <br />
                             <div class="row">
                                 <div class="col-md-2">
-                                    <label>W.M Password</label>
+                                    <label>Web Mail Pass.</label>
                                 </div>
                                 <div class="col-md-10">
                                     <asp:TextBox ID="txtmWebMailPass" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
+                           <br />
                             <div class="row">
                                 <div class="col-md-2">
                                     <label>Graph</label>
