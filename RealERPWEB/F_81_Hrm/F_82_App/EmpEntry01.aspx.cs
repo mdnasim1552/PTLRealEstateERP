@@ -29,6 +29,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         string Upload = "";
         int size = 0;
         System.IO.Stream image_file = null;
+        Common compUtility = new Common();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -66,9 +67,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
             ((Panel)this.Master.FindControl("pilleftDvi")).Visible = false;
 
-            
 
-            
+
+
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
@@ -93,6 +94,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             return (hst["comcod"].ToString());
 
         }
+
 
         private void getLastCardNo()
         {
@@ -144,7 +146,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void ddlInformation_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SelectView();
-            
+
         }
 
         protected void ibtnEmpList_Click(object sender, EventArgs e)
@@ -825,26 +827,85 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             switch (infoid)
             {
                 case "01":
-                    lUpdatPerInfo_Click1(null,null);
+                    lUpdatPerInfo_Click1(null, null);
                     break;
                 case "10":
                     lUpdateDegree_Click(null, null);
                     break;
-                
+
 
             }
         }
         protected void lUpdatPerInfo_Click1(object sender, EventArgs e)
         {
-            // ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-            //---------------Validation Check---------------------//
-            //int value =0;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            //string Gvalue="";
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string empname = ((TextBox)this.gvPersonalInfo.Rows[1].FindControl("txtgvVal")).Text.Trim();
+            //Log Entry
+             
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
 
-                if (Gcode == "01001" || Gcode == "01003")
+                //new nahid by 20220126
+                 
+                if (Gcode == "01001")
+                {
+                    string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    if (Gvalue.Length == 0)
+                    {
+                        string errMsg = "Please Put ID CARD Number";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.Color.Red;
+                        return;
+                    }
+
+                    DataSet copSetup = compUtility.GetCompUtility();
+                    if (copSetup == null)
+
+                        return;
+                    int idCardLength = copSetup.Tables[0].Rows.Count==0?0:Convert.ToInt32(copSetup.Tables[0].Rows[0]["hr_idcardlen"]);
+                    if (Gvalue.Length != idCardLength && idCardLength !=0)
+                    {
+                        string errMsg = "Please Put " + idCardLength + " Digit ID CARD Number";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.Color.Red;
+                        return;
+                    }
+                    else
+                    {
+                        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
+
+                    }
+
+                    //// for duplicate value 
+                    ///
+                    ////
+                    ///////////----------------------------------------
+                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETIDCARDNO", Gvalue, "", "", "", "", "", "", "", "");
+                    if (ds2.Tables[0].Rows.Count == 0)
+                        ;
+                    else
+                    {
+                        DataView dv1 = ds2.Tables[0].DefaultView;
+                        dv1.RowFilter = ("empid <>'" + empid + "'");
+                        DataTable dt = dv1.ToTable();
+                        if (dt.Rows.Count == 0)
+                            ;
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate ID CARD No" + "');", true);
+
+                            return;
+                        }
+                    }
+                    ///////////////----------------------------------------
+                     
+                }
+                 
+                if (Gcode == "01003")
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
@@ -860,39 +921,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
 
                 }
-                //else if (Gcode == "01023" || Gcode == "01010" || Gcode == "01011")
-                //{
-                //    string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-
-                //    if (Gvalue == "99001" || Gvalue == "92001" || Gvalue == "95001")
-                //    {
-                //        int y = 1;
-                //        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.Color.Red;
-                //        value = value + y;
-                //    }
-                //    else
-                //    {
-                //        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
-                //    }
-
-                //}
-
-
+                 
             }
-            //if (value != 0)
-            //{
-            // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Not Successfully";
-            //    return;
-            //}
+             
             //---------------Validation Check---------------------//
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetComeCode();
-            //string Gvalue="";
-            string empid = this.ddlEmpName.SelectedValue.ToString();
-            string empname = ((TextBox)this.gvPersonalInfo.Rows[1].FindControl("txtgvVal")).Text.Trim();
-            //Log Entry
 
+           
             DataTable dtuser = (DataTable)Session["UserLog"];
             string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
             string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
@@ -918,6 +953,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
 
+
             if (result == false)
                 return;
 
@@ -927,128 +963,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                 string gvalueBn = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvValBn")).Text.Trim();
                 string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                if (Gcode == "01001")
-                {
-                    Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-
-                    switch (comcod)
-                    {
-
-                        case "4332":
-                        case "4101":
-
-
-                            if (Gvalue.Length != 4)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Put 4 Digit ID CARD Number" + "');", true);
-
-                                return;
-                            }
-                            break;
-
-                        case "3354": // edison real
-                        case "3347": // Peb Steel
-
-                            //if (Gvalue.Length != 15)
-                            //{
-                            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 15 Digit ID CARD Number";
-                            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                            //    return;
-                            //}
-                            break;
-
-                        case "3333":
-                            if (Gvalue.Length != 8)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Put 8 Digit ID CARD Number" + "');", true);
-
-
-                                return;
-
-                            }
-                            break;
-
-                        case "3336":
-                        case "3337":
-                            if (Gvalue.Length != 7)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Put 7 Digit ID CARD Number" + "');", true);
-
-
-                                return;
-
-                            }
-                            break;
-
-                        // for manama 
-                        case "3353":
-                            if (Gvalue.Length != 4)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Put 4 Digit ID CARD Number" + "');", true);
-
-
-                                return;
-                            }
-                            break;
-                        default:
-                            if (Gvalue.Length != 6)
-                            {
-                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Put 6 Digit ID CARD Number" + "');", true);
-
-
-                                return;
-
-                            }
-                            break;
-
-                    }
-
-
-
-
-
-
-
-
-                    //if (comcod != "4306")
-                    //{
-                    //    if (Gvalue.Length != 6)
-                    //    {
-                    //     ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 6 Digit ID CARD Number";
-                    //        return;
-                    //    }
-                    //    //if (Gvalue.Length != 4)
-                    //    //{
-                    //    // ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 4 Digit ID CARD Number";
-                    //    //    return;
-                    //    //}
-                    //}
-
-
-
-
-                    ////
-                    ///////////----------------------------------------
-                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETIDCARDNO", Gvalue, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                        ;
-                    else
-                    {
-                        DataView dv1 = ds2.Tables[0].DefaultView;
-                        dv1.RowFilter = ("empid <>'" + empid + "'");
-                        DataTable dt = dv1.ToTable();
-                        if (dt.Rows.Count == 0)
-                            ;
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate ID CARD No" + "');", true);
-
-                            return;
-                        }
-                    }
-                    ///////////////----------------------------------------
-
-                }
+                
 
                 if (Gcode == "01003" || Gcode == "01007" || Gcode == "01008")
                 {
@@ -1509,13 +1424,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
 
 
-        protected void lnkNextbtn_Click(object sender, EventArgs e)
-        {
-
-
-
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('HREmpEntry.aspx?Type=Aggrement', target='_self');</script>";
-        }
+      
 
 
 
