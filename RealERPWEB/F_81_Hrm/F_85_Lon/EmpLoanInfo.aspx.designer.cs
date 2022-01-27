@@ -105,15 +105,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.Label lblCurNo2;
 
         /// <summary>
-        /// lbtnOk control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
         /// lblResList control.
         /// </summary>
         /// <remarks>
@@ -175,6 +166,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlLoantype;
+
+        /// <summary>
+        /// lbtnOk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
         /// lblmsg control.

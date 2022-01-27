@@ -38,6 +38,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 //{
                 //    this.chkconfrmdt.Checked = true;
                 //}
+
+                this.lnkbtnShow_Click(null, null);
             }
 
         }

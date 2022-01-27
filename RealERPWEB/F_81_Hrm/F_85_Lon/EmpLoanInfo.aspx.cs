@@ -105,7 +105,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             string comcod = this.GetComeCode();
            
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLOANTYPE", "", "", "", "", "", "", "", "", "");
             this.ddlLoantype.DataTextField = "loantype";
             this.ddlLoantype.DataValueField = "gcod";
             this.ddlLoantype.DataSource = ds1.Tables[0];
@@ -169,12 +169,14 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lbtnAddInstallment.Visible = false;
             this.chkVisible.Visible = false;
             this.pnlloan.Visible = false;
+            this.ddlLoantype.Enabled = true;
+
             this.gvloan.DataSource = null;
             this.gvloan.DataBind();
         }
 
         private void ShowLoanInfo()
-        {
+       {
             ViewState.Remove("tblln");
             string comcod = this.GetComeCode();
             string CurDate1 = this.txtCurDate.Text.Trim();
@@ -185,6 +187,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.chkAddIns.Visible = true;
                 this.chkVisible.Visible = false;
                 mLNNo = this.ddlPrevLoanList.SelectedValue.ToString();
+                this.ddlLoantype.Enabled = false;
             }
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNINFO", mLNNo, CurDate1,
                           "", "", "", "", "", "", "");
@@ -206,6 +209,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
             ViewState["tblln1"] = ds1.Tables[1];
             this.ddlEmpList.SelectedValue = ds1.Tables[1].Rows[0]["empid"].ToString();
+            this.ddlLoantype.SelectedValue = ds1.Tables[1].Rows[0]["loantype"].ToString();
             this.lblEmpName.Text = this.ddlEmpList.SelectedItem.Text.Trim();
             this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["lnno1"].ToString().Substring(0, 6);
             this.lblCurNo2.Text = ds1.Tables[1].Rows[0]["lnno1"].ToString().Substring(6, 5);
@@ -323,12 +327,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 string lnno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
                 string empid = this.ddlEmpList.SelectedValue.ToString();
                 string toamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", ""))).ToString();
+                string loantype = ddlLoantype.SelectedValue.ToString();
                 bool result;
                 //Delete Loaninfo
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETELNINFO", lnno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                     return;
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATELN", "LNINFB", lnno, curdate, toamt, "", "", "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATELN", "LNINFB", lnno, curdate, toamt, "",loantype, "", "", "", "", "", "", "", "", "");
 
                 if (!result)
                 {
