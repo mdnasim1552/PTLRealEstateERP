@@ -866,7 +866,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     if (copSetup == null)
 
                         return;
-                    int idCardLength = Convert.ToInt32(copSetup.Tables[0].Rows[0]["hridcardlen"]);
+                    int idCardLength = copSetup.Tables[0].Rows.Count==0?0:Convert.ToInt32(copSetup.Tables[0].Rows[0]["hr_idcardlen"]);
                     if (Gvalue.Length != idCardLength && idCardLength !=0)
                     {
                         string errMsg = "Please Put " + idCardLength + " Digit ID CARD Number";
