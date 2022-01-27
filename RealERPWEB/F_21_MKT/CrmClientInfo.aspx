@@ -4082,6 +4082,7 @@
                                         <strong>Contact Person: </strong><span id="lblContactPerson" runat="server"></span>
                                         <br>
                                         <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
+                                        
                                         <br>
                                         <strong>Home Address: </strong><span id="lblprosaddress" runat="server"></span>
                                         <br>
@@ -4098,6 +4099,7 @@
 
                                         <asp:HiddenField ID="lblproscod" runat="server" />
                                         <asp:HiddenField ID="lbleditempid" runat="server" />
+                                        <asp:HiddenField ID="lblgeneratedate" runat="server" />
                                     </p>
                                 </div>
 

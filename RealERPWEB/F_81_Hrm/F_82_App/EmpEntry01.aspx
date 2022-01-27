@@ -49,7 +49,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper" style="height:1010px;>
+            <div class="container moduleItemWrpper" style="height: 1010px;">
                 <div class="contentPart">
                     <div class="row">
                         <fieldset class="scheduler-border fieldset_A">
@@ -70,8 +70,9 @@
                                     </div>
                                     <div class="col-md-2 pull-right">
                                         <a href="#" class="btn btn-info primaryBtn margin5px" onclick="history.go(-1)">Back</a>
+                                        <asp:HyperLink runat="server" CssClass="btn  btn-primary primaryBtn" NavigateUrl="HREmpEntry?Type=Aggrement" Target="_blank">Next Aggrement</asp:HyperLink>
 
-                                        <asp:LinkButton ID="lnkNextbtn" runat="server" CssClass="btn  btn-primary primaryBtn" Style="margin: 0 5px;" OnClick="lnkNextbtn_Click"><span class="flaticon-add118"></span> Next</asp:LinkButton>
+                                       
 
                                     </div>
 
