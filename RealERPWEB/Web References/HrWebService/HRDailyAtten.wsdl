@@ -176,6 +176,50 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetDailyAttenDanceFB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceFBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceFBResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceZKT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceZKTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceZKTResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="HelloWorldSoapIn">
@@ -232,6 +276,18 @@
   <wsdl:message name="GetDailyAttenDanceAssureSoapOut">
     <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAssureResponse" />
   </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceFBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceFB" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceFBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceFBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceZKTSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceZKT" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceZKTSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceZKTResponse" />
+  </wsdl:message>
   <wsdl:portType name="HrDailyAttenSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
@@ -268,6 +324,14 @@
     <wsdl:operation name="GetDailyAttenDanceAssure">
       <wsdl:input message="tns:GetDailyAttenDanceAssureSoapIn" />
       <wsdl:output message="tns:GetDailyAttenDanceAssureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceFB">
+      <wsdl:input message="tns:GetDailyAttenDanceFBSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceFBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceZKT">
+      <wsdl:input message="tns:GetDailyAttenDanceZKTSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceZKTSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HrDailyAttenSoap" type="tns:HrDailyAttenSoap">
@@ -346,6 +410,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetDailyAttenDanceAssure">
       <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceAssure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceFB">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceFB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceZKT">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceZKT" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -437,13 +519,31 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceFB">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceFB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceZKT">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceZKT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="HrDailyAtten">
     <wsdl:port name="HrDailyAttenSoap" binding="tns:HrDailyAttenSoap">
-      <soap:address location="http://123.200.23.58/WebReference/HRDailyAtten.asmx" />
+      <soap:address location="http://localhost/WebReference/HRDailyAtten.asmx" />
     </wsdl:port>
     <wsdl:port name="HrDailyAttenSoap12" binding="tns:HrDailyAttenSoap12">
-      <soap12:address location="http://123.200.23.58/WebReference/HRDailyAtten.asmx" />
+      <soap12:address location="http://localhost/WebReference/HRDailyAtten.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

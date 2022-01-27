@@ -1,10 +1,9 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="SuplierPayment.aspx.cs" Inherits="RealERPWEB.F_17_Acc.SuplierPayment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="SuplierPayment.aspx.cs" Inherits="RealERPWEB.F_17_Acc.SuplierPayment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%@ Register Assembly="DropCheck" Namespace="xMilk" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-     <style type="text/css">
+    <style type="text/css">
         .AutoExtender {
             font-family: Verdana, Helvetica, sans-serif;
             margin: 0px 0 0 0px;
@@ -12,7 +11,6 @@
             font-weight: normal;
             border: solid 1px #006699;
             background-color: White;
-           
         }
 
         .AutoExtenderList {
@@ -30,12 +28,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-  
+
     <script type="text/javascript">
         $(document).ready(function () {
             //For navigating using left and right arrow of the keyboard
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            $('#<%=this.txtScrchConCode.ClientID %>').focus();
+
 
         });
         function pageLoaded() {
@@ -44,6 +42,10 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
+
+            $('.chzn-select').chosen({ search_contains: true });
+
+
           <%-- var gridview = $('#<%=this.dgv1.ClientID %>');
            $.keynavigation(gridview);--%>
         };
@@ -58,8 +60,8 @@
 
 
 
-    
-   
+
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -87,19 +89,23 @@
                             <div class="form-horizontal">
                                 <div class="form-group">
 
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-md-1 pading5px">
+
                                         <asp:Label ID="lblcurVounum" runat="server" CssClass="lblTxt lblName"> Voucher No.</asp:Label>
+                                    </div>
+
+                                    <div class="col-md-2 pading5px asitCol2">
+
                                         <asp:TextBox ID="txtcurrentvou" runat="server" CssClass="smltxtBox" ReadOnly="True"></asp:TextBox>
                                         <asp:TextBox ID="txtCurrntlast6" runat="server" CssClass="smltxtBox60px" ReadOnly="True"></asp:TextBox>
 
                                     </div>
                                     <div class="col-md-2 pading5px asitCol2">
 
-                                        <asp:Label ID="lblDate" runat="server" CssClass="smLbl" Text="Date"></asp:Label>
+                                        <asp:Label ID="lblDate" runat="server" CssClass="smLbl_to" Text="Date"></asp:Label>
                                         <asp:TextBox ID="txtEntryDate" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtEntryDate">
-                                        </cc1:CalendarExtender>
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtEntryDate"></cc1:CalendarExtender>
 
 
                                     </div>
@@ -136,18 +142,17 @@
                                 </div>
                                 <div class="form-group">
 
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-md-1 pading5px">
                                         <asp:Label ID="lblcontrolAccHead" runat="server" CssClass="lblTxt lblName" Text="Control Code"></asp:Label>
-                                        <asp:TextBox ID="txtScrchConCode" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                        <%-- <asp:TextBox ID="txtScrchConCode" runat="server" CssClass="inputtextbox"></asp:TextBox>
                                         <div class="colMdbtn">
                                             <asp:LinkButton ID="ibtnFindConCode" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindConCode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                        </div>
-
+                                        </div>--%>
                                     </div>
 
                                     <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="form-control inputTxt" OnSelectedIndexChanged="ddlConAccHead_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
@@ -162,8 +167,6 @@
 
 
                                     </div>
-
-
 
                                     <div class="col-md-3 pading5px pull-right">
                                         <div class="msgHandSt">
@@ -182,27 +185,27 @@
                                 <div class="form-horizontal">
 
                                     <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
+                                        <div class="col-md-1 pading5px ">
                                             <asp:Label ID="Label11" runat="server" CssClass="lblTxt lblName">Supplier</asp:Label>
-                                            <asp:TextBox ID="txtserchReCode" runat="server" CssClass=" inputTxt inputName inpPixedWidth" TabIndex="14"></asp:TextBox>
+                                            <%--<asp:TextBox ID="txtserchReCode" runat="server" CssClass=" inputTxt inputName inpPixedWidth" TabIndex="14"></asp:TextBox>--%>
 
 
-                                            <div class="colMdbtn">
+                                          <%--  <div class="colMdbtn">
                                                 <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lnkRescode_Click" TabIndex="15"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                            </div>
+                                            </div>--%>
 
                                         </div>
 
 
                                         <div class="col-md-4 pading5px">
-                                            <asp:DropDownList ID="ddlresuorcecode" runat="server" CssClass="form-control inputTxt" TabIndex="17" AutoPostBack="true" OnSelectedIndexChanged="ddlresuorcecode_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlresuorcecode" runat="server" CssClass="chzn-select form-control inputTxt" TabIndex="17" AutoPostBack="true" OnSelectedIndexChanged="ddlresuorcecode_SelectedIndexChanged">
                                             </asp:DropDownList>
 
                                         </div>
 
                                         <div class="col-md-3 pading5px asitCol3">
-                                             <div class="colMdbtn">
+                                            <div class="colMdbtn">
                                                 <asp:LinkButton ID="lnkAdd" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkAdd_Click">Add Bill</asp:LinkButton>
 
 
@@ -215,58 +218,65 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-md-3 pading5px asitCol3">
-                                            <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName">Bill No</asp:Label>
-                                            <asp:TextBox ID="txtserchBill" runat="server" CssClass=" inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                        <div class="col-md-1 pading5px">
+                                          <asp:Label ID="Label12" runat="server" CssClass="lblTxt lblName" >Bill No</asp:Label>
+                                              
+                                           <%-- <asp:TextBox ID="txtserchBill" runat="server" CssClass=" inputTxt inputName inpPixedWidth"></asp:TextBox>
 
 
                                             <div class="colMdbtn">
                                                 <asp:LinkButton ID="lnkBillNo0" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="lnkBillNo_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
-                                            </div>
+                                            </div>--%>
 
                                         </div>
+                                        
                                         <cc1:DropCheck ID="DropCheck1" runat="server" BackColor="Black" MaxDropDownHeight="200"
-                                                        TabIndex="8" TransitionalMode="True" Width="400px">
-                                                    </cc1:DropCheck>
-                                               
+                                            TabIndex="8" TransitionalMode="True" Width="450px">
+                                        </cc1:DropCheck>
 
-                                       
-                                      
-                                      
+
+
+
+
 
                                     </div>
 
 
 
-                                      <div class="form-group">
-
-                                            
+                                    <div class="form-group">
 
 
-                                    <div class="col-md-12 pading5px  ">
-                                        <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Ref./CheqNo"></asp:Label>
+
+                                        <div class="col-md-1 Pading5px">
+                                             <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Ref./CheqNo"></asp:Label>
+                                        </div>
 
 
-                                         <asp:DropDownList ID="ddlcheque" runat="server" CssClass=" ddlPage" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged" AutoPostBack="true" Style="width: 72px;">
-                                                </asp:DropDownList>
-                                         <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                   
-                                       
-
-                                  
-
-                                        <asp:Label ID="lblSrInfo" runat="server" CssClass=" smLbl_to" Text="Other ref"></asp:Label>
-                                        <asp:TextBox ID="txtSrinfo" runat="server" CssClass="inputtextbox" ></asp:TextBox>
+                                        <div class="col-md-11 pading5px  ">
+                                           
 
 
-                                           <asp:Label ID="lbltaxamt" runat="server" CssClass="smLbl_to" Style="width:66px;">Tax</asp:Label>
+                                            <asp:DropDownList ID="ddlcheque" runat="server" CssClass=" ddlPage" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged" AutoPostBack="true" Style="width: 72px;">
+                                            </asp:DropDownList>
+                                            <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
 
-                                            <asp:TextBox ID="txttaxamt" runat="server" CssClass=" inputtextbox" Style="text-align:right;"></asp:TextBox>
+
+
+
+
+                                            <asp:Label ID="lblSrInfo" runat="server" CssClass=" smLbl_to" Text="Other ref"></asp:Label>
+                                            <asp:TextBox ID="txtSrinfo" runat="server" CssClass="inputtextbox"></asp:TextBox>
+
+
+                                            <asp:Label ID="lbltaxamt" runat="server" CssClass="smLbl_to" Style="width: 66px;">Tax</asp:Label>
+
+                                            <asp:TextBox ID="txttaxamt" runat="server" CssClass=" inputtextbox" Style="text-align: right;"></asp:TextBox>
 
                                             <asp:Label ID="lblissueno" runat="server" Visible="False"></asp:Label>
-                                      
-                                       
+
+
                                             <asp:Label ID="lblPayto" runat="server" CssClass="smLbl_to">Pay To</asp:Label>
 
                                             <asp:TextBox ID="txtPayto" runat="server" CssClass=" inputtextbox" Width="120px" TabIndex="25" Font-Bold="true"></asp:TextBox>
@@ -280,18 +290,15 @@
                                                 ServicePath="~/AutoCompleted.asmx" TargetControlID="txtPayto">
                                             </cc1:AutoCompleteExtender>
 
-                                      
-                                       
-                                      <%--      <asp:Label ID="lblPayto" runat="server" CssClass="smLbl" Text="Pay To"></asp:Label>
+
+
+                                            <%--      <asp:Label ID="lblPayto" runat="server" CssClass="smLbl" Text="Pay To"></asp:Label>
                                         <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" ></asp:TextBox>--%>
-                                    
-                                          
+                                        </div>
+
+
 
                                     </div>
-                                                                    
-                                  
-
-                                   </div>
 
 
                                 </div>
@@ -304,12 +311,12 @@
 
                     </div>
 
-         <%--            <asp:DropDownList ID="ddlBillList" runat="server" CssClass="form-control inputTxt">
+                    <%--            <asp:DropDownList ID="ddlBillList" runat="server" CssClass="form-control inputTxt">
                                             </asp:DropDownList>--%>
 
                     <div>
 
-                        <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass="table-hover table-bordered"
+                        <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             ShowFooter="True" Width="685px">
                             <RowStyle />
                             <Columns>
@@ -382,7 +389,7 @@
                                     <FooterTemplate>
                                         <asp:TextBox ID="txtTgvQty" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" Style="text-align: right"
-                                            ReadOnly="True"  Width="60px" ></asp:TextBox>
+                                            ReadOnly="True" Width="60px"></asp:TextBox>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvQty" runat="server" BackColor="Transparent"
@@ -393,7 +400,7 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Rate" >
+                                <asp:TemplateField HeaderText="Rate">
                                     <FooterTemplate>
                                         <asp:TextBox ID="txtTgvRate" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None"
@@ -420,7 +427,7 @@
                                         <asp:TextBox ID="txtTgvDrAmt" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                             Font-Bold="True" Font-Size="12px" ReadOnly="True"
-                                             Style="text-align: right" Width="90px"></asp:TextBox>
+                                            Style="text-align: right" Width="90px"></asp:TextBox>
                                     </FooterTemplate>
                                     <FooterStyle HorizontalAlign="right" />
                                     <ItemStyle HorizontalAlign="right" />
@@ -519,22 +526,23 @@
                                 </asp:TemplateField>
 
                             </Columns>
-                            <FooterStyle BackColor="#F5F5F5" />
+                            
+                            <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                            <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
 
                     </div>
 
 
                     <div>
-                         <asp:Panel ID="pnlNarration" runat="server" Visible="False">
-                       <fieldset class="scheduler-border fieldset_Nar">
+                        <asp:Panel ID="pnlNarration" runat="server" Visible="False">
+                            <fieldset class="scheduler-border fieldset_Nar">
                                 <div class="form-horizontal">
 
-                                   <%-- <div class="form-group">
+                                    <%-- <div class="form-group">
                                     <div class="col-md-2 pading5px asitCol2 ">
                                         <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Ref./CheqNo"></asp:Label>
                                         
@@ -572,27 +580,27 @@
                                                 <asp:TextBox ID="txtNarration" runat="server" class="form-control" Rows="2" TextMode="MultiLine"></asp:TextBox>
                                             </div>
                                         </div>
-                                        
-                                          <div class="col-md-3 pading5px">
-                                            <asp:LinkButton ID="lnkFinalUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkFinalUpdate_Click" >Final Update</asp:LinkButton>
-                                            <a class=" btn btn-primary primaryBtn" href='<%=this.ResolveUrl("~/DeafultMenu.aspx?Type=17")%>' style="margin:0 0 0 5px;">Next</a>
-                                                <asp:CheckBox ID="chkpost" runat="server" TabIndex="10" Text="post" CssClass="btn btn-primary checkBox" Visible="false" />
+
+                                        <div class="col-md-3 pading5px">
+                                            <asp:LinkButton ID="lnkFinalUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkFinalUpdate_Click">Final Update</asp:LinkButton>
+                                            <a class=" btn btn-primary primaryBtn" href='<%=this.ResolveUrl("~/DeafultMenu.aspx?Type=17")%>' style="margin: 0 0 0 5px;">Next</a>
+                                            <asp:CheckBox ID="chkpost" runat="server" TabIndex="10" Text="post" CssClass="btn btn-primary checkBox" Visible="false" />
                                         </div>
-                                        
-                                       
-                                          <div class="col-md-2 pading5px">
 
-                                          <asp:Label ID="lblisunum" runat="server" CssClass=" smLbl" Visible="False"></asp:Label>
-                                    </div>
 
-                                        
+                                        <div class="col-md-2 pading5px">
 
-                                    
+                                            <asp:Label ID="lblisunum" runat="server" CssClass=" smLbl" Visible="False"></asp:Label>
+                                        </div>
+
+
+
+
                                     </div>
-                                    </div>
+                                </div>
 
                             </fieldset>
-                         </asp:Panel>
+                        </asp:Panel>
 
                     </div>
 
@@ -600,7 +608,7 @@
 
                 </div>
             </div>
-           
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
