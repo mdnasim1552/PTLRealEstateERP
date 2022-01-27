@@ -30,6 +30,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE LOAN INFORMATION";
                 // this.GetLoanNo();
                 this.GetEmplist();
+                this.GetLoanType();
+
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
 
@@ -95,6 +97,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlEmpList.DataValueField = "empid";
             this.ddlEmpList.DataSource = ds1.Tables[0];
             this.ddlEmpList.DataBind();
+
+        }
+
+        private void GetLoanType()
+        {
+
+            string comcod = this.GetComeCode();
+           
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", "", "", "", "", "", "", "", "", "");
+            this.ddlLoantype.DataTextField = "loantype";
+            this.ddlLoantype.DataValueField = "gcod";
+            this.ddlLoantype.DataSource = ds1.Tables[0];
+            this.ddlLoantype.DataBind();
 
         }
 
