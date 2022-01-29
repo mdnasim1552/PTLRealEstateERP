@@ -452,7 +452,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!totamt.Value),"#,##0;(#,##0);  ")</Value>
+                                  <Value>=Format(sum(Fields!amt01.Value)+sum(Fields!amt02.Value),"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -595,7 +595,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!totamt.Value,"#,##0;(#,##0);  ")</Value>
+                                  <Value>=Format(Fields!amt01.Value+Fields!amt02.Value,"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                   </Style>
@@ -703,7 +703,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Grand Total</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -715,7 +717,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Gainsboro</BackgroundColor>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -733,9 +735,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(sum(Fields!totamt.Value),"#,##0;(#,##0);  ")</Value>
+                                  <Value>=Format(sum(Fields!amt01.Value)+sum(Fields!amt02.Value),"#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -750,7 +753,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Gainsboro</BackgroundColor>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -771,6 +774,7 @@
                                   <Value>=Format(sum(Fields!amt01.Value), "#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -785,7 +789,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Gainsboro</BackgroundColor>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -806,6 +810,7 @@
                                   <Value>=Format(sum(Fields!amt02.Value), "#,##0;(#,##0);  ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -820,7 +825,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <BackgroundColor>Gainsboro</BackgroundColor>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -843,7 +848,11 @@
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
               <TablixMembers>
-                <TablixMember />
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                  <KeepTogether>true</KeepTogether>
+                </TablixMember>
                 <TablixMember>
                   <Group Name="Group1">
                     <GroupExpressions>
@@ -874,6 +883,9 @@
                         </TablixMember>
                         <TablixMember>
                           <Group Name="Details" />
+                          <Visibility>
+                            <Hidden>=iif(LTrim(RTrim(Fields!resdesc.Value))="",true,false)</Hidden>
+                          </Visibility>
                         </TablixMember>
                       </TablixMembers>
                     </TablixMember>
@@ -1216,6 +1228,8 @@
               <TablixMembers>
                 <TablixMember>
                   <KeepWithGroup>After</KeepWithGroup>
+                  <RepeatOnNewPage>true</RepeatOnNewPage>
+                  <KeepTogether>true</KeepTogether>
                 </TablixMember>
                 <TablixMember>
                   <Group Name="Details1" />
@@ -1241,7 +1255,7 @@
       <Width>8.10917in</Width>
       <Page>
         <PageHeader>
-          <Height>0.80208in</Height>
+          <Height>0.99875in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1255,7 +1269,7 @@
                       <Value>=Parameters!txtComNam.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
-                        <FontSize>14pt</FontSize>
+                        <FontSize>16pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1266,8 +1280,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtComNam</rd:DefaultName>
-              <Left>0.83833in</Left>
-              <Height>0.25in</Height>
+              <Left>1.10083in</Left>
+              <Height>0.2875in</Height>
               <Width>6.41667in</Width>
               <Style>
                 <Border>
@@ -1289,6 +1303,7 @@
                       <Value>=Parameters!comAddress.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1298,9 +1313,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtTitle</rd:DefaultName>
-              <Top>0.26667in</Top>
-              <Left>0.83833in</Left>
-              <Height>0.2125in</Height>
+              <Top>0.32292in</Top>
+              <Left>1.10083in</Left>
+              <Height>0.20625in</Height>
               <Width>6.41667in</Width>
               <ZIndex>1</ZIndex>
               <Style>
@@ -1324,6 +1339,7 @@
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>12pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -1333,11 +1349,61 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>date1</rd:DefaultName>
-              <Top>0.48056in</Top>
-              <Left>0.83833in</Left>
-              <Height>0.25in</Height>
+              <Top>0.50973in</Top>
+              <Left>1.10083in</Left>
+              <Height>0.2375in</Height>
               <Width>6.41667in</Width>
               <ZIndex>2</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Image1">
+              <Source>External</Source>
+              <Value>=Parameters!ComLogo.Value</Value>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.02348in</Top>
+              <Left>0.0125in</Left>
+              <Height>0.64875in</Height>
+              <Width>1.01042in</Width>
+              <ZIndex>3</ZIndex>
+              <ToolTip>=Parameters!ComLogo.Value</ToolTip>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Image>
+            <Textbox Name="date11">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!date1.Value</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>date11</rd:DefaultName>
+              <Top>0.755in</Top>
+              <Left>1.10083in</Left>
+              <Height>0.21875in</Height>
+              <Width>6.41667in</Width>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -1387,6 +1453,41 @@
                   <Style>None</Style>
                 </Border>
                 <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox42">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Page "&amp;Globals!PageNumber &amp;" of " &amp; Globals!TotalPages</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox10</rd:DefaultName>
+              <Top>0.06944in</Top>
+              <Left>6.75287in</Left>
+              <Height>0.19791in</Height>
+              <Width>1.3563in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
