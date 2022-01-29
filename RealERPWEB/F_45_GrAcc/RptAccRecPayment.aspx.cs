@@ -311,7 +311,7 @@ namespace RealERPWEB.F_45_GrAcc
                 this.gvGrpRPBS.DataBind();
 
             }
-            Session["dstrecpayment"] = ds1;
+            Session["dstrecpayment"] = ds1.Copy();
 
             Session["tblrecandpayment"] = HiddenSameData(ds1.Tables[0]);
             ViewState["tblbs"] = this.HiddenSameData02(ds1.Tables[2]);
@@ -1631,7 +1631,11 @@ namespace RealERPWEB.F_45_GrAcc
             string comcod = this.GetCompCode();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataSet ds1 = ((DataSet)Session["dstrecpayment"]).Copy();
+            string date1 = "From  " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To  " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+
+
+
+            DataSet ds1 = ((DataSet)Session["dstrecpayment"]);
             if (ds1 == null)
                 return;
 
@@ -1692,8 +1696,8 @@ namespace RealERPWEB.F_45_GrAcc
             //compname, txtTitle,comAddress
             rpt.SetParameters(new ReportParameter("txtComNam", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Receipt And Payment"));
-            rpt.SetParameters(new ReportParameter("comAddress", "Address"));
-            rpt.SetParameters(new ReportParameter("date1", "01-Jan-1900"));
+            rpt.SetParameters(new ReportParameter("comAddress", comadd));
+            rpt.SetParameters(new ReportParameter("date1", date1));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
