@@ -2932,7 +2932,7 @@
                                             <div class="tab-pane fade show" id="tab_1236" runat="server">
                                                 <div class="row">
                                                     <div class="col-md-3 col-sm-12 col-lg-3">
-                                                        <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
+                                                        <div id="piechartEMPStatus" style="width: 80%; height: 250px;"></div>
                                                     </div>
                                                     <div class="col-md-5 col-sm-12 col-lg-5">
                                                         <div id="deptWisEmp" style="width: 100%; height: 250px;"></div>
