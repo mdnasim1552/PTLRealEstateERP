@@ -310,7 +310,19 @@ namespace RealERPWEB.F_21_MKT
 
         protected void btnaddland_Click(object sender, EventArgs e)
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            string usrid = hst["usrid"].ToString();
+            string userrole = hst["userrole"].ToString();
+            if (empid=="" && userrole !="1")
+            {
+                string Messaged = "User ID did not set Employee ID, please contact your supervisor";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                return;
+            }
+
             GetData();
+
             if (btnaddland.Text == "Add Lead")
             {
                 string comcod = this.GetComeCode();
@@ -351,7 +363,7 @@ namespace RealERPWEB.F_21_MKT
 
                 this.lblnewprospect.Value = "";
 
-                Hashtable hst = (Hashtable)Session["tblLogin"];
+                 
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
@@ -3356,17 +3368,20 @@ namespace RealERPWEB.F_21_MKT
 
         protected void lnkDelete_Click(object sender, EventArgs e)
         {
-
+            string Message = "";
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
             if (!Convert.ToBoolean(dr1[0]["delete"]))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                Message = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
                 return;
+
+                
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+           
             DataTable dt = (DataTable)Session["tblsummData"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
@@ -3386,11 +3401,9 @@ namespace RealERPWEB.F_21_MKT
 
                 if (!result)
                 {
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Already Follow up exist !!!";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
-
+                    Message = "Already Follow up exist !!!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                    return; 
                 }
 
 
@@ -3406,11 +3419,9 @@ namespace RealERPWEB.F_21_MKT
                 if (!result)
                 {
 
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Delete Fail";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
-
+                    string msg = "Delete Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return; 
                 }
 
             }
@@ -3428,10 +3439,11 @@ namespace RealERPWEB.F_21_MKT
             Session["tblsummData"] = dv.ToTable();
             this.Data_Bind();
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Deleted";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+           
 
-
+             Message = "Successfully Deleted";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+           
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
