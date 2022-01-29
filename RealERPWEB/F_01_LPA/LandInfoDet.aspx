@@ -1305,7 +1305,7 @@
                                     <asp:ListItem>2000</asp:ListItem>
                                     <asp:ListItem>4000</asp:ListItem>
                                     <asp:ListItem>5000</asp:ListItem>
-                                    <asp:ListItem Selected="True">10000</asp:ListItem>
+                                    <asp:ListItem >10000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
