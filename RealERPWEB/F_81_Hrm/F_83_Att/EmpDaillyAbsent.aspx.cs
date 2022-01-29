@@ -30,6 +30,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE DAILY ABSENT INFORMATION ";
 
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+                lnkbtnShow_Click(null,null);
             }
         }
 
