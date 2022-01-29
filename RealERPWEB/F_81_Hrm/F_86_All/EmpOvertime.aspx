@@ -996,7 +996,7 @@
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvsaladv" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "saladv")).ToString("#,##0;(#,##0); ") %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "saladv"))  %>'
                                             Width="70px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>

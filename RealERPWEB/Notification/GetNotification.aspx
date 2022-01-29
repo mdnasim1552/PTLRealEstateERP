@@ -6,9 +6,6 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- 
-
-   
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -33,7 +30,7 @@
                 <div class="card-header">
                     <div class="row">
                     <div class="col-md-12">
-                        <h3>Notifications</h3>
+                        <h3>Notification Details</h3>
                     </div>
                     </div>
                     </div>
