@@ -2759,7 +2759,9 @@
 
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkDelete" runat="server" Font-Bold="True" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click">
+                                                        <asp:LinkButton ID="lnkDelete" 
+                                                            Visible='<%# Eval("isreject").ToString() == "True" ? false : true %>'
+                                                              runat="server" Font-Bold="True" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click">
 
                                                         <i class=" fa fa-trash"></i></asp:LinkButton>
 
@@ -3752,7 +3754,9 @@
                                              <li>
                                                 <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=CRM" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
-
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransferLog?type=CRM" runat="server">Prospect Transfer</asp:HyperLink>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

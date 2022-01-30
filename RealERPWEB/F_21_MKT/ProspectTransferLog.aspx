@@ -26,35 +26,29 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card card-fluid container-data mt-5" id='printarea'>
-                <div class="card-body">
-                <div class="card-header">
-                    <div class="row">
-                    <div class="col-md-12">
-                        <h3>Notifications</h3>
-                    </div>
-                    </div>
-                    </div>
+            <div class="card mt-5">
+      <div class="card-header">
+   <div class="row">
+      <div class="col-md-12">
+         <div class="col-md-12 form-inline">
 
-                    <div class="row">
-                        <div class="col-md-4 col-sm-6 col-lg-4">
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">From</button>
-                                </div>
-                                <asp:TextBox ID="txtFdate" runat="server" autocomplete="off" CssClass="from-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">To</button>
-                                </div>
-                                <asp:TextBox ID="txtTdate" runat="server" autocomplete="off" CssClass="from-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
 
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
+
+
+              <label class="">From : </label>
+               <asp:TextBox ID="txtFdate" runat="server" autocomplete="off" CssClass="form-control ml-2"></asp:TextBox>
+               <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
+        
+               <label class="ml-2">To : </label>
+               <asp:TextBox ID="txtTdate" runat="server" autocomplete="off" CssClass="form-control ml-2"></asp:TextBox>
+               <cc1:CalendarExtender ID="txtTdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtTdate"></cc1:CalendarExtender>
+               <asp:LinkButton ID="lnkbtnOK" runat="server" OnClick="lnkbtnOK_Click" CssClass="btn btn-primary  ml-2">Show</asp:LinkButton>
+       
+         </div>
+      </div>
+   </div>
+</div>
                 <div class="card-body">
                     <div class="row">
                     <div class="col-md-12">
@@ -67,7 +61,7 @@
                                     <asp:TemplateField HeaderText="Sl.">
                                         <ItemTemplate>
                                             <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
-                                                Text='1' Width="20px"></asp:Label>
+                                               Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle />
                                         <ItemStyle />
@@ -75,37 +69,38 @@
 
                                     <asp:TemplateField HeaderText="Prospect Name" SortExpression="">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblcomname" runat="server" ></asp:Label>
+                                            <asp:Label ID="lblcomname" runat="server"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "name")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle />
                                         <ItemStyle />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="From Assign">
+                                    <asp:TemplateField HeaderText="From Associate">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblfrom" runat="server" Text='we'></asp:Label>
+                                            <asp:Label ID="lblfrom" runat="server"  Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "from_assign")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle />
                                         <ItemStyle />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="To Assign" SortExpression="category" Visible="false">
+                                    <asp:TemplateField HeaderText="To Associate" SortExpression="category">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbldFrom" runat="server" Text='rdf'></asp:Label>
+                                            <asp:Label ID="lbldFrom" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "to_assign")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle />
                                         <ItemStyle />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Transfer date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblMsg" runat="server" Text='yyy'></asp:Label>
+                                            <asp:Label ID="lblMsg" runat="server"  Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "transfer_date","{0:dd/MMM/yyyy}")) %>'></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle />
                                         <ItemStyle />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Transfer By">
                                         <ItemTemplate>
-                                            <asp:Label ID="lbldtime" runat="server" Text='ggg'></asp:Label>
+                                            <asp:Label ID="lbldtime" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "transfer_by")) %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

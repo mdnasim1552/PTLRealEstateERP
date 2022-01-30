@@ -33,9 +33,9 @@ namespace RealERPWEB.F_21_MKT
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Transfer Client Information";
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-
-
-                this.GetTNotification();
+                this.txtFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.GetClientInfo();
 
             }
         }
@@ -56,11 +56,35 @@ namespace RealERPWEB.F_21_MKT
             return (hst["comcod"].ToString());
         }
 
-        private void GetTNotification()
+        private void GetClientInfo()
         {
-          
+            string frmdate = this.txtFdate.Text;
+            string todate = this.txtTdate.Text;
+            string comcod = this.Getcomcod();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_TRANSFER_LOG", frmdate, todate, "", "", "", "","","","","");
+            DataTable dt1 = ds1.Tables[0];
+            ViewState["clientinfo"] = dt1;
+            this.Data_Bind();
+        }
+        protected void Data_Bind()
+        {
+            DataTable dt1 = (DataTable)ViewState["clientinfo"];
+            this.gvtransLog.DataSource = dt1;
             this.gvtransLog.DataBind();
         }
+
+        protected void lnkbtnOK_Click(object sender, EventArgs e)
+        {
+            string frmdate = this.txtFdate.Text;
+            string todate = this.txtTdate.Text;
+
+            ViewState.Remove("clientinfo");
+                this.GetClientInfo();
+            
+        }
+
+
+
 
     }
 }

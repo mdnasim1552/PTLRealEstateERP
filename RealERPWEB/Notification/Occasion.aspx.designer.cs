@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_21_MKT
+namespace RealERPWEB.Notification
 {
 
 
-    public partial class ProspectTransferLog
+    public partial class Occasion
     {
 
         /// <summary>
@@ -69,21 +69,12 @@ namespace RealERPWEB.F_21_MKT
         protected global::AjaxControlToolkit.CalendarExtender txtTdate_CalendarExtender;
 
         /// <summary>
-        /// lnkbtnOK control.
+        /// gvOccasion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnOK;
-
-        /// <summary>
-        /// gvtransLog control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvtransLog;
+        protected global::System.Web.UI.WebControls.GridView gvOccasion;
     }
 }

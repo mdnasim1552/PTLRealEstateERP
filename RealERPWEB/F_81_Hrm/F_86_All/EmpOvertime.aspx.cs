@@ -939,6 +939,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         this.gvEmpOtherded.Columns[13].Visible = false;
                         this.gvEmpOtherded.Columns[14].Visible = false;
                         this.gvEmpOtherded.Columns[15].Visible = false;
+                        this.gvEmpOtherded.Columns[9].Visible = false;
                         this.gvEmpOtherded.Columns[9].HeaderText = "Food";
                     }
 
@@ -3056,7 +3057,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         if (rows.Length > 0)
                         {
                             dt1.Rows[i]["saladv"] = Convert.ToDouble(rows[0]["Adv_Deduction"]);
-                            dt1.Rows[i]["fallded"] = Convert.ToDouble(rows[0]["Food"]);
+                            //dt1.Rows[i]["fallded"] = Convert.ToDouble(rows[0]["Food"]);
                             dt1.Rows[i]["transded"] = Convert.ToDouble(rows[0]["Transport"]);
                         }
 
