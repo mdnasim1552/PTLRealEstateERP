@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="EmpStatus02.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.EmpStatus02" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmpStatus02.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.EmpStatus02" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
@@ -51,15 +51,16 @@
             </div>
 
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
+            <div class="card">
+                <div class="card-header">
+                     <div class="form-inline">
+
+        
+     
 
                                 <div class="form-group">
                                     <div class="col-md-5 pading5px">
-                                        <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">From</asp:Label>
+                                        <asp:Label ID="lblfrmdate" runat="server">From</asp:Label>
                                         <asp:TextBox ID="txtFdate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtFdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtFdate"></cc1:CalendarExtender>
 
@@ -164,7 +165,12 @@
                                 </div>
 
                             </div>
-                        </fieldset>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                     
+                           
+                      
 
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="JoiningRpt" runat="server">
