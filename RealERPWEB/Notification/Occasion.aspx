@@ -28,7 +28,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h3>Occasion Details</h3>
+                                <h4>Occasion Details</h4>
                             </div>
                         </div>
                     </div>

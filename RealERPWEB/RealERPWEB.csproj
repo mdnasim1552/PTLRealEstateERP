@@ -225,7 +225,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Files\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
@@ -2490,6 +2490,7 @@
     <Content Include="F_21_MKT\RptMktAppointment.aspx" />
     <Content Include="F_21_MKT\RptNotification.aspx" />
     <Content Include="F_21_MKT\RptProspectClient.aspx" />
+    <Content Include="F_21_MKT\RptProspectWorking.aspx" />
     <Content Include="F_21_MKT\RptProWiseClOffered.aspx" />
     <Content Include="F_21_MKT\RptSalesFunnel.aspx" />
     <Content Include="F_21_MKT\RptSalesRegressionFunnel.aspx" />
@@ -3852,6 +3853,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
       <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\RptProspectWorking.aspx.cs">
+      <DependentUpon>RptProspectWorking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\RptProspectWorking.aspx.designer.cs">
+      <DependentUpon>RptProspectWorking.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.cs">
       <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
