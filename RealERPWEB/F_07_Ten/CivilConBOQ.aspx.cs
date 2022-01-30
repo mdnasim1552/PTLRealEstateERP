@@ -430,6 +430,7 @@ namespace RealERPWEB.F_07_Ten
         {
             // ViewState_update();
 
+
             DataTable tblt01 = (DataTable)ViewState["tblt01"];
             int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
             Label lblactcode = (Label)this.gvCivilBoq.Rows[index].FindControl("lblgvactcode") as Label;
