@@ -200,10 +200,10 @@ namespace RealERPWEB.F_17_Acc
             dgv2.DataBind();
             // this.GridColoumnVisible();
             this.calculation();
-            this.Narration();
+            //this.Narration();
         }
 
-        private void Narration()
+        private void GetNarration()
         {
 
 
@@ -898,6 +898,8 @@ namespace RealERPWEB.F_17_Acc
                 string pactcode = "26" + ASTUtility.Right(tblt01.Rows[0]["actcode"].ToString(), 10);
                 this.SupplierOverallAdvanced(pactcode);
                 this.GetAdvanced();
+
+                this.GetNarration(); //get narration
                 return;
             }
 

@@ -22,6 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
     public partial class RptAttendenceSheet : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -51,27 +52,34 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void SelectDate()
         {
             string comcod = this.GetComCode();
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
 
-            switch (comcod)
-            {
+                return;
+
+          string  startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
 
 
-                case "3330":
+            //switch (comcod)
+            //{
+
+            //    case "3101":
+            //    case "3330":
 
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                    break;
+            //        break;
 
-                default:
+            //    default:
 
-                    this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                    break;
+            //        this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //        this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+            //        this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            //        break;
 
 
-            }
+            //}
         }
         private void GetCompany()
         {
@@ -506,8 +514,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string comcod = this.GetComCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
-            // string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"";
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
@@ -602,6 +610,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void Data_Bind()
         {
+           string comcod= this.GetComCode();
+
             DataTable dt = (DataTable)Session["tblallData"];
 
             int index = this.rbtnAtten.SelectedIndex;
@@ -616,8 +626,42 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvEmpStatus.DataBind(); ;
                     break;
                 case 3:
-                    this.gvMonthlyAtt.DataSource = dt;
-                    this.gvMonthlyAtt.DataBind();
+
+
+                    if (comcod == "3365"||comcod=="3101")
+                    {
+                        int i;
+                        DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
+                        DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
+
+                        int tcount;
+                        tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
+                        for (i = 2; i < 33; i++)
+                            this.gvMonthlyattSummary.Columns[i].Visible = false;
+                        int j = 2;
+                        for (i = 0; i <tcount; i++)
+                        {
+                            //if (datefrm > dateto)
+                            //    break;
+
+                            this.gvMonthlyattSummary.Columns[j].Visible = true;
+                            this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dd") + "<br/>"+ datefrm.ToString("dddd").Substring(0, 1);
+                            //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
+                            datefrm = datefrm.AddDays(1);
+                            j++;
+                           
+
+                        }
+
+                        this.gvMonthlyattSummary.DataSource = dt;
+                        this.gvMonthlyattSummary.DataBind();
+                    }
+                    else
+                    {
+                        this.gvMonthlyAtt.DataSource = dt;
+                        this.gvMonthlyAtt.DataBind();
+                    }
+                   
                     break;
                 case 4:
                     this.gvemplateatt.DataSource = dt;
@@ -1995,9 +2039,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                 GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
-
-                //  gvrow.Cells.Remove(TableCell [0]);
-
+          
                 TableCell cell01 = new TableCell();
                 cell01.Text = "Sl";
                 cell01.HorizontalAlign = HorizontalAlign.Center;
@@ -2084,9 +2126,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
+        protected void gvMonthlyattSummary_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvMonthlyattSummary.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
 
-
-
+        
     }
 }
 

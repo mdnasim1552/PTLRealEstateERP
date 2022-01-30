@@ -123,7 +123,7 @@
                         <div class="row table-responsive">
                         <asp:GridView ID="gvDailyLateAttn" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                             AllowPaging="True" OnPageIndexChanging="gvDailyLateAttn_PageIndexChanging" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            >
+                           PageSize="100" >
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
