@@ -283,8 +283,8 @@ namespace RealERPWEB.F_99_Allinterface
             string pass = ASTUtility.EncodePassword(txtuserpass);
 
             //        string pass = ASTUtility.EncodePassword(hst["password"].ToString());
-            string modulid = this.ddlCompany.SelectedValue.ToString();
-            string modulename = this.ddlCompany.SelectedItem.Text.Trim();
+            string modulid = "";// this.ddlCompany.SelectedValue.ToString();
+            string modulename = "";// this.ddlCompany.SelectedItem.Text.Trim();
             DataSet ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
             Session["tblusrlog"] = ds5;
             string Comcode = this.ddlCompany.SelectedValue.ToString();

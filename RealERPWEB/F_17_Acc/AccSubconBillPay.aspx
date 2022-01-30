@@ -260,7 +260,7 @@
                     </div>
                     <div>
 
-                        <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass="table-hover table-bordered"
+                        <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             ShowFooter="True" Width="685px">
                             <RowStyle />
                             <Columns>
@@ -376,7 +376,7 @@
                                     <FooterStyle HorizontalAlign="right" />
                                     <ItemStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Cr.Amount">
+                                <asp:TemplateField HeaderText="Cr.Amount" Visible="false">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvCrAmt" runat="server" BackColor="Transparent"
                                             BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
@@ -393,6 +393,45 @@
                                     <FooterStyle ForeColor="White" />
                                     <ItemStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
+
+                                 <asp:TemplateField HeaderText="Tax">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvtaxamt" runat="server" BackColor="Transparent"
+                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                            CssClass="GridTextbox"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "taxam")).ToString("#,##0;(#,##0.); ") %>'
+                                            Width="70px" Font-Size="12px" ForeColor="Black" TabIndex="78" Style="text-align: right;"></asp:TextBox>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFtaxamt" runat="server" BackColor="Transparent"
+                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                            Font-Bold="True" Font-Size="12px"
+                                            Width="70px" ForeColor="#000"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle ForeColor="White" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Net Amount">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="lblgvnetamt" runat="server" BackColor="Transparent"
+                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                            CssClass="GridTextbox"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netam")).ToString("#,##0;(#,##0.); ") %>'
+                                            Width="80px" Font-Size="12px" ForeColor="Black" TabIndex="78" Style="text-align: right;"></asp:TextBox>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFnetamt" runat="server" BackColor="Transparent"
+                                            BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                            Font-Bold="True" Font-Size="12px"
+                                            Width="80px" ForeColor="#000"></asp:Label>
+                                    </FooterTemplate>
+                                    <FooterStyle ForeColor="White" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Remarks">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
@@ -431,11 +470,12 @@
                                 </asp:TemplateField>
 
                             </Columns>
-                            <FooterStyle BackColor="#F5F5F5" />
+                           
+                            <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
                             <AlternatingRowStyle />
                             <PagerStyle CssClass="gvPagination" />
-                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                            <HeaderStyle CssClass="grvHeader" />
                         </asp:GridView>
 
                     </div>

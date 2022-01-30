@@ -403,7 +403,7 @@ namespace RealERPWEB.F_17_Acc
                     //---------------------
 
                   //  this.GetVouCherNumber();
-                    if (VNo3 == "BD" || VNo3 == "CT")
+                    if (VNo3 == "BD" || VNo3 == "CT" || VNo3 == "JV")
                     {
                         this.ChequeNo();
                     }
@@ -968,7 +968,7 @@ namespace RealERPWEB.F_17_Acc
 
                 if ((this.Request.QueryString["Mod"] == "Accounts"))
                 {
-                    if ((vouno == "BD" || vouno == "CT"))
+                    if ((vouno == "BD" || vouno == "CT" || vouno == "JV"))
                     {
 
                         if (refnum == "")
@@ -1248,7 +1248,6 @@ namespace RealERPWEB.F_17_Acc
                 }
 
                 bool resulta = false;
-
                 foreach (DataRow drs in dt.Rows)
                 {
 
