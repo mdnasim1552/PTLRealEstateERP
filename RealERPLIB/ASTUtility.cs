@@ -466,6 +466,14 @@ namespace RealERPLIB
         //}
 
 
+        public static int DatediffTotalDays(DateTime dtto, DateTime dtfrm)
+        {          
+            int tcount;
+            tcount = (int)(((dtto - dtfrm).TotalDays) + 1);
+
+            return tcount;
+        }
+
         public static int Datediff(DateTime dtto, DateTime dtfrm) 
         {
             
