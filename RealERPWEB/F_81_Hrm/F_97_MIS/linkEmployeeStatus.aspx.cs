@@ -25,7 +25,11 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
                 if(qtype== "late")
                 {
                     this.fmdate.Visible = false;
+<<<<<<< HEAD
+                    this.txtTdate.Visible = true;
+=======
                     this.txtFdate.Visible = false;
+>>>>>>> 1aa725792be6046a37ce4bf527bdca20226be947
                     this.tdate.Visible = false;
                 }
 

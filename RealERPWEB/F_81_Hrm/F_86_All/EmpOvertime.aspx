@@ -60,9 +60,9 @@
 
     </script>
 
-    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
-    <%-- <div class="RealProgressbar">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+     <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
                         <div id="loader">
@@ -78,7 +78,7 @@
                         </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
-            </div>--%>
+            </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <div class="row">
@@ -175,8 +175,8 @@
                             <asp:Panel ID="pnlDedEarnExcel" CssClass="col-md-4" runat="server" Visible="false">
                                 <div class="input-group">    
                                     <asp:FileUpload ID="fileuploadExcel" runat="server" class="form-control btn" style="height:34px; padding:5px" onchange="submitform();" />
-                                    <span class="input-group-addon bg-primary" style="background:#00ffff !important" id="basic-addons1">
-                                        <asp:LinkButton ID="lbtnDedorOtherEernExcelAdjust" runat="server" CssClass="" ToolTip="Adjust Deduction" OnClick="lbtnDedorOtherEernExcelAdjust_Click">
+                                    <span class="input-group-addon bg-primary" style="background:#ff6a00 !important" id="basic-addons1">
+                                        <asp:LinkButton ID="lbtnDedorOtherEernExcelAdjust" runat="server" CssClass=""  ForeColor="White" ToolTip="Adjust Deduction" OnClick="lbtnDedorOtherEernExcelAdjust_Click">
                                             <i class="fas fa-file-excel"></i>&nbsp;&nbsp;Adjust</asp:LinkButton>
                                     </span>
                                 </div>
@@ -901,7 +901,7 @@
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
-                                <asp:CommandField ShowDeleteButton="True" />
+                                <asp:CommandField ShowDeleteButton="True" DeleteText=""  />
                                 <asp:TemplateField HeaderText="Emp ID" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lgvEmpId" runat="server"
@@ -996,7 +996,7 @@
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvsaladv" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "saladv"))  %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "saladv")).ToString("#,##0;(#,##0); ")%>'
                                             Width="70px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
@@ -2062,7 +2062,7 @@
         </div>
     </div>
 
-    <%--      </ContentTemplate>
-    </asp:UpdatePanel>--%>
+       </ContentTemplate>
+    </asp:UpdatePanel> 
 </asp:Content>
 
