@@ -896,8 +896,36 @@
                                             <ItemStyle HorizontalAlign="left" />
 
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>    
+                                        </asp:TemplateField>   
+                                        
+
+     
+                                        
+
+                                           <asp:TemplateField HeaderText="Pabx">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvmobile" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "pabx"))%>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <ItemStyle HorizontalAlign="left" />
+
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField>   
                                           
+
+                                          <asp:TemplateField HeaderText="Email">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lgvmobile" runat="server"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email"))%>'
+                                                    Width="100px"></asp:Label>
+                                            </ItemTemplate>
+
+                                            <ItemStyle HorizontalAlign="left" />
+
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                        </asp:TemplateField> 
                                         
                                          </Columns>
                                     <FooterStyle CssClass="grvFooter" />

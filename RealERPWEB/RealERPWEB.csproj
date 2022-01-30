@@ -152,9 +152,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
- 
       <HintPath>C:\Users\HP\OneDrive\Desktop\Bin_real\Microsoft.ReportViewer.WinForms.dll</HintPath>
- 
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -241,8 +239,9 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Real Estate Bin 211213\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
@@ -2511,6 +2510,7 @@
     <Content Include="F_21_MKT\RptSalesFunnel.aspx" />
     <Content Include="F_21_MKT\RptSalesRegressionFunnel.aspx" />
     <Content Include="F_21_MKT\ToDaysAppointment.aspx" />
+    <Content Include="F_21_MKT\ProspectTransferLog.aspx" />
     <Content Include="F_21_MKT\TransferClient.aspx" />
     <Content Include="F_21_MKT\YearlyActivitiesTarget.aspx" />
     <Content Include="F_21_MKT\YearlyTargetVSAchive.aspx" />
@@ -3876,6 +3876,13 @@
     </Compile>
     <Compile Include="F_21_MKT\RptSalesRegressionFunnel.aspx.designer.cs">
       <DependentUpon>RptSalesRegressionFunnel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransferLog.aspx.cs">
+      <DependentUpon>ProspectTransferLog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransferLog.aspx.designer.cs">
+      <DependentUpon>ProspectTransferLog.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\YearlyActivitiesTarget.aspx.cs">
       <DependentUpon>YearlyActivitiesTarget.aspx</DependentUpon>
