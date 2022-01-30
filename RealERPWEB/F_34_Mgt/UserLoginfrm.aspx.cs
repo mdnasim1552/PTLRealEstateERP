@@ -21,6 +21,7 @@ namespace RealERPWEB.F_34_Mgt
     {
         ProcessAccess User = new ProcessAccess();
         SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -270,7 +271,9 @@ namespace RealERPWEB.F_34_Mgt
                 this.gvUseForm.DataBind();
                 return;
             }
+
             Session["tblUsrinfo"] = ds1.Tables[0];
+            Session["tblUsrinfo1"] = ds1.Tables[1];
             this.LoadGrid();
 
 
@@ -358,8 +361,6 @@ namespace RealERPWEB.F_34_Mgt
         }
         protected void gvUseForm_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             string comcod = GetComeCode();
             string usrid = ((TextBox)gvUseForm.Rows[e.RowIndex].FindControl("txtgvuserid")).Text.Trim();
             string usrsname = ((TextBox)gvUseForm.Rows[e.RowIndex].FindControl("txtusrShorName")).Text.Trim();
@@ -385,13 +386,14 @@ namespace RealERPWEB.F_34_Mgt
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = User.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = User.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
                 return;
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Updated";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            msg="User Information Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
             this.gvUseForm.EditIndex = -1;
             this.ShowUserInfo();
 
@@ -630,9 +632,9 @@ namespace RealERPWEB.F_34_Mgt
                         "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (!result)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = User.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            {               
+                msg = User.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
                 return;
             }
 
@@ -650,9 +652,8 @@ namespace RealERPWEB.F_34_Mgt
            "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = User.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = User.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
                 return;
             }
 
@@ -683,8 +684,8 @@ namespace RealERPWEB.F_34_Mgt
             bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
              
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg="User Permission Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
         }
         protected void chkShowall_CheckedChanged(object sender, EventArgs e)
@@ -889,9 +890,9 @@ namespace RealERPWEB.F_34_Mgt
             bool result1 = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "DELETEUSER", usrid, frmid,
                             "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result1)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            {                
+                msg ="User Deleted Failed!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
                 return;
 
             }
@@ -1162,17 +1163,16 @@ namespace RealERPWEB.F_34_Mgt
 
             if (result == false)
             {
-               
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
 
+                msg = User.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+msg+"');", true);
                 return;
             }
 
             else
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                msg="Updated Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
 
             }
     
@@ -1180,11 +1180,73 @@ namespace RealERPWEB.F_34_Mgt
             //this.lblMsg1.Text = "Sorry! There has some error!";
         }
 
+        protected void lnkbtnAdd_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)Session["tblUsrinfo1"];
+            this.txtmUesrId.Text = dt.Rows[0]["userid"].ToString();
+            this.Bind_EmpId();
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
+        }
+        private void Bind_EmpId()
+        {
+            string comcod = this.GetComeCode();
+            string empcode = ((DataTable)Session["tblUsrinfo"]).Rows[0]["empid"].ToString();
+            string SearchProject = "%";
+            DataSet ds1 = User.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETEMPTIDNAME", SearchProject, "", "", "", "", "", "", "", "");
+            ddlmEmpId.DataTextField = "empname";
+            ddlmEmpId.DataValueField = "empid";
+            ddlmEmpId.DataSource = ds1;
+            ddlmEmpId.DataBind();
+            ddlmEmpId.SelectedValue = empcode;
+        }
 
 
+        protected void lbtnSaveUser_Click(object sender, EventArgs e)
+        {
+            string comcod = GetComeCode();
+            string usrid = this.txtmUesrId.Text.Trim();
+            string usrsname = this.txtmShortName.Text.Trim();
+            string usrfname = this.txtmFullName.Text.Trim();
+            string usrdesig = this.txtmDesignation.Text.Trim();
+            string usrpass = this.txtmPassword.Text.Trim();
+            string usrrmrk = this.txtmGraph.Text.Trim();
+            string active = this.chkmUserActive.Checked ? "1" : "0";
+            string empid =  this.ddlmEmpId.SelectedValue.ToString();
+            string usermail = this.txtmUserEmail.Text.Trim();
+            string webmailpwd = this.txtmWebMailPass.Text.Trim();
+            string userRole = this.ddlmUserRole.SelectedValue.ToString();
+
+            usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
+            bool result = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
+                      usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
 
 
+            if (!result)
+            {
+                msg = User.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+"New User Created Failed!"+"');", true);
+                return;
 
+            }
+
+            msg="New User Created Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
+            this.gvUseForm.EditIndex = -1;
+            this.ShowUserInfo();
+
+
+            string eventtype = "User Login From";
+            string eventdesc = "Update ID";
+            string eventdesc2 = "Your profile Updated,";
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+            // for notification
+            // title  details recvier id
+            bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+        }
     }
 }
 

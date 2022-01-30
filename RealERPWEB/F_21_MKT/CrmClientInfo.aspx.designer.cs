@@ -807,6 +807,15 @@ namespace RealERPWEB.F_21_MKT
         protected global::System.Web.UI.WebControls.HyperLink HyperLink6;
 
         /// <summary>
+        /// HyperLink9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink9;
+
+        /// <summary>
         /// txtentrydate control.
         /// </summary>
         /// <remarks>
@@ -1120,6 +1129,15 @@ namespace RealERPWEB.F_21_MKT
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lbleditempid;
+
+        /// <summary>
+        /// lblgeneratedate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField lblgeneratedate;
 
         /// <summary>
         /// ddlRating control.

@@ -312,6 +312,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.Panel pnlmonthlyatt;
 
         /// <summary>
+        /// DelaisAttinfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DelaisAttinfo;
+
+        /// <summary>
         /// gvMonthlyAtt control.
         /// </summary>
         /// <remarks>
@@ -319,6 +328,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvMonthlyAtt;
+
+        /// <summary>
+        /// SummaryAttinfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SummaryAttinfo;
+
+        /// <summary>
+        /// gvMonthlyattSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMonthlyattSummary;
 
         /// <summary>
         /// pnldailyatt control.

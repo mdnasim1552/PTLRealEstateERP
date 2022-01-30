@@ -24,7 +24,7 @@
             function drawChart() {
 
                 var data = google.visualization.arrayToDataTable([
-                    ['Task', 'Attendance status'],
+                    ['Task', 'This Months Attendance status'],
 
                     ['Present', present],
                     ['Absent', abs],
@@ -37,6 +37,8 @@
                 var options = {
                     title: 'Attendance status',
                     is3D: true,
+                    pieSliceText: 'value'
+
                 };
 
                 var chart = new google.visualization.PieChart(document.getElementById('piechartEMPStatus'));

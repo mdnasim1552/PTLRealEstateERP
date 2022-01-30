@@ -57,8 +57,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         private void ShowLeaveStatus()
         {
-            this.lblleavesummary.Visible = true;
-            this.lblleavesDetails.Visible = true;
+             
             ViewState.Remove("tblleave");
             string comcod = this.GetCompCode();
             string Empid = this.Request.QueryString["empid"].ToString();

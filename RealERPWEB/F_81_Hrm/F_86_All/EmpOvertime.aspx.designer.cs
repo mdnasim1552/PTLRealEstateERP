@@ -15,15 +15,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
     {
 
         /// <summary>
-        /// UpdatePanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-
-        /// <summary>
         /// lbldate control.
         /// </summary>
         /// <remarks>
@@ -231,15 +222,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         protected global::System.Web.UI.WebControls.LinkButton btnUploadovrtime;
 
         /// <summary>
-        /// lblmsg control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
-
-        /// <summary>
         /// rbtnlistsaltype control.
         /// </summary>
         /// <remarks>
@@ -247,6 +229,33 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rbtnlistsaltype;
+
+        /// <summary>
+        /// pnlDedEarnExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDedEarnExcel;
+
+        /// <summary>
+        /// fileuploadExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileuploadExcel;
+
+        /// <summary>
+        /// lbtnDedorOtherEernExcelAdjust control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnDedorOtherEernExcelAdjust;
 
         /// <summary>
         /// MultiView1 control.
@@ -598,15 +607,6 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvothearn;
-
-        /// <summary>
-        /// btnExportOtherEarnExcel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportOtherEarnExcel;
 
         /// <summary>
         /// ViewAdjustment control.

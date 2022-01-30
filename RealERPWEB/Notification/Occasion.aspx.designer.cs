@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_81_Hrm.F_82_App
+namespace RealERPWEB.Notification
 {
 
 
-    public partial class LinkMyHRLeave
+    public partial class Occasion
     {
 
         /// <summary>
@@ -33,75 +33,48 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblcard control.
+        /// txtFdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcard;
+        protected global::System.Web.UI.WebControls.TextBox txtFdate;
 
         /// <summary>
-        /// lblname control.
+        /// txtFdate_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblname;
+        protected global::AjaxControlToolkit.CalendarExtender txtFdate_CalendarExtender;
 
         /// <summary>
-        /// lbldesg control.
+        /// txtTdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldesg;
+        protected global::System.Web.UI.WebControls.TextBox txtTdate;
 
         /// <summary>
-        /// lbldpt control.
+        /// txtTdate_CalendarExtender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldpt;
+        protected global::AjaxControlToolkit.CalendarExtender txtTdate_CalendarExtender;
 
         /// <summary>
-        /// MultiView1 control.
+        /// gvOccasion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
-
-        /// <summary>
-        /// ViewEmpLeave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewEmpLeave;
-
-        /// <summary>
-        /// gvLeaveStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvLeaveStatus;
-
-        /// <summary>
-        /// gvLeavedetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvLeavedetails;
+        protected global::System.Web.UI.WebControls.GridView gvOccasion;
     }
 }

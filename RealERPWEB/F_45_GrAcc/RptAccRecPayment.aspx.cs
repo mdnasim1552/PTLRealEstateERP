@@ -311,7 +311,7 @@ namespace RealERPWEB.F_45_GrAcc
                 this.gvGrpRPBS.DataBind();
 
             }
-            Session["dstrecpayment"] = ds1;
+            Session["dstrecpayment"] = ds1.Copy();
 
             Session["tblrecandpayment"] = HiddenSameData(ds1.Tables[0]);
             ViewState["tblbs"] = this.HiddenSameData02(ds1.Tables[2]);
@@ -1631,17 +1631,61 @@ namespace RealERPWEB.F_45_GrAcc
             string comcod = this.GetCompCode();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            DataSet ds1 = ((DataSet)Session["dstrecpayment"]).Copy();
+            string date1 = "From  " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To  " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+
+
+
+            DataSet ds1 = ((DataSet)Session["dstrecpayment"]);
             if (ds1 == null)
                 return;
 
             DataView dv1 = ds1.Tables[0].Copy().DefaultView;
-            dv1.RowFilter = ("grp1 = '99' and actcode NOT LIKE '%0000000000%'");
+            dv1.RowFilter = ("grp1 = '99' and actcode NOT LIKE '%00000000%'");
             DataTable dt1 = dv1.ToTable();
 
-            DataView dv2 = ds1.Tables[2].Copy().DefaultView;
-            dv2.RowFilter = ("actcode NOT LIKE '%AAAA%'");
-            DataTable dt2 = dv1.ToTable();
+            //DataView dv2 = ds1.Tables[2].Copy().DefaultView;
+            //dv2.RowFilter = ("actcode NOT LIKE '%AAAA%'");
+            //DataTable dt2 = dv2.ToTable();
+
+            DataTable dt2 = ds1.Tables[2];
+
+            string comp1 = "";
+            string comp2 = "";
+            string comp3 = "";
+
+            int j = 1;
+            for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+            {
+
+                if (ddlComCode.Items[i].Selected)
+                {
+                    string header = this.ddlComCode.Items[i].Text.Trim();
+                    if (i == 0)
+                    {
+                        comp1 = header;
+                    }
+                    else if(i == 1)
+                    {
+                        comp2 = header;
+
+                    }
+                    else if (i == 2)
+                    {
+                        comp3 = header;
+
+                    }
+                    else
+                    {
+
+                    }
+
+                    j++;
+                    if (j == 4)
+                        break;
+                }
+
+            }
+
 
 
             var list1 = dt1.DataTableToList<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPayment>();
@@ -1652,10 +1696,14 @@ namespace RealERPWEB.F_45_GrAcc
             //compname, txtTitle,comAddress
             rpt.SetParameters(new ReportParameter("txtComNam", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Receipt And Payment"));
-            rpt.SetParameters(new ReportParameter("comAddress", "Address"));
-            rpt.SetParameters(new ReportParameter("date1", "01-Jan-1900"));
+            rpt.SetParameters(new ReportParameter("comAddress", comadd));
+            rpt.SetParameters(new ReportParameter("date1", date1));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            rpt.SetParameters(new ReportParameter("comp1", comp1));
+            rpt.SetParameters(new ReportParameter("comp2", comp2));
+            rpt.SetParameters(new ReportParameter("comp3", comp3));
 
             Session["Report1"] = rpt;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
