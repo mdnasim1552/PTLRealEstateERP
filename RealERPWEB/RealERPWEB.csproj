@@ -46,19 +46,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
@@ -82,33 +82,49 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="DayPilot">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\DayPilot.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
     <Reference Include="DropCheck">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\DropCheck.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DropCheck.dll</HintPath>
     </Reference>
     <Reference Include="EASendMail">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\EASendMail.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EASendMail.dll</HintPath>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EnvDTE.dll</HintPath>
+    </Reference>
+    <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\EnvDTE80.dll</HintPath>
     </Reference>
     <Reference Include="FastMember">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FastMember.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Excel">
-      <HintPath>..\..\..\_bin\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    <Reference Include="Interop.Microsoft.Office.Interop.Access, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
     </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.FriendlyUrls">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -119,7 +135,7 @@
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Build.Utilities.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
@@ -136,13 +152,13 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.WebForms">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.WebForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -223,12 +239,11 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\RealERPRPT.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />

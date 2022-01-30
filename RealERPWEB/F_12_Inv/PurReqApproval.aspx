@@ -366,6 +366,20 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Budget Amount" Visible="false">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvbgdreqamt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bgdreqamt")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Width="60px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label ID="lblgvFbgdreqamt" runat="server" ForeColor="White" Width="60px"></asp:Label>
+                                        </FooterTemplate>
+                                        <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Actual Amount" Visible="false">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvTAprAmt" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqamt")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -407,7 +421,7 @@
                                             <asp:DropDownList ID="ddlSupname" CssClass=" ddlPage125 chzn-select" runat="server" Width="120px">
                                             </asp:DropDownList>
                                         </ItemTemplate>
-                                        
+
                                         <HeaderTemplate>
                                             <p>Supplier's</p>
 
@@ -548,7 +562,6 @@
                                         <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
-
                                     <asp:TemplateField HeaderText="ptype" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvptype" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ptype").ToString() %>'
@@ -600,7 +613,7 @@
                             </div>
                         </asp:Panel>
 
-                      <%--  Rahain to Request below panle visible false, by nahid--%>
+                        <%--  Rahain to Request below panle visible false, by nahid--%>
                         <asp:Panel ID="fotpanel" Visible="false" runat="server">
 
 
