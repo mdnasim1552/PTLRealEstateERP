@@ -1944,7 +1944,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
 
 
-                this.PrintSalaryBti();
+                this.PrintSalaryBTI();
 
             }
 
@@ -2763,7 +2763,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
 
-        private void PrintSalaryBti()
+        private void PrintSalaryBTI()
         {
             DataTable dt = (DataTable)Session["tblpay"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2779,20 +2779,19 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
             string companyname = this.ddlCompany.SelectedItem.Text.Trim();
-            double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
 
-            string txtheader = this.ddlProjectName.SelectedValue.Substring(0, 4) == "9471" ? "Salary Sheet (Security Guard)" : "Salary Sheet";
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", companyname.ToUpper()));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("txtHeader2", txtheader));
+            Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet"));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1));
-            Rpt1.SetParameters(new ReportParameter("txtheader", this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "Grand Total - Head Office & All Project" : "Grand Total - " + this.ddlProjectName.SelectedItem.ToString().Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("txtheader", this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "G.Total() " : "G.Total() " + this.ddlProjectName.SelectedItem.ToString().Substring(13)));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
+            Rpt1.SetParameters(new ReportParameter("txtYear", Convert.ToDateTime((this.txttodate.Text)).ToString("yyyy")));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, session, printdate)));
 
@@ -4000,6 +3999,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string lateday = dt.Rows[i]["lateday"].ToString();
                     string latededuc = dt.Rows[i]["latededuc"].ToString();
                     string adjustamt = dt.Rows[i]["adjustamt"].ToString();
+                    string transded = dt.Rows[i]["transded"].ToString();
 
 
 
@@ -4011,7 +4011,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();

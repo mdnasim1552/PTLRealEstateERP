@@ -25,12 +25,12 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
             if (!IsPostBack)
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(),
-                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                //if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(),
+                //        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                //    Response.Redirect("../../AcceessError.aspx");
 
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFdate.Text = "01" + date.Substring(2);
                 this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");

@@ -36,6 +36,10 @@
         <%: Scripts.Render("~/bundles/highchart") %>           
     </asp:PlaceHolder>
     <asp:ContentPlaceHolder ID="head" runat="server">
+        
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css"> 
+   
     </asp:ContentPlaceHolder>
     <%--After Pulished removebelow comments--%>
     <%-- 
@@ -211,6 +215,9 @@
         .app-header-dark .btn-account.focus, .app-header-dark .btn-account.show, .app-header-dark .btn-account:active, .app-header-dark .btn-account:focus, .app-header-dark .top-bar-brand {
             background-color: none;
         }
+        .ps {
+            overflow-x: hidden !important;
+        }
     </style>
 
 
@@ -324,23 +331,23 @@
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
                             <ul class="header-nav nav">
                                 <li class="nav-item dropdown header-nav-dropdown has-notified">
-                                    
 
-                                     <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-bell "></i>
-                                            <span class="label label-success" id="lblallpop" runat="server">0</span>
-                                        </a>
-                                    
+
+                                    <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bell "></i>
+                                        <span class="label label-success" id="lblallpop" runat="server">0</span>
+                                    </a>
+
                                     <!-- .dropdown-menu -->
-                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right">
+                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right" style="overflow:hidden">
                                         <h6 class="dropdown-header stop-propagation">
                                             <span>Notification</span>
-                                            
+
                                         </h6>
                                         <!-- .dropdown-scroll -->
                                         <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
                                              </div>
-                                        <a href="app-messages.html" class="dropdown-footer">All Notification
+                                        <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")  %>" class="dropdown-footer">All Notification
                      
                                         <i class="fa fa-fw fa-long-arrow-alt-right"></i>
                                         </a>
@@ -385,8 +392,8 @@
 
                                     <div class="dropdown-divider"></div>
 
-                                    <asp:HyperLink class="dropdown-item" ID="hypCompagPerm" Visible="false" runat="server" Text="Company Pages"></asp:HyperLink>
-                                    <asp:HyperLink class="dropdown-item" ID="hypPagPerm" Visible="false" runat="server" Text="Pages Permission "></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypCompagPerm" Visible="false" runat="server" Text="Company wise Permission"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypPagPerm" Visible="false" runat="server" Text="User Wise Permission "></asp:HyperLink>
                                     <asp:HyperLink class="dropdown-item" ID="HypNewModules" Visible="false" runat="server" Text="New Modules"></asp:HyperLink>
 
                                     <a class="dropdown-item" href="<%=this.ResolveUrl("~/Index?pid=")%>">New Dashboard</a>
@@ -852,58 +859,54 @@ Close</asp:LinkButton>
             }
             toastr["error"](msg);
         };
-
         function GetNotifications() {
             try {
-                var userid = "3101015";<%-- <%=this.GetUserId()%>;--%>
-                 $.ajax({
-                     type: "POST",
-                     url: "../Service/UserService.asmx/GetNotAndMessage",
-                     data: '{userid:"' + userid + '"}',
-                     contentType: "application/json; charset=utf-8",
-                     dataType: "json",
-                     success: function (response) {
-                         var data = response.d;
-                         var row = "";
-                         var img = "";
-                         var count = 0;
-                         var all = "";
-                         var imgstrng = "";
-                         var imgextract = "";
-                         $("#repNotificmsg").html("");
-                         $.each(data, function (k, v) {
-                             if (v.ntype == "") {
-                                 imgstrng = v.sendphoto;
-                                 imgextract = imgstrng.substring(2);
-                                 //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
-                                 row += '<a href="' + encodeURI('../../Message/GetNotification01?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
-                                     '<div class="user-avatar">' +
-                                     '<img src="' + imgextract + '" alt="">' +
-                                     '</div>' +
-                                     '<div class="dropdown-item-body">' +
-                                     '<p class="product-name text-truncate">' + v.meassage + '</p>' +
-                                     '</div>' +
+                var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
+                var userid = <%=this.GetUserId()%>;
+                var objnotification = new RealERPScript();
+                var data = objnotification.GetNotifications(userid, url);
+               
+                var row = "";
+                var img = "";
+                var count = 0;
+                var all = "";
+                var imgstrng = "";
+                var imgextract = "";
+                $("#repNotificmsg").html("");
+                $.each(data, function (k, v) {
+                    if (v.ntype == "") {
 
-                                     '</a>';
-                                 count++;
-                             }
-                         });
-                         $("#repNotificmsg").append(row);
-                         
-                         $("#lblallpop").text(count);
-                         var counting = count == 0 ? 0 : count;
+                        console.log(v.sendphoto);
 
-                         
-                     },
-                     failure: function (response) {
-                         alert("f");
-                     }
-                 });
+                        imgstrng =  v.sendphoto;
+                    
+
+                        imgextract = imgstrng.substring(2);
+                        //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                        row += '<a href="' + encodeURI('../../Notification/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                            '<div class="user-avatar">' +
+                            '<img src="../../' + imgextract+'" alt="">' +
+                            '</div>' +
+                            '<div class="dropdown-item-body">' +
+                            '<p class="subject">' + v.eventitle + '</p>' +
+                            '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                            '</div>' +
+
+                            '</a>';
+                        count++;
+                    }
+                });
+                $("#repNotificmsg").append(row);
+                $("#lblallpop").text(count);
+                
              }
              catch (e) {
-                 alert(e);
+                 /*showContentFail('Notification Not Found');*/
              }
          }
+
+        
+       
     </script>
 
 </body>

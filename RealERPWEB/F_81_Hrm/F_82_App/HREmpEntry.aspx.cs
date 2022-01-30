@@ -393,9 +393,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     empid = this.ddlNPEmpName.SelectedValue.ToString();
                     this.lblPEmpName.Text = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
                     this.chknewEmp.Checked = false;
+
                 }
+             
                 else
                 {
+                     
+
                     this.lblPEmpName.Text = this.ddlPEmpName.SelectedItem.Text.Substring(7);
                     empid = this.ddlPEmpName.SelectedValue.ToString();
                 }
@@ -2379,8 +2383,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //string empid = (this.chknewEmp.Checked == true) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
             string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
 
+            this.lnkNextbtn.PostBackUrl = "ImgUpload.aspx?Type=Entry&empid=" + empid;
+            
 
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('ImgUpload.aspx?Type=Entry&empid=" + empid + "', target='_self');</script>";
 
         }
 

@@ -1146,7 +1146,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                     PrintReq = "PrintReque09";
                     break;
-
+                case "3101":
                 case "3325":
                 case "2325":
                     PrintReq = "PrintReque03";
@@ -1180,7 +1180,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //Adding End
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     PrintReq = "PrintReque08";
                     break;
@@ -1210,7 +1210,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.PrintRequisition01();
 
             }
-
+            // leisure
             else if (printcomreq == "PrintReque03")
             {
                 this.PrintRequisition03();
@@ -1676,8 +1676,8 @@ namespace RealERPWEB.F_99_Allinterface
             string txtSign2 = "Project Incharge";
             string txtSign3 = "DPM/PM/AGM/DGM";
             string txtSign4 = "Procurement";
-            string txtSign5 = "Cost & Budget";
-            string txtSign6 = "Head Of Construction";
+            string txtSign5 = "Head Of Construction";
+            string txtSign6 = "Cost & Budget";
             string txtSign7 = "DMD";
             string txtSign8 = "Chairman";
 
@@ -2580,7 +2580,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 case "3101":
                 case "3353":
-                case "3355":
+                case "3355"://green wood
                 case "3330":
 
                 case "1205":
@@ -4030,6 +4030,7 @@ namespace RealERPWEB.F_99_Allinterface
                         terms9 = "9. " + termscondition[8].termssubj.ToString() + ":" + termscondition[8].termsdesc.ToString();
                         terms10 = "10. " + termscondition[9].termssubj.ToString() + ":" + termscondition[9].termsdesc.ToString();
 
+
                         break;
 
 
@@ -4057,6 +4058,19 @@ namespace RealERPWEB.F_99_Allinterface
                         terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
+
+
+                    case "3355": // Green Wood
+
+                        terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "* " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+
+                        break;
+
 
                     //case "3101": // ASIT
                     case "3364": //JBS

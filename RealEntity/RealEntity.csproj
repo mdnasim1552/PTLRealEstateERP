@@ -118,6 +118,7 @@
     <Compile Include="C_45_GrAcc\CompanyManager.cs" />
     <Compile Include="C_45_GrAcc\RptGrpMisDailyActiviteis.cs" />
     <Compile Include="C_45_GrAcc\RptGrpMisDailyActiviteisMan.cs" />
+    <Compile Include="C_45_GrAcc\RptGrpMis.cs" />
     <Compile Include="C_46_GrMgtInter\DailyGrpRpt.cs" />
     <Compile Include="C_46_GrMgtInter\DailyGrpRptMan.cs" />
     <Compile Include="C_47_Kpi\BL_EntryKpi.cs" />
@@ -208,6 +209,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

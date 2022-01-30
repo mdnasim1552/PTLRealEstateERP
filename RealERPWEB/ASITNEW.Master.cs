@@ -420,6 +420,22 @@ namespace RealERPWEB
             //strign comcod= qcomcod.Length>0? qcomcod:hst["comcod"].ToString()
             //return (hst["comcod"].ToString());
         }
+
+
+        public string GetUserId()
+        {
+
+            
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+          
+            return (hst["usrid"].ToString());
+
+
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string qcomcod = this.Request.QueryString["comcod"] ?? "";
+            //strign comcod= qcomcod.Length>0? qcomcod:hst["comcod"].ToString()
+            //return (hst["comcod"].ToString());
+        }
         protected void lnkbtnLedger_Click(object sender, EventArgs e)
         {
 
@@ -557,9 +573,12 @@ namespace RealERPWEB
             DataView view = new DataView(Menus);
             //if (usertype != null)
             //{
-              view.RowFilter = ("sidebar='True' and moduleid= '1243'");
-            // view.RowFilter = ("sidebar='True'");
 
+            //  view.RowFilter = ("sidebar='True' and moduleid = '0'");
+            // view.RowFilter = ("sidebar='True'");
+              
+
+            view.RowFilter = ("moduleid=0");
 
 
 

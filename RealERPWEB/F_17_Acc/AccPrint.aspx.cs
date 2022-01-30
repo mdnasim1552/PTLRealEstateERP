@@ -610,9 +610,11 @@ namespace RealERPWEB.F_17_Acc
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
                 case "3353":
-                case "3101"://  ASIT (Check)
+              //  case "3101"://  ASIT (Check)
 
                 case "3357"://  Cube Holding
+                case "3364"://  JBS 
+
 
 
                     break;
@@ -704,7 +706,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 //case "3101":
-                case "3357": 
+                case "3357":
                     vouprint = "VoucherPrintCube";
                     break;
 
@@ -733,7 +735,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-                case "3101":
+              
                 case "3364":
                     vouprint = "VocherPrintJBS";
                     break;
@@ -868,7 +870,15 @@ namespace RealERPWEB.F_17_Acc
                 string authorizeby = dts.Select("gcod='01010'").Length > 0 ? (dts.Select("gcod='01010'")[0]["gdesc"]).ToString().Trim() : "";
                 // string authorizeby = dts.Select("gcod='01010'").Length > 0 ? (dts.Select("gcod='01010'")[0]["gdesc"]).ToString() : "";
 
-
+                // todo for jbs project location 
+                string project = "";
+                string pLocation = "";
+                string vounum1 = ASTUtility.Left(Vounum, 2) + Vounum.Substring(7, 2) + "-" + ASTUtility.Right(Vounum, 6);
+                if (_ReportDataSet.Tables[3].Rows.Count > 0)
+                {
+                    project = _ReportDataSet.Tables[3].Rows[0]["pactdesc"].ToString();
+                    pLocation = _ReportDataSet.Tables[3].Rows[0]["gdatat"].ToString();
+                }
 
 
                 //string[] billno1;
@@ -912,9 +922,6 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
                     Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
                 }
-
-
-
 
                 else if (Type == "VocherPrint1")
                 {
@@ -1238,11 +1245,13 @@ namespace RealERPWEB.F_17_Acc
 
                         Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJBS01", list, null, null);
                         Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
-                        Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No : " + vounum1));
+                        Rpt1.SetParameters(new ReportParameter("voudat", "Vou. Date : " + voudat));
                         Rpt1.SetParameters(new ReportParameter("username", postuser));
                         Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                         Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                        Rpt1.SetParameters(new ReportParameter("txtProject", "Project: " + project));
+                        Rpt1.SetParameters(new ReportParameter("txtProjectAdd", "Location: " + pLocation));
                         Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
 
 
@@ -1278,6 +1287,8 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                            //Rpt1.SetParameters(new ReportParameter("txtProject", "Project: " + project));
+                            //Rpt1.SetParameters(new ReportParameter("txtProjectAdd", "Location: " + pLocation));
 
 
 
@@ -1302,6 +1313,8 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                            //Rpt1.SetParameters(new ReportParameter("txtProject", "Project: " + project));
+                            //Rpt1.SetParameters(new ReportParameter("txtProjectAdd", "Location: " + pLocation));
 
 
                         }
@@ -1463,7 +1476,7 @@ namespace RealERPWEB.F_17_Acc
 
                     else if (vouno == "JV")
                     {
-                        voutype1 = "Cash Receive Voucher";
+                        voutype1 = "Journal Voucher";
                     }
                     else
                     {
@@ -1485,7 +1498,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
                 }
 
-                else if(Type== "VoucherPrintCube")
+                else if (Type == "VoucherPrintCube")
                 {
                     string voutype1 = "";
 

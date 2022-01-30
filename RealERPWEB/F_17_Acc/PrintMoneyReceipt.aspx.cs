@@ -118,6 +118,7 @@ namespace RealERPWEB.F_17_Acc
             string Installment = "";
             string Installment2 = "";
             bool isMoneyRecpt=false;
+            bool isPartial = false;
             for (int i = 0; i < dtmr.Rows.Count; i++)
             {
                 if (i == 0)
@@ -154,6 +155,7 @@ namespace RealERPWEB.F_17_Acc
                     else
                     {
                         Installment = Installment + dtmr.Rows[i]["gdesc"] + " (Partly), ";
+                        isPartial = true;
                     }                        
 
                 }
@@ -171,7 +173,7 @@ namespace RealERPWEB.F_17_Acc
                     if (isMoneyRecpt)
                     {
                         string part1 = ASTUtility.Left(Installment2, 4);
-                        string part2 = ASTUtility.Right(Installment2, 16);
+                        string part2 = isPartial==true ? ASTUtility.Right(Installment2, 25) : ASTUtility.Right(Installment2, 16);
                         Installment = part1 + " - " + part2;
                     }
                     else
@@ -205,7 +207,9 @@ namespace RealERPWEB.F_17_Acc
             string rmrks = dtrpt.Rows[0]["rmrks"].ToString();
             string rectype = dtrpt.Rows[0]["rectype"].ToString();
             string rectcode = dtrpt.Rows[0]["rectcode"].ToString();
+            string parking = dtrpt.Rows[0]["parking"].ToString();
 
+            
 
             double amt1 = Convert.ToDouble((Convert.IsDBNull(dtrpt.Compute("Sum(paidamt)", "")) ? 0.00 : dtrpt.Compute("Sum(paidamt)", "")));
             string amt1t = ASTUtility.Trans(amt1, 2);
@@ -258,8 +262,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("paytype1", paytype));
                 Rpt1.SetParameters(new ReportParameter("paydesc", (rectcode == "54097") ? rmrks : (rectcode == "54099") ? rmrks : (rectcode == "54009") ? rectype : Installment));
                 Rpt1.SetParameters(new ReportParameter("paydesc1", (rectcode == "54097") ? rmrks : (rectcode == "54099") ? rmrks : (rectcode == "54009") ? rectype : Installment));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 Session["Report1"] = Rpt1;
@@ -318,8 +322,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 Session["Report1"] = Rpt1;
@@ -351,8 +355,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 Session["Report1"] = Rpt1;
@@ -387,9 +391,10 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("Parking", parking));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -413,8 +418,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("takainword1", amt1t + " " + "AS " + ((Installment == "") ? rectype : Installment)));
                 Rpt1.SetParameters(new ReportParameter("paytype", Typedes));
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 Session["Report1"] = Rpt1;
@@ -446,8 +451,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 Session["Report1"] = Rpt1;
@@ -511,8 +516,8 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1.SetParameters(new ReportParameter("paytype1", Typedes));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("txtuserinfo1", ASTUtility.Concat(compname, username, printdate)));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.Cominformation()));
-                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.Cominformation()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo", ASTUtility.ComInfoWithoutNumber()));
+                Rpt1.SetParameters(new ReportParameter("txtcominfo1", ASTUtility.ComInfoWithoutNumber()));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
 
                 Session["Report1"] = Rpt1;

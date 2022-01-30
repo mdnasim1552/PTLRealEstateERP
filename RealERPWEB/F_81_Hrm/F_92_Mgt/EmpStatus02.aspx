@@ -49,6 +49,8 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
+
+
             <div class="container moduleItemWrpper">
                 <div class="contentPart">
                     <div class="row">
@@ -120,7 +122,7 @@
 
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" id="pnlDesig" runat="server" visible="false">
                                     <div class="col-md-3 pading5px asitCol2">
                                         <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
                                         <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="100px" TabIndex="6">

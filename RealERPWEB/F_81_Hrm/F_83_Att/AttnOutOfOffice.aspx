@@ -131,11 +131,20 @@
                             <div class="form-group">
                                 <label for="txtNote">Reason</label>
                              <asp:DropDownList ID="ddlReson" CssClass="form-control" runat="server">
-                                 <asp:ListItem Value="F.V">Factory Visit (FV)</asp:ListItem>
-                                 <asp:ListItem Value="P.V">Project Visit (PV)</asp:ListItem>
-                                 <asp:ListItem Value="C.M">Client Metting (CM)</asp:ListItem>
-                                 <asp:ListItem Value="O.W">Office Work (OW)</asp:ListItem>
-                                 <asp:ListItem Value="O">Other (O)</asp:ListItem>
+                                 <asp:ListItem Value="F.V">Factory Visit (F.V)</asp:ListItem>
+                                 <asp:ListItem Value="P.V">Project Visit (P.V)</asp:ListItem>
+                                 <asp:ListItem Value="C.M">Client Metting (C.M)</asp:ListItem>
+                                 <asp:ListItem Value="O.W">Office Work (O.W)</asp:ListItem>
+                                <asp:ListItem Value="VAT.V">VAT Office Visit  (VAT.V)</asp:ListItem>
+                                <asp:ListItem Value="DEDO.V">DEDO Office Visit(DEDO.V)</asp:ListItem>     
+                                <asp:ListItem Value="Tax.V">Tax Office Visit(Tax.V)</asp:ListItem>
+                                <asp:ListItem Value="CTG.V">CTG Port Visit(CTG.V)</asp:ListItem>
+                                 <asp:ListItem Value="Beana.V">Beanpole Port Visit(Beana.V)</asp:ListItem>
+                                 <asp:ListItem Value="A.L">Annual Leave (A.L)</asp:ListItem>
+                                 <asp:ListItem Value="C.L">Casual Leave(C.L) </asp:ListItem>
+                                 <asp:ListItem Value="M.L">Medical Leave(M.L) </asp:ListItem>
+                                 <asp:ListItem Value="I.V">India Visit(I.V) </asp:ListItem>
+                                 <asp:ListItem Value="Oth">Other (Oth)</asp:ListItem>
                              </asp:DropDownList>
                         </div>
                             </div>

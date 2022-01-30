@@ -68,6 +68,9 @@
     <Compile Include="SendMailProcess.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="SendNotifyForUsers.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="SendSmsProcess.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
