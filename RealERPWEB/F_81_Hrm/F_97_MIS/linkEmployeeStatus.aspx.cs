@@ -25,7 +25,8 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
                 if(qtype== "late")
                 {
                     this.fmdate.Visible = false;
-                    this.txtTdate.Visible = false;
+                    this.txtTdate.Visible = true;
+                    this.txtFdate.Visible = false;
                     this.tdate.Visible = false;
                 }
 
@@ -190,7 +191,8 @@ namespace RealERPWEB.F_81_Hrm.F_97_MIS
 
         protected void gvDailyLateAttn_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-           
+            this.gvDailyLateAttn.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
         }
 
         private DataTable HiddenSameData(DataTable dt1)
