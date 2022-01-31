@@ -119,8 +119,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
                 case "Manpower":
                     this.lblDept.Visible = false;
-                    this.txtSrcPro.Visible = false;
-                    this.ibtnFindProject.Visible = false;
+
                     this.ddlProjectName.Visible = false;
                     this.lblfrmd.Visible = false;
                     this.ddlfrmDesig.Visible = false;
@@ -171,7 +170,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string userid = hst["usrid"].ToString();
             string comcod = GetCompCode();
 
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -188,7 +187,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetCompCode();
             string projectcode = this.ddlDepartment.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcPro.Text.Trim() + "%";
+            string txtSSec = "%";
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "sectionname";
             this.ddlProjectName.DataValueField = "section";
@@ -359,13 +358,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
 
@@ -402,13 +401,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -443,13 +442,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -480,13 +479,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -515,13 +514,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -554,13 +553,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -594,13 +593,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -652,13 +651,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -695,13 +694,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -1454,7 +1453,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string nozero = (hrcomln == 4) ? "0000" : "00";
 
             string txtCompanyname = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+            string txtSearchDept =  "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
