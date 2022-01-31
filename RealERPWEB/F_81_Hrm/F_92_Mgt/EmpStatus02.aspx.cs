@@ -42,7 +42,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.SelectView();
                 this.GetDesignation();
                 string Type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
+                ((Label)this.Master.FindControl("lblTitle")).Text = (Type=="Pabx")?"List of PABX Information": (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
                     : (Type == "EmpList") ? "Employee List" : (Type == "TransList") ? "Employee Transfer List"
                     : (Type == "PenEmpCon") ? "Pending Employee Confirmation" : (Type == "SepType") ? "Employee Seperation List Report"
                     : (Type == "EmpHold") ? "Employee Hold List" : (Type == "Manpower") ? "Employee Manpower List"
@@ -160,7 +160,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.MultiView1.ActiveViewIndex = 11;
                     break;
 
-
+                case "Pabx":
+                    this.lblfrmdate.Visible = false;
+                    this.txtFdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txtTdate.Visible = false;
+                    this.chkbdate.Visible = false;
+                    this.withBirth.Visible = false;
+                    this.MultiView1.ActiveViewIndex = 12;
+                    break;
 
             }
         }
@@ -314,7 +322,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "TotalEmplist":
                     this.GetTotalEmpList();
                     break;
-
+                case "Pabx":
+                    this.GetEmpList();
+                    break;
 
 
             }
@@ -427,32 +437,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         private void GetEmpList()
         {
-
             Session.Remove("tblEmpstatus");
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            // string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string Deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string secid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
-
-            //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
-            switch (comcod)
-            {
-                case "3102":
-                    //pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
-                    break;
-                default:
-                    //pnlDesig.Visible = false;
-                    break;
-            }
-            //emd nahid
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTALLEMPLIST", Company, Deptid, DesigFrom, DesigTo, "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETALLACTIVEEMP", Company, Deptid, secid, "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvEmpList.DataSource = null;
@@ -965,6 +957,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.gvtemplist.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvtemplist.DataSource = dt;
                     this.gvtemplist.DataBind();
+
+                    break;
+
+                case "Pabx":
+                    this.gvPabxInfo.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvPabxInfo.DataSource = dt;
+                    this.gvPabxInfo.DataBind();
 
                     break;
 

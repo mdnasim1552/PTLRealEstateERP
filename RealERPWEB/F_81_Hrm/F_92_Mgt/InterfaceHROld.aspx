@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="InterfaceHR.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.InterfaceHR1" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="InterfaceHROld.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.InterfaceHR" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-     <style type="text/css">
+    <style type="text/css">
         
 
         .InBox {
@@ -290,6 +289,15 @@
         };
 
     </script>
+
+    <%-- <asp:ObjectDataSource ID="source_session_online" runat="server" SelectMethod="session_online" TypeName="t_session" />--%>
+
+
+
+    <%--<asp:Button ID="Button1" runat="server" Text="Refresh" OnClick="btn_refresh_Click" />--%>
+
+
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -309,75 +317,88 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card mt-5">
-                <div class="card-header">
+            <%-- <asp:Timer ID="Timer1" runat="server" OnTick="Timer1_Tick" Interval="20000">
+            </asp:Timer>
+
+            <triggers>
+ 
+                   <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+ 
+               </triggers>--%>
+
+
+            <div class="container moduleItemWrpper">
+                <div class="contentPart">
                     <div class="row">
+
+                        <div class="row">
+                            <fieldset class="scheduler-border fieldset_A">
+                                <div class="form-group">
+
+                                    <div class="col-md-2">
+                                        <asp:Label ID="Label1" runat="server" CssClass=" smLbl_to">Date: </asp:Label>
+                                        <asp:TextBox ID="txtdate" runat="server" CssClass="inputTxt inputName inPixedWidth120 " AutoPostBack="true" OnTextChanged="txtdate_TextChanged"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Enabled="True"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
+                                    </div>
+                                   
+
+                                     <div class="col-md-4">
+                                       
+                                            <a href="../../GenPage.aspx?Type=18" class="btn btn-sm btn-warning" >All Reports</a>
+                                       
+                                    </div>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </fieldset>
+                        </div>
+
+
+
                         <div class="col-md-2">
 
-                            <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="lblfrmdate" runat="server" CssClass="btn btn-secondary btn-sm">Date</asp:Label>
+                            <fieldset class="tabMenu">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+
+                                        <div class="tbMenuWrp nav nav-tabs">
+                                            <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
+                                                <asp:ListItem Value="13"></asp:ListItem>
+                                                <asp:ListItem Value="14"></asp:ListItem>
+                                                <asp:ListItem Value="15"></asp:ListItem>
+                                                <asp:ListItem Value="10003"></asp:ListItem>
+                                                <asp:ListItem Value="1000301"></asp:ListItem>
+
+                                                <asp:ListItem Value="10002"></asp:ListItem>
+                                                <asp:ListItem Value="16000"></asp:ListItem>
+                                                <asp:ListItem Value="161"></asp:ListItem>
+                                                <asp:ListItem Value="10020"></asp:ListItem>
+
+                                                <asp:ListItem Value="10005"></asp:ListItem>
+                                                <asp:ListItem Value="10006"></asp:ListItem>
+                                                <asp:ListItem Value="10007"></asp:ListItem>
+                                                <asp:ListItem Value="10021"></asp:ListItem>
+                                                 <asp:ListItem Value="10022"></asp:ListItem>
+                                                 <asp:ListItem Value="10023"></asp:ListItem>
+                                                <asp:ListItem Value="16"></asp:ListItem>
+                                                 <asp:ListItem Value="17"></asp:ListItem>
+                                                 <asp:ListItem Value="18"></asp:ListItem>
+                                               
+                                               
+                                                
+                                                
+                                               
+                                               
+                                            </asp:RadioButtonList>
+                                        </div>
+                                    </div>
                                 </div>
-                                <asp:TextBox ID="txtdate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-                            </div>
+                            </fieldset>
 
 
                         </div>
-
-                        <div class="col-md-4">
-
-                            <a href="../../GenPage.aspx?Type=18" class="btn btn-sm btn-warning">All Reports</a>
-
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-                <div class="card-body">
-
-                    <div class="col-md-2">
-                        <div class="tabMenu">
-                        <div class="form-horizontal">
-                            <div class="form-group">
-
-                                <div class="tbMenuWrp nav nav-tabs">
-                                    <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="13"></asp:ListItem>
-                                        <asp:ListItem Value="14"></asp:ListItem>
-                                        <asp:ListItem Value="15"></asp:ListItem>
-                                        <asp:ListItem Value="10003"></asp:ListItem>
-                                        <asp:ListItem Value="1000301"></asp:ListItem>
-
-                                        <asp:ListItem Value="10002"></asp:ListItem>
-                                        <asp:ListItem Value="16000"></asp:ListItem>
-                                        <asp:ListItem Value="161"></asp:ListItem>
-                                        <asp:ListItem Value="10020"></asp:ListItem>
-
-                                        <asp:ListItem Value="10005"></asp:ListItem>
-                                        <asp:ListItem Value="10006"></asp:ListItem>
-                                        <asp:ListItem Value="10007"></asp:ListItem>
-                                        <asp:ListItem Value="10021"></asp:ListItem>
-                                        <asp:ListItem Value="10022"></asp:ListItem>
-                                        <asp:ListItem Value="10023"></asp:ListItem>
-                                        <asp:ListItem Value="16"></asp:ListItem>
-                                        <asp:ListItem Value="17"></asp:ListItem>
-                                        <asp:ListItem Value="18"></asp:ListItem>
-
-
-
-
-
-
-                                    </asp:RadioButtonList>
-                                </div>
-                            </div>
-                        </div>
-                          </div>
-                    </div>
-                       <div id="slSt" class=" col-md-10">
+                        <div id="slSt" class=" col-md-10">
                             <div class="panel with-nav-tabs panel-primary">
                                 <asp:Panel ID="pnlHistory" runat="server" Visible="true">
                                     <div class="row">
@@ -833,8 +854,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
+
+            </div>
             </div>
         </ContentTemplate>
+
     </asp:UpdatePanel>
+    <asp:Label ID="lblprintstkl" runat="server"></asp:Label>
+
 </asp:Content>
+
+

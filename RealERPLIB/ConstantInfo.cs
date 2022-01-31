@@ -1972,7 +1972,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102083", "F_81_Hrm/F_93_AnnInc", "AnnualIncrement", "", "Annual Increment", "Increment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102084", "F_81_Hrm/F_93_AnnInc", "HrIncrementUpdate", "", "Annual Increment Updated", "Increment", "False", "False", "False", "False" }); ;
 
-           
+
             tblObj.Rows.Add(new Object[] { "8002000", "8102087", "F_81_Hrm/F_82_App", "HREmpEntry?", "Type=shifttime", "Office Time Setup(Special Day)", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102095", "F_81_Hrm/F_84_Lea", "EmpLvApproval?", "Type=App", " HR Leave Approval(Mgt)", "Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102097", "F_81_Hrm/F_84_Lea", "EmpLvApproval?", "Type=Ind", "HR Leave Approval(Ind)", "Management", "False", "False", "False", "False" }); ;
@@ -2005,7 +2005,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102163", "F_81_Hrm/F_87_Tra", "HREmpTransferReport", "", "Employee Transfer Report", "Transfer", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102164", "F_81_Hrm/F_83_Att", "HREmpAbsCtSpecial", "", "Absent Count (Special)", "Attendance", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=Pabx", "List of PABX Information", "HR Management", "False", "False", "False", "False" }); ;
 
 
             //Report
@@ -14601,6 +14602,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0403000012", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000013", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0403000014", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000015", "06. List of PABX Information", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=", "", true, "" });
+
             // d. Leave Monitoring
             mnuTbl1.Rows.Add(new Object[] { "0404000000", "Leave Monitoring", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0404000001", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
