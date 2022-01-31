@@ -74,7 +74,8 @@
                  var Righttlist = Moduleobj.GetModule(Moduleid, RInputName);
 
                  /*left , Middle and Right UL */
-                 $.each(leftlist, function (index, leftlist) {
+                $.each(leftlist, function (index, leftlist) {
+                    console.log(leftlist);
                      if (leftlist.itemslct == false) {
                          leftul.append('<li><h5>' + leftlist.itemdesc + '</h5></li>');
 
