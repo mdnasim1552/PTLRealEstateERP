@@ -14359,33 +14359,33 @@ namespace RealERPLIB
         {
             //One Time input
             // A. Recruitment
-            mnuTbl1.Rows.Add(new Object[] { "0201000000", "A. Recruitment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000000", "01. Information Code (Recruitment)", "F_81_Hrm/F_81_Rec/RecHRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203000000", "02. Appointment Letter Code", "F_81_Hrm/F_81_Rec/AppLetCodeBook?Type=AppLetter", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203100000", "03. Employee Assessment Code", "F_81_Hrm/F_81_Rec/EmpAssesmentCode?Type=AssessmntCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000000", "Recruitment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000001", "01. Information Code (Recruitment)", "F_81_Hrm/F_81_Rec/RecHRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Appointment Letter Code", "F_81_Hrm/F_81_Rec/AppLetCodeBook?Type=AppLetter", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Employee Assessment Code", "F_81_Hrm/F_81_Rec/EmpAssesmentCode?Type=AssessmntCode", "", true, "" });
 
             // A. Appointment
-            mnuTbl1.Rows.Add(new Object[] { "0204000000", "B. Appointment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0205000000", "01. Department Code", "F_17_Acc/AccSubCodeBook?InputType=DeptCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "02. Employees Code", "F_17_Acc/AccSubCodeBook?InputType=Employee", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000000", "Appointment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000001", "01. Department Code", "F_17_Acc/AccSubCodeBook?InputType=DeptCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000002", "02. Employees Code", "F_17_Acc/AccSubCodeBook?InputType=Employee", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000003", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
 
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0210000000", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000006", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000007", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000008", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000009", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000010", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
 
 
 
             // D. Leave Monitoring
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "C. Leave Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0212000000", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "01. Company Leave Rule", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveRule", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000000", "Leave Monitoring", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000001", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000002", "01. Company Leave Rule", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveRule", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
 
@@ -14398,15 +14398,15 @@ namespace RealERPLIB
 
 
             // D. P.F Account
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "D. P.F Account", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0215000000", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0216000000", "02. Accounts Opening", "F_81_Hrm/F_90_PF/AccOpening", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000000", "P.F Account", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000001", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000002", "02. Accounts Opening", "F_81_Hrm/F_90_PF/AccOpening", "", true, "" });
 
             // I. ACR(Annual Confidential Report)
 
-            mnuTbl1.Rows.Add(new Object[] { "0217000000", "E. ACR(Annual Confidential Report)", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0218000000", "01. ACR CodeBook", "F_81_Hrm/F_91_ACR/ACRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0219000000", "02. Employee Evaluation CodeBook", "F_81_Hrm/F_91_ACR/EmpEvaCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000000", "E. ACR(Annual Confidential Report)", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. ACR CodeBook", "F_81_Hrm/F_91_ACR/ACRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000002", "02. Employee Evaluation CodeBook", "F_81_Hrm/F_91_ACR/EmpEvaCode", "", true, "" });
 
 
 
