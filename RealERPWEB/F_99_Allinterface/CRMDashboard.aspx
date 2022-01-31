@@ -1,19 +1,21 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
-  <%--  <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
- --%>
 
-<script type="text/javascript" language="javascript">
+    <%--  <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+    <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
+    --%>
+
+    <script type="text/javascript" language="javascript">
         $(document).ready(function () {
-             
+
             document.getElementById('<%= lnkbtnOk.ClientID %>').click();
-             
-         });
+
+        });
+     
         function ExecuteGraph(data, data1, data2, gtype) {
             var lead_m = JSON.parse(data);
             var lead_w = JSON.parse(data1);
@@ -259,7 +261,7 @@
 
         };
 
-</script>
+    </script>
     <style>
         a:hover {
             text-decoration: none;
@@ -300,9 +302,9 @@
 
 
 
-      <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
-    
+
     <div class="card card-fluid container-data mt-5">
         <div class="card-body">
             <div class="row mb-2">
@@ -332,11 +334,11 @@
                 </div>
                 <div class="col-md-2">
                     <a href="../F_21_MKT/CrmClientInfo?Type=Entry" target="_blank" class="btn btn-sm btn-primary float-right">Go Interface</a>
-                    
+
 
                 </div>
                 <div class="col-md-2">
-                    
+
                     <asp:HyperLink ID="HyperLink2" class="btn btn-sm btn-success float-left" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
 
                 </div>
@@ -535,7 +537,7 @@
                     </div>
                 </div>
 
-                
+
 
 
 
@@ -569,20 +571,20 @@
                 <div class="col-md-2 col-xl-2">
                     <div class="card  mb-1 ">
                         <div class="card-body mb-2">
-                            <div class="media">
+                            <asp:HyperLink ID="hyplnkOccasion" runat="server" Target="_blank" class="media" >                         
                                 <div class="avatar-md xbg-info rounded-circle mr-2">
                                     <i class="fas fa-birthday-cake avatar-title font-26 text-red"></i>
-
                                 </div>
                                 <div class="media-body align-self-center">
                                     <div class="text-center">
-                                        <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-red text-white counterup" id="Span1" runat="server" data-plugin="counterup">0
+                                        <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-red text-white counterup" id="lblOccasion" runat="server" data-plugin="counterup">0
                                         </span></h4>
-                                        <p class="mb-0 mt-1 text-truncate">Let’s Celebrate</p>
+                                        <p class="mb-0 mt-1 text-truncate">Celebrate</p>
                                     </div>
                                 </div>
-                            </div>
-                           
+                           </asp:HyperLink>
+
+
                         </div>
                         <!-- end card-box-->
                     </div>
@@ -594,23 +596,23 @@
 
     <div class="row mb-2  mb-5" style="max-height: 400px;">
         <div class="col-md-3 col-sm-3 col-lg-3">
-            <div class="card mb-0 card-fluid graph-main" style="width:100%;height: 350px;">
+            <div class="card mb-0 card-fluid graph-main" style="width: 100%; height: 350px;">
 
                 <div id="chartleadDaily" style="max-height: 350px;"></div>
 
             </div>
         </div>
         <div class="col-md-3 col-sm-3 col-lg-3">
-            <div class="card  mb-0 graph-main card-fluid" style="width:100%;height: 350px;">
+            <div class="card  mb-0 graph-main card-fluid" style="width: 100%; height: 350px;">
 
                 <div id="chartleadweek" style="max-height: 350px;"></div>
 
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
-            <div class="card mb-0 graph-main card-fluid" style="width:100%;height: 350px;">
+            <div class="card mb-0 graph-main card-fluid" style="width: 100%; height: 350px;">
 
-                <div id="chartleadMonths" style="width:90%;height: 350px;"></div>
+                <div id="chartleadMonths" style="width: 90%; height: 350px;"></div>
 
             </div>
         </div>
@@ -619,6 +621,6 @@
 
 
 
-     <%--</ContentTemplate>
+    <%--</ContentTemplate>
     </asp:UpdatePanel>--%>
 </asp:Content>

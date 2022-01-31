@@ -1046,6 +1046,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2101000", "2101115", "F_22_Sal", "AdvertisementCode?", "Type=MktCode", "Advertisement Code", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102120", "F_21_MKT", "MktSalsPaymentPro", "", "Sales Permission", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -1063,6 +1064,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2103000", "2103121", "F_21_MKT", "RptClientInitial?", "Type=MktLead", "Suspect Notification", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103122", "F_21_MKT", "RptCenterWiseClient", "", "Center Wise Client List", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2103000", "2103123", "F_21_MKT", "RptProspectClient", "", "Prospect Notification", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2103000", "2103124", "F_21_MKT", "ProspectTransferLog", "", "Prospect Transfer Log", "CRM", "False", "False", "False", "False" }); ;
 
             //tblObj.Rows.Add(new Object[] { "3903000", "3903001", "EmpKpiEntry03?", "Type=Client", "Daily Job Execution", "My Marketing Interface(Marketing)", "False", "False", "False"});
             tblObj.Rows.Add(new Object[] { "2103000", "2102125", "F_39_MyPage", "RptEmpMonthWiseEva03?", "Type=IndEmp", "Month Wise Evaluation", "My Marketing Interface(Marketing)", "False", "False", "False" });
@@ -6853,7 +6855,7 @@ namespace RealERPLIB
             //mnuTbl1.Rows.Add(new Object[] { "0209000000", "", "", "", true, "" });//"05.  Advertisement Code ", "F_22_Sal/AdvertisementCode?Type=MktCode", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0210000000", "02. Prospect Notification", "F_21_MKT/RptProspectClient", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0211000000", "03. Prospect Transfer Log", "F_21_MKT/ProspectTransferLog", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });

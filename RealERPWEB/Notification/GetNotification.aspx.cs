@@ -21,7 +21,7 @@ namespace RealERPWEB.Notification
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFdate.Text = "01" + date.Substring(2);
                 this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Notifications";
+                ((Label)this.Master.FindControl("lblTitle")).Text = "NOTIFICATIONSver";
                 this.GetTNotification();
 
             }

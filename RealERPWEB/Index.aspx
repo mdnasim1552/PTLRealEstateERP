@@ -944,7 +944,7 @@
                     type: gtype
                 },
                 title: {
-                    text: 'Department Wise Employee, Total:-  ' + sumdeptemp
+                    text: ''
                 },
                 subtitle: {
                     text: ''
@@ -959,7 +959,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Total Employee'
+                        text: 'Total Employee ' + sumdeptemp
                     }
                 },
                 legend: {
@@ -1017,7 +1017,7 @@
                     text: ''
                 },
                 subtitle: {
-                    text: 'Last 07 Days ',
+                    text: '',
                     //style: {
                     //    color: '#44994a',
                     //    fontWeight: 'bold'
@@ -1034,7 +1034,7 @@
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total Employee'
+                        text: 'Last 07 Days '
                     }
                 },
 
@@ -1100,7 +1100,7 @@
             chartsubcon.setSize(w, h);
 
             chartcmrData.setSize(500, 325);
-            chartHrmData.setSize(400, 325);
+           // chartHrmData.setSize(600,325);
 
             /* empwiselead.setSize(500, 325);*/
      /*       deptemp.setSize(500, 325);*/
@@ -1116,7 +1116,7 @@
                 chartcons.setSize(w, h);
                 chartsubcon.setSize(w, h);
                 chartcmrData.setSize(500, 325);
-                chartHrmData.setSize(400, 325);
+                //chartHrmData.setSize(600, 325);
 
                 /* empwiselead.setSize(500, 325);*/
             /*    deptemp.setSize(500, 325);*/
@@ -2931,15 +2931,13 @@
 
                                             <div class="tab-pane fade show" id="tab_1236" runat="server">
                                                 <div class="row">
-                                                    <div class="col-md-3 col-sm-12 col-lg-3">
-                                                        <div id="piechartEMPStatus" style="width: 80%; height: 250px;"></div>
-                                                    </div>
                                                     <div class="col-md-5 col-sm-12 col-lg-5">
-                                                        <div id="deptWisEmp" style="width: 100%; height: 250px;"></div>
-
+                                                        <div id="piechartEMPStatus" style="width: 100%; height: 250px;"></div>
                                                     </div>
-                                                    <div class="col-md-4 col-sm-12 col-lg-4">
-                                                        <div id="lst7daysatt" style="width: 100%; height: 250px;"></div>
+                                                    
+                                                    <div class="col-md-7 col-sm-12 col-lg-7 ">
+                                                        <div id="lst7daysatt" style="width: 100%; height: 200px;"></div>
+                                                        <div id="deptWisEmp" style="width: 100%; height: 160px;"></div>
 
                                                     </div>
                                                 </div>

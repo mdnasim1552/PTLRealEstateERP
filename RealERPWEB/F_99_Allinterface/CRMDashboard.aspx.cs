@@ -218,7 +218,13 @@ namespace RealERPWEB.F_99_Allinterface
             //this.lblpme.InnerText = ds3.Tables[0].Rows[0]["pme"].ToString();
             this.lbllost.InnerText = ds3.Tables[0].Rows[0]["lost"].ToString();
             this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
+            this.lblOccasion.InnerText = ds3.Tables[1].Rows.Count.ToString();
 
+
+            string empId = this.ddlEmpid.SelectedValue.ToString();
+            string curDate = Convert.ToDateTime(this.txtfodate.Text).ToString("dd-MMM-yyyy");
+            this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
+            //hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
 
         }
 
@@ -320,6 +326,16 @@ namespace RealERPWEB.F_99_Allinterface
             //if (empid != "000000000000")
                 // this.GetGridSummary();
                 GetNotificationByEmployee(empid);
+        }
+
+        protected void lbtnOccasion_Click(object sender, EventArgs e)
+        {
+            string empId = this.ddlEmpid.SelectedValue.ToString();
+            string curDate = Convert.ToDateTime(this.txtfodate.Text).ToString("dd-MMM-yyyy");
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/Notification/";
+            string currentptah = "Occasion?Type=Report&EmpId=" + empId +"&curDate="+curDate;
+            string totalpath = hostname + currentptah;
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "funOccasion('" + totalpath + "');", true);
         }
     }
 }
