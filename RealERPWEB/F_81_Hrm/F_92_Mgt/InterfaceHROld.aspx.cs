@@ -8,10 +8,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using RealERPLIB;
 using RealERPRPT;
-
 namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 {
-    public partial class InterfaceHR1 : System.Web.UI.Page
+    public partial class InterfaceHR : System.Web.UI.Page
     {
         ProcessAccess accData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -444,5 +443,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (chkCodebook.Checked == false)
                 this.Panel5.Visible = false;
         }
+
     }
 }

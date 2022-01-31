@@ -11,7 +11,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 {
 
 
-    public partial class InterfaceHR1
+    public partial class InterfaceHR
     {
 
         /// <summary>
@@ -33,13 +33,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblfrmdate control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblfrmdate;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// txtdate control.
@@ -202,5 +202,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel4;
+
+        /// <summary>
+        /// lblprintstkl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblprintstkl;
     }
 }

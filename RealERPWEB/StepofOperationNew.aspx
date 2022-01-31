@@ -78,7 +78,8 @@
                     console.log(leftlist);
                      if (leftlist.itemslct == false) {
                          leftul.append('<li><h5>' + leftlist.itemdesc + '</h5></li>');
-
+                         console.log(leftlist);
+                         console.log("nahid");
                      }
                      else if (leftlist.itemslct == true && leftlist.itemdesc == "") {
                              ;
