@@ -101,25 +101,25 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.96875in</Width>
+                  <Width>0.96696in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.86458in</Width>
+                  <Width>2.86279in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.47917in</Width>
+                  <Width>0.47738in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.625in</Width>
+                  <Width>0.62321in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.79167in</Width>
+                  <Width>0.78988in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.99821in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>0.99821in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1262,9 +1262,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.05in</Top>
-            <Left>0.02875in</Left>
+            <Left>0.01625in</Left>
             <Height>1.02083in</Height>
-            <Width>7.72917in</Width>
+            <Width>7.71667in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1592,7 +1592,7 @@
       <Width>7.75792in</Width>
       <Page>
         <PageHeader>
-          <Height>1.4675in</Height>
+          <Height>1.405in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1725,6 +1725,13 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>: </Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Parameters!Vounum.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
@@ -1733,15 +1740,15 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>bankCash</rd:DefaultName>
-              <Top>0.84313in</Top>
-              <Left>5.2952in</Left>
+              <Top>0.87472in</Top>
+              <Left>6.28821in</Left>
               <Height>0.2in</Height>
-              <Width>2.46272in</Width>
+              <Width>1.44386in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1760,6 +1767,13 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>: </Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Parameters!txtProject.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
@@ -1771,10 +1785,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtProject</rd:DefaultName>
-              <Top>0.84313in</Top>
-              <Left>0.04063in</Left>
+              <Top>0.87472in</Top>
+              <Left>0.7127in</Left>
               <Height>0.2in</Height>
-              <Width>5.2268in</Width>
+              <Width>4.53026in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1793,6 +1807,13 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
+                      <Value>: </Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
                       <Value>=Parameters!txtProjectAdd.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
@@ -1806,10 +1827,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtProjectAdd</rd:DefaultName>
-              <Top>1.05563in</Top>
-              <Left>0.04063in</Left>
+              <Top>1.08722in</Top>
+              <Left>0.7127in</Left>
               <Height>0.2in</Height>
-              <Width>5.24069in</Width>
+              <Width>4.53027in</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
@@ -1828,7 +1849,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value xml:space="preserve"> </Value>
+                      <Value>: </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -1843,16 +1864,156 @@
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>voudate</rd:DefaultName>
-              <Top>1.05563in</Top>
-              <Left>5.2952in</Left>
+              <Top>1.08722in</Top>
+              <Left>6.28821in</Left>
               <Height>0.2in</Height>
-              <Width>2.46272in</Width>
+              <Width>1.44386in</Width>
               <ZIndex>7</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="voudate13">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Voucher No</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>voudate</rd:DefaultName>
+              <Top>0.87472in</Top>
+              <Left>5.26935in</Left>
+              <Height>0.2in</Height>
+              <Width>0.98833in</Width>
+              <ZIndex>8</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="voudate14">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Voucher Date</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>voudate</rd:DefaultName>
+              <Top>1.08722in</Top>
+              <Left>5.26935in</Left>
+              <Height>0.2in</Height>
+              <Width>0.98834in</Width>
+              <ZIndex>9</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="voudate15">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Project</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>voudate</rd:DefaultName>
+              <Top>0.87472in</Top>
+              <Left>0.0196in</Left>
+              <Height>0.2in</Height>
+              <Width>0.66532in</Width>
+              <ZIndex>10</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="voudate16">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Location</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>voudate</rd:DefaultName>
+              <Top>1.08861in</Top>
+              <Left>0.0196in</Left>
+              <Height>0.2in</Height>
+              <Width>0.66532in</Width>
+              <ZIndex>11</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
