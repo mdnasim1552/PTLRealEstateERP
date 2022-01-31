@@ -4000,18 +4000,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string latededuc = dt.Rows[i]["latededuc"].ToString();
                     string adjustamt = dt.Rows[i]["adjustamt"].ToString();
                     string transded = dt.Rows[i]["transded"].ToString();
-
-
-
-
-
+                    string genloan = dt.Rows[i]["genloan"].ToString();
+                    string perloan = dt.Rows[i]["carloan"].ToString();
+                    string carloan = dt.Rows[i]["perloan"].ToString();
 
 
                     result = HRData.UpdateTransInfoHRSal(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INUPSALSHEET", monthid, refno, empid, wd, absday, wld, acat, bsal, hrent, cven,
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, perloan, carloan);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
