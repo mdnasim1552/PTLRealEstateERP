@@ -1249,13 +1249,13 @@ namespace RealERPWEB.F_17_Acc
 
                         Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJBS01", list, null, null);
                         Rpt1.EnableExternalImages = true;
-                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No : " + vounum1));
-                        Rpt1.SetParameters(new ReportParameter("voudat", "Vou. Date : " + voudat));
+                        Rpt1.SetParameters(new ReportParameter("Vounum", vounum1));
+                        Rpt1.SetParameters(new ReportParameter("voudat", voudat));
                         Rpt1.SetParameters(new ReportParameter("username", postuser));
                         Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                         Rpt1.SetParameters(new ReportParameter("voutype", voutype));
-                        Rpt1.SetParameters(new ReportParameter("txtProject", "Project: " + project));
-                        Rpt1.SetParameters(new ReportParameter("txtProjectAdd", "Location: " + pLocation));
+                        Rpt1.SetParameters(new ReportParameter("txtProject", project));
+                        Rpt1.SetParameters(new ReportParameter("txtProjectAdd", pLocation));
                         Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
 
 
@@ -1291,8 +1291,8 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
-                            //Rpt1.SetParameters(new ReportParameter("txtProject", "Project: " + project));
-                            //Rpt1.SetParameters(new ReportParameter("txtProjectAdd", "Location: " + pLocation));
+                            Rpt1.SetParameters(new ReportParameter("txtProject", project));
+                            Rpt1.SetParameters(new ReportParameter("txtProjectAdd", pLocation));
 
 
 
@@ -1309,17 +1309,15 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("refnum", refnum));
                             Rpt1.SetParameters(new ReportParameter("txtissuno", vouno == "BD" || vouno == "CD" ? "Payment ID : " + dt1.Rows[0]["isunum"].ToString() : ""));
                             Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
-                            Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto));
-                            Rpt1.SetParameters(new ReportParameter("txtProject", prjdesc));
+                            Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto)); 
                             Rpt1.SetParameters(new ReportParameter("voutype", voutype));
                             Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
                             Rpt1.SetParameters(new ReportParameter("username", postuser));
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
                             Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
-                            //Rpt1.SetParameters(new ReportParameter("txtProject", "Project: " + project));
-                            //Rpt1.SetParameters(new ReportParameter("txtProjectAdd", "Location: " + pLocation));
-
+                            Rpt1.SetParameters(new ReportParameter("txtProject", project));
+                            Rpt1.SetParameters(new ReportParameter("txtProjectAdd", pLocation));
 
                         }
                     }
