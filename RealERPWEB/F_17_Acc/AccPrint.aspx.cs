@@ -874,11 +874,15 @@ namespace RealERPWEB.F_17_Acc
                 string project = "";
                 string pLocation = "";
                 string vounum1 = ASTUtility.Left(Vounum, 2) + Vounum.Substring(7, 2) + "-" + ASTUtility.Right(Vounum, 6);
-                if (_ReportDataSet.Tables[3].Rows.Count > 0)
+                if(_ReportDataSet.Tables.Count > 3)
                 {
-                    project = _ReportDataSet.Tables[3].Rows[0]["pactdesc"].ToString();
-                    pLocation = _ReportDataSet.Tables[3].Rows[0]["gdatat"].ToString();
+                    if (_ReportDataSet.Tables[3].Rows.Count > 0)
+                    {
+                        project = _ReportDataSet.Tables[3].Rows[0]["pactdesc"].ToString();
+                        pLocation = _ReportDataSet.Tables[3].Rows[0]["gdatat"].ToString();
+                    }
                 }
+                
 
 
                 //string[] billno1;
