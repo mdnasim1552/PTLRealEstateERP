@@ -433,7 +433,7 @@
                 }
 
                 var rowData;
-                for (var i = 0; i < tblData.rows.length; i++) {
+                for (var i = 1; i < tblData.rows.length; i++) {
                     rowData = tblData.rows[i].innerHTML;
                     var styleDisplay = 'none';
                     for (var j = 0; j < strData.length; j++) {
