@@ -2879,11 +2879,12 @@ namespace RealERPWEB.F_17_Acc
                                 txtgvQty.Enabled = false;
                                 txtgvRate.Enabled = false;
                                 txtgvCrAmt.Enabled = false;
+                                tnrRemarks.ReadOnly = true;
                             }
-                        }
+                        }                        
                         break;
                     default:
-                        tnrRemarks.ReadOnly = true;
+                        tnrRemarks.ReadOnly = false;
                         break;
                 }
 
