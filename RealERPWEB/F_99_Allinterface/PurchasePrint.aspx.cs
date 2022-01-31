@@ -4010,7 +4010,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    case "3101": // ASIT
+                    //case "3101": // ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -4072,7 +4072,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    //case "3101": // ASIT
+                    case "3101": // ASIT
                     case "3364": //JBS
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
