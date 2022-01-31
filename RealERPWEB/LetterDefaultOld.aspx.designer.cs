@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB
+namespace MFGWEB
 {
 
 
-    public partial class LetterDefault1
+    public partial class LetterDefault
     {
 
         /// <summary>

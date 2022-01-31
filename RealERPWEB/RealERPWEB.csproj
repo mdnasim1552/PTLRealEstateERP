@@ -106,11 +106,6 @@
     <Reference Include="FlashControlV71">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Access, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
-    </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -235,6 +230,7 @@
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\HP\OneDrive\Desktop\Newtonsoft.Json.dll</HintPath>
@@ -3026,6 +3022,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PayrollLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PrintLeaveInterface.aspx" />
@@ -4336,6 +4333,13 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.designer.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
+      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.designer.cs">
+      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4363,6 +4367,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LetterDefault.aspx.cs">
+      <DependentUpon>LetterDefault.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LetterDefault.aspx.designer.cs">
+      <DependentUpon>LetterDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -11003,12 +11014,12 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx.designer.cs">
       <DependentUpon>InterfaceAtt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
-      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx.cs">
+      <DependentUpon>InterfaceHROld.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.designer.cs">
-      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx.designer.cs">
+      <DependentUpon>InterfaceHROld.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx.cs">
       <DependentUpon>InterfaceLeavApp.aspx</DependentUpon>
@@ -11411,13 +11422,6 @@
     </Compile>
     <Compile Include="LandingPage.aspx.designer.cs">
       <DependentUpon>LandingPage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="LetterDefault.aspx.cs">
-      <DependentUpon>LetterDefault.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="LetterDefault.aspx.designer.cs">
-      <DependentUpon>LetterDefault.aspx</DependentUpon>
     </Compile>
     <Compile Include="LogIn.aspx.cs">
       <DependentUpon>LogIn.aspx</DependentUpon>
