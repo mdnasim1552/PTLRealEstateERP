@@ -2,6 +2,50 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .chzn-container-single {
+            width: 210px !important;
+            height: 34px !important;
+        }
+
+            .chzn-container-single .chzn-single {
+                height: 36px !important;
+                line-height: 36px;
+            }
+        /* .profession-slect .chzn-container-single {
+            width: 180px !important;
+            height: 34px !important;
+        }
+        .grvContentarea {
+        }
+
+        .srDiv .chzn-container-single {
+            width: 155px !important;
+        }*/
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        $('.chzn-container').css('width', '250px');
+
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+            });
+
+            $(".chosen-select").chosen({
+                search_contains: true,
+                no_results_text: "Sorry, no match!",
+                allow_single_deselect: true
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+
+        };
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -23,29 +67,17 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card card-fluid container-data mt-5" id='printarea'>
-                <div class="card-body">
-                    <div class="row mb-2" id="divFilter">
-                        <div class="col-md-4 p-0">
+            <div class="card card-fluid container-data mt-4" style="min-height: 550px;">
+                <div class="card-header mt-3">
+                    <div class="row mb-3" id="divFilter">
+                        <div class="col-md-2 col-lg-2 p-0">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
-                                    <button class="btn btn-secondary" type="button">From</button>
+                                    <button class="btn btn-secondary" type="button">Date</button>
                                 </div>
-                                <asp:TextBox ID="txtfodate" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtfodate"></cc1:CalendarExtender>
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" id="lblToDate" runat="server" type="button">To</button>
-                                </div>
-                                <asp:TextBox ID="txttodate" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="Cal3" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-                                <div class="input-group-prepend">
-                                    <label class="btn btn-secondary" clientidmode="Static" id="lblcondate" runat="server">Con Date</label>                                    
-                                </div>
-                                <asp:TextBox ID="txtcondate" ClientIDMode="Static" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender_txtcondate" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtcondate"></cc1:CalendarExtender>
+                                <asp:TextBox ID="txtDate" ClientIDMode="Static" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1_txtDate" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </div>
                         </div>
 
@@ -54,33 +86,17 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Team Lead</button>
                                 </div>
-                                <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true">
+                                <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select">
                                 </asp:DropDownList>
-
                             </div>
                         </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 p-0 mt-2">
-                            <div class="input-group input-group-alt profession-slect srDiv">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Lead Status</button>
-                                </div>
-                                <asp:DropDownList ID="ddlleadstatus" data-placeholder="Choose Lead Status.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true">
-                                </asp:DropDownList>
-                                <div class="input-group-prepend">
-                                    <asp:LinkButton ID="LinkButton1" runat="server" Text="Ok" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-1 p-0 mt-2 pading5px">
+                        <div class="col-md-2 p-0">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary" type="button">Page</button>
+                                    <button class="btn btn-secondary ml-1" type="button">Page</button>
                                 </div>
-                                <asp:DropDownList ID="ddlpage" runat="server" AutoPostBack="True" CssClass="form-control" >
+                                <asp:DropDownList ID="ddlpage" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpage_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -94,13 +110,16 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
+                        <div class="col-md-1 p-0">
+                            <asp:LinkButton ID="lnkbtnOk" runat="server" Text="Ok" CssClass="btn btn-primary okBtn" OnClick="lnkbtnOk_Click">Ok</asp:LinkButton>
+                        </div>
                     </div>
-
+                </div>
+                <div class="card-body">
                     <div class="row">
-
                         <div class="col-md-12 table-responsive">
-                            <asp:GridView ID="gvSaleFunnel" runat="server" AutoGenerateColumns="False"
-                                PageSize="10" AllowPaging="true"
+                            <asp:GridView ID="gvProspectWorking" runat="server" AutoGenerateColumns="False"
+                                PageSize="10" AllowPaging="true" OnPageIndexChanging="gvProspectWorking_PageIndexChanging"
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
                                 HeaderStyle-Font-Size="11px" Width="800px">
                                 <RowStyle />
@@ -162,6 +181,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
