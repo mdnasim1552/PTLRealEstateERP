@@ -14,6 +14,7 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 
 using RealERPRPT;
+using RealERPLIB;
 
 namespace RealERPWEB.F_81_Hrm.F_83_Att
 
