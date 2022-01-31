@@ -3260,23 +3260,22 @@ namespace RealERPLIB
 
 
 
-            mnuTbl1.Rows.Add(new Object[] { "0200000000", "Initial Land Information", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Land Codebook", "F_01_LPA/LpSCodeBook?BookName=Project", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Project Information Code", "F_04_Bgd/PRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203000000", "02. Revenue Code", "F_01_LPA/LpSCodeBook?BookName=Resource02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0204000000", "03. Cost Code", "F_01_LPA/LpSCodeBook?BookName=Cost02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0205000000", "04. Other Code", "F_01_LPA/LpSCodeBook?BookName=Other02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "04. Land/Owner Code Book", "F_01_LPA/LandOwCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000000", "Initial Land Information", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000001", "01. Land Codebook", "F_01_LPA/LpSCodeBook?BookName=Project", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Project Information Code", "F_04_Bgd/PRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000003", "02. Revenue Code", "F_01_LPA/LpSCodeBook?BookName=Resource02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000004", "03. Cost Code", "F_01_LPA/LpSCodeBook?BookName=Cost02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000005", "04. Other Code", "F_01_LPA/LpSCodeBook?BookName=Other02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000006", "04. Land/Owner Code Book", "F_01_LPA/LandOwCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000007", "01. Initial Land Proposal", "F_01_LPA/PriLandProposal?Type=Report&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000008", "02. Land/Owner Information", "F_01_LPA/LandInfoDet?Type=Entry", "", true, "" });
+            
+            mnuTbl1.Rows.Add(new Object[] { "0202000000", "Land Feasibility", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000001", "03. Land Feasibility", "F_02_Fea/ProjectFeasibility?Type=fea&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000002", "04. Land Feasibility-4", "F_02_Fea/ProjectFeasibility04?Type=fea&prjcode=", "", true, "" });
 
-
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "01. Initial Land Proposal", "F_01_LPA/PriLandProposal?Type=Report&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "02. Land/Owner Information", "F_01_LPA/LandInfoDet?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "Land Feasibility", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0210000000", "03. Land Feasibility", "F_02_Fea/ProjectFeasibility?Type=fea&prjcode=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "04. Land Feasibility-4", "F_02_Fea/ProjectFeasibility04?Type=fea&prjcode=", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0212000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000003", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000004", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
@@ -3330,8 +3329,8 @@ namespace RealERPLIB
 
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "	Entry Level", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000000", "01. Land Development Proposal Report", "F_01_LPA/RptLandDevProposal?Type=PrjInfo", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000000", "	Supervision Level", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Land Development Proposal Report", "F_01_LPA/RptLandDevProposal?Type=PrjInfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000000", "	Supervision Level", "", "", false, "mb" });
             //mnuTbl1.Rows.Add(new Object[] { "0304000000", "01. Land Proposal Report", "F_01_LPA/PriLandProposal?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "01. Project Feasibility Report", "F_02_Fea/RptProjectFeasibility?Type=Report&prjcode=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0308000000", "", "", "", true, "" });
