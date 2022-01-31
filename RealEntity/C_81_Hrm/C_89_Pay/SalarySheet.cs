@@ -584,6 +584,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public DateTime incrdate { get; set; }
             public string predeg { get; set; }
             public string aknment { get; set; }
+            public double perloan { get; set; }
+            public double genloan { get; set; }
+            public double transded { get; set; }
 
             public RptSalarySheet ()
             {

@@ -106,11 +106,6 @@
     <Reference Include="FlashControlV71">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\FlashControlV71.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.Microsoft.Office.Interop.Access, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Interop.Microsoft.Office.Interop.Access.dll</HintPath>
-    </Reference>
     <Reference Include="Interop.Microsoft.Office.Interop.Excel, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -148,7 +143,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\..\Backup\SPEERP BIN\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -237,7 +234,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Newtonsoft.Json.dll</HintPath>
+
+      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Newtonsoft.Json.dll</HintPath>
+
     </Reference>
     <Reference Include="RealERPRPT">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
@@ -3026,6 +3025,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PayrollLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\PrintLeaveInterface.aspx" />
@@ -4335,6 +4335,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.designer.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
+      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.designer.cs">
+      <DependentUpon>InterfaceHR.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\RptSettlementStatus.aspx.cs">
       <DependentUpon>RptSettlementStatus.aspx</DependentUpon>
@@ -11003,12 +11010,12 @@
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx.designer.cs">
       <DependentUpon>InterfaceAtt.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
-      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx.cs">
+      <DependentUpon>InterfaceHROld.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.designer.cs">
-      <DependentUpon>InterfaceHR.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx.designer.cs">
+      <DependentUpon>InterfaceHROld.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx.cs">
       <DependentUpon>InterfaceLeavApp.aspx</DependentUpon>

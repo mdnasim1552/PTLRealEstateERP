@@ -1972,7 +1972,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102083", "F_81_Hrm/F_93_AnnInc", "AnnualIncrement", "", "Annual Increment", "Increment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102084", "F_81_Hrm/F_93_AnnInc", "HrIncrementUpdate", "", "Annual Increment Updated", "Increment", "False", "False", "False", "False" }); ;
 
-           
+
             tblObj.Rows.Add(new Object[] { "8002000", "8102087", "F_81_Hrm/F_82_App", "HREmpEntry?", "Type=shifttime", "Office Time Setup(Special Day)", "Appointment", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102095", "F_81_Hrm/F_84_Lea", "EmpLvApproval?", "Type=App", " HR Leave Approval(Mgt)", "Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102097", "F_81_Hrm/F_84_Lea", "EmpLvApproval?", "Type=Ind", "HR Leave Approval(Ind)", "Management", "False", "False", "False", "False" }); ;
@@ -2005,7 +2005,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102163", "F_81_Hrm/F_87_Tra", "HREmpTransferReport", "", "Employee Transfer Report", "Transfer", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102164", "F_81_Hrm/F_83_Att", "HREmpAbsCtSpecial", "", "Absent Count (Special)", "Attendance", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102172", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=Pabx", "List of PABX Information", "HR Management", "False", "False", "False", "False" }); ;
 
 
             //Report
@@ -3241,14 +3242,6 @@ namespace RealERPLIB
 
             return mnuTbl1;
         }
-
-
-
-
-
-
-
-
 
 
 
@@ -14359,126 +14352,100 @@ namespace RealERPLIB
         {
             //One Time input
             // A. Recruitment
-            mnuTbl1.Rows.Add(new Object[] { "0201000000", "A. Recruitment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0202000000", "01. Information Code (Recruitment)", "F_81_Hrm/F_81_Rec/RecHRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203000000", "02. Appointment Letter Code", "F_81_Hrm/F_81_Rec/AppLetCodeBook?Type=AppLetter", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0203100000", "03. Employee Assessment Code", "F_81_Hrm/F_81_Rec/EmpAssesmentCode?Type=AssessmntCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000000", "Recruitment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000001", "01. Information Code (Recruitment)", "F_81_Hrm/F_81_Rec/RecHRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000002", "02. Appointment Letter Code", "F_81_Hrm/F_81_Rec/AppLetCodeBook?Type=AppLetter", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000003", "03. Employee Assessment Code", "F_81_Hrm/F_81_Rec/EmpAssesmentCode?Type=AssessmntCode", "", true, "" });
 
             // A. Appointment
-            mnuTbl1.Rows.Add(new Object[] { "0204000000", "B. Appointment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0205000000", "01. Department Code", "F_17_Acc/AccSubCodeBook?InputType=DeptCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000000", "02. Employees Code", "F_17_Acc/AccSubCodeBook?InputType=Employee", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000000", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000000", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0209000000", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
-
-
-
-            mnuTbl1.Rows.Add(new Object[] { "0210000000", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
-
-
+            mnuTbl1.Rows.Add(new Object[] { "0202000000", "Appointment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000001", "01. Department Code", "F_17_Acc/AccSubCodeBook?InputType=DeptCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000002", "02. Employees Code", "F_17_Acc/AccSubCodeBook?InputType=Employee", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000003", "03. Personal Information Code", "F_81_Hrm/F_82_App/HRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Designation Code", "F_81_Hrm/F_82_App/HRDesigCode", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000005", "04. Designation Link Dept Wise", "F_81_Hrm/F_82_App/EmpDesignationlinkDeptWise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000006", "05. New Employee Code", "F_81_Hrm/F_82_App/EmpEntryForm", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000007", "06. Academic Record Code", "F_81_Hrm/F_82_App/EmpAcaRecord", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000008", "07. Marketing Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpMarket", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000009", "08. Land Employee Entry", "F_81_Hrm/F_82_App/LandEmployeeEntry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000010", "09. Planning Employee Entry", "F_81_Hrm/F_82_App/EntryAllEmp?Type=EmpPlan", "", true, "" });
 
             // D. Leave Monitoring
-            mnuTbl1.Rows.Add(new Object[] { "0211000000", "C. Leave Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0212000000", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0213000000", "01. Company Leave Rule", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveRule", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000000", "Leave Monitoring", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000001", "02. Earn Leave Opening", "F_81_Hrm/F_84_Lea/HRLeaveOpening", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0203000002", "01. Company Leave Rule", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveRule", "", true, "" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0213000000", "", "", "", true, "" });
-
-
-            //
-
             //mnuTbl1.Rows.Add(new Object[] { "0214000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0215000000", "", "", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0216000000", "", "", "", true, "" });
 
 
             // D. P.F Account
-            mnuTbl1.Rows.Add(new Object[] { "0214000000", "D. P.F Account", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0215000000", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0216000000", "02. Accounts Opening", "F_81_Hrm/F_90_PF/AccOpening", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0204000000", "P.F Account", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0204000001", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0204000002", "02. Accounts Opening", "F_81_Hrm/F_90_PF/AccOpening", "", true, "" });
 
             // I. ACR(Annual Confidential Report)
 
-            mnuTbl1.Rows.Add(new Object[] { "0217000000", "E. ACR(Annual Confidential Report)", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0218000000", "01. ACR CodeBook", "F_81_Hrm/F_91_ACR/ACRCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0219000000", "02. Employee Evaluation CodeBook", "F_81_Hrm/F_91_ACR/EmpEvaCode", "", true, "" });
-
-
+            mnuTbl1.Rows.Add(new Object[] { "0205000000", "ACR (Annual Confidential Report)", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000001", "01. ACR CodeBook", "F_81_Hrm/F_91_ACR/ACRCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0205000002", "02. Employee Evaluation CodeBook", "F_81_Hrm/F_91_ACR/EmpEvaCode", "", true, "" });
 
             // I. Managent System
-            mnuTbl1.Rows.Add(new Object[] { "0219000000", "F. Managent System", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000000", "Managent System", "", "", false, "mb" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0220000000", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000002", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000004", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000005", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000006", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000007", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });         
+            mnuTbl1.Rows.Add(new Object[] { "0206000008", "08. Pending Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=PenEmpCon&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000009", "09. Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpCon&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000010", "10. Employee Manpower Report", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Manpower&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000011", "13. Salary Transfer Statement Lock", "F_81_Hrm/F_89_Pay/EmpBankSalary?Type=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000012", "13. Grade & Designation Wise  Salary Detail", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpGradeADesig&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000013", "14. Grade Wise Employee Details", "F_81_Hrm/F_92_Mgt/RptEmpStatus03?Type=GradeWiseEmp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000014", "15. Increment (All Employee)", "F_81_Hrm/F_92_Mgt/RptEmpIncrAPro?Type=Increment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000015", "16. Entry, Edit Record", "F_81_Hrm/F_92_Mgt/RptUserLogDetails", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000016", "01. Salary Sheet Lock", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000017", "01. Bonus Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Bonus&Entry=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000018", "02. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Approval", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000019", "03. Employee Services Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=Services&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000020", "05. New Joiners List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=JoinigdWise&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000021", "05. General Letter", "F_81_Hrm/F_92_Mgt/InterfaceHR", "", true, "" });
+       
 
-            mnuTbl1.Rows.Add(new Object[] { "0220000000", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0222000000", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0223000000", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000000", "Need Base Report", "", "", false, "mb" });
 
-
-            mnuTbl1.Rows.Add(new Object[] { "0224000000", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0225000000", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0226000000", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
-           
-
-            mnuTbl1.Rows.Add(new Object[] { "0226000000", "08. Pending Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=PenEmpCon&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0227000000", "09. Employee Confirmation", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpCon&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0228000000", "10. Employee Manpower Report", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Manpower&comcod=", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0231000000", "13. Salary Transfer Statement Lock", "F_81_Hrm/F_89_Pay/EmpBankSalary?Type=Mgt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0232000000", "13. Grade & Designation Wise  Salary Detail", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpGradeADesig&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0233000000", "14. Grade Wise Employee Details", "F_81_Hrm/F_92_Mgt/RptEmpStatus03?Type=GradeWiseEmp", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0234000000", "15. Increment (All Employee)", "F_81_Hrm/F_92_Mgt/RptEmpIncrAPro?Type=Increment", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0235000000", "16. Entry, Edit Record", "F_81_Hrm/F_92_Mgt/RptUserLogDetails", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0236000000", "01. Salary Sheet Lock", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Mgt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0236000000", "01. Bonus Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Bonus&Entry=Mgt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0237000000", "02. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Approval", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0238000000", "03. Employee Services Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=Services&comcod=", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0240000000", "05. New Joiners List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=JoinigdWise&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0241000000", "05. General Letter", "F_81_Hrm/F_92_Mgt/InterfaceHR", "", true, "" });
-
-
-            //Interface
-            //mnuTbl1.Rows.Add(new Object[] { "0243000000", "K. Annual Increment", "", "", false, "mb" });
-
-
-            //  mnuTbl1.Rows.Add(new Object[] { "0245000000", "31. My Interface", "F_81_Hrm/F_82_App/RptMyInterface?Type=Empid&empid=", "", true, "" });
-            // mnuTbl1.Rows.Add(new Object[] { "0246000000", "32. Interface Attendance", "F_81_Hrm/F_92_Mgt/InterfaceAtt", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0247000000", "G. Need Base Report", "", "", false, "mb" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0248000000", "01. Need Base Report", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpDyInfo&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0249000000", "02. Need Base Report 01", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpDyInfo02&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000001", "01. Need Base Report", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpDyInfo&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000002", "02. Need Base Report 01", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpDyInfo02&comcod=", "", true, "" });
 
             //H.Employee Seperation
-            mnuTbl1.Rows.Add(new Object[] { "0250000000", "H. Employee Seperation / Resign", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0251000000", "01. Employee Resign", "F_81_Hrm/F_92_Mgt/RetiredEmployee", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0257000000", "02. Employee Final Settelement", "F_81_Hrm/F_92_Mgt/RetiredEmpFinalSett", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000000", "Employee Seperation / Resign", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000001", "01. Employee Resign", "F_81_Hrm/F_92_Mgt/RetiredEmployee", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000002", "02. Employee Final Settelement", "F_81_Hrm/F_92_Mgt/RetiredEmpFinalSett", "", true, "" });
 
             //I. Promotion
-            mnuTbl1.Rows.Add(new Object[] { "0252000000", "I. Promotion", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0253000000", "01. Promotion", "F_81_Hrm/F_92_Mgt/EmpPro", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000000", "Promotion", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0209000001", "01. Promotion", "F_81_Hrm/F_92_Mgt/EmpPro", "", true, "" });
 
             //J. Annual Increment
-            mnuTbl1.Rows.Add(new Object[] { "0254000000", "J. Annual Increment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0255000000", "01. Annual Increment", "F_81_Hrm/F_93_AnnInc/AnnualIncrement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0256000000", "02. Annual Increment Updated", "F_81_Hrm/F_93_AnnInc/HrIncrementUpdate", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0210000000", "Annual Increment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0210000001", "01. Annual Increment", "F_81_Hrm/F_93_AnnInc/AnnualIncrement", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0210000002", "02. Annual Increment Updated", "F_81_Hrm/F_93_AnnInc/HrIncrementUpdate", "", true, "" });
 
             
              //K. Task CodeBook
-            mnuTbl1.Rows.Add(new Object[] { "0257000000", "K. Daily Activities", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0258000000", "02. Daily Work CodeBook", "F_81_Hrm/F_94_Task/TaskCodeBook", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0258000000", "03. Daily Work Information", "F_81_Hrm/F_94_Task/TaskInfoDet", "", true, "" });
-
+            mnuTbl1.Rows.Add(new Object[] { "0211000000", "Daily Activities", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0211000001", "02. Daily Work CodeBook", "F_81_Hrm/F_94_Task/TaskCodeBook", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0211000002", "03. Daily Work Information", "F_81_Hrm/F_94_Task/TaskInfoDet", "", true, "" });
 
             //L. Employee Settlement
-            mnuTbl1.Rows.Add(new Object[] { "0259000000", "L. Employee Settlement", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0260000000", "01. Employee Settlement Top Sheet", "F_81_Hrm/F_92_Mgt/RptSettlementStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000000", "Employee Settlement", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0212000001", "01. Employee Settlement Top Sheet", "F_81_Hrm/F_92_Mgt/RptSettlementStatus", "", true, "" });
 
 
 
@@ -14486,70 +14453,58 @@ namespace RealERPLIB
 
 
             // A. Recruitment
-            mnuTbl1.Rows.Add(new Object[] { "0301000000", "A. Recruitment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0302000000", "01. Job Advertisement Input", "F_81_Hrm/F_81_Rec/JobAdvertisement?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000000", "01. Job Advertisement Approved", "F_81_Hrm/F_81_Rec/JobAdvertisement?Type=App", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0304000000", "02. Sort Listing", "F_81_Hrm/F_81_Rec/ShortListing?Type=SList", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0305000000", "03. Interview Result Input", "F_81_Hrm/F_81_Rec/ShortListing?Type=IResult", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0306000000", "04. Final Selection Input", "F_81_Hrm/F_81_Rec/ShortListing?Type=Fselection", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0307000000", "05. Appointment Letter Create", "F_81_Hrm/F_81_Rec/LetterOfAppoinment?Type=LCreate", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0308000000", "06. Offer Letter Create", "F_81_Hrm/F_81_Rec/CreateOfferLt?Type=OLCreate", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0309000000", "07. Employee Assessment", "F_81_Hrm/F_81_Rec/EmpAssessment?Type=AssCreate", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0310000000", "08. Confirmation Letter", "F_81_Hrm/F_81_Rec/ConfirmLetter?Type=Confmletter", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000000", "Recruitment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Job Advertisement Input", "F_81_Hrm/F_81_Rec/JobAdvertisement?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000002", "01. Job Advertisement Approved", "F_81_Hrm/F_81_Rec/JobAdvertisement?Type=App", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000003", "02. Sort Listing", "F_81_Hrm/F_81_Rec/ShortListing?Type=SList", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000004", "03. Interview Result Input", "F_81_Hrm/F_81_Rec/ShortListing?Type=IResult", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000005", "04. Final Selection Input", "F_81_Hrm/F_81_Rec/ShortListing?Type=Fselection", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000006", "05. Appointment Letter Create", "F_81_Hrm/F_81_Rec/LetterOfAppoinment?Type=LCreate", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000007", "06. Offer Letter Create", "F_81_Hrm/F_81_Rec/CreateOfferLt?Type=OLCreate", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000008", "07. Employee Assessment", "F_81_Hrm/F_81_Rec/EmpAssessment?Type=AssCreate", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000009", "08. Confirmation Letter", "F_81_Hrm/F_81_Rec/ConfirmLetter?Type=Confmletter", "", true, "" });
 
             // B. Appointment
-            mnuTbl1.Rows.Add(new Object[] { "0311000000", "B. Appointment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0312000000", "01. Personal Information", "F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0313000000", "02. Employee Agreement", "F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0314000000", "03. Employee Image Upload", "F_81_Hrm/F_82_App/ImgUpload?Type=Entry&empid=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000000", "Appointment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000001", "01. Personal Information", "F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000002", "02. Employee Agreement", "F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0302000003", "03. Employee Image Upload", "F_81_Hrm/F_82_App/ImgUpload?Type=Entry&empid=", "", true, "" });
 
 
             //Attendance System
-            mnuTbl1.Rows.Add(new Object[] { "0315000000", "C. Attendance System", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0316000000", "01. Employee Off Days", "F_81_Hrm/F_83_Att/HREmpOffDays", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0317000000", "02. Absent Count", "F_81_Hrm/F_83_Att/HREmpAbsCt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0317000000", "02. Absent Count(Special)", "F_81_Hrm/F_83_Att/HREmpAbsCtSpecial", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000000", "Attendance System", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000001", "01. Employee Off Days", "F_81_Hrm/F_83_Att/HREmpOffDays", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000002", "02. Absent Count", "F_81_Hrm/F_83_Att/HREmpAbsCt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000003", "02. Absent Count(Special)", "F_81_Hrm/F_83_Att/HREmpAbsCtSpecial", "", true, "" });    
+            mnuTbl1.Rows.Add(new Object[] { "0303000004", "02. Absent Count (Automatic)", "F_81_Hrm/F_83_Att/HREmpAbsCtAuto", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000005", "03. Daily Attendance - Manually", "F_81_Hrm/F_83_Att/HRDailyAttenManually", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000006", "04. Daily Attendance - Upload", "F_81_Hrm/F_83_Att/HRDailyAttenUpload", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000007", "06. Monthly Attendance - Manually", "F_81_Hrm/F_83_Att/HREmpMonthlyAtten", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000008", "07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000009", "08. Office Time Setup", "F_81_Hrm/F_82_App/HREmpEntry?Type=Officetime", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000010", "09. Office Time Setup(Special Day)", "F_81_Hrm/F_82_App/HREmpEntry?Type=shifttime", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000011", "10.  Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });//"07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000012", "", "", "", true, "" });// "08. Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000013", "", "", "", true, "" });//"09. LWP Count", "F_81_Hrm/F_83_Att/HREmpLWP", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Employee Monthly Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MLateAppDay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000015", "12. Monthly Punch Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MPunchAppDay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Absent Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000018", "14. Employee Monthly Early Leave Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MEarlyleave", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000019", "15. Early Leave Approval", "F_81_Hrm/F_83_Att/EmpEarlyLeaveApproval", "", true, "" });
 
-
-            
-            mnuTbl1.Rows.Add(new Object[] { "0317000000", "02. Absent Count (Automatic)", "F_81_Hrm/F_83_Att/HREmpAbsCtAuto", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0318000000", "03. Daily Attendance - Manually", "F_81_Hrm/F_83_Att/HRDailyAttenManually", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0319000000", "04. Daily Attendance - Upload", "F_81_Hrm/F_83_Att/HRDailyAttenUpload", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0320000000", "06. Monthly Attendance - Manually", "F_81_Hrm/F_83_Att/HREmpMonthlyAtten", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0321000000", "07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0322000000", "08. Office Time Setup", "F_81_Hrm/F_82_App/HREmpEntry?Type=Officetime", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0323000000", "09. Office Time Setup(Special Day)", "F_81_Hrm/F_82_App/HREmpEntry?Type=shifttime", "", true, "" });
-
-
-            mnuTbl1.Rows.Add(new Object[] { "0324000000", "10.  Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });//"07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0325000000", "", "", "", true, "" });// "08. Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0326000000", "", "", "", true, "" });//"09. LWP Count", "F_81_Hrm/F_83_Att/HREmpLWP", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0327000000", "11. Employee Monthly Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MLateAppDay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0328000000", "12. Monthly Punch Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MPunchAppDay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0322000000", "13. Monthly Absent Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0322000000", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0368000000", "14. Employee Monthly Early Leave Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MEarlyleave", "", true, "" });
-
-
-
-
-            mnuTbl1.Rows.Add(new Object[] { "0329000000", "15. Early Leave Approval", "F_81_Hrm/F_83_Att/EmpEarlyLeaveApproval", "", true, "" });
-
-            // D. Leave Monitoring
-            mnuTbl1.Rows.Add(new Object[] { "0330000000", "D. Leave Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0331000000", "01. Leave Application Form (Manual)", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=FLeaveApp", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0332000000", "02. Manual Leave Approval", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveApp", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0333000000", "03. Online Leave Application (Ind)", "F_81_Hrm/F_84_Lea/MyLeave?Type=User", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0333000000", "03. Online Leave Application (Mgt)", "F_81_Hrm/F_84_Lea/MyLeave?Type=Mgt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0334000000", "03. HR Leave Interface(Mgt)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Mgt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0335000000", "03. HR Leave Interface(Department Head)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=DeptHead", "", true, "" });           
-            mnuTbl1.Rows.Add(new Object[] { "0336000000", "03. HR Leave Interface(Individual)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind", "", true, "" });
            
-            // management label
-            mnuTbl1.Rows.Add(new Object[] { "0370000000", "03. HR Leave Approval(Mgt)", "F_81_Hrm/F_84_Lea/EmpLvApproval?Type=App", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0371000000", "03. HR Leave Approval(Individual)", "F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind", "", true, "" });
+            // D. Leave Monitoring
+            mnuTbl1.Rows.Add(new Object[] { "0304000000", "Leave Monitoring", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000001", "01. Leave Application Form (Manual)", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=FLeaveApp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000002", "02. Manual Leave Approval", "F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveApp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000003", "03. Online Leave Application (Ind)", "F_81_Hrm/F_84_Lea/MyLeave?Type=User", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000004", "04. Online Leave Application (Mgt)", "F_81_Hrm/F_84_Lea/MyLeave?Type=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000005", "05. HR Leave Interface(Mgt)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Mgt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000006", "06. HR Leave Interface(Department Head)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=DeptHead", "", true, "" });           
+            mnuTbl1.Rows.Add(new Object[] { "0304000007", "07. HR Leave Interface(Individual)", "F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000008", "08. HR Leave Approval(Mgt)", "F_81_Hrm/F_84_Lea/EmpLvApproval?Type=App", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0304000009", "09. HR Leave Approval(Individual)", "F_81_Hrm/F_84_Lea/EmpLvApproval?Type=Ind", "", true, "" });
 
 
 
@@ -14557,242 +14512,204 @@ namespace RealERPLIB
           
 
             // E. Loan Monitoring  //"", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0337000000", "E. Loan Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0338000000", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0339000000", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0340000000", "03. Deduction Other", "F_81_Hrm/F_85_Lon/EmpDeducOther", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000000", "Loan Monitoring", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000001", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000002", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000003", "03. Deduction Other", "F_81_Hrm/F_85_Lon/EmpDeducOther", "", true, "" });
 
 
 
 
             // F. Allowances
-            mnuTbl1.Rows.Add(new Object[] { "0341000000", "F. Allowances", "", "", false, "mb" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0342000000", "04. Mobile Bill", "F_81_Hrm/F_86_All/EmpOvertime?Type=Mobile", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0338000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0343000000", "01. Overtime Allowance", "F_81_Hrm/F_86_All/EmpOvertime?Type=Overtime", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0344000000", "01. Overtime Upload", "F_81_Hrm/F_86_All/EntryOvertimeExelUpload", "", true, "" });
-
-            
-            mnuTbl1.Rows.Add(new Object[] { "0345000000", "02. Holiday Allowance 01", "F_81_Hrm/F_86_All/EmpOvertime?Type=Holiday", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0346000000", "03. Holiday Allowance 02", "F_81_Hrm/F_86_All/HollydayCt", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0344000000", "04. Mobile Bill", "F_81_Hrm/F_86_All/EmpOvertime?Type=Mobile", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0347000000", "04. Food Allowance", "F_81_Hrm/F_86_All/EmpFoodAllow", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0349000000", "04. Employee Fooding Rate", "F_81_Hrm/F_86_All/EmpFoodingRate", "", true, "" });
-
-            
-            mnuTbl1.Rows.Add(new Object[] { "0347000000", "05. Leave Encashment", "F_81_Hrm/F_86_All/EmpOvertime?Type=Lencashment", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000000", "Allowances", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000001", "01. Mobile Bill", "F_81_Hrm/F_86_All/EmpOvertime?Type=Mobile", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000002", "02. Overtime Allowance", "F_81_Hrm/F_86_All/EmpOvertime?Type=Overtime", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000003", "03. Overtime Upload", "F_81_Hrm/F_86_All/EntryOvertimeExelUpload", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000004", "04. Holiday Allowance 01", "F_81_Hrm/F_86_All/EmpOvertime?Type=Holiday", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000005", "05. Holiday Allowance 02", "F_81_Hrm/F_86_All/HollydayCt", "", true, "" });         
+            mnuTbl1.Rows.Add(new Object[] { "0306000006", "06. Food Allowance", "F_81_Hrm/F_86_All/EmpFoodAllow", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000007", "07. Employee Fooding Rate", "F_81_Hrm/F_86_All/EmpFoodingRate", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0306000008", "08. Leave Encashment", "F_81_Hrm/F_86_All/EmpOvertime?Type=Lencashment", "", true, "" });
 
             // F. Transfer
-            mnuTbl1.Rows.Add(new Object[] { "0348000000", "G. Transfer", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0349000000", "01. Employee Transfer", "F_81_Hrm/F_87_Tra/HREmpTransfer", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0350000000", "02. Employee Transfer (Special)", "F_81_Hrm/F_87_Tra/HREmpTransferSpecial", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0307000000", "Transfer", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0307000001", "01. Employee Transfer", "F_81_Hrm/F_87_Tra/HREmpTransfer", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0307000002", "02. Employee Transfer (Special)", "F_81_Hrm/F_87_Tra/HREmpTransferSpecial", "", true, "" });
       
       
             // F. Payroll System
-
-            mnuTbl1.Rows.Add(new Object[] { "0350000000", "H. Payroll System", "", "", false, "mb" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0351000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0352000000", "04. Arrear Salary", "F_81_Hrm/F_86_All/EmpOvertime?Type=arrear", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0346000000", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000000", "Payroll System", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000001", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000002", "04. Arrear Salary", "F_81_Hrm/F_86_All/EmpOvertime?Type=arrear", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0347000000", "06. Salary Day Adjustment", "F_81_Hrm/F_86_All/EmpOvertime?Type=dayadj", "", true, "" });
             // mnuTbl1.Rows.Add(new Object[] { "0342000000", "01. Bank Payment", "F_81_Hrm/F_86_All/EmpOvertime?Type=BankPayment", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0353000000", "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0354000000", "03. Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=OtherDeduction", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0354000000", "03. Entry Deduction 02", "F_81_Hrm/F_86_All/EntryDeduction02", "", true, "" });
-
-
-            
-            mnuTbl1.Rows.Add(new Object[] { "0355000000", "05. Other Earning", "F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0356000000", "06. Salary Day Adjustment", "F_81_Hrm/F_86_All/EmpOvertime?Type=dayadj", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0356000000", "06. Salary Reduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000003", "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000004", "03. Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=OtherDeduction", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000005", "03. Entry Deduction 02", "F_81_Hrm/F_86_All/EntryDeduction02", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000006", "05. Other Earning", "F_81_Hrm/F_86_All/EmpOvertime?Type=otherearn", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000007", "06. Salary Day Adjustment", "F_81_Hrm/F_86_All/EmpOvertime?Type=dayadj", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0308000008", "06. Salary Reduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=SalaryReduction", "", true, "" });
 
            
-
             // G. P.F Account
-
-            mnuTbl1.Rows.Add(new Object[] { "0357000000", "I. P.F Account", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0358000000", "01. PF Account", "F_81_Hrm/F_90_PF/AccProFund", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0359000000", "02. Entry PF Benefit", "F_81_Hrm/F_90_PF/EntryPFBenefit", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0360000000", "03. Payment Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Payment Voucher", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0361000000", "04. Deposit Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Deposit Voucher", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0362000000", "05. Journal Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Journal Voucher", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0363000000", "06. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0364000000", "07. Bank Reconcilation", "F_81_Hrm/F_90_PF/AccBankRecon", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0365000000", "08. InterCompany Payment", "F_81_Hrm/F_90_PF/AccInterComVoucher", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000000", "P.F Account", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000001", "01. PF Account", "F_81_Hrm/F_90_PF/AccProFund", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000002", "02. Entry PF Benefit", "F_81_Hrm/F_90_PF/EntryPFBenefit", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000003", "03. Payment Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Payment Voucher", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000004", "04. Deposit Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Deposit Voucher", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000005", "05. Journal Voucher", "F_81_Hrm/F_90_PF/GeneralAccounts?tcode=99&tname=Journal Voucher", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000006", "06. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000007", "07. Bank Reconcilation", "F_81_Hrm/F_90_PF/AccBankRecon", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0309000008", "08. InterCompany Payment", "F_81_Hrm/F_90_PF/AccInterComVoucher", "", true, "" });
 
             //tblObj.Rows.Add(new Object[] { "8102000", "8102083", "GeneralAccounts?", "tcode=99&tname=Payment Voucher", "Payment Voucher", "PF Account", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "8102000", "8102084", "GeneralAccounts?", "tcode=99&tname=Deposit Voucher", "Deposit Voucher", "PF Account", "False", "False", "False", "False" });;
             //tblObj.Rows.Add(new Object[] { "8102000", "8102085", "GeneralAccounts?", "tcode=99&tname=Journal Voucher", "Journal Voucher", "PF Account", "False", "False", "False", "False" });;
 
 
-
             // H. ACR(Annual Confidential Report)
+            mnuTbl1.Rows.Add(new Object[] { "0310000000", "ACR (Annual Confidential Report)", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0310000001", "01. Employee Performance Appraisal", "F_81_Hrm/F_91_ACR/EmpPerAppraisal?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0310000002", "02. Employee Performance Appraisal (Edit)", "F_81_Hrm/F_91_ACR/EmpPerAppraisal?Type=Edit", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0310000003", "03. Employee Evaluation For Confirmation", "F_81_Hrm/F_91_ACR/EmpEvaluationFrm", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0366000000", "J. ACR(Annual Confidential Report)", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0367000000", "01. Employee Performance Appraisal", "F_81_Hrm/F_91_ACR/EmpPerAppraisal?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0368000000", "02. Employee Performance Appraisal (Edit)", "F_81_Hrm/F_91_ACR/EmpPerAppraisal?Type=Edit", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0369000000", "03. Employee Evaluation For Confirmation", "F_81_Hrm/F_91_ACR/EmpEvaluationFrm", "", true, "" });
-
-
-
-
-
-
-            //Report
-
+            //Repor
             // A. Recruitment 
-            mnuTbl1.Rows.Add(new Object[] { "0401000000", "A. Recruitment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0402000000", "01. Job Advertisement", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=JobAdvertise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0403000000", "02. Sort Listing Process", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=SortListing", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0404000000", "03. Interview Result", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=InterviewResult", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0405000000", "04. Final Result", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=FinalSelect", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0406000000", "05. Letter Of Appointment", "F_81_Hrm/F_81_Rec/LetterOfAppoinment?Type=LRpt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000000", "Recruitment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000001", "01. Job Advertisement", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=JobAdvertise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000002", "02. Sort Listing Process", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=SortListing", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000003", "03. Interview Result", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=InterviewResult", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000004", "04. Final Result", "F_81_Hrm/F_81_Rec/RptRecruitment?Type=FinalSelect", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000005", "05. Letter Of Appointment", "F_81_Hrm/F_81_Rec/LetterOfAppoinment?Type=LRpt", "", true, "" });
 
             // B. Appointment
-            mnuTbl1.Rows.Add(new Object[] { "0407000000", "B. Appointment", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0408000000", "01. Employee Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpAllInfo&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000000", "Appointment", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0402000001", "01. Employee Information", "F_81_Hrm/F_82_App/RptEmpInformation?Type=EmpAllInfo&comcod=", "", true, "" });
 
             //c. Attendance System
-            mnuTbl1.Rows.Add(new Object[] { "0408000000", "C. Attendance System", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0409000000", "01. Attendance Information", "F_81_Hrm/F_83_Att/RptAttendenceSheet", "", true, "" });
-            
-            
+            mnuTbl1.Rows.Add(new Object[] { "0403000000", "Attendance System", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000001", "01. Attendance Information", "F_81_Hrm/F_83_Att/RptAttendenceSheet", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0403000002", "02. Employee Daily Attendance", "F_81_Hrm/F_99_MgtAct/RptgroupAttendance", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0403000003", "02. Employee Daily Attendance", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=DailyAtten", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0403000004", "02. Employee Daily Attendance - Department", "F_81_Hrm/F_83_Att/RptDeptEmpDailyAttendance?Type=DailyAtten", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0403000005", "03. Employee Promotion", "F_81_Hrm/F_83_Att/RptPromotion", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000006", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000007", "05. Employee Monthly Late Attendance", "F_81_Hrm/F_89_Pay/EmpOverTimeSalary?Type=MonthlyLateAtten", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000008", "06. Employee Daily Attendance(Branch Wise)", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance02?Type=DailyAtten", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000009", "07. Employee Attendance Summary", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=AttendanceSummary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000010", "08. Department Wise Employee List", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=deptlist", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000011", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000012", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000013", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000014", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0403000015", "06. List of PABX Information", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=", "", true, "" });
 
-
-            
-            
-            //mnuTbl1.Rows.Add(new Object[] { "0415000000", "02. Employee Daily Attendance", "F_81_Hrm/F_99_MgtAct/RptgroupAttendance", "", true, "" });
-
-
-            //mnuTbl1.Rows.Add(new Object[] { "0410000000", "02. Employee Daily Attendance", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=DailyAtten", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0411000000", "02. Employee Daily Attendance - Department", "F_81_Hrm/F_83_Att/RptDeptEmpDailyAttendance?Type=DailyAtten", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0412000000", "03. Employee Promotion", "F_81_Hrm/F_83_Att/RptPromotion", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0413000000", "", "", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0414000000", "05. Employee Monthly Late Attendance", "F_81_Hrm/F_89_Pay/EmpOverTimeSalary?Type=MonthlyLateAtten", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0415000000", "06. Employee Daily Attendance(Branch Wise)", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance02?Type=DailyAtten", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0416000000", "07. Employee Attendance Summary", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=AttendanceSummary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0417000000", "08. Department Wise Employee List", "F_81_Hrm/F_83_Att/RptEmpDailyAttendance?Type=deptlist", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0418000000", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0419000000", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0420000000", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0423000000", "07. Employee Absent Count List", "F_81_Hrm/F_83_Att/RptEmpAbsCount?Type=", "", true, "" });
             // d. Leave Monitoring
-            mnuTbl1.Rows.Add(new Object[] { "0418000000", "D. Leave Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0419000000", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0420000000", "02. Leave Status- Company Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=EmpLeaveStatus&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0421000000", "03. Employee Leave- Month Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=MonWiseLeave&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0422000000", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });       
-            mnuTbl1.Rows.Add(new Object[] { "0423000000", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0423000000", "05. Yearly Leave Record", "F_81_Hrm/F_84_Lea/RptYearlyLeaveRecord", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000000", "Leave Monitoring", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000001", "01. Individual Employee Leave Status", "F_81_Hrm/F_84_Lea/RptHREmpLeave?Type=EmpLeaveSt", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000002", "02. Leave Status- Company Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=EmpLeaveStatus&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000003", "03. Employee Leave- Month Wise", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=MonWiseLeave&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000004", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });       
+            mnuTbl1.Rows.Add(new Object[] { "0404000005", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000006", "05. Yearly Leave Record", "F_81_Hrm/F_84_Lea/RptYearlyLeaveRecord", "", true, "" });
 
-
-            
+           
             // Employee Transfer report
-            mnuTbl1.Rows.Add(new Object[] { "0422100000", "Employee Transfer Info", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0422200000", "01. Employee Transfer Report", "F_81_Hrm/F_87_Tra/HREmpTransferReport", "", true, "" }); 
-
+            mnuTbl1.Rows.Add(new Object[] { "0405000000", "Employee Transfer Info", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0405000001", "01. Employee Transfer Report", "F_81_Hrm/F_87_Tra/HREmpTransferReport", "", true, "" }); 
 
 
 
             // E. Loan Monitoring
-            mnuTbl1.Rows.Add(new Object[] { "0422300000", "E. Loan Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0423400000", "01. Employee Loan Status", "F_81_Hrm/F_85_Lon/EmpLoanStatus?Type=Report&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0423500000", "01. Employee Loan Installment Details", "F_81_Hrm/F_85_Lon/RptIndLoanStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0406000000", "Loan Monitoring", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0406000001", "01. Employee Loan Status", "F_81_Hrm/F_85_Lon/EmpLoanStatus?Type=Report&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0406000002", "01. Employee Loan Installment Details", "F_81_Hrm/F_85_Lon/RptIndLoanStatus", "", true, "" });
 
             // E. Loan Monitoring
-            mnuTbl1.Rows.Add(new Object[] { "0422400000", "E. Allowance Report", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0424500000", "01. Lunch Deduction Report", "F_81_Hrm/F_86_All/RptLunchAllow", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0407000000", "Allowance Report", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0407000001", "01. Lunch Deduction Report", "F_81_Hrm/F_86_All/RptLunchAllow", "", true, "" });
            
             // F. Payroll System
-            mnuTbl1.Rows.Add(new Object[] { "0425000000", "F. Payroll System", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0426000000", "General Reports", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0427000000", "01. Actual Salary Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Payroll", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0428000000", "02. Festival Bonus", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Bonus&Entry=Payroll", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0429000000", "03. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Payroll", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0430000000", "04. Pay Slip", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Payslip", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0431000000", "05. Envelop Print", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=RPTENVELOP", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0432000000", "06. Signature Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Signature", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0433000000", "07. Salary Statement (Cash)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=CashSalary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0434000000", "07. Salary Statement (Cash/Nagad)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=NagadSalary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0434000000", "08. Bonus Sheet (Cash)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=CashBonus", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0435000000", "09. Salary Summary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum&comcod=", "", true, "" });//"09. Salary Summary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0436000000", "10. Salary Summary 02", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=SalSummary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0437000000", "10. Summary of Disbursement", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=Disbursement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0438000000", "10. Salary Top Sheet", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=TopSalary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0439000000", "10. Salary Top Sheet(Project)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=TopSheetPID", "", true, "" });
-            
-            mnuTbl1.Rows.Add(new Object[] { "0440000000", "10. Salary Top Sheet (Factory)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=TopSheetFactory", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000000", "Payroll Reports", "", "", false, "mb" });
 
+            //mnuTbl1.Rows.Add(new Object[] { "0408000000", "General Reports", "", "", false, "mb" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0440000000", "11. Month Wise Salary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum02&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0441000000", "12. Bonus Summary", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=BonusSummary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0442000000", "13. Salary Transfer Statement", "F_81_Hrm/F_89_Pay/EmpBankSalary?Type=Entry", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0443000000", "14. Details Salary Summary", "F_81_Hrm/F_89_Pay/RptSalSummaryDetails", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0444000000", "15. Monthly Loan,Adv,Cell,Arrear Data Sheet", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=SalLACA", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0445000000", "16. Bank Statement - Company Wise", "F_81_Hrm/F_89_Pay/RptBankStatement?Type=Bnkstmntcwise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0446000000", "17. Bank Statement - Bank Wise", "F_81_Hrm/F_89_Pay/RptBankStatement?Type=Bnkstmtbnkwise", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0447000000", "18. Employee Salary Sheet and Leave Status", "F_81_Hrm/F_89_Pay/RptEmpLeaveStatus", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0448000000", "19. Employee Transfer List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TransList&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0449000000", "20. Employee Seperation Report", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=SepType&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0450000000", "21. Employee Hold List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpHold&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0451000000", "22. Members", "F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0452000000", "04. Joining Report Summary", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=joiningRpt&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0453000000", "05. Month Wise Salary Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Salary", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0454000000", "06. Month Wise Tax Report", "F_81_Hrm/F_89_Pay/RptMonthWiseTax", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0455000000", "07. Employee Monthly Presence", "F_81_Hrm/F_83_Att/RptEmpMonthPresent", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0441200000", "08. Individual Employee Income Statement", "F_81_Hrm/F_89_Pay/RptIncomeStatement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0441300000", "09. Overtime Salary", "F_81_Hrm/F_89_Pay/RptOvertimeSalary2", "", true, "" });
-
+            mnuTbl1.Rows.Add(new Object[] { "0408000002", "01. Actual Salary Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Payroll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000003", "02. Festival Bonus", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Bonus&Entry=Payroll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000004", "03. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Payroll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000005", "04. Pay Slip", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Payslip", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0408000006", "05. Envelop Print", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=RPTENVELOP", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000007", "06. Signature Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Signature", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000008", "07. Salary Statement (Cash)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=CashSalary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000009", "07. Salary Statement (Cash/Nagad)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=NagadSalary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000010", "08. Bonus Sheet (Cash)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=CashBonus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000011", "09. Salary Summary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum&comcod=", "", true, "" });//"09. Salary Summary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000012", "10. Salary Summary 02", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=SalSummary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000013", "10. Summary of Disbursement", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=Disbursement", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000014", "10. Salary Top Sheet", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=TopSalary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000015", "10. Salary Top Sheet(Project)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=TopSheetPID", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000016", "10. Salary Top Sheet (Factory)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=TopSheetFactory", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000017", "11. Month Wise Salary", "F_81_Hrm/F_89_Pay/RptSalarySummary?Type=SalSum02&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000018", "12. Bonus Summary", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=BonusSummary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000019", "13. Salary Transfer Statement", "F_81_Hrm/F_89_Pay/EmpBankSalary?Type=Entry", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000020", "14. Details Salary Summary", "F_81_Hrm/F_89_Pay/RptSalSummaryDetails", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000021", "15. Monthly Loan,Adv,Cell,Arrear Data Sheet", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=SalLACA", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000022", "16. Bank Statement - Company Wise", "F_81_Hrm/F_89_Pay/RptBankStatement?Type=Bnkstmntcwise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000023", "17. Bank Statement - Bank Wise", "F_81_Hrm/F_89_Pay/RptBankStatement?Type=Bnkstmtbnkwise", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000024", "18. Employee Salary Sheet and Leave Status", "F_81_Hrm/F_89_Pay/RptEmpLeaveStatus", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000025", "19. Employee Transfer List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TransList&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000026", "20. Employee Seperation Report", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=SepType&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000027", "21. Employee Hold List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpHold&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000028", "22. Members", "F_81_Hrm/F_92_Mgt/AllEmpList?Type=Report&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000029", "04. Joining Report Summary", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=joiningRpt&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000030", "05. Month Wise Salary Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Salary", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000031", "06. Month Wise Tax Report", "F_81_Hrm/F_89_Pay/RptMonthWiseTax", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000032", "07. Employee Monthly Presence", "F_81_Hrm/F_83_Att/RptEmpMonthPresent", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000033", "08. Individual Employee Income Statement", "F_81_Hrm/F_89_Pay/RptIncomeStatement", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000034", "09. Overtime Salary", "F_81_Hrm/F_89_Pay/RptOvertimeSalary2", "", true, "" });
 
 
 
 
+            //mnuTbl1.Rows.Add(new Object[] { "0408000035", "", "", "", true, "" });
 
-            //  mnuTbl1.Rows.Add(new Object[] { "0445000000", "", "", "", true, "" });
-
-            //mnuTbl1.Rows.Add(new Object[] { "0442000000", "18. Overtime Allowance", "F_81_Hrm/F_89_Pay/EmpOverTimeSalary?Type=OvertimeSalary", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0443000000", "19. Overtime Allowance 02", "F_81_Hrm/F_89_Pay/EmpOverTimeSalary?Type=OvertimeSalary02", "", true, "" });
-            //mnuTbl1.Rows.Add(new Object[] { "0444000000", "20. Pay Slip (Bonus)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=BonPaySlip", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0408000036", "18. Overtime Allowance", "F_81_Hrm/F_89_Pay/EmpOverTimeSalary?Type=OvertimeSalary", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0408000037", "19. Overtime Allowance 02", "F_81_Hrm/F_89_Pay/EmpOverTimeSalary?Type=OvertimeSalary02", "", true, "" });
+            //mnuTbl1.Rows.Add(new Object[] { "0408000038", "20. Pay Slip (Bonus)", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=BonPaySlip", "", true, "" });
 
 
             // F. P.F Account
-            mnuTbl1.Rows.Add(new Object[] { "0450000000", "G. P.F Account", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0449000000", "01. Daily transaction", "F_81_Hrm/F_90_PF/RptAccDTransaction", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0450000000", "02. Ledger", "F_81_Hrm/F_90_PF/AccLedger?Type=Ledger", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0451000000", "03. Subsidiary Ledger", "F_81_Hrm/F_90_PF/AccLedger?Type=SubLedger", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0452000000", "04. Account Control Schedule", "F_81_Hrm/F_90_PF/AccControlSchedule", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0453000000", "05. Account Details Schedule", "F_81_Hrm/F_90_PF/AccDetailsSchedule", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0454000000", "06. Trial Balance", "F_81_Hrm/F_90_PF/AccTrialBalance", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0455000000", "07. Income Statement", "F_17_Acc/AccFinalReports?RepType=IS&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0456000000", "08. Balance Sheet", "F_17_Acc/AccFinalReports?RepType=BS&comcod=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0457000000", "09. Voucher Print", "F_81_Hrm/F_90_PF/TransectionPrint?Type=AccVoucher", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0458000000", "10. Cheque Print", "F_17_Acc/TransectionPrint?Type=AccCheque", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0451000000", "11. Total P.F Fund Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Pffund", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0452000000", "12. Payment Schedule Of Provident Fund", "F_81_Hrm/F_90_PF/RptPaymentAndProvidentinf", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0453000000", "13. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0456000000", "14. AIT Purpose Salary Statement", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salati", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0457000000", "14. Salary Summary (Month Wise)", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salsumMonth", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000000", "P.F Account", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000001", "01. Daily transaction", "F_81_Hrm/F_90_PF/RptAccDTransaction", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000002", "02. Ledger", "F_81_Hrm/F_90_PF/AccLedger?Type=Ledger", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000003", "03. Subsidiary Ledger", "F_81_Hrm/F_90_PF/AccLedger?Type=SubLedger", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000004", "04. Account Control Schedule", "F_81_Hrm/F_90_PF/AccControlSchedule", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000005", "05. Account Details Schedule", "F_81_Hrm/F_90_PF/AccDetailsSchedule", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000006", "06. Trial Balance", "F_81_Hrm/F_90_PF/AccTrialBalance", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000007", "07. Income Statement", "F_17_Acc/AccFinalReports?RepType=IS&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000008", "08. Balance Sheet", "F_17_Acc/AccFinalReports?RepType=BS&comcod=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000009", "09. Voucher Print", "F_81_Hrm/F_90_PF/TransectionPrint?Type=AccVoucher", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000010", "10. Cheque Print", "F_17_Acc/TransectionPrint?Type=AccCheque", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000011", "11. Total P.F Fund Report", "F_81_Hrm/F_90_PF/RptAccProFund?Type=Pffund", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000012", "12. Payment Schedule Of Provident Fund", "F_81_Hrm/F_90_PF/RptPaymentAndProvidentinf", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000013", "13. Individual Payment Schedule Of P.F", "F_81_Hrm/F_90_PF/RptPFIndvPay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000014", "14. AIT Purpose Salary Statement", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salati", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0409000015", "14. Salary Summary (Month Wise)", "F_81_Hrm/F_89_Pay/EmpMonthSummary?Type=salsumMonth", "", true, "" });
 
             
             //mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. Accounts Code", "F_81_Hrm/F_82_App/AccCodeBook?InputType=Accounts", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000000", "02. Accounts Opening", "F_81_Hrm/F_90_PF/AccOpening", "", true, "" });
             // mnuTbl1.Rows.Add(new Object[] { "0456000000", "11. PF Account", "F_81_Hrm/F_90_PF/RptAccProFund", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0454000000", "H. Annual Increment Report", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0410000000", "Annual Increment Report", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0410000001", "01.Increment Report", "F_81_Hrm/F_93_AnnInc/RptIncrement", "", true, "" });
 
-            mnuTbl1.Rows.Add(new Object[] { "0455000000", "01.Increment Report", "F_81_Hrm/F_93_AnnInc/RptIncrement", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0411000000", "ACR(Annual Confidential Report)", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0411000001", "01. Employee Performance Appraisal", "F_81_Hrm/F_91_ACR/RptPerAppraisal", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0411000002", "02. Employee Assessment Report", "F_81_Hrm/F_81_Rec/RptEmpAssessment", "", true, "" });
 
-
-
-            mnuTbl1.Rows.Add(new Object[] { "0456000000", "J. ACR(Annual Confidential Report)", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0457000000", "01. Employee Performance Appraisal", "F_81_Hrm/F_91_ACR/RptPerAppraisal", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0458000000", "02. Employee Assessment Report", "F_81_Hrm/F_81_Rec/RptEmpAssessment", "", true, "" });
-
-            mnuTbl1.Rows.Add(new Object[] { "0459000000", "K. Daily Activities Report", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0460000000", "01.  Daily Work Report", "F_81_Hrm/F_94_Task/RptTaskInfoDet", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0412000000", "Daily Activities Report", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0412000001", "01.  Daily Work Report", "F_81_Hrm/F_94_Task/RptTaskInfoDet", "", true, "" });
             
 
 
