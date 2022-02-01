@@ -69,6 +69,15 @@ namespace RealERPWEB.Notification
         protected global::AjaxControlToolkit.CalendarExtender txtTdate_CalendarExtender;
 
         /// <summary>
+        /// tbAssignTask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tbAssignTask;
+
+        /// <summary>
         /// gvOccasion control.
         /// </summary>
         /// <remarks>
