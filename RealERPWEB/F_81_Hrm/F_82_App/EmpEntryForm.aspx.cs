@@ -91,7 +91,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             
             string comcod = this.GetComeCode();
-            string empdept = "930100101";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
+            string empdept = "9301";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
             string empname = this.txtEmpName.Text;
             string empcode = this.lblEmplastId.Text;
             string Message;
@@ -109,7 +109,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             else
             {
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAME", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+               // result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAME", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
             }
             if (result)
             {
@@ -215,7 +216,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
 
             DataTable dt = (DataTable)Session["tblEmpstatus"];
-            // this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+             this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpList.DataSource = dt;
             this.gvEmpList.DataBind();
 
