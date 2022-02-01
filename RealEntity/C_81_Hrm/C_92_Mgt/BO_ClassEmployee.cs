@@ -29,8 +29,11 @@ namespace RealEntity.C_81_Hrm.C_92_mgt
           public string blood { get; set; }
           public decimal salary { get; set; }
           public DateTime resdat { get; set; }
+          public string mobile { get; set; }
+          public string email { get; set; }
+          public string extention { get; set; }
 
-          
+           
           public EmployeeInfo() { }
 
       }
