@@ -1,19 +1,25 @@
-﻿using Microsoft.Reporting.WinForms;
-using RealERPLIB;
-using RealERPRDLC;
+﻿
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using RealERPLIB;
+using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 
 namespace RealERPWEB
 {
-    public partial class LetterDefault1 : System.Web.UI.Page
+    public partial class LetterDefault : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -63,10 +69,10 @@ namespace RealERPWEB
                 }
 
 
-              //  this.GetLettPattern();
+                this.GetLettPattern();
                 string titale = this.Request.QueryString["Entry"].ToString().Trim();
                 ((Label)this.Master.FindControl("lblTitle")).Text = titale;
-               // ddlEmployee_SelectedIndexChanged(null, null);
+                ddlEmployee_SelectedIndexChanged(null, null);
 
                 string Apprv = this.Request.QueryString["Entry"].ToString();
                 if (Apprv == "Apprv")
@@ -89,41 +95,9 @@ namespace RealERPWEB
                 }
 
             }
-
-
         }
 
-        private void ShowLetter()
-        {
 
-
-
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-            string comcod = this.GetCompCode();
-            string empid = this.Request.QueryString["ID"].ToString().Trim();
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
-            if (ds3.Tables[0].Rows.Count == 0)
-                return;
-            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
-            this.txtml.Text = lett;
-
-            ViewState["letter"] = ds3.Tables[0];
-        }
-        private void GetEmployee()
-        {
-
-
-
-            string comcod = this.GetCompCode();
-            string txtSProject = "%" + this.txtSrcEmployee.Text + "%";
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
-            this.ddlEmployee.DataTextField = "empname";
-            this.ddlEmployee.DataValueField = "empid";
-            this.ddlEmployee.DataSource = ds3.Tables[0];
-            this.ddlEmployee.DataBind();
-            ds3.Dispose();
-            ViewState["empinfo"] = ds3;
-        }
 
         private void CommonButton()
         {
@@ -284,12 +258,6 @@ namespace RealERPWEB
                      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
-
-        private string GetCompCode()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            return (hst["comcod"].ToString());
-        }
         protected void btnsave_Click(object sender, EventArgs e)
         {
             //string cat1 = "";
@@ -307,7 +275,7 @@ namespace RealERPWEB
                 var type = this.Request.QueryString["Type"].ToString().Trim();
                 var date = this.txttodate.Text;
                 string comcod = this.GetCompCode();
-                string refno = "";
+                string refno = this.txtRefNo.Text.Trim();
 
                 //result ds = HRData.UpdateTransInfo (comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPLOADLETTER", empid, type, strval, date, refno, "", "", "", "");
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPDATEJLTCMPLTTRMLT", empid, type, date, refno, strval, "", "", "", "", "", "", "", "", "", "");
@@ -351,6 +319,109 @@ namespace RealERPWEB
             ////}
 
 
+        }
+
+        private void UpdateJltCmpLtTrmLt()
+        {
+            bool result = false;
+            var empid = this.ddlEmployee.SelectedValue.ToString();
+            var strval = this.txtml.Text;
+            var type = this.Request.QueryString["Type"].ToString().Trim();
+            var date = this.txttodate.Text;
+            string comcod = this.GetCompCode();
+            string refno = this.txtRefNo.Text.Trim();
+            string data = this.txtml.Text;
+            //result ds = HRData.UpdateTransInfo (comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPLOADLETTER", empid, type, strval, date, refno, "", "", "", "");
+            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPDATEJLTCMPLTTRMLT", empid, type, date, refno, strval, "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                this.lblmsg1.Text = "Save Failed";
+                this.lblmsg1.Visible = true;
+
+            }
+            //  var val = (string)ds3.Tables[0].Rows[0]["lettdesc"];
+            //  this.txtml.Text = val;
+            this.lblmsg1.Text = "Save Successfully";
+            this.lblmsg1.Visible = true;
+
+        }
+
+        protected void lbtnOk_Click(object sender, EventArgs e)
+        {
+
+            if (this.lbtnOk.Text == "Ok")
+            {
+                this.lbtnOk.Text = "New";
+                this.ddlPrevious.Visible = false;
+                this.lbtnprevious.Visible = false;
+                this.ShowView();
+                return;
+            }
+            this.lbtnOk.Text = "Ok";
+            this.ddlPrevious.Items.Clear();
+            this.ddlPrevious.Visible = true;
+            this.lbtnprevious.Visible = true;
+            //this.ShowPreViousLt();
+
+
+        }
+
+        private void ShowPreViousLt()
+        {
+            DataTable dt = (DataTable)Session["tbllttDetails"];
+            this.txtRefNo.Text = dt.Rows[0]["refno"].ToString();
+            this.txttodate.Text = dt.Rows[0]["date"].ToString();
+            this.ddlEmployee.SelectedValue = dt.Rows[0]["empname"].ToString();
+            //this.txtml.Text = dt.Rows[0]["lettdesc"].ToString ();
+        }
+        protected void btnapprv_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string user = hst["usrid"].ToString();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            var strval = this.txtml.Text;
+            // var strval3 = Encoding.ASCII.GetBytes(strval);
+            var type = this.Request.QueryString["Type"].ToString().Trim();
+            var empid = this.Request.QueryString["ID"].ToString().Trim();
+            var date = this.txttodate.Text;
+            string comcod = this.GetCompCode();
+            DataSet result = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "APPROVELETTER", empid, type, user, "", "", "", "", "", "");
+            this.lblmsg1.Text = "Approve Successfully";
+            this.lblmsg1.Visible = true;
+
+        }
+
+        private void ShowLetter()
+        {
+
+
+
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string empid = this.Request.QueryString["ID"].ToString().Trim();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
+            if (ds3.Tables[0].Rows.Count == 0)
+                return;
+            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
+            this.txtml.Text = lett;
+
+            ViewState["letter"] = ds3.Tables[0];
+        }
+
+        private void GetEmployee()
+        {
+
+
+
+            string comcod = this.GetCompCode();
+            string txtSProject = "%" + this.txtSrcEmployee.Text + "%";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlEmployee.DataTextField = "empname";
+            this.ddlEmployee.DataValueField = "empid";
+            this.ddlEmployee.DataSource = ds3.Tables[0];
+            this.ddlEmployee.DataBind();
+            ds3.Dispose();
+            ViewState["empinfo"] = ds3;
         }
 
         private void GetSelected()
@@ -403,6 +474,70 @@ namespace RealERPWEB
 
         }
 
+        protected void imgbtnEmployee_Click(object sender, EventArgs e)
+        {
+            string type1 = this.Request.QueryString["Type"].ToString().Trim();
+            if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020" || type1 == "10002")
+            {
+                this.GetSelected();
+            }
+
+            else
+            {
+                this.GetEmployee();
+            }
+        }
+
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
+
+        private void ShowView()
+        {
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+
+            if (this.ddlPrevious.Items.Count > 0)
+            {
+
+                DataTable dt = (DataTable)Session["tbllttDetails"];
+                string empid = this.ddlPrevious.SelectedValue;
+                DataRow[] dr1 = dt.Select("empid='" + empid + "'");
+
+                this.txtRefNo.Text = dr1.Length == 0 ? "" : dr1[0]["refno"].ToString();
+                this.ddlEmployee.SelectedValue = empid;
+                this.txtml.Text = dr1.Length == 0 ? "" : dr1[0]["lettdesc"].ToString();
+                this.txttodate.Text = dr1.Length == 0 ? "" : Convert.ToDateTime(dr1[0]["date"]).ToString("dd-MMM-yyyy");
+                return;
+            }
+
+
+            this.txtml.Text = this.data(type);
+
+
+
+        }
+
+        private void PreviousD()
+        {
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string empid = this.ddlPrevious.SelectedValue.ToString();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
+            if (ds3.Tables[0].Rows.Count == 0)
+                return;
+            this.ddlEmployee.Items.Clear();
+            this.ddlEmployee.DataTextField = "empname";
+            this.ddlEmployee.DataValueField = "empid";
+            this.ddlEmployee.DataSource = ds3.Tables[0];
+            this.ddlEmployee.DataBind();
+
+            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
+            this.txtml.Text = lett;
+            ViewState["letter"] = ds3.Tables[0];
+        }
+
         protected string data(string type01)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -423,6 +558,12 @@ namespace RealERPWEB
             //byte[] imageArray = System.IO.File.ReadAllBytes(Server.MapPath(imgpge));
             //string complogo = Convert.ToBase64String(imageArray);
 
+
+
+
+
+
+
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "SHOWUSERSIGN", usrid, "", "", "", "");
             DataTable dt1 = ds3.Tables[0];
             string empid = this.ddlEmployee.SelectedValue.ToString();
@@ -430,6 +571,8 @@ namespace RealERPWEB
             string type1 = this.Request.QueryString["Type"].ToString().Trim();
 
             string calltype = (Request.QueryString["Type"].ToString() == "10002") ? "GETEMPSALINFOAPP" : "GETEMPSALINFO";
+
+
 
 
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", calltype, empid, "", "", "", "", "", "", "", "");
@@ -613,6 +756,138 @@ namespace RealERPWEB
                     break;
             }
             return lbody;
+        }
+
+
+
+
+
+
+
+
+        private void ForJobCand()
+        {
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            //if (!chkpre.Checked)
+            //    return;
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string empid = this.ddlEmployee.SelectedValue.ToString();
+
+            string forJobCand = "";
+            if (type == "10003" || type == "10004" || type == "10005")
+            {
+                forJobCand = "GETLETTERJOBCAND";
+            }
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", "%", type, forJobCand, "", "", "", "", "", "");
+            this.ddlPrevious.DataTextField = "empname";
+            this.ddlPrevious.DataValueField = "EMPID";
+            this.ddlPrevious.DataSource = ds3.Tables[0];
+            this.ddlPrevious.DataBind();
+            ds3.Dispose();
+        }
+
+        private void LetterPreDetails()
+        {
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+
+            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LETTERPREVIUOS", type, "", "", "", "", "", "", "", "");
+            this.ddlPrevious.DataTextField = "txtfld";
+            this.ddlPrevious.DataValueField = "empid";
+            this.ddlPrevious.DataSource = ds.Tables[0];
+            this.ddlPrevious.DataBind();
+            Session["tbllttDetails"] = ds.Tables[0];
+
+        }
+
+
+        //protected void ddlPrevious_SelectedIndexChanged ( object sender, EventArgs e )
+        //{
+
+        //    this.ShowPreViousLt ();
+        //    //string cod = this.ddlPrevious.SelectedValue.ToString ().Trim ();
+
+        //    //this.ddlEmployee.ClearSelection ();
+        //    //this.ddlEmployee.Items.FindByValue (cod).Selected = true
+        //}
+        protected void ddlEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string type1 = this.Request.QueryString["Type"].ToString().Trim();
+            if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020" || type1 == "10002" || type1 == "10021" || type1 == "10022" || type1 == "10023")
+            {
+                var empid = this.ddlEmployee.SelectedValue.ToString();
+
+                var ds = (DataSet)ViewState["empinfo"];
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+
+                DataTable dt1 = ds.Tables[0].Copy();
+                DataView dv = dt1.DefaultView;
+                dv.RowFilter = ("empid='" + empid + "'");
+                dt1 = dv.ToTable();
+
+                ViewState["name"] = dt1.Rows[0]["empname1"];
+                ViewState["section"] = dt1.Rows[0]["section"];
+                ViewState["desig"] = dt1.Rows[0]["desig"];
+
+
+                this.ddlCat.DataTextField = "dptdesc";
+                this.ddlCat.DataValueField = "empid";
+                this.ddlCat.DataSource = dt1;
+                // this.ddlCat.Enabled = false;
+                this.ddlCat.DataBind();
+
+
+
+            }
+            else
+            {
+                var empid = this.ddlEmployee.SelectedValue.ToString();
+
+                var ds = (DataSet)ViewState["empinfo"];
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    return;
+                }
+
+
+                DataTable dt1 = ds.Tables[0].Copy();
+                DataView dv = dt1.DefaultView;
+                dv.RowFilter = ("empid='" + empid + "'");
+                dt1 = dv.ToTable();
+
+                ViewState["name"] = dt1.Rows[0]["empname1"];
+                ViewState["section"] = dt1.Rows[0]["section"];
+                ViewState["desig"] = dt1.Rows[0]["desig"];
+            }
+
+
+        }
+
+        protected void lbtnprevious_OnClick(object sender, EventArgs e)
+        {
+
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+
+            switch (type)
+            {
+                case "10003":
+                case "10004":
+                case "10005":
+                    this.ForJobCand();
+                    break;
+                case "10021":
+                case "10022":
+                case "10023":
+                    this.LetterPreDetails();
+                    break;
+            }
         }
     }
 }

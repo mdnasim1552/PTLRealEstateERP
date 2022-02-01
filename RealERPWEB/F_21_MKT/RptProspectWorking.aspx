@@ -110,7 +110,7 @@
                                 </asp:DropDownList>
                             </div>
                         </div>
-                        <div class="col-md-1 p-0">
+                        <div class="col-md-1 p-0 ml-2">
                             <asp:LinkButton ID="lnkbtnOk" runat="server" Text="Ok" CssClass="btn btn-primary okBtn" OnClick="lnkbtnOk_Click">Ok</asp:LinkButton>
                         </div>
                     </div>
@@ -134,30 +134,66 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Description">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvDescrption" runat="server" Height="16px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'
+                                                Width="150px" ForeColor="Black"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField
-                                        HeaderText="Project Name">
+                                        HeaderText="Prospect Name">
                                         <HeaderTemplate>
                                             <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                Text="Project Name" Width="180px"></asp:Label>
-                                            <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                Text="Prospect Name" Width="180px"></asp:Label>
+                                            <asp:HyperLink ID="hlnkbtnProsWorking" runat="server"
                                                 CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <asp:HyperLink ID="lblgvItmCode" runat="server"
+                                            <asp:Label ID="lblgvProsName" runat="server"
                                                 Font-Size="12px" Font-Underline="False" Target="_blank"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "projname")) %>'
-                                                Width="300px"></asp:HyperLink>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prospectname")) %>'
+                                                Width="250px"></asp:Label>
                                         </ItemTemplate>
-
                                         <HeaderStyle HorizontalAlign="Left" />
                                         <ItemStyle HorizontalAlign="left" />
                                         <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Profession Name">
+
+                                    <asp:TemplateField HeaderText="Contact No">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvPhone" runat="server" Height="16px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "phone")) %>'
+                                                Width="80px" ForeColor="Black"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Profession">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvProfession" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "profession")) %>'
+                                                Width="120px" ForeColor="Black"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Address">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvAddress" runat="server" Height="16px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "preaddress")) %>'
                                                 Width="150px" ForeColor="Black"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Interested Project">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvIntProject" runat="server" Height="16px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "interestproj")) %>'
+                                                Width="120px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -165,8 +201,17 @@
                                     <asp:TemplateField HeaderText="Source">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSource" runat="server" Height="16px"
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sourtxt")) %>'
-                                                Width="50px" ForeColor="Black"></asp:Label>
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsrc")) %>'
+                                                Width="80px" ForeColor="Black"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Discussion">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvDiscussion" runat="server" Height="16px"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
+                                                Width="180px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
