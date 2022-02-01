@@ -1495,7 +1495,7 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                     Rpt1.SetParameters(new ReportParameter("voutype", voutype1));
-                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("venar", venar));
                     Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                     Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
                 }
