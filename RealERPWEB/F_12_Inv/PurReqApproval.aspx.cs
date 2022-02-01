@@ -66,7 +66,7 @@ namespace RealERPWEB.F_12_Inv
                 this.GetProjectName();
                 this.GetStoreName();
                 this.GetPayType();
-                createTable();
+                this.createTable();
 
                 this.lnkOk_Click(null, null);
 
@@ -126,6 +126,7 @@ namespace RealERPWEB.F_12_Inv
                     this.dgv1.Columns[19].Visible = true;
                     this.dgv1.Columns[20].Visible = true;
                     this.dgv1.Columns[21].Visible = true;
+                    this.dgv1.Columns[22].Visible = true;
 
                     break;
 
@@ -133,7 +134,7 @@ namespace RealERPWEB.F_12_Inv
 
                     this.dgv1.Columns[12].Visible = true;
                     this.dgv1.Columns[14].Visible = true;
-                    this.dgv1.Columns[19].Visible = true;
+                    this.dgv1.Columns[20].Visible = true;
                     // this.dgv1.Columns[20].Visible = true;
                     //this.dgv1.Columns[21].Visible = true;
                     break;
@@ -285,14 +286,14 @@ namespace RealERPWEB.F_12_Inv
 
 
                 // DataTaowsble dt = (DataTable) ds1.Tables.r[0]["approval"];
-            
-               
 
 
 
 
 
-                    Session["tblreq"] = this.HiddenSameDate(ds1.Tables[0]);
+
+
+                Session["tblreq"] = this.HiddenSameDate(ds1.Tables[0]);
                 Session["tbltopage"] = ds1.Tables[1];
 
                 if (Request.QueryString["Type"].ToString() == "Approval")
@@ -404,8 +405,8 @@ namespace RealERPWEB.F_12_Inv
         private void GetApprQty()
         {
             DataTable dt = (DataTable)Session["tblreq"];
-            double apramt = 0.00;
-            double aprqty = 0.00, reqrat = 0.00;
+            double apramt = 0.00, boqamt = 0.00;
+            double aprqty = 0.00, reqrat = 0.00, bgdrat = 0.00;
             for (int i = 0; i < dt.Rows.Count; i++)
             {
 
@@ -414,14 +415,20 @@ namespace RealERPWEB.F_12_Inv
                 if (gpsl == "2")
                 {
                     dt.Rows[i]["areqamt"] = apramt;
+                    dt.Rows[i]["bgdreqamt"] = boqamt;
                     apramt = 0.00;
+                    boqamt = 0.00;
                     continue;
                 }
                 aprqty = Convert.ToDouble(dt.Rows[i]["preqty"]);
                 reqrat = Convert.ToDouble(dt.Rows[i]["reqrat"]);
+                bgdrat = Convert.ToDouble(dt.Rows[i]["bgdrat"]);
                 dt.Rows[i]["areqty"] = aprqty;
                 dt.Rows[i]["areqamt"] = aprqty * reqrat;
+                dt.Rows[i]["bgdreqamt"] = aprqty * bgdrat;
                 apramt += aprqty * reqrat;
+                boqamt += aprqty * bgdrat;
+
 
             }
             Session["tblreq"] = dt;
@@ -433,7 +440,7 @@ namespace RealERPWEB.F_12_Inv
         {
             DataTable dt = (DataTable)Session["tblreq"];
 
-          
+
 
 
 
@@ -507,16 +514,19 @@ namespace RealERPWEB.F_12_Inv
             {
                 switch (this.GetCompCode())
                 {
+
                     case "1205":
                     case "3351":
                     case "3352":
-                        //case "3101":
+                    case "3101":
 
                         this.dgv1.Columns[14].Visible = true;
+                        this.dgv1.Columns[19].Visible = true;
                         break;
 
                     default:
                         this.dgv1.Columns[14].Visible = false;
+                        this.dgv1.Columns[19].Visible = false;
                         break;
                 }
             }
@@ -1454,7 +1464,7 @@ namespace RealERPWEB.F_12_Inv
                 DropDownList ddl4 = (DropDownList)e.Row.FindControl("ddlptype");
                 HyperLink resourceLink = (HyperLink)e.Row.FindControl("lblgvResDesc");
                 TextBox supRat = (TextBox)e.Row.FindControl("txtgvsupRat");
-              
+
                 Label boqrate = (Label)e.Row.FindControl("lblgvboqRate");
 
 
@@ -1487,7 +1497,7 @@ namespace RealERPWEB.F_12_Inv
                 {
                     resourceLink.NavigateUrl = "~/F_12_Inv/RptMaterialStock.aspx?Type=inv&prjcode=" + pactcode + "&sircode=" + mResCode;
                     // Supplier & Specification
-                   
+
                     string Calltype = this.GetResSupplier();
                     DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", Calltype, mSrchTxt, mResCode, "", "", "", "", "", "", "");
                     if (ds2 == null)
@@ -1527,7 +1537,7 @@ namespace RealERPWEB.F_12_Inv
                 }
 
 
-                
+
 
 
 
@@ -1559,6 +1569,7 @@ namespace RealERPWEB.F_12_Inv
                         case "3101":
                         case "3353"://Manama
                         case "3354"://Edison Real Estate
+                        case "3364"://Edison Real Estate
 
                             survey.Visible = false;
                             break;
@@ -1570,7 +1581,8 @@ namespace RealERPWEB.F_12_Inv
                 }
                 else
                 {
-                    survey.NavigateUrl = "~/F_12_Inv/LinkShowMktSurvey.aspx?Type=TarVsAch&msrno=" + msrno;
+                    survey.NavigateUrl = "~/F_12_Inv/LinkMktSurvey.aspx?reqno=" + reqno;
+                    // survey.NavigateUrl = "~/F_12_Inv/LinkShowMktSurvey.aspx?Type=TarVsAch&msrno=" + msrno;
 
                 }
 
@@ -1792,7 +1804,7 @@ namespace RealERPWEB.F_12_Inv
                 tbl1.Rows[index]["ptype"] = ptype;
                 tbl1.Rows[index]["pdesc"] = pdesc;
             }
-                
+
             Session["tblreq"] = tbl1;
             this.dgv1.EditIndex = -1;
             this.Data_Bind();
@@ -1800,8 +1812,9 @@ namespace RealERPWEB.F_12_Inv
         protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
         {
             this.Session_tblReq_Update();
+            //this.GetApprQty();
             this.Data_Bind();
-            ddlBestSupplierinfo();
+            this.ddlBestSupplierinfo();
         }
 
         private void Session_tblReq_Update()
@@ -1830,6 +1843,8 @@ namespace RealERPWEB.F_12_Inv
                     double dgvsupRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[j].FindControl("txtgvsupRat")).Text.Trim()));
                     double dgvdispercnt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[j].FindControl("txtgvdispercnt")).Text.Trim().Replace("%", "")));
                     double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv1.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
+                    double dgvBoqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.dgv1.Rows[j].FindControl("lblgvboqRate")).Text.Trim()));
+
                     dgvdispercnt = (dgvReqRat > 0) ? ((dgvsupRat - dgvReqRat) * 100) / dgvsupRat : dgvdispercnt;
                     dgvReqRat = (dgvReqRat > 0) ? dgvReqRat : (dgvsupRat - dgvsupRat * .01 * dgvdispercnt);
                     string dgvUseDat = ((TextBox)this.dgv1.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
@@ -1837,6 +1852,7 @@ namespace RealERPWEB.F_12_Inv
                     string dgvReqNote = ((TextBox)this.dgv1.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
                     double dgvReqAmt = dgvReqQty * dgvReqRat;
                     double dgvApprAmt = dgvApprQty * dgvReqRat;
+                    double dgvbgdreqamt = dgvApprQty * dgvBoqRat;
                     ((Label)this.dgv1.Rows[j].FindControl("txtgvReqQty")).Text = dgvReqQty.ToString("#,##0.000;(#,##0.000); ");
                     ((TextBox)this.dgv1.Rows[j].FindControl("txtgvappQty")).Text = dgvApprQty.ToString("#,##0.000;(#,##0.000); ");
                     ((TextBox)this.dgv1.Rows[j].FindControl("txtgvsupRat")).Text = dgvsupRat.ToString("#,##0.0000;(#,##0.0000); ");
@@ -1844,6 +1860,9 @@ namespace RealERPWEB.F_12_Inv
                     ((TextBox)this.dgv1.Rows[j].FindControl("txtgvResRat")).Text = dgvReqRat.ToString("#,##0.0000;(#,##0.0000); ");
                     //((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTResAmt")).Text = dgvReqAmt.ToString("#,##0.000;(#,##0.000); ");
                     ((Label)this.dgv1.Rows[j].FindControl("lblgvTAprAmt")).Text = dgvApprAmt.ToString("#,##0.000;(#,##0.000); ");
+                    ((Label)this.dgv1.Rows[j].FindControl("lblgvbgdreqamt")).Text = dgvbgdreqamt.ToString("#,##0.000;(#,##0.000); ");
+
+
                     if (dgvsupRat < dgvReqRat)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1871,9 +1890,10 @@ namespace RealERPWEB.F_12_Inv
                     tbl1.Rows[TblRowIndex2]["expusedt"] = dgvUseDat;
                     tbl1.Rows[TblRowIndex2]["pursdate"] = dgvSupDat;
                     tbl1.Rows[TblRowIndex2]["reqnote"] = dgvReqNote;
+                    tbl1.Rows[TblRowIndex2]["bgdreqamt"] = dgvbgdreqamt;
                 }
 
-                
+
             }
 
             DataView dv = tbl1.Copy().DefaultView;
@@ -2721,7 +2741,7 @@ namespace RealERPWEB.F_12_Inv
         //update nahid 20211013- for same supplier selected
         protected void chkSameSupplier_CheckedChanged(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)Session["tblreq"];            
+            DataTable dt = (DataTable)Session["tblreq"];
             string ssircode = ((DropDownList)dgv1.Rows[0].FindControl("ddlSupname")).SelectedValue.ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
             {

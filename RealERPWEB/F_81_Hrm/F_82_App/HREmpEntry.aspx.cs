@@ -393,9 +393,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     empid = this.ddlNPEmpName.SelectedValue.ToString();
                     this.lblPEmpName.Text = this.ddlNPEmpName.SelectedItem.Text.Substring(7);
                     this.chknewEmp.Checked = false;
+
                 }
+             
                 else
                 {
+                     
+
                     this.lblPEmpName.Text = this.ddlPEmpName.SelectedItem.Text.Substring(7);
                     empid = this.ddlPEmpName.SelectedValue.ToString();
                 }
@@ -597,7 +601,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //case "3338": //Acme 
                 case "3347": //PEB           
                 case "3348": //Credence           
-                case "3355": //GreenWood           
+                case "3355": //GreenWood
+                case "3365": // BTI
 
                     // this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 2;
@@ -659,7 +664,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 // break;
 
 
-                case "3101": 
+                //case "3101": 
                 case "3338": //Acme
                     this.rbtGross.Visible = false;
                     this.rbtGross.SelectedIndex = 3;
@@ -1080,7 +1085,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                             break;
 
-                        case "3101":
+                        //case "3101":
                         case "3338":// Acme
                             toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
                             ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
@@ -1095,6 +1100,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
                             break;
+
+
+                        case "3365":// PTI
+
+                            toaddamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(gval)", "")) ? 0 : dt1.Compute("sum(gval)", "")));
+                            ((Label)this.gvSalAdd.FooterRow.FindControl("lgvFSalAdd")).Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            this.txtgrossal.Text = toaddamt.ToString("#,##0;(#,##0); ");
+                            break;
+
 
                         default:
 
@@ -1317,6 +1331,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //-------------------------////
 
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
+
+            if(projectcode=="000000000000")
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select Section !!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+
+            }
+
             string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
             string desigid = this.ddlDesignation.SelectedValue.ToString();
             string designame = this.ddlDesignation.SelectedItem.Text;
@@ -2360,8 +2383,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             //string empid = (this.chknewEmp.Checked == true) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
             string empid = (this.ddlNPEmpName.Items.Count > 0) ? this.ddlNPEmpName.SelectedValue.ToString() : this.ddlPEmpName.SelectedValue.ToString();
 
+            this.lnkNextbtn.PostBackUrl = "ImgUpload.aspx?Type=Entry&empid=" + empid;
+            
 
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('ImgUpload.aspx?Type=Entry&empid=" + empid + "', target='_self');</script>";
 
         }
 

@@ -678,6 +678,8 @@ namespace RealEntity.C_17_Acc
             public double trnqty { get; set; }
             public double totalamt { get; set; }
             public string spcldesc { get; set; }
+
+            
             public PostVoucherPrint() { }
         }
 

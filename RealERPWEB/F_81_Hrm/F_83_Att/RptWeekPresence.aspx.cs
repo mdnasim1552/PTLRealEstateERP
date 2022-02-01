@@ -142,7 +142,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
             DataTable dt = (DataTable)ViewState["tblglWeekPre"];
-
+           
             double staff = Convert.ToDouble(dt.Rows[dt.Rows.Count - 1]["staff"]);
             double lrowpre = Convert.ToDouble(dt.Rows[dt.Rows.Count - 1]["present"]);
             double pre6row = Convert.ToDouble(dt.Rows[dt.Rows.Count - 2]["present"]);

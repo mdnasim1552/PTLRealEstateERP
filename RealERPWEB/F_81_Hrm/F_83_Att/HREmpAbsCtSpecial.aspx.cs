@@ -354,6 +354,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseModal_AlrtMsg();", true);
             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "CloseMOdal();", true);
+
+            this.ShowAbsCount();
         }
       
 

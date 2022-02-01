@@ -29,6 +29,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         string Upload = "";
         int size = 0;
         System.IO.Stream image_file = null;
+        Common compUtility = new Common();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,20 +45,43 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //this.GetEmployeeName();
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PERSONAL INFORMATION";
-                ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+
                 this.getLastCardNo();
                 this.lblLastCardNo.Visible = false;
+                CommonButton();
             }
 
 
 
 
         }
+        public void CommonButton()
+        {
+            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
+
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
+            ((Panel)this.Master.FindControl("pilleftDvi")).Visible = false;
+
+
+
+
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
+            ((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
+
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lUpdatPerInfo_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
@@ -70,6 +94,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             return (hst["comcod"].ToString());
 
         }
+
 
         private void getLastCardNo()
         {
@@ -121,6 +146,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected void ddlInformation_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SelectView();
+
         }
 
         protected void ibtnEmpList_Click(object sender, EventArgs e)
@@ -177,9 +203,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.ShowPersonalInformation();
                     this.lblLastCardNo.Visible = true;
                     this.addOcupation.Visible = false;
-                    this.FileUploadControl.Visible = true;
-                    this.btnUpload.Visible = true;
 
+                    this.UploadCV.Visible = false;
+                    this.FileUploadControl.Visible = false;
+                    this.lblUploadCV.Visible = false;
+
+                    this.btnUpload.Visible = true;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     break;
 
                 case "10":
@@ -187,6 +217,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.GetAcaDemicDegree();
                     this.ShowDegree();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
 
                     break;
 
@@ -195,6 +226,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.MultiView1.ActiveViewIndex = 2;
                     this.ShowEmpRecord();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
 
                     break;
 
@@ -202,12 +234,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.MultiView1.ActiveViewIndex = 3;
                     this.ShowEmpPosition();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
                     break;
 
                 case "15":
                     this.MultiView1.ActiveViewIndex = 5;
                     this.ShowJobRespon();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
                     break;
 
 
@@ -215,6 +251,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.MultiView1.ActiveViewIndex = 4;
                     this.ShowReferecne();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
                     break;
                 case "20":
                 case "21":
@@ -224,18 +262,24 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.ShowParentDT();
                     this.ShowLastDegree();
                     this.addOcupation.Visible = true;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
                     break;
 
                 case "30":
                     this.MultiView1.ActiveViewIndex = 7;
                     this.ShowCTCDetails();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
                     break;
 
                 case "31":
                     this.MultiView1.ActiveViewIndex = 8;
                     this.ShowSalaryDetails();
                     this.addOcupation.Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
+
                     break;
 
 
@@ -779,15 +823,89 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string infoid = this.ddlInformation.SelectedValue.ToString();
+            switch (infoid)
+            {
+                case "01":
+                    lUpdatPerInfo_Click1(null, null);
+                    break;
+                case "10":
+                    lUpdateDegree_Click(null, null);
+                    break;
 
-            //---------------Validation Check---------------------//
-            //int value =0;
+
+            }
+        }
+        protected void lUpdatPerInfo_Click1(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetComeCode();
+            //string Gvalue="";
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            string empname = ((TextBox)this.gvPersonalInfo.Rows[1].FindControl("txtgvVal")).Text.Trim();
+            //Log Entry
+             
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
 
-                if (Gcode == "01001" || Gcode == "01003")
+                //new nahid by 20220126
+                 
+                if (Gcode == "01001")
+                {
+                    string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+                    if (Gvalue.Length == 0)
+                    {
+                        string errMsg = "Please Put ID CARD Number";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.Color.Red;
+                        return;
+                    }
+
+                    DataSet copSetup = compUtility.GetCompUtility();
+                    if (copSetup == null)
+
+                        return;
+                    int idCardLength = copSetup.Tables[0].Rows.Count==0?0:Convert.ToInt32(copSetup.Tables[0].Rows[0]["hr_idcardlen"]);
+                    if (Gvalue.Length != idCardLength && idCardLength !=0)
+                    {
+                        string errMsg = "Please Put " + idCardLength + " Digit ID CARD Number";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.Color.Red;
+                        return;
+                    }
+                    else
+                    {
+                        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
+
+                    }
+
+                    //// for duplicate value 
+                    ///
+                    ////
+                    ///////////----------------------------------------
+                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETIDCARDNO", Gvalue, "", "", "", "", "", "", "", "");
+                    if (ds2.Tables[0].Rows.Count == 0)
+                        ;
+                    else
+                    {
+                        DataView dv1 = ds2.Tables[0].DefaultView;
+                        dv1.RowFilter = ("empid <>'" + empid + "'");
+                        DataTable dt = dv1.ToTable();
+                        if (dt.Rows.Count == 0)
+                            ;
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate ID CARD No" + "');", true);
+
+                            return;
+                        }
+                    }
+                    ///////////////----------------------------------------
+                     
+                }
+                 
+                if (Gcode == "01003")
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
 
@@ -803,39 +921,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
 
                 }
-                //else if (Gcode == "01023" || Gcode == "01010" || Gcode == "01011")
-                //{
-                //    string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-
-                //    if (Gvalue == "99001" || Gvalue == "92001" || Gvalue == "95001")
-                //    {
-                //        int y = 1;
-                //        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.Color.Red;
-                //        value = value + y;
-                //    }
-                //    else
-                //    {
-                //        ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgcResDesc1")).ForeColor = System.Drawing.ColorTranslator.FromHtml("#000");
-                //    }
-
-                //}
-
-
+                 
             }
-            //if (value != 0)
-            //{
-            // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Not Successfully";
-            //    return;
-            //}
+             
             //---------------Validation Check---------------------//
 
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetComeCode();
-            //string Gvalue="";
-            string empid = this.ddlEmpName.SelectedValue.ToString();
-            string empname = ((TextBox)this.gvPersonalInfo.Rows[1].FindControl("txtgvVal")).Text.Trim();
-            //Log Entry
 
+           
             DataTable dtuser = (DataTable)Session["UserLog"];
             string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
             string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
@@ -861,6 +953,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
 
+
             if (result == false)
                 return;
 
@@ -870,123 +963,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                 string gvalueBn = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvValBn")).Text.Trim();
                 string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                if (Gcode == "01001")
-                {
-                    Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
-
-                    switch (comcod)
-                    {
-
-                        case "4332":
-                        case "4101":
-
-
-                            if (Gvalue.Length != 4)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 4 Digit ID CARD Number";
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                return;
-                            }
-                            break;
-
-                        case "3354": // edison real
-                        case "3347": // Peb Steel
-
-                            //if (Gvalue.Length != 15)
-                            //{
-                            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 15 Digit ID CARD Number";
-                            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                            //    return;
-                            //}
-                            break;
-
-                        case "3333":
-                            if (Gvalue.Length != 8)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 8 Digit ID CARD Number";
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                return;
-
-                            }
-                            break;
-
-                        case "3336":
-                        case "3337":
-                            if (Gvalue.Length != 7)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 7 Digit ID CARD Number";
-                                return;
-
-                            }
-                            break;
-
-                        // for manama 
-                        case "3353":
-                            if (Gvalue.Length != 4)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 4 Digit ID CARD Number";
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                return;
-                            }
-                            break;
-                        default:
-                            if (Gvalue.Length != 6)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 6 Digit ID CARD Number";
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                return;
-
-                            }
-                            break;
-
-                    }
-
-
-
-
-
-
-
-
-                    //if (comcod != "4306")
-                    //{
-                    //    if (Gvalue.Length != 6)
-                    //    {
-                    //     ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 6 Digit ID CARD Number";
-                    //        return;
-                    //    }
-                    //    //if (Gvalue.Length != 4)
-                    //    //{
-                    //    // ((Label)this.Master.FindControl("lblmsg")).Text = "Please Put 4 Digit ID CARD Number";
-                    //    //    return;
-                    //    //}
-                    //}
-
-
-
-
-                    ////
-                    ///////////----------------------------------------
-                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETIDCARDNO", Gvalue, "", "", "", "", "", "", "", "");
-                    if (ds2.Tables[0].Rows.Count == 0)
-                        ;
-                    else
-                    {
-                        DataView dv1 = ds2.Tables[0].DefaultView;
-                        dv1.RowFilter = ("empid <>'" + empid + "'");
-                        DataTable dt = dv1.ToTable();
-                        if (dt.Rows.Count == 0)
-                            ;
-                        else
-                        {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate ID CARD No";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                            return;
-                        }
-                    }
-                    ///////////////----------------------------------------
-
-                }
+                
 
                 if (Gcode == "01003" || Gcode == "01007" || Gcode == "01008")
                 {
@@ -1007,19 +984,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail" + "');", true);
+                    return;
                 }
 
             }
             this.getLastCardNo();
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
         }
         protected void lUpdateDegree_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1060,14 +1037,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+
 
 
         }
         protected void lUpdateEmprecord_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1086,13 +1064,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, ComName, "", Desig, "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", frmduration, toDuration, "", "", "", "");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+
 
         }
         protected void lUpdateEmpAssocia_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1109,13 +1087,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, OrgName, "", Position, "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+
 
         }
         protected void lUpdateRef_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1133,8 +1111,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcode, gtype, Name, "", OrgName, Designation, Phone, Mobile, "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", "", "", "", "");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
         }
 
@@ -1446,13 +1424,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
 
 
-        protected void lnkNextbtn_Click(object sender, EventArgs e)
-        {
-
-
-
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('HREmpEntry.aspx?Type=Aggrement', target='_self');</script>";
-        }
+      
 
 
 
@@ -1487,7 +1459,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lUpdateJobRes_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //  ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1502,8 +1474,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPJOBRESPONINSUPDATE", empid, Gcode, jobRespons, "", "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+
 
         }
         protected void ddlAcadegree_SelectedIndexChanged(object sender, EventArgs e)
@@ -1623,7 +1596,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         protected void lUpdateFamilyInfo_OnClick(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //    ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1644,8 +1617,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     bool result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, Gcod, gtype, name, "", "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900", lastdegree, ocupation, org, age);
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update fail";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
+
 
 
                     }
@@ -1653,13 +1626,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+
         }
 
         protected void lUpdateCtcInfo_OnClick(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            // ((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1674,14 +1648,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Update fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
 
-
+                return;
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
         }
 
@@ -1716,7 +1688,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lUpdateSalInfo_OnClick(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            //((Label)this.Master.FindControl("lblmsg")).Visible = true;
 
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpName.SelectedValue.ToString();
@@ -1732,14 +1704,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Update fail";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
 
 
             }
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
         }
 
         protected void lTotalClickSal_OnClick(object sender, EventArgs e)
@@ -1816,8 +1787,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             break;
 
                         default:
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Update fail";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
+
                             return;
                             break;
 
@@ -1830,14 +1801,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
                     if (!result)
                     {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "File Update fail !!!" + "');", true);
 
-                        lblmsg.Text = "File Update fail !!!";
                         return;
                     }
                     else
                     {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "File Update Succesfull !!!" + "');", true);
 
-                        lblmsg.Text = "File Update Succesfull !!!";
 
                     }
                     FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));

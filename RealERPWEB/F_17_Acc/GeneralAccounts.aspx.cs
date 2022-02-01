@@ -195,9 +195,10 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-               // case "3101": // Test
+                // case "3101": // Test
                 case "3332":
                 case "3339":
+                case "3356": // intech 
                     this.chkpost.Checked = true;
                     break;
 
@@ -466,6 +467,9 @@ namespace RealERPWEB.F_17_Acc
         protected void lnkAcccode_Click(object sender, EventArgs e)
         {
 
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
 
             List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead> lst = (List<RealEntity.C_17_Acc.EClassAccVoucher.EClassAccHead>)Session["HeadAcc1"];
             string vounum = this.ddlvoucher.SelectedValue.ToString();
@@ -498,7 +502,7 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                this.ddlacccode.DataTextField = "actdesc1";
+                this.ddlacccode.DataTextField = TextField;
                 this.ddlacccode.DataValueField = "actcode";
                 this.ddlacccode.DataSource = ProjectQuery;
                 this.ddlacccode.DataBind();
@@ -508,7 +512,7 @@ namespace RealERPWEB.F_17_Acc
 
             else
             {
-                this.ddlacccode.DataTextField = "actdesc1";
+                this.ddlacccode.DataTextField = TextField;
                 this.ddlacccode.DataValueField = "actcode";
                 this.ddlacccode.DataSource = lst;
                 this.ddlacccode.DataBind();
@@ -593,6 +597,8 @@ namespace RealERPWEB.F_17_Acc
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
+                string ddldesc = hst["ddldesc"].ToString();
+                string TextField = (ddldesc == "True" ? "resdesc" : "resdesc1");
                 string actcode = this.ddlacccode.SelectedValue.ToString();
                 string filter1 = "%" + this.txtserchReCode.Text.Trim() + "%";
 
@@ -641,7 +647,7 @@ namespace RealERPWEB.F_17_Acc
                 Session["HeadRsc1"] = lst;
 
                 this.ddlresuorcecode.DataSource = lst;
-                this.ddlresuorcecode.DataTextField = "resdesc1";
+                this.ddlresuorcecode.DataTextField = TextField;
                 this.ddlresuorcecode.DataValueField = "rescode";
                 this.ddlresuorcecode.DataBind();
                 List<RealEntity.C_17_Acc.EClassAccVoucher.EClassResHead> lst1 = lst.FindAll((p => p.rescode == oldRescode));
@@ -762,7 +768,7 @@ namespace RealERPWEB.F_17_Acc
                 this.ddlBillList.Visible = true;
 
 
-                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98")|| (ASTUtility.Left(lst2[0].rescode, 2) == "93")))
+                if ((ASTUtility.Left(lst2[0].rescode, 2) == "99" || (ASTUtility.Left(lst2[0].rescode, 2) == "98") || (ASTUtility.Left(lst2[0].rescode, 2) == "93")))
                     this.txtPayto.Text = lst2[0].resdesc;
 
 
@@ -1356,6 +1362,7 @@ namespace RealERPWEB.F_17_Acc
                 if (cindex >= 0)
                     this.dgv1.Rows[cindex].Attributes["style"] = "background-color:#3399FF; font-weight:bold;";
                 this.CalculatrGridTotal();
+
                 //this.ddlacccode.BackColor = System.Drawing.Color.Beige;
                 //this.ddlresuorcecode.BackColor = System.Drawing.Color.Beige;
                 //this.ddlSpclinf.BackColor = System.Drawing.Color.Beige;
@@ -1506,7 +1513,11 @@ namespace RealERPWEB.F_17_Acc
             double cramt = Convert.ToDouble("0" + ((TextBox)this.dgv1.FooterRow.FindControl("txtTgvCrAmt")).Text);
             string vouchertype = this.txtcurrentvou.Text == "" ? "" : this.txtcurrentvou.Text.Substring(0, 2);
             double txttoamt = Math.Abs((dramt - cramt));
-            this.lblInword.Text = (vouchertype == "JV") ? "" : (txttoamt > 0 ? ASTUtility.Trans(txttoamt, 2) : "");                 
+            this.lblInword.Text = (vouchertype == "JV") ? "" : (txttoamt > 0 ? ASTUtility.Trans(txttoamt, 2) : "");
+
+
+            Session["Report1"] = dgv1;
+            ((HyperLink)this.dgv1.HeaderRow.FindControl("hlbtntbGrdExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
 
         }
@@ -1518,7 +1529,7 @@ namespace RealERPWEB.F_17_Acc
             {
                 //case "1103":
                 case "3101":
-               // case "3348":
+                // case "3348":
 
                 case "3353":
                     this.dgv1.Columns[14].Visible = true;
@@ -1527,7 +1538,7 @@ namespace RealERPWEB.F_17_Acc
                     this.dgv1.Columns[14].Visible = true;
                     break;
             }
-          
+
 
         }
 
@@ -1632,16 +1643,16 @@ namespace RealERPWEB.F_17_Acc
         }
 
         //Same Cheque No
-        private string SameChqValue( string refno1)
+        private string SameChqValue(string refno1)
         {
 
-            
+
             string sameChqval = "";
             switch (refno1)
             {
                 case "BT":
                     sameChqval = "BT";
-                  
+
                     break;
 
                 case "RTGS":
@@ -1656,7 +1667,7 @@ namespace RealERPWEB.F_17_Acc
                 case "ONLINEDEPOSIT":
                     sameChqval = "ONLINEDEPOSIT";
                     break;
-                
+
                 default:
                     sameChqval = "";
                     break;
@@ -1837,16 +1848,16 @@ namespace RealERPWEB.F_17_Acc
                     string cvounum = this.ddlPrivousVou.SelectedValue.ToString();
 
                     DateTime frmdate, todate, tvoudat;
-                     //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
+                    //frmdate = Convert.ToDateTime(cvounum.Substring(6, 2) + "/01/" + cvounum.Substring(2, 4));
 
-                    frmdate =Convert.ToDateTime(ASTUtility.DateFormat("01"+"."+cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
+                    frmdate = Convert.ToDateTime(ASTUtility.DateFormat("01" + "." + cvounum.Substring(6, 2) + "." + cvounum.Substring(2, 4)));
                     todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy") + " 12:00:00 AM");
 
-                     //string todate1 = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                     //todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
-                     tvoudat = Convert.ToDateTime(voudat);
+                    //string todate1 = frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    //todate = Convert.ToDateTime(todate1 + " 12:00:00 AM");
+                    tvoudat = Convert.ToDateTime(voudat);
 
-                    
+
 
                     //tvoudat = Convert.ToDateTime(voudat);
 
@@ -1856,7 +1867,7 @@ namespace RealERPWEB.F_17_Acc
                     {
                         //((Label)this.Master.FindControl("lblmsg")).Text =  "from date : "+ frmdate + " To date "  + todate + " current date  : " + tvoudat;
                         //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                       
+
 
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Voucher can be eidited during the date range of that particular month');", true);
                         return;
@@ -2149,12 +2160,12 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                
+
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
                     string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
-                    string eventdesc = this.Request.QueryString["Mod"] == "Accounts" ? "Voucher Entry" : "Voucher Edit" ;
+                    string eventdesc = this.Request.QueryString["Mod"] == "Accounts" ? "Voucher Entry" : "Voucher Edit";
                     string eventdesc2 = "Voucher: " + this.txtcurrentvou.Text.Trim() + this.txtCurrntlast6.Text.Trim() + " Dated: " + this.txtEntryDate.Text.Trim(); ;
                     bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
@@ -2800,13 +2811,32 @@ namespace RealERPWEB.F_17_Acc
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+
+                string comcod = this.GetCompCode();
+
                 HyperLink hlnkAccdesc1 = (HyperLink)e.Row.FindControl("hlnkAccdesc1");
-
+                //start nahid
                 TextBox tnrRemarks = (TextBox)e.Row.FindControl("txtgvRemarks");
+                TextBox txtgvDrAmt = (TextBox)e.Row.FindControl("txtgvDrAmt");
+                TextBox txtgvQty = (TextBox)e.Row.FindControl("txtgvQty");
+                TextBox txtgvRate = (TextBox)e.Row.FindControl("txtgvRate");
+                TextBox txtgvCrAmt = (TextBox)e.Row.FindControl("txtgvCrAmt");
+             
 
+
+                string txtRemarks = tnrRemarks.Text.Trim();
+                string dramt = txtgvDrAmt.Text.Trim();
+                double Dramt = Convert.ToDouble("0" + dramt);
+
+                string remktype = txtRemarks.Length > 0 ? ASTUtility.Left(txtRemarks, 3).Trim().ToString() : "";
+
+
+                //end nahid
                 string actcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString();
                 string subcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "subcode")).ToString();
                 string subdesc = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "subdesc")).ToString();
+
+
 
 
                 if (subcode != "000000000000")
@@ -2821,25 +2851,43 @@ namespace RealERPWEB.F_17_Acc
                 {
                     if (hlnkAccdesc1 != null)
                         hlnkAccdesc1.NavigateUrl = "LinkAccLedger.aspx?Type=Ledger&RType=GLedger&Date1=" + Convert.ToDateTime(this.txtEntryDate.Text).AddDays(-90).ToString("dd-MMM-yyyy") + "&Date2=" + Convert.ToDateTime(this.txtEntryDate.Text).ToString("dd-MMM-yyyy") + "&sircode=" + subcode + "&actcode=" + actcode;
-
-
-
                 }
 
 
 
-                //string comcod = this.GetCompCode();
-                //switch (comcod)
-                //{
-                //    case "3101":
-                //    case "3353":
-                //        tnrRemarks.ReadOnly = false;
+                switch (comcod)
+                {
+                    case "3305":
+                    case "3306":
+                    case "2305":
+                    case "3310":
+                    case "3311":
+                    case "3355":
+                    case "3101":
+                        if (this.ddlPrivousVou.Items.Count > 0)
+                        {
+                            if (((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0))
 
-                //        break;
-                //    default:
-                //        tnrRemarks.ReadOnly = true;
-                //        break;
-                //}
+                            {
+                                LinkButton Delete = e.Row.Cells[1].Controls[0] as LinkButton;
+                                LinkButton Edit = e.Row.Cells[2].Controls[0] as LinkButton;
+                                Delete.Enabled = false;
+                                Edit.Enabled = false;
+
+                                tnrRemarks.Enabled = false;
+                                txtgvDrAmt.Enabled = false;
+                                txtgvQty.Enabled = false;
+                                txtgvRate.Enabled = false;
+                                txtgvCrAmt.Enabled = false;
+                                tnrRemarks.ReadOnly = true;
+                            }
+                        }                        
+                        break;
+                    default:
+                        tnrRemarks.ReadOnly = false;
+                        break;
+                }
+
 
             }
         }
@@ -2919,18 +2967,18 @@ namespace RealERPWEB.F_17_Acc
             Session.Remove("tblvoucher");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-           // DataTable dt= Session["tblcopyvoucher"]
-        
+            // DataTable dt= Session["tblcopyvoucher"]
 
-           // DataTable dtuser = (DataTable)Session["UserLog"];
-           // string pounaction = (dtuser.Rows.Count == 0) ? ((this.chkpost.Checked) ? "U" : "") : dtuser.Rows[0]["pounaction"].ToString().Trim();
-           //string aprovbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
+
+            // DataTable dtuser = (DataTable)Session["UserLog"];
+            // string pounaction = (dtuser.Rows.Count == 0) ? ((this.chkpost.Checked) ? "U" : "") : dtuser.Rows[0]["pounaction"].ToString().Trim();
+            //string aprovbyid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["aprvbyid"].ToString();
 
 
             //string CallType = (this.chkpost.Checked && pounaction.Length == 0) ? "EDITVOUCHER" : (this.chkpost.Checked) ? "EDITUNVOUCHER" : "EDITVOUCHER";
             string vounum = this.ddlcopyvoucher.SelectedValue.ToString();
-            string pounaction = ((DataTable)Session["tblcopyvoucher"]).Select("vounum='"+ vounum + "'")[0]["pounaction"].ToString();
-            string CallType = pounaction.Length==0 ? "EDITVOUCHER" : "EDITUNVOUCHER" ;
+            string pounaction = ((DataTable)Session["tblcopyvoucher"]).Select("vounum='" + vounum + "'")[0]["pounaction"].ToString();
+            string CallType = pounaction.Length == 0 ? "EDITVOUCHER" : "EDITUNVOUCHER";
 
             DataSet _EditDataSet = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", CallType, vounum, "", "", "", "", "", "", "", "");
             DataTable dt = this.HiddenSameData(_EditDataSet.Tables[0]);

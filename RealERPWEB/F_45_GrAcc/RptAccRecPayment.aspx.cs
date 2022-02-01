@@ -14,6 +14,9 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_45_GrAcc
 {
     public partial class RptAccRecPayment : System.Web.UI.Page
@@ -308,6 +311,7 @@ namespace RealERPWEB.F_45_GrAcc
                 this.gvGrpRPBS.DataBind();
 
             }
+            Session["dstrecpayment"] = ds1.Copy();
 
             Session["tblrecandpayment"] = HiddenSameData(ds1.Tables[0]);
             ViewState["tblbs"] = this.HiddenSameData02(ds1.Tables[2]);
@@ -1600,6 +1604,117 @@ namespace RealERPWEB.F_45_GrAcc
 
         private void RptAccRecPay01()
         {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                // leisure group
+                case "8325":
+                case "2325":
+                case "3325":
+                    this.RptAccRecPay01Rdlc();
+                    break;
+
+                default:
+                    this.RptAccRecPay01Crystal();
+                    break;
+            }
+
+            
+        }
+        private void RptAccRecPay01Rdlc()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string comcod = this.GetCompCode();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string date1 = "From  " + Convert.ToDateTime(this.txtDateFrom.Text).ToString("dd-MMM-yyyy") + " To  " + Convert.ToDateTime(this.txtDateto.Text).ToString("dd-MMM-yyyy");
+
+
+
+            DataSet ds1 = ((DataSet)Session["dstrecpayment"]);
+            if (ds1 == null)
+                return;
+
+            DataView dv1 = ds1.Tables[0].Copy().DefaultView;
+            dv1.RowFilter = ("grp1 = '99' and actcode NOT LIKE '%00000000%'");
+            DataTable dt1 = dv1.ToTable();
+
+            //DataView dv2 = ds1.Tables[2].Copy().DefaultView;
+            //dv2.RowFilter = ("actcode NOT LIKE '%AAAA%'");
+            //DataTable dt2 = dv2.ToTable();
+
+            DataTable dt2 = ds1.Tables[2];
+
+            string comp1 = "";
+            string comp2 = "";
+            string comp3 = "";
+
+            int j = 1;
+            for (int i = 0; i < this.ddlComCode.Items.Count; i++)
+            {
+
+                if (ddlComCode.Items[i].Selected)
+                {
+                    string header = this.ddlComCode.Items[i].Text.Trim();
+                    if (i == 0)
+                    {
+                        comp1 = header;
+                    }
+                    else if(i == 1)
+                    {
+                        comp2 = header;
+
+                    }
+                    else if (i == 2)
+                    {
+                        comp3 = header;
+
+                    }
+                    else
+                    {
+
+                    }
+
+                    j++;
+                    if (j == 4)
+                        break;
+                }
+
+            }
+
+
+
+            var list1 = dt1.DataTableToList<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPayment>();
+            var list2 = dt2.DataTableToList<RealEntity.C_45_GrAcc.RptGrpMis.RptGrpRecPaymentBank>();
+            LocalReport rpt = new LocalReport();
+            rpt = RptSetupClass1.GetLocalReport("R_45_GrAcc.RptGrpMisRecPayment", list1, list2, null);
+            rpt.EnableExternalImages = true;
+            //compname, txtTitle,comAddress
+            rpt.SetParameters(new ReportParameter("txtComNam", comnam));
+            rpt.SetParameters(new ReportParameter("txtTitle", "Receipt And Payment"));
+            rpt.SetParameters(new ReportParameter("comAddress", comadd));
+            rpt.SetParameters(new ReportParameter("date1", date1));
+            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
+            rpt.SetParameters(new ReportParameter("comp1", comp1));
+            rpt.SetParameters(new ReportParameter("comp2", comp2));
+            rpt.SetParameters(new ReportParameter("comp3", comp3));
+
+            Session["Report1"] = rpt;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
+        }
+
+
+        private void RptAccRecPay01Crystal()
+        {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comnam = hst["comnam"].ToString();
             string comadd = hst["comadd1"].ToString();
@@ -1641,76 +1756,7 @@ namespace RealERPWEB.F_45_GrAcc
             }
 
 
-            //Balance Calculation
-            // j = 1;
-            //for (int i = 0; i < this.cblCompany.Items.Count; i++)
-            //{
-
-            //    if (cblCompany.Items[i].Selected)
-            //    {
-            //        string header = this.cblCompany.Items[i].Text.Trim();
-            //        TextObject rpttxth = rptstk.ReportDefinition.ReportObjects["txtc" + j.ToString()] as TextObject;
-            //        rpttxth.Text = header;
-            //        j++;
-            //        if (j == 7)
-            //            break;
-            //    }
-
-            //}
-
             DataTable dt = (DataTable)ViewState["tblbs"];
-
-            //TextObject txttoopnliac = rptstk.ReportDefinition.ReportObjects["txttoopnliac"] as TextObject;
-            //txttoopnliac.Text = Convert.ToDouble(dt.Rows[0]["totamt"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtopnliac1 = rptstk.ReportDefinition.ReportObjects["txtopnliac1"] as TextObject;
-            //txtopnliac1.Text = Convert.ToDouble(dt.Rows[0]["amt01"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtopnliac2 = rptstk.ReportDefinition.ReportObjects["txtopnliac2"] as TextObject;
-            //txtopnliac2.Text = Convert.ToDouble(dt.Rows[0]["amt02"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtopnliac3 = rptstk.ReportDefinition.ReportObjects["txtopnliac3"] as TextObject;
-            //txtopnliac3.Text = Convert.ToDouble(dt.Rows[0]["amt03"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtopnliac4 = rptstk.ReportDefinition.ReportObjects["txtopnliac4"] as TextObject;
-            //txtopnliac4.Text = Convert.ToDouble(dt.Rows[0]["amt04"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtopnliac5 = rptstk.ReportDefinition.ReportObjects["txtopnliac5"] as TextObject;
-            //txtopnliac5.Text = Convert.ToDouble(dt.Rows[0]["amt05"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtopnliac6 = rptstk.ReportDefinition.ReportObjects["txtopnliac6"] as TextObject;
-            //txtopnliac6.Text = Convert.ToDouble(dt.Rows[0]["amt06"]).ToString("#,##0;(#,##0); ");
-
-
-
-            //TextObject txttoclslia = rptstk.ReportDefinition.ReportObjects["txttoclslia"] as TextObject;
-            //txttoclslia.Text = Convert.ToDouble(dt.Rows[1]["totamt"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtclsliac1 = rptstk.ReportDefinition.ReportObjects["txtclsliac1"] as TextObject;
-            //txtclsliac1.Text = Convert.ToDouble(dt.Rows[1]["amt01"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtclsliac2 = rptstk.ReportDefinition.ReportObjects["txtclsliac2"] as TextObject;
-            //txtclsliac2.Text = Convert.ToDouble(dt.Rows[1]["amt02"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtclsliac3 = rptstk.ReportDefinition.ReportObjects["txtclsliac3"] as TextObject;
-            //txtclsliac3.Text = Convert.ToDouble(dt.Rows[1]["amt03"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtclsliac4 = rptstk.ReportDefinition.ReportObjects["txtclsliac4"] as TextObject;
-            //txtclsliac4.Text = Convert.ToDouble(dt.Rows[1]["amt04"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtclsliac5 = rptstk.ReportDefinition.ReportObjects["txtclsliac5"] as TextObject;
-            //txtclsliac5.Text = Convert.ToDouble(dt.Rows[1]["amt05"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtclsliac6 = rptstk.ReportDefinition.ReportObjects["txtclsliac6"] as TextObject;
-            //txtclsliac6.Text = Convert.ToDouble(dt.Rows[1]["amt06"]).ToString("#,##0;(#,##0); ");
-
-
-
-            //TextObject txttonetlia = rptstk.ReportDefinition.ReportObjects["txttonetlia"] as TextObject;
-            //txttonetlia.Text = Convert.ToDouble(dt.Rows[2]["totamt"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtnetliac1 = rptstk.ReportDefinition.ReportObjects["txtnetliac1"] as TextObject;
-            //txtnetliac1.Text = Convert.ToDouble(dt.Rows[2]["amt01"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtnetliac2 = rptstk.ReportDefinition.ReportObjects["txtnetliac2"] as TextObject;
-            //txtnetliac2.Text = Convert.ToDouble(dt.Rows[2]["amt02"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtnetliac3 = rptstk.ReportDefinition.ReportObjects["txtnetliac3"] as TextObject;
-            //txtnetliac3.Text = Convert.ToDouble(dt.Rows[2]["amt03"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtnetliac4 = rptstk.ReportDefinition.ReportObjects["txtnetliac4"] as TextObject;
-            //txtnetliac4.Text = Convert.ToDouble(dt.Rows[2]["amt04"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtnetliac5 = rptstk.ReportDefinition.ReportObjects["txtnetliac5"] as TextObject;
-            //txtnetliac5.Text = Convert.ToDouble(dt.Rows[2]["amt05"]).ToString("#,##0;(#,##0); ");
-            //TextObject txtnetliac6 = rptstk.ReportDefinition.ReportObjects["txtnetliac6"] as TextObject;
-            //txtnetliac6.Text = Convert.ToDouble(dt.Rows[2]["amt06"]).ToString("#,##0;(#,##0); ");
-
-
-
 
 
 
@@ -1718,14 +1764,6 @@ namespace RealERPWEB.F_45_GrAcc
             txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
             rptstk.SetDataSource(dt1);
             rptstk.Subreports["RptBankStatusLeisure.rpt"].SetDataSource(dt);
-            //rptstk.Subreports.Setdatas
-            // rptstk.Subreports.SetDataSource((DataTable)ViewState["tblbs"]);
-
-
-
-
-            //
-
             string comcod = this.GetCompCode();
             string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
             rptstk.SetParameterValue("ComLogo", ComLogo);
@@ -1734,6 +1772,7 @@ namespace RealERPWEB.F_45_GrAcc
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+
         private void RptBankBalance()
         {
 

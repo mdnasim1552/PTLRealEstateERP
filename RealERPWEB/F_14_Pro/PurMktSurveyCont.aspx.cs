@@ -609,6 +609,9 @@ namespace RealERPWEB.F_14_Pro
             string Username = "";
             string userdesig = "";
             string rsirdesc = "";
+            string txtsign1 = "";
+            string txtsign2 = "";
+            string txtsign3 = "";
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -617,6 +620,11 @@ namespace RealERPWEB.F_14_Pro
                 Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+
+                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString(); 
+                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString(); 
+                txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
+
             }
 
             string surveyNo = this.lblCurMSRNo1.Text + this.txtCurMSRNo2.Text;
@@ -660,7 +668,9 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
                 Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
 
@@ -691,9 +701,6 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
 
-
-
-
                     i++;
                 }
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -705,6 +712,10 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
 
                 Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
                 Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
@@ -734,7 +745,6 @@ namespace RealERPWEB.F_14_Pro
                     Rpt1.SetParameters(new ReportParameter("payterm" + i.ToString() + "", lsts.crperiod.ToString()));// payterm = Effective Credit Period crperiod
                     Rpt1.SetParameters(new ReportParameter("carrying" + i.ToString() + "", lsts.ccharge.ToString()));
 
-
                     i++;
 
                 }
@@ -750,6 +760,10 @@ namespace RealERPWEB.F_14_Pro
 
                 Rpt1.SetParameters(new ReportParameter("reqinfo", reqinfo));
                 Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
 
                 //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));

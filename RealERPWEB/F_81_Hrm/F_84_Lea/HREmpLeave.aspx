@@ -5,10 +5,6 @@
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-   
-
-
-
     
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
@@ -133,6 +129,12 @@
 
                                     </div>
                                 </div>
+
+                                <div class="col-md-1">
+                                            <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-primary pull-left" OnClick="lnkRule_Click" Text="Create Rule"></asp:LinkButton>
+
+                                </div>
+
                             </div>
                         </fieldset>
                     </div>
@@ -207,8 +209,8 @@
                                     </asp:Panel>
                                     <div class="col-sm-12">
                                         <div class="form-horizontal">
-                                            <div class=" form-group">
-                                                <asp:CheckBox ID="chkLeave" runat="server" CssClass="btn chkBoxControl primaryBtn" AutoPostBack="True" OnCheckedChanged="chkLeave_CheckedChanged" Text="Leave" Visible="False"
+                                            <div class=" form-group hidden" >
+                                                <asp:CheckBox ID="chkLeave" runat="server" CssClass="btn chkBoxControl primaryBtn"  AutoPostBack="True" OnCheckedChanged="chkLeave_CheckedChanged" Text="Leave" Visible="False"
                                                     TabIndex="15" />
 
                                                 <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn pull-right"></asp:Label>
@@ -297,6 +299,18 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
+
+                                          <asp:TemplateField HeaderText="Opening Leave">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtgvoplv" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                    ForeColor="#000" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "oplv")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    Width="70px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+
                                         <asp:TemplateField HeaderText="Earned Leave">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvel" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -306,6 +320,9 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
+
+
+
                                         <asp:TemplateField HeaderText="Casual Leave">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvcl" runat="server" BackColor="Transparent" BorderStyle="None"

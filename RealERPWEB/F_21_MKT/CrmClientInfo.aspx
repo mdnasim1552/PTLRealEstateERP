@@ -495,7 +495,6 @@
                     default:
                         $('#<%=this.lblheadprospect.ClientID%>').text(" Prospect's Preference	");
                         break;
-
                 }
 
                 var gcod;
@@ -558,7 +557,7 @@
                 $('#' + ChkBoxLstFollow).change(function () {
                     var followupdate = $(txtgvdValdis).val();
                     var lastfollowup = "";
-
+                    alet(followupdate);
                     $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
 
                         lastfollowup = $(item).val();
@@ -635,30 +634,29 @@
                     }
 
                 }
+ 
+
                 $(txtmobile).keyup(function () {
                     var mobile = $(this).val();
-                    if (mobile.length != 11) {
-
-
-                        return false;
-                    }
-
+                   
                     if (!($.isNumeric(mobile))) {
 
                         alert("Mobile Number must be numeric");
 
                         return false;
                     }
-                    funDupMobile(comcod, sircode, mobile);
+                   // funDupMobile(comcod, sircode, mobile);
 
                 });
+
+
+            
+              
 
 
                 $(txtaltmobile1).keyup(function () {
                     var mobile = $(this).val();
                     if (mobile.length != 11) {
-
-
                         return false;
                     }
 
@@ -1056,9 +1054,6 @@
                     return;
                 }
 
-
-
-
                 var comcod =<%=this.GetComeCode()%>;
                 var proscod = $('#<%=this.lblproscod.ClientID%>').val();
                 var userid =<%=this.GetUserID()%>;
@@ -1202,9 +1197,6 @@
                 var empid =<%=this.GetEmpID()%>;
                 var lblschedulenumber = '#ContentPlaceHolder1_gvInfo_lblschedulenumber_' + number;
 
-
-
-
                 $.ajax({
 
                     url: "CrmClientInfo.aspx/GetSchedulenumber",
@@ -1321,7 +1313,6 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {
-
                         var data = JSON.parse(response.d);
 
                         var arrgschcodl = $('#<%=this.gvInfo.ClientID %>').find('[id$="lblgvItmCodedis"]');
@@ -1335,13 +1326,10 @@
                                 case '810100101012':
                                     numberrl = i;
                                     break;
-
                             }
-
                         }
 
                         //    ContentPlaceHolder1_gvInfo_checkboxReson_6_chzn
-
                         var ddllreason = '#ContentPlaceHolder1_gvInfo_checkboxReson_' + numberrl;
                         $(ddllreason).html('');
                         $.each(data, function (key, data) {
@@ -1349,13 +1337,8 @@
                             $(ddllreason).append("<option value='" + data.gcod + "'>" + data.gdesc + "</option>");
                         });
 
-
-
-
                         // console.log(data);
                         //  funDataBind(data);                      
-
-
 
                     },
 
@@ -1577,6 +1560,7 @@
                             var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
                             $(txtgvdValdis).val(data.gdesc1);
                             $(txtgvdValdis).attr("disabled", true);
+
                             //var dropdown
                             var dtimehour = data.gtime;
                             var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
@@ -1594,6 +1578,7 @@
 
                         case "810100101002": //New Followup
                             var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            //alert(data.gdesc1);
                             var newfollowup = data.gdesc1;
                             if (newfollowup.length <= 7) {
 
@@ -1615,7 +1600,7 @@
                             }
                             else {
                                 var ar = new Array();
-                                alert(newfollowup);
+                               // alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);
@@ -1853,7 +1838,48 @@
             $('#modalKpiDetials').modal('toggle');
         }
 
+        function RateUpdate() {
 
+            try {
+
+
+
+                var comcod =<%=this.GetComeCode()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+                var ratevalue = $('#ddlRating option:selected').val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "CrmClientInfo.aspx/UpdateRate",
+                    data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", ratevalue:"' + ratevalue + '"}',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+
+
+                    success: function (response) {
+
+
+                    },
+
+
+                    failure: function (response) {
+
+                        alert("failure");
+                    }
+                });
+
+
+
+            }
+
+            catch (e) {
+
+                alert(e.message);
+
+            }
+        };
+
+        //// for selected follow then selected lead status 
 
 
     </script>
@@ -1904,7 +1930,7 @@
                         </div>
                         <div class="col-3" runat="server" id="divexland">
                             <div class="form-group">
-                                <asp:Label runat="server" ID="lbllandname" Font-Size="12px" class="form-control margin-top30px" Visible="false"></asp:Label>
+                                <asp:Label runat="server" ID="lbllandname" Font-Size="16px" class="form-control bg-danger font-weight-bold text-white margin-top30px" Visible="false"></asp:Label>
                             </div>
                         </div>
 
@@ -1965,8 +1991,9 @@
                                                         <ItemTemplate>
 
                                                             <asp:TextBox ID="txtgvVal" ClientIDMode="Static" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
-                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                BorderColor="#660033" BorderStyle="None" BorderWidth="1px" OnTextChanged="txtgvVal_TextChanged1" AutoPostBack="true"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -1976,11 +2003,8 @@
                                                             <asp:Panel ID="Panegrd" runat="server">
 
                                                                 <div class="form-group">
-
-                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    <asp:DropDownList ID="ddlval" runat="server"  ondatabound="ddlval_DataBound" Width="300px" CssClass="custom-select chzn-select">
                                                                     </asp:DropDownList>
-
-
                                                                 </div>
 
 
@@ -2011,7 +2035,7 @@
                                                 ShowFooter="True" CssClass="table-condensed tblborder grvContentarea ml-3 visibleshow" OnRowDataBound="gvSourceInfo_RowDataBound">
                                                 <RowStyle />
                                                 <Columns>
-                                                    <asp:TemplateField HeaderText="Code" Visible="false">
+                                                    <asp:TemplateField HeaderText="Code"  Visible="false">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblgvItmCode" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'></asp:Label>
@@ -2047,9 +2071,11 @@
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
 
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
@@ -2058,7 +2084,7 @@
 
                                                                 <div class="form-group mt-2">
 
-                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" CssClass="custom-select chzn-select">
+                                                                    <asp:DropDownList ID="ddlval" runat="server" Width="300px" OnSelectedIndexChanged="ddlval_SelectedIndexChanged" AutoPostBack="true" CssClass="custom-select chzn-select">
                                                                     </asp:DropDownList>
 
 
@@ -2130,6 +2156,7 @@
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
@@ -2229,9 +2256,15 @@
 
                                                             <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                                
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
+
+
+
+
                                                             <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="ml-1 form-control"
                                                                 BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                               
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "value")) %>'></asp:TextBox>
 
                                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
@@ -2673,6 +2706,9 @@
                                                 <asp:ListItem>3000</asp:ListItem>
                                                 <asp:ListItem>4000</asp:ListItem>
                                                 <asp:ListItem>5000</asp:ListItem>
+                                                <asp:ListItem>7000</asp:ListItem>
+                                                <asp:ListItem>8000</asp:ListItem>
+                                                <asp:ListItem Selected="true">10000</asp:ListItem>
                                             </asp:DropDownList>
 
 
@@ -2723,7 +2759,9 @@
 
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
-                                                        <asp:LinkButton ID="lnkDelete" runat="server" Font-Bold="True" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click">
+                                                        <asp:LinkButton ID="lnkDelete" 
+                                                            Visible='<%# Eval("isreject").ToString() == "True" ? false : true %>'
+                                                              runat="server" Font-Bold="True" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click">
 
                                                         <i class=" fa fa-trash"></i></asp:LinkButton>
 
@@ -2833,7 +2871,7 @@
 
                                                             </asp:Label>
 
-                                                            <asp:LinkButton ID="lbtnView" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lbtnView" Visible="false" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
 
                                                             <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
 
@@ -2974,12 +3012,12 @@
                                                 <%--20--%>
 
 
-                                                <%--  <asp:TemplateField HeaderText="Progress">
+                                                  <asp:TemplateField HeaderText="Last discussion">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblgvfeedback" runat="server" Width="60px" Font-Size="10px"
+                                                        <asp:Label ID="lblgvfeedback" runat="server" Width="100px" Font-Size="10px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'></asp:Label>
                                                     </ItemTemplate>
-                                                </asp:TemplateField>--%>
+                                                </asp:TemplateField>
 
 
 
@@ -3022,6 +3060,7 @@
                                                     <ItemStyle HorizontalAlign="center" />
                                                 </asp:TemplateField>
 
+                                               
 
                                             </Columns>
                                             <FooterStyle CssClass="grvFooter" />
@@ -3385,7 +3424,7 @@
                                                 </HeaderTemplate>--%>
 
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="120px" Style="text-align: left"
+                                                    <asp:Label ID="lbllstatuskpisum" runat="server" Width="110px" Style="text-align: left"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "leadsta"))%>'></asp:Label>
                                                 </ItemTemplate>
                                                  <ItemStyle HorizontalAlign="Left" />
@@ -3673,7 +3712,7 @@
                                                 <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">Code Book</asp:HyperLink>
+                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">CRM Code Entry</asp:HyperLink>
 
                                             </li>
                                             <li>
@@ -3686,10 +3725,12 @@
 
                                             <li>
                                                 <asp:HyperLink ID="hlnkalldiscusssion" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientDiscuDetails" runat="server">All Discussion</asp:HyperLink>
-
                                             </li>
 
-
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink8" Target="_blank" NavigateUrl="~/F_21_MKT/RptCrmNeedBase?Type=Report" runat="server"> Client Need Base
+</asp:HyperLink>
+                                            </li>
 
                                             <li>
                                                 <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesRegressionFunnel" runat="server">Regression Funnel Stage</asp:HyperLink>
@@ -3704,7 +3745,21 @@
                                             <li>
                                                 <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_99_Allinterface/CRMDashboard" runat="server">CRM Dashboard</asp:HyperLink>
                                             </li>
-
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink7" Target="_blank" NavigateUrl="~/F_21_Mkt/MonthsWiseSale?Type=CRM" runat="server">Monthly Sales Report</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink5" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget?Type=CRM" runat="server">Yearly Activities Target Set</asp:HyperLink>
+                                            </li>
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=CRM" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
+                                            </li>
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransferLog?type=CRM" runat="server">Prospect Transfer</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="hlnkProsWorkingReport" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking">Prospect Working Report</asp:HyperLink> 
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -3902,7 +3957,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">View Details</button>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -4023,12 +4078,13 @@
 
                         </div>
                         <div class="modal-body ">
-
+                                 
+                             
 
 
                             <div class="row">
 
-                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                <div class="col-xs-7 col-sm-7 col-md-7">
 
                                     <p>
                                         <strong><span id="lblprosname" runat="server"></span></strong>
@@ -4036,6 +4092,7 @@
                                         <strong>Contact Person: </strong><span id="lblContactPerson" runat="server"></span>
                                         <br>
                                         <strong>Primary : </strong><span id="lblprosphone" runat="server"></span>
+                                        
                                         <br>
                                         <strong>Home Address: </strong><span id="lblprosaddress" runat="server"></span>
                                         <br>
@@ -4052,8 +4109,25 @@
 
                                         <asp:HiddenField ID="lblproscod" runat="server" />
                                         <asp:HiddenField ID="lbleditempid" runat="server" />
+                                        <asp:HiddenField ID="lblgeneratedate" runat="server" />
                                     </p>
                                 </div>
+
+                                <div class="col-xs-2 col-sm-2 col-md-2 ">
+                                     <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-secondary ml-1" type="button">Rate</button>
+                                        </div>
+
+                                <asp:DropDownList ID="ddlRating" runat="server"   OnSelectedIndexChanged="ddlRating_SelectedIndexChanged" AutoPostBack="true">
+                                            <asp:ListItem Value="0.00">0</asp:ListItem>                                                     
+                                            <asp:ListItem Value="5.00">5</asp:ListItem>
+                                        </asp:DropDownList>
+
+                                    </div>
+                                 
+
+                                    </div>
 
                                 <div class="col-xs-3 col-sm-3 col-md-3 ">
 
@@ -4179,7 +4253,7 @@
 
 
 
-                                                        <asp:TextBox ID="txtgvdValdis" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                        <asp:TextBox ID="txtgvdValdis" CssClass="disable_past_dates" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
                                                         <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
                                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
@@ -4281,7 +4355,7 @@
 
 
                                                             <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
-                                                                runat="server" CssClass="form-control checkbox">
+                                                                runat="server" CssClass="form-control checkbox"  >
                                                             </asp:CheckBoxList>
 
                                                         </asp:Panel>
@@ -4323,7 +4397,7 @@
 
 
 
-                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal" 
                                                                 runat="server" CssClass="form-control checkbox">
                                                             </asp:CheckBoxList>
 
@@ -4344,7 +4418,7 @@
 
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                    <ItemStyle Width="600px" />
+                                                    <ItemStyle Width="700px" />
                                                 </asp:TemplateField>
 
 
@@ -4423,9 +4497,6 @@
                                                             <asp:TextBox ID="txtdate" runat="server" ClientIDMode="Static" CssClass=""></asp:TextBox>
                                                             <cc1:CalendarExtender ID="Cal2" runat="server"
                                                                 Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
-
-
-
 
 
                                                             Subject:

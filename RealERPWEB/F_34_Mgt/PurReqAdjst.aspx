@@ -2,6 +2,42 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+    
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            //For navigating using left and right arrow of the keyboard
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+
+      <%--  function pageLoaded() {
+
+            var gv1 = $('#<%=this.gvReqStatus.ClientID %>');
+            //gv1.Scrollable();
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+
+
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+
+
+
+
+        };--%>
+        function pageLoaded() {
+          
+           
+            $('.chzn-select').chosen({ search_contains: true });
+        };
+
+      
+
+    </script>
+
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -26,7 +62,7 @@
 
                                             </div>
                                             <div class="col-md-4 pading5px">
-                                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt" TabIndex="13" AutoPostBack="true">
+                                                <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="13" AutoPostBack="true">
                                                 </asp:DropDownList>
                                                 <asp:Label ID="lblProjectdesc" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
                                             </div>
@@ -176,10 +212,10 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Adjustment">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px"
+                                                    <asp:TextBox ID="txtgvadjqty" runat="server" Font-Size="11px" OnTextChanged="txtgvadjqty_TextChanged"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adjstqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="65px" BackColor="White"
-                                                        BorderStyle="None" Style="text-align: right"></asp:TextBox>
+                                                        BorderStyle="None" Style="text-align: right" AutoPostBack="true"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" Width="65px" />
                                             </asp:TemplateField>

@@ -267,6 +267,9 @@ namespace RealERPWEB
             {
                 this.lblmsg.Text = "Successfully Updated";
                 this.ChkChangePass.Checked = false;
+                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;
+
+               // this.loginBtn.Text = "Sign In";
                 this.ChkChangePass_CheckedChanged(null, null);
             }
 
@@ -303,7 +306,8 @@ namespace RealERPWEB
             this.lblNewPass.Visible = this.ChkChangePass.Checked;
             this.txtuserOldrpass.Visible = this.ChkChangePass.Checked;
             this.txtuserNewrpass.Visible = this.ChkChangePass.Checked;
-
+            this.pwdDiv.Visible = this.ChkChangePass.Checked==true?false: true;
+            this.loginBtn.Text = this.ChkChangePass.Checked == true ? "Update" : "Sign in";
             //if (this.ChkChangePass.Checked)
             //{
             //    this.lblPass.Text = "New Password";
@@ -546,18 +550,27 @@ namespace RealERPWEB
                 string eventdesc2 = "";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
-
+                
 
                 string Url1 = "";
 
                 string userrole = ds5.Tables[0].Rows[0]["userrole"].ToString();
 
                 string masterurl = (ds5.Tables[4].Rows.Count == 0) ? "" : ds5.Tables[4].Rows[0]["url"].ToString();
+                String hrmodule = dsmodule.Tables[1].Rows.Count==0 ? "" : dsmodule.Tables[1].Rows[0]["moduleid"].ToString();
+
+
 
                 if (userrole == "2")
                 {
                     Url1 = "AllGraph";
                 }
+                else if(userrole == "3" && hrmodule=="81")
+                {
+                    Url1 = "UserProfile";
+
+                }
+              
                 else
                 {
                     if (masterurl != "")

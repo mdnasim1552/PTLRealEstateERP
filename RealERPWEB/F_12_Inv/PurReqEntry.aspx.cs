@@ -203,6 +203,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3311":
                 case "3315":
                 case "3325":
+                case "3364":// Jbs
+                case "3353":        
                     this.lblmrfno.Text = "MPR No: ";
 
                     break;
@@ -293,7 +295,7 @@ namespace RealERPWEB.F_12_Inv
                 return;
 
             string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
-            this.ddlProject.DataTextField =  TextField;
+            this.ddlProject.DataTextField = TextField;
             this.ddlProject.DataValueField = "actcode";
             this.ddlProject.DataSource = ds2.Tables[0];
             this.ddlProject.DataBind();
@@ -390,7 +392,7 @@ namespace RealERPWEB.F_12_Inv
                     // this.ImgbtnFindReq_Click(null, null);
 
                 }
-              
+
 
                 return;
             }
@@ -614,6 +616,9 @@ namespace RealERPWEB.F_12_Inv
         {
             //this.Panel2.Visible = true;
             this.Session_tblReq_Update();
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             string mResCode = this.ddlResList.SelectedValue.ToString();
             string Specification = this.ddlResSpcf.SelectedValue.ToString();
@@ -623,8 +628,8 @@ namespace RealERPWEB.F_12_Inv
                 DataRow dr1 = tbl1.NewRow();
                 dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
                 dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-                dr1["rsirdesc2"] = this.ddlResList.SelectedItem.Text.Trim().Substring(14);
-                dr1["rsirdesc1"] = this.ddlResList.SelectedItem.Text.Trim().Substring(14);
+                dr1["rsirdesc2"] = ddldesc == "True" ? this.ddlResList.SelectedItem.Text.Trim() : this.ddlResList.SelectedItem.Text.Trim().Substring(14);
+                dr1["rsirdesc1"] = ddldesc == "True" ? this.ddlResList.SelectedItem.Text.Trim() : this.ddlResList.SelectedItem.Text.Trim().Substring(14);
                 dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
                 DataTable tbl2 = (DataTable)ViewState["tblMat"];
                 DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "'");
@@ -1980,7 +1985,7 @@ namespace RealERPWEB.F_12_Inv
             string tblcrmcPostedDat = (dtuser.Rows.Count == 0) ? "" : Convert.ToDateTime(dtuser.Rows[0]["crmcheckdat"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
 
             //crm part  iscrchecked
-                 
+
             string crmcheckbyid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedByid == "") ? userid : tblPostedByid) : ((tblcrmcheckbyid == "") ? userid : tblcrmcheckbyid);
             string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblcrnPosttrmid == "") ? Terminal : tblcrnPosttrmid);
             string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblcrmPostSession == "") ? Sessionid : tblcrmPostSession);
@@ -1993,7 +1998,7 @@ namespace RealERPWEB.F_12_Inv
             //string crnPosttrmid = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid) : ((tblPostedtrmid == "") ? Terminal : tblPostedtrmid);
             //string crmPostSession = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedSession == "") ? Sessionid : tblPostedSession) : ((tblPostedSession == "") ? Sessionid : tblPostedSession);
             //string crmcPostedDat = ((this.Request.QueryString["InputType"] == "Entry") || (this.Request.QueryString["InputType"] == "FxtAstEntry")) ? ((tblPostedDat == "") ? Date : tblPostedDat) : ((tblPostedDat == "") ? Date : tblPostedDat);
-          
+
             if (this.Request.QueryString["InputType"] == "Entry")
             {
                 switch (comcod)
@@ -2193,7 +2198,7 @@ namespace RealERPWEB.F_12_Inv
 
                             SendSmsProcess sms = new SendSmsProcess();
                             string comnam = hst["comnam"].ToString();
-                            string compname = hst["compname"].ToString(); 
+                            string compname = hst["compname"].ToString();
                             string ddldesc = hst["ddldesc"].ToString();
                             string frmname = "PurReqEntry.aspx?InputType=ReqCheck";
 
@@ -2543,27 +2548,38 @@ namespace RealERPWEB.F_12_Inv
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
 
             int index = 0;
-            //txtgvReqQty
-            for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
+            string pactcode1 = this.Request.QueryString["prjcode"].ToString();
+            string pactcode = ASTUtility.Left(pactcode1, 4);
+            //  todo for check central inventory
+            switch (pactcode)
             {
-                index = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
+                case "1102":
+                    break;
 
-                double dgvBgdQty = Convert.ToDouble(tbl1.Rows[index]["bbgdqty1"]);
-                double dgvReqQty =
-                        Convert.ToDouble(
-                            ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
-
-                if (this.Request.QueryString["InputType"] == "ReqCheck")
-                {
-                    if (dgvBgdQty < dgvReqQty)
+                default:
+                    //txtgvReqQty
+                    for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                        return;
+                        index = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
+
+                        double dgvBgdQty = Convert.ToDouble(tbl1.Rows[index]["bbgdqty1"]);
+                        double dgvReqQty =
+                                Convert.ToDouble(
+                                    ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
+
+                        if (this.Request.QueryString["InputType"] == "ReqCheck")
+                        {
+                            if (dgvBgdQty < dgvReqQty)
+                            {
+                                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                                return;
+
+                            }
+                        }
 
                     }
-                }
-
+                    break;
             }
 
             string appxml = ((DataTable)Session["tblUserReq"]).Rows[0]["rapproval"].ToString();
@@ -2774,8 +2790,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3101":
                     if (this.Request.QueryString["InputType"] == "Entry")
                     {
-                    //    this.lblReqNarr.Visible = false;
-                    //    this.txtReqNarr.Visible = false;
+                        //    this.lblReqNarr.Visible = false;
+                        //    this.txtReqNarr.Visible = false;
                         ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = true;
 
                     }
@@ -2989,7 +3005,7 @@ namespace RealERPWEB.F_12_Inv
                 tbl1.Rows[TblRowIndex2]["expusedt"] = dgvUseDat;
                 tbl1.Rows[TblRowIndex2]["pursdate"] = dgvSupDat;
                 tbl1.Rows[TblRowIndex2]["reqnote"] = dgvReqNote;
-                
+
             }
             ViewState["tblReq"] = tbl1;
         }
@@ -3083,6 +3099,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rowid"] = rowid;
                     dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
                     dr1["rsircode"] = dt.Rows[i]["rsircode"].ToString();
+                    dr1["rsirdesc"] = dt.Rows[i]["rsirdesc"].ToString();
                     dr1["rsirdesc1"] = dt.Rows[i]["rsirdesc1"].ToString();
                     dr1["rsirdesc2"] = dt.Rows[i]["rsirdesc2"].ToString();
                     dr1["rsirunit"] = dt.Rows[i]["rsirunit"].ToString();
@@ -3110,6 +3127,7 @@ namespace RealERPWEB.F_12_Inv
                     dr1["rowid"] = rowid;
                     dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
                     dr1["rsircode"] = dt.Rows[i]["rsircode"].ToString();
+                    dr1["rsirdesc"] = dt.Rows[i]["rsirdesc"].ToString();
                     dr1["rsirdesc1"] = dt.Rows[i]["rsirdesc1"].ToString();
                     dr1["rsirdesc2"] = dt.Rows[i]["rsirdesc2"].ToString();
                     dr1["rsirunit"] = dt.Rows[i]["rsirunit"].ToString();
@@ -3154,7 +3172,9 @@ namespace RealERPWEB.F_12_Inv
 
         private void ddlResourceBound()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
+            string TextField = (ddldesc == "True" ? "rsirdesc" : "rsirdesc1");
             DataTable dt = (DataTable)ViewState["tblMat"];
             this.ddlResList.Items.Clear();
             string catcode = this.ddlCatagory.SelectedValue.ToString();
@@ -3166,20 +3186,12 @@ namespace RealERPWEB.F_12_Inv
                 dv.RowFilter = ("rsircode  like '" + catcode + "'");
             }
 
-
-            this.ddlResList.DataTextField = "rsirdesc1";
+            this.ddlResList.DataTextField = TextField;
             this.ddlResList.DataValueField = "rsircode";
             this.ddlResList.DataSource = dv.ToTable();
             this.ddlResList.DataBind();
 
-
             this.ImgbtnSpecification_Click(null, null);
-
-            //this.ddlItem.Items.Clear();
-            //this.ddlItem.DataTextField = "isirdesc1";
-            //this.ddlItem.DataValueField = "isircode";
-            //this.ddlItem.DataSource = dt;
-            //this.ddlItem.DataBind();
         }
 
 

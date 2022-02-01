@@ -33,18 +33,45 @@ namespace RealEntity.C_21_Mkt
             public string gcod { get; set; }
             public string gdesc { get; set; }
 
-
             public EClassLeadReason()
             { 
             
             
             }
-
-
-
-
-
         }
+
+
+        [Serializable]
+        public class EClassYearlySalesCRM
+
+        {
+
+            public string comcod { get; set; }
+            public string empcode { get; set; }
+            public string empname { get; set; }
+            public double  qty1 { get; set; }
+            public double  qty2 { get; set; }
+            public double  qty3 { get; set; }
+            public double  qty4 { get; set; }
+            public double  qty5 { get; set; }
+            public double  qty6 { get; set; }
+            public double  qty7 { get; set; }
+            public double  qty8 { get; set; }
+            public double  qty9 { get; set; }
+            public double  qty10 { get; set; }
+            public double  qty11 { get; set; }
+            public double  qty12 { get; set; }
+            public double  tqty { get; set; }
+           
+            public EClassYearlySalesCRM()
+            {
+
+
+            }
+        }
+
+
+
 
 
     }

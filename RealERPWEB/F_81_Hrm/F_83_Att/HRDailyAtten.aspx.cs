@@ -37,6 +37,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     Response.Redirect("../../AcceessError.aspx");
                 Session.Remove("DayAtten");
                 this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.ComVisibility();
 
 
 
@@ -46,7 +47,31 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
-        private string GetCompCode()
+        private void ComVisibility()
+        {
+            
+            string comcod = this.GetCompCode();
+
+            switch (comcod)
+            {
+                case "3315":
+                case "3316":
+                case "3317":
+                    this.chktype.Visible = true;
+                    break;
+                default:
+                    this.chktype.Visible = false;
+                    break;
+
+
+
+
+
+
+            }
+        }
+
+            private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
@@ -214,6 +239,26 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             //this.LoadGrid();
         }
+
+        private void GetTBLAttnLogData()
+        {
+            Session.Remove("ShowAtten");
+
+            string comcod = this.GetCompCode();
+
+            string date = this.txtdate.Text;
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "SHOWEMPATTEN", "", "", date, "", "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.gvDailyAttn.DataSource = null;
+                this.gvDailyAttn.DataBind();
+                return;
+            }
+
+            Session["ShowAtten"] = HiddenSameData(ds4.Tables[0]);
+            this.LoadGrid();
+        }
+
         private void ShowData()
         {
 
@@ -285,27 +330,40 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "3330": // Bridge
                 case "3355": // Greenwood
                 case "3347": // Peb Steel
+              
                              // case "3353": // Greenwood
 
 
                     this.InsertDailyAttnAlliance();
                     break;
 
+                case "3354": // edidison real
+                    this.GetTBLAttnLogData();
+
+                    break;
 
                 case "3315"://Assure
-
                     this.InsertDailyAttnAssure();
                     break;
 
 
+                case "3365"://Assure
+                    this.GetDailyAttenDanceZKT();
+                    break;
+
+
+
+
+                default:
+                    this.InsertDailyAttnAlliance();
+                    break;
 
 
 
 
             }
 
-
-
+           
 
 
             //Web Referecne
@@ -358,6 +416,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
         }
+        protected void lbtnShow_Click(object sender, EventArgs e)
+        {
+            this.ShowData();
+        }
+
         private void InsertDailyAttnRup()
         {
             try
@@ -865,5 +928,80 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
         }
+
+        private void GetDailyAttenDanceZKT()
+        {
+            try
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+
+
+                Session.Remove("DayAtten");
+                bool result;
+                string pdate = Convert.ToDateTime(this.txtdate.Text).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                string date1 = "#" + this.txtdate.Text + " 12:00:00 AM" + "#";
+                string date2 = "#" + this.txtdate.Text + " 11:59:00 PM" + "#";
+
+
+
+                HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
+                DataSet ds = DailyAttendance.GetDailyAttenDanceZKT(date1, date2);
+                //DataSet ds = DailyAttendance.GetDailyAttenDanceAssure(date1, date2);
+                //string count = DailyAttendance.Country();
+
+                Session["DayAtten"] = ds.Tables[0];
+                DataTable dt = (DataTable)Session["DayAtten"];
+                string comcod = this.GetCompCode();
+                string date = this.txtdate.Text;
+
+
+
+               
+                DataSet ds1 = new DataSet("ds1");
+                ds1.Merge(dt);
+                ds1.Tables[0].TableName = "dt1";
+                //string xml = ds1.GetXml();
+          
+
+                result = HRData.UpdateXmlTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTENZKT", ds1, null, null, date, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    string msg = HRData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('" + msg + "');", true);
+                    return;
+                }
+
+
+
+                //for (int i = 0; i < dt.Rows.Count; i++)
+                //{
+                //    string idcardno1 = dt.Rows[i]["din"].ToString();
+                //    string idcardno = ASTUtility.Right(("00000" + idcardno1.Trim()), 5);
+                //    string intime = Convert.ToDateTime(dt.Rows[i]["clock"]).ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+                //    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTUPDATEATTEN", idcardno, date, intime, "", "", "", "", "", "", "", "", "", "", "", "");
+
+                //}
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Upload Successfully');", true);
+                // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+              
+
+                
+            }
+
+            catch (Exception ex)
+            {
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error in exception";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+
+            }
+        }
+
+       
     }
 }

@@ -681,7 +681,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-                if (code.Substring(2) == "0000000000")
+                if (code.Substring(2) == "00")
                 {
 
                     //  lgvResDescd.Font.Bold = true;
@@ -1033,7 +1033,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-                if (code.Substring(2) == "0000000000")
+                if (code.Substring(2) == "00")
                 {
 
                     //  lgvResDescd.Font.Bold = true;
@@ -1327,8 +1327,6 @@ namespace RealERPWEB.F_08_PPlan
                 this.gvresdet.Columns[i].Visible = false;
 
 
-
-
             j = 4;
             DateTime pstdate = Convert.ToDateTime(this.lblStartDate.Text);
             DateTime penddate = Convert.ToDateTime(this.lblEndDate.Text);
@@ -1346,11 +1344,11 @@ namespace RealERPWEB.F_08_PPlan
             this.gvresdet.DataBind();
 
 
-            string radalertscript = "<script language='javascript'>function f(){loadModal(); Sys.Application.remove_load(f);}; Sys.Application.add_load(f);</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "radalert", radalertscript);
+            //string radalertscript = "<script language='javascript'>function f(){loadModal(); Sys.Application.remove_load(f);}; Sys.Application.add_load(f);</script>";
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "radalert", radalertscript);
 
 
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
         }
     }
 }

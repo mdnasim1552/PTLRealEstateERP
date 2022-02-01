@@ -129,9 +129,9 @@
 
 
                                         <div class="col-md-2">
-                                            <asp:Label ID="Label2" runat="server" CssClass="mr-2" Text="Modules"></asp:Label>
-                                            <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True"
-                                                Font-Bold="True"
+                                            <asp:Label ID="Label2" runat="server" CssClass="mr-2" Text=""></asp:Label>
+                                            <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True" Visible="false"
+                                                Font-Bold="True" Checked="true"
                                                 OnCheckedChanged="chkShowall_CheckedChanged" Text=" All Items" CssClass="checkBox btn btn-warning" />
 
                                             
@@ -152,6 +152,7 @@
                                                      <asp:ListItem Value="2">Component</asp:ListItem>
                                                     <asp:ListItem Value="4">Widget</asp:ListItem>
                                                     <asp:ListItem Value="3">Graph </asp:ListItem>
+                                                    <asp:ListItem Value="9">Menu </asp:ListItem>
                                                     
 
                                                 </asp:DropDownList>
@@ -183,7 +184,7 @@
                                     <asp:GridView ID="gvPermission" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea mt-5"
                                         OnPageIndexChanging="gvPermission_PageIndexChanging" OnRowDataBound="gvPermission_RowDataBound"
-                                        OnRowDeleting="gvPermission_RowDeleting" ShowFooter="True">
+                                        ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -196,6 +197,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Form id" Visible="false">
                                                 <ItemTemplate>
+                                                    <asp:Label ID="menutype" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "menutype")) %>'></asp:Label>
                                                     <asp:Label ID="lgvufrmid" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmid")) %>'></asp:Label>
                                                 </ItemTemplate>

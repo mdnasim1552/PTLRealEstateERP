@@ -71,7 +71,7 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqAprv.Visible = false;
                     //this.RadioButtonList1.Items[0].Attributes["style"] = "background: #430000; display:block; ";
                     break;
-                 // mat req approval
+                // mat req approval
                 case "1":
                     this.pnlstatus.Visible = false;
                     this.pnlgatepass.Visible = false;
@@ -162,7 +162,7 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
             }
             string gatePass = "";
-            string approval= "";
+            string approval = "";
             switch (comcod)
             {
 
@@ -184,8 +184,8 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["statuses"]) + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
             this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["reqapproval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Req Approval</div></div></div>";
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" +gatePass+ "</div></div></div>";
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>"+ approval + "</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["gatepass"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + gatePass + "</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["approval"]) + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>" + approval + "</div></div></div>";
             this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["audited"]) + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Audit</div></div></div>";
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToInt32(ds2.Tables[6].Rows[0]["account"]) + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Accounts Update</div></div></div>";
 
@@ -534,6 +534,37 @@ namespace RealERPWEB.F_99_Allinterface
             ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Removed";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
             this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
+
+        protected void lnkbtnEdit_Click(object sender, EventArgs e)
+        {
+            //string url = "PurMTReqGatePass?Type=Entry";
+            //string comcod = this.GetCompCode();
+            //((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            //DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["delete"]))
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+            //    return;
+            //}
+
+            //int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            //string mtrno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lbltrnnog")).Text.Trim();
+            //string mrefno = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgpmanual")).Text.Trim();
+            //string mtrdat = ((Label)this.gvgatepass.Rows[RowIndex].FindControl("lblmtrdgp")).Text.Trim();
+
+
+
+        }
+
+        protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvMtrReInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+
         }
     }
 }

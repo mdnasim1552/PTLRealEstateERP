@@ -82,8 +82,29 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetCompCode();
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
             string suptype = this.ddlSupCategory.SelectedValue.ToString();
+            string day1 = "";
+            string day2 = "";
+            string day3 = "";
+           // string 
+            switch (comcod)
+            {
+                case "3101":
+                case "3354":
+                   day1= "30";
+                   day2= "45";
+                   day3 = "60";
+                    break;
 
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "PURCHASEAGEINGSTATUS", suptype, todate, "", "", "", "", "", "");
+                default: // For Rupayan
+                    day1 = "30";
+                    day2 = "90";
+                    day3 = "120";
+                    break;
+            }
+
+
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_PURCHASE_04", "PURCHASEAGEINGSTATUS", suptype, todate, day1, day2, day3, "", "", "");
             if (ds1.Tables[0] == null)
             {
                 this.gvsupstatus.DataSource = null;
@@ -96,8 +117,8 @@ namespace RealERPWEB.F_14_Pro
 
             this.Data_Bind();
 
-
         }
+       
 
         private DataTable HiddenSameData(DataTable dt1)
         {
@@ -133,7 +154,29 @@ namespace RealERPWEB.F_14_Pro
 
             this.FooterCalculation();
 
+            string comcod = this.GetCompCode();
+            string Htext1Month = "";
+            string Htext4Month = "";
+            string HtextUp4Month = "";
+            switch (comcod)
+            {
+              
+                case "3101":
+                case "3354":
+                    Htext1Month   = "Upto 30 Days";
+                    Htext4Month   = "45 Days Over";
+                    HtextUp4Month = "60 Days Over";
+                    break;
 
+                default: // For Rupayan
+                    Htext1Month  = "Upto 90 Days";
+                    Htext4Month  = "90 Days Over";
+                    HtextUp4Month = "120 Days Over";
+                    break;
+            }
+            gvsupstatus.HeaderRow.Cells[9].Text = HtextUp4Month;
+            gvsupstatus.HeaderRow.Cells[10].Text = Htext4Month;
+            gvsupstatus.HeaderRow.Cells[11].Text = Htext1Month;
         }
 
 

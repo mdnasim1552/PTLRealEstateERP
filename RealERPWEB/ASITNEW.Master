@@ -1,11 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ASITNEW.master.cs" Inherits="RealERPWEB.ASITNEW" %>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
-     <!-- Required meta tags -->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Pinovation ERP </title>
@@ -13,15 +11,17 @@
     <meta name="author" content="Pinovation Tech Ltd.">
     <meta property="og:locale" content="en_US">
     <meta name="description" content="ERP SOFTWARE BY Pinovation Tech Ltd">
-    <meta property="og:description" content="Realstate ERP Pinovation Tech Ltd"> 
+    <meta property="og:description" content="Realstate ERP Pinovation Tech Ltd">
     <meta property="og:site_name" content="Realstate ERP">
     <meta name="theme-color" content="#3063A0">
-     <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
-    
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <asp:PlaceHolder runat="server">
-       <%: Styles.Render("~/Content/cssnew") %>
+        <%: Styles.Render("~/Content/cssnew") %>
         <%: Scripts.Render("~/bundles/modernizr") %>
         <%: Scripts.Render("~/bundles/Versionnew")%>
         <%: Scripts.Render("~/bundles/Jquery") %>
@@ -32,83 +32,43 @@
         <%: Scripts.Render("~/bundles/richtext") %>
         <%: Scripts.Render("~/bundles/multiselect") %>
         <%: Scripts.Render("~/bundles/User") %>
-        <%: Scripts.Render("~/bundles/Counter") %>   
-        
+        <%: Scripts.Render("~/bundles/Counter") %>
+        <%: Scripts.Render("~/bundles/highchart") %>           
     </asp:PlaceHolder>
-
-
     <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>           
-    <script type="application/ld+json">
-      {
-        "name": "Looper - Bootstrap 4 Admin Theme",
-        "description": "Responsive admin theme build on top of Bootstrap 4",
-        "author":
-        {
-          "@type": "Person",
-          "name": "Beni Arisandi"
-        },
-        "@type": "WebSite",
-        "url": "",
-        "headline": "Dashboard",
-        "@context": "http://schema.org"
-      }
-
-    </script>
-    <!-- End SEO tag -->
-    <!-- FAVICONS -->
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
-    
-    <!-- End FAVICONS -->
-    <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet">
-    <!-- End GOOGLE FONT -->
-    <!-- BEGIN PLUGINS STYLES -->
-    <!-- <link rel="stylesheet" href="https://uselooper.com/assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css">-->
-
-
-<%--
+        
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css"> 
+   
+    </asp:ContentPlaceHolder>
+    <%--After Pulished removebelow comments--%>
+    <%-- 
     <link rel="stylesheet"  href="Content/Theme/toastr.min.css" />
-
     <link href="Content/Theme/vendor/fontawesome-free/css/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="Content/Theme/vendor/flatpickr/flatpickr.min.css">
     <!-- END PLUGINS STYLES -->
-
     <link rel="stylesheet" href="Content/Theme/vendor/toastr/toastr.min.css">
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="Content/Theme/theme.css">
     <link rel="stylesheet" href="Content/Theme/theme-dark.min.css" data-skin="dark">
     <link rel="stylesheet" href="Content/Theme/Custom.css">
-
     <link href="Content/chosen.css" rel="stylesheet" />
     <link href="Content/jquery-ui.css" rel="Stylesheet">
     <link href="Content/bootstrap-multiselect.css" rel="stylesheet" />
     <link href="Content/GridViewScrooling.css" rel="stylesheet" />
     <link href="Content/progressbar.css" rel="stylesheet" />--%>
 
-
-
-
-
-
-    <%-- <link rel="stylesheet" href="Content/Theme/theme-dark.min.css" data-skin="dark">--%>
-
     <script>
         var skin = localStorage.getItem('skin') || 'default';
-
         var unusedLink = document.querySelector('link[data-skin]:not([data-skin="' + skin + '"])');
         unusedLink.setAttribute('rel', '');
         unusedLink.setAttribute('disabled', true);
-
         function submitform() { document.getElementById("form1").submit(); }
-
         // setTimeout(function () { manipulate(); }, 3000);
         //  manipulate();
-
         function manipulate() {
             var itemname = localStorage.getItem("itemname");
             // alert(itemname);
-
             $("." + itemname).addClass("has-open");
             if (itemname == "") {
                 return;
@@ -155,11 +115,28 @@
             //  $("li").removeClass("has-open");
         }
 
+        function IsNumberWithOneDecimal(txt, evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57) && !(charCode == 46 || charCode == 8)) {
+                return false;
+            } else {
+                var len = txt.value.length;
+                var index = txt.value.indexOf('.');
+                if (index > 0 && charCode == 46) {
+                    return false;
+                }
+                if (index > 0) {
+                    if ((len + 1) - index > 3) {
+                        return false;
+                    }
+                }
 
+            }
+            return true;
+        }
 
     </script>
     <!-- END THEME STYLES -->
-
     <style>
         .checkbox-menu li label {
             display: block;
@@ -206,12 +183,6 @@
             padding-top: 60px;
         }
 
-
-        /*.stacked-menu-has-collapsible .has-child>.menu-link:after {
-    
-    height: 0em !important;
-   
-}*/
         #nav-bar {
             z-index: 1000;
         }
@@ -237,11 +208,16 @@
                 }
         }
 
-        .ajax__calendar_dayname{
-            padding:0 !important;
+        .ajax__calendar_dayname {
+            padding: 0 !important;
         }
 
-         
+        .app-header-dark .btn-account.focus, .app-header-dark .btn-account.show, .app-header-dark .btn-account:active, .app-header-dark .btn-account:focus, .app-header-dark .top-bar-brand {
+            background-color: none;
+        }
+        .ps {
+            overflow-x: hidden !important;
+        }
     </style>
 
 
@@ -254,7 +230,6 @@
         <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" SupportsPartialRendering="true" runat="server" AsyncPostBackTimeout="0">
 
             <Scripts>
-               
                 <%-- <asp:ScriptReference Path="~/Content/Theme/vendor/jquery/jquery.min.js" />
                 <asp:ScriptReference Path="~/Content/Theme/vendor/jquery/jquery-ui.min.js" />
                 <asp:ScriptReference Path="~/Content/Theme/vendor/bootstrap/js/popper.min.js" />
@@ -276,36 +251,29 @@
                 <asp:ScriptReference Path="~/Scripts/gridviewScrollHaVer.min.js" />
                 <asp:ScriptReference Path="~/Scripts/ScrollableTablePlugin.js" />
                 <asp:ScriptReference Path="~/Scripts/chosen.jquery.js" />
-
-
                   <asp:ScriptReference Path="~/Scripts/waypoints.min.js" />
                 <asp:ScriptReference Path="~/Scripts/jquery.counterup.min.js" />
-                <asp:ScriptReference Path="~/Scripts/jquery-migrate-1.3.0.js" />--%>
-       
-
+                <asp:ScriptReference Path="~/Scripts/jquery-migrate-1.3.0.js" />
+                <asp:ScriptReference Path="~/Scripts/highchartwithmap.js" />
+                <asp:ScriptReference Path="~/Scripts/highchartexporting.js" />                   
+                    
+                --%>
             </Scripts>
+
         </asp:ScriptManager>
         <asp:Label ID="lblprintstk" runat="server" Style="display: none; color: #3495F3; position: absolute; right: -500px; top: -5000px"></asp:Label>
         <!-- .app -->
         <div class="app">
-            <!--[if lt IE 10]>
-      <div class="page-message" role="alert">You are using an <strong>outdated</strong> browser. Please <a class="alert-link" href="http://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</div>
-      <![endif]-->
-
-
-
-
             <!-- .app-header -->
-
-
-
             <header class="app-header app-header-dark">
                 <!-- .top-bar -->
                 <div class="top-bar">
                     <!-- .top-bar-brand -->
 
                     <div class="top-bar-brand logobackground">
-                        <asp:HyperLink runat="server" ID="LogoBar"><asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" /></asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="LogoBar">
+                            <asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" />
+                        </asp:HyperLink>
                     </div>
                     <!-- /.top-bar-brand -->
                     <!-- .top-bar-list -->
@@ -361,7 +329,36 @@
                         <!-- /.top-bar-item -->
                         <!-- .top-bar-item -->
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
-                            
+                            <ul class="header-nav nav">
+                                <li class="nav-item dropdown header-nav-dropdown has-notified">
+
+
+                                    <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-bell "></i>
+                                        <span class="label label-success" id="lblallpop" runat="server">0</span>
+                                    </a>
+
+                                    <!-- .dropdown-menu -->
+                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right" style="overflow:hidden">
+                                        <h6 class="dropdown-header stop-propagation">
+                                            <span>Notification</span>
+
+                                        </h6>
+                                        <!-- .dropdown-scroll -->
+                                        <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
+                                             </div>
+                                        <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")  %>" class="dropdown-footer">All Notification
+                     
+                                        <i class="fa fa-fw fa-long-arrow-alt-right"></i>
+                                        </a>
+                                    </div>
+                                    <!-- /.dropdown-menu -->
+                                </li>
+                            </ul>
+
+
+
+
                             <asp:DropDownList ID="DDPrintOpt" Width="80px" runat="server" CssClass="custom-select">
                                 <asp:ListItem Selected="True" Value="PDF">PDF</asp:ListItem>
                                 <asp:ListItem Value="HTML">HTML</asp:ListItem>
@@ -372,8 +369,8 @@
 
                             <asp:LinkButton ID="lnkPrint" runat="server" OnClick="lnkPrint_Click" CssClass="btn btn-success"><span class=" fa fa-print"></span></asp:LinkButton>
 
-                          
-                           
+
+
                             <!-- .btn-account -->
                             <div class="dropdown d-flex">
                                 <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -390,25 +387,26 @@
                                 <div class="dropdown-menu">
                                     <div class="dropdown-arrow ml-3"></div>
                                     <h6 class="dropdown-header d-none d-md-block d-lg-none" id="UserName1" runat="server"></h6>
-                                    <a class="dropdown-item" href='<%= "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath %>/UserProfile'>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/UserProfile")%>'>
                                         <span class="dropdown-icon oi oi-person"></span>Profile</a>
-                                   
+
                                     <div class="dropdown-divider"></div>
 
-                                    <asp:HyperLink class="dropdown-item" ID="hypCompagPerm"   Visible="false" runat="server" Text="Company Pages"></asp:HyperLink>
-                                    <asp:HyperLink class="dropdown-item" ID="hypPagPerm"   Visible="false" runat="server" Text="Pages Permission "></asp:HyperLink>
-                                    <asp:HyperLink class="dropdown-item" ID="HypNewModules"   Visible="false" runat="server" Text="New Modules"></asp:HyperLink>
-                                    
-                                            <a class="dropdown-item" href="<%=this.ResolveUrl("~/Index?pid=")%>">New Dashboard</a> 
-                                            <a class="dropdown-item" href="<%=this.ResolveUrl("~/StepofOperationNew?moduleid=0")%>">Old Modules</a> 
+                                    <asp:HyperLink class="dropdown-item" ID="hypCompagPerm" Visible="false" runat="server" Text="Company wise Permission"></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="hypPagPerm" Visible="false" runat="server" Text="User Wise Permission "></asp:HyperLink>
+                                    <asp:HyperLink class="dropdown-item" ID="HypNewModules" Visible="false" runat="server" Text="New Modules"></asp:HyperLink>
+
+                                    <a class="dropdown-item" href="<%=this.ResolveUrl("~/Index?pid=")%>">New Dashboard</a>
+                                    <a class="dropdown-item" href="<%=this.ResolveUrl("~/StepofOperationNew?moduleid=0")%>">Old Modules</a>
 
                                     <a class="dropdown-item" href="<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>">Group Chat Center</a>
-                                    
-                                   
-                                     <a class="dropdown-item" href="https://pintechltd.com/#contact-us">Ask Forum</a>
-                                     <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
-                                      <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'>
-                                         <span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
+
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'><span class="dropdown-icon oi oi-account-logout"></span>Give Attendance</a>
+
+                                    <a class="dropdown-item" href="https://pintechltd.com/#contact-us">Ask Forum</a>
+                                    <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'>
+                                        <span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
                                 </div>
                                 <!-- /.dropdown-menu -->
                             </div>
@@ -438,7 +436,6 @@
                 </div>
 
             </header>
-
             <!-- /.app-header -->
             <!-- .app-aside -->
             <aside class="app-aside app-aside-expand-md app-aside-light sidenav" id="mySidenav" runat="server" onclick="clickinside();">
@@ -456,10 +453,11 @@
                             <!-- dropdown-items -->
                             <div class="pb-3">
                                 <a class="dropdown-item" href="#"><span class="dropdown-icon oi oi-person"></span>Profile</a>
-                                <a class="dropdown-item" href='<%=this.ResolveUrl("~/Login")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
-                                <div class="dropdown-divider"></div> 
+                                <a class="dropdown-item" href="<%=this.ResolveUrl("~/Login")%>"><span class="dropdown-icon oi oi-person"></span>Give Attandance</a>
+                                <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
+                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Ask Forum</a>
-                                 <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
+                                <a class="dropdown-item" href="#">Keyboard Shortcuts</a>
                             </div>
                             <!-- /dropdown-items -->
                         </div>
@@ -484,7 +482,7 @@
                                 </div>
                             </div>
 
-                            
+
 
 
                             <!-- .menu -->
@@ -498,11 +496,6 @@
                                 <li class="menu-item has-active" id="limaster" runat="server">
                                     <a href="StepofOperationNew?moduleid=" id="amaster" runat="server" target="_self" class="menu-link"><span class="menu-icon fas fa-file" title="Master"></span><span class="menu-text">Master</span></a>
                                 </li>
-
-
-
-
-
 
                                 <!-- /.menu-item -->
                                 <!-- .menu-item -->
@@ -518,100 +511,17 @@
                                     <a href="javascript:void(0);" class="menu-link"><span class="menu-icon fa fa-list" title="Interfaces"></span><span class="menu-text">Interfaces</span></a>
                                     <!-- child menu -->
                                     <ul class="menu" id="Interface" runat="server">
-                                        <%--<li class="menu-item">
-                      <a href="auth-comingsoon-v1.html" class="menu-link">Coming Soon v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-comingsoon-v2.html" class="menu-link">Coming Soon v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-cookie-consent.html" class="menu-link">Cookie Consent</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-empty-state.html" class="menu-link">Empty State</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v1.html" class="menu-link">Error Page v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v2.html" class="menu-link">Error Page v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-error-v3.html" class="menu-link">Error Page v3</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-maintenance.html" class="menu-link">Maintenance</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-page-message.html" class="menu-link">Page Message</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-session-timeout.html" class="menu-link">Session Timeout</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signin-v1.html" class="menu-link">Sign In v1</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signin-v2.html" class="menu-link">Sign In v2</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-signup.html" class="menu-link">Sign Up</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-recovery-username.html" class="menu-link">Recovery Username</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-recovery-password.html" class="menu-link">Recovery Password</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="auth-lockscreen.html" class="menu-link">Screen Locked</a>
-                    </li>--%>
                                     </ul>
                                     <!-- /child menu -->
                                 </li>
-                                <!-- /.menu-item -->
-                                <!-- .menu-item -->
 
-                                <!-- .menu-item -->
-                                <%-- <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-browser"></span> <span class="menu-text">Layouts</span> <span class="badge badge-subtle badge-success">+4</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="layout-blank.html" class="menu-link">Blank Page</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-nosearch.html" class="menu-link">Header no Search</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-horizontal-menu.html" class="menu-link">Horizontal Menu</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-fullwidth.html" class="menu-link">Full Width</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagenavs.html" class="menu-link">Page Navs</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover.html" class="menu-link">Page Cover</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagecover-img.html" class="menu-link">Cover Image</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar.html" class="menu-link">Page Sidebar</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar-fluid.html" class="menu-link">Sidebar Fluid</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-pagesidebar-hidden.html" class="menu-link">Sidebar Hidden</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="layout-custom.html" class="menu-link">Custom</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
-                                <!-- .menu-item -->
+                            </ul>
+
+
+                            <ul class="menu mt-0" id="lstFeturedMenu" runat="server">
+
+
+
 
                                 <li class="menu-item has-child">
                                     <a href="#" class="menu-link"><span class="menu-icon fas fa-table" title="Archive"></span><span class="menu-text">Archive</span></a>
@@ -652,58 +562,7 @@
                                 <!-- /.menu-item -->
                                 <!-- .menu-header -->
                                 <li class="menu-header">Analysis </li>
-                                <!-- /.menu-header -->
-                                <!-- .menu-item -->
-                                <%--  <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-puzzle-piece"></span> <span class="menu-text">Components</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="component-general.html" class="menu-link">General</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-icons.html" class="menu-link">Icons</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-rich-media.html" class="menu-link">Rich Media</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-list-views.html" class="menu-link">List Views</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-sortable-nestable.html" class="menu-link">Sortable & Nestable</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-activity.html" class="menu-link">Activity</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-steps.html" class="menu-link">Steps</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-tasks.html" class="menu-link">Tasks</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="component-metrics.html" class="menu-link">Metrics</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
-                                <!-- .menu-item -->
-                                <%--<li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-pencil"></span> <span class="menu-text">Forms</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="form-basic.html" class="menu-link">Basic Elements</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-autocompletes.html" class="menu-link">Autocompletes</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-pickers.html" class="menu-link">Pickers</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="form-editors.html" class="menu-link">Editors</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
+
                                 <!-- .menu-item -->
                                 <li class="menu-item has-active">
                                     <a runat="server" id="dbAllinOne" href="#" target="_blank" class="menu-link"><span class="menu-icon fa fa-th" title="All In One"></span><span class="menu-text">All In One</span></a>
@@ -729,107 +588,25 @@
                                         </li>
 
                                         <li class="menu-item">
-                                            <a  href="<%= ResolveUrl("~/F_32_Mis/ProjectAnalysis?Type=Report&comcod=") %>" target="_blank" class="menu-link">Multi Project</a>
+                                            <a href="<%= ResolveUrl("~/F_32_Mis/ProjectAnalysis?Type=Report&comcod=") %>" target="_blank" class="menu-link">Multi Project</a>
                                         </li>
                                         <li class="menu-item">
                                             <a runat="server" id="PrjSummary" class="menu-link">Project Summary</a>
                                         </li>
-                                        <%--  <li class="menu-item">
-                                            <a href="table-responsive-datatables.html" class="menu-link">Production</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="table-filters-datatables.html" class="menu-link">Accounts</a>
-                                        </li>--%>
+
                                     </ul>
                                     <!-- /child menu -->
                                 </li>
                                 <li class="menu-item has-active">
                                     <a href="AllGraph" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="DashBoard"></span><span class="menu-text">Dashboard</span></a>
                                 </li>
-                                 <li class="menu-item">
+                                <li class="menu-item">
                                     <a href="Tickets/Index" target="_blank" class="menu-link"><span class="menu-icon fa fa-meteor" title="Tickets"></span><span class="menu-text">Tickets</span></a>
                                 </li>
-                                
-                                <!-- /.menu-item -->
-                                <!-- .menu-item -->
-                                <%--   <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-bar-chart"></span> <span class="menu-text">Collections</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Chart.js</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="collection-chartjs-line.html" class="menu-link">Line</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-bar.html" class="menu-link">Bar</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-radar-scatter.html" class="menu-link">Radar & Scatter</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="collection-chartjs-others.html" class="menu-link">Others</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-flot-charts.html" class="menu-link">Flot</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-inline-charts.html" class="menu-link">Inline charts</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="collection-jqvmap.html" class="menu-link">Vector Map</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
-                                <!-- .menu-item -->
-                                <%-- <li class="menu-item has-child">
-                  <a href="#" class="menu-link"><span class="menu-icon oi oi-list-rich"></span> <span class="menu-text">Level Menu</span></a> <!-- child menu -->
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                    <li class="menu-item has-child">
-                      <a href="#" class="menu-link">Menu item</a> <!-- grand child menu -->
-                      <ul class="menu">
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                        <li class="menu-item has-child">
-                          <a href="#" class="menu-link">Child item</a> <!-- grand child menu -->
-                          <ul class="menu">
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                            <li class="menu-item">
-                              <a href="#" class="menu-link">Grand Child item</a>
-                            </li>
-                          </ul><!-- /grand child menu -->
-                        </li>
-                        <li class="menu-item">
-                          <a href="#" class="menu-link">Child item</a>
-                        </li>
-                      </ul><!-- /grand child menu -->
-                    </li>
-                    <li class="menu-item">
-                      <a href="#" class="menu-link">Menu item</a>
-                    </li>
-                  </ul><!-- /child menu -->
-                </li>--%><!-- /.menu-item -->
                             </ul>
 
-                              <ul class="menu" id="MenuDynamic" visible="false" runat="server">
 
+                            <ul class="menu" id="MenuDynamic" visible="false" runat="server">
                             </ul>
                             <!-- /.menu -->
                         </nav>
@@ -848,17 +625,14 @@
             <!-- /.app-aside -->
             <!-- .app-main -->
             <main class="app-main" id="main">
-                
-           
                 <!-- .wrapper -->
                 <div class="wrapper">
-
-
                     <!-- .page -->
-                    <asp:Panel class="page-message" ID="AlertArea" ClientIDMode="Static" Visible="false" runat="server"  role="alert">
+                    <asp:Panel class="page-message" ID="AlertArea" ClientIDMode="Static" Visible="false" runat="server" role="alert">
                         <i class="fa fa-fw fa-info"></i>
                         <%--<asp:Label ID="lblmsg" ClientIDMode="Static" Text="Hello" runat="server"></asp:Label>--%>
-                        <%--<a href="#" class="btn btn-sm btn-warning circle ml-3">Learn More</a>--%> <a href="#" class="btn btn-sm btn-icon btn-warning ml-1" aria-label="Close" onclick="$(this).parent().fadeOut()"><span aria-hidden="true"><i class="fa fa-times"></i></span></a>
+                        <%--<a href="#" class="btn btn-sm btn-warning circle ml-3">Learn More</a>--%>
+                        <a href="#" class="btn btn-sm btn-icon btn-warning ml-1" aria-label="Close" onclick="$(this).parent().fadeOut()"><span aria-hidden="true"><i class="fa fa-times"></i></span></a>
                     </asp:Panel>
                     <%-- May Be Problem(Emdad)5.10.2020 --%>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -868,56 +642,11 @@
                             </asp:ContentPlaceHolder>
                         </ContentTemplate>
                     </asp:UpdatePanel>
-
-
-
-
-                <%--        
-                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>--%>
-                      
-
-
-
-
-                    <%--  <button type="button" class="btn btn-lg btn-primary btn-floated" data-toggle="modal" data-target="#exampleModalDocked" data-backdrop="false"><i class="fas fa-comment fa-lg"></i></button>
-                    <div class="modal modal-docked fade has-shown show" id="exampleModalDocked" tabindex="-1" role="dialog" aria-labelledby="exampleModalDockedLabel" style="display: block; padding-right: 17px;" aria-modal="true">
-                        <!-- .modal-dialog -->
-                        <div class="modal-dialog modal-sm modal-dialog-scrollable" role="document">
-                          <!-- .modal-content -->
-                          <div class="modal-content">
-                            <!-- .modal-header -->
-                            <div class="modal-header bg-primary text-white modal-body-scrolled">
-                              <div class="d-block">
-                                <p id="exampleModalDockedLabel"> Hi 👋! I'm a Modal Docked </p>
-                                <p class="text-center px-3"> You can use .modal-{lg,sm} class to in/decrease my size an put any type of content in my body. </p>
-                              </div>
-                            </div><!-- /.modal-header -->
-                            <!-- .modal-body -->
-                            <div class="modal-body py-3">
-                              <!-- .form-group -->
-                              <div class="form-group">
-                                <div class="form-label-group">
-                                  <input type="text" id="cname" class="form-control placeholder-shown" placeholder="Name" required=""> <label for="cname">Name</label>
-                                </div>
-                              </div><!-- /.form-group -->
-                              <!-- .form-group -->
-                              <div class="form-group">
-                                <div class="form-label-group">
-                                  <input type="email" id="cmail" class="form-control placeholder-shown" placeholder="Email address" required=""> <label for="cmail">Email Address</label>
-                                </div>
-                              </div><!-- /.form-group -->
-                              <button type="button" class="btn btn-lg btn-block btn-primary">Lets Chat</button> <button type="button" class="btn btn-lg btn-block btn-link" data-dismiss="modal" aria-label="Close">Close</button>
-                            </div><!-- /.modal-body -->
-                          </div><!-- /.modal-content -->
-                        </div><!-- /.modal-dialog -->
-                      </div>
-                    --%>
                 </div>
                 <!-- .app-footer -->
                 <footer class="app-footer fixed-bottom" style="background-color: #EEEEEE;">
                     <div class="col-md-12">
-                        <div class="pull-left">
+                        <div class="float-left">
                             <asp:LinkButton ID="lnkbtnLedger" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btngl btncommon" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnHisprice" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnTranList" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
@@ -925,14 +654,14 @@
                             <asp:CheckBox ID="CheckBox1" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
 
                         </div>
-                        <div class="pull-right">
-                            <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-sm btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
+                        <div class="float-right">
+                            <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-md btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
 
                             <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>
  New</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btnadd btncommon" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>
  Add</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-sm btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
+                            <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
                             <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
                             <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
@@ -940,29 +669,17 @@
 Close</asp:LinkButton>
                         </div>
                     </div>
-                    <div class="copyright" runat="server" id="lblCopy"> </div>
-
-
-
-
-
+                    <div class="copyright" runat="server" id="lblCopy"></div>
                 </footer>
                 <!-- /.app-footer -->
                 <!-- /.wrapper -->
-
             </main>
             <!-- /.app-main -->
         </div>
         <!-- /.app -->
-
     </form>
-        
-    <!-- BEGIN BASE JS -->
 
-  
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-  
     <script>
         $(document).ready(function () {
             var functionIsRunning = 0;
@@ -989,8 +706,12 @@ Close</asp:LinkButton>
                 })
             })
 
-           // setTimeout($("#AlertArea").fadeOut(5000), 5000);
+            // setTimeout($("#AlertArea").fadeOut(5000), 5000);
             //auto complete
+
+
+            GetNotifications();
+
 
         });
         function clickinside() {
@@ -1013,9 +734,6 @@ Close</asp:LinkButton>
                 return false;
             }
         }
-
-
-
 
 
         function FunConfirmMerge() {
@@ -1067,13 +785,11 @@ Close</asp:LinkButton>
             }
         }
 
-
-
         function HideLabel(id) {
 
 
             if (id == "0") {
-              
+
                 $('#lblmsg').removeClass("Message");
                 $('#lblmsg').addClass("msgerror");
             }
@@ -1085,13 +801,9 @@ Close</asp:LinkButton>
 
 
 
-        function lblHide() {    ///// using festival option
-            //  window.location = "http://webdesign.about.com";
-
+        function lblHide() {
             $('#lblmsg').hide();
-
         }
-
 
         window.dataLayer = window.dataLayer || [];
 
@@ -1100,7 +812,6 @@ Close</asp:LinkButton>
         }
         gtag('js', new Date());
         gtag('config', 'UA-116692175-1');
-
         var specialKeys = new Array();
         specialKeys.push(8); //Backspace
         function IsNumeric(e) {
@@ -1109,12 +820,9 @@ Close</asp:LinkButton>
             document.getElementById("error").style.display = ret ? "none" : "inline";
             return ret;
         }
-   
 
         //toster
         function showContent(msg) {
-           
-
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -1134,7 +842,6 @@ Close</asp:LinkButton>
 
         };
         function showContentFail(msg) {
-          
             toastr.options = {
                 "closeButton": true,
                 "debug": false,
@@ -1151,8 +858,55 @@ Close</asp:LinkButton>
                 "hideMethod": "fadeOut"
             }
             toastr["error"](msg);
-
         };
+        function GetNotifications() {
+            try {
+                var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
+                var userid = <%=this.GetUserId()%>;
+                var objnotification = new RealERPScript();
+                var data = objnotification.GetNotifications(userid, url);
+               
+                var row = "";
+                var img = "";
+                var count = 0;
+                var all = "";
+                var imgstrng = "";
+                var imgextract = "";
+                $("#repNotificmsg").html("");
+                $.each(data, function (k, v) {
+                    if (v.ntype == "") {
+
+                        console.log(v.sendphoto);
+
+                        imgstrng =  v.sendphoto;
+                    
+
+                        imgextract = imgstrng.substring(2);
+                        //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
+                        row += '<a href="' + encodeURI('../../Notification/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
+                            '<div class="user-avatar">' +
+                            '<img src="../../' + imgextract+'" alt="">' +
+                            '</div>' +
+                            '<div class="dropdown-item-body">' +
+                            '<p class="subject">' + v.eventitle + '</p>' +
+                            '<p class="product-name text-truncate">' + v.meassage + '</p>' +
+                            '</div>' +
+
+                            '</a>';
+                        count++;
+                    }
+                });
+                $("#repNotificmsg").append(row);
+                $("#lblallpop").text(count);
+                
+             }
+             catch (e) {
+                 /*showContentFail('Notification Not Found');*/
+             }
+         }
+
+        
+       
     </script>
 
 </body>

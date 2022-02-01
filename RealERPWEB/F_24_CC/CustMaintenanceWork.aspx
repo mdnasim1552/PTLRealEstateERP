@@ -499,7 +499,18 @@
                                     <FooterStyle HorizontalAlign="right" />
                                 </asp:TemplateField>
 
-
+                                <asp:TemplateField HeaderText="" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgbID" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Font-Size="11px" ForeColor="Black" Style="text-align: right"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                     
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="right" />
+                                </asp:TemplateField>
                             </Columns>
 
                             <FooterStyle CssClass="grvFooter" />

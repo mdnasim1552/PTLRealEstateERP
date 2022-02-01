@@ -103,7 +103,7 @@
 
                                             <asp:TemplateField HeaderText="Chalan No ">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lgvchalano" Style="word-break: break-all" runat="server" Width="120px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chlno"))  %>'>
+                                                    <asp:Label ID="lgvchalano" Style="word-break: break-all" runat="server" Width="100px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "chlno"))  %>'>
                                                     </asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
@@ -129,7 +129,7 @@
                                             <asp:TemplateField HeaderText="Specification">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvSpecification" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
-                                                        Width="120px"></asp:Label>
+                                                        Width="100px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -162,7 +162,7 @@
                                             <asp:TemplateField HeaderText="Supplier Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvSupplier01" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssirdesc")) %>'
-                                                        Width="140px"></asp:Label>
+                                                        Width="120px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -175,6 +175,17 @@
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
+
+                                              <asp:TemplateField HeaderText="Adjust">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvadjqty" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adjqty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="50px"></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
+
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />
                                         <EditRowStyle />

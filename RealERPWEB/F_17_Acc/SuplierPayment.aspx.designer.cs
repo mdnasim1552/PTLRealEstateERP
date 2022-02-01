@@ -141,24 +141,6 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.Label lblcontrolAccHead;
 
         /// <summary>
-        /// txtScrchConCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtScrchConCode;
-
-        /// <summary>
-        /// ibtnFindConCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnFindConCode;
-
-        /// <summary>
         /// ddlConAccHead control.
         /// </summary>
         /// <remarks>
@@ -213,24 +195,6 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.Label Label11;
 
         /// <summary>
-        /// txtserchReCode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtserchReCode;
-
-        /// <summary>
-        /// lnkRescode control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkRescode;
-
-        /// <summary>
         /// ddlresuorcecode control.
         /// </summary>
         /// <remarks>
@@ -256,24 +220,6 @@ namespace RealERPWEB.F_17_Acc
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label12;
-
-        /// <summary>
-        /// txtserchBill control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtserchBill;
-
-        /// <summary>
-        /// lnkBillNo0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkBillNo0;
 
         /// <summary>
         /// DropCheck1 control.

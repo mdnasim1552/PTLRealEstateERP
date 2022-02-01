@@ -1,13 +1,14 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RptSettlementStatus.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RptSettlementStatus" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-        <script>
-            function SetTarget(type) {
-                window.open('../../RDLCViewerWin.aspx?PrintOpt=' + type, '_blank');
-            }
-            </script>
+    <script>
+        function SetTarget(type) {
+            window.open('../../RDLCViewerWin.aspx?PrintOpt=' + type, '_blank');
+        }
+    </script>
     <script type="text/javascript" language="javascript">
         function FnDanger() {
             $.toaster('Sorry No Data Found of this Section', '<span class="glyphicon glyphicon-info-sign"></span> Information', 'danger');
@@ -19,7 +20,7 @@
 
         });
 
-        function pageLoaded() { 
+        function pageLoaded() {
 
             $('.chzn-select').chosen({ search_contains: true });
 
@@ -28,7 +29,7 @@
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-              <div class="RealProgressbar">
+            <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
                     <ProgressTemplate>
                         <div id="loader">
@@ -58,10 +59,10 @@
                                         <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Employee Type</asp:Label>
                                         <asp:DropDownList ID="ddlWstation" runat="server" Width="200" OnSelectedIndexChanged="ddlWstation_SelectedIndexChanged" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
                                     </div>
-                                    <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
+                                    <%--  <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
                                         <asp:Label ID="Label3" runat="server" CssClass="smLbl_to">Division</asp:Label>
                                         <asp:DropDownList ID="ddlDivision" runat="server" Width="225" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
-                                    </div>
+                                    </div>--%>
                                     <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
                                         <asp:Label ID="Label7" runat="server" CssClass="smLbl_to">Department</asp:Label>
                                         <asp:DropDownList ID="ddlDept" runat="server" Width="200" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
@@ -69,11 +70,11 @@
                                     <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
                                         <asp:Label ID="Label8" runat="server" CssClass="smLbl_to">Section</asp:Label>
 
-                                        <asp:DropDownList ID="ddlSection" runat="server" Width="200"  CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
-                                         
+                                        <asp:DropDownList ID="ddlSection" runat="server" Width="200" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
+
                                     </div>
-                                     
-                                    
+
+
                                 </div>
 
 
@@ -131,7 +132,19 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Employee Name">
+                            <asp:TemplateField HeaderText="">
+                                <HeaderTemplate>
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td>
+                                                <asp:Label ID="lblheader" runat="server" Text="Employee Name"></asp:Label>
+                                            </td>
+                                            <td>
+                                                <asp:HyperLink ID="hlbtntbCdataExel" runat="server" CssClass="btn btn-success btn-xs fa fa-file-excel-o" ToolTip="Export to Excel"></asp:HyperLink>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </HeaderTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvempid" runat="server" Visible="false" Height="16px" Font-Size="11px"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
@@ -230,24 +243,6 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-
-
-
-                            <%--<asp:TemplateField HeaderText="Details">
-                                <ItemTemplate>
-                                      <asp:HyperLink ID="gvLink" runat="server" 
-                                                Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "qlink")).ToString() %>'>
-                                            </asp:HyperLink>
-                                    
-                                
-                                </ItemTemplate>
-                                
-                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                <ItemStyle HorizontalAlign="left" />
-                                <FooterStyle HorizontalAlign="right" />
-                            </asp:TemplateField>--%>
-
-
                             <asp:TemplateField HeaderText="Status">
                                 <ItemTemplate>
 
@@ -272,8 +267,8 @@
                             <asp:TemplateField HeaderText="Print">
                                 <ItemTemplate>
 
-                                    <asp:linkButton ID="HypRDDoPrint" runat="server"  OnClick="HypRDDoPrint_Click" CssClass="btn btn-xs btn-danger"><span class="glyphicon glyphicon-print"></span>
-                                    </asp:linkButton>
+                                    <asp:LinkButton ID="HypRDDoPrint" runat="server" OnClick="HypRDDoPrint_Click" CssClass="btn btn-xs btn-danger"><span class="glyphicon glyphicon-print"></span>
+                                    </asp:LinkButton>
 
                                 </ItemTemplate>
                             </asp:TemplateField>

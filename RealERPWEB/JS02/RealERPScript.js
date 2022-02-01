@@ -308,4 +308,41 @@
 
     };
 
+
+
+    this.GetNotifications = function (userid, url) {
+        var results = new Array();
+        jQuery.ajax({
+            type: "POST",
+            async: false,
+            url: url,
+            data: Sys.Serialization.JavaScriptSerializer.serialize({ 'userid': userid}),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (typeof (response) == 'string')
+                    results = Sys.Serialization.JavaScriptSerializer.deserialize(response).d;
+                else
+                    results = response.d;
+            },
+            failure: function (msg) {
+                alert('Service Error');
+            },
+            error: function (res, status) {
+                if (status == "error") {
+                    alert(res.responseText);
+                }
+            }
+        });
+
+       
+
+        return results;
+
+
+
+    };
+
+
+
  }

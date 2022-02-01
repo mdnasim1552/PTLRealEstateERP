@@ -102,7 +102,8 @@ namespace RealEntity.C_34_Mgt
         public string usrname { get; set; }
         public string usrdesig { get; set; }
         public string usrrmrk { get; set; }
-       
+        public string roledesc { get; set; }
+
         public Userinfo() { }
     }
 

@@ -878,7 +878,7 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-                case "3101":
+                //case "3101":
                 case "3337"://Suvastu
                 case "3339"://Tropical
                 case "3336"://Suvastu                       
@@ -915,6 +915,12 @@ namespace RealERPWEB.F_17_Acc
                     comledger = "LedgerRupayan";
                     break;
 
+
+                case "3357":
+                case "3101":
+                    comledger = "LedgerCube";
+                    break;
+                    
                 default:
                     comledger = "LedgerGen";
                     break;
@@ -1003,16 +1009,21 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
+            else if (comledger== "LedgerCube")
+            {
+                string checkby = "Checked/Recommended By";
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerCube", lst, null, null);
+                Rpt1.EnableExternalImages = true;
+                Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
+            }
 
             else
             {
+                
                 string checkby = (comcod == "3340") ? "Checked By" : "Recommended By";
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedger", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
-
-
-
 
             }
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));

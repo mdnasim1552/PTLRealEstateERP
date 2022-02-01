@@ -318,10 +318,9 @@
 
         $(document).ready(function () {
 
-
-
-
+             
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            document.getElementById('<%= Btn_tempBTN.ClientID %>').click();
 
         });
 
@@ -359,6 +358,11 @@
                 $('.datepicker').datepicker({
                     format: 'mm/dd/yyyy',
                 });
+
+
+
+                var gvSummary = $('#<%=this.gvSummary.ClientID %>');
+                gvSummary.Scrollable();
 
 
 
@@ -566,12 +570,13 @@
         //    $('#lbtntfollowup').click();
         //}
 
+        //Comment Emdad 20.01.2022
 
-        function OpenModal() {
-            $('#detnotification').modal('show');
+        //function OpenModal() {
+        //    $('#detnotification').modal('show');
 
 
-        }
+        //}
 
         function AddButton(id) {
 
@@ -986,14 +991,14 @@
                             }
                             else {
                                 var ar = new Array();
-                                alert(newfollowup);
+                              //  alert(newfollowup);
                                 var j = 0;
                                 for (i = 0; i < newfollowup.length; i = i + 7) {
                                     ar[j++] = newfollowup.substr(i, 7);
                                 }
 
-                                console.log(ar);
-                                alert(ar.length);
+                                //console.log(ar);
+                              //  alert(ar.length);
 
                                 for (i = 0; i < ar.length; i++) {
 
@@ -1198,6 +1203,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
+                    <asp:LinkButton ID="Btn_tempBTN" OnClick="Btn_tempBTN_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
 
 
             <div class="card card-fluid ">
@@ -1295,6 +1301,11 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>2000</asp:ListItem>
+                                    <asp:ListItem>4000</asp:ListItem>
+                                    <asp:ListItem>5000</asp:ListItem>
+                                    <asp:ListItem >10000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -3252,7 +3263,7 @@
 
                                         </asp:LinkButton>
 
-                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server">
+                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDatablank_Click">
                                             <div class="list-group-item-figure">
                                                 <div class="tile tile-circle bg-primary">DB</div>
                                             </div>
@@ -3289,10 +3300,10 @@
 
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget" runat="server">Yearly Activities Target Set</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget?type=LND" runat="server">Yearly Activities Target Set</asp:HyperLink>
                                             </li>
                                             <li>
-                                                <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=LND" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
 
 
@@ -3574,7 +3585,7 @@
                                                         <%--<asp:Button Text="Re-Schdule" CssClass="btn btn-primary btn-xs" OnClientClick="javascript:CloseModaldisReschedule();" runat="server" OnClick="GetValue" />--%>
 
 
-                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schedule</button>
 
 
                                                         <asp:LinkButton ID="lbtnCancel" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnCancel_Click"> Cancel</asp:LinkButton>

@@ -67,30 +67,44 @@
                                         <asp:Label ID="lbltodate" runat="server" CssClass="lblTxt lblName">Loan No</asp:Label>
                                         <asp:Label ID="lblCurNo1" runat="server" CssClass="smLbl_to"></asp:Label>
                                         <asp:Label ID="lblCurNo2" runat="server" CssClass="smLbl_to"></asp:Label>
-                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
                                     </div>
 
                                 </div>
                                 <div class="form-group">
 
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-md-2 pading5px asitCol3">
                                         <asp:Label ID="lblResList" runat="server" CssClass="lblTxt lblName">Employee List</asp:Label>
                                         <asp:TextBox ID="txtsrchEmp" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
                                         <asp:LinkButton ID="ibtnEmpList" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnEmpList_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
-                                    <div class="col-md-5 pading5px asitCol5">
+                                    <div class="col-md-3 pading5px asitCol5">
                                         <asp:DropDownList ID="ddlEmpList" runat="server" Width="233" CssClass=" chzn-select form-control inputTxt pull-left" TabIndex="2">
                                         </asp:DropDownList>
                                         <asp:Label ID="lblEmpName" runat="server" Visible="false" Width="233" CssClass="form-control inputTxt pull-left" ></asp:Label>
                                         
 
                                     </div>
+
+                                                                            
+                                  
+                                    <div class="col-md-1 pading5px asitCol5">
+                                          <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Loan Type :</asp:Label>
+                                        <asp:DropDownList ID="ddlLoantype" runat="server" Width="233" CssClass=" chzn-select form-control inputTxt pull-left" TabIndex="2">
+                                        </asp:DropDownList>
+                                    
+                                        
+                                    </div>
+
+                                        <asp:LinkButton ID="lbtnOk" runat="server" OnClick="lbtnOk_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
+
                                     <div class="col-md-3 pading5px">
                                         <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
 
 
                                 </div>
+
+                                
                             </div>
                         </fieldset>
                     </div>

@@ -54,12 +54,7 @@
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
-
-
-
-
-
-
+                 
 
             });
 
@@ -656,7 +651,7 @@
                                         </FooterTemplate>
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtissueamt" runat="server" BackColor="Transparent" BorderStyle="None"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuamt")).ToString("#,##0.00;-#,##0.00; ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "isuamt")).ToString("#,##0;-#,##0; ") %>'
                                                 Width="70px" Style="text-align: right"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" />

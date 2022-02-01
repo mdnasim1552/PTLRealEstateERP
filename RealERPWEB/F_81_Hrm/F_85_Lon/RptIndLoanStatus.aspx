@@ -73,7 +73,8 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvinsdat" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="12px" 
-                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "insdat")).ToString("dd-MMM-yyyy") %>'
+                                            Text='<%#(Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "insdat")).Year==1900 ? "": Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "insdat")).ToString("dd-MMM-yyyy")) %>'
+                                           
                                             Width="80px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>

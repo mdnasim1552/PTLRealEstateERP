@@ -611,7 +611,7 @@
                         break;
 
                     case 3355:   // Green Wood  
-                    //case 3101:   //ASIT
+                        // case 3101:   //ASIT
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
@@ -3303,7 +3303,7 @@
                                                             <asp:TemplateField HeaderText="Total Amount">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvWoamtosapp" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "woamt")).ToString("#,##0;(#,##0);") %>'
+                                                                        Text='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3101" || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3355" ? true : false %>'
                                                                         Width="50px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
@@ -3322,24 +3322,36 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
-
+                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs"> <span  style="color:green" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
+
+                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span>
+                                                                    </asp:HyperLink>
+
+
 
                                                                     <asp:HyperLink ID="lnkbtnEntryosapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
                                                                     <%--<asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
-                                                                     <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click"   OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
+                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
-                                                                    
+
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="110px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
+                                                                <ItemStyle Width="150px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText=" Req. No" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqnoapp" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno"))%>' Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
 

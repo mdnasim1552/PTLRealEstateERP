@@ -244,7 +244,11 @@ namespace RealERPWEB.F_09_PImp
             string Projectlocat = "";
             string Username = "";
             string userdesig = "";
+
             string rsirdesc = "";
+            string txtsign1 = "";
+            string txtsign2 = "";
+            string txtsign3 = "";
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -253,6 +257,11 @@ namespace RealERPWEB.F_09_PImp
                 Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+
+                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
+                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString();
+                txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
+
             }
 
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
@@ -282,6 +291,10 @@ namespace RealERPWEB.F_09_PImp
 
                     i++;
                 }
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
                 Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
@@ -295,6 +308,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
             }
 
 
@@ -320,6 +334,10 @@ namespace RealERPWEB.F_09_PImp
 
                     i++;
                 }
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
                 Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
@@ -356,6 +374,10 @@ namespace RealERPWEB.F_09_PImp
                     i++;
 
                 }
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
                 Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));

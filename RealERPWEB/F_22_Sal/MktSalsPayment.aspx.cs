@@ -392,6 +392,8 @@ namespace RealERPWEB.F_22_Sal
             this.lblwork.Text = dtOrder.Rows[0]["design"].ToString();
             this.lblCode.Text = usircode;
 
+            this.gvSpayment.Columns[17].Visible = false;
+
 
             this.lblvoucher.Text = dtOrder.Rows[0]["vounum"].ToString();
             this.lblAcAmt.Text = Convert.ToDouble(dtOrder.Rows[0]["tamt"]).ToString("#,##0;(#,##0); ");
@@ -695,23 +697,26 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnTotalCost_Click(object sender, EventArgs e)
         {
             double Amount = 0;
-            double Usize = 0;
+           // double Usize = 0;
             // double PaidAmt = 0;
-            double iamount, irate;
+            double iamount, irate, disamt;
             foreach (GridViewRow gv1 in gvCost.Rows)
             {
                 double dUsize = Convert.ToDouble('0' + ((TextBox)gv1.FindControl("txtgvUSize")).Text.Trim());
                 //double dRate = Convert.ToDouble('0' + ((TextBox)gv1.FindControl("lgvRate")).Text.Trim()); //Sourav
                 //double dRate = Convert.ToDouble('0' + ((TextBox)gv1.FindControl("lgvRate")).Text.Trim()); //Sourav
                 double dRate = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("lgvRate")).Text.Trim()));
+                disamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvdiscount")).Text.Trim()));
                 double dAmt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)gv1.FindControl("txtgvuamt")).Text.Trim()));
-                Amount += dAmt;
-                Usize += dUsize;
+                // Amount += dAmt;
+                //Usize += dUsize;
                 //iamount = dAmt > 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? (dUsize * dRate) : 0.00);
-                iamount = dAmt != 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? (dUsize * dRate) : 0.00);
+                iamount = dAmt != 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? ((dUsize * dRate)- disamt) : 0.00);
                 irate = dRate > 0 ? dRate : ((dUsize > 0 & iamount > 0) ? (iamount / dUsize) : 0.00);
                 ((TextBox)gv1.FindControl("lgvRate")).Text = irate.ToString("#,##0.00;(#,##0.00); ");
                 ((TextBox)gv1.FindControl("txtgvuamt")).Text = iamount.ToString("#,##0; -#,##0; ");
+                ((TextBox)gv1.FindControl("txtgvdiscount")).Text = disamt.ToString("#,##0; -#,##0; ");
+                Amount += iamount;
 
             }
 
@@ -757,10 +762,11 @@ namespace RealERPWEB.F_22_Sal
                 string Gcode = ((Label)this.gvCost.Rows[i].FindControl("lblgvGcod")).Text.Trim();
                 string UNumber = ((TextBox)this.gvCost.Rows[i].FindControl("txtgUnitnum")).Text.Trim();
                 string Usize = Convert.ToDouble('0' + ((TextBox)this.gvCost.Rows[i].FindControl("txtgvUSize")).Text.Trim()).ToString();
+                double disamt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvCost.Rows[i].FindControl("txtgvdiscount")).Text.Trim()));
                 double Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvCost.Rows[i].FindControl("txtgvuamt")).Text.Trim()));
                 string Remarks = ((TextBox)this.gvCost.Rows[i].FindControl("txtgvRemarks")).Text.Trim();
                 //if (Amt!=0)
-                MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALGINF1", PactCode, Usircode, Gcode, UNumber, Usize, Amt.ToString(), Remarks, "", "", "", "", "", "", "", "");
+                MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATESALGINF1", PactCode, Usircode, Gcode, UNumber, Usize, Amt.ToString(), Remarks, disamt.ToString(), "", "", "", "", "", "", "");
 
             }
             // ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";

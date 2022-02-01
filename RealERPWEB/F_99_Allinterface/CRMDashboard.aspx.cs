@@ -19,6 +19,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (!IsPostBack)
             {
+               
                 //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("~/AcceessError.aspx");
@@ -29,8 +30,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //this.txtfodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-                this.txtfodate.Text = "01" + date.Substring(2);
+                this.txtfodate.Text = date;
                
 
 
@@ -39,7 +39,7 @@ namespace RealERPWEB.F_99_Allinterface
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
                 this.GetComponentData();
-                ddlEmpid_SelectedIndexChanged(null, null);
+                lnkbtnOk_Click(null, null);
             }
         }
 
@@ -62,6 +62,8 @@ namespace RealERPWEB.F_99_Allinterface
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string empid = hst["empid"].ToString();
             DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
             ViewState["tblempsup"] = ds1.Tables[0];
             ds1.Dispose();
 
@@ -87,7 +89,7 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 dtE = dv.ToTable();
-                dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                dtE.Rows.Add("000000000000", "All Employee", "");
 
             }
 
@@ -104,7 +106,7 @@ namespace RealERPWEB.F_99_Allinterface
                              }).ToList();
                 dtE = ASITUtility03.ListToDataTable(query);
                 if (dtE.Rows.Count >= 2)
-                    dtE.Rows.Add("000000000000", "Choose Employee..", "");
+                    dtE.Rows.Add("000000000000", "All Employee", "");
                 // if(dtE.Rows.Count>1)
                 //dtE.Rows.Add("000000000000", "Choose Employee..", "");
             }
@@ -160,6 +162,8 @@ namespace RealERPWEB.F_99_Allinterface
         public string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            
+
             return (hst["comcod"].ToString());
         }
 
@@ -180,14 +184,15 @@ namespace RealERPWEB.F_99_Allinterface
             string userrole = hst["userrole"].ToString();
             string comcod = this.GetComeCode();
             //string Empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
-            string frmdate = this.txtfodate.Text.ToString();
+           // string frmdate = this.txtfodate.Text.ToString();
             string todate = this.txtfodate.Text.ToString();
             string Empid = "";
             if (userrole != "1")
             {
-                Empid = hst["empid"].ToString();
+                Empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
             }
-            
+            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
+
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "GETCRMCOMPONENTDATA", "8301%", Empid, ddlempid, todate);
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
@@ -213,49 +218,61 @@ namespace RealERPWEB.F_99_Allinterface
             //this.lblpme.InnerText = ds3.Tables[0].Rows[0]["pme"].ToString();
             this.lbllost.InnerText = ds3.Tables[0].Rows[0]["lost"].ToString();
             this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
+            this.lblOccasion.InnerText = ds3.Tables[1].Rows.Count.ToString();
 
+
+            string empId = this.ddlEmpid.SelectedValue.ToString();
+            string curDate = Convert.ToDateTime(this.txtfodate.Text).ToString("dd-MMM-yyyy");
+            this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
+            //hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
 
         }
 
-        private void EmpMonthlyKPI(string empid)
+        private void EmpMonthlyKPI(string ddlempid)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
             string comcod = this.GetComeCode();
-            string frmdate = this.txtfodate.Text.Trim();
-            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-             
-            // string empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
-            if (userrole == "1")
+
+      
+            string todate = this.txtfodate.Text.Trim();
+         //   string frmdate = this.txtfodate.Text.Trim();
+            string frmdate = Convert.ToDateTime("01" + todate.Substring(2)).ToString("dd-MMM-yyyy");
+            string empid = "";
+            if (userrole != "1")
             {
-                empid = "%";
+                empid = (hst["empid"].ToString() == "" ? "93%" : hst["empid"].ToString());
             }
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid);
+            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
+
+            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid, ddlempid);
             if (ds1 == null)
                 return;
 
-            ViewState["tbldataCount"] = ds1.Tables[0];
+            ViewState["tbldataCountM"] = ds1.Tables[0];
+            ViewState["tbldataCountW"] = ds1.Tables[1];
+            ViewState["tbldataCountD"] = ds1.Tables[2];
             Data_bind();
         }
 
         private void Data_bind()
         {
            
-            DataTable dtc = ((DataTable)ViewState["tbldataCount"]).Copy();
-            DataTable dtw = ((DataTable)ViewState["tbldataCount"]).Copy();
-            DataTable dtd = ((DataTable)ViewState["tbldataCount"]).Copy();
+            DataTable dtc = ((DataTable)ViewState["tbldataCountM"]).Copy();
+            DataTable dtw = ((DataTable)ViewState["tbldataCountW"]).Copy();
+            DataTable dtd = ((DataTable)ViewState["tbldataCountD"]).Copy();
 
-            DataView dvp = dtc.DefaultView;
-            dvp.RowFilter = ("grp='M'");
-            dtc = dvp.ToTable();
+            //DataView dvp = dtc.DefaultView;
+            //dvp.RowFilter = ("grp='M'");
+            //dtc = dvp.ToTable();
 
-            DataView dvw = dtw.DefaultView;
-            dvw.RowFilter = ("grp='W'");
-            dtw = dvw.ToTable();
+            //DataView dvw = dtw.DefaultView;
+            //dvw.RowFilter = ("grp='W'");
+            //dtw = dvw.ToTable();
 
-            DataView dvd = dtd.DefaultView;
-            dvd.RowFilter = ("grp='D'");
-            dtd = dvd.ToTable();
+            //DataView dvd = dtd.DefaultView;
+            //dvd.RowFilter = ("grp='D'");
+            //dtd = dvd.ToTable();
 
 
 
@@ -273,7 +290,8 @@ namespace RealERPWEB.F_99_Allinterface
             
 
             var gtype = "column";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + dataw + "','" + datad + "','" + gtype + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "chart", "ExecuteGraph('" + data + "','" + dataw + "','" + datad + "','" + gtype + "')", true);
+
 
         }
 
@@ -291,7 +309,33 @@ namespace RealERPWEB.F_99_Allinterface
             public decimal others { get; set; }           
             public string empid { get; set; }
             public string empname { get; set; }
+            public decimal tcall { get; set; }
+            public decimal textmeeting { get; set; }
+            public decimal tintmeeting { get; set; }
+            public decimal tproposal { get; set; }
+            public decimal tleads { get; set; }
+            public decimal tclose { get; set; }
+            public decimal tvisit { get; set; }
+            public decimal tothers { get; set; }
+
         }
 
+        protected void lnkbtnOk_Click(object sender, EventArgs e)
+        {
+            string empid = this.ddlEmpid.SelectedValue.ToString();
+            //if (empid != "000000000000")
+                // this.GetGridSummary();
+                GetNotificationByEmployee(empid);
+        }
+
+        protected void lbtnOccasion_Click(object sender, EventArgs e)
+        {
+            string empId = this.ddlEmpid.SelectedValue.ToString();
+            string curDate = Convert.ToDateTime(this.txtfodate.Text).ToString("dd-MMM-yyyy");
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/Notification/";
+            string currentptah = "Occasion?Type=Report&EmpId=" + empId +"&curDate="+curDate;
+            string totalpath = hostname + currentptah;
+            ScriptManager.RegisterStartupScript(this, GetType(), "target", "funOccasion('" + totalpath + "');", true);
+        }
     }
 }

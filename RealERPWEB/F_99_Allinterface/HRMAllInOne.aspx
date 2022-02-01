@@ -176,10 +176,10 @@ ul.Menulinks {
                 Date2 = $('#txtDateto').val();
                 path = "https://localhost:44359/";
                 
-                    //$("#hlnkatt").attr("href", "F_99_Allinterface/F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" +
-                //    comcod + "&Date=" + Date2); 
-                $("#hlnkatt").attr("href", path+ "F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" +
-                                  comcod + "&Date=" + Date2); 
+                $("#hlnkatt").attr("href", "../F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs?Type=LELLAndAbsent&comcod=" +
+                    comcod + "&Date=" + Date2); 
+                //$("#hlnkatt").attr("href", path+ "F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs?Type=LELLAndAbsent&comcod=" +
+                //                  comcod + "&Date=" + Date2); 
                 $.ajax({
                     type: "POST",
                     url: "HRMAllInOne.aspx/GetAllData",

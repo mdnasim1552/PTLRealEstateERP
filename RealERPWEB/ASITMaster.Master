@@ -34,7 +34,6 @@
         <%: Scripts.Render("~/bundles/multiselect") %>
         <%: Scripts.Render("~/bundles/User") %>
         <%: Scripts.Render("~/bundles/Counter") %>
-
         
     </asp:PlaceHolder>
 
@@ -263,8 +262,8 @@
     <link href="Content/progressbar.css" rel="stylesheet" />
     <link href="Content/bootstrap-multiselect.css" rel="stylesheet" />
     <link href="Content/theme.blue.css" rel="stylesheet" />--%>
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
         .userMenu ul .dropdown-menu {
             right: 0 !important;
@@ -616,7 +615,7 @@
 
 
 
-        function submitform() { document.getElementById("form1").submit(); }
+        //function submitform() { document.getElementById("form1").submit(); }
 
         function load_modal() {
             $('#supportPart').modal('show');
@@ -901,7 +900,8 @@
                             <h1>
                                 <%--<asp:Image ID="Image1" CssClass="Companylogo" runat="server" ImageUrl="~/Image/LOGO1.PNG" />--%>
                                 <asp:HyperLink runat="server" ID="LogoBar">
-                                    <asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" /></asp:HyperLink>
+                                    <asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" />
+                                </asp:HyperLink>
                             </h1>
                         </div>
                         <div class="asit_ComInfo">
@@ -1042,14 +1042,16 @@
                                 <div class="form-group">
 
                                     <div class="col-md-12  ">
-                                        <div class="pull-left">
+                                        <asp:Panel class="pull-left" ID="pilleftDvi" runat="server">
+
+
                                             <asp:LinkButton ID="lnkbtnLedger" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btngl" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnHisprice" runat="server" CssClass="btngl" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
                                             <asp:LinkButton ID="lnkbtnTranList" runat="server" CssClass="btngl " Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
                                             <asp:CheckBox ID="chkBoxN" runat="server" TabIndex="10" Text="Payment" CssClass="btngl checkBoxAN checkBox" AutoPostBack="true" OnCheckedChanged="chkBoxN_CheckedChanged" />
                                             <asp:CheckBox ID="CheckBox1" runat="server" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
 
-                                        </div>
+                                        </asp:Panel>
                                         <div class="pull-right">
                                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                                 <ContentTemplate>
@@ -1167,6 +1169,47 @@ Close</asp:LinkButton>
           </script>--%>
     <script type="text/javascript">
         document.getElementById('calc').onload = init_calc('calc');
+        //toster
+        function showContent(msg) {
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "progressBar": true,
+                "preventDuplicates": false,
+                "positionClass": "toast-top-right",
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "7000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["success"](msg);
+
+        };
+        function showContentFail(msg) {
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "progressBar": true,
+                "preventDuplicates": false,
+                "positionClass": "toast-top-right",
+                "showDuration": "400",
+                "hideDuration": "1000",
+                "timeOut": "7000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr["error"](msg);
+
+        };
     </script>
 </body>
 </html>

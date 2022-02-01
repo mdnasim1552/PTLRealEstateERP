@@ -102,7 +102,22 @@
 
         }
 
-
+        function isNumberKey(txt, evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
+        }
 
     </script>
 
@@ -598,7 +613,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="13px" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" ControlStyle-Width="30px">
+                                            <asp:CommandField ShowDeleteButton="True" ButtonType="Link" ControlStyle-Width="30px">
                                                 <ControlStyle Width="30px" />
                                                 <HeaderStyle Width="30px" />
                                                 <ItemStyle Width="30px" />
@@ -629,7 +644,14 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spclcode")) %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Head of Accounts">
+                                            <asp:TemplateField HeaderText="">
+                                                <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Head of Accounts" Width="230px"></asp:Label>
+
+                                                    <asp:HyperLink ID="hlbtntbGrdExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                    </asp:HyperLink>
+                                                </HeaderTemplate>
+
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True"
                                                         OnClick="lnkTotal_Click" CssClass="btn btn-primary primarygrdBtn pull-right">Total :</asp:LinkButton>
@@ -757,6 +779,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvQty" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="50px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="79"></asp:TextBox>
@@ -776,6 +799,7 @@
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="60px" Font-Size="12px" ForeColor="Black"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Style="text-align: right" TabIndex="80"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <HeaderStyle Width="50px" />
@@ -784,7 +808,8 @@
                                             <asp:TemplateField HeaderText="Dr.Amount" HeaderStyle-Width="70px">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvDrAmt" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"  
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="81"></asp:TextBox>
@@ -803,6 +828,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvCrAmt" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="82"></asp:TextBox>
@@ -819,7 +845,8 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
+                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent" 
+                                                         
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trnrmrk")) %>'
                                                         Width="80px" ForeColor="Black" TabIndex="83"></asp:TextBox>

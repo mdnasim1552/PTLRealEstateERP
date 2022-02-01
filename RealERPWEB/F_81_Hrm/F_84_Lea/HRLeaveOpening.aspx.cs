@@ -226,6 +226,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
                 }
             }
+            
         }
         private void SaveValue()
         {
