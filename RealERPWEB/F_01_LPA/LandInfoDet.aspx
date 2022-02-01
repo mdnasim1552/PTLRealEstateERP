@@ -2513,7 +2513,10 @@
                                                     <ItemTemplate>
 
 
-                                                        <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="10" ToolTip="" runat="server" OnClick="lnkAct_Click"><span class="fa fa-edit"></span></asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="10" ToolTip="Active" runat="server" OnClick="lnkAct_Click">
+                                                            <i class="fa fa-toggle-off"  style='font-size:24px;color:red' ></i>
+                                                            
+                                                        </asp:LinkButton>
 
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="left" />
