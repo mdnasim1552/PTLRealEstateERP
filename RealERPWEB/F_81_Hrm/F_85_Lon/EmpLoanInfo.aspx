@@ -49,10 +49,10 @@
                         <fieldset class="scheduler-border fieldset_A">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <div class="col-md-4 pading5px asitCol4">
+                                    <div class="col-md-8">
                                         <asp:LinkButton ID="lbtnPrevLoanList" runat="server" OnClick="lbtnPrevLoanList_Click" CssClass="lblTxt lblName">Prev. Loan List:</asp:LinkButton>
 
-                                        <asp:DropDownList ID="ddlPrevLoanList" runat="server" Width="233" CssClass="form-control inputTxt pull-left" TabIndex="2">
+                                        <asp:DropDownList ID="ddlPrevLoanList" runat="server" Width="320" CssClass="form-control chzn-select inputTxt pull-left" TabIndex="2">
                                         </asp:DropDownList>
                                     </div>
 
