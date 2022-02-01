@@ -1994,6 +1994,7 @@
     <Content Include="Content\Theme\vendor\toastr\toastr-demo.js" />
     <Content Include="Content\Theme\vendor\toastr\toastr.min.css" />
     <Content Include="Content\Theme\vendor\toastr\toastr.min.js" />
+    <Content Include="Content\tinymcc.css" />
     <Content Include="Content\wheelmenu.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="DashboardAll.aspx" />

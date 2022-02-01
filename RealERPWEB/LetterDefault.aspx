@@ -5,11 +5,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="tinymce/tinymcc.css" rel="stylesheet" />
+
     <%--<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>--%>
     <%--<script src="tinymce/tinymce.min.js"></script>--%>
     <script src="tinymce/tinymce.min.js"></script>
     <%--<script>tinymce.init({ selector: 'textarea' });</script>--%>
-    <link href="Content/tinymcc.css" rel="stylesheet" />
+    
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
@@ -53,8 +55,32 @@
             margin-top: -63px;
             max-width: 100%;
         }
-    </style>
+    
+        body {
+            font-family: Tahoma !important;
+        }
+        @page {
+    size: A4;
+    margin: 11mm 17mm 17mm 17mm;
+}
 
+@media print {
+    footer {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .content-block, p {
+        page-break-inside: avoid;
+        margin: 0 !important;
+    }
+
+    html, body {
+        width: 210mm;
+        height: 297mm;
+    }
+}
+         </style>
     <div class="card mt-5">
         <div class="card-header">
             <div class="row">
@@ -73,76 +99,72 @@
 
             <asp:Panel runat="server" ID="panl1">
 
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="col-sm-8 col-md-8 col-lg-8 form-inline">
+                <div class="row">
 
-                             <div class="col-md-2">
-                               <div class="input-group input-group-alt">
-                                <div class="input-group-prepend ">
-                                    <asp:Label ID="lblfrmdate" runat="server" CssClass="btn btn-secondary btn-sm">Date</asp:Label>
-                                </div>
-                                <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
-                                <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
+                    <div class="col-md-2">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend ">
+                                <asp:Label ID="lblfrmdate" runat="server" CssClass="btn btn-secondary btn-sm">Date</asp:Label>
                             </div>
-                            </div>
-                            
-                            <div class="col-md-3">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend ">
-                                        <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Department</asp:Label>
-                                    </div>
-                                    <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True">
-                                    </asp:DropDownList>
-                                    <asp:Label ID="lblDeptDesc" CssClass="dataLblview" runat="server" Visible="False"></asp:Label>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend ">
-                                        <asp:Label ID="lblDept" runat="server" CssClass="btn btn-secondary btn-sm">Section</asp:Label>
-                                    </div>
-                                    <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                             <div class="col-md-3">
-                                <div class="input-group input-group-alt">
-                                    <div class="input-group-prepend ">
-                                        <asp:Label ID="lblep" runat="server" CssClass="btn btn-secondary btn-sm">Employee</asp:Label>
-                                    </div>
-                                    <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control form-control-sm">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-sm-1 col-md-1 col-lg-1 pading5px">
-                            <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm  pull-left" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
-
+                            <asp:TextBox ID="txttodate" runat="server" CssClass=" form-control form-control-sm"></asp:TextBox>
+                            <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
                         </div>
-                        </div>
-                        
-                        <div class="col-sm-3 col-md-3 col-lg-3 pading5px" style="float: right">
-
-
-                            <asp:Label ID="lblcat" runat="server" CssClass=" smLbl_to">Category :</asp:Label>
-                            <asp:DropDownList ID="ddlCat" runat="server" AutoPostBack="true" CssClass="chzn-select  ddlPage inputTxt" Width="180" TabIndex="2">
-                                <asp:ListItem Value="General" Text="General"></asp:ListItem>
-                                <asp:ListItem Value="Sales" Text="Sales"></asp:ListItem>
+                    </div>
+                    <div class="col-md-3" id="dptDiv" runat="server">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend ">
+                                <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Department</asp:Label>
+                            </div>
+                            <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control form-control-sm" AutoPostBack="True">
                             </asp:DropDownList>
-                            <asp:CheckBox ID="chkpre" Text="Previous" runat="server" CssClass="smLbl_to" AutoPostBack="true" />
-                            <asp:DropDownList ID="ddlPrevious" runat="server" Width="100" AutoPostBack="true" CssClass="chzn-select form-control inputTxt" TabIndex="2"></asp:DropDownList>
+                            <asp:Label ID="lblDeptDesc" CssClass="dataLblview" runat="server" Visible="False"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="col-md-3" id="sectDiv" runat="server">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend ">
+                                <asp:Label ID="lblDept" runat="server" CssClass="btn btn-secondary btn-sm">Section</asp:Label>
+                            </div>
+                            <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control form-control-sm">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend ">
+                                <asp:Label ID="lblep" runat="server" CssClass="btn btn-secondary btn-sm">Employee</asp:Label>
+                            </div>
+                            <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control form-control-sm">
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary btn-sm  pull-left" OnClick="lbtnOk_Click">Ok</asp:LinkButton>
 
+                    </div>
 
+                    <div class="col-sm-3 col-md-3 col-lg-3 pading5px">
+                        <div class="input-group input-group-alt">
+                            <div class="input-group-prepend ">
+                            </div>
+                            <div class="input-group-prepend ">
+                                <asp:CheckBox ID="chkpre" Text="Previous" runat="server" CssClass="smLbl_to" AutoPostBack="true" />
+                            </div>
+                            <asp:DropDownList ID="ddlPrevious" runat="server" Width="100" AutoPostBack="true" CssClass="form-control" TabIndex="2"></asp:DropDownList>
 
                         </div>
+
+
 
 
                     </div>
+
+
                 </div>
 
             </asp:Panel>
 
-            <asp:TextBox ID="txtml" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="txtml" runat="server" TextMode="MultiLine" CssClass="from-control tinyMCE"></asp:TextBox>
 
             <asp:Button ID="btnsave" runat="server" OnClick="btnsave_Click" Text="Save" Visible="false" ValidationGroup="postValid" OnClientClick="tinyMCE.triggerSave(false,true);" />
             <asp:Button ID="btnapprv" runat="server" Visible="false" Text="Approve" ValidationGroup="postValid" OnClientClick="tinyMCE.triggerSave(false,true);" />

@@ -60,6 +60,15 @@ namespace RealERPWEB
         protected global::AjaxControlToolkit.CalendarExtender txttodate_CalendarExtender;
 
         /// <summary>
+        /// dptDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dptDiv;
+
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDeptDesc;
+
+        /// <summary>
+        /// sectDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sectDiv;
 
         /// <summary>
         /// lblDept control.
@@ -130,24 +148,6 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
-        /// lblcat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcat;
-
-        /// <summary>
-        /// ddlCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCat;
 
         /// <summary>
         /// chkpre control.
