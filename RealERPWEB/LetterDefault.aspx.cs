@@ -96,8 +96,6 @@ namespace RealERPWEB
         private void ShowLetter()
         {
 
-
-
             string type = this.Request.QueryString["Type"].ToString().Trim();
             string comcod = this.GetCompCode();
             string empid = this.Request.QueryString["ID"].ToString().Trim();
@@ -115,7 +113,7 @@ namespace RealERPWEB
 
 
             string comcod = this.GetCompCode();
-            string txtSProject = "%" + this.txtSrcEmployee.Text + "%";
+            string txtSProject = "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlEmployee.DataTextField = "empname";
             this.ddlEmployee.DataValueField = "empid";
@@ -495,8 +493,6 @@ namespace RealERPWEB
             string depart = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["dptdesc"].ToString();//(string)ViewState["section"];
             string dptdesc = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["section"].ToString();//(string)ViewState["section"];
 
-
-
             string usrdesig = (dt1.Rows.Count == 0) ? "" : dt1.Rows[0]["desig"].ToString();
             string usersign = (dt1.Rows.Count == 0) ? "" : Convert.ToBase64String((byte[])dt1.Rows[0]["empsign"]);
             string uname = (dt1.Rows.Count == 0) ? "" : dt1.Rows[0]["empname"].ToString();
@@ -614,5 +610,54 @@ namespace RealERPWEB
             }
             return lbody;
         }
+
+        protected void lbtnOk_Click(object sender, EventArgs e)
+        {
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            this.txtml.Text = "";
+            if (chkpre.Checked)
+            {
+                this.PreviousD();
+            }
+            else
+            {
+                this.ShowView();
+            }
+        }
+
+
+        private void ShowView()
+        {
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            this.txtml.Text = this.data(type);
+
+            //switch (type)
+            //{
+            //    case "1":
+            //       // this.MultiView1.ActiveViewIndex = 0;
+            //        break;
+            //}
+
+        }
+
+        private void PreviousD()
+        {
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string empid = this.ddlPrevious.SelectedValue.ToString();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
+            if (ds3.Tables[0].Rows.Count == 0)
+                return;
+            this.ddlEmployee.Items.Clear();
+            this.ddlEmployee.DataTextField = "empname";
+            this.ddlEmployee.DataValueField = "empid";
+            this.ddlEmployee.DataSource = ds3.Tables[0];
+            this.ddlEmployee.DataBind();
+
+            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
+            this.txtml.Text = lett;
+            ViewState["letter"] = ds3.Tables[0];
+        }
+
     }
 }
