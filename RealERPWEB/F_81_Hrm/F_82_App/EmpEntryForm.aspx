@@ -25,6 +25,43 @@
             });
         }
 
+
+        function Search_Gridview2(strKey) {
+            try {
+
+
+                document.getElementById("<%=this.ddlpagesize.ClientID %>").value = 1000;
+             
+                $('#<%= ddlpagesize.ClientID %>').trigger('change');
+
+
+                var strData = strKey.value.toLowerCase().split(" ");
+                /*alert()*/
+                var  tblData = document.getElementById("<%=this.gvEmpList.ClientID %>");
+                 
+                var rowData;
+                for (var i = 1; i < tblData.rows.length; i++) {
+                    rowData = tblData.rows[i].innerHTML;
+                    var styleDisplay = 'none';
+                    for (var j = 0; j < strData.length; j++) {
+                        if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                            styleDisplay = '';
+                        else {
+                            styleDisplay = 'none';
+                            break;
+                        }
+                    }
+                    tblData.rows[i].style.display = styleDisplay;
+                }
+            }
+
+            catch (e) {
+                alert(e.message);
+
+            }
+
+        }
+
     </script>
     <div class="RealProgressbar">
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
@@ -132,9 +169,24 @@
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>2000</asp:ListItem>
+                                    <asp:ListItem>3000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                </div>
+                                <asp:TextBox ID="txtSearch" style="height:29px" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
+                                 
+                            </div>
+                        </div>
+
+
+
                     </div>
 
 
@@ -222,24 +274,34 @@
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                             <asp:HyperLink ID="lnkView" Target="_blank"   
-                                                NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid="+Eval("empid") %>'
-                                                CssClass="btn btn-sm btn-info " runat="server"><i class="fa fa-eye "></i></asp:HyperLink>
+                                             <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" CssClass="btn btn-sm btn-info "><i class="fa fa-edit "></i></asp:LinkButton>
 
-                                            <asp:HyperLink ID="lnkOfferLetter" Target="_blank"   
+                                             <asp:HyperLink ID="lnkView" Target="_blank" ToolTip="Employee Information view"
+                                                NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid="+Eval("empid") %>'
+                                                CssClass="btn btn-sm btn-primary " runat="server"><i class="fa fa-eye "></i></asp:HyperLink>
+
+                                            <asp:HyperLink ID="lnkOfferLetter" Target="_blank"  
+                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>'
+                                                
                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003&Entry=Offer Letter For General&empid="+Eval("empid") %>'
                                                 CssClass="btn btn-sm btn-warning " runat="server">Offer Letter</asp:HyperLink>
 
                                            
 
                                             <asp:HyperLink ID="lnkbtnAggrement" Target="_blank"   
+                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
+
                                                 NavigateUrl='<%# "~/F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement&empid="+Eval("empid") %>'
                                                 CssClass="btn btn-sm btn-success  " runat="server">Agreement</asp:HyperLink>
 
 
                                               
-                                             <%--<asp:LinkButton ID="LinkButton3" runat="server"><i class="fa fa-trash-alt "></i></asp:LinkButton>--%>
-                                             <asp:LinkButton ID="lnkbtnEdit" OnClick="lnkbtnEdit_Click" runat="server"><i class="fa fa-edit "></i></asp:LinkButton>
+                                             
+                                             <asp:HyperLink ID="hypDelbtn" Target="_blank"  
+                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' NavigateUrl="#"                                                
+                                                CssClass="btn btn-sm btn-danger " runat="server"><i class="fa fa-trash-alt "></i></asp:HyperLink>
+
+
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
