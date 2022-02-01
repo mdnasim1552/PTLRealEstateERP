@@ -73,11 +73,22 @@
                         <div class="col-md-2 col-lg-2 p-0">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
-                                    <button class="btn btn-secondary" type="button">Date</button>
+                                    <button class="btn btn-secondary" type="button">From Date</button>
                                 </div>
-                                <asp:TextBox ID="txtDate" ClientIDMode="Static" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender1_txtDate" runat="server"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                <asp:TextBox ID="txtFrmDate" ClientIDMode="Static" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1_txtFrmDate" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtFrmDate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                         <div class="col-md-2 col-lg-2 p-0">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <button class="btn btn-secondary ml-1" type="button">To Date</button>
+                                </div>
+                                <asp:TextBox ID="txtToDate" ClientIDMode="Static" AutoCompleteType="Disabled" runat="server" CssClass="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1_txtToDate" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtToDate"></cc1:CalendarExtender>
                             </div>
                         </div>
 
@@ -116,12 +127,12 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-md-12 table-responsive">
                             <asp:GridView ID="gvProspectWorking" runat="server" AutoGenerateColumns="False"
                                 PageSize="10" AllowPaging="true" OnPageIndexChanging="gvProspectWorking_PageIndexChanging"
                                 ShowFooter="True" CssClass=" table-striped table-hover table-bordered grvContentarea"
-                                HeaderStyle-Font-Size="11px" Width="800px">
+                                HeaderStyle-Font-Size="14px" Width="800px">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl" HeaderStyle-Width="30px">
@@ -138,7 +149,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvDescrption" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grpdesc")) %>'
-                                                Width="150px" ForeColor="Black"></asp:Label>
+                                                Width="160px" ForeColor="Black" Font-Bold="true" Font-Size="12px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -146,8 +157,8 @@
                                     <asp:TemplateField
                                         HeaderText="Prospect Name">
                                         <HeaderTemplate>
-                                            <asp:Label ID="Label4" runat="server" Font-Bold="True"
-                                                Text="Prospect Name" Width="180px"></asp:Label>
+                                            <asp:Label ID="lblProsName" runat="server" Font-Bold="True"
+                                                Text="Prospect Name" Width="120px"></asp:Label>
                                             <asp:HyperLink ID="hlnkbtnProsWorking" runat="server"
                                                 CssClass="btn  btn-success  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
                                         </HeaderTemplate>
@@ -155,7 +166,7 @@
                                             <asp:Label ID="lblgvProsName" runat="server"
                                                 Font-Size="12px" Font-Underline="False" Target="_blank"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prospectname")) %>'
-                                                Width="250px"></asp:Label>
+                                                Width="180px"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
                                         <ItemStyle HorizontalAlign="left" />
@@ -166,7 +177,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvPhone" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "phone")) %>'
-                                                Width="80px" ForeColor="Black"></asp:Label>
+                                                Width="90px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -175,7 +186,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvProfession" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "profession")) %>'
-                                                Width="120px" ForeColor="Black"></asp:Label>
+                                                Width="80px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -184,7 +195,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvAddress" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "preaddress")) %>'
-                                                Width="150px" ForeColor="Black"></asp:Label>
+                                                Width="120px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
@@ -211,7 +222,7 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvDiscussion" runat="server" Height="16px"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ldiscuss")) %>'
-                                                Width="180px" ForeColor="Black"></asp:Label>
+                                                Width="320px" ForeColor="Black"></asp:Label>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
