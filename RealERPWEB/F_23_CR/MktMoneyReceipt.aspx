@@ -163,13 +163,13 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                           <%-- <asp:TemplateField HeaderText="File Code">
+                            <asp:TemplateField HeaderText="Customer Id">
                                 <ItemTemplate>
                                      <asp:Label ID="lgvfilecode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
                                         Width="100px"></asp:Label>
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                            </asp:TemplateField>--%>
+                            </asp:TemplateField>
 
                              <asp:TemplateField HeaderText="Car Parking">
                                 <ItemTemplate>
@@ -179,7 +179,7 @@
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Customer Id">
+                            <asp:TemplateField HeaderText="Customer Id" Visible="false">
                                 <ItemTemplate>
                                      <asp:Label ID="lgvCustid" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "custid")) %>'
                                         Width="70px"></asp:Label>
