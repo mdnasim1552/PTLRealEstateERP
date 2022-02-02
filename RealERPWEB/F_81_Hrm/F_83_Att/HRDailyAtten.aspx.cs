@@ -933,9 +933,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             try
             {
+                string comcod = this.GetCompCode();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-
-
                 Session.Remove("DayAtten");
                 bool result;
                 string pdate = Convert.ToDateTime(this.txtdate.Text).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -943,8 +942,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string date1 = "#" + this.txtdate.Text + " 12:00:00 AM" + "#";
                 string date2 = "#" + this.txtdate.Text + " 11:59:00 PM" + "#";
 
-
-
+                //PtlComClass obj = new PtlComClass(comcod);
+                //string mrno = obj.mrfno;
+               // List<PtlComClass> lst = new List<PtlComClass>(comcod);
                 HrWebService.HrDailyAtten DailyAttendance = new HrWebService.HrDailyAtten();
                 DataSet ds = DailyAttendance.GetDailyAttenDanceZKT(date1, date2);
                 //DataSet ds = DailyAttendance.GetDailyAttenDanceAssure(date1, date2);
@@ -952,7 +952,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 Session["DayAtten"] = ds.Tables[0];
                 DataTable dt = (DataTable)Session["DayAtten"];
-                string comcod = this.GetCompCode();
+                
                 string date = this.txtdate.Text;
 
 

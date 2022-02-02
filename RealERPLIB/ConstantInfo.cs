@@ -485,6 +485,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1402000", "1402020", "F_14_Pro", "PurWrkOrderEntry?", "InputType=OrderEntry", "Purchase Order ", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402021", "F_14_Pro", "PurWrkOrderEntry?", "InputType=FirstApp", "Purchase Order(First Approved) ", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402022", "F_14_Pro", "PurWrkOrderEntry?", "InputType=SecondApp", "Purchase Order(Second Approved) ", "Procurement", "False", "False", "False", "False" });
+            
+
+
             tblObj.Rows.Add(new Object[] { "1402000", "1402030", "F_14_Pro", "PurBillEntry?", "Type=BillEntry", "Bill Confirmation", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1402000", "1402055", "F_14_Pro", "SuppLierAss?", "Type=supAss", "Supplier Assessment", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402060", "F_14_Pro", "PurBillBundle?", "Type=SuppEntry", "Supplier Bundle Entry", "Procurement", "False", "False", "False", "False" });
@@ -1536,6 +1539,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "3502000", "3502032", "F_12_Inv", "PurReqEntry?", "InputType=ReqCheck", "Requisition Checked", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502033", "F_12_Inv", "PurReqEntry?", "InputType=ReqFirstApproved", "Requisition First Approved(Purchase)", "Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "3502000", "3502038", "F_12_Inv", "PurReqEntry?", "InputType=ReqSecondApproved", "Requisition 2nd Approved(Purchase)", "Management", "False", "False", "False", "False" });
+           
+            
+            
             tblObj.Rows.Add(new Object[] { "3502000", "3502039", "F_12_Inv", "PurReqEntry?", "InputType=ReqcRMCheck", "Requisition CRM Checked", "Management", "False", "False", "False", "False" }); ;
 
 
