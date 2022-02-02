@@ -12,7 +12,7 @@
             float: right;
         }
 
-            /* Hide default HTML checkbox */
+            /* Hide default HTML checkbox sss */
             .switch input {
                 display: none;
             }

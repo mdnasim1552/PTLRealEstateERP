@@ -216,10 +216,10 @@
                       <Width>0.58333in</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>0.64583in</Width>
+                      <Width>0.59895in</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>0.75in</Width>
+                      <Width>0.64583in</Width>
                     </TablixColumn>
                     <TablixColumn>
                       <Width>0.58807in</Width>
@@ -231,7 +231,7 @@
                       <Width>0.953in</Width>
                     </TablixColumn>
                     <TablixColumn>
-                      <Width>0.69667in</Width>
+                      <Width>0.84773in</Width>
                     </TablixColumn>
                   </TablixColumns>
                   <TablixRows>
@@ -301,7 +301,7 @@
                         <TablixCell />
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox11">
+                            <Textbox Name="Textbox47">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -320,7 +320,7 @@
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox11</rd:DefaultName>
+                              <rd:DefaultName>Textbox47</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -999,15 +999,29 @@ Require</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox51">
+                            <Textbox Name="Textbox48">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>Purchse Supply
-Date</Value>
+                                      <Value>Purchase Supply</Value>
+                                      <Style>
+                                        <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Date</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -1020,7 +1034,7 @@ Date</Value>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox51</rd:DefaultName>
+                              <rd:DefaultName>Textbox48</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -1053,7 +1067,7 @@ Date</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox48">
+                            <Textbox Name="Textbox51">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -1088,7 +1102,7 @@ Date</Value>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox48</rd:DefaultName>
+                              <rd:DefaultName>Textbox51</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -1348,7 +1362,7 @@ Date</Value>
                                       <Value>1</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1401,7 +1415,7 @@ Date</Value>
                                       <Value>2</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1454,7 +1468,7 @@ Date</Value>
                                       <Value>3</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1507,7 +1521,7 @@ Date</Value>
                                       <Value>4</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1560,7 +1574,7 @@ Date</Value>
                                       <Value>5</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1613,7 +1627,7 @@ Date</Value>
                                       <Value>6</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1666,7 +1680,7 @@ Date</Value>
                                       <Value>7</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1719,7 +1733,7 @@ Date</Value>
                                       <Value>8</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1772,7 +1786,7 @@ Date</Value>
                                       <Value>9</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1825,7 +1839,7 @@ Date</Value>
                                       <Value>10</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1868,7 +1882,7 @@ Date</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox92">
+                            <Textbox Name="Textbox91">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -1878,7 +1892,60 @@ Date</Value>
                                       <Value>11</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
+                                        <FontWeight>Bold</FontWeight>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox91</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <TopBorder>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Style>Solid</Style>
+                                  <Width>1pt</Width>
+                                </RightBorder>
+                                <VerticalAlign>Middle</VerticalAlign>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
+                            <Textbox Name="Textbox92">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>12</Value>
+                                      <Style>
+                                        <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -1921,59 +1988,6 @@ Date</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox52">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value>12</Value>
-                                      <Style>
-                                        <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
-                                        <FontWeight>Bold</FontWeight>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Center</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>Textbox52</rd:DefaultName>
-                              <Style>
-                                <Border>
-                                  <Color>LightGrey</Color>
-                                  <Style>Solid</Style>
-                                </Border>
-                                <TopBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </TopBorder>
-                                <BottomBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </BottomBorder>
-                                <LeftBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </LeftBorder>
-                                <RightBorder>
-                                  <Style>Solid</Style>
-                                  <Width>1pt</Width>
-                                </RightBorder>
-                                <VerticalAlign>Middle</VerticalAlign>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
                             <Textbox Name="Textbox93">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
@@ -1984,7 +1998,7 @@ Date</Value>
                                       <Value>13</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -2037,7 +2051,7 @@ Date</Value>
                                       <Value>14=(9*13)</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -2090,7 +2104,7 @@ Date</Value>
                                       <Value>15</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -2143,7 +2157,7 @@ Date</Value>
                                       <Value>16</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
                                       </Style>
                                     </TextRun>
@@ -2201,7 +2215,7 @@ Date</Value>
                                       <Value>=RowNumber(nothing)</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2237,7 +2251,7 @@ Date</Value>
                                       <Value>=Fields!rsirdesc1.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2271,7 +2285,7 @@ Date</Value>
                                       <Value>=Fields!spcfdesc.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2305,7 +2319,7 @@ Date</Value>
                                       <Value>=Fields!rsirunit.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2339,7 +2353,7 @@ Date</Value>
                                       <Value>=Format(Fields!bgdqty.Value,"#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2375,7 +2389,7 @@ Date</Value>
                                       <Value>=Format(Fields!treceived.Value,"#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2411,7 +2425,7 @@ Date</Value>
                                       <Value>=Format(Fields!bbgdqty.Value,"#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2447,7 +2461,7 @@ Date</Value>
                                       <Value>=Format(Fields!stkqty.Value,"#,##0;(#,##0); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2480,10 +2494,10 @@ Date</Value>
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=iif(Fields!areqty.Value = 0,Format(Fields!preqty.Value,"#,##0.00;(#,##0.00); "),Format(Fields!areqty.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                      <Value>=iif(Fields!areqty.Value = 0,Format(Fields!preqty.Value,"#,##0.000;(#,##0.000); "),Format(Fields!areqty.Value,"#,##0.000;(#,##0.000); "))</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2519,7 +2533,7 @@ Date</Value>
                                       <Value>=Fields!expusedt.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2553,13 +2567,11 @@ Date</Value>
                                       <Value>=Fields!pursdate.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
-                                  <Style>
-                                    <TextAlign>Right</TextAlign>
-                                  </Style>
+                                  <Style />
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>pursdate</rd:DefaultName>
@@ -2579,7 +2591,7 @@ Date</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
-                            <Textbox Name="Textbox55">
+                            <Textbox Name="lpurrate">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
                               <Paragraphs>
@@ -2589,7 +2601,7 @@ Date</Value>
                                       <Value>=Format(Fields!lpurrate.Value,"#,##0.00;(#,##0.00); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2598,7 +2610,7 @@ Date</Value>
                                   </Style>
                                 </Paragraph>
                               </Paragraphs>
-                              <rd:DefaultName>Textbox55</rd:DefaultName>
+                              <rd:DefaultName>lpurrate</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -2625,7 +2637,7 @@ Date</Value>
                                       <Value>=Format(Fields!reqrat.Value,"#,##0.00;(#,##0.00); ")</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2661,7 +2673,7 @@ Date</Value>
                                       <Value>=iif(Fields!areqty.Value = 0,iif(Fields!preqamt.Value&gt;0,Format(Fields!preqamt.Value,"#,##0.00;(#,##0.00); "),""),iif(Fields!areqamt.Value &gt;0,Format(Fields!areqamt.Value,"#,##0.00;(#,##0.00); "),""))</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2697,7 +2709,7 @@ Date</Value>
                                       <Value>=Fields!ssirdesc.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -2731,7 +2743,7 @@ Date</Value>
                                       <Value>=Fields!reqnote.Value</Value>
                                       <Style>
                                         <FontFamily>Cambria</FontFamily>
-                                        <FontSize>8pt</FontSize>
+                                        <FontSize>9pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -3102,6 +3114,39 @@ Date</Value>
                         </TablixCell>
                         <TablixCell>
                           <CellContents>
+                            <Textbox Name="Textbox132">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value />
+                                      <Style>
+                                        <FontFamily>Cambria</FontFamily>
+                                        <FontSize>9pt</FontSize>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox132</rd:DefaultName>
+                              <Style>
+                                <Border>
+                                  <Color>LightGrey</Color>
+                                  <Style>Solid</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                          </CellContents>
+                        </TablixCell>
+                        <TablixCell>
+                          <CellContents>
                             <Textbox Name="Textbox133">
                               <CanGrow>true</CanGrow>
                               <KeepTogether>true</KeepTogether>
@@ -3122,41 +3167,6 @@ Date</Value>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Textbox133</rd:DefaultName>
-                              <Style>
-                                <Border>
-                                  <Color>LightGrey</Color>
-                                  <Style>Solid</Style>
-                                </Border>
-                                <PaddingLeft>2pt</PaddingLeft>
-                                <PaddingRight>2pt</PaddingRight>
-                                <PaddingTop>2pt</PaddingTop>
-                                <PaddingBottom>2pt</PaddingBottom>
-                              </Style>
-                            </Textbox>
-                          </CellContents>
-                        </TablixCell>
-                        <TablixCell>
-                          <CellContents>
-                            <Textbox Name="Textbox56">
-                              <CanGrow>true</CanGrow>
-                              <KeepTogether>true</KeepTogether>
-                              <Paragraphs>
-                                <Paragraph>
-                                  <TextRuns>
-                                    <TextRun>
-                                      <Value />
-                                      <Style>
-                                        <FontFamily>Cambria</FontFamily>
-                                        <FontSize>9pt</FontSize>
-                                      </Style>
-                                    </TextRun>
-                                  </TextRuns>
-                                  <Style>
-                                    <TextAlign>Right</TextAlign>
-                                  </Style>
-                                </Paragraph>
-                              </Paragraphs>
-                              <rd:DefaultName>Textbox56</rd:DefaultName>
                               <Style>
                                 <Border>
                                   <Color>LightGrey</Color>
@@ -3418,7 +3428,7 @@ Date</Value>
                                                     <Value>=Parameters!txttoamt.Value</Value>
                                                     <Style>
                                                       <FontFamily>Cambria</FontFamily>
-                                                      <FontSize>8pt</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -3493,7 +3503,7 @@ Date</Value>
                                                     <Value />
                                                     <Style>
                                                       <FontFamily>Cambria</FontFamily>
-                                                      <FontSize>8pt</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -3566,7 +3576,7 @@ Date</Value>
                                                     <Value>=Parameters!txttoamt02.Value</Value>
                                                     <Style>
                                                       <FontFamily>Cambria</FontFamily>
-                                                      <FontSize>8pt</FontSize>
+                                                      <FontSize>9pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
                                                     </Style>
                                                   </TextRun>
@@ -3780,7 +3790,7 @@ Date</Value>
                                   <rd:DefaultName>Textbox17</rd:DefaultName>
                                   <Top>0.27778in</Top>
                                   <Left>0.03184in</Left>
-                                  <Height>0.20625in</Height>
+                                  <Height>0.15625in</Height>
                                   <Width>1.17014in</Width>
                                   <ZIndex>2</ZIndex>
                                   <Style>
@@ -3800,7 +3810,7 @@ Date</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Parameters!txtReqname.Value</Value>
+                                          <Value>=Parameters!txtSign1.Value</Value>
                                           <Style>
                                             <FontFamily>Cambria</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -3814,29 +3824,32 @@ Date</Value>
                                     </Paragraph>
                                   </Paragraphs>
                                   <rd:DefaultName>Textbox39</rd:DefaultName>
-                                  <Top>0.78403in</Top>
-                                  <Left>1.02767in</Left>
-                                  <Height>0.25in</Height>
-                                  <Width>1.26667in</Width>
+                                  <Top>0.99653in</Top>
+                                  <Left>0.03184in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.04167in</Width>
                                   <ZIndex>3</ZIndex>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
                                     </Border>
+                                    <TopBorder>
+                                      <Style>Dotted</Style>
+                                    </TopBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <Textbox Name="Textbox4">
+                                <Textbox Name="Textbox52">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Requisition Create</Value>
+                                          <Value>=Parameters!txtSign5.Value</Value>
                                           <Style>
                                             <FontFamily>Cambria</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -3849,99 +3862,19 @@ Date</Value>
                                       </Style>
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox4</rd:DefaultName>
-                                  <Top>0.56667in</Top>
-                                  <Left>1.04017in</Left>
-                                  <Height>0.18958in</Height>
-                                  <Width>1.25621in</Width>
+                                  <rd:DefaultName>Textbox42</rd:DefaultName>
+                                  <Top>0.99653in</Top>
+                                  <Left>6.18588in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.52429in</Width>
                                   <ZIndex>4</ZIndex>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
                                     </Border>
-                                    <BottomBorder>
+                                    <TopBorder>
                                       <Style>Dotted</Style>
-                                    </BottomBorder>
-                                    <PaddingLeft>2pt</PaddingLeft>
-                                    <PaddingRight>2pt</PaddingRight>
-                                    <PaddingTop>2pt</PaddingTop>
-                                    <PaddingBottom>2pt</PaddingBottom>
-                                  </Style>
-                                </Textbox>
-                                <Textbox Name="Textbox5">
-                                  <CanGrow>true</CanGrow>
-                                  <KeepTogether>true</KeepTogether>
-                                  <Paragraphs>
-                                    <Paragraph>
-                                      <TextRuns>
-                                        <TextRun>
-                                          <Value>Requisition Checked</Value>
-                                          <Style>
-                                            <FontFamily>Cambria</FontFamily>
-                                            <FontSize>9pt</FontSize>
-                                            <FontWeight>Bold</FontWeight>
-                                          </Style>
-                                        </TextRun>
-                                      </TextRuns>
-                                      <Style>
-                                        <TextAlign>Center</TextAlign>
-                                      </Style>
-                                    </Paragraph>
-                                  </Paragraphs>
-                                  <rd:DefaultName>Textbox4</rd:DefaultName>
-                                  <Top>0.56528in</Top>
-                                  <Left>3.37992in</Left>
-                                  <Height>0.18958in</Height>
-                                  <Width>1.31871in</Width>
-                                  <ZIndex>5</ZIndex>
-                                  <Style>
-                                    <Border>
-                                      <Style>None</Style>
-                                    </Border>
-                                    <BottomBorder>
-                                      <Style>Dotted</Style>
-                                    </BottomBorder>
-                                    <PaddingLeft>2pt</PaddingLeft>
-                                    <PaddingRight>2pt</PaddingRight>
-                                    <PaddingTop>2pt</PaddingTop>
-                                    <PaddingBottom>2pt</PaddingBottom>
-                                  </Style>
-                                </Textbox>
-                                <Textbox Name="Textbox6">
-                                  <CanGrow>true</CanGrow>
-                                  <KeepTogether>true</KeepTogether>
-                                  <Paragraphs>
-                                    <Paragraph>
-                                      <TextRuns>
-                                        <TextRun>
-                                          <Value>Rate Proposal</Value>
-                                          <Style>
-                                            <FontFamily>Cambria</FontFamily>
-                                            <FontSize>9pt</FontSize>
-                                            <FontWeight>Bold</FontWeight>
-                                          </Style>
-                                        </TextRun>
-                                      </TextRuns>
-                                      <Style>
-                                        <TextAlign>Center</TextAlign>
-                                      </Style>
-                                    </Paragraph>
-                                  </Paragraphs>
-                                  <rd:DefaultName>Textbox4</rd:DefaultName>
-                                  <Top>0.56528in</Top>
-                                  <Left>6.17021in</Left>
-                                  <Height>0.18958in</Height>
-                                  <Width>1.26871in</Width>
-                                  <ZIndex>6</ZIndex>
-                                  <Style>
-                                    <Border>
-                                      <Style>None</Style>
-                                    </Border>
-                                    <BottomBorder>
-                                      <Color>Black</Color>
-                                      <Style>Dotted</Style>
-                                      <Width>1pt</Width>
-                                    </BottomBorder>
+                                    </TopBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -3955,7 +3888,7 @@ Date</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Parameters!txtReqRatename.Value</Value>
+                                          <Value>=Parameters!txtSign4.Value</Value>
                                           <Style>
                                             <FontFamily>Cambria</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -3969,29 +3902,32 @@ Date</Value>
                                     </Paragraph>
                                   </Paragraphs>
                                   <rd:DefaultName>Textbox39</rd:DefaultName>
-                                  <Top>0.75903in</Top>
-                                  <Left>6.17021in</Left>
-                                  <Height>0.34862in</Height>
-                                  <Width>1.26667in</Width>
-                                  <ZIndex>7</ZIndex>
+                                  <Top>0.99653in</Top>
+                                  <Left>4.43475in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.46875in</Width>
+                                  <ZIndex>5</ZIndex>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
                                     </Border>
+                                    <TopBorder>
+                                      <Style>Dotted</Style>
+                                    </TopBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
                                     <PaddingBottom>2pt</PaddingBottom>
                                   </Style>
                                 </Textbox>
-                                <Textbox Name="Textbox7">
+                                <Textbox Name="Textbox55">
                                   <CanGrow>true</CanGrow>
                                   <KeepTogether>true</KeepTogether>
                                   <Paragraphs>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>Requisition Approval</Value>
+                                          <Value>=Parameters!txtSign2.Value</Value>
                                           <Style>
                                             <FontFamily>Cambria</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -4004,21 +3940,58 @@ Date</Value>
                                       </Style>
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox4</rd:DefaultName>
-                                  <Top>0.56528in</Top>
-                                  <Left>9.25093in</Left>
-                                  <Height>0.18958in</Height>
-                                  <Width>1.33121in</Width>
-                                  <ZIndex>8</ZIndex>
+                                  <rd:DefaultName>Textbox39</rd:DefaultName>
+                                  <Top>0.99653in</Top>
+                                  <Left>1.24655in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.21875in</Width>
+                                  <ZIndex>6</ZIndex>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
                                     </Border>
-                                    <BottomBorder>
-                                      <Color>Black</Color>
+                                    <TopBorder>
                                       <Style>Dotted</Style>
-                                      <Width>1pt</Width>
-                                    </BottomBorder>
+                                    </TopBorder>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                                <Textbox Name="Textbox56">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Parameters!txtSign3.Value</Value>
+                                          <Style>
+                                            <FontFamily>Cambria</FontFamily>
+                                            <FontSize>9pt</FontSize>
+                                            <FontWeight>Bold</FontWeight>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Center</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox39</rd:DefaultName>
+                                  <Top>0.99653in</Top>
+                                  <Left>2.63892in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.45209in</Width>
+                                  <ZIndex>7</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <TopBorder>
+                                      <Style>Dotted</Style>
+                                    </TopBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4032,7 +4005,7 @@ Date</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Parameters!txtReqChkname.Value</Value>
+                                          <Value>=Parameters!txtSign6.Value</Value>
                                           <Style>
                                             <FontFamily>Cambria</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -4046,15 +4019,18 @@ Date</Value>
                                     </Paragraph>
                                   </Paragraphs>
                                   <rd:DefaultName>Textbox39</rd:DefaultName>
-                                  <Top>0.75903in</Top>
-                                  <Left>3.37992in</Left>
-                                  <Height>0.34862in</Height>
-                                  <Width>1.31871in</Width>
-                                  <ZIndex>9</ZIndex>
+                                  <Top>0.99653in</Top>
+                                  <Left>8.00879in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.25867in</Width>
+                                  <ZIndex>8</ZIndex>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
                                     </Border>
+                                    <TopBorder>
+                                      <Style>Dotted</Style>
+                                    </TopBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4068,7 +4044,7 @@ Date</Value>
                                     <Paragraph>
                                       <TextRuns>
                                         <TextRun>
-                                          <Value>=Parameters!txtReqAprname.Value</Value>
+                                          <Value>=Parameters!txtSign7.Value</Value>
                                           <Style>
                                             <FontFamily>Cambria</FontFamily>
                                             <FontSize>9pt</FontSize>
@@ -4081,16 +4057,19 @@ Date</Value>
                                       </Style>
                                     </Paragraph>
                                   </Paragraphs>
-                                  <rd:DefaultName>Textbox39</rd:DefaultName>
-                                  <Top>0.75903in</Top>
-                                  <Left>9.25093in</Left>
-                                  <Height>0.34862in</Height>
-                                  <Width>1.33121in</Width>
-                                  <ZIndex>10</ZIndex>
+                                  <rd:DefaultName>Textbox42</rd:DefaultName>
+                                  <Top>0.99653in</Top>
+                                  <Left>9.57648in</Left>
+                                  <Height>0.16667in</Height>
+                                  <Width>1.44965in</Width>
+                                  <ZIndex>9</ZIndex>
                                   <Style>
                                     <Border>
                                       <Style>None</Style>
                                     </Border>
+                                    <TopBorder>
+                                      <Style>Dotted</Style>
+                                    </TopBorder>
                                     <PaddingLeft>2pt</PaddingLeft>
                                     <PaddingRight>2pt</PaddingRight>
                                     <PaddingTop>2pt</PaddingTop>
@@ -4176,7 +4155,7 @@ Date</Value>
                 <Top>0.01389in</Top>
                 <Left>0.01487in</Left>
                 <Height>5.10764in</Height>
-                <Width>11.04682in</Width>
+                <Width>11.04683in</Width>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -4187,7 +4166,7 @@ Date</Value>
             <KeepTogether>true</KeepTogether>
             <Top>0.02778in</Top>
             <Height>5.12153in</Height>
-            <Width>11.06169in</Width>
+            <Width>11.0617in</Width>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -4681,7 +4660,7 @@ Date</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!lblmrfno.Value</Value>
+                      <Value>MPR No </Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -5157,7 +5136,7 @@ Date</Value>
         </PageHeader>
         <PageHeight>8.78in</PageHeight>
         <PageWidth>11.69in</PageWidth>
-        <LeftMargin>0.15in</LeftMargin>
+        <LeftMargin>0.25in</LeftMargin>
         <RightMargin>0.15in</RightMargin>
         <TopMargin>0.15in</TopMargin>
         <BottomMargin>0.15in</BottomMargin>
@@ -5246,37 +5225,41 @@ Date</Value>
     </ReportParameter>
     <ReportParameter Name="rpttxtnaration">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="txtReqname">
+    <ReportParameter Name="txtSign1">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="txtReqChkname">
+    <ReportParameter Name="txtSign2">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="txtReqRatename">
+    <ReportParameter Name="txtSign3">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="txtReqAprname">
+    <ReportParameter Name="txtSign4">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="lblmrfno">
+    <ReportParameter Name="txtSign5">
       <DataType>String</DataType>
-      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtSign6">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="txtSign7">
+      <DataType>String</DataType>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -5284,7 +5267,7 @@ Date</Value>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>10</NumberOfRows>
+      <NumberOfRows>11</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -5359,27 +5342,37 @@ Date</Value>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>txtReqname</ParameterName>
+          <ParameterName>txtSign1</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>7</RowIndex>
-          <ParameterName>txtReqChkname</ParameterName>
+          <ParameterName>txtSign2</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>8</RowIndex>
-          <ParameterName>txtReqRatename</ParameterName>
+          <ParameterName>txtSign3</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>8</RowIndex>
-          <ParameterName>txtReqAprname</ParameterName>
+          <ParameterName>txtSign4</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>9</RowIndex>
-          <ParameterName>lblmrfno</ParameterName>
+          <ParameterName>txtSign5</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>txtSign6</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>txtSign7</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

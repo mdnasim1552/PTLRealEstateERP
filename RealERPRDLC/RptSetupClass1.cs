@@ -260,6 +260,8 @@ namespace RealERPRDLC
                 case "R_12_Inv.RptReqEntry07": Rpt1a = SetRptReqEntry07(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntry08": Rpt1a = SetRptReqEntry08(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptReqEntryManama": Rpt1a = SetRptReqEntryManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_12_Inv.RptReqEntryJBS": Rpt1a = SetRptReqEntryJBS(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                    
 
                 case "R_12_Inv.rptMatProjWise": Rpt1a = SetRptMaterialStockPrjWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_12_Inv.RptPurchaseStatus1": Rpt1a = SetRptPurchaseStatus1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2116,6 +2118,13 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>)RptDataSet));
             return Rpt1a;
         }
+
+        private static LocalReport SetRptReqEntryJBS(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
+        
         private static LocalReport SetRptInvenAmtBasisPeriodic(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_12_Inv.EclassPurchase.InventoryAmountBasis>)RptDataSet));
