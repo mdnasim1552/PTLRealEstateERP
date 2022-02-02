@@ -12,6 +12,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
     public partial class RptEmpMonthPresent : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,15 +25,19 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Employee Monthly Presence Report";
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 this.GetCompany();
-                //this.SectionName();
-
-                this.txtFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                this.txtFdate.Text = "01" + this.txtFdate.Text.Trim().Substring(2);
-                this.txtTdate.Text = Convert.ToDateTime(this.txtFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                //string date = System.DateTime.Today.ToString ();
-                //this.txtFdate.Text = Convert.ToDateTime ("01-" + date.Substring (2)).ToString ("dd-MMM-yyyy");
-                //this.txtTdate.Text = Convert.ToDateTime (date).ToString ("dd-MMM-yyyy");
+                this.GetDate();
             }
+        }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtFdate.Text = startdate + date.Substring(2);
+            this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
         private string GetCompCode()
         {

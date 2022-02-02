@@ -2,6 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
         /* The switch - the box around the slider */
         .switch {
@@ -143,15 +144,124 @@
                                         <a href="#birthday" data-toggle="tab" aria-expanded="false" class="nav-link active">Birthday</a>
                                     </li>
 
-                                    <li class="nav-item" id="tbAssignTask" runat="server" visible="false">
+                                    <li class="nav-item" runat="server">
                                         <a href="#marriageday" data-toggle="tab" aria-expanded="false" class="nav-link">Marriage Day</a>
                                     </li>
-
                                 </ul>
-                                <div class="tab-content" id="myTabContent">
+                                <div class="tab-content mt-2" id="myTabContent">
                                     <div class="tab-pane active" id="birthday">
                                         <div class="table-responsive">
-                                            <asp:GridView ID="gvOccasion" runat="server" AutoGenerateColumns="false"
+                                            <asp:GridView ID="gvBirthday" runat="server" AutoGenerateColumns="false"
+                                                CssClass="table table-bordered table-striped display" AllowPaging="True" ViewStateMode="Enabled"
+                                                AllowSorting="True" PageSize="500">
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="SL.">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblserialnoid" runat="server" Style="text-align: right"
+                                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="20px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblProsCode" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"proscode")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Prospect Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblProspectName" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prosname"))%>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Email">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblProsEmail" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"prosemail")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Phone">
+                                                        <ItemTemplate> 
+                                                            <a target="_blank" href='<%# "https://api.whatsapp.com/send?phone=+88"+Eval("prosphone") %>'><i class="fab fa-whatsapp-square"></i>&nbsp;&nbsp;
+                                                                <%# Convert.ToString(DataBinder.Eval(Container.DataItem,"prosphone")) %></a>                                                           
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Address">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblProsAdd" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"prospreadd")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Occasion Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblOccasionName" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"occasionname")) %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Date & Time">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblDateTime" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "occdatetime")).ToString("dddd, dd MMM yyy, HH:mm tt") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="SMS" Visible="false">
+                                                        <ItemTemplate>
+                                                            <label class="switch " title="Send SMS">
+                                                                <input type="checkbox" id="chkbSMS" runat="server" class="info">
+                                                                <span class="slider round"></span>
+                                                            </label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle Width="20px" />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Email" Visible="false">
+                                                        <ItemTemplate>
+                                                            <label class="switch " title="Send Email">
+                                                                <input type="checkbox" id="chkbEmail" runat="server" class="primary">
+                                                                <span class="slider round"></span>
+                                                            </label>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle Width="20px" />
+                                                    </asp:TemplateField>
+
+                                                    <asp:TemplateField HeaderText="Action" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton ID="btnMesg" Text="Message" runat="server" CssClass="btn-text "><span class="glyphicon glyphicon-envelope" style="margin-top:5px;" ></span> Message</asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkView" Text="View" runat="server" OnClientClick="NewWindow();" CssClass="btn-text"><span class="glyphicon glyphicon-eye-open" style="margin-top:5px; margin-left:10px"></span> View</asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkdele" Text="Delete" runat="server" CssClass="btn-text " Visible="false"><span class="glyphicon glyphicon-trash" style="margin-top:5px; margin-left:10px""></span> Delete</asp:LinkButton>
+                                                        </ItemTemplate>
+                                                        <HeaderStyle />
+                                                        <ItemStyle />
+                                                    </asp:TemplateField>
+
+                                                </Columns>
+                                                <PagerStyle CssClass="gvPagination" />
+                                                <EmptyDataTemplate>
+                                                    <div style="color: red; text-align: center !important; font-style: italic; font-size: 15px;">No records to display.</div>
+                                                </EmptyDataTemplate>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="marriageday">
+                                        <div class="table-responsive">
+                                            <asp:GridView ID="gvMarriageday" runat="server" AutoGenerateColumns="false"
                                                 CssClass="table table-bordered table-striped display" AllowPaging="True" ViewStateMode="Enabled"
                                                 AllowSorting="True" PageSize="500">
                                                 <Columns>
@@ -190,7 +300,8 @@
 
                                                     <asp:TemplateField HeaderText="Phone">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblProsPhone" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem,"prosphone")) %>'></asp:Label>
+                                                            <a target="_blank" href='<%# "https://api.whatsapp.com/send?phone=+88"+Eval("prosphone") %>'><i class="fab fa-whatsapp-square"></i>&nbsp;&nbsp;
+                                                                <%# Convert.ToString(DataBinder.Eval(Container.DataItem,"prosphone")) %></a>        
                                                         </ItemTemplate>
                                                         <HeaderStyle />
                                                         <ItemStyle />
@@ -218,7 +329,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="SMS">
+                                                    <asp:TemplateField HeaderText="SMS" Visible="false">
                                                         <ItemTemplate>
                                                             <label class="switch " title="Send SMS">
                                                                 <input type="checkbox" id="chkbSMS" runat="server" class="info">
@@ -229,7 +340,7 @@
                                                         <ItemStyle Width="20px" />
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Email">
+                                                    <asp:TemplateField HeaderText="Email" Visible="false">
                                                         <ItemTemplate>
                                                             <label class="switch " title="Send Email">
                                                                 <input type="checkbox" id="chkbEmail" runat="server" class="primary">

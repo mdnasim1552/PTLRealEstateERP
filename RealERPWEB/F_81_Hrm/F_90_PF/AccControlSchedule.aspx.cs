@@ -21,6 +21,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 {
     public partial class AccControlSchedule : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess accData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,18 +33,20 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
             ((Label)this.Master.FindControl("lblTitle")).Text = "ACCOUNT CONTROL SCHEDULE";
             ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
-            if (this.txtFromdat.Text.Trim().Length == 0)
-            {
-                double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
-                this.txtFromdat.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
-                this.txtTodat.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                //this.txtFromdat.Text = DateTime.Today.AddDays(-90).ToString("dd-MMM-yyyy ddd");
-                //this.txtTodat.Text = DateTime.Today.ToString("dd-MMM-yyyy ddd");
-            }
+            this.GetDate();
 
         }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
 
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtFromdat.Text = startdate + date.Substring(2);
+            this.txtTodat.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
 

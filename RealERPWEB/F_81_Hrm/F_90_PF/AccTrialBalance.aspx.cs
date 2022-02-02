@@ -24,6 +24,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
     public partial class AccTrialBalance : System.Web.UI.Page
     {
         ProcessAccess accData = new ProcessAccess();
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,14 +32,19 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                     Response.Redirect("../../AcceessError.aspx");
             //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             ((Label)this.Master.FindControl("lblTitle")).Text = "Accounts Trial Balance";
+            this.GetDate();
 
-            if (this.txtDatefrom.Text.Trim().Length == 0)
-            {
-                double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
-                this.txtDatefrom.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
-                this.txtDateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            }
+        }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
 
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtDatefrom.Text = startdate + date.Substring(2);
+            this.txtDateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {

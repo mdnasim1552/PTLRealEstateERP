@@ -24,7 +24,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
 
         public static double TAmount;
         ProcessAccess AccData = new ProcessAccess();
-
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -35,8 +35,6 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
                 //this.lnkPrint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
-
                 string Type = Request.QueryString["Type"].Trim();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "AccVoucher" ? "voucher print" : (Type == "AccCheque" ? "Cheque Print" : "Post Dated Cheque Print")) + " Information ";
                 this.SetView();
@@ -63,12 +61,17 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         }
         private void SetView()
         {
-            string Type = Request.QueryString["Type"].Trim();
+            string Type = Request.QueryString["Type"].Trim(); DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+"Please Setup Start Date Firstly!"+"');", true);
+            return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
             switch (Type)
             {
                 case "AccVoucher":
                     this.rbtnList1.SelectedIndex = 0;
-                    this.txtfromdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                    this.txtfromdate.Text = startdate + date.Substring(2);
                     this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.lstVouname.Visible = this.lstVouname.Items.Count > 0;
                     this.MultiView1.ActiveViewIndex = 0;
@@ -79,7 +82,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 case "AccCheque":
                     this.rbtCprintList.SelectedIndex = 0;
                     this.CompanyCheckPrint();
-                    this.txtfromdatec.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                    this.txtfromdatec.Text = startdate + date.Substring(2);
                     this.txttodatec.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 1;
                     this.GetVouNum();
@@ -87,7 +90,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                 case "AccPostDatChq":
                     //this.rbtCprintList.SelectedIndex = 0;
                     //this.CompanyCheckPrint();
-                    this.txtfromdatec1.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                    this.txtfromdatec1.Text = startdate + date.Substring(2);
                     this.txttodatec1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 2;
                     this.PostDatChqGetVouNum();
