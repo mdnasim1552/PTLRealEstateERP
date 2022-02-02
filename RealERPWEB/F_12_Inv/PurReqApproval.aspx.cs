@@ -87,18 +87,19 @@ namespace RealERPWEB.F_12_Inv
                     reqcheck = "Rate Approval";
 
                     break;
-
                 default:
-
                     reqcheck = "Requisition Approval";
-
                     break;
-
-
             }
-
             return reqcheck;
 
+        }
+
+        private string ReadCookie()
+        {
+            HttpCookie nameCookie = Request.Cookies["MRF"];
+            string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
+            return refno;
         }
 
 
@@ -116,7 +117,8 @@ namespace RealERPWEB.F_12_Inv
         {
 
             string Type = Request.QueryString["Type"].ToString();
-
+            this.lblmrfno.Text = this.ReadCookie();
+            this.dgv1.Columns[7].HeaderText = this.ReadCookie(); 
             switch (Type)
             {
                 case "Approval":
@@ -138,21 +140,10 @@ namespace RealERPWEB.F_12_Inv
                     // this.dgv1.Columns[20].Visible = true;
                     //this.dgv1.Columns[21].Visible = true;
                     break;
-
-
-
             }
 
-
-
-
-
         }
 
-        private void Refrsh()
-        {
-
-        }
         private string GetCompCode()
         {
 
@@ -288,11 +279,6 @@ namespace RealERPWEB.F_12_Inv
                 // DataTaowsble dt = (DataTable) ds1.Tables.r[0]["approval"];
 
 
-
-
-
-
-
                 Session["tblreq"] = this.HiddenSameDate(ds1.Tables[0]);
                 Session["tbltopage"] = ds1.Tables[1];
 
@@ -304,8 +290,6 @@ namespace RealERPWEB.F_12_Inv
                     }
                 }
 
-
-
                 string msrno = ((DataTable)Session["tblReq"]).Rows[0]["msrno"].ToString();
 
                 if (msrno != "Survey")
@@ -313,14 +297,7 @@ namespace RealERPWEB.F_12_Inv
                     this.ShowMarketSurvey(msrno);
 
                 }
-
-
-
-
-
                 this.Data_Bind();
-
-
 
             }
             catch (Exception ex)
