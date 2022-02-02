@@ -63,8 +63,10 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
         {
             string Type = Request.QueryString["Type"].Trim(); DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+"Please Setup Start Date Firstly!"+"');", true);
-            return;
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
             string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
             switch (Type)
