@@ -4733,6 +4733,14 @@ namespace RealERPLIB
 
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "	Entry Level", "", "", false, "mb" });
+            mnuTbl1.Rows.Add(new Object[] { "0301010000", "01. Monthly Implementation Plan", "F_09_PImp/RptImpExeStatus?Type=ImpPlan&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301020000", "04. Work Execution ", "F_09_PImp/RptImpExeStatus?Type=Execution&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301030000", "05. Day Wise Execution", "F_09_PImp/RptImpExeStatus?Type=DayWiseExecution&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301040000", "10. Material Requirements", "F_04_Bgd/RptBgdPrjoject?Type=MatRequired&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301050000", "11. Monthly Resource Requirement", "F_04_Bgd/RptMonthlyResRequir?Type=Report", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301060000", "11. Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubBill&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301070000", "12. Periodic Sub-Contractor Bill", "F_09_PImp/RptSubConBill?Type=SubConBill&comcod=&prjcode=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301080000", "13. Sub-Contractor Bill Tracking", "F_09_PImp/ConBillTracking", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Monthly Implementation Plan", "F_09_PImp/RptImpExeStatus?Type=ImpPlan&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "04. Work Execution ", "F_09_PImp/RptImpExeStatus?Type=Execution&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000003", "05. Day Wise Execution", "F_09_PImp/RptImpExeStatus?Type=DayWiseExecution&comcod=&comcod=&prjcode=&Date1=&Date2=", "", true, "" });
