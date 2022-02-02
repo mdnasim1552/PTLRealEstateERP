@@ -32,7 +32,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     Response.Redirect("../../AcceessError.aspx");
             if (this.ddlEmpAcarecord.Items.Count == 0)
                 this.Load_CodeBooList();
+            ((Label)this.Master.FindControl("lblTitle")).Text = "Academic Degree Title";
+            Session["listid"] = "";
 
+            this.ddlEmpAcarecord_SelectedIndexChanged(null,null);
         }
         private string GetCompCode()
         {
@@ -55,60 +58,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+                 
             }
 
         }
 
-        protected void grvacc_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-        {
-            this.grvacc.EditIndex = -1;
-            this.grvacc_DataBind();
-
-        }
-        protected void grvacc_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-
-            this.grvacc.EditIndex = e.NewEditIndex;
-            this.grvacc_DataBind();
-        }
-        protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comcod = hst["comcod"].ToString();
-            string comcod = this.GetCompCode();
-            string gcode1 = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgrcode")).Text.Trim();
-            string gcode2 = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgrcode")).Text.Trim().Replace("-", "");
-            if (gcode2.Length != 6)
-                return;
-
-            string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
-
-            string tgcod = gcode1.Substring(0, 2) + gcode2;
-            string maincode = (tgcod.Substring(0, 5));
-            string gdesc = ((TextBox)this.grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
-
-            bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INOUPEACADEMICRECORD", maincode, tgcod,
-                           gdesc, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            if (result == true)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = " Successfully Updated ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            }
-
-            else
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-            }
-            this.grvacc.EditIndex = -1;
-            this.ShowInformation();
-            this.grvacc_DataBind();
-        }
-
+       
+       
         protected void grvacc_DataBind()
         {
             try
@@ -131,6 +88,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             catch (Exception ex)
             {
+               
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+
             }
 
         }
@@ -145,55 +105,83 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
             catch (Exception ex)
             {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message.ToString() + "');", true);
+
             }
         }
-
-
-        protected void lnkok_Click(object sender, EventArgs e)
-        {
-
-
-
-            if (this.lnkok.Text == "Ok")
-            {
-                string comcod = this.GetCompCode();
-                this.lnkok.Text = "New";
-                this.LblBookName.Text = "Code Book:";
-                this.lblddlOEmpAcarecord.Text = this.ddlEmpAcarecord.SelectedItem.Text.Trim();
-                this.ddlEmpAcarecord.Visible = false;
-                this.lblddlOEmpAcarecord.Visible = true;
-                this.ShowInformation();
-            }
-
-            else
-            {
-
-                this.lnkok.Text = "Ok";
-                ((Label)this.Master.FindControl("lblmsg")).Text = "";
-                this.LblBookName.Text = "Select Code Book:";
-                this.lblddlOEmpAcarecord.Visible = false;
-                this.ddlEmpAcarecord.Visible = true;
-                this.grvacc.DataSource = null;
-                this.grvacc.DataBind();
-
-            }
-
-
-        }
+ 
 
         private void ShowInformation()
         {
             string comcod = this.GetCompCode();
             string tempddl1 = (this.ddlEmpAcarecord.SelectedValue.ToString()).Substring(0, 5);
-            string txtSearchItem = "%" + this.txtAcademicSrc.Text.Trim() + "%";
+            string txtSearchItem = "%%";
             DataSet ds1 = this.da.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "GETEMPRECORDDETAILS", tempddl1, txtSearchItem, "", "", "", "", "", "", "");
             Session["storedata"] = ds1.Tables[0];
             this.grvacc_DataBind();
 
         }
-        protected void ibtnSrch_Click(object sender, EventArgs e)
+    
+
+        protected void lnkbtnEdit_Click(object sender, EventArgs e)
+        {
+            clearScreen();
+            LinkButton btn = (LinkButton)sender;
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string listid = ((Label)this.grvacc.Rows[index].FindControl("lbgrcod1")).Text.ToString();
+            string lblDesc = ((Label)this.grvacc.Rows[index].FindControl("lbldesc")).Text.ToString();
+
+            this.txtBoxTitle.Text = lblDesc;
+            editbyId.Value = listid;
+            this.txtBoxTitle.Focus();
+
+            this.lnkAdd.Text = "Update";
+        }
+
+        protected void lnkAdd_Click(object sender, EventArgs e)
+        {
+                
+            string Message;            
+            string comcod = this.GetCompCode();
+            string gdesc = this.txtBoxTitle.Text.Trim();
+            string maincode = (this.ddlEmpAcarecord.SelectedValue.ToString()).Substring(0, 5); 
+                 
+
+            maincode= (editbyId.Value != null) ? editbyId.Value : maincode;
+
+            bool result = da.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "INOUPEACADEMICRECORDLASTIDWISE", maincode,gdesc, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+                clearScreen();
+                this.lnkAdd.Text = "Add";
+
+                Message = "Successfully Updated";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+                 
+            }
+
+            else
+            {
+                Message = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                clearScreen();
+            }
+
+            this.ShowInformation();
+
+        }
+
+        protected void ddlEmpAcarecord_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ShowInformation();
+            this.grvacc_DataBind();
+        }
+        private void clearScreen()
+        {
+            editbyId.Value = "";
+            this.txtBoxTitle.Text = "";
         }
     }
 }

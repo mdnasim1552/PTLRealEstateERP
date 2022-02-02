@@ -347,7 +347,7 @@
 
                                         </h6>
                                         <!-- .dropdown-scroll -->
-                                        <div class="dropdown-scroll has-scrollable ps" id="repNotificmsg">
+                                        <div class="dropdown-scroll has-scrollable" id="repNotificmsg">
                                              </div>
                                         <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")  %>" class="dropdown-footer">All Notification
                      
