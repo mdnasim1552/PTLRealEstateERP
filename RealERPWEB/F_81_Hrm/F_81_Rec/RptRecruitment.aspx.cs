@@ -18,6 +18,7 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
 {
     public partial class RptRecruitment : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,13 +33,27 @@ namespace RealERPWEB.F_81_Hrm.F_81_Rec
                     : (Type == "SortListing") ? "Short Listing Process" : (Type == "InterviewResult") ? "Interview Result" : (Type == "FinalSelect") ? "Final Selection" : "";
 
 
-                this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.GetDate();
                 this.ViewSection();
             }
 
         }
+
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+        }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event

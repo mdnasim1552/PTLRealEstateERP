@@ -21,6 +21,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
     public partial class RptAccDTransaction : System.Web.UI.Page
     {
 
+        Common compUtility = new Common();
         ProcessAccess MktData = new ProcessAccess();
         public static double OpenBal, Clsbal, Dtdram, Dtcram;
 
@@ -31,19 +32,20 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
             if (!IsPostBack)
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
-            //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
             ((Label)this.Master.FindControl("lblTitle")).Text = "MONEY RECEIPT INFORMATION VIEW/EDIT";
-
-
-
-
-            if (this.txtfromdate.Text.Trim().Length == 0)
-            {
-                this.txtfromdate.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
-                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            }
+            this.GetDate();
         }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
 
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + date.Substring(2);
+            this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event

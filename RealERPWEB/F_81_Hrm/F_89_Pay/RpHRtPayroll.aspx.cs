@@ -96,7 +96,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void SelectType()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
-
+            string comcod = this.GetCompCode();
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            
+            
             switch (type)
             {
                 case "Salary":
@@ -106,7 +115,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     this.pnlsalops.Visible = true;
                     this.CompanySalary();
-                    string comcod = this.GetCompCode();
                     switch (comcod)
                     {
 
@@ -147,12 +155,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         default:
 
                             //string comcod = this.GetComCode();
-                            DataSet datSetup = compUtility.GetCompUtility();
-                            if (datSetup == null)
-
-                                return;
-
-                            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+                           
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
@@ -191,9 +194,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.lblemp.Visible = true;
                             this.txtEmpSrcInfo.Visible = true;
                             this.ibtnEmpListAllinfo.Visible = true;
-                            this.ddlEmpNameAllInfo.Visible = true;
+                            this.ddlEmpNameAllInfo.Visible = true;                            
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
                     }
@@ -203,20 +206,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Signature":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
+
                 case "CashPay":
                     this.MultiView1.ActiveViewIndex = 4;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 case "OvertimeSalary":
                     this.MultiView1.ActiveViewIndex = 5;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 

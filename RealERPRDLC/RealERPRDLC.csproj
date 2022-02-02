@@ -141,6 +141,7 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
+    <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />

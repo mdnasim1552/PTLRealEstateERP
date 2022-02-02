@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 {
     public partial class RptHREmpLeave : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,9 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfromdate.Text = "01" + date.Substring(2);
-                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.GetDate();
                 this.ShowView();
                 this.GetCompanyName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Individual Employee LEAVE STATUS ";
@@ -37,6 +36,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
 
         }
+
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + date.Substring(2);
+            this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event

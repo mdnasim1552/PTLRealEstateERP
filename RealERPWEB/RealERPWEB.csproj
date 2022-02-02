@@ -2912,6 +2912,7 @@
     <Content Include="F_81_Hrm\F_82_App\EmpBirthDeath.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EntryAllEmp.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRCodeBook.aspx" />
@@ -3995,6 +3996,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
+      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
+      <DependentUpon>EmpEntry01.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
@@ -10600,12 +10608,12 @@
     <Compile Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx.designer.cs">
       <DependentUpon>EmpDesignationlinkDeptWise.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
-      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx.cs">
+      <DependentUpon>EmpEntry01Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
-      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx.designer.cs">
+      <DependentUpon>EmpEntry01Old.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx.cs">
       <DependentUpon>EmpEntryForm.aspx</DependentUpon>
@@ -11777,20 +11785,6 @@
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
-      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
-      <Name>RealEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
-      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
-      <Name>RealERPLIB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
-      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
-      <Name>RealERPRDLC</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
@@ -11805,6 +11799,20 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
+      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
+      <Name>RealEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
+      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
+      <Name>RealERPRDLC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

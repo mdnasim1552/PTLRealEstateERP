@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
     public partial class RptEmpDailyAttendance : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -168,6 +169,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void ViewSection()
         {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
             string Type = this.Request.QueryString["Type"].ToString();
             switch (Type)
             {
@@ -181,7 +186,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MonthlyLateAtten":
                     this.lblfrmdate.Text = "From:";
                     this.txtDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtDate.Text = "26" + this.txtDate.Text.Trim().Substring(2);
+                    this.txtDate.Text = startdate + this.txtDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
@@ -203,7 +208,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "AttendanceSummary":
                     this.lblfrmdate.Text = "From:";
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
+                    this.txtDate.Text = startdate + this.txtDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 3;
                     break;

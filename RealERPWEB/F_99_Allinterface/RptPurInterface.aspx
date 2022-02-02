@@ -1030,10 +1030,10 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                            <asp:TemplateField HeaderText="">
 
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1355,7 +1355,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                            <asp:TemplateField HeaderText="">
                                                                 <HeaderTemplate>
                                                                     <asp:TextBox ID="txtSearchrefnumrchq" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqChk')"></asp:TextBox><br />
 

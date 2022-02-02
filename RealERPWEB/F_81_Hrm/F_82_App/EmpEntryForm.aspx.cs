@@ -214,9 +214,22 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void LoadGrid()
         {
-
+            string filtertype = this.ddlfilterby.SelectedValue.ToString();
             DataTable dt = (DataTable)Session["tblEmpstatus"];
-             this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+
+            DataView dv = dt.DefaultView;
+
+            if (filtertype == "01")
+            {
+                dv.RowFilter = "idcardno =''";
+
+            }
+            else if(filtertype == "02")
+            {
+                dv.RowFilter = "idcardno <>''";
+            }
+            dt = dv.ToTable();
+            this.gvEmpList.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpList.DataSource = dt;
             this.gvEmpList.DataBind();
 
@@ -282,6 +295,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         protected void lnkbtnEdit_Click(object sender, EventArgs e)
         {
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "GetEmployeeform();", true);
             LinkButton btn = (LinkButton)sender;
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
@@ -293,6 +308,34 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.lnkbtnSave.Text = "Update";
         }
 
-       
+        protected void lnkCreate_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "GetEmployeeform();", true);
+            return;
+        }
+
+        protected void hypDelbtn_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            int index = row.RowIndex;
+            string Message;
+
+            string comcod = this.GetComeCode();
+            string empid = ((Label)this.gvEmpList.Rows[index].FindControl("lblEmpid")).Text.ToString();
+            string empname = ((Label)this.gvEmpList.Rows[index].FindControl("lblEmpName")).Text.ToString();
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMPLOYEE", empid, "", "", "", "", "", "", "", "");
+
+            if (result != false)
+            {
+                Message = "Successfully deleted Employee : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+            }
+            GetEmpList();
+        }
+
+        protected void ddlfilterby_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetEmpList();
+        }
     }
 }
