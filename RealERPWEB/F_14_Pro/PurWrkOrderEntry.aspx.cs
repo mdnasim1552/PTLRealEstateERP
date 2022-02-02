@@ -64,6 +64,7 @@ namespace RealERPWEB.F_14_Pro
 
                     switch (comcod)
                     {
+                        case "3354": //Edison Real Estate
                         case "3335": //Edison
                         //case "3101": // ptl
                         case "3355": // greenwood
@@ -977,7 +978,26 @@ namespace RealERPWEB.F_14_Pro
             //{
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnDelete")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnUpdatePurOrder")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
-            ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Visible = ((this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp") && comcod == "3335");
+           
+            
+            
+          
+
+
+            //For Forward
+            switch (comcod)
+            {
+
+                case "3354"://Edison Real Estate
+                case "3335":
+                    ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp");
+                    break;
+
+                default:
+                    break;
+
+
+            }
 
             //For Visible Item Serial Manama
             if (comcod == "3353" || comcod == "3101")
@@ -1361,11 +1381,11 @@ namespace RealERPWEB.F_14_Pro
 
 
                         case "3335":
+                        case "3354":// Edison Real Estate
                             string sappusrid = "";
                             string sapptrmnid = "";
                             string sappsession = "";
                             string sappDate = "";
-
                             List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange> lst = (List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange>)Session["tblordrange"];
 
                             bool forard = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;

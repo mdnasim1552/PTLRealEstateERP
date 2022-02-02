@@ -572,11 +572,19 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-                case "3354"://  Edison Real Estate 
+                //case "3354"://  Edison Real Estate 
                 case "1205":  //P2P Construction
                 case "3351":  //wecon Properties
                 case "3352":  //p2p360
                     OrderfApproved = "Ord. Approval";
+                    break;
+
+
+
+                case "3354"://  Edison Real Estate 
+                    OrderfApproved = "Ord. 1st App";
+                    Order2ndAprv = "Ord. Final App";
+                    
                     break;
 
 
