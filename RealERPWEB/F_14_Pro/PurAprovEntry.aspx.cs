@@ -48,6 +48,8 @@ namespace RealERPWEB.F_14_Pro
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);
                 this.txtCurAprovDate_CalendarExtender.EndDate = System.DateTime.Today;
+                this.gvAprovInfo.Columns[10].HeaderText = this.ReadCookie();
+
                 if ((this.Request.QueryString["genno"].ToString().Length > 0))
                 {
                     this.lbtnPrevAprovList.Visible = false;
@@ -83,6 +85,14 @@ namespace RealERPWEB.F_14_Pro
 
 
         }
+
+        private string ReadCookie()
+        {
+            HttpCookie nameCookie = Request.Cookies["MRF"];
+            string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
+            return refno;
+        }
+
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
