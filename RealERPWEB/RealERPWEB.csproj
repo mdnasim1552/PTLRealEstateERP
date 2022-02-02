@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Backup\SPEERP BIN\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2912,6 +2912,7 @@
     <Content Include="F_81_Hrm\F_82_App\EmpBirthDeath.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EntryAllEmp.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRCodeBook.aspx" />
@@ -3995,6 +3996,13 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
+      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
+      <DependentUpon>EmpEntry01.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
@@ -10600,12 +10608,12 @@
     <Compile Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx.designer.cs">
       <DependentUpon>EmpDesignationlinkDeptWise.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
-      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx.cs">
+      <DependentUpon>EmpEntry01Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
-      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx.designer.cs">
+      <DependentUpon>EmpEntry01Old.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx.cs">
       <DependentUpon>EmpEntryForm.aspx</DependentUpon>
