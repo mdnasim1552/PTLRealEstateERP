@@ -21,7 +21,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
     public partial class EmpOverTimeSalary : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
-
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
 
         {
@@ -31,20 +31,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Response.Redirect("../../AcceessError.aspx");
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString().Trim() == "OvertimeSalary") ? "EMPLOYEE OVERTIME SALARY" : "EMPLOYEE MONTHLY LATE ATTENDANCE INMROMATION";
-                this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                
+                this.GetDate();
                 this.GetCompany();
                 this.GetDesignation();
-
                 this.SelectType();
 
-                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                //((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE OVERTIME SALARY";
-                // this.lblmsg.Visible = false;
-
-
             }
+        }
+
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+"Please Setup Start Date Firstly!"+"');", true);
+            return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
         }
 
         protected void Page_PreInit(object sender, EventArgs e)

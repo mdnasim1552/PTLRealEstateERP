@@ -22,6 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
     public partial class EmpStatus02 : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -39,10 +40,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 }
-                Session.Remove("tblEmpstatus");
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtFdate.Text = "01" + date.Substring(2);
-                this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                Session.Remove("tblEmpstatus");                
+                this.GetDate();
                 this.GetCompany();
                 this.SelectView();
                 this.GetDesignation();
@@ -66,6 +65,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
 
         }
+
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('"+"Please Setup Start Date Firstly!"+"');", true);
+            return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtFdate.Text = startdate + date.Substring(2);
+            this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
