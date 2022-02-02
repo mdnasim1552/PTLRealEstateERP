@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccSubCodeBook" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" AutoEventWireup="true" CodeBehind="AccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccSubCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../Content/FullGridPager.css" rel="stylesheet" />
@@ -78,67 +78,67 @@
     </script>
 
 
-     <style>
-         .switch {
-             position: relative;
-             display: inline-block;
-             width: 40px;
-             height: 20px;
-         }
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
 
-             .switch input {
-                 opacity: 0;
-                 width: 0;
-                 height: 0;
-             }
+            .switch input {
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
 
-         .slider {
-             position: absolute;
-             cursor: pointer;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             background-color: #ccc;
-             -webkit-transition: .4s;
-             transition: .4s;
-         }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
 
-             .slider:before {
-                 position: absolute;
-                 content: "";
-                 height: 18px;
-                 width: 18px;
-                 left: 1px;
-                 bottom: 1px;
-                 background-color: white;
-                 -webkit-transition: .4s;
-                 transition: .4s;
-             }
+            .slider:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 1px;
+                bottom: 1px;
+                background-color: white;
+                -webkit-transition: .4s;
+                transition: .4s;
+            }
 
-         input:checked + .slider {
-             background-color: #2196F3;
-         }
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
 
-         input:focus + .slider {
-             box-shadow: 0 0 1px #2196F3;
-         }
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
 
-         input:checked + .slider:before {
-             -webkit-transform: translateX(18px);
-             -ms-transform: translateX(18px);
-             transform: translateX(18px);
-         }
+        input:checked + .slider:before {
+            -webkit-transform: translateX(18px);
+            -ms-transform: translateX(18px);
+            transform: translateX(18px);
+        }
 
-         /* Rounded sliders */
-         .slider.round {
-             border-radius: 20px;
-         }
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 20px;
+        }
 
-             .slider.round:before {
-                 border-radius: 50%;
-             }
-     </style>
+            .slider.round:before {
+                border-radius: 50%;
+            }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -162,12 +162,101 @@
                 </asp:UpdateProgress>
             </div>
 
-                    <asp:LinkButton ID="lnkPageloadData" style="display:none" OnClick="lnkPageloadData_Click" Class="btn btn-sm btn-primary d-none" runat="server">lnkPageloadData</asp:LinkButton>
+            <asp:LinkButton ID="lnkPageloadData" Style="display: none" OnClick="lnkPageloadData_Click" Class="btn btn-sm btn-primary d-none" runat="server">lnkPageloadData</asp:LinkButton>
+
+            <%--Added--%>
+
+            <div class="card mt-5">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <asp:Label ID="LblBookName1" runat="server" CssClass="btn btn-secondary btn-sm" Text="Select Code Book:"></asp:Label>
+                                </div>
+                                <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlOthersBook_SelectedIndexChanged" AutoPostBack="True">
+                                </asp:DropDownList>
+                                <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="btn btn-secondary btn-sm"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <asp:Label ID="lblLevel" runat="server" CssClass="btn btn-secondary btn-sm" Text="Level:"></asp:Label>
+                                </div>
+                                <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control form-control-sm" runat="server">
+                                    <asp:ListItem Value="2">Main Code</asp:ListItem>
+                                    <asp:ListItem Value="4">Sub Code-1</asp:ListItem>
+                                    <asp:ListItem Value="7">Sub Code-2</asp:ListItem>
+                                    <asp:ListItem Value="9">Sub Code-3</asp:ListItem>
+                                    <asp:ListItem Selected="True" Value="12">Details Code</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="btn btn-secondary btn-sm"></asp:Label>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <asp:Label ID="lblcatagory" runat="server" CssClass="btn btn-secondary btn-sm" Text="Catagory"></asp:Label>
+                                </div>
+                                <asp:DropDownList ID="ddlcatagory" runat="server" CssClass="form-control form-control-sm">
+                                </asp:DropDownList>
 
 
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
-                    <div class="row">                       
+
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <asp:Label ID="LblBookName2" runat="server" CssClass="btn btn-secondary btn-sm" Text="Search Option:"></asp:Label>
+
+                                </div>
+                                <asp:TextBox ID="txtsrch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <asp:LinkButton ID="ibtnSrch" runat="server" OnClick="ibtnSrch_Click" CssClass="btn btn-secondary btn-sm" Visible="False">  <i class="fa fa-search"></i></asp:LinkButton>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend">
+                                    <asp:Label ID="lblPage" runat="server" CssClass="btn btn-secondary btn-sm" Text="Page Size" Visible="False"></asp:Label>
+
+                                </div>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control form-control-sm"
+                                    OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
+                                    <asp:ListItem>15</asp:ListItem>
+                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                    <asp:ListItem>200</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>600</asp:ListItem>
+                                    <asp:ListItem>900</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-sm btn-primary "></asp:LinkButton>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <%--   </div>
+            <div class="clearfix"><br /></div>--%>
+
+
+                <%--End--%>
+
+                <%--<div class="container moduleItemWrpper">
+                <div class="contentPart">--%>
+                <%--         <div class="row">                       
                          <fieldset class="scheduler-border">
 
                             <div class="form-horizontal">
@@ -181,9 +270,7 @@
                                         <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlOthersBook_SelectedIndexChanged" AutoPostBack="True">
                                         </asp:DropDownList>
 
-                                        <%--                                                <cc1:ListSearchExtender ID="ddlCodeBook_ListSearchExtender" runat="server"
-                                                    Enabled="True" QueryPattern="Contains" TargetControlID="ddlCodeBook">
-                                                </cc1:ListSearchExtender>--%>
+                                     
 
                                         <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
                                     </div>
@@ -256,17 +343,21 @@
             
                     </fieldset>
 
-                    </div>
-                        <div class="table-responsive">
-                        
+                    </div>--%>
+                <div class="card-body">
+                    <div class="row">
 
-                            
-                            <asp:GridView ID="grvacc" runat="server" AllowPaging="True" 
+                        <div class="table-responsive">
+
+
+
+                            <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                                 OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnPageIndexChanging="grvacc_PageIndexChanging"
-                                OnRowDataBound="grvacc_RowDataBound" CssClass="table table-striped table-hover table-bordered grvContentarea" Width="700px" OnDataBound="grvacc_DataBound">
-                            
-                               
+                                OnRowDataBound="grvacc_RowDataBound"  CssClass="table-striped table-hover table-bordered grvContentarea"    
+                                Width="700px" OnDataBound="grvacc_DataBound" ShowFooter="True">
+
+
                                 <FooterStyle BackColor="#5F9467" />
 
                                 <Columns>
@@ -275,30 +366,30 @@
                                             <asp:Label ID="lblserialnoid" runat="server"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle />
+                                       <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="+">
 
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" Visible="false" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
-                                        
-                                        <%--data-toggle="modal" data-target="#detialsinfo"--%>
-                                    </ItemTemplate>
-                                    <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
-                                    
-                                    <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" Visible="false" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
+
+                                            <%--data-toggle="modal" data-target="#detialsinfo"--%>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
+
+                                        <ItemStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
 
 
-                                     <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
-                                    SelectText="" ShowEditButton="True"     EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
-                                    <HeaderStyle />
-                                    <ItemStyle ForeColor="#0000C0"/>
-                                </asp:CommandField>
+                                    <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
+                                        SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
+                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <ItemStyle ForeColor="#0000C0" />
+                                    </asp:CommandField>
 
-                                   
+
 
 
 
@@ -313,19 +404,21 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode2"))+"-" %>'
                                                 Width="20px"></asp:Label>
                                         </ItemTemplate>
+                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle Font-Size="12px" />
                                     </asp:TemplateField>
+
+                                   
                                     <asp:TemplateField HeaderText="Code">
-                                       
+
                                         <ItemTemplate>
-                                            <asp:Label ID="lbllgrcode" runat="server" Font-Size="12px" Height="16px"
+                                            <asp:Label ID="lbllgrcode" runat="server" Font-Size="12px" 
                                                 MaxLength="13" BackColor="Transparent"
-                                                
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode4")) %>'
                                                 Width="100px"></asp:Label>
 
 
-                                          
+
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
                                         <ItemStyle Font-Size="12px" />
@@ -345,7 +438,7 @@
                                             <asp:Label ID="Label8" runat="server" Text="Description of Code" Width="350px"></asp:Label>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                             
+
                                             <asp:HyperLink ID="hlnkgvdesc" runat="server" BorderColor="#99CCFF" BorderStyle="none"
                                                 Font-Size="11px" Style="text-align: left; background-color: Transparent; color: Black;"
                                                 Font-Underline="false" Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc"))  %>'
@@ -354,11 +447,11 @@
                                             </asp:HyperLink>
 
                                         </ItemTemplate>
-                                        <HeaderStyle />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
                                     </asp:TemplateField>
 
-                                    
+
                                     <asp:TemplateField HeaderText="Description of Code BN" HeaderStyle-Width="400px">
                                         <EditItemTemplate>
                                             <asp:TextBox ID="txtgvDescbn" runat="server" Font-Size="12px" MaxLength="250"
@@ -371,10 +464,10 @@
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="Label8" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdescbn"))  %>' Width="300px"></asp:Label>
-                                             
-                                             
+
+
                                         </ItemTemplate>
-                                        <HeaderStyle />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
                                     </asp:TemplateField>
 
@@ -393,7 +486,7 @@
                                             <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
                                                 Width="40px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px"  HorizontalAlign="Center"  /> 
                                         <ItemStyle HorizontalAlign="Center" Width="10px" />
                                     </asp:TemplateField>
 
@@ -410,7 +503,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px"  HorizontalAlign="Center"  /> 
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Type" Visible="false">
@@ -425,7 +518,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtype")) %>'
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                         <HeaderStyle Font-Bold="True" Font-Size="16px"   /> 
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Brand" HeaderStyle-Width="200">
@@ -469,6 +562,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
                                                 Width="200px"></asp:Label>
                                         </ItemTemplate>
+                                         <HeaderStyle Font-Bold="True" Font-Size="16px"    /> 
                                     </asp:TemplateField>
 
 
@@ -505,60 +599,87 @@
                                         </ItemTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                     </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Seq">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txtgvseq" runat="server"  
+                                                Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "seq")) %>'
+                                                Width="60px"></asp:TextBox>
+
+
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                                <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
+                                         </FooterTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Sir Code" Visible="false">
+
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbllgrcodefull" runat="server" Font-Size="12px" 
+                                                MaxLength="13" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")) %>'
+                                                Width="100px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" Width="80px" />
+                                        <ItemStyle Font-Size="12px" />
+                                    </asp:TemplateField>
+
+
+
                                 </Columns>
 
 
 
-                           <PagerTemplate>
-                    <table id="pagerOuterTable" class="pagerOuterTable"  runat="server" >
-                        <tr>
-                            <td>
-                                <table id="pagerInnerTable" cellpadding="2"  cellspacing="1" runat="server">
-                                    <tr>
-                                        <td class="pageCounter">
-                                            <asp:Label ID="lblPageCounter"  ClientIDMode="Static" runat="server" Text=""></asp:Label>
-                                        </td>
-                                        <td class="pageFirstLast">
-                                            <img src="../Image/firstpage.gif" align="absmiddle" />&nbsp;<asp:LinkButton ID="lnkFirstPage" ClientIDMode="Static" CssClass="pagerLink" runat="server" CommandName="Page" CommandArgument="First">First</asp:LinkButton>
-                                        </td>
-                                        <td class="pagePrevNextNumber">
-                                            <asp:ImageButton ID="imgPrevPage"  ClientIDMode="Static" runat="server" ImageAlign="AbsMiddle" ImageUrl="../Image/prevpage.gif" CommandName="Page" CommandArgument="Prev" />
-                                        </td>
+                                <PagerTemplate>
+                                    <table id="pagerOuterTable" class="pagerOuterTable" runat="server">
+                                        <tr>
+                                            <td>
+                                                <table id="pagerInnerTable" cellpadding="2" cellspacing="1" runat="server">
+                                                    <tr>
+                                                        <td class="pageCounter">
+                                                            <asp:Label ID="lblPageCounter" ClientIDMode="Static" runat="server" Text=""></asp:Label>
+                                                        </td>
+                                                        <td class="pageFirstLast">
+                                                            <img src="../Image/firstpage.gif" align="absmiddle" />&nbsp;<asp:LinkButton ID="lnkFirstPage" ClientIDMode="Static" CssClass="pagerLink" runat="server" CommandName="Page" CommandArgument="First">First</asp:LinkButton>
+                                                        </td>
+                                                        <td class="pagePrevNextNumber">
+                                                            <asp:ImageButton ID="imgPrevPage" ClientIDMode="Static" runat="server" ImageAlign="AbsMiddle" ImageUrl="../Image/prevpage.gif" CommandName="Page" CommandArgument="Prev" />
+                                                        </td>
 
-                                        <td class="pagePrevNextNumber">
-                                            <asp:ImageButton ID="imgNextPage" ClientIDMode="Static"  runat="server" ImageAlign="AbsMiddle" ImageUrl="../Image/nextpage.gif" CommandName="Page" CommandArgument="Next" />
-                                        </td>
-                                        <td class="pageFirstLast">
-                                            <asp:LinkButton ID="lnkLastPage" CssClass="pagerLink"  ClientIDMode="Static" CommandName="Page" CommandArgument="Last" runat="server">Last</asp:LinkButton>&nbsp;<img src="../Image/lastpage.gif" align="absmiddle" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td visible="false" class="pageGroups">Pages:&nbsp;<asp:DropDownList ID="ddlPageGroups" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageGroups_SelectedIndexChanged"></asp:DropDownList>
-                            </td>
-                        </tr>
-                    </table>
-                </PagerTemplate>
-
-                                  
+                                                        <td class="pagePrevNextNumber">
+                                                            <asp:ImageButton ID="imgNextPage" ClientIDMode="Static" runat="server" ImageAlign="AbsMiddle" ImageUrl="../Image/nextpage.gif" CommandName="Page" CommandArgument="Next" />
+                                                        </td>
+                                                        <td class="pageFirstLast">
+                                                            <asp:LinkButton ID="lnkLastPage" CssClass="pagerLink" ClientIDMode="Static" CommandName="Page" CommandArgument="Last" runat="server">Last</asp:LinkButton>&nbsp;<img src="../Image/lastpage.gif" align="absmiddle" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td visible="false" class="pageGroups">Pages:&nbsp;<asp:DropDownList ID="ddlPageGroups" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageGroups_SelectedIndexChanged"></asp:DropDownList>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </PagerTemplate>
 
 
-                                <RowStyle />
+
+                                <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />
-                                <SelectedRowStyle />
-                               <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                <%--<PagerStyle CssClass="gvPagination" />--%>
+                                <AlternatingRowStyle />
+                                <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
-                                <AlternatingRowStyle BackColor="" />
+
                             </asp:GridView>
 
 
 
                         </div>
-                
+
+                    </div>
+
                 </div>
-               
-            </div>
 
                 <div class="modal fade " id="detialsinfo" role="dialog">
                     <div class="modal-dialog  modal-lg ">
@@ -575,7 +696,7 @@
 
                                 </div>
 
-                               <%-- <div class="form-group">
+                                <%-- <div class="form-group">
                                     <label class="control-label">Catagory:</label>
                                   
                                     <asp:DropDownList ID="ddlworkCatagory" runat="server" CssClass="form-control">
@@ -587,8 +708,6 @@
                                     </asp:DropDownList>
 
                                 </div>--%>
-
-
                             </div>
                             <div class="modal-footer">
                                 <%--    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" >Update</button>--%>
@@ -601,107 +720,122 @@
 
 
 
-            
-
-    <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content  ">
-                <div class="modal-header">
-
-                    <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                    <h4 class="modal-title">
-                        <span class="fa fa-table"></span> Add New Code  </h4>
-                </div>
-                <div class="modal-body form-horizontal">
-                    <div class="row-fluid">
-                        <asp:Label ID="lblsircode" runat="server" Visible="false"></asp:Label>
-
-                         <div class="form-group" runat="server">
-                            <label class="col-md-4">Resource Code </label>
 
 
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtresourcecode" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
+                <div id="AddResCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content  ">
+                            <div class="modal-header">
 
-                        <div class="form-group" runat="server">
-                            <label class="col-md-4">Description EN</label>
-
-
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtresourcehead" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-
-                         <div class="form-group" runat="server">
-                            <label class="col-md-4">Description BN</label>
-
-
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtresourceheadBN" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-md-4">Unit </label>
-                            <div class="col-md-5">
-                                <asp:TextBox ID="txtunit" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
-                                 <asp:DropDownList ID="ddlUnits" CssClass="chzn-select form-control" Visible="false" runat="server">
-                                            </asp:DropDownList>
+                                <h5 class="modal-title"><span class="fa fa-table"></span>&nbsp;Add New Code</h5>
+                                <button type="button" class="btn btn-xs btn-danger float-right" data-dismiss="modal"><i class="fas fa-times-circle"></i></button>
 
 
                             </div>
+                            <div class="modal-body form-horizontal">
+                                <div class="row mb-1">
+                                    <asp:Label ID="lblsircode" runat="server" Visible="false"></asp:Label>
+
+
+                                    <label class="col-md-4">Resource Code </label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtresourcecode" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                                <div class="row mb-1">
+
+                                    <label class="col-md-4">Description EN</label>
+
+
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtresourcehead" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                                <div class="row mb-1">
+
+
+                                    <label class="col-md-4">Description BN</label>
+
+
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtresourceheadBN" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                                <div class="row mb-1">
+
+                                    <label class="col-md-4">Unit </label>
+                                    <div class="col-md-4">
+                                        <asp:TextBox ID="txtunit" runat="server" Visible="false" CssClass="form-control"></asp:TextBox>
+                                        <asp:DropDownList ID="ddlUnits" CssClass="chzn-select form-control" Visible="false" runat="server">
+                                        </asp:DropDownList>
+
+
+                                    </div>
 
 
 
 
-                            <div class="col-md-3">
-                                <label id="chkbod" runat="server" class="switch">
-                                    <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
-                                    <span class="btn btn-xs slider round"></span>
-                                </label>
-                                <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
+                                    <div class="col-md-1">
+                                        <label id="chkbod" runat="server" class="switch">
+                                            <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
+                                            <span class="btn btn-xs slider round"></span>
+                                        </label>
+                                        <%--<asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>--%>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-1">
+
+                                    <label class="col-md-4" id="lblsdrate" runat="server">Standard Rate </label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtstdrate" runat="server" CssClass="form-control" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-1">
+
+                                    <label class="col-md-4">Brand </label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtbrand" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+
+                                </div>
+
+                                <div class="row mb-1">
+
+                                    <label class="col-md-4">Details</label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtTDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                                <div class="row mb-1">
+
+                                    <label id="lblddlproject" runat="server" class="col-md-4">Department</label>
+                                    <div class="col-md-8">
+                                        <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    </div>
+
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4" id="lblsdrate" runat="server">Standard Rate </label>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtstdrate" runat="server" CssClass="form-control" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4">Brand </label>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtbrand" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                             <label class="col-md-4">Details</label>
-                            <div class="col-md-8">
-                             <asp:TextBox ID="txtTDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
+                            <div class="modal-footer ">
+                                <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click"><span class="glyphicon glyphicon-save"></span> Update </asp:LinkButton>
 
-                        <div class="form-group">
-                            <label id="lblddlproject" runat="server" class="col-md-4">Department</label>
-                            <div class="col-md-8">
-                                <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
+
+                                <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
                             </div>
                         </div>
                     </div>
-
                 </div>
-                <div class="modal-footer ">
-                    <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddCode();" OnClick="lbtnAddCode_Click"><span class="glyphicon glyphicon-save"></span> Update </asp:LinkButton>
-
-
-                    <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
-                </div>
-            </div>
-        </div>
-    </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 

@@ -30,6 +30,7 @@ namespace RealERPWEB.F_17_Acc
         ProcessAccess da = new ProcessAccess();
         static string[] CarArray = new string[3] { "Sub Code-1", "Sub Code-2", "Details Code" };
         //static string tempddl1 = "", tempddl2 = "";
+        string msg = "";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -70,7 +71,8 @@ namespace RealERPWEB.F_17_Acc
         {
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Replace("%20", " "), (DataSet)Session["tblusrlog"]);
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            //Commented
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
 
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
@@ -156,8 +158,11 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
             }
         }
 
@@ -265,9 +270,12 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
+               
             }
             try
             {
@@ -284,9 +292,16 @@ namespace RealERPWEB.F_17_Acc
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Invalid code!";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Invalid code!";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                    msg = "Invalid code!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     updateallow = false;
+                    return;
+
+
+                   
                 }
 
                 string actcode = "";
@@ -317,57 +332,74 @@ namespace RealERPWEB.F_17_Acc
                 {
                     if (sircode1.Substring(3, 3) != psircode1.Substring(2, 3))
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
 
+                        msg = "Update Not Allowed";
                         updateallow = false;
+
                     }
                     else if (sircode1.Substring(7, 2) != psircode1.Substring(5, 2))
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+
+                        msg = "Update Not Allowed";
 
                         updateallow = false;
                     }
                     else if (sircode1.Substring(10, 3) != psircode1.Substring(7, 3))
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+
+                        msg = "Update Not Allowed";
 
                         updateallow = false;
                     }
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 }
                 else if (tempddl2 == "7" && psircode1 != sircode.Substring(2, 10) && sircode1.Length == 13 && sircode1.Substring(2, 1) == "-" && sircode1.Substring(6, 1) == "-" && sircode1.Substring(9, 1) == "-" && !sircode1.Contains(" "))
                 {
                     if (sircode1.Substring(7, 2) != psircode1.Substring(5, 2))
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+
+                        msg = "Update Not Allowed";
                         updateallow = false;
                     }
                     else if (sircode1.Substring(10, 3) != psircode1.Substring(7, 3))
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+
+                        msg = "Update Not Allowed";
                         updateallow = false;
                     }
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 }
                 else if (tempddl2 == "9" && psircode1 != sircode.Substring(2, 10) && sircode1.Length == 13 && sircode1.Substring(2, 1) == "-" && sircode1.Substring(6, 1) == "-" && sircode1.Substring(9, 1) == "-" && !sircode1.Contains(" "))
                 {
 
                     if (sircode1.Substring(10, 3) != psircode1.Substring(7, 3) || sircode1.Substring(3, 3) == "000")
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        msg = "Update Not Allowed";
                         updateallow = false;
                     }
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                 }
                 else if (tempddl2 == "12" && psircode1 != sircode.Substring(2, 10) && sircode1.Length == 13 && sircode1.Substring(2, 1) == "-" && sircode1.Substring(6, 1) == "-" && sircode1.Substring(9, 1) == "-" && !sircode1.Contains(" "))
                 {
                     if (sircode1.Substring(3, 3) == "000" && sircode1.Substring(7, 2) != "00" || sircode1.Substring(7, 2) == "00" && sircode1.Substring(10, 3) != "000")
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Not Allowed";
+                        msg = "Update Not Allowed";
                         updateallow = false;
                     }
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                   
                 }
 
 
@@ -395,13 +427,20 @@ namespace RealERPWEB.F_17_Acc
                     this.ShowInformation();
                     if (result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                        msg = "Updated Successfully";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
                     }
                     else
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Parent Code Not Found!!!";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        //((Label)this.Master.FindControl("lblmsg")).Text = "Parent Code Not Found!!!";
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                        msg = "Parent Code Not Found!!!";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     }
                     this.grvacc.EditIndex = -1;
                     this.grvacc_DataBind();
@@ -417,8 +456,12 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
             }
         }
 
@@ -430,6 +473,16 @@ namespace RealERPWEB.F_17_Acc
                 this.grvacc.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
+
+                
+                if(this.Request.QueryString["InputType"] == "DeptCode")
+                {
+                    this.grvacc.FooterRow.Visible = true;
+                }
+                else
+                {
+                    this.grvacc.FooterRow.Visible = false;
+                }
 
                 //((DropDownList)this.grvacc.HeaderRow.FindControl("ddlPageNo")).Visible = false;
                 //double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.grvacc.PageSize);
@@ -624,8 +677,13 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Information not found!!!!";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Information not found!!!!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                return;
+
             }
         }
 
@@ -916,13 +974,21 @@ namespace RealERPWEB.F_17_Acc
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Updated Failed";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
+
+
             }
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
 
         }
@@ -975,12 +1041,16 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                
                 return;
             }
 
@@ -1054,8 +1124,12 @@ namespace RealERPWEB.F_17_Acc
 
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
 
 
             }
@@ -1064,7 +1138,7 @@ namespace RealERPWEB.F_17_Acc
         protected void lbtnAddCode_Click(object sender, EventArgs e)
         {
 
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+         
             try
             {
 
@@ -1095,8 +1169,12 @@ namespace RealERPWEB.F_17_Acc
                 if (Desc.Length == 0)
                 {
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Resource Head is not empty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Resource Head is not empty";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                    msg = "Resource Head is not empty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
                     return;
                 }
@@ -1112,15 +1190,25 @@ namespace RealERPWEB.F_17_Acc
                     if (!result)
                     {
 
-                        ((Label)this.Master.FindControl("lblmsg")).Text = da.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        //((Label)this.Master.FindControl("lblmsg")).Text = da.ErrorObject["Msg"].ToString();
+                        //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                        msg = da.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
                         return;
 
                     }
 
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    //((Label)this.Master.FindControl("lblmsg")).Text = "Update Successfully";
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+                    msg = "Update Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+
+
+
                     this.ShowInformation();
                     this.Chboxchild.Checked = false;
 
@@ -1132,8 +1220,13 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Error: " + ex.Message;
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+
             }
 
         }
@@ -1146,6 +1239,35 @@ namespace RealERPWEB.F_17_Acc
                 this.GetResCodeleb2();
                 this.SelectResCodeLeb2();
             }
+        }
+
+      
+
+        protected void lnkbtnDeptSeqUpdate_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            bool result = false;
+
+            for (int i = 0; i < this.grvacc.Rows.Count; i++)
+            {
+                string sircode = ((Label)this.grvacc.Rows[i].FindControl("lbllgrcodefull")).Text.ToString();
+                string seq = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvseq")).Text.Trim().ToString();
+
+
+                result = da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "UPDATESEQ", sircode, seq, "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+                if (!result)
+                {
+                    msg = "Update Failed ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
+
+            }
+
+            msg = "Updated Successfully ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
         }
     }
 }

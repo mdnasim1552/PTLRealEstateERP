@@ -58,7 +58,7 @@ namespace RealERPWEB.F_99_Allinterface
                 // this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.GetFromDate();
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
+                this.txtmrfno.Attributes.Add("placeholder", ReadCookie());
 
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.GetCompanyName();
@@ -89,9 +89,15 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = dv.ToTable();
             Session["tbllog"] = dt;
             ds1.Dispose();
-
-
         }
+
+        private string ReadCookie()
+        {
+            HttpCookie nameCookie = Request.Cookies["MRF"];
+            string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
+            return refno;
+        }
+
         private void GetUserPermissionurl()
         {
             string comcod = this.GetCompCode();
@@ -744,6 +750,7 @@ namespace RealERPWEB.F_99_Allinterface
             string value = this.RadioButtonList1.SelectedValue.ToString();
             DataSet ds1 = (DataSet)Session["Alltable"];
             DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
             DataView dv = new DataView();
             string comcod = this.GetCompCode();
             switch (value)
@@ -753,7 +760,8 @@ namespace RealERPWEB.F_99_Allinterface
                     // All Reqinfo  
                     dt = ((DataTable)ds1.Tables[0]).Copy();
                     dv = dt.DefaultView;
-                    this.Data_Bind("gvReqInfo", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvReqInfo", dt1);
                     this.pnlReqInfo.Visible = true;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -774,6 +782,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
 
                     // this.RadioButtonList1.Items[0].Attributes["style"] =  "background:#5A5C59; display:block";
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvReqInfo.HeaderRow.FindControl("txtSearchrefnum")).Attributes.Add("placeholder", ReadCookie());
+                    }
+
                     break;
                 case "1":
                     //Checked
@@ -809,7 +822,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'Checked' ");
-                    this.Data_Bind("gvReqChk", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvReqChk", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.pnlCRM.Visible = false;
 
@@ -832,7 +846,6 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
-
                     switch (comcod)
                     {
                         case "3316"://Assure
@@ -848,14 +861,14 @@ namespace RealERPWEB.F_99_Allinterface
                                 //((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Enabled = false;
                                 ((LinkButton)this.gvReqChk.Rows[i].FindControl("btnDirecdelReq")).Visible = true;
                             }
-
-
-
-
                             break;
                     }
 
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvReqChk.HeaderRow.FindControl("txtSearchrefnumrchq")).Attributes.Add("placeholder", ReadCookie());
 
+                    }
 
 
                     break;
@@ -869,7 +882,9 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'First Approval' ");
-                    this.Data_Bind("gvreqfapproved", dv.ToTable());
+                    dt1 = dv.ToTable();
+
+                    this.Data_Bind("gvreqfapproved", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.pnlCRM.Visible = false;
 
@@ -932,7 +947,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'Rate Proposal' ");
-                    this.Data_Bind("gvRatePro", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvRatePro", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.pnlCRM.Visible = false;
@@ -956,6 +972,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[3].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[3].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvRatePro.HeaderRow.FindControl("txtSearchrefnumratepro")).Attributes.Add("placeholder", ReadCookie());
+                    }
+
                     break;
 
 
@@ -1022,8 +1043,6 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBillAudit.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
-
-
                     break;
 
 
@@ -1066,7 +1085,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='Requisition Approval'  ");
-                    this.Data_Bind("gvRateApp", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvRateApp", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -1089,8 +1109,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[7].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[7].Attributes["style"] = "background:#5A5C59; display:block";
-
-
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvRateApp.HeaderRow.FindControl("txtSearchrefnuml")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1121,6 +1143,12 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[8].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[8].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvOrdeProc.HeaderRow.FindControl("txtSearchrefnumordpro")).Attributes.Add("placeholder", ReadCookie());
+
+                    }
+
 
                     break;
                 case "11":
@@ -1150,7 +1178,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvWrkOrd.HeaderRow.FindControl("txtSearchrefnumporder")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1249,7 +1280,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[14].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
                 case "15":
                     //Bill
@@ -1280,6 +1314,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[11].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[11].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvPurBill.HeaderRow.FindControl("txtSearchrefnumbill")).Attributes.Add("placeholder", ReadCookie());
+                    }
+
 
                     break;
 
@@ -1673,6 +1712,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3336":// shuvastu
                     case "3337":
                     case "3364": // JBS
+                    case "3339": // Tropical
 
                         hlink1.Visible = false;
                         break;
@@ -1845,7 +1885,6 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvReqInfo":
                     this.gvReqInfo.DataSource = HiddenSameData(dt);
                     this.gvReqInfo.DataBind();
-
                     break;
                 case "gvReqChk":
                     this.gvReqChk.DataSource = HiddenSameData(dt);

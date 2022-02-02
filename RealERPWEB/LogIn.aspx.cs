@@ -333,6 +333,7 @@ namespace RealERPWEB
                 UserLogin ulog = new UserLogin();
                 DataSet ds1 = ulog.GetHitCounter();
                 string comcod = this.listComName.SelectedValue.ToString();
+                this.setCookieFieldName(comcod);
                 ProcessAccess ulogin = (ASTUtility.Left(this.listComName.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
                 DataSet ds51 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGIN", "", "", "", "", "", "", "", "", "");
 
@@ -803,5 +804,40 @@ namespace RealERPWEB
                 this.lblmsg.Text = "<span class='glyphicon glyphicon-warning-sign'></span>   Sorry Your Given Information Are Invalid";
             }
         }
+
+        private void setCookieFieldName(string comcod)
+        {
+            //Create a Cookie with a suitable Key.
+            HttpCookie nameCookie = new HttpCookie("MRF");
+            string refno = "";
+            switch (comcod)
+            {
+                case "2305":
+                case "3305":
+                case "3306":
+                case "3310":
+                case "3311":
+                case "3315":
+                case "3325":
+                case "3353":
+                case "3101":
+                case "3364":
+                    refno = "MPR No";
+                    break;
+                default:
+                    refno = "MRF No";
+                    break;
+
+            }
+            //Set the Cookie value.
+            nameCookie.Values["MRF"] = refno;
+
+            //Set the Expiry date.
+            nameCookie.Expires = DateTime.Now.AddDays(30);
+
+            //Add the Cookie to Browser.
+            Response.Cookies.Add(nameCookie);
+        }
+
     }
 }
