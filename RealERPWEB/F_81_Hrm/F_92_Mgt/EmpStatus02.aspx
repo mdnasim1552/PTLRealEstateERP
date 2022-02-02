@@ -48,11 +48,10 @@
                  }
                  tblData.rows[i].style.display = styleDisplay;
              }
-         }
+        }
+
+
     </script>
-
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -122,7 +121,7 @@
                                     <asp:ListItem>100</asp:ListItem>
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
-                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem Selected="True">300</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -200,7 +199,7 @@
                             <asp:View ID="JoiningRpt" runat="server">
 
                                 <asp:GridView ID="grvJoinStat" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass=" table table-hover grvContentarea"
-                                    AllowPaging="True" OnPageIndexChanging="grvJoinStat_PageIndexChanging">
+                                    AllowPaging="True" OnPageIndexChanging="grvJoinStat_PageIndexChanging" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -256,7 +255,7 @@
                             <asp:View ID="ViewJoingEmpList" runat="server">
                                 <asp:GridView ID="gvJoinEmp" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvJoinEmp_PageIndexChanging"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -377,7 +376,7 @@
                                 <div class="table table-responsive">
                                     <asp:GridView ID="gvEmpList" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" OnPageIndexChanging="gvEmpList_PageIndexChanging" AllowPaging="true"
-                                        ShowFooter="True" Width="420px">
+                                        ShowFooter="True" Width="420px" PageSize="300">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -568,7 +567,7 @@
                             <asp:View ID="ViewTransfer" runat="server">
                                 <asp:GridView ID="grvTransList" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="grvTransList_PageIndexChanging"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -680,7 +679,7 @@
 
                                 <asp:GridView ID="gvEmpCon" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvEmpCon_PageIndexChanging"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -770,7 +769,7 @@
                             <asp:View ID="ViewManpower" runat="server">
                                 <asp:GridView ID="grvManPwr" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="grvManPwr_PageIndexChanging"
-                                    ShowFooter="True" Width="420px" OnRowDataBound="grvManPwr_RowDataBound">
+                                    ShowFooter="True" Width="420px" OnRowDataBound="grvManPwr_RowDataBound" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -894,7 +893,7 @@
 
                                 <asp:GridView ID="grvEmpSep" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvEmpCon_PageIndexChanging"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -981,7 +980,7 @@
                             <asp:View ID="ViewEmpHold" runat="server">
                                 <asp:GridView ID="gvEmpHold" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvEmpHold_PageIndexChanging"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -1078,7 +1077,7 @@
                             <asp:View ID="ViewGradeADesignation" runat="server">
                                 <asp:GridView ID="grvEmpLHSal" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="grvEmpLHSal_PageIndexChanging"
-                                    ShowFooter="True">
+                                    ShowFooter="True" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -1171,7 +1170,7 @@
 
                                 <asp:GridView ID="gvgwemp" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvgwemp_PageIndexChanging"
-                                    ShowFooter="True" Visible="true" Width="420px">
+                                    ShowFooter="True" Visible="true" Width="420px" PageSize="300">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -1271,7 +1270,7 @@
                             <asp:View ID="View2" runat="server">
                                 <asp:GridView ID="gvinacEmplist" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvinacEmplist_PageIndexChanging"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
 
                                     <RowStyle />
 
@@ -1391,7 +1390,7 @@
                             <asp:View ID="View3" runat="server">
                                 <asp:GridView ID="gvtemplist" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvtemplist_PageIndexChanging" AllowPaging="true"
-                                    ShowFooter="True" Width="420px">
+                                    ShowFooter="True" Width="420px" PageSize="300">
 
                                     <RowStyle />
 
@@ -1491,11 +1490,20 @@
                             <asp:View ID="ViewPabx" runat="server">
                                 <div class="table table-responsive">
                                     <div class="col-md-4">
-                                    <asp:TextBox ID="inputtextbox" runat="server" onkeyup="Search_Gridview(this);" onkeypress="return searchKeyPress(event);" CssClass="form-control" placeholder="Search here........." Font-Size="12px " Width="100%" />
+
+                                        <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                </div>
+                                <asp:TextBox ID="inputtextbox" style="height:29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+                                 
+                            </div>
+                                        <br />
+                                    <%--<asp:TextBox ID="inputtextbox" runat="server" onkeyup="Search_Gridview(this);" onkeypress="return searchKeyPress(event);" CssClass="form-control" placeholder="Search here........." Font-Size="12px " Width="100%" />--%>
                                     </div>
                                     <asp:GridView ID="gvPabxInfo" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" OnPageIndexChanging="gvPabxInfo_PageIndexChanging" AllowPaging="true"
-                                        ShowFooter="True" Width="420px">
+                                        ShowFooter="True" Width="420px" PageSize="300">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -1597,6 +1605,9 @@
                     </div>
                 </div>
             </div>
+
+
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

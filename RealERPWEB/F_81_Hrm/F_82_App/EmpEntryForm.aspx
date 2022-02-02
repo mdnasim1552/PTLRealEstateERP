@@ -30,9 +30,9 @@
             try {
 
 
-                document.getElementById("<%=this.ddlpagesize.ClientID %>").value = 1000;
+              //  document.getElementById("<%=this.ddlpagesize.ClientID %>").value = 1000;
              
-                $('#<%= ddlpagesize.ClientID %>').trigger('change');
+               // $('#<%= ddlpagesize.ClientID %>').trigger('change');
 
 
                 var strData = strKey.value.toLowerCase().split(" ");
@@ -61,7 +61,12 @@
             }
 
         }
-
+        function GetEmployeeform() {
+            $('#EmployeeEntry').modal('toggle');
+        }
+        function CloseModal() {
+            $('#EmployeeEntry').modal('hide');
+        }
     </script>
     <div class="RealProgressbar">
         <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
@@ -83,52 +88,8 @@
 
     <div class="row">
 
-        <div class="col-md-3 col-sm-3 col-lg-3">
-            <div class="card card-fluid container-data mt-5">
-                <div class="card-header">
-                    <div class="row">
-                            <h4>Employee Name Entry</h4>
 
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12 col-sm-12 col-lg-12">
-
-                            <div class="form-group">
-                                <label for="tf1">Company</label>
-                                <asp:DropDownList ID="ddlCompName" runat="server" CssClass="form-control" AutoPostBack="true">
-                                </asp:DropDownList>
-                            </div>
-                          
-
-                            <div class="form-group">
-                                <label for="txtEmpName">
-                                    Employee Name 
-                            
-                             <asp:CheckBox ID="chkNewEmp" Checked="true" Text=" New Employee" runat="server" CssClass="d-none badge badge-secondary badgechk" OnCheckedChanged="chkNewEmp_CheckedChanged"
-                                 AutoPostBack="True" />
-                                </label>
-                                <asp:TextBox ID="txtEmpName" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-
-                            <div class="form-group">
-                                <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" CssClass="btn btn-danger btn-sm">Add</asp:LinkButton>
-                                <asp:Label ID="lblEmplastId" runat="server" Visible="false"></asp:Label>
-                            </div>
-
-
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="col-md-8 col-sm-8 col-lg-8">
+        <div class="col-md-12 col-sm-12 col-lg-12">
             <div class="card card-fluid container-data mt-5">
                 <div class="card-header">
                     <div class="row">
@@ -137,7 +98,7 @@
                     <div class="row">
 
                       
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="Label2" runat="server" CssClass="btn btn-secondary btn-sm">Department</asp:Label>
@@ -147,7 +108,7 @@
                                 
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend ">
                                     <asp:Label ID="lblDept" runat="server"  CssClass="btn btn-secondary btn-sm">Section</asp:Label>
@@ -171,7 +132,7 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>1000</asp:ListItem>
                                     <asp:ListItem>2000</asp:ListItem>
-                                    <asp:ListItem>3000</asp:ListItem>
+                                    <asp:ListItem Selected="True">3000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -184,13 +145,23 @@
                                  
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Filter</asp:Label>
+                                </div>
+                                 <asp:DropDownList ID="ddlfilterby" runat="server" CssClass="form-control form-control-sm" OnSelectedIndexChanged="ddlfilterby_SelectedIndexChanged" AutoPostBack="True">
+                                   <asp:ListItem Value="00">All</asp:ListItem>
+                                   <asp:ListItem Value="01">New</asp:ListItem>
+                                   <asp:ListItem value="02">Exiting</asp:ListItem>
+                                 </asp:DropDownList>
+                        </div>
+                            </div>
+                        <div class="col-md-2">
+                             <asp:LinkButton ID="lnkCreate" runat="server" CssClass="btn btn-xs btn-success" OnClick="lnkCreate_Click"><i class="fa fa-plus"></i>  Create Employee</asp:LinkButton>
+                         </div>
 
-
-
-                    </div>
-
-
-                </div>
+                      </div>
 
 
 
@@ -198,10 +169,10 @@
 
                     
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-lg-12">
                             <asp:GridView ID="gvEmpList" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 AutoGenerateColumns="False" OnPageIndexChanging="gvEmpList_PageIndexChanging" AllowPaging="True" 
-                                ShowFooter="True" PageSize="20">
+                                ShowFooter="True" PageSize="3000">
                                 <RowStyle />
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl. #">
@@ -274,19 +245,19 @@
 
                                     <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
-                                             <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" CssClass="btn btn-sm btn-info "><i class="fa fa-edit "></i></asp:LinkButton>
+                                             <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server"  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="btn btn-sm btn-info "><i class="fa fa-edit "></i></asp:LinkButton>
 
                                              <asp:HyperLink ID="lnkView" Target="_blank" ToolTip="Employee Information view"
                                                 NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid="+Eval("empid") %>'
                                                 CssClass="btn btn-sm btn-primary " runat="server"><i class="fa fa-eye "></i></asp:HyperLink>
 
                                             <asp:HyperLink ID="lnkOfferLetter" Target="_blank"  
-                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>'
+                                               
                                                 
                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003&Entry=Offer Letter For General&empid="+Eval("empid") %>'
                                                 CssClass="btn btn-sm btn-warning " runat="server">Offer Letter</asp:HyperLink>
 
-                                           
+                                           <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
 
                                             <asp:HyperLink ID="lnkbtnAggrement" Target="_blank"   
                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
@@ -297,9 +268,9 @@
 
                                               
                                              
-                                             <asp:HyperLink ID="hypDelbtn" Target="_blank"  
-                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' NavigateUrl="#"                                                
-                                                CssClass="btn btn-sm btn-danger " runat="server"><i class="fa fa-trash-alt "></i></asp:HyperLink>
+                                             <asp:LinkButton ID="hypDelbtn" OnClick="hypDelbtn_Click"  OnClientClick="return confirm('Are You Sure To Delete This Data?');"  
+                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>'                                                
+                                                CssClass="btn btn-sm btn-danger " runat="server"><i class="fa fa-trash-alt "></i></asp:LinkButton>
 
 
                                         </ItemTemplate>
@@ -326,6 +297,59 @@
         </div>
     </div>
 
+        </div>
+    <div id="EmployeeEntry" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content col-md-12 col-sm-12 ">
+                <div class="modal-header hedcon">
+                    <%--<button type="button" class="close clsicon" data-dismiss="modal">&times;</button>--%>
+                      <h4>Employee Name Entry</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>--%>
+                    <%--<asp:LinkButton ID="lnkClosIcon" runat="server" dismiss="modal"  CssClass="close clsicon">&times;</asp:LinkButton>--%>
+                </div>
+                <div class="modal-body">
+               <%--     <div class="card card-fluid container-data mt-5">--%>
+        
+            <%--    <div class="card-body">
+                    <div class="row">--%>
+                        <div class="col-md-12 col-sm-12 col-lg-12">
+
+                            <div class="form-group">
+                                <label for="tf1">Company</label>
+                                <asp:DropDownList ID="ddlCompName" runat="server" CssClass="form-control" AutoPostBack="true">
+                                </asp:DropDownList>
+                            </div>
+                          
+
+                            <div class="form-group">
+                                <label for="txtEmpName">
+                                    Employee Name 
+                            
+                             <asp:CheckBox ID="chkNewEmp" Checked="true" Text=" New Employee" runat="server" CssClass="d-none badge badge-secondary badgechk" OnCheckedChanged="chkNewEmp_CheckedChanged"
+                                 AutoPostBack="True" />
+                                </label>
+                                <asp:TextBox ID="txtEmpName" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group">
+                                <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" OnClientClick="CloseModal();" CssClass="btn btn-danger btn-sm">Add</asp:LinkButton>
+                                <asp:Label ID="lblEmplastId" runat="server" Visible="false"></asp:Label>
+                            </div>
+
+
+
+
+
+                        </div>
+                <%--    </div>
+                </div>--%>
+
+          <%--  </div>--%>
+                </div>
+            </div>
+        </div>
+    </div>
      
 </asp:Content>
 
