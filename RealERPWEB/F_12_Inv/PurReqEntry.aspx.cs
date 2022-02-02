@@ -51,6 +51,7 @@ namespace RealERPWEB.F_12_Inv
                 this.Load_Project_Combo();
 
                 this.VisibleGrid();
+                this.lblmrfno.Text = ReadCookie();
                 this.Comnamemrfno();
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);
@@ -93,10 +94,6 @@ namespace RealERPWEB.F_12_Inv
 
 
             }
-
-
-
-
         }
 
 
@@ -120,6 +117,14 @@ namespace RealERPWEB.F_12_Inv
 
 
         }
+        private string ReadCookie()
+        {
+            HttpCookie nameCookie = Request.Cookies["MRF"];
+            string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
+            return refno;
+        }
+
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -128,6 +133,7 @@ namespace RealERPWEB.F_12_Inv
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+
 
         private void CompBudgetexceed()
         {
@@ -211,17 +217,7 @@ namespace RealERPWEB.F_12_Inv
                 default:
                     break;
 
-
-
-
-
-
-
             }
-
-
-
-
         }
         private void VisibleGrid()
         {

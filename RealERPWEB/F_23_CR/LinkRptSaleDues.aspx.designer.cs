@@ -96,15 +96,6 @@ namespace RealERPWEB.F_23_CR
         protected global::System.Web.UI.WebControls.View ViewRecList02;
 
         /// <summary>
-        /// dgvAccRec02 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvAccRec02;
-
-        /// <summary>
         /// pnlIndPro control.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,15 @@ namespace RealERPWEB.F_23_CR
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvWeekSales;
+
+        /// <summary>
+        /// dgvAccRec02 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvAccRec02;
 
         /// <summary>
         /// PnlRmrks control.

@@ -12,7 +12,7 @@
             float: right;
         }
 
-            /* Hide default HTML checkbox */
+            /* Hide default HTML checkbox sss */
             .switch input {
                 display: none;
             }
@@ -76,7 +76,7 @@
             transform: translateX(26px);
         }
 
-        /* Rounded sliders */
+        /* Rounded sliders  css*/
         .slider.round {
             border-radius: 30px;
         }
