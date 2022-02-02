@@ -76,7 +76,7 @@
             transform: translateX(26px);
         }
 
-        /* Rounded sliders */
+        /* Rounded sliders  css*/
         .slider.round {
             border-radius: 30px;
         }
