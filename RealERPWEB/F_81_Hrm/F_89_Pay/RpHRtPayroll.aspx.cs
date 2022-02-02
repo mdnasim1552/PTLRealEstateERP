@@ -22,6 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
     {
         static string prevPage = String.Empty;
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
 
         int curd;
         int frdate;
@@ -120,21 +121,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
-
-
                         //case "3101":
                         case "3339":   // Tropical Homes                   
 
                             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
                             string date2 = "20" + date1.Trim().Substring(2);
-
                             if (Convert.ToDateTime(date1) >= Convert.ToDateTime(date2))
                             {
                                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-
-
                             }
 
                             else
@@ -144,27 +140,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                             }
-
-
-
                             break;
 
 
 
                         default:
 
-                            // this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            //this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
-                            //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            //string comcod = this.GetComCode();
+                            DataSet datSetup = compUtility.GetCompUtility();
+                            if (datSetup == null)
+
+                                return;
+
+                            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
-
-
                     }
-
-
                     break;
 
                 case "Bonus":

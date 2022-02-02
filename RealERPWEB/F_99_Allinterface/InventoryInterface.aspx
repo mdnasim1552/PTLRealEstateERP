@@ -517,7 +517,7 @@
 
             switch (comcod) {
 
-                case 3101:   // ptl 
+                //case 3101:   // ptl 
                 case 1205:   // p2p 
                 case 3351:   // p2p 
                 case 3352:   // p2p   
@@ -971,12 +971,6 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
-
-
-
-
-
                                         <asp:TemplateField HeaderText="From Project">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgtfprjgp" runat="server"
@@ -1022,6 +1016,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkremovegp" CssClass="btn btn-xs btn-default" OnClientClick="return confirm('Are you sure you want delete');" runat="server" ToolTip="Cancel" OnClick="lnkremovegp_Click"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                 <asp:HyperLink ID="lnkgpass" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Gate Pass"><span class=" fa fa-check"></span> </asp:HyperLink>
+                                                <asp:HyperLink ID="lnkgpareqedit" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Requisition Edit"><span class=" fa fa-edit"></span> </asp:HyperLink>
                                                 
                                             </ItemTemplate>
                                             <ItemStyle Width="120px" />

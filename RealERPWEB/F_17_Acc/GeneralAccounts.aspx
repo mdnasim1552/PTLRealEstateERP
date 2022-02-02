@@ -470,6 +470,9 @@
                                     <asp:Panel ID="pnlNarration" runat="server" Visible="False">
                                         <fieldset class="scheduler-border fieldset_Nar">
                                             <div class="form-horizontal">
+                                                <div class="row">
+
+                                                </div>
                                                 <div class="form-group">
 
                                                     <div class="col-md-2 pading5px asitCol2">
