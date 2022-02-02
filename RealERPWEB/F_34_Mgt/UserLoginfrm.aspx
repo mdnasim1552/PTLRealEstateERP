@@ -710,8 +710,9 @@
                 <div class="modal-dialog ">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fas fa-times-circle"></i></button>
-                            <h5 class="modal-title"><span class="fa fa-table"></span>&nbsp;User Information</h5>
+                             <h5 class="modal-title"><span class="fa fa-table"></span>&nbsp;User Information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" aria-label="Close" ><i class="fas fa-times-circle"></i></button>
+                           
                         </div>
                         <div class="modal-body form-horizontal">
                             <div class="row">
