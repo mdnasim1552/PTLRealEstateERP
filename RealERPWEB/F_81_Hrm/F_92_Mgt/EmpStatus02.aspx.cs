@@ -74,12 +74,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
                 return;
             }
-               
 
             string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
-            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            this.txtFdate.Text = startdate + date.Substring(2);
-            this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtFdate.Text = startdate + this.txtFdate.Text.Trim().Substring(2);
+            this.txtTdate.Text = Convert.ToDateTime(this.txtFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+            //string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //this.txtFdate.Text = startdate + date.Substring(2);
+            //this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
 
         protected void Page_PreInit(object sender, EventArgs e)

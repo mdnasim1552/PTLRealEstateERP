@@ -624,7 +624,24 @@
                         break;
 
 
+
                     case 3354:  //Edison Real Estate
+                   
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        break;
+
+
+
+
+                    
                     case 1205:  //P2P Construction
                     case 3351:  //wecon Properties
                     case 3352:  //p2p360
