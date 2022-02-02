@@ -544,11 +544,12 @@ namespace RealERPRDLC
 
 
                 #endregion
-                #region KPI
+                #region CRM & KPI 21
                 case "R_21_Mkt.RptCallCenterLead": SetRptCallCenterLead(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_Mkt.RptSourceWiseLeads": SetRptSourceWiseLeads(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_Mkt.RptCRMClientInfo": SetRptCrmClientInfo(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_MKT.RptYearlySales": SetRptYearlySales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_21_MKT.RptProspectWorking": SetRptProspectWorking(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 #endregion
                 #region Sales
@@ -924,6 +925,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_92_Mgt.RptEmpSpList": Rpt1a = SetRptEmpSpList(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptDateWiseEmpHold": Rpt1a = SetRptDateWiseEmpHold(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_92_Mgt.RptJoiningStatus": Rpt1a = SetRptJoiningStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_92_Mgt.RptPabxInfoList": Rpt1a = SetRptPabxInfoList(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 case "R_81_Hrm.R_93_AnnInc.RptIncrementStatus": Rpt1a = SetRptIncrementStatus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
@@ -963,11 +965,15 @@ namespace RealERPRDLC
 
                     #endregion
 
-
-
             }
 
             Rpt1a.Refresh();
+            return Rpt1a;
+        }
+
+        private static LocalReport SetRptPabxInfoList(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeInfo>)RptDataSet));
             return Rpt1a;
         }
 
@@ -5561,6 +5567,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptYearlySales(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.EClassYearlySalesCRM>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptProspectWorking(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectWorking>)RptDataSet));
             return Rpt1a;
         }
 

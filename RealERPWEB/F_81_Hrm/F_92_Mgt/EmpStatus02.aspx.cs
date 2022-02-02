@@ -27,13 +27,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                string Type = this.Request.QueryString["Type"]??"";
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
-                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                if (Type != "Pabx")
+                {
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                    
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
 
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                    DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                }
                 Session.Remove("tblEmpstatus");
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtFdate.Text = "01" + date.Substring(2);
@@ -41,7 +46,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.GetCompany();
                 this.SelectView();
                 this.GetDesignation();
-                string Type = this.Request.QueryString["Type"].ToString().Trim();
+               
                 ((Label)this.Master.FindControl("lblTitle")).Text = (Type=="Pabx")?"List of PABX Information": (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
                     : (Type == "EmpList") ? "Employee List" : (Type == "TransList") ? "Employee Transfer List"
                     : (Type == "PenEmpCon") ? "Pending Employee Confirmation" : (Type == "SepType") ? "Employee Seperation List Report"
@@ -56,7 +61,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.comlist.Visible = true;
                     this.Company();
                 }
-
                 this.lbtnOk_Click(null,null);
 
             }
@@ -451,7 +455,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.gvEmpList.DataBind();
                 return;
             }
-
             Session["tblEmpstatus"] = HiddenSameData(ds4.Tables[0]);
             this.LoadGrid();
 
@@ -1017,6 +1020,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PrintTotalEmpList();
                     break;
 
+                case "Pabx":
+                    this.PrintPabxEmpList();
+                    break;
+
             }
             if (ConstantInfo.LogStatus == true)
             {
@@ -1027,7 +1034,34 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
 
         }
+        private void PrintPabxEmpList()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string fromdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt = (DataTable)Session["tblEmpstatus"];
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeInfo>();
 
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptPabxInfoList", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "List of PABX Information"));           
+            Rpt1.SetParameters(new ReportParameter("txtaddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void RptJoiningStatus()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1493,6 +1527,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetProjectName();
+        }
+
+        protected void gvPabxInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvPabxInfo.PageIndex = e.NewPageIndex;
+            this.LoadGrid();
         }
     }
 }
