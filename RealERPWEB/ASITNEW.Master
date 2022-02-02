@@ -402,8 +402,9 @@
                                     <a class="dropdown-item" href="<%=this.ResolveUrl("~/StepofOperationNew?moduleid=0")%>">Old Modules</a>
 
                                     <a class="dropdown-item" href="<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>">Group Chat Center</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
 
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'><span class="dropdown-icon oi oi-account-logout"></span>Give Attendance</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'>Give Attendance</a>
 
                                     <a class="dropdown-item" href="https://pintechltd.com/#contact-us">Ask Forum</a>
                                     <a class="dropdown-item" href="#">Keyboard Shortcuts</a>

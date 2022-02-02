@@ -586,9 +586,11 @@ namespace RealERPWEB.F_01_LPA
             }
             else
             {
-                dv.RowFilter=("dealcode='" + pempid + "' and active='False'");
-            
+                //dv.RowFilter=("active='False'");
+                dv.RowFilter=("(dealcode='" + pempid + "' or empid='"+ pempid + "') and active='False'");
+
             }
+            DataTable dt = dv.ToTable();
             this.lbtPending.Text = "Pending:" + ((dv.ToTable().Rows.Count == 0) ? "" : dv.ToTable().Rows.Count.ToString());
 
           
@@ -623,13 +625,17 @@ namespace RealERPWEB.F_01_LPA
                     }
                     else
                     {
-                        dv.RowFilter = ("dealcode='" + pempid + "' and active='False'");
+
+                        dv.RowFilter = ("(dealcode='" + pempid + "' or empid='" + pempid + "') and active='False'");
+                        //dv.RowFilter = ("dealcode='" + pempid + "' and active='False'");
 
                     }
                     
                     break;
 
                 default:
+                   // this.gvSummary.Columns[14].Visible = false;
+                   // dv.RowFilter = ("active='True'");
                     break;
 
 
@@ -5375,6 +5381,8 @@ namespace RealERPWEB.F_01_LPA
                 string Empid = hst["empid"].ToString();
                 string landst = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "active"));
                 LinkButton lnkAct = (LinkButton)e.Row.FindControl("lnkAct");
+                lnkAct.Visible = false;
+
 
                 if (landst == "False")
                 {
@@ -5383,15 +5391,18 @@ namespace RealERPWEB.F_01_LPA
                     lbtnView.Enabled = false;
 
 
-                }
+                    //Active
+                 //   if (landst == "False")
+                        if (dealcode == Empid)
+                        {
+                            lnkAct.Visible = true;
+                        }
+                        else
+                        {
+                            lnkAct.Visible = false;
+                        }
 
-                if (dealcode == Empid)
-                {
-                    lnkAct.Visible = true;
-                }
-                else
-                {
-                    lnkAct.Visible = false;
+
                 }
 
 

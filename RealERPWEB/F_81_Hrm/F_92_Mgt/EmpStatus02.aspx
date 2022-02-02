@@ -12,7 +12,8 @@
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
-        function pageLoaded() {
+        function pageLoaded()
+        {
 
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
@@ -27,6 +28,27 @@
             var gvEmpCon = $('#<%=this.gvEmpCon.ClientID %>');
             gvEmpCon.Scrollable();
         };
+
+        function Search_Gridview(strKey) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvPabxInfo.ClientID %>");
+             var rowData;
+             for (var i = 1; i < tblData.rows.length; i++) {
+
+                 rowData = tblData.rows[i].innerHTML;
+                 var styleDisplay = 'none';
+                 for (var j = 0; j < strData.length; j++) {
+                     if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                         styleDisplay = '';
+                     else {
+                         styleDisplay = 'none';
+                         break;
+                     }
+                 }
+                 tblData.rows[i].style.display = styleDisplay;
+             }
+         }
     </script>
 
 
@@ -1468,8 +1490,11 @@
 
                             <asp:View ID="ViewPabx" runat="server">
                                 <div class="table table-responsive">
+                                    <div class="col-md-4">
+                                    <asp:TextBox ID="inputtextbox" runat="server" onkeyup="Search_Gridview(this);" onkeypress="return searchKeyPress(event);" CssClass="form-control" placeholder="Search here........." Font-Size="12px " Width="100%" />
+                                    </div>
                                     <asp:GridView ID="gvPabxInfo" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        AutoGenerateColumns="False" OnPageIndexChanging="gvEmpList_PageIndexChanging" AllowPaging="true"
+                                        AutoGenerateColumns="False" OnPageIndexChanging="gvPabxInfo_PageIndexChanging" AllowPaging="true"
                                         ShowFooter="True" Width="420px">
                                         <RowStyle />
                                         <Columns>
