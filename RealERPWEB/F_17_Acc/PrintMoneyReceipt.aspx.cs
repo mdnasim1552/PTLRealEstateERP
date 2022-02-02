@@ -70,12 +70,12 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 case "3339":
-                   //case "3101":
+                case "3101":
                     mrprint = "MRPrint5";
                     break;
 
                 case "3351":
-                case "3101":
+               // case "3101":
                     mrprint = "MRPrintWecon";
                     break;
 
@@ -182,6 +182,7 @@ namespace RealERPWEB.F_17_Acc
                     }
 
                     break;
+
                 default:
                     Installment = Installment2;
                     break;

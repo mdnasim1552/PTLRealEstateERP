@@ -230,7 +230,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="File Code">
+                                        <asp:TemplateField HeaderText="Customer Id">
                                            
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtfcode" runat="server" AutoCompleteType="Disabled"

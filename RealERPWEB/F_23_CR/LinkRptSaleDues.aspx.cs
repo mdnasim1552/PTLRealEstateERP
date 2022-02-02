@@ -71,6 +71,8 @@ namespace RealERPWEB.F_23_CR
                         this.dgvAccRec02.Columns[28].Visible = false;
                         this.dgvAccRec02.Columns[29].Visible = false;
                         this.dgvAccRec02.Columns[30].Visible = false;
+                        this.dgvAccRec02.Columns[31].Visible = true;
+
                         break;
 
                     default:

@@ -357,11 +357,25 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="File code" Visible="false">
+                                <asp:TemplateField HeaderText="File code" Visible="false" >
                                     <EditItemTemplate>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lgfilecode" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+
+
+                                 <asp:TemplateField HeaderText="Customer Id" >
+                                    <EditItemTemplate>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgfilecode22" runat="server"
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
                                             Width="70px"></asp:Label>
                                     </ItemTemplate>
