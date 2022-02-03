@@ -164,7 +164,7 @@
 
             </asp:Panel>
 
-            <asp:TextBox ID="txtml" runat="server" TextMode="MultiLine" CssClass="from-control tinyMCE"></asp:TextBox>
+            <asp:TextBox ID="txtml" runat="server" TextMode="MultiLine" Style="margin-left:30px" CssClass="from-control tinyMCE"></asp:TextBox>
 
             <asp:Button ID="btnsave" runat="server" OnClick="btnsave_Click" Text="Save" Visible="false" ValidationGroup="postValid" OnClientClick="tinyMCE.triggerSave(false,true);" />
             <asp:Button ID="btnapprv" runat="server" Visible="false" Text="Approve" ValidationGroup="postValid" OnClientClick="tinyMCE.triggerSave(false,true);" />

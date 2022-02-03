@@ -2861,9 +2861,8 @@ namespace RealERPWEB.F_17_Acc
                     case "3306":
                     case "2305":
                     case "3310":
-                    case "3311":
-                    case "3355":
-                    case "3101":
+                    case "3311":                   
+                   // case "3101":
                         if (this.ddlPrivousVou.Items.Count > 0)
                         {
                             if (((remktype == "PBL") || (remktype == "CBL")) && (Dramt > 0))
@@ -2880,6 +2879,13 @@ namespace RealERPWEB.F_17_Acc
                                 txtgvRate.Enabled = false;
                                 txtgvCrAmt.Enabled = false;
                                 tnrRemarks.ReadOnly = true;
+                            }
+
+                            else
+                            {
+                                tnrRemarks.ReadOnly = true;
+                               
+
                             }
                         }                        
                         break;

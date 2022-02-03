@@ -359,6 +359,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         private void ViewVisibility()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetComeCode();
             switch (type)
             {
                 case "Overtime":
@@ -405,9 +406,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.ddlyearmon.Text = System.DateTime.Today.ToString("yyyyMM");
                     this.lbldate.Text = "Month Id:";
 
+
+                    break;
+
                     //this.txtDate_CalendarExtender.Format = "yyyyMM";
                     //this.txtDate.MaxLength = 6;
-                    break;
+                   
                 case "dayadj":
                     this.ddlyearmon.Text = System.DateTime.Today.ToString("yyyyMM");
                     this.lbldate.Text = "Month Id:";
@@ -936,7 +940,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     this.gvEmpOtherded.DataSource = dt;
                     this.gvEmpOtherded.DataBind();
                     this.FooterCalculation();
-                    if (comcod == "3365" || comcod == "3101")//For BTI
+                    if (comcod == "3365")//For BTI
                     {
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
@@ -976,11 +980,19 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     switch (comcod)
                     {
                         case "3339":
-                            gvothearn.Columns[9].HeaderText = "Trans/Entr";
+                            this.gvothearn.HeaderRow.Cells[9].Text = "Trans/Entr";                  
+                            break;
+
+
+                        case "3364":
+                        case "3101":
+                            this.gvothearn.HeaderRow.Cells[9].Text = "Holiday Allowance";
+                          
+
                             break;
 
                         case "3365"://For BTI
-                        case "3101":
+                        //case "3101":
                             this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
                             this.gvothearn.Columns[6].Visible = false;
                             this.gvothearn.Columns[7].Visible = false;
