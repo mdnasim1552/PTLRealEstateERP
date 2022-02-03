@@ -425,6 +425,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1202122", "F_12_Inv", "PurMTReqEntry?", "Type=ReqEdit", "MTR Requisition Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1202121", "F_12_Inv", "PurMTReqEntry?", "Type=ReqApproval", "Transfer Requisition Approval", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203130", "F_12_Inv", "PurMTReqGatePass?", "Type=Entry", "Gate Pass", "Inventory", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1203000", "1203131", "F_12_Inv", "PurMTReqGatePass?", "Type=GpaEdit", "MTR Gatepass Edit", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203140", "F_12_Inv", "RptMaterialStock?", "Type=inv", "Materials Stock Information(Project Wise)", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203145", "F_12_Inv", "RptInventoryAll?", "Type=Report", "Inventory Report All", "Inventory", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1203000", "1203150", "F_12_Inv", "RptPurchaseStatus?", "Type=Purchase&Rpt=DaywPur", "Day Wise Purchase", "Inventory", "False", "False", "False", "False" });
@@ -434,7 +435,6 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1203000", "1203181", "F_12_Inv", "RptOrderVsReceive", "", "Purchase Order Search", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203182", "F_12_Inv", "AllIndentIsuList?", "Type=Entry", "Indent Issue List", "Inventory", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1203000", "1203183", "F_12_Inv", "Material_Issue?", "Type=Entry", "Indent Materials Issue", "Inventory", "False", "False", "False", "False" });
-
             //Added 
             tblObj.Rows.Add(new Object[] { "1203000", "1203190", "F_12_Inv", "MatConversion", "", "Material Conversion", "Inventory", "False", "False", "False", "False" });
 
