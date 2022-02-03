@@ -22,7 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
     public partial class AccLedger : System.Web.UI.Page
     {
         ProcessAccess accData = new ProcessAccess();
-
+        Common compUtility = new Common();
         public double balamt = 0.000000;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,16 +46,20 @@ namespace RealERPWEB.F_81_Hrm.F_90_PF
                     this.Panel1.Visible = true;
                 }
                 this.rbtnList1.SelectedIndex = 0;
-            }
-            if (this.txtDateFrom.Text.Trim().Length == 0)
-            {
-                double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
-                this.txtDateFrom.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
-                this.txtDateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
+                this.GetDate();
             }
         }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
 
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtDateFrom.Text = startdate + date.Substring(2);
+            this.txtDateto.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
 

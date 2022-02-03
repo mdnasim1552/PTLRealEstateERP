@@ -163,6 +163,28 @@ namespace RealEntity
 
 
             }
+            //If Child  is not existed
+            dv = dtpage.DefaultView;
+            dv.RowFilter = ("itemslct=False");
+            DataTable dtp = dv.ToTable();
+            string mitemcode, itemcode;
+            foreach (DataRow dr1 in dtp.Rows)
+            {
+                mitemcode = dr1["itemcod"].ToString();
+                itemcode = dr1["itemcod"].ToString().Substring(0,4);
+
+                DataRow[] dr = dtpage.Select("itemcod like '" + itemcode + "%'");
+                if (dr.Length==1)
+                {
+
+                    dv = dtpage.DefaultView;
+                    dv.RowFilter = ("itemcod not like '"+ mitemcode + "%'");
+                    dtpage = dv.ToTable();
+                }
+
+            }
+           
+
 
             foreach (DataRow dr in dtpage.Rows)
             {

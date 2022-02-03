@@ -825,7 +825,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Proejct Name</Value>
+                                                    <Value>Project Name</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -967,7 +967,7 @@
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Proejct Address</Value>
+                                                    <Value>Project Address</Value>
                                                     <Style>
                                                       <FontFamily>times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -1469,7 +1469,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>MRF No</Value>
+                                  <Value>MPR No</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontWeight>Bold</FontWeight>

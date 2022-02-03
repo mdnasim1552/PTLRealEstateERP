@@ -23,6 +23,9 @@
             background-color: #006699;
             cursor: pointer;
         }
+
+        .fade-in {
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -159,7 +162,7 @@
 
                         <asp:GridView ID="dgv1" runat="server" AutoGenerateColumns="False" OnRowDataBound="dgv1_RowDataBound"
                             ShowFooter="True" PageSize="100" CssClass="col-md-12 table-striped table-hover table-bordered grvContentarea fade-in "
-                            OnRowCancelingEdit="dgv1_RowCancelingEdit" OnRowEditing="dgv1_RowEditing" OnRowUpdating="dgv1_RowUpdating">
+                            OnRowCancelingEdit="dgv1_RowCancelingEdit" OnRowEditing="dgv1_RowEditing" OnRowUpdating="dgv1_RowUpdating" Width="800px">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -195,6 +198,9 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Description">
+                                    <FooterTemplate>
+                                        <asp:LinkButton ID="lbtnTotal" OnClick="lbtnTotal_Click" CssClass="btn btn-info btn-sm" runat="server">Total</asp:LinkButton>
+                                    </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:HyperLink ID="hlnkAccdesc1" runat="server" Target="_blank" Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) + "</B>" +
                                                                          (DataBinder.Eval(Container.DataItem, "resdesc").ToString().Trim().Length>0 ? 
@@ -206,13 +212,14 @@
                                                             
                                         </asp:HyperLink>
                                     </ItemTemplate>
-                                    <FooterStyle HorizontalAlign="Center" />
+                                    <FooterStyle HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Left" />
+
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Approved Amount" Visible="false">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" Font-Size="14px"
-                                            OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primaryBtn">Total :</asp:LinkButton>
+                                      <%--  <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" Font-Size="14px"
+                                            OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary primaryBtn">Total :</asp:LinkButton>--%>
                                     </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvAppAmt" runat="server" Font-Size="11px" Style="text-align: right"
@@ -253,6 +260,52 @@
                                     <FooterStyle HorizontalAlign="Right" />
 
                                 </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Tax">
+
+
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFtax" runat="server" ForeColor="#000"></asp:Label>
+                                    </FooterTemplate>
+
+
+
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvtax" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                            BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tax")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="60px"></asp:TextBox>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+
+                                </asp:TemplateField>
+
+
+                                 <asp:TemplateField HeaderText="Net Amount">
+
+
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFnetamt" runat="server" ForeColor="#000"></asp:Label>
+                                    </FooterTemplate>
+
+
+
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvnetAmount" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
+                                            BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "netamt")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="60px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+
+                                </asp:TemplateField>
+
+
+
                                 <asp:TemplateField HeaderText="Cheque No" Visible="false">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvChqNo" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"

@@ -8,9 +8,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using RealERPLIB;
 using RealERPRPT;
+
 namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 {
-    public partial class InterfaceHR : System.Web.UI.Page
+    public partial class InterfaceHR1 : System.Web.UI.Page
     {
         ProcessAccess accData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -41,7 +42,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
 
 
-            this.RadioButtonList1.Items[0].Text = "<a href='../F_81_Rec/LetterOfAppoinment.aspx?Type=LCreate' target='_blank'> Appointment Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["val2"] + "</span></a>";//10002
+            this.RadioButtonList1.Items[0].Text = "<a href='../LetterDefault.aspx?Type=10003&Entry=Offer+Letter+For+General' target='_blank'> Offer Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["val2"] + "</span></a>";//10002
+            this.RadioButtonList1.Items[1].Text = "<a href='../LetterDefault.aspx?Type=10003&Entry=Offer+Letter+For+General' target='_blank'> Appointment Letter" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["val2"] + "</span></a>";//10002
 
             this.RadioButtonList1.Items[1].Text = "<a href='../../LetterDefault.aspx?Type=10020&Entry=Joining Report' target='_blank'>Joining Report" + "<span class=lbldata>" + (string)ds1.Tables[0].Rows[0]["val22"] + "</span></a>";//joinint10020
 
@@ -442,6 +444,5 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (chkCodebook.Checked == false)
                 this.Panel5.Visible = false;
         }
-
     }
 }

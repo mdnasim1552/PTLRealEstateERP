@@ -15,24 +15,36 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
     {
 
         ProcessAccess HRData = new ProcessAccess();
-
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE'S LEAVE RECORD";
-                DateTime curdate = System.DateTime.Today;
-                DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
-                DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
-                this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
-                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                this.GetDate();
                 this.GetCompName();
-
                 this.ShowValue();
                 
             }
           
         }
+
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfodate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtfodate.Text = startdate + this.txtfodate.Text.Trim().Substring(2);
+            this.txttodate.Text = Convert.ToDateTime(this.txtfodate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+            //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //this.txtfodate.Text = startdate + date.Substring(2);
+            //this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);

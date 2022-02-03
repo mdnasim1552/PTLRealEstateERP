@@ -22,6 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
     {
         static string prevPage = String.Empty;
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
 
         int curd;
         int frdate;
@@ -95,7 +96,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void SelectType()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
-
+            string comcod = this.GetCompCode();
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            
+            
             switch (type)
             {
                 case "Salary":
@@ -105,7 +115,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     this.pnlsalops.Visible = true;
                     this.CompanySalary();
-                    string comcod = this.GetCompCode();
                     switch (comcod)
                     {
 
@@ -120,21 +129,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
-
-
                         //case "3101":
                         case "3339":   // Tropical Homes                   
 
                             string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
                             string date2 = "20" + date1.Trim().Substring(2);
-
                             if (Convert.ToDateTime(date1) >= Convert.ToDateTime(date2))
                             {
                                 this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                                 this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-
-
                             }
 
                             else
@@ -144,27 +148,19 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                                 this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                             }
-
-
-
                             break;
 
 
 
                         default:
 
-                            // this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            //this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
-                            //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            //string comcod = this.GetComCode();
+                           
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
-
-
                     }
-
-
                     break;
 
                 case "Bonus":
@@ -198,9 +194,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.lblemp.Visible = true;
                             this.txtEmpSrcInfo.Visible = true;
                             this.ibtnEmpListAllinfo.Visible = true;
-                            this.ddlEmpNameAllInfo.Visible = true;
+                            this.ddlEmpNameAllInfo.Visible = true;                            
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
                     }
@@ -210,20 +206,21 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "Signature":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
+
                 case "CashPay":
                     this.MultiView1.ActiveViewIndex = 4;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 case "OvertimeSalary":
                     this.MultiView1.ActiveViewIndex = 5;
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 
@@ -2789,7 +2786,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet"));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1));
-            Rpt1.SetParameters(new ReportParameter("txtheader", this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "G.Total() " : "G.Total() " + this.ddlProjectName.SelectedItem.ToString().Substring(13)));
+            Rpt1.SetParameters(new ReportParameter("txtheader", "Grand Total"));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("txtYear", Convert.ToDateTime((this.txttodate.Text)).ToString("yyyy")));
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
@@ -4000,18 +3997,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string latededuc = dt.Rows[i]["latededuc"].ToString();
                     string adjustamt = dt.Rows[i]["adjustamt"].ToString();
                     string transded = dt.Rows[i]["transded"].ToString();
-
-
-
-
-
+                    string genloan = dt.Rows[i]["genloan"].ToString();
+                    string perloan = dt.Rows[i]["carloan"].ToString();
+                    string carloan = dt.Rows[i]["perloan"].ToString();
 
 
                     result = HRData.UpdateTransInfoHRSal(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INUPSALSHEET", monthid, refno, empid, wd, absday, wld, acat, bsal, hrent, cven,
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, perloan, carloan);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();

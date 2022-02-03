@@ -1,20 +1,19 @@
-﻿
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
+using RealERPRDLC;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Text;
-using Microsoft.Reporting.WinForms;
-using RealERPLIB;
-using RealERPRDLC;
 
 namespace RealERPWEB
 {
-    public partial class LetterDefault : System.Web.UI.Page
+    public partial class LetterDefault1 : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -43,31 +42,17 @@ namespace RealERPWEB
                 if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
                 {
                     this.GetSelected();
-                    this.ddlCat.Visible = true;
-                    this.lblcat.Visible = true;
-
-
-                    //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = false;
-                    //((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
-                    //((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
-
-                }
-
-
-
-
+                } 
                 else
                 {
                     this.GetEmployee();
-                    this.ddlCat.Visible = false;
-                    this.lblcat.Visible = false;
                 }
 
 
-                this.GetLettPattern();
+              //  this.GetLettPattern();
                 string titale = this.Request.QueryString["Entry"].ToString().Trim();
                 ((Label)this.Master.FindControl("lblTitle")).Text = titale;
-                ddlEmployee_SelectedIndexChanged(null, null);
+               // ddlEmployee_SelectedIndexChanged(null, null);
 
                 string Apprv = this.Request.QueryString["Entry"].ToString();
                 if (Apprv == "Apprv")
@@ -88,11 +73,42 @@ namespace RealERPWEB
                     //((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
                     //((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
                 }
+                this.lbtnOk_Click(null,null);
 
             }
+
+
         }
 
+        private void ShowLetter()
+        {
 
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string empid = this.Request.QueryString["ID"].ToString().Trim();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
+            if (ds3.Tables[0].Rows.Count == 0)
+                return;
+            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
+            this.txtml.Text = lett;
+
+            ViewState["letter"] = ds3.Tables[0];
+        }
+        private void GetEmployee()
+        {
+
+
+
+            string comcod = this.GetCompCode();
+            string txtSProject = "%%";
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlEmployee.DataTextField = "empname";
+            this.ddlEmployee.DataValueField = "empid";
+            this.ddlEmployee.DataSource = ds3.Tables[0];
+            this.ddlEmployee.DataBind();
+            ds3.Dispose();
+            ViewState["empinfo"] = ds3;
+        }
 
         private void CommonButton()
         {
@@ -136,7 +152,6 @@ namespace RealERPWEB
         {
 
             string Type = this.Request.QueryString["Entry"].ToString();
-
             switch (Type)
             {
                 case "Apprv":
@@ -147,10 +162,6 @@ namespace RealERPWEB
                     this.hrPrint();
                     break;
             }
-
-
-
-
         }
 
         private void mgtprint()
@@ -164,15 +175,8 @@ namespace RealERPWEB
             //string comcod = GetCompCode();
 
             //string msg = this.txtml.Text;
-
-
-
             //DataTable dt1 = (DataTable)ViewState["letter"];
-
-
-
             //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
             //LocalReport Rpt1 = new LocalReport();
             //string img = string.Empty;
             //try
@@ -185,7 +189,6 @@ namespace RealERPWEB
             //    img = string.Empty;
 
             //}
-
             //Rpt1 = RptHRSetup.GetLocalReport("RD_81_Hrm.LetterDefault01", null, null, null);
             //Rpt1.EnableExternalImages = true;
             //Rpt1.SetParameters(new ReportParameter("rpetext", msg));
@@ -235,10 +238,8 @@ namespace RealERPWEB
             catch (Exception)
             {
                 img = string.Empty;
-
             }
-
-            Rpt1 = RptHRSetup.GetLocalReport("RD_81_Hrm.LetterDefault01", null, null, null);
+            Rpt1 = RDLCAccountSetup.GetLocalReport("RD_81_Hrm.LetterDefault01", null, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("rpetext", msg));
             Rpt1.SetParameters(new ReportParameter("ComImg", ComLogo));
@@ -253,15 +254,16 @@ namespace RealERPWEB
                      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
+
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            return (hst["comcod"].ToString());
+        }
         protected void btnsave_Click(object sender, EventArgs e)
         {
-            //string cat1 = "";
+            
             string type1 = this.Request.QueryString["Type"].ToString().Trim();
-            //if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020")
-            //{
-            //    cat1 = this.ddlCat.SelectedValue;
-            //}
-
             if (type1 == "10021" || type1 == "10022" || type1 == "10023")
             {
                 bool result = false;
@@ -270,153 +272,22 @@ namespace RealERPWEB
                 var type = this.Request.QueryString["Type"].ToString().Trim();
                 var date = this.txttodate.Text;
                 string comcod = this.GetCompCode();
-                string refno = this.txtRefNo.Text.Trim();
-
-                //result ds = HRData.UpdateTransInfo (comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPLOADLETTER", empid, type, strval, date, refno, "", "", "", "");
+                string refno = "";
+               
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPDATEJLTCMPLTTRMLT", empid, type, date, refno, strval, "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
                     this.lblmsg1.Text = "Save Failed";
                     this.lblmsg1.Visible = true;
-
                 }
-                //  var val = (string)ds3.Tables[0].Rows[0]["lettdesc"];
-                //  this.txtml.Text = val;
+               
                 this.lblmsg1.Text = "Save Successfully";
                 this.lblmsg1.Visible = true;
 
             }
-            //((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            //var empid = this.ddlEmployee.SelectedValue.ToString();
-
-            //var strval = this.txtml.Text;
-            //// var strval3 = Encoding.ASCII.GetBytes(strval);
-            //var type = this.Request.QueryString["Type"].ToString().Trim();
-            //var date = this.txttodate.Text;
-            //string comcod = this.GetCompCode();
-            //DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPLOADLETTER", empid, type, strval, date, cat1, "", "", "", "");
-
-            ////  var val = (string)ds3.Tables[0].Rows[0]["lettdesc"];
-            ////  this.txtml.Text = val;
-            //this.lblmsg1.Text = "Save Successfully";
-            //this.lblmsg1.Visible = true;
-
-            ////if(ds3 !=null)
-            ////{
-            //    if (type1 == "10020")
-            //    {
-            //        ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Text = "Send Data Bank";
-            //        ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = true;
-            //        //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-
-            //    }
-
-            ////}
+             
 
 
-        }
-
-        private void UpdateJltCmpLtTrmLt()
-        {
-            bool result = false;
-            var empid = this.ddlEmployee.SelectedValue.ToString();
-            var strval = this.txtml.Text;
-            var type = this.Request.QueryString["Type"].ToString().Trim();
-            var date = this.txttodate.Text;
-            string comcod = this.GetCompCode();
-            string refno = this.txtRefNo.Text.Trim();
-            string data = this.txtml.Text;
-            //result ds = HRData.UpdateTransInfo (comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPLOADLETTER", empid, type, strval, date, refno, "", "", "", "");
-            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "UPDATEJLTCMPLTTRMLT", empid, type, date, refno, strval, "", "", "", "", "", "", "", "", "", "");
-            if (!result)
-            {
-                this.lblmsg1.Text = "Save Failed";
-                this.lblmsg1.Visible = true;
-
-            }
-            //  var val = (string)ds3.Tables[0].Rows[0]["lettdesc"];
-            //  this.txtml.Text = val;
-            this.lblmsg1.Text = "Save Successfully";
-            this.lblmsg1.Visible = true;
-
-        }
-
-        protected void lbtnOk_Click(object sender, EventArgs e)
-        {
-
-            if (this.lbtnOk.Text == "Ok")
-            {
-                this.lbtnOk.Text = "New";
-                this.ddlPrevious.Visible = false;
-                this.lbtnprevious.Visible = false;
-                this.ShowView();
-                return;
-            }
-            this.lbtnOk.Text = "Ok";
-            this.ddlPrevious.Items.Clear();
-            this.ddlPrevious.Visible = true;
-            this.lbtnprevious.Visible = true;
-            //this.ShowPreViousLt();
-
-
-        }
-
-        private void ShowPreViousLt()
-        {
-            DataTable dt = (DataTable)Session["tbllttDetails"];
-            this.txtRefNo.Text = dt.Rows[0]["refno"].ToString();
-            this.txttodate.Text = dt.Rows[0]["date"].ToString();
-            this.ddlEmployee.SelectedValue = dt.Rows[0]["empname"].ToString();
-            //this.txtml.Text = dt.Rows[0]["lettdesc"].ToString ();
-        }
-        protected void btnapprv_Click(object sender, EventArgs e)
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string user = hst["usrid"].ToString();
-            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            var strval = this.txtml.Text;
-            // var strval3 = Encoding.ASCII.GetBytes(strval);
-            var type = this.Request.QueryString["Type"].ToString().Trim();
-            var empid = this.Request.QueryString["ID"].ToString().Trim();
-            var date = this.txttodate.Text;
-            string comcod = this.GetCompCode();
-            DataSet result = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "APPROVELETTER", empid, type, user, "", "", "", "", "", "");
-            this.lblmsg1.Text = "Approve Successfully";
-            this.lblmsg1.Visible = true;
-
-        }
-
-        private void ShowLetter()
-        {
-
-
-
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-            string comcod = this.GetCompCode();
-            string empid = this.Request.QueryString["ID"].ToString().Trim();
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
-            if (ds3.Tables[0].Rows.Count == 0)
-                return;
-            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
-            this.txtml.Text = lett;
-
-            ViewState["letter"] = ds3.Tables[0];
-        }
-
-        private void GetEmployee()
-        {
-
-
-
-            string comcod = this.GetCompCode();
-            string txtSProject = "%" + this.txtSrcEmployee.Text + "%";
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
-            this.ddlEmployee.DataTextField = "empname";
-            this.ddlEmployee.DataValueField = "empid";
-            this.ddlEmployee.DataSource = ds3.Tables[0];
-            this.ddlEmployee.DataBind();
-            ds3.Dispose();
-            ViewState["empinfo"] = ds3;
         }
 
         private void GetSelected()
@@ -424,11 +295,11 @@ namespace RealERPWEB
             string comcod = this.GetCompCode();
 
             string qtype = this.Request.QueryString["Type"].ToString();
+            string empid = this.Request.QueryString["empid"]??"%%";
             string callType = "";
             if (qtype == "10002")
             {
                 callType = "GETJOINEMPLIST";
-
             }
             else if (qtype == "10013" || qtype == "10020" || qtype == "10021" || qtype == "10022" || qtype == "10023")
             {
@@ -438,11 +309,13 @@ namespace RealERPWEB
 
             else
             {
-                callType = "GETCANENAME";
+                this.dptDiv.Visible = false;
+                this.sectDiv.Visible = false;
+                callType = "GETCANDIDATELIST";
 
             }
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", callType, qtype, "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LETTER", callType, qtype, empid, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -451,86 +324,13 @@ namespace RealERPWEB
             this.ddlEmployee.DataValueField = "empid";
             this.ddlEmployee.DataSource = ds1.Tables[0];
             this.ddlEmployee.DataBind();
-
-
-
-            this.ddlCat.DataTextField = "section";
-            this.ddlCat.DataValueField = "pactcode";
-            this.ddlCat.DataSource = ds1.Tables[0];
-            // this.ddlCat.Enabled = false;
-            this.ddlCat.DataBind();
-
-
+             
             ViewState["empinfo"] = ds1;
         }
 
         protected void GetLettPattern()
         {
 
-        }
-
-        protected void imgbtnEmployee_Click(object sender, EventArgs e)
-        {
-            string type1 = this.Request.QueryString["Type"].ToString().Trim();
-            if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020" || type1 == "10002")
-            {
-                this.GetSelected();
-            }
-
-            else
-            {
-                this.GetEmployee();
-            }
-        }
-
-        private string GetCompCode()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            return (hst["comcod"].ToString());
-        }
-
-        private void ShowView()
-        {
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-
-            if (this.ddlPrevious.Items.Count > 0)
-            {
-
-                DataTable dt = (DataTable)Session["tbllttDetails"];
-                string empid = this.ddlPrevious.SelectedValue;
-                DataRow[] dr1 = dt.Select("empid='" + empid + "'");
-
-                this.txtRefNo.Text = dr1.Length == 0 ? "" : dr1[0]["refno"].ToString();
-                this.ddlEmployee.SelectedValue = empid;
-                this.txtml.Text = dr1.Length == 0 ? "" : dr1[0]["lettdesc"].ToString();
-                this.txttodate.Text = dr1.Length == 0 ? "" : Convert.ToDateTime(dr1[0]["date"]).ToString("dd-MMM-yyyy");
-                return;
-            }
-
-
-            this.txtml.Text = this.data(type);
-
-
-
-        }
-
-        private void PreviousD()
-        {
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-            string comcod = this.GetCompCode();
-            string empid = this.ddlPrevious.SelectedValue.ToString();
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
-            if (ds3.Tables[0].Rows.Count == 0)
-                return;
-            this.ddlEmployee.Items.Clear();
-            this.ddlEmployee.DataTextField = "empname";
-            this.ddlEmployee.DataValueField = "empid";
-            this.ddlEmployee.DataSource = ds3.Tables[0];
-            this.ddlEmployee.DataBind();
-
-            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
-            this.txtml.Text = lett;
-            ViewState["letter"] = ds3.Tables[0];
         }
 
         protected string data(string type01)
@@ -546,28 +346,18 @@ namespace RealERPWEB
             string comcod = GetCompCode();
 
             //created by nahid for dynamic html value
-            //this.LblGrpCompany.Text = ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
+            
             string comaddress = (((DataTable)Session["tbllog1"]).Rows[0]["comadd"].ToString().Substring(0, 6) == "<br />") ? ((DataTable)Session["tbllog1"]).Rows[0]["comadd"].ToString().Substring(6) : ((DataTable)Session["tbllog1"]).Rows[0]["comadd"].ToString();
 
             string imgpge = "~/Image/" + "LOGO" + ((DataTable)Session["tbllog1"]).Rows[0]["comcod"].ToString() + ".PNG";
-            //byte[] imageArray = System.IO.File.ReadAllBytes(Server.MapPath(imgpge));
-            //string complogo = Convert.ToBase64String(imageArray);
-
-
-
-
-
-
-
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_CODEBOOK", "SHOWUSERSIGN", usrid, "", "", "", "");
+            
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_LETTER", "SHOWUSERSIGN", usrid, "", "", "", "");
             DataTable dt1 = ds3.Tables[0];
             string empid = this.ddlEmployee.SelectedValue.ToString();
 
             string type1 = this.Request.QueryString["Type"].ToString().Trim();
 
             string calltype = (Request.QueryString["Type"].ToString() == "10002") ? "GETEMPSALINFOAPP" : "GETEMPSALINFO";
-
-
 
 
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_MGT_INTERFACE", calltype, empid, "", "", "", "", "", "", "", "");
@@ -622,27 +412,21 @@ namespace RealERPWEB
                 this.btnsave.Visible = true;
             }
 
-
+            string date = "Date:" + System.DateTime.Now.ToString("dd/MM/yyyy");
 
             //string empid = this.ddlEmployee.SelectedValue.ToString();
             // var empname = this.ddlEmployee.SelectedItem.ToString();
             string lbody = string.Empty;
             // string empid=hst["empid"].ToString();
-            string name = (string)ViewState["name"];
+            string name = this.ddlEmployee.SelectedItem.ToString();
             string Desig = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["desig"].ToString();//(string)ViewState["desig"];
             string depart = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["dptdesc"].ToString();//(string)ViewState["section"];
             string dptdesc = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["section"].ToString();//(string)ViewState["section"];
 
-
-
             string usrdesig = (dt1.Rows.Count == 0) ? "" : dt1.Rows[0]["desig"].ToString();
-            string usersign = (dt1.Rows.Count == 0) ? "" : Convert.ToBase64String((byte[])dt1.Rows[0]["empsign"]);
+            string usersign = "";//(dt1.Rows.Count == 0) ? "" : dt1.Rows[0]["empsign"].ToString(); //Convert.ToBase64String((byte[])dt1.Rows[0]["empsign"]);
             string uname = (dt1.Rows.Count == 0) ? "" : dt1.Rows[0]["empname"].ToString();
-
-
-
-
-
+             
             switch (type01)
             {
                 //"<img class='Companylogo' src='Image/LOGO8701.PNG' />";
@@ -654,15 +438,14 @@ namespace RealERPWEB
                     lbody = "<p><strong>Ref: SPL/HR/Apt/16/223</strong></p><p><strong>Sep 01, 2016</strong></p><p><strong>" + name + "</strong></p><p><strong>C/O: Md. Abdul Muttalib&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p><p><strong>Vill: Gibanda ( Sharkar bar), PO: Gibanda</strong></p><p><strong>PS: Islampur, Dist: Jamalpur&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></p><p><strong>&nbsp;</strong></p><p><strong>Subject: <u>Letter of Appointment.</u></strong></p><p>&nbsp;</p><p>Dear <strong>" + name + "</strong>,</p><p>&nbsp;</p><p>With reference to your application and subsequent interview with us, we have the pleasure to inform you that the Management of Star Paradise Ltd is pleased to appoint you as <strong>  " + Desig + "</strong> in our Company <strong> " + comnam + " </strong>on the following terms and conditions:</p><p>&nbsp;</p><ol><li><strong>Commencement and nature of Appointment:</strong></li><li>Your appointment is effective from <strong>Sep 01, 2016</strong>.</li><li>Your appointment is initially on probation basis for 6 (Six) months from the date of your joining. On satisfactory completion of your probationary period, your service may be confirmed. Otherwise, your probationary period may be extended for such a period as may be decided upon by the Management.</li><li>Your place of posting shall be at <strong>'Factory&rdquo;</strong> and you shall work under the supervision of <strong>Divisional Head</strong>.</li></ol><p>&nbsp;</p><ol start='2'><li><strong>Placement, Compensation and other benefits:</strong></li><li>You will be entitled to Festival Bonuses as per Company policy, which are two (02) Eid Bonus, 60% of your Gross Salary each.</li><li>Your monthly salary as in &ldquo;Annexure-A&rdquo; only, which includes all your perquisites and allowances. Compensation will be governed by the rules of the Company on the subject, as applicable and / or amended hereafter.</li><li>Personal Income Tax, if any will be on your account and will be deducted each month by the company at source at the time of monthly salary disbursement for onward submission to the relevant Income Tax authorities.</li><li>You are not to disclose / discuss your salary with anyone related to this organization and keep it strictly confidential.</li><li>This is a position of full time and continuous responsibilities and will not engage yourself any Part-time work, profession or employment without written permission from the management.</li><li>You will be entitled with other benefits of the organization time to time as per the Company policy.</li></ol><p>&nbsp;</p><ol start='3'><li><strong>Duties and responsibilities: </strong></li><li>You will carry on with the duties and responsibilities entrusted to you and also the duties and responsibilities that may be entrusted to you by the Management from time to time. You will require working late hours whenever necessary for the greater interest of the organization.</li><li>You have to abide by all instructions and orders issued by the management in good spirit.</li><li>You will retire attaining the age limit fixed by the Bangladesh Govt. through Bangladesh Labor Act.</li></ol><p>&nbsp;</p><ol start='4'><li><strong>Transfer:</strong></li><li>Your Service is transferable from one project to another project of the Company for the greater interest of the Organization.</li><li>The Management may change your designation, duties and responsibilities from time to time as they think fit and proper without disturbing salary and allowances.</li></ol><p>&nbsp;</p><ol start='5'><li><strong>Termination of Service:</strong></li><li>The Management reserves the right to terminate your service at any time without assigning any reason, if your work, attitude or behavior not found satisfactory.</li><li>Either party may however, terminate the contract of employment by giving a notice period of 60 (Sixty) days in writing or in lieu thereof an equivalent of two months&rsquo; basic salary, will have to be paid by the company / surrendered by you in case of failure in giving two months&rsquo; prior notice after confirmation of service.</li><li>During the probation period, either party may terminate the contract of employment with 30 (Thirty) days prior notice.</li><li>When you intend to resign you will have to handover official charges to the nominated person of the Company.</li></ol><p>&nbsp;</p><ol start='6'><li><strong>Confidentiality: </strong></li></ol><p>You shall not, at any time, during the continuance or even after the cessation of your employment hereunder, disclose or divulge or make public, except on legal obligations, either directly to any person, firm or company or use for yourself any trade secret or confidential, technical knowledge, formula, process, compositions, ideas or documents, concerning the business and affairs of the company or any of its dealings, transactions or affairs which you may have acquired from the company or have to your knowledge during the course of and incidental to your employment. If you disclose any such information to any other person(s) or organization, the Company shall prosecute against you for such breach of code of conducts, as it considers necessary to protect its interest and enforce its rights.</p><p>&nbsp;</p><h2>Annexure &ndash; A</h2><p>&nbsp;</p><p><strong>Dear " + name + " ,</strong></p><p>&nbsp;</p><p>You shall be placed at <strong>Grade-2</strong>, the monthly Gross salary of <strong>Tk. " + ttlsalary + " (" + inwords + ")</strong> only which is broken down as follows:</p><p>" + tablesale + "</p><p>&nbsp;</p><p>If you are agreeable to the aforesaid offer, please acknowledge this letter by way of formal acceptance and return immediately for further action.</p><p>&nbsp;We have the pleasure in welcoming you and sincerely hope that our company will get benefited from your service.</p><p>&nbsp;For <strong>Star Paradise Ltd</strong>,</p><p>&nbsp;</p><p class='pImage'><strong><img src='data:Image/png;base64," + usersign + "' width='200px' height='80px' ></img></p>  <p class='pUname'><strong>" + uname + "</p> <p class='pUname'><strong>" + usrdesig + "</strong></p><p>I, <strong> " + name + " </strong> have fully understood the contents of the letter of appointment and willingly agree to abide by the terms and conditions as stipulated herein above.</p><p>Yours Sincerely,</p><p>______________________</p><p>Signature of the Employee</p><p>&nbsp;</p><p>Date: __________________</p><p><strong>&nbsp;</strong></p><p><strong>Copy to:</strong></p><ol><li>HRIS</li><li>Personal File</li></ol>";
                     break;
 
-
                 //offer later for sales department;
                 case "10003":
-                    lbody = "<p><strong>SPL/HR/Ofr/16/586</strong></p><p><strong>" + name + "</strong></p><p><strong>Vill: Nalua, PO: Afalkait</strong></p><p><strong>PS: Bekergang, Dist: Barisal</strong></p><p><strong>Sub: Offer for Employment</strong></p><p>Dear <strong>" + name + "</strong></p><p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + Desig + "</strong> in <strong>" + comnam + "</strong> at <strong>" + dptdesc + ", " + depart + " </strong> with effect from <strong> " + cdate + " </strong>.</p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp;</p><p>&nbsp;Please bring the following papers on the date of joining:</p><ol><li>Photocopy of all academic certificates</li><li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer</li><li>Passport size photograph -3</li><li>Photocopy of passport /Photocopy of National ID Card</li><li>Salary Certificate/ Bank Statement</li><li>300 (100*3) Tk Stamp Paper</li></ol><p>&nbsp;</p><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong><img src='data:Image/png;base64," + usersign + "' width='200px' height='80px' ></img></p>  <p class='pUname'><strong>" + "Moshiur Hossain Uday" + "</p> <p class='pUname'><strong>" + "Managing Director" + "</strong></p>";
+                    lbody = "<p style=margin-bottom:0><br/><br/>Ref: bti/HR/2021/</p>"+date+"<p>To</p><p style=margin-bottom:0><strong>" + name + "</strong></p><p style=padding-top:-10px>Address: House: 271, Tejgaon I/A,</p><p style=margin-bottom:0>Tejgaon, Dhaka-1208</p><p style=margin-bottom:0><br>Mobile : 01913169818</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>" + name + "</strong></p><p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + Desig + ", " + dptdesc + ",</strong> in " + depart + ", which shall commence on or before <strong> " + cdate + " </strong>.<p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p></p><p>&nbsp;The Letter of Appointment will be issued soon.</p><p>&nbsp; Please bring the following papers on the date of joining:</p><ol><li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer.</li><li>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li>Photocopy of National ID card/ Passport (employee and nominee).</li><li>Passport size photograph (employee 7 copies and Nominee 3 copies).</li><li>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>Yours Sincerely,</p><p class='pImage'><strong></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>";
 
                     break;
                 //offer Later For general
                 case "10004":
-                    lbody = "<p><strong>SPL/HR/Ofr/16/559</strong></p><p><strong>" + name + "</strong></p><p><strong>Vill: West Vashanchar, PO: Ambikapur</strong></p><p><strong>PS: Faridpur, Dist: Faridpur</strong></p><p>&nbsp;</p><p>&nbsp;Dear <strong>" + name + "</strong></p><p>&nbsp;</p><p>&nbsp;<span style='text-decoration: underline;'><strong>Offer for Employment</strong></span></p><p>&nbsp;With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong>&ldquo;Plant Manager-Pole Project&rdquo; </strong>in <strong>" + comnam + "</strong>at <strong>Factory </strong>with effect from <strong>1 January,</strong><strong> 2017</strong></p><p>The Letter of Appointment will be issued soon.</p><p>&nbsp;</p><p>Please bring the following papers on the date of joining:</p><ol><li>Photocopy of all academic certificates</li><li>Release letter / Letter of acceptance of resignation in the Company Letter Head from the previous employer</li><li>Passport size photograph -3</li><li>Photocopy of passport /Photocopy of National ID Card</li><li>Salary Certificate/ Bank Statement</li></ol><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp; &nbsp; Yours Sincerely,</p>"; //<p>&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p><p>&nbsp;<strong>Moshiur Hossain Uday</strong></p><p><strong>&nbsp;Managing Director</strong></p>";
+                    lbody = "<p><strong>SPL/HR/Ofr/16/559</strong></p><p><strong>" + name + "</strong></p><p><strong>Vill: West Vashanchar, PO: Ambikapur</strong></p><p><strong>PS: Faridpur, Dist: Faridpur</strong></p><p>&nbsp;</p><p>&nbsp;Dear <strong>" + name + "</strong></p><p>&nbsp;</p><p>&nbsp;<span style='text-decoration: underline;'><strong>Offer for Employment</strong></span></p><p>&nbsp;With reference to our discussions with you and your willingness to join our company, we are pleased to offer you appointment as  <strong>&ldquo;Plant Manager-Pole Project&rdquo; </strong>in <strong>" + comnam + ".</strong> .”, which shall commence on or before  <strong>11 December 2021.</strong></p><p>&nbsp;</p><p>Before that you are requested to submit a copy of your resignation letter, which has been duly received by your present employer within 3 (Three) days from the date of receipt of this offer letter and a clearance letter at the time of joining.</p><p><br>The Letter of Appointment will be issued soon.</p><p>Please bring the following papers on the date of joining: </p><ol><li>1.	date</li><li>Original & photocopies of all certificates (experience, academic, professional courses etc).</li><li>Photocopy of National ID card/ Passport (employee and nominee).</li><li>Passport size photograph (employee 7 copies and Nominee 3 copies).</li><li>Pay Slip/ Proof of Salary and ETIN.</li></ol><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp; &nbsp; Yours Sincerely,</p>"; 
                     break;
                 //confirmation letter
                 case "10005":
@@ -686,7 +469,7 @@ namespace RealERPWEB
                     break;
                 //acceptance of resignation
                 case "10010":
-                    lbody = "<p>July 13, 2016</p><p>&nbsp;<strong>" + name + ", ID: 106</strong></p><p>CMO,</p><p>" + Desig + "</p><p>" + depart + "</p><p>&nbsp;Subject:<strong><u> Acceptance of Resignation</u></strong></p><p>&nbsp;</p><p>Dear Mr. <strong>" + name + "</strong>,</p><p>This with reference to your letter dated <strong>July 1, 2016</strong> in which you have expressed your inability to continue your service with the organization. We would like to inform you that the management has accepted your resignation with effect from <strong>July 11, 2016.</strong></p><p>Accordingly, you will be released from your work at the close of business of <strong>July 10, 2016</strong> subject to a clearance certificate being issued to you by the concerned departments to the effect that you do not owe to <strong>Fidelity Holdings Ltd</strong> any outstanding dues and or any liabilities thereof.</p><p>You are, also, requested to submit the Identity Card and others official things to HR Department to facilitate your quick clearance from the service.</p><p>We take this opportunity to wish you well and success in all your future endeavors.</p><p>&nbsp;</p><p>&nbsp;</p><p>Sincerely,</p>"; //<p>&nbsp;<strong>Moshiur Hossain Uday</strong></p><p>&nbsp;Managing Director</p><p>&nbsp;</p><p>Copy:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MD</p><p>HRIS</p><p>Personal File</p>";
+                    lbody = "<p>July 13, 2016</p><p>&nbsp;<strong>" + name + ", ID: 106</strong></p><p>CMO,</p><p>" + Desig + "</p><p>" + depart + "</p><p>&nbsp;Subject:<strong><u> Acceptance of Resignation</u></strong></p><p>&nbsp;</p><p>Dear Mr. <strong>" + name + "</strong>,</p><p>This with reference to your letter dated <strong>July 1, 2016</strong> in which you have expressed your inability to continue your service with the organization. We would like to inform you that the management has accepted your resignation with effect from <strong>July 11, 2016.</strong></p><p>Accordingly, you will be released from your work at the close of business of <strong>July 10, 2016</strong> subject to a clearance certificate being issued to you by the concerned departments to the effect that you do not owe to <strong>Fidelity Holdings Ltd</strong> any outstanding dues and or any liabilities thereof.</p><p>You are, also, requested to submit the Identity Card and others official things to HR Department to facilitate your quick clearance from the service.</p><p>We take this opportunity to wish you well and success in all your future endeavors.</p><p>&nbsp;</p><p>&nbsp;</p><p>Sincerely,</p>"; 
                     break;
                 //release letter
                 case "10011":
@@ -753,136 +536,45 @@ namespace RealERPWEB
             return lbody;
         }
 
-
-
-
-
-
-
-
-        private void ForJobCand()
+        protected void lbtnOk_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-            //if (!chkpre.Checked)
-            //    return;
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-            string comcod = this.GetCompCode();
-            string empid = this.ddlEmployee.SelectedValue.ToString();
-
-            string forJobCand = "";
-            if (type == "10003" || type == "10004" || type == "10005")
+            this.txtml.Text = "";
+            if (chkpre.Checked)
             {
-                forJobCand = "GETLETTERJOBCAND";
-            }
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", "%", type, forJobCand, "", "", "", "", "", "");
-            this.ddlPrevious.DataTextField = "empname";
-            this.ddlPrevious.DataValueField = "EMPID";
-            this.ddlPrevious.DataSource = ds3.Tables[0];
-            this.ddlPrevious.DataBind();
-            ds3.Dispose();
-        }
-
-        private void LetterPreDetails()
-        {
-            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
-
-            string type = this.Request.QueryString["Type"].ToString().Trim();
-            string comcod = this.GetCompCode();
-
-            DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LETTERPREVIUOS", type, "", "", "", "", "", "", "", "");
-            this.ddlPrevious.DataTextField = "txtfld";
-            this.ddlPrevious.DataValueField = "empid";
-            this.ddlPrevious.DataSource = ds.Tables[0];
-            this.ddlPrevious.DataBind();
-            Session["tbllttDetails"] = ds.Tables[0];
-
-        }
-
-
-        //protected void ddlPrevious_SelectedIndexChanged ( object sender, EventArgs e )
-        //{
-
-        //    this.ShowPreViousLt ();
-        //    //string cod = this.ddlPrevious.SelectedValue.ToString ().Trim ();
-
-        //    //this.ddlEmployee.ClearSelection ();
-        //    //this.ddlEmployee.Items.FindByValue (cod).Selected = true
-        //}
-        protected void ddlEmployee_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            string type1 = this.Request.QueryString["Type"].ToString().Trim();
-            if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020" || type1 == "10002" || type1 == "10021" || type1 == "10022" || type1 == "10023")
-            {
-                var empid = this.ddlEmployee.SelectedValue.ToString();
-
-                var ds = (DataSet)ViewState["empinfo"];
-                if (ds.Tables[0].Rows.Count == 0)
-                {
-                    return;
-                }
-
-                DataTable dt1 = ds.Tables[0].Copy();
-                DataView dv = dt1.DefaultView;
-                dv.RowFilter = ("empid='" + empid + "'");
-                dt1 = dv.ToTable();
-
-                ViewState["name"] = dt1.Rows[0]["empname1"];
-                ViewState["section"] = dt1.Rows[0]["section"];
-                ViewState["desig"] = dt1.Rows[0]["desig"];
-
-
-                this.ddlCat.DataTextField = "dptdesc";
-                this.ddlCat.DataValueField = "empid";
-                this.ddlCat.DataSource = dt1;
-                // this.ddlCat.Enabled = false;
-                this.ddlCat.DataBind();
-
-
-
+                this.PreviousD();
             }
             else
             {
-                var empid = this.ddlEmployee.SelectedValue.ToString();
-
-                var ds = (DataSet)ViewState["empinfo"];
-                if (ds.Tables[0].Rows.Count == 0)
-                {
-                    return;
-                }
-
-
-                DataTable dt1 = ds.Tables[0].Copy();
-                DataView dv = dt1.DefaultView;
-                dv.RowFilter = ("empid='" + empid + "'");
-                dt1 = dv.ToTable();
-
-                ViewState["name"] = dt1.Rows[0]["empname1"];
-                ViewState["section"] = dt1.Rows[0]["section"];
-                ViewState["desig"] = dt1.Rows[0]["desig"];
+                this.ShowView();
             }
-
-
         }
 
-        protected void lbtnprevious_OnClick(object sender, EventArgs e)
+
+        private void ShowView()
         {
-
             string type = this.Request.QueryString["Type"].ToString().Trim();
-
-            switch (type)
-            {
-                case "10003":
-                case "10004":
-                case "10005":
-                    this.ForJobCand();
-                    break;
-                case "10021":
-                case "10022":
-                case "10023":
-                    this.LetterPreDetails();
-                    break;
-            }
+            this.txtml.Text = this.data(type); 
         }
+
+        private void PreviousD()
+        {
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
+            string empid = this.ddlPrevious.SelectedValue.ToString();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLETTER", empid, type, "", "", "", "", "", "", "");
+            if (ds3.Tables[0].Rows.Count == 0)
+                return;
+            this.ddlEmployee.Items.Clear();
+            this.ddlEmployee.DataTextField = "empname";
+            this.ddlEmployee.DataValueField = "empid";
+            this.ddlEmployee.DataSource = ds3.Tables[0];
+            this.ddlEmployee.DataBind();
+
+            string lett = (string)ds3.Tables[0].Rows[0]["LETTDESC"];
+            this.txtml.Text = lett;
+            ViewState["letter"] = ds3.Tables[0];
+        }
+
     }
 }

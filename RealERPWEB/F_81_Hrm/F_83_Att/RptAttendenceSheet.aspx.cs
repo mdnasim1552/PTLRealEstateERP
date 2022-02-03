@@ -57,7 +57,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 return;
 
-          string  startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+           string  startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
 
 
             //switch (comcod)

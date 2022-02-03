@@ -8,11 +8,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    
-
-
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -41,7 +36,7 @@
                                 <div class="form-group">
                                     <div class="col-md-5  pading5px">
                                         <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName"
-                                            Text="Date"></asp:Label>
+                                            Text="From"></asp:Label>
 
                                         <asp:TextBox ID="txtfromdate" runat="server" AutoCompleteType="Disabled"
                                             CssClass="inputtextbox"></asp:TextBox>
@@ -49,7 +44,7 @@
                                             Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
 
                                         <asp:Label ID="lbltodate" runat="server" CssClass=" smLbl_to"
-                                            Text="Date"></asp:Label>
+                                            Text="To"></asp:Label>
 
                                         <asp:TextBox ID="txttodate" runat="server" AutoCompleteType="Disabled"
                                             CssClass="inputtextbox"></asp:TextBox>

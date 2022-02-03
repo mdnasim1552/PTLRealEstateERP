@@ -21,16 +21,16 @@ using Label = System.Web.UI.WebControls.Label;
 using TextBox = System.Web.UI.WebControls.TextBox;
 using AjaxControlToolkit;
 using System.Web.UI.WebControls;
+
 namespace RealERPWEB.F_81_Hrm.F_82_App
 {
-    public partial class EmpEntry01 : System.Web.UI.Page
+    public partial class EmpEntry011 : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         string Upload = "";
         int size = 0;
         System.IO.Stream image_file = null;
         Common compUtility = new Common();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,79 +38,57 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
-
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../../AcceessError.aspx");
                 this.GetInformation();
+                this.GetEmployeeName();
+                
                 //this.GetEmployeeName();
-
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PERSONAL INFORMATION";
-
                 this.getLastCardNo();
                 this.lblLastCardNo.Visible = false;
                 CommonButton();
             }
-
-
-
-
         }
         public void CommonButton()
         {
-            ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
-
-
-            ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
-            ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
-            ((Panel)this.Master.FindControl("pilleftDvi")).Visible = false;
-
-
-
-
-            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
-            ((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
-            ((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
-
+            //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
+            //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
+            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
+            //((Panel)this.Master.FindControl("pilleftDvi")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
+            //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
+            //((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lUpdatPerInfo_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
-
-
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
-
         }
-
-
         private void getLastCardNo()
         {
 
             string comcod = this.GetComeCode();
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLASTCARDNO", "", "", "", "", "", "", "", "", "");
             this.lblLastCardNo.Text = "Last Card Number :- " + ds5.Tables[0].Rows[0]["lastCard"].ToString().Trim();
-
-
         }
         private void GetEmployeeName()
         {
-
             Session.Remove("tblempname");
             string comcod = this.GetComeCode();
-            string txtSProject = (this.Request.QueryString["empid"] != "") ? "%" + this.Request.QueryString["empid"].ToString() + "%" : "%" + this.EmployeeList.Text + "%";
+            string txtSProject = (this.Request.QueryString["empid"] != "") ? "%" + this.Request.QueryString["empid"].ToString() + "%" : "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPTIDNAME", txtSProject, "", "", "", "", "", "", "", "");
             this.ddlEmpName.DataTextField = "empname";
             //this.ddlEmpName.SelectedValue = "empname";
@@ -120,35 +98,26 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             Session["tblempname"] = ds3.Tables[0];
             ds3.Dispose();
             this.ddlEmpName.SelectedValue = (this.Request.QueryString["empid"] == "") ? this.ddlEmpName.Items[0].Value : this.Request.QueryString["empid"].ToString();
-
             this.SelectView();
-
         }
-
         private void GetInformation()
         {
-
             string comcod = this.GetComeCode();
-            string txtinformation = this.txtInformation.Text + "%";
+            string txtinformation = "%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETINFORMATION", txtinformation, "", "", "", "", "", "", "", "");
             this.ddlInformation.DataTextField = "infodesc";
             this.ddlInformation.DataValueField = "infoid";
             this.ddlInformation.DataSource = ds3.Tables[0];
             this.ddlInformation.DataBind();
         }
-
         protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.ddlInformation_SelectedIndexChanged(null, null);
         }
-
-
         protected void ddlInformation_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.SelectView();
-
         }
-
         protected void ibtnEmpList_Click(object sender, EventArgs e)
         {
             // if (this.lbtnOk.Text == "Ok")
@@ -158,41 +127,29 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             this.GetInformation();
         }
-
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
         }
-
-
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-
             //if (this.lbtnOk.Text == "Ok")
             //{
-
             //    this.ddlEmpName.Visible = false;
             //    this.ddlInformation.Visible = false;
             //    //this.lbtnOk.Text = "New";
             //    this.SelectView();
             //    return;
             //}
-
             //this.ddlEmpName.Visible = true;
             //this.ddlInformation.Visible = true;
             ////this.lbtnOk.Text = "Ok";
             //this.MultiView1.ActiveViewIndex = -1;       
             //this.lblmsg.Text = "";
-
-
-
         }
-
         private void SelectView()
         {
             string infoid = this.ddlInformation.SelectedValue.ToString();
             this.lblLastCardNo.Visible = false;
-
             switch (infoid)
             {
                 case "01":
@@ -271,9 +228,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.ShowCTCDetails();
                     this.addOcupation.Visible = false;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = false;
-
                     break;
-
                 case "31":
                     this.MultiView1.ActiveViewIndex = 8;
                     this.ShowSalaryDetails();
@@ -284,9 +239,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
-
         }
-
         private void GetBldMeReFes()
         {
 
@@ -324,7 +277,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         private void GetAcaDemicDegree()
         {
             string comcod = this.GetComeCode();
@@ -336,10 +288,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ds2.Dispose();
 
         }
-
-
-
-
         private void ShowPersonalInformation()
         {
 
@@ -564,7 +512,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         private void ShowDegree()
         {
             string comcod = this.GetComeCode();
@@ -676,12 +623,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ddlResult_SelectedIndexChanged(null, null);
 
         }
-
         private void ShowMajorSub()
         {
 
         }
-
         private void ShowEmpRecord()
         {
             string comcod = this.GetComeCode();
@@ -700,7 +645,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         private void ShowEmpPosition()
         {
             string comcod = this.GetComeCode();
@@ -719,7 +663,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         private void ShowReferecne()
         {
             string comcod = this.GetComeCode();
@@ -735,8 +678,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvRef.DataSource = ds3.Tables[0];
             this.gvRef.DataBind();
         }
-
-
         private void ShowParentDT()
         {
             string comcod = this.GetComeCode();
@@ -758,8 +699,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvFamilyInfo.Columns[4].Visible = this.ddlInformation.SelectedValue == "26";
             Session["tblFamilydt"] = ds.Tables[0];
         }
-
-
         private void ShowCTCDetails()
         {
             string comcod = this.GetComeCode();
@@ -778,8 +717,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvCTCDetails.DataBind();
 
         }
-
-
         private void ShowSalaryDetails()
         {
             string comcod = this.GetComeCode();
@@ -799,10 +736,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         }
 
-
-
-
-
         private void ShowJobRespon()
         {
             string comcod = this.GetComeCode();
@@ -820,7 +753,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.grvJobRespo.DataBind();
 
         }
-
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
         {
             string infoid = this.ddlInformation.SelectedValue.ToString();
@@ -844,13 +776,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string empname = ((TextBox)this.gvPersonalInfo.Rows[1].FindControl("txtgvVal")).Text.Trim();
             //Log Entry
-             
+
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
 
                 //new nahid by 20220126
-                 
+
                 if (Gcode == "01001")
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
@@ -866,8 +798,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     if (copSetup == null)
 
                         return;
-                    int idCardLength = copSetup.Tables[0].Rows.Count==0?0:Convert.ToInt32(copSetup.Tables[0].Rows[0]["hr_idcardlen"]);
-                    if (Gvalue.Length != idCardLength && idCardLength !=0)
+                    int idCardLength = copSetup.Tables[0].Rows.Count == 0 ? 0 : Convert.ToInt32(copSetup.Tables[0].Rows[0]["hr_idcardlen"]);
+                    if (Gvalue.Length != idCardLength && idCardLength != 0)
                     {
                         string errMsg = "Please Put " + idCardLength + " Digit ID CARD Number";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
@@ -902,9 +834,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         }
                     }
                     ///////////////----------------------------------------
-                     
+
                 }
-                 
+
                 if (Gcode == "01003")
                 {
                     string Gvalue = (Gcode == "01001") ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
@@ -921,13 +853,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     }
 
                 }
-                 
+
             }
-             
+
             //---------------Validation Check---------------------//
 
 
-           
+
             DataTable dtuser = (DataTable)Session["UserLog"];
             string tblPostedByid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postedbyid"].ToString();
             string tblPostedtrmid = (dtuser.Rows.Count == 0) ? "" : dtuser.Rows[0]["postrmid"].ToString();
@@ -963,7 +895,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
                 string gvalueBn = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvValBn")).Text.Trim();
                 string Gvalue = (((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).Items.Count == 0) ? ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim() : ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval")).SelectedValue.ToString();
-                
+
 
                 if (Gcode == "01003" || Gcode == "01007" || Gcode == "01008")
                 {
@@ -1115,7 +1047,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
         }
-
         protected void gvPersonalInfo_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -1145,12 +1076,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         protected void lbtnUpdateImg_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void ddlval_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -1309,8 +1238,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
         }
-
-
         protected void ddlResult_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -1403,7 +1330,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                         string comcod = this.GetComeCode();
                         DropDownList ddl2 = (DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlval");
-                        string Searchemp = "%" + ((TextBox)gvPersonalInfo.Rows[i].FindControl("txtgrdEmpSrc")).Text.Trim() + "%";
+                        string Searchemp = "%%";
                         DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPTIDNAME", Searchemp, "", "", "", "", "", "", "", "");
 
                         //ddl2.AppendDataBoundItems = true;
@@ -1422,13 +1349,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
         }
-
-
-      
-
-
-
-
         protected void gvDegree_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             DataTable dt = (DataTable)Session["tblempAcaRecord"];
@@ -1436,9 +1356,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string Gcode = ((DropDownList)this.gvDegree.Rows[e.RowIndex].FindControl("ddlDegree")).SelectedValue.ToString();
-
-
-
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPDEGREEDELETE", empid, Gcode, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (result == true)
             {
@@ -1455,8 +1372,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.ShowDegree();
 
         }
-
-
         protected void lUpdateJobRes_Click(object sender, EventArgs e)
         {
             //  ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1496,7 +1411,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
         }
-
         private void getMajorSubject()
         {
 
@@ -1550,13 +1464,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 gvEmpRec.Controls[0].Controls.AddAt(0, gvrow);
             }
         }
-
-
         protected void gvFamilyInfo_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
-
         private void ShowLastDegree()
         {
             string comcod = this.GetComeCode();
@@ -1630,7 +1541,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         protected void lUpdateCtcInfo_OnClick(object sender, EventArgs e)
         {
             // ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1656,7 +1566,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         protected void lTotalClick_OnClick(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblctdet"];
@@ -1685,7 +1594,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
         }
-
         protected void lUpdateSalInfo_OnClick(object sender, EventArgs e)
         {
             //((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1712,7 +1620,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
         }
-
         protected void lTotalClickSal_OnClick(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblsaldet"];
@@ -1739,8 +1646,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
         }
-
-
         protected void gvFamilyInfo_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             DataTable dt = (DataTable)Session["tblFamilydt"];
@@ -1758,7 +1663,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvFamilyInfo.DataBind();
 
         }
-
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1769,15 +1673,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             if (FileUploadControl.HasFile)
             {
-
                 try
                 {
-
                     string filename = Path.GetFileName(FileUploadControl.FileName);
-
                     String extension = System.IO.Path.GetExtension(filename);
-
-
                     switch (extension)
                     {
                         case ".doc":
@@ -1788,14 +1687,10 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                         default:
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated fail" + "');", true);
-
                             return;
                             break;
 
-
-
                     }
-
                     string comcod = this.GetCompCode();
                     string empcode = ddlEmpName.SelectedValue.ToString();
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTUPDATCV", empcode, "", "", "", "", "", "", "", "");
@@ -1814,7 +1709,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     FileUploadControl.SaveAs(Server.MapPath("~") + ("\\CV\\" + filename));
 
                     //FileUploadControl.SaveAs(Server.MapPath("~/") + filename);
-
                 }
 
                 catch (Exception ex)
@@ -1826,6 +1720,5 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             }
         }
-
     }
 }

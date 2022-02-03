@@ -132,12 +132,21 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDatablank;
 
         /// <summary>
-        /// Span1 control.
+        /// hyplnkOccasion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Span1;
+        protected global::System.Web.UI.WebControls.HyperLink hyplnkOccasion;
+
+        /// <summary>
+        /// lblOccasion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblOccasion;
     }
 }

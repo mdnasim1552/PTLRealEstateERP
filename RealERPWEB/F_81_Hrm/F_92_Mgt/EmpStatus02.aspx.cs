@@ -22,27 +22,31 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
     public partial class EmpStatus02 : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                string Type = this.Request.QueryString["Type"]??"";
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
-                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                if (Type != "Pabx")
+                {
+                    int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                    
+                    if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                            (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                        Response.Redirect("~/AcceessError.aspx");
 
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                Session.Remove("tblEmpstatus");
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtFdate.Text = "01" + date.Substring(2);
-                this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                }
+                Session.Remove("tblEmpstatus");                
+                this.GetDate();
                 this.GetCompany();
                 this.SelectView();
                 this.GetDesignation();
-                string Type = this.Request.QueryString["Type"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
+               
+                ((Label)this.Master.FindControl("lblTitle")).Text = (Type=="Pabx")?"List of PABX Information": (Type == "joiningRpt") ? "Joining Report Summary" : (Type == "JoinigdWise") ? "New Joiners List"
                     : (Type == "EmpList") ? "Employee List" : (Type == "TransList") ? "Employee Transfer List"
                     : (Type == "PenEmpCon") ? "Pending Employee Confirmation" : (Type == "SepType") ? "Employee Seperation List Report"
                     : (Type == "EmpHold") ? "Employee Hold List" : (Type == "Manpower") ? "Employee Manpower List"
@@ -56,12 +60,32 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.comlist.Visible = true;
                     this.Company();
                 }
-
                 this.lbtnOk_Click(null,null);
 
             }
 
         }
+
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtFdate.Text = startdate + this.txtFdate.Text.Trim().Substring(2);
+            this.txtTdate.Text = Convert.ToDateTime(this.txtFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+            //string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //this.txtFdate.Text = startdate + date.Substring(2);
+            //this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -119,8 +143,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
                 case "Manpower":
                     this.lblDept.Visible = false;
-                    this.txtSrcPro.Visible = false;
-                    this.ibtnFindProject.Visible = false;
+
                     this.ddlProjectName.Visible = false;
                     this.lblfrmd.Visible = false;
                     this.ddlfrmDesig.Visible = false;
@@ -161,7 +184,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.MultiView1.ActiveViewIndex = 11;
                     break;
 
-
+                case "Pabx":
+                    this.lblfrmdate.Visible = false;
+                    this.txtFdate.Visible = false;
+                    this.lbltodate.Visible = false;
+                    this.txtTdate.Visible = false;
+                    this.chkbdate.Visible = false;
+                    this.withBirth.Visible = false;
+                    this.MultiView1.ActiveViewIndex = 12;
+                    break;
 
             }
         }
@@ -171,7 +202,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string userid = hst["usrid"].ToString();
             string comcod = GetCompCode();
 
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -188,7 +219,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             string comcod = this.GetCompCode();
             string projectcode = this.ddlDepartment.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcPro.Text.Trim() + "%";
+            string txtSSec = "%";
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "sectionname";
             this.ddlProjectName.DataValueField = "section";
@@ -315,7 +346,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 case "TotalEmplist":
                     this.GetTotalEmpList();
                     break;
-
+                case "Pabx":
+                    this.GetEmpList();
+                    break;
 
 
             }
@@ -359,13 +392,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
 
@@ -402,13 +435,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -428,39 +461,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
         private void GetEmpList()
         {
-
             Session.Remove("tblEmpstatus");
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            // string Deptid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string Deptid = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            string secid = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
 
-
-            //added nahid
-            string DesigFrom = "0399999";
-            string DesigTo = "0300001";
-            switch (comcod)
-            {
-                case "3102":
-                    pnlDesig.Visible = true;
-
-                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
-                    break;
-                default:
-                    pnlDesig.Visible = false;
-                    break;
-            }
-            //emd nahid
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "RPTALLEMPLIST", Company, Deptid, DesigFrom, DesigTo, "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETALLACTIVEEMP", Company, Deptid, secid, "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvEmpList.DataSource = null;
                 this.gvEmpList.DataBind();
                 return;
             }
-
             Session["tblEmpstatus"] = HiddenSameData(ds4.Tables[0]);
             this.LoadGrid();
 
@@ -480,13 +494,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -515,13 +529,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -554,13 +568,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -594,13 +608,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -652,13 +666,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -695,13 +709,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    pnlDesig.Visible = true;
+                    //pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
                     break;
                 default:
-                    pnlDesig.Visible = false;
+                    //pnlDesig.Visible = false;
                     break;
             }
             //emd nahid
@@ -969,6 +983,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                     break;
 
+                case "Pabx":
+                    this.gvPabxInfo.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvPabxInfo.DataSource = dt;
+                    this.gvPabxInfo.DataBind();
+
+                    break;
+
             }
 
         }
@@ -1019,6 +1040,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.PrintTotalEmpList();
                     break;
 
+                case "Pabx":
+                    this.PrintPabxEmpList();
+                    break;
+
             }
             if (ConstantInfo.LogStatus == true)
             {
@@ -1029,7 +1054,34 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             }
 
         }
+        private void PrintPabxEmpList()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string fromdate = Convert.ToDateTime(this.txtFdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txtTdate.Text).ToString("dd-MMM-yyyy");
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt = (DataTable)Session["tblEmpstatus"];
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.BO_ClassEmployee.EmployeeInfo>();
 
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_92_Mgt.RptPabxInfoList", list, null, null);
+            Rpt1.SetParameters(new ReportParameter("companyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "List of PABX Information"));           
+            Rpt1.SetParameters(new ReportParameter("txtaddress", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
         private void RptJoiningStatus()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1454,7 +1506,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string nozero = (hrcomln == 4) ? "0000" : "00";
 
             string txtCompanyname = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
-            string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
+            string txtSearchDept =  "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
@@ -1495,6 +1547,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetProjectName();
+        }
+
+        protected void gvPabxInfo_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvPabxInfo.PageIndex = e.NewPageIndex;
+            this.LoadGrid();
         }
     }
 }
