@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" AutoEventWireup="true" CodeBehind="AccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccSubCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
+
     <link href="../Content/FullGridPager.css" rel="stylesheet" />
+    <script src="../Content/Theme/vendor/jquery/jquery.min.js"></script>
+    <script src="../Content/Theme/vendor/jquery/jquery-ui.min.js"></script>
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -354,7 +358,7 @@
                             <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                                 OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnPageIndexChanging="grvacc_PageIndexChanging"
-                                OnRowDataBound="grvacc_RowDataBound"  CssClass="table-striped table-hover table-bordered grvContentarea"    
+                                OnRowDataBound="grvacc_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 Width="700px" OnDataBound="grvacc_DataBound" ShowFooter="True">
 
 
@@ -366,7 +370,7 @@
                                             <asp:Label ID="lblserialnoid" runat="server"
                                                 Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                         </ItemTemplate>
-                                       <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle />
                                     </asp:TemplateField>
 
@@ -385,7 +389,7 @@
 
                                     <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
                                         SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
-                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle ForeColor="#0000C0" />
                                     </asp:CommandField>
 
@@ -404,15 +408,15 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode2"))+"-" %>'
                                                 Width="20px"></asp:Label>
                                         </ItemTemplate>
-                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle Font-Size="12px" />
                                     </asp:TemplateField>
 
-                                   
+
                                     <asp:TemplateField HeaderText="Code">
 
                                         <ItemTemplate>
-                                            <asp:Label ID="lbllgrcode" runat="server" Font-Size="12px" 
+                                            <asp:Label ID="lbllgrcode" runat="server" Font-Size="12px"
                                                 MaxLength="13" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode4")) %>'
                                                 Width="100px"></asp:Label>
@@ -486,7 +490,7 @@
                                             <asp:Label ID="lblunit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirunit")) %>'
                                                 Width="40px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px"  HorizontalAlign="Center"  /> 
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="Center" Width="10px" />
                                     </asp:TemplateField>
 
@@ -503,7 +507,7 @@
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem,  "sirval")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
-                                        <HeaderStyle Font-Bold="True" Font-Size="16px"  HorizontalAlign="Center"  /> 
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Center" />
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Type" Visible="false">
@@ -518,7 +522,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirtype")) %>'
                                                 Width="60px"></asp:Label>
                                         </ItemTemplate>
-                                         <HeaderStyle Font-Bold="True" Font-Size="16px"   /> 
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle Font-Size="12px" HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Brand" HeaderStyle-Width="200">
@@ -562,7 +566,7 @@
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
                                                 Width="200px"></asp:Label>
                                         </ItemTemplate>
-                                         <HeaderStyle Font-Bold="True" Font-Size="16px"    /> 
+                                        <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                     </asp:TemplateField>
 
 
@@ -602,22 +606,22 @@
 
                                     <asp:TemplateField HeaderText="Seq">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvseq" runat="server"  
+                                            <asp:TextBox ID="txtgvseq" runat="server"
                                                 Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "seq")) %>'
                                                 Width="60px"></asp:TextBox>
 
 
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                                <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
-                                         </FooterTemplate>
+                                            <asp:LinkButton ID="lnkbtnDeptSeqUpdate" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lnkbtnDeptSeqUpdate_Click">Update</asp:LinkButton>
+                                        </FooterTemplate>
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
-                                     <asp:TemplateField HeaderText="Sir Code" Visible="false">
+                                    <asp:TemplateField HeaderText="Sir Code" Visible="false">
 
                                         <ItemTemplate>
-                                            <asp:Label ID="lbllgrcodefull" runat="server" Font-Size="12px" 
+                                            <asp:Label ID="lbllgrcodefull" runat="server" Font-Size="12px"
                                                 MaxLength="13" BackColor="Transparent"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode")) %>'
                                                 Width="100px"></asp:Label>
