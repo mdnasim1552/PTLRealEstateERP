@@ -30,6 +30,8 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Client Information";
+
+
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.txtentryEmpID.Visible = false;
                 string comcod = this.GetComeCode();

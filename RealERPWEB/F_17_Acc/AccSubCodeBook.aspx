@@ -4,8 +4,12 @@
 
 
     <link href="../Content/FullGridPager.css" rel="stylesheet" />
+<<<<<<< HEAD
+    
+=======
     <script src="../Content/Theme/vendor/jquery/jquery.min.js"></script>
     <script src="../Content/Theme/vendor/jquery/jquery-ui.min.js"></script>
+>>>>>>> 44f142301e2a6df3db3eb41ac839dc9093a2cf07
     <script type="text/javascript">
 
         $(document).ready(function () {
