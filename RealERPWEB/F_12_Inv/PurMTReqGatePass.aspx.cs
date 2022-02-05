@@ -37,6 +37,11 @@ namespace RealERPWEB.F_12_Inv
                     this.ImgbtnFindRes_Click(null, null);
                     this.lbtnOk_Click(null, null);
 
+                    if (this.Request.QueryString["Type"].ToString() == "GpaEdit")
+                    {
+                        this.lbtnSelectAll_Click(null, null);
+                        this.getpannelHide();
+                    }
                 }
 
                ((Label)this.Master.FindControl("lblTitle")).Text = "Get Pass";
@@ -48,6 +53,7 @@ namespace RealERPWEB.F_12_Inv
 
 
         }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
@@ -60,6 +66,14 @@ namespace RealERPWEB.F_12_Inv
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+
+        private void getpannelHide()
+        {
+            this.txtGatemPassNo.Text = this.Request.QueryString["gpref"].ToString();
+            this.txtGatemPassNo.ReadOnly = true;
+
         }
 
 
@@ -267,6 +281,7 @@ namespace RealERPWEB.F_12_Inv
             //this.ddlResourcelist.Visible = false;
 
         }
+        
         protected void GetGetPassNo()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -451,18 +466,15 @@ namespace RealERPWEB.F_12_Inv
         protected void Session_tblAprov_Update()
         {
             DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
-            int TblRowIndex2;
+            int rowindex;
             for (int j = 0; j < this.gvAprovInfo.Rows.Count; j++)
             {
-
-
-
                 double getpqty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvAprovInfo.Rows[j].FindControl("txtgvaprovedQty")).Text.Trim()));
                 double rate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvAprovInfo.Rows[j].FindControl("lblgvaprovRate")).Text.Trim()));
                 double getpamt = getpqty * rate;
-                TblRowIndex2 = (this.gvAprovInfo.PageIndex) * this.gvAprovInfo.PageSize + j;
-                tbl1.Rows[TblRowIndex2]["getpqty"] = getpqty;
-                tbl1.Rows[TblRowIndex2]["getpamt"] = getpamt;
+                rowindex = (this.gvAprovInfo.PageIndex) * this.gvAprovInfo.PageSize + j;
+                tbl1.Rows[rowindex]["getpqty"] = getpqty;
+                tbl1.Rows[rowindex]["getpamt"] = getpamt;
             }
 
             ViewState["tblgetPass"] = tbl1;
@@ -610,6 +622,19 @@ namespace RealERPWEB.F_12_Inv
         }
         protected void lbtnUpdatePurAprov_Click(object sender, EventArgs e)
         {
+            if (this.Request.QueryString["Type"].ToString() == "GpaEdit")
+            {
+                this.saveGatePassEdit();
+            }
+            else
+            {
+                this.saveGatePass();
+            }
+
+        }
+
+        private void saveGatePass()
+        {
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -617,7 +642,6 @@ namespace RealERPWEB.F_12_Inv
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
-
 
             this.Session_tblAprov_Update();
 
@@ -803,12 +827,100 @@ namespace RealERPWEB.F_12_Inv
             }
         }
 
+        private void saveGatePassEdit()
+        {
+
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
+            string Terminal = hst["compname"].ToString();
+            string Sessionid = hst["session"].ToString();
+
+            this.Session_tblAprov_Update();
+
+            DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
+            DataRow[] dr = tbl1.Select("getpqty>0");
+            if (dr.Length == 0)
+            {
+
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Input Order Qty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
+            //log Report
+            string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
+            string mGetpNo = this.Request.QueryString["getpasno"].ToString();
+            string getpref = this.Request.QueryString["gpref"].ToString();
+            string mtrnar = this.txtgetpNarr.Text.ToString();
+
+            string PostedByid = userid;
+            string Posttrmid = Terminal;
+            string PostSession = Sessionid;
+            string PostedDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPB", mGetpNo, mmGetpdat, getpref, mtrnar,
+                        PostedByid, Posttrmid, PostSession, PostedDate, "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                return;
+            }
 
 
+            foreach (DataRow dr1 in tbl1.Rows)
+            {
 
+                string mtREQNO = dr1["mtreqno"].ToString();
+                bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(dr1["mtrdat"].ToString()), Convert.ToDateTime(mmGetpdat));
+                if (!dcon)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Approved Date is equal or greater Requisition Date');", true);
+                    return;
+                }
 
+                string mRSIRCODE = dr1["rsircode"].ToString();
+                string mSPCFCOD = dr1["spcfcod"].ToString();
+                double getpqty = Convert.ToDouble(dr1["getpqty"]);
+                string getpamt = Convert.ToDouble(dr1["getpamt"]).ToString();
+                double mtrfqty = Convert.ToDouble(dr1["mtrfqty"]);
+                double balqty = Convert.ToDouble(dr1["balqty"]);
 
+                if (balqty >= getpqty)
+                {
+                    if (getpqty > 0)
+                        result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPA",
+                                    mGetpNo, mtREQNO, mRSIRCODE, mSPCFCOD, getpqty.ToString(), getpamt, "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+                    }
+                }
 
+                else
+                {
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Gate Pass Qty Can't Large Balance Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    return;
+
+                }
+
+            }
+            this.txtCurAprovDate.Enabled = false;
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            if (ConstantInfo.LogStatus == true)
+            {
+                string eventtype = "Gate Pass";
+                string eventdesc = "Gate Pass Edit";
+                string eventdesc2 = mGetpNo;
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+            }
+        }
 
 
         protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
@@ -817,11 +929,6 @@ namespace RealERPWEB.F_12_Inv
             this.Data_Bind();
 
         }
-
-
-
-
-
 
 
         protected void gvAprovInfo_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)

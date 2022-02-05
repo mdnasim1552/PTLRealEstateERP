@@ -288,9 +288,29 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkapp");
+                HyperLink hlnkapedit = (HyperLink)e.Row.FindControl("lnkgpapdit");
+                string comcod = this.GetCompCode();
+
+                switch (comcod)
+                {
+                    case "3340":
+                    case "3101":
+                        hlnkapedit.Visible = true;
+                        break;
+                    default:
+                        hlnkapedit.Visible = false;
+                        break;
+                }
 
                 string getpasno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "getpno")).ToString();
+                string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
+                string getpref = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "getpref")).ToString();
+
                 hlnkchk.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + getpasno;
+                hlnkapedit.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=GpaEdit&genno=" + mtreqno + "&getpasno=" + getpasno + "&gpref=" + getpref;
+
+
+
 
 
             }
