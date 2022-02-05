@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <link href="../Content/FullGridPager.css" rel="stylesheet" />
+    
     <script type="text/javascript">
 
         $(document).ready(function () {
