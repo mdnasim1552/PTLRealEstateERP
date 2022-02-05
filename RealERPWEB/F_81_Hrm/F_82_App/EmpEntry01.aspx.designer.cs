@@ -33,15 +33,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.DropDownList ddlInformation;
 
         /// <summary>
-        /// addOcupation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink addOcupation;
-
-        /// <summary>
         /// lblLastCardNo control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblLastCardNo;
+
+        /// <summary>
+        /// addOcupation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink addOcupation;
 
         /// <summary>
         /// MultiView1 control.
