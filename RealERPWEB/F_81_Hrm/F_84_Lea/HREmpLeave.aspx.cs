@@ -31,8 +31,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.GetCompany();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "COMPANY LEAVE INFORMATION";
                 this.GetProjectName();
-                // this.imgbtnProSrch_Click(null, null);
+               
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+                 
+
             }
 
         }
@@ -57,7 +60,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
@@ -100,11 +103,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             this.rblstapptype.SelectedIndex = 0;
                             break;
                     }
-                    this.Label5.Visible = false;
-                    this.txtdate.Visible = false;
-                    this.lblPage.Visible = false;
-                    this.ddlpagesize.Visible = false;
-                    this.lblEmpCode.Visible = false;
+                    lblEmpIdSearch.Visible = false;
+                    this.divLeaveApp.Visible = false;
+                    this.divPage.Visible = false;
+                    this.ddlpagesize.Visible = false;                   
                     this.txtEmpSearch.Visible = false;
                     this.imgbtnEmpSeach.Visible = false;
                     break;
@@ -123,11 +125,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             break;
                     }
                     //this.rblstFormType.SelectedIndex = 0;
-                    this.Label5.Visible = false;
-                    this.txtdate.Visible = false;
-                    this.lblPage.Visible = false;
-                    this.ddlpagesize.Visible = false;
-                    this.lblEmpCode.Visible = false;
+
+                    this.divLeaveApp.Visible = false;
+                    this.divPage.Visible = false;
+                    this.ddlpagesize.Visible = false;                    
+                    lblEmpIdSearch.Visible = false;
+
                     this.txtEmpSearch.Visible = false;
                     this.imgbtnEmpSeach.Visible = false;
                     break;
@@ -137,7 +140,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void GetProjectName()
         {
             string comcod = this.GetComeCode();
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%%";
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string company = (this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() == nozero) ? "%" : this.ddlCompany.SelectedValue.Substring(0, hrcomln).ToString() + "%";
@@ -239,8 +242,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txtLeavLreasons.Text = "";
                 this.txtaddofenjoytime.Text = "";
                 this.txtLeavRemarks.Text = "";
-                this.lmsg11.Text = "";
-                this.lbltrnleaveid.Text = "";
+               
+                
                 this.ddlPreLeave.Items.Clear();
                 this.gvLeaveApp.DataSource = null;
                 this.gvLeaveApp.DataBind();
@@ -385,11 +388,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void lnkbtnFUpLeave_Click(object sender, EventArgs e)
         {
             this.SaveValue();
+            string Message;
             DataTable dt = (DataTable)Session["YearLeav"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string yearid = this.txtdate.Text;
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 string empid = dt.Rows[i]["empid"].ToString();
@@ -420,14 +424,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     skleave, mtid, mtleave, wpid, wpleave, trpid, trpleave, ptid, ptleave, lonproid, lonproidleave, lonsepaid, lonsepaleave);
                 if (result == false)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
 
+                    Message = "Data Is Not Updated ";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                     
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    Message = "Updated Successfully";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+ 
                 }
 
             }
@@ -541,7 +547,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string IdCardNo = "%" + this.txtlAppEmpSearch.Text.Trim() + "%";
+            string IdCardNo = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", pactcode, company, IdCardNo, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -611,7 +617,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
             string pactcode = (this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
-            string IdCardNo = "%" + this.txtlAppEmpSearch.Text.Trim() + "%";
+            string IdCardNo = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", pactcode, company, IdCardNo, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -641,7 +647,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblSection.Text = dr1[0]["section"].ToString();
                 this.lblDesignation.Text = dr1[0]["desig"].ToString();
                 this.lblJoiningDate.Text = Convert.ToDateTime(dr1[0]["joindate"]).ToString("dd-MMM-yyyy");
-
 
             }
 
@@ -795,7 +800,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblSectionlApp.Text = dr1[0]["section"].ToString();
                 this.lblDesignationlApp.Text = dr1[0]["desig"].ToString();
                 this.lblJoiningDatelApp.Text = Convert.ToDateTime(dr1[0]["joindate"]).ToString("dd-MMM-yyyy");
-                this.lblmobno.Text = dr1[0]["phoneno"].ToString();
+               // this.lblmobno.Text = dr1[0]["phoneno"].ToString();
 
 
             }
@@ -1489,7 +1494,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             this.SaveLeave();
 
-            this.lmsg11.Visible = true;
+            
             DataTable dt = (DataTable)Session["tblleave"];
             string comcod = this.GetComeCode();
 
@@ -1521,7 +1526,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             }
             this.EmpLeaveInfo();
-            this.lmsg11.Text = "Updated Successfully";
+           string Message = "Updated Successfully";            
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
 
 
         }
