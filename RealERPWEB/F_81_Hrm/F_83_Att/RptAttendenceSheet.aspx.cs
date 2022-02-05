@@ -527,8 +527,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string acclate = this.GetComLateAccTime();
 
             string section = "";
-            if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
-            {
+            //if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
+            //{
 
                 string gp = this.DropCheck1.SelectedValue.Trim();
                 if (gp.Length > 0)
@@ -548,7 +548,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 }
 
-            }
+            //}
 
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYATTN02", frmdate, todate, deptCode, Company, section, todesig, frmdesig, acclate, "");
             if (ds1 == null)

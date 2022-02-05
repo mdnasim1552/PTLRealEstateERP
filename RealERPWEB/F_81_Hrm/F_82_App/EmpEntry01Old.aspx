@@ -209,7 +209,7 @@
                                     </asp:GridView>
 
                                 </div>
-                                <div class="col-sm-6 col-md-2 col-lg-2">
+                                <div class="col-sm-6 col-md-2 col-lg-2" runat="server" visible="false">
                                     <div class="row" id="UploadCV" runat="server" visible="false">
 
                                         <div class="col-md-12 ">
