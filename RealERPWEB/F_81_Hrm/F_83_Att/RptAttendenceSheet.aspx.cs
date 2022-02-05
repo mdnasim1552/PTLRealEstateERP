@@ -32,10 +32,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetCompany();
                 this.GetProjectName();
                 this.GetDesignation();
+                this.GetEmpName();
                 //this.SectionName();
-
+                ((Label)this.Master.FindControl("lblTitle")).Text ="Employee Attendance Information";
                 this.SelectDate();
-
                 this.rbtnAtten.SelectedIndex = 3;
             }
         }
@@ -54,32 +54,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             DataSet datSetup = compUtility.GetCompUtility();
             if (datSetup == null)
-
                 return;
 
-           string  startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-
-            //switch (comcod)
-            //{
-
-            //    case "3101":
-            //    case "3330":
-
-                    this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
-                    this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            //        break;
-
-            //    default:
-
-            //        this.txtfromdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            //        this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-            //        this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-            //        break;
-
-
-            //}
         }
         private void GetCompany()
         {
@@ -87,7 +68,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
 
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -106,7 +87,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             //tring Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
+            string txtSProject = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
@@ -129,6 +110,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (rdbutton)
             {
                 case 0:
+                    this.pnlAttnLog.Visible = true;
                     this.pnldailyatt.Visible = false;
                     this.pnlmonthlyatt.Visible = false;
                     this.pnlemplateatt.Visible = false;
@@ -141,13 +123,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 2:
+                    this.pnlempstatus.Visible = true;
                     this.pnldailyatt.Visible = false;
                     this.pnlmonthlyatt.Visible = false;
                     this.pnlemplateatt.Visible = false;
-                    this.pnlempstatus.Visible = true;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 3:
                     this.pnlmonthlyatt.Visible = true;
@@ -155,20 +139,23 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 4:
+                    this.pnlemplateatt.Visible = true;
                     this.pnldailyatt.Visible = false;
                     this.pnlmonthlyatt.Visible = false;
-                    this.pnlemplateatt.Visible = true;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 5:
+                    this.pnlempstatusLate.Visible = true;
                     this.pnldailyatt.Visible = false;
                     this.pnlmonthlyatt.Visible = false;
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
-                    this.pnlempstatusLate.Visible = true;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 6:
                     this.pnldailyatt.Visible = false;
@@ -176,6 +163,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 7:
                     this.pnldailyatt.Visible = false;
@@ -183,6 +171,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 case 8:
                     this.pnldailyatt.Visible = false;
@@ -190,6 +179,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+                    this.pnlAttnLog.Visible = false;
                     break;
                 default:
                     break;
@@ -201,7 +191,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             string Company = ((this.ddlCompany.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string Department = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
-            string txtSSec = "%" + this.txtSrcSec.Text.Trim() + "%";
+            string txtSSec = "%%";
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "SECTIONNAMEDP", Company, Department, txtSSec, "", "", "", "", "", "");
             this.DropCheck1.DataTextField = "sectionname";
             this.DropCheck1.DataValueField = "sectionname";
@@ -252,7 +242,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             string company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string projectName = ((ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
-            string txtSEmployee = "%" + this.txtSrcEmpName.Text.Trim() + "%";
+            string txtSEmployee = "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
             if (ds3 == null)
                 return;
@@ -262,37 +252,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlEmpName.DataBind();
         }
 
-        protected void imgbtnProSrch_Click(object sender, EventArgs e)
-        {
-            this.GetProjectName();
-        }
-        protected void imgbtnEmpName_Click(object sender, EventArgs e)
-        {
-            this.GetEmpName();
-        }
-
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetProjectName();
         }
-        protected void imgbtnCompany_Click(object sender, EventArgs e)
-        {
-            this.GetCompany();
-        }
+        
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetSectionName();
         }
-        protected void imgbtnSecSrch_Click(object sender, EventArgs e)
-        {
-            this.GetSectionName();
-
-        }
+        
         protected void rbtnAtten_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.lblempname.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
-            this.txtSrcEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
-            this.imgbtnEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
+            this.lnkbtnEmp.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
+            //this.txtSrcEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
+           // this.imgbtnEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
             this.ddlEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
 
             this.lblfrmdate.Text = ((this.rbtnAtten.SelectedIndex == 1 || this.rbtnAtten.SelectedIndex == 7) ? "Date:" : "From:");
@@ -310,7 +284,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             switch (index)
             {
                 case 0:
-                    // MultiView1.ActiveViewIndex = 0;
                     this.GetAttendncLogData();
 
                     break;
@@ -398,14 +371,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string txtfromdate = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txttodate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
-            // string icardnumber = ddlEmpName.Substring(0, 6);
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTENDENCELOG", txtfromdate, txttodate, empid, "", "", "", "", "", "");
+            if (ds==null)
+                return;
 
-            //this.Attendencelog.DataSource = ds;
-            //this.Attendencelog.DataBind();
-
-            ViewState["Attanlogdta"] = ds;
-            //this.imgbtnEmpName_Click(null, null);
+            Session["tblallData"] = ds.Tables[0];
+            this.Data_Bind();
         }
 
         private void MonthLateAtt()
@@ -450,6 +421,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPMONTHLYLATEATTN", frmdate, todate, deptCode, Company, section, "", "", "", "");
             if (ds1 == null)
                 return;
+
             Session["tblallData"] = ds1.Tables[0];
             this.Data_Bind();
 
@@ -610,21 +582,28 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void Data_Bind()
         {
-           string comcod= this.GetComCode();
+            string comcod = this.GetComCode();
 
             DataTable dt = (DataTable)Session["tblallData"];
 
             int index = this.rbtnAtten.SelectedIndex;
             switch (index)
             {
+                case 0:
+                    this.gvAttnLog.DataSource = dt;
+                    this.gvAttnLog.DataBind();
+                    break;
+
                 case 1:
                     this.gvdailyatt.DataSource = dt;
-                    this.gvdailyatt.DataBind(); ;
+                    this.gvdailyatt.DataBind(); 
                     break;
+
                 case 2:
                     this.gvEmpStatus.DataSource = dt;
-                    this.gvEmpStatus.DataBind(); ;
+                    this.gvEmpStatus.DataBind(); 
                     break;
+
                 case 3:
 
 
@@ -649,7 +628,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             //this.gvMonthlyattSummary.Columns[j].HeaderText = datefrm.ToString("dddd").Substring(0,1);
                             datefrm = datefrm.AddDays(1);
                             j++;
-                           
+
 
                         }
 
@@ -661,16 +640,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         this.gvMonthlyAtt.DataSource = dt;
                         this.gvMonthlyAtt.DataBind();
                     }
-                   
                     break;
+
                 case 4:
                     this.gvemplateatt.DataSource = dt;
                     this.gvemplateatt.DataBind();
                     break;
+
                 case 5:
                     this.gvempstatusLate.DataSource = dt;
                     this.gvempstatusLate.DataBind();
                     break;
+
                 default:
                     break;
 
@@ -788,38 +769,29 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string txtfromdate = Convert.ToDateTime(this.txtfromdate.Text.Trim()).ToString("dd-MMM-yyyy");
             string txttodate = Convert.ToDateTime(this.txttodate.Text.Trim()).ToString("dd-MMM-yyyy");
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            // string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
             string rptDt = "Date( From: " + txtfromdate + " To: " + txttodate + " )";
-
 
             string empid = this.ddlEmpName.SelectedValue.ToString();
             DataSet ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "EMPATTENDENCELOG", txtfromdate, txttodate, empid, "", "", "", "", "", "");
+            if (ds==null)
+                return;
+
             string depart = ds.Tables[0].Rows[0]["depname"].ToString();
             string designation = "Designation: " + ds.Tables[0].Rows[0]["desg"].ToString(); ;
-
             string empname = ds.Tables[0].Rows[0]["empname"].ToString();
             var list = ds.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EClassAttendance.EmpAttendncLog>();
 
             LocalReport rpt1 = new LocalReport();
-
             rpt1 = RptHRSetup.GetLocalReport("R_81_Hrm.R_83_Att.RptAttnLog", list, null, null);
-
-            //rpt1.SetParameters(new ReportParameter("Rptusirdesc", usirdesc));
-
-            //rpt1.SetParameters(new ReportParameter("rptDt", rptDt));
-
-            //rpt1.SetParameters(new ReportParameter("comadd", comadd));
-
             rpt1.SetParameters(new ReportParameter("comnam", comnam));
             rpt1.SetParameters(new ReportParameter("depart", "Department:" + depart));
             rpt1.SetParameters(new ReportParameter("designation", designation));
             rpt1.SetParameters(new ReportParameter("reprtdate", rptDt));
             rpt1.SetParameters(new ReportParameter("EmpNam", " Employee Name: " + empname));
-
             rpt1.SetParameters(new ReportParameter("RptTitle", "Employee Attendance Log"));
             rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat(compname, username, printdate)));
 
-            //rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            
             Session["Report1"] = rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -1942,7 +1914,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
 
                 GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
-          
+
                 TableCell cell01 = new TableCell();
                 cell01.Text = "Sl";
                 cell01.HorizontalAlign = HorizontalAlign.Center;
@@ -2035,7 +2007,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.Data_Bind();
         }
 
-        
+        protected void gvAttnLog_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvAttnLog.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
+        }
+
+        protected void lnkbtnEmp_Click(object sender, EventArgs e)
+        {
+            this.GetEmpName();
+        }
     }
 }
 
