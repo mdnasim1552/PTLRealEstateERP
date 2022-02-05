@@ -1190,7 +1190,6 @@ namespace RealERPWEB.F_17_Acc
 
                     }
 
-
                     //string comcod = this.GetCompCode();
                    
                     switch (comcod)
@@ -1201,10 +1200,8 @@ namespace RealERPWEB.F_17_Acc
                             break;
 
                         default:
-                           
+                       
                             break;
-
-
                     }
 
 

@@ -214,7 +214,7 @@ namespace RealERPWEB.F_14_Pro
                     {
                         case "3101": // Pintech                   
                         case "3356"://Intech
-                            this.SMSSendforSupplier(comcod, cellphone);
+                           this.SMSSendforSupplier(comcod, cellphone);
                             break;
 
 
