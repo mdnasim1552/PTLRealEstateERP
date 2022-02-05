@@ -26,15 +26,17 @@ namespace RealERPWEB.F_21_MKT
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                //this.lnkprint.Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+                 
+
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Transfer Client Information";
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                this.txtFdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtTdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string txtDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtFdate.Text = "01-" + Convert.ToDateTime(txtDate).ToString("MMM-yyyy");
+                this.txtTdate.Text = Convert.ToDateTime(this.txtFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                 
                 this.GetClientInfo();
 
             }
@@ -62,6 +64,10 @@ namespace RealERPWEB.F_21_MKT
             string todate = this.txtTdate.Text;
             string comcod = this.Getcomcod();
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_TRANSFER_LOG", frmdate, todate, "", "", "", "","","","","");
+           if(ds1==null)
+            {
+                return;
+            }
             DataTable dt1 = ds1.Tables[0];
             ViewState["clientinfo"] = dt1;
             this.Data_Bind();

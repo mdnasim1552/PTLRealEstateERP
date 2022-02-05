@@ -79,11 +79,11 @@
                 </asp:UpdateProgress>
             </div>--%>
 
-    <div class="card card-fluid container-data mt-5" style="min-height:1000px;">
-        <div class="card-header">
-            <div class="row">
+    <div class="card card-fluid container-data">
+        <div class="card-header mb-0 pb-0">
+            <div class="row mb-0 pb-0">
 
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <div class="input-group input-group-alt ">
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary ml-1" type="button">Employee List</button>
@@ -92,16 +92,6 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-
-                <div class="col-md-2">
-                    <a href="#" class="btn btn-info btn-xs" onclick="history.go(-1)">Back</a>
-                    <asp:HyperLink runat="server" CssClass="btn  btn-primary btn-xs" NavigateUrl="HREmpEntry?Type=Aggrement" Target="_blank">Next Aggrement</asp:HyperLink>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-            <br />
-
-            <div class="row">
                 <div class="col-md-3 p-0">
                     <div class="input-group input-group-alt ">
                         <div class="input-group-prepend">
@@ -111,13 +101,25 @@
                         </asp:DropDownList>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <asp:HyperLink ID="addOcupation" Visible="False" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_82_App/HRCodeBook.aspx" CssClass="btn btn-success btn-sm" Style="padding: 0 10px">Add Occupation</asp:HyperLink>
-                </div>
+
                 <div class="col-md-3">
                     <asp:Label ID="lblLastCardNo" runat="server" Visible="false" CssClass=" btn btn-info primaryBtn btn-sm"></asp:Label>
 
                 </div>
+                <div class="col-md-2" runat="server" visible="false" >
+                    <a href="#" class="btn btn-info btn-xs" onclick="history.go(-1)">Back</a>
+                    <asp:HyperLink runat="server" CssClass="btn  btn-primary btn-xs" NavigateUrl="HREmpEntry?Type=Aggrement" Target="_blank">Next Aggrement</asp:HyperLink>
+                </div>
+            </div>
+           <%-- <div class="clearfix"></div>
+            <br />--%>
+
+            <div class="row mb-0 pb-0" >
+                
+                <div class="col-md-3">
+                    <asp:HyperLink ID="addOcupation" Visible="False" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_82_App/HRCodeBook.aspx" CssClass="btn btn-success btn-sm" Style="padding: 0 10px">Add Occupation</asp:HyperLink>
+                </div>
+                
             </div>
         </div>
 
@@ -125,10 +127,10 @@
             <div class="row">
                 <asp:MultiView ID="MultiView1" runat="server">
                     <asp:View ID="ViewPersonal" runat="server">
-                        <div class="row">
-                            <div class="col-sm-6 col-md-10 col-lg-10">
+                      
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                 <asp:GridView ID="gvPersonalInfo" runat="server" AutoGenerateColumns="False"
-                                    ShowFooter="True" Width="831px" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                    ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     OnRowDataBound="gvPersonalInfo_RowDataBound">
                                     <RowStyle />
                                     <Columns>
@@ -136,7 +138,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px"
                                                     Style="text-align: right"
-                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                    Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
@@ -152,7 +154,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lgcResDesc1" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                    Width="200px"></asp:Label>
+                                                   Width="160px"  ></asp:Label>
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -178,33 +180,29 @@
                                             </FooterTemplate>
                                             <ItemTemplate>
 
-                                                <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" CssClass="form-control"
+                                                <asp:TextBox ID="txtgvVal" runat="server"  
+                                                      CssClass="form control"  Width="200px" BackColor="Transparent"
                                                     BorderColor="#660033" BorderStyle="None" BorderWidth="1px" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                                    Width="400px"></asp:TextBox>
-                                                <asp:TextBox ID="txtgvdVal" runat="server" BackColor="Transparent" CssClass="form-control"
-                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
+                                                   ></asp:TextBox>
+                                                <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled" 
+                                                    CssClass="form control"  Width="200px" BackColor="Transparent"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
-                                                    Width="400px"></asp:TextBox>
+                                                    ></asp:TextBox>
 
                                                 <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
-                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
+                                                    Enabled="True" Format="dd-MMM-yyyy"  TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal" ></cc1:CalendarExtender>
                                                 <asp:Panel ID="Panegrd" runat="server">
 
                                                     <div class="form-group">
                                                         <div class="col-md-12 pading5px">
                                                             <%--<asp:TextBox ID="txtgrdEmpSrc" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>--%>
                                                             <%--<asp:LinkButton ID="ibtngrdEmpList" runat="server" CssClass="btn btn-primary srearchBtn colMdbtn" OnClick="ibtngrdEmpList_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>--%>
-
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged" CssClass=" chzn-select form-control" Width="200px" AutoPostBack="true" TabIndex="2">
                                                             </asp:DropDownList>
-
-
-
                                                         </div>
                                                     </div>
-
-
                                                 </asp:Panel>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -213,9 +211,9 @@
                                         <asp:TemplateField HeaderText="Bangla">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txtgvValBn" runat="server" BackColor="Transparent"
-                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="16px"
+                                                    BorderColor="#660033" BorderStyle="None" BorderWidth="1px" 
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdescbn")) %>' autocomplete="off"
-                                                    Width="250px"></asp:TextBox>
+                                                    Width="200px"></asp:TextBox>
 
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -229,7 +227,10 @@
                                 </asp:GridView>
 
                             </div>
-                            <div class="col-sm-6 col-md-2 col-lg-2">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                              
+                            </div>
+                            <div class="col-sm-6 col-md-2 col-lg-2 d-none">
                                 <div class="row" id="UploadCV" runat="server" visible="false">
 
                                     <div class="col-md-12 ">
@@ -245,7 +246,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
                     </asp:View>
                     <asp:View ID="ViewDegree" runat="server">
                         <div class="row">

@@ -25,6 +25,8 @@ namespace RealERPWEB.F_21_MKT
                 this.txtFrmDate.Text = "01-"+Convert.ToDateTime(txtDate).ToString("MMM-yyyy");
                 this.txtToDate.Text = Convert.ToDateTime(this.txtFrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetAllSubdata();
+                this.GETEMPLOYEEUNDERSUPERVISED();
+
                 this.BindDDLLead();
                 this.lnkbtnOk_Click(null, null);
             }
@@ -40,6 +42,18 @@ namespace RealERPWEB.F_21_MKT
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+
+        private void GETEMPLOYEEUNDERSUPERVISED()
+        {
+            string comcod = GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = accessData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            ViewState["tblempsup"] = ds1.Tables[0];
+            ds1.Dispose();
+
 
         }
 
@@ -107,7 +121,10 @@ namespace RealERPWEB.F_21_MKT
             string comcod = this.GetComeCode();
             string txtFrmDate = Convert.ToDateTime(this.txtFrmDate.Text).ToString("dd-MMM-yyyy");
             string txtToDate = Convert.ToDateTime(this.txtToDate.Text).ToString("dd-MMM-yyyy");
+           
             string empId = this.ddlEmpid.SelectedValue.ToString();
+
+
             DataSet ds1 = accessData.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_WORKING_REPORT", null, null, null, txtFrmDate, txtToDate, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1==null)
                 return;

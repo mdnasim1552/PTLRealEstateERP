@@ -195,23 +195,30 @@ namespace RealERPLIB
 
                 string mobile = "88" + mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
                 string mobilewccode = mobilenum; //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
-               // string apiinfo = "";
-
+                string apiinfo = "";
                 string var_from = "ccl-non-masking";
-
-                HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(ApiUrl + user + "&password=" + pass + "&from=" + var_from + "&to=" + mobile + "&message=" + text);
+                switch (comcod)
+                {
+                    case "3356"://for Intech
+                        apiinfo = ApiUrl + user + "&password=" + pass + "&masking=" + sender + "&MsgType=TEXT" + "&receiver=" + mobile + "&message=" + text;               
+                        break;
+                    default:
+                        apiinfo = ApiUrl + user + "&password=" + pass + "&from=" + var_from + "&to=" + mobile + "&message=" + text;
+                        break;
+                }        
+                HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create(apiinfo);
 
                 HttpWebResponse myResp = (HttpWebResponse)myReq.GetResponse();
                 System.IO.StreamReader respStreamReader = new System.IO.StreamReader(myResp.GetResponseStream());
                 string responseString = respStreamReader.ReadToEnd();
                 respStreamReader.Close();
                 myResp.Close();
-                //string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
-                //string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
-                //for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
-                //{
-                //    string mobile = "88" + ds3.Tables[1].Rows[i]["phno"].ToString().Trim(); //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
-                              
+            //string catname = ds3.Tables[0].Rows[0]["apicatname"].ToString().Trim();//General
+            //string ApiUrl = ds3.Tables[0].Rows[0]["apiurl"].ToString().Trim(); //"http://login.smsnet24.com/apimanager/sendsms?user_id=";
+            //for (int i = 0; i < ds3.Tables[1].Rows.Count; i++)
+            //{
+            //    string mobile = "88" + ds3.Tables[1].Rows[i]["phno"].ToString().Trim(); //"880" + "1817610879";//this.txtMob.Text.ToString().Trim();1813934120
+           // http://api.boom-cast.com/boomcast/WebFramework/boomCastWebService/externalApiSendTextMessage.php?masking=Intech&userName=Intech24&password=f61874a0e2550be21aa2fa7171e7c347&MsgType=TEXT&receiver=01860454560&message=hello     
                 //}
 
 

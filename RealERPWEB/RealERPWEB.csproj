@@ -11781,7 +11781,6 @@
     <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
