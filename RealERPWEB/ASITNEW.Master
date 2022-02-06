@@ -134,7 +134,7 @@
             }
             return true;
         }
-
+       
     </script>
     <!-- END THEME STYLES -->
     <style>
@@ -685,7 +685,18 @@
 
 
     <script>
+
         $(document).ready(function () {
+
+           
+
+        });
+
+       
+
+        $(document).ready(function ()
+        {
+          
             var functionIsRunning = 0;
             closeNav();
             $('#nav-bar-open').on('click', function () {
@@ -718,6 +729,8 @@
 
 
         });
+
+    
         function clickinside() {
             openNav();
             functionIsRunning = 1;

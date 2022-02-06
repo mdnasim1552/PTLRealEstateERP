@@ -2961,6 +2961,7 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
@@ -4241,6 +4242,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx.designer.cs">
       <DependentUpon>EmpLoanInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx.cs">
+      <DependentUpon>EmpLoanInfoOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx.designer.cs">
+      <DependentUpon>EmpLoanInfoOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx.cs">
       <DependentUpon>EmpLoanStatus.aspx</DependentUpon>
