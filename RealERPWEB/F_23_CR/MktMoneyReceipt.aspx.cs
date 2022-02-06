@@ -1194,13 +1194,13 @@ namespace RealERPWEB.F_23_CR
 
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
-                string usercode = ViewState["usricode"].ToString();
+               // string usercode = ViewState["usricode"].ToString();
                 switch (comcod)
                 {
 
                     case "3101": // Pintech                   
                     case "3356": //Intech                    
-                      this.SMSSendMoneyRecipt(comcod, PactCode, usercode,  mrno,  mrdate);
+                      this.SMSSendMoneyRecipt(comcod, PactCode, Usircode,  mrno,  mrdate);
                         break;
 
 
@@ -1248,7 +1248,7 @@ namespace RealERPWEB.F_23_CR
             SendSmsProcess sms = new SendSmsProcess();
             string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            bool resultsms = sms.SendSMSClient("", smtext, custphone);
+            bool resultsms = sms.SendSMSClient(comcod, smtext, custphone);
             if (resultsms == true)
             {
                 bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smtext, "",
