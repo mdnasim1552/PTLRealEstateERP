@@ -142,7 +142,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <asp:LinkButton ID="lnkbtnEmp" runat="server" OnClick="lnkbtnEmp_Click">Emp.  Name</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnEmp" runat="server" OnClick="lnkbtnEmp_Click">Emp.Name</asp:LinkButton>
                                     <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
 
