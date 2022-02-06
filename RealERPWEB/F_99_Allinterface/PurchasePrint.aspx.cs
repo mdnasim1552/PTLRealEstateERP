@@ -3956,6 +3956,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
                     terms9 = "", terms10 = "", terms11 = "", terms12 = "";
+                string pperson1 = "", pperson2 = "";
 
 
                 switch (comcod)
@@ -4082,6 +4083,8 @@ namespace RealERPWEB.F_99_Allinterface
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
                         terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        pperson1 = termscondition.Find(p => p.termsid == "009").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
+                        pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
  
@@ -4255,6 +4258,8 @@ namespace RealERPWEB.F_99_Allinterface
                     //proadd
                     Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));
                     Rpt1.SetParameters(new ReportParameter("pactdesc", pactdesc));
+                    Rpt1.SetParameters(new ReportParameter("pperson1", pperson1));
+                    Rpt1.SetParameters(new ReportParameter("pperson2", pperson2));
                 }
                 if (comcod == "3336" || comcod == "3337")
                 {

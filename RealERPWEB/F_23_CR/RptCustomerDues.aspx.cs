@@ -105,7 +105,7 @@ namespace RealERPWEB.F_23_CR
 
                 case "3325":
                 case "2325":
-                case "3101":
+               /// case "3101":
                     chequeprint = "PrintDues2";
                     break;
                 default:

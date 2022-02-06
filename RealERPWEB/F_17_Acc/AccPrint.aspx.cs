@@ -537,8 +537,9 @@ namespace RealERPWEB.F_17_Acc
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Vounum", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339") ? vounum : "Voucher No : " + vounum));
-                Rpt1.SetParameters(new ReportParameter("voudat", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339") ? voudat : "Voucher Date : " + voudat));
+                Rpt1.SetParameters(new ReportParameter("Vounum", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339" || comcod=="1205" || comcod == "3351" || comcod == "3352") ? vounum : "Voucher No : " + vounum));
+                Rpt1.SetParameters(new ReportParameter("voudat", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339" || comcod == "1205" || comcod == "3351" || comcod == "3352") ? voudat : "Voucher Date : " + voudat));
+                
                 if (comcod == "2305" || comcod == "3305" || comcod == "3306" || comcod == "3309" || comcod == "3310" || comcod == "3311")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
