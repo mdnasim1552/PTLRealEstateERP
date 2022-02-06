@@ -58,7 +58,7 @@
         .grvContentarea {
         }
     </style>
-    <%--   
+       
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -77,7 +77,7 @@
                         </div>
                     </ProgressTemplate>
                 </asp:UpdateProgress>
-            </div>--%>
+            </div>
 
     <div class="card card-fluid container-data">
         <div class="card-header mb-0 pb-0">
@@ -1079,6 +1079,6 @@
             </div>
         </div>
     </div>
-    <%--   </ContentTemplate>
-    </asp:UpdatePanel>--%>
+       </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
