@@ -29,7 +29,7 @@
         <%: Scripts.Render("~/bundles/tablescroll") %>
         <%: Scripts.Render("~/bundles/chosen") %>
         <%: Scripts.Render("~/bundles/keynavigation") %>
-<%--        <%: Scripts.Render("~/bundles/richtext") %>--%>
+        <%--        <%: Scripts.Render("~/bundles/richtext") %>--%>
         <%: Scripts.Render("~/bundles/multiselect") %>
         <%: Scripts.Render("~/bundles/User") %>
         <%: Scripts.Render("~/bundles/Counter") %>
@@ -37,10 +37,9 @@
         
     </asp:PlaceHolder>
     <asp:ContentPlaceHolder ID="head" runat="server">
-        
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css"> 
-   
+
+        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
     </asp:ContentPlaceHolder>
     <%--After Pulished removebelow comments--%>
     <%-- 
@@ -135,7 +134,7 @@
             }
             return true;
         }
-
+       
     </script>
     <!-- END THEME STYLES -->
     <style>
@@ -216,6 +215,7 @@
         .app-header-dark .btn-account.focus, .app-header-dark .btn-account.show, .app-header-dark .btn-account:active, .app-header-dark .btn-account:focus, .app-header-dark .top-bar-brand {
             background-color: none;
         }
+
         .ps {
             overflow-x: hidden !important;
         }
@@ -341,14 +341,14 @@
                                     </a>
 
                                     <!-- .dropdown-menu -->
-                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right" style="overflow:hidden">
+                                    <div class="dropdown-menu dropdown-menu-rich dropdown-menu-right" style="overflow: hidden">
                                         <h6 class="dropdown-header stop-propagation">
                                             <span>Notification</span>
 
                                         </h6>
                                         <!-- .dropdown-scroll -->
                                         <div class="dropdown-scroll has-scrollable" id="repNotificmsg">
-                                             </div>
+                                        </div>
                                         <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")  %>" class="dropdown-footer">All Notification
                      
                                         <i class="fa fa-fw fa-long-arrow-alt-right"></i>
@@ -649,28 +649,29 @@
                 <!-- .app-footer -->
                 <footer class="app-footer fixed-bottom" style="background-color: #EEEEEE;">
                     <div class="col-md-12">
-                        <div class="float-left">
-                            <asp:LinkButton ID="lnkbtnLedger" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btngl btncommon" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnHisprice" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnTranList" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
-                            <asp:CheckBox ID="chkBoxN" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 1" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="chkBoxN_CheckedChanged" />
-                            <asp:CheckBox ID="CheckBox1" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
+                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                            <ContentTemplate>
+                                <div class="float-left">
+                                    <asp:LinkButton ID="lnkbtnLedger" OnClientClick="return confirm('Do You want to Save?');" Visible="false" runat="server" OnClick="lnkbtnLedger_Click" CssClass="btngl btncommon" Style="margin: 0 5px;"><span class="flaticon-book40"></span>Ledger</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnHisprice" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnHisprice_Click"><span class="flaticon-book40"></span>Historical Price</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnTranList" Visible="false" runat="server" CssClass="btngl  btncommon" Style="margin: 0 5px;" OnClick="lnkbtnTranList_Click"><span class="flaticon-book40"></span>Transaction List</asp:LinkButton>
+                                    <asp:CheckBox ID="chkBoxN" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 1" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="chkBoxN_CheckedChanged" />
+                                    <asp:CheckBox ID="CheckBox1" runat="server" Visible="false" TabIndex="10" Text="UnUsed CheckBox 2" CssClass="btngl checkBoxAN checkBox btncommon" AutoPostBack="true" OnCheckedChanged="CheckBox1_CheckedChanged" />
 
-                        </div>
-                        <div class="float-right">
-                            <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-md btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
+                                </div>
+                                <div class="float-right">
+                                    <asp:LinkButton ID="lnkbtnRecalculate" Visible="false" runat="server" CssClass="btn btn-md btn-secondary" OnClick="lnkbtnRecalculate_Click"><i class="fa fa-refresh" aria-hidden="true"></i> Recalculate</asp:LinkButton>
 
-                            <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>
- New</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btnadd btncommon" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>
- Add</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnNew" runat="server" Visible="false" CssClass="btnsave btncommon " Style="margin: 0 5px;" OnClick="lnkbtnNew_Click"><i class="fa fa-file-o" aria-hidden="true"></i>New</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnAdd" runat="server" Visible="false" CssClass="btnadd btncommon" OnClick="lnkbtnAdd_Click1" Style="margin: 0 5px;"><i class="fa fa-plus" aria-hidden="true"></i>Add</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnSave" Visible="false" ClientIDMode="Static" OnClientClick="return confirm('Do You want to Save?');" runat="server" CssClass="btn btn-md btn-info" Style="margin: 0 5px;" OnClick="lnkbtnSave_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnEdit" Visible="false" runat="server" CssClass="btnEdit btncommon" OnClick="lnkbtnEdit_Click" Style="margin: 0 5px;"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</asp:LinkButton>
 
-                            <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
-                            <asp:LinkButton ID="btnClose" Visible="false" runat="server" CssClass="buttonClose btncommon " OnClick="btnClose_Click" Style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>
-Close</asp:LinkButton>
-                        </div>
+                                    <asp:LinkButton ID="lnkbtnDelete" Visible="false" runat="server" OnClick="lnkbtnDelete_Click" CssClass="btnDelete btncommon " Style="margin: 0 5px;"><i class="fa fa-minus-square-o" aria-hidden="true"></i> Delete</asp:LinkButton>
+                                    <asp:LinkButton ID="btnClose" Visible="false" runat="server" CssClass="buttonClose btncommon " OnClick="btnClose_Click" Style="margin: 0 5px;"><i class="fa fa-times" aria-hidden="true"></i>Close</asp:LinkButton>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
                     <div class="copyright" runat="server" id="lblCopy"></div>
                 </footer>
@@ -684,7 +685,18 @@ Close</asp:LinkButton>
 
 
     <script>
+
         $(document).ready(function () {
+
+           
+
+        });
+
+       
+
+        $(document).ready(function ()
+        {
+          
             var functionIsRunning = 0;
             closeNav();
             $('#nav-bar-open').on('click', function () {
@@ -717,6 +729,8 @@ Close</asp:LinkButton>
 
 
         });
+
+    
         function clickinside() {
             openNav();
             functionIsRunning = 1;
@@ -868,7 +882,7 @@ Close</asp:LinkButton>
                 var userid = <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
-               
+
                 var row = "";
                 var img = "";
                 var count = 0;
@@ -881,14 +895,14 @@ Close</asp:LinkButton>
 
                         console.log(v.sendphoto);
 
-                        imgstrng =  v.sendphoto;
-                    
+                        imgstrng = v.sendphoto;
+
 
                         imgextract = imgstrng.substring(2);
                         //  row += '<li class="overflow-wrap: break-word; word-break:break-word!important;">' + '<a target=_blank href=' + encodeURI('../../Message/GetNotification.aspx?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '>' + img + '&nbsp;' + v.meassage + '</a>' + '</li>';
                         row += '<a href="' + encodeURI('../../Notification/GetNotification?Id=' + v.notifyid + '&RefId=' + v.refid + '&notiytype=' + v.notiytype + '&ntype=' + v.ntype) + '" class="dropdown-item unread">' +
                             '<div class="user-avatar">' +
-                            '<img src="../../' + imgextract+'" alt="">' +
+                            '<img src="../../' + imgextract + '" alt="">' +
                             '</div>' +
                             '<div class="dropdown-item-body">' +
                             '<p class="subject">' + v.eventitle + '</p>' +
@@ -901,15 +915,15 @@ Close</asp:LinkButton>
                 });
                 $("#repNotificmsg").append(row);
                 $("#lblallpop").text(count);
-                
-             }
-             catch (e) {
-                 /*showContentFail('Notification Not Found');*/
-             }
-         }
 
-        
-       
+            }
+            catch (e) {
+                /*showContentFail('Notification Not Found');*/
+            }
+        }
+
+
+
     </script>
 
 </body>

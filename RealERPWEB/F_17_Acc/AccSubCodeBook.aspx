@@ -1,66 +1,39 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNew.Master" AutoEventWireup="true" CodeBehind="AccSubCodeBook.aspx.cs" Inherits="RealERPWEB.F_17_Acc.AccSubCodeBook" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-
-
     <link href="../Content/FullGridPager.css" rel="stylesheet" />
-<<<<<<< HEAD
-    
-=======
     <script src="../Content/Theme/vendor/jquery/jquery.min.js"></script>
     <script src="../Content/Theme/vendor/jquery/jquery-ui.min.js"></script>
->>>>>>> 44f142301e2a6df3db3eb41ac839dc9093a2cf07
     <script type="text/javascript">
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
             document.getElementById('<%= lnkPageloadData.ClientID %>').click();
-
-
-
         });
         function loadModal() {
             $('#detialsinfo').modal('toggle');
         }
-
         function CloseModal() {
             $('#detialsinfo').modal('hide');
-
-
         }
-
-
         function loadModalAddCode() {
             $('#AddResCode').modal('toggle', {
                 backdrop: 'static',
                 keyboard: false
             });
         }
-
-
-
-
         function CloseModalAddCode() {
             $('#AddResCode').modal('hide');
-
-
         }
-
         function pageLoaded() {
 
             $('#Chboxchild').change(function () {
                 var result = $('#Chboxchild').is(':checked');
                 var description = result ? "Add Child" : "Add Group";
                 $('#lblchild').html(description);
-
-
             });
-
             $('.chzn-select').chosen({ search_contains: true });
-
-
-
         }
 
         function IsNumberWithOneDecimal(txt, evt) {
@@ -78,11 +51,9 @@
                         return false;
                     }
                 }
-
             }
             return true;
         }
-
     </script>
 
 
