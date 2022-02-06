@@ -662,7 +662,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             //}
 
-            string Calltype1 = (comcod == "3347") ? "RPT_BACSALARY" : "RPT_BACSALARYGEN";
+            string Calltype1 = (comcod == "3347") ? "RPT_BACSALARY" : "RPT_BACSALARYGEN"; 
             // todo for bangla print
             string language = this.chkBangla.Checked ? "Bangla" : "";
 
