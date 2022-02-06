@@ -3750,6 +3750,9 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                 string pactcode = _ReportDataSet.Tables[0].Rows[0]["pactcode"].ToString();
+                string prjaddress = _ReportDataSet.Tables[0].Rows[0]["proadd"].ToString();
+                string pactdesc = _ReportDataSet.Tables[0].Rows[0]["pactdesc"].ToString();
+
 
                 string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
 
@@ -3837,7 +3840,7 @@ namespace RealERPWEB.F_99_Allinterface
                 /// signature            
                 switch (comcod)
                 {
-                    case "3101"://ASIT
+                    //case "3101"://ASIT
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -3953,6 +3956,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
                     terms9 = "", terms10 = "", terms11 = "", terms12 = "";
+                string pperson1 = "", pperson2 = "";
 
 
                 switch (comcod)
@@ -4079,6 +4083,8 @@ namespace RealERPWEB.F_99_Allinterface
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
                         terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
                         terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        pperson1 = termscondition.Find(p => p.termsid == "009").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
+                        pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
  
@@ -4127,7 +4133,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderEdison.rdlc";
                         break;
 
-                    case "3101": //Pintech
+                    //case "3101": //Pintech
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P
@@ -4178,7 +4184,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-
+                    case "3101"://Asit
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
@@ -4214,7 +4220,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseOrder", purlist, termscondition, null);
                 Rpt1.EnableExternalImages = true;
 
-                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "3101")
+                if (comcod == "3351" || comcod == "1205" || comcod == "3352")
                 {
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
@@ -4247,10 +4253,14 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
                 }
 
-                //if (comcod == "3354")
-                //{
-                //    Rpt1.SetParameters(new ReportParameter("costdesc", costdesc));
-                //}
+                if (comcod == "3364" || comcod=="3101")
+                {
+                    //proadd
+                    Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));
+                    Rpt1.SetParameters(new ReportParameter("pactdesc", pactdesc));
+                    Rpt1.SetParameters(new ReportParameter("pperson1", pperson1));
+                    Rpt1.SetParameters(new ReportParameter("pperson2", pperson2));
+                }
                 if (comcod == "3336" || comcod == "3337")
                 {
                     Rpt1.SetParameters(new ReportParameter("cperson2", cperson2));

@@ -3755,7 +3755,7 @@
                                                 <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=CRM" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
                                              <li>
-                                                <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransferLog?type=CRM" runat="server">Prospect Transfer</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransferLog" runat="server">Prospect Transfer</asp:HyperLink>
                                             </li>
                                             <li>
                                                 <asp:HyperLink ID="hlnkProsWorkingReport" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking">Prospect Working Report</asp:HyperLink> 

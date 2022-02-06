@@ -46,7 +46,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //this.GetEmployeeName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE PERSONAL INFORMATION";
                 this.getLastCardNo();
-                this.lblLastCardNo.Visible = false;
+                this.lblLastCardNo.Visible = true;
                 CommonButton();
             }
         }
@@ -54,13 +54,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             //((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
             //((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
-            //((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = false;
+           // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
+           // ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Text = "Agreement";
             //((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
             //((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
             //((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
             //((Panel)this.Master.FindControl("pilleftDvi")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
-            //((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = true;
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Text = "Aggrement";
+           // ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
+
             //((LinkButton)this.Master.FindControl("lnkbtnEdit")).Visible = false;
             //((LinkButton)this.Master.FindControl("lnkbtnDelete")).Visible = false;
             //((LinkButton)this.Master.FindControl("btnClose")).Visible = false;
@@ -70,8 +73,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lUpdatPerInfo_Click);
+            ((LinkButton)this.Master.FindControl("lnkbtnNew")).Click += new EventHandler(lnkbtnAgreement);
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
+
+        private void lnkbtnAgreement(object sender, EventArgs e)
+        {
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            Response.Redirect("HREmpEntry?Type=Aggrement&Empid="+ empid);
+        }
+
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];

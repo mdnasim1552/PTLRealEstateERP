@@ -210,6 +210,7 @@
     <None Include="Properties\DataSources\RealEntity.C_23_CRR.EClassSalesStatus+EClassClientLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_24_CC.RptClientModification.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_32_Mis.EClassAcc_03+RptProjectAnalysis.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
   </ItemGroup>
