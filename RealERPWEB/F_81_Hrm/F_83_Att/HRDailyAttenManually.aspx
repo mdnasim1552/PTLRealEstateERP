@@ -149,7 +149,8 @@
                     </div>
                     <div class="row table-responsive">
                         <asp:GridView ID="gvDailyAttn" runat="server" AutoGenerateColumns="False" ShowFooter="True"
-                            AllowPaging="True" OnPageIndexChanging="gvDailyAttn_PageIndexChanging" CssClass="table-striped table-hover table-bordered grvContentarea"
+                            AllowPaging="True" OnPageIndexChanging="gvDailyAttn_PageIndexChanging" 
+                            CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnRowDeleting="gvDailyAttn_RowDeleting">
                             <RowStyle />
                             <Columns>

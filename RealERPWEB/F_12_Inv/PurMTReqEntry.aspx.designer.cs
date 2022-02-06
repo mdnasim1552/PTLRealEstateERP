@@ -231,6 +231,15 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.Label lblddlProjectTo;
 
         /// <summary>
+        /// pnlprevious control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlprevious;
+
+        /// <summary>
         /// lblprious control.
         /// </summary>
         /// <remarks>
@@ -267,13 +276,13 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevISSList;
 
         /// <summary>
-        /// pnlgrd control.
+        /// pnlreq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlgrd;
+        protected global::System.Web.UI.WebControls.Panel pnlreq;
 
         /// <summary>
         /// lblResList control.
@@ -330,13 +339,13 @@ namespace RealERPWEB.F_12_Inv
         protected global::System.Web.UI.WebControls.DropDownList ddlResSpcf;
 
         /// <summary>
-        /// lnkselect0 control.
+        /// lnkselect control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkselect0;
+        protected global::System.Web.UI.WebControls.LinkButton lnkselect;
 
         /// <summary>
         /// lblVoucherNo control.
@@ -382,5 +391,23 @@ namespace RealERPWEB.F_12_Inv
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblreqno;
+
+        /// <summary>
+        /// pnlreqaprv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlreqaprv;
+
+        /// <summary>
+        /// gvreqaprv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvreqaprv;
     }
 }

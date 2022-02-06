@@ -320,14 +320,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
 
-                if (total != 0)
-                {
+                
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEEMPDEDUCTION2", Monthid, empid, absday.ToString(), approved.ToString(), lateday.ToString(), fineday.ToString(),
                         adjustamt.ToString(), saladv.ToString(), userid, Posttrmid, Sessionid, Posteddat, deduction.ToString(), "", "");
                     if (!result)
                         return;
 
-                }
             }
             ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);

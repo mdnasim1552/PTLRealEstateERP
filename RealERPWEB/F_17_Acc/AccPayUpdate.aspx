@@ -320,11 +320,11 @@
                                     </asp:TemplateField>
                                      <asp:TemplateField HeaderText="Reconcilaition Date">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvReconDat" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="txtgvReconDat" runat="server" BackColor="Transparent" autocomplete="off"  OnTextChanged="txtgvReconDat_TextChanged"
                                                 BorderStyle="None" Style="text-align: left; font-size: 11px;"
                                                 Text='<%# (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd-MMM-yyyy")=="01-Jan-1900")?""
                                                                     :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "recndt")).ToString("dd-MMM-yyyy")%>'
-                                                Width="70px"></asp:TextBox>
+                                                Width="100px"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                                 Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvReconDat">
                                                             </cc1:CalendarExtender>

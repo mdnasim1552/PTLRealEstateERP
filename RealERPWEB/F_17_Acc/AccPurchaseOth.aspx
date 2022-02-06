@@ -197,7 +197,7 @@
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvQty" runat="server" ReadOnly="True"  BackColor="Transparent"
                                               BorderStyle="None" Font-Size="11px" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.000;(#,##0.000); ") %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                             Width="70px"></asp:TextBox>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Size="12px" />

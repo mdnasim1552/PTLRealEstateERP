@@ -174,9 +174,12 @@ ul.Menulinks {
                 comcod = <%=this.GetCompCode()%>;
                 Date1 = $('#txtDateFrom').val();
                 Date2 = $('#txtDateto').val();
-
-                $("#hlnkatt").attr("href","F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs.aspx?Type=LELLAndAbsent&comcod=" +
-                                  comcod + "&Date=" + Date2); 
+                path = "https://localhost:44359/";
+                
+                $("#hlnkatt").attr("href", "../F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs?Type=LELLAndAbsent&comcod=" +
+                    comcod + "&Date=" + Date2); 
+                //$("#hlnkatt").attr("href", path+ "F_81_Hrm/F_99_MgtAct/LinkLateElLeaveAAbs?Type=LELLAndAbsent&comcod=" +
+                //                  comcod + "&Date=" + Date2); 
                 $.ajax({
                     type: "POST",
                     url: "HRMAllInOne.aspx/GetAllData",

@@ -56,40 +56,7 @@ namespace RealERPWEB.F_04_Bgd
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
-
-        private void PrintPrjInfo()
-        {
-            //Nayan
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = GetComCode();
-            string comnam = hst["comnam"].ToString();
-            string compname = hst["compname"].ToString();
-            string comsnam = hst["comsnam"].ToString();
-            string comadd = hst["comadd1"].ToString();
-            string session = hst["session"].ToString();
-            string username = hst["username"].ToString();
-            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
-            DataTable dt = (DataTable)ViewState["projectEntry"];
-
-            LocalReport Rpt1 = new LocalReport();
-            var lst = dt.DataTableToList<RealEntity.C_04_Bgd.BgdProInfo>();
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptPrjInfoEnt", lst, null, null);
-            Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("ProjectNam", this.ddlPrjName.SelectedItem.Text.ToString()));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Project Information"));
-            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-            Session["Report1"] = Rpt1;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-        }
+     
 
         private void GetCatagory()
         {
@@ -145,7 +112,7 @@ namespace RealERPWEB.F_04_Bgd
                 this.ddlPrjName.Visible = false;
                 this.lblProjectdesc.Visible = true;
                 this.LoadGrid();
-                this.imgpanel.Visible = true;
+                this.imgpanel.Visible = false;
             }
             else
             {
@@ -229,7 +196,7 @@ namespace RealERPWEB.F_04_Bgd
                         ddlcataloc.DataValueField = "prgcod";
                         ddlcataloc.DataSource = dsloc.Tables[0];
                         ddlcataloc.DataBind();
-                        ddlcataloc.SelectedValue = val;
+                        ddlcataloc.SelectedValue = val.Length==3 ? "17"+val : val;
                         break;
 
                     case "02045": //Category                  
@@ -244,7 +211,7 @@ namespace RealERPWEB.F_04_Bgd
                         ddlcatag.DataValueField = "prgcod";
                         ddlcatag.DataSource = dscatg.Tables[0];
                         ddlcatag.DataBind();
-                        ddlcatag.SelectedValue = val;
+                        ddlcatag.SelectedValue = val.Length == 3 ? "99" + val : val;
                         break;
 
                     case "02050": //Construcation                  
@@ -272,6 +239,51 @@ namespace RealERPWEB.F_04_Bgd
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
             this.PrintPrjInfo();
+        }
+
+        private void PrintPrjInfo()
+        {
+            //Nayan
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetComCode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            //DataTable dt = (DataTable)ViewState["projectEntry"];
+            string ProjectCode = this.ddlPrjName.SelectedValue.ToString();
+            string prjname = this.ddlPrjName.SelectedItem.Text.ToString();
+            string projname = prjname.Substring(13);
+
+
+            string fpactcode = (((DataTable)Session["tblpro"]).Select("actcode='" + ProjectCode + "'"))[0]["factcode"].ToString();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PRJ_INFO", "PROJECTINFO", ProjectCode, fpactcode, "", "", "", "", "", "", "");
+            if (ds1.Tables[0].Rows.Count == 0)
+                return;
+
+            DataTable dt = ds1.Tables[0];
+
+            LocalReport Rpt1 = new LocalReport();
+            var lst = dt.DataTableToList<RealEntity.C_04_Bgd.BgdProInfo>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_04_Bgd.RptPrjInfoEnt", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("ProjectNam", projname));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", "Project Information"));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+
         }
 
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
@@ -310,7 +322,9 @@ namespace RealERPWEB.F_04_Bgd
 
                     if (Gcode == "02041" || Gcode == "02045" || Gcode == "02050")
                     {
-                        Gvalue = ddlloc.SelectedValue.ToString();
+                        Gvalue = ASTUtility.Right(ddlloc.SelectedValue.ToString(),3);
+                        //Gvalue = ddlloc.SelectedItem.Text.ToString();  comment by tarik 
+
                     }
                     else
                     {

@@ -63,8 +63,6 @@
                                         <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control inputTxt pull-left" TabIndex="2">
                                         </asp:DropDownList>
 
-
-
                                     </div>
 
 
@@ -92,6 +90,12 @@
                                         </cc1:CalendarExtender>
 
                                     </div>
+                                      <div class="col-md-2 pading5px">
+
+                                          <asp:CheckBox ID="Chkbalance" runat="server" Text="loan Balance" CssClass="btn btn-primary checkBox" AutoPostBack="True" />
+                                        <%--<asp: CheckBox ID="Chkbalance" runat="server" CssClass="btn btn-danger primaryBtn">Without Balance </asp:>--%>
+                                    </div>
+
                                     <div class="col-md-3 pading5px">
                                         <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>

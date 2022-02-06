@@ -11,6 +11,8 @@ using System.Data;
 using RealERPLIB;
 using RealEntity;
 using System.Web.Script.Services;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
 
 namespace RealERPWEB.S_05_MyPage
 {
@@ -213,6 +215,43 @@ namespace RealERPWEB.S_05_MyPage
 
 
 
+
+        [WebMethod(EnableSession = true)]
+       
+        public void  PrintLandInfo(string comcod, string zone, string dist, string thana, string mouza, string csdhagno)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comnam = hst["comnam"].ToString();          
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string deptcode = hst["deptcode"].ToString();
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+
+            //string zone = this.ddlZone.SelectedValue.ToString();
+            //string dist = this.ddldistrict.SelectedValue.ToString();
+            //string thana = this.ddlthana.SelectedValue.ToString();
+            //string mouza = this.ddlMouza.SelectedValue.ToString();
+            //string csdhagno = (this.txtcsdhagno.Text.Trim().Length == 0 ? "" : this.txtcsdhagno.Text.Trim()) + "%";
+
+            ProcessAccess _processAccess = new ProcessAccess();
+            DataSet ds2 = _processAccess.GetTransInfo(comcod, "SP_REPORT_LPROCUREMENT", "SHOWLANDINFO", zone, dist, thana, mouza, csdhagno, "", "", "", "", "");
+
+            var list = ds2.Tables[0].DataTableToList<RealEntity.C_01_LPA.BO_Fesibility.EClassLandInfo>().ToList();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RptSetupClass1.GetLocalReport("R_01_LPA.RptLandInformation", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Land Information"));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+            Session["Report1"] = Rpt1;
+           
+
+
+           
+           
+
+        }
 
 
         [WebMethod(EnableSession = true)]

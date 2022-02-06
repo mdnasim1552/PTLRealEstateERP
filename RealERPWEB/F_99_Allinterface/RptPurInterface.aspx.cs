@@ -58,13 +58,11 @@ namespace RealERPWEB.F_99_Allinterface
                 // this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                 this.GetFromDate();
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
+                this.txtmrfno.Attributes.Add("placeholder", ReadCookie());
 
                 this.RadioButtonList1.SelectedIndex = 0;
-               
                 this.GetCompanyName();
-          
+
 
                 //string mcomcod = hst["mcomcod"].ToString().Trim();
 
@@ -91,9 +89,15 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = dv.ToTable();
             Session["tbllog"] = dt;
             ds1.Dispose();
-
-
         }
+
+        private string ReadCookie()
+        {
+            HttpCookie nameCookie = Request.Cookies["MRF"];
+            string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
+            return refno;
+        }
+
         private void GetUserPermissionurl()
         {
             string comcod = this.GetCompCode();
@@ -224,7 +228,7 @@ namespace RealERPWEB.F_99_Allinterface
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = ASTUtility.Right(hst["usrid"].ToString(), 3);
             //string comcod = hst["mcomcod"].ToString();
-            string comcod=this.GetCompCode();
+            string comcod = this.GetCompCode();
             DataSet ds = accData.GetTransInfo(comcod, "SP_UTILITY_GRPUSER_MGT", "GET_MOTHER_COMPANY", usrid, "", "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "comname";
             this.ddlCompany.DataValueField = "comcod";
@@ -236,7 +240,7 @@ namespace RealERPWEB.F_99_Allinterface
                 this.MultCom.Visible = true;
                 this.ddlCompany_SelectedIndexChanged(null, null);
             }
-            else 
+            else
             {
                 this.MultCom.Visible = false;
                 lbtnOk_Click(null, null);
@@ -246,8 +250,8 @@ namespace RealERPWEB.F_99_Allinterface
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            this.GetUserPermission();          
+
+            this.GetUserPermission();
             this.MasComNameAndAdd();
             lbtnOk_Click(null, null);
 
@@ -285,8 +289,8 @@ namespace RealERPWEB.F_99_Allinterface
             string pass = ASTUtility.EncodePassword(txtuserpass);
 
             //        string pass = ASTUtility.EncodePassword(hst["password"].ToString());
-            string modulid = this.ddlCompany.SelectedValue.ToString();
-            string modulename = this.ddlCompany.SelectedItem.Text.Trim();
+            string modulid = "";// this.ddlCompany.SelectedValue.ToString();
+            string modulename = "";// this.ddlCompany.SelectedItem.Text.Trim();
             DataSet ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
             Session["tblusrlog"] = ds5;
             string Comcode = this.ddlCompany.SelectedValue.ToString();
@@ -328,6 +332,8 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 case "3101":
+                case "1101":
+
                 case "3340": //Urban 
                 case "3333"://Alliance
                 case "3354": // Edison  
@@ -338,15 +344,17 @@ namespace RealERPWEB.F_99_Allinterface
 
                     break;
 
-                //case "3101":
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
-                    this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-6).ToString("dd-MMM-yyyy");
+                case "3317":
+                    this.txtfrmdate.Text = Convert.ToDateTime(date.ToString()).AddMonths(-3).ToString("dd-MMM-yyyy");
                     break;
 
 
                 default:
-                    
+
                     this.txtfrmdate.Text = Convert.ToDateTime("01" + date.Substring(2)).ToString("dd-MMM-yyyy");
                     break;
 
@@ -402,6 +410,18 @@ namespace RealERPWEB.F_99_Allinterface
                     this.Timer1.Interval = 36000000;
                     break;
 
+                case "3101":// p2p
+                case "1205":
+                case "3351":
+                case "3352":
+                case "8306":
+
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).Visible = false;
+                    ((LinkButton)this.Master.FindControl("lnkPrint")).Visible = false;
+
+                    this.Timer1.Interval = 3600000;
+                    break;
+
 
                 default:
                     this.Timer1.Interval = 3600000;
@@ -411,6 +431,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
             }
+
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
@@ -527,6 +548,7 @@ namespace RealERPWEB.F_99_Allinterface
             string reqapproval = "Req. App";
             string reqforward = "";
             string OrderfApproved = "";
+            string Order2ndAprv = "Ord. 2nd App";
 
             switch (comcod)
             {
@@ -539,23 +561,24 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-                case "3335"://Green Wood
+                case "3335":
                     reqcheck = "Checked";
                     reqforward = "Req. App.";
                     reqapproval = "Req. Final App.";
                     OrderfApproved = "Ord. 1st App";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3355"://  Green Wood
                     reqcheck = "Checked";
                     reqforward = "Forward";
                     reqapproval = "Req. App.";
-                    OrderfApproved = "Ord. Approval";
+                    OrderfApproved = "Ord. 1st App";
+                    Order2ndAprv = "Ord. Final App";
                     break;
 
 
-                case "3354"://  Edison Real Estate 
+                //case "3354"://  Edison Real Estate 
                 case "1205":  //P2P Construction
                 case "3351":  //wecon Properties
                 case "3352":  //p2p360
@@ -564,14 +587,20 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
+                case "3354"://  Edison Real Estate 
+                    OrderfApproved = "Ord. 1st App";
+                    Order2ndAprv = "Ord. Final App";
+                    
+                    break;
+
+
+
                 default:
-
-
-
                     reqcheck = "Checked";
                     reqforward = "Forward";
                     reqapproval = "Req. App.";
                     OrderfApproved = "Ord. 1st App";
+                    Order2ndAprv = "Ord. 2nd App";
                     break;
 
 
@@ -597,7 +626,7 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1.Items[11].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["worderqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Pur. Order</div></div></div>";
             this.RadioButtonList1.Items[12].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["ofapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>" + OrderfApproved + "</div></div></div>";
 
-            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["osecapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Ord. 2nd App</div></div></div>";
+            this.RadioButtonList1.Items[13].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["osecapp"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + Order2ndAprv + "</div></div></div>";
 
             this.RadioButtonList1.Items[14].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["mrrqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Received</div></div></div>";
             this.RadioButtonList1.Items[15].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[7].Rows[0]["billqty"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>Bill Confirm.</div></div></div>";
@@ -729,6 +758,7 @@ namespace RealERPWEB.F_99_Allinterface
             string value = this.RadioButtonList1.SelectedValue.ToString();
             DataSet ds1 = (DataSet)Session["Alltable"];
             DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
             DataView dv = new DataView();
             string comcod = this.GetCompCode();
             switch (value)
@@ -738,7 +768,8 @@ namespace RealERPWEB.F_99_Allinterface
                     // All Reqinfo  
                     dt = ((DataTable)ds1.Tables[0]).Copy();
                     dv = dt.DefaultView;
-                    this.Data_Bind("gvReqInfo", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvReqInfo", dt1);
                     this.pnlReqInfo.Visible = true;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -759,6 +790,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
 
                     // this.RadioButtonList1.Items[0].Attributes["style"] =  "background:#5A5C59; display:block";
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvReqInfo.HeaderRow.FindControl("txtSearchrefnum")).Attributes.Add("placeholder", ReadCookie());
+                    }
+
                     break;
                 case "1":
                     //Checked
@@ -794,7 +830,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'Checked' ");
-                    this.Data_Bind("gvReqChk", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvReqChk", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.pnlCRM.Visible = false;
 
@@ -817,29 +854,29 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[1].Attributes.Add("class", "lblactive");
                     //this.RadioButtonList1.Items[1].Attributes["style"] = "background:#5A5C59; display:block";
-
                     switch (comcod)
                     {
                         case "3316"://Assure
                         case "3315"://Assure
                         case "3317"://Assure
-                        case "3101"://Assure
-
+                        //case "3101"://Assure
+                        case "1108"://engineering
+                        case "1109"://tourism
 
                             for (int i = 0; i < this.gvReqChk.Rows.Count; i++)
                             {
                                 (gvReqChk.Columns[11]).Visible = true;
                                 //((TextBox)this.grvissue.Rows[i].FindControl("txtissueamt")).Enabled = false;
                                 ((LinkButton)this.gvReqChk.Rows[i].FindControl("btnDirecdelReq")).Visible = true;
-                            }     
-
-                            
-
-
+                            }
                             break;
                     }
 
-                   
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvReqChk.HeaderRow.FindControl("txtSearchrefnumrchq")).Attributes.Add("placeholder", ReadCookie());
+
+                    }
 
 
                     break;
@@ -853,7 +890,9 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'First Approval' ");
-                    this.Data_Bind("gvreqfapproved", dv.ToTable());
+                    dt1 = dv.ToTable();
+
+                    this.Data_Bind("gvreqfapproved", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.pnlCRM.Visible = false;
 
@@ -916,7 +955,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus = 'Rate Proposal' ");
-                    this.Data_Bind("gvRatePro", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvRatePro", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.pnlCRM.Visible = false;
@@ -940,6 +980,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[3].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[3].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvRatePro.HeaderRow.FindControl("txtSearchrefnumratepro")).Attributes.Add("placeholder", ReadCookie());
+                    }
+
                     break;
 
 
@@ -1006,8 +1051,6 @@ namespace RealERPWEB.F_99_Allinterface
                     this.PanelBillAudit.Visible = false;
                     this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
 
-
-
                     break;
 
 
@@ -1050,7 +1093,8 @@ namespace RealERPWEB.F_99_Allinterface
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
                     dv.RowFilter = ("cstatus='Requisition Approval'  ");
-                    this.Data_Bind("gvRateApp", dv.ToTable());
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvRateApp", dt1);
                     this.pnlReqInfo.Visible = false;
                     this.PnlReqChq.Visible = false;
                     this.Pnlfirstapp.Visible = false;
@@ -1073,8 +1117,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[9].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[7].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[7].Attributes["style"] = "background:#5A5C59; display:block";
-
-
+                    if (dt1.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvRateApp.HeaderRow.FindControl("txtSearchrefnuml")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1105,6 +1151,12 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[10].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[8].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[8].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvOrdeProc.HeaderRow.FindControl("txtSearchrefnumordpro")).Attributes.Add("placeholder", ReadCookie());
+
+                    }
+
 
                     break;
                 case "11":
@@ -1134,7 +1186,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[11].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[9].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[9].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvWrkOrd.HeaderRow.FindControl("txtSearchrefnumporder")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
 
 
@@ -1233,7 +1288,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[14].Attributes["class"] = "lblactive blink_me";
                     //this.RadioButtonList1.Items[10].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[10].Attributes["style"] = "background:#5A5C59; display:block";
-
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
+                    }
                     break;
                 case "15":
                     //Bill
@@ -1264,6 +1322,11 @@ namespace RealERPWEB.F_99_Allinterface
                     this.RadioButtonList1.Items[15].Attributes["class"] = "lblactive blink_me";
                     // this.RadioButtonList1.Items[11].Attributes.Add("class", "lblactive");
                     // this.RadioButtonList1.Items[11].Attributes["style"] = "background:#5A5C59; display:block";
+                    if (dt.Rows.Count > 0)
+                    {
+                        ((TextBox)this.gvPurBill.HeaderRow.FindControl("txtSearchrefnumbill")).Attributes.Add("placeholder", ReadCookie());
+                    }
+
 
                     break;
 
@@ -1425,7 +1488,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyInprPrintCS");
-                
+
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -1434,7 +1497,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
 
-                
+
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
@@ -1488,7 +1551,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                 string msrno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "msrno")).ToString();
-                
+
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
@@ -1514,7 +1577,7 @@ namespace RealERPWEB.F_99_Allinterface
                 {
                     hlink3.Visible = false;
                 }
-                hlink3.NavigateUrl = "~/F_14_Pro/PurMktSurvey02?Type=CS" +"&msrno=" + msrno;
+                hlink3.NavigateUrl = "~/F_14_Pro/PurMktSurvey02?Type=CS" + "&msrno=" + msrno;
             }
         }
 
@@ -1632,7 +1695,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint"); // crystal print link
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
 
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("HyperLink2");
@@ -1644,9 +1707,26 @@ namespace RealERPWEB.F_99_Allinterface
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
                 //string imesimeno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mimei")).ToString();
 
-                if(comcod=="3353" || comcod == "3101")
+                switch (comcod)
                 {
-                    hlink1.Visible = false;
+                    // hide crystal print options
+                    case "3101":
+                    case "3355":
+                    case "3353":
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                    case "3330":
+                    case "3336":// shuvastu
+                    case "3337":
+                    case "3364": // JBS
+                    case "3339": // Tropical
+
+                        hlink1.Visible = false;
+                        break;
+                    default:
+                        hlink1.Visible = true;
+                        break;
                 }
 
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
@@ -1813,13 +1893,12 @@ namespace RealERPWEB.F_99_Allinterface
                 case "gvReqInfo":
                     this.gvReqInfo.DataSource = HiddenSameData(dt);
                     this.gvReqInfo.DataBind();
-
                     break;
                 case "gvReqChk":
                     this.gvReqChk.DataSource = HiddenSameData(dt);
                     this.gvReqChk.DataBind();
 
-                    
+
 
                     break;
 
@@ -2892,12 +2971,13 @@ namespace RealERPWEB.F_99_Allinterface
             string delorder = "";
             switch (comcod)
             {
-                //case "3101":
+
+                case "3355":  // Green Wood
                 case "3335":  // Edison
                     delorder = "delforsapp";
                     break;
 
-                case "3355":  // Green Wood
+
                 case "3354":  // Edison Real Estate
                 case "1205":  //P2P Construction
                 case "3351":  //wecon Properties
@@ -2918,6 +2998,17 @@ namespace RealERPWEB.F_99_Allinterface
         {
             string url = "PurWrkOrderEntry?InputType=OrderEntry";
             string comcod = this.GetCompCode();
+            //switch (comcod)
+            //{
+            //    case "1205":
+            //    case "3351":
+            //    case "3352":
+            //        url = "PurMRREntry?Type=Entry";
+            //        break;
+            //    default:
+            //        url = "PurWrkOrderEntry?InputType=OrderEntry"; // PurMRREntry?Entry
+            //        break;
+            //}
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
@@ -2948,7 +3039,6 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
             }
-
 
             string delorder = this.GetDelOrder();
             bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERNOAAPPROVED", genno, delorder, toorder, "", "", "", "", "", "", "", "", "", "", "", "");
@@ -3001,11 +3091,25 @@ namespace RealERPWEB.F_99_Allinterface
             //Common.LogStatus("Sales Interface", "Order Delete", "Order No: ", orderno + " - " + centrid);
         }
 
+
         protected void btnDelBill_Click(object sender, EventArgs e)
         {
-
-            string url = "PurMRREntry?Type=Entry";
             string comcod = this.GetCompCode();
+            string url = "";
+            switch (comcod)
+            {
+                // p2p
+                //case "1205":
+                //case "3351":
+                //case "3352":
+                //    url = "PurBillEntry?Type=BillEntry";
+                //    break;
+                default:
+                    url = "PurMRREntry?Type=Entry";
+                    break;
+            }
+            //hlink2.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillEntry&genno=" + orderno + "&sircode=" + sircode;
+
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["delete"]))
@@ -4046,18 +4150,21 @@ namespace RealERPWEB.F_99_Allinterface
 
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntryosapp");
                 HyperLink hlnkPrintosapp = (HyperLink)e.Row.FindControl("HyInprPrintosapp");
+                HyperLink hlnkPrintosappReq = (HyperLink)e.Row.FindControl("HyInprPrintosappReq");
 
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
 
                 string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
-
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                string reqdat = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
 
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink2.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=SecondApp&genno=" + orderno;
                 hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
+                hlnkPrintosappReq.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
 
 
             }
@@ -4938,23 +5045,23 @@ namespace RealERPWEB.F_99_Allinterface
             if (ds1 == null)
                 return;
 
-            
-                bool result = this.XmlDataInsertReq(genno, ds1);
-                if (!result)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
-                    return;
-                }
-                bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
-                if (!resulbill)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
-                    return;
-                }
-                else
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
-            
+            bool result = this.XmlDataInsertReq(genno, ds1);
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+            }
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEREQINFO", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
 
 
             this.PurchaseInfoRpt();
@@ -4981,7 +5088,7 @@ namespace RealERPWEB.F_99_Allinterface
             string orderno = ((Label)this.gvordfapp.Rows[RowIndex].FindControl("lblgvordernoofapp")).Text.Trim();
             string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-            if(orderno=="")
+            if (orderno == "")
                 return;
 
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", orderno, date, "", "", "", "", "", "", "");
@@ -5010,6 +5117,48 @@ namespace RealERPWEB.F_99_Allinterface
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
 
 
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
+
+
+        protected void btnDelFapproval_Click(object sender, EventArgs e)
+        {
+            string url = "PurWrkOrderEntry?InputType=OrderEntry";
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string genno = ((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvorderno")).Text.Trim();
+            string toorder = Convert.ToDouble(((Label)this.grvMRec.Rows[RowIndex].FindControl("lblgvWoamt")).Text.Trim()).ToString();
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", genno, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            bool result = this.XmlDataInsertOrder(genno, ds1);
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+            }
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERNOAAPPROVED", genno, "delsapp", toorder, "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
 
             this.PurchaseInfoRpt();
             this.RadioButtonList1_SelectedIndexChanged(null, null);

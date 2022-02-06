@@ -143,8 +143,9 @@ namespace RealEntity.C_23_CRR
           public double cdelay{get;set;}
           public double discharge{get;set;}
           public double ntodues{get;set;}
+          public double balamt { get; set; }
 
-          public EClassDuesAOverDues() 
+            public EClassDuesAOverDues() 
           {
           
           
@@ -178,6 +179,7 @@ namespace RealEntity.C_23_CRR
           public double cpaocost { get; set; }
           public double tocost { get; set; }
           public double todues { get; set; }
+          public double vtodues { get; set; }
           public double atodues { get; set; }
           public double reconamt { get; set; }
           public double retcheque { get; set; }
@@ -193,8 +195,9 @@ namespace RealEntity.C_23_CRR
           public double cdelay { get; set; }
           public double discharge { get; set; }
           public double ntodues { get; set; }
+          public double balamt { get; set; }
 
-          public EClassDuesAOverDuesIndPro()
+            public EClassDuesAOverDuesIndPro()
           {
 
 
@@ -219,6 +222,7 @@ namespace RealEntity.C_23_CRR
       public class EClassClientLedger
      {
 
+     public string grp { get; set; }
      public string mrno { get; set; }
      public string pactcode { get; set; }
      public string usircode{get;set;}

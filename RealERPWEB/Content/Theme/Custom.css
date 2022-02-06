@@ -113,6 +113,14 @@ ul.ui-autocomplete.ui-menu {
     text-align:right;
   
 }
+.lblleftwidth80 {
+    width: 90px;
+    text-align: left;
+    font-weight:bold;
+}
+
+
+
 
 
 

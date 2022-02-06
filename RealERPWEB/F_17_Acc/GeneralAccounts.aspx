@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="GeneralAccounts.aspx.cs" Inherits="RealERPWEB.F_17_Acc.GeneralAccounts" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="GeneralAccounts.aspx.cs" Inherits="RealERPWEB.F_17_Acc.GeneralAccounts" EnableEventValidation="false" ValidateRequest="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -37,12 +36,24 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            $('#<%=this.txtScrchConCode.ClientID %>').focus();
+            $('#<%=this.ddlvoucher.ClientID %>').focus();
+
+            $("input, select ").not($(":submit, :button")).keypress(function (evt) {
+                evt.preventDefault();
+                alert(evt);
+                if (evt.keyCode == 13) {
+                    var next = $('[tabindex="' + (this.tabIndex + 1) + '"]');
+                    if (next.length)
+                        next.focus()
+                    else
+                        $('[tabindex="1"]').focus();
+                }
+            });
 
         });
         function pageLoaded() {
 
-            $("input, select").bind("keydown", function (event) {
+            <%--$("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
 
@@ -50,9 +61,12 @@
 
                 $.keynavigation(dgv1);
 
-            });
+            });--%>
 
-            $('.chzn-select').chosen({ search_contains: true });
+            $('.chzn-select').chosen({
+                search_contains: true,
+                enable_escape_special_char: false
+            });
 
 
         };
@@ -86,6 +100,23 @@
         function PrintRptVoucher(vouanptype) {
             window.open('AccPrint.aspx?' + vouanptype + '', '_blank');
 
+        }
+
+        function isNumberKey(txt, evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode == 46) {
+                //Check if the text already contains the . character
+                if (txt.value.indexOf('.') === -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (charCode > 31 &&
+                    (charCode < 48 || charCode > 57))
+                    return false;
+            }
+            return true;
         }
 
     </script>
@@ -139,10 +170,10 @@
 
 
 
-                                        <asp:TextBox ID="txtScrchPre" runat="server" CssClass=" inputBox50px" TabIndex="1"></asp:TextBox>
+                                        <asp:TextBox ID="txtScrchPre" runat="server" CssClass=" inputBox50px"></asp:TextBox>
 
 
-                                        <asp:DropDownList ID="ddlvoucher" runat="server" CssClass=" ddlPage" Style="width: 110px;" AutoPostBack="True" OnSelectedIndexChanged="ddlvoucher_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlvoucher" runat="server" TabIndex="1" CssClass=" ddlPage" Style="width: 110px;" AutoPostBack="True" OnSelectedIndexChanged="ddlvoucher_SelectedIndexChanged">
                                             <asp:ListItem Value="BD">Bank Payment</asp:ListItem>
                                             <asp:ListItem Value="CD">Cash Payment</asp:ListItem>
                                             <asp:ListItem Value="BC">Bank Deposit</asp:ListItem>
@@ -155,7 +186,7 @@
 
 
                                         <div class="colMdbtn">
-                                            <asp:LinkButton ID="ibtnFindPrv" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindPrv_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                            <asp:LinkButton ID="ibtnFindPrv" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindPrv_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                         </div>
 
@@ -183,14 +214,14 @@
                                     </div>
 
                                     <div class="col-md-6 pading5px ">
-                                        <asp:DropDownList ID="ddlConAccHead" runat="server" CssClass="form-control inputTxt chzn-select">
+                                        <asp:DropDownList ID="ddlConAccHead" TabIndex="2" runat="server" CssClass="form-control inputTxt chzn-select">
                                         </asp:DropDownList>
 
                                     </div>
 
                                     <div class="col-md-2 pading5px">
                                         <div class="colMdbtn">
-                                            <asp:LinkButton ID="lnkOk" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click">Ok</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkOk" TabIndex="3" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkOk_Click">Ok</asp:LinkButton>
 
                                         </div>
 
@@ -226,23 +257,23 @@
                                                     <div class="col-md-3">
 
                                                         <asp:Label ID="lblactcode" runat="server" CssClass="lblTxt lblName">Head of A/C</asp:Label>
-                                                        <asp:TextBox ID="txtserceacc" runat="server" CssClass="hidden inputtextbox" TabIndex="11"></asp:TextBox>
+                                                        <asp:TextBox ID="txtserceacc" runat="server" CssClass="hidden inputtextbox"></asp:TextBox>
 
 
                                                         <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkAcccode" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkAcccode_Click" TabIndex="12"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkAcccode" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkAcccode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
                                                     </div>
                                                     <div class="col-md-7 pading5px">
-                                                        <asp:DropDownList ID="ddlacccode" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="13" AutoPostBack="true" OnSelectedIndexChanged="ddlacccode_SelectedIndexChanged">
+                                                        <asp:DropDownList ID="ddlacccode" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="4" AutoPostBack="true" OnSelectedIndexChanged="ddlacccode_SelectedIndexChanged">
                                                         </asp:DropDownList>
 
                                                     </div>
 
                                                     <div class="col-md-1 pading5px">
-                                                        <asp:LinkButton ID="lnkOk0" runat="server" CssClass="btn btn-primary  okBtn" OnClick="lnkOk0_Click" TabIndex="21">Add</asp:LinkButton>
+                                                        <asp:LinkButton ID="lnkOk0" runat="server" CssClass="btn btn-primary  okBtn" OnClick="lnkOk0_Click" TabIndex="7">Add</asp:LinkButton>
                                                     </div>
 
 
@@ -255,9 +286,9 @@
                                                     <div class="col-md-3">
 
                                                         <asp:Label ID="lblrescode" runat="server" CssClass="lblTxt lblName">Sub of Account</asp:Label>
-                                                        <asp:TextBox ID="txtserchReCode" runat="server" CssClass=" inputtextbox hidden" TabIndex="14" ng-model="txtasrchrescode"></asp:TextBox>
+                                                        <asp:TextBox ID="txtserchReCode" runat="server" CssClass=" inputtextbox hidden" ng-model="txtasrchrescode"></asp:TextBox>
                                                         <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary hidden srearchBtn " OnClick="lnkRescode_Click" TabIndex="15"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkRescode" runat="server" CssClass="btn btn-primary hidden srearchBtn " OnClick="lnkRescode_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -266,7 +297,7 @@
                                                     <div class="col-md-7 pading5px ">
 
 
-                                                        <asp:DropDownList ID="ddlresuorcecode" runat="server" AutoPostBack="True" TabIndex="16" OnSelectedIndexChanged="ddlresuorcecode_SelectedIndexChanged" CssClass=" form-control inputTxt chzn-select">
+                                                        <asp:DropDownList ID="ddlresuorcecode" runat="server" AutoPostBack="True" TabIndex="5" OnSelectedIndexChanged="ddlresuorcecode_SelectedIndexChanged" CssClass=" form-control inputTxt chzn-select">
                                                         </asp:DropDownList>
 
                                                     </div>
@@ -285,11 +316,11 @@
                                                 <div class="form-group">
                                                     <div class="col-md-3 ">
                                                         <asp:Label ID="lblspecification" runat="server" CssClass="lblTxt lblName" Visible="false">Specification</asp:Label>
-                                                        <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass=" hidden" TabIndex="17" Visible="false"></asp:TextBox>
+                                                        <asp:TextBox ID="txtSearchSpeci" runat="server" CssClass=" hidden" Visible="false"></asp:TextBox>
 
 
                                                         <div class="colMdbtn hidden">
-                                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" TabIndex="18" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkSpecification" runat="server" CssClass="hidden btn btn-primary srearchBtn" OnClick="lnkSpecification_Click" Visible="false"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                         </div>
 
@@ -377,7 +408,7 @@
                                                         <asp:Label ID="lblDramt" runat="server" CssClass="lblTxt lblName">Dr. Amount</asp:Label>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <asp:TextBox ID="txtDrAmt" runat="server" CssClass="form-control inputTxt" TabIndex="20" Style="text-align: right; margin-left: -14px;" onkeypress="return searchKeyPress(event);"></asp:TextBox>
+                                                        <asp:TextBox ID="txtDrAmt" runat="server" CssClass="form-control inputTxt" TabIndex="6" Style="text-align: right; margin-left: -14px;" onkeypress="return searchKeyPress(event);"></asp:TextBox>
 
 
                                                     </div>
@@ -386,7 +417,7 @@
                                                         <asp:Label ID="lblCramt" runat="server" Style="margin-left: -20px;" CssClass="lblTxt">Cr. Amount</asp:Label>
                                                     </div>
                                                     <div class="col-md-3 ">
-                                                        <asp:TextBox ID="txtCrAmt" runat="server" CssClass="form-control" TabIndex="22" Style="text-align: right; margin-left: -20px;"  onkeypress="return searchKeyPress(event);"></asp:TextBox>
+                                                        <asp:TextBox ID="txtCrAmt" runat="server" CssClass="form-control" TabIndex="22" Style="text-align: right; margin-left: -20px;" onkeypress="return searchKeyPress(event);"></asp:TextBox>
 
                                                     </div>
                                                     <div class="col-md-1">
@@ -405,15 +436,15 @@
 
                                                                 <div class="col-md-3 pading5px asitCol3">
                                                                     <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">From Voucher</asp:Label>
-                                                                    <asp:TextBox ID="txtScrchcopyvoucher" runat="server" CssClass="inputtextbox" TabIndex="1"></asp:TextBox>
-                                                                    <asp:LinkButton ID="ibtnCopyVoucher" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnCopyVoucher_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+                                                                    <asp:TextBox ID="txtScrchcopyvoucher" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                                                    <asp:LinkButton ID="ibtnCopyVoucher" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnCopyVoucher_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
 
                                                                 </div>
 
                                                                 <div class="col-md-7 pading5px">
-                                                                    <asp:DropDownList ID="ddlcopyvoucher" runat="server" CssClass=" ddlPage" TabIndex="3" Style="width: 200px;">
+                                                                    <asp:DropDownList ID="ddlcopyvoucher" runat="server" CssClass=" ddlPage" Style="width: 200px;">
                                                                     </asp:DropDownList>
-                                                                    <asp:LinkButton ID="lbtnCopyVoucher" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnCopyVoucher_Click" TabIndex="4">Copy</asp:LinkButton>
+                                                                    <asp:LinkButton ID="lbtnCopyVoucher" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lbtnCopyVoucher_Click">Copy</asp:LinkButton>
 
                                                                 </div>
 
@@ -439,6 +470,9 @@
                                     <asp:Panel ID="pnlNarration" runat="server" Visible="False">
                                         <fieldset class="scheduler-border fieldset_Nar">
                                             <div class="form-horizontal">
+                                                <div class="row">
+
+                                                </div>
                                                 <div class="form-group">
 
                                                     <div class="col-md-2 pading5px asitCol2">
@@ -498,12 +532,12 @@
 
                                                         <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
                                                         <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="130"></asp:TextBox>
-                                                       <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
+                                                        <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
                                                             runat="server" CompletionListCssClass="AutoExtender"
                                                             CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
                                                             CompletionListItemCssClass="AutoExtenderList" CompletionSetCount="15"
                                                             DelimiterCharacters="" Enabled="True" FirstRowSelected="True"
-                                                            MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"  
+                                                            MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"
                                                             ServicePath="~/AutoCompleted.asmx" TargetControlID="txtPayto">
                                                         </cc1:AutoCompleteExtender>
 
@@ -582,7 +616,7 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle Font-Bold="True" Font-Size="13px" />
                                             </asp:TemplateField>
-                                            <asp:CommandField ShowDeleteButton="True" ControlStyle-Width="30px">
+                                            <asp:CommandField ShowDeleteButton="True" ButtonType="Link" ControlStyle-Width="30px">
                                                 <ControlStyle Width="30px" />
                                                 <HeaderStyle Width="30px" />
                                                 <ItemStyle Width="30px" />
@@ -613,7 +647,14 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spclcode")) %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Head of Accounts">
+                                            <asp:TemplateField HeaderText="">
+                                                <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Head of Accounts" Width="230px"></asp:Label>
+
+                                                    <asp:HyperLink ID="hlbtntbGrdExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                    </asp:HyperLink>
+                                                </HeaderTemplate>
+
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" Font-Bold="True"
                                                         OnClick="lnkTotal_Click" CssClass="btn btn-primary primarygrdBtn pull-right">Total :</asp:LinkButton>
@@ -741,6 +782,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvQty" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="50px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="79"></asp:TextBox>
@@ -760,6 +802,7 @@
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="60px" Font-Size="12px" ForeColor="Black"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Style="text-align: right" TabIndex="80"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <HeaderStyle Width="50px" />
@@ -768,7 +811,8 @@
                                             <asp:TemplateField HeaderText="Dr.Amount" HeaderStyle-Width="70px">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvDrAmt" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"  
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="81"></asp:TextBox>
@@ -787,6 +831,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvCrAmt" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
+                                                        onkeypress="return isNumberKey(this, event);" 
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="82"></asp:TextBox>
@@ -803,11 +848,11 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvRemarks" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                        Font-Size="12px"
+                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent" 
+                                                         
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trnrmrk")) %>'
-                                                        Width="80px" ForeColor="Black" TabIndex="83"></asp:Label>
+                                                        Width="80px" ForeColor="Black" TabIndex="83"></asp:TextBox>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
@@ -847,6 +892,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+
                                         </Columns>
                                         <FooterStyle BackColor="#F5F5F5" />
                                         <EditRowStyle />
@@ -878,6 +924,36 @@
 
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    <script>
+        //function matchCustom(params, data) {
+        //    alert("d");
+        //    // If there are no search terms, return all of the data
+        //    if ($.trim(params.term) === '') {
+        //        return data;
+        //    }
+
+        //    // Do not display the item if there is no 'text' property
+        //    if (typeof data.text === 'undefined') {
+        //        return null;
+        //    }
+
+        //    // `params.term` should be the term that is used for searching
+        //    // `data.text` is the text that is displayed for the data object
+        //    if (data.text.indexOf(params.term) > -1) {
+        //        var modifiedData = $.extend({}, data, true);
+        //        modifiedData.text += ' (matched)';
+
+        //        // You can return modified objects from here
+        //        // This includes matching the `children` how you want in nested data sets
+        //        return modifiedData;
+        //    }
+
+        //    // Return `null` if the term should not be displayed
+        //    return null;
+        //}
+
+    </script>
 </asp:Content>
 
 

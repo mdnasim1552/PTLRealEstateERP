@@ -168,6 +168,7 @@ namespace RealERPWEB.F_22_Sal
 
 
                 case "3339":
+                //case "3101":
                     this.PrintCleintLedgerTropical();
                     break;
 
@@ -187,7 +188,7 @@ namespace RealERPWEB.F_22_Sal
                     break;
 
                 case "3348"://Credence
-                case "3101":
+              //  case "3101":
                 case "3353":// Manama
                 case "3355":// Manama
                     this.PrintCleintLedgerManama();
@@ -514,6 +515,88 @@ namespace RealERPWEB.F_22_Sal
 
         private void PrintCleintLedgerTropical()
         {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+
+            string pactcode = this.Request.QueryString["pactcode"].ToString();
+            string custid = this.Request.QueryString["usircode"].ToString();
+            string Date = this.Request.QueryString["Date1"].ToString();
+            string CallType = this.ClientCalltype();
+            DataSet ds5 = SalData.GetTransInfo(comcod, "SP_REPORT_SALSMGT01", CallType, pactcode, custid, Date, "", "", "", "", "", "");
+            DataTable dt = this.HiddenSameDate2(ds5.Tables[0]);
+
+            string custname = ds5.Tables[1].Rows[0]["name"].ToString();
+            string rptcustadd = ds5.Tables[1].Rows[0]["peraddress"].ToString();
+            string rptcustphone = ds5.Tables[1].Rows[0]["telephone"].ToString();
+            string pactdesc = ds5.Tables[1].Rows[0]["projectname"].ToString();
+            string projadd = ds5.Tables[1].Rows[0]["proadd"].ToString();
+            string udesc = ds5.Tables[1].Rows[0]["aptname"].ToString();
+            string usize = ds5.Tables[1].Rows[0]["aptsize"].ToString();
+        //    string unit = ds5.Tables[1].Rows[0]["unit"].ToString();
+
+
+            //DataTable dt = ((DataTable)Session["tblCustPayment"]).Copy();
+
+
+            //Discount 
+
+            DataView dv = dt.DefaultView;
+            dv.RowFilter = ("dischk=1");
+            DataTable dt1 = dv.ToTable();
+
+            string disinfo = "";
+            foreach (DataRow dr1 in dt1.Rows)
+            {
+
+                disinfo = "MR" + dr1["mrno"] + "-" + dr1["rmrks"] + ", ";
+
+
+            }
+
+
+            disinfo = disinfo.Length > 0 ? ("Discount:" + disinfo.Substring(0, disinfo.Length - 2)) : "";
+
+
+            //var lst = dt.DataTableToList< C_23_CRR.EClassSales_03.DueCollStatmentRe>();
+            var lst = dt.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassClientLedger>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptClientLedgerTropical", lst, null, null);
+            //string usircode = this.ddlCustName.SelectedValue.ToString();
+            //DataRow[] drc = ((DataTable)ViewState["tblcustomer"]).Select("custid='" + usircode + "'");
+
+          //  string pactdesc = this.ddlProjectName.SelectedItem.Text.Trim();
+           // string custname = drc[0]["custname"].ToString();
+            //string udesc = drc[0]["udesc"].ToString();
+            //string usize = Convert.ToDouble(drc[0]["usize"].ToString()).ToString("#,##0;(#,##0); ") + " " + drc[0]["unit"].ToString();
+
+
+
+            //  Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("txtComName", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtcomadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("txtProject", pactdesc));
+            Rpt1.SetParameters(new ReportParameter("txtcustomer", custname));
+            Rpt1.SetParameters(new ReportParameter("txtunit", udesc));
+            Rpt1.SetParameters(new ReportParameter("txtunitsize", usize));
+            Rpt1.SetParameters(new ReportParameter("txtdisinfo", disinfo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+
+
+
             //Hashtable hst = (Hashtable)Session["tblLogin"];
             //string comcod = hst["comcod"].ToString();
             //string comnam = hst["comnam"].ToString();
@@ -1575,8 +1658,10 @@ namespace RealERPWEB.F_22_Sal
                                     schdate = Convert.ToDateTime(dt1.Rows[j - 1]["schdate"]);
                                 }
 
+                                //string date1 = this.Request.QueryString["Date1"].ToString()?? System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                                DateTime date = Convert.ToDateTime(this.Request.QueryString["Date1"].ToString());
+
+                                DateTime date =Convert.ToDateTime(this.Request.QueryString["Date1"].ToString()) ;
 
 
                                 if (ppaidamt > 0)

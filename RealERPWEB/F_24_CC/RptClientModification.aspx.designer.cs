@@ -238,5 +238,23 @@ namespace RealERPWEB.F_24_CC
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvRptCliMod;
+
+        /// <summary>
+        /// FinalbillApproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View FinalbillApproval;
+
+        /// <summary>
+        /// gvfbillapproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvfbillapproval;
     }
 }

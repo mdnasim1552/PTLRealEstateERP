@@ -74,7 +74,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "CashSalary":
                     this.MultiView1.ActiveViewIndex = 1;
+                    this.lblfrmd.Visible = true;
+                    this.ddlfrmDesig.Visible = true;
+                    this.lbltdeg.Visible = true;
+                    this.ddlToDesig.Visible = true;
+
+
                     string comcod = this.GetComeCode();
+                    this.GetDesignation();
                     if (comcod == "3355")
                     {
                         this.rbtnlistsaltypeAddItem();
@@ -464,10 +471,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
-            string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString() + "%";
+            string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString().Substring(0,9) + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+
             string exclumgt = "";
             string mantype = "";
+        
             switch (comcod)
             {
 
@@ -485,7 +496,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
 
-            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "RPTCASHSALARY", month, Company, Department, section, exclumgt, mantype, "", "", "");
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "RPTCASHSALARY", month, Company, Department, section, exclumgt, mantype, DesigFrom, DesigTo, "");
 
             if (ds3 == null)
             {
@@ -1528,11 +1539,49 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PrintCashSalaryGreenWood();
                     break;
 
+                case "3354":
+                    this.PrintCashSalaryEdison();
+                    break;
+
                 default:
                     this.PrintCashSalarygen();
                     break;
 
             }
+
+        }
+
+
+        private void PrintCashSalaryEdison()
+        {
+            DataTable dt = (DataTable)Session["tblSalSum"];
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comname = hst["comnam"].ToString();
+            string comcod = hst["comcod"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string comLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+            string date = this.GetStdDate("01." + ASTUtility.Right(this.txtfMonth.Text, 2) + "." + this.txtfMonth.Text.Substring(0, 4));
+            date = Convert.ToDateTime(date).ToString("MMMM, yyyy");
+            double netpay = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
+
+            var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2.RptCashPay02>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptCashPay02Edison", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", this.ddlCompany.SelectedItem.Text.Trim()));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "Salary Statement (Cash)"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "Salary Statement (Cash)  for the Month of : " + date));
+            Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpay, 2)));
+            Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -2383,6 +2432,57 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
         }
 
+        private string GetCompCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();          
+            return comcod;
+        }
+        private void GetDesignation()
+        {
+
+            string comcod = this.GetCompCode();         
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "DESIGNAME", "", "", "", "", "", "", "", "", "");
+            Session["tbldesig"] = ds1.Tables[0];
+            if (ds1 == null)
+                return;
+            this.ddlfrmDesig.DataTextField = "designation";
+            this.ddlfrmDesig.DataValueField = "desigcod";
+            this.ddlfrmDesig.DataSource = ds1.Tables[0];
+            this.ddlfrmDesig.DataBind();
+            if (this.Request.QueryString["Type"].ToString() == "EmpGradeADesig")
+            {
+                this.ddlfrmDesig.SelectedValue = "0357000";
+            }
+            else
+            {
+                this.ddlfrmDesig.SelectedValue = "0357999";
+            }
+            this.GetDessignationTo();
+        }
+        private void GetDessignationTo()
+        {
+
+            DataTable dt = (DataTable)Session["tbldesig"];
+            this.ddlToDesig.DataTextField = "designation";
+            this.ddlToDesig.DataValueField = "desigcod";
+            this.ddlToDesig.DataSource = dt;
+            this.ddlToDesig.DataBind();
+            if (this.Request.QueryString["Type"].ToString() == "EmpGradeADesig")
+            {
+                this.ddlToDesig.SelectedValue = "0311000";
+            }
+            else
+            {
+                // this.ddlToDesig.SelectedValue = "0311001";
+            }
+
+
+        }
+        protected void ddlfrmDesig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetDessignationTo();
+        }
         protected void gvtopsheetfactory_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 

@@ -25,12 +25,12 @@ namespace RealERPWEB.F_14_Pro
         {
             if (!IsPostBack)
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("~/AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Comparative Statement - Purchase 02";
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //((Label)this.Master.FindControl("lblTitle")).Text = "Comparative Statement - Purchase 02";
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
 
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 if (Request.QueryString.AllKeys.Contains("msrno"))
@@ -389,6 +389,8 @@ namespace RealERPWEB.F_14_Pro
             //dv1.RowFilter = ("spcfcod== 000000000000");
             //dtdetails = dv1.ToTable();
 
+            string csinfo = surveyNo + " , " + Convert.ToDateTime(this.GetStdDate(this.txtCurMSRDate.Text.Trim())).ToString("dd-MMM-yyyy");
+
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay03>();
 
@@ -420,7 +422,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
 
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
@@ -455,7 +457,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
 
-                // Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
@@ -487,7 +489,7 @@ namespace RealERPWEB.F_14_Pro
                 Rpt1.SetParameters(new ReportParameter("CurDate1", CurDate1));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
                 Rpt1.SetParameters(new ReportParameter("rsirdesc", rsirdesc));
-                //Rpt1.SetParameters(new ReportParameter("mMSRNo", mMSRNo));
+                Rpt1.SetParameters(new ReportParameter("csinfo", csinfo));
                 //Rpt1.SetParameters(new ReportParameter("SurveyNo", SurveyNo));
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));

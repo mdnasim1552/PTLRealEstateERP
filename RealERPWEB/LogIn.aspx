@@ -7,9 +7,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
-    <title></title>
+    <title>PTL ERP Login</title>
     <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
@@ -50,12 +50,9 @@
             height: 34px;
             width: 258px;
         }
-        .chzn-drop {
 
-           
-            width: 258px !important; 
-            
-        
+        .chzn-drop {
+            width: 258px !important;
         }
 
         #loginform .form-group, #loginform .panel-body {
@@ -117,12 +114,13 @@
             -webkit-box-shadow: 1px 0px 10px 4px rgb(101 125 142 / 75%);
             border-radius: 20px;
         }
-         #asitulogmain2 {
+
+        #asitulogmain2 {
             width: 490px;
             min-height: 150px;
             border: 1px solid #A9B6C0;
             margin: 0 auto;
-            padding:50px;
+            padding: 50px;
             background: #fff;
             box-shadow: 1px 0px 10px 4px rgb(101 125 142 / 75%);
             -moz-box-shadow: 1px 0px 10px 4px rgba(101, 125, 142, 0.75);
@@ -249,9 +247,7 @@
         img {
             vertical-align: bottom;
         }
-    </style>
 
-    <style>
         .appsContinerLogin {
             width: 100%;
         }
@@ -311,6 +307,13 @@
             return true;
         }
 
+
+        //Welcome Modal 
+        //function leave() {
+        //    $('#WCModal').modal('hide');
+        //}
+        //setTimeout("leave()", 5000);
+
         $(document).ready(function () {
             $(".toggle-password").click(function () {
 
@@ -329,7 +332,7 @@
                 }
             });
 
-            $('#WCModal').modal('show');
+            //$('#WCModal').modal('show');
 
             $('#ForgetPass').click(function () {
                 $('#myModal').modal('toggle');//.modal('show')/.modal('hide');
@@ -349,114 +352,9 @@
             $('.chzn-select').chosen({ search_contains: true });
         };
 
-        function leave() {    ///// using festival option
-            //  window.location = "http://webdesign.about.com";
-
-            // $('#WCModal').modal('hide');
-        }
-        setTimeout("leave()", 8000);  ///// using festival option
-
 
     </script>
-    <%--<script type="text/javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-        });
-        function pageLoaded() {
-            $('.chzn-select').chosen({ search_contains: true });
-
-
-
-        }
-
-<%--        $(document).ready(function () {
-            try {
-
-               // alert("Programmer");
-
-            }
-
-            catch (e) {
-
-
-                alert(e);
-            }
-
-
-
-            //   $('#WCModal').modal('show');
-
-
-            // Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-            //$('#ForgetPass').click(function () {
-            // $('#myModal').modal('toggle');//.modal('show')/.modal('hide');
-            //});
-            //$('#myModal').on('hidden.bs.modal', function () { $('#ForgetPass').removeAttr('checked'); })
-
-            pageLoaded();
-
-
-
-
-
-        });
-        function leave() {    ///// using festival option
-            //  window.location = "http://webdesign.about.com";
-
-            // $('#WCModal').modal('hide');
-        }
-        setTimeout("leave()", 8000);  ///// using festival option
-        $('.chzn-select').chosen({ search_contains: true });
-      
-
-
-        function pageLoaded() {
-
-
-           
-            try {
-
-              
-
-                $('#<%=this.txtuserid.ClientID%>').focus();
-
-
-                   $("input, select").bind("keydown", function (event) {
-                       var k1 = new KeyPress();
-                       k1.TxtLogin(event);
-                   });
-
-
-
-
-                   $(".toggle-password").click(function () {
-                      
-                      
-                       var input = $($(this).attr("toggle"));                       
-                       if (input.attr("type") == "password") {
-
-                          // alert('dd');
-                           $(this).removeClass("glyphicon glyphicon-eye-open");
-                           $(this).addClass("glyphicon glyphicon-eye-close");
-                           input.attr("type", "text");
-                           //alert('hi');
-                       }
-                       else {
-                           
-                           $(this).removeClass("glyphicon glyphicon-eye-close");
-                           $(this).addClass("glyphicon glyphicon-eye-open");
-                           input.attr("type", "password");
-                           //alert('ki')
-                       }
-                   });
-               }
-               catch (e) {
-                   alert(e);
-               }
-
-
-           };--%>
 </head>
 <body>
 
@@ -514,7 +412,7 @@
 
                                     </div>
 
-                                    <div style="margin-bottom: 1px" class="input-group">
+                                    <div style="margin-bottom: 1px" class="input-group" id="pwdDiv" runat="server">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <%-- <asp:TextBox ID="txtuserpass" runat="server" class="form-control" name="txtuserpass" TextMode="Password" required="required" placeholder="Password" AutoCompleteType="Cellular" >
                             </asp:TextBox>
@@ -540,7 +438,7 @@
                                     <div class="asituloginnerIn">
                                         <div style="margin-bottom: 1px" class="input-group">
                                             <span id="lbloldPass" runat="server" visible="false" class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                            <asp:TextBox ID="txtuserOldrpass" runat="server" AutoCompleteType="Disabled" class="form-control" Visible="False" name="txtuserpass" TextMode="Password" placeholder="Password" TabIndex="6"></asp:TextBox>
+                                            <asp:TextBox ID="txtuserOldrpass" runat="server" AutoCompleteType="Disabled" class="form-control" Visible="False" name="txtuserpass" TextMode="Password" placeholder="Old Password" TabIndex="6"></asp:TextBox>
 
                                         </div>
 
@@ -567,16 +465,16 @@
                         <div class="col-md-12"></div>
                         <asp:Label ID="lblmsg" runat="server" class="alert alert-danger col-sm-12" Visible="false">Wrong username or password</asp:Label>
 
-                       
+
                     </div>
 
-                   
-                         <asp:Panel ID="pnlmsgbox" CssClass="text-center" runat="server" Visible="false">
-                              <div id="asitulogmain2">
+
+                    <asp:Panel ID="pnlmsgbox" CssClass="text-center" runat="server" Visible="false">
+                        <div id="asitulogmain2">
                             <p id="lblalrtmsg" runat="server"></p>
-                                   </div>
-                        </asp:Panel>
-                   
+                        </div>
+                    </asp:Panel>
+
 
 
                 </div>
@@ -634,13 +532,31 @@
                 </div>
 
 
+
+
+
                 <%-- </ContentTemplate>
                     </asp:UpdatePanel>--%>
             </div>
         </section>
 
     </form>
+    <!------------------ Welcome Modal--------------------------------->
+    <div class="modal fade " id="WCModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row" style="padding: 0px; margin: 0px;">
+                        <%--<a href="#" data-dismiss="modal" class="class pull-right btn btn-sm btn-danger btn-circle"><span class="glyphicon glyphicon-remove"></span></a>--%>
+                        <asp:Image ID="Image2" CssClass="img img-responsive" runat="server" ImageUrl="~/image/new-year-01.jpg" />
 
+                        <%--<img src="<?php echo base_url();?>images/NewYear2018.gif" class="img img-responsive">--%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------------------ Welcome Modal--------------------------------->
 </body>
 </html>
 

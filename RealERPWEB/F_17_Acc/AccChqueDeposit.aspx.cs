@@ -402,7 +402,7 @@ namespace RealERPWEB.F_17_Acc
             switch (comcod)
             {
                 case "3340"://Urban
-                case "3101"://Urban
+                //case "3101"://Urban
 
                                      
                     string pactcode = this.Request.QueryString["prjcode"].ToString() ?? "" ;

@@ -109,7 +109,8 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint4";
                     break;
 
-
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -137,6 +138,8 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
                 //case "3101":
+
+
                 case "3349":
                 case "3348":
                     vouprint = "VocherPrintCredence";
@@ -148,12 +151,12 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VoucherPrintP2P";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     vouprint = "VocherPrintManama";
                     break;
 
-
+                //case "3101":
                 case "3325":
                 case "2325":
                     vouprint = "VocherPrintLeisure";
@@ -163,6 +166,32 @@ namespace RealERPWEB.F_17_Acc
                 case "3338":
                     vouprint = "VocherPrintAcme";
                     break;
+
+                case "1103":
+                    vouprint = "VocherPrintTanvir";
+                    break;
+
+
+                //case "3101":
+                case "3358":
+                case "3359":
+                case "3360":
+                case "3361":
+                    vouprint = "VocherPrintEntrust";
+                    break;
+
+
+                case "3355":
+                    vouprint = "VocherPrintGreenwood";
+                    break;
+
+
+                case "3101":
+                case "3364":
+                    vouprint = "VocherPrintJBS";
+                    break;
+
+
 
                 default:
                     vouprint = "VocherPrint";
@@ -189,13 +218,21 @@ namespace RealERPWEB.F_17_Acc
                 case "3309":// HOlding
                 case "3310":// RCU
                 case "2305":// land
+
+                case "1108"://  Assure(engineering)
+                case "1109"://  Assure(tourism)
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
                 case "3333"://  Alliance
                 case "3338"://  ACME
                 case "3339"://  Tropical
-                case "3340"://  Urban           
+                case "3340"://  Urban
+                case "3101":// Pintech  
+                case "3353":// manama  
+
+                case "3357":// Cube   
+
                     break;
 
 
@@ -256,7 +293,12 @@ namespace RealERPWEB.F_17_Acc
                 string chequeno = dt1.Rows[0]["chequeno"].ToString();
                 string cheqdate = Convert.ToDateTime(dt1.Rows[0]["cheqdate"]).ToString("dd-MMM-yyyy");
 
-
+                string postrmid = dt1.Rows[0]["entryid"].ToString();
+                string postuser = dt1.Rows[0]["entryPerson"].ToString();
+                //string postseson = dt1.Rows[0]["chequeno"].ToString();
+                string Posteddat = Convert.ToDateTime(dt1.Rows[0]["entryDate"]).ToString("dd-MMM-yyyy");
+                string postdesig = dt1.Rows[0]["entrydesig"].ToString();
+                string txtsign1 = postuser + "\n" + postdesig + "\n" + Posteddat;
 
 
                 if (dramt > 0 && cramt > 0)
@@ -334,10 +376,8 @@ namespace RealERPWEB.F_17_Acc
                 {
 
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
-
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher5", list, null, null);
                     Rpt1.EnableExternalImages = true;
-
 
 
                 }
@@ -394,7 +434,6 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
-
                 else if (Type == "VocherPrintSuvastu")
                 {
 
@@ -438,7 +477,43 @@ namespace RealERPWEB.F_17_Acc
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherManama", list, null, null);
                     Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("chqno", "Cheque No : " + chequeno));
+                    Rpt1.SetParameters(new ReportParameter("voutype1", " Bank Payment Voucher "));
+                    Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+
                 }
+
+                else if (Type == "VocherPrintTanvir")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherTanvir", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtPay", (vounum.Substring(0, 2).ToString() == "PV") ? "Pay To " : "Receive From"));
+
+                }
+
+                else if (Type == "VocherPrintEntrust")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherEntrust", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+
+
+                }
+
+                else if (Type == "VocherPrintGreenwood")
+                {
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherGreenwood", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+
+                }
+
 
 
                 else
@@ -462,18 +537,30 @@ namespace RealERPWEB.F_17_Acc
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-                Rpt1.SetParameters(new ReportParameter("Vounum", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339") ? vounum : "Voucher No : " + vounum));
-                Rpt1.SetParameters(new ReportParameter("voudat", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339") ? voudat : "Voucher Date : " + voudat));
+                Rpt1.SetParameters(new ReportParameter("Vounum", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339" || comcod=="1205" || comcod == "3351" || comcod == "3352") ? vounum : "Voucher No : " + vounum));
+                Rpt1.SetParameters(new ReportParameter("voudat", (comcod == "3336" || comcod == "3337" || comcod == "3101" || comcod == "3339" || comcod == "1205" || comcod == "3351" || comcod == "3352") ? voudat : "Voucher Date : " + voudat));
+                
                 if (comcod == "2305" || comcod == "3305" || comcod == "3306" || comcod == "3309" || comcod == "3310" || comcod == "3311")
                 {
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                 }
 
-                Rpt1.SetParameters(new ReportParameter("voutype", VouType));
                 Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+
+                if (comcod == "2325" || comcod == "3325" || comcod == "3101" || comcod == "3355")
+                {
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, "", Posteddat, compname, username, printdate, "")));
+                    Rpt1.SetParameters(new ReportParameter("voutype", "PDC " + VouType));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
+                    Rpt1.SetParameters(new ReportParameter("voutype", VouType));
+                }
+
+                //Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate)));
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
@@ -516,12 +603,21 @@ namespace RealERPWEB.F_17_Acc
                 case "3310":// RHEL(ctg)
 
                 case "3306":// Ratul
-                case "3309":// HOlding
+                case "3309":// Holding
                 case "2305":// land
+                case "1108"://  Assure(Engineering)
+                case "1109"://  Assure(Tourism)
                 case "3315"://  Assure(Builders)
                 case "3316"://  Assure(Development)
                 case "3317"://  Assure(Aggro)
-                            // case "3101"://  ASIT (Check)
+                case "3353":
+              //  case "3101"://  ASIT (Check)
+
+                case "3357"://  Cube Holding
+                case "3364"://  JBS 
+
+
+
                     break;
 
 
@@ -566,7 +662,8 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint4";
                     break;
 
-
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -578,7 +675,7 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrint6";
                     break;
 
-
+                //case "3101":
                 case "3330":
                     vouprint = "VocherPrintBridge";
                     break;
@@ -598,22 +695,27 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintSuvastu";
                     break;
 
-
+                //case "3101":
                 case "2325":
                 case "3325":
                     vouprint = "VocherPrintLei";
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3353":
                     vouprint = "VoucherPrintManama";
+                    break;
+
+                //case "3101":
+                case "3357":
+                    vouprint = "VoucherPrintCube";
                     break;
 
                 case "1103":// Tanvir
                     vouprint = "VocherPrintTanvir";
                     break;
 
-
+                //case "3101":
                 case "3349":
                 case "3348":
                     vouprint = "VocherPrintCredence";
@@ -625,11 +727,50 @@ namespace RealERPWEB.F_17_Acc
                 //    break;
 
                 //manama, p2p 
+                // Entrust Collection
+                //case "3101":
+                case "3358":
+                case "3359":
+                case "3360":
+                case "3361":
+                    vouprint = "VocherPrintEntrust";
+                    break;
+
+                case "3101":
+                case "3364":
+                    vouprint = "VocherPrintJBS";
+                    break;
+
+
                 default:
                     vouprint = "VocherPrintMod";
                     break;
             }
             return vouprint;
+        }
+
+
+        private string GetCompNarration()
+        {
+
+            string comcod = this.GetCompCode();
+            string ntype = "";
+            switch (comcod)
+            {
+                case "1103":// Tanvir
+                case "3353": // manama
+                case "3101":// ptl
+                    ntype = "ShowNarration";
+                    break;
+
+
+                default:
+                    ntype = "";
+                    break;
+
+
+            }
+            return ntype;
         }
 
 
@@ -664,10 +805,12 @@ namespace RealERPWEB.F_17_Acc
                 string vounum = this.Request.QueryString["vounum"].ToString();
                 string session = hst["session"].ToString();
                 string PrintInstar = this.GetCompInstar();
+                string ntype = this.GetCompNarration();
+
                 string pouaction = this.Getpouaction(vounum);
                 string Calltype = (pouaction.Length > 0) ? "PRINTUNPOSTEDVOUCHER01" : "PRINTVOUCHER01";
                 //string Calltype =  "PRINTVOUCHER01";
-                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, "", "", "", "", "", "", "");
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, ntype, "", "", "", "", "", "");
                 if (_ReportDataSet == null)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Data Not Found');", true);
@@ -707,9 +850,10 @@ namespace RealERPWEB.F_17_Acc
                 string Isunum = (dt1.Rows[0]["isunum"]).ToString() == "" ? "" : ASTUtility.Right((dt1.Rows[0]["isunum"]).ToString(), 6);
                 string Posteddat = Convert.ToDateTime(dt1.Rows[0]["posteddat"]).ToString("dd-MMM-yyyy");
                 string postuser = dt1.Rows[0]["postuser"].ToString();
-                string potseson = dt1.Rows[0]["postseson"].ToString();
+                string postseson = dt1.Rows[0]["postseson"].ToString();
                 string postrmid = dt1.Rows[0]["postrmid"].ToString();
                 string receivedBank = dt1.Rows[0]["banknam"].ToString();
+
 
 
                 string Type = this.CompanyPrintVou();
@@ -727,7 +871,19 @@ namespace RealERPWEB.F_17_Acc
                 string authorizeby = dts.Select("gcod='01010'").Length > 0 ? (dts.Select("gcod='01010'")[0]["gdesc"]).ToString().Trim() : "";
                 // string authorizeby = dts.Select("gcod='01010'").Length > 0 ? (dts.Select("gcod='01010'")[0]["gdesc"]).ToString() : "";
 
-
+                // todo for jbs project location 
+                string project = "";
+                string pLocation = "";
+                string vounum1 = ASTUtility.Left(Vounum, 2) + Vounum.Substring(7, 2) + "-" + ASTUtility.Right(Vounum, 6);
+                if(_ReportDataSet.Tables.Count > 3)
+                {
+                    if (_ReportDataSet.Tables[3].Rows.Count > 0)
+                    {
+                        project = _ReportDataSet.Tables[3].Rows[0]["pactdesc"].ToString();
+                        pLocation = _ReportDataSet.Tables[3].Rows[0]["gdatat"].ToString();
+                    }
+                }
+                
 
 
                 //string[] billno1;
@@ -771,9 +927,6 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
                     Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
                 }
-
-
-
 
                 else if (Type == "VocherPrint1")
                 {
@@ -1020,6 +1173,7 @@ namespace RealERPWEB.F_17_Acc
                         Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
                         Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
                         Rpt1.SetParameters(new ReportParameter("username", postuser));
+                        Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                         Rpt1.SetParameters(new ReportParameter("voutype", voutype));
                         Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
 
@@ -1055,6 +1209,7 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("username", postuser));
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
 
 
 
@@ -1078,7 +1233,7 @@ namespace RealERPWEB.F_17_Acc
                             Rpt1.SetParameters(new ReportParameter("username", postuser));
                             Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
                             Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
-
+                            Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
 
 
                         }
@@ -1086,6 +1241,89 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
+                else if (Type == "VocherPrintJBS")
+                {
+                    if (ASTUtility.Left(vounum, 2) == "JV")
+                    {
+
+                        var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJBS01", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+                        Rpt1.SetParameters(new ReportParameter("Vounum", vounum1));
+                        Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                        Rpt1.SetParameters(new ReportParameter("username", postuser));
+                        Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                        Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                        Rpt1.SetParameters(new ReportParameter("txtProject", project));
+                        Rpt1.SetParameters(new ReportParameter("txtProjectAdd", pLocation));
+                        Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+
+
+                    }
+                    else
+                    {
+                        string vouno = vounum.Substring(0, 2);
+                        string paytoorecived = (vouno == "BC" || vouno == "CC") ? "Recieved From" : "Pay To";
+                        string prjdesc;
+
+                        prjdesc = ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? dt.Rows[0]["actdesc"].ToString() : "Head Office";
+
+                        // prjdesc = ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? "Project" : "Head Office";
+
+
+
+                        if (vouno == "BC" || vouno == "CC")
+                        {
+
+                            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJBS02", list, null, null);
+                            Rpt1.EnableExternalImages = true;
+                            Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
+                            Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                            Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                            Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                            Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto));
+                            Rpt1.SetParameters(new ReportParameter("txtProject", prjdesc));
+                            Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                            Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                            Rpt1.SetParameters(new ReportParameter("username", postuser));
+                            Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
+                            Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                            Rpt1.SetParameters(new ReportParameter("txtProject", project));
+                            Rpt1.SetParameters(new ReportParameter("txtProjectAdd", pLocation));
+
+
+
+                        }
+                        else
+                        {
+
+                            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherJBS03", list, null, null);
+                            Rpt1.EnableExternalImages = true;
+                            Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
+                            Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                            Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                            Rpt1.SetParameters(new ReportParameter("txtissuno", vouno == "BD" || vouno == "CD" ? "Payment ID : " + dt1.Rows[0]["isunum"].ToString() : ""));
+                            Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                            Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto)); 
+                            Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                            Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                            Rpt1.SetParameters(new ReportParameter("username", postuser));
+                            Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
+                            Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                            Rpt1.SetParameters(new ReportParameter("txtProject", project));
+                            Rpt1.SetParameters(new ReportParameter("txtProjectAdd", pLocation));
+
+                        }
+                    }
+
+                }
 
                 else if (Type == "VocherPrintMod")
                 {
@@ -1228,6 +1466,7 @@ namespace RealERPWEB.F_17_Acc
                 else if (Type == "VoucherPrintManama")
                 {
                     string voutype1 = "";
+
                     string vouno = vounum.Substring(0, 2);
                     if (vouno == "BC")
                     {
@@ -1236,6 +1475,11 @@ namespace RealERPWEB.F_17_Acc
                     else if (vouno == "CC")
                     {
                         voutype1 = "Cash Receive Voucher";
+                    }
+
+                    else if (vouno == "JV")
+                    {
+                        voutype1 = "Journal Voucher";
                     }
                     else
                     {
@@ -1252,11 +1496,139 @@ namespace RealERPWEB.F_17_Acc
                     Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
                     Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
                     Rpt1.SetParameters(new ReportParameter("voutype", voutype1));
-                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("venar", venar));
                     Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
                     Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
                 }
 
+                else if (Type == "VoucherPrintCube")
+                {
+                    string voutype1 = "";
+
+                    string vouno = vounum.Substring(0, 2);
+                    if (vouno == "BC")
+                    {
+                        voutype1 = "Bank Receive Voucher";
+                    }
+                    else if (vouno == "CC")
+                    {
+                        voutype1 = "Cash Receive Voucher";
+                    }
+
+                    else if (vouno == "JV")
+                    {
+                        voutype1 = "Cash Receive Voucher";
+                    }
+                    else
+                    {
+                        voutype1 = voutype;
+                    }
+
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherCube", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                    Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                    Rpt1.SetParameters(new ReportParameter("refnum", "Cheque/Ref. No.: " + refnum));
+                    Rpt1.SetParameters(new ReportParameter("txtissuno", "Issue No: " + Isunum));
+                    Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : Partytype + " " + payto));
+                    Rpt1.SetParameters(new ReportParameter("txtComBranch", (combranch.Length > 0) ? ("Unit: " + combranch) : ""));
+                    Rpt1.SetParameters(new ReportParameter("voutype", voutype1));
+                    Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                    Rpt1.SetParameters(new ReportParameter("preparedby", postuser));
+                    Rpt1.SetParameters(new ReportParameter("entrydate1", "Entry Date: " + Posteddat));
+
+                }
+
+
+                else if (Type == "VocherPrintEntrust")
+                {
+
+                    if (ASTUtility.Left(vounum, 2) == "JV")
+                    {
+                        var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVoucherCube", list, null, null);
+                        Rpt1.EnableExternalImages = true;
+                        Rpt1.SetParameters(new ReportParameter("Vounum", "Voucher No.: " + vounum));
+                        Rpt1.SetParameters(new ReportParameter("voudat", "Voucher Date: " + voudat));
+                        Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                        Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                        Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                        Rpt1.SetParameters(new ReportParameter("username", postuser));
+                        Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                        Rpt1.SetParameters(new ReportParameter("txtcheckby", Checkby));
+                        Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                        Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+
+
+                    }
+                    else
+                    {
+                        string vouno = vounum.Substring(0, 2);
+                        string paytoorecived = (vouno == "BC" || vouno == "CC") ? "Recieved From" : "Pay To";
+                        string prjdesc = "";
+                        prjdesc = ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "16" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "18" || ASTUtility.Left(dt.Rows[0]["mactcode"].ToString(), 2) == "26" ? "Project" : "Head Office";
+
+                        if (vouno == "BC" || vouno == "CC")
+                        {
+
+                            var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+                            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherEntrust02", list, null, null);
+                            Rpt1.EnableExternalImages = true;
+                            Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
+                            Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                            Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                            Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                            Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto));
+                            Rpt1.SetParameters(new ReportParameter("txtProject", prjdesc));
+                            Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                            Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                            Rpt1.SetParameters(new ReportParameter("username", postuser));
+                            Rpt1.SetParameters(new ReportParameter("txtRecvby", (comcod == "3333") ? "" : "Received By"));
+                            Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                            Rpt1.SetParameters(new ReportParameter("txtcheckby", (comcod == "3333") ? "" : Checkby));
+                            Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                            Rpt1.SetParameters(new ReportParameter("txtaprvby2", aprvby2));
+                            Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+                            Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
+                            //Rpt1.SetParameters(new ReportParameter("paytoorecived", paytoorecived));
+                            Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+
+
+                        }
+                        else
+                        {
+
+                            if (vouno == "BD" || vouno == "CD" || vouno == "CT")
+                            {
+
+                                var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.vouPrint>();
+
+                                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptPrintVocherEntrust03", list, null, null);
+                                Rpt1.EnableExternalImages = true;
+                                Rpt1.SetParameters(new ReportParameter("Vounum", vounum));
+                                Rpt1.SetParameters(new ReportParameter("voudat", voudat));
+                                Rpt1.SetParameters(new ReportParameter("refnum", refnum));
+                                Rpt1.SetParameters(new ReportParameter("txtissuno", "Payment ID : " + dt1.Rows[0]["isunum"].ToString()));
+                                Rpt1.SetParameters(new ReportParameter("txtDesc", dt1.Rows[0]["cactdesc"].ToString()));
+                                Rpt1.SetParameters(new ReportParameter("txtPartyName", (payto == "") ? "" : payto));
+                                Rpt1.SetParameters(new ReportParameter("txtProject", prjdesc));
+                                Rpt1.SetParameters(new ReportParameter("voutype", voutype));
+                                Rpt1.SetParameters(new ReportParameter("venar", "Narration: " + venar));
+                                Rpt1.SetParameters(new ReportParameter("username", postuser));
+                                Rpt1.SetParameters(new ReportParameter("txtpreby", preby));
+                                Rpt1.SetParameters(new ReportParameter("txtcheckby", (comcod == "3333") ? "" : Checkby));
+                                Rpt1.SetParameters(new ReportParameter("txtaprvby1", aprvby1));
+                                Rpt1.SetParameters(new ReportParameter("txtaprvby2", aprvby2));
+                                Rpt1.SetParameters(new ReportParameter("txtauthorizeby", authorizeby));
+                                Rpt1.SetParameters(new ReportParameter("txtReceivedBank", receivedBank));
+                                Rpt1.SetParameters(new ReportParameter("txtporrecieved", paytoorecived));
+
+                            }
+
+                        }
+                    }
+                }
 
                 else
                 {
@@ -1283,23 +1655,43 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-
-                if (ConstantInfo.LogStatus == true)
+                string events = hst["events"].ToString();
+                if (Convert.ToBoolean(events) == true)
                 {
-
+                    string eventtype = ((Label)this.Master.FindControl("lblTitle")).ToString();
                     string eventdesc = "Print Voucher";
                     string eventdesc2 = "Voucher: " + vounum + " Dated: " + voudat;
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, eventdesc2);
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
 
 
                 }
+
+
+                //if (ConstantInfo.LogStatus == true)
+                //{
+
+                //    string eventdesc = "Print Voucher";
+                //    string eventdesc2 = "Voucher: " + vounum + " Dated: " + voudat;
+                //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "", eventdesc, eventdesc2);
+
+
+                //}
 
 
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("InWrd", ASTUtility.Trans(Math.Round(TAmount), 2)));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
-                Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, potseson, Posteddat, compname, username, printdate, session)));
+
+                if (comcod == "2325" || comcod == "3325" || comcod == "3353" || comcod == "3101")
+                {
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat1(postrmid, postuser, postseson, Posteddat, compname, username, printdate, session)));
+                }
+                else
+                {
+                    Rpt1.SetParameters(new ReportParameter("txtuserinfo", ASTUtility.Concat(compname, username, printdate, session)));
+                }
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
@@ -1499,6 +1891,8 @@ namespace RealERPWEB.F_17_Acc
                 //case "3306":
                 //    chequeprint = "PrintCheque03";
                 //    break;
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
                 case "3317":
@@ -1525,11 +1919,12 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                //case "3101":
+
                 case "3337":
                 case "3336":
                     this.PrintchKSuvastu();
                     break;
+
                 case "3344":
                     this.PrinChequeTarraNova();
                     break;
@@ -1550,11 +1945,20 @@ namespace RealERPWEB.F_17_Acc
                 //    this.PrinCheque();
                 //    break;
 
+                case "1108":
+                case "1109":
                 case "3315":
                 case "3316":
+                case "3317":
 
                     PrinChequeAssure();
                     break;
+                case "3101":
+                case "3355":
+
+                    PrinChequeGreenWood();
+                    break;
+
 
                 default:
                     this.PrinCheque();
@@ -1772,6 +2176,103 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
+        private void PrinChequeGreenWood()
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string vounum = this.Request.QueryString["vounum"].ToString();
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "PRINTCHECK", vounum, "", "", "", "", "", "", "", "");
+                if (_ReportDataSet == null)
+                    return;
+                DataTable dt1 = _ReportDataSet.Tables[0];
+                string voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+
+                // voudat = voudat.Substring(0, 1) + "   " + voudat.Substring(1, 1) + "   " + voudat.Substring(2, 1) + "   " + voudat.Substring(3, 1) + "   " + voudat.Substring(4, 1) + "   " + voudat.Substring(5, 1) + "   " + voudat.Substring(6, 1) + "   " + voudat.Substring(7, 1);
+                string payto = dt1.Rows[0]["payto"].ToString();
+                double amt = Convert.ToDouble(dt1.Rows[0]["tamt"].ToString());
+                string amt1 = ASTUtility.Trans(Math.Round(amt), 2);
+                int len = amt1.Length;
+                string amt2 = amt1.Substring(7, (len - 8));
+                string wam1 = string.Empty;
+                string wam2 = string.Empty;
+                string Chequeprint = this.CompanyPrintCheque();
+                string[] amtWrd1 = ASTUtility.Trans(Math.Round(amt, 0), 2).Split('(', ')');
+                string[] amtdivide = amtWrd1[1].Split(' ');
+
+                string value = (this.Request.QueryString["paytype"] == "0") ? "A/C Payee" : "";
+
+
+
+                for (int i = 2; i <= amtdivide.Length - 1; i++)
+                {
+                    if (i == amtdivide.Length)
+                    {
+                        return;
+                    }
+                    else if (i > 7)
+                    {
+                        wam1 += " " + amtdivide[i].ToString();
+                    }
+                    else
+                    {
+                        wam2 += " " + amtdivide[i].ToString();
+                    }
+                }
+
+
+                Hashtable hshtbl = new Hashtable();
+                hshtbl["bankName"] = "";
+                hshtbl["payTo"] = payto;
+                hshtbl["acpayee"] = value;
+                hshtbl["date"] = voudat;
+                hshtbl["amtWord"] = wam2;//.ToUpper();
+                hshtbl["amtWord1"] = wam1;//.ToUpper();
+                                          // hshtbl["payble"] = value;
+                hshtbl["amt"] = Convert.ToDouble(amt).ToString("#,##0;(#,##0); ") + "/-";
+                LocalReport rpt1 = new LocalReport();
+                string banktype = dt1.Rows[0]["bnkcode"].ToString();
+
+                // defult Trust Bank 
+                if (banktype == "TBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+                // Shimanto Bank RptChequeGreenwoodSHBL
+                else if (banktype == "SHBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHBL", hshtbl, null, null);
+                }
+                // Shahjalal Islami Bank Ltd RptChequeGreenwoodSHIBL
+                else if (banktype == "SHIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHIBL", hshtbl, null, null);
+                }
+                // Fast Security Bank Ltd RptChequeGreenwoodFSIBL
+                else if (banktype == "FSIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodFSIBL", hshtbl, null, null);
+                }
+                else
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+
+
+                Session["Report1"] = rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+
+        }
+
         private void PrintPostDatedCheque()
         {
 
@@ -1785,12 +2286,14 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "1108":
+                case "1109":
                 case "3315":// Assure Builders
                 case "3316": //Assure Builders
                     this.PrintChequePostAssure();
                     break;
 
-                case "3101":
+                //case "3101":
                 case "3336":// Assure Builders
                 case "3337": //Assure Builders
                     this.PrintChequePostSuvastu();
@@ -1809,6 +2312,11 @@ namespace RealERPWEB.F_17_Acc
 
                     this.RptPostDatChq1(); //Rupayan
 
+                    break;
+
+                case "3101":// Assure Builders
+                case "3355": //Assure Builders
+                    this.PrintChequePostGreenwood();
                     break;
 
 
@@ -2720,6 +3228,107 @@ namespace RealERPWEB.F_17_Acc
         }
 
 
+        private void PrintChequePostGreenwood()
+        {
+
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                string vounum = this.Request.QueryString["vounum"].ToString().Substring(0, 14);
+                string chqno = this.Request.QueryString["vounum"].ToString().Substring(14);
+                DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "RPTPOSTDATCHECK", vounum, chqno, "", "", "", "", "", "", "");
+                if (_ReportDataSet == null)
+                    return;
+                DataTable dt1 = _ReportDataSet.Tables[0];
+
+
+                double toamt, dramt, cramt;
+                string voudat = Convert.ToDateTime(dt1.Rows[0]["chequedat"]).ToString("ddMMyyyy");
+                string payto = dt1.Rows[0]["payto"].ToString(); //this.txtRecAndPayto.Text.Trim();
+                toamt = Convert.ToDouble(dt1.Rows[0]["trnam"].ToString());
+                string amt1 = ASTUtility.Trans(Math.Round(toamt), 2);
+                int len = amt1.Length;
+                string amt2 = amt1.Substring(7, (len - 8));
+                string wam1 = string.Empty;
+                string wam2 = string.Empty;
+                string Chequeprint = this.CompanyPrintCheque();
+                string[] amtWrd1 = ASTUtility.Trans(Math.Round(toamt, 0), 2).Split('(', ')');
+                string[] amtdivide = amtWrd1[1].Split(' ');
+                string value = (this.Request.QueryString["paytype"] == "0") ? "A/C Payee" : "";
+
+
+
+
+
+
+                for (int i = 2; i <= amtdivide.Length - 1; i++)
+                {
+                    if (i == amtdivide.Length)
+                    {
+                        return;
+                    }
+                    else if (i > 7)
+                    {
+                        wam1 += " " + amtdivide[i].ToString();
+                    }
+                    else
+                    {
+                        wam2 += " " + amtdivide[i].ToString();
+                    }
+                }
+
+
+                Hashtable hshtbl = new Hashtable();
+                hshtbl["bankName"] = "";
+                hshtbl["payTo"] = payto;
+                hshtbl["acpayee"] = value;
+                hshtbl["date"] = voudat;
+                hshtbl["amtWord"] = wam2;//.ToUpper();
+                hshtbl["amtWord1"] = wam1;//.ToUpper();
+                                          // hshtbl["payble"] = value;
+                hshtbl["amt"] = Convert.ToDouble(toamt).ToString("#,##0;(#,##0); ") + "/-";
+                LocalReport rpt1 = new LocalReport();
+
+                string banktype = _ReportDataSet.Tables[1].Rows[0]["bnkcode"].ToString();
+
+                // defult Trust Bank 
+                if (banktype == "TBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+                // Shimanto Bank RptChequeGreenwoodSHBL
+                else if (banktype == "SHBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHBL", hshtbl, null, null);
+                }
+                // Shahjalal Islami Bank Ltd RptChequeGreenwoodSHIBL
+                else if (banktype == "SHIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodSHIBL", hshtbl, null, null);
+                }
+                // Fast Security Bank Ltd RptChequeGreenwoodFSIBL
+                else if (banktype == "FSIBL")
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwoodFSIBL", hshtbl, null, null);
+                }
+                else
+                {
+                    rpt1 = RptSetupClass1.GetLocalReport("R_17_Acc.RptChequeGreenwood", hshtbl, null, null);
+                }
+
+                Session["Report1"] = rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                    ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
         private void PfVoucherPrint()
         {
 
@@ -2737,8 +3346,10 @@ namespace RealERPWEB.F_17_Acc
                 string vounum = this.Request.QueryString["vounum"].ToString();
                 string session = hst["session"].ToString();
                 string PrintInstar = this.GetCompInstar();
-                string pouaction = this.Getpouaction(vounum);
-                string Calltype = (pouaction.Length > 0) ? "PRINTDELETEDVOUCHER01" : "PFPRINTVOUCHER01";
+                //string pouaction = this.Getpouaction(vounum);
+                //string Calltype = (pouaction.Length > 0) ? "PRINTDELETEDVOUCHER01" : "PFPRINTVOUCHER01";
+                string Calltype = "PFPRINTVOUCHER01";
+
 
                 DataSet _ReportDataSet = AccData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ACCOUNTS_VOUCHER", Calltype, vounum, PrintInstar, "", "", "", "", "", "", "");
                 //

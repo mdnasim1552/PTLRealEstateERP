@@ -1133,6 +1133,57 @@ namespace RealEntity.C_17_Acc
             public ChequeDepositPrint() { }
 
         }
+        [Serializable]
+
+        public class RptCashBank
+        {
+            public string grp1 { get; set; }
+            public string grpsum { get; set; }
+            public string vounum { get; set; }
+            public string vounum1 { get; set; }
+            public string voudat1 { get; set; }
+            public string recndt1 { get; set; }
+            public string isunum { get; set; }
+            public string chequedat { get; set; }
+            public string actcode { get; set; }
+            public string cactcode { get; set; }
+            public string rescode { get; set; }
+            public double depam { get; set; }
+            public string actdesc { get; set; }
+            public string cactdesc { get; set; }
+            public string resdesc { get; set; }
+            public double payam { get; set; }
+            public double casham { get; set; }
+            public double bankam { get; set; }
+            public double srcham { get; set; }
+            public string tmmrk { get; set; }
+            public string refnum { get; set; }
+
+            public string vounar { get; set; }
+            public string payto { get; set; }
+ 
+            public RptCashBank() { }
+        }
+
+
+        [Serializable]
+
+        public class AccOpening
+        {
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string actelev { get; set; }
+            public string acttype { get; set; }
+            public double Dr { get; set; }
+            public double Cr { get; set; }
+            public string spcfdesc { get; set; }
+            public double qty { get; set; }
+            public double rate { get; set; }
+            public string rescode { get; set; }
+            public string resdesc { get; set; }
+            public string resunit { get; set; }
+            public AccOpening() { }
+        }
 
     }
 }

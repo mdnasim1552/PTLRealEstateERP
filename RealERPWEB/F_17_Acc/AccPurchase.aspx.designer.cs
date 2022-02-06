@@ -294,6 +294,24 @@ namespace RealERPWEB.F_17_Acc
         protected global::System.Web.UI.WebControls.HyperLink lbtnBalance;
 
         /// <summary>
+        /// lblpayto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblpayto;
+
+        /// <summary>
+        /// txtPayto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPayto;
+
+        /// <summary>
         /// lblNaration control.
         /// </summary>
         /// <remarks>

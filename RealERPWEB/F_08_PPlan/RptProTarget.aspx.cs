@@ -432,10 +432,16 @@ namespace RealERPWEB.F_08_PPlan
             {
                 case "WorkBasis":
                 case "ResBasis":
+                    DataTable dt01 = (DataTable)Session["tblprocomplan"];
                     this.gvProTarget.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvProTarget.DataSource = (DataTable)Session["tblprocomplan"];
+                    this.gvProTarget.DataSource = dt01;
                     this.gvProTarget.DataBind();
-                    this.FooterAmount((DataTable)Session["tblprocomplan"]);
+                    this.FooterAmount(dt01);
+
+                    if (dt01.Rows.Count == 0)
+                        return;
+                    Session["Report1"] = gvProTarget;
+                    ((HyperLink)this.gvProTarget.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
                 case "RealFlow":
@@ -675,7 +681,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-                if (code.Substring(2) == "0000000000")
+                if (code.Substring(2) == "00")
                 {
 
                     //  lgvResDescd.Font.Bold = true;
@@ -1027,7 +1033,7 @@ namespace RealERPWEB.F_08_PPlan
 
 
 
-                if (code.Substring(2) == "0000000000")
+                if (code.Substring(2) == "00")
                 {
 
                     //  lgvResDescd.Font.Bold = true;
@@ -1321,8 +1327,6 @@ namespace RealERPWEB.F_08_PPlan
                 this.gvresdet.Columns[i].Visible = false;
 
 
-
-
             j = 4;
             DateTime pstdate = Convert.ToDateTime(this.lblStartDate.Text);
             DateTime penddate = Convert.ToDateTime(this.lblEndDate.Text);
@@ -1340,11 +1344,11 @@ namespace RealERPWEB.F_08_PPlan
             this.gvresdet.DataBind();
 
 
-            string radalertscript = "<script language='javascript'>function f(){loadModal(); Sys.Application.remove_load(f);}; Sys.Application.add_load(f);</script>";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "radalert", radalertscript);
+            //string radalertscript = "<script language='javascript'>function f(){loadModal(); Sys.Application.remove_load(f);}; Sys.Application.add_load(f);</script>";
+            //Page.ClientScript.RegisterStartupScript(this.GetType(), "radalert", radalertscript);
 
 
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
         }
     }
 }

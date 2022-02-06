@@ -24,6 +24,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
     public partial class RptSalarySummary : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -79,6 +80,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         {
 
             string type = this.Request.QueryString["Type"].ToString().Trim();
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
 
             switch (type)
             {
@@ -92,13 +98,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         case "4305"://Sanamr
                         case "3330"://Bridge
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
 
                         default:
                             this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
                     }
@@ -107,7 +113,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "SalSum02":
                     this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
+                    this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                     this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 

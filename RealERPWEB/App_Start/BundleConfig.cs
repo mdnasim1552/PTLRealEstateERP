@@ -15,18 +15,15 @@ namespace RealERPWEB
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-           // BundleTable.EnableOptimizations = false;
-            
+           // BundleTable.EnableOptimizations = false;            
             bundles.Add(new ScriptBundle("~/bundles/Version").Include(
                 "~/Scripts/jquery-2.1.3.min.js",  
                  "~/Scripts/jquery-ui.min.js",
                   "~/Scripts/bootstrap.min.js",
                   "~/Scripts/moment-with-locales.js",
-                    "~/Scripts/bootstrap-datetimepicker.js"
-
+                    "~/Scripts/bootstrap-datetimepicker.js",
+                    "~/Scripts/Extension.min.js"
               ));
-
-
             
             bundles.Add(new ScriptBundle("~/bundles/Versionnew").Include(
                 "~/Content/Theme/vendor/jquery/jquery.min.js",
@@ -42,7 +39,7 @@ namespace RealERPWEB
                  "~/Content/Theme/vendor/chart.js/Chart.min.js",
                  //"~/Content/Theme/theme.min.js",
                  "~/Content/Theme/vendor/toastr/toastr.min.js",
-                 "~/Content/Theme/dashboard-demo.js",
+                 //"~/Content/Theme/dashboard-demo.js",
                  "~/Content/Theme/vendor/toastr/toastr-demo.js"                            
               ));
            
@@ -90,16 +87,18 @@ namespace RealERPWEB
 
             bundles.Add(new ScriptBundle("~/bundles/Counter").Include(
                 "~/Scripts/waypoints.min.js",
-                "~/Scripts/jquery.counterup.min.js"
-                
+                "~/Scripts/jquery.counterup.min.js"                
                 ));
-          
+
+            bundles.Add(new ScriptBundle("~/bundles/highchart").Include(
+               "~/Scripts/highchartwithmap.js",
+               "~/Scripts/highchartexporting.js"
+               ));
 
 
 
-           
 
-            
+
             //bundles.Add(new  StyleBundle("~/Content/css").Include(
             //    "~/Content/bootstrap.icon-large.css",
             //    "~/Content/flaticon.css",
@@ -115,7 +114,7 @@ namespace RealERPWEB
             //    "~/Content/bootstrap-multiselect.css",
             //    "~/Content/theme.blue.css",
             //    "~/Content/animate.css"
-                
+
             //    ));
             // Use the Development version of Modernizr to develop with and learn from. Then, when you’re
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need

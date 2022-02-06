@@ -279,21 +279,21 @@
                                                 </asp:DropDownList>
 
                                             </div>
-                                             <div class="col-md-2">
+                                            <div class="col-md-3">
 
-                                                <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn  btn-primary primaryBtn"
-                                                    OnClick="lnkbtnBack_Click">Back</asp:LinkButton>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True"
-                                                    Font-Bold="True"
-                                                    OnCheckedChanged="chkShowall_CheckedChanged" Text="Show All" CssClass="btn btn-primary checkBox d-none" />
-                                            </div>
+                                                 <asp:DropDownList ID="ddlType" runat="server" AutoPostBack="True"
+                                                    OnSelectedIndexChanged="ddlType_SelectedIndexChanged" CssClass="form-control">
+                                                    <asp:ListItem Value="0">All </asp:ListItem>
+                                                   
+                                                     <asp:ListItem Value="2">Component</asp:ListItem>
+                                                    <asp:ListItem Value="4">Widget</asp:ListItem>
+                                                    <asp:ListItem Value="3">Graph </asp:ListItem>
+                                                    
 
-                                            <div class="col-md-3 d-none">
+                                                </asp:DropDownList>
 
                                                 <asp:DropDownList ID="ddlModuleName" runat="server" AutoPostBack="True"
-                                                    OnSelectedIndexChanged="ddlModuleName_SelectedIndexChanged" CssClass="form-control">
+                                                    OnSelectedIndexChanged="ddlModuleName_SelectedIndexChanged" CssClass="form-control d-none">
                                                     <asp:ListItem Value="04">&nbsp; A. Budgetary Control</asp:ListItem>
                                                     <asp:ListItem Value="12">&nbsp; B. Inventory Control</asp:ListItem>
                                                     <asp:ListItem Value="17">&nbsp; C. General Accounts </asp:ListItem>
@@ -306,6 +306,18 @@
 
                                                 </asp:DropDownList>
                                             </div>
+                                             <div class="col-md-2">
+
+                                                <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn  btn-primary primaryBtn"
+                                                    OnClick="lnkbtnBack_Click">Back</asp:LinkButton>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True"
+                                                    Font-Bold="True"
+                                                    OnCheckedChanged="chkShowall_CheckedChanged" Text="Show All" CssClass="btn btn-primary checkBox d-none" />
+                                            </div>
+
+                                            
 
                                            
                                             <div class="col-md-2 pull-right">
@@ -329,7 +341,6 @@
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-
                                                 <asp:TemplateField HeaderText="Form id" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lgvufrmid" runat="server"
@@ -339,7 +350,6 @@
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-
                                                 <asp:TemplateField HeaderText="Query Type" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lgvQrytype" runat="server"
@@ -354,6 +364,9 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "step")) %>'></asp:Label>
                                                         <asp:Label ID="lgvufrmname" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmname")) %>'></asp:Label>
+
+                                                         <asp:Label ID="lblmenuparentid" runat="server" Visible="false"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "menuparentid")) %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lbtnUpPer" runat="server" Font-Bold="True" CssClass="btn btn-danger primaryBtn" OnClick="lbtnUpPer_Click">Update</asp:LinkButton>
@@ -365,9 +378,6 @@
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
-
-
-
                                                 <asp:TemplateField HeaderText="Permission">
                                                     <HeaderTemplate>
 

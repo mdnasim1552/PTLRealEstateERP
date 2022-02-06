@@ -556,6 +556,14 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                             <asp:TemplateField HeaderText="grp" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgrp" runat="server" ForeColor="Black" Style="text-align: left" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "grp")) %>'
+                                                        Width="30px"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                         </Columns>
 
                                         <FooterStyle BackColor="#F5F5F5" />

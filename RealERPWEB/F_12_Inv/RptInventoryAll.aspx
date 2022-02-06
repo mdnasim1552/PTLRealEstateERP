@@ -455,7 +455,7 @@
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
-                                 <RowStyle CssClass="grvRows" />
+                                <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </asp:View>
 
@@ -634,7 +634,7 @@
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
-                                 <RowStyle CssClass="grvRows" />
+                                <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </asp:View>
 
@@ -757,7 +757,7 @@
                                 <AlternatingRowStyle />
                                 <PagerStyle CssClass="gvPagination" />
                                 <HeaderStyle CssClass="grvHeader" />
-                                 <RowStyle CssClass="grvRows" />
+                                <RowStyle CssClass="grvRows" />
                             </asp:GridView>
                         </asp:View>
 

@@ -48,6 +48,8 @@ namespace RealERPWEB.F_14_Pro
                 this.lbtnOk.Text = "New";
                 this.lbtnOk_Click(null, null);
                 this.txtCurAprovDate_CalendarExtender.EndDate = System.DateTime.Today;
+                this.gvAprovInfo.Columns[10].HeaderText = this.ReadCookie();
+
                 if ((this.Request.QueryString["genno"].ToString().Length > 0))
                 {
                     this.lbtnPrevAprovList.Visible = false;
@@ -83,6 +85,14 @@ namespace RealERPWEB.F_14_Pro
 
 
         }
+
+        private string ReadCookie()
+        {
+            HttpCookie nameCookie = Request.Cookies["MRF"];
+            string refno = nameCookie != null ? nameCookie.Value.Split('=')[1] : "Mrf No";
+            return refno;
+        }
+
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -466,6 +476,12 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblAprov"]);
             this.gvAprovInfo.DataSource = tbl1;
             this.gvAprovInfo.DataBind();
+
+            string comcod = GetCompCode();
+            if (comcod == "3353" || comcod == "3101")
+            {
+                this.gvAprovInfo.Columns[1].Visible = true;                
+            }            
             if (Request.QueryString["InputType"].ToString() == "PurProposal")
             {
                 ((LinkButton)this.gvAprovInfo.FooterRow.FindControl("lbtnDelete")).Visible = false;
@@ -748,6 +764,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["aprovamt"] = Convert.ToDouble(dr3[0]["balqty"]) * Convert.ToDouble(dr3[0]["aprovrate"]);
                 dr1["paytype"] = this.ddlPayType.SelectedItem.Text.Trim();
                 dr1["eusrname"] = "";
+                dr1["rowid"] = dr3[0]["rowid"];
                 tbl1.Rows.Add(dr1);
             }
             else
@@ -822,6 +839,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["aprovamt"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]) * Convert.ToDouble(tbl2.Rows[i]["aprovrate"]);
                     dr1["paytype"] = this.ddlPayType.SelectedItem.Text.Trim();
                     dr1["eusrname"] = "";
+                    dr1["rowid"] = Convert.ToDouble(tbl2.Rows[i]["rowid"]).ToString();
                     tbl1.Rows.Add(dr1);
 
                 }
@@ -1429,5 +1447,6 @@ namespace RealERPWEB.F_14_Pro
                 return;
             }
         }
+
     }
 }

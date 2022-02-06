@@ -19,6 +19,11 @@
                 k1.textBoxHandler(event);
 
             });
+
+            $('.chzn-select').chosen({
+                search_contains: true,
+              
+            });
         }
 
     </script>
@@ -46,7 +51,7 @@
                                     </div>
 
                                     <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt">
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select" Width="350px">
                                         </asp:DropDownList>
 
                                     </div>
@@ -88,7 +93,7 @@
                                     </div>
 
                                     <div class="col-md-4 pading5px ">
-                                        <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="form-control inputTxt">
+                                        <asp:DropDownList ID="ddlSupplier" runat="server" CssClass="chzn-select" Width="350px">
                                         </asp:DropDownList>
 
                                     </div>

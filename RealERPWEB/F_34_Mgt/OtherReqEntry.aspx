@@ -445,7 +445,7 @@
                                     <asp:TemplateField HeaderText="Bal. Amount">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvBalAmt" runat="server"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamt")).ToString("#,##0;(#,##0); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balamt")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                 Width="70px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
@@ -462,7 +462,7 @@
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvQtamt" runat="server" BackColor="Transparent" Font-Size="11px"
                                                 BorderStyle="None" Style="text-align: right"
-                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "qty")).ToString("#,##0.0000;(#,##0.0000); ") %>'
                                                 Width="70px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />

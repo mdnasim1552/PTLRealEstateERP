@@ -41,6 +41,8 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
+
+
                 this.Initilize();
 
                 this.getComName();
@@ -158,7 +160,8 @@ namespace RealERPWEB
                 }
                 else
                 {
-                    this.listComName.SelectedValue = dt1.Rows[0]["comcod"].ToString();
+                    //nahid vs uzzal
+                    this.listComName.SelectedValue = (Session["ixComcod"] == null ? dt1.Rows[0]["comcod"].ToString() : Session["ixComcod"].ToString());
 
                 }
             }
@@ -264,6 +267,9 @@ namespace RealERPWEB
             {
                 this.lblmsg.Text = "Successfully Updated";
                 this.ChkChangePass.Checked = false;
+                this.pwdDiv.Visible = this.ChkChangePass.Checked == true ? false : true;
+
+               // this.loginBtn.Text = "Sign In";
                 this.ChkChangePass_CheckedChanged(null, null);
             }
 
@@ -300,7 +306,8 @@ namespace RealERPWEB
             this.lblNewPass.Visible = this.ChkChangePass.Checked;
             this.txtuserOldrpass.Visible = this.ChkChangePass.Checked;
             this.txtuserNewrpass.Visible = this.ChkChangePass.Checked;
-
+            this.pwdDiv.Visible = this.ChkChangePass.Checked==true?false: true;
+            this.loginBtn.Text = this.ChkChangePass.Checked == true ? "Update" : "Sign in";
             //if (this.ChkChangePass.Checked)
             //{
             //    this.lblPass.Text = "New Password";
@@ -326,6 +333,7 @@ namespace RealERPWEB
                 UserLogin ulog = new UserLogin();
                 DataSet ds1 = ulog.GetHitCounter();
                 string comcod = this.listComName.SelectedValue.ToString();
+                this.setCookieFieldName(comcod);
                 ProcessAccess ulogin = (ASTUtility.Left(this.listComName.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
                 DataSet ds51 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGIN", "", "", "", "", "", "", "", "", "");
 
@@ -368,11 +376,11 @@ namespace RealERPWEB
                 //    ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
 
                 //}
-               // else
-              //  {
-                    ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
+                // else
+                //  {
+                ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
 
-               // }
+                // }
 
 
 
@@ -499,6 +507,8 @@ namespace RealERPWEB
                 hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+                hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+
 
 
                 // hst["permission"] = ds5.Tables[0].Rows[0]["permission"];
@@ -516,7 +526,7 @@ namespace RealERPWEB
                 DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
 
                 DataSet dsmodule = ulogin.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETMODULELIST", userid, "", "", "", "", "", "", "", "");
-              //  DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETMENULISTSIDEBAR", userid, usertype);
+                //  DataSet dsmenu = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETMENULISTSIDEBAR", userid, usertype);
 
                 Session["dsmenu"] = dsmenu.Tables[1];
                 Session["dsmodule"] = dsmodule.Tables[0];
@@ -534,25 +544,34 @@ namespace RealERPWEB
 
 
 
-                
 
-                    string eventtype = "1";
-                    string eventdesc = "Login into the system";
-                    string eventdesc2 = "";
-                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-                
 
+                string eventtype = "1";
+                string eventdesc = "Login into the system";
+                string eventdesc2 = "";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+                
 
                 string Url1 = "";
 
                 string userrole = ds5.Tables[0].Rows[0]["userrole"].ToString();
 
                 string masterurl = (ds5.Tables[4].Rows.Count == 0) ? "" : ds5.Tables[4].Rows[0]["url"].ToString();
+                String hrmodule = dsmodule.Tables[1].Rows.Count==0 ? "" : dsmodule.Tables[1].Rows[0]["moduleid"].ToString();
+
+
 
                 if (userrole == "2")
                 {
                     Url1 = "AllGraph";
                 }
+                else if(userrole == "3" && hrmodule=="81")
+                {
+                    Url1 = "UserProfile";
+
+                }
+              
                 else
                 {
                     if (masterurl != "")
@@ -563,7 +582,9 @@ namespace RealERPWEB
                         //}
                         //else
                         //{
-                           Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+                        
+                        Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
+
                         //}
                         // Url1 = "~/Index?pid=";
 
@@ -783,5 +804,40 @@ namespace RealERPWEB
                 this.lblmsg.Text = "<span class='glyphicon glyphicon-warning-sign'></span>   Sorry Your Given Information Are Invalid";
             }
         }
+
+        private void setCookieFieldName(string comcod)
+        {
+            //Create a Cookie with a suitable Key.
+            HttpCookie nameCookie = new HttpCookie("MRF");
+            string refno = "";
+            switch (comcod)
+            {
+                case "2305":
+                case "3305":
+                case "3306":
+                case "3310":
+                case "3311":
+                case "3315":
+                case "3325":
+                case "3353":
+                case "3101":
+                case "3364":
+                    refno = "MPR No";
+                    break;
+                default:
+                    refno = "MRF No";
+                    break;
+
+            }
+            //Set the Cookie value.
+            nameCookie.Values["MRF"] = refno;
+
+            //Set the Expiry date.
+            nameCookie.Expires = DateTime.Now.AddDays(30);
+
+            //Add the Cookie to Browser.
+            Response.Cookies.Add(nameCookie);
+        }
+
     }
 }

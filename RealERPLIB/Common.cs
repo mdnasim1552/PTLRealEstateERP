@@ -13,7 +13,7 @@ namespace RealERPLIB
     public sealed  class Common: System.Web.UI.Page
     {
 
-
+        ProcessAccess _GetData = new ProcessAccess();
         public string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -80,6 +80,14 @@ namespace RealERPLIB
             }
             return IsVoucherSaved;
         }
-       
+
+        public DataSet GetCompUtility()
+        {
+            string comcod = GetCompCode();
+
+            DataSet ds5 = _GetData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "GET_COMP_SETUP_UTILITY", "", "", "", "", "", "", "", "", "");
+            
+            return ds5; 
+        }
     }
 }

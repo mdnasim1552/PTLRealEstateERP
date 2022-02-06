@@ -48,6 +48,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //  this.RadioButtonList1_SelectedIndexChanged(null, null);
                 // this.Countqty();
                 this.Visible();
+                this.CheckHyperLink();
 
             }
 
@@ -81,6 +82,21 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
 
+        }
+
+
+        private void CheckHyperLink()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "8306" || comcod == "3101")
+            {
+                hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry?Type=Entry&genno=" + "SubConOrder";
+            }
+            else
+            {
+                hlnkworkorder.NavigateUrl = "~/F_09_PImp/PurConWrkOrderEntry02?Type=Entry";
+            }
+           
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -702,7 +718,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
-                case "3101":
+                //case "3101":
                 case "3330":
 
                     coltype = "TRANSACTION_STATEMENT2";
@@ -1606,11 +1622,10 @@ namespace RealERPWEB.F_99_Allinterface
                 {
 
 
-                    //case 3101:   //ASIT                      
+                    case "3101":   //ASIT                      
                     case "1205":   //p2p
                     case "3351":   //p2p
                     case "3352":   //p2p
-                    case "3101":   //p2p
 
                         hlink1.NavigateUrl = "~/F_14_Pro/PurMktSurveyCont?Type=ConCS&lisuno=" + blreqno + "&pactcode=" + pactcode;
 
@@ -1716,8 +1731,8 @@ namespace RealERPWEB.F_99_Allinterface
             }
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string reqno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvbillreq2")).Text.Trim();
-            string csircode = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lblgvcsircode2")).Text.Trim();
+            string reqno = ((Label)this.gvWorkOrder.Rows[RowIndex].FindControl("lblgvbillreq2")).Text.Trim();
+            string csircode = ((Label)this.gvWorkOrder.Rows[RowIndex].FindControl("lblgvcsircode2")).Text.Trim();
             //string msrno = ((Label)this.gvbillcs.Rows[RowIndex].FindControl("lgvSurveyNo")).Text.Trim();
 
 

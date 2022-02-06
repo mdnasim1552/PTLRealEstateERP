@@ -244,7 +244,11 @@ namespace RealERPWEB.F_09_PImp
             string Projectlocat = "";
             string Username = "";
             string userdesig = "";
+
             string rsirdesc = "";
+            string txtsign1 = "";
+            string txtsign2 = "";
+            string txtsign3 = "";
 
             if (ds1.Tables[3].Rows.Count > 0)
             {
@@ -253,6 +257,11 @@ namespace RealERPWEB.F_09_PImp
                 Username = ds1.Tables[3].Rows[0]["usrname"].ToString();
                 userdesig = ds1.Tables[3].Rows[0]["userdesig"].ToString();
                 rsirdesc = ds1.Tables[3].Rows[0]["rsirdesc"].ToString();
+
+                txtsign1 = ds1.Tables[3].Rows[0]["usrname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["userdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
+                txtsign2 = ds1.Tables[3].Rows[0]["csname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["csdat"].ToString();
+                txtsign3 = ds1.Tables[3].Rows[0]["aprvname"].ToString() + "\n" + ds1.Tables[3].Rows[0]["aprdesig"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
+
             }
 
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_14_Pro.EClassPur.MkrServay02>();
@@ -282,6 +291,10 @@ namespace RealERPWEB.F_09_PImp
 
                     i++;
                 }
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
                 Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
@@ -295,6 +308,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("RptTitle", "Comparative Statement"));
                 Rpt1.SetParameters(new ReportParameter("comments", comments));
                 Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+
             }
 
 
@@ -320,6 +334,10 @@ namespace RealERPWEB.F_09_PImp
 
                     i++;
                 }
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
                 Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
@@ -356,6 +374,10 @@ namespace RealERPWEB.F_09_PImp
                     i++;
 
                 }
+
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+                Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+                Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
                 Rpt1.SetParameters(new ReportParameter("comnam", comnam));
                 Rpt1.SetParameters(new ReportParameter("Projectname", Projectname));
                 Rpt1.SetParameters(new ReportParameter("Projectlocat", Projectlocat));
@@ -439,7 +461,7 @@ namespace RealERPWEB.F_09_PImp
             }
 
 
-            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim();
+            this.lblddlProject.Text = this.ddlprjlist.SelectedItem.Text.Trim()==null ? "" : this.ddlprjlist.SelectedItem.Text.Trim() == "" ? "" : this.ddlprjlist.SelectedItem.Text.Trim();
 
             this.ddlprjlist.Visible = false;
             this.lblddlProject.Visible = true;
@@ -515,11 +537,14 @@ namespace RealERPWEB.F_09_PImp
                 // this.ddlRA.Enabled = false;
                 reqno = this.ddlPrevISSList.SelectedValue.ToString();
             }
+
+            string recomsup = this.RecomSup();
             DataSet ds1 = new DataSet();
-            ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "GET_PURLAB_REQ_INFO", reqno, CurDate1,
-                         pactcode, "", "", "", "", "", "");
+
+            ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_BILLMGT02", "GET_PURLAB_REQ_INFO", reqno, CurDate1, pactcode, recomsup, "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             ViewState["tblbillreq"] = ds1.Tables[0];
 
             if (reqno == "NEWMISS")
@@ -589,6 +614,31 @@ namespace RealERPWEB.F_09_PImp
             this.grvissue_DataBind();
 
             // ((LinkButton)this.grvissue.FooterRow.FindControl("lnkupdate")).Visible = (ds1.Tables[1].Rows[0]["billno"].ToString() == "00000000000000");
+
+        }
+
+        private string RecomSup()
+        {
+            string recom = "";            
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "1205":
+                case "3351":
+                case "3352":
+                case "8306":
+                    if (this.Request.QueryString["Type"] == "CSApproval")
+                    {
+                        recom = this.Request.QueryString["recomsup"].ToString();                        
+                    }
+                    break;
+
+                default:
+                    recom = "";
+                    break;
+            }
+
+            return recom;
 
         }
 
@@ -1200,6 +1250,26 @@ namespace RealERPWEB.F_09_PImp
                 }
 
 
+                TextBox txtlabrate = ((TextBox)e.Row.FindControl("txtlabrate"));
+                TextBox txtgvamount = ((TextBox)e.Row.FindControl("txtgvamount"));
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                    case "8306":
+                        txtlabrate.ReadOnly = true;
+                        txtgvamount.ReadOnly = true;
+                        break;
+
+                    default:
+                        txtlabrate.ReadOnly = false;
+                        txtgvamount.ReadOnly = false;
+                        break;
+                }
+
+
             }
         }
 
@@ -1307,7 +1377,7 @@ namespace RealERPWEB.F_09_PImp
                 TableCell cell0 = new TableCell();
                 cell0.Text = "";
                 cell0.HorizontalAlign = HorizontalAlign.Center;
-                cell0.ColumnSpan = 5;
+                cell0.ColumnSpan = 6;
                 gvrow.Cells.Add(cell0);
                 DataTable dt = (DataTable)Session["tblt01"];
                 //int j = 5;
@@ -1399,9 +1469,21 @@ namespace RealERPWEB.F_09_PImp
             int rowindex = ((GridViewRow)((DropDownList)sender).NamingContainer).RowIndex;
             string csircode = ((DropDownList)this.grvissue.Rows[rowindex].FindControl("DdlContractor")).SelectedValue.ToString();
             string rsircode = dt.Rows[rowindex]["rsircode"].ToString();
-
-            dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+            if(csircode== "000000000000")
+            {
+                dt.Rows[rowindex]["reqrat"] = 0.00;
+            }
+            else
+            {
+                dt.Rows[rowindex]["reqrat"] = dt2.Select("rsircode='" + rsircode + "' and ssircode='" + csircode + "'")[0]["rate"];
+            }
+            
             dt.Rows[rowindex]["csircode"] = csircode;
+
+            double qty =Convert.ToDouble(dt.Rows[rowindex]["reqqty"]);
+            double rate = Convert.ToDouble(dt.Rows[rowindex]["reqrat"]);
+            dt.Rows[rowindex]["reqamt"] = qty * rate;
+
 
 
             Session["tblbillreq"] = dt;

@@ -44,7 +44,13 @@ namespace RealERPWEB.HrWebService {
         
         private System.Threading.SendOrPostCallback GetDailyAttenDanceCredenceOperationCompleted;
         
+        private System.Threading.SendOrPostCallback GetDailyAttenDanceManamaOperationCompleted;
+        
         private System.Threading.SendOrPostCallback GetDailyAttenDanceAssureOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetDailyAttenDanceFBOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetDailyAttenDanceZKTOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -106,7 +112,16 @@ namespace RealERPWEB.HrWebService {
         public event GetDailyAttenDanceCredenceCompletedEventHandler GetDailyAttenDanceCredenceCompleted;
         
         /// <remarks/>
+        public event GetDailyAttenDanceManamaCompletedEventHandler GetDailyAttenDanceManamaCompleted;
+        
+        /// <remarks/>
         public event GetDailyAttenDanceAssureCompletedEventHandler GetDailyAttenDanceAssureCompleted;
+        
+        /// <remarks/>
+        public event GetDailyAttenDanceFBCompletedEventHandler GetDailyAttenDanceFBCompleted;
+        
+        /// <remarks/>
+        public event GetDailyAttenDanceZKTCompletedEventHandler GetDailyAttenDanceZKTCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/HelloWorld", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -318,6 +333,37 @@ namespace RealERPWEB.HrWebService {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetDailyAttenDanceManama", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetDailyAttenDanceManama(string frmdate, string ToDate) {
+            object[] results = this.Invoke("GetDailyAttenDanceManama", new object[] {
+                        frmdate,
+                        ToDate});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDailyAttenDanceManamaAsync(string frmdate, string ToDate) {
+            this.GetDailyAttenDanceManamaAsync(frmdate, ToDate, null);
+        }
+        
+        /// <remarks/>
+        public void GetDailyAttenDanceManamaAsync(string frmdate, string ToDate, object userState) {
+            if ((this.GetDailyAttenDanceManamaOperationCompleted == null)) {
+                this.GetDailyAttenDanceManamaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDailyAttenDanceManamaOperationCompleted);
+            }
+            this.InvokeAsync("GetDailyAttenDanceManama", new object[] {
+                        frmdate,
+                        ToDate}, this.GetDailyAttenDanceManamaOperationCompleted, userState);
+        }
+        
+        private void OnGetDailyAttenDanceManamaOperationCompleted(object arg) {
+            if ((this.GetDailyAttenDanceManamaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDailyAttenDanceManamaCompleted(this, new GetDailyAttenDanceManamaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetDailyAttenDanceAssure", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Data.DataSet GetDailyAttenDanceAssure(string frmdate, string ToDate) {
             object[] results = this.Invoke("GetDailyAttenDanceAssure", new object[] {
@@ -345,6 +391,68 @@ namespace RealERPWEB.HrWebService {
             if ((this.GetDailyAttenDanceAssureCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetDailyAttenDanceAssureCompleted(this, new GetDailyAttenDanceAssureCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetDailyAttenDanceFB", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetDailyAttenDanceFB(string frmdate, string ToDate) {
+            object[] results = this.Invoke("GetDailyAttenDanceFB", new object[] {
+                        frmdate,
+                        ToDate});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDailyAttenDanceFBAsync(string frmdate, string ToDate) {
+            this.GetDailyAttenDanceFBAsync(frmdate, ToDate, null);
+        }
+        
+        /// <remarks/>
+        public void GetDailyAttenDanceFBAsync(string frmdate, string ToDate, object userState) {
+            if ((this.GetDailyAttenDanceFBOperationCompleted == null)) {
+                this.GetDailyAttenDanceFBOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDailyAttenDanceFBOperationCompleted);
+            }
+            this.InvokeAsync("GetDailyAttenDanceFB", new object[] {
+                        frmdate,
+                        ToDate}, this.GetDailyAttenDanceFBOperationCompleted, userState);
+        }
+        
+        private void OnGetDailyAttenDanceFBOperationCompleted(object arg) {
+            if ((this.GetDailyAttenDanceFBCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDailyAttenDanceFBCompleted(this, new GetDailyAttenDanceFBCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/GetDailyAttenDanceZKT", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Data.DataSet GetDailyAttenDanceZKT(string frmdate, string ToDate) {
+            object[] results = this.Invoke("GetDailyAttenDanceZKT", new object[] {
+                        frmdate,
+                        ToDate});
+            return ((System.Data.DataSet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetDailyAttenDanceZKTAsync(string frmdate, string ToDate) {
+            this.GetDailyAttenDanceZKTAsync(frmdate, ToDate, null);
+        }
+        
+        /// <remarks/>
+        public void GetDailyAttenDanceZKTAsync(string frmdate, string ToDate, object userState) {
+            if ((this.GetDailyAttenDanceZKTOperationCompleted == null)) {
+                this.GetDailyAttenDanceZKTOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetDailyAttenDanceZKTOperationCompleted);
+            }
+            this.InvokeAsync("GetDailyAttenDanceZKT", new object[] {
+                        frmdate,
+                        ToDate}, this.GetDailyAttenDanceZKTOperationCompleted, userState);
+        }
+        
+        private void OnGetDailyAttenDanceZKTOperationCompleted(object arg) {
+            if ((this.GetDailyAttenDanceZKTCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetDailyAttenDanceZKTCompleted(this, new GetDailyAttenDanceZKTCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -551,6 +659,32 @@ namespace RealERPWEB.HrWebService {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetDailyAttenDanceManamaCompletedEventHandler(object sender, GetDailyAttenDanceManamaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDailyAttenDanceManamaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDailyAttenDanceManamaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
     public delegate void GetDailyAttenDanceAssureCompletedEventHandler(object sender, GetDailyAttenDanceAssureCompletedEventArgs e);
     
     /// <remarks/>
@@ -562,6 +696,58 @@ namespace RealERPWEB.HrWebService {
         private object[] results;
         
         internal GetDailyAttenDanceAssureCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetDailyAttenDanceFBCompletedEventHandler(object sender, GetDailyAttenDanceFBCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDailyAttenDanceFBCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDailyAttenDanceFBCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Data.DataSet Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void GetDailyAttenDanceZKTCompletedEventHandler(object sender, GetDailyAttenDanceZKTCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetDailyAttenDanceZKTCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetDailyAttenDanceZKTCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="InterfaceLeavApp.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.InterfaceLeavApp" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="InterfaceLeavApp.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.InterfaceLeavApp" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <%--<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -789,6 +789,9 @@
                                                                     <asp:Label ID="lblgvempid" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                                         Width="49px"></asp:Label>
+                                                                     <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
+                                                                        Width="49px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -888,8 +891,11 @@
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
+
+                                                                      <asp:linkButton ID="lnkRemove" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    </asp:linkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="120px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -923,6 +929,9 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvempid" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
+                                                                        Width="49px"></asp:Label>
+                                                                      <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                                         Width="49px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -1023,8 +1032,10 @@
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
+                                                                        <asp:linkButton ID="lnkRemoveApp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveApp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    </asp:linkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="110px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -1160,8 +1171,10 @@
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnAppfi" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
+                                                                    <asp:linkButton ID="lnkRemoveFAp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    </asp:linkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="110px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>

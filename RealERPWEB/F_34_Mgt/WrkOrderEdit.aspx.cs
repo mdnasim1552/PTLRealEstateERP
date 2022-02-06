@@ -62,6 +62,16 @@ namespace RealERPWEB.F_34_Mgt
                 case "3352":
                 case "3354":
                 case "3355":
+                case "3315": //Asssure
+                case "3316":
+                case "3317":
+                case "1108":
+                case "1109":
+                case "3101":
+
+
+
+
 
                     //case "3101":
                     Calltype = "GETAPROVALLSUPLIST";
@@ -110,7 +120,7 @@ namespace RealERPWEB.F_34_Mgt
         }
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
-            ViewState.Remove("tblpurchase");
+            Session.Remove("tblpurchase");
             string comcod = this.GetCompCode();
             string reqno = this.ddlReqNo01.SelectedValue.ToString();
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "SHOWREQINFORMATION", reqno, "", "", "", "", "", "", "", "");
@@ -121,7 +131,7 @@ namespace RealERPWEB.F_34_Mgt
 
                 return;
             }
-            ViewState["tblpurchase"] = this.HiddenSameData(ds1.Tables[0]);
+            Session["tblpurchase"] = this.HiddenSameData(ds1.Tables[0]);
 
             lblvalvounum.Text = ds1.Tables[1].Rows[0]["billvounum"].ToString();
             lblbillno.Text = ds1.Tables[1].Rows[0]["billno"].ToString();
@@ -153,7 +163,7 @@ namespace RealERPWEB.F_34_Mgt
         }
         private void Data_Bind()
         {
-            DataTable dt = (DataTable)ViewState["tblpurchase"];
+            DataTable dt = (DataTable)Session["tblpurchase"];
 
             if (dt.Rows.Count == 0)
             {
@@ -181,10 +191,9 @@ namespace RealERPWEB.F_34_Mgt
 
         private void SaveValue()
         {
-            DataTable tbl1 = (DataTable)ViewState["tblpurchase"];
+            DataTable tbl1 = (DataTable)Session["tblpurchase"];
             for (int i = 0; i < gvpurorder.Rows.Count; i++)
             {
-
                 double qty = Convert.ToDouble("0" + ((TextBox)this.gvpurorder.Rows[i].FindControl("txtgvreqty01")).Text.Trim());
                 double srate = Convert.ToDouble("0" + ((TextBox)this.gvpurorder.Rows[i].FindControl("txtgvsuprate")).Text.Trim());
                 double rate = Convert.ToDouble("0" + ((TextBox)this.gvpurorder.Rows[i].FindControl("txtgvAppRate01")).Text.Trim());
@@ -192,13 +201,9 @@ namespace RealERPWEB.F_34_Mgt
                 tbl1.Rows[i]["srate"] = srate;
                 tbl1.Rows[i]["rate"] = rate;
                 tbl1.Rows[i]["amt"] = qty * rate;
-
             }
-
-            ViewState["tblpurchase"] = tbl1;
+            Session["tblpurchase"] = tbl1;
         }
-
-
 
         private void LogStatus()
         {
@@ -220,7 +225,7 @@ namespace RealERPWEB.F_34_Mgt
 
             string comcod = this.GetCompCode();
             this.SaveValue();
-            DataTable dt = (DataTable)ViewState["tblpurchase"];
+            DataTable dt = (DataTable)Session["tblpurchase"];
             string mreqno = this.ddlReqNo01.SelectedValue.ToString();
 
             this.LogStatus();
@@ -318,7 +323,7 @@ namespace RealERPWEB.F_34_Mgt
 
                 case "3333":
                 case "3336":
-                    DataTable dt = ((DataTable)ViewState["tblpurchase"]).Copy();
+                    DataTable dt = ((DataTable)Session["tblpurchase"]).Copy();
                     DataView dv = dt.DefaultView;
                     dv.RowFilter = ("grp='A'");
                     dt = dv.ToTable();
@@ -472,7 +477,7 @@ namespace RealERPWEB.F_34_Mgt
         {
 
 
-            DataTable tbl1 = (DataTable)ViewState["tblpurchase"];
+            DataTable tbl1 = (DataTable)Session["tblpurchase"];
 
             string spcfcod = ((DropDownList)this.gvpurorder.Rows[e.RowIndex].FindControl("ddlspecification")).SelectedValue.ToString();
             string spcfdesc = ((DropDownList)this.gvpurorder.Rows[e.RowIndex].FindControl("ddlspecification")).SelectedItem.Text.Trim();
@@ -504,7 +509,7 @@ namespace RealERPWEB.F_34_Mgt
             tbl1.Rows[index]["rate"] = rate;
             tbl1.Rows[index]["amt"] = qty * rate;
 
-            ViewState["tblpurchase"] = tbl1;
+            Session["tblpurchase"] = tbl1;
             this.gvpurorder.EditIndex = -1;
             this.Data_Bind();
         }
@@ -588,10 +593,9 @@ namespace RealERPWEB.F_34_Mgt
             }
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
-            string reqno = ((DataTable)ViewState["tblpurchase"]).Rows[RowIndex]["reqno"].ToString();
-
-            string rsircode = ((DataTable)ViewState["tblpurchase"]).Rows[RowIndex]["rsircode"].ToString();
-            string spcfcod = ((DataTable)ViewState["tblpurchase"]).Rows[RowIndex]["spcfcod"].ToString();
+            string reqno = ((DataTable)Session["tblpurchase"]).Rows[RowIndex]["reqno"].ToString();
+            string rsircode = ((DataTable)Session["tblpurchase"]).Rows[RowIndex]["rsircode"].ToString();
+            string spcfcod = ((DataTable)Session["tblpurchase"]).Rows[RowIndex]["spcfcod"].ToString();
 
 
 
@@ -613,6 +617,105 @@ namespace RealERPWEB.F_34_Mgt
             }
 
 
+        }
+
+        protected void txtgvreqty01_TextChanged(object sender, EventArgs e)
+        {
+            int index = ((GridViewRow)((TextBox)sender).NamingContainer).RowIndex;
+
+            double qty = Convert.ToDouble("0" + ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvreqty01")).Text.Trim());
+            string grp = ((Label)this.gvpurorder.Rows[index].FindControl("lblgvGroup")).Text.Trim();
+            string reqno = ((Label)this.gvpurorder.Rows[index].FindControl("lblgvRqno")).Text.Trim();
+            string rsircode = ((Label)this.gvpurorder.Rows[index].FindControl("lblgvResCod")).Text.Trim();
+            string spcfcod = ((Label)this.gvpurorder.Rows[index].FindControl("lblgvSpcfCod")).Text.Trim();
+
+            double srate = Convert.ToDouble("0" + ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvsuprate")).Text.Trim());
+            double rate = Convert.ToDouble("0" + ((TextBox)this.gvpurorder.Rows[index].FindControl("txtgvAppRate01")).Text.Trim());
+
+
+            DataTable tbl1 = (DataTable)Session["tblpurchase"];
+
+            double reqty = 0;
+            DataRow[] dr1;
+
+            switch (grp)
+            {
+                case "A":
+                    dr1 = tbl1.Select("(grp ='B' or grp ='C' or grp ='D' or grp ='E') and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                    if (dr1.Length != 0)
+                    {
+                        reqty = Convert.ToDouble(dr1[0]["qty"]);
+                        if (qty < reqty)
+                        {
+                            this.RiseError("Requisition Qty Should Large than Further Qty ");
+                            return;
+                        }
+                    }
+
+                    tbl1.Rows[index]["qty"] = qty;
+                    break;
+
+                case "B":
+
+                    dr1 = tbl1.Select("grp ='A' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                    reqty = Convert.ToDouble(dr1[0]["qty"]);
+                    if (qty > reqty)
+                    {
+                        this.RiseError("Order Process Qty Cann't Large Req Qty ");
+                        return;
+                    }
+                    break;
+
+                case "C":
+                    dr1 = tbl1.Select("grp ='B' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                    reqty = Convert.ToDouble(dr1[0]["qty"]);
+                    if (qty > reqty)
+                    {
+                        this.RiseError("Purhcase Order Qty Cann't Large OrderProcess Qty ");
+                        return;
+                    }
+                    break;
+
+                case "D":
+                    dr1 = tbl1.Select("grp ='C' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                    reqty = Convert.ToDouble(dr1[0]["qty"]);
+                    if (qty > reqty)
+                    {
+                        this.RiseError("Receive Qty Cann't Large Order Qty ");
+                        return;
+                    }
+                    break;
+
+                case "E":
+                    dr1 = tbl1.Select("grp ='D' and rsircode='" + rsircode + "' and spcfcod='" + spcfcod + "' ");
+                    reqty = Convert.ToDouble(dr1[0]["qty"]);
+                    if (qty > reqty)
+                    {
+                        this.RiseError("BIll Qty Cann't Large Received Qty ");
+                        return;
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+
+            tbl1.Rows[index]["qty"] = qty;
+            tbl1.Rows[index]["srate"] = srate;
+            tbl1.Rows[index]["rate"] = rate;
+            tbl1.Rows[index]["amt"] = qty * rate;
+
+            Session["tblpurchase"] = tbl1;
+            this.Data_Bind();
+
+        }
+
+
+        private void RiseError(string msg)
+        {
+            ((Label)this.Master.FindControl("lblmsg")).Text = msg;
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            this.Data_Bind();
         }
     }
 }

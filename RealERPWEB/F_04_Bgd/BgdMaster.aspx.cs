@@ -430,7 +430,7 @@ namespace RealERPWEB.F_04_Bgd
 
                 dgvRate = (dgvQty == 0 ? 0.00 : (dgvDrAm + dgvCrAm) / dgvQty);
 
-                ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtQty")).Text = dgvQty.ToString("#,##0.00;(#,##0.00); ");
+                ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtQty")).Text = dgvQty.ToString("#,##0.0000;(#,##0.0000); ");
                 ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtDrAmt")).Text = dgvDrAm.ToString("#,##0.00;(#,##0.00); ");
                 ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtCrAmt")).Text = dgvCrAm.ToString("#,##0.00;(#,##0.00); ");
                 ((TextBox)this.gvRes.Rows[j].FindControl("gvtxtRate")).Text = dgvRate.ToString("#,##0.00;(#,##0.00); ");

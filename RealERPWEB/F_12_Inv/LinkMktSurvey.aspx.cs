@@ -42,8 +42,10 @@ namespace RealERPWEB.F_12_Inv
             string premrlist = "%" + this.txtPreMSRSearch.Text + "%";
             string CurDate1 = this.txtCurMSRDate.Text.Trim();
             string calltype = (this.Request.QueryString["reqno"].Length > 14) ? "GETPREMSR" : (this.Request.QueryString["reqno"].Substring(0, 3) == "LRQ") ? "GETPREMSR" : "GETPREVMSRLIST";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", calltype, CurDate1,
-                          premrlist, "", "", "", "", "", "", "");
+
+            string msrType = this.getMsrType();
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", calltype, CurDate1, premrlist, msrType, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlPrevMSRList.Items.Clear();
@@ -52,6 +54,28 @@ namespace RealERPWEB.F_12_Inv
             this.ddlPrevMSRList.DataSource = ds1.Tables[0];
             this.ddlPrevMSRList.DataBind();
         }
+
+        private string getMsrType()
+        {
+            string msrType = "";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                case "3364": //JBS
+                    msrType = "MSR02";
+                    break;
+
+                default:
+                    msrType = "";
+                    break;
+            }
+            return msrType;
+        }
+
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             switch (this.GetCompCode())
@@ -61,6 +85,7 @@ namespace RealERPWEB.F_12_Inv
                 case "3352":
                 case "3101":
                 case "3353"://Manama
+                case "3364": //JBS
                     this.Multiview1.ActiveViewIndex = 1;
                     this.Get_Survey_Info();
                     break;
@@ -126,6 +151,8 @@ namespace RealERPWEB.F_12_Inv
                 case "3352":
                 case "3101":
                 case "3353"://Manama
+                case "3364": //JBS
+
                     this.gvMSRInfo2.DataSource = (DataTable)Session["tblt02"];
                     this.gvMSRInfo2.DataBind();
 

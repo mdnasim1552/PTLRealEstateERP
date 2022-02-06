@@ -11,6 +11,8 @@
         function CloseMOdal() {
             $('#modalEmpInfo').modal('hide');
         }
+
+
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 

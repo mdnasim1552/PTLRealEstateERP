@@ -1,22 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="RealERPWEB.Dashboard" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--<script src="Scripts/jquery-3.1.1.js"></script>--%>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
+   <%-- <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script> 
     <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
+--%>
 
-
-    <script type="text/javascript">
-
-
-        //function pageLoaded() {
-        //    alert("I m In");
-        //    GetData();
-        //    //GetData();
-        //}
+    <script type="text/javascript">        
         $(document).ready(function () {
             var url = $('#<%=this.ParentDir.ClientID %>').val();
             GetData();
@@ -67,9 +56,7 @@
                 };
             });
 
-        });
-
-        
+        });        
         function GetData() {
             try {
                
@@ -89,7 +76,6 @@
 
         }
         function ExecuteGraph(data, data1, data2, data3, data4, gtype) {
-
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
             var accdata = JSON.parse(data2);
@@ -632,11 +618,9 @@
                 w = $(".graph-main").width();
             });
             resizeObserver.observe(elem);
-
         }
-
         function ExecuteUserdata(data1) {
-            //userdata
+            
             console.log(JSON.parse(data1));
             var userdata = JSON.parse(data1);
             var descdata = [];
@@ -684,26 +668,13 @@
 
 
 
-        }
-        //function myFunction() {
-        //    $('input[type=checkbox]:checked').each(function () {
-        //        //var status = (this.checked ? $(this).val() : "");
-        //        var id = $(this).attr("id");                
-        //        $("#div1").toggle();
-        //        //$("#" + id+"").hide();
-        //    });
-
-        //}
-
+        }         
         function ExecuteGraph_column(data, data1, data2, data3, data4, data5) {
-
             var saldata = JSON.parse(data);
             var purdata = JSON.parse(data1);
             var accdata = JSON.parse(data2);
             var consdata = JSON.parse(data3);
-            var sucondata = JSON.parse(data4);
-            //var hrdata=JSON.parse(data5);
-            //console.log(data5);
+            var sucondata = JSON.parse(data4);            
             var chartsal= Highcharts.chart('salchart', {
                 chart: {
                     type: 'column'
@@ -1101,8 +1072,6 @@
                     color: 'Black'
                 }]
             });
-
-
             var chartsubcon= Highcharts.chart('subconchart', {
                 chart: {
                     type: 'column'
@@ -1202,7 +1171,6 @@
             chartcons.setSize(w, h);
             chartsubcon.setSize(w, h);
             const elem = $(".graph-main")[0];
-
             let resizeObserver = new ResizeObserver(function () {
                 chartsal.setSize(w, h);
                 chartpur.setSize(w, h);
@@ -1213,11 +1181,7 @@
             });
             resizeObserver.observe(elem);
 
-        }
-
-
-        /// group graph
-
+        }          
         function ExecuteGroupGraph(data, data1, data2, data3, data4, gtype) {
 
             var saldata = JSON.parse(data);
@@ -1823,7 +1787,7 @@
             <div style="display: none;">
                 <asp:TextBox ID="ParentDir" runat="server" CssClass="hide"></asp:TextBox>
             </div>
-            <%-- <div class="mb-5" id="EventNotice" runat="server">--%>
+           
             <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
                 <div class="row">
                     <!--Breaking box-->
@@ -1906,12 +1870,17 @@
                                             <!-- metric column -->
                                             <div class="col">
                                                 <!-- .metric -->
-                                                <a href="F_33_Doc/GroupChat.aspx" class="metric metric-bordered align-items-center card p-1">
-                                                    <h2 class="metric-label">Task Management</h2>
+
+                                                  <a href="#" target="_self" runat="server" id="noProj" class="metric metric-bordered align-items-center card p-1">
+                                                    <h2 class="metric-label">No of Projects </h2>
+                                                    <%--Teams--%>
                                                     <p class="metric-value h3">
-                                                        <sub><i class="fa fa-tasks"></i></sub><span class="value"></span>
+                                                        <sub><i class="oi oi-people"></i></sub><span class="value" runat="server" id="noProjCount">0</span>
                                                     </p>
                                                 </a>
+
+
+                                               
                                                 <!-- /.metric -->
                                             </div>
 
@@ -1960,7 +1929,9 @@
                                                 <label class="control-label" for="ddlUserName">Year</label>
                                                 <asp:DropDownList ID="ddlyearSale" runat="server" OnSelectedIndexChanged="ddlyearSale_SelectedIndexChanged" AutoPostBack="true" Width="100px" CssClass="custom-select chzn-select">
                                                     <asp:ListItem Value="2020">2020</asp:ListItem>
-                                                    <asp:ListItem Value="2021" Selected="True">2021</asp:ListItem>
+                                                    <asp:ListItem Value="2021">2021</asp:ListItem>
+                                                    <asp:ListItem Value="2022" Selected="True">2022</asp:ListItem>
+                                                   
 
                                                 </asp:DropDownList>
 
@@ -2251,11 +2222,7 @@
             </div>
 
 
-            
-
-            
-            <a href="NewInterface/dashboard.html" class="d-none" target="_blank">New DashBoard</a>
-
+             
             <!-- /.page-section -->
         </div>
     </div>
@@ -2317,11 +2284,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-
-    </div>
-
-   
-
+     
     <!-- /.page -->
 </asp:Content>
 

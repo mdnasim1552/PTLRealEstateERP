@@ -132,6 +132,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetDailyAttenDanceManama">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceManamaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceManamaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetDailyAttenDanceAssure">
         <s:complexType>
           <s:sequence>
@@ -144,6 +166,50 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceAssureResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceFB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceFBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceFBResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceZKT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="frmdate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToDate" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDailyAttenDanceZKTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDailyAttenDanceZKTResult">
               <s:complexType>
                 <s:sequence>
                   <s:element ref="s:schema" />
@@ -198,11 +264,29 @@
   <wsdl:message name="GetDailyAttenDanceCredenceSoapOut">
     <wsdl:part name="parameters" element="tns:GetDailyAttenDanceCredenceResponse" />
   </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceManamaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceManama" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceManamaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceManamaResponse" />
+  </wsdl:message>
   <wsdl:message name="GetDailyAttenDanceAssureSoapIn">
     <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAssure" />
   </wsdl:message>
   <wsdl:message name="GetDailyAttenDanceAssureSoapOut">
     <wsdl:part name="parameters" element="tns:GetDailyAttenDanceAssureResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceFBSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceFB" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceFBSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceFBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceZKTSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceZKT" />
+  </wsdl:message>
+  <wsdl:message name="GetDailyAttenDanceZKTSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDailyAttenDanceZKTResponse" />
   </wsdl:message>
   <wsdl:portType name="HrDailyAttenSoap">
     <wsdl:operation name="HelloWorld">
@@ -233,9 +317,21 @@
       <wsdl:input message="tns:GetDailyAttenDanceCredenceSoapIn" />
       <wsdl:output message="tns:GetDailyAttenDanceCredenceSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceManama">
+      <wsdl:input message="tns:GetDailyAttenDanceManamaSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceManamaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetDailyAttenDanceAssure">
       <wsdl:input message="tns:GetDailyAttenDanceAssureSoapIn" />
       <wsdl:output message="tns:GetDailyAttenDanceAssureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceFB">
+      <wsdl:input message="tns:GetDailyAttenDanceFBSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceFBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceZKT">
+      <wsdl:input message="tns:GetDailyAttenDanceZKTSoapIn" />
+      <wsdl:output message="tns:GetDailyAttenDanceZKTSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="HrDailyAttenSoap" type="tns:HrDailyAttenSoap">
@@ -303,8 +399,35 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceManama">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceManama" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDailyAttenDanceAssure">
       <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceAssure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceFB">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceFB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceZKT">
+      <soap:operation soapAction="http://tempuri.org/GetDailyAttenDanceZKT" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -378,8 +501,35 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceManama">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceManama" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetDailyAttenDanceAssure">
       <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceAssure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceFB">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceFB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDailyAttenDanceZKT">
+      <soap12:operation soapAction="http://tempuri.org/GetDailyAttenDanceZKT" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

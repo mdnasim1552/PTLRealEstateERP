@@ -128,19 +128,36 @@
                                     <div class="row">
 
 
-                                        <div class="col-md-4">
-                                            <asp:Label ID="Label2" runat="server" CssClass="mr-2" Text="Modules"></asp:Label>
-                                            <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True"
-                                                Font-Bold="True"
+                                        <div class="col-md-2">
+                                            <asp:Label ID="Label2" runat="server" CssClass="mr-2" Text=""></asp:Label>
+                                            <asp:CheckBox ID="chkShowall" runat="server" AutoPostBack="True" Visible="false"
+                                                Font-Bold="True" Checked="true"
                                                 OnCheckedChanged="chkShowall_CheckedChanged" Text=" All Items" CssClass="checkBox btn btn-warning" />
 
+                                            
+
+
                                             <asp:DropDownList ID="ddlModuleName" runat="server" AutoPostBack="True"
-                                                OnSelectedIndexChanged="ddlModuleName_SelectedIndexChanged" CssClass="btn btn-secondary fileinput-button xchzn-select">
+                                                OnSelectedIndexChanged="ddlModuleName_SelectedIndexChanged" CssClass="btn btn-secondary fileinput-button xchzn-select d-none">
                                             </asp:DropDownList>
 
-                                            <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn btn-primary fileinput-button ">Show</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkbtnBack" runat="server" CssClass="btn btn-primary fileinput-button d-none ">Show</asp:LinkButton>
 
                                         </div>
+                                        <div class="col-md-2">
+                                             <asp:DropDownList ID="ddlType" runat="server" AutoPostBack="True"
+                                                    OnSelectedIndexChanged="ddlType_SelectedIndexChanged" CssClass="form-control">
+                                                    <asp:ListItem Value="0">All </asp:ListItem>
+                                                   
+                                                     <asp:ListItem Value="2">Component</asp:ListItem>
+                                                    <asp:ListItem Value="4">Widget</asp:ListItem>
+                                                    <asp:ListItem Value="3">Graph </asp:ListItem>
+                                                    <asp:ListItem Value="9">Menu </asp:ListItem>
+                                                    
+
+                                                </asp:DropDownList>
+                                        </div>
+
                                         <div class="col-md-1 text-right">
                                             <button class="btn btn-primary">Page Size</button>
                                         </div>
@@ -166,8 +183,8 @@
 
                                     <asp:GridView ID="gvPermission" runat="server" AllowPaging="True"
                                         AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea mt-5"
-                                        OnPageIndexChanging="gvPermission_PageIndexChanging"
-                                        OnRowDeleting="gvPermission_RowDeleting" ShowFooter="True">
+                                        OnPageIndexChanging="gvPermission_PageIndexChanging" OnRowDataBound="gvPermission_RowDataBound"
+                                        ShowFooter="True">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -178,15 +195,17 @@
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Form id">
+                                            <asp:TemplateField HeaderText="Form id" Visible="false">
                                                 <ItemTemplate>
+                                                    <asp:Label ID="menutype" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "menutype")) %>'></asp:Label>
                                                     <asp:Label ID="lgvufrmid" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmid")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="menuparentid">
+                                            <asp:TemplateField HeaderText="menuparentid" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvufrmidmenuparentid" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "menuparentid2")) %>'></asp:Label>
@@ -217,7 +236,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Description">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" ForeColor="Blue" CssClass="clm0"
+                                                    <asp:Label ID="Label1" runat="server" ForeColor="Blue" CssClass="clm0" Visible="false"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "step")) %>'></asp:Label>
                                                     <asp:Label ID="lgvufrmname" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "frmname")) %>'></asp:Label>

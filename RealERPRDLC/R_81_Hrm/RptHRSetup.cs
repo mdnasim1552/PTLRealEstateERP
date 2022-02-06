@@ -55,7 +55,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptEmpMonthSumm": Rpt1a = SetRptEmpMonthSumm(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_21_Mkt.RptSourceWiseLeads": Rpt1a = SetRptSourceWiseLeads(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 
-                //Attendence Info by Parbaz
+                //Attendence by Parbaz
                 case "R_81_Hrm.R_83_Att.RptMonAttendance": Rpt1a = SetRptMonAttendance(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptMonAttendanceAlli": Rpt1a = SetRptMonAttendanceAlli(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptDailyAllEmpAttn": Rpt1a = SetRptDailyAllEmpAttn(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -65,6 +65,8 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_83_Att.rptMonthyLateAttnEmp": Rpt1a = SetRptMonthyLateAttnEmp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.rptMonthyEarlyLeaveEmp": Rpt1a = SetRptMonthyEarlyLeaveEmp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_83_Att.RptAttendenceSheetEarly": Rpt1a = SetRptAttendenceSheetEarly(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_83_Att.RptMonAttendanceBTI": Rpt1a = SetRptMonAttendanceBTI(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+
                 //LeaveApp by Parbaz
                 case "R_81_Hrm.R_84_Lea.EmpLeavApp": Rpt1a = SetEmpLeavApp(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.RptHrEmpLeave02": Rpt1a = SetRptHrEmpLeave02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -281,6 +283,11 @@ namespace RealERPRDLC
             //Rpt1a.DataSources.Add(new ReportDataSource("DSLeaveApp", (List<RealERPRDLC.RD_81_Hrm.RD_89_Pay.RpHRtPayroll.LeaveApp>)RptDataSet));
             return Rpt1a;
 
+        }
+        private static LocalReport SetRptMonAttendanceBTI(LocalReport rpt1a, object rptDataSet, object rptDataSet2, object userDataset)
+        {
+            rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>)rptDataSet));
+            return rpt1a;
         }
 
     }

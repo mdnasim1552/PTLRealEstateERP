@@ -105,7 +105,7 @@ namespace RealEntity
 
 
 
-            DataTable dtdb = ((DataSet)Session["tblusrlog"]).Tables[1];
+             DataTable dtdb = ((DataSet)Session["tblusrlog"]).Tables[1];
 
             DataTable dtpage = (DataTable)Session["tblpageinfo"];
             int i = 1;
@@ -137,7 +137,7 @@ namespace RealEntity
                     DataRow dr2 = dtpage.NewRow();
                     dr2["formid"] = dr1[0]["frmid"].ToString();
                     dr2["itemcod"] = dt1.Rows[j]["itemcod"].ToString();
-                    dr2["itemdesc"] = ASTUtility.Right("00" + i.ToString(), 2) + ". " + dt1.Rows[j]["itemdesc"].ToString().Substring(3);
+                    dr2["itemdesc"] =  ASTUtility.Right("00" + i.ToString(), 2) + ". " + dt1.Rows[j]["itemdesc"].ToString().Substring(3);
                     dr2["itemurl"] = dt1.Rows[j]["itemurl"].ToString();
                     dr2["itemtips"] = dt1.Rows[j]["itemtips"].ToString();
                     dr2["itemslct"] = Convert.ToBoolean(dt1.Rows[j]["itemslct"]).ToString();
@@ -163,6 +163,28 @@ namespace RealEntity
 
 
             }
+            //If Child  is not existed
+            dv = dtpage.DefaultView;
+            dv.RowFilter = ("itemslct=False");
+            DataTable dtp = dv.ToTable();
+            string mitemcode, itemcode;
+            foreach (DataRow dr1 in dtp.Rows)
+            {
+                mitemcode = dr1["itemcod"].ToString();
+                itemcode = dr1["itemcod"].ToString().Substring(0,4);
+
+                DataRow[] dr = dtpage.Select("itemcod like '" + itemcode + "%'");
+                if (dr.Length==1)
+                {
+
+                    dv = dtpage.DefaultView;
+                    dv.RowFilter = ("itemcod not like '"+ mitemcode + "%'");
+                    dtpage = dv.ToTable();
+                }
+
+            }
+           
+
 
             foreach (DataRow dr in dtpage.Rows)
             {
@@ -308,10 +330,46 @@ namespace RealEntity
 
 
         }
-    
+
+        [Serializable]
+        public class userNotification
+        {
+            public int notifyid { get; set; }
+            public string meassage { get; set; }
+            public string eventitle { get; set; }
+            public int userid { get; set; }
+           
+          
+            public string sendname { get; set; }
+            public string sendphoto { get; set; }
+            public string refid { get; set; }
+            public string notiytype { get; set; }
+            public string ntype { get; set; }
+            public userNotification()
+            {
+
+            }
+            public userNotification(int notifyid, string meassage, string eventitle, int userid,     string sendname, string sendphoto, string refid, string notiytype, string ntype)
+            {
+                this.notifyid = notifyid;
+                this.meassage = meassage;
+                this.eventitle = eventitle;
+                this.userid = userid;
+              
+                 
+                this.sendname = sendname;
+                this.sendphoto = sendphoto;
+                this.refid = refid;
+                this.notiytype = notiytype;
+                this.ntype = ntype;
+
+            }
+        }
+
+
     }
 
-    
 
-       
+
+
 }

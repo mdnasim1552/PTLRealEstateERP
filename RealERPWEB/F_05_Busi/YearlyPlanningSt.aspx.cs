@@ -67,7 +67,10 @@ namespace RealERPWEB.F_05_Busi
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
-            comcod = this.Request.QueryString["comcod"].Length > 0 ? this.Request.QueryString["comcod"].ToString() : comcod;
+
+            comcod=this.Request.QueryString["comcod"] ?? comcod;
+           // comcod = this.Request.QueryString["comcod"]?? this.Request.QueryString["comcod"].ToString() : comcod;
+           // comcod = this.Request.QueryString["comcod"].Length > 0 ? this.Request.QueryString["comcod"].ToString() : comcod;
             return comcod;
 
 

@@ -2,6 +2,32 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            //For navigating using left and right arrow of the keyboard
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
+            try {
+
+                var gv = $('#<%=this.gvDailyAttn.ClientID%>');
+                gv.Scrollable();
+            }
+
+
+            catch (e)
+            {
+
+                alert(e);
+            }
+
+
+
+        };
+
+
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -57,10 +83,15 @@
                                         </asp:DropDownList>
 
                                     </div>
+                                    <div class="col-md-1 Pading5px">
+                                         <asp:LinkButton ID="lbtnShow" runat="server" CssClass="btn btn-primary primaryBtn"  OnClick="lbtnShow_Click" >Show</asp:LinkButton>
+
+                                    </div>
                                     <div class="col-md-2 pading5px">
                                     <asp:CheckBox ID="chktype" runat="server" TabIndex="6" Text="Level-19" CssClass="btn btn-primary checkBox" />
 
                                   </div>
+                                    
                                     <div class="col-md-4">
                                         <asp:Label ID="lmsg" runat="server" CssClass="btn btn-danger primaryBtn pull-right" Visible="false"></asp:Label>
                                     </div>
@@ -89,7 +120,7 @@
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "comname")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "section")).Trim(): "")  %>'
-                                            Width="250px"></asp:Label>
+                                            Width="200px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

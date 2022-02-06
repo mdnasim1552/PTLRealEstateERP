@@ -357,7 +357,40 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
+                                <asp:TemplateField HeaderText="File code" Visible="false" >
+                                    <EditItemTemplate>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgfilecode" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
+
+
+                                 <asp:TemplateField HeaderText="Customer Id" >
+                                    <EditItemTemplate>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lgfilecode22" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "fcode")) %>'
+                                            Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Car Parking">
+                                    <EditItemTemplate></EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCarParking" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cparking")) %>'  Width="70px"  ></asp:Label>
+                                    </ItemTemplate>
+                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
 
                             </Columns>
@@ -525,6 +558,25 @@
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
+
+
+                                              <asp:TemplateField HeaderText="Discount">
+                                                <FooterTemplate>
+                                                    <asp:Label ID="lgvFDiscount" runat="server" Font-Bold="True" Font-Size="12px"
+                                                        ForeColor="#000" Style="text-align: right"></asp:Label>
+                                                </FooterTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvdiscount" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="11px" Height="18px" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "disamt")).ToString("#,##0;-#,##0; ") %>'
+                                                        Width="60px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <FooterStyle HorizontalAlign="right" />
+                                            </asp:TemplateField>
+
+
                                             <asp:TemplateField HeaderText="Amount">
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFAmt" runat="server" Font-Bold="True" Font-Size="12px"
@@ -690,7 +742,7 @@
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="lgcResDesc2" runat="server" BackColor="Transparent" BorderStyle="None"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>'
-                                                            Width="350px" ForeColor="Black"></asp:TextBox>
+                                                            Width="330px" ForeColor="Black"></asp:TextBox>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
                                                         <asp:LinkButton ID="lUpdatpayment" runat="server" CssClass="btn btn-danger primaryBtn" OnClick="lUpdatpayment_Click">Update</asp:LinkButton>

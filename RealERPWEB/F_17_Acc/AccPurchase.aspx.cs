@@ -24,6 +24,7 @@ namespace RealERPWEB.F_17_Acc
     {
         ProcessAccess accData = new ProcessAccess();
         public static double TAmount;
+        public static bool isTotal = false;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -242,6 +243,7 @@ namespace RealERPWEB.F_17_Acc
                          0.00 : dt2.Compute("Sum(trndram)", ""))), 2);
             accData.ToCramt = Math.Round(Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(trncram)", "")) ?
                         0.00 : dt2.Compute("Sum(trncram)", ""))), 2);
+
             ((TextBox)this.dgv2.FooterRow.FindControl("txtTgvDrAmt")).Text = (accData.ToDramt).ToString("#,##0.00;(#,##0.00); - ");
             ((TextBox)this.dgv2.FooterRow.FindControl("txtTgvCrAmt")).Text = (accData.ToCramt).ToString("#,##0.00;(#,##0.00); - ");
 
@@ -262,6 +264,7 @@ namespace RealERPWEB.F_17_Acc
                 this.pnlBill.Visible = true;
                 this.PnlNarration.Visible = true;
                 this.GetPreNarration();
+                
                 Session.Remove("tblt01");
                 this.CreateTable();
 
@@ -361,8 +364,10 @@ namespace RealERPWEB.F_17_Acc
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                 return;
             }
-
-
+            //for cr dr amount check (without click total button)
+            lbtnTotal_Click(null,null);
+            //this.calculation();
+            //end nahid 
 
 
             if (Math.Round(accData.ToDramt) != Math.Round(accData.ToCramt))
@@ -400,7 +405,8 @@ namespace RealERPWEB.F_17_Acc
             string aprvtrmid = "";
             string aprvseson = "";
             string aprvdat = "01-jan-1900";
-            string Payto = "";
+            //this.txtPayto.Text.Trim() == ""
+            string Payto = txtPayto.Text.Trim();
             string isunum = "";
             string recndt = "01-Jan-1900";
             string rpcode = "";
@@ -450,6 +456,8 @@ namespace RealERPWEB.F_17_Acc
                                    this.txtcurrentvou.Text.Trim().Substring(2, 2) + this.txtCurrntlast6.Text.Trim();
             string refnum = this.txtRefNum.Text.Trim();
             string srinfo = this.txtSrinfo.Text;
+
+
             string vounarration1 = this.txtNarration.Text.Trim();
             string vounarration2 = (vounarration1.Length > 200 ? vounarration1.Substring(200) : "");
             vounarration1 = (vounarration1.Length > 200 ? vounarration1.Substring(0, 200) : vounarration1);
@@ -1182,6 +1190,9 @@ namespace RealERPWEB.F_17_Acc
             this.SupplierOverallAdvanced(pactcode);
             this.Data_Bind();
 
+            this.GetNarration();
+
+
         }
 
         private void SupplierOverallAdvanced(string pactcode)
@@ -1216,11 +1227,20 @@ namespace RealERPWEB.F_17_Acc
             dgv2.DataBind();
             this.GridColoumnVisible();
             calculation();
-            this.GetNarration();
+            //this.GetNarration();
+            string comcod = this.GetCompCode();
+            if(comcod=="3355")
+            {
+                this.SelectPaytoName();
 
-
-
+            }
         }
+
+        private void SelectPaytoName()
+        {
+            this.txtPayto.Text = ddlSupList.SelectedItem.Text.Trim();
+        }
+
 
         private void GetNarration()
         {
@@ -1423,7 +1443,6 @@ namespace RealERPWEB.F_17_Acc
                 if (billno1 != billno)
                 {
                     todramt = 0; tocramt = 0;
-
                 }
 
                 todramt = todramt + dramt;
@@ -1445,15 +1464,10 @@ namespace RealERPWEB.F_17_Acc
                 dt1.Rows[TblRowIndex2]["spclcode"] = spclcode;
                 dt1.Rows[TblRowIndex2]["spcldesc"] = spcldesc;
                 billno = billno1;
-
-
-
-
             }
             Session["tblt01"] = dt1;
             this.Data_Bind();
-
-
+            isTotal = true;
 
         }
 

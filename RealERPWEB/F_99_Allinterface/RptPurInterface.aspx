@@ -611,11 +611,41 @@
                         break;
 
                     case 3355:   // Green Wood  
+                        // case 3101:   //ASIT
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        break;
+
+
+
                     case 3354:  //Edison Real Estate
+                   
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        break;
+
+
+
+
+                    
                     case 1205:  //P2P Construction
                     case 3351:  //wecon Properties
                     case 3352:  //p2p360
-                    case 3101:   //ASIT
+                        //case 3101:   //ASIT
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
                         $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
@@ -635,7 +665,7 @@
                     case 1103:   //Tanvir
                         $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
                         $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(3)").hide();//2nd Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
                         $(".tbMenuWrp table tr td:nth-child(13)").hide();
                         $(".tbMenuWrp table tr td:nth-child(14)").hide();
                         $(".tbMenuWrp table tr td:nth-child(17)").hide();
@@ -669,6 +699,8 @@
                         break;
 
                     //case 3101:
+                    case 1108:
+                    case 1109:
                     case 3316://Assure
                     case 3315://Assure
                     case 3317://Assure
@@ -998,10 +1030,10 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                            <asp:TemplateField HeaderText="">
 
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1323,7 +1355,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                            <asp:TemplateField HeaderText="">
                                                                 <HeaderTemplate>
                                                                     <asp:TextBox ID="txtSearchrefnumrchq" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqChk')"></asp:TextBox><br />
 
@@ -1941,10 +1973,10 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrint" runat="server"  ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrint" runat="server" ToolTip="Print Req Info" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
-                                                                     <asp:HyperLink ID="HyInprPrintCS" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyInprPrintCS" runat="server" ToolTip="Print CS" Target="_blank" CssClass="btn btn-default btn-xs" Visible="false"><span class="fa fa-print"></span>
                                                                     </asp:HyperLink>
 
 
@@ -3288,7 +3320,7 @@
                                                             <asp:TemplateField HeaderText="Total Amount">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvWoamtosapp" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "woamt")).ToString("#,##0;(#,##0);") %>'
+                                                                        Text='<%# (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3101" || (Convert.ToString(DataBinder.Eval(Container.DataItem, "comcod")))=="3355" ? true : false %>'
                                                                         Width="50px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
@@ -3307,23 +3339,36 @@
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
 
-                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span>
-
+                                                                    <asp:HyperLink ID="HyInprPrintosappReq" runat="server" Target="_blank" ToolTip="Print Req Info" CssClass="btn btn-default btn-xs"> <span  style="color:green" class="fa fa-print"></span>
                                                                     </asp:HyperLink>
+
+                                                                    <asp:HyperLink ID="HyInprPrintosapp" runat="server" Target="_blank" ToolTip="Print Order Approval" CssClass="btn btn-default btn-xs"><span style="color:deepskyblue" class="fa fa-print"></span>
+                                                                    </asp:HyperLink>
+
+
 
                                                                     <asp:HyperLink ID="lnkbtnEntryosapp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>
-                                                                    <%-- <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
+                                                                    <%--<asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
+                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false"><span class="glyphicon glyphicon-pencil"></span>
                                                                     </asp:HyperLink>
 
+                                                                    <asp:LinkButton ID="btnosapp" OnClick="btnosapp_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
 
-                                                                    <asp:LinkButton ID="btnDelOrder" runat="server"><span style="color:red" class="fa fa-recyle"></span> </asp:LinkButton>--%>
+
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="110px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
+                                                                <ItemStyle Width="150px" />
+                                                                <HeaderStyle HorizontalAlign="Center" Width="150px" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
+
+                                                            <asp:TemplateField HeaderText=" Req. No" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblgvreqnoapp" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno"))%>' Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
 

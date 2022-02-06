@@ -85,11 +85,13 @@ namespace RealERPWEB.F_21_MKT
             DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
             if (this.rbtnlst.SelectedIndex == 0)
             {
-                this.lblcondate.Visible = false;
-                this.txtcondate.Visible = false;
-                this.txtcondate.Text = "";
+                this.lblcondate.Visible = true;
+                this.txtcondate.Visible = true;
+                //this.txtcondate.Text = "";
                 this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
-                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");                
+                this.txtcondate.Text = curdate.ToString("dd-MMM-yyyy");
+
 
             }
             else
@@ -108,29 +110,31 @@ namespace RealERPWEB.F_21_MKT
         protected void rbtnlst_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //string opndate = (string)ViewState["tblopndate"];
-            DateTime curdate = System.DateTime.Today;
-            DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
-            DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
-            if (this.rbtnlst.SelectedIndex == 0)
-            {
-                this.lblcondate.Visible = false;
-                this.txtcondate.Visible = false;
-                this.txtcondate.Text = "";
-               // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
-              // this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
-
-            }
-            else
-            {
-                this.lblcondate.Visible = true;
-                this.txtcondate.Visible = true;
-               // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy"); ;
-                //this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
-                this.txtcondate.Text = todate.ToString("dd-MMM-yyyy");
+            ////string opndate = (string)ViewState["tblopndate"];
+            //DateTime curdate = System.DateTime.Today;
+            //DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
+            //DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
+            //if (this.rbtnlst.SelectedIndex == 0)
+            //{
+            //    this.lblcondate.Visible = true;
+            //    this.txtcondate.Visible = true; 
+            //   // this.txtcondate.Text = "";
+            //    // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
+            //    // this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+            //    this.txtcondate.Text = curdate.ToString("dd-MMM-yyyy");
 
 
-            }
+            //}
+            //else
+            //{
+            //    this.lblcondate.Visible = true;
+            //    this.txtcondate.Visible = true;
+            //   // this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy"); ;
+            //    //this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+            //    this.txtcondate.Text = curdate.ToString("dd-MMM-yyyy");
+
+
+            //}
         }
 
 
@@ -182,10 +186,14 @@ namespace RealERPWEB.F_21_MKT
         //-------------------------------DashBoard------------------------------------------------
         private void ModalDataBind()
         {
-
+            string comcod = this.GetComeCode();
             DataTable dt1 = (DataTable)ViewState["tblsubddl"];
             DataTable dtemp = (DataTable)ViewState["tblempsup"];
-            DataTable dtprj = (DataTable)ViewState["tblproject"];
+            DataTable dtprj = ((DataTable)ViewState["tblproject"]).Copy();
+            DataView dvp = dtprj.DefaultView;
+            dvp.RowFilter = ("comcod='" + comcod + "'");
+            dtprj = dvp.ToTable();
+
             DataView dv;
             dv = dt1.Copy().DefaultView;
             string ddlempid = this.ddlEmpid.SelectedValue.ToString();
@@ -193,7 +201,7 @@ namespace RealERPWEB.F_21_MKT
             string userrole = hst["userrole"].ToString();
             string lempid = hst["empid"].ToString();
             //string empid = (userrole == "1" ? "93" : lempid) + "%";
-            string comcod = this.GetComeCode();
+            
             DataTable dtE = new DataTable();
             dv.RowFilter = ("gcod like '93%'");
             if (userrole == "1")
@@ -275,6 +283,8 @@ namespace RealERPWEB.F_21_MKT
             this.ddlleadstatus.DataBind();
             this.ddlleadstatus.Items.Insert(0, new ListItem("Choose Status", ""));
 
+            
+
         }
 
         protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
@@ -297,14 +307,19 @@ namespace RealERPWEB.F_21_MKT
             string cdate = this.txtfodate.Text.Trim();
             string cdatef = this.txttodate.Text.Trim();
 
-            string empid = ((this.ddlEmpid.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmpid.SelectedValue.ToString()) + "%";
+            string empid = ((this.ddlEmpid.SelectedValue.ToString() == "000000000000") ? "" : this.ddlEmpid.SelectedValue.ToString()) + "%";
             string prjcode = ((this.ddlProject.SelectedValue.ToString() == "") ? "%" : this.ddlProject.SelectedValue.ToString()) + "%";
             string professioncode = ((this.ddlProfession.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlProfession.SelectedValue.ToString()) + "%";
 
             string leadstatus = (this.ddlleadstatus.SelectedValue.ToString().Trim() == "" ? "95" : this.ddlleadstatus.SelectedValue.ToString()) + "%";
             string sourch = ((this.ddlSource.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSource.SelectedValue.ToString()) + "%";
             string condate =this.txtcondate.Text;
-            string calltype = condate.Length == 0 ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION";
+
+            string type = this.rbtnlst.SelectedValue.ToString();
+
+
+            string calltype = (type == "Stand By" ? "GETSALESFUNNEL" : "GETSALESFUNNELCONVERSATION");
+
             DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
             if (ds1 == null)
             {
@@ -326,7 +341,9 @@ namespace RealERPWEB.F_21_MKT
 
             ViewState["tblleadSrc"] = ds1.Tables[8];
             ViewState["tblleadSrcEmp"] = ds1.Tables[9];
-
+            ViewState["tblteamlead"] = ds1.Tables[10];
+            ViewState["tblleadStatus"] = ds1.Tables[11];
+            
             Data_bind();
 
 
@@ -345,17 +362,20 @@ namespace RealERPWEB.F_21_MKT
             DataTable dtcProfEmp = (DataTable)ViewState["tblleadProfessEmp"];
             DataTable dtcsrc = (DataTable)ViewState["tblleadSrc"];
             DataTable dtcsrcemp = (DataTable)ViewState["tblleadSrcEmp"];
+            DataTable dtteamlead = (DataTable)ViewState["tblteamlead"];
+            DataTable tbllead = (DataTable)ViewState["tblleadStatus"];
+            
 
-
- 
 
             if (dt.Rows.Count == 0)
                 return;
             this.gvSaleFunnel.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());
             this.gvSaleFunnel.DataSource = dt;
             this.gvSaleFunnel.DataBind();
+            Session["Report1"] = gvSaleFunnel;
+            ((HyperLink)this.gvSaleFunnel.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-             
+
             var jsonSerialiser = new JavaScriptSerializer();
 
             var lst = dtc.DataTableToList<SalFunnelgraph>();
@@ -368,6 +388,8 @@ namespace RealERPWEB.F_21_MKT
 
             var lst8 = dtcsrc.DataTableToList<kpiPrjgraph>();
             var lst9 = dtcsrcemp.DataTableToList<kpiPrjgraph>();
+            var lst10 = dtteamlead.DataTableToList<kpiTeamsgraph>();
+            var lst11 = tbllead.DataTableToList<kpiLead>();
 
 
             var data = jsonSerialiser.Serialize(lst);
@@ -382,9 +404,13 @@ namespace RealERPWEB.F_21_MKT
 
             var data8 = jsonSerialiser.Serialize(lst8);
             var data9 = jsonSerialiser.Serialize(lst9);
+            var data10 = jsonSerialiser.Serialize(lst10);
+            var data11 = jsonSerialiser.Serialize(lst10);
+            var data12 = jsonSerialiser.Serialize(lst11);
+
 
             var gtype = this.ddlgrpType.SelectedValue.ToString();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + gtype + "')", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecuteGraph('" + data + "','" + data1 + "','" + data2 + "','" + data3 + "','" + data4 + "','" + data5 + "','" + data6 + "','" + data8 + "','" + data9 + "','" + data10 + "','" + data11 + "','" + gtype + "','" + data12 + "')", true);
 
         }
 
@@ -486,6 +512,17 @@ namespace RealERPWEB.F_21_MKT
             public decimal win { get; set; }
         }
 
+        [Serializable]
+        public class kpiLead
+        {
+            public string la { get;set;}
+            public string lb { get;set;}
+            public string lc { get;set;}
+            public string ld { get;set;}
+            public string le { get;set;}
+            public string lf { get;set;}
+             
+        }
         protected void ddlgrpType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Data_bind();

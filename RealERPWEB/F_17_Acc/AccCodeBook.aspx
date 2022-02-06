@@ -38,29 +38,29 @@
                 k1.textBoxHandler(event);
             });
 
-            
+
 
 
             $('#Chboxchild').change(function () {
 
-                var result = $('#Chboxchild').is(':checked');              
-                var description = result ? "Add Child" : "Add Group";             
+                var result = $('#Chboxchild').is(':checked');
+                var description = result ? "Add Child" : "Add Group";
                 $('#lblchild').html(description);
-             
+
 
             });
-           
+
             $('.chzn-select').chosen({ search_contains: true });
         };
 
-       
+
 
 
 
     </script>
 
 
-    
+
     <style>
         .switch {
             position: relative;
@@ -232,18 +232,18 @@
 
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" Visible="false" OnClick="lbtnAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
-                                        
+
                                         <%--data-toggle="modal" data-target="#detialsinfo"--%>
                                     </ItemTemplate>
                                     <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
-                                    
+
                                     <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
 
                                 <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
-                                    SelectText="" ShowEditButton="True"     EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
+                                    SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                     <HeaderStyle />
-                                    <ItemStyle ForeColor="#0000C0"/>
+                                    <ItemStyle ForeColor="#0000C0" />
                                 </asp:CommandField>
                                 <asp:TemplateField HeaderText=" " HeaderStyle-Width="30px">
                                     <EditItemTemplate>
@@ -297,7 +297,7 @@
                                 </asp:TemplateField>
 
 
-                                 <asp:TemplateField HeaderText="Description of Accounts BN">
+                                <asp:TemplateField HeaderText="Description of Accounts BN">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtgvDescbn" runat="server" CssClass="form-control inputTxt"
                                             Style="border-top-style: none; border-right-style: none; border-left-style: none; border-bottom-style: none; font-size: 12px; border-left-color: midnightblue; border-bottom-color: midnightblue; border-top-color: midnightblue; border-right-color: midnightblue;"
@@ -513,8 +513,8 @@
 
                             <RowStyle />
                             <EditRowStyle />
-                            <SelectedRowStyle />                           
-                            <HeaderStyle   CssClass="grvHeader" />                           
+                            <SelectedRowStyle />
+                            <HeaderStyle CssClass="grvHeader" />
                             <AlternatingRowStyle BackColor="" />
                             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
 
@@ -526,102 +526,102 @@
             </div>
 
 
-               <%--Modal  --%>
+            <%--Modal  --%>
 
-    <div id="AddAccCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content  ">
-                <div class="modal-header">
+            <div id="AddAccCode" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
 
-                    <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                    <h4 class="modal-title">
-                        <span class="fa fa-table"></span>Add New Code  </h4>
-                </div>
-                <div class="modal-body form-horizontal">
-                    <div class="row-fluid">
-                        <asp:Label ID="lblactcode" runat="server" Visible="false"></asp:Label>
-
-                         <div class="form-group" runat="server">
-                            <label class="col-md-4">Accounts Code</label>
-
-
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtacountcode" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
+                            <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-table"></span>Add New Code  </h4>
                         </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row-fluid">
+                                <asp:Label ID="lblactcode" runat="server" Visible="false"></asp:Label>
 
-                        <div class="form-group" runat="server">
-                            <label class="col-md-4">Accounts Head</label>
+                                <div class="form-group" runat="server">
+                                    <label class="col-md-4">Accounts Code</label>
 
 
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtaccounthead" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtacountcode" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" runat="server">
+                                    <label class="col-md-4">Accounts Head</label>
+
+
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtaccounthead" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4">Level </label>
+                                    <div class="col-md-5">
+                                        <asp:TextBox ID="txtlevel" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+
+
+
+
+                                    <div class="col-md-3">
+                                        <label id="chkbod" runat="server" class="switch">
+                                            <asp:CheckBox ID="Chboxchild" runat="server" ClientIDMode="Static" />
+                                            <span class="btn btn-xs slider round"></span>
+                                        </label>
+                                        <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4">Type </label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txttype" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4">Short Description </label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtshort" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4">Ref. ID</label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtrefid" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4">Serial</label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox ID="txtserial" runat="server" CssClass="form-control"></asp:TextBox>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblddlproject" runat="server" class="col-md-4">Project</label>
+                                    <div class="col-md-8">
+                                        <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    </div>
+                                </div>
+
+
                             </div>
+
+
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4">Level </label>
-                            <div class="col-md-5">
-                                <asp:TextBox ID="txtlevel" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModal();" OnClick="lbtnAddCode_Click"><span class="glyphicon glyphicon-save"></span> Update </asp:LinkButton>
 
 
-
-
-                            <div class="col-md-3">
-                                <label id="chkbod" runat="server" class="switch">
-                                    <asp:CheckBox ID="Chboxchild" runat="server"  ClientIDMode="Static" />
-                                    <span class="btn btn-xs slider round"></span>
-                                </label>
-                                <asp:Label ID="lblchild" runat="server" Text="Add Child" CssClass="btn btn-xs" ClientIDMode="Static"></asp:Label>
-                            </div>
+                            <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-4">Type </label>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txttype" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4">Short Description </label>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtshort" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4">Ref. ID</label>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtrefid" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4">Serial</label>
-                            <div class="col-md-8">
-                                <asp:TextBox ID="txtserial" runat="server" CssClass="form-control"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label id="lblddlproject" runat="server" class="col-md-4">Project</label>
-                            <div class="col-md-8">
-                                <asp:DropDownList ID="ddlProject" runat="server" CssClass="form-control"></asp:DropDownList>
-                            </div>
-                        </div>
-
-
                     </div>
-
-
-                </div>
-                <div class="modal-footer ">
-                    <asp:LinkButton ID="lbtnAddCode" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModal();" OnClick="lbtnAddCode_Click"><span class="glyphicon glyphicon-save"></span> Update </asp:LinkButton>
-
-
-                    <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 
@@ -630,7 +630,7 @@
     </asp:UpdatePanel>
 
 
- 
+
 
 </asp:Content>
 

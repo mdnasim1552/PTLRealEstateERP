@@ -146,6 +146,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlCompanyName.DataValueField = "actcode";
             this.ddlCompanyName.DataSource = ds1.Tables[0];
             this.ddlCompanyName.DataBind();
+            Session["tblcompany"] = ds1.Tables[0];
             this.ddlCompanyName_SelectedIndexChanged(null, null);
         }
 
@@ -154,7 +155,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if (this.ddlCompanyName.Items.Count == 0)
                 return;
             string comcod = this.GetCompCode();
-            string txtCompanyname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string txtCompanyname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string txtCompanyname = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+
+
             string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETDEPARTMENT", txtCompanyname, txtSearchDept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
@@ -168,7 +173,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             if (this.ddlCompanyName.Items.Count == 0)
                 return;
             string comcod = this.GetCompCode();
-            string txtCompanyname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string txtCompanyname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string txtCompanyname = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln) + "%";
             string Department = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
             string txtSearchDept = this.txtSrcDepartment.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETSECTIONDP", txtCompanyname, Department, txtSearchDept, "", "", "", "", "", "");
@@ -336,7 +344,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             Session.Remove("tblover");
             string comcod = this.GetCompCode();
-            string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            //string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string compname = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln);
 
             string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
             //string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";

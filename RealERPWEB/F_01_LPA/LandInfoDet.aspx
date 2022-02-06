@@ -6,11 +6,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
 
-
-
-
-
-
     <style>
         body {
             font-family: "Century Gothic";
@@ -271,20 +266,34 @@
         .dcomments {
             margin: 10px 0 0 0;
         }
-    </style>
-    
-    <script type="text/javascript">
+   
         
+          .notifsectino .tile {
+            font-size: 12px !important;
+        }
+
+        .notifsectino .list-group-item {
+            padding: 2px 5px;
+        }
+
+
+        .notifsectino .list-group-item-body {
+            font-size: 10px !important;
+        }
+        
+        </style>
+
+    <script type="text/javascript">
+
 
 
         function Search_Gridview(strKey, cellNr) {
-            try
-            {
+            try {
 
-                var strData = strKey.value.toLowerCase().split(" ");             
-                var  tblData = document.getElementById("<%=this.gvSummary.ClientID%>"); 
+                var strData = strKey.value.toLowerCase().split(" ");
+                var tblData = document.getElementById("<%=this.gvSummary.ClientID%>");
                 for (var i = 1; i < tblData.rows.length; i++) {
-                  
+
                     rowData = tblData.rows[i].cells[cellNr].innerHTML;
                     var styleDisplay = 'none';
                     for (var j = 0; j < strData.length; j++) {
@@ -299,10 +308,9 @@
                 }
             }
 
-            catch(e)
-            {
+            catch (e) {
                 alert(e.message);
-            
+
             }
 
         }
@@ -310,22 +318,20 @@
 
         $(document).ready(function () {
 
-           
-          
-
+             
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+            document.getElementById('<%= Btn_tempBTN.ClientID %>').click();
 
         });
 
 
         function pageLoaded() {
 
-                   
-            try
-            {      
 
-              
-            
+            try {
+
+
+
 
 
                 $(".chosen-select").chosen({
@@ -339,19 +345,24 @@
                 $('.chzn-select').chosen({ search_contains: true });
 
 
-                    
+
                 $("input, select").bind("keydown", function (event) {
                     var k1 = new KeyPress();
                     k1.textBoxHandler(event);
-                }); 
-                
+                });
+
                 $('#<%=this.gvkpidet.ClientID%>').tblScrollable();
 
-              
-                
+
+
                 $('.datepicker').datepicker({
                     format: 'mm/dd/yyyy',
                 });
+
+
+
+                var gvSummary = $('#<%=this.gvSummary.ClientID %>');
+                gvSummary.Scrollable();
 
 
 
@@ -360,154 +371,146 @@
                 var gcod;
 
                 //Schedule Reminder  
-                var comcod=<%=this.GetComeCode()%>;
-              
-                var arrgschcodl = $('#<%=this.gvInfo.ClientID%>').find('[id$="lblgvItmCodedis"]');  
-                var arrgsschcheckbox = $('#<%=this.gvInfo.ClientID%>').find('input:text[id$="ChkBoxLstFollow"]');                  
-             
-                var txtnfollowupdate, checkboxlastfollowup; 
-                
-                for(var i=0; i<arrgschcodl.length;i++)
-                {
-                
-                  
-                    gcod=$(arrgschcodl[i]).text();   
-                   
-                    var number ;
-                    switch(gcod)
-                    {
+                var comcod =<%=this.GetComeCode()%>;
+
+                var arrgschcodl = $('#<%=this.gvInfo.ClientID%>').find('[id$="lblgvItmCodedis"]');
+                var arrgsschcheckbox = $('#<%=this.gvInfo.ClientID%>').find('input:text[id$="ChkBoxLstFollow"]');
+
+                var txtnfollowupdate, checkboxlastfollowup;
+
+                for (var i = 0; i < arrgschcodl.length; i++) {
+
+
+                    gcod = $(arrgschcodl[i]).text();
+
+                    var number;
+                    switch (gcod) {
                         //Last Followup
                         case '810100102020':
-                            number=i;      
-                           
+                            number = i;
+
                             break;
 
-                            
 
-                       
+
+
                     }
-                
-                } 
-               
-                
-                var txtgvdValdis='#ContentPlaceHolder1_gvInfo_txtgvdValdis_'+number;
-                var ChkBoxLstFollow='ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_'+(number-1); 
+
+                }
+
+
+                var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
+                var ChkBoxLstFollow = 'ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + (number - 1);
                 $(txtgvdValdis).change(function () {
 
-                   
-                   
+
+
                     var followupdate = $(this).val();
 
                     var lastfollowup = "";
-                    $('input[type=checkbox][id^="'+ChkBoxLstFollow+'"]:checked').each(function (index,item) {  
-                       
-                        lastfollowup=  $(item).val();
-                        
+                    $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
+
+                        lastfollowup = $(item).val();
+
                     });
 
-                    if(lastfollowup.length>0)
-                    {
-                       
-                        funschedulenumber(comcod,  followupdate,lastfollowup, number);
-                    } 
-                   
+                    if (lastfollowup.length > 0) {
+
+                        funschedulenumber(comcod, followupdate, lastfollowup, number);
+                    }
+
                 });
 
 
-                $('#'+ChkBoxLstFollow).change(function () {
-                   
+                $('#' + ChkBoxLstFollow).change(function () {
+
                     var followupdate = $(txtgvdValdis).val();
                     var lastfollowup = "";
-                   
-                    $('input[type=checkbox][id^="'+ChkBoxLstFollow+'"]:checked').each(function (index,item) {  
-                       
-                        lastfollowup=  $(item).val();
-                        
+
+                    $('input[type=checkbox][id^="' + ChkBoxLstFollow + '"]:checked').each(function (index, item) {
+
+                        lastfollowup = $(item).val();
+
                     });
 
-                    if(lastfollowup.length>0)
-                    {
-                       
-                        funschedulenumber(comcod,  followupdate,lastfollowup, number);
-                    } 
-                   
+                    if (lastfollowup.length > 0) {
+
+                        funschedulenumber(comcod, followupdate, lastfollowup, number);
+                    }
+
                 });
 
 
 
                 //Duplicate Plot
 
-                var arrgschcodp = $('#<%=this.gvplot.ClientID%>').find('[id$="lblgvItmCodeplot"]'); 
+                var arrgschcodp = $('#<%=this.gvplot.ClientID%>').find('[id$="lblgvItmCodeplot"]');
                 var txtgvplotno;
-                for(var i=0; i<arrgschcodp.length;i++)
-                {
-                
-                  
-                    gcod=$(arrgschcodp[i]).text();                   
-                    var number ;
-                    switch(gcod)
-                    {
+                for (var i = 0; i < arrgschcodp.length; i++) {
+
+
+                    gcod = $(arrgschcodp[i]).text();
+                    var number;
+                    switch (gcod) {
                         //Plot Number
                         case '0302013':
-                            number=i;  
+                            number = i;
                             break;
 
-                            
 
-                       
+
+
                     }
-                
+
                 }
-                
-                var txtgvplotno='#ContentPlaceHolder1_gvplot_txtgvValplot_'+number;
+
+                var txtgvplotno = '#ContentPlaceHolder1_gvplot_txtgvValplot_' + number;
 
 
                 $(txtgvplotno).change(function () {
                     var plotno = $(this).val();
-                    
-                    // var distrinct= $('#ContentPlaceHolder1_gvplot_ddlvald_1 option:selected').text();
-                    var zone= $('#ContentPlaceHolder1_gvplot_ddlvalz_2 option:selected').text();
-                    var ps= $('#ContentPlaceHolder1_gvplot_ddlvalp_3 option:selected').text();
-                    var area= $('#ContentPlaceHolder1_gvplot_ddlvala_4 option:selected').text();
-                    var block= $('#ContentPlaceHolder1_gvplot_ddlblockplot_5 option:selected').text();
-                    var road= $('#ContentPlaceHolder1_gvplot_ddlpnlr_6 option:selected').text();
-                 
-                    var landplotinfo=zone+", "+ps+", "+area+", "+block+", "+road+", Plot: "+plotno;  
-                   
-                    if(!$('#divexland').is(":visible"))
-                    {
-                        funDupPlot(landplotinfo); 
-                       
-                        
-                    
-                    
-                    }
-                   
-                    
 
-                    
-                    
-                 
+                    // var distrinct= $('#ContentPlaceHolder1_gvplot_ddlvald_1 option:selected').text();
+                    var zone = $('#ContentPlaceHolder1_gvplot_ddlvalz_2 option:selected').text();
+                    var ps = $('#ContentPlaceHolder1_gvplot_ddlvalp_3 option:selected').text();
+                    var area = $('#ContentPlaceHolder1_gvplot_ddlvala_4 option:selected').text();
+                    var block = $('#ContentPlaceHolder1_gvplot_ddlblockplot_5 option:selected').text();
+                    var road = $('#ContentPlaceHolder1_gvplot_ddlpnlr_6 option:selected').text();
+
+                    var landplotinfo = zone + ", " + ps + ", " + area + ", " + block + ", " + road + ", Plot: " + plotno;
+
+                    if (!$('#divexland').is(":visible")) {
+                        funDupPlot(landplotinfo);
+
+
+
+
+                    }
+
+
+
+
+
+
                 });
             }
 
 
-            catch(e)
-            {
-            
+            catch (e) {
+
                 alert(e.message);
             }
-                    
-           
 
-           
+
+
+
         }
-       
-        ///////
-      
 
-       
- 
+        ///////
+
+
+
+
 
 
 
@@ -545,7 +548,7 @@
         }
 
 
-       
+
 
 
         function openModaldis() {
@@ -566,24 +569,25 @@
         //    $('#mdiscussion').modal('toggle');
         //    $('#lbtntfollowup').click();
         //}
-        
 
-        function OpenModal() {
-            $('#detnotification').modal('show');
+        //Comment Emdad 20.01.2022
+
+        //function OpenModal() {
+        //    $('#detnotification').modal('show');
 
 
-        }
+        //}
 
         function AddButton(id) {
-                  
+
             $(".hiddenb" + id).css("display", "inline");
-            
+
         }
         function HiddenButton(id) {
             $(".hiddenb" + id).css("display", "none");
         }
 
-   
+
 
         <%-- 
         function DetNotification(rtype)
@@ -694,373 +698,340 @@
         }--%>
 
 
-        function funschedulenumber(comcod,  followupdate,lastfollowup, number)
-        {
-        
-            try
-            {
+        function funschedulenumber(comcod, followupdate, lastfollowup, number) {
 
-                var  empid=<%=this.GetEmpID()%>; 
-               
-                var lblschedulenumber='#ContentPlaceHolder1_gvInfo_lblschedulenumber_'+number;
-               
-                
-                
-                
+            try {
+
+                var empid =<%=this.GetEmpID()%>;
+
+                var lblschedulenumber = '#ContentPlaceHolder1_gvInfo_lblschedulenumber_' + number;
+
+
+
+
                 $.ajax({
-                        
+
                     url: "LandInfoDet.aspx/GetSchedulenumber",
                     type: "POST",
-                    data: '{comcod:"'+comcod+'", followupdate:"'+followupdate+'", lastfollowup:"' + lastfollowup + '", empid:"' + empid + '"}',
+                    data: '{comcod:"' + comcod + '", followupdate:"' + followupdate + '", lastfollowup:"' + lastfollowup + '", empid:"' + empid + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     //  async: false,
-                    success: function (data) {                           
-                        var jdata=JSON.parse(data.d);
-                         
-                        var  mesult=jdata.result;
-                        if(!mesult)
-                        {
+                    success: function (data) {
+                        var jdata = JSON.parse(data.d);
+
+                        var mesult = jdata.result;
+                        if (!mesult) {
                             alert(jdata.Message);
-                           
+
                         }
-                        else
-                        {                            
+                        else {
 
                             $(lblschedulenumber).text(jdata.Message);
                         }
                     }
                 });
-            
+
             }
 
 
-            catch(e)
-            {
+            catch (e) {
                 alert(e.message);
-            
-            }        
-           
-        
+
+            }
+
+
         }
-        
-
-        function funPost(date, number)
-        {
-            try
-            {
 
 
-                var  comdate =$('#txtcomdate'+number).val();
-                var comcod=<%=this.GetComeCode()%>;
-                var comments=$('#lblcomments'+number).val();
-                var proscod=$('#<%=this.lblproscod.ClientID%>').val();   
-                var userid=<%=this.GetUserID()%>;
-           
+        function funPost(date, number) {
+            try {
+
+
+                var comdate = $('#txtcomdate' + number).val();
+                var comcod =<%=this.GetComeCode()%>;
+                var comments = $('#lblcomments' + number).val();
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+                var userid =<%=this.GetUserID()%>;
+
 
                 $.ajax({
                     type: "POST",
                     url: "LandInfoDet.aspx/UpdatePost",
-                    data: '{comcod:"' + comcod + '", userid:"'+userid +'",  proscod: "' + proscod + '", date:"'+date+'" , post: "' + comments+ '", comdate: "' + comdate+ '"}',
+                    data: '{comcod:"' + comcod + '", userid:"' + userid + '",  proscod: "' + proscod + '", date:"' + date + '" , post: "' + comments + '", comdate: "' + comdate + '"}',
                     contentType: "application/json; charset=utf-8",
-                    dataType: "json",                   
-                  
+                    dataType: "json",
+
 
                     success: function (response) {
                         //console.log(JSON.parse(response.d));
-                        var data =JSON.parse(response.d);                     
+                        var data = JSON.parse(response.d);
                         alert(data.Message);
 
                         //console.log(data['account']);
-                       
+
                     },
 
-                   
+
                     failure: function (response) {
-                      
+
                         alert("failure");
                     }
                 });
 
 
-           
+
             }
 
-            catch(e)
-            {
-           
+            catch (e) {
+
                 alert(e.message);
-           
+
             }
-           
-        
-        
-        
+
+
+
+
         }
 
-        function funDupPlot(landinfo)
-        {
-            try
-            {
-              
-                var comcod=<%=this.GetComeCode()%>;
-                
+        function funDupPlot(landinfo) {
+            try {
+
+                var comcod =<%=this.GetComeCode()%>;
+
                 $.ajax({
-                        
+
                     url: "LandInfoDet.aspx/CheckPlotNo",
                     type: "POST",
-                    data: '{comcod:"'+comcod+'", landinfo:"'+landinfo+'"}',
+                    data: '{comcod:"' + comcod + '", landinfo:"' + landinfo + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     //  async: false,
-                    success: function (data) {                           
-                        var jdata=JSON.parse(data.d);
-                   
-                        var  mesult=jdata.result;
-                        if(!mesult)
-                        {
+                    success: function (data) {
+                        var jdata = JSON.parse(data.d);
+
+                        var mesult = jdata.result;
+                        if (!mesult) {
                             alert(jdata.Message);
-                           
+
                         }
                     }
                 });
-            
+
             }
 
 
-            catch(e)
-            {
+            catch (e) {
                 alert(e.message);
-            
-            }        
-        
-        
-        
+
+            }
+
+
+
         }
 
-        function funStatus()
-        {
+        function funStatus() {
 
-            try
-            {
+            try {
 
 
-               
-                var comcod=<%=this.GetComeCode()%>;             
-                var proscod=$('#<%=this.lblproscod.ClientID%>').val();   
-                var statusid=$('#ddlmStatus option:selected').val();
-                var  empid=<%=this.GetEmpID()%>; 
+
+                var comcod =<%=this.GetComeCode()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+                var statusid = $('#ddlmStatus option:selected').val();
+                var empid =<%=this.GetEmpID()%>;
 
                 $.ajax({
                     type: "POST",
                     url: "LandInfoDet.aspx/UpdateStatus",
-                    data: '{comcod:"' + comcod +'",  proscod: "' + proscod +'", statusid:"'+statusid+'", empid:"'+empid+'"}',
+                    data: '{comcod:"' + comcod + '",  proscod: "' + proscod + '", statusid:"' + statusid + '", empid:"' + empid + '"}',
                     contentType: "application/json; charset=utf-8",
-                    dataType: "json",                   
-                  
+                    dataType: "json",
+
 
                     success: function (response) {
-                        
+
                         //var data =JSON.parse(response.d);                     
                         //alert(data.Message);
-                       
 
-                        
+
+
                         $('#<%=this.lbllaststatus.ClientID%>').html("Status:" + "<span style='color:#ffef2f; font-size:14px; font-weight:bold'>"
-                                + $('#ddlmStatus option:selected').text()+ "</span>");
+                            + $('#ddlmStatus option:selected').text() + "</span>");
 
                         //console.log(data['account']);
-                       
+
                     },
 
-                   
+
                     failure: function (response) {
-                      
+
                         alert("failure");
                     }
                 });
 
 
-           
-                }
 
-                catch(e)
-                {
-           
-                    alert(e.message);
-           
-                }
+            }
 
-           
-         
-        
-           
-        
+            catch (e) {
+
+                alert(e.message);
+
+            }
+
+
+
+
+
+
         };
 
 
-        
-        
-        function funReschedule(cdate, number)
-        {
-            try
-            {
+
+
+        function funReschedule(cdate, number) {
+            try {
 
 
                 //var  comdate =$('#txtcomdate'+number).val();
-                var comcod=<%=this.GetComeCode()%>;
-                var empid=<%=this.GetEmpID()%>;
-                var proscod=$('#<%=this.lblproscod.ClientID%>').val();   
-                
-           
+                var comcod =<%=this.GetComeCode()%>;
+                var empid =<%=this.GetEmpID()%>;
+                var proscod = $('#<%=this.lblproscod.ClientID%>').val();
+
+
 
                 $.ajax({
                     type: "POST",
                     url: "LandInfoDet.aspx/GetReschedule",
-                    data: '{comcod:"' + comcod + '", empid:"'+empid +'",  proscod: "' + proscod + '", cdate:"'+cdate+'"}',
+                    data: '{comcod:"' + comcod + '", empid:"' + empid + '",  proscod: "' + proscod + '", cdate:"' + cdate + '"}',
                     contentType: "application/json; charset=utf-8",
-                    dataType: "json",                   
-                  
+                    dataType: "json",
+
 
                     success: function (response) {
-                       
-                        var data =JSON.parse(response.d);   
+
+                        var data = JSON.parse(response.d);
                         funDataBind(data);
                         //console.log(data);
                         //var date=data[0].gdesc1;
                         //alert(date);
 
-                      
-                       
+
+
                     },
 
-                   
+
                     failure: function (response) {
-                      
+
                         alert("failure");
                     }
                 });
 
 
-           
+
             }
 
-            catch(e)
-            {
-           
+            catch (e) {
+
                 alert(e.message);
-           
+
             }
-           
-        
-        
-        
+
+
+
+
         }
 
 
-        function funDataBind(data)
-        {
-            try
-            {
-                var number=0;
-                $.each(data, function(index, data)
-                {
-                   
-                    var gcod = data.gcod;
-                   
+        function funDataBind(data) {
+            try {
+                var number = 0;
+                $.each(data, function (index, data) {
 
-                    switch (gcod)
-                    {
+                    var gcod = data.gcod;
+
+
+                    switch (gcod) {
 
                         case "810100102001": //Followup Date                        
-                            var txtgvdValdis='#ContentPlaceHolder1_gvInfo_txtgvdValdis_'+number;                           
+                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
                             $(txtgvdValdis).val(data.gdesc1);
-                            $(txtgvdValdis).attr("disabled",true);
+                            $(txtgvdValdis).attr("disabled", true);
                             //var dropdown
-                            var dtimehour=data.gtime; 
-                            var ddlhour=  '#ContentPlaceHolder1_gvInfo_ddlhour_'+number;
-                            $(ddlhour).val(dtimehour.substr(0,2));
+                            var dtimehour = data.gtime;
+                            var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
+                            $(ddlhour).val(dtimehour.substr(0, 2));
                             $(ddlhour).attr("disabled", true);
-                            
-                            var ddlmin=  '#ContentPlaceHolder1_gvInfo_ddlMmin_'+number;                          
-                            $(ddlmin).val(dtimehour.substr(3,2));
+
+                            var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
+                            $(ddlmin).val(dtimehour.substr(3, 2));
                             $(ddlmin).attr("disabled", true);
 
-                            var ddlslb=  '#ContentPlaceHolder1_gvInfo_ddlslb_'+number;
-                            $(ddlslb).val(dtimehour.substr(6,2));
+                            var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
+                            $(ddlslb).val(dtimehour.substr(6, 2));
                             $(ddlslb).attr("disabled", true);
                             break;
 
                         case "810100102002": //New Followup
-                            var ChkBoxLstFollow='#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_'+number;  
-                            var newfollowup=data.gdesc1;
-                            if(newfollowup.length<=7)
-                            {
-                               
-                                              
-                                $(''+ChkBoxLstFollow+'> input').each(function (index,item) 
-                                {  
-                       
-                                    if($(item).val()==newfollowup)
-                                    {
-                                        $(item).attr('checked',true);
+                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            var newfollowup = data.gdesc1;
+                            if (newfollowup.length <= 7) {
+
+
+                                $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+
+                                    if ($(item).val() == newfollowup) {
+                                        $(item).attr('checked', true);
                                     }
-                                     
-                        
+
+
                                 });
-                            
+
                             }
-                            else 
-                            {
-                                var ar=new Array();
-                                alert(newfollowup);
-                                var j=0;
-                                for(i=0; i<newfollowup.length; i=i+7)
-                                {
-                                    ar[j++]=newfollowup.substr(i,7);
+                            else {
+                                var ar = new Array();
+                              //  alert(newfollowup);
+                                var j = 0;
+                                for (i = 0; i < newfollowup.length; i = i + 7) {
+                                    ar[j++] = newfollowup.substr(i, 7);
                                 }
 
-                                console.log(ar);
-                                alert(ar.length);
+                                //console.log(ar);
+                              //  alert(ar.length);
 
-                                for(i=0; i<ar.length;i++)
-                                {
+                                for (i = 0; i < ar.length; i++) {
 
-                                    $(''+ChkBoxLstFollow+'> input').each(function (index,item) 
-                                    { 
-                                        if($(item).val()==ar[i])
-                                        {
-                                            $(item).attr('checked',true);
+                                    $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+                                        if ($(item).val() == ar[i]) {
+                                            $(item).attr('checked', true);
                                         }
-                        
+
                                     });
-                                
-                                
+
+
                                 }
-                            }                          
-                                
+                            }
+
                             break;
 
 
-                                  
+
                         case "810100102019"://Follow
 
-                            var ChkBoxLstFollow='#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_'+number;  
-                            var newfollowup=data.gdesc1;
-                            if(newfollowup.length=7)
-                            { 
-                                              
-                                $(''+ChkBoxLstFollow+'> input').each(function (index,item) 
-                                {  
-                                    if($(item).val()==newfollowup)
-                                    {
-                                        $(item).attr('checked',true);
-                                   
+                            var ChkBoxLstFollow = '#ContentPlaceHolder1_gvInfo_ChkBoxLstFollow_' + number;
+                            var newfollowup = data.gdesc1;
+                            if (newfollowup.length = 7) {
+
+                                $('' + ChkBoxLstFollow + '> input').each(function (index, item) {
+                                    if ($(item).val() == newfollowup) {
+                                        $(item).attr('checked', true);
+
                                     }
-                                     
-                        
+
+
                                 });
-                            
+
                             }
                             break;
 
@@ -1071,25 +1042,22 @@
                         case "810100102016": //Status
 
 
-                            
-                            var ChkBoxLstStatus='#ContentPlaceHolder1_gvInfo_ChkBoxLstStatus_'+number;  
-                            var status=data.gdesc1;
-                            if(status.length=7)
-                            { 
-                                              
-                                $(''+ChkBoxLstStatus+'> input').each(function (index,item) 
-                                {  
-                                    if($(item).val()==status)
-                                    {
-                                        $(item).attr('checked',true);
-                                   
+
+                            var ChkBoxLstStatus = '#ContentPlaceHolder1_gvInfo_ChkBoxLstStatus_' + number;
+                            var status = data.gdesc1;
+                            if (status.length = 7) {
+
+                                $('' + ChkBoxLstStatus + '> input').each(function (index, item) {
+                                    if ($(item).val() == status) {
+                                        $(item).attr('checked', true);
+
                                     }
-                                     
-                        
+
+
                                 });
-                            
+
                             }
-                            
+
 
                             break;
 
@@ -1097,56 +1065,56 @@
 
 
 
-                           
+
                             //var ddlParticipant='#ContentPlaceHolder1_gvInfo_ddlParticdis_'+number;  
                             //var participant=data.gdesc1;
-                           
-                            
+
+
                             //if(participant.length=12)
                             //{ 
-                                
+
                             //    var inci=1;
                             //    $('#ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn .chzn-choices').html('');
-                                               
+
                             //    $(''+ddlParticipant+' > option').each(function (index,item) 
                             //    {  
-                                    
-                                  
+
+
                             //        alert($(item).text());
                             //        if($(item).val()==participant)
                             //        {
-                                       
 
-                                    
-                                  
+
+
+
                             //            $('.chzn-choices').append('<li class="search-choice" id="ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_c_'+inci+'"><span>'+$(item).text()+'</span><a href="javascript:void(0)" class="search-choice-close" rel="'+inci+'"></a></li>')
-                                    
+
                             //            $(' .chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('active-result');
                             //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('result-selected');
-                                    
+
                             //        }
                             //        else{
                             //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').removeClass('result-selected');
                             //            $('.chzn-choices .chzn-results #ContentPlaceHolder1_gvInfo_ddlParticdis_4_chzn_o_'+inci-1+'').addClass('active-result');
                             //        }
-                                     
+
                             //        inci++;
                             //    });
 
 
 
                             //    $('.chzn-choices').append('<li class="search-field"><input type="text" value="Choose Participant......" class="" autocomplete="off" style="width: 25px;"></li>');
-                                
-                              
 
 
-                               
 
-                            
-                           // }
 
-                           
-                           
+
+
+
+                            // }
+
+
+
 
 
                             break;
@@ -1156,61 +1124,60 @@
                         case "810100102015": //Summary
                         case "810100102025": //Subject
 
-                            var txtgvdValdis='#ContentPlaceHolder1_gvInfo_txtgvValdis_'+number;                           
+                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvValdis_' + number;
                             $(txtgvdValdis).val(data.gdesc1);
                             break;
 
 
                         case "810100102020": //next Followup date
-                            var txtgvdValdis='#ContentPlaceHolder1_gvInfo_txtgvdValdis_'+number;
+                            var txtgvdValdis = '#ContentPlaceHolder1_gvInfo_txtgvdValdis_' + number;
                             $(txtgvdValdis).val(data.gdesc1);
                             //var dropdown
-                            var dtimehour=data.gtime; 
-                            var ddlhour=  '#ContentPlaceHolder1_gvInfo_ddlhour_'+number;
-                            $(ddlhour).val(dtimehour.substr(0,2)); 
-                            var ddlmin=  '#ContentPlaceHolder1_gvInfo_ddlMmin_'+number;                          
-                            $(ddlmin).val(dtimehour.substr(3,2));
-                            var ddlslb=  '#ContentPlaceHolder1_gvInfo_ddlslb_'+number;
-                            $(ddlslb).val(dtimehour.substr(6,2));
-                           
+                            var dtimehour = data.gtime;
+                            var ddlhour = '#ContentPlaceHolder1_gvInfo_ddlhour_' + number;
+                            $(ddlhour).val(dtimehour.substr(0, 2));
+                            var ddlmin = '#ContentPlaceHolder1_gvInfo_ddlMmin_' + number;
+                            $(ddlmin).val(dtimehour.substr(3, 2));
+                            var ddlslb = '#ContentPlaceHolder1_gvInfo_ddlslb_' + number;
+                            $(ddlslb).val(dtimehour.substr(6, 2));
+
 
                             break;
 
 
                         default:
-                        
+
 
                             break;
 
                     }
-                    number++;  
-            
+                    number++;
+
 
                 });
             }
 
-           
-                
-            catch(e)
-            {
+
+
+            catch (e) {
                 alert(e.message);
-            
+
             }
-        
-        
+
+
         }
-        
 
 
 
-            $(document).on('show.bs.modal', '.modal', function (event) {
-                var zIndex = 1040 + (10 * $('.modal:visible').length);
-                $(this).css('z-index', zIndex);
-                setTimeout(function() {
-                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
-                }, 0);
-            });
-         
+
+        $(document).on('show.bs.modal', '.modal', function (event) {
+            var zIndex = 1040 + (10 * $('.modal:visible').length);
+            $(this).css('z-index', zIndex);
+            setTimeout(function () {
+                $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            }, 0);
+        });
+
     </script>
 
 
@@ -1236,12 +1203,18 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
+                    <asp:LinkButton ID="Btn_tempBTN" OnClick="Btn_tempBTN_Click" Class="btn btn-sm btn-primary d-none" runat="server">Ok</asp:LinkButton>
 
 
             <div class="card card-fluid ">
                 <div class="card-body bodyheight">
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="form-group">
+                            <div class="row">
+
+                            </div>
+                        </div>
+                        <div class=" col-md-2 ml-1">
                             <div class="form-group">
 
                                 <label class="control-label">Land Year</label>
@@ -1251,13 +1224,13 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class=" col-md-2 ml-1">
                             <div class="form-group">
                                 <asp:LinkButton ID="btnaddland" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="btnaddland_Click">Add Land</asp:LinkButton>
 
                             </div>
                         </div>
-                        <div class="col-md-2">
+                        <div class=" col-md-2 ml-1">
                             <div class="form-group">
                                 <asp:LinkButton ID="lbtPending" runat="server" CssClass="margin-top30px form-control" OnClick="lbtPending_Click"></asp:LinkButton>
                             </div>
@@ -1297,11 +1270,6 @@
 
                             </div>
 
-
-
-
-
-
                         </div>
 
 
@@ -1320,8 +1288,8 @@
 
                         <div class="col-md-1">
                             <div class="form-group">
-                                <label class="control-label">Page Size</label>
-                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass=" margin-top30px form-control custom-select chzn-select"
+                                <label class="control-label" visible="false">Page</label>
+                                <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="custom-select chzn-select"
                                     OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                     <asp:ListItem>10</asp:ListItem>
                                     <asp:ListItem>20</asp:ListItem>
@@ -1333,6 +1301,11 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
+                                    <asp:ListItem>2000</asp:ListItem>
+                                    <asp:ListItem>4000</asp:ListItem>
+                                    <asp:ListItem>5000</asp:ListItem>
+                                    <asp:ListItem >10000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -1394,7 +1367,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalper" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1476,7 +1449,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvallowner" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1556,7 +1529,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Type" Visible="False">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lgvgval" runat="server"
+                                                            <asp:Label ID="lgvgvalother" runat="server"
                                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
@@ -1624,7 +1597,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplot" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -1773,7 +1746,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Type" Visible="False">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvgval" runat="server"
+                                                        <asp:Label ID="lgvgvalplotdet" runat="server"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -2297,289 +2270,282 @@
                         </asp:View>
                         <asp:View ID="View2" runat="server">
                             <div class="row">
-                                <div class="col-md-2">
-                                    <label class="control-label">Record Filter</label>
-                                    <div class="form-group">
-
-                                        <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                                <label class="control-label">Record Filter</label>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <asp:DropDownList ID="ddlEmpid" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                                         </asp:DropDownList>
-                                        <asp:DropDownList ID="ddlCountry" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged">
-                                        </asp:DropDownList>
-
-
-
-                                        <asp:DropDownList ID="ddlDist" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlDist_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlCountry" runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged">
                                         </asp:DropDownList>
 
 
 
-                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlDist" runat="server" CssClass="custom-select chzn-select col-md-2 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlDist_SelectedIndexChanged">
                                         </asp:DropDownList>
 
 
 
-                                        <asp:DropDownList ID="ddlPStat" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlPStat_SelectedIndexChanged">
-                                        </asp:DropDownList>
-
-
-                                        <asp:DropDownList ID="ddlArea" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlArea_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlZone" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlZone_SelectedIndexChanged">
                                         </asp:DropDownList>
 
 
 
-                                        <asp:DropDownList ID="ddlBlock" runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlBlock_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlPStat" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlPStat_SelectedIndexChanged">
+                                        </asp:DropDownList>
+
+
+                                        <asp:DropDownList ID="ddlArea" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlArea_SelectedIndexChanged">
                                         </asp:DropDownList>
 
 
 
-                                        <asp:DropDownList ID="ddlRoad" runat="server" CssClass="custom-select chzn-select">
+                                        <asp:DropDownList ID="ddlBlock" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1" AutoPostBack="true" OnSelectedIndexChanged="ddlBlock_SelectedIndexChanged">
                                         </asp:DropDownList>
 
 
 
-                                        <asp:DropDownList ID="ddlPri" runat="server" CssClass="custom-select chzn-select">
+                                        <asp:DropDownList ID="ddlRoad" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1">
                                         </asp:DropDownList>
 
 
 
-                                        <asp:DropDownList ID="ddlStatus" data-placeholder="Choose Status......" runat="server" CssClass="custom-select chzn-select">
+                                        <asp:DropDownList ID="ddlPri" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1">
                                         </asp:DropDownList>
 
 
-                                        <asp:DropDownList ID="ddlOther" runat="server" CssClass="custom-select chzn-select">
+
+                                        <asp:DropDownList ID="ddlStatus" data-placeholder="Status" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1">
+                                        </asp:DropDownList>
+
+
+                                        <asp:DropDownList ID="ddlOther" runat="server" CssClass="custom-select chzn-select col-md-1 ml-1">
                                             <asp:ListItem Value="1">Plot/House No</asp:ListItem>
                                             <asp:ListItem Value="2">LID</asp:ListItem>
                                             <asp:ListItem Value="3">Land/Owner</asp:ListItem>
                                             <asp:ListItem Value="4">Phone</asp:ListItem>
                                             <asp:ListItem Value="5">Email</asp:ListItem>
                                             <asp:ListItem Value="6">NID</asp:ListItem>
-                                            <asp:ListItem Selected="True" Value="7">Choose One.....</asp:ListItem>
+                                            <asp:ListItem Selected="True" Value="7">Choose One..</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:TextBox ID="txtVal" runat="server" CssClass="form-control col-md-1 ml-1" TextMode="Search"></asp:TextBox>
 
-
-
-
-                                        <asp:TextBox ID="txtVal" runat="server" CssClass="form-control " TextMode="Search"></asp:TextBox>
-
+                                        <asp:LinkButton ID="lUpdatInfo" runat="server" OnClick="lUpdatInfo_Click" class="btn btn-success form-control col-md-1 ml-1" OnClientClick="CloseModal();">Search</asp:LinkButton>
 
                                     </div>
-
-                                    <div class="form-group">
-
-                                        <asp:LinkButton ID="lUpdatInfo" runat="server" OnClick="lUpdatInfo_Click" class="btn btn-success form-control" OnClientClick="CloseModal();">Search</asp:LinkButton>
-
-                                    </div>
-
-
                                 </div>
-                                <div class="col-md-9">
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-10">
 
 
                                     <asp:HiddenField ID="lblIntputtype" runat="server" />
                                     <asp:HiddenField ID="hdnfrpttype" runat="server" />
-                                    <asp:GridView ID="gvSummary" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvSummary_RowDataBound"
-                                        ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea " AllowPaging="true" OnPageIndexChanging="gvSummary_PageIndexChanging" PageSize="10">
-                                        <RowStyle Font-Size="11px" Height="25px" />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkDelete" runat="server" Font-Bold="True" Height="16px" ToolTip="Delete" Style="text-align: right" Text="Delete" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click"><span class=" fa   fa-recycle"></span></asp:LinkButton>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Sl">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "rowid")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Code" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lsircode" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="LID">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lsircode1" runat="server" Width="50px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Generated">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgenerated" runat="server" Width="70px"
-                                                        Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy")%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
+                                    <div class="table-responsive">
+                                        <asp:GridView ID="gvSummary" runat="server" AutoGenerateColumns="False" OnRowDataBound="gvSummary_RowDataBound"
+                                            ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea " AllowPaging="true" OnPageIndexChanging="gvSummary_PageIndexChanging" PageSize="10">
+                                            <RowStyle Font-Size="11px" Height="25px" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkDelete" runat="server" Font-Bold="True" Height="16px" ToolTip="Delete" Style="text-align: right" Text="Delete" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click"><span class=" fa   fa-recycle"></span></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Sl">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToInt32(DataBinder.Eval(Container.DataItem, "rowid")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Code" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lsircode" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="LID">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lsircode1" runat="server" Width="50px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sircode1"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Generated">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgenerated" runat="server" Width="70px"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "generated")).ToString("dd-MMM-yyyy")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Followup">
-                                                <ItemTemplate>
+                                                <asp:TemplateField HeaderText="Followup">
+                                                    <ItemTemplate>
 
-                                                    <asp:Panel ID="pnlfollowup" runat="server" Width="110px" ClientIDMode="Static">
+                                                        <asp:Panel ID="pnlfollowup" runat="server" Width="110px" ClientIDMode="Static">
 
-                                                        <asp:Label ID="lbllfollowuplink" Width="70px" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lfollowup"))%>'>
+                                                            <asp:Label ID="lbllfollowuplink" Width="70px" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lfollowup"))%>'>
                                                                                              
 
 
-                                                        </asp:Label>
+                                                            </asp:Label>
 
-                                                        <asp:LinkButton ID="lbtnView" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lbtnView" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
 
-                                                        <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
-
-
-
-                                                    </asp:Panel>
+                                                            <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
 
 
 
-
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
+                                                        </asp:Panel>
 
 
 
 
-                                            <asp:TemplateField HeaderText="Owner Details">
-
-                                                <HeaderTemplate>
-                                                    <asp:TextBox ID="txtSearchownname" SortExpression="ownname" BackColor="Transparent" BorderStyle="None" runat="server" Width="90px" placeholder="Owner Details" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
-
-                                                </HeaderTemplate>
-
-
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lowner" runat="server" Width="90px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ownname"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="">
-                                                <HeaderTemplate>
-                                                    <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
-                                                        CssClass="btn  btn-primary  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
-
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lnkEdit" runat="server" Font-Bold="True" Height="16px" Style="text-align: center" ToolTip="Edit Land & Owner Info" Text="Edit" OnClientClick="javascript:return  FunConfirmEdit()" OnClick="lnkEdit_Click"> <span class=" fa   fa-edit"></span></asp:LinkButton>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
 
 
 
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Property Details">
-                                                <%-- <HeaderTemplate>
+
+                                                <asp:TemplateField HeaderText="Owner Details">
+
+                                                    <HeaderTemplate>
+                                                        <asp:TextBox ID="txtSearchownname" SortExpression="ownname" BackColor="Transparent" BorderStyle="None" runat="server" Width="90px" placeholder="Owner Details" onkeyup="Search_Gridview(this,5)"></asp:TextBox><br />
+
+                                                    </HeaderTemplate>
+
+
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lowner" runat="server" Width="90px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ownname"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="">
+                                                    <HeaderTemplate>
+                                                        <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                            CssClass="btn  btn-primary  btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkEdit" runat="server" Font-Bold="True" Height="16px" Style="text-align: center" ToolTip="Edit Land & Owner Info" Text="Edit" OnClientClick="javascript:return  FunConfirmEdit()" OnClick="lnkEdit_Click"> <span class=" fa   fa-edit"></span></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+
+
+
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Property Details">
+                                                    <%-- <HeaderTemplate>
                                                     <asp:TextBox ID="txtSearchproperty" SortExpression="sirdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="90px" placeholder="Property Details" onkeyup="Search_Gridview(this,7)"></asp:TextBox><br />
 
                                                 </HeaderTemplate>--%>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="ldesc" runat="server" Width="180px" Style="font-size: 10px;"
-                                                        Text='<%# 
- Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")).Trim()
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="ldesc" runat="server" Width="180px" Style="font-size: 10px;"
+                                                            Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")).Trim() %>'>
 
-                                                                    %>'>
-                                                            
-                                                            
-                                                            ></asp:Label>
+                                                        </asp:Label>
 
 
 
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
 
 
 
-                                            <asp:TemplateField HeaderText="Associate">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lassoc" runat="server" Width="60px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assoc"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Center" />
+                                                <asp:TemplateField HeaderText="Associate">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lassoc" runat="server" Width="60px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "assoc"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" />
 
 
-                                            </asp:TemplateField>
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Dealing">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblbusername" runat="server" Width="90px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "delname"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Center" />
+                                                <asp:TemplateField HeaderText="Dealing">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblbusername" runat="server" Width="90px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "delname"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Center" />
 
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Status">
-                                                <%--  <HeaderTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Status">
+                                                    <%--  <HeaderTemplate>
                                                     <asp:TextBox ID="txtSearchstatus" SortExpression="lstatus" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Status" onkeyup="Search_Gridview(this,11)"></asp:TextBox><br />
 
                                                 </HeaderTemplate>--%>
 
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lbllstatus" runat="server" Width="60px" Style="text-align: center"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus"))%>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lbllstatus" runat="server" Width="60px" Style="text-align: center"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lstatus"))%>'></asp:Label>
+                                                    </ItemTemplate>
 
 
-                                            </asp:TemplateField>
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Prio">
-                                                <%--  <HeaderTemplate>
+                                                <asp:TemplateField HeaderText="Prio">
+                                                    <%--  <HeaderTemplate>
                                                     <asp:TextBox ID="txtSearchprio" SortExpression="prio" BackColor="Transparent" BorderStyle="None" runat="server" Width="60px" placeholder="Prio" onkeyup="Search_Gridview(this,12)"></asp:TextBox><br />
 
                                                 </HeaderTemplate>--%>
 
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lprio" runat="server" Width="60px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prio"))%>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lprio" runat="server" Width="60px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prio"))%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                            </asp:TemplateField>
-
-
-                                            <asp:TemplateField HeaderText="Active">
-                                                <ItemTemplate>
+                                                </asp:TemplateField>
 
 
-                                                    <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="10" ToolTip="" runat="server" OnClick="lnkAct_Click"><span class="fa fa-edit"></span></asp:LinkButton>
-
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Last </br>Follow. </br>Dur.">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblfollowdday" runat="server" Width="20px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "followdday"))%>'></asp:Label>
-                                                </ItemTemplate>
-
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Active">
+                                                    <ItemTemplate>
 
 
+                                                        <asp:LinkButton ID="lnkAct" ClientIDMode="Static" Width="10" ToolTip="Active" runat="server" OnClick="lnkAct_Click">
+                                                            <i class="fa fa-toggle-off"  style='font-size:24px;color:red' ></i>
+                                                            
+                                                        </asp:LinkButton>
 
-                                            <asp:TemplateField HeaderText="Code" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvempid" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="left" />
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
 
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Last </br>Follow. </br>Dur.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblfollowdday" runat="server" Width="20px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "followdday"))%>'></asp:Label>
+                                                    </ItemTemplate>
+
+                                                </asp:TemplateField>
 
 
 
+                                                <asp:TemplateField HeaderText="Code" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvempid" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))%>'></asp:Label>
 
-                                            <%--<asp:TemplateField HeaderText="">
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+
+
+                                                <%--<asp:TemplateField HeaderText="">
                                             <ItemTemplate>
 
                                                 <asp:LinkButton ID="lnkEdit" runat="server" OnClick="lnkEdit_Click" OnClientClick="return confirm('Do You want to edit this item?');" CssClass="btn btn-warning btn-sm"><span class="fa fa-edit"></span></asp:LinkButton>
@@ -2587,257 +2553,260 @@
 
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                        </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                    </asp:GridView>
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerSettings Mode="NumericFirstLast" />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
 
 
 
-                                    <asp:GridView ID="gvkpi" runat="server" AutoGenerateColumns="False"
-                                        ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea ">
-                                        <RowStyle Height="25px" />
-                                        <Columns>
+                                        <asp:GridView ID="gvkpi" runat="server" AutoGenerateColumns="False"
+                                            ShowFooter="True" CssClass="table-condensed table-hover table-bordered grvContentarea ">
+                                            <RowStyle Height="25px" />
+                                            <Columns>
 
-                                            <asp:TemplateField HeaderText="Sl">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNokpi" runat="server" Font-Bold="True"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Code" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgbempid" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-
+                                                <asp:TemplateField HeaderText="Sl">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNokpi" runat="server" Font-Bold="True"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Code" Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgbempid" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
 
 
-                                            <asp:TemplateField HeaderText="Employee Name">
 
 
-                                                <HeaderTemplate>
-                                                    <div class="row">
-                                                        <div class="col-md-9">
-                                                            <asp:Label ID="lblgvheadername" runat="server">Employee Name</asp:Label>
+                                                <asp:TemplateField HeaderText="Employee Name">
+
+
+                                                    <HeaderTemplate>
+                                                        <div class="row">
+                                                            <div class="col-md-9">
+                                                                <asp:Label ID="lblgvheadername" runat="server">Employee Name</asp:Label>
+
+                                                            </div>
+
+
+                                                            <div class="col-md-2">
+                                                                <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
+                                                                    CssClass="btn   btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+
+                                                            </div>
+
 
                                                         </div>
 
 
-                                                        <div class="col-md-2">
-                                                            <asp:HyperLink ID="hlbtntbCdataExel" runat="server"
-                                                                CssClass="btn   btn-xs" ToolTip="Export Excel"><span class="fa  fa-file-excel "></span></asp:HyperLink>
+                                                    </HeaderTemplate>
 
-                                                        </div>
 
 
-                                                    </div>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lowner" runat="server" Width="200px" Font-Size="10px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFtxtTotal" runat="server" Style="text-align: center"
+                                                            Width="60px" Text="Total"></asp:Label>
+                                                    </FooterTemplate>
 
+                                                </asp:TemplateField>
 
-                                                </HeaderTemplate>
+                                                <asp:TemplateField HeaderText="Call">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpicall" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "call")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFcall" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
+                                                    <FooterStyle HorizontalAlign="Right" />
+                                                    <ItemStyle HorizontalAlign="Right" />
 
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lowner" runat="server" Width="200px" Font-Size="10px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFtxtTotal" runat="server" Style="text-align: center"
-                                                        Width="60px" Text="Total"></asp:Label>
-                                                </FooterTemplate>
+                                                </asp:TemplateField>
 
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Ext. Meeting">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpiextmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "extmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                            <asp:TemplateField HeaderText="Call">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpicall" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "call")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFexmeeting" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFcall" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                    <FooterStyle HorizontalAlign="Right" />
+                                                    <ItemStyle HorizontalAlign="Right" />
 
-                                                <FooterStyle HorizontalAlign="Right" />
-                                                <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
 
-                                            </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Ext. Meeting">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpiextmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "extmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFexmeeting" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                <asp:TemplateField HeaderText="Internal. Meeting">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpiintmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <FooterStyle HorizontalAlign="Right" />
-                                                <ItemStyle HorizontalAlign="Right" />
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFintmeeting" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                            </asp:TemplateField>
+                                                    <FooterStyle HorizontalAlign="Right" />
 
+                                                    <ItemStyle HorizontalAlign="Right" />
 
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Internal. Meeting">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpiintmeeting" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "intmeeting")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFintmeeting" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                <asp:TemplateField HeaderText="Suevey">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpisurvey" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "survey")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <FooterStyle HorizontalAlign="Right" />
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFsurvey" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                                <ItemStyle HorizontalAlign="Right" />
+                                                    <ItemStyle HorizontalAlign="Right" />
 
-                                            </asp:TemplateField>
+                                                </asp:TemplateField>
 
+                                                <asp:TemplateField HeaderText="Feasibility">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpifeasibility" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "feasibility")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                            <asp:TemplateField HeaderText="Suevey">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpisurvey" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "survey")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFfeasibility" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFsurvey" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                    <ItemStyle HorizontalAlign="Right" />
 
-                                                <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
 
-                                            </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Feasibility">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpifeasibility" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "feasibility")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFfeasibility" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
 
-                                                <ItemStyle HorizontalAlign="Right" />
 
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Proposal">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpiproposal" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposal")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFproposal" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
+                                                    <FooterStyle HorizontalAlign="Right" />
 
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
 
 
+                                                <asp:TemplateField HeaderText="Leads">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpileads" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leads")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                            <asp:TemplateField HeaderText="Proposal">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpiproposal" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "proposal")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFproposal" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFleads" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                                <FooterStyle HorizontalAlign="Right" />
+                                                    <FooterStyle HorizontalAlign="Right" />
 
-                                                <ItemStyle HorizontalAlign="Right" />
-                                            </asp:TemplateField>
+                                                    <ItemStyle HorizontalAlign="Right" />
 
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Leads">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpileads" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leads")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFleads" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                <asp:TemplateField HeaderText="Closing">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpiclosing" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "close")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <FooterStyle HorizontalAlign="Right" />
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFclosing" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                                <ItemStyle HorizontalAlign="Right" />
+                                                    <FooterStyle HorizontalAlign="Right" />
 
-                                            </asp:TemplateField>
+                                                    <ItemStyle HorizontalAlign="Right" />
 
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Closing">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpiclosing" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "close")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFclosing" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                <asp:TemplateField HeaderText="Others">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvkpiothers" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "others")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <FooterStyle HorizontalAlign="Right" />
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFothers" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
 
-                                                <ItemStyle HorizontalAlign="Right" />
+                                                    <ItemStyle HorizontalAlign="Right" />
 
-                                            </asp:TemplateField>
+                                                </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Others">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvkpiothers" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "others")).ToString("#,##0;(#,##0); ")%>'></asp:Label>
-                                                </ItemTemplate>
+                                                <asp:TemplateField HeaderText="Total">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lblgvkpitotal" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpitotal_Click"
+                                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "total")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                    <FooterTemplate>
+                                                        <asp:Label ID="lblgvFtotal" runat="server" Style="text-align: center"
+                                                            Width="60px"></asp:Label>
+                                                    </FooterTemplate>
+                                                    <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="center" VerticalAlign="Middle" Font-Size="12px" />
 
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFothers" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
+                                                </asp:TemplateField>
 
-                                                <ItemStyle HorizontalAlign="Right" />
 
-                                            </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Total">
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="lblgvkpitotal" runat="server" Width="60px" Font-Size="10px" Style="text-align: center;" OnClick="lblgvkpitotal_Click"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "total")).ToString("#,##0;(#,##0); ")%>'></asp:LinkButton>
-                                                </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="Right" />
-                                                <FooterTemplate>
-                                                    <asp:Label ID="lblgvFtotal" runat="server" Style="text-align: center"
-                                                        Width="60px"></asp:Label>
-                                                </FooterTemplate>
-                                                <FooterStyle Font-Bold="True" ForeColor="Black" HorizontalAlign="center" VerticalAlign="Middle" Font-Size="12px" />
 
-                                            </asp:TemplateField>
 
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                    </div>
 
-
-
-
-
-                                        </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                    </asp:GridView>
 
                                     <div class="col-md-12">
 
@@ -2947,14 +2916,9 @@
 
                                                 </HeaderTemplate>--%>
                                                 <ItemTemplate>
-                                                    <asp:Label ID="ldesckpisum" runat="server" Width="180px" Style="font-size: 10px;"
-                                                        Text='<%# 
- Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")).Trim()
-
-                                                                    %>'>
-                                                            
-                                                            
-                                                            ></asp:Label>
+                                                    <asp:Label ID="ldesckpisum" runat="server" Width="220px" Style="font-size: 10px;"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sirdesc")).Trim() %>'>
+                                                    </asp:Label>
 
 
 
@@ -3044,10 +3008,11 @@
 
                                 </div>
 
-                                <div class="col-md-1 marapaddingzero">
+                                <%--    <div class="col-md-1 marapaddingzero">
 
+                                <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Show Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-x m-0 p-0 pt-1  pb-5 btn-primary"></asp:LinkButton>
 
-                                    <label class="control-label" style="font-size: 14px; font-weight: bold">Notification</label>
+                                    
                                     <asp:HiddenField ID="hdnlblattribute" runat="server" />
                                     <ul style="list-style: none; padding-left: 0px">
                                         <li>
@@ -3079,31 +3044,32 @@
 
                                         <li>
                                             <asp:LinkButton ID="lnkbtnLome" runat="server" OnClick="lnkbtnLome_Click">LOME <sup><span class="badgei" id="clome" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="alome" onclick="DetNotification('lome');">LOME <sup><span class="badgei" id="clome" runat="server">0</span></sup></a>--%></li>
+                                       
                                         <li>
                                             <asp:LinkButton ID="lnkbtnLomi" runat="server" OnClick="lnkbtnLomi_Click">LOMI <sup><span class="badgei" id="clomi" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="alomi" onclick="DetNotification('lomi');">LOMI <sup><span class="badgei" id="clomi" runat="server">0</span></sup></a>--%></li>
+                                           
                                         <li>
                                             <asp:LinkButton ID="lnkbtnServey" runat="server" OnClick="lnkbtnServey_Click">Survery <sup><span class="badgei" id="csurvey" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="asurvey" onclick="DetNotification('survey');">Survery <sup><span class="badgei" id="csurvey" runat="server">0</span></sup></a></li>--%>
+                                           
                                         <li>
                                             <asp:LinkButton ID="lnkbtnComment" runat="server" OnClick="lnkbtnComment_Click">Comments <sup><span class="badgei" id="ccomments" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="acomments" onclick="DetNotification('comments');">Comments<sup> <span class="badgei" id="ccomments" runat="server">5</span></sup></a>--%>
+                                            
 
                                         </li>
                                         <li>
                                             <asp:LinkButton ID="lnkbtnFreezland" runat="server" OnClick="lnkbtnFreezland_Click">Freezing Lands <sup><span class="badgei" id="cfreezing" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="afreezing" onclick="DetNotification('freezing');">Freezing Lands <sup><span class="badgei" id="cfreezing" runat="server">0</span></sup></a>--%>
+                                          
+
 
                                         </li>
                                         <li>
                                             <asp:LinkButton ID="lnkbtnDead" runat="server" OnClick="lnkbtnDead_Click">Dead Land <sup><span class="badgei" id="cdeadl" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="adeadl" onclick="DetNotification('deadl');">Dead Land<sup><span class="badgei" id="cdeadl" runat="server">0</span></sup></a>--%>
+                                        
                                         </li>
 
                                         <li>
                                             <asp:LinkButton ID="lbtnSigned" runat="server" OnClick="lbtnSigned_Click">Signed<sup><span class="badgei" id="csigned" runat="server">0</span></sup></asp:LinkButton>
-                                            <%--<a href="#" id="adeadl" onclick="DetNotification('deadl');">Dead Land<sup><span class="badgei" id="cdeadl" runat="server">0</span></sup></a>--%>
+                                           
                                         </li>
 
                                         <li><a href="#" id="areport">Report</a></li>
@@ -3114,13 +3080,242 @@
                                     </ul>
 
 
+                                </div>--%>
+
+
+                                <div class="col-md-2 marapaddingzero">
+                                    <asp:LinkButton ID="lnkShowNotifcation" runat="server" Text="Notification" OnClick="lnkShowNotifcation_Click" CssClass="btn btn-primary"></asp:LinkButton>
+
+
+
+                                    <div class="list-group list-group-bordered mb-3 notifsectino">
+                                        <asp:LinkButton ID="lnkbtnDws" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDws_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-primary">DWS </div>
+                                            </div>
+                                            <div class="list-group-item-body">Daily Work Schedule</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lbldws" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnDwr" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDwr_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-success">DWR </div>
+                                            </div>
+                                            <div class="list-group-item-body">
+                                                Daily Work Report
+                                            </div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lbldwr" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+                                        <asp:LinkButton ID="lnkbtnkpi" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnkpi_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-info">KPI </div>
+                                            </div>
+                                            <div class="list-group-item-body">
+                                                Key Performance Indicator
+                                            </div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblkpi" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnOther" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnOther_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-primary">OTH </div>
+                                            </div>
+                                            <div class="list-group-item-body">Others</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lbloth" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkCall" class="list-group-item list-group-item-action" runat="server" OnClick="lnkCall_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-warning">Call </div>
+                                            </div>
+                                            <div class="list-group-item-body">Call</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblCall" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkBtnVisit" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnVisit_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-success">Visit </div>
+                                            </div>
+                                            <div class="list-group-item-body">Visit</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblvisit" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+
+                                        <asp:LinkButton ID="lnkbtnDayPassed" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDayPassed_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-danger">DP  </div>
+                                            </div>
+                                            <div class="list-group-item-body">Day Passed</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblDayPass" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnLome" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnLome_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-pink">LME</div>
+                                            </div>
+                                            <div class="list-group-item-body">
+                                                Land Meeting External
+                                            </div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblLome" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnLomi" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnLomi_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-dark">LMI</div>
+                                            </div>
+                                            <div class="list-group-item-body">
+                                                Land Meeting Internal
+                                            </div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblLomi" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnComment" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnComment_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-indigo">COM</div>
+                                            </div>
+                                            <div class="list-group-item-body">Comments</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblComments" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnFreezland" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnFreezland_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-purple">FRE</div>
+                                            </div>
+                                            <div class="list-group-item-body">Freezing</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblFreez" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkbtnDead" class="list-group-item list-group-item-action" runat="server" OnClick="lnkbtnDead_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-pink">DP </div>
+                                            </div>
+                                            <div class="list-group-item-body">Dead Pros</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblDeadProspect" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lbtnSigned" class="list-group-item list-group-item-action" runat="server" OnClick="lbtnSigned_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-dark">Si</div>
+                                            </div>
+                                            <div class="list-group-item-body">Signed</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblcsigned" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+
+                                        <asp:LinkButton ID="lnkBtnDatablank" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnDatablank_Click">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile tile-circle bg-primary">DB</div>
+                                            </div>
+                                            <div class="list-group-item-body">Data Bank</div>
+                                            <div class="list-group-item-figure">
+                                                <button class="btn btn-sm btn-light">
+                                                    <span class="badge badge-pill badge-danger" id="lblDatablank" runat="server">0</span>
+                                                </button>
+                                            </div>
+
+                                        </asp:LinkButton>
+                                        <asp:HiddenField ID="hdnlblattribute" runat="server" />
+
+
+                                    </div>
+
+
+
+                                    <label class="control-label" style="font-size: 14px; font-weight: bold">Operations</label>
+                                    <div class="form-group">
+                                        <ul style="list-style: none; padding-left: 0px">
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink3" Target="_blank" NavigateUrl="~/F_21_Mkt/ClientInitial?Type=MktCl" runat="server">Primary Lead</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="hllnkCodebook" Target="_blank" NavigateUrl="~/F_21_Mkt/MktGenCodeBook" runat="server">Code Book</asp:HyperLink>
+
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton ID="lnkbtnReturn" runat="server" OnClick="lnkbtnReturn_Click">Return List</asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink1" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
+
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink4" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyActivitiesTarget?type=LND" runat="server">Yearly Activities Target Set</asp:HyperLink>
+                                            </li>
+                                            <li>
+                                                <asp:HyperLink ID="HyperLink2" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=LND" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
+                                            </li>
+
+
+                                            <li>
+                                                <%--<asp:LinkButton ID="lnkbtnNotes" runat="server" OnClick="lnkbtnNotes_Click">Notes</asp:LinkButton>--%>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-
-
-
-
-
-
 
 
 
@@ -3321,12 +3516,6 @@
 
 
                             <div class="row">
-
-                                
-
-
-
-
                             </div>
 
 
@@ -3355,7 +3544,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <div class="row">
                                 <div class="col-md-6  col-lg-6">
@@ -3396,11 +3585,11 @@
 
                                                         <asp:Label ID="lbldes_proscod" Visible="false" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.proscod").ToString()%>'></asp:Label>
                                                         <asp:Label ID="lblCdate" Visible="false" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>'></asp:Label>
-                                                      <%--<asp:Button Text="Re-Schdule" CssClass="btn btn-primary btn-xs" OnClientClick="javascript:CloseModaldisReschedule();" runat="server" OnClick="GetValue" />--%>
-                                                  
+                                                        <%--<asp:Button Text="Re-Schdule" CssClass="btn btn-primary btn-xs" OnClientClick="javascript:CloseModaldisReschedule();" runat="server" OnClick="GetValue" />--%>
 
-                                                    <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schdule</button>
-                                                         
+
+                                                        <button type="button" class="btn  btn-success btn-xs" id="lbtnreschedule" onclick="funReschedule('<%# DataBinder.Eval(Container, "DataItem.cdate").ToString()%>', '<%# DataBinder.Eval(Container, "DataItem.rownum").ToString()%>')">Re-Schedule</button>
+
 
                                                         <asp:LinkButton ID="lbtnCancel" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnCancel_Click"> Cancel</asp:LinkButton>
                                                         <%--<asp:LinkButton ID="lbtnFollowup" CssClass="btn btn-primary btn-xs" runat="server" OnClick="lbtnFollowup_Click"> Followup</asp:LinkButton>--%>
@@ -3450,233 +3639,233 @@
                                 </div>
                                 <div class="col-md-6  col-lg-6">
                                     <div id="followup" class="collapse">
-                                    <asp:GridView ID="gvInfo" runat="server" AllowPaging="True" OnRowDataBound="gvInfo_RowDataBound"
-                                        AutoGenerateColumns="False" PageSize="25" ShowFooter="true" Width="100%"
-                                        CssClass="table-condensed table-hover table-bordered grvContentarea">
-                                        <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
-                                            Mode="NumericFirstLast" />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sl">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNodis" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>' Width="20px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="" ControlStyle-CssClass="displayhide">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvItmCodedis" ClientIDMode="Static" runat="server" Height="16px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))%>'
-                                                        Width="49px"></asp:Label>
-                                                    <asp:Label ID="lblgvTime" runat="server" BorderWidth="0" BackColor="Transparent" Visible="false"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gtime"))%>'></asp:Label>
+                                        <asp:GridView ID="gvInfo" runat="server" AllowPaging="True" OnRowDataBound="gvInfo_RowDataBound"
+                                            AutoGenerateColumns="False" PageSize="25" ShowFooter="true" Width="100%"
+                                            CssClass="table-condensed table-hover table-bordered grvContentarea">
+                                            <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
+                                                Mode="NumericFirstLast" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNodis" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex + 1) + "."%>' Width="20px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="" ControlStyle-CssClass="displayhide">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvItmCodedis" ClientIDMode="Static" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod"))%>'
+                                                            Width="49px"></asp:Label>
+                                                        <asp:Label ID="lblgvTime" runat="server" BorderWidth="0" BackColor="Transparent" Visible="false"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gtime"))%>'></asp:Label>
 
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgcGrpdis" runat="server"
-                                                        Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "gpdesc")) + "</B>"%>'
-                                                        Width="80px"></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Description">
-                                                <%-- <FooterTemplate>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgcGrpdis" runat="server"
+                                                            Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "gpdesc")) + "</B>"%>'
+                                                            Width="80px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Description">
+                                                    <%-- <FooterTemplate>
                                                     <asp:LinkButton ID="lnkTotal" runat="server" CssClass="btn btn-primary primaryBtn" OnClick="lnkTotal_Click">Total :</asp:LinkButton>
 
                                                 </FooterTemplate>--%>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgcResDesc1dis" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle VerticalAlign="Middle"/>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgpdis" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        Height="16px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph"))%>'
-                                                        Width="5px"></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Type">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgvgvaldis" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgcResDesc1dis" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle VerticalAlign="Middle" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField Visible="false">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgpdis" runat="server" Font-Bold="True" Font-Size="12px"
+                                                            Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gph"))%>'
+                                                            Width="5px"></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Type">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgvgvaldis" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval"))%>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
 
-                                                <FooterTemplate>
+                                                    <FooterTemplate>
 
-                                                    <asp:LinkButton ID="lbtnUpdateDiscussiont" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussiont_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
+                                                        <asp:LinkButton ID="lbtnUpdateDiscussiont" runat="server" OnClientClick="CloseModaldis();" OnClick="lbtnUpdateDiscussiont_Click" CssClass="btn btn-danger primaryBtn">Final Update</asp:LinkButton>
 
-                                                </FooterTemplate>
-                                                <ItemTemplate>
+                                                    </FooterTemplate>
+                                                    <ItemTemplate>
 
-                                                    <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1"))%>'></asp:TextBox>
-
-
-                                                    <div class="col-md-12">
-
-                                                        <asp:TextBox ID="txtgvdValdis"   runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                        <asp:TextBox ID="txtgvValdis" runat="server" BorderWidth="0" BackColor="Transparent"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1"))%>'></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
-                                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
-
-                                                        <asp:Panel ID="pnlTime" runat="server" Visible="false">
-                                                            <asp:DropDownList ID="ddlhour"   runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
-                                                                <asp:ListItem Value="01">01</asp:ListItem>
-                                                                <asp:ListItem Value="02">02</asp:ListItem>
-                                                                <asp:ListItem Value="03">03</asp:ListItem>
-                                                                <asp:ListItem Value="04">04</asp:ListItem>
-                                                                <asp:ListItem Value="05">05</asp:ListItem>
-                                                                <asp:ListItem Value="06">06</asp:ListItem>
-                                                                <asp:ListItem Value="07">07</asp:ListItem>
-                                                                <asp:ListItem Value="08">08</asp:ListItem>
-                                                                <asp:ListItem Value="09" Selected="True">09</asp:ListItem>
-                                                                <asp:ListItem Value="10">10</asp:ListItem>
-                                                                <asp:ListItem Value="11">11</asp:ListItem>
-                                                                <asp:ListItem Value="12">12</asp:ListItem>
-
-                                                            </asp:DropDownList>
-                                                            <asp:DropDownList ID="ddlMmin"   runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
-                                                                <asp:ListItem Value="00">00</asp:ListItem>
-                                                                <asp:ListItem Value="01">01</asp:ListItem>
-                                                                <asp:ListItem Value="02">02</asp:ListItem>
-                                                                <asp:ListItem Value="03">03</asp:ListItem>
-                                                                <asp:ListItem Value="04">04</asp:ListItem>
-                                                                <asp:ListItem Value="05">05</asp:ListItem>
-                                                                <asp:ListItem Value="06">06</asp:ListItem>
-                                                                <asp:ListItem Value="07">07</asp:ListItem>
-                                                                <asp:ListItem Value="08">08</asp:ListItem>
-                                                                <asp:ListItem Value="09">09</asp:ListItem>
-                                                                <asp:ListItem Value="10">10</asp:ListItem>
-                                                                <asp:ListItem Value="11">11</asp:ListItem>
-                                                                <asp:ListItem Value="12">12</asp:ListItem>
-                                                                <asp:ListItem Value="13">13</asp:ListItem>
-                                                                <asp:ListItem Value="14">14</asp:ListItem>
-                                                                <asp:ListItem Value="15">15</asp:ListItem>
-                                                                <asp:ListItem Value="16">16</asp:ListItem>
-                                                                <asp:ListItem Value="17">17</asp:ListItem>
-                                                                <asp:ListItem Value="18">18</asp:ListItem>
-                                                                <asp:ListItem Value="19">19</asp:ListItem>
-                                                                <asp:ListItem Value="20">20</asp:ListItem>
-                                                                <asp:ListItem Value="21">21</asp:ListItem>
-                                                                <asp:ListItem Value="22">22</asp:ListItem>
-                                                                <asp:ListItem Value="23">23</asp:ListItem>
-                                                                <asp:ListItem Value="24">24</asp:ListItem>
-                                                                <asp:ListItem Value="25">25</asp:ListItem>
-                                                                <asp:ListItem Value="26">26</asp:ListItem>
-                                                                <asp:ListItem Value="27">27</asp:ListItem>
-                                                                <asp:ListItem Value="28">28</asp:ListItem>
-                                                                <asp:ListItem Value="29">29</asp:ListItem>
-                                                                <asp:ListItem Value="30">30</asp:ListItem>
-                                                                <asp:ListItem Value="31">31</asp:ListItem>
-                                                                <asp:ListItem Value="32">32</asp:ListItem>
-                                                                <asp:ListItem Value="33">33</asp:ListItem>
-                                                                <asp:ListItem Value="34">34</asp:ListItem>
-                                                                <asp:ListItem Value="35">35</asp:ListItem>
-                                                                <asp:ListItem Value="36">36</asp:ListItem>
-                                                                <asp:ListItem Value="37">37</asp:ListItem>
-                                                                <asp:ListItem Value="38">38</asp:ListItem>
-                                                                <asp:ListItem Value="39">39</asp:ListItem>
-                                                                <asp:ListItem Value="40">40</asp:ListItem>
-                                                                <asp:ListItem Value="41">41</asp:ListItem>
-                                                                <asp:ListItem Value="42">42</asp:ListItem>
-                                                                <asp:ListItem Value="43">43</asp:ListItem>
-                                                                <asp:ListItem Value="44">44</asp:ListItem>
-                                                                <asp:ListItem Value="45">45</asp:ListItem>
-                                                                <asp:ListItem Value="46">46</asp:ListItem>
-                                                                <asp:ListItem Value="47">47</asp:ListItem>
-                                                                <asp:ListItem Value="48">48</asp:ListItem>
-                                                                <asp:ListItem Value="49">49</asp:ListItem>
-                                                                <asp:ListItem Value="50">50</asp:ListItem>
-                                                                <asp:ListItem Value="51">51</asp:ListItem>
-                                                                <asp:ListItem Value="52">52</asp:ListItem>
-                                                                <asp:ListItem Value="53">53</asp:ListItem>
-                                                                <asp:ListItem Value="54">54</asp:ListItem>
-                                                                <asp:ListItem Value="55">55</asp:ListItem>
-                                                                <asp:ListItem Value="56">56</asp:ListItem>
-                                                                <asp:ListItem Value="57">57</asp:ListItem>
-                                                                <asp:ListItem Value="58">58</asp:ListItem>
-                                                                <asp:ListItem Value="59">59</asp:ListItem>
-
-                                                            </asp:DropDownList>
-                                                            <asp:DropDownList ID="ddlslb"  runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
-                                                                <asp:ListItem Value="AM">AM</asp:ListItem>
-                                                                <asp:ListItem Value="PM">PM</asp:ListItem>
 
 
-                                                            </asp:DropDownList>
+                                                        <div class="col-md-12">
 
-                                                            <asp:Label ID="lblschedulenumber" runat="server" BorderWidth="0" CssClass="btn btn-success btn-xs" Font-Size="14px"
-                                                                Text="Schedule(0)"></asp:Label>
+                                                            <asp:TextBox ID="txtgvdValdis" runat="server" BorderWidth="0" Style="width: 80px; float: left;" BackColor="Transparent"
+                                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1"))%>'></asp:TextBox>
+                                                            <cc1:CalendarExtender ID="txtgvdValdis_CalendarExtender" runat="server"
+                                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdValdis"></cc1:CalendarExtender>
 
+                                                            <asp:Panel ID="pnlTime" runat="server" Visible="false">
+                                                                <asp:DropDownList ID="ddlhour" runat="server" CssClass="inputTxt ddlPage" Style="width: 50px; line-height: 22px;">
+                                                                    <asp:ListItem Value="01">01</asp:ListItem>
+                                                                    <asp:ListItem Value="02">02</asp:ListItem>
+                                                                    <asp:ListItem Value="03">03</asp:ListItem>
+                                                                    <asp:ListItem Value="04">04</asp:ListItem>
+                                                                    <asp:ListItem Value="05">05</asp:ListItem>
+                                                                    <asp:ListItem Value="06">06</asp:ListItem>
+                                                                    <asp:ListItem Value="07">07</asp:ListItem>
+                                                                    <asp:ListItem Value="08">08</asp:ListItem>
+                                                                    <asp:ListItem Value="09" Selected="True">09</asp:ListItem>
+                                                                    <asp:ListItem Value="10">10</asp:ListItem>
+                                                                    <asp:ListItem Value="11">11</asp:ListItem>
+                                                                    <asp:ListItem Value="12">12</asp:ListItem>
+
+                                                                </asp:DropDownList>
+                                                                <asp:DropDownList ID="ddlMmin" runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
+                                                                    <asp:ListItem Value="00">00</asp:ListItem>
+                                                                    <asp:ListItem Value="01">01</asp:ListItem>
+                                                                    <asp:ListItem Value="02">02</asp:ListItem>
+                                                                    <asp:ListItem Value="03">03</asp:ListItem>
+                                                                    <asp:ListItem Value="04">04</asp:ListItem>
+                                                                    <asp:ListItem Value="05">05</asp:ListItem>
+                                                                    <asp:ListItem Value="06">06</asp:ListItem>
+                                                                    <asp:ListItem Value="07">07</asp:ListItem>
+                                                                    <asp:ListItem Value="08">08</asp:ListItem>
+                                                                    <asp:ListItem Value="09">09</asp:ListItem>
+                                                                    <asp:ListItem Value="10">10</asp:ListItem>
+                                                                    <asp:ListItem Value="11">11</asp:ListItem>
+                                                                    <asp:ListItem Value="12">12</asp:ListItem>
+                                                                    <asp:ListItem Value="13">13</asp:ListItem>
+                                                                    <asp:ListItem Value="14">14</asp:ListItem>
+                                                                    <asp:ListItem Value="15">15</asp:ListItem>
+                                                                    <asp:ListItem Value="16">16</asp:ListItem>
+                                                                    <asp:ListItem Value="17">17</asp:ListItem>
+                                                                    <asp:ListItem Value="18">18</asp:ListItem>
+                                                                    <asp:ListItem Value="19">19</asp:ListItem>
+                                                                    <asp:ListItem Value="20">20</asp:ListItem>
+                                                                    <asp:ListItem Value="21">21</asp:ListItem>
+                                                                    <asp:ListItem Value="22">22</asp:ListItem>
+                                                                    <asp:ListItem Value="23">23</asp:ListItem>
+                                                                    <asp:ListItem Value="24">24</asp:ListItem>
+                                                                    <asp:ListItem Value="25">25</asp:ListItem>
+                                                                    <asp:ListItem Value="26">26</asp:ListItem>
+                                                                    <asp:ListItem Value="27">27</asp:ListItem>
+                                                                    <asp:ListItem Value="28">28</asp:ListItem>
+                                                                    <asp:ListItem Value="29">29</asp:ListItem>
+                                                                    <asp:ListItem Value="30">30</asp:ListItem>
+                                                                    <asp:ListItem Value="31">31</asp:ListItem>
+                                                                    <asp:ListItem Value="32">32</asp:ListItem>
+                                                                    <asp:ListItem Value="33">33</asp:ListItem>
+                                                                    <asp:ListItem Value="34">34</asp:ListItem>
+                                                                    <asp:ListItem Value="35">35</asp:ListItem>
+                                                                    <asp:ListItem Value="36">36</asp:ListItem>
+                                                                    <asp:ListItem Value="37">37</asp:ListItem>
+                                                                    <asp:ListItem Value="38">38</asp:ListItem>
+                                                                    <asp:ListItem Value="39">39</asp:ListItem>
+                                                                    <asp:ListItem Value="40">40</asp:ListItem>
+                                                                    <asp:ListItem Value="41">41</asp:ListItem>
+                                                                    <asp:ListItem Value="42">42</asp:ListItem>
+                                                                    <asp:ListItem Value="43">43</asp:ListItem>
+                                                                    <asp:ListItem Value="44">44</asp:ListItem>
+                                                                    <asp:ListItem Value="45">45</asp:ListItem>
+                                                                    <asp:ListItem Value="46">46</asp:ListItem>
+                                                                    <asp:ListItem Value="47">47</asp:ListItem>
+                                                                    <asp:ListItem Value="48">48</asp:ListItem>
+                                                                    <asp:ListItem Value="49">49</asp:ListItem>
+                                                                    <asp:ListItem Value="50">50</asp:ListItem>
+                                                                    <asp:ListItem Value="51">51</asp:ListItem>
+                                                                    <asp:ListItem Value="52">52</asp:ListItem>
+                                                                    <asp:ListItem Value="53">53</asp:ListItem>
+                                                                    <asp:ListItem Value="54">54</asp:ListItem>
+                                                                    <asp:ListItem Value="55">55</asp:ListItem>
+                                                                    <asp:ListItem Value="56">56</asp:ListItem>
+                                                                    <asp:ListItem Value="57">57</asp:ListItem>
+                                                                    <asp:ListItem Value="58">58</asp:ListItem>
+                                                                    <asp:ListItem Value="59">59</asp:ListItem>
+
+                                                                </asp:DropDownList>
+                                                                <asp:DropDownList ID="ddlslb" runat="server" CssClass="ddlPage" Style="width: 50px; line-height: 22px;">
+                                                                    <asp:ListItem Value="AM">AM</asp:ListItem>
+                                                                    <asp:ListItem Value="PM">PM</asp:ListItem>
+
+
+                                                                </asp:DropDownList>
+
+                                                                <asp:Label ID="lblschedulenumber" runat="server" BorderWidth="0" CssClass="btn btn-success btn-xs" Font-Size="14px"
+                                                                    Text="Schedule(0)"></asp:Label>
+
+
+
+                                                            </asp:Panel>
+
+                                                        </div>
+                                                        <asp:Panel ID="pnlFollow" runat="server" Visible="false">
+                                                            <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
+                                                        </asp:DropDownList>--%>
+
+
+
+                                                            <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                                runat="server" CssClass="col-md-12 checkbox">
+                                                            </asp:CheckBoxList>
 
 
                                                         </asp:Panel>
 
-                                                    </div>
-                                                    <asp:Panel ID="pnlFollow" runat="server" Visible="false">
-                                                        <%-- <asp:DropDownList ID="ddlFollow" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
+
+
+
+
+                                                        <asp:Panel ID="pnlStatus" runat="server" Visible="false">
+                                                            <%-- <asp:DropDownList ID="ddlStatus" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
                                                         </asp:DropDownList>--%>
 
+                                                            <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal"
+                                                                runat="server" CssClass="col-md-12 checkbox">
+                                                            </asp:CheckBoxList>
 
-
-                                                        <asp:CheckBoxList ID="ChkBoxLstFollow" RepeatLayout="Flow" RepeatDirection="Horizontal"  
-                                                            runat="server" CssClass="col-md-12 checkbox"  >
-                                                        </asp:CheckBoxList>
-
-
-                                                    </asp:Panel>
+                                                        </asp:Panel>
 
 
 
-
-
-                                                    <asp:Panel ID="pnlStatus" runat="server" Visible="false">
-                                                        <%-- <asp:DropDownList ID="ddlStatus" Visible="false" runat="server" CssClass="chzn-select inputTxt form-control">
-                                                        </asp:DropDownList>--%>
-
-                                                        <asp:CheckBoxList ID="ChkBoxLstStatus" RepeatLayout="Flow" RepeatDirection="Horizontal" 
-                                                            runat="server" CssClass="col-md-12 checkbox">
-                                                        </asp:CheckBoxList>
-
-                                                    </asp:Panel>
-
-
-
-                                                    <asp:Panel ID="pnlParicdis" runat="server" Visible="false">
-                                                        <asp:ListBox ID="ddlParticdis" runat="server" SelectionMode="Multiple" Style="width: 300px !important;"
-                                                            data-placeholder="Choose Participant......" multiple="true" class="form-control chosen-select"></asp:ListBox>
-                                                        <%--<select multiple id="ddlPartic" class="multiuser" runat="server" style="width: 300px">
+                                                        <asp:Panel ID="pnlParicdis" runat="server" Visible="false">
+                                                            <asp:ListBox ID="ddlParticdis" runat="server" SelectionMode="Multiple" Style="width: 300px !important;"
+                                                                data-placeholder="Choose Participant......" multiple="true" class="form-control chosen-select"></asp:ListBox>
+                                                            <%--<select multiple id="ddlPartic" class="multiuser" runat="server" style="width: 300px">
                                                 </select>--%>
-                                                        <%--<asp:DropDownList ID="ddlPartic" Visible="false" runat="server" vidible="false" CssClass="chzn-select inputTxt form-control"></asp:DropDownList>--%>
-                                                    </asp:Panel>
+                                                            <%--<asp:DropDownList ID="ddlPartic" Visible="false" runat="server" vidible="false" CssClass="chzn-select inputTxt form-control"></asp:DropDownList>--%>
+                                                        </asp:Panel>
 
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle />
-                                            </asp:TemplateField>
-
-
-                                        </Columns>
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <RowStyle CssClass="grvRows" />
-                                    </asp:GridView>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle />
+                                                </asp:TemplateField>
 
 
-                                </div>
+                                            </Columns>
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <RowStyle CssClass="grvRows" />
+                                        </asp:GridView>
+
+
+                                    </div>
                                 </div>
                             </div>
 

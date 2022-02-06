@@ -103,6 +103,8 @@ namespace RealERPWEB.F_34_Mgt
             string comcod = this.GetCompCode();
             string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
             DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "SALESANALYSIS_DASHBOARD", "%", dates, "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             List<double> singldata = new List<double>();
             double ttlsalamtyear = ds2.Tables[4].Rows.Count == 0 ? 0 : Convert.ToDouble(ds2.Tables[4].Rows[0]["ttlsalamtyear"].ToString());
             double collamtyear = ds2.Tables[4].Rows.Count == 0 ? 0 : Convert.ToDouble(ds2.Tables[4].Rows[0]["collamtyear"].ToString());
@@ -142,6 +144,8 @@ namespace RealERPWEB.F_34_Mgt
             string dates = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("dd-MMM-yyyy");//"10-Apr-2018"
                                                                                                         // string month = Convert.ToDateTime(this.txtCurTransDate.Text.Trim()).ToString("MMM");
             DataSet ds2 = _DataEntry.GetTransInfo(comcod, "SP_REPORT_DASH_BOARD_INFO_ALL", "PURPAYANALYSISGRAPH", dates, "", "", "", "", "", "", "");
+            if (ds2 == null)
+                return;
             List<data2> weeklypur = ds2.Tables[2].DataTableToList<data2>();
             List<data1> topsuppur = ds2.Tables[4].DataTableToList<data1>();
             List<data1> topmat = ds2.Tables[5].DataTableToList<data1>();
@@ -152,8 +156,10 @@ namespace RealERPWEB.F_34_Mgt
             var monthly = purmonth.Concat(curmonth).Concat(weeklypur).ToList();
             var top5data = topsuppur.Concat(topmat).Concat(topsupout).Concat(topsuppay).ToList();
             var jsonSerialiser = new JavaScriptSerializer();
+
             var pur_json = jsonSerialiser.Serialize(monthly);
             var pur_json1 = jsonSerialiser.Serialize(top5data);
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "ExecutePurchaseGraph('" + pur_json + "','" + pur_json1 + "')", true);
 
         }

@@ -161,7 +161,7 @@ namespace RealERPWEB.F_14_Pro
             string PrintReq = "";
             switch (comcod)
             {
-
+                //case "3101":
                 case "1101": //Rupayan
                 case "2305":
                 case "3305":
@@ -184,7 +184,7 @@ namespace RealERPWEB.F_14_Pro
 
                     break;
                 // case "3336":
-                //case "3101":
+                case "3101":
                 case "3330":// Bridge
                     PrintReq = "PrintBill04";
 
@@ -203,7 +203,7 @@ namespace RealERPWEB.F_14_Pro
                     break;
 
 
-                case "3101":
+                //case "3101":
                 case "3353":// manama
                     PrintReq = "PrintBill07";
 
@@ -521,6 +521,11 @@ namespace RealERPWEB.F_14_Pro
             string ftMrRecv = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
             string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
 
+            string lblmramt = Convert.ToDouble(((Label)this.gvBillInfo.FooterRow.FindControl("lblgvFooterTMRRAmt")).Text).ToString("#,##0.00;(#,##0.00); ");
+
+
+
+
             //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             //adjusted bill
@@ -562,7 +567,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtBillid", " : " + txtBillid));
             rpt.SetParameters(new ReportParameter("txtBilldate", (this.ddlPayType.SelectedValue == "003") ? "Adjustment" : " : " + billrefdate));
             rpt.SetParameters(new ReportParameter("txtBillno", " : " + txtBillno));
-            rpt.SetParameters(new ReportParameter("mprno", " : " + mrfno1));
+            rpt.SetParameters(new ReportParameter("mprno", "MPR NO  :  " + mrfno1));
             rpt.SetParameters(new ReportParameter("date", " : " + CurDate1));
             rpt.SetParameters(new ReportParameter("chqdate", (this.ddlPayType.SelectedValue == "003") ? "" : " : " + chqdate));
             rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
@@ -572,6 +577,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtNetAmt", txtNetAmt));
             rpt.SetParameters(new ReportParameter("lblbilldate", (this.ddlPayType.SelectedValue == "003") ? "" : "Bill Date"));
             rpt.SetParameters(new ReportParameter("lblcbilldate", (this.ddlPayType.SelectedValue == "003") ? "" : "Cheque Date"));
+            rpt.SetParameters(new ReportParameter("lblmramt", lblmramt));
 
 
 
@@ -698,6 +704,10 @@ namespace RealERPWEB.F_14_Pro
             string ftMrRecv = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
             string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
 
+            string lblmramt = Convert.ToDouble(((Label)this.gvBillInfo.FooterRow.FindControl("lblgvFooterTMRRAmt")).Text).ToString("#,##0.00;(#,##0.00); ");
+
+
+
             //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
@@ -733,6 +743,8 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("ftWorkOrd", ftWorkOrd));
             rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
             rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
+
+
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
@@ -795,6 +807,9 @@ namespace RealERPWEB.F_14_Pro
             DataTable dtmrref = ds1.Tables[1];
             string mrfno = dtmrref.Rows[0]["mrfno"].ToString();
             string mrfno1 = dtmrref.Rows[0]["mrfno"].ToString();
+
+            string securitydep = this.txtpercentage.Text.ToString();
+            string lblSecurity = "Less Security Deposite " + "( " + securitydep + " )";
 
 
             for (int i = 1; i < dtmrref.Rows.Count; i++)
@@ -877,6 +892,7 @@ namespace RealERPWEB.F_14_Pro
                 rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
                 rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
                 rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
                 // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
                 Session["Report1"] = rpt;
@@ -919,6 +935,7 @@ namespace RealERPWEB.F_14_Pro
 
                 //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+
                 var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
                 LocalReport rpt = new LocalReport();
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillConfirmationBridge", list, null, null);
@@ -951,6 +968,9 @@ namespace RealERPWEB.F_14_Pro
                 rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
                 rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
                 rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+                rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
+
+
                 // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
                 Session["Report1"] = rpt;
@@ -1353,6 +1373,14 @@ namespace RealERPWEB.F_14_Pro
             DataTable tbl1 = (DataTable)ViewState["tblBill"];
             this.gvBillInfo.DataSource = tbl1;
             this.gvBillInfo.DataBind();
+
+            //For Visible Item Serial Manama
+            string comcod = GetCompCode();
+            if (comcod == "3353" || comcod == "3101")
+            {
+                this.gvBillInfo.Columns[1].Visible = true;
+            }
+
             this.gvBillInfo.Columns[8].Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
             ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnUpdateBill")).Visible = (this.lblvalvounum.Text.Trim() == "00000000000000" || this.lblvalvounum.Text.Trim() == "");
             ((LinkButton)this.gvBillInfo.FooterRow.FindControl("lbtnDeleteBill")).Visible = (this.Request.QueryString["Type"].ToString().Trim() == "BillEdit" && this.lblvalvounum.Text.Trim() == "00000000000000");
@@ -1576,6 +1604,7 @@ namespace RealERPWEB.F_14_Pro
                 dr1["mrramt"] = dr3[0]["mrramt"];
                 dr1["mmrramt"] = dr3[0]["mrramt"];
                 dr1["remrks"] = dr3[0]["mrrnote"];
+                dr1["rowid"] = dr3[0]["rowid"];
                 tbl1.Rows.Add(dr1);
 
 
@@ -1693,6 +1722,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrramt"] = tbl2.Rows[i]["mrramt"].ToString();
                     dr1["mmrramt"] = tbl2.Rows[i]["mrramt"].ToString();
                     dr1["remrks"] = tbl2.Rows[i]["mrrnote"].ToString();
+                    dr1["rowid"] = tbl2.Rows[i]["rowid"].ToString();
                     tbl1.Rows.Add(dr1);
 
 
@@ -1812,6 +1842,7 @@ namespace RealERPWEB.F_14_Pro
                     dr1["mrramt"] = dr3[0]["mrramt"];
                     dr1["mmrramt"] = dr3[0]["mrramt"];
                     dr1["remrks"] = dr3[0]["mrrnote"];
+                    dr1["rowid"] = dr3[0]["rowid"];
                     tbl1.Rows.Add(dr1);
 
 
@@ -2519,7 +2550,7 @@ namespace RealERPWEB.F_14_Pro
             string comcod = this.GetCompCode();
             string Billno = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", Billno, "","", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", Billno, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 

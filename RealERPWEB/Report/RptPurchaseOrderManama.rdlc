@@ -1759,7 +1759,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1794,7 +1794,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1829,7 +1829,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1864,7 +1864,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -1982,7 +1982,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); "))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2101,7 +2101,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!carecost.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!carecost.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2220,7 +2220,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!disamt.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!disamt.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2343,7 +2343,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!nettotal.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!nettotal.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2500,7 +2500,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="C","",Parameters!advamt.Value)</Value>
+                                  <Value>=iif(Fields!grp.Value="B","",Parameters!advamt.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3478,7 +3478,7 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.48832in</Height>
+        <Height>6.44303in</Height>
         <Style />
       </Body>
       <Width>8.04458in</Width>
@@ -3580,7 +3580,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.79792in</Height>
+          <Height>0.66205in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -3602,8 +3602,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox134</rd:DefaultName>
-              <Top>0.49583in</Top>
-              <Height>0.13542in</Height>
+              <Top>0.45833in</Top>
+              <Height>0.16066in</Height>
               <Width>5.60417in</Width>
               <Style>
                 <Border>
@@ -3674,7 +3674,7 @@
               </Paragraphs>
               <rd:DefaultName>reqcreate</rd:DefaultName>
               <Top>0.24167in</Top>
-              <Height>0.21875in</Height>
+              <Height>0.19375in</Height>
               <Width>1.17708in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -3691,7 +3691,7 @@
               </Style>
             </Textbox>
             <Line Name="Line1">
-              <Top>0.48333in</Top>
+              <Top>0.45833in</Top>
               <Height>0in</Height>
               <Width>8.04458in</Width>
               <ZIndex>3</ZIndex>
@@ -3762,7 +3762,7 @@
               <rd:DefaultName>reqcreate</rd:DefaultName>
               <Top>0.24167in</Top>
               <Left>1.70875in</Left>
-              <Height>0.21875in</Height>
+              <Height>0.19375in</Height>
               <Width>1.17708in</Width>
               <ZIndex>5</ZIndex>
               <Style>
@@ -3839,7 +3839,7 @@
               <rd:DefaultName>reqcreate</rd:DefaultName>
               <Top>0.24167in</Top>
               <Left>3.28375in</Left>
-              <Height>0.21875in</Height>
+              <Height>0.19375in</Height>
               <Width>1.27083in</Width>
               <ZIndex>7</ZIndex>
               <Style>
@@ -3916,7 +3916,7 @@
               <rd:DefaultName>reqcreate</rd:DefaultName>
               <Top>0.24167in</Top>
               <Left>5.00875in</Left>
-              <Height>0.21875in</Height>
+              <Height>0.19375in</Height>
               <Width>1.17708in</Width>
               <ZIndex>9</ZIndex>
               <Style>
@@ -3993,7 +3993,7 @@
               <rd:DefaultName>reqcreate</rd:DefaultName>
               <Top>0.25104in</Top>
               <Left>6.65875in</Left>
-              <Height>0.20833in</Height>
+              <Height>0.18333in</Height>
               <Width>1.17708in</Width>
               <ZIndex>11</ZIndex>
               <Style>

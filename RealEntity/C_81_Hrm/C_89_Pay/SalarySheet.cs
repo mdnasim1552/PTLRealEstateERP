@@ -12,9 +12,12 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
         public class SalaryGrandT
         {
             public string  comcod { get; set; }
-            public string refno { get; set; }
+            public string refno { get; set; } 
             public string refdesc { get; set; }
             public double netpay { get; set; }
+            public double gssal { get; set; }
+            public double toadd { get; set; }
+            public double tdeduc { get; set; } 
         }
 
         [Serializable]
@@ -547,6 +550,11 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string rmrks2 { get; set; } 
             public double ottotal { get; set; } 
             public double toadd { get; set; }
+            public double gloan { get; set; }
+            public double carloan { get; set; }
+            public double carallow { get; set; }
+            public double refund { get; set; }
+            public double elencash { get; set; }
             public string grpcode { get; set; }
             public string grpdesc { get; set; }
             public string sectionname1 { get; set; }
@@ -575,6 +583,11 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public DateTime prodat { get; set; }
             public DateTime incrdate { get; set; }
             public string predeg { get; set; }
+            public string aknment { get; set; }
+            public double perloan { get; set; }
+            public double genloan { get; set; }
+            public double transded { get; set; }
+
             public RptSalarySheet ()
             {
 
@@ -671,6 +684,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string refdesc { get; set; }
             public string aminword { get; set; }
             public string bankacno { get; set; }
+            public double haircutal { get; set; }
 
             public SalaryPaySlip()
             {

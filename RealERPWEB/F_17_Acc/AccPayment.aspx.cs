@@ -321,6 +321,7 @@ namespace RealERPWEB.F_17_Acc
             this.ddlacccode.DataTextField = "actdesc1";
             this.ddlacccode.DataValueField = "actcode";
             this.ddlacccode.DataBind();
+            this.ddlacccode.SelectedValue = "260100010001"; // req by rahin uzzal dev by nahid
             //----Show Resource code and Specification Code------------// 
 
             DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
@@ -398,7 +399,7 @@ namespace RealERPWEB.F_17_Acc
                 DataRow[] dr1 = dt3.Select("rescode='" + seaRes + "'");
                 if (dr1.Length == 0)
                     return;
-
+                
                 if (ASTUtility.Left(dr1[0]["rescode"].ToString(), 1) == "9")
                 {
 
@@ -486,7 +487,8 @@ namespace RealERPWEB.F_17_Acc
             }
             this.GetSpecification();
             this.GetBillNo();
-            // this.lnkSpecification_Click(null, null);
+             this.lnkSpecification_Click(null, null);  
+            this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue,2)=="99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98"?  this.ddlresuorcecode.SelectedItem.ToString().Substring(13):"");
         }
 
         protected void lnkOk_Click(object sender, EventArgs e)
@@ -572,6 +574,7 @@ namespace RealERPWEB.F_17_Acc
 
                 //this.ddlConAccHead.BackColor = System.Drawing.Color.Pink;
                 //this.txtEntryDate.BackColor = System.Drawing.Color.Aqua;
+                lnkAcccode_Click(null,null);
             }
             else
             {
@@ -621,6 +624,7 @@ namespace RealERPWEB.F_17_Acc
                 this.Refrsh();
 
             }
+
         }
         private void Refrsh()
         {
@@ -1086,6 +1090,7 @@ namespace RealERPWEB.F_17_Acc
 
 
             }
+            //txtgvRemarks
 
 
             string vounum = this.txtcurrentvou.Text.Trim().Substring(0, 2) + voudat.Substring(6, 4) +
@@ -1358,8 +1363,8 @@ namespace RealERPWEB.F_17_Acc
 
 
                 this.lblspecification.Visible = true;
-                // this.txtSearchSpeci.Visible = true;
-                //this.lnkSpecification.Visible = true;
+                this.txtSearchSpeci.Visible = true;
+                this.lnkSpecification.Visible = true;
                 this.ddlSpclinf.Visible = true;
                 this.GetResource();
 
@@ -1373,12 +1378,14 @@ namespace RealERPWEB.F_17_Acc
 
 
                 this.lblspecification.Visible = false;
-                // this.txtSearchSpeci.Visible = false;
-                //this.lnkSpecification.Visible = false;
+                this.txtSearchSpeci.Visible = false;
+                this.lnkSpecification.Visible = false;
                 this.ddlSpclinf.Visible = false;
                 this.ddlSpclinf.Items.Clear();
 
             }
+
+            lnkRescode_Click(null,null);
         }
         protected void ibtnvounu_Click(object sender, ImageClickEventArgs e)
         {

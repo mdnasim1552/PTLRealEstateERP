@@ -36,6 +36,7 @@ namespace RealERPWEB
                 string uploadFolder = Request.PhysicalApplicationPath + "Upload\\UserImages\\";
                 string extension = Path.GetExtension(fileuploaddropzone.PostedFile.FileName);
                 string savelocation = uploadFolder + UserId + extension;
+                ((Panel)this.Master.FindControl("AlertArea")).Visible = false;
 
                 image_file = fileuploaddropzone.PostedFile.InputStream;
                 size = fileuploaddropzone.PostedFile.ContentLength;
@@ -53,16 +54,27 @@ namespace RealERPWEB
 
 
                     fileuploaddropzone.SaveAs(savelocation);
-                    ((Panel)this.Master.FindControl("AlertArea")).Visible = true;
+                    
                     updatPhoto = UserData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUSERIMAGES", UserId, dburl, "", "", "", "", "", "", "", "");
                     if (updatPhoto)
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Your Porofile Picture Updated Successfully";
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('Your Porofile Picture Updated Successfully');", true);
+
+                    }
+
                     else
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Profile Picture Updated failed";
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Your Porofile Picture Updated failed');", true);
+
+                    }
+
+
                 }
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Profile Picture Size Large";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Profile Picture Size Large');", true);
+
+                  
                 }
 
 
@@ -306,7 +318,7 @@ namespace RealERPWEB
 
 
 
-                ((HyperLink)this.gvLeaveStatus.HeaderRow.FindControl("hlnkbtnNext")).NavigateUrl = "../F_82_App/LinkMyHRLeave.aspx?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+                this.hlnkbtnNext.NavigateUrl = "../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];

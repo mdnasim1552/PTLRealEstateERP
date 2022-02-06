@@ -36,49 +36,15 @@ namespace RealERPWEB.F_34_Mgt
 
                 //((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 //((Label)this.Master.FindControl("lblmsg")).Visible = false;
-                //this.ShowUserInfo();
+                
 
-                this.getListModulename();
-                if (this.chkShowall.Checked)
-                {
-
-                    //   this.ShowAllData();
-
-                }
-                else
-                {
-                    this.ShowData();
-                }
-
-                ////this.ModuleVisible();
-                //this.GetCompPermission();
+               // this.getListModulename();
+                this.ShowAllData();
+                 
             }
         }
 
-        private void getListModulename()
-        {
-
-            string comcod = this.GetComeCode();
-            ProcessAccess ulogin = new ProcessAccess();
-            string usrid = this.Request.QueryString["Userid"].ToString();
-
-            DataSet ds1 = new DataSet();
-
-            if (this.chkShowall.Checked == true)
-            {
-                ds1 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETCOMMODULE_FOR_PERMISSION_USER", usrid, "", "", "", "", "", "", "", "");
-            }
-            else
-            {
-                ds1 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "GETCOMMODULE_FORUSER", usrid, "", "", "", "", "", "", "", "");
-            }
-
-            this.ddlModuleName.DataTextField = "modulename";
-            this.ddlModuleName.DataValueField = "moduleid";
-            this.ddlModuleName.DataSource = ds1.Tables[0];
-            this.ddlModuleName.DataBind();
-            ViewState["tblmoduleName"] = ds1.Tables[0];
-        }
+     
 
         private string GetComeCode()
         {
@@ -93,37 +59,23 @@ namespace RealERPWEB.F_34_Mgt
         }
         protected void chkShowall_CheckedChanged(object sender, EventArgs e)
         {
-            this.getListModulename();
-
-            if (this.chkShowall.Checked)
-            {
-
-                this.ShowAllData();
-
-            }
-            else
-            {
-                this.ShowData();
-            }
+            
+            ShowAllData();
+             
         }
         protected void ddlModuleName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.chkShowall.Checked)
-            {
-                this.ShowAllData();
-            }
-            else
-            {
-                this.ShowData();
-            }
+            
+            ShowAllData();
         }
         private void ShowAllData()
         {
             string comcod = this.GetComeCode();
             string usrid = this.Request.QueryString["Userid"].ToString();
+            string ddlType = (this.ddlType.SelectedValue.Trim() == "0" ? "0" : this.ddlType.SelectedValue.ToString());
 
             string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
-            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USERALL", modname, usrid, "", "", "", "", "", "", "");
+            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SHOWPERMISSION_ITEMS_USERALL", ddlType, usrid, "", "", "", "", "", "", "");
             if (ds4 == null)
             {
                 this.gvPermission.DataSource = null;
@@ -135,23 +87,7 @@ namespace RealERPWEB.F_34_Mgt
             this.ShowPer();
         }
 
-        private void ShowData()
-        {
-            string comcod = this.GetComeCode();
-            string usrid = this.Request.QueryString["Userid"].ToString();
-
-            string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
-            DataSet ds4 = User.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "SHOWPERMISSION_ITEMS_USER", usrid, modname, "", "", "", "", "", "", "");
-            if (ds4 == null)
-            {
-                this.gvPermission.DataSource = null;
-                this.gvPermission.DataBind();
-                return;
-            }
-            Session["tblusrper"] = this.HiddenSameData(ds4.Tables[0]);
-
-            this.ShowPer();
-        }
+       
         private DataTable HiddenSameData(DataTable dt1)
         {
 
@@ -175,17 +111,19 @@ namespace RealERPWEB.F_34_Mgt
             this.Session_update();
             string comcod = this.GetComeCode();
             string usrid = this.Request.QueryString["Userid"].ToString();
-
-            string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
+            string menutype= (this.ddlType.SelectedValue.Trim() == "0" ? "0" : this.ddlType.SelectedValue.ToString());
+            // string modname = (this.ddlModuleName.SelectedValue.Trim() == "0" ? "0" : this.ddlModuleName.SelectedValue.ToString());
             DataTable dt1 = (DataTable)Session["tblusrper"];
 
             bool result = false;
-            result = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "DELETEUSERMENU_NAHID", usrid, modname,
+            result = User.UpdateTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "DELETE_USER_MENU", usrid, menutype,
                         "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = User.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                
+                string msg = User.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+               
                 return;
             }
 
@@ -204,7 +142,7 @@ namespace RealERPWEB.F_34_Mgt
             //  result = User.UpdateXmlTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTCOMPPER", ds1, null, null, "", "", "", "", "", "", "", "", "",
             //"", "", "", "", "", "", "", "", "", "", "");
 
-            result = User.UpdateXmlTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUSERPER_NAHID", ds1, null, null, modname, usrid, "", "", "", "", "", "", "",
+            result = User.UpdateXmlTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "INSERT_USER_PER_NAHID", ds1, null, null, menutype, usrid, "", "", "", "", "", "", "",
            "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
@@ -462,33 +400,31 @@ namespace RealERPWEB.F_34_Mgt
             }
             Session["tblusrper"] = dt;
         }
-        protected void gvPermission_RowDeleting(object sender, GridViewDeleteEventArgs e)
+       
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             
+            ShowAllData();
+        }
+
+        protected void gvPermission_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-            DataTable dt = (DataTable)Session["tblusrper"];
-            string comcod = this.GetComeCode();
-            string usrid = this.lblusrid.Text;
-
-            string frmid = ((Label)this.gvPermission.Rows[e.RowIndex].FindControl("lgvufrmid")).Text.Trim();
-
-            bool result1 = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "DELETEUSER", usrid, frmid,
-                            "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result1)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                string msg = User.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                return;
+                
+                CheckBox chper = (CheckBox)e.Row.FindControl("chkPermit");
+
+                string menuparentid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "menuparentid")).ToString();
+                if (menuparentid == "0" || menuparentid == "")
+                {
+                    e.Row.Style.Add("color", "red");
+                    chper.Visible = false;
+                }
+
             }
-            else
-            {
-                string msg = "Delete Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-            }
-
-
-
-            this.ShowData();
-
         }
+
     }
 }

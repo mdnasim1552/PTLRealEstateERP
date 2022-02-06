@@ -38,9 +38,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txtfrmDate.Text = Convert.ToDateTime("01-Jan" + (this.txtfrmDate.Text.Trim()).Substring(6)).ToString("dd-MMM-yyyy");
                 this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-                //this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                //this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
-                //this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetCompName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "EmpLeaveStatus") ? "Employee Leave Status"
                     : (this.Request.QueryString["Type"].ToString() == "MonWiseLeave") ? "Employee Leave Status(Month Wise)" : "";
