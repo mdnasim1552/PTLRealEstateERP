@@ -250,16 +250,16 @@ namespace RealERPWEB.F_14_Pro
             SendSmsProcess sms = new SendSmsProcess();
             string ntype = ds1.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (ds1.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            //bool resultsms = sms.SendSMSClient(comcod, smtext, cellphone);
-            //if (resultsms == true)
-            //{
-            //    bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), supcode, "", "", "", ntype, smsstatus, smtext, "",
-            //               "", "", cellphone, "");
+            bool resultsms = sms.SendSMSClient(comcod, smtext, cellphone);
+            if (resultsms == true)
+            {
+                bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), supcode, "", "", "", ntype, smsstatus, smtext, "",
+                           "", "", cellphone, "");
 
-            //    ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            //    return;
-            //}
+                ((Label)this.Master.FindControl("lblmsg")).Text = "SMS Send Successfully";
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                return;
+            }
 
         }
 
