@@ -8,8 +8,11 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
             document.getElementById('<%= lnkPageloadData.ClientID %>').click();
+<<<<<<< HEAD
+
+=======
+>>>>>>> c53713d30ccf1c0bd3cf4e522fddcaa31cde576e
         });
         function loadModal() {
             $('#detialsinfo').modal('toggle');
@@ -33,7 +36,15 @@
                 var description = result ? "Add Child" : "Add Group";
                 $('#lblchild').html(description);
             });
+<<<<<<< HEAD
+
+           // $('.chzn-select').chosen({ search_contains: true });
+
+
+
+=======
             $('.chzn-select').chosen({ search_contains: true });
+>>>>>>> c53713d30ccf1c0bd3cf4e522fddcaa31cde576e
         }
 
         function IsNumberWithOneDecimal(txt, evt) {
@@ -226,110 +237,10 @@
                     </div>
 
                 </div>
-
-                <%--   </div>
-            <div class="clearfix"><br /></div>--%>
-
-
-                <%--End--%>
-
-                <%--<div class="container moduleItemWrpper">
-                <div class="contentPart">--%>
-                <%--         <div class="row">                       
-                         <fieldset class="scheduler-border">
-
-                            <div class="form-horizontal">
-                                <div class="form-group">
-
-                                    <asp:Label ID="LblBookName1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Select Code Book:"></asp:Label>
-
-
-
-                                    <div class="col-md-4 pading5px">
-                                        <asp:DropDownList ID="ddlOthersBook" runat="server" CssClass="form-control inputTxt chzn-select" OnSelectedIndexChanged="ddlOthersBook_SelectedIndexChanged" AutoPostBack="True">
-                                        </asp:DropDownList>
-
-                                     
-
-                                        <asp:Label ID="lbalterofddl" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
-                                    </div>
-                                    <div class="col-md-2 pading5px">
-                                        <asp:DropDownList ID="ddlOthersBookSegment" CssClass="form-control inputTxt" runat="server">
-                                            <asp:ListItem Value="2">Main Code</asp:ListItem>
-                                            <asp:ListItem Value="4">Sub Code-1</asp:ListItem>
-                                            <asp:ListItem Value="7">Sub Code-2</asp:ListItem>
-                                            <asp:ListItem Value="9">Sub Code-3</asp:ListItem>
-                                            <asp:ListItem Selected="True" Value="12">Details Code</asp:ListItem>
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lbalterofddl0" runat="server" Visible="False" CssClass="form-control inputTxt"></asp:Label>
-                                    </div>
-                                    <div class="col-md-1 pading5px">
-                                        <asp:LinkButton ID="lnkok" runat="server" Text="Ok" OnClick="lnkok_Click" CssClass="btn btn-primary okBtn"></asp:LinkButton>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="form-group">
-
-                                     <div ="col-md-2 control-label lblTxt">
-                                           <asp:Label ID="lblcatagory" runat="server"  CssClass="col-md-2 control-label lblTxt" Text="Catagory"></asp:Label>
-
-                                    </div>
-
-
-                                     <div class="col-md-3 pading5px  asitCol3">
-                                        
-                                          <asp:DropDownList ID="ddlcatagory" runat="server" CssClass=" chzn-select form-control">
-                                        </asp:DropDownList>
-
-                                    </div>
-
-                                  
-                                    <div class="col-md-2 pading5px asitCol2">
-                                       <asp:Label ID="LblBookName2" runat="server" CssClass=" smLbl_to" Text="Search Option:"></asp:Label>
-                                        <asp:TextBox ID="txtsrch" runat="server" CssClass=" inputtextbox"></asp:TextBox>
-                                        <asp:LinkButton ID="ibtnSrch" runat="server" OnClick="ibtnSrch_Click" CssClass="btn btn-success srearchBtn" Visible="False"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
-
-
-                                    </div>
-
-
-                                    
-
-
-
-                                    <div class="col-md-2 pading5px">
-
-                                        <asp:Label ID="lblPage" runat="server" CssClass=" smLbl_to" Text="Page Size" Visible="False"></asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass=" ddlPage"
-                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
-                                            <asp:ListItem>15</asp:ListItem>
-                                            <asp:ListItem>20</asp:ListItem>
-                                            <asp:ListItem>30</asp:ListItem>
-                                            <asp:ListItem>50</asp:ListItem>
-                                            <asp:ListItem>100</asp:ListItem>
-                                            <asp:ListItem>150</asp:ListItem>
-                                            <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
-                                            <asp:ListItem>600</asp:ListItem>
-                                            <asp:ListItem>900</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-
-                               
-                                </div>
-
-                            </div>
-            
-                    </fieldset>
-
-                    </div>--%>
+                 
                 <div class="card-body">
                     <div class="row">
-
                         <div class="table-responsive">
-
-
-
                             <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                                 AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                                 OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnPageIndexChanging="grvacc_PageIndexChanging"
@@ -363,7 +274,7 @@
 
 
                                     <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
-                                        SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
+                                        SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle ForeColor="#0000C0" />
                                     </asp:CommandField>
