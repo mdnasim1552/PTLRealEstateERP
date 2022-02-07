@@ -197,12 +197,6 @@ namespace RealERPWEB.F_34_Mgt
 
         }
 
-        //protected void lbtngvSaveValue_Click(object sender, EventArgs e)
-        //{
-        //    this.SaveValue();
-        //    this.gvProLinkInfo_DataBind();
-        //}
-
         protected void lbtngvDelete_Click(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
