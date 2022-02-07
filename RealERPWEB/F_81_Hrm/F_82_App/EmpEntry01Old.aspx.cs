@@ -242,17 +242,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         }
         private void GetBldMeReFes()
         {
-
-
             string comcod = this.GetComeCode();
             Session.Remove("tblbmrf");
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETBLDMEREFES", "", "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
             Session["tblbmrf"] = ds2.Tables[0];
-
-
-
         }
         private void GetSupervisorName()
         {
