@@ -341,7 +341,8 @@ namespace RealERPWEB.F_17_Acc
                 this.txtserchReCode.Visible = true;
                 this.lnkRescode.Visible = true;
                 this.ddlresuorcecode.Visible = true;
-                this.GetResource();
+                //this.GetResource();
+                lnkRescode_Click(null, null);
 
             }
             else
@@ -1391,7 +1392,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            lnkRescode_Click(null,null);
+           
         }
         protected void ibtnvounu_Click(object sender, ImageClickEventArgs e)
         {
