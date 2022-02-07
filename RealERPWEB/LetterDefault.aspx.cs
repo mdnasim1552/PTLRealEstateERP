@@ -42,6 +42,7 @@ namespace RealERPWEB
                 if (type1 == "10003" || type1 == "10004" || type1 == "10005" || type1 == "10020" || type1 == "10002" || type1 == "10013" || type1 == "10021" || type1 == "10022" || type1 == "10023")
                 {
                     this.GetSelected();
+                    this.GetCompany();
                 } 
                 else
                 {
@@ -50,9 +51,23 @@ namespace RealERPWEB
 
 
               //  this.GetLettPattern();
-                string titale = this.Request.QueryString["Entry"].ToString().Trim();
-                ((Label)this.Master.FindControl("lblTitle")).Text = titale;
-               // ddlEmployee_SelectedIndexChanged(null, null);
+                string title = this.Request.QueryString["Type"].ToString().Trim();
+
+                switch (title)
+                {
+                    case "10002":
+                        ((Label)this.Master.FindControl("lblTitle")).Text = "Appoinment Letter";
+                        break;
+                    case "10003":
+                        ((Label)this.Master.FindControl("lblTitle")).Text = "Offer Letter";
+                        break;
+                    default:
+                        ((Label)this.Master.FindControl("lblTitle")).Text = "Name of Letter";
+                        break;
+                }
+                    
+              
+                // ddlEmployee_SelectedIndexChanged(null, null);
 
                 string Apprv = this.Request.QueryString["Entry"].ToString();
                 if (Apprv == "Apprv")
@@ -96,9 +111,6 @@ namespace RealERPWEB
         }
         private void GetEmployee()
         {
-
-
-
             string comcod = this.GetCompCode();
             string txtSProject = "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEMPNAME", txtSProject, "", "", "", "", "", "", "", "");
@@ -108,6 +120,9 @@ namespace RealERPWEB
             this.ddlEmployee.DataBind();
             ds3.Dispose();
             ViewState["empinfo"] = ds3;
+
+            //this.GetCompany();
+
         }
 
         private void CommonButton()
@@ -148,6 +163,62 @@ namespace RealERPWEB
 
         }
 
+        private void GetCompany()
+        {
+            Session.Remove("tblcompany");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string comcod = this.GetCompCode();
+            string txtCompany = "%%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
+            this.ddlCompany.DataTextField = "actdesc";
+            this.ddlCompany.DataValueField = "actcode";
+            this.ddlCompany.DataSource = ds1.Tables[0];
+            this.ddlCompany.DataBind();
+            Session["tblcompany"] = ds1.Tables[0];
+           // this.ddlCompany_SelectedIndexChanged(null, null);
+            ds1.Dispose();
+           this.GetProjectName();
+
+        }
+        private void GetProjectName()
+        {
+
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+
+            string txtSProject = "%%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
+            this.ddlDepartment.DataTextField = "actdesc";
+            this.ddlDepartment.DataValueField = "actcode";
+            this.ddlDepartment.DataSource = ds1.Tables[0];
+            this.ddlDepartment.DataBind();
+            this.ddlDepartment_SelectedIndexChanged(null, null);
+
+        }
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SectionName();
+        }
+        private void SectionName()
+        {
+
+            string comcod = this.GetCompCode();
+            string projectcode = this.ddlDepartment.SelectedValue.ToString();
+            string txtSSec = "%%";
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
+            this.ddlProjectName.DataTextField = "sectionname";
+            this.ddlProjectName.DataValueField = "section";
+            this.ddlProjectName.DataSource = ds2.Tables[0];
+            this.ddlProjectName.DataBind();
+           // this.GetEmployee();
+
+        }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
 
@@ -326,6 +397,8 @@ namespace RealERPWEB
             this.ddlEmployee.DataBind();
              
             ViewState["empinfo"] = ds1;
+
+
         }
 
         protected void GetLettPattern()
@@ -418,7 +491,10 @@ namespace RealERPWEB
             // var empname = this.ddlEmployee.SelectedItem.ToString();
             string lbody = string.Empty;
             // string empid=hst["empid"].ToString();
-            string name = this.ddlEmployee.SelectedItem.ToString();
+
+            string section = this.ddlProjectName.SelectedItem.ToString();
+            string companme = this.ddlCompany.SelectedItem.Text.ToString();
+            string name = this.ddlEmployee.SelectedItem.Text.ToString();
             string Desig = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["desig"].ToString();//(string)ViewState["desig"];
             string depart = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["dptdesc"].ToString();//(string)ViewState["section"];
             string dptdesc = (dtempinf_.Rows.Count == 0) ? "" : dtempinf_.Rows[0]["section"].ToString();//(string)ViewState["section"];
@@ -435,34 +511,35 @@ namespace RealERPWEB
                     break;
                 //appoinment letter for BTI 
                 case "10002":
+                    
                     lbody = "<p style='margin-bottom:-11px'>Ref: bti/HR/" + year + "</p><p >" + System.DateTime.Now.ToString("dd MMM yyyy")
                         + "</p><p></p><p style='margin-bottom:-11px'> To </p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
                         "<p style='margin-bottom:-11px'>Address: 56/7/1-2, Nort Bashbo</p><p style='margin-bottom:-11px'>" +
                         "Sobujbugbag, Dhaka</strong></p><p ><br>Mobile : 01984303100</p><p></p><p><strong> <u> Appointment Letter" +
                         "</u></strong></p><p>Dear <strong>" + name + "," + "</strong></p>" +
-                        "<p>Reference is made herewith to your application for the position of “" + Desig + ", " + depart + "” and subsequent interview with us, the Management is pleased to give you a career" +
-                        " opportunity with “" + comnam + "” as per the following terms and conditions.<br> <ol>" +
-                        "<li>Postion: <strong> " + Desig + "," + depart + "</strong></li>" +
-                        "<li>Job Location <strong>Dhaka</strong></li>" +
-                        "<li><strong>Date of Commencement:</strong>Your employment shall commence on" + date + " and shall continue until separated/terminated as per the provision " +
+                        "<p>Reference is made herewith to your application for the position of <strong>  “" + Desig + ", " + section + "” </strong>  and subsequent interview with us, the Management is pleased to give you a career" +
+                        " opportunity with “" + comnam + "” as per the following terms and conditions.<br>" +
+                        "<ol><li>Postion: <strong> " + Desig + ", " + section + "</strong></li>" +
+                        "<li>Job Location: <strong>Dhaka</strong></li>" +
+                        "<li><strong>Date of Commencement: </strong>Your employment shall commence on <strong> " + System.DateTime.Now.ToString("dd/MM/yyyy") + " </strong> and shall continue until separated/terminated as per the provision " +
                         "of company rules or resigned in accordance with terms of this letter of Appointment or rules of the company.<br> </li>" +
                         "<li><strong>Probation:</strong>" +
-                        "<ol start='1'><li>On appointment, you shall be on probation for a period of 6 (six) months from the date of joining. Upon satisfactory completion of probation, you will be confirmed in the regular service of the company according to the Management decision.</li> " +
+                        "<ol><li>On appointment, you shall be on probation for a period of 6 (six) months from the date of joining. Upon satisfactory completion of probation, you will be confirmed in the regular service of the company according to the Management decision.</li> " +
                         "<li>During the probationary period, your service may be terminated at any time without assigning any reason whatsoever or issuing any notice or payment of salary in lieu thereof.  </li> " +
                         "<li>If no letter is issued for extension of probation period or for confirmation of service it will be deemed by default that probation has been extended and will continue indefinitely until the letter of confirmation is issued.</li> " +
                         "</ol></li>" +
-                        "<li><strong>Compensation /Pay Scale:</strong>Gross Salary/Month: Taka 50,000/- (In word: Fifty Thousand only).</li>" +
-                         "<li><strong>Salary Review:</strong>Salary will be reviewed after completion of 01 (one) year or at the discretion of Management. </li>" +
-                         "<li><strong>Festival Bonus:</strong>You are entitled to two festival bonuses in Eid-Ul-Fitr & Eid-Ul-Adha as per company policy. </li>" +
-                         "<li><strong>Income Taxes:</strong>All taxes on salaries and allowances shall be borne by you in accordance with laws of the land. Income Tax at source will be deducted monthly or by other manner as deemed fit by the management.</li>" +
-                         "<li><strong>Gratuity:</strong>Gratuity equivalent to one month’s basic pay for each completed year’s of service payable after three years of service. </li>" +
-                         "<li><strong>Obligation of Confidence:</strong>You may have access during the course of employment to or become acquainted with information, which may be designated by the company as confidential or reasonably be regarded as a trade secret. " +
-                         "<ol start='1'>" +
+                        "<li><strong>Compensation /Pay Scale: </strong> Gross Salary/Month: <strong> Taka 50,000/- (In word: Fifty Thousand only).</strong></li>" +
+                         "<li><strong>Salary Review: </strong> Salary will be reviewed after completion of 01 (one) year or at the discretion of Management. </li>" +
+                         "<li><strong>Festival Bonus: </strong>You are entitled to two festival bonuses in Eid-Ul-Fitr & Eid-Ul-Adha as per company policy. </li>" +
+                         "<li><strong>Income Taxes: </strong>All taxes on salaries and allowances shall be borne by you in accordance with laws of the land. Income Tax at source will be deducted monthly or by other manner as deemed fit by the management.</li>" +
+                         "<li><strong>Gratuity: </strong>Gratuity equivalent to one month’s basic pay for each completed year’s of service payable after three years of service. </li>" +
+                         "<li class='clname'><strong >Obligation of Confidence: </strong>You may have access during the course of employment to or become acquainted with information, which may be designated by the company as confidential or reasonably be regarded as a trade secret. " +
+                         "<ol>" +
                          "<li>The confidential information may include (without limitation), any document or information marked as confidential, and any other information, which you may receive or develop in the course of your employment, which is not publicly available and relates to the business. E.g. operations, finance, legal affairs and other conditions of the company or its associated companies and other matters not readily available to persons not connected with the company or its associated companies either at all or without a significant expenditure of labor, skill and money. </li> " +
                         "<li>You shall agree, both during and after your employment, to maintain the confidentiality of this information and to take reasonable measures to prevent unauthorized disclosure or to use by any other person or entity. You shall also agree not to use, both during and after employment the confidential information for any purpose other than the benefit of the company as determined by the Management. Indulgence in such activity shall render you liable for termination with immediate effect notwithstanding any other terms mentioned in the appointment letter.  </li> " +
                         "</ol></li>" +
                         "<li><strong>Leave: </strong>" +
-                         "<ol start='1'>" +
+                         "<ol>" +
                         "<li>Existing company rules shall be applicable.  </li> " +
                         "<li>Leave is a facility and cannot be claimed as a right.  </li> " +
                         "<li>16 days Earned Leave for each completed year of service or pay in lieu thereof as per company policy. </li> " +
@@ -471,11 +548,11 @@ namespace RealERPWEB
                         "<li>Approval of leave shall remain at the sole discretion of the company depending on the workloads and the business needs. </li> " +
                         "<li>In case of employment in middle of a calendar year, the calculation of leave will be on prorata basis.   </li> " +
                         "</ol></li>" +
-                        "<li><strong>Disciplinary Action</strong>Company service rules shall prevail. Company reserves the right to proceed with legal and other action in case of serious irregularities" +
+                        "<li><strong>Disciplinary Action: </strong>Company service rules shall prevail. Company reserves the right to proceed with legal and other action in case of serious irregularities" +
                         "including financial and other related matters mentioned in company rules.</li>" +
                          "<li><strong>Transfer: </strong>Your service are at the disposal of the Management and are transferable to any Project, sister concerns or offices at any location and you may be entrusted with some other jobs as and when deemed fit by the management. </li>" +
                          "<li><strong>Separation from Services:</strong>" +
-                         "<ol  start= '1'>" +
+                         "<ol>" +
                          "<li>On confirmation, your services may be terminated with 30 (Thirty) days notice or pay in lieu thereof from either side.</li> " +
                          "<li>You are required to deal with the Company's money, material and documents with utmost honesty and professional ethics. If you are found guilty at any point of time of moral turpitude or misappropriation regardless of the value involved, your services would be terminated with immediate" +
                          "effect notwithstanding other terms and conditions mentioned in this letter. </li> " +
@@ -484,15 +561,15 @@ namespace RealERPWEB
                           "<li>For other reasons and systems of separation e.g.Dismissal, termination, discharge etc. company policy shall prevail.</li> " +
 
                          "</ol></li>" +
-                         "<li><strong>Work Conditions:</strong>" +
-                         "<ol start='1'>" +
-                         "<li>You are employed as “Deputy Manager, Logistics” and vested with such powers to enable you to function and perform your duties.</li> " +
+                         "<li><strong>Work Conditions: </strong>" +
+                         "<ol>" +
+                         "<li>You are employed as <strong> “" + Desig + ", " + section + "” </strong> and vested with such powers to enable you to function and perform your duties.</li> " +
                          "<li>You are required to perform your function strictly in accordance with the instructions of your superiors and according to working program provided to you by the Company.  </li> " +
                          "<li>You will not engage yourself in any other employment, occupation, or business of any nature for remuneration or profit. </li> " +
                           "<li>Your services will be governed by the Rules of the Company in force from time to time. </li> " +
                          "</ol></li>" +
-                        "<li><strong>Required Documents:</strong> You are requested to submit the following documents within 07 (seven) days from the date of receipt of this appointment letter: " +
-                         "<ol start='1'>" +
+                        "<li><strong>Required Documents: </strong> You are requested to submit the following documents within 07 (seven) days from the date of receipt of this appointment letter: " +
+                         "<ol>" +
                          "<li>Original & photocopies of all academic certificates.  </li> " +
                          "<li>Original & photocopies of Letter of acceptance of resignation in the Company Letter Head from the previous employer.  </li> " +
                          "<li>Original & photocopies of all Experience Certificate(s). </li> " +
@@ -501,16 +578,16 @@ namespace RealERPWEB
                          "<li>Photocopy of passport / any other photo ID / photocopy of National ID Card. </li> " +
                          "<li>You are to submit us your clearance letter, which has been duly issued by your previous employer at the time of joining. </li> " +
                          "</ol></li>" +
-                         "<li><strong>Acceptance:</strong> Please signify your acceptance of the above terms and conditions of your employment in the company by signing the duplicate copy of this letter of appointment as a token of your acceptance. </li>" +
-                         "<li><strong>Miscellaneous:</strong>Other terms and conditions of service will be in accordance with the company rules and regulations, which may be altered by the company from time to time.</li>" +
+                         "<li><strong>Acceptance: </strong> Please signify your acceptance of the above terms and conditions of your employment in the company by signing the duplicate copy of this letter of appointment as a token of your acceptance. </li>" +
+                         "<li><strong>Miscellaneous: </strong>Other terms and conditions of service will be in accordance with the company rules and regulations, which may be altered by the company from time to time.</li>" +
+                        
 
-
-                        "<p>&nbsp;For <strong>building technology & ideas ltd </strong>," +
+                        "<p>&nbsp;For <strong>"+ companme + " </strong>," +
                         "</p><p>&nbsp;</p><p class='pImage'><strong><img src='data:Image/png;base64," + usersign + "' width='200px' height='80px' >" +
                         "</img></p>  <p class='pUname'><span style='border-top:1px solid black'><strong>" + "Brig Gen Mohammad Ayub Ansary, psc (Retd)" + "</span></strong></p> <p>" + "Additional Managing Director and Head of HR" + "</p><p>" + "Admin and Security Department" + "</p>" +
                         "<p style='text-align:center'><strong><u>ACCEPTANCE</u></strong></p>" +
-                        "<p>I, <strong> " + name + " </strong>  have read and fully understood the terms and conditions set out in the Letter of Appointment dated " + System.DateTime.Now.ToString("dd MMM yyyy") +
-                        " in particular, I have read and  fully understood clauses of the Letter of Appointment. I do hear by confirm my acceptance of the terms and conditions in the aforesaid document and agree to be bound by the terms accordingly. </p>" +
+                        "<p>I, <strong> " + name + " </strong>  have read and fully understood the terms and conditions set out in the Letter of Appointment dated <strong>" + System.DateTime.Now.ToString("dd MMM yyyy") +
+                        "</strong> in particular, I have read and  fully understood clauses of the Letter of Appointment. I do hear by confirm my acceptance of the terms and conditions in the aforesaid document and agree to be bound by the terms accordingly. </p>" +
                         
                         "<p>Signature:-------------------------------------Date:------------------ </p>";                  
 
@@ -518,7 +595,7 @@ namespace RealERPWEB
 
                 //offer later for sales department;
                 case "10003":
-                    lbody = "<p style='margin-bottom:0'><br/><br/>Ref: bti/HR/2021/</p>"+date+ "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
+                    lbody = "<p style='margin-bottom:0'><br/><br/>Ref: bti/HR/2021/</p>"+ date + "<p style='margin-bottom:-11px'>To</p><p style='margin-bottom:-11px'><strong>" + name + "</strong></p>" +
                         "<p style='margin-bottom:-11px'>Address: House: 271, Tejgaon I/A, </p>" +
                         "<p style='margin-bottom:-11px'>Tejgaon, Dhaka-1208</p><p style='margin-bottom:0'><br>Mobile : 01913169818</p><p><strong>Subject: Offer for Employment</strong></p><p><br>Dear <strong>" + name +","+ "</strong></p>" +
                         "<p>With reference to discussions with you and your willingness to join our company, we are pleased to offer you appointment as <strong> " + Desig + ", " + dptdesc + ",</strong> in " + depart + ", which shall commence on or before <strong> " + cdate + " </strong>." +
@@ -660,5 +737,6 @@ namespace RealERPWEB
             ViewState["letter"] = ds3.Tables[0];
         }
 
+       
     }
 }
