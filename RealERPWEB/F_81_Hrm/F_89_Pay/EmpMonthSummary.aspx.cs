@@ -36,6 +36,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 ((Label)this.Master.FindControl("lblTitle")).Text = type == "salati" ? "AIT purpose salary " : type == "salsumMonth"? "Salary Summary (Month Wise)" :"Monthly Attendance Statement";
                 this.GetCompany();
                 this.SetDate();
+
+                if(type== "salati")
+                {
+                    this.ChkAllWithwithout.Visible = true;
+                }
+
+
+                
             }
 
         }
@@ -183,6 +191,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             if (type == "salati")
             {
+               
                 this.ShowATI();
             }
 
@@ -416,7 +425,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string curdate = Convert.ToDateTime(DateTime.Now).ToString("dd-MMM-yyyy");
             string empid = (this.ddlEmplist.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlEmplist.SelectedValue.ToString() + "%";
             string empname = this.ddlEmplist.SelectedItem.ToString();
-            var ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETAITPURSALARY", frmdate, todate, projectcode, section, CompanyName, empid, "", "", "");
+            string chkwoutait = this.ChkAllWithwithout.Checked ? "Length" : "";
+
+            var ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETAITPURSALARY", frmdate, todate, projectcode, section, CompanyName, empid, chkwoutait, "", "");
             if (ds3.Tables[0].Rows.Count == 0)
             {
                 this.gvati.DataSource = null;
