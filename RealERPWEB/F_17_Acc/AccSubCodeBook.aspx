@@ -33,7 +33,7 @@
                 var description = result ? "Add Child" : "Add Group";
                 $('#lblchild').html(description);
             });
-            $('.chzn-select').chosen({ search_contains: true });
+            //$('.chzn-select').chosen({ search_contains: true });
         }
 
         function IsNumberWithOneDecimal(txt, evt) {
@@ -361,16 +361,11 @@
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
-
                                     <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
-                                        SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-pencil-square-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
+                                        SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
                                         <ItemStyle ForeColor="#0000C0" />
                                     </asp:CommandField>
-
-
-
-
 
                                     <asp:TemplateField HeaderText=" ">
                                         <EditItemTemplate>
