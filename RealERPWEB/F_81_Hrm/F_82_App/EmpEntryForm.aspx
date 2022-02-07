@@ -258,7 +258,7 @@
                                                 CssClass="btn btn-sm btn-warning " runat="server">Offer Letter</asp:HyperLink>
                                                 <asp:HyperLink ID="lnkAppoint" Target="_blank"  
                                            
-                                                NavigateUrl='<%# "~/LetterDefault?Type=10003&Entry=Offer Letter For General&empid="+Eval("empid") %>'
+                                                NavigateUrl='<%# "~/LetterDefault?Type=10002&Entry=appoinment Letter &empid="+Eval("empid") %>'
                                                 CssClass="btn btn-sm btn-secondary " Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Appoinment Letter</asp:HyperLink>
                                            <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
 
