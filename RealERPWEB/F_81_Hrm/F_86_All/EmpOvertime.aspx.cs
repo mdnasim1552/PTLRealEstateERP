@@ -944,7 +944,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     {
                         this.gvEmpOtherded.Columns[6].Visible = false;
                         this.gvEmpOtherded.Columns[7].Visible = false;
-                        this.gvEmpOtherded.Columns[10].Visible = false;
+                        //this.gvEmpOtherded.Columns[10].Visible = false;
                         this.gvEmpOtherded.Columns[12].Visible = true;
                         this.gvEmpOtherded.Columns[13].Visible = false;
                         this.gvEmpOtherded.Columns[14].Visible = false;
