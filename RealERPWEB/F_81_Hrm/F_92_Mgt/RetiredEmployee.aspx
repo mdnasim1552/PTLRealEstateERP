@@ -96,14 +96,14 @@
 
                         <div class="col-md-3">
                             <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkbtnAdd_Click">Add</asp:LinkButton>
-                            <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn pull-left" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
+                            <%--<asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn pull-left" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>--%>
                         </div>
                     </div>
 
                 </div>
                 <div class="card-body">
                     <asp:GridView ID="gvEmpResign" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
-                        AutoGenerateColumns="False" ShowFooter="True" Width="16px">
+                        AutoGenerateColumns="False" Width="450px">
                         <PagerSettings Visible="False" />
                         <RowStyle />
                         <Columns>
@@ -116,13 +116,35 @@
                             </asp:TemplateField>
 
 
-                            <asp:TemplateField HeaderText="Emp Id">
+                            <asp:TemplateField HeaderText="Id Card">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvEmpId" runat="server" Height="16px"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
-                                        Width="80px"></asp:Label>
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Right" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Emp Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvEmpName" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="250px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Resign Type">
+                                <ItemTemplate>
+                                     <asp:DropDownList ID="ddlgvSepType" runat="server" CssClass="chzn-select form-control" Width="180px"></asp:DropDownList>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Separation Date">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtSepDate" runat="server" BackColor="Transparent" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "sepdate")).ToString("dd-MMM-yyyy") %>' Width="150px"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtSepDate_CalendarExtender" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtSepDate" Enabled="true"></cc1:CalendarExtender>
+                                </ItemTemplate>
                             </asp:TemplateField>
 
                             <asp:TemplateField>
@@ -132,38 +154,11 @@
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
 
-
-                            <asp:TemplateField HeaderText="Emp Name">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvEmpName" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                        Width="350px"></asp:Label>
-                                </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Left" />
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Resign Type">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblgvSepType" runat="server"
-                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "septype")) %>'
-                                        Width="350px"></asp:Label>
-                                </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Left" />
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Separation Date">
-                                <ItemTemplate>
-                                    <asp:TextBox ID="txtSepDate" runat="server" BackColor="Transparent" BorderStyle="None" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "sepdate")).ToString("dd-MMM-yyyy") %>' Width="150px"></asp:TextBox>
-                                    <cc1:CalendarExtender ID="txtSepDate_CalendarExtender" runat="server"
-                                        Format="dd-MMM-yyyy" TargetControlID="txtSepDate" Enabled="true"></cc1:CalendarExtender>
-                                </ItemTemplate>
-                            </asp:TemplateField>
                         </Columns>
-                        <FooterStyle BackColor="#F5F5F5" />
                         <EditRowStyle />
                         <AlternatingRowStyle />
                         <PagerStyle CssClass="gvPagination" />
-                        <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                        <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" HorizontalAlign="Center" />
                     </asp:GridView>
                 </div>
             </div>
