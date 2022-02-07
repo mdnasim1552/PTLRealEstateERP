@@ -1219,17 +1219,7 @@ namespace RealERPWEB.F_17_Acc
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]),
                             eventtype, eventdesc, eventdesc2);
                     }
-
-
-
-
-
-
-
-
                 }
-
-
 
 
                 //////////////////////////////// JV Part /////////////////////////////////////////////
@@ -1453,7 +1443,7 @@ namespace RealERPWEB.F_17_Acc
 
             SendSmsProcess sms = new SendSmsProcess();
 
-            bool resultsms = sms.SendSMSClient("", smtext, custphone);
+            bool resultsms = sms.SendSMSClient(comcod, smtext, custphone);
             if (resultsms == true)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Message sent Successfully.";

@@ -321,7 +321,13 @@ namespace RealERPWEB.F_17_Acc
             this.ddlacccode.DataTextField = "actdesc1";
             this.ddlacccode.DataValueField = "actcode";
             this.ddlacccode.DataBind();
+
+            DataRow[] dr = dt2.Select("actcode='260100010001'");
+            if(dr.Length>0)
             this.ddlacccode.SelectedValue = "260100010001"; // req by rahin uzzal dev by nahid
+           
+            
+            
             //----Show Resource code and Specification Code------------// 
 
             DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
@@ -335,7 +341,8 @@ namespace RealERPWEB.F_17_Acc
                 this.txtserchReCode.Visible = true;
                 this.lnkRescode.Visible = true;
                 this.ddlresuorcecode.Visible = true;
-                this.GetResource();
+                //this.GetResource();
+                lnkRescode_Click(null, null);
 
             }
             else
@@ -1385,7 +1392,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            lnkRescode_Click(null,null);
+           
         }
         protected void ibtnvounu_Click(object sender, ImageClickEventArgs e)
         {

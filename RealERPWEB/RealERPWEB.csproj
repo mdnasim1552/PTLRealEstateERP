@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2962,6 +2962,7 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
@@ -4249,6 +4250,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx.designer.cs">
       <DependentUpon>EmpLoanInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx.cs">
+      <DependentUpon>EmpLoanInfoOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx.designer.cs">
+      <DependentUpon>EmpLoanInfoOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx.cs">
       <DependentUpon>EmpLoanStatus.aspx</DependentUpon>
