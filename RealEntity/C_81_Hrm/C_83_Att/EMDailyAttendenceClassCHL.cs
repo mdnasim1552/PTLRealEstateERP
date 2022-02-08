@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace RealEntity.C_81_Hrm.C_83_Att
 {
-   public class EMDailyAttendenceClassCHL
+    public class EMDailyAttendenceClassCHL
     {
-       public class DailyAttenCHLGroupWize
+        public class DailyAttenCHLGroupWize
         {
             public string grp { get; set; }
             public string company { get; set; }
@@ -94,6 +94,8 @@ namespace RealEntity.C_81_Hrm.C_83_Att
 
         public class EmpMnthAttn
         {
+            public int secsl { get; set; }
+            public int deptsl { get; set; }
             public string comcod { get; set; }
             public string idcardno { get; set; }
             public string empid { get; set; }
@@ -107,7 +109,7 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public string addday { get; set; }
             public string addtime1 { get; set; }
             public string addtime2 { get; set; }
-            public double addtime3 { get; set; }            
+            public double addtime3 { get; set; }
             public string col1 { get; set; }
             public string col1s { get; set; }
             public double col1o1 { get; set; }
@@ -247,34 +249,34 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public double dayout { get; set; }
             public double tpayable { get; set; }
             public double onduty { get; set; }
-             public EmpMnthAttn() { }
+            public EmpMnthAttn() { }
         }
 
-       [Serializable]
-       public class DailyAttenCHLDayWize
-       {
+        [Serializable]
+        public class DailyAttenCHLDayWize
+        {
 
-           public string grp { get; set; }
-           public string comcod { get; set; }
-           public string deptid { get; set; }
-           public string secid { get; set; }
-           public string desigid { get; set; }
-           public string empid { get; set; }
-           public string idcardno { get; set; }
-           public string grpdesc { get; set; }
-           public string deptdesc { get; set; }
-           public string section { get; set; }
-           public string desig { get; set; }
-           public string empname { get; set; }
-           public DateTime offintime { get; set; }
-           public DateTime offouttime { get; set; }
-           public DateTime intime { get; set; }
-           public DateTime outtime { get; set; }
-           public string late { get; set; }
-           public string status { get; set; }
-           public string eleave { get; set; }
-        
-           public DailyAttenCHLDayWize() { }
-       }
+            public string grp { get; set; }
+            public string comcod { get; set; }
+            public string deptid { get; set; }
+            public string secid { get; set; }
+            public string desigid { get; set; }
+            public string empid { get; set; }
+            public string idcardno { get; set; }
+            public string grpdesc { get; set; }
+            public string deptdesc { get; set; }
+            public string section { get; set; }
+            public string desig { get; set; }
+            public string empname { get; set; }
+            public DateTime offintime { get; set; }
+            public DateTime offouttime { get; set; }
+            public DateTime intime { get; set; }
+            public DateTime outtime { get; set; }
+            public string late { get; set; }
+            public string status { get; set; }
+            public string eleave { get; set; }
+
+            public DailyAttenCHLDayWize() { }
+        }
     }
 }

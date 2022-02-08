@@ -127,6 +127,7 @@
     <None Include="Properties\DataSources\RealEntity.C_45_GrAcc.RptGrpMis+RptGrpRecPaymentBank.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CodeBookInfo.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_81_Rec.CreateOffLt.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL+EmpMnthAttn.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+EmpLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave+YearlyLeaveRecord.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+aitpurpose.datasource" />
