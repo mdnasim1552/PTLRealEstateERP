@@ -60,6 +60,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.Label lblprintstk;
 
         /// <summary>
+        /// WraperMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WraperMain;
+
+        /// <summary>
         /// LogoBar control.
         /// </summary>
         /// <remarks>
@@ -355,6 +364,24 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuDynamic;
+
+        /// <summary>
+        /// main control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main;
+
+        /// <summary>
+        /// GroupMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl GroupMenu;
 
         /// <summary>
         /// AlertArea control.
