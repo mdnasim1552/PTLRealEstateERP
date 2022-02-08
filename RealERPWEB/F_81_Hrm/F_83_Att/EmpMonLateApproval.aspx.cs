@@ -33,6 +33,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Monthly Late  Approval Information"
                     : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly One Time Punch Approval Information"
                     : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
+                    : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
                     : "Monthly Absent Approval";
                 this.ViewSaction();
 
@@ -117,6 +118,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                case "LPAproval":
+                    this.MultiView1.ActiveViewIndex = 5;
+                    this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    this.txtfrmDate.Text = "26" + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+                    this.lblfrmDesig.Visible = false;
+                    this.ddlfrmDesig.Visible = false;
+                    this.lbltoDesig.Visible = false;
+                    this.ddlToDesig.Visible = false;
+
+
+
                     break;
 
 
@@ -311,6 +327,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MEarlyleave":
                     this.ShowMEarlyLeave();
                     break;
+
+                case "LPAproval":
+                    this.ShowLPAproval();
+                    break;
             }
 
 
@@ -331,6 +351,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     calltype = "EMPDAYADJUSTMENTMAN";
                     break;
 
+                case "3365":
+                    calltype = "EMPDAYADJUSTMENTBTI";
+                    break;
+
+                    
+
                 default:
                     calltype = "EMPDAYADJUSTMENT";
                     break;
@@ -339,6 +365,54 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
 
 
+        private void ShowLPAproval()
+        {
+            Session.Remove("tblover");
+            string comcod = this.GetCompCode();
+            //string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string compname = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
+            //string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+
+            string section = "";
+            if ((this.ddlDepartment.SelectedValue.ToString() != "000000000000"))
+            {
+                string[] sec = this.DropCheck1.Text.Trim().Split(',');
+
+                if (sec[0].Substring(0, 3) == "000")
+                    section = "";
+                else
+                    foreach (string s1 in sec)
+                        section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
+
+            }
+
+
+            string frmdate = this.txtfrmDate.Text.Trim();
+            string todate = this.txttoDate.Text.Trim();
+            string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+            string todesig = this.ddlToDesig.SelectedValue.ToString();
+
+
+
+            //string calltype = this.selectcomp(); //comcod == "3332" ? "EMPDAYADJUSTMENTMAN" : "EMPDAYADJUSTMENT";
+
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPLATEAPPROVALAFTERONEHOUR", compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
+            if (ds2 == null)
+            {
+                this.gvLPAproval.DataSource = null;
+                this.gvLPAproval.DataBind();
+                return;
+            }
+            Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
+            this.Data_Bind();
+
+        }
 
         private void ShowMonthlyLate()
         {
@@ -689,6 +763,33 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                     break;
 
+
+                case "LPAproval":
+
+                    for (int i = 0; i < this.gvLPAproval.Rows.Count; i++)
+                    {
+
+
+                        double delayday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtLatedaylp")).Text.Trim());
+                        double Aprvday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtaprdaylp")).Text.Trim());
+                        double dedday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtAdjlp")).Text.Trim());
+                        double txtlvAdj = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtlvAdjlp")).Text.Trim());
+                        string reason  =  ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtlpreason")).Text.Trim();
+
+
+                        rowindex = (this.gvLPAproval.PageSize) * (this.gvLPAproval.PageIndex) + i;
+                        //  double redelay = delayday - Aprvday;
+                        dt.Rows[rowindex]["delday"] = delayday;
+                        dt.Rows[rowindex]["aprday"] = Aprvday;
+                        dt.Rows[rowindex]["dedday"] = dedday;
+                        dt.Rows[rowindex]["leaveadj"] = txtlvAdj;
+                        dt.Rows[rowindex]["reason"] = reason;
+
+
+
+                    }
+                    break;
+
             }
 
             Session["tblover"] = dt;
@@ -734,6 +835,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.gvabsapp02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvabsapp02.DataSource = dt;
                     this.gvabsapp02.DataBind();
+                    break;
+
+                case "LPAproval":
+                    this.gvLPAproval.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvLPAproval.DataSource = dt;
+                    this.gvLPAproval.DataBind();
                     break;
 
 
@@ -794,11 +901,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string aprday = Convert.ToDouble("0" + dt.Rows[i]["aprday"]).ToString();
                 //string dedday = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvAdjDay.Items[i].FindControl("txtrptbillamt")).Text.Trim()));
                 double dedday = Convert.ToDouble("0" + dt.Rows[i]["dedday"]);
+                double leaveadj = Convert.ToDouble("0" + dt.Rows[i]["leaveadj"]);
+
 
 
                 //if (dedday > 0)
                 //{
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, "", "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), "", "", "", "", "", "", "", "", "");
 
                 if (!result)
                     return;
@@ -1499,6 +1608,75 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
 
             this.lblmsg.Text = "Updated Successfully";
+
+        }
+
+        protected void lblgvdeptandemployeeempLP_Click(object sender, EventArgs e)
+        {
+
+            
+
+        }
+
+        protected void btnUpdateDayAdjlp_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            DataTable dt = (DataTable)Session["tblover"];
+            string comcod = this.GetCompCode();
+            string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
+            bool result = false;
+            
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string empid = dt.Rows[i]["empid"].ToString();
+                string delday = Convert.ToDouble("0" + dt.Rows[i]["delday"]).ToString();
+                string aprday = Convert.ToDouble("0" + dt.Rows[i]["aprday"]).ToString();
+                //string dedday = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvAdjDay.Items[i].FindControl("txtrptbillamt")).Text.Trim()));
+                double dedday = Convert.ToDouble("0" + dt.Rows[i]["dedday"]);
+                double leaveadj = Convert.ToDouble("0" + dt.Rows[i]["leaveadj"]);
+                string reason =  dt.Rows[i]["reason"].ToString();
+
+                
+
+
+                //if (dedday > 0)
+                //{
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPEMPLPAPPROVAL", monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), reason, "", "", "", "", "", "", "", "");
+
+                if (!result)
+                    return;
+                //  }
+            }
+         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+        }
+
+        protected void lbtnCalCulationSadjLP_Click(object sender, EventArgs e)
+        {
+
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)Session["tblover"];
+            int rowindex;
+
+
+            for (int i = 0; i < this.gvLPAproval.Rows.Count; i++)
+            {
+                double delayday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtLatedaylp")).Text.Trim());
+                double Aprvday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtaprdaylp")).Text.Trim());
+                rowindex = (this.gvLPAproval.PageSize) * (this.gvLPAproval.PageIndex) + i;
+                double redelay = delayday - Aprvday;
+                dt.Rows[rowindex]["delday"] = delayday;
+                dt.Rows[rowindex]["aprday"] = Aprvday;
+                dt.Rows[rowindex]["dedday"] = Convert.ToDouble(Convert.ToDouble(redelay) / 2);
+         
+
+            }
+
+            Session["tblover"] = dt;
+            this.Data_Bind();
+
 
         }
     }
