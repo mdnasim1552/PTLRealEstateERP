@@ -313,7 +313,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 string empid = this.ddlEmpList.SelectedValue.ToString();
                 string toamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", ""))).ToString();
                 string loantype = ddlLoantype.SelectedValue.ToString();
-                string uptopaid = this.txtPaidAmt.Text.ToString();
+                string uptopaid = this.txtPaidAmt.Text.ToString()==""?"0": this.txtPaidAmt.Text.ToString();
                 bool result;
                 //Delete Loaninfo
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETELNINFO", lnno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");

@@ -355,10 +355,7 @@ namespace RealERPWEB
                 this.lblmsg1.Text = "Save Successfully";
                 this.lblmsg1.Visible = true;
 
-            }
-             
-
-
+            }            
         }
 
         private void GetSelected()

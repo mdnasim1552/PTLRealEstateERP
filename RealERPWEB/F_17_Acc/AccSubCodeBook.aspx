@@ -245,7 +245,6 @@
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
 
-
                                     <asp:CommandField DeleteText="" HeaderText="Edit" InsertText="" NewText="" HeaderStyle-Width="50px"
                                         SelectText="" ShowEditButton="True" EditText="&lt;i class=&quot;fa fa-edit&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;">
                                         <HeaderStyle Font-Bold="True" Font-Size="16px" />
