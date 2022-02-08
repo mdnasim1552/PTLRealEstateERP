@@ -281,7 +281,7 @@ namespace RealERPWEB.F_12_Inv
             //this.ddlResourcelist.Visible = false;
 
         }
-        
+
         protected void GetGetPassNo()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -642,6 +642,7 @@ namespace RealERPWEB.F_12_Inv
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
+            string message = "";
 
             this.Session_tblAprov_Update();
 
@@ -649,9 +650,8 @@ namespace RealERPWEB.F_12_Inv
             DataRow[] dr = tbl1.Select("getpqty>0");
             if (dr.Length == 0)
             {
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Input Order Qty";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                message = "Please Input Order Qty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
             }
             if (this.ddlPrevList.Items.Count == 0)
@@ -690,7 +690,8 @@ namespace RealERPWEB.F_12_Inv
                     if (getpref.Length == 0)
                     {
 
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Gete Pass No. Should Not Be Empty";
+                        message = "Gete Pass No.Should Not Be Empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                         return;
                     }
 
@@ -711,14 +712,12 @@ namespace RealERPWEB.F_12_Inv
                             ;
                         else
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Gate Pass No!!!";
-                            //this.ddlPrevReqList.Items.Clear();
+                            message = "Found Duplicate Gate Pass No!!!";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                             return;
                         }
                     }
-
                     break;
-
 
                 default:
                     break;
@@ -743,25 +742,33 @@ namespace RealERPWEB.F_12_Inv
                     if (ds.Tables[0].Rows.Count == 0) continue;
                     else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "There is no balance qty in Requisition";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        message = "There is no balance qty in Requisition";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                         return;
+
                     }
 
                 }
 
             }
-
-
             ////////
+            string mrdate = tbl1.Rows[0]["mtrdat"].ToString();
+            bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(mrdate), Convert.ToDateTime(mmGetpdat));
+            if (!dcon)
+            {
+                message = "Approved Date is equal or greater Requisition Date";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+                return;
+            }
 
             bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPB", mGetpNo, mmGetpdat, getpref, mtrnar,
                         PostedByid, Posttrmid, PostSession, PostedDate, "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                message = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
+
             }
 
 
@@ -769,17 +776,6 @@ namespace RealERPWEB.F_12_Inv
             {
 
                 string mtREQNO = dr1["mtreqno"].ToString();
-
-                bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(dr1["mtrdat"].ToString()), Convert.ToDateTime(mmGetpdat));
-                if (!dcon)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Approved Date is equal or greater Requisition Date');", true);
-                    return;
-                }
-
-
-
-
                 string mRSIRCODE = dr1["rsircode"].ToString();
                 string mSPCFCOD = dr1["spcfcod"].ToString();
                 double getpqty = Convert.ToDouble(dr1["getpqty"]);
@@ -797,8 +793,8 @@ namespace RealERPWEB.F_12_Inv
                                     mGetpNo, mtREQNO, mRSIRCODE, mSPCFCOD, getpqty.ToString(), getpamt, "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        message = purData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                         return;
                     }
 
@@ -806,17 +802,18 @@ namespace RealERPWEB.F_12_Inv
 
                 else
                 {
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Order Qty Less then or Equal Balance Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    message = "Order Qty Less then or Equal Balance Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                     return;
 
                 }
 
             }
             this.txtCurAprovDate.Enabled = false;
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -836,6 +833,7 @@ namespace RealERPWEB.F_12_Inv
             string userid = hst["usrid"].ToString();
             string Terminal = hst["compname"].ToString();
             string Sessionid = hst["session"].ToString();
+            string message = "";
 
             this.Session_tblAprov_Update();
 
@@ -843,10 +841,13 @@ namespace RealERPWEB.F_12_Inv
             DataRow[] dr = tbl1.Select("getpqty>0");
             if (dr.Length == 0)
             {
-
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Input Order Qty";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                message = "Please Input Order Qty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
+
+                //((Label)this.Master.FindControl("lblmsg")).Text = "Please Input Order Qty";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //return;
             }
             //log Report
             string mmGetpdat = this.GetStdDate(this.txtCurAprovDate.Text.Trim());
@@ -859,12 +860,22 @@ namespace RealERPWEB.F_12_Inv
             string PostSession = Sessionid;
             string PostedDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
+            string mrdate = tbl1.Rows[0]["mtrdat"].ToString();
+            bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(mrdate), Convert.ToDateTime(mmGetpdat));
+            if (!dcon)
+            {
+                message = "Approved Date is equal or greater Requisition Date";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
+
+                return;
+            }
+
             bool result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_05", "INSORUPREQGPASS", "PURREQGPB", mGetpNo, mmGetpdat, getpref, mtrnar,
                         PostedByid, Posttrmid, PostSession, PostedDate, "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                message = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
             }
 
@@ -873,13 +884,6 @@ namespace RealERPWEB.F_12_Inv
             {
 
                 string mtREQNO = dr1["mtreqno"].ToString();
-                bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(dr1["mtrdat"].ToString()), Convert.ToDateTime(mmGetpdat));
-                if (!dcon)
-                {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Approved Date is equal or greater Requisition Date');", true);
-                    return;
-                }
-
                 string mRSIRCODE = dr1["rsircode"].ToString();
                 string mSPCFCOD = dr1["spcfcod"].ToString();
                 double getpqty = Convert.ToDouble(dr1["getpqty"]);
@@ -894,24 +898,25 @@ namespace RealERPWEB.F_12_Inv
                                     mGetpNo, mtREQNO, mRSIRCODE, mSPCFCOD, getpqty.ToString(), getpamt, "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        message = purData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                         return;
                     }
                 }
 
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Gate Pass Qty Can't Large Balance Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    message = "Gate Pass Qty Less or Equal Balance Qty";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                     return;
-
                 }
 
             }
             this.txtCurAprovDate.Enabled = false;
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+            //return;
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -1005,17 +1010,19 @@ namespace RealERPWEB.F_12_Inv
             DataTable tbl1 = (DataTable)ViewState["tblgetPass"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
+            string message = "";
             string mAPROVNO = this.lblGatePassNo1.Text.Trim().Substring(0, 3) + this.txtCurAprovDate.Text.Trim().Substring(6, 4) + this.lblGatePassNo1.Text.Trim().Substring(3, 2) + this.txtGatePassNo2.Text.Trim();
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEPURPROGMAM", mAPROVNO, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+
+                message = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + message + "');", true);
                 return;
             }
 
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Deleted Successfully" + "');", true);
+
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -1028,7 +1035,6 @@ namespace RealERPWEB.F_12_Inv
         protected void ImgbtnFinGatePass_Click(object sender, EventArgs e)
         {
             this.PreviousList();
-
         }
     }
 }
