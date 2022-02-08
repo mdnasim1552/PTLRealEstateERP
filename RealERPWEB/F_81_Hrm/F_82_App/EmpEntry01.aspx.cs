@@ -321,8 +321,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             dt2 = dv3.ToTable();
 
 
-
-
             Session["UserLog"] = ds2.Tables[1];
             DataRow[] dr = dt.Select("gcod='01002'");
             dr[0]["gdesc1"] = (((DataTable)Session["tblempname"]).Select("empid='" + empid + "'"))[0]["empname1"];

@@ -116,7 +116,7 @@
 
                                                          <asp:Label ID="lgcResDesc1" runat="server"  CssClass="d-block"  Height="16px">
                                                               <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %> 
-                                                             <asp:LinkButton ID="ibtngrdEmpList"  runat="server" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
+                                                             <asp:LinkButton ID="ibtngrdEmpList"  runat="server" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
                                                                     <i class="fa fa-plus "></i>
                                                             </asp:LinkButton>
                                                          </asp:Label> 
@@ -215,9 +215,10 @@
                                                 <asp:TemplateField HeaderText="Description">
                                                     <ItemTemplate>                                                        
                                                         
+
                                                           <asp:Label ID="lgcResDesc1" runat="server"  CssClass="d-block"  Height="16px">
                                                               <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %> 
-                                                             <asp:LinkButton ID="ibtngrdEmpList"  runat="server" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
+                                                             <asp:LinkButton ID="ibtngrdEmpList"  runat="server" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
                                                                     <i class="fa fa-plus "></i>
                                                             </asp:LinkButton>
                                                          </asp:Label>
