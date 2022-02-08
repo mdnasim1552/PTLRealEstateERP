@@ -123,7 +123,8 @@
                                     <asp:Label ID="lblPage" runat="server" CssClass="btn btn-secondary btn-sm">Page Size</asp:Label>
                                 </div>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage form-control form-control-sm" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">                                    
-                                    <asp:ListItem>20</asp:ListItem>
+                                    <asp:ListItem Selected="True">10</asp:ListItem>
+                                    <asp:ListItem >20</asp:ListItem>
                                     <asp:ListItem>30</asp:ListItem>
                                     <asp:ListItem>50</asp:ListItem>
                                     <asp:ListItem>100</asp:ListItem>
@@ -132,7 +133,7 @@
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>1000</asp:ListItem>
                                     <asp:ListItem>2000</asp:ListItem>
-                                    <asp:ListItem Selected="True">3000</asp:ListItem>
+                                    <asp:ListItem >3000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>

@@ -2013,6 +2013,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102164", "F_81_Hrm/F_83_Att", "HREmpAbsCtSpecial", "", "Absent Count (Special)", "Attendance", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102171", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=LPAproval", "Monthly (L.P) Late Approval", "Attendance", "False", "False", "False", "False" });
+
 
 
             //Report
@@ -14470,6 +14472,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000012", "", "", "", true, "" });// "08. Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000013", "", "", "", true, "" });//"09. LWP Count", "F_81_Hrm/F_83_Att/HREmpLWP", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Employee Monthly Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MLateAppDay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Monthly (L.P) Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=LPAproval", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0303000015", "12. Monthly Punch Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MPunchAppDay", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Absent Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
