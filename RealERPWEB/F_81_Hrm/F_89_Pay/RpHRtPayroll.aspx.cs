@@ -658,10 +658,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //    default:
             //        exclumgt = "";
             //        break;
-
-
             //}
-
             string Calltype1 = (comcod == "3347") ? "RPT_BACSALARY" : "RPT_BACSALARYGEN"; 
             // todo for bangla print
             string language = this.chkBangla.Checked ? "Bangla" : "";
@@ -3914,19 +3911,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 bool result = false;
 
                 string mantype = "";
-
                 switch (comcod)
                 {
-
                     case "3338":
                         mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                         break;
-
                     default:
                         mantype = "86%";
                         break;
-
-
                 }
 
 
