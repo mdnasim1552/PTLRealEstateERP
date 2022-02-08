@@ -571,29 +571,19 @@ namespace RealERPWEB
                     Url1 = "UserProfile";
 
                 }
-              
+                else if (comcod.Substring(0, 1) == "8")
+                {
+                    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
+                }
+
                 else
                 {
                     if (masterurl != "")
-                    {
-                        //if (comcod == "1102")
-                        //{
-                        //    Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
-                        //}
-                        //else
-                        //{
-                        
+                    {                        
                         Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
-
-                        //}
-                        // Url1 = "~/Index?pid=";
-
-
                     }
                     else
                     {
-
-
                         if (comcod == "3333")
                         {
                             Url1 = "DeafultMenu?Type=3333";
@@ -615,28 +605,9 @@ namespace RealERPWEB
                         {
                             Url1 = "HrWinMenu";
                         }
-
-                        //else if (comcod == "1102" || comcod == "3316" || comcod == "3315" || comcod == "3317")
-                        //{
-                        //    Url1 = "Dashboard";
-                        //}
-                        //else if (comcod.Substring(0, 1) == "1")
-                        //{
-                        //    Url1 = "MyDashboard?Type=7000";
-                        //}
-                        else if (comcod.Substring(0, 1) == "8")
-                        {
-                            Url1 = "DeafultMenu?Type=9000";
-                        }
-                        //else if (comcod.Substring(0, 1) == "1")
-                        //{
-                        //    Url1 = "DashboardAll?Type=7000";
-                        //}
                         else
                         {
                             Url1 = "MyDashboard?Type=";
-
-
                             string UComcode = ASTUtility.Left(Comcode, 1);
                             if (UComcode == "3")
                             {
@@ -651,15 +622,9 @@ namespace RealERPWEB
                                 Url1 += "5000";
 
                             }
-
-
                         }
 
                     }
-
-
-
-
                 }
 
                 Response.Redirect(Url1, false);
