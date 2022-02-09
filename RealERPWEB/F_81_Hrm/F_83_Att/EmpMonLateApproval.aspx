@@ -584,9 +584,40 @@
                                         Width="80px"></asp:TextBox>
                                 </ItemTemplate>
 
+
+
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
+
+                              <asp:TemplateField HeaderText="Leave adj">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtabslvadj" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leaveadj")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="80px"></asp:TextBox>
+                                </ItemTemplate>
+
+
+
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="Reason">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtabsreason" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Style="text-align: left"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reason")) %>'
+                                        Width="120px"></asp:TextBox>
+                                </ItemTemplate>
+
+
+
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />
