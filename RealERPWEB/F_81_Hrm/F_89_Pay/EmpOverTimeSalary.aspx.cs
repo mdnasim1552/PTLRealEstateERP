@@ -83,11 +83,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "OvertimeSalary02":
                     this.MultiView1.ActiveViewIndex = 2;
                     break;
-
-
-
-
-
             }
 
 
@@ -237,8 +232,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+
+         
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
+
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_OVRTIMESALARY", "RPTOVRTIMESALARY", frmdate, todate, CompanyName, projectcode, section, ToDesignation, FrmDesignation, "", "");
 
             if (ds3 == null)
@@ -281,8 +293,22 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_OVRTIMESALARY", "RPTOVRTIMESALARY02", frmdate, todate, CompanyName, projectcode, section, ToDesignation, FrmDesignation, "", "");
 
             if (ds3 == null)
@@ -324,11 +350,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
 
             }
-
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
+          
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTMONTHLYLATEATTN02", CompanyName, Department, section, ToDesignation, FrmDesignation, frmdate, todate, "", "");
             if (ds1 == null)
             {

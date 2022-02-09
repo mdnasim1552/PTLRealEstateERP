@@ -154,6 +154,8 @@
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem>600</asp:ListItem>
+                                    <asp:ListItem>1000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-3 pading5px asitCol3">
@@ -1531,8 +1533,8 @@
                                             <asp:Label ID="lblSection" runat="server" Font-Bold="True"
                                                 Text="Section" Width="80px"></asp:Label>
 
-                                            <%--<asp:HyperLink ID="hlbtntOtherEarnExcel" runat="server"
-                                                    CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i></asp:HyperLink>--%>
+                                            <asp:HyperLink ID="hlbtntOtherEarnExcel" runat="server"
+                                                    CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel-o "></i></asp:HyperLink>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvSectionearn" runat="server" Font-Bold="true"

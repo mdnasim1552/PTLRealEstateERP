@@ -120,7 +120,7 @@
                                     </div>
 
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="pnlDesig" runat="server" visible="false">
                                     <div class="col-md-3 pading5px asitCol2">
                                         <asp:Label ID="lblfrmDesig" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
                                         <asp:DropDownList ID="ddlfrmDesig" runat="server" Width="100" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control inputTxt" TabIndex="6">

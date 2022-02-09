@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="144x144" href="assets/apple-touch-icon.png">
-    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet">
+ 
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <asp:PlaceHolder runat="server">
         <%: Styles.Render("~/Content/cssnew") %>
@@ -29,18 +29,16 @@
         <%: Scripts.Render("~/bundles/tablescroll") %>
         <%: Scripts.Render("~/bundles/chosen") %>
         <%: Scripts.Render("~/bundles/keynavigation") %>
-        <%--        <%: Scripts.Render("~/bundles/richtext") %>--%>
+        <%--<%: Scripts.Render("~/bundles/richtext") %>--%>
         <%: Scripts.Render("~/bundles/multiselect") %>
         <%: Scripts.Render("~/bundles/User") %>
         <%: Scripts.Render("~/bundles/Counter") %>
         <%: Scripts.Render("~/bundles/highchart") %>
         
     </asp:PlaceHolder>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-
-        <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">     
     </asp:ContentPlaceHolder>
+    
     <%--After Pulished removebelow comments--%>
     <%-- 
     <link rel="stylesheet"  href="Content/Theme/toastr.min.css" />
@@ -221,7 +219,7 @@
         }
     </style>
 
-
+ 
 
 </head>
 <body>
@@ -702,12 +700,15 @@
         <!-- /.app -->
     </form>
 
-
     <script>
 
         $(document).ready(function () {
 
-
+            $('.chzn-select').chosen({ search_contains: true });
+            
+            $('[id*=DropCheck1]').multiselect({
+                includeSelectAllOption: true
+            });
 
         });
 
