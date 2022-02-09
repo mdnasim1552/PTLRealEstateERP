@@ -49,12 +49,11 @@
                         </fieldset>
 
 
-                        <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
+                        <asp:GridView ID="grvacc" runat="server" 
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" Width="1000px" ShowFooter="True">
-                            <PagerSettings NextPageText="Next" PreviousPageText="Previous"
-                                Visible="False" />
+                            OnRowUpdating="grvacc_RowUpdating" Width="1000px"   ShowFooter="True">
+                            
 
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -111,14 +110,6 @@
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "hrgdesc")) %>'
                                             Width="200px"></asp:TextBox>
                                     </EditItemTemplate>
-                                    <FooterTemplate>
-                                        <asp:DropDownList ID="ddlPageNo" runat="server" AutoPostBack="True"
-                                            Font-Bold="True" Font-Size="14px"
-                                            OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged"
-                                            Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid"
-                                            Width="150px">
-                                        </asp:DropDownList>
-                                    </FooterTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lbldesc" runat="server" Font-Size="12px"
                                             Style="font-size: 12px"

@@ -15,7 +15,11 @@
         function pageLoaded() {
 
             $('.chzn-select').chosen({ search_contains: true });
-
+            $(".chosen-select").chosen({
+                search_contains: true,
+                no_results_text: "Sorry, no match!",
+                allow_single_deselect: true
+            });
 
         }
 
@@ -128,7 +132,7 @@
 
                 <div class="card-body">
 
-                <div class="row">
+                <div class="row table table-responsive">
                     <asp:GridView ID="gvloan" runat="server" AutoGenerateColumns="False"
                         ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                         <RowStyle />
@@ -190,6 +194,8 @@
                     </asp:GridView>
                 </div>
                     </div>
+
+                </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

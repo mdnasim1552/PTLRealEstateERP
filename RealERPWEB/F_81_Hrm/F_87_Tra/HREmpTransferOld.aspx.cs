@@ -18,7 +18,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace RealERPWEB.F_81_Hrm.F_87_Tra
 {
-    public partial class HREmpTransfer1 : System.Web.UI.Page
+    public partial class HREmpTransfer : System.Web.UI.Page
     {
         ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -32,8 +32,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE TRANSFER INFORMATION";
                 this.Get_Trnsno();
                 this.tableintosession();
-                this.GetCompany();
-                this.GetToCompany();
 
             }
 
@@ -119,7 +117,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txtsrchSection = "%";
+            string txtsrchSection = "%" + this.txtSrchSection.Text.Trim();
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", Company, txtsrchSection, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -134,7 +132,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlToCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlToCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txttoSection = "%%";
+            string txttoSection = "%" + this.txtSrchToSection.Text.Trim() + "%";
 
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", Company, txttoSection, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -281,10 +279,10 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         {
             Session.Remove("tblemp");
             string comcod = this.GetCompCode();
-            string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" :
+            string company = (this.txtsrchEmp.Text.Trim().Length > 0) ? "%" : (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" :
                     this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-            string pactcode = this.ddlprjlistfrom.SelectedValue.ToString() + "%";
-            string emplist = "%";
+            string pactcode = (this.txtsrchEmp.Text.Trim().Length > 0) ? "%" : this.ddlprjlistfrom.SelectedValue.ToString() + "%";
+            string emplist = this.txtsrchEmp.Text.Trim() + "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLIST", pactcode, emplist, company, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -440,7 +438,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string txtCompany = "%%";
+            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
             DataSet ds5 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -465,6 +463,9 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.ddlToCompany.DataSource = dt;
             this.ddlToCompany.DataBind();
             this.ddlToCompany_SelectedIndexChanged(null, null);
+
+
+
         }
 
         protected void imgbtnCompany_Click(object sender, EventArgs e)
@@ -473,53 +474,13 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetDeptment();
+            this.GetSection();
         }
 
         protected void ddlToCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetToDeptment();
+            this.GetToSection();
         }
-
-        private void GetToDeptment()
-        {
-            string comcod = this.GetCompCode();
-            if (this.ddlCompany.Items.Count == 0)
-                return;
-
-
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-
-            string txtSProject = "%%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
-            this.ddlTodept.DataTextField = "actdesc";
-            this.ddlTodept.DataValueField = "actcode";
-            this.ddlTodept.DataSource = ds1.Tables[0];
-            this.ddlTodept.DataBind();
-
-            ddlTodept_SelectedIndexChanged(null,null);
-        }
-
-        private void GetDeptment()
-        {
-            string comcod = this.GetCompCode();
-            if (this.ddlCompany.Items.Count == 0)
-                return;
-
-
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-
-            string txtSProject = "%%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
-            this.ddlDepartment.DataTextField = "actdesc";
-            this.ddlDepartment.DataValueField = "actcode";
-            this.ddlDepartment.DataSource = ds1.Tables[0];
-            this.ddlDepartment.DataBind();
-            this.ddlDepartment_SelectedIndexChanged(null, null);
-        }
-
         protected void ddlEmpList_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblemp"];
@@ -535,14 +496,5 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
 
         }
 
-        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetSection();
-        }
-
-        protected void ddlTodept_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetToSection();
-        }
     }
 }

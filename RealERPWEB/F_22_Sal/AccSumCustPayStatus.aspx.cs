@@ -561,6 +561,13 @@ namespace RealERPWEB.F_22_Sal
                 double balamtx = Schamtx - rcvamtx;
                 ((Label)this.gvCustLedger2.FooterRow.FindControl("lblFBalTamt2")).Text = balamtx.ToString("#,##0;(#,##0); ");
 
+                double ttschm= Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", ""))) + Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(schamt)", "")) ? 0.00 : dt2.Compute("Sum(schamt)", "")));
+                double ttlrecv = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ? 0.00 : dt.Compute("Sum(paidamt)", ""))) + Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(paidamt)", "")) ? 0.00 : dt2.Compute("Sum(paidamt)", "")));
+
+                this.TotalbtnAppCost.InnerText = (ttschm).ToString("#,##0;(#,##0); ");
+                this.TotalbtnAppRecived.InnerText = (ttlrecv).ToString("#,##0;(#,##0); ");
+                this.TotalbtnAppBalance.InnerText = (ttschm - ttlrecv).ToString("#,##0;(#,##0); ");
+
             }
 
 

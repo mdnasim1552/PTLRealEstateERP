@@ -588,6 +588,9 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double genloan { get; set; }
             public double transded { get; set; }
 
+            public int secsl { get; set; }
+            public int deptsl { get; set; }
+
             public RptSalarySheet ()
             {
 
