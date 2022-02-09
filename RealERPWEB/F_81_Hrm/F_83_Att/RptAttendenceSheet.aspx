@@ -1006,11 +1006,11 @@
                                         <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                                     </asp:GridView>
 
-                                    <fieldset class="scheduler-border fieldset_A">
+                                    <fieldset class="scheduler-border fieldset_A" id="StatusReport" runat="server" visible="false">
                                         <div class="form-horizontal">
                                             <div class="form-group">
                                                 <div class=" row col-md-11">
-                                                    <span style="font-size: 14px; color: blue">Present=P,  Absent =A,  Late=LP,  Leave=L,  Weekend=W</span>
+                                                    <span style="font-size: 14px; color: blue">Present=P,  Absent =A,  Late=L,  Leave=CL,SL,EL,  Weekend=W</span>
                                                 </div>
                                             </div>
                                         </div>

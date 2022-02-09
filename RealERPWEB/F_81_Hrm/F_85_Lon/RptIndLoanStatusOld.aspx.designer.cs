@@ -11,35 +11,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 {
 
 
-    public partial class RptIndLoanStatus1
+    public partial class RptIndLoanStatus
     {
 
         /// <summary>
-        /// UpdatePanel1 control.
+        /// lblfrmdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
-
-        /// <summary>
-        /// UpdateProgress2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
-
-        /// <summary>
-        /// lbldate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbldate;
+        protected global::System.Web.UI.WebControls.Label lblfrmdate;
 
         /// <summary>
         /// txtDate control.
@@ -60,13 +42,31 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::AjaxControlToolkit.CalendarExtender txtDate_CalendarExtender;
 
         /// <summary>
-        /// Label5 control.
+        /// lblResList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label lblResList;
+
+        /// <summary>
+        /// txtsrchEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtsrchEmp;
+
+        /// <summary>
+        /// ibtnEmpList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ibtnEmpList;
 
         /// <summary>
         /// ddlEmpList control.
@@ -78,24 +78,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpList;
 
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// ddlLoantype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLoantype;
-
-        /// <summary>
         /// lbtnOk control.
         /// </summary>
         /// <remarks>
@@ -103,24 +85,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
-
-        /// <summary>
-        /// lblPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage;
-
-        /// <summary>
-        /// ddlpagesize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
 
         /// <summary>
         /// gvEmpLoanStatus control.
