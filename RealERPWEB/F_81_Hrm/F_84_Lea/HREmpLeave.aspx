@@ -6,7 +6,7 @@
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
 
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
@@ -74,7 +74,7 @@
                 <div class="card-header">
                     <div class="row">
 
-                        <div class="col-md-2" id="divLeaveApp" runat="server">
+                        <div class="col-2" id="divLeaveApp" runat="server">
                             <div class="input-group input-group-alt ">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Yearly Leave</button>
@@ -82,29 +82,27 @@
                                 <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="input-group input-group-alt ">
-                                <div class="input-group-prepend">
-                                    <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="btn btn-secondary ml-1" OnClick="imgbtnCompany_Click">
+
+
+
+                        <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="col-1 col-form-label" OnClick="imgbtnCompany_Click">
                                                   Company</asp:LinkButton>
 
-                                </div>
-                                <asp:DropDownList ID="ddlCompany" runat="server" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control" TabIndex="2">
-                                </asp:DropDownList>
-                            </div>
+                        <div class="col-3">
+                            <asp:DropDownList ID="ddlCompany" runat="server" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control" TabIndex="2">
+                            </asp:DropDownList>
                         </div>
-
-                        <div class="col-md-3">
-                            <div class="input-group input-group-alt ">
-                                <div class="input-group-prepend">
-                                    <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="btn btn-secondary ml-1" OnClick="imgbtnProSrch_Click">
+                        <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="col-1 col-form-label" OnClick="imgbtnProSrch_Click">
                                      Section Name</asp:LinkButton>
-                                </div>
-                                <asp:DropDownList ID="ddlProjectName" runat="server" Width="233" CssClass="form-control" TabIndex="6">
-                                </asp:DropDownList>
-                            </div>
+
+
+                        <div class="col-3">
+
+                            <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                            </asp:DropDownList>
+
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-2">
                             <div class="input-group input-group-alt ">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" id="lblEmpIdSearch" runat="server" type="button">Emp. Code</button>
@@ -117,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-2" id="divPage" runat="server">
+                        <div class="col-2" id="divPage" runat="server">
                             <div class="input-group input-group-alt ">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Page Size</button>
@@ -137,7 +135,7 @@
 
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-1">
 
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
 
@@ -151,12 +149,9 @@
                 <div class="card-body">
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="leaveRule" runat="server">
-
-
-
                             <asp:Panel ID="pnlleave" runat="server" BackColor="#F8F8F8" Visible="False">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Earn Leave</button>
@@ -166,7 +161,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Causual Leave</button>
@@ -176,7 +171,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Sick Leave</button>
@@ -186,7 +181,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Maternity Leave</button>
@@ -196,7 +191,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Without Pay Leave </button>
@@ -206,7 +201,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="co--2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Adjustment Leave</button>
@@ -217,7 +212,7 @@
                                     </div>
                                 </div>
                                 <div class="row mt-1">
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Paternity Leave</button>
@@ -226,7 +221,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Leave On Probation</button>
@@ -235,7 +230,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <div class="input-group input-group-alt ">
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-secondary ml-1" type="button">Leave On Separation</button>
@@ -244,7 +239,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-2">
                                         <asp:LinkButton ID="lnkbtnGenLeave" runat="server" CssClass="btn btn-primary primaryBtn"
                                             OnClick="lnkbtnGenLeave_Click" TabIndex="14">Generate</asp:LinkButton>
                                     </div>
@@ -259,9 +254,7 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row">
-
                                 <div class="table-responsive">
                                     <asp:GridView ID="gvLeaveRule" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                                         OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" Width="834px" CssClass="table-striped table-hover table-bordered grvContentarea"
@@ -441,150 +434,125 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                                 </div>
-
-
                             </div>
-
-
                         </asp:View>
 
                         <asp:View ID="LeaveApp" runat="server">
 
-                            <asp:Panel ID="PnlEmp" runat="server" Visible="False">
-                                <div class="row">
 
-                                    <asp:RadioButtonList ID="rblstapptype" runat="server" CssClass="rbtnList1 chkBoxControl" RepeatColumns="6" RepeatDirection="Horizontal"
-                                        Width="220px" TabIndex="16" Visible="False">
-                                        <asp:ListItem>Type 1</asp:ListItem>
-                                        <asp:ListItem>Type 2</asp:ListItem>
-                                        <asp:ListItem>Type 3</asp:ListItem>
-                                    </asp:RadioButtonList>
-
-                                    <div class="col-md-2">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <asp:LinkButton ID="imgbtnlAppEmpSeaarch" runat="server" CssClass="btn btn-secondary"
-                                                    OnClick="imgbtnlAppEmpSeaarch_Click">Emp.  Name</asp:LinkButton>
-                                            </div>
-                                            <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
-                                                CssClass=" chzn-select form-control" TabIndex="2" AutoPostBack="true">
-                                            </asp:DropDownList>
+                            <div class="row">
+                                <div class="col-8">
+                                    <asp:Panel ID="PnlEmp" runat="server" Visible="False">
+                                        <div class="row">
+                                            <asp:RadioButtonList ID="rblstapptype" runat="server" CssClass="rbtnList1 chkBoxControl" RepeatColumns="6" RepeatDirection="Horizontal"
+                                                Width="220px" TabIndex="16" Visible="False">
+                                                <asp:ListItem>Type 1</asp:ListItem>
+                                                <asp:ListItem>Type 2</asp:ListItem>
+                                                <asp:ListItem>Type 3</asp:ListItem>
+                                            </asp:RadioButtonList>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Company</button>
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-2 col-form-label">Emp.  Name</label>
+                                            <div class="col-6">
+                                                <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
+                                                    CssClass=" chzn-select form-control" TabIndex="2" AutoPostBack="true">
+                                                </asp:DropDownList>
                                             </div>
-                                            <asp:Label ID="lblComPany" runat="server" CssClass="form-control"></asp:Label>
+                                            <div class="col-3">
+                                            </div>
 
                                         </div>
-                                    </div>
 
-                                    <div class="col-md-2">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Section</button>
+                                    </asp:Panel>
+                                    <asp:Panel ID="Pnlapply" runat="server" Visible="False">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-2 col-form-label">Apply Date</label>
+                                            <div class="col-2">
+                                                <asp:TextBox ID="txtaplydate" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <cc1:CalendarExtender ID="txtaplydate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"
+                                                    TargetControlID="txtaplydate" TodaysDateFormat=""></cc1:CalendarExtender>
                                             </div>
-                                            <asp:Label ID="lblSection" runat="server" CssClass="form-control"></asp:Label>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Designation</button>
-                                            </div>
-                                            <asp:Label ID="lblDesignation" runat="server" CssClass="form-control"></asp:Label>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-3">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Joining Date</button>
-                                            </div>
-                                            <asp:Label ID="lblJoiningDate" runat="server" CssClass="form-control"></asp:Label>
-                                            <asp:Label ID="lbltrnleaveid" Visible="false" runat="server" CssClass="form-control"></asp:Label>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </asp:Panel>
-
-
-                            <asp:Panel ID="PnlPreLeave" runat="server" Visible="False">
-
-                                <div class="row mt-1">
-                                    <div class="col-md-4">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Pre. Leave</button>
-                                            </div>
-                                            <asp:DropDownList ID="ddlPreLeave" runat="server" CssClass="form-control">
-                                            </asp:DropDownList>
-                                            <div class="input-group-prepend">
-
-                                                <asp:LinkButton ID="lnkbtnPreLeave" runat="server" CssClass="btn btn-primary primaryBtn"
-                                                    OnClick="lnkbtnPreLeave_Click" TabIndex="21">Show</asp:LinkButton>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </asp:Panel>
-
-
-
-
-
-                            <asp:Panel ID="Pnlapply" runat="server" Visible="False">
-                                <div class="row mt-2">
-                                    <div class="col-md-4">
-                                        <div class="input-group input-group-alt ">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Apply Date</button>
-                                            </div>
-                                            <asp:TextBox ID="txtaplydate" runat="server" CssClass="form-control"></asp:TextBox>
-                                            <cc1:CalendarExtender ID="txtaplydate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"
-                                                TargetControlID="txtaplydate" TodaysDateFormat=""></cc1:CalendarExtender>
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-secondary ml-1" type="button">Appr.Date</button>
-
+                                            <label for="staticEmail" class="col-2 col-form-label">Appr.Date</label>
+                                            <div class="col-2">
                                                 <asp:TextBox ID="txtApprdate" runat="server" CssClass="form-control"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="txtApprdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy"
                                                     TargetControlID="txtApprdate" TodaysDateFormat=""></cc1:CalendarExtender>
                                             </div>
+                                            <div class="col-4">
+                                                <asp:LinkButton ID="lnkbtnRef" runat="server" OnClick="lnkbtnRef_Click" CssClass="btn btn-secondary primaryBtn">Refresh</asp:LinkButton>
+                                                <asp:CheckBox ID="chkPreLeave" runat="server" AutoPostBack="True" CssClass="chkBoxControl" OnCheckedChanged="chkPreLeave_CheckedChanged"
+                                                    Text="Previous Leave" TabIndex="24" />
+                                            </div>
                                         </div>
 
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:LinkButton ID="lnkbtnRef" runat="server" OnClick="lnkbtnRef_Click" CssClass="btn btn-info primaryBtn">Refresh</asp:LinkButton>
-                                        <asp:CheckBox ID="chkPreLeave" runat="server" AutoPostBack="True" CssClass="chkBoxControl" OnCheckedChanged="chkPreLeave_CheckedChanged"
-                                            Text="  Previous Leave" TabIndex="24" />
-                                    </div>
+                                    </asp:Panel>
+                                    <asp:Panel ID="PnlPreLeave" runat="server" Visible="False">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-2 col-form-label">Pre. Leave</label>
+                                            <div class="col-6">
+                                                <asp:DropDownList ID="ddlPreLeave" runat="server" CssClass="chzn-select form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                            <div class="col-3">
+                                                <asp:LinkButton ID="lnkbtnPreLeave" runat="server" CssClass="btn btn-primary primaryBtn"
+                                                    OnClick="lnkbtnPreLeave_Click" TabIndex="21">Show</asp:LinkButton>
+                                            </div>
+
+                                        </div>
+
+
+                                    </asp:Panel>
 
                                 </div>
-                            </asp:Panel>
+                                <div class="col-4" id="divEmpDetails" visible="false" runat="server">
+                                    <div class="form-group row mb-0">
+                                        <label for="staticEmail" class="col-3 col-form-label p-0 font-weight-bold">Company</label>
+                                        <asp:Label ID="lblComPany" runat="server" CssClass="col-9 p-0 col-form-label"></asp:Label>
+
+
+                                    </div>
+
+                                    <div class="form-group row  mb-0">
+                                        <label for="staticEmail" class="col-3 col-form-label p-0 font-weight-bold">Section</label>
+                                        <asp:Label ID="lblSection" runat="server" CssClass="col-9 p-0 col-form-label"></asp:Label>
+
+
+                                    </div>
+
+                                    <div class="form-group row  mb-0">
+                                        <label for="staticEmail" class="col-3 col-form-label p-0 font-weight-bold">Designation</label>
+                                        <asp:Label ID="lblDesignation" runat="server" CssClass="col-9 p-0 col-form-label "></asp:Label>
+
+                                    </div>
+
+                                    <div class="form-group row  mb-0">
+                                        <label for="staticEmail" class="col-3 col-form-label p-0 font-weight-bold">Joining Date</label>
+                                        <asp:Label ID="lblJoiningDate" runat="server" CssClass="col-9 p-0 col-form-label "></asp:Label>
+                                        <asp:Label ID="lbltrnleaveid" Visible="false" runat="server" CssClass="form-control"></asp:Label>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                            </div>
+
                             <div class="row">
-                                <div class="col-md-5">
+                                <div class="col-4">
                                     <header class="card-header mb-1 mt-1">
                                         <asp:Label ID="lblleaveApp" runat="server">Leave Application</asp:Label>
                                     </header>
 
 
-                                    <asp:GridView ID="gvLeaveApp" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        Width="600px">
+                                    <asp:GridView ID="gvLeaveApp" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo0" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lnkbtnTotalLeave" runat="server" CssClass="btn btn-xs" OnClick="lnkbtnTotalLeave_Click">Total</asp:LinkButton>
@@ -605,10 +573,10 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Applied For">
+                                            <asp:TemplateField HeaderText="Applied <br> For">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvlapplied" runat="server" BorderStyle="None" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lapplied")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="80px" BackColor="Transparent" Font-Size="12px"
+                                                        Width="50px" BackColor="Transparent" Font-Size="12px"
                                                         Style="text-align: right"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
@@ -647,20 +615,19 @@
                                         <HeaderStyle CssClass="grvHeader" />
                                     </asp:GridView>
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-8">
                                     <header class="card-header mb-1 mt-1">
                                         <asp:Label ID="lblleaveStatus" runat="server">Leave Status</asp:Label>
                                     </header>
 
 
-                                    <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        Width="925px">
+                                    <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px" Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -672,10 +639,10 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Opening Bal.">
+                                            <asp:TemplateField HeaderText="Opening <br> Bal.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvlentitled0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "entitle")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="80px"></asp:Label>
+                                                        Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="right" />
@@ -688,7 +655,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Leave This Year">
+                                            <asp:TemplateField HeaderText="Leave <br> This Year">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="60px"></asp:Label>
@@ -698,7 +665,7 @@
                                             </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Leave Adjusted">
+                                            <asp:TemplateField HeaderText="Leave <br> Adjusted">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvlvadjusted" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adjfleave")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="60px"></asp:Label>
@@ -709,7 +676,7 @@
 
 
 
-                                            <asp:TemplateField HeaderText="Present Bal.">
+                                            <asp:TemplateField HeaderText="Present <br> Bal.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="70px"></asp:Label>
@@ -728,20 +695,20 @@
                                             <asp:TemplateField HeaderText="Approved">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "appday")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="80px"></asp:Label>
+                                                        Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Closing Bal.">
+                                            <asp:TemplateField HeaderText="Closing <br> Bal.">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balleave")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="70px"></asp:Label>
+                                                        Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Last Leave Std. Date">
+                                            <asp:TemplateField HeaderText="Last Leave <br> Std. Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvenjoydt10" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt1")).ToString("dd-MMM-yyyy") %>'
                                                         Width="80px" Visible='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt1")).ToString("dd-MMM-yyyy")!="01-Jan-1900" %>'></asp:Label>
@@ -749,7 +716,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Last Leave End Date">
+                                            <asp:TemplateField HeaderText="Last Leave <br> End Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvleavedt20" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt2")).ToString("dd-MMM-yyyy ") %>'
                                                         Width="80px" Visible='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt2")).ToString("dd-MMM-yyyy")!="01-Jan-1900" %>'></asp:Label>
@@ -757,10 +724,10 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Last Leave Day's">
+                                            <asp:TemplateField HeaderText="Last Leave <br> Day's">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvenjoyday0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lenjoyday")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                        Width="80px"></asp:Label>
+                                                        Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="right" />
@@ -774,71 +741,76 @@
                                     </asp:GridView>
                                 </div>
                             </div>
+                            <asp:Panel ID="PnlRmrks" runat="server" Visible="False">
+
+                                <div class="row">
+
+                                    <div class="col-4">
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-4 col-form-label">Reason(s)</label>
+                                            <div class="col-8">
+                                                <asp:TextBox ID="txtLeavLreasons" runat="server" BorderWidth="1px"
+                                                    TextMode="MultiLine" Rows="3" CssClass="form-control"
+                                                    TabIndex="25"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-4 col-form-label">Address of enjoing time</label>
+                                            <div class="col-8">
+                                                <asp:TextBox ID="txtaddofenjoytime" runat="server" BorderWidth="1px"
+                                                    TextMode="MultiLine" Rows="3" CssClass="form-control"
+                                                    TabIndex="25"></asp:TextBox>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-4">
+                                         <div class="form-group row">
+                                            <label for="staticEmail" class="col-4 col-form-label">Remarks</label>
+                                            <div class="col-8">
+                                                <asp:TextBox ID="txtLeavRemasrks" runat="server" BorderWidth="1px"
+                                                    TextMode="MultiLine" Rows="3" CssClass="form-control"
+                                                    TabIndex="25"></asp:TextBox>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-4">
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-4 col-form-label">While on Leave, Duties will Performed by</label>
+                                            <div class="col-8">
+                                                <asp:TextBox ID="txtdutiesnameandDesig" runat="server" BorderWidth="1px"
+                                                    TextMode="MultiLine" Rows="3" CssClass="form-control"
+                                                    TabIndex="25"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                     <div class="col-4">
+
+                                        <div class="form-group row">
+                                            <label for="staticEmail" class="col-4 col-form-label">Reason</label>
+                                            <div class="col-8">
+                                                <asp:TextBox ID="txtLeavRemarks" runat="server" BorderWidth="1px"
+                                                    TextMode="MultiLine" Rows="3" CssClass="form-control"
+                                                    TabIndex="25"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                     
+
+                                </div>
+                            </asp:Panel>
 
                             <div class="row">
-                                <asp:Panel ID="PnlRmrks" runat="server" Visible="False">
- 
-                                    <table style="width: 100%;">
-                                        <tr>
-                                            <td class="style31"></td>
-                                            <td class="style37">
-                                                <asp:Label ID="Label20" runat="server" Font-Bold="True" Font-Size="12px" Style="text-align: left"
-                                                    Text="Reason(s) :" Width="100px" ForeColor="#000"></asp:Label>
-                                            </td>
-                                            <td class="style66">
-                                                <asp:TextBox ID="txtLeavLreasons" runat="server" BorderWidth="1px"
-                                                    Height="37px" TextMode="MultiLine"
-                                                    Width="220px" TabIndex="25"></asp:TextBox>
-                                            </td>
-                                            <td class="style45">
-                                                <asp:Label ID="Label41" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Style="text-align: left" Text="Address of enjoing time:"
-                                                    Width="140px"></asp:Label>
-                                            </td>
-                                            <td class="style68">
-                                                <asp:TextBox ID="txtaddofenjoytime" runat="server" BorderWidth="1px"
-                                                    Height="37px" MaxLength="6" TabIndex="26"
-                                                    TextMode="MultiLine" Width="220px"></asp:TextBox>
-                                            </td>
-                                            <td class="style49"></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="style69"></td>
-                                            <td class="style70">
-                                                <asp:Label ID="Label42" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Style="text-align: left" Text="Remarks :" Width="100px"></asp:Label>
-                                            </td>
-                                            <td class="style71">
-                                                <asp:TextBox ID="txtLeavRemarks" runat="server" BorderWidth="1px" Height="37px"
-                                                    TabIndex="27"
-                                                    TextMode="MultiLine" Width="220px"></asp:TextBox>
-                                            </td>
-                                            <td class="style72">
-                                                <asp:Label ID="Label43" runat="server" Font-Bold="True" Font-Size="12px"
-                                                    ForeColor="#000" Height="38px" Style="text-align: left"
-                                                    Text="While on Leave, Duties will Performed by :" Width="200px"></asp:Label>
-                                            </td>
-                                            <td class="style73">
-                                                <asp:TextBox ID="txtdutiesnameandDesig" runat="server" BorderWidth="1px"
-                                                    Height="37px" TabIndex="27"
-                                                    TextMode="MultiLine" Width="220px"></asp:TextBox>
-                                            </td>
-                                            <td class="style74"></td>
-                                            <td class="style75"></td>
-                                            <td class="style75"></td>
-                                            <td class="style75"></td>
-                                            <td class="style75"></td>
-                                        </tr>
-                                    </table>
-                                </asp:Panel>
                                 <asp:Label ID="lblleaveInformation" runat="server" Font-Bold="True"
                                     Font-Size="14px" ForeColor="#000" Text="Leave Information" Visible="False"></asp:Label>
-                            </div>
-                            <div class="row">
                                 <asp:GridView ID="gvleaveInfo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" Width="420px" OnRowDataBound="gvleaveInfo_RowDataBound"
                                     OnRowDeleting="gvleaveInfo_RowDeleting">

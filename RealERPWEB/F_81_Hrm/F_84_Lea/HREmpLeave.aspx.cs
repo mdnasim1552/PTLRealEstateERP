@@ -213,6 +213,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.PnlEmp.Visible = true;
                 this.Pnlapply.Visible = true;
                 this.PnlRmrks.Visible = true;
+                this.divEmpDetails.Visible = true;
                 this.lbtnOk.Text = "New";
 
                 this.txtApprdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -227,6 +228,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.ddlCompany.Enabled = true;
                 this.ddlProjectName.Enabled = true;
                 this.PnlEmp.Visible = false;
+                this.divEmpDetails.Visible = false;
+
                 this.Pnlapply.Visible = false;
                 this.PnlRmrks.Visible = false;
                 this.lblleaveApp.Visible = false;
