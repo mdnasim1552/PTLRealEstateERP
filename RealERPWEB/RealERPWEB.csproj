@@ -2967,6 +2967,7 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatusOld.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodAllow.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodingRate.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpOvertime.aspx" />
@@ -2974,6 +2975,7 @@
     <Content Include="F_81_Hrm\F_86_All\EntryOvertimeExelUpload.aspx" />
     <Content Include="F_81_Hrm\F_86_All\HollydayCt.aspx" />
     <Content Include="F_81_Hrm\F_87_Tra\HREmpTransfer.aspx" />
+    <Content Include="F_81_Hrm\F_87_Tra\HREmpTransferOld.aspx" />
     <Content Include="F_81_Hrm\F_87_Tra\HREmpTransferReport.aspx" />
     <Content Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\BankCashAccounts.aspx" />
@@ -4287,6 +4289,13 @@
     <Compile Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx.designer.cs">
       <DependentUpon>RptIndLoanStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\RptIndLoanStatusOld.aspx.cs">
+      <DependentUpon>RptIndLoanStatusOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\RptIndLoanStatusOld.aspx.designer.cs">
+      <DependentUpon>RptIndLoanStatusOld.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_86_All\EmpFoodAllow.aspx.cs">
       <DependentUpon>EmpFoodAllow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4335,6 +4344,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransfer.aspx.designer.cs">
       <DependentUpon>HREmpTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferOld.aspx.cs">
+      <DependentUpon>HREmpTransferOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferOld.aspx.designer.cs">
+      <DependentUpon>HREmpTransferOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferReport.aspx.cs">
       <DependentUpon>HREmpTransferReport.aspx</DependentUpon>
