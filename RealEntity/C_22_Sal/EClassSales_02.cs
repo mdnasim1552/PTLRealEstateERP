@@ -1304,6 +1304,43 @@ namespace RealEntity.C_22_Sal
             { }
             
         }
+
+
+        [Serializable]
+        public class AccCustPayLedgerCHL
+        {
+            //comcod	grp	pactcode			schdate	schamt	schamt1	gdesc	mrno	recdate	paiddate	
+            //asondues	paidamt	balamt	bunamt	chqno	bankname	bbranch	recndate	mrdate1	bname	refno	rmrks	dischk
+
+            public string comcod { get; set; }
+            public string grp { get; set; }
+            public string pactcode { get; set; }
+            public string usircode { get; set; }
+            public string gcod { get; set; }
+            public string gdesc { get; set; }
+            public string schdate { get; set; }
+            public double schamt { get; set; }
+            public string mrno { get; set; }
+            public string refno { get; set; }
+            public string recdate { get; set; }
+            public string chqno { get; set; }
+            public string paiddate { get; set; }
+
+            public string bankname { get; set; }
+            public string bbranch { get; set; }
+
+            public double paidamt { get; set; }
+
+            public string recndate { get; set; }
+            public double bunamt { get; set; }
+            public double balamt { get; set; }
+            public string bname { get; set; }
+            public string intdesc { get; set; }
+
+            public AccCustPayLedgerCHL()
+            { }
+
+        }
         #endregion
 
         [Serializable]
