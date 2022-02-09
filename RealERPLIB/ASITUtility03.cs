@@ -270,6 +270,14 @@ namespace RealERPLIB
                 Replace("Dec", "ডিসেম্বর");
 
         }
+        public static string GetMonth(string monthName)
+        {
+            return monthName.Replace("Jan", "01").Replace("Feb", "02").Replace("Mar", "03").
+                Replace("Apr", "04").Replace("May", "05").Replace("Jun", "06").Replace("Jul", "07").
+                Replace("Aug", "08").Replace("Sep", "09").Replace("Oct", "10").Replace("Nov", "11").
+                Replace("Dec", "12");
+
+        }
         public static string GetBanglaNumber(int number)
         {
             return string.Concat(number.ToString().Select(c => (char)('\u09E6' + c - '0')));
