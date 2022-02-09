@@ -16,11 +16,9 @@ using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
 using RealERPRDLC;
-
-
 namespace RealERPWEB.F_81_Hrm.F_85_Lon
 {
-    public partial class EmpLoanStatus1 : System.Web.UI.Page
+    public partial class EmpLoanStatus : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -38,7 +36,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.GetCompName();
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.GetDepartment();
-                this.GetLoanType();
                 //this.lnkbtnShow_Click(null, null);
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
                 {
@@ -82,12 +79,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = GetComeCode();
-            string txtDepartment = "%%";
+            string txtDepartment = "%" + this.txtSrcDept.Text.Trim() + "%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME", txtDepartment, userid, "", "", "", "", "", "", "");
-            this.ddlComp.DataTextField = "actdesc";
-            this.ddlComp.DataValueField = "actcode";
-            this.ddlComp.DataSource = ds1.Tables[0];
-            this.ddlComp.DataBind();
+            this.ddlDeptName.DataTextField = "actdesc";
+            this.ddlDeptName.DataValueField = "actcode";
+            this.ddlDeptName.DataSource = ds1.Tables[0];
+            this.ddlDeptName.DataBind();
         }
         protected void imgbtnDeptSrch_Click(object sender, EventArgs e)
         {
@@ -97,59 +94,43 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
 
             string comcod = this.GetComeCode();
-            string company = this.ddlComp.SelectedValue.ToString().Substring(0, 2) + "%";
-            string dept = "%%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", company, dept, "", "", "", "", "", "", "");
+            string txtDepartment = this.ddlDeptName.SelectedValue.ToString().Substring(0, 2) + "%";
+            string dept = "%" + this.txtSrcDepartment.Text + "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", txtDepartment, dept, "", "", "", "", "", "", "");
             this.ddlDepartment.DataTextField = "actdesc";
             this.ddlDepartment.DataValueField = "actcode";
             this.ddlDepartment.DataSource = ds1.Tables[0];
             this.ddlDepartment.DataBind();
 
         }
-      
+        protected void ddlDeptName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetDepartment();
+        }
         protected void ibtnFindDepartment_Click(object sender, EventArgs e)
         {
             //this.GetDepartment();
             this.GetCompName();
 
         }
-
-        private void GetLoanType()
-        {
-
-            string comcod = this.GetComeCode();
-
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLOANTYPE", "", "", "", "", "", "", "", "", "");
-            this.ddlLoantype.DataTextField = "loantype";
-            this.ddlLoantype.DataValueField = "gcod";
-            this.ddlLoantype.DataSource = ds1.Tables[0];
-            this.ddlLoantype.DataBind();
-            ddlLoantype.Items.Insert(0, new ListItem("ALL Loan", ""));
-            ddlLoantype.SelectedValue = "0";
-
-
-
-        }
-
         protected void lnkbtnShow_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = false;
             this.lblPage.Visible = true;
             this.ddlpagesize.Visible = true;
             this.empLoanStatus();
-           
             //this.lblmsg.Text = "";
         }
         private void empLoanStatus()
         {
             Session.Remove("tbloan");
             string comcod = this.GetComeCode();
-            string comnam = this.ddlComp.SelectedValue.Substring(0, 2).ToString();
+            string comnam = this.ddlDeptName.SelectedValue.Substring(0, 2).ToString();
             string deptname = this.ddlDepartment.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string chkbal = this.Chkbalance.Checked ? "Length" : "";
-            string loantype = this.ddlLoantype.SelectedValue.ToString()==""?"%%": this.ddlLoantype.SelectedValue.ToString();
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, chkbal, loantype, "", "", "", "");
+            
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, chkbal, "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;
@@ -162,20 +143,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         }
         private void Data_Bind()
         {
-            string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tbloan"];
             this.gvEmpLoanStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpLoanStatus.DataSource = dt;
             this.gvEmpLoanStatus.DataBind();
             this.FooterCalculation();
-            switch (comcod)
-            {               
-                case "3365":
-                    this.gvEmpLoanStatus.Columns[7].Visible = true;
-                    break;
-            }
-           
-         
         }
         private void FooterCalculation()
         {
@@ -192,6 +164,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+
             DataTable dt = (DataTable)Session["tbloan"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -205,14 +178,18 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
             var lst = dt.DataTableToList<RealEntity.C_81_Hrm.C_92_mgt.EmpSettlmnt.EmpLoanStatus>();
+
             LocalReport Rpt1 = new LocalReport(); //rptEmpLoanStatus rptEmpLoanStatus
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_85_Lon.rptEmpLoanStatus", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("companyname", comnam));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+
             Rpt1.SetParameters(new ReportParameter("rptTitle", "Employee Loan Status Information"));
             Rpt1.SetParameters(new ReportParameter("txtDate", "Date: " + frmdate));
+
             Rpt1.SetParameters(new ReportParameter("txtuserinfo", txtuserinfo));
+
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
@@ -257,10 +234,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             if (dt1.Rows.Count == 0)
                 return dt1;
             string secid;
-            string empid;
             int j;
             secid = dt1.Rows[0]["section"].ToString();
-            empid = dt1.Rows[0]["empid"].ToString();
             for (j = 1; j < dt1.Rows.Count; j++)
             {
                 if (dt1.Rows[j]["section"].ToString() == secid)
@@ -268,37 +243,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     secid = dt1.Rows[j]["section"].ToString();
                     dt1.Rows[j]["secdesc"] = "";
                 }
+
                 else
                 {
                     secid = dt1.Rows[j]["section"].ToString();
                 }
-                if (dt1.Rows[j]["empid"].ToString() == empid)
-                {
-                    empid = dt1.Rows[j]["empid"].ToString();
-                    dt1.Rows[j]["empname"] = "";
-                    dt1.Rows[j]["idcard"] = "";
-                }
-                else
-                {
-                    empid = dt1.Rows[j]["empname"].ToString();       
-                }
+
             }
 
 
             return dt1;
 
-        }
-
-        protected void ddlComp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetDepartment();
-        }
-
-        protected void gvEmpLoanStatus_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-
-            this.gvEmpLoanStatus.PageIndex = e.NewPageIndex;
-            this.Data_Bind();
         }
     }
 }

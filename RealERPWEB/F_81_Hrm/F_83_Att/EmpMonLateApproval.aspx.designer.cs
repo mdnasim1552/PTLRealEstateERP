@@ -402,6 +402,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.GridView gvabsapp02;
 
         /// <summary>
+        /// LPAproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View LPAproval;
+
+        /// <summary>
+        /// gvLPAproval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvLPAproval;
+
+        /// <summary>
         /// lbmodalheading control.
         /// </summary>
         /// <remarks>
