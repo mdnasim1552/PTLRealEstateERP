@@ -45,25 +45,25 @@ namespace RealERPWEB
             if (!IsPostBack)
             {
 
-               
+
 
                 GetModulename();
                 // new process add - nahid 20210525
-             
+
                 //if (comcod == "1102")
                 //{
-                    this.MenuDynamic.Visible = true;
+                this.MenuDynamic.Visible = true;
                 //    this.oldMenu.Visible = false;
-                    
+
 
                 //}
                 //else
                 //{
-                   // this.MenuDynamic.Visible = false;
-                    this.oldMenu.Visible = true;
+                // this.MenuDynamic.Visible = false;
+                this.oldMenu.Visible = true;
 
 
-               // }
+                // }
 
                 this.GetShortCut();
                 this.GetAdminUserMenu();
@@ -72,6 +72,16 @@ namespace RealERPWEB
                 if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
                 {
                     BindMenu();
+                }
+                else if (comcod.Substring(0, 1) == "8")
+                {
+                    this.WraperMain.Attributes.Add("class", "app has-fullwidth");
+                    this.mySidenav.Attributes.Add("class", "app-aside ");
+                    this.main.Attributes.Add("class", "app-main ml-0 ");
+                    this.GroupMenu.Visible=true;
+
+                    
+
                 }
 
             }
@@ -296,18 +306,24 @@ namespace RealERPWEB
 
             string usrid = hst["usrid"].ToString();
             // string usrperm = "1";
- 
+
             if (comcod == "3365" || comcod == "3347")
- 
+
             {
                 this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
+
+            }
+            else if (comcod.Substring(0, 1) == "8")
+            {
+
+                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod="));
 
             }
             else
             {
                 this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Dashboard"));
             }
- 
+
 
             this.CompanyHome();
             this.CompanyMaster();
@@ -353,20 +369,20 @@ namespace RealERPWEB
             }
             //string
             //this.dbGraph.InnerHtml = dashboardhtml;
-            
+
             //this for only HR 
-            if((comcod=="3365") || (comcod== "3347"))
+            if ((comcod == "3365") || (comcod == "3347"))
             {
                 lstFeturedMenu.Visible = false;
             }
 
 
-                dbAllinOne.HRef = "CompanyOverAllReport?comcod=" + comcod;
-                prjdash.HRef = "F_99_Allinterface/ProjectDashBoardAllNew?comcod=" + comcod;
-                PrjSummary.HRef = "F_99_Allinterface/ProjectDashBoard?comcod=" + comcod;
-             
-            
-            
+            dbAllinOne.HRef = "CompanyOverAllReport?comcod=" + comcod;
+            prjdash.HRef = "F_99_Allinterface/ProjectDashBoardAllNew?comcod=" + comcod;
+            PrjSummary.HRef = "F_99_Allinterface/ProjectDashBoard?comcod=" + comcod;
+
+
+
 
 
             Designation.InnerHtml = hst["usrdesig"].ToString();
@@ -425,9 +441,9 @@ namespace RealERPWEB
         public string GetUserId()
         {
 
-            
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
-          
+
             return (hst["usrid"].ToString());
 
 
@@ -499,12 +515,12 @@ namespace RealERPWEB
                 return;
             }
 
-           
-          
+
+
             string qusrid = this.Request.QueryString["usrid"] ?? "";
             string usrid = qusrid.Length > 0 ? qusrid : hst["usrid"].ToString();
 
-           // string usrid = hst["usrid"].ToString();
+            // string usrid = hst["usrid"].ToString();
 
             string adminUid = usrid.Substring(4, 3).ToString();
             if (adminUid == "001")
@@ -536,7 +552,7 @@ namespace RealERPWEB
             //string usrid = hst["usrid"].ToString();
 
 
-           // string usertype = Request.QueryString["pid"] == null ? (string)Session["sesspid"] : Request.QueryString["pid"].ToString();
+            // string usertype = Request.QueryString["pid"] == null ? (string)Session["sesspid"] : Request.QueryString["pid"].ToString();
             //if (comcod == "1102")
             //{
             //    this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid=" + usertype));
@@ -544,7 +560,7 @@ namespace RealERPWEB
             //}
             //else
             //{
-             //   this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
+            //   this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
 
             //}
 
@@ -576,85 +592,85 @@ namespace RealERPWEB
 
             //  view.RowFilter = ("sidebar='True' and moduleid = '0'");
             // view.RowFilter = ("sidebar='True'");
-              
+
 
             view.RowFilter = ("moduleid=0");
 
 
 
             DataTable dtt = view.ToTable();
-                string mainmenu = "";
-                int i = 0;
-                foreach (DataRow dr in view.ToTable().Rows)
+            string mainmenu = "";
+            int i = 0;
+            foreach (DataRow dr in view.ToTable().Rows)
+            {
+                string cssclass = (i == 0) ? "has-active" : "";
+
+                DataRow[] childRow = Menus.Select("ParentMenuId =" + dr["menuid"]);
+
+                if (childRow.Count() > 0)
                 {
-                    string cssclass = (i == 0) ? "has-active" : "";
-
-                    DataRow[] childRow = Menus.Select("ParentMenuId =" + dr["menuid"]);
-
-                    if (childRow.Count() > 0)
-                    {
-                        //string geturl=dr["url"] + dr["qrytype"];
-                        mainmenu += "<li class=\"menu-item has-child\">" +
-                          "<a href=\"" + ResolveUrl(dr["url"].ToString() + dr["qrytype"].ToString()) + "\" class=\"menu-link\">" +
-                            "<span class=\"" + dr["CssFont"] + "\"></span>" +
-                            "<span class=\"menu-text\">" + dr["Title"] + "</span>" +
-                         " </a><ul class=\"menu\">";
-                        foreach (DataRow dr1 in childRow)
-                        {
-                            DataRow[] childRow2 = Menus.Select("ParentMenuId=" + dr1["menuid"]);
-
-                            if (childRow2.Count() > 0)
-                            {
-
-                                mainmenu += "<li class=\"menu-item has-child\">" +
-                              "<a href=\"" + ResolveUrl(dr1["url"].ToString() + dr1["qrytype"].ToString()) + "\" class=\"menu-link\"><strong>" + dr1["title"] + "</strong></a><ul class=\"menu\">";
-                                foreach (DataRow dr2 in childRow2)
-                                {
-                                    mainmenu += "<li class=\"menu-item \">" +
-                               "   <a href=\"" + ResolveUrl(dr2["url"].ToString() + dr2["qrytype"].ToString()) + "\" class=\"menu-link\">" + dr2["title"] + "</a>" +
-                               " </li>";
-                                }
-                                mainmenu += "</ul></li>";
-                            }
-                            else
-                            {
-                                mainmenu += "<li class=\"menu-item\">" +
-                            "<a href=\"" + ResolveUrl(dr1["url"].ToString() + dr1["qrytype"].ToString()) + "\" class=\"menu-link\">" + dr1["title"] + "</a>" +
-                          "</li>";
-                            }
-
-                        }
-                        mainmenu += " </ul></li>";
-                    }
-
-                    else
-                    {
-                        string menuid = dr["menuid"].ToString();
-                        if (menuid == "1")
-                        {
-                            string homeurl = "Index?pid=";
-                            mainmenu += "<li class=\"menu-item " + cssclass + "\">" +
-                      "<a href=\"" + ResolveUrl(homeurl) + "\" class=\"menu-link\">" +
-                        "<span class=\"" + dr["CssFont"] + "\"></span>" +
-                        "<span class=\"menu-text\">" + dr["Title"] + "</span>" +
-                      "</a></li>";
-
-                        }
-                        else
-                        {
-                            mainmenu += "<li class=\"menu-item " + cssclass + "\">" +
+                    //string geturl=dr["url"] + dr["qrytype"];
+                    mainmenu += "<li class=\"menu-item has-child\">" +
                       "<a href=\"" + ResolveUrl(dr["url"].ToString() + dr["qrytype"].ToString()) + "\" class=\"menu-link\">" +
                         "<span class=\"" + dr["CssFont"] + "\"></span>" +
                         "<span class=\"menu-text\">" + dr["Title"] + "</span>" +
-                      "</a></li>";
+                     " </a><ul class=\"menu\">";
+                    foreach (DataRow dr1 in childRow)
+                    {
+                        DataRow[] childRow2 = Menus.Select("ParentMenuId=" + dr1["menuid"]);
+
+                        if (childRow2.Count() > 0)
+                        {
+
+                            mainmenu += "<li class=\"menu-item has-child\">" +
+                          "<a href=\"" + ResolveUrl(dr1["url"].ToString() + dr1["qrytype"].ToString()) + "\" class=\"menu-link\"><strong>" + dr1["title"] + "</strong></a><ul class=\"menu\">";
+                            foreach (DataRow dr2 in childRow2)
+                            {
+                                mainmenu += "<li class=\"menu-item \">" +
+                           "   <a href=\"" + ResolveUrl(dr2["url"].ToString() + dr2["qrytype"].ToString()) + "\" class=\"menu-link\">" + dr2["title"] + "</a>" +
+                           " </li>";
+                            }
+                            mainmenu += "</ul></li>";
+                        }
+                        else
+                        {
+                            mainmenu += "<li class=\"menu-item\">" +
+                        "<a href=\"" + ResolveUrl(dr1["url"].ToString() + dr1["qrytype"].ToString()) + "\" class=\"menu-link\">" + dr1["title"] + "</a>" +
+                      "</li>";
                         }
 
                     }
-                    i++;
+                    mainmenu += " </ul></li>";
                 }
 
-                this.MenuDynamic.InnerHtml = mainmenu;
-            
+                else
+                {
+                    string menuid = dr["menuid"].ToString();
+                    if (menuid == "1")
+                    {
+                        string homeurl = "Index?pid=";
+                        mainmenu += "<li class=\"menu-item " + cssclass + "\">" +
+                  "<a href=\"" + ResolveUrl(homeurl) + "\" class=\"menu-link\">" +
+                    "<span class=\"" + dr["CssFont"] + "\"></span>" +
+                    "<span class=\"menu-text\">" + dr["Title"] + "</span>" +
+                  "</a></li>";
+
+                    }
+                    else
+                    {
+                        mainmenu += "<li class=\"menu-item " + cssclass + "\">" +
+                  "<a href=\"" + ResolveUrl(dr["url"].ToString() + dr["qrytype"].ToString()) + "\" class=\"menu-link\">" +
+                    "<span class=\"" + dr["CssFont"] + "\"></span>" +
+                    "<span class=\"menu-text\">" + dr["Title"] + "</span>" +
+                  "</a></li>";
+                    }
+
+                }
+                i++;
+            }
+
+            this.MenuDynamic.InnerHtml = mainmenu;
+
 
 
 

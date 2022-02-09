@@ -15,10 +15,10 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
-
 namespace RealERPWEB.F_81_Hrm.F_85_Lon
 {
-    public partial class RptIndLoanStatus1 : System.Web.UI.Page
+
+    public partial class RptIndLoanStatus : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,50 +30,35 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 //this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE LOAN Installment Details";
                 this.GetEmplist();
-                this.GetLoanType();
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
             }
+
+
         }
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
         private string GetComeCode()
         {
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
-        }
 
-        private void GetLoanType()
-        {
-            string comcod = this.GetComeCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLOANTYPE", "", "", "", "", "", "", "", "", "");
-            this.ddlLoantype.DataTextField = "loantype";
-            this.ddlLoantype.DataValueField = "gcod";
-            this.ddlLoantype.DataSource = ds1.Tables[0];
-            this.ddlLoantype.DataBind();
-            ddlLoantype.Items.Insert(0, new ListItem("ALL Loan", ""));
-            ddlLoantype.SelectedValue = "0";
         }
         private void GetEmplist()
         {
+
             string comcod = this.GetComeCode();
-            string txtEmpname = "%%";
-            string type = "";
-            switch (comcod)
-            {
-                case "3365":
-                case "3101":
-                    type = "lnemp";
-                    break;
-                default:
-                    type = "";
-                    break;
-            }
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, type, "", "", "", "", "", "", "");
+            string txtEmpname = "%" + this.txtsrchEmp.Text.Trim() + "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNEMPLIST", txtEmpname, "", "", "", "", "", "", "", "");
             this.ddlEmpList.DataTextField = "empname";
             this.ddlEmpList.DataValueField = "empid";
             this.ddlEmpList.DataSource = ds1.Tables[0];
@@ -93,6 +78,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.ddlEmpList.Enabled = true;
             this.gvEmpLoanStatus.DataSource = null;
             this.gvEmpLoanStatus.DataBind();
+
+
         }
 
         private void ShowLoanInfo()
@@ -101,8 +88,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string comcod = this.GetComeCode();
             string empid = this.ddlEmpList.SelectedValue.ToString();
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
-            string loantype = this.ddlLoantype.SelectedValue.ToString() == "" ? "%%" : this.ddlLoantype.SelectedValue.ToString();
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "RPTEMPLOANIND", date, empid, loantype, "", "", "", "", "", "");
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "RPTEMPLOANIND", date, empid, "", "", "", "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;
@@ -127,8 +114,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 return;
             ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFLoanamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00
                     : dt.Compute("sum(lnamt)", ""))).ToString("#,##0;(#,##0); ");
-            ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvUptoanamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(uppermon)", "")) ? 0.00
-             : dt.Compute("sum(uppermon)", ""))).ToString("#,##0;(#,##0); ");
             ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFPaidamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(paidamt)", "")) ? 0.00
                    : dt.Compute("sum(paidamt)", ""))).ToString("#,##0;(#,##0); ");
             ((Label)this.gvEmpLoanStatus.FooterRow.FindControl("lblgvFbalamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(balamt)", "")) ? 0.00
@@ -139,6 +124,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
             this.GetEmplist();
         }
+
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tbloan"];
@@ -180,12 +166,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewerWin.aspx?PrintOpt=" +
                 ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-
-        }
-
-        protected void ddlpagesize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Data_Bind();
         }
     }
 }

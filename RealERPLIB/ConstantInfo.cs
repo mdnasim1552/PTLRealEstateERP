@@ -2013,6 +2013,8 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102164", "F_81_Hrm/F_83_Att", "HREmpAbsCtSpecial", "", "Absent Count (Special)", "Attendance", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102170", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp02", "Monthly Absent  Approval(Punch)", "Attendance", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102171", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=LPAproval", "Monthly (L.P) Late Approval", "Attendance", "False", "False", "False", "False" });
+
 
 
             //Report
@@ -2115,6 +2117,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103092", "F_81_Hrm/F_83_Att", "RptEmpMonthPresent", "", "Employee Monthly Presence", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103093", "F_81_Hrm/F_89_Pay", "RptIncomeStatement", "", "Individual Employee Income Statement", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103094", "F_81_Hrm/F_89_Pay", "RptOvertimeSalary2", "", "Overtime Salary", "PayRoll", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103095", "F_81_Hrm/F_89_Pay", "RptSalaryReconciliation", "", "Salary Reconciliation", "PayRoll", "False", "False", "False", "False" }); 
             tblObj.Rows.Add(new Object[] { "8103000", "8103100", "F_81_Hrm/F_91_ACR", "RptPerAppraisal", "", "Employee Performance Appraisal", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103110", "F_81_Hrm/F_81_Rec", "RptEmpAssessment", "", "Employee Assessment Report", "ACR", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103111", "F_81_Hrm/F_89_Pay", "RptSalSummary02?", "Type=TopSheetFactory", "Salary Top Sheet (Factory)", "PayRoll", "False", "False", "False", "False" }); ;
@@ -14470,6 +14473,8 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000012", "", "", "", true, "" });// "08. Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000013", "", "", "", true, "" });//"09. LWP Count", "F_81_Hrm/F_83_Att/HREmpLWP", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Employee Monthly Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MLateAppDay", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Monthly (L.P) Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=LPAproval", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0303000015", "12. Monthly Punch Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MPunchAppDay", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Absent Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
@@ -14648,6 +14653,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0408000032", "07. Employee Monthly Presence", "F_81_Hrm/F_83_Att/RptEmpMonthPresent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000033", "08. Individual Employee Income Statement", "F_81_Hrm/F_89_Pay/RptIncomeStatement", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000034", "09. Overtime Salary", "F_81_Hrm/F_89_Pay/RptOvertimeSalary2", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000035", "10. Salary Reconciliation", "F_81_Hrm/F_89_Pay/RptSalaryReconciliation", "", true, "" });
 
 
 

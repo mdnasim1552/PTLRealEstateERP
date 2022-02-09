@@ -35,10 +35,6 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.GetLoanType();
 
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
-
-
             }
 
 
@@ -215,7 +211,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             this.lblCurNo1.Text = ds1.Tables[1].Rows[0]["lnno1"].ToString().Substring(0, 6);
             this.lblCurNo2.Text = ds1.Tables[1].Rows[0]["lnno1"].ToString().Substring(6, 5);
             this.txtCurDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["lndate"]).ToString("dd-MMM-yyyy");
-            this.txtPaidAmt.Text = Convert.ToDecimal(ds1.Tables[1].Rows[0]["uptopaid"]).ToString("#,##0");
+            this.txtPaidAmt.Text = Convert.ToDecimal(ds1.Tables[1].Rows[0]["uptopaid"]).ToString();
             
             this.Data_DataBind();
         }
@@ -255,7 +251,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             DataView dv = dt.DefaultView;
             DataTable dt1 = new DataTable();
             dt1 = dt.Clone();
-
+          
             double toamt = Convert.ToDouble("0" + this.txtToamt.Text.Trim());
             double lnamt = Convert.ToDouble("0" + this.txtinsamt.Text.Trim());
             int dur = Convert.ToInt32(this.ddlMonth.SelectedValue.ToString());
@@ -292,6 +288,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
             ViewState["tblln"] = dt1;
             this.Data_DataBind();
+            lbtnTotal_Click(null,null);
         }
         protected void chkVisible_CheckedChanged(object sender, EventArgs e)
         {
@@ -313,7 +310,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 string empid = this.ddlEmpList.SelectedValue.ToString();
                 string toamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", ""))).ToString();
                 string loantype = ddlLoantype.SelectedValue.ToString();
-                string uptopaid = this.txtPaidAmt.Text.ToString();
+                string uptopaid = this.txtPaidAmt.Text.ToString()==""?"0": this.txtPaidAmt.Text.ToString();
                 bool result;
                 //Delete Loaninfo
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETELNINFO", lnno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -355,6 +352,9 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         }
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
+
+            string ulndat= "26-Dec-21 12:00:00 AM";
+
             DataTable dt = (DataTable)ViewState["tblln"];
             for (int i = 0; i < this.gvloan.Rows.Count; i++)
             {
@@ -364,6 +364,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 dt.Rows[i]["lndate"] = Insdate;
                 dt.Rows[i]["lnamt"] = InsAmt;
             }
+            DataTable dt2 = dt;
+            DataView dv1 = dt2.DefaultView;
+            dv1.RowFilter = ("lndate<'"+ ulndat + "'");
+            dt2 = dv1.ToTable();
+            string totalamt= Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(lnamt)", "")) ? 0.00 : dt2.Compute("sum(lnamt)", ""))).ToString();
+            this.txtPaidAmt.Text = totalamt;
             ViewState["tblln"] = dt;
             this.Data_DataBind();
         }

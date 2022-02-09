@@ -47,23 +47,7 @@ namespace RealERPWEB.F_46_GrMgtInter
             string str = (hst["comcod"].ToString());
             Session["comcod"] = (hst["comcod"].ToString());
         }
-        //public string SetCompCode()
-        //{
-        //    Hashtable hst = (Hashtable)System.Web.HttpContext.Current.Session["tblLogin"];
-        //    //string str = (hst["comcod"].ToString());
-        //    //Session["comcod"]=(hst["comcod"].ToString());
-        //    //Hashtable hst = (Hashtable)Session["tblLogin"];
-
-        //   // string qcomcod = this.Request.QueryString["comcod"] ?? comcod;
-
-        //    string comcod = hst["comcod"].ToString ();
-        //    string qcomcod = this.Request.QueryString["comcod"] ?? comcod;
-        //    comcod = qcomcod.Length > 0 ? qcomcod : comcod;
-        //    //return comcod;
-
-        //    //comcod = this.Request.QueryString["comcod"].Length > 0 ? this.Request.QueryString["comcod"].ToString () : comcod;
-        //    return comcod;
-        //}
+        
 
         [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]

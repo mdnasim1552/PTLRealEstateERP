@@ -6,7 +6,7 @@
 </asp:Content>--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <style type="text/css">
+     <style type="text/css">
         .modalcss {
             margin: 0;
             padding: 0;
@@ -36,46 +36,8 @@
             width: 200px !important;
         }
     </style>
-    <script type="text/javascript" language="javascript">
-        $(document).ready(function () {
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-        });
-        function pageLoaded() {
-
-            $("input, select").bind("keydown", function (event) {
-                var k1 = new KeyPress();
-                k1.textBoxHandler(event);
-            });
-
-        }
-
-    </script>
-
-    <script type="text/javascript" language="javascript">
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
-
-        function pageLoaded() {
-            $('.chzn-select').chosen({ search_contains: true });
-            $(".chzn-select-deselect").chosen({ allow_single_deselect: true });
-
-            $(function () {
-                $('[id*=DropCheck1]').multiselect({
-                    includeSelectAllOption: true
-                });
-
-            });
-
-        }
-
-    </script>
-
+ 
+     
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -95,11 +57,11 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="contentPart">
+           
                 <div class="card card-fluid mt-5" style="min-height: 550px;">
                     <div class="card-header">
                         <div class="row mb-2">
-                            <div class="col-md-12">
+                            <div class="col-12">
                                 <asp:RadioButtonList ID="rbtnAtten" runat="server" AutoPostBack="True"
                                     BackColor="#DFF0D8" BorderColor="#000" CssClass="rbtnList1 margin5px"
                                     Font-Bold="True" Font-Size="12px" ForeColor="Black"
@@ -136,6 +98,8 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label d-block" for="tfDisabled">Section</label>
+    
+
                                     <asp:ListBox ID="DropCheck1" runat="server" CssClass="form-control" SelectionMode="Multiple"></asp:ListBox>
                                 </div>
                             </div>
@@ -1042,11 +1006,11 @@
                                         <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
                                     </asp:GridView>
 
-                                    <fieldset class="scheduler-border fieldset_A">
+                                    <fieldset class="scheduler-border fieldset_A" id="StatusReport" runat="server" visible="false">
                                         <div class="form-horizontal">
                                             <div class="form-group">
                                                 <div class=" row col-md-11">
-                                                    <span style="font-size: 14px; color: blue">Present=P,  Absent =A,  Late=LP,  Leave=L,  Weekend=W</span>
+                                                    <span style="font-size: 14px; color: blue">Present=P,  Absent =A,  Late=L,  Leave=CL,SL,EL,  Weekend=W</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1473,7 +1437,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+    
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

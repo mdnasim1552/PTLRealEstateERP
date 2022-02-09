@@ -658,10 +658,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             //    default:
             //        exclumgt = "";
             //        break;
-
-
             //}
-
             string Calltype1 = (comcod == "3347") ? "RPT_BACSALARY" : "RPT_BACSALARYGEN"; 
             // todo for bangla print
             string language = this.chkBangla.Checked ? "Bangla" : "";
@@ -3914,19 +3911,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 bool result = false;
 
                 string mantype = "";
-
                 switch (comcod)
                 {
-
                     case "3338":
                         mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                         break;
-
                     default:
                         mantype = "86%";
                         break;
-
-
                 }
 
 
@@ -4052,16 +4044,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string latededuc = dt.Rows[i]["latededuc"].ToString();
                     string adjustamt = dt.Rows[i]["adjustamt"].ToString();
                     string transded = dt.Rows[i]["transded"].ToString();
-                    string genloan = dt.Rows[i]["genloan"].ToString();
-                    string perloan = dt.Rows[i]["carloan"].ToString();
-                    string carloan = dt.Rows[i]["perloan"].ToString();
+                    string genloan = dt.Rows[i]["genloan"].ToString();          
+                    string carloan = dt.Rows[i]["carloan"].ToString();
+                    string perloan = dt.Rows[i]["perloan"].ToString();
+                    string motolon = dt.Rows[i]["motolon"].ToString();
+                    string dresslon = dt.Rows[i]["dresslon"].ToString();
+                    string msetlon = dt.Rows[i]["msetloan"].ToString();
+                    string msclon = dt.Rows[i]["mscloan"].ToString();
 
-
+                   
                     result = HRData.UpdateTransInfoHRSal(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INUPSALSHEET", monthid, refno, empid, wd, absday, wld, acat, bsal, hrent, cven,
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, perloan, carloan);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
