@@ -434,7 +434,7 @@ namespace RealERPWEB.F_22_Sal
                     this.chkAddIns.Visible = true;
                     ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = true;
 
-                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod=="3349")
+                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod=="3349" || comcod == "3354")
                     {
 
                     }
@@ -534,7 +534,7 @@ namespace RealERPWEB.F_22_Sal
             //this.ddlSalesTeam.SelectedValue = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
             //this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
 
-            if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3353" || comcod == "3355")
+            if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3353" || comcod == "3355" )
             {
 
             }
