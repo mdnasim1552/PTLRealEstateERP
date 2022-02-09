@@ -277,6 +277,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     empid = dt1.Rows[j]["empid"].ToString();
                     dt1.Rows[j]["empname"] = "";
                     dt1.Rows[j]["idcard"] = "";
+                    dt1.Rows[j]["desig"] = "";
                 }
                 else
                 {
