@@ -15,6 +15,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
     {
 
         /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+
+        /// <summary>
         /// ddlEmpName control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPersonalInfo;
+
+        /// <summary>
+        /// gvPersonalInfo2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvPersonalInfo2;
 
         /// <summary>
         /// UploadCV control.

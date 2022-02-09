@@ -604,6 +604,9 @@ namespace RealERPLIB
           string mDesc73 = "", string mDesc74 = "", string mDesc75 = "", string mDesc76 = "", string mDesc77 = "", string mDesc78 = "",
           string mDesc79 = "", string mDesc80 = "", string mDesc81 = "", string mDesc82 = "", string mDesc83 = "", string mDesc84 = "",
           string mDesc85 = "", string mDesc86 = "", string mDesc87 = "", string mDesc88 = "", string mDesc89 = "", string mDesc90 = "",
+          string mDesc91 = "", string mDesc92 = "", string mDesc93 = "", string mDesc94 = "", string mDesc95 = "", string mDesc96 = "",
+          string mDesc97 = "", string mDesc98 = "", string mDesc99 = "", string mDesc100 = "", string mDesc101 = "", string mDesc102 = "",
+
           string mUserID = "")
         {
             try
@@ -704,6 +707,18 @@ namespace RealERPLIB
                 cmd.Parameters.Add(new SqlParameter("@Desc88", mDesc88));
                 cmd.Parameters.Add(new SqlParameter("@Desc89", mDesc89));
                 cmd.Parameters.Add(new SqlParameter("@Desc90", mDesc90));
+                cmd.Parameters.Add(new SqlParameter("@Desc91", mDesc91));
+                cmd.Parameters.Add(new SqlParameter("@Desc92", mDesc92));
+                cmd.Parameters.Add(new SqlParameter("@Desc93", mDesc93));
+                cmd.Parameters.Add(new SqlParameter("@Desc94", mDesc94));
+                cmd.Parameters.Add(new SqlParameter("@Desc95", mDesc95));
+                cmd.Parameters.Add(new SqlParameter("@Desc96", mDesc96));
+                cmd.Parameters.Add(new SqlParameter("@Desc97", mDesc97));
+                cmd.Parameters.Add(new SqlParameter("@Desc98", mDesc98));
+                cmd.Parameters.Add(new SqlParameter("@Desc99", mDesc99));
+                cmd.Parameters.Add(new SqlParameter("@Desc100", mDesc100));
+                cmd.Parameters.Add(new SqlParameter("@Desc101", mDesc101));
+                cmd.Parameters.Add(new SqlParameter("@Desc102", mDesc102));
                 cmd.Parameters.Add(new SqlParameter("@UserID", mUserID));
 
                 bool _result = _dataAccess.ExecuteCommand(cmd);

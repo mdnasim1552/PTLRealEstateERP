@@ -231,10 +231,10 @@ namespace RealERPWEB.F_14_Pro
             string comnam = hst["comnam"].ToString();
             DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "ASTREALERPMSGDB.dbo.SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", "140202%", "", "", "", "", "", "", "", "");
 
-
-
             string supcode = this.ddlSName.SelectedValue.ToString();
-            string supname = this.ddlSName.SelectedItem.ToString();
+            string supname1 = this.ddlSName.SelectedItem.ToString();
+            int supname2 = this.ddlSName.SelectedItem.ToString().Length;
+            string supname = supname1.Substring(13, supname2-13);
          
             string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
             tempeng = tempeng.Replace("[compname]", supname);
@@ -250,7 +250,7 @@ namespace RealERPWEB.F_14_Pro
             SendSmsProcess sms = new SendSmsProcess();
             string ntype = ds1.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (ds1.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            bool resultsms = sms.SendSMSClient("", smtext, cellphone);
+            bool resultsms = sms.SendSMSClient(comcod, smtext, cellphone);
             if (resultsms == true)
             {
                 bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), supcode, "", "", "", ntype, smsstatus, smtext, "",

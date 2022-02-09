@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="RetiredEmployee.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RetiredEmployee" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="RetiredEmployee.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.RetiredEmployee" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -42,136 +42,126 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="container moduleItemWrpper">
-                <div class="contentPart">
 
-                    <div class="row">
-                        <fieldset class="scheduler-border fieldset_A">
-                            <div class="form-horizontal">
-
-                                <div class="form-group">
-                                    <div class="col-md-1 pading5px asitCol3">
-                                        <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Company</asp:Label>
-                                        <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="ibtnFindCompany" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="ibtnFindCompany_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-4 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlCompanyName" runat="server" Width="300px" CssClass=" chzn-select form-control inputTxt pull-left" OnSelectedIndexChanged="ddlCompanyName_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
-                                        </asp:DropDownList>
-                                        <asp:Label ID="lblCompanyName" runat="server" Width="300px" CssClass="form-control inputTxt" Visible="False"></asp:Label>
-
-                                    </div>
-                                    <div class="col-md-1">
-
-
-                                        <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
-
-
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblDept" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
-                                        <asp:TextBox ID="txtSrcDepartment" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnDeptSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnDeptSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlDepartment" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" runat="server" Width="300px" CssClass=" chzn-select  form-control inputTxt" TabIndex="6" AutoPostBack="True">
-                                        </asp:DropDownList>
-
-                                        <asp:Label ID="lblDeptDesc" runat="server" CssClass="form-control inputTxt" Visible="False" Width="300px"></asp:Label>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
-                                        <asp:TextBox ID="txtSrcSecion" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnSection" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSection_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol4">
-                                        <%--  <asp:DropDownList I" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged" runat="server" Width="300px" CssClass="form-control inputTxt" TabIndex="15" AutoPostBack="true">
-                                        </asp:DropDownList>--%>
-                                        <asp:DropDownList ID="ddlSection1" OnSelectedIndexChanged="ddlSection1_SelectedIndexChanged" runat="server" Width="300px" CssClass=" chzn-select  form-control inputTxt" TabIndex="15" AutoPostBack="true">
-                                        </asp:DropDownList>
-
-                                        <asp:Label ID="lblSectionDesc" runat="server" CssClass="form-control inputTxt" Visible="False" Width="300px"></asp:Label>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label4" runat="server" CssClass="lblTxt lblName">Employee</asp:Label>
-                                        <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnEmployee" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnEmployee_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol4">
-                                        <asp:DropDownList ID="ddlEmployee" OnSelectedIndexChanged="ddlEmployee_SelectedIndexChanged" AutoPostBack="true" runat="server" Width="300px" CssClass="chzn-select form-control inputTxt" TabIndex="6">
-                                        </asp:DropDownList>
-
-                                        <asp:Label ID="lblddlEmployee" runat="server" CssClass="form-control inputTxt" Visible="False" Width="300px"></asp:Label>
-                                    </div>
-
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="Label5" runat="server" CssClass="lblTxt lblName">Designation</asp:Label>
-                                        <asp:TextBox ID="txtSrcEmployee0" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnEmpName" runat="server" CssClass="btn btn-primary srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol4">
-
-                                        <asp:TextBox ID="lblDesig" runat="server" CssClass="form-control inputTxt" Width="300px"></asp:TextBox>
-
-
-                                    </div>
-
-                                </div>
-
+            <div class="card card-fluid container-data mt-5" style="min-height: 1000px;">
+                <div class="card-header">
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <asp:LinkButton ID="ibtnFindCompany" runat="server" CssClass="d-block" OnClick="ibtnFindCompany_Click">Company</asp:LinkButton>
+                                <asp:DropDownList ID="ddlCompanyName" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlCompanyName_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
                             </div>
-                        </fieldset>
+                        </div>
+                        <div class="col-md-3 ml-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="imgbtnDeptSrch" runat="server" OnClick="imgbtnDeptSrch_Click">Department</asp:LinkButton>
+                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ml-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="imgbtnSection" runat="server" OnClick="imgbtnSection_Click">Section</asp:LinkButton>
+                                <asp:DropDownList ID="ddlSection1" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlSection1_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <asp:Panel ID="PnlSepType" runat="server" Visible="False">
-                            <div class="row">
-                                <fieldset class="scheduler-border fieldset_A">
-                                    <div class="form-horizontal">
 
-                                        <div class="form-group">
-                                            <div class="col-md-3 pading5px">
-                                                <asp:Label ID="lblfrmDate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
-                                                <asp:TextBox ID="txtSepDate" runat="server" CssClass=" inputDateBox "></asp:TextBox>
-                                                <cc1:CalendarExtender ID="txtSepDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtSepDate"></cc1:CalendarExtender>
-
-                                            </div>
-                                            <div class="col-md-4 pading5px">
-                                                <asp:Label ID="Label7" runat="server" CssClass="lblTxt lblName">Separation Type</asp:Label>
-
-
-                                                <asp:DropDownList ID="ddlSepType" runat="server" Width="233" CssClass="form-control inputTxt pull-left" TabIndex="2">
-                                                </asp:DropDownList>
-
-                                                <div class="pull-left">
-                                                    <asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-danger primaryBtn pull-left" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-3 pull-right">
-                                                <asp:Label ID="lblmsg" runat="server" CssClass="btn btn-danger primaryBtn"></asp:Label>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <asp:LinkButton ID="imgbtnEmployee" runat="server" OnClick="imgbtnEmployee_Click">Employee</asp:LinkButton>
+                                <asp:DropDownList ID="ddlEmployee" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlEmployee_SelectedIndexChanged" AutoPostBack="true">
+                                </asp:DropDownList>
                             </div>
+                        </div>
 
+                        <div class="col-md-3 ml-1">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lnkBtnSep" runat="server">Separation Type</asp:LinkButton>
+                                <asp:DropDownList ID="ddlSepType" runat="server" CssClass="form-control">
+                                </asp:DropDownList>
+                            </div>
+                        </div>
 
-                        </asp:Panel>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <asp:LinkButton ID="lnkBtnDate" runat="server">Date</asp:LinkButton>
+                                <asp:TextBox ID="txtSepDate" runat="server" CssClass=" form-control "></asp:TextBox>
+                                <cc1:CalendarExtender ID="txtSepDate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtSepDate"></cc1:CalendarExtender>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <asp:LinkButton ID="lnkbtnAdd" runat="server" CssClass="btn btn-sm btn-primary" OnClick="lnkbtnAdd_Click">Add</asp:LinkButton>
+                            <%--<asp:LinkButton ID="lnkbtnUpdate" runat="server" CssClass="btn btn-sm btn-danger primaryBtn pull-left" OnClick="lnkbtnUpdate_Click">Update</asp:LinkButton>--%>
+                        </div>
                     </div>
 
                 </div>
+                <div class="card-body">
+                    <asp:GridView ID="gvEmpResign" runat="server" CssClass="table-striped table-hover table-bordered grvContentarea"
+                        AutoGenerateColumns="False" Width="450px">
+                        <PagerSettings Visible="False" />
+                        <RowStyle />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Sl.No.">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvSlNo0" runat="server" Height="16px"
+                                        Style="text-align: right"
+                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+                            <asp:TemplateField HeaderText="Id Card">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvEmpId" runat="server" Height="16px"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Emp Name">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvEmpName" runat="server"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>' Width="250px"></asp:Label>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Resign Type">
+                                <ItemTemplate>
+                                     <asp:DropDownList ID="ddlgvSepType" runat="server" CssClass="chzn-select form-control" Width="180px"></asp:DropDownList>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Left" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Separation Date">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtSepDate" runat="server" BackColor="Transparent" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "sepdate")).ToString("dd-MMM-yyyy") %>' Width="150px"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="txtSepDate_CalendarExtender" runat="server"
+                                        Format="dd-MMM-yyyy" TargetControlID="txtSepDate" Enabled="true"></cc1:CalendarExtender>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lbtnDeleteEmp" runat="server" Font-Bold="True" CssClass=" btn btn-xs" OnClick="lbtnDeleteEmp_Click"><i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+                        </Columns>
+                        <EditRowStyle />
+                        <AlternatingRowStyle />
+                        <PagerStyle CssClass="gvPagination" />
+                        <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" HorizontalAlign="Center" />
+                    </asp:GridView>
+                </div>
             </div>
-
-
 
         </ContentTemplate>
     </asp:UpdatePanel>

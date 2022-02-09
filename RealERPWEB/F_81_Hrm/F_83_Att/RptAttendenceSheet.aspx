@@ -6,7 +6,7 @@
 </asp:Content>--%>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <style type="text/css">
+    d<style type="text/css">
         .modalcss {
             margin: 0;
             padding: 0;
@@ -35,8 +35,7 @@
         span.multiselect-selected-text {
             width: 200px !important;
         }
-    </style>
-    <script type="text/javascript" language="javascript">
+    </style><script type="text/javascript" language="javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
@@ -51,9 +50,7 @@
 
         }
 
-    </script>
-
-    <script type="text/javascript" language="javascript">
+    </script><script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
 
@@ -74,9 +71,7 @@
 
         }
 
-    </script>
-
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    </script><asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
                 <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
@@ -142,7 +137,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <asp:LinkButton ID="lnkbtnEmp" runat="server" OnClick="lnkbtnEmp_Click">Emp.  Name</asp:LinkButton>
+                                    <asp:LinkButton ID="lnkbtnEmp" runat="server" OnClick="lnkbtnEmp_Click">Emp.Name</asp:LinkButton>
                                     <asp:DropDownList ID="ddlEmpName" runat="server" CssClass="form-control chzn-select" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True">
                                     </asp:DropDownList>
 
