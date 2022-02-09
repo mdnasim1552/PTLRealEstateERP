@@ -981,7 +981,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
-                case "3101":
+                //case "3101":
                 case "2305":
                 case "3305":
                 case "3306":
@@ -1045,7 +1045,7 @@ namespace RealERPWEB.F_17_Acc
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>();
             LocalReport Rpt1 = new LocalReport();
 
-            if (comledger == "LedgerSuTroaTanvir")
+            if (comledger == "LedgerSuTroaTanvir") 
             {
 
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptLedger", lst, null, null);
@@ -1305,12 +1305,12 @@ namespace RealERPWEB.F_17_Acc
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string userinfo = ASTUtility.Concat(compname, username, printdate);
             string comledger = this.ComLedger();
+            string acchead = this.lblHeaderName.Text.ToString();
+
             var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.AccLedger1>();
             LocalReport Rpt1 = new LocalReport();
-
             if (comledger == "LedgerSuTroaTanvir")
             {
-
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptLedger", lst, null, null);
                 Rpt1.EnableExternalImages = true;
             }
@@ -1334,28 +1334,20 @@ namespace RealERPWEB.F_17_Acc
             {
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerTerra", lst, null, null);
                 Rpt1.EnableExternalImages = true;
-
             }
-
             else if (comledger == "LedgerRupayan")
             {
-
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedgerRup", lst, null, null);
                 Rpt1.EnableExternalImages = true;
 
             }
-
-
             else
             {
                 string checkby = (comcod == "3340") ? "Checked By" : "Recommended By";
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedger", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtcheckedby", checkby));
-
-
-
-
+                Rpt1.SetParameters(new ReportParameter("txtAccHead", acchead));
             }
             Rpt1.SetParameters(new ReportParameter("txtCompanyName", comnam.ToUpper()));
             Rpt1.SetParameters(new ReportParameter("txtHeadertitle", Headertitle));
@@ -1497,11 +1489,11 @@ namespace RealERPWEB.F_17_Acc
             string events = hst["events"].ToString();
             if (Convert.ToBoolean(events) == true)
             {
-                string eventtype =  "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventtype = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
                 string eventdesc = "Click " + ((Label)this.Master.FindControl("lblTitle")).Text;
-               
-                string eventdesc2 = this.lblHeaderName.Text + " "+ this.lblResName.Text + " "+ this.LblLgResRptPeriod.Text;
-         
+
+                string eventdesc2 = this.lblHeaderName.Text + " " + this.lblResName.Text + " " + this.LblLgResRptPeriod.Text;
+
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
 
