@@ -49,6 +49,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
+        
+
         private void ViewSaction()
         {
             string Type = this.Request.QueryString["Type"].ToString();
@@ -57,6 +59,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MLateAppDay":
                     this.MultiView1.ActiveViewIndex = 0;
                     string comcod = this.GetCompCode();
+                    this.visibility();
 
                     switch (comcod)
                     {
@@ -95,6 +98,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                  
                     break;
 
                 case "MabsentApp":
@@ -102,6 +106,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                     this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                      this.lblfrmDesig.Visible = false;
+                    this.ddlfrmDesig.Visible = false;
+                    this.lbltoDesig.Visible = false;
+                    this.ddlToDesig.Visible = false;
                     break;
 
                 case "MEarlyleave":
@@ -141,6 +149,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
 
+
+        }
+
+        private void visibility()
+        {
+            this.lblfrmDesig.Visible = false;
+            this.ddlfrmDesig.Visible = false;
+            this.lbltoDesig.Visible = false;
+            this.ddlToDesig.Visible = false;
 
         }
         private string GetCompCode()
@@ -713,19 +730,31 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         case "4101":
                         case "4315":
+                        case "3365": //BTI
+
 
                             for (int i = 0; i < this.gvmapsapp.Rows.Count; i++)
                             {
 
                                 double absday = Convert.ToDouble(((Label)this.gvmapsapp.Rows[i].FindControl("lblgvabsday")).Text.Trim());
                                 double aprday = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsaprday")).Text.Trim());
+                                double lvadj = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabslvadj")).Text.Trim());
+                                string reason =  ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsreason")).Text.Trim();
 
                                 rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
                                 dt.Rows[rowindex]["aprday"] = aprday;
-                                dt.Rows[rowindex]["dedday"] = (absday - aprday) / 2;
+                                dt.Rows[rowindex]["leaveadj"] = lvadj;
+                                dt.Rows[rowindex]["reason"] = reason;
+
+
+                                dt.Rows[rowindex]["dedday"] = (absday - aprday);
 
                             }
                             break;
+
+
+       
+
 
                         case "4305":
 
@@ -741,6 +770,28 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                             }
 
+                            break;
+
+
+                        default:
+
+                            for (int i = 0; i < this.gvmapsapp.Rows.Count; i++)
+                            {
+
+                                double absday = Convert.ToDouble(((Label)this.gvmapsapp.Rows[i].FindControl("lblgvabsday")).Text.Trim());
+                                double aprday = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsaprday")).Text.Trim());
+                                double lvadj = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabslvadj")).Text.Trim());
+                                string reason = ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsreason")).Text.Trim();
+
+                                rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
+                                dt.Rows[rowindex]["aprday"] = aprday;
+                                dt.Rows[rowindex]["leaveadj"] = lvadj;
+                                dt.Rows[rowindex]["reason"] = reason;
+
+
+                                dt.Rows[rowindex]["dedday"] = (absday - aprday);
+
+                            }
                             break;
                     }
 
@@ -1000,6 +1051,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     }
                     break;
 
+                case "3365":// BTI
+
+                    for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
+                    {
+                        double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
+                        double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
+                        rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
+                        double redelay = delayday - Aprvday;
+                        dt.Rows[rowindex]["delday"] = delayday;
+                        dt.Rows[rowindex]["aprday"] = Aprvday;
+                        dt.Rows[rowindex]["dedday"] =  Convert.ToInt32((redelay) / 3);
+
+                    }
+                    break;
+
                 default:
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
                     {
@@ -1252,9 +1318,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string absday = Convert.ToDouble(dr1["absday"]).ToString();
                 string aprday = Convert.ToDouble(dr1["aprday"]).ToString();
                 string dedday = Convert.ToDouble(dr1["dedday"]).ToString();
+                string leaveadj = Convert.ToDouble(dr1["leaveadj"]).ToString();
+                string reason =(dr1["reason"]).ToString();
+
+
                 //if (dedday > 0)
                 //{
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPABSENTADJ", monthid, empid, absday, aprday, dedday, "", "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPABSENTADJ", monthid, empid, absday, aprday, dedday, leaveadj, reason, "", "", "", "", "", "", "", "");
                 if (!result)
                     return;
                 //  }
