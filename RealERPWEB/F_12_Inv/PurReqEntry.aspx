@@ -191,62 +191,39 @@
                                             <asp:Label ID="lblCatagory" runat="server" CssClass="lblTxt lblName" Text="Catagory"></asp:Label>
                                             <asp:TextBox ID="txtResSearch" runat="server" CssClass=" inputtextbox" TabIndex="1"></asp:TextBox>
                                             <div class="colMdbtn">
-                                                <asp:LinkButton ID="ImgbtnFindRes" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindRes_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
-
-
+                                                <asp:LinkButton ID="ImgbtnFindRes" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnFindRes_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span>
+                                                </asp:LinkButton>
                                             </div>
-
-
-
                                         </div>
                                         <div class="col-md-2 pading5px asitCol2">
-
                                             <asp:DropDownList ID="ddlCatagory" runat="server" CssClass=" ddlPage chzn-select" Style="width: 150px;" AutoPostBack="True" OnSelectedIndexChanged="ddlCatagory_SelectedIndexChanged" TabIndex="3"></asp:DropDownList>
-
-
-
                                         </div>
-
-                                        <div class="col-md-1 pading5px ">
-                                            <asp:Label ID="lblResList" runat="server" CssClass="smLbl_to" Text="Materials List"></asp:Label>
-
+                                        <div class="col-md-1 pading5px">
+                                            <asp:Label ID="lblResList" runat="server" CssClass="smLbl_to" Text="Materials List" Style="float: right"></asp:Label>
                                         </div>
-
-                                        <div class="col-md-2 pading5px asitCol2">
-
+                                        <div class="col-md-2 pading5px">
                                             <asp:DropDownList ID="ddlResList" runat="server" CssClass="ddlPage chzn-select" Style="width: 200px;" AutoPostBack="True" OnSelectedIndexChanged="ddlResList_SelectedIndexChanged" TabIndex="3"></asp:DropDownList>
-
-
-
                                         </div>
-
-
                                         <div class="col-md-3 pading5px    asitCol3">
-
-                                            <a class="btn btn-primary srearchBtn pull-left" data-toggle="modal" data-target="#detialsinfo" data-original-title><span class="glyphicon glyphicon-plus"></span>
+                                            <a class="btn btn-primary srearchBtn pull-left" data-toggle="modal" data-target="#detialsinfo"><span class="glyphicon glyphicon-plus"></span>
                                             </a>
                                             <%--<asp:LinkButton ID="lbtnAddspecifiation" CssClass="btn btn-primary srearchBtn pull-left" runat="server" OnClick="lbtnAddspecifiation_Click" TabIndex="2"><span class="glyphicon   glyphicon-plus"> </span></asp:LinkButton>--%>
 
-                                            <asp:Label ID="lblSpecification" runat="server" CssClass=" smLbl_to  pull-left" Text="Specfi."></asp:Label>
+                                            <asp:Label ID="lblSpecification" runat="server" CssClass=" smLbl_to  pull-left" Text="Specf"></asp:Label>
 
                                             <%--   <asp:TextBox ID="txtSrchSpecification" runat="server" CssClass="inputtextbox" TabIndex="5"></asp:TextBox>
 
                                             <asp:LinkButton ID="ImgbtnSpecification" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ImgbtnSpecification_Click" TabIndex="2"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>--%>
 
 
-                                           <%-- <cc1:ListSearchExtender ID="ListSearchExt1" runat="server"
+                                            <%-- <cc1:ListSearchExtender ID="ListSearchExt1" runat="server"
                                                 QueryPattern="Contains" TargetControlID="ddlResList">
                                             </cc1:ListSearchExtender>--%>
-                                            <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass=" ddlPage chzn-select"  TabIndex="3" Width="100px"></asp:DropDownList>
-
-
-
-
+                                            <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass=" ddlPage chzn-select" TabIndex="3" Width="100px"></asp:DropDownList>
                                         </div>
 
 
                                         <div class="col-md-1">
-
                                             <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary primarygrdBtn" Style="line-height: 15px;" Height="25">Select</asp:LinkButton>
                                         </div>
 
@@ -349,8 +326,8 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Site Supply Date">
                                             <FooterTemplate>
- 
-                                                  
+
+
                                                 <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClick="lbtnUpdateResReq_Click" CssClass="btn  btn-danger primarygrdBtn">Final Update</asp:LinkButton>
                                             </FooterTemplate>
                                             <ItemTemplate>
@@ -531,13 +508,13 @@
 
                                         <div class="col-md-4 pading5px" id="uPrj" runat="server" visible="false">
                                             <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Use Project"></asp:Label>
-                                             <div class="ddlListPart">
-                                                <asp:DropDownList ID="ddlPrjForUse" runat="server" CssClass="form-control inputTxt chzn-select"  TabIndex="3" Style="width: 313px;"></asp:DropDownList>
+                                            <div class="ddlListPart">
+                                                <asp:DropDownList ID="ddlPrjForUse" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3" Style="width: 313px;"></asp:DropDownList>
                                             </div>
 
 
                                         </div>
-                                        
+
 
                                         <div class="col-md-4 pading5px">
                                             <div class="input-group">
@@ -780,31 +757,29 @@
                     <div class="modal-dialog modal-md">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span>Add Specification Code</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="text-decoration-color: white">X</button>
+                                <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-hand-right"></span>Add Specification Code</h4>
                             </div>
 
                             <div class="modal-body">
-                                <div class="row">
-                                    <label class="control-label">Details:</label>
-
-                                    <asp:TextBox ID="txtspcfdesc" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
-
-
-
+                                <div class="panel-body">
+                                    <div class="form-group row">
+                                        <app:label class="control-label">Details:</app:label>
+                                        <asp:TextBox ID="txtspcfdesc" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                    </div>
                                 </div>
                                 <div class="panel-footer">
-
-
-                                    <asp:LinkButton ID="lbtnUpdateSpeDetails" runat="server" class="btn btn-success" aria-hidden="true" OnClientClick="CloseModal();" OnClick="lbtnUpdateSpeDetails_Click">Update</asp:LinkButton>
-                                    <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                    <div class="form-group">
+                                        <asp:LinkButton ID="lbtnUpdateSpeDetails" runat="server" class="btn btn-success" aria-hidden="true" OnClientClick="CloseModal();" OnClick="lbtnUpdateSpeDetails_Click">Update</asp:LinkButton>
+                                        <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+                                    </div>
 
                                     <!--<span class="glyphicon glyphicon-remove"></span>-->
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 
