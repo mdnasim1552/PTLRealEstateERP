@@ -170,7 +170,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.42708in</Height>
+                  <Height>0.41666in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -395,7 +395,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.21354in</Height>
+                                <Height>0.20833in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -447,7 +447,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.21354in</Height>
+                                <Height>0.20833in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -618,7 +618,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!voudat1.Value</Value>
+                                  <Value>=iif(trim(Fields!cactcode.Value)="Narration:","", Fields!voudat1.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -629,17 +629,17 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>voudat1</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>= trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -647,6 +647,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -658,7 +659,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(len (trim(Fields!cactcode.Value)) =12,Fields!vounum2.Value,Fields!cactcode.Value)</Value>
+                                  <Value>=iif(trim(Fields!cactcode.Value)="Narration:","", iif(len (trim(Fields!cactcode.Value)) =12,Fields!vounum2.Value,Fields!cactcode.Value))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -671,17 +672,17 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>vounum2</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -700,7 +701,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!refnum.Value</Value>
+                                  <Value>=iif(trim(Fields!cactcode.Value)="Narration:", "" ,Fields!refnum.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -711,17 +712,17 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>refnum</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -761,8 +762,11 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -804,8 +808,11 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -847,8 +854,11 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -889,8 +899,11 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                               <Style>None</Style>
                               <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
                             <BottomBorder>
-                              <Style>Solid</Style>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
                             </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
@@ -928,7 +941,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
             </TablixRowHierarchy>
             <DataSetName>DataSetLedger</DataSetName>
             <Top>0.06125in</Top>
-            <Height>0.63541in</Height>
+            <Height>0.62499in</Height>
             <Width>8.05248in</Width>
             <Style>
               <Border>

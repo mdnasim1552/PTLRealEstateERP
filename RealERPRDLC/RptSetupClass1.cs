@@ -3647,8 +3647,8 @@ namespace RealERPRDLC
         }
         private static LocalReport SetRptAccSumCustPayStatus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedger>)RptDataSet));
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedger>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedgerCHL>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedgerCHL>)RptDataSet2));
             return Rpt1a;
         }
 
