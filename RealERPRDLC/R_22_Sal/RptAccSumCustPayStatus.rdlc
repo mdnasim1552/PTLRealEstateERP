@@ -1171,7 +1171,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!schdate.Value</Value>
+                                  <Value>=iif(trim(Fields!schdate.Value)="01-Jan-1900", "", Fields!schdate.Value)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1241,7 +1241,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!recdate.Value</Value>
+                                  <Value>=iif(trim(Fields!recdate.Value)="01-Jan-1900", "", Fields!recdate.Value)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1521,7 +1521,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!recndate.Value</Value>
+                                  <Value>=iif(trim(Fields!recndate.Value)="01-Jan-1900", "", Fields!recndate.Value)</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3025,7 +3025,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!schdate.Value</Value>
+                                  <Value>=iif(trim(Fields!schdate.Value)="01-Jan-1900", "", Fields!schdate.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3095,7 +3095,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!recdate.Value</Value>
+                                  <Value>=iif(trim(Fields!recdate.Value)="01-Jan-1900", "", Fields!recdate.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3373,7 +3373,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!recndate.Value</Value>
+                                  <Value>=iif(trim(Fields!recndate.Value)="01-Jan-1900", "", Fields!recndate.Value)</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -4216,7 +4216,7 @@
             <Top>4.07826in</Top>
             <Left>0.11583in</Left>
             <Height>0.5in</Height>
-            <Width>6.28532in</Width>
+            <Width>6.28533in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -4464,7 +4464,7 @@
                 <DataSetName>DataSet1</DataSetName>
                 <Top>0.0625in</Top>
                 <Left>0.03465in</Left>
-                <Height>0.625in</Height>
+                <Height>0.62499in</Height>
                 <Width>7.84316in</Width>
                 <Style>
                   <Border>
@@ -4787,7 +4787,7 @@
                 <Top>0.72258in</Top>
                 <Left>0.03465in</Left>
                 <Height>0.81668in</Height>
-                <Width>4.00839in</Width>
+                <Width>4.00838in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -5110,7 +5110,7 @@
                 <Top>0.74306in</Top>
                 <Left>4.07082in</Left>
                 <Height>0.81251in</Height>
-                <Width>3.81185in</Width>
+                <Width>3.81186in</Width>
                 <ZIndex>2</ZIndex>
                 <Style>
                   <Border>
@@ -5123,7 +5123,7 @@
             <Top>0.05833in</Top>
             <Left>0.01167in</Left>
             <Height>1.58125in</Height>
-            <Width>7.88267in</Width>
+            <Width>7.88268in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
