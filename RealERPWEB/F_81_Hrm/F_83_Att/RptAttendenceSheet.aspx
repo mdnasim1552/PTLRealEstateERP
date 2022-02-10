@@ -38,6 +38,21 @@
     </style>
  
      
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+        });
+        function pageLoaded() {
+            $('.chzn-select').chosen({ search_contains: true });
+        }
+
+
+
+
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
