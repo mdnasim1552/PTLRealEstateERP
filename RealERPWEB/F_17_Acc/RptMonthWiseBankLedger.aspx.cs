@@ -57,7 +57,9 @@ namespace RealERPWEB.F_17_Acc
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string txtSProject = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETBANKNAME", txtSProject, "", "", "", "", "", "", "", "");
+            string bankcode = "%";
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETBANKNAME", txtSProject, bankcode, "", "", "", "", "", "", "");
             this.ddlBankName.DataTextField = "bankName";
             this.ddlBankName.DataValueField = "bankcode";
             this.ddlBankName.DataSource = ds1.Tables[0];
