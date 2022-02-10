@@ -714,7 +714,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                         Session["Report1"] = gvcashpay;
                         ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     }
-                    if (comcod=="3365")
+                    if ((comcod=="3365") || (comcod=="3101"))
                     {
                         this.gvcashpay.Columns[7].Visible = true;
                         this.gvcashpay.Columns[8].Visible = true;
