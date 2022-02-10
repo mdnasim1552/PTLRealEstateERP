@@ -73,15 +73,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashSalary":
-                    this.MultiView1.ActiveViewIndex = 1;
-                    this.lblfrmd.Visible = true;
-                    this.ddlfrmDesig.Visible = true;
-                    this.lbltdeg.Visible = true;
-                    this.ddlToDesig.Visible = true;
+                    this.MultiView1.ActiveViewIndex = 1;                  
 
 
                     string comcod = this.GetComeCode();
-                    this.GetDesignation();
+                  
                     if (comcod == "3355")
                     {
                         this.rbtnlistsaltypeAddItem();
@@ -280,7 +276,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashSalary":
+                    GetBankName();
                     this.ShowCashSalary();
+                    
                     break;
                 case "SalLACA":
                     this.ShowSalaLACA();
@@ -473,8 +471,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString().Substring(0,9) + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            string DesigFrom = "0399999";
+            string DesigTo = "0311001";
 
             string exclumgt = "";
             string mantype = "";
@@ -683,7 +681,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+        private void GetBankName()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string txtSProject = "%%";
+            string bankcode = "1902%";
+            
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETBANKNAME", txtSProject, bankcode, "", "", "", "", "", "", "");
 
+            Session["tblbanklist"] = ds1.Tables[0];
+
+
+
+        }
         private void Data_Bind()
         {
 
@@ -700,17 +711,29 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashSalary":
-                    this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvcashpay.DataSource = (DataTable)Session["tblSalSum"];
-                    this.gvcashpay.DataBind();
+                    DataTable dt1 = (DataTable)Session["tblSalSum"];
+                    DataTable tblbnk = (DataTable)Session["tblbanklist"];
 
+                    
+                    this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvcashpay.DataSource = dt1;
+                    this.gvcashpay.DataBind();
                     if (this.gvcashpay.Rows.Count > 0)
                     {
                         this.FooterCalculation((DataTable)Session["tblSalSum"]);
                         Session["Report1"] = gvcashpay;
                         ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     }
+                    DropDownList ddlBank;
 
+                    for (int i = 0; i < dt1.Rows.Count; i++)
+                    {
+                        ddlBank = ((DropDownList)this.gvcashpay.Rows[i].FindControl("ddlBank"));
+                        ddlBank.DataTextField = "actdesc";
+                        ddlBank.DataValueField = "bankcode";
+                        ddlBank.DataSource = tblbnk;
+                        ddlBank.DataBind(); 
+                    }
                     break;
 
 
@@ -2438,51 +2461,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string comcod = hst["comcod"].ToString();          
             return comcod;
         }
-        private void GetDesignation()
-        {
-
-            string comcod = this.GetCompCode();         
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "DESIGNAME", "", "", "", "", "", "", "", "", "");
-            Session["tbldesig"] = ds1.Tables[0];
-            if (ds1 == null)
-                return;
-            this.ddlfrmDesig.DataTextField = "designation";
-            this.ddlfrmDesig.DataValueField = "desigcod";
-            this.ddlfrmDesig.DataSource = ds1.Tables[0];
-            this.ddlfrmDesig.DataBind();
-            if (this.Request.QueryString["Type"].ToString() == "EmpGradeADesig")
-            {
-                this.ddlfrmDesig.SelectedValue = "0357000";
-            }
-            else
-            {
-                this.ddlfrmDesig.SelectedValue = "0357999";
-            }
-            this.GetDessignationTo();
-        }
-        private void GetDessignationTo()
-        {
-
-            DataTable dt = (DataTable)Session["tbldesig"];
-            this.ddlToDesig.DataTextField = "designation";
-            this.ddlToDesig.DataValueField = "desigcod";
-            this.ddlToDesig.DataSource = dt;
-            this.ddlToDesig.DataBind();
-            if (this.Request.QueryString["Type"].ToString() == "EmpGradeADesig")
-            {
-                this.ddlToDesig.SelectedValue = "0311000";
-            }
-            else
-            {
-                // this.ddlToDesig.SelectedValue = "0311001";
-            }
-
-
-        }
-        protected void ddlfrmDesig_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetDessignationTo();
-        }
+     
+        
         protected void gvtopsheetfactory_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
