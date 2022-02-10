@@ -608,7 +608,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case 3:
 
 
-                    if (comcod == "3365" || comcod=="3101")
+                    if (comcod == "3365")
                     {
                         int i;
                         DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
@@ -632,7 +632,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                             this.StatusReport.Visible = true;
                         }
-                        this.SummaryAttinfo.Visible = false;
+                       
 
                         this.gvMonthlyattSummary.DataSource = dt;
                         this.gvMonthlyattSummary.DataBind();

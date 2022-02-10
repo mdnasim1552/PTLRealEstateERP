@@ -503,12 +503,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                         dv1.RowFilter = ("gcod like '28%' or gcod like '29%'");
                         ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvdVal")).Visible = false;
+                        string gdesc1 = ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         ddlgval = ((DropDownList)this.gvPersonalInfo2.Rows[i].FindControl("ddlval"));
                         ddlgval.DataTextField = "gdesc";
                         ddlgval.DataValueField = "gcod";
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
-                        ddlgval.SelectedValue = ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                        ddlgval.SelectedValue = gdesc1==""? "29001" : ((TextBox)this.gvPersonalInfo2.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
 
 
