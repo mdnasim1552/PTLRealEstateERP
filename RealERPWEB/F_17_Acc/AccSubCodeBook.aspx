@@ -498,20 +498,7 @@
                                     <asp:TextBox ID="txtrsircode" runat="server" TextMode="MultiLine" CssClass="form-control" Visible="false"></asp:TextBox>
                                     <asp:TextBox ID="txtDetails" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
 
-                                </div>
-
-                                <%-- <div class="form-group">
-                                    <label class="control-label">Catagory:</label>
-                                  
-                                    <asp:DropDownList ID="ddlworkCatagory" runat="server" CssClass="form-control">
-
-                                        <asp:ListItem Value="">Standard</asp:ListItem>
-                                        <asp:ListItem Value="A">Appartment</asp:ListItem>
-                                        <asp:ListItem Value="O">Office</asp:ListItem>
-
-                                    </asp:DropDownList>
-
-                                </div>--%>
+                                </div> 
                             </div>
                             <div class="modal-footer">
                                 <%--    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true" >Update</button>--%>
