@@ -149,45 +149,10 @@
                                             Enabled="True" Format="yyyyMM" TargetControlID="txtfMonth"
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
 
-                                     <div class="col-md-3 pading5px asitCol2" >
-                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName" Visible="false">From</asp:Label>
-                                        <asp:DropDownList ID="ddlfrmDesig" runat="server" Visible="false" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
-                                        </asp:DropDownList>
-                                    </div>
-
-                                    <div class="col-md-4 pading5px">
-                                        <asp:Label ID="lbltdeg" runat="server" Visible="false" CssClass=" smLbl_to">To</asp:Label>
-
-
-                                        <asp:DropDownList ID="ddlToDesig" runat="server" Visible="false" Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                        </asp:DropDownList>
-
-                                    </div>
+                                     
 
 
                                     </div>
-
-                       <%--           <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol2">
-                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
-                                        <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="100px" TabIndex="6">
-                                        </asp:DropDownList>
-                                    </div>
-
-                                    <div class="col-md-4 pading5px">
-                                        <asp:Label ID="lbltdeg" runat="server" CssClass=" smLbl_to">To</asp:Label>
-
-
-                                        <asp:DropDownList ID="ddlToDesig" runat="server" Width="120" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                        </asp:DropDownList>
-
-                                    </div>
-
-                                </div>--%>
-
-
-
-
 
                                     <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                         Font-Size="14px" Height="14px" RepeatColumns="14" RepeatDirection="Horizontal"
@@ -476,7 +441,7 @@
                             <asp:View ID="VCashSalary" runat="server">
                                 <asp:GridView ID="gvcashpay" runat="server" AllowPaging="false" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvcashpay_PageIndexChanging"
-                                    ShowFooter="True" Width="745px">
+                                    ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -553,6 +518,7 @@
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Working Day">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvwdaycah" runat="server" Style="text-align: right"
@@ -563,6 +529,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Net Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvnetamtcash" runat="server" Style="text-align: right"
@@ -577,6 +544,27 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Bank">
+                                            <ItemTemplate>
+                                                <asp:DropDownList ID="ddlBank" CssClass="form-control" runat="server">
+                                                </asp:DropDownList>
+                                            </ItemTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="chekPrint" runat="server"><i class="fa fa-print "></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
