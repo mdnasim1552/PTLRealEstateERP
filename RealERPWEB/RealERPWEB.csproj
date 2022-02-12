@@ -3534,6 +3534,7 @@
     <Content Include="Scripts\Mchart.js" />
     <Content Include="Scripts\Mchartpie.js" />
     <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\Multicheckboxes.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\ScrollableGridPlugin.js" />
     <Content Include="Scripts\ScrollableTablePlugin.js" />
