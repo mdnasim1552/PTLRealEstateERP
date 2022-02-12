@@ -168,13 +168,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string txtMonth = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO"+comcod+".jpg")).AbsoluteUri;
             string rptMonth = "Month of "+txtMonth+"'"+year;
             DataTable dt = (DataTable)ViewState["tblSalaryRecon"];
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalaryReconciliation>();
 
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryReconciliation", list, null, null);
-            Rpt1.SetParameters(new ReportParameter("comnam", comnam));
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
             Rpt1.SetParameters(new ReportParameter("rptTitle", "RECONCILIATION HEAD OFFICE"));
             Rpt1.SetParameters(new ReportParameter("txtMonth", rptMonth));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate)));

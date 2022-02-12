@@ -937,6 +937,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryGrndTotalTropical.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryLeisure.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryRatulPro.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryReconciliation.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalDisbursement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalLACA.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalLACAAssure.rdlc" />
