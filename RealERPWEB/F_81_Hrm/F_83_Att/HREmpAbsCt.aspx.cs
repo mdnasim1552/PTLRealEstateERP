@@ -19,6 +19,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
     public partial class HREmpAbsCt : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -59,7 +61,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlMonth.DataValueField = "mno";
             this.ddlMonth.DataSource = ds1.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.Month.ToString().Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("dd-MM-yyyy").Trim();
         }
 
 
@@ -96,6 +98,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //}
             this.ddlMonth_SelectedIndexChanged(null, null);
         }
+
+
+        private string Getdatestart()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+
+            return startdate;
+        }
         protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.chkDate.Items.Clear();
@@ -103,7 +115,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetCompCode();
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string date = "01-" + Month + "-" + year;
+            DateTime date1 = Convert.ToDateTime(this.ddlMonth.SelectedValue.ToString());
+            string cudate = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    cudate = date1.ToString("dd-MMM-yyyy");
+                    break;
+            }
+            string date = Getdatestart() + cudate.Trim().Substring(2);
+
+            //string date = "01-" + Month + "-" + year;
             string empid = this.ddlEmpName.SelectedValue.ToString();
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", date, empid, "", "", "", "", "", "", "");
 
@@ -135,8 +162,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string empid = this.ddlEmpName.SelectedValue.ToString();
-            string month = this.ddlMonth.SelectedValue.ToString().Trim();
-            string month1 = month.PadLeft(2, '0');
+            string month = Convert.ToDateTime(this.ddlMonth.SelectedValue).ToString("MM").Trim();
+            string month1 = month;
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
             string monyr = month1 + year;
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "DELETEABSCT", empid, monyr, "", "", "", "", "", "", "", "", "", "", "", "", "");
