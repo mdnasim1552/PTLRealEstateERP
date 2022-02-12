@@ -1793,5 +1793,56 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
 
         }
+        protected void lnkCreate_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "GetEmployeeform();", true);
+            return;
+        }
+        protected void lnkbtnSave_Click(object sender, EventArgs e)
+        {
+
+            string comcod = this.GetComeCode();
+            string empdept = "9301";//this.ddlDept.SelectedValue.ToString().Trim().Substring(0, 9);
+            string empname = this.txtEmpName.Text;
+            string empcode = this.lblEmplastId.Text;
+            string Message;
+            bool result = true;
+            if (this.txtEmpName.Text.Length < 1)
+            {
+                Message = "Employee name can't be empty!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+                return;
+            }
+            if (empcode.Length > 0)
+            {
+
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "UPDATEEMPNAME", empcode, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            }
+            else
+            {
+                // result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAME", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTEMPNAMELASTIDWISE", empdept, empname, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            }
+            if (result)
+            {
+                Message = "Successfully Added Employee : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
+                this.txtEmpName.Text = "";
+                this.lblEmplastId.Text = "";
+
+            }
+            else
+            {
+                Message = "Sorry, Data Updated Fail : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+
+            }
+
+
+
+            this.GetEmployeeName();
+
+        }
     }
 }
