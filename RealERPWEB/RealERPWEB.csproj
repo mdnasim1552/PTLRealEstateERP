@@ -380,6 +380,8 @@
     <Content Include="Content\Theme\images\avatars\uifaces16.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces17.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces18.jpg" />
+    <Content Include="Content\Theme\main.min.css" />
+    <Content Include="Content\Theme\main.min.js" />
     <Content Include="Content\Theme\sb-admin-2.css" />
     <Content Include="Content\Theme\sb-admin-2.js" />
     <Content Include="Content\Theme\select2-demo.js" />
