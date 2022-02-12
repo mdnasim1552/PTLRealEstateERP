@@ -19,6 +19,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
     public partial class HREmpOffDays : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -80,8 +82,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         private void GetProjectName()
         {
-
-
             string comcod = this.GetComCode();
             //string company = this.ddlCompany.SelectedValue.Substring(0, 2);
 
@@ -92,7 +92,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.ddlProjectName.DataValueField = "deptid";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
-
         }
 
         //protected void lnkbtnOffDay_Click(object sender, EventArgs e)
@@ -172,7 +171,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString()) + "%";
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
 
-            string date = Convert.ToDateTime("01-" + this.ddlMonth.SelectedItem.Text.Trim()).ToString("dd-MMM-yyyy");
+            string date = Convert.ToDateTime(Getdatestart()+"-" + this.ddlMonth.SelectedItem.Text.Trim()).ToString("dd-MMM-yyyy");
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "SHOWEMPOFFDAY", Section, date, employee, Company, Department, "", "", "", "");
             if (ds4 == null)
             {
@@ -236,14 +235,23 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
         }
 
+        private string  Getdatestart()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+           
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
 
+            return startdate;
+        }
         private void GetMonCalender()
         {
             this.chkDate.Items.Clear();
             string comcod = this.GetComCode();
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string date = "01-" + Month + "-" + year;
+
+            
+            string date = Getdatestart() + "-" + Month + "-" + year;
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONDATE", date, "", "", "", "", "", "", "", "");
 
             if (ds4 == null)

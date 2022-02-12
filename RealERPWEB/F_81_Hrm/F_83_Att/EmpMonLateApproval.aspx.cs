@@ -18,6 +18,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
     public partial class EmpMonLateApproval : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,6 +54,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void ViewSaction()
         {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+
             string Type = this.Request.QueryString["Type"].ToString();
             switch (Type)
             {
@@ -60,13 +67,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.MultiView1.ActiveViewIndex = 0;
                     string comcod = this.GetCompCode();
                     this.visibility();
-
+                   
                     switch (comcod)
                     {
 
                         case "4301"://Sanmer
-                        case "3332":
-                        case "3101":
+                        case "3332":                      
                         case "3338":
 
                             //case "4305"://Rupayan
@@ -75,17 +81,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
 
-
-
+                        
 
                         default:
 
+                            this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
+                            this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
                             // this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
                             //this.txtfromdate.Text = "26" + this.txtfromdate.Text.Trim().Substring(2);
-                            //this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                            this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                            this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
-                            this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            ////this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                            //this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            //this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
+                            //this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
 
 
@@ -96,17 +105,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MPunchAppDay":
                     this.MultiView1.ActiveViewIndex = 1;
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                  
+
                     break;
 
                 case "MabsentApp":
                     this.MultiView1.ActiveViewIndex = 2;
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-                      this.lblfrmDesig.Visible = false;
+                    this.lblfrmDesig.Visible = false;
                     this.ddlfrmDesig.Visible = false;
                     this.lbltoDesig.Visible = false;
                     this.ddlToDesig.Visible = false;
@@ -115,7 +124,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MEarlyleave":
                     this.MultiView1.ActiveViewIndex = 3;
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 
@@ -124,32 +133,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MabsentApp02":
                     this.MultiView1.ActiveViewIndex = 4;
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfrmDate.Text = "01" + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 case "LPAproval":
                     this.MultiView1.ActiveViewIndex = 5;
                     this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtfrmDate.Text = "26" + this.txtfrmDate.Text.Trim().Substring(2);
+                    this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                     this.lblfrmDesig.Visible = false;
                     this.ddlfrmDesig.Visible = false;
                     this.lbltoDesig.Visible = false;
                     this.ddlToDesig.Visible = false;
-
-
-
                     break;
-
-
-
-
-
             }
-
-
         }
 
         private void visibility()
@@ -411,14 +410,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
+           
 
+            string frmdesig = "0399999";
+            string todesig = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
 
+                    frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+                    todesig = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
 
             //string calltype = this.selectcomp(); //comcod == "3332" ? "EMPDAYADJUSTMENTMAN" : "EMPDAYADJUSTMENT";
-
-
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPLATEAPPROVALAFTERONEHOUR", compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
             if (ds2 == null)
             {
@@ -460,9 +469,23 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
+            //string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+            //string todesig = this.ddlToDesig.SelectedValue.ToString();
 
+            string frmdesig = "0399999";
+            string todesig = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+                    todesig = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
 
 
             string calltype = this.selectcomp(); //comcod == "3332" ? "EMPDAYADJUSTMENTMAN" : "EMPDAYADJUSTMENT";
@@ -507,8 +530,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
+
+            string frmdesig = "0399999";
+            string todesig = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+                    todesig = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPMOPUNCHAPPROVAL", compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
             if (ds2 == null)
             {
@@ -548,8 +584,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
+
+            string frmdesig = "0399999";
+            string todesig = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+                    todesig = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPMONABSADJUSTMENT", compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
             if (ds2 == null)
             {
@@ -589,8 +638,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
+
+            string frmdesig = "0399999";
+            string todesig = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+                    todesig = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "EMPMONABSENTPUNC", compname, frmdate, todate, deptname, section, Empcode, todesig, frmdesig, "");
             if (ds2 == null)
             {
@@ -629,8 +691,21 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-            string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
-            string todesig = this.ddlToDesig.SelectedValue.ToString();
+
+            string frmdesig = "0399999";
+            string todesig = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
+                    todesig = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
 
 
 

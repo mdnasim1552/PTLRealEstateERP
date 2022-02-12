@@ -38,12 +38,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ((Label)this.Master.FindControl("lblTitle")).Text = "MY SERVICES INFORMATION";
                 // this.SelectView();
                 this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
-
                 string empid = this.Request.QueryString["empid"] ?? ""; ;
                 //string empid = this.ddlEmpName.SelectedValue.ToString();
-
                 if (empid.Length > 0)
                 {
                     this.lbtnOk.Visible = false;
@@ -51,9 +47,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.txtDate.Visible = false;
                     this.ddlEmpName.Enabled = false;
                 }
-
-
-
                 this.GetCompany();
                 this.MultiView1.ActiveViewIndex = 0;
                 this.lbtnOk_Click(null, null);
@@ -171,9 +164,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             ViewState.Remove("tblgrph");
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
 
-
-
-
             this.lblServHead.Visible = true;
             this.lbAttHead.Visible = true;
             this.lblgraph.Visible = true;
@@ -192,7 +182,21 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string qempid = this.Request.QueryString["empid"] ?? "";
             string empid = qempid.Length > 0 ? qempid : this.ddlEmpName.SelectedValue.ToString(); //this.ddlEmpName.SelectedValue.ToString();
             string Date = this.txtDate.Text.Trim();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
+            string calltype = "";
+
+            switch (comcod)
+            {
+                case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+                case "3365": 
+                    calltype = "RPTMYSERVICESBTI";
+                    break;
+
+                default:
+                    calltype = "RPTMYSERVICES";
+                    break;
+            }
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", calltype, empid, Date, "", "", "", "", "", "", "");
             //this.lbldesg.Visible = true;
 
             if (ds1 == null)
