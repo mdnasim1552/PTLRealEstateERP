@@ -380,6 +380,8 @@
     <Content Include="Content\Theme\images\avatars\uifaces16.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces17.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces18.jpg" />
+    <Content Include="Content\Theme\main.min.css" />
+    <Content Include="Content\Theme\main.min.js" />
     <Content Include="Content\Theme\sb-admin-2.css" />
     <Content Include="Content\Theme\sb-admin-2.js" />
     <Content Include="Content\Theme\select2-demo.js" />
@@ -3532,6 +3534,7 @@
     <Content Include="Scripts\Mchart.js" />
     <Content Include="Scripts\Mchartpie.js" />
     <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\Multicheckboxes.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\ScrollableGridPlugin.js" />
     <Content Include="Scripts\ScrollableTablePlugin.js" />

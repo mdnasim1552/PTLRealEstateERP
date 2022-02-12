@@ -29,29 +29,7 @@
 
     </script>
 
-    <style>
-        /* .chzn-container-single {
-            width: 100%;
-            height: 34px !important;
-        }
 
-            .chzn-container-single .chzn-single {
-                height: 36px !important;
-                line-height: 36px;
-            }
-
-        .profession-slect .chzn-container-single {
-            width: 180px !important;
-            height: 34px !important;
-        }
-
-        .prcntbox {
-            display: block !important;
-            color: #ff6a00 !important;
-            font-size: 14px !important;
-        }
-*/
-    </style>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -62,14 +40,15 @@
                 <div class="card-header mt-3 mb-0 pb-0">
                     <div class="row mb-0 pb-0">
 
-
-                        <button class="btn btn-sm btn-secsondary mr-2 col-1" type="button">Employee List</button>
+                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List</asp:Label>
 
                         <asp:DropDownList ID="ddlEmpName" data-placeholder="Choose Employee.." runat="server"
                             CssClass="chzn-select col-4" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged" AutoPostBack="true">
                         </asp:DropDownList>
 
-                        <button class="btn btn-sm btn-secsondary mr-2 col-1" type="button">Information</button>
+                        <asp:LinkButton ID="lnkCreate" OnClick="lnkCreate_Click" runat="server" CssClass="btn  btn-secondary  btn-sm float-right" ToolTip="Create New Employee"><i class="fa fa-plus" aria-hidden="true"></i></asp:LinkButton>
+
+                        <asp:Label ID="Label1" runat="server" CssClass="col-1 col-form-label">Information</asp:Label>
 
                         <asp:DropDownList ID="ddlInformation" data-placeholder="Choose Information.." ClientIDMode="Static" runat="server"
                             CssClass="chzn-select col-2" AutoPostBack="true" OnSelectedIndexChanged="ddlInformation_SelectedIndexChanged">
@@ -115,7 +94,7 @@
 
                                                     <asp:Label ID="lgcResDesc1" runat="server" CssClass="d-block" Height="16px">
                                                         <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>
-                                                        <asp:LinkButton ID="ibtngrdEmpList" runat="server" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
+                                                        <asp:LinkButton ID="ibtngrdEmpList" runat="server" ToolTip="New Field" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
                                                                     <i class="fa fa-plus "></i>
                                                         </asp:LinkButton>
                                                     </asp:Label>
@@ -141,9 +120,9 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField>
-      
+
                                                 <HeaderTemplate>
-                                                   
+
                                                     <asp:HyperLink ID="hlbtAddnew" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_82_App/HRCodeBook.aspx" CssClass="btn  btn-success btn-sm float-right" ToolTip="Add New"><i class="fa fa-plus" aria-hidden="true"></i></i>
                                                     </asp:HyperLink>
                                                 </HeaderTemplate>
@@ -1147,6 +1126,39 @@
                     </div>
                 </div>
             </div>
+
+            <div id="EmployeeEntry" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content col-md-12 col-sm-12 ">
+                        <div class="modal-header hedcon">
+                          
+                            <h4>Employee Name Entry</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>                          
+                        </div>
+                        <div class="modal-body">                            
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+
+                            
+                                <div class="form-group">
+                                    <label for="txtEmpName">
+                                        Employee Name 
+                            
+                             <asp:CheckBox ID="chkNewEmp" Checked="true" Text=" New Employee" runat="server" CssClass="d-none badge badge-secondary badgechk"
+                                 AutoPostBack="True" />
+                                    </label>
+                                    <asp:TextBox ID="txtEmpName" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                                <div class="form-group">
+                                    <asp:LinkButton ID="lnkbtnSave" runat="server" OnClick="lnkbtnSave_Click" OnClientClick="CloseModal();" CssClass="btn btn-danger btn-sm">Add</asp:LinkButton>
+                                    <asp:Label ID="lblEmplastId" runat="server" Visible="false"></asp:Label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
