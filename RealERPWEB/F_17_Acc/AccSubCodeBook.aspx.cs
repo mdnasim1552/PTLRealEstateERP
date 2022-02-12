@@ -26,7 +26,7 @@ namespace RealERPWEB.F_17_Acc
         protected FullGridPager fullGridPager;
         protected int MaxVisible = 0;
         static string prevPage = String.Empty;
-       // ProcessRAccess Rprss = new ProcessRAccess();
+        // ProcessRAccess Rprss = new ProcessRAccess();
         ProcessAccess da = new ProcessAccess();
         static string[] CarArray = new string[3] { "Sub Code-1", "Sub Code-2", "Details Code" };
         //static string tempddl1 = "", tempddl2 = "";
@@ -38,11 +38,11 @@ namespace RealERPWEB.F_17_Acc
 
             if (!IsPostBack)
             {
-               
+
                 CommonButton();
-              
+
             }
-          
+
         }
         public void CommonButton()
         {
@@ -79,11 +79,31 @@ namespace RealERPWEB.F_17_Acc
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
 
         }
+
+
+        [System.Web.Services.WebMethod]
+        public static string CheckPhone(string comcod, string supmobile)
+        {
+
+            string resmsg = "";
+            ProcessAccess pacc = new ProcessAccess();
+            DataSet ds = pacc.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", supmobile, "", "", "", "", "", "", "");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                resmsg = "true";
+            }
+            else
+            {
+                resmsg = "false";
+            }
+            return resmsg;
+        }
+
         protected void btnClose_Click(object sender, EventArgs e)
         {
             Response.Redirect(prevPage);
         }
-        private string GetComeCode()
+        public string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
@@ -105,7 +125,7 @@ namespace RealERPWEB.F_17_Acc
                    : (Querytype == "TaxVatAndSd") ? "sircode like '97%'" : (Querytype == "GenAdv") ? "sircode like '9[56]%'" : (Querytype == "Labour") ? "sircode like '04%'" : (Querytype == "Materials") ? "sircode like '01%'"
                    : (Querytype == "Employee") ? "sircode like '93%'" : (Querytype == "DeptCode") ? "sircode like '94%'" : "sircode like '%'";
 
-                 
+
                 string comcod = this.GetComeCode();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string userid = hst["usrid"].ToString();
@@ -128,7 +148,7 @@ namespace RealERPWEB.F_17_Acc
                 msg = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
-                 
+
             }
         }
 
@@ -199,7 +219,7 @@ namespace RealERPWEB.F_17_Acc
                 pnl02.Visible = true;
             }
             else
-            { 
+            {
                 pnl02.Visible = false;
                 ddl2.Items.Clear();
 
@@ -207,9 +227,9 @@ namespace RealERPWEB.F_17_Acc
 
             TextBox txtUnit = (TextBox)this.grvacc.Rows[e.NewEditIndex].FindControl("txtgvsirunit");
             DropDownList ddlUnit = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlUnit");
-            if  (sircode.Substring(0, 2) == "41")
+            if (sircode.Substring(0, 2) == "41")
             {
-                 
+
                 DataSet ds1 = da.GetTransInfo(comcod, "SP_TANDER_PROCESS", "GET_UNIT_NAME", "", "", "", "", "", "", "", "", "");
                 ddlUnit.DataTextField = "gdesc";
                 ddlUnit.DataValueField = "gcod";
@@ -222,9 +242,9 @@ namespace RealERPWEB.F_17_Acc
             else
             {
                 ddlUnit.Visible = false;
-                txtUnit.Visible = true; 
+                txtUnit.Visible = true;
             }
-             
+
         }
         protected void grvacc_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
@@ -232,11 +252,11 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                
+
                 msg = "You have no permission";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
-               
+
             }
             try
             {
@@ -253,22 +273,22 @@ namespace RealERPWEB.F_17_Acc
                 }
                 else
                 {
-                   
+
                     msg = "Invalid code!";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     updateallow = false;
                     return;
 
 
-                   
+
                 }
 
                 string actcode = "";
 
 
-               
+
                 actcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlProName")).SelectedValue.ToString();
-                 
+
                 string Descbn = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDescbn")).Text.Trim();
                 string Desc = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgvDesc")).Text.Trim();
                 string txtsirtype = ((TextBox)grvacc.Rows[e.RowIndex].FindControl("txtgridsirtype")).Text.Trim();
@@ -294,37 +314,37 @@ namespace RealERPWEB.F_17_Acc
                     }
                     else if (sircode1.Substring(7, 2) != psircode1.Substring(5, 2))
                     {
-                        
+
                         msg = "Update Not Allowed";
 
                         updateallow = false;
                     }
                     else if (sircode1.Substring(10, 3) != psircode1.Substring(7, 3))
                     {
-                        
+
 
                         msg = "Update Not Allowed";
 
                         updateallow = false;
                     }
-                   
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 }
                 else if (tempddl2 == "7" && psircode1 != sircode.Substring(2, 10) && sircode1.Length == 13 && sircode1.Substring(2, 1) == "-" && sircode1.Substring(6, 1) == "-" && sircode1.Substring(9, 1) == "-" && !sircode1.Contains(" "))
                 {
                     if (sircode1.Substring(7, 2) != psircode1.Substring(5, 2))
                     {
-                       
+
                         msg = "Update Not Allowed";
                         updateallow = false;
                     }
                     else if (sircode1.Substring(10, 3) != psircode1.Substring(7, 3))
                     {
-                         
+
                         msg = "Update Not Allowed";
                         updateallow = false;
                     }
-                     
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 }
                 else if (tempddl2 == "9" && psircode1 != sircode.Substring(2, 10) && sircode1.Length == 13 && sircode1.Substring(2, 1) == "-" && sircode1.Substring(6, 1) == "-" && sircode1.Substring(9, 1) == "-" && !sircode1.Contains(" "))
@@ -332,11 +352,11 @@ namespace RealERPWEB.F_17_Acc
 
                     if (sircode1.Substring(10, 3) != psircode1.Substring(7, 3) || sircode1.Substring(3, 3) == "000")
                     {
-                       
+
                         msg = "Update Not Allowed";
                         updateallow = false;
                     }
-                     
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                 }
@@ -344,13 +364,13 @@ namespace RealERPWEB.F_17_Acc
                 {
                     if (sircode1.Substring(3, 3) == "000" && sircode1.Substring(7, 2) != "00" || sircode1.Substring(7, 2) == "00" && sircode1.Substring(10, 3) != "000")
                     {
-                        
+
                         msg = "Update Not Allowed";
                         updateallow = false;
                     }
-                     
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                   
+
                 }
 
 
@@ -361,21 +381,21 @@ namespace RealERPWEB.F_17_Acc
 
                     int Index = grvacc.PageSize * grvacc.PageIndex + e.RowIndex;
 
-                     
+
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "OACCOUNTUPDATE", sircode2.Substring(0, 2), sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, Descbn,
                         unitCode, "", "", "", "");
                     this.ShowInformation();
                     if (result)
                     {
-                         
+
                         msg = "Updated Successfully";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
                     }
                     else
                     {
-                        
+
                         msg = "Parent Code Not Found!!!";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     }
@@ -393,7 +413,7 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                 
+
                 msg = "Error:" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
@@ -409,11 +429,11 @@ namespace RealERPWEB.F_17_Acc
                 this.grvacc.DataSource = tbl1;
                 this.grvacc.DataBind();
 
-                
-                if(this.Request.QueryString["InputType"] == "DeptCode")
+
+                if (this.Request.QueryString["InputType"] == "DeptCode")
                 {
                     this.grvacc.FooterRow.Visible = true;
-                    
+
                     this.grvacc.Columns[16].Visible = true;
 
                 }
@@ -421,13 +441,13 @@ namespace RealERPWEB.F_17_Acc
                 {
                     this.grvacc.FooterRow.Visible = false;
                 }
-                                      
+
             }
             catch (Exception ex)
             {
             }
         }
-         
+
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -510,10 +530,10 @@ namespace RealERPWEB.F_17_Acc
                 if (this.lnkok.Text == "Ok")
                 {
 
-                    this.lnkok.Text = "New";                    
+                    this.lnkok.Text = "New";
                     this.ddlOthersBook.Enabled = false;
                     this.ddlOthersBookSegment.Enabled = false;
-                    
+
                     this.ibtnSrch.Visible = true;
                     this.lblPage.Visible = true;
                     this.ddlpagesize.Visible = true;
@@ -526,13 +546,14 @@ namespace RealERPWEB.F_17_Acc
 
                     this.GetBaseUnit();
                     this.ShowInformation();
+
                 }
                 else
                 {
 
                     this.lnkok.Text = "Ok";
-                    this.txtsrch.Text = "";                   
-                    this.ibtnSrch.Visible = false;                    
+                    this.txtsrch.Text = "";
+                    this.ibtnSrch.Visible = false;
                     this.ddlOthersBook.Enabled = true;
                     this.ddlOthersBookSegment.Enabled = true;
                     this.lblPage.Visible = false;
@@ -545,7 +566,7 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                
+
                 msg = "Information not found!!!!";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
@@ -574,7 +595,7 @@ namespace RealERPWEB.F_17_Acc
             string srchoption = (srchoptionmain.Contains("-")) ? srchoptionmain : srchoptionmain + "%";
             if (srchoption.Contains("-"))
             {
-                
+
                 int index, index01;
                 if (srchoption.Contains(","))
                 {
@@ -606,7 +627,7 @@ namespace RealERPWEB.F_17_Acc
                 this.grvacc.DataBind();
                 return;
             }
- 
+
             Session["storedata"] = ds1.Tables[0];
             this.grvacc_DataBind();
 
@@ -631,7 +652,7 @@ namespace RealERPWEB.F_17_Acc
 
         protected void DDLPage_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
         protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -671,15 +692,15 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                
+
 
                 if (ASTUtility.Right(Code, 8) == "00000000" && ASTUtility.Right(Code, 10) != "0000000000")
                 {
 
-                     
+
 
                     e.Row.Attributes["style"] = "background-color:gray; font-weight:bold;";
-                     
+
                 }
                 //
                 else if (ASTUtility.Right(Code, 3) == "000" && ASTUtility.Right(Code, 5) != "00000")
@@ -699,7 +720,7 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-            } 
+            }
         }
 
         protected void ibtnSrchProject_Click(object sender, EventArgs e)
@@ -721,7 +742,7 @@ namespace RealERPWEB.F_17_Acc
         protected void ibtnSrcurClick(object sender, ImageClickEventArgs e)
         {
 
-             
+
         }
 
         protected void lbtnUpdateDetails_Click(object sender, EventArgs e)
@@ -735,7 +756,7 @@ namespace RealERPWEB.F_17_Acc
 
             if (!result)
             {
-                 
+
                 msg = "Updated Failed";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
@@ -743,7 +764,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-           
+
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
@@ -798,14 +819,14 @@ namespace RealERPWEB.F_17_Acc
 
 
 
-            
+
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                
+
                 msg = "You have no permission";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                
+
                 return;
             }
 
@@ -834,7 +855,7 @@ namespace RealERPWEB.F_17_Acc
                 if (sircode.Substring(0, 2) == "94" && (ASTUtility.Right(sircode, 3) != "000"))
                 {
 
-                  
+
                     string SearchProject = "%"; //+ ((TextBox)gvCodeBook.Rows[e.NewEditIndex].FindControl("txtSerachProject")).Text.Trim() + "%";
                     DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETHEADANDDEPT", SearchProject, "", "", "", "", "", "", "", "");
                     this.ddlProject.DataTextField = "actdesc";
@@ -859,19 +880,19 @@ namespace RealERPWEB.F_17_Acc
                     ddlUnits.DataValueField = "gcod";
                     ddlUnits.DataSource = ds1;
                     ddlUnits.DataBind();
-                    ddlUnits.SelectedValue = actcode; 
+                    ddlUnits.SelectedValue = actcode;
                     ddlUnits.Visible = true;
                     txtunit.Visible = false;
                 }
                 else
                 {
                     this.lblsdrate.InnerText = "Standard  Rate";
-                    ddlUnits.Visible = false ;
+                    ddlUnits.Visible = false;
                     txtunit.Visible = true;
                 }
 
 
-
+                this.HideShowMobile(sircode);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
             }
@@ -879,7 +900,7 @@ namespace RealERPWEB.F_17_Acc
 
             catch (Exception ex)
             {
-                 
+
                 msg = "Error: " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
@@ -888,10 +909,27 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
+        private void HideShowMobile(string sircode)
+        {
+            if ((sircode.Substring(0, 2) == "98" || sircode.Substring(0, 2) == "99") && (ASTUtility.Right(sircode, 3) != "000"))
+            {
+                this.divMobile.Visible = true;
+                //this.txtSupPhone.Attributes.Add("Required","True");
+                //this.txtSupPhone.ValidationGroup = "RegisterCheck";
+
+
+            }
+            else
+            {
+                this.divMobile.Visible = false;
+            }
+
+        }
+
         protected void lbtnAddCode_Click(object sender, EventArgs e)
         {
 
-         
+
             try
             {
 
@@ -903,6 +941,7 @@ namespace RealERPWEB.F_17_Acc
                 string sircode = (this.Chboxchild.Checked) ? ((ASTUtility.Right(isircode, 8) == "00000000") ? (ASTUtility.Left(isircode, 4) + "001" + ASTUtility.Right(isircode, 5))
                     : ((ASTUtility.Right(isircode, 5) == "00000" && ASTUtility.Right(isircode, 8) != "00000000") ? (ASTUtility.Left(isircode, 7) + "01" + ASTUtility.Right(isircode, 3)) : ASTUtility.Left(isircode, 9) + "001"))
                     : ((isircode != tsircode) ? tsircode : isircode);
+
                 string mnumber = (isircode == tsircode) ? "" : "manual";
 
                 string Desc = this.txtresourcehead.Text.Trim();
@@ -910,51 +949,57 @@ namespace RealERPWEB.F_17_Acc
 
                 string txtsirtype = "";
                 string txtsirtdesc = "";
-                string txtsirunit = (sircode.Substring(0, 2) == "41" ? this.ddlUnits.SelectedItem.ToString() : this.txtunit.Text.ToString()) ;
+                string txtsirunit = (sircode.Substring(0, 2) == "41" ? this.ddlUnits.SelectedItem.ToString() : this.txtunit.Text.ToString());
                 string valusirunit = this.ddlUnits.SelectedValue.ToString();
-                
+
 
                 string txtsirval = Convert.ToDouble("0" + this.txtstdrate.Text.Trim()).ToString();
                 string actcode = this.ddlProject.Items.Count == 0 ? "" : this.ddlProject.SelectedValue.ToString();
                 string txtTDetails = this.txtTDetails.Text.Trim();
+
+                string sphone = this.txtSupPhone.Text.ToString();
                 // return;
 
                 if (Desc.Length == 0)
                 {
-
-                     
                     msg = "Resource Head is not empty";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
                     return;
                 }
+
+                if (sphone.Length != 11 && (ASTUtility.Left(tsircode, 2) == "98" || ASTUtility.Left(tsircode, 2) == "99"))
+                {
+                    msg = "Phone Number is not Valid";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    return;
+                }
+
                 else
                 {
 
-
-
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
-                        sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber,
-                      DescBN, valusirunit, txtTDetails, "", "");
+                        sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, "");
 
                     if (!result)
                     {
-
-                        
                         msg = da.ErrorObject["Msg"].ToString();
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
                         return;
 
                     }
+                    bool result2 = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTORUPDATESUPL", sircode, sphone, "");
+                    if (!result2)
+                    {
+                        msg = da.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                        return;
 
-
-                     
+                    }
                     msg = "Update Successfully";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
-
 
                     this.ShowInformation();
                     this.Chboxchild.Checked = false;
@@ -967,7 +1012,7 @@ namespace RealERPWEB.F_17_Acc
             }
             catch (Exception ex)
             {
-                 
+
                 msg = "Error: " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
@@ -986,7 +1031,7 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
-      
+
 
         protected void lnkbtnDeptSeqUpdate_Click(object sender, EventArgs e)
         {
