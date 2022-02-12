@@ -124,7 +124,6 @@
                                 <asp:Label ID="lblCompanyName" runat="server" Width="335" CssClass="dataLblview" Visible="False"></asp:Label>
 
 
-
                             </div>
 
                             <div class="col-md-1 pading5px">
@@ -163,7 +162,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="Pnldesig" runat="server" visible="false">
                             <div class="col-md-3 pading5px asitCol2">
                                 <asp:Label ID="lblfrmDesig" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
                                 <asp:DropDownList ID="ddlfrmDesig" runat="server" Width="100" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control inputTxt" TabIndex="6">
@@ -172,11 +171,8 @@
 
                             <div class="col-md-4 pading5px">
                                 <asp:Label ID="lbltoDesig" runat="server" CssClass=" smLbl_to">To</asp:Label>
-
-
                                 <asp:DropDownList ID="ddlToDesig" runat="server" Width="100" CssClass="chzn-select form-control inputTxt" TabIndex="6">
                                 </asp:DropDownList>
-
                             </div>
 
                         </div>

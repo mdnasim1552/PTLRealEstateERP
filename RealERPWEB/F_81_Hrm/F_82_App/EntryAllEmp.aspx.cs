@@ -31,14 +31,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string title = "";
                 if (ctype == "EmpMarket")
                 {
-                    this.GetEmployeeName();
+
                     this.ShowEmployee();
-                    title= "Entry All Employee Marketing ";
+                    this.GetEmployeeName();
+                    title = "Entry All Employee Marketing ";
                     this.pnlplanemp.Visible = false;
                     this.pnlmarketemp.Visible = true;
                 }
 
-                else if(ctype == "EmpPlan")
+                else if (ctype == "EmpPlan")
                 {
                     this.GetEmployeeNamePlan();
                     this.ShowEmployeePlan();
@@ -72,11 +73,18 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLOYEENAME", "%", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
+
+
+            DataView dv = new DataView();
+            dv = ds1.Tables[0].DefaultView;
+            dv.RowFilter = ("seccode not like '9402%'");
+
+
             this.ddlEmpName.DataTextField = "empname";
             this.ddlEmpName.DataValueField = "empid";
-            this.ddlEmpName.DataSource = ds1.Tables[0];
+            this.ddlEmpName.DataSource = dv.ToTable();
             this.ddlEmpName.DataBind();
-            Session["tblempinfo"] = ds1.Tables[0];
+            Session["tblempinfo"] = dv.ToTable();
         }
 
         private void ShowEmployee()
@@ -88,7 +96,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
             Session["tblsalemp"] = ds1.Tables[0];
             this.Data_Bind();
-        }      
+        }
 
         private void Data_Bind()
         {
@@ -97,12 +105,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvEmpSal.DataBind();
         }
 
-     
+
 
         protected void lnkbtnOk_OnClick(object sender, EventArgs e)
         {
             DataTable dt = (DataTable)Session["tblsalemp"];
             string empid = this.ddlEmpName.SelectedValue;
+            string empname = this.ddlEmpName.SelectedItem.ToString();
             DataRow[] dr = dt.Select("empid='" + empid + "'");
             DataTable dt1 = (DataTable)Session["tblempinfo"];
             if (dr.Length == 0)
@@ -116,6 +125,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 dr1["section"] = (dt1.Select("empid='" + empid + "'"))[0]["secdesc"];
                 dr1["idcardno"] = (dt1.Select("empid='" + empid + "'"))[0]["idcardno"];
                 dt.Rows.Add(dr1);
+
+            }
+            else
+            {
+                string Message = "Already Added Employee : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
 
             }
 
@@ -137,19 +152,19 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (!result)
             {
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Message = HRData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+
                 return;
             }
-
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-
+            string Messages = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messages + "');", true);
 
         }
 
         protected void btndelete_OnClick(object sender, EventArgs e)
         {
+            string Message;
             DataTable dt1 = ((DataTable)Session["tblsalemp"]).Copy();
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             int index = row.RowIndex;
@@ -160,8 +175,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "DELETESALEMP", empid, "", "", "", "", "", "", "", "");
             if (!result)
             {
+                Message = "Deleted Fail ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
+
                 return;
             }
+            Message = "Deleted Succed ";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
+
+
             DataView dv = new DataView();
             dv = dt1.DefaultView;
             dv.RowFilter = ("empid not like '" + empid + "%'");
@@ -207,6 +229,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             DataTable dt = (DataTable)Session["tblplanemp"];
             string empid = this.ddlEmpName.SelectedValue;
+            string empname = this.ddlEmpName.SelectedItem.ToString();
+
             DataRow[] dr = dt.Select("empid='" + empid + "'");
             DataTable dt1 = (DataTable)Session["tblpempinfo"];
             if (dr.Length == 0)
@@ -220,6 +244,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 dr1["section"] = (dt1.Select("empid='" + empid + "'"))[0]["secdesc"];
                 dr1["idcardno"] = (dt1.Select("empid='" + empid + "'"))[0]["idcardno"];
                 dt.Rows.Add(dr1);
+
+            }
+            else
+            {
+                string Message = "Already Added Employee : " + empname;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Message + "');", true);
 
             }
 

@@ -288,7 +288,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             }
             ViewState["tblln"] = dt1;
             this.Data_DataBind();
-            lbtnTotal_Click(null,null);
+           // lbtnTotal_Click(null,null);
         }
         protected void chkVisible_CheckedChanged(object sender, EventArgs e)
         {
@@ -350,12 +350,16 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
 
         }
+
+      
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
 
             string ulndat= "26-Dec-21 12:00:00 AM";
 
+          //  DataTable dt11 = (DataTable)ViewState["tblln"];
             DataTable dt = (DataTable)ViewState["tblln"];
+
             for (int i = 0; i < this.gvloan.Rows.Count; i++)
             {
 
@@ -364,13 +368,17 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 dt.Rows[i]["lndate"] = Insdate;
                 dt.Rows[i]["lnamt"] = InsAmt;
             }
-            DataTable dt2 = dt;
+            DataTable dt2 = dt.Copy();
             DataView dv1 = dt2.DefaultView;
             dv1.RowFilter = ("lndate<'"+ ulndat + "'");
             dt2 = dv1.ToTable();
             string totalamt= Convert.ToDouble((Convert.IsDBNull(dt2.Compute("sum(lnamt)", "")) ? 0.00 : dt2.Compute("sum(lnamt)", ""))).ToString();
             this.txtPaidAmt.Text = totalamt;
+
+        
             ViewState["tblln"] = dt;
+
+            //DataTable dt1 = (DataTable)ViewState["tblln1"];
             this.Data_DataBind();
         }
         protected void lbtnAddInstallment_Click(object sender, EventArgs e)
@@ -403,7 +411,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             Session["tblln"] = dt;
             this.gvloan.DataSource = dt;
             this.gvloan.DataBind();
-            this.lbtnTotal_Click(null, null);
+           /// this.lbtnTotal_Click(null, null);
         }
         protected void chkAddIns_CheckedChanged(object sender, EventArgs e)
         {

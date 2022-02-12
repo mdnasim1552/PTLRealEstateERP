@@ -2834,10 +2834,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("compName", companyname.ToUpper()));
+            Rpt1.SetParameters(new ReportParameter("compName", companyname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet"));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1));
+            Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet (Month of "+ todate1 + ")"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle",  ""));
             Rpt1.SetParameters(new ReportParameter("txtheader", "Grand Total"));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("txtYear", Convert.ToDateTime((this.txttodate.Text)).ToString("yyyy")));

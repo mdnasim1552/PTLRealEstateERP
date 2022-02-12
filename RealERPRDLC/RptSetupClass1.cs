@@ -906,8 +906,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptPaySlipPEB": Rpt1a = SetRptPaySlipPEB(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlipAssure": Rpt1a = SetRptPaySlipAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptPaySlip": Rpt1a = SetRptPaySlip(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_81_Hrm.R_89_Pay.RptPaySlipEdisonReal":
-                    Rpt1a = SetRptPaySlipEdisonReal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptPaySlipEdisonReal":Rpt1a = SetRptPaySlipEdisonReal(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 //Bonus Sheet
@@ -917,6 +916,7 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_89_Pay.RptBonusSigSheet": Rpt1a = SetRptBonusSigSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptSignatureSheet": Rpt1a = SetRptSignatureSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.RptEmpBonus": Rpt1a = SetRptEmpBonus(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.RptSalaryReconciliation": Rpt1a = SetRptSalaryReconciliation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
                 //nahid 20210703
                 case "R_81_Hrm.R_92_Mgt.RptEmpListJoinDateWise": Rpt1a = SetRptEmpListJDateWise(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -2043,6 +2043,11 @@ namespace RealERPRDLC
         private static LocalReport SetRptEmpBonus(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BonusSummary>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetRptSalaryReconciliation(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalaryReconciliation>)RptDataSet));
             return Rpt1a;
         }
         private static LocalReport SetRptMonCollcSchedule(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
