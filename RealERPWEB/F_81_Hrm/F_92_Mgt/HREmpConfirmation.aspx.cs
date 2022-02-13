@@ -20,15 +20,30 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
     {
 
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
-                this.txtfrmdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfrmdate.Text = "01" + this.txtfrmdate.Text.Trim().Substring(2);
-                this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                 
+                DataSet datSetup = compUtility.GetCompUtility();
+                if (datSetup == null)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                    return;
+                }
+                string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+                this.txtfrmdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = startdate + this.txtfrmdate.Text.Trim().Substring(2);
+                this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+
+
+
                 this.GetCompany();
                 this.GetDepartName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE CONFIRM INFORMATION";
