@@ -2685,7 +2685,7 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="dropdown">
+                                            <div class="dropdown" id="filterData" runat="server">
 
                                                 <div class="form-group mb-0">
                                                     <label class="control-label" for="ddlUserName">Year</label>
@@ -2726,7 +2726,6 @@
 
                                                     </asp:DropDownList>
                                                 </div>
-
 
 
                                             </div>

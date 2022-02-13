@@ -296,7 +296,12 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (ds2 == null)
                 return;
             Session["tblacadeg"] = ds2;
+            ddlDegreeList.DataTextField = "gdesc";
+            ddlDegreeList.DataValueField = "gcod";
+            ddlDegreeList.DataSource = ds2.Tables[0];
+            ddlDegreeList.DataBind(); 
             ds2.Dispose();
+            ddlDegreeList_SelectedIndexChanged(null,null);
 
         }
         private void ShowPersonalInformation()
@@ -1842,6 +1847,60 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             this.GetEmployeeName();
+
+        }
+
+        protected void ddlDegreeList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string degree = this.ddlDegreeList.SelectedValue.ToString();
+            string comcod = this.GetComeCode();
+            string empid = this.ddlEmpName.SelectedValue.ToString();
+            DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "EMPACADEGREE", empid, "", "", "", "", "", "", "", "");
+            if (ds3 == null)
+                return;
+            DataSet ds1 = (DataSet)Session["tblacadeg"]; 
+            //Academic Degree
+            DataTable dt1 = ds1.Tables[1].Copy();
+            DataView dv1 = dt1.DefaultView;
+            dv1.RowFilter = ("maincode='99999' or maincode='" + degree + "'");
+            this.ddlAcadegreeList.DataTextField = "subdesc";
+            this.ddlAcadegreeList.DataValueField = "subcode";
+            this.ddlAcadegreeList.DataSource = dv1.ToTable();
+            this.ddlAcadegreeList.DataBind();
+            ddlAcadegreeList_SelectedIndexChanged(null,null);
+
+
+
+        }
+
+        protected void ddlAcadegreeList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string accdegree = this.ddlDegreeList.SelectedValue.ToString();
+            DataSet ds1 = (DataSet)Session["tblacadeg"];           
+            DataTable dt1 = ds1.Tables[3].Copy();
+          
+            ddlMajorSubjList.DataTextField = "gdesc";
+            ddlMajorSubjList.DataValueField = "gcod";
+            ddlMajorSubjList.DataSource = dt1;
+            ddlMajorSubjList.DataBind();
+            ddlMajorSubjList_SelectedIndexChanged(null,null);
+        }
+
+      
+
+        protected void ddlMajorSubjList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataSet ds1 = (DataSet)Session["tblacadeg"];
+            DataTable dt1 = ds1.Tables[2].Copy();
+
+            ddlResultList.DataTextField = "gdesc";
+            ddlResultList.DataValueField = "gcod";
+            ddlResultList.DataSource = dt1;
+            ddlResultList.DataBind();
+        }
+        protected void ddlResultList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
 
         }
     }
