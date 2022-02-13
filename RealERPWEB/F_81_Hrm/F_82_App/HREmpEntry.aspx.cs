@@ -714,7 +714,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     this.txtAcNo1.Text = (ds6.Tables[3].Rows[0]["acno"]).ToString();
                     this.txtBankamt02.Text = Convert.ToDouble(ds6.Tables[3].Rows[0]["bankamt"]).ToString("#,##0;(#,##0);");
                     this.txtCashAmt.Text = Convert.ToDouble(ds6.Tables[3].Rows[0]["cashamt"]).ToString("#,##0;(#,##0);");
-
+                    this.chkcash0bank1.Checked = ds6.Tables[3].Rows[0]["cash0bank1"].ToString() == "False" ? false : true;
+                    this.chkcash0bank1_CheckedChanged(null, null);
                 }
                 string Bankname2 = ds6.Tables[3].Rows[0]["bankcode"].ToString();
                 if (Bankname2.Trim().Length != 0)
@@ -1172,6 +1173,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string overtimetype = (this.rbtnOverTime.SelectedIndex).ToString();
             string pfdate = (this.txtPf.Text.Trim() == "") ? "01-jan-1900" : Convert.ToDateTime(txtPf.Text.Trim()).ToString("dd-MMM-yyyy");
             string pfenddat = (txtpfend.Text.Trim() == "") ? "01-jan-1900" : Convert.ToDateTime(txtpfend.Text.Trim()).ToString("dd-MMM-yyyy");
+            string cash0Bank1 = this.chkcash0bank1.Checked ? "1" : "0";
 
             bool result;
             //(Convert.ToDateTime(ds6.Tables[5].Rows[0]["pfenddat"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds6.Tables[5].Rows[0]["pfenddat"]).ToString("dd-MMM-yyyy");
@@ -1250,7 +1252,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
             // Bank COde
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900");
+            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc,"", cash0Bank1, "");
             if (result == false)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
@@ -1258,15 +1260,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 return;
             }
 
-            //only Peb steel cheque payment
+            ////only Peb steel cheque payment
 
-            result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc);
-            if (result == false)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
+            //result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, "19001", "T", bank1, projectcode, "", "", "", "", "0", "", "0", "0", "0", "0", "0", "0", acno1, bank2, acno2, bankamt2, "0", cashamt, "", "01-jan-1900", "01-jan-1900", "", "", "", paytypedesc);
+            //if (result == false)
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "Data Is Not Updated";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //    return;
+            //}
 
 
 
@@ -2225,6 +2227,11 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.lblPEmpName.Visible = false;
 
             }
+        }
+
+        protected void chkcash0bank1_CheckedChanged(object sender, EventArgs e)
+        {
+            this.chkcash0bank1.Text = this.chkcash0bank1.Checked ? "Bank" : "Cash";
         }
     }
 }

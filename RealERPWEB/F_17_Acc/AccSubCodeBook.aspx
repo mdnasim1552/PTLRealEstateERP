@@ -90,13 +90,13 @@
                 case "true":
                     msg.style.display = "block";
                     msg.style.color = "red";
-                    msg.innerHTML = "Mobile already exist ";
+                    msg.innerHTML = "Mobile Number Already exist ";
                     $('#<%=lbtnAddCode.ClientID %>').attr("disabled", "disabled");
                     break;
                 case "false":
                     msg.style.display = "block";
                     msg.style.color = "green";
-                    msg.innerHTML = "Mobile available";
+                    msg.innerHTML = "Mobile Number Available";
                     $('#<%=lbtnAddCode.ClientID %>').removeAttr('disabled');
                     break;
             }

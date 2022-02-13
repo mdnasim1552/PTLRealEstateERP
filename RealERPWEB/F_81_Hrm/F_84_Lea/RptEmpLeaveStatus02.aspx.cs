@@ -21,6 +21,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
     public partial class RptEmpLeaveStatus02 : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,9 +36,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
 
-                this.txtfrmDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfrmDate.Text = Convert.ToDateTime("01-Jan" + (this.txtfrmDate.Text.Trim()).Substring(6)).ToString("dd-MMM-yyyy");
-                this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
+               
+
+                this.GetDateSet();
+
 
                 this.GetCompName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "EmpLeaveStatus") ? "Employee Leave Status"
@@ -57,6 +60,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
+        }
+
+        private void GetDateSet()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfrmDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtfrmDate.Text = startdate + this.txtfrmDate.Text.Trim().Substring(2);
+            this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+             
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {

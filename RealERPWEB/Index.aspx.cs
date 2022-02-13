@@ -20,6 +20,7 @@ namespace RealERPWEB
         DataTable tbl_topactivity = new DataTable();
         DataTable tbl_offlineUser = new DataTable();
 
+        Common compUtility = new Common();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -90,10 +91,26 @@ namespace RealERPWEB
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
             string comcod = hst["comcod"].ToString();
-            string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Setup Start Date Firstly!" + "');", true);
+                return;
+            }
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string fdate = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            fdate = startdate + fdate.Substring(2);
+            string tdate = Convert.ToDateTime(fdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+           // string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
+
             string userrole = hst["usrrmrk"].ToString();
 
-            DataSet ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETUSERCOMPNENT", usrid, "2", fdate, "", "", "", "", "", "");
+            DataSet ds2 = ulogin.GetTransInfo(comcod, "SP_UTILITY_USER_DASHBOARD", "GETUSERCOMPNENT", usrid, "2", fdate, tdate, "", "", "", "", "");
             if (ds2 == null)
                 return;
             tbl_component = ds2.Tables[0];
@@ -107,7 +124,7 @@ namespace RealERPWEB
                 {
                     DataSet ds1 = new DataSet();
                     string usercode = "0000000";
-                    string tdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    //string tdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
                     DateTime ctdate = DateTime.Now;
                     ds1 = ulogin.GetTransInfo(comcod, "SP_REPORT_LOGSTAUTS", "GETALLLOGINF", usercode, fdate, tdate, "%" + usrid + "%", ctdate.ToString("yyyyMMddHHmm"), "", "", "", "");
                     if (ds1 == null)
