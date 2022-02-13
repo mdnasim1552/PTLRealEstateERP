@@ -964,21 +964,31 @@ namespace RealERPWEB.F_17_Acc
                 {
                     msg = "Resource Head is not empty";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
                     return;
                 }
 
-                if (sphone.Length != 11 && (ASTUtility.Left(tsircode, 2) == "98" || ASTUtility.Left(tsircode, 2) == "99"))
+                if (sphone.Length != 11 && ((ASTUtility.Left(tsircode, 2) == "98" )|| (ASTUtility.Left(tsircode, 2) == "99")))
                 {
-                    msg = "Phone Number is not Valid";
+                    msg = "Mobile Number is not Valid";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+
                     return;
                 }
 
                 else
                 {
+                    DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
+                    if (ds1.Tables[0].Rows.Count > 0)
+                    {
+                        msg = "Mobile Number Already Exist";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                        return;
+                    }
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
                         sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, "");
