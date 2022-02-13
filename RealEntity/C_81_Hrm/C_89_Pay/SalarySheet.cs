@@ -749,6 +749,19 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double salam { get; set; }
             public EClassBankStatment() { }
         }
-       
+        [Serializable]
+        public class RptSalaryReconciliation
+        {
+            public string empid { get; set; }
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string empname { get; set; }
+            public string desig { get; set; }
+            public string replacement { get; set; }
+            public string joresigndate { get; set; }
+            public double curamt { get; set; }
+            public double preamt { get; set; }
+            public RptSalaryReconciliation() { }
+        }
     }
 }
