@@ -61,7 +61,7 @@
             var supmobile = $("#<%=txtSupPhone.ClientID%>")[0].value;
             $.ajax({
                 type: "POST",
-                url: "AccSubCodeBook.aspx/CheckPhone",
+                url: "AccSubCodeBook/CheckPhone",
                 //data: '{supmobile: "' + $("#<%=txtSupPhone.ClientID%>")[0].value + '" }',// user name or email value
                 data: '{comcod:"' + comcod + '", supmobile:"' + supmobile + '"}',
                 contentType: "application/json; charset=utf-8",
