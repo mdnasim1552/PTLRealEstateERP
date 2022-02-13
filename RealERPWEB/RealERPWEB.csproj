@@ -2490,6 +2490,7 @@
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
+    <Content Include="F_21_MKT\ProspectTransfer.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
     <Content Include="F_21_MKT\RptClientInitial.aspx" />
@@ -3869,6 +3870,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
       <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.designer.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptProspectWorking.aspx.cs">
       <DependentUpon>RptProspectWorking.aspx</DependentUpon>
