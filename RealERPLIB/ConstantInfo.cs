@@ -1941,11 +1941,14 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102045", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=Lencashment", "Leave Encashment", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102046", "F_81_Hrm/F_86_All", "EmpFoodAllow", "", "Food Allowance", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102047", "F_81_Hrm/F_87_Tra", "HREmpTransfer", "", "Employee Transfer", "Transfer", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102048", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Salary&Entry=Payroll", "Actual Salary Sheet", "PayRoll", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102048", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Salary&Entry=Payroll", "Actual Salary Sheet", "PayRoll", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102055", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=SalResign&Entry=Payroll", "Actual Salary Sheet(Resign)", "PayRoll", "False", "False", "False", "False" });
+
             tblObj.Rows.Add(new Object[] { "8102000", "8102049", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Bonus&Entry=Payroll", "Festival Bonus", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102050", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Payslip", "Pay Slip", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102051", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Signature", "Signature Sheet", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102052", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=OvertimeSalary", "Overtime Allowance ", "PayRoll", "False", "False", "False", "False" }); ;
+           
             tblObj.Rows.Add(new Object[] { "8102000", "8102053", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=OvertimeSalary02", "Overtime Allowance 02 ", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102054", "F_81_Hrm/F_86_All", "EmpAllow", "", "Monthly Allowance", "PayRoll", "False", "False", "False", "False" }); ;
             // tblObj.Rows.Add(new Object[] { "8102000", "8102055", "EmpOvertime?", "Type=BankPayment", "Bank Payment", "PayRoll", "False", "False", "False", "False" });;
@@ -2107,7 +2110,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103053", "F_81_Hrm/F_90_PF", "TransectionPrint?", "Type=AccCheque", "Cheque Print", "PF Account", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103054", "F_81_Hrm/F_90_PF", "RptAccProFund?", "Type=Pffund", "PF Account (Print)", "PF Account", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "8103000", "8103057", "F_81_Hrm/F_92_Mgt", "RetiredEmpFinalSett", "", "Employee Final Settelement", "Employee Seperation", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8103000", "8103057", "F_81_Hrm/F_92_Mgt", "RetiredEmpFinalSett", "", "Employee Final Settlement", "Employee Seperation", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8103000", "8103060", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Bonus&Entry=Mgt", "Festival Bonus", "HR Management", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103080", "F_81_Hrm/F_82_App", "RptEmpInformation?", "Type=EmpAllInfo", "Employee Information", "Appointment", "False", "False", "False", "False" }); ;
@@ -14625,7 +14628,7 @@ namespace RealERPLIB
             //H.Employee Seperation
             mnuTbl1.Rows.Add(new Object[] { "0208000000", "Employee Seperation / Resign", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0208000001", "01. Employee Resign", "F_81_Hrm/F_92_Mgt/RetiredEmployee", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0208000002", "02. Employee Final Settelement", "F_81_Hrm/F_92_Mgt/RetiredEmpFinalSett", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0208000002", "02. Employee Final Settlement", "F_81_Hrm/F_92_Mgt/RetiredEmpFinalSett", "", true, "" });
 
             //I. Promotion
             mnuTbl1.Rows.Add(new Object[] { "0209000000", "Promotion", "", "", false, "mb" });
@@ -14832,8 +14835,10 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0408000000", "Payroll Reports", "", "", false, "mb" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0408000000", "General Reports", "", "", false, "mb" });
+           
 
-            mnuTbl1.Rows.Add(new Object[] { "0408000002", "01. Actual Salary Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Payroll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000001", "01. Actual Salary Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Payroll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000002", "01. Actual Salary Sheet(Resign)", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=SalResign&Entry=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000003", "02. Festival Bonus", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Bonus&Entry=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000004", "03. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000005", "04. Pay Slip", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Payslip", "", true, "" });
