@@ -377,8 +377,10 @@
                                                     <asp:TextBox ID="txtBankamt02" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
 
 
-                                                    <asp:Label ID="lblCahsamt" runat="server" CssClass=" smLbl_to ">Cash</asp:Label>
+                                                    <asp:Label ID="lblCahsamt" runat="server" CssClass=" smLbl_to ">Amt</asp:Label>
                                                     <asp:TextBox ID="txtCashAmt" runat="server" TabIndex="32" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
+
+                                                    <asp:CheckBox ID="chkcash0bank1" runat="server" ClientIDMode="Static" ToolTip="Checked for Bank" Text="C/B" CssClass=" checkBox" AutoPostBack="true" OnCheckedChanged="chkcash0bank1_CheckedChanged" />
                                                 </div>
 
 
