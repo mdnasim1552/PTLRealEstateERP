@@ -2490,6 +2490,7 @@
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
+    <Content Include="F_21_MKT\ProspectTransfer.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
     <Content Include="F_21_MKT\RptClientInitial.aspx" />
@@ -2991,6 +2992,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummary02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummaryDetails.aspx" />
@@ -3870,6 +3872,13 @@
     <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
       <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.designer.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\RptProspectWorking.aspx.cs">
       <DependentUpon>RptProspectWorking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4359,6 +4368,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>

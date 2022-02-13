@@ -978,8 +978,7 @@ namespace RealERPWEB.F_17_Acc
 
                     return;
                 }
-
-                else
+                if ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99"))
                 {
                     DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
                     if (ds1.Tables[0].Rows.Count > 0)
@@ -989,6 +988,14 @@ namespace RealERPWEB.F_17_Acc
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
                         return;
                     }
+
+                }
+
+
+
+                else
+                {
+
 
                     bool result = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "ADDRESOUCECODE",
                         sircode, Desc, txtsirtype, txtsirtdesc, txtsirunit, txtsirval, userid, actcode, mnumber, DescBN, valusirunit, txtTDetails, sphone, "");
@@ -1010,7 +1017,7 @@ namespace RealERPWEB.F_17_Acc
                     }
                     msg = "Update Successfully";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
+                    this.clearDataField();
                     this.ShowInformation();
                     this.Chboxchild.Checked = false;
 
@@ -1041,6 +1048,17 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
+        private void clearDataField()
+        {
+            this.txtresourcehead.Text = "";
+            this.txtresourceheadBN.Text = "";
+            this.txtSupPhone.Text = "";
+            this.txtstdrate.Text = "";
+            this.txtbrand.Text = "";
+            this.txtTDetails.Text = "";
+            this.ddlUnits.Items.Clear();
+            this.ddlProject.Items.Clear();
+        }
 
 
         protected void lnkbtnDeptSeqUpdate_Click(object sender, EventArgs e)

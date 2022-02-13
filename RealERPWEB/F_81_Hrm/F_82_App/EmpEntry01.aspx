@@ -5,6 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -25,6 +27,20 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
+
+            $('.select2').each(function () {
+                var select = $(this);
+                select.select2({
+                    placeholder: 'Select an option',
+                    width: '100%',
+                    allowClear: !select.prop('required'),
+                    language: {
+                        noResults: function () {
+                            return "{{ __('No results found') }}";
+                        }
+                    }
+                });
+            });
         };
 
     </script>
@@ -42,17 +58,22 @@
 
                         <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List</asp:Label>
 
-                        <asp:DropDownList ID="ddlEmpName" data-placeholder="Choose Employee.." runat="server"
-                            CssClass="chzn-select col-4" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged" AutoPostBack="true">
-                        </asp:DropDownList>
+                        <div class="col-4">
+
+                            <asp:DropDownList ID="ddlEmpName" data-placeholder="Choose Employee.." runat="server"
+                                CssClass="select2" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged" AutoPostBack="true">
+                            </asp:DropDownList>
+                        </div>
 
                         <asp:LinkButton ID="lnkCreate" OnClick="lnkCreate_Click" runat="server" CssClass="btn  btn-secondary  btn-sm float-right" ToolTip="Create New Employee"><i class="fa fa-plus" aria-hidden="true"></i></asp:LinkButton>
 
                         <asp:Label ID="Label1" runat="server" CssClass="col-1 col-form-label">Information</asp:Label>
+                        <div class=" col-2">
 
-                        <asp:DropDownList ID="ddlInformation" data-placeholder="Choose Information.." ClientIDMode="Static" runat="server"
-                            CssClass="chzn-select col-2" AutoPostBack="true" OnSelectedIndexChanged="ddlInformation_SelectedIndexChanged">
-                        </asp:DropDownList>
+                            <asp:DropDownList ID="ddlInformation" data-placeholder="Choose Information.." ClientIDMode="Static" runat="server"
+                                CssClass="select2" AutoPostBack="true" OnSelectedIndexChanged="ddlInformation_SelectedIndexChanged">
+                            </asp:DropDownList>
+                        </div>
 
                         <asp:Label ID="lblLastCardNo" runat="server" Visible="false" CssClass=" btn btn-info col-2 btn-sm mr-2 ml-2"></asp:Label>
                         <asp:HyperLink ID="addOcupation" Visible="False" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_82_App/HRCodeBook.aspx" CssClass=" btn btn-warning col-1 btn-sm mr-1 ml-1" Style="padding: 0 10px">Add Occupation</asp:HyperLink>
@@ -133,20 +154,20 @@
                                                 <ItemTemplate>
 
                                                     <asp:TextBox ID="txtgvVal" runat="server"
-                                                        CssClass="form control" BackColor="Transparent"
+                                                        CssClass="form-control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
                                                     <asp:TextBox ID="txtgvdVal" runat="server" AutoCompleteType="Disabled"
-                                                        CssClass="form control" BackColor="Transparent"
+                                                        CssClass="form-control" BackColor="Transparent"
                                                         BorderColor="#660033" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'></asp:TextBox>
 
                                                     <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
                                                     <asp:Panel ID="Panegrd" runat="server">
-                                                        <div class="row mb-0">
+                                                        <div class="  mb-0">
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged"
-                                                                CssClass=" chzn-select col-12" AutoPostBack="true" TabIndex="2">
+                                                                CssClass="select2 form-control" AutoPostBack="true" TabIndex="2">
                                                             </asp:DropDownList>
 
                                                         </div>
@@ -245,10 +266,10 @@
                                                     <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
                                                     <asp:Panel ID="Panegrd" runat="server">
-                                                        <div class="row mb-0">
+                                                        <div class="  mb-0">
 
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged"
-                                                                CssClass=" chzn-select col-12" AutoPostBack="true" TabIndex="2">
+                                                                CssClass="select2 col-12" AutoPostBack="true" TabIndex="2">
                                                             </asp:DropDownList>
                                                         </div>
 
@@ -297,166 +318,219 @@
                             </asp:View>
                             <asp:View ID="ViewDegree" runat="server">
                                 <div class="row">
-                                    <asp:GridView ID="gvDegree" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                        ShowFooter="True" Width="901px" OnRowDeleting="gvDegree_RowDeleting">
-                                        <RowStyle />
-                                        <Columns>
-                                            <asp:CommandField ShowDeleteButton="True" />
-                                            <asp:TemplateField HeaderText="Sl.No.">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                    <div class="col-4 d-none">
+                                        <fieldset>
+                                            <legend>Academic Information</legend>
+                                            <!-- .form-group -->
+                                            <div class="form-group">
+                                                <label for="sel3">Degree Name</label>
+                                                <asp:DropDownList ID="ddlDegreeList" runat="server" CssClass="form-control select2" AutoPostBack="True"
+                                                    OnSelectedIndexChanged="ddlDegreeList_SelectedIndexChanged">
+                                                </asp:DropDownList>
+                                            </div>
+                                            <!-- /.form-group -->
+                                            <!-- .form-group -->
+                                            <div class="form-group">
+                                                <label for="sel4">Exam/Degree Title	</label>
 
-                                            <asp:TemplateField HeaderText="Degree Name">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlDegree" runat="server" CssClass="form-control" Width="150" AutoPostBack="True"
-                                                        OnSelectedIndexChanged="ddlDegree_SelectedIndexChanged">
-                                                    </asp:DropDownList>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                <asp:DropDownList ID="ddlAcadegreeList" runat="server" CssClass="form-control select2"  OnSelectedIndexChanged="ddlAcadegreeList_SelectedIndexChanged">
+                                                </asp:DropDownList>
+
+                                            </div>
+                                            <!-- /.form-group -->
+                                            <!-- .form-group -->
+                                            <div class="form-group">
+                                                <label for="sel5">Major Subject	</label>
+                                                <asp:DropDownList ID="ddlMajorSubjList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlMajorSubjList_SelectedIndexChanged"  AutoPostBack="True">
+                                                </asp:DropDownList>
+                                                
+                                            </div>
+                                            <!-- /.form-group -->
+                                            <!-- /.form-group -->
+                                            <!-- .form-group -->
+                                            <div class="form-group">
+                                                <label for="sel5">Result</label>
+                                                <asp:DropDownList ID="ddlResultList" runat="server" CssClass="form-control select2"   AutoPostBack="True">
+                                                </asp:DropDownList>
+                                                
+                                            </div>
+                                              <div class="form-group">
+                                                <label for="sel5">Institution</label>
+                                                 <asp:TextBox ID="txtInstitue" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group">
+                                                 <asp:LinkButton ID="lnkaccAdd" runat="server" CssClass="btn btn-sm btn-primary float-right">Add</asp:LinkButton>
+                                                
+                                            </div>
+                                            <!-- /.form-group -->
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-12">
+                                          <legend>Academic Information</legend>
+                                        <asp:GridView ID="gvDegree" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                            ShowFooter="True"   OnRowDeleting="gvDegree_RowDeleting">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:CommandField ShowDeleteButton="True" />
+                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Degree Name">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlDegree" runat="server" CssClass="form-control" Width="150" AutoPostBack="True"
+                                                            OnSelectedIndexChanged="ddlDegree_SelectedIndexChanged">
+                                                        </asp:DropDownList>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
 
 
-                                            <asp:TemplateField HeaderText="Exam/Degree Title">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlAcadegree" runat="server" CssClass="form-control" Width="100" OnSelectedIndexChanged="ddlAcadegree_SelectedIndexChanged">
-                                                    </asp:DropDownList>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Exam/Degree Title">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlAcadegree" runat="server" CssClass="form-control" Width="100" OnSelectedIndexChanged="ddlAcadegree_SelectedIndexChanged">
+                                                        </asp:DropDownList>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Major Subject">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlMajorSubj" runat="server" CssClass="form-control" Width="100" AutoPostBack="True">
-                                                    </asp:DropDownList>
-                                                    <asp:TextBox ID="txtgvEngMedium" runat="server" BackColor="Transparent" Visible="False"
-                                                        BorderColor="#660033" BorderStyle="None" CssClass="form-control" Width="150px"></asp:TextBox>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Major Subject">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlMajorSubj" runat="server" CssClass="form-control" Width="100" AutoPostBack="True">
+                                                        </asp:DropDownList>
+                                                        <asp:TextBox ID="txtgvEngMedium" runat="server" BackColor="Transparent" Visible="False"
+                                                            BorderColor="#660033" BorderStyle="None" CssClass="form-control" Width="150px"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Institution">
-                                                <FooterTemplate>
-                                                    <asp:LinkButton ID="lUpdateDegree" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false" OnClick="lUpdateDegree_Click">Update</asp:LinkButton>
-                                                </FooterTemplate>
+                                                <asp:TemplateField HeaderText="Institution">
+                                                    <FooterTemplate>
+                                                        <asp:LinkButton ID="lUpdateDegree" runat="server" CssClass="btn btn-danger primaryBtn" Visible="false" OnClick="lUpdateDegree_Click">Update</asp:LinkButton>
+                                                    </FooterTemplate>
 
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvInstituee" runat="server" BackColor="Transparent"
-                                                        BorderColor="#660033" BorderStyle="None" CssClass="form-control" Width="300px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "institute")) %>'></asp:TextBox>
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txtgvInstituee" runat="server" BackColor="Transparent"
+                                                            BorderColor="#660033" BorderStyle="None" CssClass="form-control" Width="300px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "institute")) %>'></asp:TextBox>
 
-                                                    <asp:DropDownList ID="ddlinstitute" runat="server" Visible="false" CssClass="chzn-select form-control">
-                                                        <asp:ListItem>University of Dhaka</asp:ListItem>
-                                                        <asp:ListItem>Rajshahi University</asp:ListItem>
-                                                        <asp:ListItem>Bangladesh Agricultural University</asp:ListItem>
+                                                        <asp:DropDownList ID="ddlinstitute" runat="server" Visible="false" CssClass="chzn-select form-control">
+                                                            <asp:ListItem>University of Dhaka</asp:ListItem>
+                                                            <asp:ListItem>Rajshahi University</asp:ListItem>
+                                                            <asp:ListItem>Bangladesh Agricultural University</asp:ListItem>
 
-                                                        <asp:ListItem>Bangladesh University of Engineering and Technology</asp:ListItem>
+                                                            <asp:ListItem>Bangladesh University of Engineering and Technology</asp:ListItem>
 
-                                                        <asp:ListItem>Chittagong University</asp:ListItem>
+                                                            <asp:ListItem>Chittagong University</asp:ListItem>
 
-                                                        <asp:ListItem>Chittagong University of Engineering and Technology (CUET)</asp:ListItem>
+                                                            <asp:ListItem>Chittagong University of Engineering and Technology (CUET)</asp:ListItem>
 
-                                                        <asp:ListItem>Comilla University</asp:ListItem>
+                                                            <asp:ListItem>Comilla University</asp:ListItem>
 
-                                                        <asp:ListItem>Dhaka University of Engineering and Technology (DUET)</asp:ListItem>
+                                                            <asp:ListItem>Dhaka University of Engineering and Technology (DUET)</asp:ListItem>
 
-                                                        <asp:ListItem>Jahangirnagar University</asp:ListItem>
+                                                            <asp:ListItem>Jahangirnagar University</asp:ListItem>
 
-                                                    </asp:DropDownList>
+                                                        </asp:DropDownList>
 
-                                                </ItemTemplate>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Result">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlResult" runat="server" AutoPostBack="True"
-                                                        CssClass="form-control" Width="150" OnSelectedIndexChanged="ddlResult_SelectedIndexChanged">
-                                                    </asp:DropDownList>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Result">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlResult" runat="server" AutoPostBack="True"
+                                                            CssClass="form-control" Width="150" OnSelectedIndexChanged="ddlResult_SelectedIndexChanged">
+                                                        </asp:DropDownList>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="">
+                                                <asp:TemplateField HeaderText="">
 
-                                                <ItemTemplate>
-                                                    <table style="width: 23%; height: 17px;">
-                                                        <tr>
-                                                            <td class="style49">
-                                                                <asp:Label ID="lblgvMarks" runat="server" Font-Bold="True" Font-Size="12px"
-                                                                    Text="Marks:" Width="62px"></asp:Label>
-                                                            </td>
-                                                            <td class="style52">
-                                                                <asp:TextBox ID="txtgvmarkorgrade" runat="server"
-                                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "markorgrade")).ToString("#,##0.00;(#,##0.00); ") %>'
-                                                                    BackColor="Transparent"
-                                                                    BorderStyle="None" Width="30px" Font-Size="11px" Style="text-align: right;">
+                                                    <ItemTemplate>
+                                                        <table style="width: 23%; height: 17px;">
+                                                            <tr>
+                                                                <td class="style49">
+                                                                    <asp:Label ID="lblgvMarks" runat="server" Font-Bold="True" Font-Size="12px"
+                                                                        Text="Marks:" Width="62px"></asp:Label>
+                                                                </td>
+                                                                <td class="style52">
+                                                                    <asp:TextBox ID="txtgvmarkorgrade" runat="server"
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "markorgrade")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                                        BackColor="Transparent"
+                                                                        BorderStyle="None" Width="30px" Font-Size="11px" Style="text-align: right;">
                                                                               
                                                                               
                                                                               
-                                                                </asp:TextBox>
-                                                            </td>
-                                                            <td class="style51">
-                                                                <asp:Label ID="lblgvScale" runat="server" Font-Bold="True" Font-Size="12px"
-                                                                    Text="Scale :" Width="40px" Style="text-align: center;"></asp:Label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox ID="txtgvScale" runat="server" BackColor="Transparent"
-                                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "scale")).ToString("#,##0;(#,##0); ")  %>'
-                                                                    BorderStyle="None" Width="30px" Font-Size="11px" Style="text-align: center;"></asp:TextBox>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </ItemTemplate>
+                                                                    </asp:TextBox>
+                                                                </td>
+                                                                <td class="style51">
+                                                                    <asp:Label ID="lblgvScale" runat="server" Font-Bold="True" Font-Size="12px"
+                                                                        Text="Scale :" Width="40px" Style="text-align: center;"></asp:Label>
+                                                                </td>
+                                                                <td>
+                                                                    <asp:TextBox ID="txtgvScale" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "scale")).ToString("#,##0;(#,##0); ")  %>'
+                                                                        BorderStyle="None" Width="30px" Font-Size="11px" Style="text-align: center;"></asp:TextBox>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </ItemTemplate>
 
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
 
-                                            <asp:TemplateField HeaderText="Passing Year">
-                                                <ItemTemplate>
-                                                    <asp:DropDownList ID="ddlPassingYear" runat="server"
-                                                        CssClass="form-control" Width="70">
-                                                    </asp:DropDownList>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Passing Year">
+                                                    <ItemTemplate>
+                                                        <asp:DropDownList ID="ddlPassingYear" runat="server"
+                                                            CssClass="form-control" Width="70">
+                                                        </asp:DropDownList>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Type" Visible="False">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgvgval" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Type" Visible="False">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgvgval" runat="server"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
-                                        </Columns>
-                                        <FooterStyle CssClass="grvFooter" />
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                        <PagerStyle CssClass="gvPagination" />
-                                        <HeaderStyle CssClass="grvHeader" />
-                                    </asp:GridView>
+                                            </Columns>
+                                            <FooterStyle CssClass="grvFooter" />
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                            <PagerStyle CssClass="gvPagination" />
+                                            <HeaderStyle CssClass="grvHeader" />
+                                        </asp:GridView>
+                                    </div>
                                 </div>
+
+
                             </asp:View>
                             <asp:View ID="ViewCompany" runat="server">
                                 <div class="row">
@@ -1131,14 +1205,14 @@
                 <div class="modal-dialog ">
                     <div class="modal-content col-md-12 col-sm-12 ">
                         <div class="modal-header hedcon">
-                          
+
                             <h4>Employee Name Entry</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>                          
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
-                        <div class="modal-body">                            
+                        <div class="modal-body">
                             <div class="col-md-12 col-sm-12 col-lg-12">
 
-                            
+
                                 <div class="form-group">
                                     <label for="txtEmpName">
                                         Employee Name 

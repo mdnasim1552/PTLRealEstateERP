@@ -278,7 +278,7 @@
 
                     <div class="top-bar-brand logobackground">
                         <asp:HyperLink runat="server" ID="LogoBar">
-                            <asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" />
+                            <asp:Image ID="ComLogo" runat="server" BackColor="white" Width="100" Height="70" />
                         </asp:HyperLink>
                     </div>
                     <!-- /.top-bar-brand -->

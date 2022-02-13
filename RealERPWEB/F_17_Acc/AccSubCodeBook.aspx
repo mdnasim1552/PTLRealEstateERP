@@ -59,9 +59,11 @@
         function checkmobile() { //This function call on text change.   
             var comcod =<%=this.GetComeCode()%>;
             var supmobile = $("#<%=txtSupPhone.ClientID%>")[0].value;
+            var url = '<%=ResolveClientUrl("AccSubCodeBook.aspx/CheckPhone")%>';
+            console.log(url);
             $.ajax({
                 type: "POST",
-                url: "AccSubCodeBook.aspx/CheckPhone",
+                url: url,
                 //data: '{supmobile: "' + $("#<%=txtSupPhone.ClientID%>")[0].value + '" }',// user name or email value
                 data: '{comcod:"' + comcod + '", supmobile:"' + supmobile + '"}',
                 contentType: "application/json; charset=utf-8",
