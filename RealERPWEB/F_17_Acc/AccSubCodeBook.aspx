@@ -61,7 +61,7 @@
             var supmobile = $("#<%=txtSupPhone.ClientID%>")[0].value;
             $.ajax({
                 type: "POST",
-                url: "AccSubCodeBook.aspx/CheckPhone",
+                url: "AccSubCodeBook/CheckPhone",
                 //data: '{supmobile: "' + $("#<%=txtSupPhone.ClientID%>")[0].value + '" }',// user name or email value
                 data: '{comcod:"' + comcod + '", supmobile:"' + supmobile + '"}',
                 contentType: "application/json; charset=utf-8",
@@ -90,13 +90,13 @@
                 case "true":
                     msg.style.display = "block";
                     msg.style.color = "red";
-                    msg.innerHTML = "Mobile already exist ";
+                    msg.innerHTML = "Mobile Number Already exist ";
                     $('#<%=lbtnAddCode.ClientID %>').attr("disabled", "disabled");
                     break;
                 case "false":
                     msg.style.display = "block";
                     msg.style.color = "green";
-                    msg.innerHTML = "Mobile available";
+                    msg.innerHTML = "Mobile Number Available";
                     $('#<%=lbtnAddCode.ClientID %>').removeAttr('disabled');
                     break;
             }
