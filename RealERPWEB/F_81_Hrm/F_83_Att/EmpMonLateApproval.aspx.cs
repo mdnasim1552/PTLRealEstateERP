@@ -1128,15 +1128,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 case "3365":// BTI
 
+
+
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
                     {
                         double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
                         double redelay = delayday - Aprvday;
+
+                        double adjLev = ToAdjustLeaveDayBTI((int)redelay);
+                        double adjElLev = ToAdjustLeaveDayBTI((int)redelay);
+
+
+
                         dt.Rows[rowindex]["delday"] = delayday;
                         dt.Rows[rowindex]["aprday"] = Aprvday;
                         dt.Rows[rowindex]["dedday"] =  Convert.ToInt32((redelay) / 3);
+                        dt.Rows[rowindex]["leaveadj"] = adjLev;
+                        dt.Rows[rowindex]["leaveadjel"] = 0;
 
                     }
                     break;
@@ -1251,6 +1261,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
             return sum;
+
+        }
+
+
+        // ACME
+        double ToAdjustLeaveDayBTI(int n)
+        {
+
+            
+            return n;
 
         }
 

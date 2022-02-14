@@ -346,7 +346,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Leave adj">
+                                <asp:TemplateField HeaderText="Leave Adj CL">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtlvAdj" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="11px" Style="text-align: right"
@@ -360,6 +360,23 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Leave Adj EL">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtEllvAdj" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leaveadjel")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="80px"></asp:TextBox>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFEllvAdj" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="White" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+
+
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
                             <EditRowStyle />
