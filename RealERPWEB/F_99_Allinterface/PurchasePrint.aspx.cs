@@ -558,7 +558,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("txtReqAprname", ds1.Tables[4].Rows[0]["reqaprname"].ToString() + "\n" + ds1.Tables[4].Rows[0]["aprvdat"].ToString()));
                 Rpt1.SetParameters(new ReportParameter("txtRptFooter", ASTUtility.Concat(compname, username, printdate)));
                 Rpt1.SetParameters(new ReportParameter("lblmrfno", ReadCookie()));
-                
+
 
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -1382,7 +1382,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             string txtcrno = dt1.Rows[0]["reqno1"].ToString();
             string txtcrdate = Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy");
-            string txtmrfno = dt1.Rows[0]["mrfno"].ToString(); 
+            string txtmrfno = dt1.Rows[0]["mrfno"].ToString();
             string txtprojectname = dt1.Rows[0]["pactdesc"].ToString();
             string txtAddress = dt1.Rows[0]["paddress"].ToString();
 
@@ -1504,7 +1504,7 @@ namespace RealERPWEB.F_99_Allinterface
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
-            
+
         }
 
 
@@ -2355,7 +2355,8 @@ namespace RealERPWEB.F_99_Allinterface
         }
 
 
-        private void PrintRequisitionJBS()        {
+        private void PrintRequisitionJBS()
+        {
 
             //DataTable dt1 = (DataTable)Session["tblUserReq"]; 
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2405,13 +2406,13 @@ namespace RealERPWEB.F_99_Allinterface
             string rpttxtnaration = dt1.Rows[0]["reqnar"].ToString();
             string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
 
-            string  txtSign1 = "S.K";
-            string  txtSign2 = "Project Incharge";
-            string  txtSign3 = "DPM/PM/AGM/DGM";
-            string  txtSign4 = "Procurement";
-            string  txtSign5 = "Cost & Budget";
-            string  txtSign6 = "Head Of Construction";
-            string  txtSign7 = "Managing Director";
+            string txtSign1 = "S.K";
+            string txtSign2 = "Project Incharge";
+            string txtSign3 = "DPM/PM/AGM/DGM";
+            string txtSign4 = "Procurement";
+            string txtSign5 = "Cost & Budget";
+            string txtSign6 = "Head Of Construction";
+            string txtSign7 = "Managing Director";
 
 
             var lst = dtr.DataTableToList<RealEntity.C_12_Inv.RptMaterialPurchaseRequisition>();
@@ -2447,7 +2448,7 @@ namespace RealERPWEB.F_99_Allinterface
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
 
 
-        
+
         }
 
         private string PrintCallType()
@@ -2580,6 +2581,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3337":
                 case "3364": // jbs
                 case "3339": // Tropical
+                case "3354": // Edison
 
 
                     this.OrderPrintRDLC();
@@ -3835,7 +3837,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string inword = "In Word: " + ASTUtility.Trans(amtmat + amtcar - amtdis, 2);
 
 
-                string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "",  sign7 = "";
+                string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
 
                 /// signature            
                 switch (comcod)
@@ -4087,7 +4089,7 @@ namespace RealERPWEB.F_99_Allinterface
                         pperson2 = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
- 
+
                     case "3354": // Edison Real estate                      
 
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4189,15 +4191,9 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
-
-                    case "3354": //Edison Real Estate 
-                       
-                            Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
-                      
+                    case "3354": //Edison Real Estate                        
+                        Reportpath = "~/Report/RptPurchaseOrderEDR.rdlc";
                         break;
-
-
-
 
                     default:
                         Reportpath = "~/Report/RptPurchaseOrder.rdlc";
@@ -4253,7 +4249,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
                 }
 
-                if (comcod == "3364" || comcod=="3101")
+                if (comcod == "3364" || comcod == "3101")
                 {
                     //proadd
                     Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));
@@ -4268,7 +4264,7 @@ namespace RealERPWEB.F_99_Allinterface
                 }
 
                 //Final Order Approval
-                if (comcod == "3354" )
+                if (comcod == "3354")
                 {
                     Rpt1.SetParameters(new ReportParameter("sign7", sign7));
 
@@ -4304,7 +4300,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("sign5", sign5));
                 Rpt1.SetParameters(new ReportParameter("sign6", sign6));
 
-               
+
                 Rpt1.SetParameters(new ReportParameter("terms1", terms1));
                 Rpt1.SetParameters(new ReportParameter("terms2", terms2));
                 Rpt1.SetParameters(new ReportParameter("terms3", terms3));
