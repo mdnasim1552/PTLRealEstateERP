@@ -959,6 +959,7 @@ namespace RealERPWEB.F_17_Acc
 
                 string sphone = this.txtSupPhone.Text.ToString();
                 // return;
+                bool isResultValid = true;
 
                 if (Desc.Length == 0)
                 {
@@ -966,6 +967,7 @@ namespace RealERPWEB.F_17_Acc
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
                     //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                    isResultValid = false;
                     return;
                 }
 
@@ -975,7 +977,7 @@ namespace RealERPWEB.F_17_Acc
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
-
+                    isResultValid = false;
                     return;
                 }
                 if ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99"))
@@ -986,14 +988,14 @@ namespace RealERPWEB.F_17_Acc
                         msg = "Mobile Number Already Exist";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                        isResultValid = false;
                         return;
                     }
+                    isResultValid = true;
+
 
                 }
-
-
-
-                else
+                if(isResultValid)
                 {
 
 
