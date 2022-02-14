@@ -892,7 +892,7 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-                this.HideShowMobile(sircode);
+                this.HideShowMobile(sircode, comcod);
 
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
             }
@@ -909,20 +909,32 @@ namespace RealERPWEB.F_17_Acc
             }
         }
 
-        private void HideShowMobile(string sircode)
+        private void HideShowMobile(string sircode, string comcod)
         {
+
             if ((sircode.Substring(0, 2) == "98" || sircode.Substring(0, 2) == "99") && (ASTUtility.Right(sircode, 3) != "000"))
             {
-                this.divMobile.Visible = true;
+                switch (comcod)
+                {
+                    case "3101":
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                        this.divMobile.Visible = true;
+                        break;
+                    default:
+                        this.divMobile.Visible = false;
+                        break;
+                }
                 //this.txtSupPhone.Attributes.Add("Required","True");
                 //this.txtSupPhone.ValidationGroup = "RegisterCheck";
-
-
             }
             else
             {
                 this.divMobile.Visible = false;
             }
+
+
 
         }
 
@@ -958,8 +970,9 @@ namespace RealERPWEB.F_17_Acc
                 string txtTDetails = this.txtTDetails.Text.Trim();
 
                 string sphone = this.txtSupPhone.Text.ToString();
-                // return;
-                bool isResultValid = true;
+                
+                bool isResultValid = true; 
+                bool isSupPhone = false;
 
                 if (Desc.Length == 0)
                 {
@@ -970,32 +983,44 @@ namespace RealERPWEB.F_17_Acc
                     isResultValid = false;
                     return;
                 }
-
-                if (sphone.Length != 11 && ((ASTUtility.Left(tsircode, 2) == "98" )|| (ASTUtility.Left(tsircode, 2) == "99")))
+                switch (comcod)
                 {
-                    msg = "Mobile Number is not Valid";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                    //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
-                    isResultValid = false;
-                    return;
-                }
-                if ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99"))
-                {
-                    DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
-                    if (ds1.Tables[0].Rows.Count > 0)
-                    {
-                        msg = "Mobile Number Already Exist";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
-                        isResultValid = false;
-                        return;
-                    }
-                    isResultValid = true;
+                    case "3101":
+                    case "1205":
+                    case "3351":
+                    case "3352":
+                        if (sphone.Length != 11 && ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99")))
+                        {
+                            msg = "Mobile Number Invalid";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                            isResultValid = false;
+                            return;
+                        }
 
+                        if ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99"))
+                        {
+                            DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
+                            if (ds1.Tables[0].Rows.Count > 0)
+                            {
+                                msg = "Mobile Number Already Exist";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
+                                isResultValid = false;
+                                return;
+                            }
+                            isResultValid = true;
+                            isSupPhone = true;
 
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                if(isResultValid)
+
+              
+                if (isResultValid)
                 {
 
 
@@ -1009,14 +1034,17 @@ namespace RealERPWEB.F_17_Acc
                         return;
 
                     }
-                    bool result2 = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTORUPDATESUPL", sircode, sphone, "");
-                    if (!result2)
+                    if (isSupPhone)
                     {
-                        msg = da.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                        return;
-
+                        bool result2 = this.da.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "INSERTORUPDATESUPL", sircode, sphone, "");
+                        if (!result2)
+                        {
+                            msg = da.ErrorObject["Msg"].ToString();
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                            return;
+                        }
                     }
+                    
                     msg = "Update Successfully";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     this.clearDataField();
