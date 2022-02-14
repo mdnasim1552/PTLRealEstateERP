@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -380,6 +380,8 @@
     <Content Include="Content\Theme\images\avatars\uifaces16.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces17.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces18.jpg" />
+    <Content Include="Content\Theme\main.min.css" />
+    <Content Include="Content\Theme\main.min.js" />
     <Content Include="Content\Theme\sb-admin-2.css" />
     <Content Include="Content\Theme\sb-admin-2.js" />
     <Content Include="Content\Theme\select2-demo.js" />
@@ -2488,6 +2490,7 @@
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
+    <Content Include="F_21_MKT\ProspectTransfer.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
     <Content Include="F_21_MKT\RptClientInitial.aspx" />
@@ -2634,6 +2637,7 @@
     <Content Include="F_25_Reg\OtherCollectionReport.aspx" />
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
+    <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
     <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
@@ -2964,7 +2968,6 @@
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
-    <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_86_All\EmpFoodAllow.aspx" />
@@ -2989,6 +2992,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummary02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummaryDetails.aspx" />
@@ -3532,6 +3536,7 @@
     <Content Include="Scripts\Mchart.js" />
     <Content Include="Scripts\Mchartpie.js" />
     <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\Multicheckboxes.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\ScrollableGridPlugin.js" />
     <Content Include="Scripts\ScrollableTablePlugin.js" />
@@ -3867,6 +3872,13 @@
     <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
       <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.designer.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_21_MKT\RptProspectWorking.aspx.cs">
       <DependentUpon>RptProspectWorking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3957,6 +3969,13 @@
     </Compile>
     <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
       <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.cs">
+      <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.designer.cs">
+      <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
@@ -4266,13 +4285,6 @@
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx.designer.cs">
       <DependentUpon>EmpLoanStatus.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOld.aspx.cs">
-      <DependentUpon>EmpLoanStatusOld.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOld.aspx.designer.cs">
-      <DependentUpon>EmpLoanStatusOld.aspx</DependentUpon>
-    </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx.cs">
       <DependentUpon>EmpLoanStatusOpn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4356,6 +4368,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>

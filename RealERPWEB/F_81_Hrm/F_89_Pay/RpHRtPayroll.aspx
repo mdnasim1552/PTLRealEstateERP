@@ -5,7 +5,6 @@
     <style type="text/css">
         .margin5px {
         }
-
         /*
         .dropdown-toggle:after {
             display: inline-block;
@@ -368,7 +367,7 @@
                                     <asp:GridView ID="gvpayroll" runat="server" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         AutoGenerateColumns="False" OnPageIndexChanging="gvpayroll_PageIndexChanging"
                                         ShowFooter="True" Width="831px">
-                                        <PagerSettings Position="Top" />
+                                        <PagerSettings Position="Top" Mode="NumericFirstLast" />
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl">

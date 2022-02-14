@@ -52,7 +52,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.rbtnAtten.SelectedIndex = 3;
             this.lnkbtnEmp.Visible = false;
             this.ddlEmpName.Visible = false;
-
+            this.empListPnl.Visible = false;
+            
         }
 
 
@@ -123,6 +124,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
+
+                    this.lblSection.Visible = false;
+                    this.PnlSection.Visible = false;
+
+                     
                     break;
                 case 1:
                     this.pnldailyatt.Visible = true;
@@ -130,7 +136,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
-                    this.pnlAttnLog.Visible = false;
+                    this.pnlAttnLog.Visible = false;                    
+                    this.lblSection.Visible = true;
+                    this.PnlSection.Visible = true;
                     break;
                 case 2:
                     this.pnlempstatus.Visible = true;
@@ -139,6 +147,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = false;
+                    this.PnlSection.Visible = false;
+
                     break;
                 case 3:
                     this.pnlmonthlyatt.Visible = true;
@@ -147,6 +159,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = true;
+                    this.PnlSection.Visible = true;
                     break;
                 case 4:
                     this.pnlemplateatt.Visible = true;
@@ -155,6 +170,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = true;
+                    this.PnlSection.Visible = true;
                     break;
                 case 5:
                     this.pnlempstatusLate.Visible = true;
@@ -163,6 +181,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlemplateatt.Visible = false;
                     this.pnlempstatus.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = false;
+                    this.PnlSection.Visible = false;
                     break;
                 case 6:
                     this.pnldailyatt.Visible = false;
@@ -171,6 +192,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = false;
+                    this.PnlSection.Visible = false;
                     break;
                 case 7:
                     this.pnldailyatt.Visible = false;
@@ -179,6 +203,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = true;
+                    this.PnlSection.Visible = true;
                     break;
                 case 8:
                     this.pnldailyatt.Visible = false;
@@ -187,6 +214,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.pnlempstatus.Visible = false;
                     this.pnlempstatusLate.Visible = false;
                     this.pnlAttnLog.Visible = false;
+
+                    this.lblSection.Visible = true;
+                    this.PnlSection.Visible = true;
                     break;
                 default:
                     break;
@@ -249,6 +279,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             string company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string projectName = ((ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : ddlProjectName.SelectedValue.ToString().Substring(0, 8)) + "%";
+
+
+
+
+
             string txtSEmployee = "%%";
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETEMPNAME", company, projectName, txtSEmployee, "", "", "", "", "", "");
             if (ds3 == null)
@@ -267,6 +302,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetSectionName();
+            lnkbtnEmp_Click(null,null);        
         }
         
         protected void rbtnAtten_SelectedIndexChanged(object sender, EventArgs e)
@@ -274,6 +310,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.lnkbtnEmp.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
             //this.txtSrcEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5) || (this.rbtnAtten.SelectedIndex == 6);
            // this.imgbtnEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
+            this.empListPnl.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
             this.ddlEmpName.Visible = (this.rbtnAtten.SelectedIndex == 0) || (this.rbtnAtten.SelectedIndex == 2) || (this.rbtnAtten.SelectedIndex == 5 || (this.rbtnAtten.SelectedIndex == 6));
             this.lblfrmdate.Text = ((this.rbtnAtten.SelectedIndex == 1 || this.rbtnAtten.SelectedIndex == 7) ? "Date:" : "From:");
             this.txtfromdate.Text = (this.rbtnAtten.SelectedIndex == 1 ? System.DateTime.Today.ToString("dd-MMM-yyyy") : this.txtfromdate.Text.Trim());
@@ -601,14 +638,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 case 2:
-                    this.gvEmpStatus.DataSource = dt;
+                    this.gvEmpStatus.DataSource = dt; 
                     this.gvEmpStatus.DataBind(); 
                     break;
 
                 case 3:
 
 
-                    if (comcod == "3365"||comcod=="3101")
+                    if (comcod == "3365")
                     {
                         int i;
                         DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
@@ -630,8 +667,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             datefrm = datefrm.AddDays(1);
                             j++;
 
-
+                            this.StatusReport.Visible = true;
                         }
+                       
 
                         this.gvMonthlyattSummary.DataSource = dt;
                         this.gvMonthlyattSummary.DataBind();
@@ -1989,6 +2027,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
 
         protected void lnkbtnEmp_Click(object sender, EventArgs e)
+        {
+            this.GetEmpName();
+        }
+
+        protected void DropCheck1_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.GetEmpName();
         }

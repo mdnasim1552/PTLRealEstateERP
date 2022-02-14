@@ -1,8 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CrmClientInfo.aspx.cs" EnableEventValidation="false" ValidateRequest="false" Inherits="RealERPWEB.F_21_MKT.CrmClientInfo" %>
-
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -3755,11 +3752,15 @@
                                                 <asp:HyperLink ID="HyperLink6" Target="_blank" NavigateUrl="~/F_21_Mkt/YearlyTargetVSAchive?type=CRM" runat="server">Yearly Target Vs Achievement</asp:HyperLink>
                                             </li>
                                              <li>
-                                                <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransferLog" runat="server">Prospect Transfer</asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink10" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransfer" runat="server">Prospect Transfer</asp:HyperLink>
+                                            </li>
+                                             <li>
+                                                <asp:HyperLink ID="HyperLink9" Target="_blank" NavigateUrl="~/F_21_Mkt/ProspectTransferLog" runat="server">Prospect Transfer Log</asp:HyperLink>
                                             </li>
                                             <li>
                                                 <asp:HyperLink ID="hlnkProsWorkingReport" runat="server" Target="_blank" NavigateUrl="~/F_21_Mkt/RptProspectWorking">Prospect Working Report</asp:HyperLink> 
                                             </li>
+                                             
                                         </ul>
                                     </div>
                                 </div>

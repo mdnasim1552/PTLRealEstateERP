@@ -42,6 +42,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.RadioButtonList rbtnAtten;
 
         /// <summary>
+        /// lbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl;
+
+        /// <summary>
         /// ddlCompany control.
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
         /// ddlProjectName control.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProjectName;
+
+        /// <summary>
+        /// lblSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSection;
+
+        /// <summary>
+        /// PnlSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PnlSection;
 
         /// <summary>
         /// DropCheck1 control.
@@ -76,6 +112,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnEmp;
+
+        /// <summary>
+        /// empListPnl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl empListPnl;
 
         /// <summary>
         /// ddlEmpName control.
@@ -256,6 +301,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvMonthlyattSummary;
+
+        /// <summary>
+        /// StatusReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl StatusReport;
 
         /// <summary>
         /// pnldailyatt control.

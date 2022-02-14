@@ -152,6 +152,7 @@ namespace RealERPWEB.F_22_Sal
 
             Session["tblCustPayment03"] = this.HiddenSameDate2(ds2.Tables[0]);
             Session["tblCustPayment01"] = ds2.Tables[1];
+
             this.txtCustName.Text = "Project : " + ds2.Tables[1].Rows[0]["actdesc"].ToString() + ", Name : " + ds2.Tables[1].Rows[0]["name"].ToString() + ", Plot : " + ds2.Tables[1].Rows[0]["aptname"].ToString() + ", Unit : " + ds2.Tables[1].Rows[0]["aptsize"].ToString();
             DataTable dt = ds2.Tables[3];
             this.Data_Bind();
@@ -160,6 +161,7 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 Session["tblCustPayment04"] = this.HiddenSameDate4(ds2.Tables[4]);
+                Session["tblCustPayinfo"] = ds2.Tables[5];
                 this.pnlhideCasSales.Visible = true;
                 this.gvCustLedger2.DataSource = ds2.Tables[4];
                 this.gvCustLedger2.DataBind();
@@ -396,7 +398,7 @@ namespace RealERPWEB.F_22_Sal
 
         private DataTable HiddenSameDate4(DataTable dtable)
         {
-            if (dtable.Rows.Count== 0)
+            if (dtable.Rows.Count == 0)
                 return dtable;
             Session.Remove("tblCustPayment04");
             string gcod = dtable.Rows[0]["gcod"].ToString();
@@ -544,7 +546,7 @@ namespace RealERPWEB.F_22_Sal
             if (comcod == "3349")
             {
                 DataTable dt2 = (DataTable)Session["tblCustPayment04"];
-                if (dt2 == null || dt2.Rows.Count==0)
+                if (dt2 == null || dt2.Rows.Count == 0)
                     return;
 
 
@@ -561,7 +563,7 @@ namespace RealERPWEB.F_22_Sal
                 double balamtx = Schamtx - rcvamtx;
                 ((Label)this.gvCustLedger2.FooterRow.FindControl("lblFBalTamt2")).Text = balamtx.ToString("#,##0;(#,##0); ");
 
-                double ttschm= Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", ""))) + Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(schamt)", "")) ? 0.00 : dt2.Compute("Sum(schamt)", "")));
+                double ttschm = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(schamt)", "")) ? 0.00 : dt.Compute("Sum(schamt)", ""))) + Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(schamt)", "")) ? 0.00 : dt2.Compute("Sum(schamt)", "")));
                 double ttlrecv = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(paidamt)", "")) ? 0.00 : dt.Compute("Sum(paidamt)", ""))) + Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(paidamt)", "")) ? 0.00 : dt2.Compute("Sum(paidamt)", "")));
 
                 this.TotalbtnAppCost.InnerText = (ttschm).ToString("#,##0;(#,##0); ");
@@ -572,7 +574,6 @@ namespace RealERPWEB.F_22_Sal
 
 
         }
-
 
 
 
@@ -610,6 +611,12 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt = (DataTable)Session["tblCustPayment03"];
             DataTable dt4 = (DataTable)Session["tblCustPayment04"];
             DataTable dt1 = (DataTable)Session["tblCustPayment01"];
+            DataTable dtpay = (DataTable)Session["tblCustPayinfo"];
+
+            string rptcustname = "", rptCustAdd = "", rptCustPhone = "", rptpactdesc = "", projAddress = "", rptUnitDesc = "", rptUsize = "", rptSalesteam = "", rptsalesdate = "", rptagreementdate = "", rptHandoverdate="";
+
+
+
 
             string custname = dt1.Rows[0]["name"].ToString();
             string prjname = dt1.Rows[0]["actdesc"].ToString();
@@ -617,18 +624,46 @@ namespace RealERPWEB.F_22_Sal
 
             string txtTitle = hst["username"].ToString();
 
+            string appCost = "", appRecv = "", appBal = "";
 
-            var dtlist1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedger>();
-            if (comadd == "3349")
+            if (comcod == "3349")
             {
+                appCost = this.TotalbtnAppCost.InnerText.ToString();
+                appRecv = this.TotalbtnAppRecived.InnerText.ToString();
+                appBal = this.TotalbtnAppBalance.InnerText.ToString();
 
+                //// string rptunittype = ds5.Tables[1].Rows[0]["unittype"].ToString();
+                //string txtdate = "Print date: " + this.txtDate.Text.Trim();
+                //string rptcustname = ds5.Tables[1].Rows[0]["name"].ToString();
+                //string rptcustadd = ds5.Tables[1].Rows[0]["peraddress"].ToString();
+                //string rptcustphone = ds5.Tables[1].Rows[0]["telephone"].ToString();
+                //string rptpactdesc = ds5.Tables[1].Rows[0]["projectname"].ToString();
+                //string projadd = ds5.Tables[1].Rows[0]["proadd"].ToString();
+
+                //string rptunitdesc = ds5.Tables[1].Rows[0]["aptname"].ToString();
+                //string rptusize = ds5.Tables[1].Rows[0]["aptsize"].ToString();
+                //string rptsalesteam = ds5.Tables[1].Rows[0]["salesteam"].ToString();
+                //string rptsalesdate = Convert.ToDateTime(ds5.Tables[1].Rows[0]["saledate"]).ToString("dd-MMM-yyyy");
+                //string rptagreementdate = (Convert.ToDateTime(ds5.Tables[1].Rows[0]["agdate"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds5.Tables[1].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
+                //string rpthandoverdate = (Convert.ToDateTime(ds5.Tables[1].Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(ds5.Tables[1].Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy");
+
+
+                rptcustname = dtpay.Rows[0]["name"].ToString();
+                rptCustAdd = dtpay.Rows[0]["peraddress"].ToString();
+                rptCustPhone = dtpay.Rows[0]["telephone"].ToString();
+                rptpactdesc = dtpay.Rows[0]["projectname"].ToString();
+                projAddress = dtpay.Rows[0]["proadd"].ToString();
+                rptUnitDesc = dtpay.Rows[0]["aptname"].ToString();
+                rptUsize = dtpay.Rows[0]["aptsize"].ToString();
+                rptSalesteam = dtpay.Rows[0]["salesteam"].ToString();
+                rptsalesdate = Convert.ToDateTime(dtpay.Rows[0]["saledate"]).ToString("dd-MMM-yyyy");
+                rptagreementdate = (Convert.ToDateTime(dtpay.Rows[0]["agdate"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(dtpay.Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
+                rptHandoverdate = (Convert.ToDateTime(dtpay.Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy") == "01-jan-1900") ? "" : Convert.ToDateTime(dtpay.Rows[0]["hoverdate"]).ToString("dd-MMM-yyyy");
             }
-            else
-            {
 
-            }
 
-            var dtlist2 = dt4.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedger>();
+            var dtlist1 = dt.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedgerCHL>();
+            var dtlist2 = dt4.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.AccCustPayLedgerCHL>();
 
             LocalReport Rpt1a = new LocalReport();
             Rpt1a = RealERPRDLC.RptSetupClass1.GetLocalReport("R_22_Sal.RptAccSumCustPayStatus", dtlist1, dtlist2, null);
@@ -642,7 +677,21 @@ namespace RealERPWEB.F_22_Sal
             Rpt1a.SetParameters(new ReportParameter("txtProjName", "Project - " + prjname));
             Rpt1a.SetParameters(new ReportParameter("txtname", "Customer Name : " + custname));
             Rpt1a.SetParameters(new ReportParameter("txtplot", "Flat : " + plot));
-
+            Rpt1a.SetParameters(new ReportParameter("rptcustname", rptcustname));
+            Rpt1a.SetParameters(new ReportParameter("rptCustAdd", rptCustAdd));
+            Rpt1a.SetParameters(new ReportParameter("rptCustPhone", rptCustPhone));
+            Rpt1a.SetParameters(new ReportParameter("rptpactdesc", rptpactdesc));
+            Rpt1a.SetParameters(new ReportParameter("projAddress", projAddress));
+            Rpt1a.SetParameters(new ReportParameter("rptUnitDesc", rptUnitDesc));
+            Rpt1a.SetParameters(new ReportParameter("rptUsize", rptUsize));
+            Rpt1a.SetParameters(new ReportParameter("rptSalesteam", rptSalesteam));
+            Rpt1a.SetParameters(new ReportParameter("rptsalesdate", rptsalesdate));
+            Rpt1a.SetParameters(new ReportParameter("rptagreementdate", rptagreementdate));
+            Rpt1a.SetParameters(new ReportParameter("rptSalesteam", rptSalesteam));
+            Rpt1a.SetParameters(new ReportParameter("rptHandoverdate", rptHandoverdate));
+            Rpt1a.SetParameters(new ReportParameter("appCost", appCost));
+            Rpt1a.SetParameters(new ReportParameter("appRecv", appRecv));
+            Rpt1a.SetParameters(new ReportParameter("appBal", appBal));
 
 
             Session["Report1"] = Rpt1a;

@@ -124,7 +124,6 @@
                                 <asp:Label ID="lblCompanyName" runat="server" Width="335" CssClass="dataLblview" Visible="False"></asp:Label>
 
 
-
                             </div>
 
                             <div class="col-md-1 pading5px">
@@ -163,7 +162,7 @@
 
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="Pnldesig" runat="server" visible="false">
                             <div class="col-md-3 pading5px asitCol2">
                                 <asp:Label ID="lblfrmDesig" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
                                 <asp:DropDownList ID="ddlfrmDesig" runat="server" Width="100" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control inputTxt" TabIndex="6">
@@ -172,11 +171,8 @@
 
                             <div class="col-md-4 pading5px">
                                 <asp:Label ID="lbltoDesig" runat="server" CssClass=" smLbl_to">To</asp:Label>
-
-
                                 <asp:DropDownList ID="ddlToDesig" runat="server" Width="100" CssClass="chzn-select form-control inputTxt" TabIndex="6">
                                 </asp:DropDownList>
-
                             </div>
 
                         </div>
@@ -584,9 +580,40 @@
                                         Width="80px"></asp:TextBox>
                                 </ItemTemplate>
 
+
+
                                 <ItemStyle HorizontalAlign="Right" />
                                 <FooterStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
+
+                              <asp:TemplateField HeaderText="Leave adj">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtabslvadj" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leaveadj")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                        Width="80px"></asp:TextBox>
+                                </ItemTemplate>
+
+
+
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
+                             <asp:TemplateField HeaderText="Reason">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtabsreason" runat="server" BackColor="Transparent"
+                                        BorderStyle="None" Font-Size="11px" Style="text-align: left"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reason")) %>'
+                                        Width="120px"></asp:TextBox>
+                                </ItemTemplate>
+
+
+
+                                <ItemStyle HorizontalAlign="Right" />
+                                <FooterStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
+
                         </Columns>
                         <FooterStyle CssClass="grvFooter" />
                         <EditRowStyle />

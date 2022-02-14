@@ -74,7 +74,8 @@ namespace RealERPWEB.F_17_Acc
 
         private void GetBankName()
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
             string SeachBankName = "%" + this.txtserchBankName.Text.Trim() + "%";
             DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETBANKNAME", SeachBankName, "", "", "", "", "", "", "", "");
@@ -95,7 +96,8 @@ namespace RealERPWEB.F_17_Acc
             dv.Sort = ("actcode");
             dt = dv.ToTable();
 
-            this.ddlBankName.DataTextField = "actdesc1";
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
+            this.ddlBankName.DataTextField = TextField;
             this.ddlBankName.DataValueField = "actcode";
             this.ddlBankName.DataSource = dt;
             this.ddlBankName.DataBind();

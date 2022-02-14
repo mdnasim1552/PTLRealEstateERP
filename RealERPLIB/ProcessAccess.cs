@@ -741,7 +741,7 @@ namespace RealERPLIB
        string mDesc7, string mDesc8, string mDesc9, string mDesc10, string mDesc11, string mDesc12,
        string mDesc13, string mDesc14, string mDesc15, string mDesc16, string mDesc17, string mDesc18,
       string mDesc19, string mDesc20, string mDesc21, string mDesc22, string mDesc23, string mDesc24,
-            string mDesc25, string mUserID, string mDesc26 = "", string mDesc27 = "", string mDesc28 = "", string mDesc29 = "")
+            string mDesc25, string mUserID, string mDesc26 = "", string mDesc27 = "", string mDesc28 = "", string mDesc29 = "", string mDesc30 = "", string mDesc31 = "", string mDesc32 = "")
         {
             try
             {
@@ -782,6 +782,9 @@ namespace RealERPLIB
                 cmd.Parameters.Add(new SqlParameter("@Desc27", mDesc27));
                 cmd.Parameters.Add(new SqlParameter("@Desc28", mDesc28));
                 cmd.Parameters.Add(new SqlParameter("@Desc29", mDesc29));
+                cmd.Parameters.Add(new SqlParameter("@Desc30", mDesc30));
+                cmd.Parameters.Add(new SqlParameter("@Desc31", mDesc31));
+                cmd.Parameters.Add(new SqlParameter("@Desc32", mDesc32));
                 bool _result = _dataAccess.ExecuteCommand(cmd);
                 if (_result == false)  //_result==false
                 {

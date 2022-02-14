@@ -312,15 +312,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.WebControls.RadioButtonList rblstapptype;
 
         /// <summary>
-        /// imgbtnlAppEmpSeaarch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnlAppEmpSeaarch;
-
-        /// <summary>
         /// ddlEmpName control.
         /// </summary>
         /// <remarks>
@@ -328,78 +319,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpName;
-
-        /// <summary>
-        /// lblComPany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblComPany;
-
-        /// <summary>
-        /// lblSection control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSection;
-
-        /// <summary>
-        /// lblDesignation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDesignation;
-
-        /// <summary>
-        /// lblJoiningDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJoiningDate;
-
-        /// <summary>
-        /// lbltrnleaveid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltrnleaveid;
-
-        /// <summary>
-        /// PnlPreLeave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlPreLeave;
-
-        /// <summary>
-        /// ddlPreLeave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPreLeave;
-
-        /// <summary>
-        /// lnkbtnPreLeave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnPreLeave;
 
         /// <summary>
         /// Pnlapply control.
@@ -465,6 +384,87 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.WebControls.CheckBox chkPreLeave;
 
         /// <summary>
+        /// PnlPreLeave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlPreLeave;
+
+        /// <summary>
+        /// ddlPreLeave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPreLeave;
+
+        /// <summary>
+        /// lnkbtnPreLeave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnPreLeave;
+
+        /// <summary>
+        /// divEmpDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divEmpDetails;
+
+        /// <summary>
+        /// lblComPany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblComPany;
+
+        /// <summary>
+        /// lblSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSection;
+
+        /// <summary>
+        /// lblDesignation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDesignation;
+
+        /// <summary>
+        /// lblJoiningDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblJoiningDate;
+
+        /// <summary>
+        /// lbltrnleaveid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbltrnleaveid;
+
+        /// <summary>
         /// lblleaveApp control.
         /// </summary>
         /// <remarks>
@@ -510,15 +510,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.WebControls.Panel PnlRmrks;
 
         /// <summary>
-        /// Label20 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label20;
-
-        /// <summary>
         /// txtLeavLreasons control.
         /// </summary>
         /// <remarks>
@@ -526,15 +517,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLeavLreasons;
-
-        /// <summary>
-        /// Label41 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label41;
 
         /// <summary>
         /// txtaddofenjoytime control.
@@ -546,31 +528,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.WebControls.TextBox txtaddofenjoytime;
 
         /// <summary>
-        /// Label42 control.
+        /// txtLeavRemasrks control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label42;
-
-        /// <summary>
-        /// txtLeavRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLeavRemarks;
-
-        /// <summary>
-        /// Label43 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label43;
+        protected global::System.Web.UI.WebControls.TextBox txtLeavRemasrks;
 
         /// <summary>
         /// txtdutiesnameandDesig control.
@@ -580,6 +544,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtdutiesnameandDesig;
+
+        /// <summary>
+        /// txtLeavRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLeavRemarks;
 
         /// <summary>
         /// lblleaveInformation control.

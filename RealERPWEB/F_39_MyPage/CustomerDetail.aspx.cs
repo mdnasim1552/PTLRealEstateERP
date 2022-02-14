@@ -263,6 +263,9 @@ namespace RealERPWEB.F_39_MyPage
             string comcod = hst["comcod"].ToString();
             string PactCode = this.Request.QueryString["prjcode"].ToString().Trim();
             string Usircode = this.Request.QueryString["genno"].ToString().Trim();
+            string msg = "";
+
+
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
@@ -288,29 +291,26 @@ namespace RealERPWEB.F_39_MyPage
                     Gvalue = Gvalue1;
                 }
 
-
-
-
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 bool result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, Gcode, gtype, Gvalue, "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
 
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = MktData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
-
-
                 }
 
             }
             //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
 
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Update Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
+            this.LoadGrid();
 
             if (ConstantInfo.LogStatus == true)
             {

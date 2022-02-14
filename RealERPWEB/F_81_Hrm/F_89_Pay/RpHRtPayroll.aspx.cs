@@ -71,7 +71,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
             ((LinkButton)this.Master.FindControl("btnClose")).Click += new EventHandler(btnClose_Click);
             string type = this.Request.QueryString["Type"].ToString().Trim();
-            if (type == "Salary")
+            if (type == "Salary" || type == "SalResign")
             {
                 ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
                 ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFiUpdate_Click);
@@ -109,6 +109,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (type)
             {
                 case "Salary":
+                case "SalResign":
                     this.MultiView1.ActiveViewIndex = 0;
                     ((LinkButton)this.Master.FindControl("lnkbtnSave")).Visible = true;
                     ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Visible = true;
@@ -339,7 +340,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     break;
 
-                //case "3101":
+                case "3101":
                 case "3365"://BTI
                     this.rbtSalSheet.SelectedIndex = 21;
                     this.gvpayroll.Columns[17].HeaderText = "W.F Fund";
@@ -347,7 +348,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
 
-                case "3101":
+               
                 case "3364"://JBS
                     this.rbtSalSheet.SelectedIndex = 22;
                   
@@ -547,6 +548,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (type)
             {
                 case "Salary":
+                case "SalResign":
                     this.ShowSal();
                     break;
 
@@ -582,6 +584,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void ShowSal()
         {
+
+            string saltype = "";
+            string type = this.Request.QueryString["Type"].ToString().Trim();
+            if (type == "SalResign")
+                saltype = "R";
+
             Session.Remove("tblpay");
             string comcod = this.GetCompCode();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
@@ -665,7 +673,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             if (this.lblComSalLock.Text == "True")
             {
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcode, section, CompanyName, mantype, paytype, "", "", "");
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcode, section, CompanyName, mantype, paytype, saltype, "", "");
 
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, "", "", "", "");
@@ -673,7 +681,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
 
-                ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, "");
+                ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, saltype);
 
 
             }
@@ -1135,6 +1143,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (type)
             {
                 case "Salary":
+                case "SalResign":
+                    
                     this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvpayroll.DataSource = dt;
                     this.gvpayroll.DataBind();
@@ -1226,6 +1236,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (type)
             {
                 case "Salary":
+                case "SalResign":
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFbSal")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(bsal)", "")) ? 0.00 : dt.Compute("sum(bsal)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFhrent")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(hrent)", "")) ? 0.00 : dt.Compute("sum(hrent)", ""))).ToString("#,##0;(#,##0); ");
                     ((Label)this.gvpayroll.FooterRow.FindControl("lgvFCon")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(cven)", "")) ? 0.00 : dt.Compute("sum(cven)", ""))).ToString("#,##0;(#,##0); ");
@@ -1279,6 +1290,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (type)
             {
                 case "Salary":
+                case "SalResign":
                     this.PrintSal();
                     break;
 
@@ -2834,10 +2846,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
             Rpt1.EnableExternalImages = true;
-            Rpt1.SetParameters(new ReportParameter("compName", companyname.ToUpper()));
+            Rpt1.SetParameters(new ReportParameter("compName", companyname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet"));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "Statement of Salary : " + "Month of " + todate1));
+            Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet (Month of "+ todate1 + ")"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle",  ""));
             Rpt1.SetParameters(new ReportParameter("txtheader", "Grand Total"));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));
             Rpt1.SetParameters(new ReportParameter("txtYear", Convert.ToDateTime((this.txttodate.Text)).ToString("yyyy")));
@@ -3902,6 +3914,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     return;
                 }
 
+                string emptype = this.Request.QueryString["Type"]=="SalResign"?"R":"";
                 this.SaveRrmks();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -3932,7 +3945,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string Section = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
 
 
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "DELETESALSHEET", monthid, Company, Department, Section, mantype, "", "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "DELETESALSHEET", monthid, Company, Department, Section, mantype, emptype, "", "", "", "", "", "", "", "", "");
 
                 if (!result)
                 {
@@ -4051,13 +4064,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     string dresslon = dt.Rows[i]["dresslon"].ToString();
                     string msetlon = dt.Rows[i]["msetloan"].ToString();
                     string msclon = dt.Rows[i]["mscloan"].ToString();
+                  
 
-                   
+
                     result = HRData.UpdateTransInfoHRSal(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INUPSALSHEET", monthid, refno, empid, wd, absday, wld, acat, bsal, hrent, cven,
                         mallow, arsal, pickup, fuel, entaint, mcell, incent, oth, pfund, itax, adv, othded, dallow, oallow, ohour, hallow, elallow, mbill, lwided, loanins, gssal, salpday, gspay, absded,
                         tallow, tdeduc, dedday.ToString(), sdedamt, netpay, section, desigid, mcadj, othallow, othearn, mcallow, teallow, thday, lwpday, arded, cashamt, bankamt, wjd, empcont, elftam, elfthour,
                         dalday, ddaya10, dday10amt, fallded, mbillded, bankamt2, wkday, govday, rmrks, tptallow, kpi, perbon, haircutal, foodal, nfoodal, otallow, redamt, chequepay, todecashsal, hardship, fine,
-                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon);
+                        cashded, tripal, absded2, absded3, rmrks2, ottotal, finedays, lateday, latededuc, adjustamt, transded, genloan, carloan, perloan, motolon, dresslon, msetlon, msclon, emptype);
                     if (!result)
                     {
                         ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();

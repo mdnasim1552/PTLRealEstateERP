@@ -87,8 +87,6 @@ namespace RealERPWEB
             cntlim1 = Convert.ToDouble(ds2.Tables[0].Rows[0]["cntval"]);
             cntlim2 = Convert.ToDouble(ds2.Tables[0].Rows[1]["cntval"]);
             cntlim3 = Convert.ToDouble(ds2.Tables[0].Rows[2]["cntval"]);
-
-
             dcntlim1 = Convert.ToDouble(ds5.Tables[0].Rows[0]["cntval"]);
             dcntlim2 = Convert.ToDouble(ds5.Tables[0].Rows[1]["cntval"]);
             dcntlim3 = Convert.ToDouble(ds5.Tables[0].Rows[2]["cntval"]);
