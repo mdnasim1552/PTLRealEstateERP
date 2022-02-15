@@ -50,7 +50,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
-        
+
 
         private void ViewSaction()
         {
@@ -67,12 +67,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     this.MultiView1.ActiveViewIndex = 0;
                     string comcod = this.GetCompCode();
                     this.visibility();
-                   
+
                     switch (comcod)
                     {
 
                         case "4301"://Sanmer
-                        case "3332":                      
+                        case "3332":
                         case "3338":
 
                             //case "4305"://Rupayan
@@ -81,7 +81,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
 
-                        
+
 
                         default:
 
@@ -371,7 +371,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     calltype = "EMPDAYADJUSTMENTBTI";
                     break;
 
-                    
+
 
                 default:
                     calltype = "EMPDAYADJUSTMENT";
@@ -410,7 +410,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
             string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
-           
+
 
             string frmdesig = "0399999";
             string todesig = "0300001";
@@ -447,7 +447,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             //string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string compname = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln)+"%";
+            string compname = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
             string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
             //string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
@@ -770,18 +770,81 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     for (int i = 0; i < this.grvAdjDay.Rows.Count; i++)
                     {
 
-
+                        double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
+                        double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
+                        double tdelv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvttdelv")).Text.Trim());
+                        
                         double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
                         double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
-                        double txtlvAdj = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtlvAdj")).Text.Trim());
+                        double adjLev = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtlvAdj")).Text.Trim());
+                        double leaveadjel = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtEllvAdj")).Text.Trim());
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
+
+                        double ttlvcalculate = adjLev + leaveadjel + dedday;
+
+                        if ((ttlvcalculate != tdelv))
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            dt.Rows[rowindex]["delday"] = delayday;
+                            dt.Rows[rowindex]["aprday"] = Aprvday;
+                            dt.Rows[rowindex]["dedday"] = dedday;
+                            dt.Rows[rowindex]["leaveadj"] = adjLev;
+                            dt.Rows[rowindex]["leaveadjel"] = leaveadjel;
+                            dt.Rows[rowindex]["ttdelv"] = tdelv;
+                        }
+                     
+
                         //  double redelay = delayday - Aprvday;
-                        dt.Rows[rowindex]["delday"] = delayday;
-                        dt.Rows[rowindex]["aprday"] = Aprvday;
-                        dt.Rows[rowindex]["dedday"] = dedday;
-                        dt.Rows[rowindex]["leaveadj"] = txtlvAdj;
+                       
+
+                        //double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
+                        //double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
+                        //double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
+                        //double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
+
+                        //rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
+                        //double redelay = delayday - Aprvday;
+                        //double adjLev = 0.00;
+                        //double adjElLev = 0.00;
+                        //double ttllv = 0.00;
+                        //double dedday = 0.00;
+                        //if (redelay <= 6)
+                        //{
+                        //    adjLev = ToAdjustLeaveDayBTI((double)redelay, (double)balclv);
+                        //}
+                        //if (redelay > 6)
+                        //{
+                        //    double tadjLev = ToAdjustLeaveDayBTI((double)redelay, (double)balclv);
+                        //    adjLev = tadjLev;
+                        //    double adjElLevttl = ToAdjustLeaveDayBTIEL((double)redelay);
+                        //    adjElLev = adjElLevttl;
+
+                        //}
+
+                        //if (balernlv < adjElLev)
+                        //{
+                        //    dedday = adjElLev - balernlv;
+                        //    adjElLev = balernlv;
+
+                        //}
+                        //if (balclv < adjLev)
+                        //{
+                        //    dedday = adjLev - balclv;
+                        //    adjLev = balclv;
+
+                        //}
+                        //double ttdelv = adjLev + adjElLev + dedday;
+                        //dt.Rows[rowindex]["delday"] = delayday;
+                        //dt.Rows[rowindex]["aprday"] = Aprvday;
+                        //dt.Rows[rowindex]["dedday"] = dedday;
+                        //dt.Rows[rowindex]["leaveadj"] = adjLev;
+                        //dt.Rows[rowindex]["leaveadjel"] = adjElLev;
+                        //dt.Rows[rowindex]["ttdelv"] = ttdelv;
 
 
                     }
@@ -814,7 +877,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                                 double absday = Convert.ToDouble(((Label)this.gvmapsapp.Rows[i].FindControl("lblgvabsday")).Text.Trim());
                                 double aprday = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsaprday")).Text.Trim());
                                 double lvadj = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabslvadj")).Text.Trim());
-                                string reason =  ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsreason")).Text.Trim();
+                                string reason = ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsreason")).Text.Trim();
 
                                 rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
                                 dt.Rows[rowindex]["aprday"] = aprday;
@@ -828,7 +891,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             break;
 
 
-       
+
 
 
                         case "4305":
@@ -900,7 +963,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtaprdaylp")).Text.Trim());
                         double dedday = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtAdjlp")).Text.Trim());
                         double txtlvAdj = Convert.ToDouble("0" + ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtlvAdjlp")).Text.Trim());
-                        string reason  =  ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtlpreason")).Text.Trim();
+                        string reason = ((TextBox)this.gvLPAproval.Rows[i].FindControl("txtlpreason")).Text.Trim();
 
 
                         rowindex = (this.gvLPAproval.PageSize) * (this.gvLPAproval.PageIndex) + i;
@@ -1134,19 +1197,49 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     {
                         double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
                         double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
+                        double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
+                        double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
+                         
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
                         double redelay = delayday - Aprvday;
+                        double adjLev = 0.00;
+                        double adjElLev = 0.00;
+                        double ttllv = 0.00;
+                        double dedday = 0.00;
+                        if (redelay <= 6)
+                        {
+                            adjLev = ToAdjustLeaveDayBTI((double)redelay, (double)balclv);
+                        }
+                        if (redelay > 6)
+                        {
+                           double tadjLev = ToAdjustLeaveDayBTI((double)redelay, (double)balclv);
+                            adjLev = tadjLev;
+                           double adjElLevttl = ToAdjustLeaveDayBTIEL((double)redelay);
+                            adjElLev = adjElLevttl;
 
-                        double adjLev = ToAdjustLeaveDayBTI((int)redelay);
-                        double adjElLev = ToAdjustLeaveDayBTI((int)redelay);
+                        }
 
+                        if (balernlv < adjElLev)
+                        {
+                            dedday = adjElLev - balernlv;
+                            adjElLev = balernlv;
+                            
+                        }
+                        if (balclv < adjLev)
+                        {
+                            dedday = adjLev - balclv;
+                            adjLev = balclv;
+
+                        }
+                      double  ttdelv = adjLev + adjElLev+ dedday;
 
 
                         dt.Rows[rowindex]["delday"] = delayday;
                         dt.Rows[rowindex]["aprday"] = Aprvday;
-                        dt.Rows[rowindex]["dedday"] =  Convert.ToInt32((redelay) / 3);
+                        dt.Rows[rowindex]["dedday"] = dedday;
                         dt.Rows[rowindex]["leaveadj"] = adjLev;
-                        dt.Rows[rowindex]["leaveadjel"] = 0;
+                        dt.Rows[rowindex]["leaveadjel"] = adjElLev;
+                        dt.Rows[rowindex]["ttdelv"] = ttdelv;
 
                     }
                     break;
@@ -1265,13 +1358,39 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
 
 
-        // ACME
-        double ToAdjustLeaveDayBTI(int n)
+        // BTI
+        double ToAdjustLeaveDayBTI(double n, double balcl)
         {
-
+        
+            if (n == 3)
+            {
+                n = 1;
+            }
+            else if (n == 4)
+            {
+                n = 1 + 0.5;
+            }
+            else if (n == 5)
+            {
+                n = 2 + 0.5;
+            }
+            else if (n >= 6)
+            {
+                n = 3 + 0.5;
+            }
+            
+            else
+            {
+                n = 0;
+            }
+             
+            return n;
+        }
+        double ToAdjustLeaveDayBTIEL(double n)
+        {
+            n =  n- 6;
             
             return n;
-
         }
 
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -1414,7 +1533,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string aprday = Convert.ToDouble(dr1["aprday"]).ToString();
                 string dedday = Convert.ToDouble(dr1["dedday"]).ToString();
                 string leaveadj = Convert.ToDouble(dr1["leaveadj"]).ToString();
-                string reason =(dr1["reason"]).ToString();
+                string reason = (dr1["reason"]).ToString();
 
 
                 //if (dedday > 0)
@@ -1779,7 +1898,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void lblgvdeptandemployeeempLP_Click(object sender, EventArgs e)
         {
 
-            
+
 
         }
 
@@ -1791,7 +1910,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetCompCode();
             string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
             bool result = false;
-            
+
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
@@ -1801,9 +1920,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 //string dedday = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvAdjDay.Items[i].FindControl("txtrptbillamt")).Text.Trim()));
                 double dedday = Convert.ToDouble("0" + dt.Rows[i]["dedday"]);
                 double leaveadj = Convert.ToDouble("0" + dt.Rows[i]["leaveadj"]);
-                string reason =  dt.Rows[i]["reason"].ToString();
+                string reason = dt.Rows[i]["reason"].ToString();
 
-                
+
 
 
                 //if (dedday > 0)
@@ -1835,7 +1954,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 dt.Rows[rowindex]["delday"] = delayday;
                 dt.Rows[rowindex]["aprday"] = Aprvday;
                 dt.Rows[rowindex]["dedday"] = Convert.ToDouble(Convert.ToDouble(redelay) / 2);
-         
+
 
             }
 

@@ -275,16 +275,18 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Card #">
                                     <FooterTemplate>
-                                        <asp:LinkButton ID="lbtnTotalDay" runat="server" OnClick="lbtnTotalDay_Click"
+                                        <asp:LinkButton ID="lbtnTotalDay" runat="server" OnClick="lbtnTotalDay_Click" Visible="false"
                                             CssClass="btn   btn-primary primarygrdBtn">Total</asp:LinkButton>
                                     </FooterTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvCardnoearn" runat="server" Height="16px"
+                                        <asp:Label ID="lblgvCardnoearn" runat="server" Height="16px" 
                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'
                                             Width="50px"></asp:Label>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
+
+
                                 <asp:TemplateField HeaderText="Designation">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvEmpNameearn" runat="server" Height="16px"
@@ -297,17 +299,37 @@
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Total Late Days">
+
+                                <asp:TemplateField HeaderText="Available <br> CL">
+                                    <ItemTemplate>
+                                         <asp:Label ID="lblgvbalclv" runat="server" Height="16px"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balclv")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="60px"></asp:Label> 
+                                    </ItemTemplate>
+                                    
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                  <asp:TemplateField HeaderText="Available <br> EL">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvbalernlv" runat="server" Height="16px"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balernlv")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="60px"></asp:Label> 
+                                    </ItemTemplate>
+                                   
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Total <br> Late Days" ItemStyle-BackColor="#dff0d8 " ItemStyle-ForeColor="#000">
                                     <ItemTemplate>
 
                                         <asp:TextBox ID="txtLateday" runat="server" BackColor="Transparent"
-                                            BorderStyle="None" Font-Size="11px" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "delday")).ToString("#,##0;(#,##0); ") %>'
+                                            BorderStyle="None" Font-Size="11px" Style="text-align: center" 
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "delday")).ToString("#,##0;(#,##0); ") %>'
                                             Width="80px"></asp:TextBox>
 
-                                        <%--<asp:Label ID="lblgvDelday" runat="server" BackColor="Transparent"
-                                                    BorderStyle="None" Font-Size="11px" Style="text-align: right"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "delday")).ToString("#,##0;(#,##0); ") %>'
-                                                    Width="80px"></asp:Label>--%>
+                                         
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lgvFDelday" runat="server" Font-Bold="True" Font-Size="12px"
@@ -316,7 +338,8 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Informed Admin Dept.">
+
+                                <asp:TemplateField HeaderText="Informed <br>  Admin Dept.">
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnCalCulationSadj" runat="server" Font-Bold="True"
                                             Font-Size="12px" OnClick="lbtnCalCulationSadj_Click"
@@ -325,11 +348,15 @@
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtaprday" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Font-Size="11px" Style="text-align: right"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprday")).ToString("#,##0;(#,##0); ") %>'
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                             Width="80px"></asp:TextBox>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+
+                                 
+
+                                
 
                                 <asp:TemplateField HeaderText="Deduction Days">
                                     <ItemTemplate>
@@ -375,7 +402,15 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
-
+                                <asp:TemplateField HeaderText="Total Leave  Adjust">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvttdelv" runat="server" Height="16px"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ttdelv")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                            Width="60px"></asp:Label> 
+                                    </ItemTemplate>
+                                   
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
 
                             </Columns>
                             <FooterStyle CssClass="grvFooter" />
