@@ -1051,6 +1051,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2102000", "2102120", "F_21_MKT", "MktSalsPaymentPro", "", "Sales Permission", "CRM", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2102000", "2102134", "F_21_MKT", "CrmClientInfo?", "Type=Entry", "Customer Relationship Management", "CRM", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "2102000", "2102135", "F_21_MKT", "RptProspectWorking", "", "Prospect Working Report", "CRM", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2102000", "2102137", "F_21_MKT", "ProspectTransfer", "", "CRM Prospect Transfer", "CRM", "False", "False", "False", "False" });
 
             //kpi 
             // 05. My Marketing Interface(Sales)
@@ -1350,6 +1351,11 @@ namespace RealERPLIB
 
             #region Marketing Procument
             tblObj.Rows.Add(new Object[] { "2801000", "2801001", "F_28_MPro", "MktProGenCodeBook?", "Type=Entry", "General Code(M. Procurement) ", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
+
+
+            tblObj.Rows.Add(new Object[] { "2851000", "2851001", "F_99_Allinterface", "MKTProInterface?", "Type=Report", "Marketing Procurement", "Marketing Procurement", "False", "False", "False", "False" });
+
             #endregion
 
 
@@ -6862,7 +6868,9 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0202000003", "03. Suspect Notification", "F_21_MKT/RptClientInitial?Type=MktLead", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000004", "04. Client Transfer List ", "F_21_MKT/ClientTransfer", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000005", "05. Center Wise Client List ", "F_21_MKT/RptCenterWiseClient", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0202000006", "06. CRM Prospect Transfer ", "F_21_MKT/ProspectTransfer", "", true, "" });
 
+ 
             //mnuTbl1.Rows.Add(new Object[] { "0202000006", "", "", "", true, "" });//"03. Basic Information Field", "F_21_Mkt/MktGenCodeBook", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000007", "", "", "", true, "" });//"06. Discussion Field", "F_64_Mgt/GenCodeBook?Type=81", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0202000008", "", "", "", true, "" });//"01. Team Formation", "F_64_Mgt/TeamSeriCode", "", true, "" });           
@@ -8119,9 +8127,6 @@ namespace RealERPLIB
         private static void MenuMarProcure(DataTable mnuTbl1)
         {
 
-            
-
-            
             mnuTbl1.Rows.Add(new Object[] { "0201000000", "01. General Code(M. Procurement)", "F_28_MPro/MktProGenCodeBook?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0202000000", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0203000000", "", "", "", true, "" });
@@ -8191,7 +8196,7 @@ namespace RealERPLIB
 
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "", "", "", true, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000001", "", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Material Requisition", "F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000003","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000004","", "", "", true, "" });

@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Backup\Projects\Files\Real Estate Bin 211213\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2204,6 +2204,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_28_MPro\MKTPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
     <Content Include="F_12_Inv\PurMatIssue.aspx" />
     <Content Include="F_12_Inv\PurMRREntry.aspx" />
@@ -3070,6 +3071,7 @@
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
     <Content Include="F_99_Allinterface\LinkQutaAttached.aspx" />
+    <Content Include="F_99_Allinterface\MKTProInterface.aspx" />
     <Content Include="F_99_Allinterface\ProjectDashBoard.aspx" />
     <Content Include="F_99_Allinterface\ProjectDashBoardAllNew.aspx" />
     <Content Include="F_99_Allinterface\PurchasePrint.aspx" />
@@ -3795,6 +3797,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.cs">
+      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.designer.cs">
+      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\PurMktSurveyCont.aspx.cs">
       <DependentUpon>PurMktSurveyCont.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4417,6 +4426,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MKTProInterface.aspx.cs">
+      <DependentUpon>MKTProInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
+      <DependentUpon>MKTProInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="LetterDefault.aspx.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
@@ -11824,6 +11840,7 @@
     <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
