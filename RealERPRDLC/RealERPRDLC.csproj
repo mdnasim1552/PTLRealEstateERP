@@ -115,9 +115,13 @@
     <None Include="Properties\DataSources\RealEntity.C_14_Pro.UserManPur+ChequeSheet01.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+AccOpening.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassAccounts+RptCashBank.datasource" />
+<<<<<<< HEAD
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+OppPayment1.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
+=======
+    <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
+>>>>>>> 46a7ad431d8018cc5dbd6c78c0d97464a1ad7edf
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
@@ -593,6 +597,7 @@
     <EmbeddedResource Include="R_17_Acc\RptSalPerWise.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptShareQty.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedger.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptSPLedger02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSPLedgerRup.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptSubConProposedPayment.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptsubreportdet.rdlc" />

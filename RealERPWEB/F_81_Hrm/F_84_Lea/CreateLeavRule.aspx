@@ -83,7 +83,9 @@
           
             <hr />
             <div class="row">
-                <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
+                <div class="col-6">
+                    
+                    <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                     ShowFooter="True">
                     <PagerSettings NextPageText="Next" PreviousPageText="Previous"
@@ -174,6 +176,14 @@
                     <FooterStyle CssClass="grvFooter" />
                     <AlternatingRowStyle BackColor="" />
                 </asp:GridView>
+                </div>
+                
+
+                 <div class="col-4">
+                      
+                </div>
+
+                  
             </div>
             <div class="clearfix"></div>
             <br />

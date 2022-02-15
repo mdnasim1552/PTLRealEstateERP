@@ -346,7 +346,9 @@ namespace RealEntity.C_17_Acc
             public string grp { get; set; }
             public string grpdesc { get; set; }
             public string actcode { get; set; }
+            public string cactcode { get; set; }
             public string actdesc { get; set; }
+            public string cactdesc { get; set; }
             public string head1 { get; set; }
             public DateTime voudat { get; set; }
             public string vounum { get; set; }

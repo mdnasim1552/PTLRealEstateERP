@@ -54,7 +54,7 @@
 
                     <div class="row">
                         <div class="form-group" style="margin-bottom: 15px;">
-                            <div class="col-md-4 col-md-offset-4">
+                            <div class="col-md-5 col-md-offset-1">
 
                                 <asp:RadioButtonList ID="rbtnLedger" runat="server" CssClass="rbtnList1" AutoPostBack="true" OnSelectedIndexChanged="rbtnLedger_SelectedIndexChanged"
                                     RepeatColumns="10"

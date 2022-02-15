@@ -2204,6 +2204,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_28_MPro\MKTPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
     <Content Include="F_12_Inv\PurMatIssue.aspx" />
     <Content Include="F_12_Inv\PurMRREntry.aspx" />
@@ -2490,6 +2491,7 @@
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
+    <Content Include="F_21_MKT\ProspectTransfer.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
     <Content Include="F_21_MKT\RptClientInitial.aspx" />
@@ -2991,6 +2993,7 @@
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummary02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummaryDetails.aspx" />
@@ -3068,6 +3071,7 @@
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
     <Content Include="F_99_Allinterface\LinkQutaAttached.aspx" />
+    <Content Include="F_99_Allinterface\MKTProInterface.aspx" />
     <Content Include="F_99_Allinterface\ProjectDashBoard.aspx" />
     <Content Include="F_99_Allinterface\ProjectDashBoardAllNew.aspx" />
     <Content Include="F_99_Allinterface\PurchasePrint.aspx" />
@@ -3793,6 +3797,13 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.cs">
+      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.designer.cs">
+      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_14_Pro\PurMktSurveyCont.aspx.cs">
       <DependentUpon>PurMktSurveyCont.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3869,6 +3880,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
       <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.designer.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptProspectWorking.aspx.cs">
       <DependentUpon>RptProspectWorking.aspx</DependentUpon>
@@ -4360,6 +4378,13 @@
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4401,6 +4426,13 @@
     </Compile>
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MKTProInterface.aspx.cs">
+      <DependentUpon>MKTProInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
+      <DependentUpon>MKTProInterface.aspx</DependentUpon>
     </Compile>
     <Compile Include="LetterDefault.aspx.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
@@ -11808,6 +11840,7 @@
     <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
