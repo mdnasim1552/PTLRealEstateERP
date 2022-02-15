@@ -3020,7 +3020,7 @@ namespace RealERPRDLC
 
         private static LocalReport SetRptOpPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.OppPayment>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.OppPayment1>)RptDataSet));
             return Rpt1a;
         }
 

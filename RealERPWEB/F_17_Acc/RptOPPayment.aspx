@@ -222,6 +222,21 @@
                                                         <ItemStyle HorizontalAlign="Right" />
                                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                     </asp:TemplateField>
+
+                                                      <asp:TemplateField HeaderText="Adjustment">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lgvAv4" runat="server" 
+                                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam4")).ToString("#,##0;(#,##0); ") %>' 
+                                                                Width="70px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <FooterTemplate>
+                                                            <asp:Label ID="lgvFAv4" runat="server" Font-Size="11px" Height="16px" 
+                                                                style="text-align: right" Width="75px"></asp:Label>
+                                                        </FooterTemplate>
+                                                        <FooterStyle HorizontalAlign="Right" />
+                                                        <ItemStyle HorizontalAlign="Right" />
+                                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Total">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lgvtAmt" runat="server" 
