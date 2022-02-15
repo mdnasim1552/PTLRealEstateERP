@@ -988,7 +988,15 @@
 
                                         <asp:TemplateField HeaderText="Absent">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPresent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0; ")
+                                                <asp:Label ID="lblabsent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0; ")
+                                             %>'
+                                                    Font-Size="11px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Late Absent">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbllateabs" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "abslate")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
@@ -1035,7 +1043,7 @@
                                     <div class="form-horizontal">
                                         <div class="form-group">
                                             <div class=" row col-md-11">
-                                                <span style="font-size: 14px; color: blue">Present=P,  Absent =A,  Late=L,  Leave=CL,SL,EL,  Weekend=W</span>
+                                                <span style="font-size: 14px; color: blue" id="statusatt" runat="server">Present=P,  Absent =A,  Late=L,  Late Present=LP,  Leave=CL, SL, EL, WPL,  Weekend=W</span>
                                             </div>
                                         </div>
                                     </div>
