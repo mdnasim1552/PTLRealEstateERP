@@ -645,7 +645,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case 3:
 
 
-                    if (comcod == "3365")
+                    if (comcod == "3365"||comcod=="3101")
                     {
                         int i;
                         DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
@@ -653,7 +653,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                         int tcount;
                         tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
-                        for (i = 2; i < 33; i++)
+                        for (i = 2; i < 34; i++)
                             this.gvMonthlyattSummary.Columns[i].Visible = false;
                         int j = 2;
                         for (i = 0; i <tcount; i++)
@@ -1082,6 +1082,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
 
                 //BTI   
+                case "3101":
                 case "3365":
                     this.PrintMonAttendanceBTI();
                     break;
@@ -1103,10 +1104,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO"+comcod+".jpg")).AbsoluteUri;
-            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd,MMMM, yyyy");
-            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd,MMMM, yyyy");
+            string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd MMMM yy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd MMMM yy");
             string rptMonth = "From " + frmdate + " To "+ todate;
-
+            string status = this.statusatt.InnerText.ToString();
             DataTable dt1 = (DataTable)Session["tblallData"];
 
             var list = dt1.DataTableToList<RealEntity.C_81_Hrm.C_83_Att.EMDailyAttendenceClassCHL.EmpMnthAttn>();
@@ -1116,6 +1117,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Rpt1.SetParameters(new ReportParameter("compName", comnam));
             Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
             Rpt1.SetParameters(new ReportParameter("txtMonth", rptMonth));
+            Rpt1.SetParameters(new ReportParameter("status", status));
             DateTime datefrm = Convert.ToDateTime(this.txtfromdate.Text.Trim());
             DateTime dateto = Convert.ToDateTime(this.txttodate.Text.Trim());
             for (int i = 1; i <= 31; i++)
