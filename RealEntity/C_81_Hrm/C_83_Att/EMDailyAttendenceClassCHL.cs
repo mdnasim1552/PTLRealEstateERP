@@ -249,6 +249,7 @@ namespace RealEntity.C_81_Hrm.C_83_Att
             public double dayout { get; set; }
             public double tpayable { get; set; }
             public double onduty { get; set; }
+            public double abslate { get; set; }
             public EmpMnthAttn() { }
         }
 
