@@ -567,6 +567,16 @@ namespace RealERPLIB
             return ((!date.Contains(".")) ? date : (date.Substring(index1 + 1, 2).Replace(".", "") + "." + date.Substring(0, index1) + "." + Right(date, 4)));
         }
 
+        public static string Month3digit(int digit)
+
+        {
+            digit = digit - 1;
+            string[] Mon = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
+
+           
+            return Mon[digit];
+        }
+
         public static int RandNumber(int min, int max) 
         {
             Random rnumber = new Random();
