@@ -51,15 +51,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private void GetMonth()
         {
             string comcod = this.GetCompCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "GETMONTHFORABS", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "GETYEARMONTH", "", "", "", "", "", "", "", "", "");
             if (ds1==null)
                 return;
 
-            this.ddlMonth.DataTextField = "mnam";
-            this.ddlMonth.DataValueField = "mno";
+            this.ddlMonth.DataTextField = "yearmon";
+            this.ddlMonth.DataValueField = "ymon";
             this.ddlMonth.DataSource = ds1.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.Month.ToString().Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM").Trim();
         }
         private void GetCompanyName()
         {
