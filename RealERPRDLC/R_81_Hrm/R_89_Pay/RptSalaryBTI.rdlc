@@ -3418,7 +3418,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!tabday.Value),"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!tabday.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3444,6 +3444,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -5122,7 +5123,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.00486in</Top>
             <Height>1.1771in</Height>
-            <Width>14.70485in</Width>
+            <Width>14.70484in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -5186,7 +5187,6 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.52917in</Top>
-            <Left>0in</Left>
             <Height>0.25in</Height>
             <Width>2.45833in</Width>
             <ZIndex>2</ZIndex>
@@ -5370,7 +5370,6 @@
               <Source>External</Source>
               <Value>=Parameters!comLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0in</Left>
               <Height>0.54098in</Height>
               <Width>1.36458in</Width>
               <Visibility>
