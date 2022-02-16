@@ -564,7 +564,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvdedday" runat="server"
                                                         Style="text-align: right"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dedday")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "dedday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="40px"></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterStyle HorizontalAlign="Right" />
