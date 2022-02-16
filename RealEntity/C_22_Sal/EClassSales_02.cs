@@ -1363,6 +1363,27 @@ namespace RealEntity.C_22_Sal
             public RptMonWiseNewSales() { }
 
         }
+
+
+        [Serializable]
+        public class RptSalPaySchedules
+        {
+            //grp, gdesc, gdesc1, munit, usize, urate, uamt,schamt, schdate,rmrks
+            public string grp { get; set; }
+            public string gdesc { get; set; }
+            public string gdesc1 { get; set; }
+            public string munit { get; set; }
+            public double usize { get; set; }
+            public double urate { get; set; }
+            public double uamt { get; set; }
+            public double schamt { get; set; }
+            public DateTime schdate { get; set; }
+            public string rmrks { get; set; }  
+
+            public RptSalPaySchedules() { }
+
+        }
+
     }   
  
 }

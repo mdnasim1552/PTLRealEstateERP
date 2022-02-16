@@ -92,13 +92,13 @@
                 case "true":
                     msg.style.display = "block";
                     msg.style.color = "red";
-                    msg.innerHTML = "Mobile Number Already exist ";
+                    msg.innerHTML = "Mobile/Phone Number Already exist ";
                     $('#<%=lbtnAddCode.ClientID %>').attr("disabled", "disabled");
                     break;
                 case "false":
                     msg.style.display = "block";
                     msg.style.color = "green";
-                    msg.innerHTML = "Mobile Number Available";
+                    msg.innerHTML = "Mobile/Phone Number Available";
                     $('#<%=lbtnAddCode.ClientID %>').removeAttr('disabled');
                     break;
             }
@@ -108,7 +108,7 @@
             var msg = $("#<%=lblmobile.ClientID%>")[0];
             msg.style.display = "block";
             msg.style.color = "red";
-            msg.innerHTML = "Mobile Number Must be Numeric";
+            msg.innerHTML = "Mobile/Phone Number Must be Numeric";
             $('#<%=lbtnAddCode.ClientID %>').attr("disabled", "disabled");
 
         }
@@ -640,8 +640,8 @@
                             <div class="row mb-1" runat="server" id="divMobile">
                                 <label class="col-md-4">Phone Number</label>
                                 <div class="col-md-8">
-                                    <asp:TextBox ID="txtSupPhone"  TextMode="Number" MaxLength="11" min="0" placeholder="Supplier Phone" runat="server" CssClass="form-control" onchange="checkMobileValidation()"  />
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidatorNum" runat="server" Display="Dynamic" ErrorMessage="Accepts only numbers with digit 11." ValidationGroup="RegisterCheck" ForeColor="Red" ControlToValidate="txtSupPhone" ValidationExpression="[0-9]{11}">
+                                    <asp:TextBox ID="txtSupPhone"  TextMode="Number" MaxLength="12" min="0" placeholder="Supplier Phone" runat="server" CssClass="form-control" onchange="checkMobileValidation()"  />
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidatorNum" runat="server" Display="Dynamic" ErrorMessage="Accepts only numbers with digit 8 to 12" ValidationGroup="RegisterCheck" ForeColor="Red" ControlToValidate="txtSupPhone" ValidationExpression="[0-9]{12}">
                                     </asp:RegularExpressionValidator>
                                 </div>
                             </div>
