@@ -225,9 +225,9 @@ namespace RealERPWEB.F_28_MPro
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", CallType, ReFindProject, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
-            
-            string gcod ="62%";
-            DataView dv = ds2.Tables[0].Copy().DefaultView;            
+
+            string gcod = "62%";
+            DataView dv = ds2.Tables[0].Copy().DefaultView;
             dv.RowFilter = ("gcod  like '" + gcod + "'");
 
             this.ddlPRType.DataTextField = "gdesc";
@@ -249,7 +249,7 @@ namespace RealERPWEB.F_28_MPro
             this.ddlMarkType.DataTextField = "gdesc";
             this.ddlMarkType.DataValueField = "gcod";
             this.ddlMarkType.DataSource = dv.ToTable();
-            this.ddlMarkType.DataBind();           
+            this.ddlMarkType.DataBind();
 
         }
         protected void Load_Project_To_Combo()
@@ -432,7 +432,7 @@ namespace RealERPWEB.F_28_MPro
 
 
             }
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPURREQINFO", mReqNo, CurDate1,
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_PUR_REQ_INFO", mReqNo, CurDate1,
                       "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -568,7 +568,6 @@ namespace RealERPWEB.F_28_MPro
                 DataRow dr1 = tbl1.NewRow();
                 dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
                 dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-                dr1["rsirdesc2"] = ddldesc == "True" ? this.ddlResList.SelectedItem.Text.Trim() : this.ddlResList.SelectedItem.Text.Trim().Substring(14);
                 dr1["rsirdesc1"] = ddldesc == "True" ? this.ddlResList.SelectedItem.Text.Trim() : this.ddlResList.SelectedItem.Text.Trim().Substring(14);
                 dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
                 DataTable tbl2 = (DataTable)ViewState["tblMat"];
@@ -584,29 +583,22 @@ namespace RealERPWEB.F_28_MPro
                 dr1["stkqty"] = dr3[0]["stkqty"];
                 dr1["tbgdqty"] = dr3[0]["tbgdqty"];
                 dr1["tbbgdqty"] = dr3[0]["tbbgdqty"];
+                dr1["rsirdesc2"] = this.ddlPRType.SelectedItem.Text.Trim();
+                dr1["rsirdesc3"] = this.ddlActType.SelectedItem.Text.Trim();
+                dr1["rsirdesc4"] = this.ddlMarkType.SelectedItem.Text.Trim();
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["lpurrate"] = 0;
-                string comcod = this.GetCompCode();
-                switch (comcod)
-                {
-                    case "3332":
 
-                        dr1["reqrat"] = dr3[0]["bgdrat"];
-                        dr1["reqsrat"] = dr3[0]["bgdrat"];
-                        break;
-                    default:
-                        dr1["reqrat"] = 0;
-                        dr1["reqsrat"] = 0;
-                        break;
-                }
+                dr1["reqrat"] = 0;
+                dr1["reqsrat"] = 0;
                 dr1["preqamt"] = 0;
                 dr1["areqamt"] = 0;
 
 
                 dr1["pstkqty"] = 0;
-                dr1["expusedt"] = "";// DateTime.Today;
-                dr1["pursdate"] = "";// DateTime.Today;
+                dr1["expusedt"] = "";
+                dr1["pursdate"] = "";
                 dr1["reqnote"] = "";
                 dr1["storecode"] = "";
                 dr1["ssircode"] = "";
@@ -618,17 +610,6 @@ namespace RealERPWEB.F_28_MPro
 
             }
 
-            //DataView dv = tbl1.DefaultView;
-            //dv.Sort = ("rsircode");
-            //tbl1 = dv.ToTable();
-
-
-
-            //else
-            //{
-            //    dr2[0]["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-            //    dr2[0]["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
-            //}
             ViewState["tblReq"] = this.HiddenSameData(tbl1);
             this.gvResInfo_DataBind();
 
@@ -1081,7 +1062,7 @@ namespace RealERPWEB.F_28_MPro
 
                 if (!result)
                 {
-                    
+
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
@@ -1208,7 +1189,7 @@ namespace RealERPWEB.F_28_MPro
 
 
                 case "ReqFirstApproved":
-                    
+
                     if (approval == "")
                     {
 
@@ -1393,7 +1374,7 @@ namespace RealERPWEB.F_28_MPro
                 "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-               
+
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
@@ -1453,7 +1434,7 @@ namespace RealERPWEB.F_28_MPro
                 "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (!result)
-            {              
+            {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
@@ -1534,92 +1515,7 @@ namespace RealERPWEB.F_28_MPro
             string comcod = this.GetCompCode();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             this.gvReqInfo.DataSource = tbl1;
-            this.gvReqInfo.Columns[21].Visible = true && (comcod == "3325" || comcod == "2325");
-
-
-            this.gvReqInfo.Columns[22].Visible = true && (comcod == "3325" || comcod == "2325");
-
             this.gvReqInfo.DataBind();
-            if (Request.QueryString["InputType"].ToString() == "Approval") // "Entry"
-            {
-                for (int i = 0; i < this.gvReqInfo.Rows.Count; i++)
-                {
-                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvReqQty")).ReadOnly = true;
-                    // ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvResRat")).ReadOnly = true;
-                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvUseDat")).ReadOnly = true;
-                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvStokQty")).ReadOnly = true;
-                    ((TextBox)this.gvReqInfo.Rows[i].FindControl("txtgvReqNote")).ReadOnly = true;
-
-                }
-            }
-
-
-            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnCheecked")).Visible = (this.Request.QueryString["InputType"] == "ReqCheck" || this.Request.QueryString["InputType"] == "ReqcRMCheck");
-            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnFirstApproval")).Visible = (this.Request.QueryString["InputType"] == "ReqFirstApproved" || this.Request.QueryString["InputType"] == "ReqSecondApproved");
-
-
-            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnUpdateResReq")).Visible = !(this.Request.QueryString["InputType"].ToString().Trim() == "ReqCheck" || this.Request.QueryString["InputType"].ToString().Trim() == "ReqcRMCheck" || this.Request.QueryString["InputType"].ToString().Trim() == "ReqFirstApproved" || this.Request.QueryString["InputType"] == "ReqSecondApproved");
-            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnResFooterTotal")).Visible = !(this.Request.QueryString["InputType"].ToString().Trim() == "ReqCheck" || this.Request.QueryString["InputType"].ToString().Trim() == "ReqcRMCheck" || this.Request.QueryString["InputType"].ToString().Trim() == "ReqFirstApproved" || this.Request.QueryString["InputType"] == "ReqSecondApproved");
-
-
-            switch (comcod)
-            {
-
-                // case "3101":
-                case "3316":
-                case "3315":
-                case "3317":
-                case "3101":
-                    if (this.Request.QueryString["InputType"] == "Entry")
-                    {
-                        ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = true;
-
-                    }
-
-                    else if (this.Request.QueryString["InputType"] == "ReqcRMCheck")
-                    {
-                        this.dCCDNarr.Visible=true;
-                    }
-
-                    else if (this.Request.QueryString["InputType"] == "ReqCheck")
-                    {
-
-                        this.dCCDNarr.Visible=true;
-                        this.lblCCDNarr.Text = "Est-Narr :";
-
-                    }
-
-                    else
-                    {
-                        ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = false;
-
-                    }
-
-
-                    break;
-
-                default:
-
-                    ((CheckBox)this.gvReqInfo.FooterRow.FindControl("crChkbox")).Visible = false;
-
-                    break;
-            }
-
-            string reqcheckorapp = comcod == "3340" ? "Approval" : "Checked";
-            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnCheecked")).Text = reqcheckorapp;
-
-
-
-            ((DropDownList)this.gvReqInfo.FooterRow.FindControl("ddlPageNo")).Visible = false;
-            double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvReqInfo.PageSize);
-            ((DropDownList)this.gvReqInfo.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-            for (int i = 1; i <= TotalPage; i++)
-                ((DropDownList)this.gvReqInfo.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-            if (TotalPage > 1)
-            {
-                ((DropDownList)this.gvReqInfo.FooterRow.FindControl("ddlPageNo")).Visible = true;
-                ((DropDownList)this.gvReqInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvReqInfo.PageIndex;
-            }
             this.lbtnResFooterTotal_Click(null, null);
         }
 
@@ -1632,145 +1528,137 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
         {
             this.Session_tblReq_Update();
-            DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            //((Label)this.gvReqInfo.FooterRow.FindControl("lblgvFooterTReqAmt")).Text =
-            //    Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(preqamt)", "")) ?
-            //        0.00 : tbl1.Compute("Sum(preqamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
-
-            ((Label)this.gvReqInfo.FooterRow.FindControl("lblgvFooterTAprAmt")).Text =
-                Convert.ToDouble((Convert.IsDBNull(tbl1.Compute("Sum(areqamt)", "")) ?
-                0.00 : tbl1.Compute("Sum(areqamt)", ""))).ToString("#,##0;(#,##0); ");
 
         }
         private void Session_tblReq_Update()
         {
-            DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            int TblRowIndex2;
+            //DataTable tbl1 = (DataTable)ViewState["tblReq"];
+            //int TblRowIndex2;
 
-            string Rsircode = "000000000000";
-            double chkqty = 0.00;
-            for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
-            {
+            //string Rsircode = "000000000000";
+            //double chkqty = 0.00;
+            //for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
+            //{
 
-                TblRowIndex2 = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
+            //    TblRowIndex2 = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
 
-                string Resocde = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
+            //    string Resocde = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
 
-                double dgvBgdQty = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdqty1"]);
-                double bbgdamt = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdamt1"]);
-                double dgvReqQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
-
-
-                if (this.Request.QueryString["InputType"] == "Entry")
-                {
-                    if (this.chkneBudget.Checked)
-                    {
-
-                        string comcod = this.GetCompCode();
+            //    double dgvBgdQty = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdqty1"]);
+            //    double bbgdamt = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdamt1"]);
+            //    double dgvReqQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
 
 
-                        switch (comcod)
-                        {
-                            case "3336":
-                            case "3305":
-                            case "3306":
-                            case "3310":
-                            case "3311":
-                            case "2305":
+            //    if (this.Request.QueryString["InputType"] == "Entry")
+            //    {
+            //        if (this.chkneBudget.Checked)
+            //        {
 
-                                if (dgvBgdQty < dgvReqQty)
-                                {
-                                    // bbgdamt < 0 ||
-
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-                                    return;
-
-                                }
-                                if (Rsircode == Resocde)
-                                {
-                                    chkqty = chkqty - dgvReqQty;
-                                    if (chkqty < 0)
-                                    {
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    chkqty = dgvBgdQty - dgvReqQty;
-                                }
-                                Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
-
-                                break;
+            //            string comcod = this.GetCompCode();
 
 
-                            default:
+            //            switch (comcod)
+            //            {
+            //                case "3336":
+            //                case "3305":
+            //                case "3306":
+            //                case "3310":
+            //                case "3311":
+            //                case "2305":
 
-                                if (dgvBgdQty < dgvReqQty)
-                                {
-                                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-                                    return;
+            //                    if (dgvBgdQty < dgvReqQty)
+            //                    {
+            //                        // bbgdamt < 0 ||
 
-                                }
-                                if (Rsircode == Resocde)
-                                {
-                                    chkqty = chkqty - dgvReqQty;
-                                    if (chkqty < 0)
-                                    {
-                                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    chkqty = dgvBgdQty - dgvReqQty;
-                                }
-                                Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
+            //                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+            //                        return;
 
-                                break;
+            //                    }
+            //                    if (Rsircode == Resocde)
+            //                    {
+            //                        chkqty = chkqty - dgvReqQty;
+            //                        if (chkqty < 0)
+            //                        {
+            //                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+            //                            return;
+            //                        }
+            //                    }
+            //                    else
+            //                    {
+            //                        chkqty = dgvBgdQty - dgvReqQty;
+            //                    }
+            //                    Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
+
+            //                    break;
 
 
+            //                default:
 
+            //                    if (dgvBgdQty < dgvReqQty)
+            //                    {
+            //                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+            //                        return;
 
-                        }
+            //                    }
+            //                    if (Rsircode == Resocde)
+            //                    {
+            //                        chkqty = chkqty - dgvReqQty;
+            //                        if (chkqty < 0)
+            //                        {
+            //                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+            //                            return;
+            //                        }
+            //                    }
+            //                    else
+            //                    {
+            //                        chkqty = dgvBgdQty - dgvReqQty;
+            //                    }
+            //                    Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
 
-                    }
-                }
+            //                    break;
 
 
 
-                double dgvApprQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvappQty")).Text.Trim()));
-                double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
-                double dgvReqsRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvReqsRat")).Text.Trim()));
-                double dgvStokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text.Trim()));
-                string dgvUseDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
-                string dgvSupDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvpursupDat")).Text.Trim();
-                string dgvReqNote = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
-                double dgvReqAmt = dgvReqQty * dgvReqRat;
-                double dgvApprAmt = dgvApprQty * dgvReqRat;
-                ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text = dgvReqQty.ToString("#,##0.000;(#,##0.000); ");
-                ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvappQty")).Text = dgvApprQty.ToString("#,##0.000;(#,##0.000); ");
-                ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text = dgvReqRat.ToString("#,##0.0000;(#,##0.0000); ");
-                ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text = dgvStokQty.ToString("#,##0.000;(#,##0.000); ");
-                //((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTResAmt")).Text = dgvReqAmt.ToString("#,##0.000;(#,##0.000); ");
-                ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTAprAmt")).Text = dgvApprAmt.ToString("#,##0.000;(#,##0.000); ");
+
+            //            }
+
+            //        }
+            //    }
 
 
 
-                tbl1.Rows[TblRowIndex2]["chqty"] = chkqty;
-                tbl1.Rows[TblRowIndex2]["preqty"] = dgvReqQty;
-                tbl1.Rows[TblRowIndex2]["areqty"] = dgvApprQty;
-                tbl1.Rows[TblRowIndex2]["reqrat"] = dgvReqRat;
-                tbl1.Rows[TblRowIndex2]["reqsrat"] = dgvReqsRat < dgvReqRat ? dgvReqRat : dgvReqsRat;
-                tbl1.Rows[TblRowIndex2]["preqamt"] = dgvReqAmt;
-                tbl1.Rows[TblRowIndex2]["areqamt"] = dgvApprAmt;
-                tbl1.Rows[TblRowIndex2]["pstkqty"] = dgvStokQty;
-                tbl1.Rows[TblRowIndex2]["expusedt"] = dgvUseDat;
-                tbl1.Rows[TblRowIndex2]["pursdate"] = dgvSupDat;
-                tbl1.Rows[TblRowIndex2]["reqnote"] = dgvReqNote;
+            //    double dgvApprQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvappQty")).Text.Trim()));
+            //    double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
+            //    double dgvReqsRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvReqsRat")).Text.Trim()));
+            //    double dgvStokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text.Trim()));
+            //    string dgvUseDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
+            //    string dgvSupDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvpursupDat")).Text.Trim();
+            //    string dgvReqNote = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
+            //    double dgvReqAmt = dgvReqQty * dgvReqRat;
+            //    double dgvApprAmt = dgvApprQty * dgvReqRat;
+            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text = dgvReqQty.ToString("#,##0.000;(#,##0.000); ");
+            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvappQty")).Text = dgvApprQty.ToString("#,##0.000;(#,##0.000); ");
+            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text = dgvReqRat.ToString("#,##0.0000;(#,##0.0000); ");
+            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text = dgvStokQty.ToString("#,##0.000;(#,##0.000); ");
+            //    //((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTResAmt")).Text = dgvReqAmt.ToString("#,##0.000;(#,##0.000); ");
+            //    ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTAprAmt")).Text = dgvApprAmt.ToString("#,##0.000;(#,##0.000); ");
 
-            }
-            ViewState["tblReq"] = tbl1;
+
+
+            //    tbl1.Rows[TblRowIndex2]["chqty"] = chkqty;
+            //    tbl1.Rows[TblRowIndex2]["preqty"] = dgvReqQty;
+            //    tbl1.Rows[TblRowIndex2]["areqty"] = dgvApprQty;
+            //    tbl1.Rows[TblRowIndex2]["reqrat"] = dgvReqRat;
+            //    tbl1.Rows[TblRowIndex2]["reqsrat"] = dgvReqsRat < dgvReqRat ? dgvReqRat : dgvReqsRat;
+            //    tbl1.Rows[TblRowIndex2]["preqamt"] = dgvReqAmt;
+            //    tbl1.Rows[TblRowIndex2]["areqamt"] = dgvApprAmt;
+            //    tbl1.Rows[TblRowIndex2]["pstkqty"] = dgvStokQty;
+            //    tbl1.Rows[TblRowIndex2]["expusedt"] = dgvUseDat;
+            //    tbl1.Rows[TblRowIndex2]["pursdate"] = dgvSupDat;
+            //    tbl1.Rows[TblRowIndex2]["reqnote"] = dgvReqNote;
+
+            //}
+            //ViewState["tblReq"] = tbl1;
         }
 
         protected void ImgbtnSpecification_Click(object sender, EventArgs e)
@@ -1798,47 +1686,26 @@ namespace RealERPWEB.F_28_MPro
 
         protected void ImgbtnFindRes_Click(object sender, EventArgs e)
         {
-
-
             string comcod = this.GetCompCode();
             string approved = "";
-            switch (comcod)
-            {
-                case "3315"://Assure
-                case "3316":
-                case "3317":
-                case "1205"://p2p
-                case "3351":
-                case "3352":
-
-                    break;
-
-                default:
-                    approved = "approved";
-                    break;
-            }
 
             string mProject = this.ddlProject.SelectedValue.ToString();
             string mSrchTxt = "%%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "MATCODELIST", mSrchTxt, mProject, approved, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_MATERAILS", mSrchTxt, mProject, approved, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
-            ViewState["tblMat"] = ds1.Tables[0];
-            ViewState["tblSpcf"] = ds1.Tables[1];
-            ViewState["tblcat"] = ds1.Tables[2];
+            ViewState["tblcat"] = ds1.Tables[0];
+            ViewState["tblMat"] = ds1.Tables[1];
+            ViewState["tblSpcf"] = ds1.Tables[2];
 
 
             // Catagory
-
             this.ddlCatagory.DataTextField = "catdesc";
             this.ddlCatagory.DataValueField = "catcode";
-            this.ddlCatagory.DataSource = ds1.Tables[2];
+            this.ddlCatagory.DataSource = ds1.Tables[0];
             this.ddlCatagory.DataBind();
             this.ddlResourceBound();
-
-
-
 
         }
         protected void ddlResList_SelectedIndexChanged(object sender, EventArgs e)
@@ -1856,8 +1723,6 @@ namespace RealERPWEB.F_28_MPro
                 {
                     DataRow dr1 = dt2.NewRow();
 
-                    //            comcod, pactcode, rsircode,bgdqty, bgdrat, treceived, bbgdqty, bbgdqty1, bgdamt,rcvamt, bbgdamt, bbgdamt1, stkqty, rsirdesc1 , 
-                    //rsirdesc2, rsirunit, stdrat,tbgdqty,tbbgdqty
 
                     dr1["rowid"] = rowid;
                     dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
@@ -1987,28 +1852,6 @@ namespace RealERPWEB.F_28_MPro
 
 
         }
-        protected void gvReqInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblReq"];
-            string mREQNO = ASTUtility.Left(this.lblCurReqNo1.Text.Trim(), 3) + ASTUtility.Right(this.txtCurReqDate.Text.Trim(), 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
-            string rescode = ((Label)this.gvReqInfo.Rows[e.RowIndex].FindControl("lblgvResCod")).Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "DELETEREQFORSPCRES",
-                        mREQNO, rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (result)
-            {
-
-                int rowindex = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + e.RowIndex;
-                dt.Rows[rowindex].Delete();
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = ("rsircode<>''");
-                ViewState["tblReq"] = dv.ToTable();
-                this.gvResInfo_DataBind();
-            }
-
-        }
-  
 
         private string CompanyLength()
         {
@@ -2206,10 +2049,11 @@ namespace RealERPWEB.F_28_MPro
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +  purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
+            else
+            {
 
-
-
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Update Successfully" + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Specification Update Successfully" + "');", true);
+            }
 
         }
 
@@ -2224,6 +2068,33 @@ namespace RealERPWEB.F_28_MPro
             this.ddlActType.DataValueField = "gcod";
             this.ddlActType.DataSource = dv1.ToTable();
             this.ddlActType.DataBind();
+        }
+
+        protected void lbtngvReqDelete_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblReq"];
+            int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowindex = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + gvRowIndex;
+            string rescode = dt.Rows[rowindex]["rsircode"].ToString();
+            string comcod = this.GetCompCode();
+            string mREQNO = ASTUtility.Left(this.lblCurReqNo1.Text.Trim(), 3) + ASTUtility.Right(this.txtCurReqDate.Text.Trim(), 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "DELETEREQFORSPCRES",
+                        mREQNO, rescode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +  purData.ErrorObject["Msg"].ToString() + "');", true);
+                return;
+            }
+            else 
+            {               
+                dt.Rows[rowindex].Delete();
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = ("rsircode<>''");
+                ViewState["tblReq"] = dv.ToTable();
+                this.gvResInfo_DataBind();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Requisition Deleted Successfully" + "');", true);
+            }
+
         }
     }
 }
