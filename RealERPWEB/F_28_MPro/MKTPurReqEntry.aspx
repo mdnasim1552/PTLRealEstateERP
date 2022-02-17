@@ -163,7 +163,7 @@
                         </div>
                     </asp:Panel>
                 </div>
-                <div class="card-body" style="min-height: 450px;">
+                <div class="card-body" style="min-height: 350px;">
                     <asp:Panel ID="Panel2" runat="server" Visible="False">
                         <div class="table-responsive">
                             <asp:GridView ID="gvReqInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False" OnRowCancelingEdit="gvReqInfo_RowCancelingEdit"
@@ -173,50 +173,59 @@
                                 <Columns>
                                     <asp:TemplateField HeaderText="Sl.No.">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvSlNo0" runat="server" Height="16px" Style="text-align: right" Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
+                                            <asp:Label ID="lblgvSlNo0" runat="server" Height="16px" Style="text-align: right" 
+                                                Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField>
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lbtngvReqDelete" runat="server" Font-Bold="True" CssClass=" btn btn-xs" OnClick="lbtngvReqDelete_Click" ToolTip="Delete Requisition"><i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
+                                            <asp:LinkButton ID="lbtngvReqDelete" runat="server" Font-Bold="True" 
+                                                CssClass=" btn btn-xs" OnClick="lbtngvReqDelete_Click" ToolTip="Delete Requisition">
+                                                <i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Res Code" Visible="False">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvResCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>' Width="80px"></asp:Label>
+                                            <asp:Label ID="lblgvResCod" runat="server" Height="16px" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>' Width="80px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Spcf Code" Visible="False">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvSpcfCod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>' Width="80px"></asp:Label>
+                                            <asp:Label ID="lblgvSpcfCod" runat="server" Height="16px" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>' Width="80px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="PR Type">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvPRType" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc2")) %>' Width="80px"></asp:Label>
+                                            <asp:Label ID="lblgvPRType" runat="server" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>' Width="80px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Activity Category">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvActCat" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc3")) %>' Width="120px"></asp:Label>
+                                            <asp:Label ID="lblgvActCat" runat="server" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>' Width="120px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Marketing Type">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvMarkType" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc4")) %>' Width="120px"></asp:Label>
+                                            <asp:Label ID="lblgvMarkType" runat="server" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mkttype")) %>' Width="120px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Description of Materials">
                                         <FooterTemplate>
-                                            <asp:DropDownList ID="ddlPageNo" runat="server" AutoPostBack="True" Font-Bold="True" Font-Size="14px" Visible="false" OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged" Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid" Width="140px">
+                                            <asp:DropDownList ID="ddlPageNo" runat="server" AutoPostBack="True" Font-Bold="True" Font-Size="14px" Visible="false" OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged"
+                                                Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid" Width="140px">
                                             </asp:DropDownList>
                                         </FooterTemplate>
                                         <ItemTemplate>
@@ -237,29 +246,34 @@
 
                                     <asp:TemplateField HeaderText="Justification">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvJustification" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc4")) %>' Width="120px"></asp:Label>
+                                            <asp:Label ID="lblgvJustification" runat="server" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc4")) %>' Width="120px"></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click" CssClass="btn btn-primary  primarygrdBtn btn-sm">Total :</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click" 
+                                                CssClass="btn btn-primary  primarygrdBtn btn-sm">Total :</asp:LinkButton>
                                         </FooterTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Unit">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvResUnit" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>' Width="40px"></asp:Label>
+                                            <asp:Label ID="lblgvResUnit" runat="server" 
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>' Width="40px"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Balance Qty" Visible="false">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvBgdBal" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bbgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
-                                        </ItemTemplate>                                        
+                                            <asp:Label ID="lblgvBgdBal" runat="server" Style="text-align: right" 
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "bbgdqty")).ToString("#,##0.000;-#,##0.000; ") %>' Width="65px"></asp:Label>
+                                        </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Present </br> Requirement">
+                                    <asp:TemplateField HeaderText="Quantity">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvReqQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
+                                            <asp:TextBox ID="txtgvReqQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:CheckBox ID="crChkbox" runat="server" Visible="false" Text="CRM Checkd" />
@@ -269,10 +283,11 @@
                                         <HeaderStyle ForeColor="Blue" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Approx. Unit Price">
+                                    <asp:TemplateField HeaderText="Apprx. Unit Price">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvAppUnitPrice" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent" Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
-                                        </ItemTemplate>                                        
+                                            <asp:TextBox ID="txtgvAppUnitPrice" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
+                                        </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClick="lbtnUpdateResReq_Click" CssClass="btn  btn-danger primarygrdBtn btn-sm">Final Update</asp:LinkButton>
                                         </FooterTemplate>
@@ -280,15 +295,26 @@
 
                                     <asp:TemplateField HeaderText="Expected Date">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvExpDate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent" Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
+                                            <asp:TextBox ID="txtgvExpDate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Remarks">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvReqNote" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent" Text='<%# DataBinder.Eval(Container.DataItem, "reqnote").ToString() %>' Width="120px"></asp:TextBox>
+                                            <asp:TextBox ID="txtgvReqNote" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
+                                                Text='<%# DataBinder.Eval(Container.DataItem, "reqnote").ToString() %>' Width="150px"></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Left" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="File Attach.">
+                                        <ItemTemplate>
+                                            <asp:Image ImageUrl="<%# Eval("Image") %>" runat="server" ID="image" />
+                                        </ItemTemplate>
+                                        <EditItemTemplate>
+                                            <asp:FileUpload ID="FileUpload1" runat="server" />
+                                        </EditItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="SupplierCode" Visible="False">
@@ -309,7 +335,7 @@
                         <div class="col-6 mt-2" id="dNarr" runat="server">
                             <div class="form-group">
                                 <asp:Label ID="lblNarr" runat="server" CssClass="control-label  lblmargin-top9px" Text="Narration"></asp:Label>
-                                <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                <asp:TextBox ID="txtReqNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="4"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-6" id="dCCDNarr" runat="server" visible="false">
