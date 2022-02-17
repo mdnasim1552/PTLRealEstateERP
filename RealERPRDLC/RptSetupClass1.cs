@@ -610,6 +610,7 @@ namespace RealERPRDLC
 
                 case "R_22_Sal.rptUnitFxInf": Rpt1a = SetrptUnitFxInf(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_22_Sal.RptMonthWiseNewSales": Rpt1a = SetRptMonthWiseNewSales(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_22_Sal.RptSalPaySchedule": Rpt1a = SetRptSalPaySchedule(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 #endregion
@@ -3020,7 +3021,7 @@ namespace RealERPRDLC
 
         private static LocalReport SetRptOpPayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
-            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.OppPayment>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.OppPayment1>)RptDataSet));
             return Rpt1a;
         }
 
@@ -3702,7 +3703,12 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptMonWiseNewSales>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptSalPaySchedule(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>)RptDataSet2));
+            return Rpt1a;
+        }           
 
 
         private static LocalReport SetRptSalClntInterestBr(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)

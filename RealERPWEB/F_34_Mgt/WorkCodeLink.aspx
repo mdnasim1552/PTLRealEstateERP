@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="WorkCodeLink.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.WorkCodeLink" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="WorkCodeLink.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.WorkCodeLink" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 

@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="MktSalsPayment.aspx.cs" Inherits="RealERPWEB.F_22_Sal.MktSalsPayment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="MktSalsPayment.aspx.cs" Inherits="RealERPWEB.F_22_Sal.MktSalsPayment" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -21,7 +20,7 @@
             });
 
 
-            
+
             $(".chosen-select").chosen({
                 search_contains: true,
                 no_results_text: "Sorry, no match!",
@@ -37,22 +36,20 @@
 
 
 
-        function GetcomDiscountVisibility()
-        {
-            var comcod=<%=this.GetCompCode()%>;
+        function GetcomDiscountVisibility() {
+            var comcod =<%=this.GetCompCode()%>;
 
-            switch(comcod)
-            {
+            switch (comcod) {
                 case 3353:
                     $('#<%=this.ldT.ClientID%>').hide();
                     $('#<%=this.ldiscountt.ClientID%>').hide();
                     $('#<%=this.ldiscountp.ClientID%>').hide();
-                    
+
                     break;
-            
-            
-            
-            } 
+
+
+
+            }
 
 
         }
@@ -357,7 +354,7 @@
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="File code" Visible="false" >
+                                <asp:TemplateField HeaderText="File code" Visible="false">
                                     <EditItemTemplate>
                                     </EditItemTemplate>
                                     <ItemTemplate>
@@ -371,7 +368,7 @@
 
 
 
-                                 <asp:TemplateField HeaderText="Customer Id" >
+                                <asp:TemplateField HeaderText="Customer Id">
                                     <EditItemTemplate>
                                     </EditItemTemplate>
                                     <ItemTemplate>
@@ -386,9 +383,9 @@
                                 <asp:TemplateField HeaderText="Car Parking">
                                     <EditItemTemplate></EditItemTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="lblCarParking" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cparking")) %>'  Width="70px"  ></asp:Label>
+                                        <asp:Label ID="lblCarParking" runat="server" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cparking")) %>' Width="70px"></asp:Label>
                                     </ItemTemplate>
-                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
 
@@ -560,7 +557,7 @@
                                             </asp:TemplateField>
 
 
-                                              <asp:TemplateField HeaderText="Discount">
+                                            <asp:TemplateField HeaderText="Discount">
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFDiscount" runat="server" Font-Bold="True" Font-Size="12px"
                                                         ForeColor="#000" Style="text-align: right"></asp:Label>
@@ -671,7 +668,7 @@
 
                                             <div class="col-md-12 pading5px">
                                                 <div class="form-group">
-                                                    <asp:Label ID="Label13" runat="server" CssClass="smLbl_to" Style="width:100px;">Booking Date</asp:Label>
+                                                    <asp:Label ID="Label13" runat="server" CssClass="smLbl_to" Style="width: 100px;">Booking Date</asp:Label>
                                                     <asp:TextBox ID="txtBookDate" runat="server" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtBookDate"></cc1:CalendarExtender>
@@ -786,7 +783,7 @@
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lbtnJobAdd" runat="server" CssClass="btn btn-xs btn-default" ToolTip="Add New Code" BackColor="Transparent" OnClick="lbtnJobAdd_Click"><span class="fa fa-plus" aria-hidden="true"></span></asp:LinkButton>
 
-                                                       
+
                                                     </ItemTemplate>
                                                     <HeaderStyle Font-Bold="True" Font-Size="16px" Width="20px" HorizontalAlign="Center" />
 
@@ -801,9 +798,9 @@
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobdesc"))%>'
                                                             Width="200px" ForeColor="Black"></asp:Label>
 
-                                                       
+
                                                     </ItemTemplate>
-                                                  
+
 
                                                     <ItemStyle HorizontalAlign="Left" />
                                                 </asp:TemplateField>
@@ -828,11 +825,20 @@
                                                     <FooterStyle HorizontalAlign="right" />
                                                 </asp:TemplateField>
 
-                                                  <asp:TemplateField HeaderText="jobcode" Visible="false">
+                                                <asp:TemplateField HeaderText="jobcode" Visible="false">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblgvjobcode" runat="server" Height="16px"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobcode")) %>'
                                                             Width="49px" ForeColor="Black"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Remarks">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txtgvrmrks" runat="server" BackColor="Transparent" BorderStyle="None" Style="text-align: right"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'
+                                                            Width="120px" ForeColor="Black">
+                                                        </asp:TextBox>
                                                     </ItemTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
@@ -1231,40 +1237,40 @@
             </div>
 
 
-             <div id="AddJob" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog">
-            <div class="modal-content  ">
-                <div class="modal-header">
+            <div id="AddJob" class="modal animated slideInLeft " role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
 
-                    <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
-                    <h4 class="modal-title">
-                        <span class="fa fa-table"></span> Add New Job  </h4>
-                </div>
-                <div class="modal-body form-horizontal">
-                    <div class="row-fluid">
-                        <asp:Label ID="lblsircode" runat="server" Visible="false"></asp:Label> 
-                        <div class="form-group">
-                            <label id="lblddlproject" runat="server" class="col-md-2">Job</label>
-                            <div class="col-md-10">
-                                 <asp:ListBox ID="lstJob" runat="server" SelectionMode="Multiple" Style="height: 50px !important;"
-                                data-placeholder="Choose Job......" multiple="true" class="form-control chosen-select"></asp:ListBox>
-                            </div>
+                            <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                            <h4 class="modal-title">
+                                <span class="fa fa-table"></span>Add New Job  </h4>
                         </div>
+                        <div class="modal-body form-horizontal">
+                            <div class="row-fluid">
+                                <asp:Label ID="lblsircode" runat="server" Visible="false"></asp:Label>
+                                <div class="form-group">
+                                    <label id="lblddlproject" runat="server" class="col-md-2">Job</label>
+                                    <div class="col-md-10">
+                                        <asp:ListBox ID="lstJob" runat="server" SelectionMode="Multiple" Style="height: 50px !important;"
+                                            data-placeholder="Choose Job......" multiple="true" class="form-control chosen-select"></asp:ListBox>
+                                    </div>
+                                </div>
 
 
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer ">
+                            <asp:LinkButton ID="lbtnAddJob" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddJob();" OnClick="lbtnAddJob_Click"><span class="glyphicon glyphicon-plus"></span> Add </asp:LinkButton>
+
+
+                            <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
+                        </div>
                     </div>
-
-
-                </div>
-                <div class="modal-footer ">
-                    <asp:LinkButton ID="lbtnAddJob" runat="server" CssClass="btn btn-sm btn-success" OnClientClick="CloseModalAddJob();" OnClick="lbtnAddJob_Click"><span class="glyphicon glyphicon-plus"></span> Add </asp:LinkButton>
-
-
-                    <%--<button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>--%>
                 </div>
             </div>
-        </div>
-    </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -274,7 +274,7 @@ namespace RealERPWEB.F_17_Acc
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             LocalReport Rpt1 = new LocalReport();
             DataTable dt = (DataTable)Session["tbOpPay"];
-            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.OppPayment>();
+            var lst = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.OppPayment1>();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptOpPayment", lst, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
@@ -380,6 +380,8 @@ namespace RealERPWEB.F_17_Acc
                 Label Amount1 = (Label)e.Row.FindControl("lgvUp");
                 Label Amount2 = (Label)e.Row.FindControl("lgvbtween");
                 Label Amount3 = (Label)e.Row.FindControl("lgvAv");
+                Label Amount4 = (Label)e.Row.FindControl("lgvAv4");
+
                 Label Amount = (Label)e.Row.FindControl("lgvtAmt");
 
                 //Label CAmount = (Label)e.Row.FindControl("lgvCre");
@@ -410,6 +412,8 @@ namespace RealERPWEB.F_17_Acc
                     Amount1.Font.Bold = true;
                     Amount2.Font.Bold = true;
                     Amount3.Font.Bold = true;
+                    Amount4.Font.Bold = true;
+
                     Amount.Font.Bold = true;
                     actdesc.Style.Add("text-align", "right");
 
@@ -420,6 +424,8 @@ namespace RealERPWEB.F_17_Acc
                     Amount1.Font.Bold = true;
                     Amount2.Font.Bold = true;
                     Amount3.Font.Bold = true;
+                    Amount4.Font.Bold = true;
+
                     Amount.Font.Bold = true;
                     actdesc.Style.Add("text-align", "right");
 
@@ -433,6 +439,8 @@ namespace RealERPWEB.F_17_Acc
                     Amount1.Font.Bold = true;
                     Amount2.Font.Bold = true;
                     Amount3.Font.Bold = true;
+                    Amount4.Font.Bold = true;
+
                     Amount.Font.Bold = true;
                     actdesc.Style.Add("text-align", "right");
 

@@ -221,7 +221,7 @@
                                                 <ItemTemplate>
 
 
-                                                    <asp:Label ID="lgcResDesc1" runat="server" CssClass="d-block" Height="16px">
+                                                    <asp:Label ID="lgcResDesc1" runat="server" Width="230px" CssClass="d-block" Height="16px">
                                                         <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>
                                                         <asp:LinkButton ID="ibtngrdEmpList" runat="server" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
                                                                     <i class="fa fa-plus "></i>
@@ -266,7 +266,7 @@
                                                     <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
                                                     <asp:Panel ID="Panegrd" runat="server">
-                                                        <div class="  mb-0">
+                                                        <div class="  mb-0" style="width:260px;">
 
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged"
                                                                 CssClass="select2 col-12" AutoPostBack="true" TabIndex="2">
@@ -275,7 +275,8 @@
 
                                                     </asp:Panel>
                                                 </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle Width="230px" />
+                                                <HeaderStyle HorizontalAlign="Center" Width="230px" VerticalAlign="Top" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Bangla">

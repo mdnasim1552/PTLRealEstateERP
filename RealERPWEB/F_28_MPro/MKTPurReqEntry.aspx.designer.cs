@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_81_Hrm.F_83_Att
+namespace RealERPWEB.F_28_MPro
 {
 
 
-    public partial class EmpMonLateApproval
+    public partial class MKTPurReqEntry
     {
 
         /// <summary>
@@ -33,489 +33,633 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// lblfrmdate control.
+        /// pnlReqDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblfrmdate;
+        protected global::System.Web.UI.WebControls.Panel pnlReqDet;
 
         /// <summary>
-        /// txtfrmDate control.
+        /// lblPrjName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtfrmDate;
+        protected global::System.Web.UI.WebControls.Label lblPrjName;
 
         /// <summary>
-        /// txtfrmDate_CalendarExtender control.
+        /// ddlProject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txtfrmDate_CalendarExtender;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProject;
 
         /// <summary>
-        /// lbltodate control.
+        /// lblReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltodate;
+        protected global::System.Web.UI.WebControls.Label lblReqDate;
 
         /// <summary>
-        /// txttoDate control.
+        /// txtCurReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txttoDate;
+        protected global::System.Web.UI.WebControls.TextBox txtCurReqDate;
 
         /// <summary>
-        /// txttoDate_CalendarExtender control.
+        /// CalendarExtender_txtCurReqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender txttoDate_CalendarExtender;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtCurReqDate;
 
         /// <summary>
-        /// Label1 control.
+        /// ImgbtnFindReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.LinkButton ImgbtnFindReq;
 
         /// <summary>
-        /// txtSrcCompany control.
+        /// lblpreReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcCompany;
+        protected global::System.Web.UI.WebControls.Label lblpreReq;
 
         /// <summary>
-        /// ibtnFindCompany control.
+        /// ddlPrevReqList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ibtnFindCompany;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrevReqList;
 
         /// <summary>
-        /// ddlCompanyName control.
+        /// lbtnOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompanyName;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnOk;
 
         /// <summary>
-        /// lblCompanyName control.
+        /// lbtnSurVey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCompanyName;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSurVey;
 
         /// <summary>
-        /// lnkbtnShow control.
+        /// lblCurNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnShow;
+        protected global::System.Web.UI.WebControls.Label lblCurNo;
 
         /// <summary>
-        /// lblDept control.
+        /// lblCurReqNo1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDept;
+        protected global::System.Web.UI.WebControls.Label lblCurReqNo1;
 
         /// <summary>
-        /// txtSrcDepartment control.
+        /// txtCurReqNo2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcDepartment;
+        protected global::System.Web.UI.WebControls.TextBox txtCurReqNo2;
 
         /// <summary>
-        /// imgbtnDeptSrch control.
+        /// lblmrfno control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnDeptSrch;
+        protected global::System.Web.UI.WebControls.Label lblmrfno;
 
         /// <summary>
-        /// ddlDepartment control.
+        /// txtMRFNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
+        protected global::System.Web.UI.WebControls.TextBox txtMRFNo;
 
         /// <summary>
-        /// lblDeptDesc control.
+        /// chkdupMRF control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDeptDesc;
+        protected global::System.Web.UI.WebControls.CheckBox chkdupMRF;
 
         /// <summary>
-        /// lblSection control.
+        /// chkneBudget control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSection;
+        protected global::System.Web.UI.WebControls.CheckBox chkneBudget;
 
         /// <summary>
-        /// txtSrcSection control.
+        /// pnlSpeDet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcSection;
+        protected global::System.Web.UI.WebControls.Panel pnlSpeDet;
 
         /// <summary>
-        /// imgbtnSection control.
+        /// lblPRType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnSection;
+        protected global::System.Web.UI.WebControls.Label lblPRType;
 
         /// <summary>
-        /// DropCheck1 control.
+        /// ddlPRType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::xMilk.DropCheck DropCheck1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPRType;
 
         /// <summary>
-        /// Pnldesig control.
+        /// lblActType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Pnldesig;
+        protected global::System.Web.UI.WebControls.Label lblActType;
 
         /// <summary>
-        /// lblfrmDesig control.
+        /// ddlActType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblfrmDesig;
+        protected global::System.Web.UI.WebControls.DropDownList ddlActType;
 
         /// <summary>
-        /// ddlfrmDesig control.
+        /// lblMatType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlfrmDesig;
+        protected global::System.Web.UI.WebControls.Label lblMatType;
 
         /// <summary>
-        /// lbltoDesig control.
+        /// ddlMarkType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoDesig;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMarkType;
 
         /// <summary>
-        /// ddlToDesig control.
+        /// lblCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlToDesig;
+        protected global::System.Web.UI.WebControls.Label lblCategory;
 
         /// <summary>
-        /// lblPage control.
+        /// ddlCatagory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCatagory;
 
         /// <summary>
-        /// ddlpagesize control.
+        /// lblResList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlpagesize;
+        protected global::System.Web.UI.WebControls.Label lblResList;
 
         /// <summary>
-        /// lblCode control.
+        /// ddlResList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCode;
+        protected global::System.Web.UI.WebControls.DropDownList ddlResList;
 
         /// <summary>
-        /// txtSrcEmployee control.
+        /// lblSpecification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSrcEmployee;
+        protected global::System.Web.UI.WebControls.Label lblSpecification;
 
         /// <summary>
-        /// imgbtnSearchEmployee control.
+        /// ddlResSpcf control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton imgbtnSearchEmployee;
+        protected global::System.Web.UI.WebControls.DropDownList ddlResSpcf;
 
         /// <summary>
-        /// lblmsg control.
+        /// lbtnSelectRes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblmsg;
+        protected global::System.Web.UI.WebControls.LinkButton lbtnSelectRes;
 
         /// <summary>
-        /// MultiView1 control.
+        /// lblfloor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+        protected global::System.Web.UI.WebControls.Label lblfloor;
 
         /// <summary>
-        /// ViewMonLateApproval control.
+        /// lblddlFloor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewMonLateApproval;
+        protected global::System.Web.UI.WebControls.Label lblddlFloor;
 
         /// <summary>
-        /// grvAdjDay control.
+        /// ddlFloor control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grvAdjDay;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFloor;
 
         /// <summary>
-        /// ViewOnetimePunch control.
+        /// Panel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewOnetimePunch;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
 
         /// <summary>
-        /// gvOPunch control.
+        /// gvReqInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvOPunch;
+        protected global::System.Web.UI.WebControls.GridView gvReqInfo;
 
         /// <summary>
-        /// ViewMonaBSApproval control.
+        /// dNarr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewMonaBSApproval;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dNarr;
 
         /// <summary>
-        /// gvmapsapp control.
+        /// lblNarr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvmapsapp;
+        protected global::System.Web.UI.WebControls.Label lblNarr;
 
         /// <summary>
-        /// EarlyLeave control.
+        /// txtReqNarr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View EarlyLeave;
+        protected global::System.Web.UI.WebControls.TextBox txtReqNarr;
 
         /// <summary>
-        /// gvEarlyleave control.
+        /// dCCDNarr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvEarlyleave;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dCCDNarr;
 
         /// <summary>
-        /// ViewAbsenApp02 control.
+        /// lblCCDNarr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View ViewAbsenApp02;
+        protected global::System.Web.UI.WebControls.Label lblCCDNarr;
 
         /// <summary>
-        /// gvabsapp02 control.
+        /// txtCCDNarr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvabsapp02;
+        protected global::System.Web.UI.WebControls.TextBox txtCCDNarr;
 
         /// <summary>
-        /// LPAproval control.
+        /// uPrj control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View LPAproval;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl uPrj;
 
         /// <summary>
-        /// gvLPAproval control.
+        /// lbluPrj control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvLPAproval;
+        protected global::System.Web.UI.WebControls.Label lbluPrj;
 
         /// <summary>
-        /// lbmodalheading control.
+        /// ddlPrjForUse control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbmodalheading;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrjForUse;
 
         /// <summary>
-        /// mgvbreakdown control.
+        /// dCMat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView mgvbreakdown;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dCMat;
 
         /// <summary>
-        /// ModalUpdateBtn control.
+        /// lnkCreateMat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ModalUpdateBtn;
+        protected global::System.Web.UI.WebControls.HyperLink lnkCreateMat;
 
         /// <summary>
-        /// lblearlylvapp control.
+        /// dPrep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblearlylvapp;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dPrep;
 
         /// <summary>
-        /// gvearleave control.
+        /// lblPreparedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvearleave;
+        protected global::System.Web.UI.WebControls.Label lblPreparedBy;
 
         /// <summary>
-        /// lnkearapp control.
+        /// txtPreparedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkearapp;
+        protected global::System.Web.UI.WebControls.TextBox txtPreparedBy;
 
         /// <summary>
-        /// lblabsheading control.
+        /// dApp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblabsheading;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dApp;
 
         /// <summary>
-        /// mgvmonabsent control.
+        /// lblApprovedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView mgvmonabsent;
+        protected global::System.Web.UI.WebControls.Label lblApprovedBy;
 
         /// <summary>
-        /// lbntnAbsentApproval control.
+        /// txtApprovedBy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbntnAbsentApproval;
+        protected global::System.Web.UI.WebControls.TextBox txtApprovedBy;
+
+        /// <summary>
+        /// dAppDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dAppDate;
+
+        /// <summary>
+        /// lblApprovalDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblApprovalDate;
+
+        /// <summary>
+        /// txtApprovalDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtApprovalDate;
+
+        /// <summary>
+        /// dExpDDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dExpDDate;
+
+        /// <summary>
+        /// lblExpDeliveryDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblExpDeliveryDate;
+
+        /// <summary>
+        /// txtExpDeliveryDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtExpDeliveryDate;
+
+        /// <summary>
+        /// PnlDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlDesc;
+
+        /// <summary>
+        /// lblDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDescription;
+
+        /// <summary>
+        /// gvDescrip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvDescrip;
+
+        /// <summary>
+        /// lblMurketSurvey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMurketSurvey;
+
+        /// <summary>
+        /// lblsurveyby control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblsurveyby;
+
+        /// <summary>
+        /// gvMSRInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMSRInfo;
+
+        /// <summary>
+        /// idMoSpecDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl idMoSpecDet;
+
+        /// <summary>
+        /// lblMoDet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMoDet;
+
+        /// <summary>
+        /// txtspcfdesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtspcfdesc;
+
+        /// <summary>
+        /// lbtnUpdateSpeDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbtnUpdateSpeDetails;
     }
 }

@@ -2193,7 +2193,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!aprovsrate.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2234,7 +2234,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!dispercnt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -2275,7 +2275,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!aprovrate.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2316,7 +2316,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(Fields!ordramt.Value,"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2874,7 +2874,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); "))</Value>
+                                  <Value>=format(sum(Fields!ordramt.Value),"#,##0.00;(#,##0.00); ")</Value>
                                   <Style>
                                     <FontFamily>TImes New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2994,7 +2994,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",Parameters!carecost.Value)</Value>
+                                  <Value>=Parameters!carecost.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3112,7 +3112,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",Parameters!disamt.Value)</Value>
+                                  <Value>=Parameters!disamt.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3234,7 +3234,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",Parameters!nettotal.Value)</Value>
+                                  <Value>=Parameters!nettotal.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3355,7 +3355,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",Parameters!advamt.Value)</Value>
+                                  <Value>=Parameters!advamt.Value</Value>
                                   <Style>
                                     <FontFamily>times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -3385,125 +3385,6 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.1875in</Height>
-                  <TablixCells>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox8">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>Balance Amount</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox8</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                        <ColSpan>9</ColSpan>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox21">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>cambria</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox21</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox22">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",Parameters!balamt.Value)</Value>
-                                  <Style>
-                                    <FontFamily>times New Roman</FontFamily>
-                                    <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Right</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox22</rd:DefaultName>
-                          <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
-                            <PaddingLeft>2pt</PaddingLeft>
-                            <PaddingRight>2pt</PaddingRight>
-                            <PaddingTop>2pt</PaddingTop>
-                            <PaddingBottom>2pt</PaddingBottom>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                  </TablixCells>
-                </TablixRow>
-                <TablixRow>
                   <Height>0.21875in</Height>
                   <TablixCells>
                     <TablixCell>
@@ -3515,7 +3396,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(Fields!grp.Value="B","",Parameters!inword.Value)</Value>
+                                  <Value>=Parameters!inword.Value</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontFamily>times New Roman</FontFamily>
@@ -4170,6 +4051,55 @@
                     <TablixCell />
                   </TablixCells>
                 </TablixRow>
+                <TablixRow>
+                  <Height>0.21875in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox18">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Parameters!terms9.Value</Value>
+                                  <Style>
+                                    <FontFamily>times New Roman</FontFamily>
+                                    <TextDecoration>None</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                        <ColSpan>11</ColSpan>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
+                  </TablixCells>
+                </TablixRow>
               </TablixRows>
             </TablixBody>
             <TablixColumnHierarchy>
@@ -4230,37 +4160,31 @@
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=len(ltrim(rtrim(Fields!ordramt.Value)))=0 or Fields!grp.Value="B"</Hidden>
+                        <Hidden>=len(ltrim(rtrim(Fields!ordramt.Value)))=0</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=len(ltrim(rtrim(Parameters!carecost.Value)))=0 or Fields!grp.Value="B"</Hidden>
+                        <Hidden>=len(ltrim(rtrim(Parameters!carecost.Value)))=0</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=len(ltrim(rtrim(Parameters!disamt.Value)))=0 or Fields!grp.Value="B"</Hidden>
+                        <Hidden>=len(ltrim(rtrim(Parameters!disamt.Value)))=0</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=len(ltrim(rtrim(Parameters!nettotal.Value)))=0 or Fields!grp.Value="B"</Hidden>
+                        <Hidden>=len(ltrim(rtrim(Parameters!nettotal.Value)))=0</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
                     <TablixMember>
                       <Visibility>
-                        <Hidden>=len(ltrim(rtrim(Parameters!advamt.Value)))=0 or Fields!grp.Value="B"</Hidden>
-                      </Visibility>
-                      <KeepWithGroup>Before</KeepWithGroup>
-                    </TablixMember>
-                    <TablixMember>
-                      <Visibility>
-                        <Hidden>=len(ltrim(rtrim(Parameters!balamt.Value)))=0 or Fields!grp.Value="B"</Hidden>
+                        <Hidden>=len(ltrim(rtrim(Parameters!advamt.Value)))=0</Hidden>
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
@@ -4330,6 +4254,9 @@
                       </Visibility>
                       <KeepWithGroup>Before</KeepWithGroup>
                     </TablixMember>
+                    <TablixMember>
+                      <KeepWithGroup>Before</KeepWithGroup>
+                    </TablixMember>
                   </TablixMembers>
                 </TablixMember>
               </TablixMembers>
@@ -4337,8 +4264,8 @@
             <KeepTogether>true</KeepTogether>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.04458in</Top>
-            <Left>0.03107in</Left>
-            <Height>6.27291in</Height>
+            <Left>0.02065in</Left>
+            <Height>6.30416in</Height>
             <Width>8.10749in</Width>
             <Style>
               <Border>
@@ -4347,10 +4274,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>6.61957in</Height>
+        <Height>6.56749in</Height>
         <Style />
       </Body>
-      <Width>8.14903in</Width>
+      <Width>8.12814in</Width>
       <Page>
         <PageHeader>
           <Height>0.57291in</Height>
@@ -4378,7 +4305,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>compname</rd:DefaultName>
-              <Left>1.15482in</Left>
+              <Left>1.1319in</Left>
               <Height>0.30209in</Height>
               <Width>6.08334in</Width>
               <Style>
@@ -4411,7 +4338,7 @@
               </Paragraphs>
               <rd:DefaultName>comadd</rd:DefaultName>
               <Top>0.29861in</Top>
-              <Left>1.15482in</Left>
+              <Left>1.1319in</Left>
               <Height>0.20417in</Height>
               <Width>6.08334in</Width>
               <ZIndex>1</ZIndex>
@@ -4429,7 +4356,7 @@
               <Source>External</Source>
               <Value>=Parameters!ComLogo.Value</Value>
               <Sizing>FitProportional</Sizing>
-              <Left>0.04357in</Left>
+              <Left>0.02065in</Left>
               <Height>0.55417in</Height>
               <Width>1.06666in</Width>
               <ZIndex>2</ZIndex>
@@ -4447,13 +4374,13 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.1646in</Height>
+          <Height>1.22502in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
-            <Rectangle Name="Rectangle4">
+            <Rectangle Name="Rectangle2">
               <ReportItems>
-                <Textbox Name="Textbox135">
+                <Textbox Name="Textbox134">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4471,7 +4398,7 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox134</rd:DefaultName>
-                  <Top>0.56666in</Top>
+                  <Top>0.54375in</Top>
                   <Left>0.02292in</Left>
                   <Height>0.1875in</Height>
                   <Width>5.61459in</Width>
@@ -4485,7 +4412,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox211">
+                <Textbox Name="Textbox203">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4506,10 +4433,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.0625in</Top>
+                  <Top>0.03959in</Top>
                   <Left>0.02292in</Left>
                   <Height>0.16875in</Height>
-                  <Width>1.07292in</Width>
+                  <Width>1.26042in</Width>
                   <ZIndex>1</ZIndex>
                   <Style>
                     <Border>
@@ -4524,7 +4451,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="reqcreate7">
+                <Textbox Name="reqcreate">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4534,7 +4461,7 @@
                           <Value>=Parameters!sign1.Value</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4544,10 +4471,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
-                  <Top>0.25in</Top>
+                  <Top>0.23959in</Top>
                   <Left>0.02292in</Left>
                   <Height>0.21875in</Height>
-                  <Width>1.05208in</Width>
+                  <Width>1.23958in</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
@@ -4559,11 +4486,11 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Line Name="Line2">
-                  <Top>0.55416in</Top>
+                <Line Name="Line1">
+                  <Top>0.53125in</Top>
                   <Left>0.025in</Left>
                   <Height>0in</Height>
-                  <Width>8.11356in</Width>
+                  <Width>8.03208in</Width>
                   <ZIndex>3</ZIndex>
                   <Style>
                     <Border>
@@ -4571,7 +4498,7 @@
                     </Border>
                   </Style>
                 </Line>
-                <Textbox Name="Textbox212">
+                <Textbox Name="Textbox205">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4592,10 +4519,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.0625in</Top>
-                  <Left>1.13167in</Left>
+                  <Top>0.03959in</Top>
+                  <Left>1.33167in</Left>
                   <Height>0.17917in</Height>
-                  <Width>1.24167in</Width>
+                  <Width>1.3875in</Width>
                   <ZIndex>4</ZIndex>
                   <Style>
                     <Border>
@@ -4610,7 +4537,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="reqcreate8">
+                <Textbox Name="reqcreate2">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4620,7 +4547,7 @@
                           <Value>=Parameters!sign2.Value</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4630,10 +4557,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
-                  <Top>0.25in</Top>
-                  <Left>1.11917in</Left>
+                  <Top>0.23959in</Top>
+                  <Left>1.33167in</Left>
                   <Height>0.21875in</Height>
-                  <Width>1.25417in</Width>
+                  <Width>1.37708in</Width>
                   <ZIndex>5</ZIndex>
                   <Style>
                     <Border>
@@ -4645,7 +4572,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox213">
+                <Textbox Name="Textbox207">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4666,10 +4593,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.05833in</Top>
-                  <Left>2.40111in</Left>
+                  <Top>0.03542in</Top>
+                  <Left>2.76917in</Left>
                   <Height>0.17292in</Height>
-                  <Width>1.26875in</Width>
+                  <Width>1.32083in</Width>
                   <ZIndex>6</ZIndex>
                   <Style>
                     <Border>
@@ -4684,7 +4611,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="reqcreate9">
+                <Textbox Name="reqcreate3">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4694,7 +4621,7 @@
                           <Value>=Parameters!sign3.Value</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4704,10 +4631,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
-                  <Top>0.2625in</Top>
-                  <Left>2.40111in</Left>
+                  <Top>0.23959in</Top>
+                  <Left>2.76917in</Left>
                   <Height>0.21875in</Height>
-                  <Width>1.24791in</Width>
+                  <Width>1.32083in</Width>
                   <ZIndex>7</ZIndex>
                   <Style>
                     <Border>
@@ -4719,7 +4646,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox214">
+                <Textbox Name="Textbox208">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4740,8 +4667,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.05209in</Top>
-                  <Left>3.79417in</Left>
+                  <Top>0.03959in</Top>
+                  <Left>4.16917in</Left>
                   <Height>0.17917in</Height>
                   <Width>1.30208in</Width>
                   <ZIndex>8</ZIndex>
@@ -4758,7 +4685,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="reqcreate10">
+                <Textbox Name="reqcreate4">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4768,7 +4695,7 @@
                           <Value>=Parameters!sign4.Value</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4778,8 +4705,8 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
-                  <Top>0.25209in</Top>
-                  <Left>3.78375in</Left>
+                  <Top>0.23959in</Top>
+                  <Left>4.15875in</Left>
                   <Height>0.21875in</Height>
                   <Width>1.30208in</Width>
                   <ZIndex>9</ZIndex>
@@ -4793,7 +4720,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="Textbox215">
+                <Textbox Name="Textbox209">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4814,10 +4741,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.04792in</Top>
-                  <Left>5.15875in</Left>
+                  <Top>0.04584in</Top>
+                  <Left>5.52125in</Left>
                   <Height>0.17292in</Height>
-                  <Width>1.08125in</Width>
+                  <Width>1.41458in</Width>
                   <ZIndex>10</ZIndex>
                   <Style>
                     <Border>
@@ -4832,7 +4759,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="reqcreate11">
+                <Textbox Name="reqcreate5">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4842,7 +4769,7 @@
                           <Value>=Parameters!sign5.Value</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4852,10 +4779,10 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
-                  <Top>0.27084in</Top>
-                  <Left>5.15875in</Left>
+                  <Top>0.25938in</Top>
+                  <Left>5.52125in</Left>
                   <Height>0.19791in</Height>
-                  <Width>1.08125in</Width>
+                  <Width>1.41458in</Width>
                   <ZIndex>11</ZIndex>
                   <Style>
                     <Border>
@@ -4867,7 +4794,7 @@
                     <PaddingBottom>2pt</PaddingBottom>
                   </Style>
                 </Textbox>
-                <Textbox Name="reqcreate12">
+                <Textbox Name="reqcreate6">
                   <CanGrow>true</CanGrow>
                   <KeepTogether>true</KeepTogether>
                   <Paragraphs>
@@ -4877,7 +4804,7 @@
                           <Value>=Parameters!sign6.Value</Value>
                           <Style>
                             <FontFamily>times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -4887,128 +4814,18 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>reqcreate</rd:DefaultName>
-                  <Top>0.25in</Top>
-                  <Left>6.30944in</Left>
+                  <Top>0.21805in</Top>
+                  <Left>6.98853in</Left>
                   <Height>0.21875in</Height>
-                  <Width>0.88889in</Width>
+                  <Width>1.025in</Width>
                   <ZIndex>12</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
                     </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox216">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>1st Approval</Value>
-                          <Style>
-                            <FontFamily>times New Roman</FontFamily>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.05208in</Top>
-                  <Left>6.30458in</Left>
-                  <Height>0.17292in</Height>
-                  <Width>0.89375in</Width>
-                  <ZIndex>13</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <BottomBorder>
+                    <TopBorder>
                       <Style>Solid</Style>
-                    </BottomBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox218">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>Final Approval</Value>
-                          <Style>
-                            <FontFamily>times New Roman</FontFamily>
-                            <FontSize>9pt</FontSize>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox203</rd:DefaultName>
-                  <Top>0.05in</Top>
-                  <Left>7.24139in</Left>
-                  <Height>0.17292in</Height>
-                  <Width>0.90764in</Width>
-                  <ZIndex>14</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <BottomBorder>
-                      <Style>Solid</Style>
-                    </BottomBorder>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="sign7">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>=Parameters!sign7.Value</Value>
-                          <Style>
-                            <FontFamily>Times New Roman</FontFamily>
-                            <FontSize>8pt</FontSize>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Center</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>sign7</rd:DefaultName>
-                  <Top>0.25209in</Top>
-                  <Left>7.24139in</Left>
-                  <Height>0.25in</Height>
-                  <Width>0.89717in</Width>
-                  <ZIndex>15</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
+                    </TopBorder>
                     <PaddingLeft>2pt</PaddingLeft>
                     <PaddingRight>2pt</PaddingRight>
                     <PaddingTop>2pt</PaddingTop>
@@ -5017,8 +4834,9 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Height>1.06666in</Height>
-              <Width>8.14903in</Width>
+              <Top>0.0125in</Top>
+              <Height>1.04375in</Height>
+              <Width>8.05708in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -5275,23 +5093,11 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="balamt">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="sign7">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>21</NumberOfRows>
+      <NumberOfRows>20</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -5487,16 +5293,6 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>19</RowIndex>
           <ParameterName>faxnumber</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>19</RowIndex>
-          <ParameterName>balamt</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>20</RowIndex>
-          <ParameterName>sign7</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

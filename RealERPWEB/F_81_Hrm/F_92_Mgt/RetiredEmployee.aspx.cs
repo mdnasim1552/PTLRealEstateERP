@@ -33,6 +33,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.GetSepType();
                 this.GetResignedEmpTable();
                 this.CommonButton();
+                //this.imgbtnEmployee_Click(null,null);
             }
 
         }
@@ -136,7 +137,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompanyName.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
                 string compcode = this.ddlCompanyName.SelectedValue.ToString().Substring(0, hrcomln) + "%";
                 string deptcode = (this.ddlDepartment.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + "%";
-                string Section = this.ddlSection1.SelectedValue.ToString() + "%";
+                string Section = (this.ddlSection1.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection1.SelectedValue.ToString() + "%";
+               
                 string txtSProject = "%";
                 DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETEMPTNAME", compcode, deptcode, Section, txtSProject, "", "", "", "", "");
                 Session["tblempdsg"] = ds3.Tables[0];
@@ -286,7 +288,6 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
             }
         }
-
         private void GetResignedEmpTable()
         {
             ViewState.Remove("tblsepemp");

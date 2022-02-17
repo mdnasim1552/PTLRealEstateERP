@@ -13,17 +13,18 @@ namespace RealERPWEB.F_21_MKT
     public partial class ProspectTransfer : System.Web.UI.Page
     {
         ProcessAccess instcrm = new ProcessAccess();
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
-                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                //    Response.Redirect("~/AcceessError.aspx");
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
 
-                ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Prospect Transfer";           
+                ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Prospect Transfer";
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
@@ -34,7 +35,7 @@ namespace RealERPWEB.F_21_MKT
 
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
-
+                this.ddlEmpid_SelectedIndexChanged(null, null);
 
             }
         }
@@ -81,7 +82,7 @@ namespace RealERPWEB.F_21_MKT
             Hashtable hst = (Hashtable)Session["tblLogin"];
 
             string userrole = hst["userrole"].ToString();
-            string lempid = hst["empid"].ToString();            
+            string lempid = hst["empid"].ToString();
             string comcod = this.GetComeCode();
             DataTable dtE = new DataTable();
             dv.RowFilter = ("gcod like '93%'");
@@ -117,22 +118,27 @@ namespace RealERPWEB.F_21_MKT
             this.ddlEmpNameTo.DataValueField = "gcod";
             this.ddlEmpNameTo.DataSource = dtE;
             this.ddlEmpNameTo.DataBind();
-            
+
 
         }
 
         protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GetData();
+        }
+
+        private void GetData()
+        {
+            ViewState.Remove("tblproswork");
+
             string comcod = this.GetComeCode();
-
             string empId = this.ddlEmpid.SelectedValue.ToString();
-
-            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_LIST", null, null, null,empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            DataSet ds1 = instcrm.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_LIST", null, null, null, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-
             ViewState["tblproswork"] = (ds1.Tables[0]);
             this.Data_Bind();
+
         }
         private void Data_Bind()
         {
@@ -147,7 +153,7 @@ namespace RealERPWEB.F_21_MKT
             }
         }
 
-      
+
         protected void gvProspectWorking_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             this.gvProspectWorking.PageIndex = e.NewPageIndex;
@@ -159,5 +165,75 @@ namespace RealERPWEB.F_21_MKT
             this.gvProspectWorking.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());
             this.Data_Bind();
         }
+
+        protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblproswork"];
+
+            int i, index;
+            if (((CheckBox)this.gvProspectWorking.HeaderRow.FindControl("chkAllfrm")).Checked)
+            {
+
+                for (i = 0; i < this.gvProspectWorking.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvProspectWorking.Rows[i].FindControl("chckTrnsfer")).Checked = true;
+                    index = (this.gvProspectWorking.PageSize) * (this.gvProspectWorking.PageIndex) + i;
+                    dt.Rows[index]["chkper"] = "True";
+                }
+            }
+
+            else
+            {
+                for (i = 0; i < this.gvProspectWorking.Rows.Count; i++)
+                {
+                    ((CheckBox)this.gvProspectWorking.Rows[i].FindControl("chckTrnsfer")).Checked = false;
+                    index = (this.gvProspectWorking.PageSize) * (this.gvProspectWorking.PageIndex) + i;
+                    dt.Rows[index]["chkper"] = "False";
+                }
+
+            }
+            ViewState["tblproswork"] = dt;
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            string msg;
+            bool result = false;
+            string comcod = this.GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            string userid = hst["usrid"].ToString();
+
+            for (int i = 0; i < this.gvProspectWorking.Rows.Count; i++)
+            {
+                string chkper = (((CheckBox)gvProspectWorking.Rows[i].FindControl("chckTrnsfer")).Checked) ? "True" : "False";
+                if (chkper == "True")
+                {
+                    string fteamcode = ((Label)gvProspectWorking.Rows[i].FindControl("lblteamcode")).Text.Trim();
+                    string proscod = ((Label)gvProspectWorking.Rows[i].FindControl("lblproscod")).Text.Trim();
+                    string proscodName = ((Label)gvProspectWorking.Rows[i].FindControl("lblgvProsName")).Text.Trim();
+                    string toemp = this.ddlEmpNameTo.SelectedValue.ToString();
+
+                    result = instcrm.UpdateXmlTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "TRANSFER_PROSPECT", null, null, null, proscod, fteamcode, toemp, userid, proscodName, "", "", "", "",
+                   "", "", "", "", "", "", "", "", "", "", "");
+                    if (!result)
+                    {
+                        msg = instcrm.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                        return;
+                    }
+                    else
+                    {
+                        msg = "Prosfect Transfered ";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
+                    }
+                }
+
+            }
+
+            this.ddlEmpid_SelectedIndexChanged(null, null);
+
+        }
+
     }
 }
