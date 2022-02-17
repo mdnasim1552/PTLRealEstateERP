@@ -310,13 +310,13 @@
                                             <asp:LinkButton ID="lUpdatPerInfo" runat="server" CssClass="btn btn-warning primaryBtn" OnClick="lUpdatPerInfo_Click">Update Personal Info</asp:LinkButton>
                                         </FooterTemplate>
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent"
+                                            <asp:TextBox ID="txtgvVal" runat="server" BackColor="Transparent" AutoCompleteType="Disabled"
                                                 Width="130px" BorderStyle="None"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                 Height="20px" Font-Size="12px"></asp:TextBox>
 
                                             <asp:TextBox
-                                                ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                ID="txtgvdVal" runat="server" BackColor="Transparent" BorderStyle="None" AutoCompleteType="Disabled"
                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc1")) %>'
                                                 Width="130px" Font-Size="12px"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender_txtgvdVal" runat="server" Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal"></cc1:CalendarExtender>
