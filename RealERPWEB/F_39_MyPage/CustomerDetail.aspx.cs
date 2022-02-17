@@ -173,11 +173,16 @@ namespace RealERPWEB.F_39_MyPage
                 string val = dt.Rows[i]["gdesc1"].ToString();
                 switch (Gcode)
                 {
-                    case "01009": //BirthDay              
+                    case "01009": //BirthDay
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = true;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
+                        break;
                     case "01010": //MarriageDay
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = true;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text="";
                         break;
 
                     case "01021": //File No
@@ -278,11 +283,16 @@ namespace RealERPWEB.F_39_MyPage
 
                 string Gvalue = "";
 
-                if (Gcode == "01009" || Gcode == "01010")
+                if (Gcode == "01009")
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                 }
-                else if(Gcode=="01021")
+                else if (Gcode == "01010")
+                {
+                    Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+
+                }
+                else if (Gcode == "01021")
                 {
                     Gvalue = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).SelectedValue;
                 }
