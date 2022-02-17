@@ -285,7 +285,7 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlFloor.Visible = false;
                 this.lblddlFloor.Visible = false;
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.lblCurReqNo1.Text = "REQ" + DateTime.Today.ToString("MM") + "-";
+                this.lblCurReqNo1.Text = "MREQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
                 this.txtMRFNo.Text = "";
 
@@ -373,7 +373,7 @@ namespace RealERPWEB.F_28_MPro
             this.txtCurReqNo2.ReadOnly = true;
             this.pnlSpeDet.Visible = true;
             this.Panel2.Visible = true;
-            this.PnlDesc.Visible = true;
+            this.PnlDesc.Visible = false;
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();
@@ -399,7 +399,7 @@ namespace RealERPWEB.F_28_MPro
             string mREQDAT = this.GetStdDate(this.txtCurReqDate.Text.Trim());
             if (mREQNO == "NEWREQ")
             {
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTREQINFO", mREQDAT,
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_LAST_REQ_INFO", mREQDAT,
                        "", "", "", "", "", "", "", "");
                 if (ds2 == null)
                     return;
@@ -432,15 +432,17 @@ namespace RealERPWEB.F_28_MPro
 
 
             }
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_PUR_REQ_INFO", mReqNo, CurDate1,
-                      "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_PUR_REQ_INFO", mReqNo, CurDate1, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             ViewState["tblReq"] = this.HiddenSameData(ds1.Tables[0]);
             Session["tblUserReq"] = ds1.Tables[1];
             ViewState["tblreqdesc"] = ds1.Tables[2];
+
             this.gvDescrip.DataSource = ds1.Tables[2];
             this.gvDescrip.DataBind();
+
             if (Request.QueryString["InputType"].ToString() == "Approval" || Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "HeadUsed")
             {
                 if (ds1.Tables[0].Rows.Count > 0)
@@ -451,13 +453,13 @@ namespace RealERPWEB.F_28_MPro
 
             if (mReqNo == "NEWREQ")
             {
-                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETLASTREQINFO", CurDate1, "", "", "", "", "", "", "", "");
-                if (ds1 == null)
+               DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_LAST_REQ_INFO", CurDate1, "", "", "", "", "", "", "", "");
+                if (ds2 == null)
                     return;
-                if (ds1.Tables[0].Rows.Count > 0)
+                if (ds2.Tables[0].Rows.Count > 0)
                 {
-                    this.lblCurReqNo1.Text = ds1.Tables[0].Rows[0]["maxreqno1"].ToString().Substring(0, 6);
-                    this.txtCurReqNo2.Text = ds1.Tables[0].Rows[0]["maxreqno1"].ToString().Substring(6, 5);
+                    this.lblCurReqNo1.Text = ds2.Tables[0].Rows[0]["maxreqno1"].ToString().Substring(0, 6);
+                    this.txtCurReqNo2.Text = ds2.Tables[0].Rows[0]["maxreqno1"].ToString().Substring(6, 5);
                 }
                 return;
             }
@@ -475,9 +477,6 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlPrjForUse.DataValueField = "upactcode";
                 this.ddlPrjForUse.DataSource = ds1.Tables[1];
                 this.ddlPrjForUse.DataBind();
-
-                //this.Load_Project_To_Combo();
-                //this.ddlPrjForUse.SelectedValue = ds1.Tables[1].Rows[0]["upactcode"].ToString();
             }
             else
             {
@@ -582,10 +581,10 @@ namespace RealERPWEB.F_28_MPro
                 dr1["bbgdamt1"] = dr3[0]["bbgdamt1"];
                 dr1["stkqty"] = dr3[0]["stkqty"];
                 dr1["tbgdqty"] = dr3[0]["tbgdqty"];
-                dr1["tbbgdqty"] = dr3[0]["tbbgdqty"];
-                dr1["rsirdesc2"] = this.ddlPRType.SelectedItem.Text.Trim();
-                dr1["rsirdesc3"] = this.ddlActType.SelectedItem.Text.Trim();
-                dr1["rsirdesc4"] = this.ddlMarkType.SelectedItem.Text.Trim();
+                dr1["tbbgdqty"] = dr3[0]["tbbgdqty"]; 
+                dr1["prtype"] = this.ddlPRType.SelectedItem.Text.Trim();
+                dr1["acttype"] = this.ddlActType.SelectedItem.Text.Trim();
+                dr1["mkttype"] = this.ddlMarkType.SelectedItem.Text.Trim();
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["lpurrate"] = 0;
@@ -707,10 +706,6 @@ namespace RealERPWEB.F_28_MPro
 
                 }
 
-
-
-
-
                 if (ds2.Tables[0].Rows.Count == 0)
                     ;
 
@@ -726,7 +721,6 @@ namespace RealERPWEB.F_28_MPro
                     else
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Found Duplicate M.R.F No" + "');", true);
-                        //this.ddlPrevReqList.Items.Clear();
                         return;
                     }
                 }
@@ -876,7 +870,9 @@ namespace RealERPWEB.F_28_MPro
             }
 
 
-
+            string prType = this.ddlPRType.SelectedValue.ToString().Trim();
+            string mrkType = this.ddlMarkType.SelectedValue.ToString().Trim();
+            string actType = this.ddlActType.SelectedValue.ToString().Trim();
             string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
             string mFLRCOD = this.ddlFloor.SelectedValue.ToString().Trim();
             string mREQUSRID = "";
@@ -948,12 +944,10 @@ namespace RealERPWEB.F_28_MPro
                 }
             }
 
-
+            //Not Complete Edit ......
             string mREQNAR = this.txtReqNarr.Text.Trim();
-            //string ptype = this.ddlptype.SelectedValue.ToString();
-            bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQB", mREQNO, mREQDAT, mPACTCODE, mFLRCOD, mREQUSRID,
-                mAPPRUSRID, mAPPRDAT, mEDDAT, mREQBYDES, mAPPBYDES, mMRFNO, mREQNAR, PostedByid, Posttrmid, PostSession, EditByid, Edittrmid, EditSession,
-                EditDat, PostedDat, reqtype, uFP, crmchekd, crmcheckbyid, crnPosttrmid, crmPostSession, crmcPostedDat);
+            bool result = purData.UpdateTransInfo01(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQB", mREQNO, mREQDAT, prType, mrkType, actType, PostedByid, Posttrmid, PostSession, PostedDat,
+                crmcheckbyid, crnPosttrmid, crmPostSession, crmcPostedDat, mAPPRUSRID, "", "", mAPPRDAT, EditByid, Edittrmid, EditSession, EditDat, mREQBYDES, mAPPBYDES, mMRFNO, mREQNAR, reqtype, uFP, crmchekd );
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -983,18 +977,7 @@ namespace RealERPWEB.F_28_MPro
 
                 if (mPREQTY >= mAREQTY)
                 {
-                    //if (this.chkneBudget.Checked)
-                    //{
-
-                    //    if (mBgdBalQty < mPREQTY)
-                    //    {
-                    //       ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                    //        return;
-
-                    //    }
-
-                    //}
-                    result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQA",
+                    result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
                                 mREQNO, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, mPSTKQTY, mEXPUSEDT, mREQNOTE,
                                 PursDate, Lpurrate, storecode, ssircode, orderno, mREQSRAT, rowId, "", "", "", "", "", "");
 
@@ -1050,27 +1033,13 @@ namespace RealERPWEB.F_28_MPro
                         break;
 
 
-
-
-
-
                 }
 
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEPURREQINFO", "PURREQC",
-                                mREQNO, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, "", "", "", "",
-                                "", "", "", "", "");
-
-                if (!result)
-                {
-
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-                    return;
-                }
             }
 
 
             this.txtCurReqDate.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Requisition Updated successfully" + "');", true);
 
 
 
@@ -1097,20 +1066,12 @@ namespace RealERPWEB.F_28_MPro
                             string SMSText = comnam + ":\n" + SMSHead + "\n" + ddldesc == "True" ? ddlProject.SelectedItem.Text.Trim() : ddlProject.SelectedItem.Text.Trim().Substring(12) + "\n" + "MRF No: " + txtMRFNo.Text;
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
 
-
                         }
                         break;
 
-
                 }
 
-
-
-
-
             }
-
-
 
         }
 
@@ -1999,7 +1960,9 @@ namespace RealERPWEB.F_28_MPro
         }
         protected void gvReqInfo_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-
+            FileUpload fileUpload = gvReqInfo.Rows[e.RowIndex].FindControl("FileUpload1") as FileUpload;
+            fileUpload.SaveAs(System.IO.Path.Combine(Server.MapPath("Images"), fileUpload.FileName));
+            //SqlDataSource1.UpdateParameters["Image"].DefaultValue = "~/Images/" + fileUpload.FileName;
 
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             string Storecode = ((DropDownList)this.gvReqInfo.Rows[e.RowIndex].FindControl("ddlStorename")).SelectedValue.ToString();
@@ -2015,6 +1978,7 @@ namespace RealERPWEB.F_28_MPro
             tbl1.Rows[index]["ssircode"] = ssircode;
             tbl1.Rows[index]["ssirdesc"] = ssirdesc;
             tbl1.Rows[index]["reqrat"] = dgvReqRat;
+            tbl1.Rows[index]["filepath"] = "~/Images/" + fileUpload.FileName;
             ViewState["tblReq"] = tbl1;
             this.gvReqInfo.EditIndex = -1;
             this.gvResInfo_DataBind();
