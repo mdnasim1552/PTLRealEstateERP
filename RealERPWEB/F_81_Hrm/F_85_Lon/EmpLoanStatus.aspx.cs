@@ -149,7 +149,20 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string chkbal = this.Chkbalance.Checked ? "Length" : "";
             string loantype = this.ddlLoantype.SelectedValue.ToString()==""?"%%": this.ddlLoantype.SelectedValue.ToString();
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "EMPLOANSTATUS", date, deptname, comnam, chkbal, loantype, "", "", "", "");
+
+            string calltype = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    calltype = "EMPLOANSTATUSBTI";
+                    break;
+                 Default:
+                    calltype = "EMPLOANSTATUS";
+                    break;
+            }
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", calltype, date, deptname, comnam, chkbal, loantype, "", "", "", "");
             if (ds2 == null)
             {
                 this.gvEmpLoanStatus.DataSource = null;

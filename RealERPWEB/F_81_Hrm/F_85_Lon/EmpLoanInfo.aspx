@@ -178,7 +178,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Status">
+                                <asp:TemplateField HeaderText="Status" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblStatus" runat="server" Text='<%# Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "paidamt")) %>'></asp:Label>
                                     </ItemTemplate>
