@@ -226,6 +226,16 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Month Loan">
+                                    <ItemTemplate>
+                                          <asp:Label ID="lblMontloan" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: right"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "monlon")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                             </Columns>
 
 
