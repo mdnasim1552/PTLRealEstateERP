@@ -989,9 +989,9 @@ namespace RealERPWEB.F_17_Acc
                     case "1205":
                     case "3351":
                     case "3352":
-                        if (sphone.Length != 11 && ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99")))
+                        if ((sphone.Length < 8 || sphone.Length > 12) && ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99")))
                         {
-                            msg = "Mobile Number Invalid";
+                            msg = "Mobile/Phone Number Invalid";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                             //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
@@ -1004,7 +1004,7 @@ namespace RealERPWEB.F_17_Acc
                             DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
                             if (ds1.Tables[0].Rows.Count > 0)
                             {
-                                msg = "Mobile Number Already Exist";
+                                msg = "Mobile/Phone Number Already Exist";
                                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModalAddCode();", true);
                                 isResultValid = false;
