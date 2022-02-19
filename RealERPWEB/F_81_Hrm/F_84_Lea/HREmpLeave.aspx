@@ -30,11 +30,7 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
-
-
     </script>
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -55,11 +51,6 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-
-
-
-
-
 
             <div class="row justify-content-md-center mt-4 mb-1">
                 <div class="col-11"></div>
@@ -82,8 +73,6 @@
                                 <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"></asp:TextBox>
                             </div>
                         </div>
-
-
 
                         <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="col-1 col-form-label" OnClick="imgbtnCompany_Click">
                                                   Company</asp:LinkButton>
