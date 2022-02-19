@@ -681,8 +681,6 @@ namespace RealERPWEB.F_17_Acc
         protected void grvacc_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
-
-
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
@@ -692,6 +690,8 @@ namespace RealERPWEB.F_17_Acc
                 int index = e.Row.RowIndex;
                 int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + index;
                 DataTable dt = ((DataTable)Session["storedata"]);
+
+                string comcod = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
 
                 string Code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "actcode")).ToString();
                 int additem = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "additem"));
@@ -751,7 +751,20 @@ namespace RealERPWEB.F_17_Acc
                 //    }
                 //}
 
-
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3356":
+                    case "3357":
+                        HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvactdesc");
+                        if ((ASTUtility.Left(Code, 2) == "16") && ASTUtility.Right(Code, 3) != "000")
+                        {
+                            hlnkgvdesc.NavigateUrl = "~/F_04_Bgd/PrjInformation?Type=Report&prjcode="+Code;
+                        }
+                        break;
+                    default:
+                        break;
+                }
 
 
 
