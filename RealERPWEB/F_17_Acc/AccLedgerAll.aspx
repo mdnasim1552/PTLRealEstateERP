@@ -84,8 +84,8 @@
                                     <asp:ListItem>100</asp:ListItem>
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
-                                    <asp:ListItem Selected="True">300</asp:ListItem>
-                                    <asp:ListItem>600</asp:ListItem>
+                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem Selected="True">600</asp:ListItem>
                                     <asp:ListItem>900</asp:ListItem>
                                     <asp:ListItem>1200</asp:ListItem>
                                     <asp:ListItem>1500</asp:ListItem>
@@ -469,7 +469,7 @@
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvSpledger" runat="server" AutoGenerateColumns="False"
                                     CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" OnRowDataBound="gvSpledger_RowDataBound1" PageSize="20" AllowPaging="true" OnPageIndexChanging="gvSpledger_PageIndexChanging">
+                                    ShowFooter="True" OnRowDataBound="gvSpledger_RowDataBound1" PageSize="600" AllowPaging="true" OnPageIndexChanging="gvSpledger_PageIndexChanging">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Group Description">
                                             <ItemTemplate>
@@ -716,7 +716,7 @@
                             <div class="table table-responsive">
                                 <asp:GridView ID="gvspleder02" runat="server" AutoGenerateColumns="False"
                                     CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    ShowFooter="True" OnRowDataBound="gvspleder02_RowDataBound" PageSize="20" AllowPaging="true" OnPageIndexChanging="gvspleder02_PageIndexChanging">
+                                    ShowFooter="True" OnRowDataBound="gvspleder02_RowDataBound" PageSize="600" AllowPaging="true" OnPageIndexChanging="gvspleder02_PageIndexChanging">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Group Description" Visible="false">
                                             <ItemTemplate>
