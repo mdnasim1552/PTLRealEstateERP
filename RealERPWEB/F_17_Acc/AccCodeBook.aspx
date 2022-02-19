@@ -181,7 +181,7 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
-                                            <asp:ListItem>600</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
                                             <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
@@ -199,7 +199,7 @@
 
 
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table table-striped table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" PageSize="15"
+                            OnRowUpdating="grvacc_RowUpdating" PageSize="600"
                             OnPageIndexChanging="grvacc_PageIndexChanging" BorderStyle="None" OnRowDataBound="grvacc_RowDataBound" OnDataBound="grvacc_DataBound">
 
                             <FooterStyle BackColor="#5F9467" />
@@ -289,8 +289,14 @@
                                         </table>
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <asp:Label ID="Label3" runat="server" Style="font-size: 12px"
-                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'></asp:Label>
+                                         <asp:HyperLink ID="hlnkgvactdesc" runat="server" BorderColor="#99CCFF" BorderStyle="none"
+                                            Font-Size="11px" Style="text-align: left; background-color: Transparent; color: Black;"
+                                            Font-Underline="false" Target="_blank" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc"))  %>'
+                                            Width="300px">                                             
+                                            
+                                        </asp:HyperLink>
+                                        <%--<asp:Hyperlink ID="Label3" runat="server" Style="font-size: 12px"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'></asp:Hyperlink>--%>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Left" />
                                     <HeaderStyle />

@@ -281,7 +281,10 @@
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
                                     <asp:ListItem>600</asp:ListItem>
-                                    <asp:ListItem>900</asp:ListItem>
+                                    <asp:ListItem Selected="True">900</asp:ListItem>
+                                    <asp:ListItem>1200</asp:ListItem>
+                                    <asp:ListItem>1500</asp:ListItem>
+                                    <asp:ListItem>3000</asp:ListItem>
                                 </asp:DropDownList>
                             </div>
                         </div>
@@ -296,7 +299,7 @@
                     <div class="table-responsive">
                         <asp:GridView ID="grvacc" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
-                            OnRowUpdating="grvacc_RowUpdating" PageSize="15" OnPageIndexChanging="grvacc_PageIndexChanging"
+                            OnRowUpdating="grvacc_RowUpdating" PageSize="900" OnPageIndexChanging="grvacc_PageIndexChanging"
                             OnRowDataBound="grvacc_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea"
                             Width="700px" OnDataBound="grvacc_DataBound" ShowFooter="True">
 
