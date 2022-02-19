@@ -194,7 +194,7 @@
                                 </asp:DropDownList>
                             </div>
                             <div class="col-md-3 pading5px asitCol3">
-                                <asp:Label ID="lblCode" runat="server" CssClass=" smLbl">Code</asp:Label>
+                                <asp:Label ID="lblCode" runat="server" CssClass=" smLbl">Card #	</asp:Label>
                                 <asp:TextBox ID="txtSrcEmployee" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
                                 <asp:LinkButton ID="imgbtnSearchEmployee" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSearchEmployee_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                             </div>
@@ -358,7 +358,7 @@
 
                                 
 
-                                <asp:TemplateField HeaderText="Deduction Days">
+                                <asp:TemplateField HeaderText="LWP Days">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtAdj" runat="server" BackColor="Transparent" OnTextChanged="txtAdj_TextChanged"
                                             BorderStyle="None" Font-Size="11px" Style="text-align: right" AutoPostBack="true"
@@ -1688,7 +1688,7 @@
 
 
     </div>
-
+             
 
      </ContentTemplate>
     </asp:UpdatePanel>

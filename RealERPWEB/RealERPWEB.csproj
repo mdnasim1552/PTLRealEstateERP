@@ -11598,6 +11598,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets_new\" />
     <Folder Include="bin\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
