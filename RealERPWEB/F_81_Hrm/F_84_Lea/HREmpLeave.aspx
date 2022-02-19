@@ -87,7 +87,7 @@
 
                         <div class="col-3">
 
-                            <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                            <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" runat="server" CssClass="chzn-select form-control" TabIndex="6">
                             </asp:DropDownList>
 
                         </div>
@@ -431,7 +431,7 @@
 
                             <div class="row">
                                 <div class="col-8">
-                                    <asp:Panel ID="PnlEmp" runat="server" Visible="False">
+                                    <asp:Panel ID="PnlEmp" runat="server">
                                         <div class="row">
                                             <asp:RadioButtonList ID="rblstapptype" runat="server" CssClass="rbtnList1 chkBoxControl" RepeatColumns="6" RepeatDirection="Horizontal"
                                                 Width="220px" TabIndex="16" Visible="False">
