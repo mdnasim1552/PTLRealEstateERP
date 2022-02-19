@@ -49,6 +49,7 @@
             <div class="container moduleItemWrpper">
                 <div class="contentPart">
                     <div class="row">
+
                         <fieldset class="scheduler-border">
 
                             <div class="form-horizontal">
@@ -59,10 +60,7 @@
                                         <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Employee Type</asp:Label>
                                         <asp:DropDownList ID="ddlWstation" runat="server" Width="200" OnSelectedIndexChanged="ddlWstation_SelectedIndexChanged" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
                                     </div>
-                                    <%--  <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
-                                        <asp:Label ID="Label3" runat="server" CssClass="smLbl_to">Division</asp:Label>
-                                        <asp:DropDownList ID="ddlDivision" runat="server" Width="225" OnSelectedIndexChanged="ddlDivision_SelectedIndexChanged" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
-                                    </div>--%>
+                                   
                                     <div class="col-md-3 col-sm-3 col-lg-3 pading5px">
                                         <asp:Label ID="Label7" runat="server" CssClass="smLbl_to">Department</asp:Label>
                                         <asp:DropDownList ID="ddlDept" runat="server" Width="200" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged" CssClass="chzn-select pull-left" AutoPostBack="true" TabIndex="2"></asp:DropDownList>
