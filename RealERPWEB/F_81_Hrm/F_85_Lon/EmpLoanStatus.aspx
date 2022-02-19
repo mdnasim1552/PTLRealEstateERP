@@ -190,7 +190,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Upto Paid" Visible="false">
+                                <asp:TemplateField HeaderText="Upto Paid <br>(Jan-22)" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblUpPaidAmt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
@@ -215,7 +215,7 @@
 
                                 <asp:TemplateField HeaderText="Bal. Amt.">
                                     <FooterTemplate>
-                                        <asp:Label ID="lblgvFbalamt" runat="server"
+                                        <asp:Label ID="lblgvFbalamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -228,12 +228,16 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Month Loan">
+                                <asp:TemplateField HeaderText="Monthly Loan">
                                     <ItemTemplate>
                                           <asp:Label ID="lblMontloan" runat="server" BackColor="Transparent"
-                                            BorderStyle="None" Style="text-align: right"
+                                            BorderStyle="None" Style="text-align: right"  Width="80px" 
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "monlon")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
                                     </ItemTemplate>
+                                     <FooterTemplate>
+                                        <asp:Label ID="lblgvMonlon" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                             </Columns>
