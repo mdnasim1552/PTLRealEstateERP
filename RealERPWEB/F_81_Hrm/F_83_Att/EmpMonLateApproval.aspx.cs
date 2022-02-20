@@ -504,6 +504,31 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Session["tblover"] = this.HiddenSameData(ds2.Tables[0]);
             this.Data_Bind();
 
+            switch (comcod)
+            {
+                case "3365":
+                    this.grvAdjDay.Columns[6].Visible = true;
+                    this.grvAdjDay.Columns[7].Visible = true;                   
+                    this.grvAdjDay.Columns[11].Visible = true;
+                    this.grvAdjDay.Columns[12].Visible = true;
+                    this.grvAdjDay.Columns[13].Visible = true;
+                    this.grvAdjDay.Columns[14].Visible = true;
+                    this.grvAdjDay.FooterRow.FindControl("lbtnTotalDay").Visible = false;                   
+                    break;
+                default:
+                    this.grvAdjDay.Columns[6].Visible = false;
+                    this.grvAdjDay.Columns[7].Visible = false;
+                    this.grvAdjDay.Columns[11].Visible = false;
+                    this.grvAdjDay.Columns[12].Visible = false;
+                    this.grvAdjDay.Columns[13].Visible = false;
+                    this.grvAdjDay.Columns[14].Visible = false;
+                    this.grvAdjDay.FooterRow.FindControl("lbtnTotalDay").Visible = true;
+
+                    break;
+            }
+
+
+
 
         }
 
@@ -782,6 +807,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         double dedday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtAdj")).Text.Trim());
                         double adjLev = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtlvAdj")).Text.Trim());
                         double leaveadjel = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtEllvAdj")).Text.Trim());
+                        string isAdjust = (((CheckBox)grvAdjDay.Rows[i].FindControl("isAdjust")).Checked) ? "True" : "False";
 
                         rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
 
@@ -799,56 +825,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             dt.Rows[rowindex]["leaveadj"] = adjLev;
                             dt.Rows[rowindex]["leaveadjel"] = leaveadjel;
                             dt.Rows[rowindex]["ttdelv"] = tdelv;
+                            dt.Rows[rowindex]["isadjust"] = isAdjust;
                         }
-
-
-                        //  double redelay = delayday - Aprvday;
-
-
-                        //double delayday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtLateday")).Text.Trim());
-                        //double Aprvday = Convert.ToDouble("0" + ((TextBox)this.grvAdjDay.Rows[i].FindControl("txtaprday")).Text.Trim());
-                        //double balclv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalclv")).Text.Trim());
-                        //double balernlv = Convert.ToDouble("0" + ((Label)this.grvAdjDay.Rows[i].FindControl("lblgvbalernlv")).Text.Trim());
-
-                        //rowindex = (this.grvAdjDay.PageSize) * (this.grvAdjDay.PageIndex) + i;
-                        //double redelay = delayday - Aprvday;
-                        //double adjLev = 0.00;
-                        //double adjElLev = 0.00;
-                        //double ttllv = 0.00;
-                        //double dedday = 0.00;
-                        //if (redelay <= 6)
-                        //{
-                        //    adjLev = ToAdjustLeaveDayBTI((double)redelay, (double)balclv);
-                        //}
-                        //if (redelay > 6)
-                        //{
-                        //    double tadjLev = ToAdjustLeaveDayBTI((double)redelay, (double)balclv);
-                        //    adjLev = tadjLev;
-                        //    double adjElLevttl = ToAdjustLeaveDayBTIEL((double)redelay);
-                        //    adjElLev = adjElLevttl;
-
-                        //}
-
-                        //if (balernlv < adjElLev)
-                        //{
-                        //    dedday = adjElLev - balernlv;
-                        //    adjElLev = balernlv;
-
-                        //}
-                        //if (balclv < adjLev)
-                        //{
-                        //    dedday = adjLev - balclv;
-                        //    adjLev = balclv;
-
-                        //}
-                        //double ttdelv = adjLev + adjElLev + dedday;
-                        //dt.Rows[rowindex]["delday"] = delayday;
-                        //dt.Rows[rowindex]["aprday"] = Aprvday;
-                        //dt.Rows[rowindex]["dedday"] = dedday;
-                        //dt.Rows[rowindex]["leaveadj"] = adjLev;
-                        //dt.Rows[rowindex]["leaveadjel"] = adjElLev;
-                        //dt.Rows[rowindex]["ttdelv"] = ttdelv;
-
 
                     }
                     break;
@@ -1080,8 +1058,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             string comcod = this.GetCompCode();
 
-          
-            if (comcod=="3365")
+
+            if (comcod == "3365")
             {
                 InsertUpdateDataBTI();
             }
@@ -1090,8 +1068,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 InsertUpdateDataALL();
 
             }
-             
-            
+
+
         }
 
         private void InsertUpdateDataBTI()
@@ -1108,6 +1086,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 string empid = dt.Rows[i]["empid"].ToString();
                 string idcardno = dt.Rows[i]["idcardno"].ToString();
+                string isadjust = dt.Rows[i]["isadjust"].ToString();
                 string delday = Convert.ToDouble("0" + dt.Rows[i]["delday"]).ToString();
                 string aprday = Convert.ToDouble("0" + dt.Rows[i]["aprday"]).ToString();
                 //string dedday = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.grvAdjDay.Items[i].FindControl("txtrptbillamt")).Text.Trim()));
@@ -1117,10 +1096,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 double ttdelv = Convert.ToDouble("0" + dt.Rows[i]["ttdelv"]);
 
                 double ttlCallv = dedday + leaveadj + leaveadjel;
-
-                if (ttdelv != ttlCallv)
+                if (isadjust == "True")
                 {
-                    Errocard += idcardno + ",";
+                    if (ttdelv != ttlCallv)
+                    {
+                        Errocard += idcardno + ",";
+                    }
+                    else
+                    {
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), leaveadjel.ToString(), "", "", "", "", "", "", "", "");
+                        if (!result)
+                            return;
+                    }
                 }
                 else
                 {
@@ -1128,6 +1115,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     if (!result)
                         return;
                 }
+
             }
             if (Errocard.Length == 0)
             {
@@ -1161,13 +1149,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 double leaveadj = Convert.ToDouble("0" + dt.Rows[i]["leaveadj"]);
                 double leaveadjel = Convert.ToDouble("0" + dt.Rows[i]["leaveadjel"]);
                 double ttdelv = Convert.ToDouble("0" + dt.Rows[i]["ttdelv"]);
-                 
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), leaveadjel.ToString(), "", "", "", "", "", "", "", "");
-                    if (!result)
-                        return;
-                
+
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), leaveadjel.ToString(), "", "", "", "", "", "", "", "");
+                if (!result)
+                    return;
+
             }
-            if (result==true)
+            if (result == true)
             {
                 Msg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
@@ -1178,7 +1166,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
             }
         }
-        
+
         protected void lbtnTotalDay_Click(object sender, EventArgs e)
         {
             this.SaveValue();
