@@ -402,7 +402,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string empid = dt.Rows[i]["empid"].ToString() + "%";
                 string wkdate = dt.Rows[i]["wkdate"].ToString();
                 string reason = dt.Rows[i]["reason"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, "", "", "", "", "", "", "", "", "");
+                string dlstatus = dt.Rows[i]["dstatus"].ToString();
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, "", "", "", "", "", "", "", "");
 
             }
 

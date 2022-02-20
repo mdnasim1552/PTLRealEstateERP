@@ -16,7 +16,8 @@
             //$('.datepicker').datepicker({
             //    format: 'mm/dd/yyyy',
             //});
-            $("input, select").bind("keydown", function (event) {
+            $("input, select").bind("keydown", function (event)
+            {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
