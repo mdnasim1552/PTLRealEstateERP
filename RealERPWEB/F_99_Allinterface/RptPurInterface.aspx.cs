@@ -1722,6 +1722,7 @@ namespace RealERPWEB.F_99_Allinterface
                     case "3364": // JBS
                     case "3339": // Tropical
                     case "3354": // Edison
+                    case "3366": // Lanco
 
                         hlink1.Visible = false;
                         break;
