@@ -88,24 +88,14 @@
         }
 
         /* for Login Page*/
-
-        .Companylogo {
-            height: 80px;
-            width: 104px !important;
-            height: 80px !important;
-            border: none;
-        }
-
-
-
-
+ 
         body {
             background: White;
         }
         /* CSS Document */
         #asitulogmain {
             width: 490px;
-            min-height: 280px;
+            min-height: 320px;
             border: 1px solid #A9B6C0;
             margin: 10% auto 5px;
             background: #fff;
@@ -290,6 +280,21 @@
         #lblalrtmsg {
             font-size: 16px;
         }
+
+        
+.Companylogox{
+     height: 140px;
+    width: 205px !important;
+    margin-top: -73px;
+    background: #fff;
+    padding: 20px;
+    -webkit-border-top-left-radius: 25px;
+-webkit-border-top-right-radius: 25px;
+-moz-border-radius-topleft: 25px;
+-moz-border-radius-topright: 25px;
+border-top-left-radius: 25px;
+border-top-right-radius: 25px;
+}
     </style>
 
     <script type="text/javascript">
@@ -371,21 +376,10 @@
                     <div id="asitulogmain">
 
                         <div class="asitulogInner">
-                            <div class="col-md-4">
-                                <asp:Image ID="Image1" CssClass="Companylogo" runat="server" ImageUrl="~/Image/LOGO1.PNG" Style="margin-top: 10px;" Width="500px" />
+                            <div class="col-md-12 text-center">
+                                <asp:Image ID="Image1" CssClass="Companylogox" runat="server" ImageUrl="~/Image/LOGO1.PNG"/>
                                 <%--<img src="Image1.jpg"  alt="img2" height="45" width="125" style="margin-top: 10px;" />--%>
-                            </div>
-
-                            <div class="col-md-3">
-                                <img src="Image/handshake.jpg" height="50" width="70" style="margin-top: 10px;" alt="handshak" />
-                                <span class="verson">Version 3.1.02</span>
-                            </div>
-                            <div class="col-md-5">
-                                <img src="image/erplogo.png" alt="img" width="170" />
-                                <p>We ensure your counting digitally </p>
-
-                            </div>
-
+                            </div> 
                         </div>
                         <br />
                         <div class="form-group">
@@ -462,7 +456,10 @@
 
                         </div>
 
-                        <div class="col-md-12"></div>
+                        <div class="col-md-12 text-center">
+                             <img src="image/erplogo.png" alt="img" width="100" />
+                                <p>We ensure your counting digitally </p>
+                        </div>
                         <asp:Label ID="lblmsg" runat="server" class="alert alert-danger col-sm-12" Visible="false">Wrong username or password</asp:Label>
 
 

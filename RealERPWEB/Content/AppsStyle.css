@@ -6,11 +6,11 @@
 	Date        :2014-12-14
 =======================================*/
 body {
-    font-family: Calibri, Arial;
+    font-family: Calibri, Arial, -apple-system, BlinkMacSystemFont, Fira Sans, Helvetica Neue, Apple Color Emoji, sans-serif,Open Sans;
     font-size: 11px;
     background: #2E3639;
     line-height: 18px;
-  /* background-image: url('file:///C:/Users/HP/OneDrive/Desktop/gif/img.gif');*/
+    /* background-image: url('file:///C:/Users/HP/OneDrive/Desktop/gif/img.gif');*/
 }
 
 .clr {
@@ -1589,21 +1589,20 @@ tr.gvPagination {
 .grvHeadergreen {
     background: #5F9467 !important;
     color: #fff;
-    font-family: Cambria !important;
+    
 }
 
 .grvHeader {
     background: #dff0d8 !important;
     color: #000;
-    font-family: Cambria !important;
+   
     font-size: 12px !important;
     height: 30px !important;
 }
 
 .grvFooter {
     background: #dff0d8 !important;
-    color: #000;
-    font-family: Cambria !important;
+    color: #000;  
     font-size: 12px !important;
     height: 23px !important;
 }
