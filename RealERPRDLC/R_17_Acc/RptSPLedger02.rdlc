@@ -166,7 +166,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.32292in</Height>
+                  <Height>0.40625in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -376,7 +376,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Ref. No.</Value>
+                                  <Value>Chq/ Ref No</Value>
                                   <Style>
                                     <FontFamily>Century Gothic</FontFamily>
                                     <FontWeight>Bold</FontWeight>
@@ -622,7 +622,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -862,7 +861,7 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.02778in</Top>
-            <Height>0.54167in</Height>
+            <Height>0.625in</Height>
             <Width>7.73957in</Width>
             <Style>
               <Border>
@@ -871,13 +870,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>0.58333in</Height>
+        <Height>0.78125in</Height>
         <Style />
       </Body>
       <Width>7.73958in</Width>
       <Page>
         <PageHeader>
-          <Height>0.96528in</Height>
+          <Height>0.9675in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1033,6 +1032,37 @@
                 </Border>
               </Style>
             </Image>
+            <Textbox Name="suppName">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!suppName.Value</Value>
+                      <Style>
+                        <FontFamily>Century Gothic</FontFamily>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>suppName</rd:DefaultName>
+              <Top>0.72375in</Top>
+              <Height>0.19444in</Height>
+              <Width>7.73957in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>

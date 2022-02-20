@@ -663,6 +663,7 @@ namespace RealERPWEB.F_17_Acc
 
                 e.Row.Cells[2].ToolTip = "Edit Information";
                 LinkButton lbtnAdd = (LinkButton)e.Row.FindControl("lbtnAdd");
+
                 int index = e.Row.RowIndex;
                 int rowindex = (this.grvacc.PageSize * this.grvacc.PageIndex) + index;
                 DataTable dt = ((DataTable)Session["storedata"]);
@@ -675,9 +676,7 @@ namespace RealERPWEB.F_17_Acc
                     return;
 
                 if (ASTUtility.Left(Code, 2) == "04" || ASTUtility.Left(Code, 2) == "41" || ASTUtility.Left(Code, 2) == "41")
-
                 {
-
                     LinkButton lbtnDetails = (LinkButton)e.Row.FindControl("lbtnDetails");
 
                     if (ASTUtility.Right(Code, 3) != "000")
@@ -687,39 +686,39 @@ namespace RealERPWEB.F_17_Acc
                     else
                     {
                         lbtnDetails.Visible = false;
-
                     }
                 }
-
-
-
-
                 if (ASTUtility.Right(Code, 8) == "00000000" && ASTUtility.Right(Code, 10) != "0000000000")
                 {
-
-
-
                     e.Row.Attributes["style"] = "background-color:gray; font-weight:bold;";
 
                 }
                 //
                 else if (ASTUtility.Right(Code, 3) == "000" && ASTUtility.Right(Code, 5) != "00000")
                 {
-
                     e.Row.Attributes["style"] = "background-color:#C0C0C0; font-weight:bold;";
-
                 }
 
                 // For Add
                 if (additem == 1)
                 {
-
                     lbtnAdd.Visible = true;
-
-
                 }
 
-
+                switch (comcod)
+                {
+                    case "3101":
+                    case "3356":
+                    case "3357":
+                        HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvdesc");
+                        if ((ASTUtility.Left(Code, 2) == "98" || ASTUtility.Left(Code, 2) == "99") && ASTUtility.Right(Code, 3) != "000")
+                        {
+                            hlnkgvdesc.NavigateUrl = "~/F_14_Pro/PurSupplierinfo?Type=Entry" + "&ssircode="+ Code;
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -970,8 +969,8 @@ namespace RealERPWEB.F_17_Acc
                 string txtTDetails = this.txtTDetails.Text.Trim();
 
                 string sphone = this.txtSupPhone.Text.ToString();
-                
-                bool isResultValid = true; 
+
+                bool isResultValid = true;
                 bool isSupPhone = false;
 
                 if (Desc.Length == 0)
@@ -1019,7 +1018,7 @@ namespace RealERPWEB.F_17_Acc
                         break;
                 }
 
-              
+
                 if (isResultValid)
                 {
 
@@ -1044,7 +1043,7 @@ namespace RealERPWEB.F_17_Acc
                             return;
                         }
                     }
-                    
+
                     msg = "Update Successfully";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
                     this.clearDataField();

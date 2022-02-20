@@ -302,7 +302,7 @@ namespace RealERPWEB.F_22_Sal
                     this.payscheduleCrystal();
                     break;
             }
-            this.payscheduleCube();
+            //this.payscheduleCube();
         }
 
         private void payscheduleCube()

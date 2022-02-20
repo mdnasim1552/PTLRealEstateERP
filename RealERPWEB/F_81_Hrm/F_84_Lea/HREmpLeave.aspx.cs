@@ -34,7 +34,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                 
+                this.lbtnOk_Click(null,null);
 
             }
 
@@ -210,7 +210,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblleaveApp.Visible = true;
                 this.lblleaveStatus.Visible = true;
                 this.lblleaveInformation.Visible = true;
-                this.PnlEmp.Visible = true;
+                //this.PnlEmp.Visible = true;
                 this.Pnlapply.Visible = true;
                 this.PnlRmrks.Visible = true;
                 this.divEmpDetails.Visible = true;
@@ -218,6 +218,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 this.txtApprdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetLeaveid();
+                this.ddlProjectName_SelectedIndexChanged(null, null);
                 this.imgbtnlAppEmpSeaarch_Click(null, null);
                 //this.imgbtnlFEmpSeaarch_Click(null, null);
             }
@@ -227,7 +228,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lbtnOk.Text = "Ok";
                 this.ddlCompany.Enabled = true;
                 this.ddlProjectName.Enabled = true;
-                this.PnlEmp.Visible = false;
+               // this.PnlEmp.Visible = false;
                 this.divEmpDetails.Visible = false;
 
                 this.Pnlapply.Visible = false;
@@ -1647,6 +1648,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void lnkRule_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/F_81_Hrm/F_84_Lea/CreateLeavRule?Type=");
+        }
+
+        protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetEmployeeName();
+
         }
     }
 }
