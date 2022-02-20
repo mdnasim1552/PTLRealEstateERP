@@ -85,8 +85,7 @@
     font-size: 16px;
     padding: 0px 0;
     line-height: 23px;
-    font-weight: 800;
-    font-family: Cambria;
+    font-weight: 800;    
     text-transform: uppercase;
 }
 
@@ -953,7 +952,7 @@ margin-left:40px !important;
             background-position: left center;
             background-repeat: no-repeat;
             color: #0000ff;
-            font-family: Tahoma;
+            
             font-size: 12px;
             line-height: 21px;
             padding-left: 0px;
@@ -1026,7 +1025,7 @@ margin-left:40px !important;
 
     .boxOne p {
         color: #000;
-        font-family: "Oswald",sans-serif;
+        
         font-size: 23px;
         letter-spacing: 1px;
         margin: 0px;
@@ -1091,7 +1090,7 @@ margin-left:40px !important;
 
 .boxOne h1 {
     color: #000;
-    font-family: "Oswald",sans-serif;
+     
     font-size: 23px;
     letter-spacing: 1px;
     margin: 0px;
@@ -1109,7 +1108,7 @@ margin-left:40px !important;
 
 .boxOne h2 {
     color: #000;
-    font-family: "Oswald",sans-serif;
+ /*   font-family: "Oswald",sans-serif;*/
     font-size: 23px;
     letter-spacing: 1px;
     margin: 0px;
@@ -1124,7 +1123,7 @@ margin-left:40px !important;
 
 .boxOne h3 {
     color: #000;
-    font-family: "Oswald",sans-serif;
+  /*  font-family: "Oswald",sans-serif;*/
     font-size: 23px;
     letter-spacing: 1px;
     margin: 0px;
