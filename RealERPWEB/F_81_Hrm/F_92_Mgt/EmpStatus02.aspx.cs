@@ -153,6 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
                 case "SepType":
                     this.MultiView1.ActiveViewIndex = 6;
+                    this.SepType.Visible = true;
                     this.GetSepType();
                     break;
                 case "EmpHold":
@@ -1552,6 +1553,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
             this.gvPabxInfo.PageIndex = e.NewPageIndex;
             this.LoadGrid();
+        }
+
+        protected void ddlToDesig_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetEmpSPList();
         }
     }
 }

@@ -112,7 +112,7 @@
                             <asp:ListItem>100</asp:ListItem>
                             <asp:ListItem>150</asp:ListItem>
                             <asp:ListItem>200</asp:ListItem>
-                            <asp:ListItem>300</asp:ListItem>
+                            <asp:ListItem Selected="True">300</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:Label ID="lblser" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Search</asp:Label>
@@ -127,7 +127,7 @@
                     <div class="row table table-responsive">
                         <asp:GridView ID="gvEmpLoanStatus" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True" OnPageIndexChanging="gvEmpLoanStatus_PageIndexChanging">
+                            ShowFooter="True" OnPageIndexChanging="gvEmpLoanStatus_PageIndexChanging" PageSize="300">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
