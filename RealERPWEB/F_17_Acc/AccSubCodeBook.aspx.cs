@@ -705,20 +705,15 @@ namespace RealERPWEB.F_17_Acc
                     lbtnAdd.Visible = true;
                 }
 
-                switch (comcod)
+                if (this.Request.QueryString["InputType"].ToString() == "res")
                 {
-                    case "3101":
-                    case "3356":
-                    case "3357":
-                        HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvdesc");
-                        if ((ASTUtility.Left(Code, 2) == "98" || ASTUtility.Left(Code, 2) == "99") && ASTUtility.Right(Code, 3) != "000")
-                        {
-                            hlnkgvdesc.NavigateUrl = "~/F_14_Pro/PurSupplierinfo?Type=Entry" + "&ssircode="+ Code;
-                        }
-                        break;
-                    default:
-                        break;
+                    HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvdesc");
+                    if ((ASTUtility.Left(Code, 2) == "98" || ASTUtility.Left(Code, 2) == "99") && ASTUtility.Right(Code, 3) != "000")
+                    {
+                        hlnkgvdesc.NavigateUrl = "~/F_14_Pro/PurSupplierinfo?Type=Entry" + "&ssircode=" + Code;
+                    }
                 }
+
             }
         }
 

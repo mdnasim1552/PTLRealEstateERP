@@ -1043,7 +1043,7 @@
                                     <div class="form-horizontal">
                                         <div class="form-group">
                                             <div class=" row col-md-11">
-                                                <span style="font-size: 14px; color: blue" id="statusatt" runat="server">Present=P,  Absent =A,  Late=L,  Late Present=LP,  Leave=CL, SL, EL, WPL,  Weekend=W</span>
+                                                <span style="font-size: 14px; color: blue" id="statusatt" runat="server">Present=P,  Absent =A,  Late=L,  Late Present=LP,  Casual Leave=CL, Sick Leave=SL, Earned Leave=EL, Without Pay Leave= WPL,  Weekend=W, Special Thursday=ST </span>
                                             </div>
                                         </div>
                                     </div>

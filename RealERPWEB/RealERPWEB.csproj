@@ -143,7 +143,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
+      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -336,6 +338,8 @@
     <Content Include="assets\js\responsiveslides.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\js\wd-ajax-load\js\load-posts.js" />
+    <Content Include="assets\vendor\flatpickr\flatpickr.min.css" />
+    <Content Include="assets\vendor\flatpickr\flatpickr.min.js" />
     <Content Include="assets\vendor\simplemde\simplemde.min.css" />
     <Content Include="assets\vendor\simplemde\simplemde.min.js" />
     <Content Include="AutoCompleted.asmx" />
@@ -2954,6 +2958,7 @@
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\ApplyLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLvApproval.aspx" />
@@ -3510,6 +3515,7 @@
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
     <Content Include="Scripts\Extension.min.js" />
+    <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
     <Content Include="Scripts\highchart2.js" />
@@ -4183,6 +4189,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx.designer.cs">
       <DependentUpon>RptWeekPresence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\ApplyLeave.aspx.cs">
+      <DependentUpon>ApplyLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\ApplyLeave.aspx.designer.cs">
+      <DependentUpon>ApplyLeave.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx.cs">
       <DependentUpon>CreateLeavRule.aspx</DependentUpon>
@@ -11851,6 +11864,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
+    <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
