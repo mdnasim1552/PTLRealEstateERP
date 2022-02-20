@@ -345,7 +345,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             catch (Exception ex)
             {
                 string Messaged = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true); 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true); 
             }
 
 
@@ -363,7 +363,26 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void gvleaveInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            string comcod = this.GetComeCode();
+            DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
+            string trnid = ((Label)this.gvleaveInfo.Rows[e.RowIndex].FindControl("lgvltrnleaveid")).Text.Trim();
 
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                string Messaged = "Deleted Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                return;
+            }
+            int rowindex = (this.gvleaveInfo.PageSize) * (this.gvleaveInfo.PageIndex) + e.RowIndex;
+            dt.Rows[rowindex].Delete();
+            DataView dv = dt.DefaultView;
+            ViewState.Remove("tblempleaveinfo");
+            ViewState["tblempleaveinfo"] = dv.ToTable();
+            this.gvleaveInfo.DataSource = dv.ToTable();
+            this.gvleaveInfo.DataBind();
         }
+
+        
     }
 }
