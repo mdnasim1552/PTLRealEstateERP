@@ -660,6 +660,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestRup.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSaleSoldUsold.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesTarget.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalPayScheduleLanco.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence02.rdlc" />
