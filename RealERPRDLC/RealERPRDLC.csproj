@@ -904,6 +904,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptGrpSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptIncomeSatatement.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipEdisonReal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlip.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlip1.rdlc" />

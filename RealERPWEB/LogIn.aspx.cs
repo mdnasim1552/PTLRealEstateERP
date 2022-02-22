@@ -285,13 +285,7 @@ namespace RealERPWEB
             //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]["comadd"].ToString().Substring(0, 6) == "<br />") ? dr[0]["comadd"].ToString().Substring(6) : dr[0]["comadd"].ToString();
             //((Image)this.Master.FindControl("Image1")).ImageUrl = "~/Image/" + "LOGO" + this.listComName.SelectedValue.ToString() + ".PNG";
 
-
-
             this.Image1.ImageUrl = "~/Image/" + "LOGO" + this.listComName.SelectedValue.ToString() + ".PNG";
-
-
-
-
 
         }
 

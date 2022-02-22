@@ -986,17 +986,25 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Absent">
+                                        <asp:TemplateField HeaderText="Late">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblabsent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0; ")
+                                                <asp:Label ID="lbllate" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "late")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         
-                                        <asp:TemplateField HeaderText="Late Absent">
+                                        <asp:TemplateField HeaderText="LP">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbllateabs" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "abslate")).ToString("#,##0; ")
+                                             %>'
+                                                    Font-Size="11px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField> 
+                                        
+                                        <asp:TemplateField HeaderText="Absent">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblabsent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
@@ -1010,13 +1018,6 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Late">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lbllate" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "late")).ToString("#,##0; ")
-                                             %>'
-                                                    Font-Size="11px"></asp:Label>
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Leave">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblleave" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tleav")).ToString("#,##0; ")
@@ -1024,6 +1025,7 @@
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Total">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbltotal" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tpayable")).ToString("#,##0; ")
