@@ -759,16 +759,16 @@
                   <Width>0.39101in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.36269in</Width>
+                  <Width>0.31269in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.39167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.42848in</Width>
+                  <Width>0.39515in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.33751in</Width>
+                  <Width>0.43751in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.34285in</Width>
@@ -2082,7 +2082,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Absent</Value>
+                                  <Value>Late</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>6.5pt</FontSize>
@@ -2158,7 +2158,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Holiday</Value>
+                                  <Value>Absent</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -2196,7 +2196,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Late</Value>
+                                  <Value>Holiday</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -3594,7 +3594,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!absnt.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!late.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3664,7 +3664,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!absnt.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3699,7 +3699,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!late.Value,"#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Fields!holyday.Value,"#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -3951,7 +3951,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!absnt.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!late.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4023,7 +4023,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!holyday.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!absnt.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4059,7 +4059,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!late.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!holyday.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4324,7 +4324,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!absnt.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!late.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4393,7 +4393,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -4405,7 +4404,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!holyday.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!absnt.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4445,7 +4444,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!late.Value), "#,##0;(#,##0); ")</Value>
+                                  <Value>=Format(Sum(Fields!holyday.Value), "#,##0;(#,##0); ")</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -4641,9 +4640,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.075in</Top>
-            <Left>0in</Left>
             <Height>1.18403in</Height>
-            <Width>13.65524in</Width>
+            <Width>13.67192in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -4654,7 +4652,7 @@
         <Height>1.25903in</Height>
         <Style />
       </Body>
-      <Width>13.6719in</Width>
+      <Width>13.67192in</Width>
       <Page>
         <PageHeader>
           <Height>0.64267in</Height>
@@ -4881,7 +4879,7 @@
               <rd:DefaultName>status</rd:DefaultName>
               <Top>0.01997in</Top>
               <Height>0.25in</Height>
-              <Width>12.8997in</Width>
+              <Width>13.66412in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>

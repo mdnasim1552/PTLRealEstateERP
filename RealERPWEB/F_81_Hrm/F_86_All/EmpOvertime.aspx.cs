@@ -985,18 +985,21 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
 
                         case "3364":
-                        case "3101":
                             this.gvothearn.HeaderRow.Cells[9].Text = "Holiday Allowance";
                           
 
                             break;
 
-                        case "3365"://For BTI
-                        //case "3101":
+                        case "3101":
+                        case "3365"://For BTI                                   
+                            this.gvothearn.HeaderRow.Cells[6].Text = "Earned Leave";
+                            this.gvothearn.HeaderRow.Cells[7].Text = "Arear Salary";
+                            this.gvothearn.HeaderRow.Cells[8].Text = "Project Visit";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
-                            this.gvothearn.Columns[6].Visible = false;
-                            this.gvothearn.Columns[7].Visible = false;
-                            this.gvothearn.Columns[8].Visible = false;
+                            
+                            //this.gvothearn.Columns[6].Visible = true;
+                            //this.gvothearn.Columns[7].Visible = true;
+                            //this.gvothearn.Columns[8].Visible = true;
                             this.gvothearn.Columns[12].Visible = false;
                             break;
 
@@ -2355,7 +2358,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
             msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
-
+            this.Data_Bind();
         }
 
 
@@ -3142,24 +3145,41 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                 case "otherearn":  
                     
-
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
+                        string Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0":dt.Rows[i]["Earned_Leave"].ToString();
+                        string Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0":dt.Rows[i]["Arear_Salary"].ToString();
+                        string Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0":dt.Rows[i]["Project_Visit"].ToString();
+
                         string Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0":dt.Rows[i]["Car_Allow"].ToString();
-                        string Fooding = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Fooding"].ToString();
-                        string Others = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" :dt.Rows[i]["Others"].ToString();
+                        string Fooding = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Fooding"].ToString();
+                        string Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" :dt.Rows[i]["Others"].ToString();
                         if (Card.Length == 0)
                         {
                             dt.Rows.RemoveAt(i);                           
                             continue;
                         }
-                       
+
+                        if (!IsNuoDecimal(Earned_Leave))
+                        {
+                            dt.Rows[i]["Earned_Leave"] = 0.00;
+                        }
+
+                        if (!IsNuoDecimal(Arear_Salary))
+                        {
+                            dt.Rows[i]["Arear_Salary"] = 0.00;
+                        }
+
+                        if (!IsNuoDecimal(Project_Visit))
+                        {
+                            dt.Rows[i]["Project_Visit"] = 0.00;
+                        }
+
                         if (!IsNuoDecimal(Car_Allow))
                         {
                             dt.Rows[i]["Car_Allow"] = 0.00;
-                        }
-                       
+                        }                                        
                         if (!IsNuoDecimal(Fooding))
                         {
                             dt.Rows[i]["Fooding"] = 0.00;
@@ -3182,11 +3202,19 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                             if (rows.Length > 0)
                             {
+                                double Earned_Leave = Convert.ToDouble("0" + rows[0]["Earned_Leave"]);
+                                double Arear_Salary = Convert.ToDouble("0" + rows[0]["Arear_Salary"]);
+                                double Project_Visit = Convert.ToDouble("0" + rows[0]["Project_Visit"]);
+
                                 double Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);
                                 double Fooding = Convert.ToDouble("0"+ rows[0]["Fooding"]);
                                 double Others = Convert.ToDouble("0" + rows[0]["Others"]);
 
-                                 
+                               
+                                dt1.Rows[i]["tptallow"] = Earned_Leave; 
+                                dt1.Rows[i]["kpi"] = Arear_Salary;
+                                dt1.Rows[i]["perbon"] = Project_Visit;   
+                                
                                 dt1.Rows[i]["haircutal"] = Car_Allow;
                                 dt1.Rows[i]["foodal"] = Fooding;
                                 dt1.Rows[i]["othearn"] = Others;

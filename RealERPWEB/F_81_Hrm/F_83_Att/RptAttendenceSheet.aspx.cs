@@ -653,7 +653,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                         int tcount;
                         tcount = ASTUtility.DatediffTotalDays(dateto, datefrm);
-                        for (i = 2; i < 34; i++)
+                        for (i = 2; i < 35; i++)
                             this.gvMonthlyattSummary.Columns[i].Visible = false;
                         int j = 2;
                         for (i = 0; i <tcount; i++)
