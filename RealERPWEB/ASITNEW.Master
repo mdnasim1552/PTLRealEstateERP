@@ -337,6 +337,13 @@
                         <!-- .top-bar-item -->
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
                             <ul class="header-nav nav">
+
+                                <li id="fblink" runat="server" visible="false">
+                                    <a href="https://www.facebook.com/btibd" class="nav-link" target="_blank" >
+                                       <img src="../../Image/facebook_Icon.png" alt="FBlink" style="width:25px; height:auto;" />
+                                    </a>
+                                </li>
+
                                 <li class="nav-item dropdown header-nav-dropdown has-notified">
 
 
