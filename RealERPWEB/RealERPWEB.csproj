@@ -2956,6 +2956,7 @@
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp_new.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLeaveStatus.aspx" />
@@ -4187,6 +4188,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx.designer.cs">
       <DependentUpon>RptWeekPresence.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp_new.aspx.cs">
+      <DependentUpon>InterfaceLeavApp_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp_new.aspx.designer.cs">
+      <DependentUpon>InterfaceLeavApp_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.cs">
       <DependentUpon>MyLeave.aspx</DependentUpon>

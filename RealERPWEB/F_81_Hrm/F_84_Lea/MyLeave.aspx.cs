@@ -26,11 +26,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
                 this.txtgvenjoydt1.Text = nextday;
                 this.txtgvenjoydt2.Text = nextday;
+                txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                GetCalCulateDay();
+
                 this.EmpLeaveInfo();
                 this.ShowEmppLeave();
+                GetCalCulateDay();
             }
         }
         private string GetComeCode()
@@ -54,38 +56,73 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void GetCalCulateDay()
         {
+
+            DataTable dt = (DataTable)Session["tblleavest"];
+            string gcod = this.ddlLvType.SelectedValue.ToString();
             DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
             DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
-            double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
-            TimeSpan difference = (tdate - fdate); //create TimeSpan object
 
+            double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
+
+
+
+            TimeSpan difference = (tdate - fdate); //create TimeSpan object
+            string diffdays = "0.00";
             if (difference.Days == 0 && isHalfday == 0.5)
             {
-                this.Duration.Value = (difference.Days + isHalfday).ToString();
+                diffdays = (difference.Days + isHalfday).ToString();
 
             }
             else if (difference.Days != 0 && isHalfday == 0.5)
             {
-                this.Duration.Value = (difference.Days + isHalfday).ToString();
+                diffdays = (difference.Days + isHalfday).ToString();
 
             }
             else
             {
-                this.Duration.Value = (difference.Days + isHalfday + 1).ToString();
+                diffdays = (difference.Days + isHalfday + 1).ToString();
 
             }
 
+            DataView dv = dt.Copy().DefaultView;
+            dv.RowFilter = ("gcod=" + gcod);
+            dt = dv.ToTable();
 
+            double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
+            double dfdays = Convert.ToDouble(diffdays);
+            this.Duration.Value = diffdays;
+
+            if (dfdays > ballv)
+            {
+                string Messaged = "Oops!! Insufficient Leave Balance, Please conctact with your Managment Team";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                this.btnSave.Enabled = false;
+            }
+            else
+            {
+                this.btnSave.Enabled = true;
+
+            }
 
         }
 
-        protected void txtgvenjoydt1_TextChanged(object sender, EventArgs e)
+        protected void txtgvenjoydt1_TextChanged1(object sender, EventArgs e)
         {
-
+            DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+            string nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+            this.txtgvenjoydt2.Text = nextday;
+            txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+            GetCalCulateDay();
         }
 
         protected void txtgvenjoydt2_TextChanged(object sender, EventArgs e)
         {
+            DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+            //string nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+            //this.txtgvenjoydt2.Text = nextday;
+            txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+
+
             GetCalCulateDay();
         }
 
@@ -113,11 +150,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-
+            string usrid = hst["usrid"].ToString();
             string comcod = this.GetComeCode();
             string trnid = this.GetLeaveid();
             string empid = this.GetEmpID();
-          
+
             string isHalfday = (this.chkHalfDay.Checked ? "True" : "False");
             string ttdays = this.Duration.Value.ToString();
 
@@ -135,7 +172,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string dnameadesig = this.txtdutiesnameandDesig.Text.Trim();
 
                 string APRdate = "";
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, "", "");
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, usrid, "");
 
                 if (!result)
                 {
@@ -159,7 +196,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             default:
                                 this.SendSms(frmdate, todate);
                                 break;
-                        } 
+                        }
                     }
 
                     else if (hst["compmail"].ToString() == "True")
@@ -210,7 +247,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
 
         private void ShowEmppLeave()
-        { 
+        {
 
             this.txtLeavLreasons.Text = "";
             this.txtLeavRemarks.Text = "";
@@ -218,8 +255,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             string empid = this.GetEmpID();
             string aplydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
-           
-              
+
+
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LEAVESTATUS02", empid, aplydat, "", "", "", "", "", "", "");
             if (ds1 == null)
             {
@@ -283,7 +320,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             if (ds == null)
                 return;
-            
+
             double lapplied = Convert.ToDouble(this.Duration.Value.ToString());
             string leavedesc = this.ddlLvType.SelectedValue.ToString();
 
@@ -337,7 +374,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
 
                 oSmtp.SendMail(oServer, oMail);
-                
+
                 string Messaged = "Your message has been successfully sent";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
 
@@ -345,7 +382,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             catch (Exception ex)
             {
                 string Messaged = "Error occured while sending your message." + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true); 
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
             }
 
 
@@ -361,11 +398,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
-        protected void gvleaveInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
+
+
+        protected void lnkDelete_Click(object sender, EventArgs e)
         {
             string comcod = this.GetComeCode();
             DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
-            string trnid = ((Label)this.gvleaveInfo.Rows[e.RowIndex].FindControl("lgvltrnleaveid")).Text.Trim();
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string trnid = ((Label)this.gvleaveInfo.Rows[RowIndex].FindControl("lgvltrnleaveid")).Text.Trim();
 
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
@@ -374,7 +415,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
-            int rowindex = (this.gvleaveInfo.PageSize) * (this.gvleaveInfo.PageIndex) + e.RowIndex;
+            string Messagesd = "Deleted Success";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+            
+
+            int rowindex = (this.gvleaveInfo.PageSize) * (this.gvleaveInfo.PageIndex) + RowIndex;
             dt.Rows[rowindex].Delete();
             DataView dv = dt.DefaultView;
             ViewState.Remove("tblempleaveinfo");
@@ -383,6 +428,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.gvleaveInfo.DataBind();
         }
 
-        
+       
     }
 }
