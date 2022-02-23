@@ -193,16 +193,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.22917in</Width>
+                  <Width>3.1823in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.91668in</Width>
+                  <Width>0.86981in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.38416in</Width>
+                  <Width>1.33729in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.94916in</Width>
+                  <Width>1.90229in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -685,7 +685,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>2.8925in</Top>
             <Height>0.83959in</Height>
-            <Width>7.47917in</Width>
+            <Width>7.29169in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -696,22 +696,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.02431in</Width>
+                  <Width>0.99306in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.10764in</Width>
+                  <Width>0.07639in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.82764in</Width>
+                  <Width>2.79639in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.11806in</Width>
+                  <Width>1.08681in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.10639in</Width>
+                  <Width>0.07514in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.29514in</Width>
+                  <Width>2.26389in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1194,7 +1194,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.8875in</Top>
             <Height>0.67833in</Height>
-            <Width>7.47918in</Width>
+            <Width>7.29168in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1312,7 +1312,6 @@
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
                                     <FontSize>9pt</FontSize>
-                                    <FontWeight>Bold</FontWeight>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
                                 </TextRun>
@@ -1492,9 +1491,10 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Total Amount</Value>
+                                  <Value>Total Actual Price</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1564,6 +1564,7 @@
                                   <Value>=Parameters!txtTotal.Value</Value>
                                   <Style>
                                     <FontFamily>Times New Roman</FontFamily>
+                                    <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2029,7 +2030,7 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0.04375in</Top>
+            <Top>0.06875in</Top>
             <Left>0.01542in</Left>
             <Height>0.1875in</Height>
             <Width>3.86917in</Width>
@@ -2049,7 +2050,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>(Head of Sales)</Value>
+                        <Value>( Head of Sales )</Value>
                         <Style>
                           <FontFamily>times New Roman</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -2084,7 +2085,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>(Client's Signature)</Value>
+                        <Value>( Client's Signature )</Value>
                         <Style>
                           <FontFamily>times New Roman</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -2100,7 +2101,7 @@
                 <rd:DefaultName>Textbox1</rd:DefaultName>
                 <Left>4.57827in</Left>
                 <Height>0.21875in</Height>
-                <Width>2.72694in</Width>
+                <Width>2.68944in</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -2120,7 +2121,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>(Sales Manager)</Value>
+                        <Value>( Executive CRD )</Value>
                         <Style>
                           <FontFamily>times New Roman</FontFamily>
                           <FontWeight>Bold</FontWeight>
@@ -2150,10 +2151,10 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>4.38729in</Top>
-            <Left>0.05667in</Left>
+            <Top>4.59979in</Top>
+            <Left>0.00667in</Left>
             <Height>0.25in</Height>
-            <Width>7.30521in</Width>
+            <Width>7.285in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -2162,13 +2163,13 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>4.95708in</Height>
+        <Height>4.84979in</Height>
         <Style />
       </Body>
-      <Width>7.47918in</Width>
+      <Width>7.29169in</Width>
       <Page>
         <PageFooter>
-          <Height>0.53125in</Height>
+          <Height>0.59375in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2190,9 +2191,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>printFooter</rd:DefaultName>
-              <Top>0.05694in</Top>
+              <Top>0.03194in</Top>
               <Left>0.04042in</Left>
-              <Height>0.20764in</Height>
+              <Height>0.19514in</Height>
               <Width>3.80694in</Width>
               <Style>
                 <Border>
@@ -2224,11 +2225,47 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtcompinfo</rd:DefaultName>
-              <Top>0.22708in</Top>
+              <Top>0.20208in</Top>
               <Left>0.04042in</Left>
-              <Height>0.20764in</Height>
+              <Height>0.19514in</Height>
               <Width>3.80694in</Width>
               <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox31">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=iif(Globals!TotalPages=1, "", "Page " &amp; Globals!PageNumber &amp; " of " &amp; Globals!TotalPages)</Value>
+                      <Style>
+                        <FontFamily>Calibri</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox26</rd:DefaultName>
+              <Top>0.38611in</Top>
+              <Left>0.04042in</Left>
+              <Height>0.175in</Height>
+              <Width>2.29083in</Width>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2246,10 +2283,12 @@
             </Border>
           </Style>
         </PageFooter>
-        <LeftMargin>0.25in</LeftMargin>
-        <RightMargin>0.5in</RightMargin>
-        <TopMargin>1in</TopMargin>
-        <BottomMargin>0.5in</BottomMargin>
+        <PageHeight>11.69in</PageHeight>
+        <PageWidth>8.27in</PageWidth>
+        <LeftMargin>0.75in</LeftMargin>
+        <RightMargin>0.15in</RightMargin>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>
