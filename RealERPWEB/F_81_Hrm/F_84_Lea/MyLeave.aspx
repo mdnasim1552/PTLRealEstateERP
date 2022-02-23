@@ -34,7 +34,7 @@
 
 
                 <div class="row">
-                    <div class="col-12 col-lg-12 col-xl-4">
+                    <div class="col-12 col-lg-12 col-xl-3">
                         <section class="card card-fluid" style="height:650px">
                             <!-- .card-body -->
                             <header class="card-header">Leave Apply</header>
@@ -57,7 +57,7 @@
                                         <!-- .form-group -->
                                         <div class="form-group">
                                             <label for="sel1">From Date</label>
-                                            <asp:TextBox ID="txtgvenjoydt1" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtgvenjoydt1" runat="server" OnTextChanged="txtgvenjoydt1_TextChanged1" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt1_CalendarExtender" runat="server" Enabled="True"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt1"></cc1:CalendarExtender>
                                         </div>
@@ -122,18 +122,18 @@
                             </div>
                         </section>
                     </div>
-                    <div class="col-12 col-lg-12 col-xl-8">
-                        <section class="card card-fluid mb-0" style="height:650px">
+                    <div class="col-12 col-lg-12 col-xl-9">
+                        <section class="card card-fluid mb-0" style="height:650px; flex-grow: 1;  overflow: auto;">
                             <!-- .card-body -->
                             <header class="card-header">Applied Leave</header>
 
                             <div class="card-body card card-fluid mb-0">
-                                <legend>Appliyed Leave</legend>
-                                <div class="row">
+                                
+                                <div class="row" style="height:180px; flex-grow: 1;  overflow: auto;">
                                     <asp:GridView ID="gvleaveInfo" runat="server" AutoGenerateColumns="False" 
                                         CssClass="table-striped table-hover table-bordered"
                                         ShowFooter="True" OnRowDataBound="gvleaveInfo_RowDataBound"
-                                        OnRowDeleting="gvleaveInfo_RowDeleting">
+                                        >
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -156,8 +156,22 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
+                                             <asp:TemplateField HeaderText="">
+                                                <ItemTemplate>
+                                                     <asp:LinkButton ID="lnkDelete" 
+                                                            Visible='<%# Eval("isapproved").ToString() == "True" ? true : false %>'
+                                                              runat="server" Font-Bold="True" ToolTip="Delete" OnClick="lnkDelete_Click">
+                                                         <i class=" fa fa-trash"></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
 
-                                            <asp:CommandField ShowDeleteButton="True" />
+                                            
+                                                        
+
+
+                                            
 
                                             <asp:TemplateField HeaderText="Desription">
                                                 <ItemTemplate>
@@ -242,10 +256,12 @@
                                         </Columns>
 
                                     </asp:GridView>
-                                    <legend>Leave Status</legend>
+                                    
                                 </div>
                                 <div class="row mt">
+                            <header class="card-header">Leave Status</header>
 
+                                    
                                     <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True" 
                                         CssClass="table-striped table-hover table-bordered">
                                         <RowStyle />
