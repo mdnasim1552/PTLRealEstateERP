@@ -98,7 +98,7 @@
 
 
                             <asp:Label ID="Label4" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 ">Section</asp:Label>
-                            <asp:DropDownList ID="ddlprjlistto" data-placeholder="Choose Department.." runat="server" CssClass="chzn-select form-control">
+                            <asp:DropDownList ID="ddlprjlistto" data-placeholder="Choose Department.." runat="server" CssClass="chzn-select form-control" AutoPostBack="true">
                             </asp:DropDownList>
 
                             <div class="col-12 row mb-0 pb-0 mt-2">

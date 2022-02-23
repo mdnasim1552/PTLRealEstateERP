@@ -191,8 +191,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             ((Label)this.gvabscount.FooterRow.FindControl("lgvFabsday")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(abscount)", "")) ? 0.00
                         : dt.Compute("sum(abscount)", ""))).ToString("#,##0;(#,##0); ");
-
-
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -254,8 +252,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             this.GvEmpDetails.DataSource = this.HiddenSameDataDetails(ds2.Tables[0]);
             this.GvEmpDetails.DataBind();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalDeails();", true);
-            
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalDeails();", true);      
         }
 
 

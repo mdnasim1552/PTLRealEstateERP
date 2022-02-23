@@ -136,10 +136,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONTHFOROFFDAY", "", "", "", "", "", "", "", "", "");
             this.ddlMonth.DataTextField = "mnam";
-            this.ddlMonth.DataValueField = "mno";
+            this.ddlMonth.DataValueField = "yearmon";
             this.ddlMonth.DataSource = ds2.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("dd-MM-yyyy").Trim();
+            //this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("dd-MM-yyyy").Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM").Trim();
 
 
         }
@@ -170,22 +171,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString()) + "%";
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
-            DateTime date1 = Convert.ToDateTime(this.ddlMonth.SelectedValue.ToString());
+            string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
             string cudate = "";
+            string date = "";
             switch (comcod)
             {
                 case "3365":
                 case "3101":
-                    cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 default:
-                    cudate = date1.ToString("dd-MMM-yyyy");
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                     break;
             }
-            string date = Getdatestart() + cudate.Trim().Substring(2);
             //string date = Convert.ToDateTime(Getdatestart()+"-" + this.ddlMonth.SelectedItem.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "SHOWEMPOFFDAY", Section, date, employee, Company, Department, "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "SHOWEMPOFFDAY", Section, cudate, employee, Company, Department, "", "", "", "");
             if (ds4 == null)
             {
                 this.gvoffday.DataSource = null;
@@ -260,23 +264,26 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
 
-            DateTime date1 = Convert.ToDateTime(this.ddlMonth.SelectedValue.ToString());
+            string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
             string cudate = "";
+            string date = "";
             switch (comcod)
             {
                 case "3365":
                 case "3101":
-                    cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 default:
-                    cudate=date1.ToString("dd-MMM-yyyy");
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                     break;
             }
-            string date = Getdatestart() + cudate.Trim().Substring(2);
             //string date = cudate1.ToString("dd-MMM-yyyy");
             //string date = Getdatestart() + "-" + Month + "-" + year;
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONDATE", date, "", "", "", "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONDATE", cudate, "", "", "", "", "", "", "", "");
 
             if (ds4 == null)
             {
