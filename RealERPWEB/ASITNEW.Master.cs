@@ -44,9 +44,6 @@ namespace RealERPWEB
 
             if (!IsPostBack)
             {
-
-
-
                 GetModulename();
                 // new process add - nahid 20210525
 
@@ -68,7 +65,14 @@ namespace RealERPWEB
                 this.GetShortCut();
                 this.GetAdminUserMenu();
                 string comcod = this.GetCompCode();
-
+                if (comcod == "3365")
+                {
+                    fblink.Visible = true;
+                }
+                else
+                {
+                    fblink.Visible = false;
+                }
                 if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
                 {
                     BindMenu();
