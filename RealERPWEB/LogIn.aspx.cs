@@ -500,6 +500,8 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+                //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
+                //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
 
 
 

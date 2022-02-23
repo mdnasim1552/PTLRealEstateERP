@@ -65,7 +65,7 @@ namespace RealERPWEB
                 this.GetShortCut();
                 this.GetAdminUserMenu();
                 string comcod = this.GetCompCode();
-                if (comcod == "3365")
+                if (comcod == "3365" ||  comcod == "3101")
                 {
                     fblink.Visible = true;
                 }
