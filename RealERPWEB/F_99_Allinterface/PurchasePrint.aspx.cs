@@ -1154,7 +1154,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                     PrintReq = "PrintReque09";
                     break;
-                case "3101":
+                //case "3101":
                 case "3325":
                 case "2325":
                     PrintReq = "PrintReque03";
@@ -1194,7 +1194,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3356":
-                    //case "3101":
+                case "3101":
                     PrintReq = "PrintReqiNTECH";
                     break;
 
@@ -2345,7 +2345,7 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("rpttxtCCDNar", crmnarr));
             Rpt1.SetParameters(new ReportParameter("rpttxtEstNar", estnarr));
             Rpt1.SetParameters(new ReportParameter("txtRptFooter", txtuserinfo));
-            Rpt1.SetParameters(new ReportParameter("txtPreparedBy", username));
+            Rpt1.SetParameters(new ReportParameter("txtPreparedBy", txtSign1));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -4011,8 +4011,6 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    case "3101":
-                    case "3366"://lanco
                     case "3339": // Tropical Home
                     case "3332": // InnStar
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4027,6 +4025,8 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
+                    case "3101":
+                    case "3366"://lanco
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
 

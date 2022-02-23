@@ -113,28 +113,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (ds1 == null)
                 return;
 
-            this.RadioButtonList1.Items[0].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</span></h4>" + "<span class='lbldata2'>" + "Leave Request" + "</span>";
-            this.RadioButtonList1.Items[1].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Leave Process" + "</span>";
-            this.RadioButtonList1.Items[2].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Leave Approval" + "</span>";
-            this.RadioButtonList1.Items[3].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["fappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Final Approval" + "</span>";
-            this.RadioButtonList1.Items[4].Text = "<h4 class='text-center'><span class='lbldata'>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span></h4>" + "<span class=lbldata2>" + "Leave Confirmed" + "</span>";
+            this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan'> </span>" + "<br>" + "<span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</span>" + "<span class='lbldata2'>" + "Leave Request" + "</span>";
+            this.RadioButtonList1.Items[1].Text = "<span class='fa fa-pencil-square-o fan'> </span>" + "<br>" + "<span class='lbldata'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Leave Process" + "</span>";
+            this.RadioButtonList1.Items[2].Text = "<span class='fa fa-check-square-o fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Leave Approval" + "</span>";
 
+            this.RadioButtonList1.Items[3].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["fappcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Final Approval" + "</span>";
+            //this.RadioButtonList1.Items[3].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Final Approval" + "</span>";
+            this.RadioButtonList1.Items[4].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Leave Confirmed" + "</span>";
+            //this.RadioButtonList1.Items[4].Text = "<span class='fa fa-credit-card fan'> </span>" + "<br>" + "<span class=lbldata>" + "0" + "</span>" + "<span class=lbldata2>" + "" + "</span>";
 
-
-            //this.RadioButtonList1.Items[0].Text = "<span class='fa  fa-signal fan'> </span>" + "<br>" + "<span class='lbldata'>" + ds1.Tables[1].Rows[0]["tcount"].ToString() + "</span>" + "<span class='lbldata2'>" + "Leave Request" + "</span>";
-            //this.RadioButtonList1.Items[1].Text = "<span class='fa fa-pencil-square-o fan'> </span>" + "<br>" + "<span class='lbldata'>" + ds1.Tables[1].Rows[0]["reqcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Leave Process" + "</span>";
-            //this.RadioButtonList1.Items[2].Text = "<span class='fa fa-check-square-o fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["appcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Leave Approval" + "</span>";
-
-            //this.RadioButtonList1.Items[3].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["fappcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Final Approval" + "</span>";
-            ////this.RadioButtonList1.Items[3].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Final Approval" + "</span>";
-            //this.RadioButtonList1.Items[4].Text = "<span class='fa fa-calculator fan'> </span>" + "<br>" + "<span class=lbldata>" + ds1.Tables[1].Rows[0]["tappcount"].ToString() + "</span>" + "<span class=lbldata2>" + "Leave Confirmed" + "</span>";
-            ////this.RadioButtonList1.Items[4].Text = "<span class='fa fa-credit-card fan'> </span>" + "<br>" + "<span class=lbldata>" + "0" + "</span>" + "<span class=lbldata2>" + "" + "</span>";
-
-            ////this.RadioButtonList1.Items[0].Text = "Leave Request" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["salReq"].ToString() + "</span>";
-            ////this.RadioButtonList1.Items[1].Text = "Leave Process" + "<br>" + "<span class='lbldata'>" + ds1.Tables[2].Rows[0]["inprocess"].ToString() + "</span>";
-            ////this.RadioButtonList1.Items[2].Text = "Leave Approval(DPT H)" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["approved"].ToString() + "</span>";
-            ////this.RadioButtonList1.Items[3].Text = "Leave Approval(HR H)" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["approved"].ToString() + "</span>";
-            ////this.RadioButtonList1.Items[4].Text = "Leave Confirmed" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["payconf"].ToString() + "</span>";
+            //this.RadioButtonList1.Items[0].Text = "Leave Request" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["salReq"].ToString() + "</span>";
+            //this.RadioButtonList1.Items[1].Text = "Leave Process" + "<br>" + "<span class='lbldata'>" + ds1.Tables[2].Rows[0]["inprocess"].ToString() + "</span>";
+            //this.RadioButtonList1.Items[2].Text = "Leave Approval(DPT H)" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["approved"].ToString() + "</span>";
+            //this.RadioButtonList1.Items[3].Text = "Leave Approval(HR H)" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["approved"].ToString() + "</span>";
+            //this.RadioButtonList1.Items[4].Text = "Leave Confirmed" + "<br>" + "<span class=lbldata>" + ds1.Tables[2].Rows[0]["payconf"].ToString() + "</span>";
 
 
             Session["tblfirstaproved"] = ds1.Tables[2];
@@ -330,7 +322,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         //}
         private void Data_Bind(string gv, DataTable dt)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
 
             switch (gv)
             {
@@ -341,7 +335,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     if (dt.Rows.Count == 0)
                         return;
                     break;
-                case "gvInprocess":
+                case "gvInprocess": 
+                    DataView dv = dt.Copy().DefaultView;
+                    dv.RowFilter = ("susrid=" + userid);
+                    dt = dv.ToTable(); 
+
                     this.gvInprocess.DataSource = (dt);
                     this.gvInprocess.DataBind();
 
@@ -349,6 +347,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         return;
                     break;
                 case "gvApproved":
+
+                    DataView dv = dt.Copy().DefaultView;
+                    dv.RowFilter = ("susrid=" + userid);
+                    dt = dv.ToTable();
+
                     this.gvApproved.DataSource = (dt);
                     this.gvApproved.DataBind();
 
@@ -398,9 +401,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat;
 
-                hlink3.Visible = (userid == suserid) ? true : false;
                 hlink3.Enabled = (userid == suserid) ? true : false;
-                //hlink3.Attributes["style"] = (userid == suserid) ? "background:blue;" : " background:red;";
+                hlink3.Attributes["style"] = (userid == suserid) ? "background:blue;" : " background:red;";
 
                 //HyperLink hlink1 = (HyperLink)e.Row.FindControl("HylvPrint");
                 //HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnApp");
@@ -438,8 +440,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 DataRow[] dr1 = dt.Select("usrid='" + usrid + "' and centrid='" + refno + "'");
                 DataRow[] dre = dte.Select("usrid='" + usrid + "'");
                 hlink3.Enabled = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
-                hlink3.Visible = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
-               // hlink3.Attributes["style"] = (dre.Length > 0) ? "background:blue;" : ((dr1.Length > 0) ? "background:blue;" : " background:red;");
+                hlink3.Attributes["style"] = (dre.Length > 0) ? "background:blue;" : ((dr1.Length > 0) ? "background:blue;" : " background:red;");
                 // Session["tblaproved"] = ds1.Tables[2];
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat;
 
@@ -470,7 +471,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected void gvfiApproved_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
-            { 
+            {
                 DataTable dte = (DataTable)Session["tblmaproved"];
                 DataTable dt = (DataTable)Session["tbleaproved"];
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnAppfi");
@@ -491,8 +492,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         DataRow[] dr1 = dt.Select("usrid='" + usrid + "' and centrid='" + refno + "'");
                         DataRow[] dre = dte.Select("usrid='" + usrid + "'");
                         hlink3.Enabled = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
-                        hlink3.Visible = dre.Length > 0 ? true : ((dr1.Length > 0) ? true : false);
-                        //hlink3.Attributes["style"] = (dre.Length > 0) ? "background:blue;" : ((dr1.Length > 0) ? "background:blue;" : " background:red;");
+                        hlink3.Attributes["style"] = (dre.Length > 0) ? "background:blue;" : ((dr1.Length > 0) ? "background:blue;" : " background:red;");
                         break;
                 }
                 // Session["tblaproved"] = ds1.Tables[2];
@@ -519,7 +519,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             int index = row.RowIndex;
             string empid = ((Label)this.gvInprocess.Rows[index].FindControl("lblgvempid")).Text.ToString();
             string leavid = ((Label)this.gvInprocess.Rows[index].FindControl("lblLeavId")).Text.ToString();
-          
+
             DataTable dt = (DataTable)ViewState["tbltotalleav"];
             bool result = accData.UpdateTransInfo(comcod, "DBO_HRM.SP_REPORT_HR_INTERFACE", "DELETELEAVEINFO", leavid, empid, usrid, "", "", "", "", "", "", "", "", "", "", "");
             if (result)

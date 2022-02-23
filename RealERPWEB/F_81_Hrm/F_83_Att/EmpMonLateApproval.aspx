@@ -72,7 +72,57 @@
 
     </script>
 
+    <script type = "text/javascript">
 
+        function checkAll(objRef) {
+
+            var GridView = objRef.parentNode.parentNode.parentNode;
+
+            var inputList = GridView.getElementsByTagName("input");
+
+            for (var i = 0; i < inputList.length; i++) {
+
+                //Get the Cell To find out ColumnIndex
+
+                var row = inputList[i].parentNode.parentNode;
+
+                if (inputList[i].type == "checkbox" && objRef != inputList[i]) {
+
+                    if (objRef.checked) {
+                        inputList[i].checked = true;
+
+                    }
+
+                    else {
+
+                        //If the header checkbox is checked
+
+                        //uncheck all checkboxes
+
+                        //and change rowcolor back to original
+
+                        if (row.rowIndex % 2 == 0) {
+
+                           
+                        }
+
+                        else {
+
+                            //row.style.backgroundColor = "white";
+
+                        }
+
+                        inputList[i].checked = false;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
 
 
 
@@ -907,6 +957,29 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+                                       <asp:TemplateField HeaderText="Informed Admin Dept.">
+                                            <FooterTemplate>
+                                                <asp:LinkButton ID="lbtnUpdateMonthAbsDay" runat="server" Font-Bold="True"
+                                                    Font-Size="12px" OnClick="lbtnUpdateMonthAbsDay_Click"
+                                                    CssClass="btn    btn-primary primarygrdBtn">Update</asp:LinkButton>
+                                            </FooterTemplate>
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtabsaprdaylp" runat="server" BackColor="Transparent" AutoPostBack="true"
+                                                    BorderStyle="None" Font-Size="11px" Style="text-align: right" OnTextChanged="txtabsaprdaylp_TextChanged"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absapp")).ToString("#,##0;(#,##0); ") %>'
+                                                    Width="80px"></asp:TextBox>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                      <asp:TemplateField HeaderText="Balance Day">                                           
+                                            <ItemTemplate>
+                                                 <asp:Label ID="lblgvabsdayApp" runat="server" BackColor="Transparent"
+                                                BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balday")).ToString("#,##0;(#,##0); ") %>'
+                                                Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
 
                                 </Columns>
                                 <FooterStyle CssClass="grvFooter" />
@@ -1525,6 +1598,11 @@
                         <div class="modal-content  ">
                             <div class="modal-header bg-primary">
 
+
+                                
+
+
+
                                 <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
                                 <h4 class="modal-title">
                                     <span class="glyphicon glyphicon-hand-right"></span>
@@ -1649,14 +1727,12 @@
 
                                             <asp:TemplateField>
                                                 <HeaderTemplate>
-                                                    <table style="width: 20px;">
-                                                        <tr>
-                                                            <td>Inform?
-                                                  <%-- <asp:CheckBox ID="chkall" runat="server" 
-                                                        OnCheckedChanged="chkall_CheckedChanged" AutoPostBack="true" /></td>--%>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                    Inform?
+                                                   
+                                                          <asp:CheckBox ID="checkAll" runat="server" onclick = "checkAll(this);" />
+
+
+                                                            
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:CheckBox ID="lblchkaabs02" runat="server"

@@ -150,6 +150,9 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
@@ -660,6 +663,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestRup.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSaleSoldUsold.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesTarget.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalPayScheduleLanco.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence02.rdlc" />

@@ -1060,7 +1060,7 @@
                                              <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
-                                        <asp:TemplateField HeaderText="Late Present">
+                                        <asp:TemplateField HeaderText="LP">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbllateabs" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "abslate")).ToString("#,##0; ")
                                              %>'

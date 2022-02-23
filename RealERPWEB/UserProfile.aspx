@@ -82,6 +82,9 @@
             </div>
             <!-- .cover-controls -->
             <div class="cover-controls cover-controls-bottom">
+                <asp:HyperLink ID="HyperLink4" class="btn btn-light" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave?Type=User" runat="server">Apply Leave</asp:HyperLink>
+
+                 
                 <a href="MyShortCutLink.aspx?Module=" class="btn btn-light">My Shortcut</a>
                 <a href="#" class="btn btn-light" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a>
                 <a href="#" class="btn btn-light" data-toggle="modal" data-target="#fdollowingModal">Change Pasword</a>

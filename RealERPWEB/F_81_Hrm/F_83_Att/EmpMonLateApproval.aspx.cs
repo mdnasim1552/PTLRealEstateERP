@@ -913,9 +913,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             }
                             break;
                     }
-
-
-
+                     
                     break;
 
 
@@ -927,9 +925,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         dt.Rows[rowindex]["dedday"] = dedday;
 
                     }
+                     
+                    break;
 
+                case "MabsentApp02":
+                    for (int i = 0; i < this.gvabsapp02.Rows.Count; i++)
+                    {
+                        
+                        double absapp = Convert.ToDouble("0" + ((TextBox)this.gvabsapp02.Rows[i].FindControl("txtabsaprdaylp")).Text.Trim());
+                        double balday = Convert.ToDouble("0" + ((Label)this.gvabsapp02.Rows[i].FindControl("lblgvabsdayApp")).Text.Trim());
+                        rowindex = (this.gvabsapp02.PageSize) * (this.gvabsapp02.PageIndex) + i;
+                        dt.Rows[rowindex]["absapp"] = absapp;
+                        dt.Rows[rowindex]["balday"] = balday;
 
-
+                    }
 
                     break;
 
@@ -1532,7 +1541,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void btnUpdatePunch_Click(object sender, EventArgs e)
         {
             this.SaveValue();
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+           
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
             string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
@@ -1551,8 +1560,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     return;
                 //  }
             }
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+ 
+            string Msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
 
         }
         protected void lbtnCalCulationPday_Click(object sender, EventArgs e)
@@ -1583,7 +1593,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
 
             this.SaveValue();
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+             
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
             string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
@@ -1606,8 +1616,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     return;
                 //  }
             }
-         ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+         
+            string Msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+
         }
         protected void grvAdjDay_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -2343,6 +2355,89 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 Session["tblover"] = dt;
                 this.Data_Bind();
             }
+        }
+
+        protected void txtabsaprdaylp_TextChanged(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "3365" || comcod == "3101")
+            {
+                string errMsg;
+                DataTable dt = (DataTable)Session["tblover"];
+                TextBox textBox = sender as TextBox;
+                GridViewRow row = ((GridViewRow)((TextBox)sender).NamingContainer);
+                int rowindex = row.RowIndex;
+                //NamingContainer return the container that the control sits in
+                Label ttday = (Label)row.FindControl("lblgvabsday02"); 
+                TextBox txtAprvday = (TextBox)row.FindControl("txtabsaprdaylp");
+                Label txtbalday = (Label)row.FindControl("lblgvabsdayApp");              
+
+                double absday = Convert.ToDouble("0" + (ttday.Text.Trim()));
+                double Aprvday = Convert.ToDouble("0" + (txtAprvday.Text.Trim()));
+                double balday = Convert.ToDouble("0" + (txtbalday.Text.Trim()));          
+               
+                if (Aprvday > absday)
+                {
+                    errMsg = "Total Absent Execed :" + absday;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                    dt.Rows[rowindex]["absapp"] = 0.00;
+                    Session["tblover"] = dt;
+                    this.Data_Bind();
+                    return;
+                }
+                else
+                {
+                    balday = absday - Aprvday;
+                    dt.Rows[rowindex]["absapp"] = Aprvday;
+                    dt.Rows[rowindex]["balday"] = balday;
+
+                }
+                  
+                Session["tblover"] = dt;
+                this.Data_Bind();
+            }
+        }
+
+        protected void lbtnUpdateMonthAbsDay_Click(object sender, EventArgs e)
+        {
+            this.SaveValue();
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            DataTable dt = (DataTable)Session["tblover"];
+            string comcod = this.GetCompCode();
+            string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
+            bool result = false;
+
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+
+                string empid = dt.Rows[i]["empid"].ToString();
+                string idcardno = dt.Rows[i]["idcardno"].ToString();
+                string absday = Convert.ToDouble("0" + dt.Rows[i]["absday"]).ToString();
+                string absapp = Convert.ToDouble("0" + dt.Rows[i]["absapp"]).ToString();
+                string balday = Convert.ToDouble("0" + dt.Rows[i]["balday"]).ToString();
+
+                 
+               if(absapp!="0")
+                {
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", monthid, empid, absapp, idcardno, "", "", "", "", "", "", "", "", "", "", "");
+
+                    if (!result)
+                        return;
+                }           
+               
+                
+            }
+            string Msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
+          
+            Session["tblover"] = dt;
+            this.Data_Bind();
+        }
+
+        protected void mgvmonabsentchkall_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

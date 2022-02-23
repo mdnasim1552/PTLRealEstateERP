@@ -293,9 +293,11 @@ namespace RealERPWEB.F_22_Sal
             string comcod = this.GetCompCode();
             switch (comcod)
             {
+                // format for cube holdings
                 case "3101":
                 case "3356":
-                    this.payscheduleCube();
+                case "3366":
+                    this.payscheduleRDLC();
                     break;
 
                  default:
@@ -305,7 +307,7 @@ namespace RealERPWEB.F_22_Sal
             //this.payscheduleCube();
         }
 
-        private void payscheduleCube()
+        private void payscheduleRDLC()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
@@ -326,6 +328,7 @@ namespace RealERPWEB.F_22_Sal
             double usize = Convert.ToDouble(basicinfo.Rows[0]["usize"]);
             double urate = Convert.ToDouble(basicinfo.Rows[0]["urate"]);
             double uamt = Convert.ToDouble(basicinfo.Rows[0]["uamt"]);
+            double tamt = Convert.ToDouble(basicinfo.Rows[0]["tamt"]);
 
             string size = usize.ToString("#,##0.00;(#,##0.00); ");
             string rate = urate.ToString("#,##0.00;(#,##0.00); ");
@@ -334,8 +337,9 @@ namespace RealERPWEB.F_22_Sal
             string appatn = basicinfo.Rows[0]["custname"].ToString();
             //direct cost
             string txtdisamt = this.ldiscountt.Text.ToString();
+            double disamt = Convert.ToDouble(txtdisamt); 
             string ldiscountpP = this.ldiscountp.Text.ToString(); 
-            string lblunitamt = size + " x Tk. "+ rate;
+            string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
 
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
@@ -361,7 +365,9 @@ namespace RealERPWEB.F_22_Sal
             dv2.RowFilter = "grp like ('gp2')";
             DataTable dt2 = dv2.ToTable();
             //tbl1.Compute("Sum(areqamt)", ""))).ToString("#,##0;(#,##0); ")
+
             double actuamt = Convert.ToDouble(dt2.Compute("Sum(uamt)", ""));
+            double gccamt = actuamt;
 
 
             DataTable dt03 = ds1.Tables[0].Copy();
@@ -370,15 +376,33 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt3 = dv3.ToTable();
 
 
-            string lbldisamt= "Discount in (%) " + ldiscountpP;
-            string txtTotal = "";
+            string lbldisamt= "Budgeted Amount's Disc : " + ldiscountpP;
+            string txtTotal = gccamt.ToString("#,##0.00;(#,##0.00); ");
 
             var list = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
             var list2 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
             var list3 = dt3.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
 
             LocalReport rpt = new LocalReport();
-            rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
+
+            switch (comcod)
+            {
+                case "3356": // cube
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
+                    break;
+
+                case "3101":
+                case "3366": // Lanco
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleLanco", list, list2, list3);
+
+                    break;
+
+                default:
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
+
+                    break;
+
+            }
             rpt.EnableExternalImages = true;
             rpt.SetParameters(new ReportParameter("ComName", comnam));
             rpt.SetParameters(new ReportParameter("date1", date1));
@@ -390,8 +414,8 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("appatn", appatn));
             rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
             rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
-            rpt.SetParameters(new ReportParameter("lblunitamt", lblunitamt));
-            rpt.SetParameters(new ReportParameter("txtunitamt", uamt.ToString("#,##0.00;(#,##0.00); ")));
+            rpt.SetParameters(new ReportParameter("lblunitamt", ""));
+            rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
             rpt.SetParameters(new ReportParameter("txtgntamt", actuamt.ToString("#,##0.00;(#,##0.00); ")));
             rpt.SetParameters(new ReportParameter("txtTotal", txtTotal));
             rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
