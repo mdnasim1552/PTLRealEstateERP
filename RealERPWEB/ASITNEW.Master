@@ -340,7 +340,7 @@
 
                                 <li id="fblink" runat="server" visible="false">
                                     <a href="https://www.facebook.com/btibd" class="nav-link" target="_blank" >
-                                       <img src="../../Image/facebook_Icon.png" alt="FBlink" style="width:25px; height:auto;" />
+                                       <img src="<%=this.ResolveUrl("~/Image/facebook_Icon.png")  %>" alt="FBlink" style="width:25px; height:auto;" />
                                     </a>
                                 </li>
 
