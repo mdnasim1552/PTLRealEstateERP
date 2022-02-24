@@ -42,6 +42,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UDesignation;
 
         /// <summary>
+        /// upComingHolidays control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upComingHolidays;
+
+        /// <summary>
         /// lblpresent control.
         /// </summary>
         /// <remarks>
@@ -202,5 +211,23 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grvJobRespo;
+
+        /// <summary>
+        /// EventCaro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventCaro;
+
+        /// <summary>
+        /// EventBirthday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventBirthday;
     }
 }

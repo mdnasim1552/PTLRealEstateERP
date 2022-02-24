@@ -29,6 +29,8 @@ namespace RealERPWEB
             {
                 string type = "Pabx";
                 this.GetPabxEmpList(type);
+                Get_UpComingHoliday();
+                Get_Events();
             }
 
             this.GetProfile();
@@ -60,7 +62,7 @@ namespace RealERPWEB
 
 
                     fileuploaddropzone.SaveAs(savelocation);
-                    
+
                     updatPhoto = UserData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUSERIMAGES", UserId, dburl, "", "", "", "", "", "", "", "");
                     if (updatPhoto)
                     {
@@ -80,7 +82,7 @@ namespace RealERPWEB
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Profile Picture Size Large');", true);
 
-                  
+
                 }
 
 
@@ -133,6 +135,15 @@ namespace RealERPWEB
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+        public string GetEmpID()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string Empid = (hst["empid"].ToString() == "") ? "93" : hst["empid"].ToString();
+            return (Empid);
+
         }
 
         private void getData()
@@ -430,9 +441,9 @@ namespace RealERPWEB
         private void GetPabxEmpList(string type)
         {
             Session.Remove("tblEmpstatus");
-            string comcod = this.GetCompCode();        
+            string comcod = this.GetCompCode();
             string Company = "94%";
-            string Deptid =  "%";
+            string Deptid = "%";
             string secid = "%";
             DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETALLACTIVEEMP", Company, Deptid, secid, type, "", "", "", "", "");
             if (ds4 == null)
@@ -463,8 +474,8 @@ namespace RealERPWEB
             string company, secid;
             switch (type)
             {
-                
-                case "Pabx":         
+
+                case "Pabx":
                     company = dt1.Rows[0]["company"].ToString();
                     secid = dt1.Rows[0]["secid"].ToString();
 
@@ -492,7 +503,7 @@ namespace RealERPWEB
                     }
 
                     break;
-             
+
 
             }
 
@@ -500,6 +511,67 @@ namespace RealERPWEB
 
         }
 
-       
+        private void Get_Events()
+        {
+            string comcod = this.GetCompCode();
+            string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+            string innHTML = "";
+            string BirthdayHTML = "";
+            int i = 0;
+            
+            foreach (DataRow dr in ds1.Tables[0].Rows)
+            {
+                string type = dr["evtype"].ToString();
+                if (type == "Birthday")
+                {
+                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-2'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + dr["imgurl"] + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                }
+                else
+                {
+                    innHTML += @"<div class='list-group-item unread p-0'><div class='list-group-item-figure'><div class='avatar'><a href='#' class='tile tile-circle bg-teal'>" + dr["evtype1"] + "</a></div></div><div class='list-group-item-body pl-md-2'><div class='row'><div class='col-12 col-lg-7'><h4 class='list-group-item-title text-truncate'><a href='#'>" + dr["evtype"] + "</a></h4><p class='list-group-item-text text-truncate'>" + dr["eventitle"] + "</p></div><div class='col-12 col-lg-2 text-lg-right'><p class='list-group-item-text'>" + dr["publdate"] + "</p></div></div></div></div>";
+
+                }
+
+                i++;
+            }
+            if (innHTML=="")
+            {
+                innHTML = "<div class='list-group-item unread p-0'><div class='list-group-item-figure'><div class='avatar'></div></div><div class='list-group-item-body pl-md-2'><div class='row'><div class='col-12 col-lg-7'><h4 class='list-group-item-title text-truncate'><a href=''></a></h4><p class='list-group-item-text text-danger text-truncate'>No Events Found </p></div><div class='col-12 col-lg-2 text-lg-right'><p class='list-group-item-text'></p></div></div></div></div>";
+
+            }
+            this.EventCaro.InnerHtml = innHTML;
+            this.EventBirthday.InnerHtml = BirthdayHTML;
+        }
+
+        private void Get_UpComingHoliday()
+        {
+            string comcod = this.GetCompCode();
+            string empid = GetEmpID();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPOFFDAYINFORAMTION", empid, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+
+
+            string innHTML = "";
+            int i = 0;
+            foreach (DataRow dr in ds1.Tables[0].Rows)
+            {
+               
+                innHTML += @"<div class='row mb-2 pb-1' style='border-bottom:1px solid #ecedf1'><div class='col-8'><a href='#' class='tile bg-pink text-white mr-1'>" + dr["shortday"] + "</a><a href='#'>" + dr["daynam"] + " <small> ( " + dr["reason"] + " ) </small></a></div><div class='col-4'><span class='badge bg-purple text-white'>" + dr["wkdate1"] + "</span></div></div>";
+                 
+                i++;
+            }
+
+            this.upComingHolidays.InnerHtml = innHTML;
+
+
+        }
     }
 }
+
+
