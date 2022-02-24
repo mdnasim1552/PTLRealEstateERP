@@ -30,11 +30,7 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
-
-
     </script>
-
-
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -55,11 +51,6 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-
-
-
-
-
 
             <div class="row justify-content-md-center mt-4 mb-1">
                 <div class="col-11"></div>
@@ -83,8 +74,6 @@
                             </div>
                         </div>
 
-
-
                         <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="col-1 col-form-label" OnClick="imgbtnCompany_Click">
                                                   Company</asp:LinkButton>
 
@@ -98,7 +87,7 @@
 
                         <div class="col-3">
 
-                            <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="chzn-select form-control" TabIndex="6">
+                            <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" runat="server" CssClass="chzn-select form-control" TabIndex="6">
                             </asp:DropDownList>
 
                         </div>
@@ -442,7 +431,7 @@
 
                             <div class="row">
                                 <div class="col-8">
-                                    <asp:Panel ID="PnlEmp" runat="server" Visible="False">
+                                    <asp:Panel ID="PnlEmp" runat="server">
                                         <div class="row">
                                             <asp:RadioButtonList ID="rblstapptype" runat="server" CssClass="rbtnList1 chkBoxControl" RepeatColumns="6" RepeatDirection="Horizontal"
                                                 Width="220px" TabIndex="16" Visible="False">
