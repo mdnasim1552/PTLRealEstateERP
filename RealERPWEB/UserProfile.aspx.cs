@@ -17,6 +17,7 @@ namespace RealERPWEB
     public partial class UserProfile : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
+        Hashtable HolidayList;
 
         string Upload = "";
         int size = 0;
@@ -31,6 +32,19 @@ namespace RealERPWEB
                 this.GetPabxEmpList(type);
                 Get_UpComingHoliday();
                 Get_Events();
+                getLink();
+
+                HolidayList = Getholiday();
+                Calendar1.Caption = "Calender - Author: Puran Singh Mehra";
+                Calendar1.FirstDayOfWeek = FirstDayOfWeek.Sunday;
+                Calendar1.NextPrevFormat = NextPrevFormat.ShortMonth;
+                Calendar1.TitleFormat = TitleFormat.Month;
+                Calendar1.ShowGridLines = true;
+                Calendar1.DayStyle.Height = new Unit(50);
+                Calendar1.DayStyle.Width = new Unit(150);
+                Calendar1.DayStyle.HorizontalAlign = HorizontalAlign.Center;
+                Calendar1.DayStyle.VerticalAlign = VerticalAlign.Middle;
+                Calendar1.OtherMonthDayStyle.BackColor = System.Drawing.Color.AliceBlue;
             }
 
             this.GetProfile();
@@ -87,6 +101,20 @@ namespace RealERPWEB
 
 
             }
+        }
+        private void getLink()
+        {
+            string comcod = GetCompCode();
+            switch(comcod)
+            {
+                case "3365":
+                case "3101":
+                    this.lnkFormLink.Visible = true;
+                    this.lnkFormLink.NavigateUrl = "";
+                    break;
+                 
+            }
+                
         }
 
         public void GetProfile()
@@ -515,36 +543,43 @@ namespace RealERPWEB
         {
             string comcod = this.GetCompCode();
             string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
             if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
                 return;
             string innHTML = "";
+            string innHTMLTopnot = "";
             string BirthdayHTML = "";
+            string status = "";
             int i = 0;
-            
+
             foreach (DataRow dr in ds1.Tables[0].Rows)
             {
                 string type = dr["evtype"].ToString();
                 if (type == "Birthday")
                 {
                     BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-2'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + dr["imgurl"] + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
-                }
-                else
-                {
-                    innHTML += @"<div class='list-group-item unread p-0'><div class='list-group-item-figure'><div class='avatar'><a href='#' class='tile tile-circle bg-teal'>" + dr["evtype1"] + "</a></div></div><div class='list-group-item-body pl-md-2'><div class='row'><div class='col-12 col-lg-7'><h4 class='list-group-item-title text-truncate'><a href='#'>" + dr["evtype"] + "</a></h4><p class='list-group-item-text text-truncate'>" + dr["eventitle"] + "</p></div><div class='col-12 col-lg-2 text-lg-right'><p class='list-group-item-text'>" + dr["publdate"] + "</p></div></div></div></div>";
+                } 
+                i++;
+            }             
 
-                }
-
+            foreach (DataRow dr in ds1.Tables[1].Rows)
+            {
+                status = (i == 0) ? "active" : "";
+                innHTMLTopnot += @"<div class='carousel-item " + status + "'><div class='row'><div class='col-md-1'><a href ='#' class='font-size-sm'><span class='position-relative mx-2 badge badge-primary rounded-0 '>" + dr["eventitle"] + "</span></a></div><div class='col-md-10'> <a class='label font-size-sm' href='#'>" + dr["ndetails"] + "</a></div></div></div>";
                 i++;
             }
-            if (innHTML=="")
-            {
-                innHTML = "<div class='list-group-item unread p-0'><div class='list-group-item-figure'><div class='avatar'></div></div><div class='list-group-item-body pl-md-2'><div class='row'><div class='col-12 col-lg-7'><h4 class='list-group-item-title text-truncate'><a href=''></a></h4><p class='list-group-item-text text-danger text-truncate'>No Events Found </p></div><div class='col-12 col-lg-2 text-lg-right'><p class='list-group-item-text'></p></div></div></div></div>";
 
-            }
-            this.EventCaro.InnerHtml = innHTML;
+
+            this.gvAllNotice.DataSource = ds1.Tables[1];
+            this.gvAllNotice.DataBind();
+
             this.EventBirthday.InnerHtml = BirthdayHTML;
+            this.upComingNotice.InnerHtml = innHTMLTopnot;
+
+            
         }
 
         private void Get_UpComingHoliday()
@@ -561,15 +596,81 @@ namespace RealERPWEB
             int i = 0;
             foreach (DataRow dr in ds1.Tables[0].Rows)
             {
-               
+
                 innHTML += @"<div class='row mb-2 pb-1' style='border-bottom:1px solid #ecedf1'><div class='col-8'><a href='#' class='tile bg-pink text-white mr-1'>" + dr["shortday"] + "</a><a href='#'>" + dr["daynam"] + " <small> ( " + dr["reason"] + " ) </small></a></div><div class='col-4'><span class='badge bg-purple text-white'>" + dr["wkdate1"] + "</span></div></div>";
-                 
+
                 i++;
             }
 
             this.upComingHolidays.InnerHtml = innHTML;
 
 
+        }
+
+
+        private Hashtable Getholiday()
+        {
+            Hashtable holiday = new Hashtable();
+            holiday["1/1/2022"] = "New Year";
+            holiday["1/5/2022"] = "Guru Govind Singh Jayanti";
+            holiday["1/8/2022"] = "Muharam (Al Hijra)";
+            holiday["1/14/2022"] = "Pongal";
+            holiday["1/26/2022"] = "Republic Day";
+            holiday["2/23/2022"] = "Maha Shivaratri";
+            holiday["3/10/2022"] = "Milad un Nabi (Birthday of the Prophet";
+            holiday["3/21/2022"] = "Holi";
+            holiday["3/21/2022"] = "Telugu New Year";
+            holiday["4/3/2022"] = "Ram Navmi";
+            holiday["4/7/2022"] = "Mahavir Jayanti";
+            holiday["4/10/2022"] = "Good Friday";
+            holiday["4/12/2022"] = "Easter";
+            holiday["4/14/2022"] = "Tamil New Year and Dr Ambedkar Birth Day";
+            holiday["5/1/2022"] = "May Day";
+            holiday["5/9/2022"] = "Buddha Jayanti and Buddha Purnima";
+            holiday["6/24/2022"] = "Rath yatra";
+            holiday["8/13/2022"] = "Krishna Jayanthi";
+            holiday["8/14/2022"] = "Janmashtami";
+            holiday["8/15/2022"] = "Independence Day";
+            holiday["8/19/2022"] = "Parsi New Year";
+            holiday["8/23/2022"] = "Vinayaka Chaturthi";
+            holiday["9/2/2022"] = "Onam";
+            holiday["9/5/2022"] = "Teachers Day";
+            holiday["9/21/2022"] = "Ramzan";
+            holiday["9/27/2022"] = "Ayutha Pooja";
+            holiday["9/28/2022"] = "Vijaya Dasami (Dusherra)";
+            holiday["10/2/2022"] = "Gandhi Jayanti";
+            holiday["10/17/2022"] = "Diwali & Govardhan Puja";
+            holiday["10/19/2022"] = "Bhaidooj";
+            holiday["11/2/2022"] = "Guru Nanak Jayanti";
+            holiday["11/14/2022"] = "Children's Day";
+            holiday["11/28/2022"] = "Bakrid";
+            holiday["12/25/2022"] = "Christmas";
+            holiday["12/28/2022"] = "Muharram";
+            return holiday;
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+           // LabelAction.Text = "Date changed to :" + Calendar1.SelectedDate.ToShortDateString();
+        }
+
+        protected void Calendar1_VisibleMonthChanged(object sender, MonthChangedEventArgs e)
+        {
+           // LabelAction.Text = "Month changed to :" + e.NewDate.ToShortDateString();
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (HolidayList[e.Day.Date.ToShortDateString()] != null)
+            {
+                Literal literal1 = new Literal();
+                literal1.Text = "<br/>";
+                e.Cell.Controls.Add(literal1);
+                Label label1 = new Label();
+                label1.Text = (string)HolidayList[e.Day.Date.ToShortDateString()];
+                label1.Font.Size = new FontUnit(FontSize.Small);
+                e.Cell.Controls.Add(label1);
+            }
         }
     }
 }

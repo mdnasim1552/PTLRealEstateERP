@@ -565,6 +565,11 @@ namespace RealERPWEB
                     Url1 = "UserProfile";
 
                 }
+                else if (userrole == "4" && hrmodule == "81")
+                {
+                    Url1 = "DashboardHRM_NEW";
+
+                }
                 else if (comcod.Substring(0, 1) == "8")
                 {
                     Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";

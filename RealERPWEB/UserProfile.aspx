@@ -68,9 +68,54 @@
             }
         }
     </script>
+    <style>
+        .topMenu li .nav-link{
+            padding:10px 10px;
+        }
+    </style>
     <div class="page ">
         <!-- .page-cover -->
         <header class="Xpage-cover mt-4">
+            <div class="row">
+
+                <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
+                    <div class="row">
+                        <!--Breaking box-->
+                        <div class="col-md-2 col-lg-2 pr-md-0">
+                            <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
+                        </div>
+                        <!--end breaking box-->
+                        <!--Breaking content-->
+                        <div class="col-md-10 col-lg-10 pl-md-4 py-2">
+                            <div class="breaking-box">
+                                <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
+                                    <!--breaking news-->
+                                    <div class="carousel-inner " id="upComingNotice" runat="server">
+                                    </div>
+                                    <!--end breaking news-->
+
+                                    <!--navigation slider-->
+                                    <div class="navigation-box p-2 d-none d-sm-block">
+                                        <!--nav left-->
+                                        <a class="carousel-control-prev text-primary" href="#carouselbreaking" role="button" data-slide="prev">
+                                            <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <!--nav right-->
+                                        <a class="carousel-control-next text-primary" href="#carouselbreaking" role="button" data-slide="next">
+                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <!--end navigation slider-->
+                                </div>
+                            </div>
+                        </div>
+                        <!--end breaking content-->
+                    </div>
+                </div>
+            </div>
+
             <div class="row">
                 <div class="col-4">
                     <div class="card card-fluid">
@@ -95,17 +140,20 @@
 
                     <section class="card card-fluid mb-0" style="width: 100%; height: 268px;">
 
-                        <header class="card-header border-0">
+                        <header class="card-header border-0 pb-0">
                             <div class="d-flex align-items-center">
                                 <span class="mr-auto">Upcoming Holidays </span>
                             </div>
                         </header>
-                        <div class="card-body" id="upComingHolidays" runat="server" style="height: 268px; overflow-y:scroll;">                           
-                        </div>                        
-                        <footer class="card-footer">
-                            <a href="#" class="card-footer-item"> View All <i class="fa fa-fw fa-angle-right"></i>
+
+                        <div class="card-body" style="min-height: 330px" id="upComingHolidays" runat="server">
+                        </div>
+
+
+                        <%--<footer class="card-footer">
+                            <a href="<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")%>" target="_blank" class="card-footer-item">View All <i class="fa fa-fw fa-angle-right"></i>
                             </a>
-                        </footer>
+                        </footer>--%>
                         <!-- /.card-footer -->
                     </section>
 
@@ -131,36 +179,64 @@
 
                 </div>
             </div>
-            <!-- .cover-controls -->
-            <div class="cover-controls cover-controls-bottom col-12 text-right">
-            </div>
+            
             <nav class="page-navs">
                 <!-- .nav-scroller -->
-                <div class="nav-scroller">
-                    <!-- .nav -->
-                    <div class="nav nav-center nav-tabs">
-                        <a class="nav-link active" data-toggle="tab" href="#home">Activities
-                            <span class="badge">16</span>
-                        </a>
-                        <a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a>
-                        <a href="#switcher" class="nav-link smooth-scroll">Pabx List</a>
+                <div class="card-body m-0 p-0">
 
-                        <a href="#base-style" class="nav-link smooth-scroll">Holiday Calender</a>
-                        <a href="#labels" class="nav-link smooth-scroll">Wins List</a>
-                        <a href="#floating-label" class="nav-link smooth-scroll">Orintation Link</a>
-                        <a href="#selects" class="nav-link smooth-scroll">Major MR</a>
-                        <a href="#checkboxes" class="nav-link smooth-scroll">Code of Conduct </a>
-                        <asp:HyperLink ID="HyperLink4" class="nav-link smooth-scroll" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave?Type=User" runat="server">Apply Leave</asp:HyperLink>
+                    <ul class="nav nav-pills topMenu">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Activities</a> </li>
+                        <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
+                        <li class="nav-item"><a href="#HolidayCalender" class="nav-link smooth-scroll" data-toggle="tab">Holiday Calender</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="dropdown" href="#" role="button">HR Policy
+                            <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-arrow dropdown-arrow-left"></div>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Leave Policy</a>
+                                <a class="dropdown-item" href="#">Absent Policy</a>
+                                <a class="dropdown-item" href="#">Late Policy</a>
+                                <a class="dropdown-item" href="#">Late Present Policy</a>
 
-                        <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link smooth-scroll" data-toggle="tab">Orintation Link</a></li>
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkFormLink" CssClass="nav-link smooth-scrol" runat="server"> bti Form</asp:HyperLink>
+                        </li>
+                        <li class="nav-item"><a href="#" class="nav-link smooth-scroll" data-toggle="tab">Wins List</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link smooth-scroll" data-toggle="tab">Code of Conduct</a></li>
+                        <li class="nav-item"><a href="#Organogram" class="nav-link smooth-scroll" data-toggle="tab">Organogram</a></li>
+                        <li class="nav-item"><a href="#PabxList" class="nav-link smooth-scroll" data-toggle="tab">Pabx List</a></li>
 
-                        <a href="#" class="nav-link smooth-scroll" data-toggle="modal" data-target="#fdollowingModal">Change Pasword</a>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="dropdown" href="#" role="button">Application
+                            <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-arrow dropdown-arrow-left"></div>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" target="_blank" href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>">Apply Leave</a>
+                                <a class="dropdown-item" target="_blank" href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>">Leave Interface</a>
+                                <a class="dropdown-item" target="_blank" href="#">Late Present Leave</a>
 
-                        <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton>
-                        <a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a>
+                            </div>
+                        </li>
 
-                    </div>
-                    <!-- /.nav -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a></li>
+                        <li class="nav-item d-none"><a href="#" class="nav-link smooth-scroll" data-toggle="modal" data-target="#fdollowingModal">Change Pasword</a></li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
+                        <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
+
+
+
+
+                    </ul>
+
+
+
                 </div>
                 <!-- /.nav-scroller -->
             </nav>
@@ -240,7 +316,7 @@
                     </div>
                     <!-- /.section-block -->
 
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-md-6">
                             <asp:TextBox ID="txtDate" runat="server" CssClass="d-none " ToolTip="(dd.mm.yyyy)"></asp:TextBox>
                             <div class="card card-fluid">
@@ -354,126 +430,7 @@
 
                         </div>
                         <div class="col-md-6">
-                            <div class="card card-fluid" style="min-height: 465px;">
-                                <!-- .card-header -->
-                                <div class="card-header border-0">
-                                    <!-- .d-flex -->
-
-                                    <div class="d-flex align-items-center mb-0">
-                                        <h3 class="card-title mr-auto">Pabx List </h3>
-                                        <!-- .card-title-control -->
-                                        <div class="card-title-control">
-                                            <!-- .dropdown -->
-                                            <div class="input-group input-group-alt">
-
-                                                <div class="input-group-prepend ">
-                                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
-                                                </div>
-                                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
-                                            </div>
-                                            <!-- /.dropdown -->
-                                        </div>
-                                        <!-- /.card-title-control -->
-                                    </div>
-
-
-                                    <!-- /.d-flex -->
-                                </div>
-                                <div class="table table-responsive card-body">
-
-                                    <asp:GridView ID="gvPabxInfo" runat="server" CssClass="table-striped table-hover table-bordered"
-                                        AutoGenerateColumns="False"
-                                        ShowFooter="True">
-                                        <RowStyle />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Card #" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvcardnoemp" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Employee Name">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvdeptandemployeeemp" runat="server"
-                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "empname").ToString())  %>'> 
-                                              
-                                                    </asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Designation">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvdesignationemp" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-
-
-
-
-                                            <asp:TemplateField HeaderText="Ext#">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblExtion" runat="server" BackColor="Transparent"
-                                                        BorderStyle="None" Font-Size="11px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extention")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Mobile">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvmobile" runat="server" BackColor="Transparent"
-                                                        BorderStyle="None" Font-Size="11px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Email">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
-                                                        BorderStyle="None" Font-Size="11px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-
-                                        </Columns>
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                    </asp:GridView>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- /grid row -->
-                    <!-- grid row -->
-                    <div class="row">
-                        <!-- grid column -->
-                        <div class="col-xl-6">
-                            <!-- .card -->
+                             <!-- .card -->
                             <div class="card card-fluid">
                                 <!-- .card-header -->
                                 <div class="card-header border-0 pb-0">
@@ -574,6 +531,78 @@
                                 <!-- /.card-footer -->
                             </div>
                             <!-- /.card -->
+                        </div>
+                    </div>
+
+
+                    <!-- /grid row -->
+                    <!-- grid row -->
+                    <div class="row">
+                        <!-- grid column -->
+                        <div class="col-xl-6">
+                           <div class="card card-fluid">
+                                <div class="card-header border-0">
+                                    <!-- .d-flex -->
+                                    <div class="d-flex align-items-center">
+                                        <span class="mr-auto">JOB RESPONSIBILITIES</span>
+                                        <!-- .card-header-control -->
+
+                                        <!-- /.card-header-control -->
+                                    </div>
+                                    <!-- /.d-flex -->
+                                </div>
+                                <div class="table-responsive card-body">
+                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
+                                        ShowFooter="True" Width="400px">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sl.No.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvSlNo42" runat="server" Font-Bold="True" Height="16px"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Code" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvItmCode1" runat="server" Height="16px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
+                                                        Width="49px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Job Responsibilities">
+                                                <ItemTemplate>
+
+                                                    <asp:Label ID="lgvgval1Job" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobresp")) %>'></asp:Label>
+
+                                                </ItemTemplate>
+
+
+
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                                <ItemStyle HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Type" Visible="False">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lgvgval1" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                        </Columns>
+
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+
+                                    </asp:GridView>
+
+                                </div>
+                            </div>
                         </div>
                         <!-- /grid column -->
                         <!-- grid column -->
@@ -695,78 +724,7 @@
                         <!-- /grid column -->
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card card-fluid">
-                                <div class="card-header border-0">
-                                    <!-- .d-flex -->
-                                    <div class="d-flex align-items-center">
-                                        <span class="mr-auto">JOB RESPONSIBILITIES</span>
-                                        <!-- .card-header-control -->
-
-                                        <!-- /.card-header-control -->
-                                    </div>
-                                    <!-- /.d-flex -->
-                                </div>
-                                <div class="table-responsive card-body">
-                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
-                                        ShowFooter="True" Width="400px">
-                                        <RowStyle />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo42" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Code" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvItmCode1" runat="server" Height="16px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gcod")) %>'
-                                                        Width="49px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Job Responsibilities">
-                                                <ItemTemplate>
-
-                                                    <asp:Label ID="lgvgval1Job" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "jobresp")) %>'></asp:Label>
-
-                                                </ItemTemplate>
-
-
-
-                                                <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="Type" Visible="False">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lgvgval1" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gval")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-
-                                        </Columns>
-
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-
-                                    </asp:GridView>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <!-- .card -->
-
-                            <!-- /.card -->
-                        </div>
-                    </div>
+                  
 
 
                     <!-- /grid row -->
@@ -774,26 +732,70 @@
                 <div class="tab-pane fade" id="Notice">
                     <div class="row">
                         <div class="col-6">
-                            <section class="card card-fluid" >
-                                <div class="card-body" style="min-height: 345px">
-                                    <div class="list-group list-group-messages list-group-flush list-group-bordered" id="EventCaro" runat="server">
-                                        <!-- message item -->
-                                        <div class="list-group-item unread">
-                                            <div class="list-group-item-body pl-md-2">
-                                                <div class="row">
-                                                    <div class="col-12 col-lg-7">
-                                                        <h4 class="list-group-item-title text-truncate">
-                                                            <a href="app-conversations.html">Our trip to Montreal</a>
-                                                        </h4>
-                                                        <p class="list-group-item-text text-truncate">Hi Guys, minus, aliquam porro repudiandae numquam. Molestias. </p>
-                                                    </div>
-                                                    <div class="col-12 col-lg-2 text-lg-right">
-                                                        <p class="list-group-item-text">16 minutes ago </p>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <section class="card card-fluid" style="min-height: 345px">
+                                <div class="card-body">
+                                    <!-- .card-header -->
+                                    <div class="card-header border-0 mt-0 pt-0 pb-0">
+                                        <!-- .d-flex -->
+                                        <div class="d-flex align-items-center">
+                                            <span class="mr-auto">Upcoming Notice </span>
+
+                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")%>' Target="_blank"
+                                                CssClass="btn btn-sm btn-info pull-right" Text="View all"></asp:HyperLink>
                                         </div>
+
                                     </div>
+
+
+                                    <div class="table table-responsive card-body pt-0 pb-0">
+                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table-striped table-hover table-bordered"
+                                            AutoGenerateColumns="False"
+                                            ShowFooter="false" AllowPaging="true" PageSize="5">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Details">
+                                                    <ItemTemplate>
+                                                        <header class="card-header border-0 p-0 m-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <span class="mr-auto"><%#Convert.ToString(DataBinder.Eval(Container.DataItem, "eventitle").ToString())  %> </span>
+                                                            </div>
+                                                        </header>
+
+                                                        <p class="m-0"><%#Convert.ToString(DataBinder.Eval(Container.DataItem, "ndetails").ToString())  %></p>
+                                                    </ItemTemplate>
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+
+                                                <asp:TemplateField HeaderText="Published date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                            BorderStyle="None" Font-Size="11px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "publdate")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                            </Columns>
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                        </asp:GridView>
+                                    </div>
+
                                 </div>
                             </section>
                         </div>
@@ -801,26 +803,170 @@
                         <div class="col-6">
                             <section class="card card-fluid" style="min-height: 345px">
                                 <div class="card-body row" id="EventBirthday" runat="server">
-                                    <div class="col-12 col-sm-6 col-lg-3">
-                                        <div class="media align-items-center mb-3">
-                                            <a href="#" class="user-avatar user-avatar-lg mr-3">
-                                                <img src="https://localhost:44359/Upload/UserImages/3101003.JPG" alt="">
-                                            </a>
-                                            <div class="media-body">
-                                                <h6 class="card-subtitle text-muted">Lets Celebrate Shahadat Hosen Sanon , Supervisor , Birthday on 24 Feb
-                                                </h6>
-                                            </div>
-                                            <a href="#" class="btn btn-reset text-muted" data-toggle="tooltip" title="" data-original-title="Chat with teams">
-                                                <i class="oi oi-chat"></i>
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </section>
-
                         </div>
                     </div>
                 </div>
+                <div class="tab-pane fade" id="HolidayCalender">
+                    <div class="row">
+                         <section class="card card-fluid d-none" style="min-height: 345px">
+                                <asp:Calendar ID="Calendar1" runat="server" BackColor="#FFFFCC" BorderColor="#FFCC66"  
+            BorderWidth="1px" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt"  
+            ForeColor="#663399" ShowGridLines="True" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged"  
+            OnVisibleMonthChanged="Calendar1_VisibleMonthChanged">  
+            <SelectedDayStyle BackColor="#CCCCFF" Font-Bold="True" />  
+            <SelectorStyle BackColor="#FFCC66" />  
+            <TodayDayStyle BackColor="#FFCC66" ForeColor="White" />  
+            <OtherMonthDayStyle ForeColor="#CC9966" />  
+            <NextPrevStyle Font-Size="9pt" ForeColor="#FFFFCC" />  
+            <DayHeaderStyle BackColor="#FFCC66" Font-Bold="True" Height="1px" />  
+            <TitleStyle BackColor="#990000" Font-Bold="True" Font-Size="9pt" ForeColor="#FFFFCC" />  
+        </asp:Calendar>  
+                                     
+
+                            </section>
+                    </div>
+                </div>
+                 <div class="tab-pane fade" id="Organogram">
+                    <div class="row">
+                         <section class="card card-fluid" style="min-height: 345px">
+                                <div class="card-body" id="Div2" runat="server">
+                                     <div class="card-header border-0">
+                                    <!-- .d-flex -->
+
+                                    <div class="d-flex align-items-center mb-0">
+                                        <h3 class="card-title mr-auto">Organogram</h3>
+                                      
+                                        <!-- /.card-title-control -->
+                                    </div>
+
+
+                                    <!-- /.d-flex -->
+                                </div>
+                                </div>
+                            </section>
+                    </div>
+                </div>
+
+                
+                <div class="tab-pane fade" id="PabxList">
+                <section class="card card-fluid">
+                    <div class="card-body" style="min-height: 345px">
+                        <div class="col-6">
+
+                         
+                                <div class="card-header border-0">
+                                    <!-- .d-flex -->
+
+                                    <div class="d-flex align-items-center mb-0">
+                                        <h3 class="card-title mr-auto">Pabx List </h3>
+                                        <!-- .card-title-control -->
+                                        <div class="card-title-control">
+                                            <!-- .dropdown -->
+                                            <div class="input-group input-group-alt">
+
+                                                <div class="input-group-prepend ">
+                                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                                </div>
+                                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+                                            </div>
+                                            <!-- /.dropdown -->
+                                        </div>
+                                        <!-- /.card-title-control -->
+                                    </div>
+
+
+                                    <!-- /.d-flex -->
+                                </div>
+                                <div class="table table-responsive card-body">
+
+                                    <asp:GridView ID="gvPabxInfo" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        AutoGenerateColumns="False"
+                                        ShowFooter="True">
+                                        <RowStyle />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Sl.No.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                                                        Style="text-align: right"
+                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Card #" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvcardnoemp" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Employee Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvdeptandemployeeemp" runat="server"
+                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "empname").ToString())  %>'> 
+                                              
+                                                    </asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Designation">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvdesignationemp" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+
+
+
+                                            <asp:TemplateField HeaderText="Ext#">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblExtion" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="11px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extention")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Mobile">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblgvmobile" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="11px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Email">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="11px"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                            </asp:TemplateField>
+
+
+                                        </Columns>
+                                        <EditRowStyle />
+                                        <AlternatingRowStyle />
+                                    </asp:GridView>
+                                </div>
+
+                    </div>
+                    </div>
+                </section>
+            </div>
             </div>
         </div>
     </div>

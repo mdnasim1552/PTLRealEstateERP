@@ -2004,6 +2004,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="DashboardAll.aspx" />
     <Content Include="DashboardHRM.aspx" />
+    <Content Include="DashboardHRM_NEW.aspx" />
     <Content Include="DeafultMenu.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DefaultPage.aspx" />
@@ -3770,6 +3771,13 @@
     </Compile>
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.designer.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>

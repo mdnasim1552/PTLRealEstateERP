@@ -627,6 +627,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             this.gvLeaveApp.DataSource = ds1.Tables[1];
             this.gvLeaveApp.DataBind();
+            EmpLeaveInfo();
 
         }
 
@@ -1504,16 +1505,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             if (this.ddlPreLeave.Items.Count == 0)
                 this.GetPreLeaveNo();
-
-
-            string trnid = this.lbltrnleaveid.Text;
+           
             string empid = this.ddlEmpName.SelectedValue.ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 double lapplied = Convert.ToDouble(dt.Rows[i]["lapplied"]);
                 if (lapplied > 0)
                 {
-
+                    string trnid = this.lbltrnleaveid.Text;
                     string gcod = dt.Rows[i]["gcod"].ToString();
                     string frmdate = Convert.ToDateTime(dt.Rows[i]["lenjoydt1"]).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(dt.Rows[i]["lenjoydt2"]).ToString("dd-MMM-yyyy");
@@ -1525,10 +1524,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     string APRdate = Convert.ToDateTime(this.txtApprdate.Text).ToString("dd-MMM-yyyy");
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, lapplied.ToString(), "", "", "");
-
+                    this.GetPreLeaveNo();
                 }
-
             }
+
             this.EmpLeaveInfo();
            string Message = "Updated Successfully";            
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
