@@ -2329,23 +2329,26 @@ namespace RealERPWEB.F_23_CR
 
             double Schamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(schamt)", "")) ? 0.00 : tbl6.Compute("Sum(schamt)", "")));
             double rcvamt = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(paidamt)", "")) ? 0.00 : tbl6.Compute("Sum(paidamt)", "")));
-            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));
-
-            
+            double baldues = Convert.ToDouble((Convert.IsDBNull(tbl6.Compute("Sum(balamt)", "")) ? 0.00 : tbl6.Compute("Sum(balamt)", "")));        
 
 
             double balamt = Schamt - rcvamt;
-           
+            double tobuildingamt = 0;
 
 
             LocalReport Rpt1 = new LocalReport();
             var lst1 = tblins.DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassClientLedger>();
-            var lst2 = ds5.Tables[4].DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassRevenue>();
-            var lst3 = ds5.Tables[5].DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassRevenue>();
-            double tobuildingamt = lst2.Sum(l => l.uamt);
-            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptClientLedgerManama", lst1, lst2, lst3);
-
-
+            if (this.chkConsolidate.Checked)
+            {
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptClientLedgerManama", lst1, null, null);
+            }
+            else
+            {
+                var lst2 = ds5.Tables[4].DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassRevenue>();
+                var lst3 = ds5.Tables[5].DataTableToList<RealEntity.C_23_CRR.EClassSalesStatus.EClassRevenue>();
+                tobuildingamt = lst2.Sum(l => l.uamt);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_23_CR.RptClientLedgerManama", lst1, lst2, lst3);
+            }
             DataTable dtsum = ds5.Tables[2];
             //double tsalevalue = Convert.ToDouble(ds5.Tables[1].Rows[0]["acprice"]);
             //double treceived = Convert.ToDouble((Convert.IsDBNull(tblins.Compute("Sum(paidamt)", "")) ? 0.00
@@ -2728,7 +2731,7 @@ namespace RealERPWEB.F_23_CR
                     break;
 
                 case "3348"://Credence
-                case "3101":
+                //case "3101":
                 case "3353":// Manama
                 case "3355":// Manama
                     this.PrintCleintLedgerManama();
