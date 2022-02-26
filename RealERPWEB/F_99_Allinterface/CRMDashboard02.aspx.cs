@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace RealERPWEB.F_99_Allinterface
 {
-    public partial class CRMDashboard : System.Web.UI.Page
+    public partial class CRMDashboard02 : System.Web.UI.Page
     {
         ProcessAccess instcrm = new ProcessAccess();
 
@@ -29,12 +29,19 @@ namespace RealERPWEB.F_99_Allinterface
               //  string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtfodate.Text = date;
-               
+                
 
 
-                GetAllSubdata();
+                DateTime curdate = System.DateTime.Today;
+                DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
+                DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));               
+                this.txtfrmdate.Text = frmdate.ToString("dd-MMM-yyyy");
+                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                
+
+
+
+                    GetAllSubdata();
                 //this.DataBindStatus();
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
@@ -151,23 +158,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
 
 
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string userrole = hst["userrole"].ToString();
-            //string comcod = this.GetComeCode();
-            ////string Empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
-            //string frmdate = this.txtfrmdate.Text.ToString();
-            //string todate = this.txttodate.Text.ToString();
-
-            //string Empid = "";
-            //if (userrole != "1")
-            //{
-            //    Empid = hst["empid"].ToString();
-            //}
-            ////string empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
-            //DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONNUMBER", "8301%", Empid, ddlempid, todate);
-            //Session["tblNotification"] = ds3;
-            //bindDataIntoLabel();
-
+        
 
 
 
@@ -177,18 +168,23 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetComeCode();
             //string Empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
            // string frmdate = this.txtfodate.Text.ToString();
-            string todate = this.txtfodate.Text.ToString();
+            string fromdate = this.txtfrmdate.Text.ToString();
+            string todate = this.txttodate.Text.ToString();
+            string condate = todate;
             string Empid = "";
-            if (userrole != "1")
-            {
-                Empid =hst["empid"].ToString();
-            }
-            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
+            //if (userrole != "1")
+            //{
+            //    Empid =hst["empid"].ToString();
+            //}
+            Empid=((ddlempid == "000000000000") ? "" : ddlempid)+"%";
+            //ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
 
-            DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "GETCRMCOMPONENTDATA", "8301%", Empid, ddlempid, todate);
+            DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE02", "REPORTCRMDASHBOARD", "8301%", Empid, fromdate, todate, condate, ddlempid);
+           // DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
+
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
-            this.EmpMonthlyKPI(ddlempid);
+           // this.EmpMonthlyKPI(ddlempid);
         }
         private void bindDataIntoLabel()
         {
@@ -197,25 +193,28 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 return;
             }
-            this.lbldws.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
-            this.lbldwr.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
+            //this.lbldws.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
+            //this.lbldwr.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
             //this.lblCall.InnerText = ds3.Tables[0].Rows[0]["call"].ToString();
             //this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
-            this.lblprospect.InnerText = ds3.Tables[0].Rows[0]["prospect"].ToString();
-            this.lblrating.InnerText = ds3.Tables[0].Rows[0]["rating"].ToString();
-            this.lblFreez.InnerText = ds3.Tables[0].Rows[0]["freezing"].ToString();
+            this.lblprospect.InnerText = ds3.Tables[0].Rows[0]["tprospect"].ToString();
+            this.lblqualifylead.InnerText = ds3.Tables[0].Rows[0]["qualiflead"].ToString();
+            this.lblnego.InnerText = ds3.Tables[0].Rows[0]["nego"].ToString();
+            this.lblfinnego.InnerText = ds3.Tables[0].Rows[0]["finalnego"].ToString();
+
+            // this.lblFreez.InnerText = ds3.Tables[0].Rows[0]["freezing"].ToString();
             //this.lblDeadProspect.InnerText = ds3.Tables[0].Rows[0]["deadprospect"].ToString();
-            this.lblcsigned.InnerText = ds3.Tables[0].Rows[0]["signed"].ToString();
+            this.lblcsigned.InnerText = ds3.Tables[0].Rows[0]["win"].ToString();
 
             //this.lblpme.InnerText = ds3.Tables[0].Rows[0]["pme"].ToString();
             this.lbllost.InnerText = ds3.Tables[0].Rows[0]["lost"].ToString();
             this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
-            this.lblOccasion.InnerText = ds3.Tables[1].Rows.Count.ToString();
+           // this.lblOccasion.InnerText = ds3.Tables[1].Rows.Count.ToString();
 
 
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            string curDate = Convert.ToDateTime(this.txtfodate.Text).ToString("dd-MMM-yyyy");
-            this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
+            string curDate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
+           // this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
             //hlink2.NavigateUrl = "~/F_12_Inv/PurMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
 
         }
@@ -227,7 +226,7 @@ namespace RealERPWEB.F_99_Allinterface
             string comcod = this.GetComeCode();
 
       
-            string todate = this.txtfodate.Text.Trim();
+            string todate = this.txtfrmdate.Text.Trim();
          //   string frmdate = this.txtfodate.Text.Trim();
             string frmdate = Convert.ToDateTime("01" + todate.Substring(2)).ToString("dd-MMM-yyyy");
             string empid = "";
@@ -323,7 +322,7 @@ namespace RealERPWEB.F_99_Allinterface
         protected void lbtnOccasion_Click(object sender, EventArgs e)
         {
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            string curDate = Convert.ToDateTime(this.txtfodate.Text).ToString("dd-MMM-yyyy");
+            string curDate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/Notification/";
             string currentptah = "Occasion?Type=Report&EmpId=" + empId +"&curDate="+curDate;
             string totalpath = hostname + currentptah;

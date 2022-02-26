@@ -3067,6 +3067,7 @@
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
+    <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
@@ -4434,6 +4435,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.designer.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
