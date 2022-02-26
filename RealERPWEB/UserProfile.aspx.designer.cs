@@ -42,6 +42,60 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UDesignation;
 
         /// <summary>
+        /// lblpresent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblpresent;
+
+        /// <summary>
+        /// lbllate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lbllate;
+
+        /// <summary>
+        /// lblonleave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblonleave;
+
+        /// <summary>
+        /// lblabs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox lblabs;
+
+        /// <summary>
+        /// HyperLink4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
+
+        /// <summary>
+        /// hyplPreviewCv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton hyplPreviewCv;
+
+        /// <summary>
         /// fileuploaddropzone control.
         /// </summary>
         /// <remarks>
@@ -87,40 +141,31 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.Repeater RptAttHistroy;
 
         /// <summary>
-        /// lblpresent control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblpresent;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// lbllate control.
+        /// inputtextbox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lbllate;
+        protected global::System.Web.UI.WebControls.TextBox inputtextbox;
 
         /// <summary>
-        /// lblonleave control.
+        /// gvPabxInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblonleave;
-
-        /// <summary>
-        /// lblabs control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox lblabs;
+        protected global::System.Web.UI.WebControls.GridView gvPabxInfo;
 
         /// <summary>
         /// hlnkbtnNext control.

@@ -95,7 +95,10 @@ namespace RealERPWEB
                "~/Scripts/highchartexporting.js"
                ));
 
-
+            bundles.Add(new ScriptBundle("~/bundles/flatpickr").Include(
+               "~/assets/vendor/flatpickr/flatpickr.min.js",
+               "~/Scripts/flatpickr-demo.js"
+               ));
 
 
 

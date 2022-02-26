@@ -8,7 +8,7 @@
             <div class="col-md-12">
             </div>
             <div class="col-md-12 text-center">
-                <img src="../../Image/oops.jpeg"  height="200" style="height:210px" alt="Coming Soon!!..." />
+                <img src="<%=this.ResolveUrl("~/Image/oops.jpeg")  %>"  height="200" style="height:210px" alt="Coming Soon!!..." />
             </div>
         </div>
         <!-- /row -->

@@ -1154,7 +1154,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3316":
                     PrintReq = "PrintReque09";
                     break;
-                case "3101":
+                //case "3101":
                 case "3325":
                 case "2325":
                     PrintReq = "PrintReque03";
@@ -1194,7 +1194,7 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
                 case "3356":
-                    //case "3101":
+                case "3101":
                     PrintReq = "PrintReqiNTECH";
                     break;
 
@@ -2345,7 +2345,7 @@ namespace RealERPWEB.F_99_Allinterface
             Rpt1.SetParameters(new ReportParameter("rpttxtCCDNar", crmnarr));
             Rpt1.SetParameters(new ReportParameter("rpttxtEstNar", estnarr));
             Rpt1.SetParameters(new ReportParameter("txtRptFooter", txtuserinfo));
-            Rpt1.SetParameters(new ReportParameter("txtPreparedBy", username));
+            Rpt1.SetParameters(new ReportParameter("txtPreparedBy", txtSign1));
 
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
@@ -2582,6 +2582,7 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3364": // jbs
                 case "3339": // Tropical
                 case "3354": // Edison
+                case "3366": // Lanco
 
 
                     this.OrderPrintRDLC();
@@ -3792,7 +3793,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352")
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -3934,6 +3935,15 @@ namespace RealERPWEB.F_99_Allinterface
                         sign7 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
                         break;
 
+                    case "3101": //
+                    case "3366": //Lanco
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = "Approved By";
+                        break;
 
                     default:
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
@@ -4001,7 +4011,6 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    //case "3101":
                     case "3339": // Tropical Home
                     case "3332": // InnStar
                         terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
@@ -4016,6 +4025,8 @@ namespace RealERPWEB.F_99_Allinterface
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
                         break;
 
+                    case "3101":
+                    case "3366"://lanco
                     case "3336": // Suvastu
                     case "3337":  // Suvastu
 
@@ -4145,6 +4156,11 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderTropical.rdlc";
                         break;
 
+                    case "3101": 
+                    case "3366": //Lanco
+                        Reportpath = "~/Report/RptPurchaseOrderLanco.rdlc";
+                        break;
+
                     //case "3101"://Asit
                     case "3335": // Edison Properties
                         Reportpath = "~/Report/RptPurchaseOrderEdison.rdlc";
@@ -4201,7 +4217,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderGreenwood.rdlc";
                         break;
 
-                    case "3101"://Asit
+                    //case "3101"://Asit
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
@@ -4264,7 +4280,7 @@ namespace RealERPWEB.F_99_Allinterface
                     Rpt1.SetParameters(new ReportParameter("balamt", balamt.ToString("#,##0.00;(#,##0.00); ")));
                 }
 
-                if (comcod == "3364" || comcod == "3101")
+                if (comcod == "3364")
                 {
                     //proadd
                     Rpt1.SetParameters(new ReportParameter("prjaddress", prjaddress));

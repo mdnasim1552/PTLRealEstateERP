@@ -1921,7 +1921,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102024", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=MonthlyLateAtten", "Employee Monthly Late Attendance(Report)", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102025", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MLateAppDay", "Employee Monthly Late Approval", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102026", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MPunchAppDay", "Monthly Punch Approval", "Attendance", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102027", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp", "Monthly Absent  Approval", "Attendance", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102027", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp", "Monthly Approval (LP)", "Attendance", "False", "False", "False", "False" });
 
 
 
@@ -14697,7 +14697,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Monthly (L.P) Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=LPAproval", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0303000015", "12. Monthly Punch Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MPunchAppDay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Absent Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Approval (LP)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000018", "14. Employee Monthly Early Leave Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MEarlyleave", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000019", "15. Early Leave Approval", "F_81_Hrm/F_83_Att/EmpEarlyLeaveApproval", "", true, "" });

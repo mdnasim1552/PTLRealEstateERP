@@ -34,6 +34,7 @@
         <%: Scripts.Render("~/bundles/User") %>
         <%: Scripts.Render("~/bundles/Counter") %>
         <%: Scripts.Render("~/bundles/highchart") %>
+        <%: Scripts.Render("~/bundles/flatpickr") %>
         
     </asp:PlaceHolder>
     <asp:ContentPlaceHolder ID="head" runat="server">     
@@ -227,7 +228,7 @@
  
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
+   
 </head>
 <body>
 
@@ -336,6 +337,13 @@
                         <!-- .top-bar-item -->
                         <div class="top-bar-item top-bar-item-right px-0 d-none d-sm-flex">
                             <ul class="header-nav nav">
+
+                                <li id="fblink" runat="server" visible="false">
+                                    <a href="https://www.facebook.com/btibd" class="nav-link" target="_blank" >
+                                       <img src="<%=this.ResolveUrl("~/Image/facebook_Icon.png")  %>" alt="FBlink" style="width:25px; height:auto;" />
+                                    </a>
+                                </li>
+
                                 <li class="nav-item dropdown header-nav-dropdown has-notified">
 
 

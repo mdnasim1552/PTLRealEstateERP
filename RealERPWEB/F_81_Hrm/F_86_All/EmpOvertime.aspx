@@ -153,7 +153,7 @@
                                     <asp:ListItem>100</asp:ListItem>
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
-                                    <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem Selected="True">300</asp:ListItem>
                                     <asp:ListItem>600</asp:ListItem>
                                     <asp:ListItem>1000</asp:ListItem>
                                 </asp:DropDownList>

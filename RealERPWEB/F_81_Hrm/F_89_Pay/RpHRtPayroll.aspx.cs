@@ -469,7 +469,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userid = hst["usrid"].ToString();
             string comcod = this.GetCompCode();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETCOMPANYNAME1", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -481,7 +481,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         }
 
-        private void GetProjectName()
+
+        private void GetBranch()
+
         {
 
             string comcod = this.GetCompCode();
@@ -492,13 +494,58 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
-            string txtSProject = "%" + this.txtSrcPro.Text.Trim() + "%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
+            string txtSProject = "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETBRANCH", Company, txtSProject, "", "", "", "", "", "", "");
+            this.ddlBranch.DataTextField = "actdesc";
+            this.ddlBranch.DataValueField = "actcode";
+            this.ddlBranch.DataSource = ds1.Tables[0];
+            this.ddlBranch.DataBind();
+            this.ddlBranch_SelectedIndexChanged(null, null);
+
+        }
+
+       
+
+        protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetBranch();
+           
+        }
+
+
+        protected void ddlBranch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetProjectName();
+
+
+        }
+
+        protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SectionName();
+        }
+
+        private void GetProjectName()
+        {
+
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+
+
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+
+            string txtSProject = "%%" ;
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", branch, txtSProject, "", "", "", "", "", "", "");
             this.ddlProjectName.DataTextField = "actdesc";
             this.ddlProjectName.DataValueField = "actcode";
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
             this.ddlProjectName_SelectedIndexChanged(null, null);
+
 
         }
         private void SectionName()
@@ -506,7 +553,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string comcod = this.GetCompCode();
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
-            string txtSSec = "%" + this.txtSrcSec.Text.Trim() + "%";
+            string txtSSec = "%%" ;
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
@@ -573,15 +620,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "OvertimeSalary":
                     this.ShowEmpOvertimeSalary();
                     break;
-
-
-
             }
-
-
         }
-
-
         private void ShowSal()
         {
 
@@ -597,7 +637,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
 
-            string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);
+            string CompanyName = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln);            
+            string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? CompanyName : this.ddlBranch.SelectedValue.ToString().Substring(0, 4)) + "%";
+
             string projectcode = this.ddlProjectName.SelectedValue.ToString();
             string section = this.ddlSection.SelectedValue.ToString();
             string monthid = Convert.ToDateTime(this.txttodate.Text).ToString("yyyyMM").ToString();
@@ -606,26 +648,22 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             mon = this.Datediffday1(Convert.ToDateTime(curdate), Convert.ToDateTime(dt1));
             DataSet ds3;
 
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SALLOCK", monthid, CompanyName, "", "", "", "", "", "", "");
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SALLOCK", monthid, branch, "", "", "", "", "", "", "");
             this.lblComSalLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
 
             //13 Suvastu, 
             string CallType = (this.rbtSalSheet.SelectedIndex == 7) ? "PAYROLL_DETAIL06" : (this.rbtSalSheet.SelectedIndex == 8) ? "PAYROLL_DETAIL07" : (this.rbtSalSheet.SelectedIndex == 6) ? "PAYROLL_DETAIL4" : (this.rbtSalSheet.SelectedIndex == 5) ? "PAYROLL_DETAIL3"
                 : (this.rbtSalSheet.SelectedIndex == 4) ? "PAYROLL_DETAIL2" : (this.rbtSalSheet.SelectedIndex == 2) ? "PAYROLL_DETAIL1" : (this.rbtSalSheet.SelectedIndex == 9) ? "PAYROLL_DETAIL08" : (this.rbtSalSheet.SelectedIndex == 10) ? "PAYROLL_DETAIL09" : (this.rbtSalSheet.SelectedIndex == 11) ? "PAYROLL_DETAIL10" : (this.rbtSalSheet.SelectedIndex == 12) ? "PAYROLL_DETAIL12" : (this.rbtSalSheet.SelectedIndex == 13) ? "PAYROLL_DETAIL14" :
                     (this.rbtSalSheet.SelectedIndex == 14) ? "PAYROLL_DETAIL16" : (this.rbtSalSheet.SelectedIndex == 15) ? "PAYROLL_DETAIL18" : (this.rbtSalSheet.SelectedIndex == 16) ? "PAYROLL_DETAIL19" : (this.rbtSalSheet.SelectedIndex == 17) ? "PAYROLL_DETAIL20" : (this.rbtSalSheet.SelectedIndex == 18) ? "PAYROLL_DETAIL21" : (this.rbtSalSheet.SelectedIndex == 19) ? "PAYROLL_DETAIL22" : (this.rbtSalSheet.SelectedIndex == 20) ? "PAYROLL_DETAIL23" : (this.rbtSalSheet.SelectedIndex == 21) ? "PAYROLL_DETAIL24": (this.rbtSalSheet.SelectedIndex == 22)? "PAYROLL_DETAIL25": "PAYROLL_DETAIL";
-
-
             string ProName = ((this.rbtSalSheet.SelectedIndex == 8) || (this.rbtSalSheet.SelectedIndex == 9) || (this.rbtSalSheet.SelectedIndex == 7) || (this.rbtSalSheet.SelectedIndex == 6) || (this.rbtSalSheet.SelectedIndex == 10) || (this.rbtSalSheet.SelectedIndex == 12) || (this.rbtSalSheet.SelectedIndex == 13) || (this.rbtSalSheet.SelectedIndex == 14) ||
                 (this.rbtSalSheet.SelectedIndex == 15) || (this.rbtSalSheet.SelectedIndex == 16) || (this.rbtSalSheet.SelectedIndex == 17) || (this.rbtSalSheet.SelectedIndex == 18) || (this.rbtSalSheet.SelectedIndex == 19)|| (this.rbtSalSheet.SelectedIndex == 20) || (this.rbtSalSheet.SelectedIndex == 21)  || (this.rbtSalSheet.SelectedIndex == 22))  ? "dbo_hrm.SP_REPORT_PAYROLL03" : (this.rbtSalSheet.SelectedIndex == 5) ? "dbo_hrm.SP_REPORT_PAYROLL01" : ((this.rbtSalSheet.SelectedIndex == 11) || (this.rbtSalSheet.SelectedIndex == 7)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : "dbo_hrm.SP_REPORT_PAYROLL";
             string mantype = "";
-
             switch (comcod)
             {
 
                 case "3338":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                     break;
-
                 //case "3101":
                 case "3355":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : (this.rbtnlistsaltype.SelectedIndex == 2) ? "86003%" : "86%";
@@ -634,8 +672,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 default:
                     mantype = "86%";
                     break;
-
-
             }
 
             string paytype = "";
@@ -673,7 +709,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             if (this.lblComSalLock.Text == "True")
             {
-                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcode, section, CompanyName, mantype, paytype, saltype, "", "");
+                ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", Calltype1, monthid, projectcode, section, CompanyName, mantype, paytype, saltype, branch, "");
 
                 //if (ds3.Tables[0].Rows.Count == 0)
                 //    ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, "", "", "", "");
@@ -681,7 +717,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else
             {
 
-                ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, saltype);
+                ds3 = HRData.GetTransInfo(comcod, ProName, CallType, frmdate, todate, projectcode, section, CompanyName, mantype, paytype, language, saltype, branch);
 
 
             }
@@ -742,8 +778,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "4101"://Rupayan
                     ComGross = "Rupayan";
                     break;
-
-
 
                 default:
                     ComGross = ""; ;
@@ -3457,7 +3491,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
             // rdlc for greenwood
-            else if (comcod == "3355")
+            else if (comcod == "3355" )
             {
                 double netamt = Convert.ToDouble(dt.Rows[0]["netpay"]);
                 string Inword = "In Word: " + ASTUtility.Trans(netamt, 2);
@@ -3478,7 +3512,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
 
-            else if (comcod == "3339" || comcod == "3101")
+            else if (comcod == "3339" )
             {
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipTro", list, null, null);
@@ -3534,6 +3568,22 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
+            }
+
+            else if (comcod == "3365" || comcod == "3101")
+            {
+                string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
+              
+                var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
+                Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
+                Rpt1.EnableExternalImages = true;
+
+                Rpt1.SetParameters(new ReportParameter("compName", comnam));
+                Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
+                Rpt1.SetParameters(new ReportParameter("txtHeader2", "(Month of " + todate1 + ")"));
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
+                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
             }
 
             else
@@ -3661,15 +3711,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
 
-        protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetProjectName();
-        }
-
-        protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.SectionName();
-        }
+       
         protected void gvpayroll_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             //this.SaveValue();
@@ -3944,8 +3986,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string Department = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
                 string Section = ((this.ddlSection.SelectedValue.ToString() == "000000000000") ? "" : this.ddlSection.SelectedValue.ToString()) + "%";
 
+                string branchdel = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4))+"%";
 
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "DELETESALSHEET", monthid, Company, Department, Section, mantype, emptype, "", "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "DELETESALSHEET", monthid, Company, Department, Section, mantype, emptype, branchdel, "", "", "", "", "", "", "", "");
 
                 if (!result)
                 {
@@ -4092,8 +4135,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 string Terminal = hst["compname"].ToString();
                 string Sessionid = hst["session"].ToString();
 
+                string branch = (this.ddlBranch.SelectedValue.ToString() == "000000000000" ? Company : this.ddlBranch.SelectedValue.ToString().Substring(0, 4));
+
                 string Salarylock = (((CheckBox)this.gvpayroll.FooterRow.FindControl("chkSalaryLock")).Checked) ? "1" : "0";
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INORUPSALLOCK", monthid, Company, Salarylock, userid, Posteddat, Terminal, Sessionid, "", "", "", "", "", "", "", "");
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL01", "INORUPSALLOCK", monthid, branch, Salarylock, userid, Posteddat, Terminal, Sessionid, "", "", "", "", "", "", "", "");
 
                 if (!result)
                 {
@@ -4429,5 +4474,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         }
 
+      
     }
 }

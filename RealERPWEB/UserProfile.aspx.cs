@@ -25,6 +25,12 @@ namespace RealERPWEB
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+                string type = "Pabx";
+                this.GetPabxEmpList(type);
+            }
+
             this.GetProfile();
 
             if (fileuploaddropzone.HasFile)
@@ -420,5 +426,80 @@ namespace RealERPWEB
             //this.lbtnOk_Click(null, null);
 
         }
+
+        private void GetPabxEmpList(string type)
+        {
+            Session.Remove("tblEmpstatus");
+            string comcod = this.GetCompCode();        
+            string Company = "94%";
+            string Deptid =  "%";
+            string secid = "%";
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETALLACTIVEEMP", Company, Deptid, secid, type, "", "", "", "", "");
+            if (ds4 == null)
+            {
+                this.gvPabxInfo.DataSource = null;
+                this.gvPabxInfo.DataBind();
+                return;
+            }
+            Session["tblEmpstatus"] = HiddenSameData(ds4.Tables[0]);
+            this.LoadGrid();
+
+        }
+
+        private void LoadGrid()
+        {
+            DataTable dt = (DataTable)Session["tblEmpstatus"];
+
+            this.gvPabxInfo.DataSource = dt;
+            this.gvPabxInfo.DataBind();
+        }
+
+        private object HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string type = "Pabx";
+            string company, secid;
+            switch (type)
+            {
+                
+                case "Pabx":         
+                    company = dt1.Rows[0]["company"].ToString();
+                    secid = dt1.Rows[0]["secid"].ToString();
+
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["company"].ToString() == company && dt1.Rows[j]["secid"].ToString() == secid)
+                        {
+
+                            dt1.Rows[j]["companyname"] = "";
+                            dt1.Rows[j]["section"] = "";
+                        }
+
+                        else
+                        {
+                            if (dt1.Rows[j]["company"].ToString() == company)
+                                dt1.Rows[j]["companyname"] = "";
+
+                            if (dt1.Rows[j]["secid"].ToString() == secid)
+                                dt1.Rows[j]["secton"] = "";
+                        }
+
+
+                        company = dt1.Rows[j]["company"].ToString();
+                        secid = dt1.Rows[j]["secid"].ToString();
+                    }
+
+                    break;
+             
+
+            }
+
+            return dt1;
+
+        }
+
+       
     }
 }

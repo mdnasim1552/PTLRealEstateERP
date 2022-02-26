@@ -4327,7 +4327,7 @@ Require</Value>
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>1.20139in</Height>
+          <Height>1.24306in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -4496,15 +4496,16 @@ Require</Value>
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtPreparedBy</rd:DefaultName>
-              <Top>0.32652in</Top>
+              <Top>0.06944in</Top>
               <Left>0.34759in</Left>
-              <Height>0.25in</Height>
+              <Height>0.58404in</Height>
               <Width>1.98958in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>

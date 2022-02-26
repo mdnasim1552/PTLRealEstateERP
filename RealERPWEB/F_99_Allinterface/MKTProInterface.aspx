@@ -312,7 +312,7 @@
 
         .tbMenuWrp table tr td {
             /*height: 50px;*/
-            width: 81px;
+            width: 90px;
             padding: 0 0;
             float: left;
             list-style: none;
@@ -558,162 +558,10 @@
 
         function pageLoaded() {
 
-            try {
+            try
+            {
 
-
-                var comcod = <%=this.GetCompCode()%>;
-
-                switch (comcod) {
-
-                    case 3338:   // ACME   
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-                        //  case 3101:   //ASIT
-                        break;
-
-
-                    case 3335:   // Edison  
-                        // case 3101:   //ASIT
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        break;
-
-                    case 3355:   // Green Wood  
-                        // case 3101:   //ASIT
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
-                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-                        break;
-
-
-
-                    case 3354:  //Edison Real Estate
-
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
-                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-                        break;
-
-
-
-
-
-                    case 1205:  //P2P Construction
-                    case 3351:  //wecon Properties
-                    case 3352:  //p2p360
-                        //case 3101:   //ASIT
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-                        break;
-
-
-
-
-
-
-                    case 1103:   //Tanvir
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-                        break;
-
-
-                    case 3340://Urban
-                        // $(".tbMenuWrp table tr td:nth-child(15)").show();
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-
-                        break;
-
-
-                    case 3348://Credence
-                        // $(".tbMenuWrp table tr td:nth-child(15)").show();
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-
-                        break;
-
-                    //case 3101:
-                    case 1108:
-                    case 1109:
-                    case 3316://Assure
-                    case 3315://Assure
-                    case 3317://Assure
-                        //case 3101://Assure
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-
-                        break;
-
-
-
-                    default:
-                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check                    
-                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
-                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval
-                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(8)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(13)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(14)").hide();
-                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
-                        //Added 
-                        // $(".tbMenuWrp table tr td:nth-child(16)").hide();
-
-                        break;
-
-
-
-                }
+                
 
 
 
@@ -846,25 +694,12 @@
                                                     <asp:RadioButtonList ID="RadioButtonList1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" RepeatDirection="Horizontal">
                                                         <asp:ListItem Value="0"></asp:ListItem>
                                                         <asp:ListItem Value="1"></asp:ListItem>
-
                                                         <asp:ListItem Value="2"></asp:ListItem>
                                                         <asp:ListItem Value="3"></asp:ListItem>
-
                                                         <asp:ListItem Value="4"></asp:ListItem>
                                                         <asp:ListItem Value="5"></asp:ListItem>
                                                         <asp:ListItem Value="6"></asp:ListItem>
-                                                        <asp:ListItem Value="7"></asp:ListItem>
-                                                        <asp:ListItem Value="8"></asp:ListItem>
-                                                        <asp:ListItem Value="9"></asp:ListItem>
-
-                                                        <asp:ListItem Value="10"></asp:ListItem>
-                                                        <asp:ListItem Value="11"></asp:ListItem>
-                                                        <asp:ListItem Value="12"></asp:ListItem>
-                                                        <asp:ListItem Value="13"></asp:ListItem>
-                                                        <asp:ListItem Value="14"></asp:ListItem>
-                                                        <asp:ListItem Value="15"></asp:ListItem>
-                                                        <asp:ListItem Value="16"></asp:ListItem>
-                                                        <asp:ListItem Value="17"></asp:ListItem>
+                                                       
 
 
                                                     </asp:RadioButtonList>
