@@ -1091,7 +1091,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2151000", "2151002", "F_99_Allinterface", "CRMDashboard02?", "Type=Report", "CRM Dashboard(Standard)", "CRM", "False", "False", "False", "False" });
 
 
 
