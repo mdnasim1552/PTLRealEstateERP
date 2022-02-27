@@ -313,7 +313,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             DataTable dt = (DataTable)Session["tblabscount"];
 
             //log Entry
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
