@@ -2263,6 +2263,8 @@ namespace RealERPWEB.F_14_Pro
 
                 case "3330":
                 case "5101":
+                //case "3348":
+
 
 
                     var groupedData = (from pactcode in dt1.AsEnumerable()
@@ -2297,7 +2299,10 @@ namespace RealERPWEB.F_14_Pro
 
                     }
 
+                    
                     //case "3101":
+                    //case "3348":
+
                     this.GetOrRefno(dt1.Rows[0]["pactcode"].ToString());
                     this.GetProConPerson(dt1.Rows[0]["pactcode"].ToString());
                     this.GetPreNarration();
@@ -2560,6 +2565,8 @@ namespace RealERPWEB.F_14_Pro
         protected void chkCharging_CheckedChanged(object sender, EventArgs e)
         {
             this.PnlCharging.Visible = (chkCharging.Checked);
+            this.imgSearchProject_Click(null, null);
+            this.imgSearchCharge_Click(null, null);
         }
         protected void imgSearchCharge_Click(object sender, EventArgs e)
         {

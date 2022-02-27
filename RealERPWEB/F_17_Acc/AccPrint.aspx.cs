@@ -793,9 +793,6 @@ namespace RealERPWEB.F_17_Acc
             if (ds1 == null)
                 return pounaction;
             pounaction = ds1.Tables[0].Rows[0]["pounaction"].ToString();
-
-
-
             return pounaction;
 
         }

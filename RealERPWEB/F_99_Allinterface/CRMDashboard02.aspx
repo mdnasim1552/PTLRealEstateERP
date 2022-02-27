@@ -11,233 +11,235 @@
 
         });
 
-        function ExecuteGraph(data, data1, data2, gtype) {
-            var lead_m = JSON.parse(data);
-            var lead_w = JSON.parse(data1);
-            var lead_d = JSON.parse(data2);
-
-            $('#chartleadMonths').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Monthly Lead status'
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    categories: ['Call', 'Ext.Meeting', 'Int. Meeting', 'Visit', 'Proposal', 'Close'],
-                    crosshair: true
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Total Monthly Lead status '
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                tooltip: {
-                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                        '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
-                    footerFormat: '</table>',
-                    shared: true,
-                    useHTML: true
-                },
-                plotOptions: {
-                    column: {
-                        pointPadding: 0.1,
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
-
-                series: [
-                    {
-                        name: "Target",
-                        color: "#A50200",
-                        data: [lead_m[0].tcall, lead_m[0].textmeeting, lead_m[0].tintmeeting, lead_m[0].tvisit, lead_m[0].tproposal, lead_m[0].tclose]
+        function ExecuteGraph(data1, data2, data3) {
+            var lspwise = JSON.parse(data1);
+            var lsswise = JSON.parse(data2);
+            var lsleadwise = JSON.parse(data3);
+            console.log(lspwise);
 
 
-                    }, {
-                        name: "Achive",
-                        color: "#00A28A",
-                        data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal, lead_m[0].close]
-                    }
-                ],
-            });
+            //$('#chartleadMonths').highcharts({
+            //    chart: {
+            //        type: 'column'
+            //    },
+            //    title: {
+            //        text: 'Monthly Lead status'
+            //    },
+            //    accessibility: {
+            //        announceNewData: {
+            //            enabled: true
+            //        }
+            //    },
+            //    xAxis: {
+            //        categories: ['Call', 'Ext.Meeting', 'Int. Meeting', 'Visit', 'Proposal', 'Close'],
+            //        crosshair: true
+            //    },
+            //    yAxis: {
+            //        min: 0,
+            //        title: {
+            //            text: 'Total Monthly Lead status '
+            //        }
+            //    },
+            //    legend: {
+            //        enabled: false
+            //    },
+            //    tooltip: {
+            //        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            //        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            //            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
+            //        footerFormat: '</table>',
+            //        shared: true,
+            //        useHTML: true
+            //    },
+            //    plotOptions: {
+            //        column: {
+            //            pointPadding: 0.1,
+            //            borderWidth: 0,
+            //            dataLabels: {
+            //                enabled: true,
+            //                format: '{point.y}'
+            //            }
+            //        }
+            //    },
 
-            var chartlead_w = Highcharts.chart('chartleadweek', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Weekly Lead status'
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Weekly Lead status'
-                    }
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
+            //    series: [
+            //        {
+            //            name: "Target",
+            //            color: "#A50200",
+            //            data: [lead_m[0].tcall, lead_m[0].textmeeting, lead_m[0].tintmeeting, lead_m[0].tvisit, lead_m[0].tproposal, lead_m[0].tclose]
 
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>'
-                },
 
-                series: [
-                    {
-                        name: "Weekly Lead Status",
-                        colorByPoint: true,
-                        data: [
-                            {
-                                name: "Call",
-                                y: parseFloat(lead_w[0].call)
-                            },
-                            {
-                                name: "Ext.Meet",
-                                y: parseFloat(lead_w[0].extmeeting)
-                            },
-                            {
-                                name: "Int.Meet",
-                                y: parseFloat(lead_w[0].intmeeting)
-                            },
-                            {
-                                name: "visit",
-                                y: parseFloat(lead_w[0].visit)
-                            },
-                            {
-                                name: "Proposal",
-                                y: parseFloat(lead_w[0].proposal)
-                            },
+            //        }, {
+            //            name: "Achive",
+            //            color: "#00A28A",
+            //            data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal, lead_m[0].close]
+            //        }
+            //    ],
+            //});
 
-                            {
-                                name: "Close",
-                                y: parseFloat(lead_w[0].close)
-                            }
-                        ]
-                    }
-                ]
-            });
-            var chartlead_d = Highcharts.chart('chartleadDaily', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Daily Lead status'
-                },
-                subtitle: {
-                    text: ''
-                },
-                accessibility: {
-                    announceNewData: {
-                        enabled: true
-                    }
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Total Daily Lead status'
-                    }
+            //var chartlead_w = Highcharts.chart('chartleadweek', {
+            //    chart: {
+            //        type: 'column'
+            //    },
+            //    title: {
+            //        text: 'Weekly Lead status'
+            //    },
+            //    subtitle: {
+            //        text: ''
+            //    },
+            //    accessibility: {
+            //        announceNewData: {
+            //            enabled: true
+            //        }
+            //    },
+            //    xAxis: {
+            //        type: 'category'
+            //    },
+            //    yAxis: {
+            //        title: {
+            //            text: 'Total Weekly Lead status'
+            //        }
+            //    },
+            //    legend: {
+            //        enabled: false
+            //    },
+            //    plotOptions: {
+            //        series: {
+            //            borderWidth: 0,
+            //            dataLabels: {
+            //                enabled: true,
+            //                format: '{point.y}'
+            //            }
+            //        }
+            //    },
 
-                },
-                legend: {
-                    enabled: false
-                },
-                plotOptions: {
-                    series: {
-                        borderWidth: 0,
-                        dataLabels: {
-                            enabled: true,
-                            format: '{point.y}'
-                        }
-                    }
-                },
+            //    tooltip: {
+            //        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            //        pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>'
+            //    },
 
-                tooltip: {
-                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                    pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>'
-                },
+            //    series: [
+            //        {
+            //            name: "Weekly Lead Status",
+            //            colorByPoint: true,
+            //            data: [
+            //                {
+            //                    name: "Call",
+            //                    y: parseFloat(lead_w[0].call)
+            //                },
+            //                {
+            //                    name: "Ext.Meet",
+            //                    y: parseFloat(lead_w[0].extmeeting)
+            //                },
+            //                {
+            //                    name: "Int.Meet",
+            //                    y: parseFloat(lead_w[0].intmeeting)
+            //                },
+            //                {
+            //                    name: "visit",
+            //                    y: parseFloat(lead_w[0].visit)
+            //                },
+            //                {
+            //                    name: "Proposal",
+            //                    y: parseFloat(lead_w[0].proposal)
+            //                },
 
-                series: [
-                    {
-                        name: "Daily Lead Status",
-                        colorByPoint: true,
-                        data: [
-                            {
-                                name: "Call",
-                                y: parseFloat(lead_d[0].call)
-                            },
-                            {
-                                name: "Ext.Meet",
-                                y: parseFloat(lead_d[0].extmeeting)
-                            },
-                            {
-                                name: "Int.Meet",
-                                y: parseFloat(lead_d[0].intmeeting)
-                            },
-                            {
-                                name: "Visit",
-                                y: parseFloat(lead_d[0].visit)
-                            },
-                            {
-                                name: "Proposal",
-                                y: parseFloat(lead_d[0].proposal)
-                            },
+            //                {
+            //                    name: "Close",
+            //                    y: parseFloat(lead_w[0].close)
+            //                }
+            //            ]
+            //        }
+            //    ]
+            //});
+            //var chartlead_d = Highcharts.chart('chartleadDaily', {
+            //    chart: {
+            //        type: 'column'
+            //    },
+            //    title: {
+            //        text: 'Daily Lead status'
+            //    },
+            //    subtitle: {
+            //        text: ''
+            //    },
+            //    accessibility: {
+            //        announceNewData: {
+            //            enabled: true
+            //        }
+            //    },
+            //    xAxis: {
+            //        type: 'category'
+            //    },
+            //    yAxis: {
+            //        title: {
+            //            text: 'Total Daily Lead status'
+            //        }
 
-                            {
-                                name: "Close",
-                                y: parseFloat(lead_d[0].close)
-                            }
-                        ]
-                    }
-                ]
-            });
+            //    },
+            //    legend: {
+            //        enabled: false
+            //    },
+            //    plotOptions: {
+            //        series: {
+            //            borderWidth: 0,
+            //            dataLabels: {
+            //                enabled: true,
+            //                format: '{point.y}'
+            //            }
+            //        }
+            //    },
 
-            let w = $(".graph-main").width();
-            let h = 350;
-            chartlead_w.setSize(w, h);
-            chartlead_d.setSize(w, h);
-            const elem = $(".graph-main")[0];
-            let resizeObserver = new ResizeObserver(function () {
-                chartlead_w.setSize(w, h);
-                chartlead_d.setSize(w, h);
-                w = $(".graph-main").width();
-            });
-            resizeObserver.observe(elem);
+            //    tooltip: {
+            //        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+            //        pointFormat: '<span style="color:{point.color}">{point.name}</span><br/>'
+            //    },
+
+            //    series: [
+            //        {
+            //            name: "Daily Lead Status",
+            //            colorByPoint: true,
+            //            data: [
+            //                {
+            //                    name: "Call",
+            //                    y: parseFloat(lead_d[0].call)
+            //                },
+            //                {
+            //                    name: "Ext.Meet",
+            //                    y: parseFloat(lead_d[0].extmeeting)
+            //                },
+            //                {
+            //                    name: "Int.Meet",
+            //                    y: parseFloat(lead_d[0].intmeeting)
+            //                },
+            //                {
+            //                    name: "Visit",
+            //                    y: parseFloat(lead_d[0].visit)
+            //                },
+            //                {
+            //                    name: "Proposal",
+            //                    y: parseFloat(lead_d[0].proposal)
+            //                },
+
+            //                {
+            //                    name: "Close",
+            //                    y: parseFloat(lead_d[0].close)
+            //                }
+            //            ]
+            //        }
+            //    ]
+            //});
+
+            //let w = $(".graph-main").width();
+            //let h = 350;
+            //chartlead_w.setSize(w, h);
+            //chartlead_d.setSize(w, h);
+            //const elem = $(".graph-main")[0];
+            //let resizeObserver = new ResizeObserver(function () {
+            //    chartlead_w.setSize(w, h);
+            //    chartlead_d.setSize(w, h);
+            //    w = $(".graph-main").width();
+            //});
+            //resizeObserver.observe(elem);
 
 
         };
@@ -541,21 +543,21 @@
         <div class="col-md-3 col-sm-3 col-lg-3">
             <div class="card mb-0 card-fluid graph-main" style="width: 100%; height: 350px;">
 
-                <div id="chartleadDaily" style="max-height: 350px;"></div>
+                <div id="chartswise" style="max-height: 350px;"></div>
 
             </div>
         </div>
         <div class="col-md-3 col-sm-3 col-lg-3">
             <div class="card  mb-0 graph-main card-fluid" style="width: 100%; height: 350px;">
 
-                <div id="chartleadweek" style="max-height: 350px;"></div>
+                <div id="chartprjwise" style="max-height: 350px;"></div>
 
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-lg-6">
             <div class="card mb-0 graph-main card-fluid" style="width: 100%; height: 350px;">
 
-                <div id="chartleadMonths" style="width: 90%; height: 350px;"></div>
+                <div id="chartleadwise" style="width: 90%; height: 350px;"></div>
 
             </div>
         </div>
