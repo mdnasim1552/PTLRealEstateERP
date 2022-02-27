@@ -330,7 +330,7 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Rate">
+                                    <asp:TemplateField HeaderText="New Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvsupRat" runat="server" BorderColor="#99CCFF" BackColor="White" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
