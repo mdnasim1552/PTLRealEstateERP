@@ -24,13 +24,13 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventNotice;
 
         /// <summary>
-        /// upComingNotice control.
+        /// EventCaro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl upComingNotice;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventCaro;
 
         /// <summary>
         /// userimg control.
@@ -58,6 +58,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UDesignation;
+
+        /// <summary>
+        /// UDptment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl UDptment;
 
         /// <summary>
         /// upComingHolidays control.
@@ -105,13 +114,22 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.TextBox lblabs;
 
         /// <summary>
-        /// lnkFormLink control.
+        /// lnkOrintation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkFormLink;
+        protected global::System.Web.UI.WebControls.HyperLink lnkOrintation;
+
+        /// <summary>
+        /// HyperCodeofConduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperCodeofConduct;
 
         /// <summary>
         /// hyplPreviewCv control.
@@ -195,6 +213,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.GridView grvJobRespo;
 
         /// <summary>
+        /// pnlServHis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pnlServHis;
+
+        /// <summary>
         /// gvempservices control.
         /// </summary>
         /// <remarks>
@@ -231,48 +258,21 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl EventBirthday;
 
         /// <summary>
-        /// Calendar1 control.
+        /// GvHoliday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
+        protected global::System.Web.UI.WebControls.GridView GvHoliday;
 
         /// <summary>
-        /// Div2 control.
+        /// gvSpHolidyas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
-
-        /// <summary>
-        /// Label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
-
-        /// <summary>
-        /// inputtextbox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox inputtextbox;
-
-        /// <summary>
-        /// gvPabxInfo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPabxInfo;
+        protected global::System.Web.UI.WebControls.GridView gvSpHolidyas;
     }
 }

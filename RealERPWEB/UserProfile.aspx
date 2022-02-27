@@ -47,73 +47,76 @@
             }
         }
 
-        function Search_Gridview(strKey) {
+        
 
-            var strData = strKey.value.toLowerCase().split(" ");
-            var tblData = document.getElementById("<%=gvPabxInfo.ClientID %>");
-            var rowData;
-            for (var i = 1; i < tblData.rows.length; i++) {
 
-                rowData = tblData.rows[i].innerHTML;
-                var styleDisplay = 'none';
-                for (var j = 0; j < strData.length; j++) {
-                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
-                        styleDisplay = '';
-                    else {
-                        styleDisplay = 'none';
-                        break;
-                    }
-                }
-                tblData.rows[i].style.display = styleDisplay;
-            }
-        }
     </script>
     <style>
-        .topMenu li .nav-link{
-            padding:10px 10px;
+        .topMenu li .nav-link {
+            padding: 10px 10px;
+
+
         }
+        /* This is the containing element, 
+it needs a div within it that will 
+contain the p elements to be scrolled  */
+
+.marquee {
+   
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    
+}
+
+.marquee > div {
+  display: table-row;
+  white-space: nowrap;
+  padding-left: 100%; 
+  animation: marquee 30s linear infinite; /* Time must be adjusted based on total width of scrolled elements*/
+}
+
+.marquee > div p {
+  width: 100%; /* Width of p elements must match the width of marquee "window"*/
+  padding-left: 100%; /* Padding determines space between scrolled elements */
+  display: table-cell; 
+  color:crimson;
+  font-size:14px;
+}
+
+/* Make it move */
+@keyframes marquee {
+    0%   { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
     </style>
     <div class="page ">
         <!-- .page-cover -->
         <header class="Xpage-cover mt-4">
             <div class="row">
 
-                <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
-                    <div class="row">
-                        <!--Breaking box-->
-                        <div class="col-md-2 col-lg-2 pr-md-0">
-                            <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
-                        </div>
-                        <!--end breaking box-->
-                        <!--Breaking content-->
-                        <div class="col-md-10 col-lg-10 pl-md-4 py-2">
-                            <div class="breaking-box">
-                                <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
-                                    <!--breaking news-->
-                                    <div class="carousel-inner " id="upComingNotice" runat="server">
-                                    </div>
-                                    <!--end breaking news-->
-
-                                    <!--navigation slider-->
-                                    <div class="navigation-box p-2 d-none d-sm-block">
-                                        <!--nav left-->
-                                        <a class="carousel-control-prev text-primary" href="#carouselbreaking" role="button" data-slide="prev">
-                                            <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <!--nav right-->
-                                        <a class="carousel-control-next text-primary" href="#carouselbreaking" role="button" data-slide="next">
-                                            <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                            <span class="sr-only">Next</span>
-                                        </a>
-                                    </div>
-                                    <!--end navigation slider-->
+                 <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
+                <div class="row">
+                    <!--Breaking box-->
+                    <div class="col-md-2 col-lg-2 pr-md-0">
+                        <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
+                    </div>
+                    
+                    <div class="col-md-10 col-lg-10 pl-md-4 py-2">
+                        <div class="breaking-box">
+                            <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
+                                
+                                <div class="marquee">
+                                    <div id="EventCaro" runat="server"></div>
                                 </div>
+                                 
                             </div>
                         </div>
-                        <!--end breaking content-->
                     </div>
+                   
                 </div>
+            </div>
             </div>
 
             <div class="row">
@@ -126,7 +129,8 @@
                                 </a>
                                 <h2 class="h4 mt-2 mb-0" id="UserName" runat="server">Beni Arisandi </h2>
 
-                                <p class="text-muted" id="UDesignation" runat="server">Project Manager @CreativeDivision </p>
+                                <p class="text-muted  mb-0" id="UDesignation" runat="server">Project Manager @CreativeDivision </p>
+                                <p class="text-muted" id="UDptment" runat="server">Project Manager @UDptment </p>
 
                             </div>
 
@@ -146,7 +150,7 @@
                             </div>
                         </header>
 
-                        <div class="card-body" style="min-height: 330px" id="upComingHolidays" runat="server">
+                        <div class="card-body" style="max-height: 200px; overflow-y: scroll" id="upComingHolidays" runat="server">
                         </div>
 
 
@@ -179,7 +183,7 @@
 
                 </div>
             </div>
-            
+
             <nav class="page-navs">
                 <!-- .nav-scroller -->
                 <div class="card-body m-0 p-0">
@@ -194,24 +198,26 @@
                             </a>
                             <div class="dropdown-arrow dropdown-arrow-left"></div>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Leave Policy</a>
-                                <a class="dropdown-item" href="#">Absent Policy</a>
-                                <a class="dropdown-item" href="#">Late Policy</a>
-                                <a class="dropdown-item" href="#">Late Present Policy</a>
+                                <a class="dropdown-item" data-toggle="tab" href="#LeavePolicy">Leave Policy</a>
+                                <a class="dropdown-item d-none" data-toggle="tab" href="#AbsentPolicy">Absent Policy</a>
+                                <a class="dropdown-item" data-toggle="tab" href="#LatePolicy">Late Policy</a>
+                                <a class="dropdown-item" data-toggle="tab" href="#LatePresentPolicy">Late Present Policy</a>
+                                <a class="dropdown-item" data-toggle="tab" href="#HalfdayleavePolicy">Half day leave Policy</a>
 
                             </div>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link smooth-scroll" data-toggle="tab">Orintation Link</a></li>
                         <li class="nav-item">
-                            <asp:HyperLink ID="lnkFormLink" CssClass="nav-link smooth-scrol" runat="server"> bti Form</asp:HyperLink>
+                            <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
                         </li>
-                        <li class="nav-item"><a href="#" class="nav-link smooth-scroll" data-toggle="tab">Wins List</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link smooth-scroll" data-toggle="tab">Code of Conduct</a></li>
-                        <li class="nav-item"><a href="#Organogram" class="nav-link smooth-scroll" data-toggle="tab">Organogram</a></li>
-                        <li class="nav-item"><a href="#PabxList" class="nav-link smooth-scroll" data-toggle="tab">Pabx List</a></li>
-
+                       
+                        <li class="nav-item"><a href="#WinsList" class="nav-link smooth-scroll" data-toggle="tab">Wins List</a></li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="dropdown" href="#" role="button">Application
+                            <asp:HyperLink ID="HyperCodeofConduct" CssClass="nav-link smooth-scrol" Visible="true" NavigateUrl='~/Upload/bti/Code of Conduct Bangla.pdf' Target="_blank" runat="server">Code of Conduct</asp:HyperLink>
+                            
+                        <li class="nav-item"><a href="#Organogram" class="nav-link smooth-scroll" data-toggle="tab">Organogram</a></li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="dropdown" href="#" role="button">Application Form
                             <span class="caret"></span>
                             </a>
                             <div class="dropdown-arrow dropdown-arrow-left"></div>
@@ -430,7 +436,7 @@
 
                         </div>
                         <div class="col-md-6">
-                             <!-- .card -->
+                            <!-- .card -->
                             <div class="card card-fluid">
                                 <!-- .card-header -->
                                 <div class="card-header border-0 pb-0">
@@ -535,12 +541,10 @@
                     </div>
 
 
-                    <!-- /grid row -->
-                    <!-- grid row -->
                     <div class="row">
                         <!-- grid column -->
                         <div class="col-xl-6">
-                           <div class="card card-fluid">
+                            <div class="card card-fluid">
                                 <div class="card-header border-0">
                                     <!-- .d-flex -->
                                     <div class="d-flex align-items-center">
@@ -608,7 +612,7 @@
                         <!-- grid column -->
                         <div class="col-xl-6">
                             <!-- .card -->
-                            <div class="card card-fluid">
+                            <div class="card card-fluid" id="pnlServHis" runat="server">
                                 <!-- .card-header -->
                                 <div class="card-header border-0">
                                     <!-- .d-flex -->
@@ -724,7 +728,7 @@
                         <!-- /grid column -->
                     </div>
 
-                  
+
 
 
                     <!-- /grid row -->
@@ -735,12 +739,12 @@
                             <section class="card card-fluid" style="min-height: 345px">
                                 <div class="card-body">
                                     <!-- .card-header -->
-                                    <div class="card-header border-0 mt-0 pt-0 pb-0">
+                                    <div class="card-header border-0 mt-0 pt-0 pb-1">
                                         <!-- .d-flex -->
                                         <div class="d-flex align-items-center">
                                             <span class="mr-auto">Upcoming Notice </span>
 
-                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%=this.ResolveUrl("~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=")%>' Target="_blank"
+                                            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Notification/GetNotification?Id=All&RefId=&notiytype=&ntype=" Target="_blank"
                                                 CssClass="btn btn-sm btn-info pull-right" Text="View all"></asp:HyperLink>
                                         </div>
 
@@ -809,164 +813,566 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="HolidayCalender">
+
+
                     <div class="row">
-                         <section class="card card-fluid d-none" style="min-height: 345px">
-                                <asp:Calendar ID="Calendar1" runat="server" BackColor="#FFFFCC" BorderColor="#FFCC66"  
-            BorderWidth="1px" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt"  
-            ForeColor="#663399" ShowGridLines="True" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged"  
-            OnVisibleMonthChanged="Calendar1_VisibleMonthChanged">  
-            <SelectedDayStyle BackColor="#CCCCFF" Font-Bold="True" />  
-            <SelectorStyle BackColor="#FFCC66" />  
-            <TodayDayStyle BackColor="#FFCC66" ForeColor="White" />  
-            <OtherMonthDayStyle ForeColor="#CC9966" />  
-            <NextPrevStyle Font-Size="9pt" ForeColor="#FFFFCC" />  
-            <DayHeaderStyle BackColor="#FFCC66" Font-Bold="True" Height="1px" />  
-            <TitleStyle BackColor="#990000" Font-Bold="True" Font-Size="9pt" ForeColor="#FFFFCC" />  
-        </asp:Calendar>  
-                                     
-
-                            </section>
-                    </div>
-                </div>
-                 <div class="tab-pane fade" id="Organogram">
-                    <div class="row">
-                         <section class="card card-fluid" style="min-height: 345px">
-                                <div class="card-body" id="Div2" runat="server">
-                                     <div class="card-header border-0">
-                                    <!-- .d-flex -->
-
-                                    <div class="d-flex align-items-center mb-0">
-                                        <h3 class="card-title mr-auto">Organogram</h3>
-                                      
-                                        <!-- /.card-title-control -->
-                                    </div>
-
-
-                                    <!-- /.d-flex -->
-                                </div>
-                                </div>
-                            </section>
-                    </div>
-                </div>
-
-                
-                <div class="tab-pane fade" id="PabxList">
-                <section class="card card-fluid">
-                    <div class="card-body" style="min-height: 345px">
                         <div class="col-6">
-
-                         
-                                <div class="card-header border-0">
-                                    <!-- .d-flex -->
-
-                                    <div class="d-flex align-items-center mb-0">
-                                        <h3 class="card-title mr-auto">Pabx List </h3>
-                                        <!-- .card-title-control -->
-                                        <div class="card-title-control">
-                                            <!-- .dropdown -->
-                                            <div class="input-group input-group-alt">
-
-                                                <div class="input-group-prepend ">
-                                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
-                                                </div>
-                                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
-                                            </div>
-                                            <!-- /.dropdown -->
+                            <section class="card card-fluid " style="min-height: 345px">
+                                <div class="card-body">
+                                    <div class="card-header border-0">
+                                        <div class="d-flex align-items-center mb-0">
+                                            <h3 class="card-title mr-auto">Goverment Holidys</h3>
                                         </div>
-                                        <!-- /.card-title-control -->
+                                    </div>
+                                    <div class="table table-responsive card-body pt-0 pb-0">
+                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table-striped table-hover table-bordered"
+                                            AutoGenerateColumns="False"
+                                            ShowFooter="false" AllowPaging="true" PageSize="5">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Events">
+                                                    <ItemTemplate>
+                                                        <header class="card-header border-0 p-0 m-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <span class="mr-auto"><%#Convert.ToString(DataBinder.Eval(Container.DataItem, "reason").ToString())  %> </span>
+                                                            </div>
+                                                        </header>
+                                                    </ItemTemplate>
+                                                    <ItemStyle Width="200" />
+
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                            BorderStyle="None" Font-Size="11px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "wkdate1")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Day">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                            BorderStyle="None" Font-Size="11px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "daynam")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="No. of Days">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                            BorderStyle="None" Font-Size="11px"
+                                                            Text='01'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                            </Columns>
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-6">
+                            <section class="card card-fluid " style="min-height: 345px">
+
+                                <div class="card-body">
+                                    <div class="card-header border-0">
+                                        <div class="d-flex align-items-center mb-0">
+                                            <h3 class="card-title mr-auto">Special Holidys</h3>
+                                        </div>
+                                    </div>
+                                    <div class="table table-responsive card-body pt-0 pb-0">
+                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table-striped table-hover table-bordered"
+                                            AutoGenerateColumns="False" OnPageIndexChanging="gvSpHolidyas_PageIndexChanging"
+                                            ShowFooter="false" AllowPaging="true" PageSize="5">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Sl.No.">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
+                                                            Style="text-align: right"
+                                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                                <asp:TemplateField HeaderText="Details">
+                                                    <ItemTemplate>
+                                                        <header class="card-header border-0 p-0 m-0">
+                                                            <div class="d-flex align-items-center">
+                                                                <span class="mr-auto"><%#Convert.ToString(DataBinder.Eval(Container.DataItem, "reason").ToString())  %> </span>
+                                                            </div>
+                                                        </header>
+                                                    </ItemTemplate>
+                                                    <ItemStyle Width="200" />
+                                                    <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                            BorderStyle="None" Font-Size="11px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "wkdate1")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Day">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
+                                                            BorderStyle="None" Font-Size="11px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "daynam")) %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                    <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                                </asp:TemplateField>
+
+
+                                            </Columns>
+                                            <EditRowStyle />
+                                            <AlternatingRowStyle />
+                                        </asp:GridView>
                                     </div>
 
-
-                                    <!-- /.d-flex -->
                                 </div>
-                                <div class="table table-responsive card-body">
+                            </section>
 
-                                    <asp:GridView ID="gvPabxInfo" runat="server" CssClass="table-striped table-hover table-bordered"
-                                        AutoGenerateColumns="False"
-                                        ShowFooter="True">
-                                        <RowStyle />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Sl.No.">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvSlNo1" runat="server" Font-Bold="True" Height="16px"
-                                                        Style="text-align: right"
-                                                        Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="30px"></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                        </div>
+                    </div>
 
-                                            <asp:TemplateField HeaderText="Card #" Visible="false">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvcardnoemp" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Employee Name">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvdeptandemployeeemp" runat="server"
-                                                        Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "empname").ToString())  %>'> 
-                                              
-                                                    </asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                </div>
 
-                                            <asp:TemplateField HeaderText="Designation">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvdesignationemp" runat="server"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                <div class="tab-pane fade" id="Organogram">
+
+                    <section class="card card-fluid" style="min-height: 345px">
+                        <div class="card-header border-0 mb-0 pb-0">
+                            <div class="d-flex align-items-center mb-0">
+                                <h3 class="card-title mr-auto">Organogram</h3>
+                            </div>
+                        </div>
+                        <div class="card-body mt-0 pt-0">
+                            <div class="row">
+                                <div class="col-4">
+
+                                    <ul class="list-group list-group-flush list-group-bordered">
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    ACC
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Accounts.pdf")%>">Accounts </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    AUD
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Audit.pdf")%>">Audit </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    BD
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/BD.pdf")%>">BD </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    BRK
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Brokerage.pdf")%>">Brokerage </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    BP
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Building Products.pdf")%>">Building Products </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    CC
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Call Center.pdf")%>">Call Center </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    COMM
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Communication.pdf")%>">Communication </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    CON
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Construction.pdf")%>">Construction </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-4">
+                                    <ul class="list-group list-group-flush list-group-bordered">
+
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    CSD
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/CSD, Legal.pdf")%>">CSD, Legal </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    DES
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Design.pdf")%>">Design</a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    DM
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Digital Marketing.pdf")%>">Digital Marketing </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    ACC
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Electro Mechanical.pdf")%>">Building Products </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    EM
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Electro Mechanical.pdf")%>">Electro Mechanical</a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    FIN
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Finance.pdf")%>">Finance </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    HR
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/HR, Admin and Security.pdf")%>">HR, Admin and Security </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    MKT
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Marketing.pdf")%>">Marketing </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-4">
+                                    <ul class="list-group list-group-flush list-group-bordered">
 
 
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    MGT
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Mgt Associate.pdf")%>">Mgt Associate </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    PAY
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Payroll.pdf")%>">Payroll </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    PRO
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Procurement.pdf")%>">Procurement </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    PRO
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Property Mgt_.pdf")%>">Property Mgt</a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    SALE
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/Sales.pdf")%>">Sales </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    SFS
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/SFS (Construction).pdf")%>">SFS (Construction) </a>
+                                        </li>
+                                        <li class="list-group-item pt-1 pb-1">
+                                            <div class="list-group-item-figure">
+                                                <div class="tile bg-success">
+                                                    SFS
+                                                </div>
+                                            </div>
+                                            <a class="list-group-item-body" target="_blank" href="<%=this.ResolveUrl("~/Upload/Organogram/SFS (Sales).pdf")%>">SFS (Sales) </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
 
 
+                 
 
-                                            <asp:TemplateField HeaderText="Ext#">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblExtion" runat="server" BackColor="Transparent"
-                                                        BorderStyle="None" Font-Size="11px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "extention")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Mobile">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblgvmobile" runat="server" BackColor="Transparent"
-                                                        BorderStyle="None" Font-Size="11px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mobile")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                <div class="tab-pane fade" id="LeavePolicy">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
 
-                                            <asp:TemplateField HeaderText="Email">
-                                                <ItemTemplate>
-                                                    <asp:Label ID="lblEmail" runat="server" BackColor="Transparent"
-                                                        BorderStyle="None" Font-Size="11px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "email")) %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                                <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
-                                            </asp:TemplateField>
+                                <div class="card-body">
+                                    <h1 class="text-center">Leave Policy</h1>
+                                    <h2 class="text-center">Circular</h2>
+                                    <h6 class="text-center">Subject: Inclusion at Leave Policy</h6>
 
+                                    <p>
+                                        We are enjoying leave facility in all formats as bti treated us as second VIP. To
+enhance this facility for the betterment of our employee following option is included
+at our leave policy which is agree by all HOD at standing meeting this month.
+                                    </p>
+                                    <p>
+                                        i) In case of 4 to 5 days continue leave, the first 3 days will be considered as
+casual leave. Rest 1 or 2 days leave may be considered as CL or EL which
+will be depends on the applicants respective HOD.
+                                    </p>
+                                    <p>
+                                        ii) If the enjoyed leave duration is more than 05 days then it shall be treated as
+Earn Leave.
+                                    </p>
 
-                                        </Columns>
-                                        <EditRowStyle />
-                                        <AlternatingRowStyle />
-                                    </asp:GridView>
+                                    <p>This is for all of your information</p>
+
                                 </div>
 
-                    </div>
-                    </div>
-                </section>
-            </div>
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="LatePolicy">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
+
+                                <div class="card-body">
+                                    <h1 class="text-center">SOP for Late Attendance</h1>
+
+                                    <h6 class="text-left">Purpose:</h6>
+
+                                    <p>
+                                        To ensure the maximum attendance of all employee of bti.
+                                    </p>
+                                    <h6 class="text-left">Late Attendance Procedure:</h6>
+
+                                    <p>
+                                        i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
+ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
+iii) In case of continuous late of any employee which is 3 or more than 3 days will be adjusted from his/ her Casual Leave (CL) and Earn Leave (EL) as per the
+following schedule:
+a) 3 Days Late = 1 CL
+b) 4 Days Late = 1 CL & half day leave
+c) 5 Days Late = 2 CL & half day leave
+d) 6 Days Late = 3 CL & half day leave
+ Each attendance after 10:00am will be marked as absent for the day.
+                                    </p>
+                                    <h6 class="text-left">Note: </h6>
+
+                                    <p>
+                                        i. For each late after 6 days late additional 1 EL will be deducted.
+                                    </p>
+
+                                    <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="AbsentPolicy">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
+
+                                <div class="card-body">
+                                    <h1 class="text-center">Absent Policy</h1>
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="LatePresentPolicy">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
+
+                                <div class="card-body">
+                                    <h1 class="text-center">Late Present Policy</h1>
+                                   
+                                    <h6 class="text-left">Late Attendance Procedure:</h6>
+
+                                    <p>
+                                        i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.</p>
+                                     <p>
+                                        ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
+                                    </p>
+                                    <h6 class="text-left">Note: </h6>
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="tab-pane fade" id="HalfdayleavePolicy">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
+
+                                <div class="card-body">
+                                    <h1 class="text-center">Half day leave Policy</h1>
+
+                                <p>    •	Half day  leave  is  divided into  below 2 time  slots:</p>
+		 <p>  i.  	9:00  am to  1:00  pm</p>
+		 <p>  ii.	1:00  pm to  5:30  pm.</p>
+<p> •	3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
+ <p>  •	2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
+ <p>  •	Half day leave can be enjoyed maximum 10 times in a year.</p>
+ <p>  •	2 half day leave will be considered as 1 day CL/ SL.</p>
+ <p>  •	Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
+ <p>  •	Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
+ <p>  •	No half day leave information will be accepted after 9:00am. </p>
+ <p>  •	All other condition regarding leave will remain unchanged.</p>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="tab-pane fade" id="WinsList">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
+
+                                <div class="card-body">
+                                    <h1 class="text-center">Wins List</h1>
+
+                            <p>No Data Found</p>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <div class="tab-pane fade" id="CodeofConduct">
+                    <section class="card card-fluid">
+                        <div class="card-body" style="min-height: 345px">
+                            <div class="col-12">
+
+                                <div class="card-body">
+                                    <h1 class="text-center">Code of Conduct</h1>
+
+                            <p>No Data Found</p>
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -989,6 +1395,14 @@
             });
         });
 
+        $(function () {
+            var tabName = $("[id*=TabName]").val() != "" ? $("[id*=TabName]").val() : "home";
+            $('#Tabs a[href="#' + tabName + '"]').tab('show');
+            $("#Tabs a").click(function () {
+                $("[id*=TabName]").val($(this).attr("href").replace("#", ""));
+            });
+
+        });
 
     </script>
 </asp:Content>

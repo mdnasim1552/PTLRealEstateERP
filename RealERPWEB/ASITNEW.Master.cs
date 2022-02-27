@@ -65,26 +65,20 @@ namespace RealERPWEB
                 this.GetShortCut();
                 this.GetAdminUserMenu();
                 string comcod = this.GetCompCode();
-                if (comcod == "3365" ||  comcod == "3101")
-                {
-                    fblink.Visible = true;
-                }
-                else
-                {
-                    fblink.Visible = false;
-                }
+
                 if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
                 {
                     BindMenu();
+                    GetProFileMEnu();
                 }
                 else if (comcod.Substring(0, 1) == "8")
                 {
                     this.WraperMain.Attributes.Add("class", "app has-fullwidth");
                     this.mySidenav.Attributes.Add("class", "app-aside ");
                     this.main.Attributes.Add("class", "app-main ml-0 ");
-                    this.GroupMenu.Visible=true;
+                    this.GroupMenu.Visible = true;
 
-                    
+
 
                 }
 
@@ -121,6 +115,21 @@ namespace RealERPWEB
 
         }
 
+        private void GetProFileMEnu()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+
+                case "3365":
+                case "3101":
+                    this.lnkFormLink.Visible = true;
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
+                    
+                    break;
+
+            }
+        }
         private void GetComNameAAdd()
         {
             string comcod = this.GetCompCode();
