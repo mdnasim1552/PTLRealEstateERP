@@ -157,12 +157,6 @@ namespace RealERPWEB.F_99_Allinterface
         private void GetNotificationByEmployee(string ddlempid)
         {
 
-
-        
-
-
-
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
             string comcod = this.GetComeCode();
@@ -172,18 +166,19 @@ namespace RealERPWEB.F_99_Allinterface
             string todate = this.txttodate.Text.ToString();
             string condate = todate;
             string Empid = "";
-            //if (userrole != "1")
-            //{
-            //    Empid =hst["empid"].ToString();
-            //}
-            Empid=((ddlempid == "000000000000") ? "" : ddlempid)+"%";
-            //ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
+            if (userrole != "1")
+            {
+                Empid = hst["empid"].ToString();
+            }
+            //Empid =((ddlempid == "000000000000") ? "" : ddlempid)+"%";
+            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
 
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE02", "REPORTCRMDASHBOARD", "8301%", Empid, fromdate, todate, condate, ddlempid);
            // DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
 
             Session["tblNotification"] = ds3;
             bindDataIntoLabel();
+            this.ShowGraph();
            // this.EmpMonthlyKPI(ddlempid);
         }
         private void bindDataIntoLabel()
@@ -193,25 +188,14 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 return;
             }
-            //this.lbldws.InnerText = ds3.Tables[0].Rows[0]["dws"].ToString();
-            //this.lbldwr.InnerText = ds3.Tables[0].Rows[0]["dwr"].ToString();
-            //this.lblCall.InnerText = ds3.Tables[0].Rows[0]["call"].ToString();
-            //this.lblvisit.InnerText = ds3.Tables[0].Rows[0]["visit"].ToString();
-            this.lblprospect.InnerText = ds3.Tables[0].Rows[0]["tprospect"].ToString();
-            this.lblqualifylead.InnerText = ds3.Tables[0].Rows[0]["qualiflead"].ToString();
-            this.lblnego.InnerText = ds3.Tables[0].Rows[0]["nego"].ToString();
-            this.lblfinnego.InnerText = ds3.Tables[0].Rows[0]["finalnego"].ToString();
-
-            // this.lblFreez.InnerText = ds3.Tables[0].Rows[0]["freezing"].ToString();
-            //this.lblDeadProspect.InnerText = ds3.Tables[0].Rows[0]["deadprospect"].ToString();
-            this.lblcsigned.InnerText = ds3.Tables[0].Rows[0]["win"].ToString();
-
-            //this.lblpme.InnerText = ds3.Tables[0].Rows[0]["pme"].ToString();
-            this.lbllost.InnerText = ds3.Tables[0].Rows[0]["lost"].ToString();
-            this.lblDatablank.InnerText = ds3.Tables[0].Rows[0]["databank"].ToString();
-           // this.lblOccasion.InnerText = ds3.Tables[1].Rows.Count.ToString();
-
-
+          
+            this.lblprospect.InnerText =Convert.ToDouble(ds3.Tables[0].Rows[0]["tprospect"]).ToString("#,##0;(#,##0);");
+            this.lblqualifylead.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["qualiflead"]).ToString("#,##0;(#,##0);");
+            this.lblnego.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["nego"]).ToString("#,##0;(#,##0);");
+            this.lblfinnego.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["finalnego"]).ToString("#,##0;(#,##0);");
+            this.lblcsigned.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["win"]).ToString("#,##0;(#,##0);");
+            this.lbllost.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["lost"]).ToString("#,##0;(#,##0);");
+            this.lblDatablank.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["databank"]).ToString("#,##0;(#,##0);");
             string empId = this.ddlEmpid.SelectedValue.ToString();
             string curDate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
            // this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
@@ -219,69 +203,26 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        private void EmpMonthlyKPI(string ddlempid)
+       
+
+        private void ShowGraph()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string userrole = hst["userrole"].ToString();
-            string comcod = this.GetComeCode();
 
-      
-            string todate = this.txtfrmdate.Text.Trim();
-         //   string frmdate = this.txtfodate.Text.Trim();
-            string frmdate = Convert.ToDateTime("01" + todate.Substring(2)).ToString("dd-MMM-yyyy");
-            string empid = "";
-            if (userrole != "1")
-            {
-                empid = (hst["empid"].ToString() == "" ? "93%" : hst["empid"].ToString());
-            }
-            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
-
-            DataSet ds1 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE", "RPT_MONTHLY_KPI_CRM", "8301%", frmdate, todate, empid, ddlempid);
-            if (ds1 == null)
-                return;
-
-            ViewState["tbldataCountM"] = ds1.Tables[0];
-            ViewState["tbldataCountW"] = ds1.Tables[1];
-            ViewState["tbldataCountD"] = ds1.Tables[2];
-            Data_bind();
-        }
-
-        private void Data_bind()
-        {
-           
-            DataTable dtc = ((DataTable)ViewState["tbldataCountM"]).Copy();
-            DataTable dtw = ((DataTable)ViewState["tbldataCountW"]).Copy();
-            DataTable dtd = ((DataTable)ViewState["tbldataCountD"]).Copy();
-
-            //DataView dvp = dtc.DefaultView;
-            //dvp.RowFilter = ("grp='M'");
-            //dtc = dvp.ToTable();
-
-            //DataView dvw = dtw.DefaultView;
-            //dvw.RowFilter = ("grp='W'");
-            //dtw = dvw.ToTable();
-
-            //DataView dvd = dtd.DefaultView;
-            //dvd.RowFilter = ("grp='D'");
-            //dtd = dvd.ToTable();
-
+            DataSet ds1 = (DataSet)Session["tblNotification"];
 
 
             var jsonSerialiser = new JavaScriptSerializer();
 
-            var lst = dtc.DataTableToList<CrmLeadData>();
-            var lstw = dtw.DataTableToList<CrmLeadData>();
-            var lstd = dtd.DataTableToList<CrmLeadData>();
-            
+            var lstpwise = ds1.Tables[1].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassPwiseSum>();
+            var lstswise = ds1.Tables[1].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassSourceWiseSum>(); ;
+            var lstleadwise = ds1.Tables[1].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassLeadWiseSum>(); 
 
 
-            var data = jsonSerialiser.Serialize(lst);
-            var dataw = jsonSerialiser.Serialize(lstw);
-            var datad = jsonSerialiser.Serialize(lstd);
-            
 
-            var gtype = "column";
-            ScriptManager.RegisterStartupScript(this, GetType(), "chart", "ExecuteGraph('" + data + "','" + dataw + "','" + datad + "','" + gtype + "')", true);
+            var data1 = jsonSerialiser.Serialize(lstpwise);
+            var data2 = jsonSerialiser.Serialize(lstswise);
+            var data3 = jsonSerialiser.Serialize(lstleadwise);
+            ScriptManager.RegisterStartupScript(this, GetType(), "chart", "ExecuteGraph('" + data1 + "','" + data2 + "','" + data3 + "')", true);
 
 
         }

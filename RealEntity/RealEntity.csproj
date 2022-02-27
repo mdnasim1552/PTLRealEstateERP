@@ -86,6 +86,7 @@
     <Compile Include="C_17_Acc\EClassSupChequeSt.cs" />
     <Compile Include="C_17_Acc\RptInvList.cs" />
     <Compile Include="C_17_Acc\UserDB_BL.cs" />
+    <Compile Include="C_21_MKT\EClassCRMDashBoard.cs" />
     <Compile Include="C_21_MKT\ECRMClientInfo.cs" />
     <Compile Include="C_21_MKT\EPaper.cs" />
     <Compile Include="C_21_MKT\ESourceWiseLeadsclass.cs" />
