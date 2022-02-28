@@ -155,22 +155,22 @@
                                             Enabled="True" Format="yyyyMM" TargetControlID="txtfMonth"
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
 
+                                        <div id="PnlDesign" runat="server" visible="false">
+                                            <div class="col-md-3 pading5px">
+                                                <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">From</asp:Label>
+                                                <asp:DropDownList ID="ddlfrmDesig" runat="server" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
+                                                </asp:DropDownList>
+                                            </div>
 
-                                        <div class="col-md-3 pading5px">
-                                            <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">From</asp:Label>
-                                            <asp:DropDownList ID="ddlfrmDesig" runat="server"   AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
-                                            </asp:DropDownList>
+                                            <div class="col-md-4 pading5px">
+                                                <asp:Label ID="lbltdeg" runat="server" CssClass=" smLbl_to">To</asp:Label>
+
+
+                                                <asp:DropDownList ID="ddlToDesig" runat="server" Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
+                                                </asp:DropDownList>
+
+                                            </div>
                                         </div>
-
-                                        <div class="col-md-4 pading5px">
-                                            <asp:Label ID="lbltdeg" runat="server"  CssClass=" smLbl_to">To</asp:Label>
-
-
-                                            <asp:DropDownList ID="ddlToDesig" runat="server"  Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                            </asp:DropDownList>
-
-                                        </div>
-
                                     </div>
 
                                     <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
