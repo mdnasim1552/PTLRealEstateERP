@@ -39,13 +39,13 @@ namespace RealERPWEB.F_14_Pro
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("~/AcceessError.aspx");
 
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled =  (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Order";
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
@@ -56,7 +56,7 @@ namespace RealERPWEB.F_14_Pro
 
                 //only current date
 
-               // this.CurDate();
+                // this.CurDate();
 
                 if (Session["tblordrange"] == null)
                 {
@@ -822,6 +822,7 @@ namespace RealERPWEB.F_14_Pro
             this.ddlSuplierList.DataSource = ds1.Tables[1];
             this.ddlSuplierList.DataBind();
             ViewState["tblResP"] = ds1.Tables[0];
+            ViewState["tblProject"] = ds1.Tables[1];
             this.ddlSuplierList_SelectedIndexChanged(null, null);
         }
 
@@ -867,8 +868,16 @@ namespace RealERPWEB.F_14_Pro
                 this.lblissueno.Enabled = false;
                 mOrderNo = this.ddlPrevOrderList.SelectedValue.ToString();
             }
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1,
-                      "", "", "", "", "", "", "");
+
+            DataTable dt2 = (DataTable)ViewState["tblProject"];
+            string pactcode = "";
+            for(int i=0; i < dt2.Rows.Count; i++)
+            {
+                pactcode += dt2.Rows[i]["pactcode"].ToString();
+            }
+           
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["dsOrder"] = ds1;
@@ -912,10 +921,9 @@ namespace RealERPWEB.F_14_Pro
             this.SchData_Bind();
 
 
-
-
             if (mOrderNo == "NEWORDER")
             {
+
                 ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTORDERINFO", CurDate1, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
@@ -936,14 +944,8 @@ namespace RealERPWEB.F_14_Pro
                     case "5101":
                     case "3330":
                         this.GetIssueNO();
-
-
                         break;
-
-
                 }
-
-
                 return;
             }
 
@@ -952,7 +954,6 @@ namespace RealERPWEB.F_14_Pro
             this.txtOrderRefNo.Text = ds1.Tables[3].Rows[0]["pordref"].ToString();
             this.txtLETDES.Text = ds1.Tables[3].Rows[0]["leterdes"].ToString();
             this.txtSubject.Text = ds1.Tables[3].Rows[0]["subject"].ToString();
-
 
             this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[3].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
             this.txtPreparedBy.Text = ds1.Tables[3].Rows[0]["pordbydes"].ToString();
@@ -978,10 +979,10 @@ namespace RealERPWEB.F_14_Pro
             //{
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnDelete")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnUpdatePurOrder")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
-           
-            
-            
-          
+
+
+
+
 
 
             //For Forward
@@ -1238,7 +1239,7 @@ namespace RealERPWEB.F_14_Pro
                         case "1205":  //P2P Construction
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
-                        //case "3101": // ASIT
+                                      //case "3101": // ASIT
 
                             break;
 
@@ -1599,25 +1600,25 @@ namespace RealERPWEB.F_14_Pro
             string mORDERDAT = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
 
             // Back date Entry  only Tropical
-            if (comcod=="3339")
+            if (comcod == "3339")
             {
                 DateTime Bdate;
                 Bdate = this.GetBackDate();
                 bool dconi = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(mORDERDAT));
                 string type1 = this.Request.QueryString["InputType"].ToString().Trim();
-                
-                    if (type1== "OrderEntry")
-                    {
-                      if (!dconi)
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
-                            return;
-                        }
 
+                if (type1 == "OrderEntry")
+                {
+                    if (!dconi)
+                    {
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
+                        return;
                     }
 
+                }
+
             }
-           
+
 
 
 
@@ -1776,8 +1777,8 @@ namespace RealERPWEB.F_14_Pro
 
             string forward = (tbl1.Rows[0]["forward"].ToString().Trim().Length == 0) ? "False" : tbl1.Rows[0]["forward"].ToString();
             result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERB",
-                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward, 
-                             terms,"","");
+                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward,
+                             terms, "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1861,7 +1862,7 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
 
-           
+
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
@@ -2263,7 +2264,7 @@ namespace RealERPWEB.F_14_Pro
 
                 case "3330":
                 case "5101":
-                //case "3348":
+                    //case "3348":
 
 
 
@@ -2299,7 +2300,7 @@ namespace RealERPWEB.F_14_Pro
 
                     }
 
-                    
+
                     //case "3101":
                     //case "3348":
 
@@ -4638,6 +4639,6 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-       
+
     }
 }

@@ -13,7 +13,7 @@
         .OverAll {
             /*animation-name: example;
             animation-duration: 4s;
-            animation-iteration-count: 5;*/
+            animation-iteration-count: 5;*/lnkbtnPrintIN
             /*font-size: 18px;*/
             color: black;
             font-size: 14px;
