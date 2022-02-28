@@ -108,8 +108,12 @@ namespace RealERPWEB.F_17_Acc
             {
 
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("hlnkVoucherEdit");
+                HyperLink hlnkPrintVoucher = (HyperLink)e.Row.FindControl("hlnkVoucherPrint");
+
                 string vounum = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "vounum")).ToString();
                 hlink1.NavigateUrl = "~/F_17_Acc/GeneralAccounts.aspx?Mod=Management&vounum=" + vounum;
+                hlnkPrintVoucher.NavigateUrl = "~/F_17_Acc/AccPrint.aspx?Type=accVou&vounum=" + vounum;
+
 
 
                 //if (vounum.Substring(0, 2) == "BD" || vounum.Substring(0, 2) == "CD")
@@ -122,10 +126,6 @@ namespace RealERPWEB.F_17_Acc
                 //else
 
                 //hlink1.NavigateUrl = "~/F_17_Acc/LinkGeneralAccounts.aspx?tcode=92&tname=Contra Voucher&Mod=Management&vounum=" + vounum;
-
-
-
-
 
             }
         }

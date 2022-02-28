@@ -32,6 +32,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetProjectName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE OFF DAY'S INFORMATION";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+                getVisible();
             }
         }
 
@@ -48,6 +49,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
+        }
+        private void getVisible()
+        {
+            //string comcod = this.GetComCode();
+            //if ((comcod == "3365") || (comcod == "3101"))
+            //{
+            //    this.ChkSPTHU.Visible = true;
+            //}
         }
         private void GetCompany()
         {
@@ -136,10 +145,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = this.GetComCode();
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONTHFOROFFDAY", "", "", "", "", "", "", "", "", "");
             this.ddlMonth.DataTextField = "mnam";
-            this.ddlMonth.DataValueField = "mno";
+            this.ddlMonth.DataValueField = "yearmon";
             this.ddlMonth.DataSource = ds2.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("dd-MM-yyyy").Trim();
+            //this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("dd-MM-yyyy").Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM").Trim();
 
 
         }
@@ -170,22 +180,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString()) + "%";
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
-            DateTime date1 = Convert.ToDateTime(this.ddlMonth.SelectedValue.ToString());
+            string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
             string cudate = "";
+            string date = "";
             switch (comcod)
             {
                 case "3365":
                 case "3101":
-                    cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 default:
-                    cudate = date1.ToString("dd-MMM-yyyy");
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                     break;
             }
-            string date = Getdatestart() + cudate.Trim().Substring(2);
             //string date = Convert.ToDateTime(Getdatestart()+"-" + this.ddlMonth.SelectedItem.Text.Trim()).ToString("dd-MMM-yyyy");
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "SHOWEMPOFFDAY", Section, date, employee, Company, Department, "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "SHOWEMPOFFDAY", Section, cudate, employee, Company, Department, "", "", "", "");
             if (ds4 == null)
             {
                 this.gvoffday.DataSource = null;
@@ -260,23 +273,26 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
 
-            DateTime date1 = Convert.ToDateTime(this.ddlMonth.SelectedValue.ToString());
+            string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
             string cudate = "";
+            string date = "";
             switch (comcod)
             {
                 case "3365":
                 case "3101":
-                    cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
                     break;
 
                 default:
-                    cudate=date1.ToString("dd-MMM-yyyy");
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
                     break;
             }
-            string date = Getdatestart() + cudate.Trim().Substring(2);
             //string date = cudate1.ToString("dd-MMM-yyyy");
             //string date = Getdatestart() + "-" + Month + "-" + year;
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONDATE", date, "", "", "", "", "", "", "", "");
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETMONDATE", cudate, "", "", "", "", "", "", "", "");
 
             if (ds4 == null)
             {
@@ -301,7 +317,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString()) + "%";
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
             string reason = this.txtReason.Text.Trim();
-            string dStatus = (this.Chkgov.Checked == true) ? "1" : "0";
+
+            string dStatus = this.ddlType.SelectedValue.ToString()==""?"W" : this.ddlType.SelectedValue.ToString();
+            
+            
             for (int i = 0; i < this.chkDate.Items.Count; i++)
             {
                 if (this.chkDate.Items[i].Selected)
@@ -311,16 +330,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, employee, offdate, reason, dStatus, "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail " + "');", true);
+
+                     
                         return;
 
                     }
 
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+            
             this.chkoffDays.Checked = false;
             this.chkoffDays_CheckedChanged(null, null);
 
@@ -402,7 +423,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string empid = dt.Rows[i]["empid"].ToString() + "%";
                 string wkdate = dt.Rows[i]["wkdate"].ToString();
                 string reason = dt.Rows[i]["reason"].ToString();
-                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, "", "", "", "", "", "", "", "", "");
+                string dlstatus = dt.Rows[i]["dstatus"].ToString();
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, empid, wkdate, reason, dlstatus, "", "", "", "", "", "", "", "");
 
             }
 
@@ -505,6 +527,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             // this.GetSection();
             this.GetProjectName();
         }
+
+       
+       
     }
 }
 

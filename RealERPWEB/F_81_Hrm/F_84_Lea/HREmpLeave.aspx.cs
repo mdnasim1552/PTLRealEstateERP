@@ -34,7 +34,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                 
+                this.lbtnOk_Click(null,null);
 
             }
 
@@ -210,7 +210,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblleaveApp.Visible = true;
                 this.lblleaveStatus.Visible = true;
                 this.lblleaveInformation.Visible = true;
-                this.PnlEmp.Visible = true;
+                //this.PnlEmp.Visible = true;
                 this.Pnlapply.Visible = true;
                 this.PnlRmrks.Visible = true;
                 this.divEmpDetails.Visible = true;
@@ -218,6 +218,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 this.txtApprdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetLeaveid();
+                this.ddlProjectName_SelectedIndexChanged(null, null);
                 this.imgbtnlAppEmpSeaarch_Click(null, null);
                 //this.imgbtnlFEmpSeaarch_Click(null, null);
             }
@@ -227,7 +228,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lbtnOk.Text = "Ok";
                 this.ddlCompany.Enabled = true;
                 this.ddlProjectName.Enabled = true;
-                this.PnlEmp.Visible = false;
+               // this.PnlEmp.Visible = false;
                 this.divEmpDetails.Visible = false;
 
                 this.Pnlapply.Visible = false;
@@ -626,6 +627,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
             this.gvLeaveApp.DataSource = ds1.Tables[1];
             this.gvLeaveApp.DataBind();
+            EmpLeaveInfo();
 
         }
 
@@ -1503,16 +1505,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             if (this.ddlPreLeave.Items.Count == 0)
                 this.GetPreLeaveNo();
-
-
-            string trnid = this.lbltrnleaveid.Text;
+           
             string empid = this.ddlEmpName.SelectedValue.ToString();
             for (int i = 0; i < dt.Rows.Count; i++)
             {
                 double lapplied = Convert.ToDouble(dt.Rows[i]["lapplied"]);
                 if (lapplied > 0)
                 {
-
+                    string trnid = this.lbltrnleaveid.Text;
                     string gcod = dt.Rows[i]["gcod"].ToString();
                     string frmdate = Convert.ToDateTime(dt.Rows[i]["lenjoydt1"]).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(dt.Rows[i]["lenjoydt2"]).ToString("dd-MMM-yyyy");
@@ -1524,10 +1524,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     string APRdate = Convert.ToDateTime(this.txtApprdate.Text).ToString("dd-MMM-yyyy");
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP", trnid, empid, gcod, frmdate, todate, applydat, reason, remarks, APRdate, addentime, dnameadesig, lapplied.ToString(), "", "", "");
-
+                    this.GetPreLeaveNo();
                 }
-
             }
+
             this.EmpLeaveInfo();
            string Message = "Updated Successfully";            
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Message + "');", true);
@@ -1647,6 +1647,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void lnkRule_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/F_81_Hrm/F_84_Lea/CreateLeavRule?Type=");
+        }
+
+        protected void ddlProjectName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetEmployeeName();
+
         }
     }
 }

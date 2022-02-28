@@ -16,7 +16,8 @@
             //$('.datepicker').datepicker({
             //    format: 'mm/dd/yyyy',
             //});
-            $("input, select").bind("keydown", function (event) {
+            $("input, select").bind("keydown", function (event)
+            {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
@@ -110,7 +111,11 @@
 
                             </div>
                         </div>
-                        <div class="col-md-4 p-0">
+                        
+                    </div>
+
+                    <div class="row" >
+                        <div class="col-md-4 p-0" id="ShowEmp" runat="server">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Emp</button>
@@ -121,13 +126,16 @@
                             </div>
                         </div>
 
+                        <div class="col-md-2">
+                             <div class="form-group">
+                                <asp:Button ID="btnSaveAttn" runat="server" OnClick="btnSaveAttn_Click" Text="Punch In" CssClass="btn btn-md btn-success" />
+                            </div>
+                        </div>
                     </div>
                     <div class=" clearfix"><br /></div>
 
-                    <div class="row">
-                        <div class="col-md-3">
-
-
+                    <div class="row" >
+                        <div class="col-md-3" id="ReasonType" runat="server">
                             <div class="form-group">
                                 <label for="txtNote">Reason</label>
                              <asp:DropDownList ID="ddlReson" CssClass="form-control" runat="server">
@@ -148,17 +156,15 @@
                              </asp:DropDownList>
                         </div>
                             </div>
-                        <div class="col-md-12">
+                        <div class="col-md-12" >
 
 
-                            <div class="form-group">
+                            <div class="form-group" id="WorkComments" runat="server">
                                 <label for="txtNote">Out of Work</label>
                                 <asp:TextBox ID="txtNote" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5"></asp:TextBox>
 
                             </div>
-                            <div class="form-group">
-                                <asp:Button ID="btnSaveAttn" runat="server" OnClick="btnSaveAttn_Click" Text="Punch In" CssClass="btn btn-sm btn-success float-right" />
-                            </div>
+                           
 
                         </div>
                     </div>

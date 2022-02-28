@@ -50,7 +50,7 @@
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -142,6 +142,7 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
+    <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
@@ -149,6 +150,9 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
@@ -659,6 +663,7 @@
     <EmbeddedResource Include="R_22_Sal\RptSalClntInterestRup.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSaleSoldUsold.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalesTarget.rdlc" />
+    <EmbeddedResource Include="R_22_Sal\RptSalPayScheduleLanco.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalPaySchedule.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence.rdlc" />
     <EmbeddedResource Include="R_22_Sal\RptSalRegisClearence02.rdlc" />
@@ -902,6 +907,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptGrpSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptIncomeSatatement.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipEdisonReal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlip.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlip1.rdlc" />

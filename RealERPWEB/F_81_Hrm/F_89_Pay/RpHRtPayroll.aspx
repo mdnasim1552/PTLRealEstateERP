@@ -21,10 +21,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
 
-
-
-
-
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -37,8 +33,6 @@
 
 
         }
-
-
 
 
     </script>
@@ -104,10 +98,9 @@
                             <div class="form-horizontal">
 
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-md-1 pading5px ">
                                         <asp:Label ID="Label2" runat="server" CssClass="lblTxt lblName">Company</asp:Label>
-                                        <asp:TextBox ID="txtSrcCompany" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnCompany" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnCompany_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
                                         <asp:DropDownList ID="ddlCompany" runat="server" CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
@@ -196,11 +189,29 @@
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-md-1 pading5px">
+                                        <asp:Label ID="lblBranch" runat="server" CssClass="lblTxt lblName">Branch</asp:Label>
+
+                                    </div>
+
+
+                                    <div class="col-md-4 pading5px asitCol4">
+                                        <asp:DropDownList ID="ddlBranch" runat="server" CssClass="form-control inputTxt  chzn-select " OnSelectedIndexChanged="ddlBranch_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                        </asp:DropDownList>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-1 pading5px">
                                         <asp:Label ID="lblDept" runat="server" CssClass="lblTxt lblName">Department</asp:Label>
-                                        <asp:TextBox ID="txtSrcPro" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnProSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
                                         <asp:DropDownList ID="ddlProjectName" OnSelectedIndexChanged="ddlProjectName_SelectedIndexChanged" AutoPostBack="True" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="6">
@@ -216,10 +227,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol3">
+                                    <div class="col-md-1 pading5px">
                                         <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName">Section</asp:Label>
-                                        <asp:TextBox ID="txtSrcSec" runat="server" CssClass="inputTxt inputName inpPixedWidth"></asp:TextBox>
-                                        <asp:LinkButton ID="imgbtnSecSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnSecSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
+
                                     </div>
                                     <div class="col-md-4 pading5px asitCol4">
                                         <asp:DropDownList ID="ddlSection" runat="server" OnSelectedIndexChanged="ddlSection_SelectedIndexChanged" CssClass="form-control inputTxt chzn-select" TabIndex="6" AutoPostBack="true">
@@ -249,8 +259,13 @@
 
 
                                 <div class="form-group">
-                                    <div class="col-md-3 pading5px">
+                                    <div class="col-md-1 pading5px">
                                         <asp:Label ID="lblfrmdate" runat="server" CssClass="lblTxt lblName">Date</asp:Label>
+                                    </div>
+
+
+                                    <div class="col-md-3 pading5px">
+
                                         <asp:TextBox ID="txtfromdate" runat="server" CssClass=" inputDateBox " AutoComplete="off"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtfromdate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtfromdate"></cc1:CalendarExtender>
@@ -259,10 +274,9 @@
                                         <asp:Label ID="lbltodate" runat="server" CssClass=" smLbl_to">To</asp:Label>
                                         <asp:TextBox ID="txttodate" runat="server" CssClass=" inputDateBox" AutoComplete="off"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txttodate_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txttodate"></cc1:CalendarExtender>
-                                    </div>
-                                    <div class="col-md-3 pading5px asitCol3">
+
                                         <asp:Label ID="lblPage" runat="server" CssClass=" smLbl_to ">Page Size</asp:Label>
-                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" Width="76" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
+                                        <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" Width="95" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
                                             <asp:ListItem>20</asp:ListItem>
@@ -274,6 +288,7 @@
                                             <asp:ListItem>300</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
+                                   
 
 
                                     <div class="col-md-3 pading5px asitCol4">

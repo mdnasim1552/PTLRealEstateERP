@@ -463,7 +463,7 @@ namespace RealERPLIB
             #region Procurement
             tblObj.Rows.Add(new Object[] { "1401000", "1401010", "F_14_Pro", "PurOpenigBill", "", "Opening Bill ", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1401000", "1401020", "F_22_Sal", "SalesCodeBook?Type=Procurement", "", " Supplier/Sub-Contractor Information Field ", "Procurement", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "1401000", "1401030", "F_14_Pro", "PurSupplierinfo", "", "Supplier/Sub-Contractor Information", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1401000", "1401030", "F_14_Pro", "PurSupplierinfo?Type=Entry", "", "Supplier/Sub-Contractor Information", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1401000", "1401040", "F_14_Pro", "wrkordercodebook", "", "Work Order Code Book", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1401000", "1401050", "F_14_Pro", "PurOrderTermsCon", "", "Puchase Order (Terms & Condition)", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1401000", "1401055", "F_14_Pro", "SuppLimitCodeBook", "", "Supplier Limit Information", "Procurement", "False", "False", "False", "False" });
@@ -1091,7 +1091,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "2151000", "2151004", "F_99_Allinterface", "KPIDashboard?", "Type=Report", "Sales/CRM", "CRM", "False", "False", "False", "False" }); ;
 
-            tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "2151000", "2151001", "F_99_Allinterface", "CRMDashboard", "", "CRM Dashboard", "CRM", "False", "False", "False", "False" }); 
+            tblObj.Rows.Add(new Object[] { "2151000", "2151002", "F_99_Allinterface", "CRMDashboard02?", "Type=Report", "CRM Dashboard(Standard)", "CRM", "False", "False", "False", "False" });
 
 
 
@@ -1921,7 +1922,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102024", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=MonthlyLateAtten", "Employee Monthly Late Attendance(Report)", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102025", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MLateAppDay", "Employee Monthly Late Approval", "Attendance", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102026", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MPunchAppDay", "Monthly Punch Approval", "Attendance", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102027", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp", "Monthly Absent  Approval", "Attendance", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102027", "F_81_Hrm/F_83_Att", "EmpMonLateApproval?", "Type=MabsentApp", "Monthly Approval (LP)", "Attendance", "False", "False", "False", "False" });
 
 
 
@@ -9325,7 +9326,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0207000000", "Procurement", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0207000001", "01. Supplier Code", "F_17_Acc/AccSubCodeBook?InputType=Supplier", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000002", "02. Supplier/Sub-Contractor Information Field", "F_22_Sal/SalesCodeBook?Type=Procurement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0207000003", "03. Supplier/Sub-Contractor Information", "F_14_Pro/PurSupplierinfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0207000003", "03. Supplier/Sub-Contractor Information", "F_14_Pro/PurSupplierinfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000004", "04. Material Code Book (Lead Time Input)", "F_14_Pro/MatLedCodeBook?InputType=Res", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000005", "05. Supplier Limit Information", "F_14_Pro/SuppLimitCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0207000006", "01. Opening Bill", "F_14_Pro/PurOpenigBill", "", true, "" });
@@ -13219,7 +13220,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0206000000", "Procurement", "", "", false, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Supplier Code", "F_17_Acc/AccSubCodeBook?InputType=Supplier", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "02. Supplier/Sub-Contractor Information Field", "F_22_Sal/SalesCodeBook?Type=Procurement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000003", "03. Supplier/Sub-Contractor Information", "F_14_Pro/PurSupplierinfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000003", "03. Supplier/Sub-Contractor Information", "F_14_Pro/PurSupplierinfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "04. Material Code Book (Lead Time Input)", "F_14_Pro/MatLedCodeBook?InputType=Res", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000005", "05. Supplier Limit Information", "F_14_Pro/SuppLimitCodeBook", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000006", "01. Opening Bill", "F_14_Pro/PurOpenigBill", "", true, "" });
@@ -13835,7 +13836,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000006", "04. Create Project", "F_34_Mgt/AccProjectCode", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000007", "03. Standard Analysis", "F_04_Bgd/BgdStdAna", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000008", "05. Project Permission", "F_14_Pro/ProjectLink", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000009", "10. Supplier Information", "F_14_Pro/PurSupplierinfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000009", "10. Supplier Information", "F_14_Pro/PurSupplierinfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000010", "11. Survey Link", "F_14_Pro/PurMktSurvey?Type=SurveyLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000012", "13. Subcontractor Rate", "F_04_Bgd/BgdLevelRate?Type=Rate", "", true, "" });
@@ -14159,7 +14160,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0201000011", "", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000012", "11. Supplier Code", "F_17_Acc/AccSubCodeBook?InputType=Supplier", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000013", "12. Supplier/Sub-Contractor  Information Field", "F_22_Sal/SalesCodeBook?Type=Procurement", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0201000014", "13. Supplier Information", "F_14_Pro/PurSupplierinfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0201000014", "13. Supplier Information", "F_14_Pro/PurSupplierinfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000015", "14. Survey Link", "F_14_Pro/PurMktSurvey?Type=SurveyLink", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0201000016", "15. Supply Link With Materials(Work)", "F_14_Pro/PurSuplinkWithMat", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0217000000", "", "", "", true, "" });
@@ -14697,7 +14698,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Monthly (L.P) Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=LPAproval", "", true, "" });
 
             mnuTbl1.Rows.Add(new Object[] { "0303000015", "12. Monthly Punch Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MPunchAppDay", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Absent Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0303000016", "13. Monthly Approval (LP)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000017", "13. Monthly Absent Approval(Punch)", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MabsentApp02", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000018", "14. Employee Monthly Early Leave Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MEarlyleave", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000019", "15. Early Leave Approval", "F_81_Hrm/F_83_Att/EmpEarlyLeaveApproval", "", true, "" });

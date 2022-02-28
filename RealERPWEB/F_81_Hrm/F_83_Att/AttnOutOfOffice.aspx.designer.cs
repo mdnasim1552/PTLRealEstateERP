@@ -69,6 +69,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.DropDownList ddlSection;
 
         /// <summary>
+        /// ShowEmp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShowEmp;
+
+        /// <summary>
         /// ddlEmpNameAllInfo control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEmpNameAllInfo;
+
+        /// <summary>
+        /// btnSaveAttn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveAttn;
+
+        /// <summary>
+        /// ReasonType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ReasonType;
 
         /// <summary>
         /// ddlReson control.
@@ -87,6 +114,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected global::System.Web.UI.WebControls.DropDownList ddlReson;
 
         /// <summary>
+        /// WorkComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WorkComments;
+
+        /// <summary>
         /// txtNote control.
         /// </summary>
         /// <remarks>
@@ -94,14 +130,5 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNote;
-
-        /// <summary>
-        /// btnSaveAttn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveAttn;
     }
 }

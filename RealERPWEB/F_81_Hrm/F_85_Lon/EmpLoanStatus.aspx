@@ -112,7 +112,7 @@
                             <asp:ListItem>100</asp:ListItem>
                             <asp:ListItem>150</asp:ListItem>
                             <asp:ListItem>200</asp:ListItem>
-                            <asp:ListItem>300</asp:ListItem>
+                            <asp:ListItem Selected="True">300</asp:ListItem>
                         </asp:DropDownList>
 
                         <asp:Label ID="lblser" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Search</asp:Label>
@@ -127,7 +127,7 @@
                     <div class="row table table-responsive">
                         <asp:GridView ID="gvEmpLoanStatus" runat="server" AllowPaging="True"
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            ShowFooter="True" OnPageIndexChanging="gvEmpLoanStatus_PageIndexChanging">
+                            ShowFooter="True" OnPageIndexChanging="gvEmpLoanStatus_PageIndexChanging" PageSize="300">
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -190,7 +190,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Upto Paid" Visible="false">
+                                <asp:TemplateField HeaderText="Upto Paid <br>(Jan-22)" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblUpPaidAmt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
@@ -215,7 +215,7 @@
 
                                 <asp:TemplateField HeaderText="Bal. Amt.">
                                     <FooterTemplate>
-                                        <asp:Label ID="lblgvFbalamt" runat="server"
+                                        <asp:Label ID="lblgvFbalamt" runat="server" Font-Bold="True" Font-Size="12px"
                                             ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
                                     </FooterTemplate>
                                     <ItemTemplate>
@@ -226,6 +226,20 @@
                                     <ItemStyle HorizontalAlign="Right" />
                                     <FooterStyle HorizontalAlign="Right" />
                                 </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="Monthly Loan">
+                                    <ItemTemplate>
+                                          <asp:Label ID="lblMontloan" runat="server" BackColor="Transparent"
+                                            BorderStyle="None" Style="text-align: right"  Width="80px" 
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "monlon")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                    </ItemTemplate>
+                                     <FooterTemplate>
+                                        <asp:Label ID="lblgvMonlon" runat="server" Font-Bold="True" Font-Size="12px"
+                                            ForeColor="#000" Style="text-align: right" Width="80px"></asp:Label>
+                                    </FooterTemplate>
+                                </asp:TemplateField>
+
                             </Columns>
 
 

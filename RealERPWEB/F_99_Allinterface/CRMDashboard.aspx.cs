@@ -81,7 +81,7 @@ namespace RealERPWEB.F_99_Allinterface
 
             string userrole = hst["userrole"].ToString();
             string lempid = hst["empid"].ToString();
-            //string empid = (userrole == "1" ? "93" : lempid) + "%";
+           
             string comcod = this.GetComeCode();
             DataTable dtE = new DataTable();
             dv.RowFilter = ("gcod like '93%'");
@@ -115,40 +115,9 @@ namespace RealERPWEB.F_99_Allinterface
             this.ddlEmpid.DataValueField = "gcod";
             this.ddlEmpid.DataSource = dtE;
             this.ddlEmpid.DataBind();
-            this.ddlEmpid.SelectedValue = lempid;
-
-            //dv = dt1.Copy().DefaultView;
-            //dv.RowFilter = ("gcod like '52%'");
-            //DataTable dtCo = dv.ToTable();
-            //dtCo.Rows.Add("0000000", "Choose Country..", "");
-            //this.ddlCountry.DataTextField = "gdesc";
-            //this.ddlCountry.DataValueField = "gcod";
-            //this.ddlCountry.DataSource = dtCo;
-            //this.ddlCountry.DataBind();
-            //this.ddlCountry.SelectedValue = "5201001";
-
-            //dv = dt1.Copy().DefaultView;
-            //dv.RowFilter = ("gcod like '42%'");
-            //DataTable dtPr = dv.ToTable();
-            //dtPr.Rows.Add("0000000", "Choose Lad Quality..", "");
-            //this.ddlPri.DataTextField = "gdesc";
-            //this.ddlPri.DataValueField = "gcod";
-            //this.ddlPri.DataSource = dtPr;
-            //this.ddlPri.DataBind();
-            //this.ddlPri.SelectedValue = "0000000";
+            this.ddlEmpid.SelectedValue = (userrole == "1")?"000000000000": lempid;
 
 
-            //dv = dt1.Copy().DefaultView;
-            //dv.RowFilter = ("gcod like '95%'");
-            //DataTable dtSta = dv.ToTable();
-            //dtSta.Rows.Add("0000000", "Choose Lead Status..");
-            //this.ddlStatus.DataTextField = "gdesc";
-            //this.ddlStatus.DataValueField = "gcod";
-            //this.ddlStatus.DataSource = dtSta;
-            //this.ddlStatus.DataBind();
-            //this.ddlStatus.SelectedValue = "0000000";
-
-            //this.ddlCountry_SelectedIndexChanged(null, null);
 
         }
         protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,6 +149,29 @@ namespace RealERPWEB.F_99_Allinterface
 
         private void GetNotificationByEmployee(string ddlempid)
         {
+
+
+            //Hashtable hst = (Hashtable)Session["tblLogin"];
+            //string userrole = hst["userrole"].ToString();
+            //string comcod = this.GetComeCode();
+            ////string Empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
+            //string frmdate = this.txtfrmdate.Text.ToString();
+            //string todate = this.txttodate.Text.ToString();
+
+            //string Empid = "";
+            //if (userrole != "1")
+            //{
+            //    Empid = hst["empid"].ToString();
+            //}
+            ////string empid = (hst["empid"].ToString() == "") ? "%" : hst["empid"].ToString();
+            //DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_ENTRY_EMP_KPI_ENTRY", "GETNOTIFICATIONNUMBER", "8301%", Empid, ddlempid, todate);
+            //Session["tblNotification"] = ds3;
+            //bindDataIntoLabel();
+
+
+
+
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
             string comcod = this.GetComeCode();
@@ -189,7 +181,7 @@ namespace RealERPWEB.F_99_Allinterface
             string Empid = "";
             if (userrole != "1")
             {
-                Empid = (hst["empid"].ToString() == "" ? "93" : hst["empid"].ToString());
+                Empid =hst["empid"].ToString();
             }
             ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
 

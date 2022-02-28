@@ -23,21 +23,33 @@ namespace RealERPWEB.F_14_Pro
     {
         ProcessAccess MktData = new ProcessAccess();
         ProcessAccess _processAccessMsgdb = new ProcessAccess("ASTREALERPMSG");
+        int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
-
-            ((Label)this.Master.FindControl("lblTitle")).Text = " Supplier/Sub-Contractor INFORMATION";
-
-            if (this.ddlSName.Items.Count == 0)
             {
-                this.GetProjectName();
-            }
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = " Supplier/Sub-Contractor INFORMATION";
+
+                if (this.Request.QueryString["Type"].ToString() == "Entry")
+                {
+                    if (this.Request.QueryString.AllKeys.Contains("ssircode"))
+                    {
+                        getSupplierInfo();
+                    }
+                }
+                if (this.ddlSName.Items.Count == 0)
+                {
+                    this.GetProjectName();
+                }
+
+            }          
+           
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -45,6 +57,22 @@ namespace RealERPWEB.F_14_Pro
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+
+        private void getSupplierInfo()
+        {
+            string ssircode = this.Request.QueryString["ssircode"].ToString();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string txtSProject = "%" + ssircode + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPSNAME", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlSName.DataTextField = "sirdesc";
+            this.ddlSName.DataValueField = "sircode";
+            this.ddlSName.DataSource = ds1.Tables[0];
+            this.ddlSName.DataBind();
+
+            this.lbtnOk_Click(null, null);
 
         }
 
@@ -142,7 +170,7 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
@@ -177,7 +205,8 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkMesSend_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
@@ -192,10 +221,10 @@ namespace RealERPWEB.F_14_Pro
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                 string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
-                string Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();              
-                if (Gcode == "71003" &&  Gvalue.Length > 11)
+                string Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                if (Gcode == "71003" && Gvalue.Length > 11)
                 {
-                   ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                     return;
                 }
@@ -214,13 +243,13 @@ namespace RealERPWEB.F_14_Pro
                     {
                         case "3101": // Pintech                   
                         case "3356"://Intech
-                           this.SMSSendforSupplier(comcod, cellphone);
+                            this.SMSSendforSupplier(comcod, cellphone);
                             break;
 
 
                         default:
                             break;
-                    }                   
+                    }
                 }
             }
         }
@@ -234,8 +263,8 @@ namespace RealERPWEB.F_14_Pro
             string supcode = this.ddlSName.SelectedValue.ToString();
             string supname1 = this.ddlSName.SelectedItem.ToString();
             int supname2 = this.ddlSName.SelectedItem.ToString().Length;
-            string supname = supname1.Substring(13, supname2-13);
-         
+            string supname = supname1.Substring(13, supname2 - 13);
+
             string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
             tempeng = tempeng.Replace("[compname]", supname);
             tempeng = tempeng.Replace("[username]", comnam);

@@ -285,13 +285,7 @@ namespace RealERPWEB
             //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]["comadd"].ToString().Substring(0, 6) == "<br />") ? dr[0]["comadd"].ToString().Substring(6) : dr[0]["comadd"].ToString();
             //((Image)this.Master.FindControl("Image1")).ImageUrl = "~/Image/" + "LOGO" + this.listComName.SelectedValue.ToString() + ".PNG";
 
-
-
             this.Image1.ImageUrl = "~/Image/" + "LOGO" + this.listComName.SelectedValue.ToString() + ".PNG";
-
-
-
-
 
         }
 
@@ -482,6 +476,7 @@ namespace RealERPWEB
                 string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
                 hst["comcod"] = Comcode;
                 hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
+                hst["dptdesc"] = ds5.Tables[0].Rows[0]["dptdesc"];
 
                 // hst["comnam"] = ComName;
                 hst["modulenam"] = "";
@@ -506,6 +501,8 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+                //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
+                //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
 
 
 
@@ -567,6 +564,11 @@ namespace RealERPWEB
                 else if(userrole == "3" && hrmodule=="81")
                 {
                     Url1 = "UserProfile";
+
+                }
+                else if (userrole == "4" && hrmodule == "81")
+                {
+                    Url1 = "DashboardHRM_NEW";
 
                 }
                 else if (comcod.Substring(0, 1) == "8")

@@ -141,7 +141,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
@@ -232,10 +232,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="RealERPRDLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\RealERPRDLC.dll</HintPath>
     </Reference>
     <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -340,6 +336,8 @@
     <Content Include="assets\js\responsiveslides.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\js\wd-ajax-load\js\load-posts.js" />
+    <Content Include="assets\vendor\flatpickr\flatpickr.min.css" />
+    <Content Include="assets\vendor\flatpickr\flatpickr.min.js" />
     <Content Include="assets\vendor\simplemde\simplemde.min.css" />
     <Content Include="assets\vendor\simplemde\simplemde.min.js" />
     <Content Include="AutoCompleted.asmx" />
@@ -2006,6 +2004,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="DashboardAll.aspx" />
     <Content Include="DashboardHRM.aspx" />
+    <Content Include="DashboardHRM_NEW.aspx" />
     <Content Include="DeafultMenu.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DefaultPage.aspx" />
@@ -2945,6 +2944,7 @@
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten01.aspx" />
@@ -2958,12 +2958,13 @@
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLvApproval.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\HREmpLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\HRLeaveOpening.aspx" />
-    <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\MyLeave_old.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpLeaveRecod.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpLeaveStatus02.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx" />
@@ -3067,6 +3068,7 @@
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
+    <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
@@ -3256,6 +3258,7 @@
     <Content Include="Image\erplogo.png" />
     <Content Include="Image\EX.png" />
     <Content Include="Image\f5.png" />
+    <Content Include="Image\facebook_Icon.png" />
     <Content Include="Image\favicon-16x16.png" />
     <Content Include="Image\favicon-32x32.png" />
     <Content Include="Image\favicon.ico" />
@@ -3514,6 +3517,7 @@
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
     <Content Include="Scripts\Extension.min.js" />
+    <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
     <Content Include="Scripts\highchart2.js" />
@@ -3767,6 +3771,13 @@
     </Compile>
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.designer.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>
@@ -4097,6 +4108,13 @@
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx.designer.cs">
       <DependentUpon>HREmpAbsCtAuto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx.cs">
+      <DependentUpon>HREmpHolidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx.designer.cs">
+      <DependentUpon>HREmpHolidays.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx.cs">
       <DependentUpon>HREmpLWP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4188,6 +4206,13 @@
     <Compile Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx.designer.cs">
       <DependentUpon>RptWeekPresence.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.cs">
+      <DependentUpon>MyLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.designer.cs">
+      <DependentUpon>MyLeave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx.cs">
       <DependentUpon>CreateLeavRule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4223,12 +4248,12 @@
     <Compile Include="F_81_Hrm\F_84_Lea\HRLeaveOpening.aspx.designer.cs">
       <DependentUpon>HRLeaveOpening.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.cs">
-      <DependentUpon>MyLeave.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave_old.aspx.cs">
+      <DependentUpon>MyLeave_old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.designer.cs">
-      <DependentUpon>MyLeave.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave_old.aspx.designer.cs">
+      <DependentUpon>MyLeave_old.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\RptEmpLeaveRecod.aspx.cs">
       <DependentUpon>RptEmpLeaveRecod.aspx</DependentUpon>
@@ -4418,6 +4443,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.designer.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
@@ -11602,6 +11634,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="assets_new\" />
     <Folder Include="bin\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
@@ -11854,6 +11887,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
+    <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
@@ -11881,6 +11915,10 @@
     <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
       <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
       <Name>RealERPLIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
+      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
+      <Name>RealERPRDLC</Name>
     </ProjectReference>
     <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
       <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>

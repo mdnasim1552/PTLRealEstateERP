@@ -921,6 +921,21 @@ namespace RealERPWEB.F_17_Acc
             string suppName = this.ddlResoucesp02.SelectedItem == null ? "" : this.ddlResoucesp02.SelectedItem.ToString().Substring(13);
             string fdate = Convert.ToDateTime(this.txtdatefrmsp02.Text).ToString("dd-MMM-yyyy");
             string tdate = Convert.ToDateTime(this.txtDatetosp02.Text).ToString("dd-MMM-yyyy");
+
+            string sscode = ASTUtility.Left(this.ddlResoucesp02.SelectedValue.ToString(), 2); ;
+            string txthead = "";
+            switch (sscode)
+            {
+                case "99":
+                    txthead = "- SUPPLIER";
+                    break;
+                case "98":
+                    txthead = "- SUBCONTRACTOR";
+                    break;
+                default:
+                    txthead = "";
+                    break;
+            }
             DataTable dt1 = (DataTable)Session["tblspledger"];
 
             var list = dt1.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>();
@@ -931,7 +946,7 @@ namespace RealERPWEB.F_17_Acc
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
             Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + fdate + " To " + tdate + ")"));
-            Rpt1.SetParameters(new ReportParameter("rptTitle", "SUPPLIER SPECIAL LEDGER"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "SPECIAL LEDGER " + txthead));
             Rpt1.SetParameters(new ReportParameter("suppName", "Supplier Name: " + suppName));
             Rpt1.SetParameters(new ReportParameter("txtUserInfo", txtuserinfo));
 
