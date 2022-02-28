@@ -35,7 +35,7 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-12 col-xl-3">
-                        <section class="card card-fluid" style="height:650px">
+                        <section class="card card-fluid" style="height: 650px">
                             <!-- .card-body -->
                             <header class="card-header">Leave Apply</header>
                             <div class="card-body">
@@ -123,17 +123,16 @@
                         </section>
                     </div>
                     <div class="col-12 col-lg-12 col-xl-9">
-                        <section class="card card-fluid mb-0" style="height:650px; flex-grow: 1;  overflow: auto;">
+                        <section class="card card-fluid mb-0" style="height: 650px; flex-grow: 1; overflow: auto;">
                             <!-- .card-body -->
                             <header class="card-header">Applied Leave</header>
 
                             <div class="card-body card card-fluid mb-0">
-                                
-                                <div class="row" style="height:180px; flex-grow: 1;  overflow: auto;">
-                                    <asp:GridView ID="gvleaveInfo" runat="server" AutoGenerateColumns="False" 
+
+                                <div class="row" style="height: 180px; flex-grow: 1; overflow: auto;">
+                                    <asp:GridView ID="gvleaveInfo" runat="server" AutoGenerateColumns="False"
                                         CssClass="table-striped table-hover table-bordered"
-                                        ShowFooter="True" OnRowDataBound="gvleaveInfo_RowDataBound"
-                                        >
+                                        ShowFooter="True" OnRowDataBound="gvleaveInfo_RowDataBound">
                                         <RowStyle />
                                         <Columns>
                                             <asp:TemplateField HeaderText="Sl.No.">
@@ -156,22 +155,22 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                             <asp:TemplateField HeaderText="">
+                                            <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
-                                                     <asp:LinkButton ID="lnkDelete" 
-                                                            Visible='<%# Eval("isapproved").ToString() == "True" ? true : false %>'
-                                                              runat="server" Font-Bold="True" ToolTip="Delete" OnClick="lnkDelete_Click">
+                                                    <asp:LinkButton ID="lnkDelete"
+                                                        Visible='<%# Eval("isapproved").ToString() == "True" ? true : false %>'
+                                                        runat="server" Font-Bold="True" ToolTip="Delete" OnClick="lnkDelete_Click">
                                                          <i class=" fa fa-trash"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-                                            
-                                                        
 
 
-                                            
+
+
+
 
                                             <asp:TemplateField HeaderText="Desription">
                                                 <ItemTemplate>
@@ -228,7 +227,7 @@
                                             <asp:TemplateField HeaderText="Leave Days">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvleavedays" runat="server"
-                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "enjoyday")).ToString("#,##0;(#,##0); ") %>'
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "enjoyday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
@@ -237,8 +236,7 @@
                                             <asp:TemplateField HeaderText="Reason">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lgvreason" runat="server" Width="355px"
-                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'
-                                                        ></asp:Label>
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lreason")) %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
@@ -256,13 +254,13 @@
                                         </Columns>
 
                                     </asp:GridView>
-                                    
+
                                 </div>
                                 <div class="row mt">
-                            <header class="card-header">Leave Status</header>
+                                    <header class="card-header">Leave Status</header>
 
-                                    
-                                    <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True" 
+
+                                    <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                         CssClass="table-striped table-hover table-bordered">
                                         <RowStyle />
                                         <Columns>
@@ -379,8 +377,8 @@
                                 </div>
                             </div>
                         </section>
+                    </div>
                 </div>
-            </div>
             </div>
 
 
