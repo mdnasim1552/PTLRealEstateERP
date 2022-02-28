@@ -281,7 +281,8 @@
 
                                  <asp:TemplateField HeaderText="Applied For">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtgvlapplied" runat="server" BorderStyle="None" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:TextBox ID="txtgvlapplied" runat="server" BorderStyle="None"
+                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px" BackColor="Transparent" Font-Size="12px"
                                                     Style="text-align: right"></asp:TextBox>
                                             </ItemTemplate>
