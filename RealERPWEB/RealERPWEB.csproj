@@ -2992,8 +2992,10 @@
     <Content Include="F_81_Hrm\F_89_Pay\EmpLoanInfo.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpMonthSummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpOverTimeSalary.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RpHRtPayroll.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptBankStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptEmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
@@ -4402,12 +4404,26 @@
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx.cs">
+      <DependentUpon>ModeofPaymentDept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx.designer.cs">
+      <DependentUpon>ModeofPaymentDept.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.cs">
+      <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.designer.cs">
+      <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
