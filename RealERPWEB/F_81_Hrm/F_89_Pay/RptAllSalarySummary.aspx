@@ -180,7 +180,7 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="OBL">
+                                    <asp:TemplateField HeaderText="OBL(Advice)">
                                         <ItemTemplate>
                                             <asp:Label ID="lbloblgvAmount" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":""%>'
@@ -189,8 +189,16 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="OBL CTG">
+                                      <asp:TemplateField HeaderText="OBL(Cash)">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbloblcashAmount" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":""%>'
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "p7")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" Font-Size="16px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="OBL CTG-Cash">
                                         <ItemTemplate>
                                             <asp:Label ID="lbloblctgAmount" runat="server" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="00000000000"?"bg-green d-block fsize":
                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "refno"))=="AAAAAAAAAAAA"?"bg-yellow d-block fsize":""%>'
