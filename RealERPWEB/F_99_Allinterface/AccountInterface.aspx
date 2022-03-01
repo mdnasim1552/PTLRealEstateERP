@@ -13,7 +13,7 @@
         .OverAll {
             /*animation-name: example;
             animation-duration: 4s;
-            animation-iteration-count: 5;*/lnkbtnPrintIN
+            animation-iteration-count: 5;*/
             /*font-size: 18px;*/
             color: black;
             font-size: 14px;
@@ -1257,7 +1257,7 @@
                                                             </HeaderTemplate>
 
                                                             <ItemTemplate>
-                                                                <asp:HyperLink ID="lnkbtnPrintIN" runat="server" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
+                                                                <asp:HyperLink ID="lnkbtnPrintBill" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Print Bill"><span class="fa fa-print"></span></asp:HyperLink>
                                                                 <asp:HyperLink ID="lnkbtnEditRD" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                                 </asp:HyperLink>
                                                                 <asp:LinkButton ID="btnDelOrder" OnClick="btnDelPurchase_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>

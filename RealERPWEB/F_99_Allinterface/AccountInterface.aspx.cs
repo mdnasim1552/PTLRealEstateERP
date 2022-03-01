@@ -724,6 +724,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("lnkbtnPrintBill");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEditRD");
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -736,8 +737,9 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink2.Font.Bold = true;
                 hlink2.Style.Add("color", "Blue");
                 hlink2.ToolTip = "DO Edit";
-                hlink2.NavigateUrl = "~/F_17_Acc/AccPurchase?Type=Entry&genno=" + billno + "&ssircode=" + ssircode +
-                                     "&Date1=" + Date1;
+
+                hlink2.NavigateUrl = "~/F_17_Acc/AccPurchase?Type=Entry&genno=" + billno + "&ssircode=" + ssircode + "&Date1=" + Date1;
+                hlink1.NavigateUrl = "~/F_14_Pro/PurBillEntry?Type=BillPrint&genno=" + billno +"&Date1=" + Date1;
 
 
             }

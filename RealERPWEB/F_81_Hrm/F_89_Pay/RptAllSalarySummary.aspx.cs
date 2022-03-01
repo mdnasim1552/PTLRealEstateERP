@@ -53,16 +53,19 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 0:
                     this.PnlBankSumary.Visible = true;
                     this.PnlModPayment.Visible = false;
-                   
+                    this.PnlNetComparison.Visible = false;
+
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = true;
-                    
+                    this.PnlNetComparison.Visible = false;
+
                     break;
                 case 2:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = false;
+                    this.PnlNetComparison.Visible = true;
 
                     break;
                 default:

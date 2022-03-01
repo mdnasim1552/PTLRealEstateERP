@@ -489,6 +489,7 @@ namespace RealERPLIB
 
 
             tblObj.Rows.Add(new Object[] { "1402000", "1402030", "F_14_Pro", "PurBillEntry?", "Type=BillEntry", "Bill Confirmation", "Procurement", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1402000", "1402031", "F_14_Pro", "PurBillEntry?", "Type=BillPrint", "Confirm Bill Print", "Procurement", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1402000", "1402055", "F_14_Pro", "SuppLierAss?", "Type=supAss", "Supplier Assessment", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402060", "F_14_Pro", "PurBillBundle?", "Type=SuppEntry", "Supplier Bundle Entry", "Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "1402000", "1402061", "F_14_Pro", "PurBillBundle?", "Type=ContEntry", "Contractor Bundle Entry", "Procurement", "False", "False", "False", "False" });
