@@ -612,7 +612,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             for (int i = 0; i < this.gvLvReq.Rows.Count; i++)
             {
                 //TimeSpan ts = (this.CalExt3.SelectedDate.Value - this.CalExt2.SelectedDate.Value);
-                int leaveday = Convert.ToInt32("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
+                double leaveday = Convert.ToDouble("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
 
                 if (leaveday > 0)
                 {
@@ -637,7 +637,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string applydat = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
             for (int i = 0; i < gvLvReq.Rows.Count; i++)
             {
-                double lapplied = Convert.ToInt32("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
+                double lapplied = Convert.ToDouble("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
                 if (lapplied > 0)
                 {
                     string gcod = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
