@@ -3087,7 +3087,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
-                        string Adv_Deduction = dt.Rows[i]["Adv_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Adv_Deduction"].ToString();
+                       // string Adv_Deduction = dt.Rows[i]["Adv_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Adv_Deduction"].ToString();
+                        string Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
                         string Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
                         string Transport = dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Transport"].ToString();
  
@@ -3097,9 +3098,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             continue;
                         }
                         // Check Adv_Deduction is Number or not.
-                        if (!IsNuoDecimal(Adv_Deduction))
+                        if (!IsNuoDecimal(Mobile_Bill))
                         {
-                            dt.Rows[i]["Adv_Deduction"] = 0.00;
+                            dt.Rows[i]["Mobile_Bill"] = 0.00;
                         }
                         // Check Other_Deduction is Number or not.
                         if (!IsNuoDecimal(Other_Deduction))
@@ -3124,11 +3125,11 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             if (rows.Length > 0)
                             {
                                 
-                                double saladv = Convert.ToDouble("0" + (rows[0]["Adv_Deduction"]));
+                                double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
                                 double transded = Convert.ToDouble("0" + (rows[0]["Transport"]));
                                 double otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
                                  
-                                dt1.Rows[i]["saladv"] = saladv;                                
+                                dt1.Rows[i]["mbillded"] = Mobile_Bill;                                
                                 dt1.Rows[i]["transded"] = transded;
                                 dt1.Rows[i]["otherded"] = otherded;
                                 rowCount++;

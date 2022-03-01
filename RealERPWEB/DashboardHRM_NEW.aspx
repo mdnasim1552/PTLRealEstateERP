@@ -3,74 +3,87 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+    <style>
+        .btn-w {
+            min-width: 19% !important;
+        }
+    </style>
     <div class="card-fluid container-data  mt-5">
         <section class="card card-fluid" style="height: 650px">
 
-            <div class="row">
+            <div class="row p-2">
+                <div class="col-lg-9">
 
-                <!-- grid column -->
-                <div class="col-lg-2">
-                    <div class="alert alert-primary has-icon" role="alert">
-                        <div class="alert-icon">
-                            <span class="fa fa-bullhorn"></span>
-                        </div>
-                        
-                    <a href="#" class="alert-link">New Joining</a> 
+                    <div class="d-flex justify-content-between ">
+                        <a class="btn btn-success btn-sm btn-w">New Joining</a>
+                        <a class="btn btn-outline-success btn-sm btn-w">Employee Entry</a>
+                        <a class="btn btn-outline-success btn-sm btn-w">Offer Letter</a>
+                        <a class="btn btn-outline-success btn-sm btn-w">Personal Information</a>
+                        <a class="btn btn-outline-success btn-sm btn-w">Appoinment Letter</a>
                     </div>
-                </div>
-                <!-- /grid column -->
-                <!-- grid column -->
-                <div class="col-lg-2">
-                    <div class="alert alert-warning has-icon" role="alert">
-                        <div class="alert-icon">
-                            <span class="fa fa-bullhorn"></span>
-                        </div>
-                        
-                    <a href="#" class="alert-link">Employee Entry</a> 
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-success btn-sm btn-w">Appoinment</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Employee Agreement</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Image Upload</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Joinning Letter</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Confirmation Letter</a>
                     </div>
-                </div>
-                <!-- /grid column -->
-                <!-- grid column -->
-                <div class="col-lg-2">
-                    <div class="alert alert-dark has-icon" role="alert">
-                        <div class="alert-icon">
-                            <span class="oi oi-bell"></span>
-                        </div>
-                         
-                    <a href="#" class="alert-link">Offer Letter</a> 
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-success btn-sm btn-w">Attendance</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Attendance Upload</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Absent Approval</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Late Approval</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">LP Approval</a>
                     </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="alert alert-primary has-icon" role="alert">
-                        <div class="alert-icon">
-                            <span class="oi oi-bell"></span>
-                        </div>
-                        
-                    <a href="#" class="alert-link">Personal Information</a> 
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-success btn-sm btn-w">Leave</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Manual Leave</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Leave Apply</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Leave Process</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Employee Confirmation</a>
                     </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="alert alert-danger has-icon" role="alert">
-                        <div class="alert-icon">
-                            <span class="fa fa-info"></span>
-                        </div>
-                     
-                       
-                    <a href="#" class="alert-link">Appoinment Letter</a> 
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-success btn-sm btn-w">Loan</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Loan Installment</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Promotion</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Increment Input</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Increment Update</a>
                     </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="alert alert-danger has-icon" role="alert">
-                        <div class="alert-icon">
-                            <span class="oi oi-file"></span>
-                        </div>
-                        Reports
-                       
-                   
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-success btn-sm btn-w">Payroll</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Employee Transfer</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Employee Resign</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Deduction</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Addition</a>
                     </div>
+
+                    <div class="d-flex justify-content-between mt-3">
+                        <a class="btn btn-success btn-sm btn-w">Approval</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Salary Hold</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Salary Lock</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Salary Transfer Statement</a>
+                        <a class="btn  btn-outline-success btn-sm btn-w">Employee Settlement</a>
+                    </div>
+
+
                 </div>
-                <!-- /grid column -->
+                <div class="col-lg-3">
+                    <a class="btn  btn-info btn-sm btn-block">Reports</a>
+                    <a class="btn  btn-outline-success btn-sm btn-block">Membours</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Attendance Report</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Employee Leave Status</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Employee Loan Status</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">New Joiner List</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Employee Resign</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Actual Salary</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Pay Slip</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Salary Reconciliation</a>
+                    <a class="btn btn-outline-success btn-sm btn-block">Other Reports</a>
+                </div>
             </div>
         </section>
 

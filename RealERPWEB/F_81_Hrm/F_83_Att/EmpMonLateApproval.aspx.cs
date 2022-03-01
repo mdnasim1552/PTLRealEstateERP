@@ -508,12 +508,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 case "3365":
                     this.grvAdjDay.Columns[6].Visible = true;
-                    this.grvAdjDay.Columns[7].Visible = true;                   
+                    this.grvAdjDay.Columns[7].Visible = true;
                     this.grvAdjDay.Columns[11].Visible = true;
                     this.grvAdjDay.Columns[12].Visible = true;
                     this.grvAdjDay.Columns[13].Visible = true;
                     this.grvAdjDay.Columns[14].Visible = true;
-                    this.grvAdjDay.FooterRow.FindControl("lbtnTotalDay").Visible = false;                   
+                    this.grvAdjDay.FooterRow.FindControl("lbtnTotalDay").Visible = false;
                     break;
                 default:
                     this.grvAdjDay.Columns[6].Visible = false;
@@ -913,7 +913,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                             }
                             break;
                     }
-                     
+
                     break;
 
 
@@ -925,13 +925,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         dt.Rows[rowindex]["dedday"] = dedday;
 
                     }
-                     
+
                     break;
 
                 case "MabsentApp02":
                     for (int i = 0; i < this.gvabsapp02.Rows.Count; i++)
                     {
-                        
+
                         double absapp = Convert.ToDouble("0" + ((TextBox)this.gvabsapp02.Rows[i].FindControl("txtabsaprdaylp")).Text.Trim());
                         double balday = Convert.ToDouble("0" + ((Label)this.gvabsapp02.Rows[i].FindControl("lblgvabsdayApp")).Text.Trim());
                         rowindex = (this.gvabsapp02.PageSize) * (this.gvabsapp02.PageIndex) + i;
@@ -1541,7 +1541,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         protected void btnUpdatePunch_Click(object sender, EventArgs e)
         {
             this.SaveValue();
-           
+
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
             string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
@@ -1560,7 +1560,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     return;
                 //  }
             }
- 
+
             string Msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
 
@@ -1593,7 +1593,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
 
             this.SaveValue();
-             
+
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
             string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
@@ -1616,7 +1616,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     return;
                 //  }
             }
-         
+
             string Msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
 
@@ -2368,14 +2368,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 GridViewRow row = ((GridViewRow)((TextBox)sender).NamingContainer);
                 int rowindex = row.RowIndex;
                 //NamingContainer return the container that the control sits in
-                Label ttday = (Label)row.FindControl("lblgvabsday02"); 
+                Label ttday = (Label)row.FindControl("lblgvabsday02");
                 TextBox txtAprvday = (TextBox)row.FindControl("txtabsaprdaylp");
-                Label txtbalday = (Label)row.FindControl("lblgvabsdayApp");              
+                Label txtbalday = (Label)row.FindControl("lblgvabsdayApp");
 
                 double absday = Convert.ToDouble("0" + (ttday.Text.Trim()));
                 double Aprvday = Convert.ToDouble("0" + (txtAprvday.Text.Trim()));
-                double balday = Convert.ToDouble("0" + (txtbalday.Text.Trim()));          
-               
+                double balday = Convert.ToDouble("0" + (txtbalday.Text.Trim()));
+
                 if (Aprvday > absday)
                 {
                     errMsg = "Total Absent Execed :" + absday;
@@ -2392,7 +2392,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     dt.Rows[rowindex]["balday"] = balday;
 
                 }
-                  
+
                 Session["tblover"] = dt;
                 this.Data_Bind();
             }
@@ -2404,7 +2404,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
-            string monthid = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("yyyyMM");
+            string txtfrmDate = Convert.ToDateTime(this.txtfrmDate.Text.Trim()).ToString("dd-MMM-yyyy");
+            string txttoDate = Convert.ToDateTime(this.txttoDate.Text.Trim()).ToString("dd-MMM-yyyy");
             bool result = false;
 
 
@@ -2417,20 +2418,26 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string absapp = Convert.ToDouble("0" + dt.Rows[i]["absapp"]).ToString();
                 string balday = Convert.ToDouble("0" + dt.Rows[i]["balday"]).ToString();
 
-                 
-               if(absapp!="0")
+
+                if (absapp != "0")
                 {
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", monthid, empid, absapp, idcardno, "", "", "", "", "", "", "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "INSERTORUPDATEOFFTIMEANDDELABSENTALL", txtfrmDate, txttoDate, empid, absapp, idcardno, "", "", "", "", "", "", "", "", "", "");
 
                     if (!result)
+                    {
+                        string Msgs = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
+
                         return;
-                }           
-               
-                
+                    }    
+                        
+                }
+
+
             }
             string Msg = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Msg + "');", true);
-          
+
             Session["tblover"] = dt;
             this.Data_Bind();
         }
