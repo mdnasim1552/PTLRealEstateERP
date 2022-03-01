@@ -160,11 +160,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //Final Approved
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("dptstatus <> '' and  supstatus<>'' and  mgtstatus<>''");
+            dv.RowFilter = ("lvstatus = 'Final Approved'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvfiApproved", dv.ToTable());
 
-
+            
 
 
             //Confirm
@@ -332,7 +332,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "susrid")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat;
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat+"&RoleType=SUP";
 
                 hlink3.Visible = (userid == suserid) ? true : false;
                 hlnDel.Visible = (userid == empusrid) ? true : false;
@@ -361,7 +361,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
                 hlink3.Visible = (userid == dptusid) ? true : false;                
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat;
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat+ "&RoleType=DPT";
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
             }
@@ -420,7 +420,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                         break;
                 }
                  
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat;
+                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=App&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=MGT";
 
 
 
