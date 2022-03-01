@@ -26,6 +26,8 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string deptanme { get; set; }
             public double duration { get; set; }
             public bool forward { get; set; }
+            public bool ishalfday { get; set; }
+            
 
         }
         [Serializable]
