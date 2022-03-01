@@ -871,11 +871,13 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable dt2 = (DataTable)ViewState["tblProject"];
             string pactcode = "";
-            for(int i=0; i < dt2.Rows.Count; i++)
+            if(dt2 != null)
             {
-                pactcode += dt2.Rows[i]["pactcode"].ToString();
-            }
-           
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    pactcode += dt2.Rows[i]["pactcode"].ToString();
+                }
+            }         
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
