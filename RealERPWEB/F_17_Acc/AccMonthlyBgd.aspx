@@ -35,8 +35,8 @@
                                 <div class="form-group">
                                     <div class="col-md-12 pading5px">
 
-                                        <asp:Label ID="Label7" runat="server" CssClass="smLbl_to" Text="Date" Style="display:none;"></asp:Label>
-                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" Style="display:none;"></asp:TextBox>
+                                        <asp:Label ID="Label7" runat="server" CssClass="smLbl_to" Text="Date" Style="display: none;"></asp:Label>
+                                        <asp:TextBox ID="txtCurDate" runat="server" CssClass="inputtextbox" Style="display: none;"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtCurDate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtCurDate"></cc1:CalendarExtender>
 
@@ -46,7 +46,7 @@
                                             TabIndex="6">
                                         </asp:DropDownList>
 
-                                         <asp:Label ID="lbldepartment" runat="server" CssClass="smLbl_to" Text="Department"></asp:Label>
+                                        <asp:Label ID="lbldepartment" runat="server" CssClass="smLbl_to" Text="Department"></asp:Label>
 
                                         <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="smDropDown inputTxt" Width="190px"
                                             TabIndex="6">
@@ -57,24 +57,23 @@
                                         </div>
 
                                         <div class="col-md-2">
-                                     <asp:CheckBox ID="CpyCHeck" AutoPostBack="true" OnCheckedChanged="CpyCHeck_CheckedChanged" runat="server" Text='<span class="lblTxt">Want to Budget Copy?</span>' />
-                            
-                                    </div>                                      
+                                            <asp:CheckBox ID="CpyCHeck" AutoPostBack="true" OnCheckedChanged="CpyCHeck_CheckedChanged" runat="server" Text='<span class="lblTxt">Want to Budget Copy?</span>' />
+
+                                        </div>
                                         <div class="col-md-2 " id="CopyTo" runat="server" visible="false">
-                                              <asp:Label ID="Label4" runat="server" CssClass="smLbl_to" Style="font-size: 11px;" Text="To Month"></asp:Label>
-                                     
-                                        <asp:DropDownList ID="ddltomonth" runat="server"  Width="100" CssClass="inputTxt chzn-select">
-                                    </asp:DropDownList>
-                                            </div>
+                                            <asp:Label ID="Label4" runat="server" CssClass="smLbl_to" Style="font-size: 11px;" Text="To Month"></asp:Label>
+
+                                            <asp:DropDownList ID="ddltomonth" runat="server" Width="100" CssClass="inputTxt chzn-select">
+                                            </asp:DropDownList>
+                                        </div>
                                         <div class="col-md-2 " id="datediv" runat="server" visible="false">
                                             <asp:Label ID="Label2" runat="server" CssClass="smLbl_to" Text="Date"></asp:Label>
-                                        <asp:TextBox ID="txtbgddate" runat="server" CssClass="inputtextbox" ></asp:TextBox>
-                                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtbgddate">
-                                        </cc1:CalendarExtender>
-                                    </div>
-                                      <div class="col-md-1" id="Copybtn" runat="server" visible="false">
-                   <asp:LinkButton ID="LbtnCopy" runat="server" CssClass="btn btn-xs btn-success" OnClick="LbtnCopy_Click" OnClientClick="return confirm('Do you agree to copy?')"><span class="glyphicon glyphicon-copy"></span> Copy </asp:LinkButton>
+                                            <asp:TextBox ID="txtbgddate" runat="server" CssClass="inputtextbox"></asp:TextBox>
+                                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                                Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtbgddate"></cc1:CalendarExtender>
+                                        </div>
+                                        <div class="col-md-1" id="Copybtn" runat="server" visible="false">
+                                            <asp:LinkButton ID="LbtnCopy" runat="server" CssClass="btn btn-xs btn-success" OnClick="LbtnCopy_Click" OnClientClick="return confirm('Do you agree to copy?')"><span class="glyphicon glyphicon-copy"></span> Copy </asp:LinkButton>
                                         </div>
 
                                     </div>
@@ -110,16 +109,12 @@
                                 <div class="col-md-3 pading5px">
                                     <div class="msgHandSt">
                                         <asp:Label ID="lblmsg02" CssClass="btn-danger btn disabled" runat="server" Visible="false"></asp:Label>
-                                      <%--  <asp:Label ID="lblmsg" CssClass="btn-danger btn disabled" runat="server"></asp:Label>--%>
-
+                                        <%--  <asp:Label ID="lblmsg" CssClass="btn-danger btn disabled" runat="server"></asp:Label>--%>
                                     </div>
                                 </div>
                             </div>
 
                         </fieldset>
-
-
-
 
                         <asp:MultiView ID="MultiView1" runat="server">
                             <asp:View ID="MainCode" runat="server">
@@ -144,11 +139,9 @@
                                         </div>
                                     </div>
                                 </asp:Panel>
-
-<%--                                OnRowCreated="dgv2_RowCreated" PagerSettings-Position="Bottom" PagerSettings-Visible="false" PagerStyle-HorizontalAlign="Center" PageSize="12" RowStyle-Font-Size="12px" Width="400px"--%>
                                 <div class="table-responsive">
                                     <asp:GridView ID="dgv2" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea" OnRowCommand="dgv2_RowCommand"
-                                    OnRowCreated="dgv2_RowCreated" PagerSettings-Position="Bottom" PagerSettings-Visible="false" PagerStyle-HorizontalAlign="Center" PageSize="500" RowStyle-Font-Size="12px" Width="400px"                                   
+                                        OnRowCreated="dgv2_RowCreated" PagerSettings-Position="Bottom" PagerSettings-Visible="false" PagerStyle-HorizontalAlign="Center" PageSize="500" RowStyle-Font-Size="12px" Width="400px"
                                         ShowFooter="True">
                                         <PagerSettings Visible="False" />
                                         <RowStyle Font-Size="12px" />
@@ -168,15 +161,16 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actcode")) %>'></asp:Label>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Head of Accounts">
+                                            <asp:TemplateField HeaderText="">
+                                                <HeaderTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Font-Bold="True" Text="Head of Accounts" Width="320px"></asp:Label>
+                                                    <asp:HyperLink ID="hlbtntbCdataExcel" runat="server" CssClass="btn  btn-success btn-xs" ToolTip="Export Excel"><i  class=" fa fa-file-excel "></i>
+                                                    </asp:HyperLink>
+                                                </HeaderTemplate>
                                                 <FooterTemplate>
-                                                    <asp:DropDownList ID="dgv2ddlPageNo" runat="server" AutoPostBack="True" CssClass="inputTxt pageDropdwn" style="font-size:12px; padding: 0 12px;"
+                                                    <asp:DropDownList ID="dgv2ddlPageNo" runat="server" AutoPostBack="True" CssClass="inputTxt pageDropdwn" Style="font-size: 12px; padding: 0 12px;"
                                                         OnSelectedIndexChanged="dgv2ddlPageNo_SelectedIndexChanged">
                                                     </asp:DropDownList>
-                                                    <%--<asp:LinkButton ID="lnkFinalUpdate" runat="server" OnClick="lnkFinalUpdate_Click" Text="Final Upate" CssClass="btn btn-danger  primarygrdBtn"></asp:LinkButton>
---%>
-
-
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAccdesc" runat="server" CssClass="GridLebelL"
@@ -184,11 +178,12 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "actdesc")) %>'
                                                         Width="350px"></asp:Label>
                                                 </ItemTemplate>
+
                                                 <FooterStyle HorizontalAlign="Center" />
                                                 <HeaderStyle HorizontalAlign="Left" />
                                             </asp:TemplateField>
                                             <asp:TemplateField FooterStyle-HorizontalAlign="Center" HeaderText="Level" ItemStyle-HorizontalAlign="Center">
-                                              <%--  <FooterTemplate>
+                                                <%--  <FooterTemplate>
                                                     <asp:LinkButton ID="LnkfTotal" runat="server" OnClick="LnkfTotal_Click" CssClass="btn btn-primary primarygrdBtn">Total :</asp:LinkButton>
                                                 </FooterTemplate>--%>
                                                 <ItemTemplate>
@@ -225,7 +220,7 @@
                                             </asp:TemplateField>
                                         </Columns>
 
-                                         <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
@@ -242,30 +237,18 @@
                                             <asp:Label ID="lblacccode" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Accounts Code:"></asp:Label>
                                             <div class="col-md-6 pading5px">
                                                 <asp:TextBox ID="txtActcode" runat="server" CssClass="form-control inputTxt"></asp:TextBox>
-
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>
-
-
-
                                         <div class="form-group">
-
-                                            <asp:Label ID="Label1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Resource Code"></asp:Label>
-                                            <div class="col-md-4 pading5px">
+                                            <asp:Label ID="Label1" runat="server" CssClass="col-md-2 control-label lblTxt" Text="Resource Code"></asp:Label>                                          <div class="col-md-4 pading5px">
 
                                                 <asp:TextBox ID="txtResSearch" runat="server" CssClass=" inpPixedWidth inputTxt"></asp:TextBox>
-
                                                 <div class="colMdbtn">
                                                     <asp:LinkButton ID="ibtnDetailsCode" runat="server" OnClick="ibtnDetailsCode_Click" CssClass="btn btn-primary srearchBtn" Visible="True"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
 
                                                 </div>
-
-
                                             </div>
-
-
-
                                             <div class="col-md-3 pading5px asitCol3">
                                                 <asp:Label ID="lblPage" runat="server" CssClass="smLbl_to" Text="Page"></asp:Label>
                                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged"
@@ -284,28 +267,6 @@
                                                     <asp:LinkButton ID="lnkSubmit" runat="server" CssClass="btn btn-primary okBtn" OnClick="lnkSubmit_Click">Back</asp:LinkButton>
                                                 </div>
                                             </div>
-                                            <%--<div class="col-md-2 pading5px">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <asp:Label ID="lblPage" runat="server" Text="Page Size"></asp:Label>
-                                                    </span>
-
-                                                    <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True"
-                                                        BackColor="#DFF0D8" CssClass="form-control inputTxt" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                                        <asp:ListItem>10</asp:ListItem>
-                                                        <asp:ListItem>20</asp:ListItem>
-                                                        <asp:ListItem>30</asp:ListItem>
-                                                        <asp:ListItem>50</asp:ListItem>
-                                                        <asp:ListItem>100</asp:ListItem>
-                                                        <asp:ListItem>150</asp:ListItem>
-                                                        <asp:ListItem>200</asp:ListItem>
-                                                        <asp:ListItem>300</asp:ListItem>
-                                                        <asp:ListItem>600</asp:ListItem>
-                                                        <asp:ListItem>900</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-
-                                            </div>--%>
                                         </div>
                                     </div>
 
@@ -413,7 +374,7 @@
 
                                             </asp:TemplateField>
                                         </Columns>
-                                         <FooterStyle CssClass="grvFooter" />
+                                        <FooterStyle CssClass="grvFooter" />
                                         <EditRowStyle />
                                         <AlternatingRowStyle />
                                         <PagerStyle CssClass="gvPagination" />
@@ -432,25 +393,25 @@
     </asp:UpdatePanel>
 
 
-         <script type="text/javascript">
+    <script type="text/javascript">
 
-         $(document).ready(function () {
+        $(document).ready(function () {
 
-             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-         });
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
 
-         function pageLoaded() {
-             try {
+        });
+
+
+        function pageLoaded() {
+            try {
 
 
 
-                 $('#<%=this.dgv2.ClientID%>').Scrollable();
+                $('#<%=this.dgv2.ClientID%>').Scrollable();
                 $('#<%=this.dgv3.ClientID%>').Scrollable();
 
-                
+
             }
 
 
@@ -463,7 +424,7 @@
         }
 
 
-         </script>
+    </script>
 
 
 
