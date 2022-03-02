@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_81_Hrm.F_92_Mgt
+namespace RealERPWEB.F_81_Hrm.F_89_Pay
 {
 
 
-    public partial class HrLeaveApprovalForm
+    public partial class RptAllSalarySummary
     {
 
         /// <summary>
@@ -33,75 +33,93 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// ddlTypeRole control.
+        /// rbtnAtten control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRole;
+        protected global::System.Web.UI.WebControls.RadioButtonList rbtnAtten;
 
         /// <summary>
-        /// lbtnOkOrNew control.
+        /// lcomp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOkOrNew;
+        protected global::System.Web.UI.WebControls.Label lcomp;
 
         /// <summary>
-        /// ddldpt control.
+        /// ddlmon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldpt;
+        protected global::System.Web.UI.WebControls.DropDownList ddlmon;
 
         /// <summary>
-        /// Panel2 control.
+        /// lnkOk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.LinkButton lnkOk;
 
         /// <summary>
-        /// ddlUserList control.
+        /// PnlBankSumary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUserList;
+        protected global::System.Web.UI.WebControls.Panel PnlBankSumary;
 
         /// <summary>
-        /// lbtnSelect control.
+        /// GvBankSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSelect;
+        protected global::System.Web.UI.WebControls.GridView GvBankSummary;
 
         /// <summary>
-        /// lbtnSelectAll control.
+        /// PnlModPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSelectAll;
+        protected global::System.Web.UI.WebControls.Panel PnlModPayment;
 
         /// <summary>
-        /// gvProLinkInfo control.
+        /// GvModPayment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProLinkInfo;
+        protected global::System.Web.UI.WebControls.GridView GvModPayment;
+
+        /// <summary>
+        /// PnlNetComparison control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlNetComparison;
+
+        /// <summary>
+        /// GvNetComparison control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GvNetComparison;
     }
 }

@@ -101,7 +101,7 @@ namespace RealERPWEB
 
 
                     this.lnkOrintation.Visible = true;
-                    this.lnkOrintation.NavigateUrl = "https://www.facebook.com/btibd";
+                    this.lnkOrintation.NavigateUrl = "~/Upload/bti/Winners of Monthly Award Giving (Dec'21).pdf";
                     this.HyperCodeofConduct.Visible = true;
 
 

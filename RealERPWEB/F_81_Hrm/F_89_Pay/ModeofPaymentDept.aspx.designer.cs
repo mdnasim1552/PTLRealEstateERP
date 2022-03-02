@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RealERPWEB.F_81_Hrm.F_92_Mgt
+namespace RealERPWEB.F_81_Hrm.F_89_Pay
 {
 
 
-    public partial class HrLeaveApprovalForm
+    public partial class ModeofPaymentDept
     {
 
         /// <summary>
@@ -33,75 +33,93 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
-        /// ddlTypeRole control.
+        /// lcomp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlTypeRole;
+        protected global::System.Web.UI.WebControls.Label lcomp;
 
         /// <summary>
-        /// lbtnOkOrNew control.
+        /// ddlmon control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnOkOrNew;
+        protected global::System.Web.UI.WebControls.DropDownList ddlmon;
 
         /// <summary>
-        /// ddldpt control.
+        /// lbsection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddldpt;
+        protected global::System.Web.UI.WebControls.Label lbsection;
 
         /// <summary>
-        /// Panel2 control.
+        /// ddldept control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.DropDownList ddldept;
 
         /// <summary>
-        /// ddlUserList control.
+        /// lbbank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUserList;
+        protected global::System.Web.UI.WebControls.Label lbbank;
 
         /// <summary>
-        /// lbtnSelect control.
+        /// ddlbank control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSelect;
+        protected global::System.Web.UI.WebControls.DropDownList ddlbank;
 
         /// <summary>
-        /// lbtnSelectAll control.
+        /// lblamt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnSelectAll;
+        protected global::System.Web.UI.WebControls.Label lblamt;
 
         /// <summary>
-        /// gvProLinkInfo control.
+        /// txtamt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvProLinkInfo;
+        protected global::System.Web.UI.WebControls.TextBox txtamt;
+
+        /// <summary>
+        /// lnkAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkAdd;
+
+        /// <summary>
+        /// GvOtherDepSal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GvOtherDepSal;
     }
 }

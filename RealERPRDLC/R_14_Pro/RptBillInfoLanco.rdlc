@@ -1818,9 +1818,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
               <Top>0.06944in</Top>
-              <Left>2.1816in</Left>
+              <Left>4.1316in</Left>
               <Height>0.21458in</Height>
-              <Width>1.57084in</Width>
+              <Width>1.53334in</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -1857,9 +1857,9 @@
               </Paragraphs>
               <rd:DefaultName>ftReqIn</rd:DefaultName>
               <Top>0.29736in</Top>
-              <Left>2.1816in</Left>
+              <Left>4.1316in</Left>
               <Height>0.375in</Height>
-              <Width>1.57084in</Width>
+              <Width>1.53334in</Width>
               <ZIndex>5</ZIndex>
               <Style>
                 <Border>
@@ -1892,9 +1892,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
               <Top>0.06944in</Top>
-              <Left>4.14206in</Left>
+              <Left>6.09206in</Left>
               <Height>0.21458in</Height>
-              <Width>1.53959in</Width>
+              <Width>1.50209in</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
@@ -1931,9 +1931,9 @@
               </Paragraphs>
               <rd:DefaultName>ftReqIn</rd:DefaultName>
               <Top>0.29736in</Top>
-              <Left>4.14206in</Left>
+              <Left>6.09206in</Left>
               <Height>0.375in</Height>
-              <Width>1.53959in</Width>
+              <Width>1.50209in</Width>
               <ZIndex>7</ZIndex>
               <Style>
                 <Border>
@@ -2205,6 +2205,80 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
+            <Textbox Name="Textbox16">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Req Checked</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox7</rd:DefaultName>
+              <Top>0.06903in</Top>
+              <Left>2.20139in</Left>
+              <Height>0.21458in</Height>
+              <Width>1.53334in</Width>
+              <ZIndex>15</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BottomBorder>
+                  <Style>Solid</Style>
+                </BottomBorder>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="ftReqIn7">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Parameters!rptReqChk.Value</Value>
+                      <Style>
+                        <FontFamily>Cambria</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ftReqIn</rd:DefaultName>
+              <Top>0.29695in</Top>
+              <Left>2.20139in</Left>
+              <Height>0.375in</Height>
+              <Width>1.53334in</Width>
+              <ZIndex>16</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -2349,6 +2423,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="rptReqChk">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2459,6 +2539,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>10</RowIndex>
           <ParameterName>printFooter</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>10</RowIndex>
+          <ParameterName>rptReqChk</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

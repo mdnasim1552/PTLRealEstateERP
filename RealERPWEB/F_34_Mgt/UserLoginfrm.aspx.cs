@@ -681,11 +681,11 @@ namespace RealERPWEB.F_34_Mgt
             //    }
             //}
 
+            // temporay off send notificaition
+            //string eventdesc = "Page Permission Update";
+            //string eventdesc2 = "Dear User, Some Permission Updated, Please Check, ";
             
-            string eventdesc = "Page Permission Update";
-            string eventdesc2 = "Dear User, Some Permission Updated, Please Check, ";
-            
-            bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+            //bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
              
 
             msg="User Permission Updated Successfully";

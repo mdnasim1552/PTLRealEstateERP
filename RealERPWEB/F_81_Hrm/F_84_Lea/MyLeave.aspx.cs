@@ -256,7 +256,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string empid = this.GetEmpID();
             string aplydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
 
-
+           
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LEAVESTATUS02", empid, aplydat, "", "", "", "", "", "", "");
             if (ds1 == null)
             {
