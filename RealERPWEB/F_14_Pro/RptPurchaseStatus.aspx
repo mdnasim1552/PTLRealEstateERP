@@ -35,14 +35,7 @@
                 harrowleftimg: "../Image/arrowhl.png",
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 6
-
-
             });
-
-
-
-
-
 
             gvPurMatRVar.gridviewScroll({
                 width: 1160,
@@ -55,20 +48,12 @@
                 harrowleftimg: "../Image/arrowhl.png",
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 6
-
-
             });
-
-
-
-
             $('.chzn-select').chosen({ search_contains: true });
-
-
         };
-
-
-
+        function printTracking(data) {
+            window.open(data, '_blank');
+        }
 
     </script>
 

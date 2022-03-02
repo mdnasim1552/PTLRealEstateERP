@@ -255,7 +255,7 @@
                         </div>
                     </asp:Panel>
 
-                    <asp:Panel runat="server" ID="PnlNetComparison">
+                    <asp:Panel runat="server" ID="PnlNetComparison" visible="false">
                         <div class="table-responsive" runat="server">
                             <asp:GridView ID="GvNetComparison" runat="server" AutoGenerateColumns="False"
                                 CssClass="table-striped table-hover table-bordered grvContentarea" Width="65%">

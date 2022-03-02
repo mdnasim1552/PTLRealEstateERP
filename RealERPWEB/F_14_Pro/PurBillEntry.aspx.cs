@@ -37,59 +37,51 @@ namespace RealERPWEB.F_14_Pro
 
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
                 ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-                ((Label)this.Master.FindControl("lblTitle")).Text = "Bill Confirmation";
-                this.txtCurBillDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtBillrefDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtChequeDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtauditbilldate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
 
-
-                ViewState.Remove("tblproject");
-                this.TblProject();
-                this.txtCurBillDate_CalendarExtender.EndDate = System.DateTime.Today;
-                this.lbtnSupplierList_Click(null, null);
-                string qgenno = this.Request.QueryString["genno"] ?? "";
-                if (qgenno.Length > 0)
+                if (this.Request.QueryString["Type"] == "BillPrint")
+                {
+                    this.PrintBillConfimation();
+                }
+                else
                 {
 
-                    if (qgenno.Substring(0, 3) == "PBL")
+                    ((Label)this.Master.FindControl("lblTitle")).Text = "Bill Confirmation";
+                    this.txtCurBillDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                    this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                    this.txtBillrefDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                    this.txtChequeDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                    this.txtauditbilldate.Text = DateTime.Today.ToString("dd-MMM-yyyy");
+                    ViewState.Remove("tblproject");
+                    this.TblProject();
+                    this.txtCurBillDate_CalendarExtender.EndDate = System.DateTime.Today;
+                    this.lbtnSupplierList_Click(null, null);
+                    string qgenno = this.Request.QueryString["genno"] ?? "";
+                    if (qgenno.Length > 0)
                     {
-
-                        this.lbtnPrevBillList_Click(null, null);
-                        lbtnOk_Click(null, null);
-
-
+                        if (qgenno.Substring(0, 3) == "PBL")
+                        {
+                            this.lbtnPrevBillList_Click(null, null);
+                            lbtnOk_Click(null, null);
+                        }
                     }
 
+                    string type = this.Request.QueryString["Type"] ?? "";
+                    if (type == "BillEntryAudit")
+                    {
+                        this.lblaudit.Visible = true;
+                        this.txtauditbilldate.Visible = true;
+                    }
+
+
+                    //string type = this.Request.QueryString["Type"] ?? "";
+                    //if (type == "BillEntryAudit")
+                    //{
+
+
+                    //    this.GetBillInfoForAudit();
+
+                    //}
                 }
-
-
-                string type = this.Request.QueryString["Type"] ?? "";
-                if (type == "BillEntryAudit")
-                {
-                    this.lblaudit.Visible = true;
-                    this.txtauditbilldate.Visible = true;
-
-                }
-
-
-
-
-
-
-
-                //string type = this.Request.QueryString["Type"] ?? "";
-                //if (type == "BillEntryAudit")
-                //{
-
-
-                //    this.GetBillInfoForAudit();
-
-                //}
-
-
-
 
 
             }
@@ -231,6 +223,12 @@ namespace RealERPWEB.F_14_Pro
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
 
+            this.PrintBillConfimation();
+
+        }
+
+        private void PrintBillConfimation()
+        {
             string printcomreq = this.CompanyBill();
 
             if (printcomreq == "PrintBill01")
@@ -256,7 +254,20 @@ namespace RealERPWEB.F_14_Pro
 
             else
                 this.PrintBill02();
+        }
 
+        private bool isBillFromAcc()
+        {
+            bool isbillAcc = false;
+            if (this.Request.QueryString["Type"] == "BillPrint")
+            {
+                isbillAcc = true;
+            }
+            else
+            {
+                isbillAcc = false;
+            }
+            return isbillAcc;
         }
 
 
@@ -269,10 +280,22 @@ namespace RealERPWEB.F_14_Pro
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            //string mBILLNo = this.ddlPrevBillList.SelectedValue.ToString();
-            string mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            string CurDate1 = "";
+            string mBILLNo = "";
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
+
+
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
                           "", "", "", "", "", "", "");
 
@@ -296,17 +319,43 @@ namespace RealERPWEB.F_14_Pro
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
 
+
+            double security, deduction, penalty, advanced;
+            string txtSupName, txtBillid, txtNarration, billref, percntge;
+            if (isAccBill)
+            {
+                security = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(sdamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(sdamt)", "")));
+                deduction = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(dedamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(dedamt)", "")));
+                penalty = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(penamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(penamt)", "")));
+                advanced = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(advamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(advamt)", "")));
+
+                percntge = Convert.ToDouble("0" + ds1.Tables[1].Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); 0%");
+                txtSupName = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+                txtBillid = ds1.Tables[1].Rows[0]["billno1"].ToString();
+                txtNarration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
+                billref = ds1.Tables[1].Rows[0]["billref"].ToString();
+            }
+            else
+            {
+                security = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString()));
+                deduction = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString()));
+                penalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString()));
+                advanced = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString()));
+                percntge = this.txtpercentage.Text.ToString();
+                txtSupName = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
+                txtBillid = "Bill No: " + this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
+                txtNarration = "Narration : " + this.txtBillNarr.Text.Trim();
+            }
+
             // rdlc start
-            string suppname = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
-            string billno = "Bill No: " + this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
-            string narration = "Narration : " + this.txtBillNarr.Text.Trim();
 
-            double security = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString()));
-            double deduction = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString()));
-            double penalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString()));
-            double advanced = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString()));
+            string txtDepo = Convert.ToDouble(security).ToString("#,##0.00;(#,##0.00); ");
+            string txtAdv = Convert.ToDouble(advanced).ToString("#,##0.00;(#,##0.00); ");
+            string txtPenalty = Convert.ToDouble(penalty).ToString("#,##0.00;(#,##0.00); ");
+            string txtDeduc = Convert.ToDouble(deduction).ToString("#,##0.00;(#,##0.00); ");
+
             double netAmount = (amt1 - amt2 - (security + deduction + penalty + advanced));
             string inword = "Taka In Word: " + ASTUtility.Trans((netAmount), 2);
             string netamt = Convert.ToDouble(netAmount).ToString("#,##0.00;(#,##0.00); ");
@@ -318,27 +367,31 @@ namespace RealERPWEB.F_14_Pro
             rpt.EnableExternalImages = true;
             rpt.SetParameters(new ReportParameter("compName", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Software Generated Bill"));
-            rpt.SetParameters(new ReportParameter("supname", suppname));
-            rpt.SetParameters(new ReportParameter("txtBillno", billno));
+            rpt.SetParameters(new ReportParameter("supname", txtSupName));
+            rpt.SetParameters(new ReportParameter("txtBillno", txtBillid));
             rpt.SetParameters(new ReportParameter("date1", "Date: " + CurDate1));
             rpt.SetParameters(new ReportParameter("txtInword", inword));
-            rpt.SetParameters(new ReportParameter("txtNarration", narration));
-            rpt.SetParameters(new ReportParameter("txtSecurity", security.ToString()));
-            rpt.SetParameters(new ReportParameter("txtAdv", advanced.ToString()));
-            rpt.SetParameters(new ReportParameter("txtPenalty", penalty.ToString()));
-            rpt.SetParameters(new ReportParameter("txtDeduc", deduction.ToString()));
+            rpt.SetParameters(new ReportParameter("txtNarration", txtNarration));
+            rpt.SetParameters(new ReportParameter("txtSecurity", txtDepo));
+            rpt.SetParameters(new ReportParameter("txtAdv", txtAdv));
+            rpt.SetParameters(new ReportParameter("txtPenalty", txtPenalty));
+            rpt.SetParameters(new ReportParameter("txtDeduc", txtDeduc));
             rpt.SetParameters(new ReportParameter("txtNetAmt", netamt.ToString()));
             rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
             rpt.SetParameters(new ReportParameter("comLogo", ComLogo));
 
             Session["Report1"] = rpt;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            // rdlc end
-
-
-
-
+            }
 
         }
         private void PrintBill01()
@@ -618,9 +671,20 @@ namespace RealERPWEB.F_14_Pro
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
-            //string mBILLNo = this.ddlPrevBillList.SelectedValue.ToString();
-            string mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string CurDate1 = "";
+            string mBILLNo = "";
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
                           "", "", "", "", "", "", "");
 
@@ -642,24 +706,37 @@ namespace RealERPWEB.F_14_Pro
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
 
+            string txtSupName, txtBillid, txtNarration, billref, lblmramt, percntge;
+            double security, deduction, penalty, advanced;
 
-            double security = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString()));
-            double deduction = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString()));
-            double penalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString()));
-            double advanced = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString()));
+            if (isAccBill)
+            {
+                security = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(sdamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(sdamt)", "")));
+                deduction = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(dedamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(dedamt)", "")));
+                penalty = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(penamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(penamt)", "")));
+                advanced = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(advamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(advamt)", "")));
+
+                txtSupName = ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+                txtBillid = ds1.Tables[1].Rows[0]["billno1"].ToString();
+                txtNarration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
+                billref = ds1.Tables[1].Rows[0]["billref"].ToString();
+                percntge = Convert.ToDouble(ds1.Tables[1].Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); 0%");
+            }
+            else
+            {
+                security = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString()));
+                deduction = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString()));
+                penalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString()));
+                advanced = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString()));
+                percntge = this.txtpercentage.Text.ToString();
+                txtSupName = this.ddlSupList.SelectedItem.Text.Trim();
+                txtBillid = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
+                txtNarration = this.txtBillNarr.Text.Trim();
+                billref = this.txtBillRef.Text;
+                lblmramt = Convert.ToDouble(((Label)this.gvBillInfo.FooterRow.FindControl("lblgvFooterTMRRAmt")).Text).ToString("#,##0.00;(#,##0.00); ");
+            }
+
             double netAmount = (amt1 - amt2 - (security + deduction + penalty + advanced));
-
-
-
-            //double amt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(mrramt)", "")) ? 0.00 : dt.Compute("Sum(mrramt)", "")));
-
-            //double tamt=this.gvBillInfo.FooterRow
-
-            //ReportDocument rptstk = new RealERPRPT.R_14_Pro.RptBillConfirmation03();
-
-            //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-
 
             DataTable dt1 = ds1.Tables[2];
             DataTable dtmrref = ds1.Tables[1];
@@ -679,9 +756,6 @@ namespace RealERPWEB.F_14_Pro
                 }
 
                 mrfno = dtmrref.Rows[i]["mrfno"].ToString();
-
-
-
             }
 
 
@@ -691,20 +765,16 @@ namespace RealERPWEB.F_14_Pro
             string txtBuildno = dt1.Rows[0]["termsdesc"].ToString();
             string txtFloorno = dt1.Rows[1]["termsdesc"].ToString();
             string txtFlatno = dt1.Rows[2]["termsdesc"].ToString();
-            string txtSupName = this.ddlSupList.SelectedItem.Text.Trim();
-            string txtBillid = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
             string billrefdate = "Bill Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["billrefdat"].ToString()).ToString("dd-MMM-yyyy");
-            string txtBillno = "Bill No : " + this.txtBillRef.Text;
+            string txtBillno = "Bill No : " + billref;
             string txtReqno = mrfno1;
             string chqdate = "Cheque Date : " + Convert.ToDateTime(ds1.Tables[1].Rows[0]["chequedat"].ToString()).ToString("dd-MMM-yyyy");
             string txtInword = "Taka In Word: " + ASTUtility.Trans((netAmount), 2);
 
-
-            string txtNarration = this.txtBillNarr.Text.Trim();
-            string txtDepo = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString().Trim()) == 0.00) ? "" : ("Security Deposit (" + this.txtpercentage.Text.Trim() + ") : " + this.txtSDAmount.Text.ToString());
-            string txtAdv = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString().Trim()) == 0.00) ? "" : ("Advanced: " + this.txtAdvanced.Text.ToString().Trim());
-            string txtPenalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString().Trim()) == 0.00) ? "" : ("Pelanty: " + this.txtPenaltyAmount.Text.ToString().Trim());
-            string txtDeduc = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString().Trim()) == 0.00) ? "" : ("Deduction: " + this.txtDedAmount.Text.ToString().Trim());
+            string txtDepo = "Security Deposit (" + percntge + ") : " + Convert.ToDouble(security).ToString("#,##0.00;(#,##0.00); ");
+            string txtAdv = "Advanced: " + Convert.ToDouble(advanced).ToString("#,##0.00;(#,##0.00); ");
+            string txtPenalty = "Pelanty: " + Convert.ToDouble(penalty).ToString("#,##0.00;(#,##0.00); ");
+            string txtDeduc = "Deduction: " + Convert.ToDouble(deduction).ToString("#,##0.00;(#,##0.00); ");
             string txtNetAmt = "Net Amount : " + Convert.ToDouble(netAmount).ToString("#,##0.00;(#,##0.00); ");
 
             string ftReqIn = ds1.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
@@ -713,9 +783,6 @@ namespace RealERPWEB.F_14_Pro
             string ftWorkOrd = ds1.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
             string ftMrRecv = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
             string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
-
-            string lblmramt = Convert.ToDouble(((Label)this.gvBillInfo.FooterRow.FindControl("lblgvFooterTMRRAmt")).Text).ToString("#,##0.00;(#,##0.00); ");
-
 
 
             //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
@@ -759,9 +826,16 @@ namespace RealERPWEB.F_14_Pro
             // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
 
             Session["Report1"] = rpt;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
+            }
             // rdlc end
 
 
@@ -779,9 +853,20 @@ namespace RealERPWEB.F_14_Pro
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
-            //string mBILLNo = this.ddlPrevBillList.SelectedValue.ToString();
-            string mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string CurDate1 = "";
+            string mBILLNo = "";
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
                           "", "", "", "", "", "", "");
 
@@ -804,11 +889,35 @@ namespace RealERPWEB.F_14_Pro
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
 
             //double amt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(mrramt)", "")) ? 0.00 : dt.Compute("Sum(mrramt)", "")));
+            double security, deduction, penalty, advanced;
+            string txtSupName, txtBillid, txtNarration, billref, percntge;
+            if (isAccBill)
+            {
+                security = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(sdamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(sdamt)", "")));
+                deduction = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(dedamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(dedamt)", "")));
+                penalty = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(penamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(penamt)", "")));
+                advanced = Convert.ToDouble((Convert.IsDBNull(ds1.Tables[1].Compute("Sum(advamt)", "")) ? 0.00 : ds1.Tables[1].Compute("Sum(advamt)", "")));
+                percntge = Convert.ToDouble(ds1.Tables[1].Rows[0]["percntge"]).ToString("#,##0.00;(#,##0.00); 0%");
+                txtSupName = ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+                txtBillid = ds1.Tables[1].Rows[0]["billno1"].ToString();
+                txtNarration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
+                billref = ds1.Tables[1].Rows[0]["billref"].ToString();
+            }
+            else
+            {
+                security = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString()));
+                deduction = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString()));
+                penalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString()));
+                advanced = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString()));
+                percntge = this.txtpercentage.Text.ToString();
 
-            double security = (Convert.ToDouble("0" + this.txtSDAmount.Text.ToString()));
-            double deduction = (Convert.ToDouble("0" + this.txtDedAmount.Text.ToString()));
-            double penalty = (Convert.ToDouble("0" + this.txtPenaltyAmount.Text.ToString()));
-            double advanced = (Convert.ToDouble("0" + this.txtAdvanced.Text.ToString()));
+                txtSupName = this.ddlSupList.SelectedItem.Text.Trim();
+                txtBillid = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
+                txtNarration = this.txtBillNarr.Text.Trim();
+                billref = ds1.Tables[1].Rows[0]["billref"].ToString();
+            }
+
+            //sdamt dedamt  penamt advamt  percntge
             double netAmount = (amt1 - amt2 - (security + deduction + penalty + advanced));
 
             //double tamt=this.gvBillInfo.FooterRow
@@ -818,183 +927,88 @@ namespace RealERPWEB.F_14_Pro
             string mrfno = dtmrref.Rows[0]["mrfno"].ToString();
             string mrfno1 = dtmrref.Rows[0]["mrfno"].ToString();
 
-            string securitydep = this.txtpercentage.Text.ToString();
-            string lblSecurity = "Less Security Deposite " + "( " + securitydep + " )";
-
+            //string securitydep = Convert.ToDouble(percntge).ToString("#,##0.00;(#,##0.00); ");
+            string lblSecurity = "Less Security Deposite " + "( " + percntge + " )";
 
             for (int i = 1; i < dtmrref.Rows.Count; i++)
             {
-
-                if (dtmrref.Rows[i]["mrfno"].ToString() == mrfno)
-                    ;
-                else
+                if (dtmrref.Rows[i]["mrfno"].ToString() != mrfno)
                 {
                     mrfno1 = mrfno1 + ", " + dtmrref.Rows[i]["mrfno"].ToString();
-
                 }
-
                 mrfno = dtmrref.Rows[i]["mrfno"].ToString();
 
-
-
             }
+            string txtDepo = Convert.ToDouble(security).ToString("#,##0.00;(#,##0.00); ");
+            string txtAdv = Convert.ToDouble(advanced).ToString("#,##0.00;(#,##0.00); ");
+            string txtPenalty = Convert.ToDouble(penalty).ToString("#,##0.00;(#,##0.00); ");
+            string txtDeduc = Convert.ToDouble(deduction).ToString("#,##0.00;(#,##0.00); ");
+            string txtNetAmt = Convert.ToDouble(netAmount).ToString("#,##0.00;(#,##0.00); ");
 
+            string txtProjName = ds1.Tables[1].Rows[0]["pactdesc"].ToString();
+            string txtBuildno = dt1.Rows[0]["termsdesc"].ToString();
+            string txtFloorno = dt1.Rows[1]["termsdesc"].ToString();
+            string txtFlatno = dt1.Rows[2]["termsdesc"].ToString();
+            string txtReqno = mrfno1;
+            string txtInword = "Taka In Word: " + ASTUtility.Trans((netAmount), 2);
+            string ftReqIn = ds1.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
+            string ftReqApp = ds1.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqadat"].ToString();
+            string ftOrder = ds1.Tables[3].Rows[0]["appnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
+            string ftWorkOrd = ds1.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
+            string ftMrRecv = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
+            string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
 
-
+            var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
+            LocalReport rpt = new LocalReport();
             if (pactcode == "160100010025")
             {
-
-                // rdlc start
-
-                string txtProjName = ds1.Tables[1].Rows[0]["pactdesc"].ToString();
-                string txtBuildno = dt1.Rows[0]["termsdesc"].ToString();
-                string txtFloorno = dt1.Rows[1]["termsdesc"].ToString();
-                string txtFlatno = dt1.Rows[2]["termsdesc"].ToString();
-                string txtSupName = this.ddlSupList.SelectedItem.Text.Trim();
-                string txtBillid = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
-                string txtReqno = mrfno1;
-                string txtInword = "Taka In Word: " + ASTUtility.Trans((netAmount), 2);
-                string txtNarration = this.txtBillNarr.Text.Trim();
-                string txtDepo = this.txtSDAmount.Text.ToString();
-                string txtAdv = this.txtAdvanced.Text.ToString().Trim();
-                string txtPenalty = this.txtPenaltyAmount.Text.ToString().Trim();
-                string txtDeduc = this.txtDedAmount.Text.ToString().Trim();
-                string txtNetAmt = Convert.ToDouble(netAmount).ToString("#,##0.00;(#,##0.00); ");
-
-                string ftReqIn = ds1.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
-                string ftReqApp = ds1.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqadat"].ToString();
-                string ftOrder = ds1.Tables[3].Rows[0]["appnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
-                string ftWorkOrd = ds1.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
-                string ftMrRecv = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
-                string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
-
-                //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-                var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
-                LocalReport rpt = new LocalReport();
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillConfirmBridgeWithoutLogo", list, null, null);
                 rpt.EnableExternalImages = true;
-
-                rpt.SetParameters(new ReportParameter("txtTitle", "Bill Confirmation Certificate"));
-                rpt.SetParameters(new ReportParameter("txtComment", "( Comments On Enclosed Bills )"));
-                rpt.SetParameters(new ReportParameter("txtProjName", txtProjName));
-                rpt.SetParameters(new ReportParameter("txtBuildno", txtBuildno));
-                rpt.SetParameters(new ReportParameter("txtFloorno", txtFloorno));
-                rpt.SetParameters(new ReportParameter("txtFlatno", txtFlatno));
-                rpt.SetParameters(new ReportParameter("txtSupName", "Supplier Name :  " + txtSupName));
-                rpt.SetParameters(new ReportParameter("txtBillid", txtBillid));
-                rpt.SetParameters(new ReportParameter("txtBilldate", CurDate1));
-                rpt.SetParameters(new ReportParameter("txtBillno", this.txtBillRef.Text));
-                rpt.SetParameters(new ReportParameter("txtReqno", txtReqno));
-
-                rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
-                rpt.SetParameters(new ReportParameter("txtAdv", txtAdv));
-                rpt.SetParameters(new ReportParameter("txtPenalty", txtPenalty));
-                rpt.SetParameters(new ReportParameter("txtDeduc", txtDeduc));
-                rpt.SetParameters(new ReportParameter("txtNetAmt", txtNetAmt));
-
-                rpt.SetParameters(new ReportParameter("txtInword", txtInword));
-                rpt.SetParameters(new ReportParameter("txtNarration", txtNarration));
-                rpt.SetParameters(new ReportParameter("ftReqIn", ftReqIn));
-                rpt.SetParameters(new ReportParameter("ftReqApp", ftReqApp));
-                rpt.SetParameters(new ReportParameter("ftOrder", ftOrder));
-                rpt.SetParameters(new ReportParameter("ftWorkOrd", ftWorkOrd));
-                rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
-                rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
-                rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-                rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
-                // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-                Session["Report1"] = rpt;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-                // rdlc end
-
-
             }
             else
             {
-                //rptstk = new RealERPRPT.R_14_Pro.RptBillConfirmationBridge();
-                //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-                //txtCompany.Text = comnam;
-
-                // rdlc start
-
-                string txtProjName = ds1.Tables[1].Rows[0]["pactdesc"].ToString();
-                string txtBuildno = dt1.Rows[0]["termsdesc"].ToString();
-                string txtFloorno = dt1.Rows[1]["termsdesc"].ToString();
-                string txtFlatno = dt1.Rows[2]["termsdesc"].ToString();
-                string txtSupName = this.ddlSupList.SelectedItem.Text.Trim();
-                string txtBillid = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
-                string txtReqno = mrfno1;
-                string txtInword = "Taka In Word: " + ASTUtility.Trans((netAmount), 2);
-                string txtNarration = this.txtBillNarr.Text.Trim();
-                string txtDepo = this.txtSDAmount.Text.ToString();
-                string txtAdv = this.txtAdvanced.Text.ToString().Trim();
-                string txtPenalty = this.txtPenaltyAmount.Text.ToString().Trim();
-                string txtDeduc = this.txtDedAmount.Text.ToString().Trim();
-                string txtNetAmt = Convert.ToDouble(netAmount).ToString("#,##0.00;(#,##0.00); ");
-
-                string ftReqIn = ds1.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqdat"].ToString();
-                string ftReqApp = ds1.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["reqadat"].ToString();
-                string ftOrder = ds1.Tables[3].Rows[0]["appnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["appdat"].ToString();
-                string ftWorkOrd = ds1.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["orddat"].ToString();
-                string ftMrRecv = ds1.Tables[3].Rows[0]["mrrnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["mrrdat"].ToString();
-                string ftBillConf = ds1.Tables[3].Rows[0]["billnam"].ToString() + "\n" + ds1.Tables[3].Rows[0]["billdat"].ToString();
-
-                //string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-
-
-                var list = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.RptBillConfirmation01>();
-                LocalReport rpt = new LocalReport();
                 rpt = RptSetupClass1.GetLocalReport("R_14_Pro.RptBillConfirmationBridge", list, null, null);
                 rpt.EnableExternalImages = true;
                 rpt.SetParameters(new ReportParameter("compName", comnam));
-                rpt.SetParameters(new ReportParameter("txtTitle", "Bill Confirmation Certificate"));
-                rpt.SetParameters(new ReportParameter("txtComment", "( Comments On Enclosed Bills )"));
-                rpt.SetParameters(new ReportParameter("txtProjName", txtProjName));
-                rpt.SetParameters(new ReportParameter("txtBuildno", txtBuildno));
-                rpt.SetParameters(new ReportParameter("txtFloorno", txtFloorno));
-                rpt.SetParameters(new ReportParameter("txtFlatno", txtFlatno));
-                rpt.SetParameters(new ReportParameter("txtSupName", "Supplier Name :  " + txtSupName));
-                rpt.SetParameters(new ReportParameter("txtBillid", txtBillid));
-                rpt.SetParameters(new ReportParameter("txtBilldate", CurDate1));
-                rpt.SetParameters(new ReportParameter("txtBillno", this.txtBillRef.Text));
-                rpt.SetParameters(new ReportParameter("txtReqno", txtReqno));
-
-                rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
-                rpt.SetParameters(new ReportParameter("txtAdv", txtAdv));
-                rpt.SetParameters(new ReportParameter("txtPenalty", txtPenalty));
-                rpt.SetParameters(new ReportParameter("txtDeduc", txtDeduc));
-                rpt.SetParameters(new ReportParameter("txtNetAmt", txtNetAmt));
-
-                rpt.SetParameters(new ReportParameter("txtInword", txtInword));
-                rpt.SetParameters(new ReportParameter("txtNarration", txtNarration));
-                rpt.SetParameters(new ReportParameter("ftReqIn", ftReqIn));
-                rpt.SetParameters(new ReportParameter("ftReqApp", ftReqApp));
-                rpt.SetParameters(new ReportParameter("ftOrder", ftOrder));
-                rpt.SetParameters(new ReportParameter("ftWorkOrd", ftWorkOrd));
-                rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
-                rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
-                rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
-                rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
-
-
-                // rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
-
-                Session["Report1"] = rpt;
-                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-                              ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-                // rdlc end
-
-
-
             }
-            //ReportDocument rptstk = new RealERPRPT.R_14_Pro.RptBillConfirmationBridge();
+            rpt.SetParameters(new ReportParameter("txtTitle", "Bill Confirmation Certificate"));
+            rpt.SetParameters(new ReportParameter("txtComment", "( Comments On Enclosed Bills )"));
+            rpt.SetParameters(new ReportParameter("txtProjName", txtProjName));
+            rpt.SetParameters(new ReportParameter("txtBuildno", txtBuildno));
+            rpt.SetParameters(new ReportParameter("txtFloorno", txtFloorno));
+            rpt.SetParameters(new ReportParameter("txtFlatno", txtFlatno));
+            rpt.SetParameters(new ReportParameter("txtSupName", "Supplier Name :  " + txtSupName));
+            rpt.SetParameters(new ReportParameter("txtBillid", txtBillid));
+            rpt.SetParameters(new ReportParameter("txtBilldate", CurDate1));
+            rpt.SetParameters(new ReportParameter("txtBillno", billref));
+            rpt.SetParameters(new ReportParameter("txtReqno", txtReqno));
+            rpt.SetParameters(new ReportParameter("txtDepo", txtDepo));
+            rpt.SetParameters(new ReportParameter("txtAdv", txtAdv));
+            rpt.SetParameters(new ReportParameter("txtPenalty", txtPenalty));
+            rpt.SetParameters(new ReportParameter("txtDeduc", txtDeduc));
+            rpt.SetParameters(new ReportParameter("txtNetAmt", txtNetAmt));
+            rpt.SetParameters(new ReportParameter("txtInword", txtInword));
+            rpt.SetParameters(new ReportParameter("txtNarration", txtNarration));
+            rpt.SetParameters(new ReportParameter("ftReqIn", ftReqIn));
+            rpt.SetParameters(new ReportParameter("ftReqApp", ftReqApp));
+            rpt.SetParameters(new ReportParameter("ftOrder", ftOrder));
+            rpt.SetParameters(new ReportParameter("ftWorkOrd", ftWorkOrd));
+            rpt.SetParameters(new ReportParameter("ftMrRecv", ftMrRecv));
+            rpt.SetParameters(new ReportParameter("ftBillConf", ftBillConf));
+            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            rpt.SetParameters(new ReportParameter("lblSecurity", lblSecurity));
 
-            //double amout=this.txtDedAmount.Text.ToString()
+            Session["Report1"] = rpt;
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
 
 
         }
@@ -1009,10 +1023,21 @@ namespace RealERPWEB.F_14_Pro
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
-            //string mBILLNo = this.ddlPrevBillList.SelectedValue.ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            string CurDate1 = "";
+            string mBILLNo = "";
+            string txtnar = this.txtBillNarr.Text.Trim();
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
                           "", "", "", "", "", "", "");
 
@@ -1037,15 +1062,17 @@ namespace RealERPWEB.F_14_Pro
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
             //
             // rdlc start
-            string suppname = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
             string mrfno = ds1.Tables[1].Rows[0]["mrfno"].ToString();
             string orderno = ds1.Tables[0].Rows[0]["orderno1"].ToString();
             string refno = this.txtBillRef.Text;
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
-            string billno = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
+            string suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+            string billno = ds1.Tables[1].Rows[0]["billno1"].ToString();
+            string narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
+
 
             ////Signing Part
 
@@ -1073,7 +1100,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtMrrno", " : " + mrrno));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
             rpt.SetParameters(new ReportParameter("txtInword", inword));
-            rpt.SetParameters(new ReportParameter("txtNarration", "Narration : " + this.txtBillNarr.Text.Trim()));
+            rpt.SetParameters(new ReportParameter("txtNarration", narration));
             rpt.SetParameters(new ReportParameter("ftReqIn", reqname));
             rpt.SetParameters(new ReportParameter("ftReqapv", reqapname));
             rpt.SetParameters(new ReportParameter("ftOrdpro", ordpro));
@@ -1084,8 +1111,16 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
 
             Session["Report1"] = rpt;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
             // rdlc end
 
 
@@ -1104,10 +1139,23 @@ namespace RealERPWEB.F_14_Pro
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
-            //string mBILLNo = this.ddlPrevBillList.SelectedValue.ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+
+            string CurDate1 = "";
+            string mBILLNo = "";
+            string txtnar = this.txtBillNarr.Text.Trim();
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
+
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
                           "", "", "", "", "", "", "");
 
@@ -1131,16 +1179,30 @@ namespace RealERPWEB.F_14_Pro
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
             //
+            string suppname, billno, narration, refno;
+            if (isAccBill)
+            {
+                suppname = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+                billno = ds1.Tables[1].Rows[0]["billno1"].ToString();
+                narration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
+                refno = ds1.Tables[1].Rows[0]["billref"].ToString();
+            }
+            else
+            {
+                suppname = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
+                billno = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
+                narration = this.txtBillNarr.Text.Trim();
+                refno = this.txtBillRef.Text;
+            }
             // rdlc start
-            string suppname = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
             string mrfno = ds1.Tables[1].Rows[0]["mrfno"].ToString();
             string orderno = ds1.Tables[0].Rows[0]["orderno1"].ToString();
-            string refno = this.txtBillRef.Text;
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
-            string billno = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
+
+
 
             ////Signing Part
 
@@ -1168,7 +1230,7 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("txtMrrno", " : " + mrrno));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
             rpt.SetParameters(new ReportParameter("txtInword", inword));
-            rpt.SetParameters(new ReportParameter("txtNarration", "Narration : " + this.txtBillNarr.Text.Trim()));
+            rpt.SetParameters(new ReportParameter("txtNarration", "Narration : " + narration));
             rpt.SetParameters(new ReportParameter("ftReqIn", reqname));
             rpt.SetParameters(new ReportParameter("ftReqapv", reqapname));
             rpt.SetParameters(new ReportParameter("ftOrdpro", ordpro));
@@ -1179,8 +1241,16 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
 
             Session["Report1"] = rpt;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
             // rdlc end
 
 
@@ -1198,10 +1268,22 @@ namespace RealERPWEB.F_14_Pro
             string compname = hst["compname"].ToString();
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            string CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
-            //string mBILLNo = this.ddlPrevBillList.SelectedValue.ToString();
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-            string mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+
+            string CurDate1 = "";
+            string mBILLNo = "";
+            bool isAccBill = this.isBillFromAcc();
+            if (isAccBill)
+            {
+                CurDate1 = this.Request.QueryString["Date1"].ToString();
+                mBILLNo = this.Request.QueryString["genno"].ToString();
+            }
+            else
+            {
+                CurDate1 = this.GetStdDate(this.txtCurBillDate.Text.Trim());
+                mBILLNo = this.lblCurBillNo1.Text.Trim().Substring(0, 3) + this.txtCurBillDate.Text.Trim().Substring(6, 4) + this.lblCurBillNo1.Text.Trim().Substring(3, 2) + this.txtCurBillNo2.Text.Trim();
+            }
+
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GENPURBILLINFO", mBILLNo, CurDate1,
                           "", "", "", "", "", "", "");
 
@@ -1225,17 +1307,29 @@ namespace RealERPWEB.F_14_Pro
             double amt2 = (td2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(td2.Compute("Sum(mrramt)", "")) ? 0.00 : td2.Compute("Sum(mrramt)", "")));
             double amt1 = Convert.ToDouble((Convert.IsDBNull(td1.Compute("Sum(mrramt)", "")) ? 0.00 : td1.Compute("Sum(mrramt)", "")));
             //
+
+            string txtSupName, txtBillid, txtNarration, billref;
+            if (isAccBill)
+            {
+                txtSupName = "Supplier Name: " + ds1.Tables[1].Rows[0]["ssirdesc"].ToString();
+                txtBillid = ds1.Tables[1].Rows[0]["billno1"].ToString();
+                txtNarration = "Narration : " + ds1.Tables[1].Rows[0]["billnar"].ToString();
+                billref = ds1.Tables[1].Rows[0]["billref"].ToString();
+            }
+            else
+            {
+                txtSupName = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
+                txtBillid = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
+                txtNarration = this.txtBillNarr.Text.Trim();
+                billref = this.txtBillRef.Text;
+            }
             // rdlc start
-            string suppname = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
             string inword = "Taka In Word: " + ASTUtility.Trans((amt1 - amt2), 2);
             string mrfno = ds1.Tables[1].Rows[0]["mrfno"].ToString();
             string orderno = ds1.Tables[0].Rows[0]["orderno1"].ToString();
-            string refno = this.txtBillRef.Text;
             string chlno = ds1.Tables[0].Rows[0]["chlnno"].ToString();
-            string billno = this.lblCurBillNo1.Text.Trim() + this.txtCurBillNo2.Text.Trim();
             string mrrno = ds1.Tables[0].Rows[0]["mrrno1"].ToString();
             string projectName = "Project Name : " + ds1.Tables[0].Rows[0]["pactdesc"].ToString().Substring(4);
-
 
             ////Signing Part
 
@@ -1254,17 +1348,17 @@ namespace RealERPWEB.F_14_Pro
             rpt.EnableExternalImages = true;
             rpt.SetParameters(new ReportParameter("compName", comnam));
             rpt.SetParameters(new ReportParameter("txtTitle", "Software Generated Bill"));
-            rpt.SetParameters(new ReportParameter("supname", suppname));
+            rpt.SetParameters(new ReportParameter("supname", txtSupName));
             rpt.SetParameters(new ReportParameter("txtMrfno", " : " + mrfno));
             rpt.SetParameters(new ReportParameter("txtPono", " : " + orderno));
-            rpt.SetParameters(new ReportParameter("txtRefno", " : " + refno));
+            rpt.SetParameters(new ReportParameter("txtRefno", " : " + billref));
             rpt.SetParameters(new ReportParameter("txtChalan", " : " + chlno));
             rpt.SetParameters(new ReportParameter("txtBilldate", " : " + CurDate1));
-            rpt.SetParameters(new ReportParameter("txtBillno", " : " + billno));
+            rpt.SetParameters(new ReportParameter("txtBillno", " : " + txtBillid));
             rpt.SetParameters(new ReportParameter("txtMrrno", " : " + mrrno));
             rpt.SetParameters(new ReportParameter("txtProjectName", projectName));
             rpt.SetParameters(new ReportParameter("txtInword", inword));
-            rpt.SetParameters(new ReportParameter("txtNarration", "Narration : " + this.txtBillNarr.Text.Trim()));
+            rpt.SetParameters(new ReportParameter("txtNarration", txtNarration));
             rpt.SetParameters(new ReportParameter("ftReqIn", reqname));
             rpt.SetParameters(new ReportParameter("ftReqapv", reqapname));
             rpt.SetParameters(new ReportParameter("ftOrdpro", ordpro));
@@ -1276,8 +1370,18 @@ namespace RealERPWEB.F_14_Pro
             rpt.SetParameters(new ReportParameter("comlogo", ComLogo));
 
             Session["Report1"] = rpt;
-            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+            if (isAccBill)
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+            }
+            else
+            {
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                           ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+            }
+
+
             // rdlc end
 
         }
@@ -2000,11 +2104,6 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-
-
-
-
-
         protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.Session_tblBill_Update();
@@ -2078,7 +2177,6 @@ namespace RealERPWEB.F_14_Pro
             this.GetOrderList();
 
         }
-
 
 
         private void GetOrderList()
@@ -2177,9 +2275,6 @@ namespace RealERPWEB.F_14_Pro
             this.ddlCharge.DataBind();
             ds1.Dispose();
         }
-
-
-
 
         protected void lbtnSelect_Click(object sender, EventArgs e)
         {
@@ -2569,9 +2664,6 @@ namespace RealERPWEB.F_14_Pro
         }
 
 
-
-
-
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
             this.Session_tblBill_Update();
@@ -2808,9 +2900,6 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-
-
-
         protected void btnDelall_OnClick(object sender, EventArgs e)
         {
             string comcod = this.GetCompCode();
@@ -2847,7 +2936,6 @@ namespace RealERPWEB.F_14_Pro
             }
 
         }
-
 
         protected void ListViewEmpAll_ItemDataBound(object sender, ListViewItemEventArgs e)
         {

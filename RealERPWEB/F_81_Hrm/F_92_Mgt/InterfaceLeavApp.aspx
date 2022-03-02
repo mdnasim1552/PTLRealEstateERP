@@ -337,7 +337,7 @@
 
 
 
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Leave Apply</asp:HyperLink>
 
                         </div>

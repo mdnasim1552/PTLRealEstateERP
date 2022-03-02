@@ -241,6 +241,9 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem>600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                           
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">

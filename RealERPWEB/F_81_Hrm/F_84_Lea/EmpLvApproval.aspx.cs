@@ -138,7 +138,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
             string Type = (this.Request.QueryString["Type"]).ToString();
-            string srchproject = (Type == "Ind") ? this.Request.QueryString["refno"].ToString() : ("%" + this.txtProjectSearch.Text.Trim() + "%");
+            string srchproject = (Type == "Ind") ? this.Request.QueryString["refno"].ToString() : ("%%");
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "GETDEPTNAME", srchproject, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
@@ -204,7 +204,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string Date = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
-                string SrchChequeno = "%" + this.txtserchmrf.Text.Trim() + "%";
+                string SrchChequeno = "%%";
 
 
                 string DeptCode = ((this.ddlCenter.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCenter.SelectedValue.ToString()) + "%";
@@ -247,7 +247,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
         private string ShowEmppLeave(string Empid)
         {
-            this.lblleaveStatus.Visible = true;
+            
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string aplydat = Convert.ToDateTime(this.txtdate.Text).ToString("dd-MMM-yyyy");
@@ -640,11 +640,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 double lapplied = Convert.ToDouble("0" + ((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlapplied")).Text.Trim());
                 if (lapplied > 0)
                 {
+                    string ishalfday = (((CheckBox)gvLvReq.Rows[i].FindControl("ishalfday")).Checked) ? "1" : "0";                  
                     string gcod = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, "", "", "", "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, "", "", "", "", "", "", "");
 
                     if (!result)
                     {
@@ -665,8 +666,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
 
 
-                this.SaveLeave();
-                this.LeaveUpdate();
+               
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../AcceessError.aspx");
@@ -685,6 +685,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string ApprovByid = hst["usrid"].ToString();
                 string Approvtrmid = hst["compname"].ToString();
                 string ApprovSession = hst["session"].ToString();
+                this.SaveLeave();
+                this.LeaveUpdate();
+                string roletype = this.Request.QueryString["RoleType"].ToString();
                 //string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
                 string approvdat = System.DateTime.Now.ToString("dd-MMM-yyyy");
 
@@ -753,7 +756,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 //------------------C Table----------------------//
 
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "UPDATELVAPP", Orderno, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, "", "", "", "", "", "", "", "", "");
+
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "UPDATELVAPP", Orderno, ApprovByid, Approvtrmid, ApprovSession, approvdat, Centrid, roletype, "", "", "", "", "", "", "", "");
                 if (result == false)
                 {
                     ((Label)this.Master.FindControl("lblmsg")).Text = "Order Not Approved";

@@ -871,11 +871,13 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable dt2 = (DataTable)ViewState["tblProject"];
             string pactcode = "";
-            for(int i=0; i < dt2.Rows.Count; i++)
+            if(dt2 != null)
             {
-                pactcode += dt2.Rows[i]["pactcode"].ToString();
-            }
-           
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    pactcode += dt2.Rows[i]["pactcode"].ToString();
+                }
+            }         
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
@@ -1614,14 +1616,8 @@ namespace RealERPWEB.F_14_Pro
                         ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
                         return;
                     }
-
                 }
-
             }
-
-
-
-
 
             string mPORDUSRID = "";
             string mAPPRUSRID = "";
@@ -1763,9 +1759,11 @@ namespace RealERPWEB.F_14_Pro
             bool istxtTerms;
             switch (comcod)
             {
-                case "1205":
+                case "1205": //p2p
                 case "3351":
                 case "3352":
+                case "3101":
+                case "3366": // lanco
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -1930,12 +1928,7 @@ namespace RealERPWEB.F_14_Pro
                             string comnam = hst["comnam"].ToString();
                             string compname = hst["compname"].ToString();
                             string frmname = "PurMRREntry.aspx?Type=Entry";
-
-
                             string SMSHead = "Ready To Recived, ";
-
-
-
                             string SMSText = comnam + ":\n" + SMSHead + "\n" + dsty.Rows[0]["projdesc1"].ToString() + "\n" + "MRF No:" + dsty.Rows[0]["mrfno"].ToString() + "\n" + "to Supplier: " +
                              dsty.Rows[0]["ssirdesc1"].ToString();
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
@@ -2336,6 +2329,15 @@ namespace RealERPWEB.F_14_Pro
                     this.divterms.Visible = false;
                     //this.ImagePanel.Visible = false;
                     break;
+                case "3101":
+                case "3366":
+
+                    this.divtermsp2p.Visible = true;
+                    this.divterms.Visible = false;
+                    //this.ImagePanel.Visible = false;
+                    this.txtOrderNarrP.Text = this.bindDataText();
+
+                    break;
 
                 default:
                     this.divtermsp2p.Visible = false;
@@ -2345,9 +2347,14 @@ namespace RealERPWEB.F_14_Pro
             }
         }
 
-
-
-
+        private string bindDataText()
+        {
+            string msg = "1. Delivery Place : \n2. Delivery Date : \n3. Contact Person : \n4. Contact Person : \n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
+                "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. \n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
+                "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque.\n9. Payment shall have to be received from this office through money receipt of the company." +
+                "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
+            return msg;
+        }
 
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
         {
