@@ -7,7 +7,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
-            document.getElementById('<%= lnkbtnOk.ClientID %>').click();
+            
 
         });
 
