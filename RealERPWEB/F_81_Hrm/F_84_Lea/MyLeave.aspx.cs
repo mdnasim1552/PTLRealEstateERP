@@ -62,48 +62,66 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
             DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
 
-            double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
+            getLevExitingLv(fdate.ToString(), tdate.ToString());
 
+            DataTable extlv=(DataTable)ViewState["tblextlv"];
 
-
-            TimeSpan difference = (tdate - fdate); //create TimeSpan object
-            string diffdays = "0.00";
-            if (difference.Days == 0 && isHalfday == 0.5)
+            if(extlv.Rows.Count==0)
             {
-                diffdays = (difference.Days + isHalfday).ToString();
+
+                double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
+                TimeSpan difference = (tdate - fdate); //create TimeSpan object
+                string diffdays = "0.00";
+                if (difference.Days == 0 && isHalfday == 0.5)
+                {
+                    diffdays = (difference.Days + isHalfday).ToString();
+                }
+                else if (difference.Days != 0 && isHalfday == 0.5)
+                {
+                    diffdays = (difference.Days + isHalfday).ToString();
+                }
+                else
+                {
+                    diffdays = (difference.Days + isHalfday + 1).ToString();
+                }
+
+                DataView dv = dt.Copy().DefaultView;
+                dv.RowFilter = ("gcod=" + gcod);
+                dt = dv.ToTable();
+                double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
+                double dfdays = Convert.ToDouble(diffdays);
+                this.Duration.Value = diffdays;
+                if (dfdays > ballv)
+                {
+                    string Messaged = "Oops!! Insufficient Leave Balance, Please conctact with your Managment Team";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    this.btnSave.Enabled = false;
+                }
+                else
+                {
+                    this.btnSave.Enabled = true;
+                }
 
             }
-            else if (difference.Days != 0 && isHalfday == 0.5)
-            {
-                diffdays = (difference.Days + isHalfday).ToString();
 
-            }
             else
             {
-                diffdays = (difference.Days + isHalfday + 1).ToString();
-
-            }
-
-            DataView dv = dt.Copy().DefaultView;
-            dv.RowFilter = ("gcod=" + gcod);
-            dt = dv.ToTable();
-
-            double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
-            double dfdays = Convert.ToDouble(diffdays);
-            this.Duration.Value = diffdays;
-
-            if (dfdays > ballv)
-            {
-                string Messaged = "Oops!! Insufficient Leave Balance, Please conctact with your Managment Team";
+                string Messaged = "Oops!! Already Applied between date";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
-            else
-            {
-                this.btnSave.Enabled = true;
 
-            }
 
+        }
+
+        private void getLevExitingLv(string fdate, string tdate)
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.GetEmpID();
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GETEXITINGELEAVEBYEMPID", empid, fdate, tdate, "", "", "", "", "", "");
+            
+
+            ViewState["tblextlv"] = ds5.Tables[0];
         }
 
         protected void txtgvenjoydt1_TextChanged1(object sender, EventArgs e)

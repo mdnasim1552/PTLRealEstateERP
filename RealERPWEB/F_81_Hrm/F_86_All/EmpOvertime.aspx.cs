@@ -409,9 +409,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     break;
 
-                    //this.txtDate_CalendarExtender.Format = "yyyyMM";
-                    //this.txtDate.MaxLength = 6;
-                   
+                //this.txtDate_CalendarExtender.Format = "yyyyMM";
+                //this.txtDate.MaxLength = 6;
+
                 case "dayadj":
                     this.ddlyearmon.Text = System.DateTime.Today.ToString("yyyyMM");
                     this.lbldate.Text = "Month Id:";
@@ -980,13 +980,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     switch (comcod)
                     {
                         case "3339":
-                            this.gvothearn.HeaderRow.Cells[9].Text = "Trans/Entr";                  
+                            this.gvothearn.HeaderRow.Cells[9].Text = "Trans/Entr";
                             break;
 
 
                         case "3364":
                             this.gvothearn.HeaderRow.Cells[9].Text = "Holiday Allowance";
-                          
+
 
                             break;
 
@@ -996,7 +996,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.HeaderRow.Cells[7].Text = "Arear Salary";
                             this.gvothearn.HeaderRow.Cells[8].Text = "Project Visit";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
-                            
+
                             //this.gvothearn.Columns[6].Visible = true;
                             //this.gvothearn.Columns[7].Visible = true;
                             //this.gvothearn.Columns[8].Visible = true;
@@ -1145,7 +1145,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                     //string msg = "Total Other EarningG " + ((Label)this.gvothearn.FooterRow.FindControl("lgvFtotal")).Text;
                     //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
-                  //  this.GetCheckBoxStates();
+                    //  this.GetCheckBoxStates();
                     Session["Report1"] = gvothearn;
                     ((HyperLink)this.gvothearn.HeaderRow.FindControl("hlbtntOtherEarnExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
@@ -2844,7 +2844,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             }
 
 
-            
+
 
         }
         protected void btnUploadovrtime_Click(object sender, EventArgs e)
@@ -3071,7 +3071,7 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             bool isAllValid = true;
             DataTable dt = (DataTable)Session["ExcelData"];
-            int rowCount=0;
+            int rowCount = 0;
 
             DataTable dt1 = (DataTable)Session["tblover"];
             if (dt.Rows.Count == 0 || dt1.Rows.Count == 0)
@@ -3082,19 +3082,17 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
             switch (Type)
             {
                 case "OtherDeduction":
-
-                   
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
-                       // string Adv_Deduction = dt.Rows[i]["Adv_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Adv_Deduction"].ToString();
+                        // string Adv_Deduction = dt.Rows[i]["Adv_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Adv_Deduction"].ToString();
                         string Mobile_Bill = dt.Rows[i]["Mobile_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Mobile_Bill"].ToString();
                         string Other_Deduction = dt.Rows[i]["Other_Deduction"].ToString().Length == 0 ? "0" : dt.Rows[i]["Other_Deduction"].ToString();
                         string Transport = dt.Rows[i]["Transport"].ToString().Length == 0 ? "0" : dt.Rows[i]["Transport"].ToString();
- 
-                        if (Card.Length==0)
+
+                        if (Card.Length == 0)
                         {
-                            dt.Rows.RemoveAt(i);                            
+                            dt.Rows.RemoveAt(i);
                             continue;
                         }
                         // Check Adv_Deduction is Number or not.
@@ -3110,11 +3108,10 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         // Check Transport is Number or not.
                         if (!IsNuoDecimal(Transport))
                         {
-                            dt.Rows[i]["Transport"] = 0.00;                             
-                        }         
+                            dt.Rows[i]["Transport"] = 0.00;
+                        }
                         dt.AcceptChanges();
                         isAllValid = true;
-
                     }
                     if (isAllValid)
                     {
@@ -3124,14 +3121,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                             if (rows.Length > 0)
                             {
-                                
+
                                 double Mobile_Bill = Convert.ToDouble("0" + (rows[0]["Mobile_Bill"]));
                                 double transded = Convert.ToDouble("0" + (rows[0]["Transport"]));
                                 double otherded = Convert.ToDouble("0" + (rows[0]["Other_Deduction"]));
-                                 
-                                dt1.Rows[i]["mbillded"] = Mobile_Bill;                                
+                                double ttlamt = Mobile_Bill + transded + otherded;
+
+                                dt1.Rows[i]["mbillded"] = Mobile_Bill;
                                 dt1.Rows[i]["transded"] = transded;
                                 dt1.Rows[i]["otherded"] = otherded;
+                                dt1.Rows[i]["toamt"] = ttlamt;
                                 rowCount++;
                                 dt1.AcceptChanges();
 
@@ -3144,21 +3143,21 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                     break;
 
-                case "otherearn":  
-                    
+                case "otherearn":
+
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string Card = dt.Rows[i]["Card"].ToString();
-                        string Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0":dt.Rows[i]["Earned_Leave"].ToString();
-                        string Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0":dt.Rows[i]["Arear_Salary"].ToString();
-                        string Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0":dt.Rows[i]["Project_Visit"].ToString();
+                        string Earned_Leave = dt.Rows[i]["Earned_Leave"].ToString().Length == 0 ? "0" : dt.Rows[i]["Earned_Leave"].ToString();
+                        string Arear_Salary = dt.Rows[i]["Arear_Salary"].ToString().Length == 0 ? "0" : dt.Rows[i]["Arear_Salary"].ToString();
+                        string Project_Visit = dt.Rows[i]["Project_Visit"].ToString().Length == 0 ? "0" : dt.Rows[i]["Project_Visit"].ToString();
 
-                        string Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0":dt.Rows[i]["Car_Allow"].ToString();
+                        string Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();
                         string Fooding = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Fooding"].ToString();
-                        string Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" :dt.Rows[i]["Others"].ToString();
+                        string Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();
                         if (Card.Length == 0)
                         {
-                            dt.Rows.RemoveAt(i);                           
+                            dt.Rows.RemoveAt(i);
                             continue;
                         }
 
@@ -3180,16 +3179,16 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         if (!IsNuoDecimal(Car_Allow))
                         {
                             dt.Rows[i]["Car_Allow"] = 0.00;
-                        }                                        
+                        }
                         if (!IsNuoDecimal(Fooding))
                         {
                             dt.Rows[i]["Fooding"] = 0.00;
                         }
-                      
+
                         if (!IsNuoDecimal(Others))
                         {
                             dt.Rows[i]["Others"] = 0.00;
-                        }  
+                        }
                         dt.AcceptChanges();
                         isAllValid = true;
 
@@ -3208,30 +3207,30 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 double Project_Visit = Convert.ToDouble("0" + rows[0]["Project_Visit"]);
 
                                 double Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);
-                                double Fooding = Convert.ToDouble("0"+ rows[0]["Fooding"]);
+                                double Fooding = Convert.ToDouble("0" + rows[0]["Fooding"]);
                                 double Others = Convert.ToDouble("0" + rows[0]["Others"]);
 
-                               
-                                dt1.Rows[i]["tptallow"] = Earned_Leave; 
+
+                                dt1.Rows[i]["tptallow"] = Earned_Leave;
                                 dt1.Rows[i]["kpi"] = Arear_Salary;
-                                dt1.Rows[i]["perbon"] = Project_Visit;   
-                                
+                                dt1.Rows[i]["perbon"] = Project_Visit;
+
                                 dt1.Rows[i]["haircutal"] = Car_Allow;
                                 dt1.Rows[i]["foodal"] = Fooding;
                                 dt1.Rows[i]["othearn"] = Others;
-                                rowCount ++;
+                                rowCount++;
                                 dt1.AcceptChanges();
 
                             }
-                        } 
-                    } 
+                        }
+                    }
                     break;
             }
 
             Session["tblover"] = dt1;
             this.Data_Bind();
 
-            string msg = "Total Row Adjust : "+ rowCount;
+            string msg = "Total Row Adjust : " + rowCount;
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
         }
@@ -3240,18 +3239,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
         {
             return value.All(char.IsDigit);
         }
-
-
         private bool IsNuoDecimal(string value)
         {
 
             Regex regexLetter = new Regex(@"^[+-] ? ([0 - 9] +\.?[0 - 9]*|\.[0 - 9]+)+$");
             return !(regexLetter.IsMatch(value));
 
-            
-
-
-           
         }
         private bool IsLetter(string value)
         {
