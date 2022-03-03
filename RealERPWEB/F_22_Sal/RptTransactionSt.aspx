@@ -1528,9 +1528,17 @@
                                                 <th>Unit Description</th>
                                                 <th>Sales</th>
                                                 <th>Reg & Vat</th>
-                                                <th>Utility Charge</th>
+
+      
+                                              <%--  <th >Utility Charge</th>--%>
+                                                <th>
+                                                <asp:Label ID="lblrputility" runat="server" Text="Utility Charge"></asp:Label>
+                                                   </th>
                                                 <th>Additional Work</th>
-                                                 <th>Association Fee</th>
+                                            <%--    <th>Association Fee</th>--%>
+                                                <th>
+                                                <asp:Label ID="lblassocialtion" runat="server" Text="Association Fee"></asp:Label>
+                                                    </hr>
                                                 <th>Society Fee</th>
                                                 <th>Service Charge</th>
                                                 <th>Delay Charge</th>
@@ -1578,6 +1586,8 @@
                                                 <asp:Label ID="lgvsolar" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "spanel")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label></td>
+
+
                                             <td>
                                                 <asp:Label ID="lgvaddwork" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "adwork")).ToString("#,##0;(#,##0); ") %>'
@@ -1585,9 +1595,12 @@
 
 
                                             <td>
+                                                
                                                 <asp:Label ID="lblrpassociation" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "associafee")).ToString("#,##0;(#,##0); ") %>'
                                                     Width="70px"></asp:Label></td>
+
+                                             
                                             <td>
                                                 <asp:Label ID="lgvsocietyfee" runat="server" Style="text-align: right"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "societyfee")).ToString("#,##0;(#,##0); ") %>'
