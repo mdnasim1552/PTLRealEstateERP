@@ -1,4 +1,5 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,6 +25,8 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
 
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Prospect Transfer";
 
                 string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
@@ -46,6 +49,16 @@ namespace RealERPWEB.F_21_MKT
 
             return (hst["comcod"].ToString());
         }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
+
+        }
+
+
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
@@ -234,6 +247,38 @@ namespace RealERPWEB.F_21_MKT
             this.ddlEmpid_SelectedIndexChanged(null, null);
 
         }
+
+        protected void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt = (DataTable)ViewState["tblproswork"];
+
+            string assocname = dt.Rows[0]["assocname"].ToString();
+
+            var lst = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptProspectTransfer", lst, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compname", comnam));
+            Rpt1.SetParameters(new ReportParameter("Rptname", "Prospect Transfer of "+assocname));
+            Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
 
     }
 }

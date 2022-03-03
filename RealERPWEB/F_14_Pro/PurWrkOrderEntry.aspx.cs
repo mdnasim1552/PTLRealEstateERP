@@ -2349,7 +2349,7 @@ namespace RealERPWEB.F_14_Pro
 
         private string bindDataText()
         {
-            string msg = "1. Delivery Place : \n2. Delivery Date : \n3. Contact Person : \n4. Contact Person : \n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
+            string msg = "1. Delivery Place : \n2. Delivery Date : \n3. Contact Person : \n4. Cell Number : \n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
                 "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. \n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
                 "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque.\n9. Payment shall have to be received from this office through money receipt of the company." +
                 "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
