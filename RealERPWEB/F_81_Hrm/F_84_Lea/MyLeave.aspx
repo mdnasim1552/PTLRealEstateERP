@@ -2,14 +2,22 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         table tr th {
             text-align: center;
         }
     </style>
+    <script>
+        function GetEmployeeform() {
+            $('#EmployeeEntry').modal('toggle');
+        }
+        function CloseModal() {
+            $('#EmployeeEntry').modal('hide');
+        }
+
+    </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -44,11 +52,15 @@
                                     <label for="ddlLvType">Apply Date</label>
                                     <asp:TextBox ID="txtaplydate" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy"
-                                        TargetControlID="txtaplydate" TodaysDateFormat=""></cc1:CalendarExtender>
+                                        TargetControlID="txtaplydate"></cc1:CalendarExtender>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="ddlLvType">Leave Type</label>
+                                    <label for="ddlLvType">
+                                        Leave Type <span id="sspnlv" class="text-danger" runat="server" visible="false">
+                                            <asp:CheckBox ID="chkBoxSkippWH" AutoPostBack="true" ToolTip="If you want to skip weekend/holiday/special day, please click the checkbox and click individual date click" OnCheckedChanged="chkBoxSkippWH_CheckedChanged" Text=" Skip W,H, SP Day " runat="server" Checked="false" />
+                                        </span>
+                                    </label>
                                     <asp:DropDownList ID="ddlLvType" class="form-control" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="row">
@@ -56,7 +68,7 @@
                                     <div class="col-md-6 pl-0">
                                         <!-- .form-group -->
                                         <div class="form-group">
-                                            <label for="sel1">From Date</label>
+                                            <label for="sel1">From Date </label>
                                             <asp:TextBox ID="txtgvenjoydt1" runat="server" OnTextChanged="txtgvenjoydt1_TextChanged1" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt1_CalendarExtender" runat="server" Enabled="True"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt1"></cc1:CalendarExtender>
@@ -65,28 +77,65 @@
                                     </div>
                                     <!-- /grid column -->
                                     <!-- grid column -->
-                                    <div class="col-md-6 pr-0">
+                                    <div class="col-md-6 pr-0" id="divBTWDay" runat="server">
                                         <div class="form-group">
-                                            <label for="sel2">To Date</label>
+                                            <label for="sel1">To Date </label>
+
                                             <asp:TextBox ID="txtgvenjoydt2" runat="server" OnTextChanged="txtgvenjoydt2_TextChanged" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt2_CalendarExtender" runat="server" Enabled="True"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt2"></cc1:CalendarExtender>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 pr-0" id="diSkippDay" runat="server" visible="false">
+                                        <div class="form-group">
+                                            <label for="Duration">Is Half Day</label>
+                                            <asp:CheckBox ID="CheckBox1" class="form-control" ToolTip="" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" runat="server" Text=" Half Day Leave" />
+                                        </div>
+                                        
+
+                                    </div>
                                     <!-- /grid column -->
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 pl-0">
+                                <div class="row" id="diSkippDayDetails" runat="server" visible="false">
                                         <div class="form-group">
 
+                                    <asp:GridView ID="gvInterstLev" runat="server" AutoGenerateColumns="False"
+                                            CssClass="" BorderWidth="0"
+                                            ShowFooter="false" ShowHeader="false" OnRowDataBound="gvInterstLev_RowDataBound">
+                                            <RowStyle />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Apply Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lgvapplydate" runat="server"
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "leavday")).ToString("dd-MMM-yyyy") %>'></asp:Label>
+                                                        <asp:LinkButton ID="LinkButton1" Width="80px" ForeColor="blue" runat="server">
+                                                            <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isHalfday"))=="True"?"Is half Day":"" %>
+                                                          </asp:LinkButton>
+
+                                                        <asp:LinkButton ID="lnkIntsLvDelete" Width="50px" ForeColor="Red"
+                                                            runat="server" ToolTip="Delete" OnClick="lnkIntsLvDelete_Click">
+                                                         <i class="fa fa-trash"></i></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="right" />
+                                                </asp:TemplateField>
+
+                                            </Columns>
+
+                                        </asp:GridView>
+                                </div>
+                                </div>
+
+                                <div class="row" id="divDurStatus" runat="server">
+                                    <div class="col-md-6 pl-0">
+                                        <div class="form-group">
                                             <label for="Duration">Duration</label>
                                             <input type="text" class="form-control disabled" runat="server" disabled id="Duration" readonly="readonly" aria-describedby="tf1Help" placeholder="">
                                         </div>
                                     </div>
                                     <div class="col-md-6 pl-0">
                                         <div class="form-group">
-
                                             <label for="Duration">Half Day</label>
                                             <asp:CheckBox ID="chkHalfDay" class="form-control" OnCheckedChanged="chkHalfDay_CheckedChanged" AutoPostBack="true" runat="server" Text=" Half Day Leave" />
                                         </div>
@@ -382,6 +431,21 @@
             </div>
 
 
+
+            <div id="EmployeeEntry" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content col-md-12 col-sm-12 ">
+                        <div class="modal-header hedcon">
+                            <%--<button type="button" class="close clsicon" data-dismiss="modal">&times;</button>--%>
+                            <h4>Intersted Leave days </h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -57,9 +57,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             DataSet copSetup = compUtility.GetCompUtility();
             if (copSetup == null)
                 return;
-            sup_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_SUPERVISOR"]);
-            dpthead_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_DPTHEAD"]);
-            mgt_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_MGTHEAD"]);
+            //sup_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_SUPERVISOR"]);
+            //dpthead_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_DPTHEAD"]);
+            //mgt_app = copSetup.Tables[0].Rows.Count == 0 ? false : Convert.ToBoolean(copSetup.Tables[0].Rows[0]["LVAPP_MGTHEAD"]);
 
         }
         protected void Timer1_Tick(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
             //dv.RowFilter = ("sostatus = 'In-process' or  sostatus = 'Request' ");
-            dv.RowFilter = ("supstatus='' ");
+            dv.RowFilter = ("supstatus='' and lvstatus <> 'Approved' ");
             this.Data_Bind("gvInprocess", dv.ToTable());
 
 
@@ -153,7 +153,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             //Approved
             dt = ((DataTable)ds1.Tables[0]).Copy();
             dv = dt.DefaultView;
-            dv.RowFilter = ("dptstatus = '' and  supstatus<>''");
+            dv.RowFilter = ("dptstatus = '' and  supstatus<>''  and lvstatus <> 'Approved'");
             //dv.RowFilter = ("sostatus = 'Approved' or sostatus = 'In-process' ");
             this.Data_Bind("gvApproved", dv.ToTable());
 
@@ -360,7 +360,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
                 string dptusid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString();
                 string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
-                hlink3.Visible = (userid == dptusid) ? true : false;                
+                string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();
+
+                hlink3.Visible =((userid == dptusid) && (lvstatus != "Approved")) ? true : false;                
                 hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat+ "&RoleType=DPT";
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
@@ -382,8 +384,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString();
                 string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
+                string lvstatus = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "lvstatus")).ToString();               
+
+
+                hlnEdit.Visible = ((usrid == empusrid) && (lvstatus!= "Approved")) ? true : false;    
                 
-                hlnEdit.Visible = (usrid == empusrid) ? true : false;               
+
                 hlnEdit.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
                 hlink1.NavigateUrl = "~/F_81_Hrm/F_92_Mgt/PrintLeaveInterface.aspx?Type=ApplyPrint&empid=" + empid + "&strtdat=" + strtdat + "&LeaveId=" + ltrnid;
 
