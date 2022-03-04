@@ -1664,7 +1664,8 @@ namespace RealERPWEB.F_22_Sal
             {
                 if (comcod == "2305" || comcod == "3305" || comcod == "3306" || comcod == "3310" || comcod == "3311" || comcod == "3101")
 
-                    ((Label)e.Item.FindControl("lblrputility")).Text = "Solar Panel ";
+            
+                   ((Label)e.Item.FindControl("lblrputility")).Text = "Solar Panel ";
                 ((Label)e.Item.FindControl("lblassocialtion")).Text = "Transfer Fee";
 
 

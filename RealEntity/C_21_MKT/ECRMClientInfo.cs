@@ -91,6 +91,26 @@ namespace RealEntity.C_21_Mkt
         }
 
 
+        [Serializable]
+        public class RptProspectTransfer
+        {
+            //comcod, grp, grpdesc,teamcode, proscod, createdate, assocname, prospectname, phone, email, profession, preaddress, interestproj, leadsrc, chkper
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string teamcode { get; set; }
+            public string proscod { get; set; }
+            public DateTime createdate { get; set; }
+            public string assocname { get; set; }
+            public string prospectname { get; set; }
+            public string phone { get; set; }
+            public string email { get; set; }
+            public string profession { get; set; }
+            public string preaddress { get; set; }
+            public string interestproj { get; set; }
+            public string leadsrc { get; set; }
+            public RptProspectTransfer() { }
+        }
+
 
 
     }

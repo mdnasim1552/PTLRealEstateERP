@@ -42,11 +42,11 @@ namespace RealERPWEB.F_99_Allinterface
 
 
                     GetAllSubdata();
-                //this.DataBindStatus();
+                   
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
                 this.GetComponentData();
-                lnkbtnOk_Click(null, null);
+                //lnkbtnOk_Click(null, null);
             }
         }
 

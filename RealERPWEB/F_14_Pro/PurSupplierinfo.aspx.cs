@@ -147,11 +147,26 @@ namespace RealERPWEB.F_14_Pro
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+            string txtsign1, txtsign2, txtsign3;
+            switch (comcod)
+            {
+                case "3101":
+                case "3366":
+                    txtsign1 = "Site Engineer";
+                    txtsign2 = "Engineer";
+                    txtsign3 = "Head Engineer";
+                    break;
+
+                default:
+                    txtsign1= "Md. Golam Rashul,\nAssistant Manager,\nContract Management";
+                    txtsign2= "Md. Shamsur Rahamam,\nD.G.M. Customar Management ";
+                    txtsign3= "Engr. Md. Abdur Razzaque,\nG.M. Construction";
+                    break;
+            }
+
             //  string BillList = this.ddlBillList.SelectedValue.Trim().ToString();
             DataTable dt = (DataTable)ViewState["tblsup"];
-
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.EClassSuppaContractior02>();
-
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSubContEnlistmentForm", lst, null, null);
             Rpt1.EnableExternalImages = true;
@@ -163,6 +178,9 @@ namespace RealERPWEB.F_14_Pro
             Rpt1.SetParameters(new ReportParameter("Rptname", "Sub-Contractor Enlistment Form"));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+            Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+            Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
