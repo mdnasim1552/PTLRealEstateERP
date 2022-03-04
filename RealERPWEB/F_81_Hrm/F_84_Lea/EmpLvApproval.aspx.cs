@@ -736,15 +736,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 else
                 {
-                    if (hst["compsms"].ToString() == "True")
+                    if(comcod!="3365")
                     {
-                        this.sendsms();
-                    }
+                        if (hst["compsms"].ToString() == "True")
+                        {
+                            this.sendsms();
+                        }
 
-                    else if (hst["compmail"].ToString() == "True")
-                    {
-                        this.sendMail();
+                        else if (hst["compmail"].ToString() == "True")
+                        {
+                            this.sendMail();
+                        }
                     }
+                   
 
 
                 }
@@ -784,9 +788,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
                         }
-
-                        this.SMSORMAIL();
-
+                        if (comcod != "3365")
+                        {
+                            this.SMSORMAIL();
+                        }
 
                     }
 
@@ -815,8 +820,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                             return;
                         }
 
-                        this.lvconfirmSMS();
-
+                        if (comcod != "3365")
+                        {
+                            this.lvconfirmSMS();
+                        }
 
                     }
 
