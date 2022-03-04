@@ -81,10 +81,8 @@
                     <div class="col-3">
                         <div class="from-group row  mb-1">
                             <a class="btn  btn-info btn-sm btn-block text-white">Reports</a>
-                        </div>
-                    
+                        </div>               
 
-                    
                         <a class="btn btn-outline-success btn-sm btn-block" href="#">Employee Leave Status</a>
                         <a class="btn btn-outline-success btn-sm btn-block">Employee Loan Status</a>
                         <a class="btn btn-outline-success btn-sm btn-block">New Joiner List</a>
