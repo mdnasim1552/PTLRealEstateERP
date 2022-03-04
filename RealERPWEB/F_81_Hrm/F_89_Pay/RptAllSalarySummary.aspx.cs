@@ -54,7 +54,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlBankSumary.Visible = true;
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
-
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
@@ -71,6 +70,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 default:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = false;
+                    this.PnlNetComparison.Visible = false;
+
                     break;
             }
         }

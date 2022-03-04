@@ -659,7 +659,14 @@
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                             </asp:TemplateField>
-
+                                                                  <asp:TemplateField HeaderText="Current Status">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class=" fa fa-print"></span>
