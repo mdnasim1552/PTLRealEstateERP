@@ -3573,7 +3573,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             else if (comcod == "3365" || comcod == "3101")
             {
                 string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
-              
+                string txtsign1 = "Md. Saiful Islam\nSenior Executive";
                 var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.SalaryPaySlip>();
                 Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptPaySlipBTI", list, null, null);
                 Rpt1.EnableExternalImages = true;
@@ -3581,6 +3581,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 Rpt1.SetParameters(new ReportParameter("compName", comnam));
                 Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
                 Rpt1.SetParameters(new ReportParameter("txtHeader2", "(Month of " + todate1 + ")"));
+                Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
                 Session["Report1"] = Rpt1;
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RDLCViewer.aspx?PrintOpt=" +
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";

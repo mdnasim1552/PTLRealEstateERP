@@ -371,14 +371,15 @@ namespace RealERPWEB.F_12_Inv
         private void mtrReqEntrySave()
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string msg1 = "";
 
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg1 = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
             this.SaveValue();
@@ -421,26 +422,24 @@ namespace RealERPWEB.F_12_Inv
 
             if (dr1.Length > 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Balance";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg1 = "Not Within the Balance";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
 
             if (mtrref.Length == 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "MTRF No Should Not Be Empty";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg1 = "MTRF No Should Not Be Empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
             DataRow[] dr2 = dt.Select("qty=0.00");
             if (dr2.Length > 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Qtuantity  ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg1 = "Please Fillup Qtuantity  ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
-
-
             switch (comcod)
             {
                 case "3101":
@@ -449,6 +448,9 @@ namespace RealERPWEB.F_12_Inv
                 case "3316":
                 case "1108":
                 case "1109":
+                case "1205":
+                case "3351":
+                case "3352":
 
 
                     DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_05", "CHECKEDDUPMATREQREF", mtrref, "", "", "", "", "", "", "", "");
@@ -467,8 +469,8 @@ namespace RealERPWEB.F_12_Inv
                             ;
                         else
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate MTRF. No !!!";
-
+                            msg1 = "Found Duplicate MTRF. No !!!";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                             return;
                         }
                     }
@@ -485,8 +487,8 @@ namespace RealERPWEB.F_12_Inv
                            PostSession, Posteddat, reqno, reqApproval, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                msg1 = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
                 return;
             }
 
@@ -512,26 +514,27 @@ namespace RealERPWEB.F_12_Inv
                    tamt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (!result1)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg1 = "Updated Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg1 + "');", true);
 
                 }
             }
 
-           //for (int i = 0; i < dt.Rows.Count; i++)
-           //{
-           //  string trsircode=dt.Rows[i]["rsircode"].ToString().Trim();
-           //  string tunit=dt.Rows[i]["sirunit"].ToString().Trim();
-           //  string tqty=dt.Rows[i]["qty"].ToString().Trim();
-           //  string trate=dt.Rows[i]["rate"].ToString().Trim();
-           //  string tamt = dt.Rows[i]["amt"].ToString().Trim();
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //  string trsircode=dt.Rows[i]["rsircode"].ToString().Trim();
+            //  string tunit=dt.Rows[i]["sirunit"].ToString().Trim();
+            //  string tqty=dt.Rows[i]["qty"].ToString().Trim();
+            //  string trate=dt.Rows[i]["rate"].ToString().Trim();
+            //  string tamt = dt.Rows[i]["amt"].ToString().Trim();
 
-           //  bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UpdateTransferInf", transno, fromprj, toprj, trsircode,
-           //      tunit, tqty, trate, tamt, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, "");
-           //}
+            //  bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "UpdateTransferInf", transno, fromprj, toprj, trsircode,
+            //      tunit, tqty, trate, tamt, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, "");
+            //}
 
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg1 = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg1 + "');", true);
+
             this.txtCurTransDate.Enabled = false;
 
             if (ConstantInfo.LogStatus == true)
@@ -552,8 +555,8 @@ namespace RealERPWEB.F_12_Inv
 
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Messaged = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
             this.SaveValue();
@@ -575,22 +578,22 @@ namespace RealERPWEB.F_12_Inv
 
             if (dr1.Length > 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Balance";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Messaged = "Not Within the Balance";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
 
             if (mtrref.Length == 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "MTRF No Should Not Be Empty";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Messaged = "MTRF No Should Not Be Empty";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
             DataRow[] dr2 = dt.Select("qty=0.00");
             if (dr2.Length > 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Qtuantity  ";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Messaged = "Please Fillup Qtuantity  ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
 
@@ -604,8 +607,8 @@ namespace RealERPWEB.F_12_Inv
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string msg = purData.ErrorObject["Msg"].ToString();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -621,15 +624,15 @@ namespace RealERPWEB.F_12_Inv
                    tamt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                 if (!result1)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    string msg = "Updated Fail";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
                 }
             }
 
 
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            string msg1 = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg1 + "');", true);
             this.txtCurTransDate.Enabled = false;
 
             if (ConstantInfo.LogStatus == true)
@@ -686,7 +689,7 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlPrevISSList.Visible = false;
                 this.lblddlProjectFrom.Text = this.ddlprjlistfrom.SelectedItem.Text;
                 this.lblddlProjectTo.Text = this.ddlprjlistto.SelectedItem.Text;
-                if(this.Request.QueryString["Type"].ToString() == "ReqEdit")
+                if (this.Request.QueryString["Type"].ToString() == "ReqEdit")
                 {
                     this.GetMatTransferReq();
                 }
