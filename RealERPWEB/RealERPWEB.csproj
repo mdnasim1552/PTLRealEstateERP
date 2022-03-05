@@ -2010,7 +2010,6 @@
     <Content Include="DefaultPage.aspx" />
     <Content Include="DocumentAttached.aspx" />
     <Content Include="ErrorHandling.aspx" />
-    <Content Include="favicon.ico" />
     <Content Include="fonts\AgencyFB-Bold.svg" />
     <Content Include="fonts\arcena-webfont.svg" />
     <Content Include="fonts\flaticon.html" />
@@ -3474,6 +3473,7 @@
     <Content Include="landMenu-1.png" />
     <Content Include="LetterDefault.aspx" />
     <Content Include="LogIn.aspx" />
+    <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
@@ -4502,6 +4502,13 @@
     </Compile>
     <Compile Include="LetterDefault.aspx.designer.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_new.aspx.cs">
+      <DependentUpon>login_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_new.aspx.designer.cs">
+      <DependentUpon>login_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -11658,7 +11665,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets_new\" />
     <Folder Include="bin\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
