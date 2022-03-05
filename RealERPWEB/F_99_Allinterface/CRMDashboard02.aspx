@@ -86,29 +86,36 @@
 
 
 
-                var lstpwise = JSON.parse(data1);
+                
                 var lstswise = JSON.parse(data2);
+                var lstpwise = JSON.parse(data1);
                 var lstleadwise = JSON.parse(data3);
-                var prohead = [];
+                var sourcehead = [];
+                var prohead = [];              
+                var leadhead = [];
 
+                for (var i = 0; i < lstswise.length; i++)
+                {
+                    console.log(lstswise[i]["sourcedesc"]);
+                    sourcehead.push(lstswise[i]["sourcedesc"])
+                }
 
-                for (var i = 0; i < lstswise.length; i++) {
+                for (var i = 0; i < lstpwise.length; i++) {
                     prohead[i] = lstpwise[i]["prjdesc"];
                 }
 
-                console.log(prohead);
+                for (var i = 0; i < lstleadwise.length; i++) {
+                    leadhead.push(lstleadwise[i]["leadst"])
+                }
 
-
-
-
-                //Accounts
-                Highcharts.chart('chartprjwise',
+                //Source Wise
+                Highcharts.chart('chartswise',
                     {
                         chart: {
                             type: 'bar'
                         },
                         title: {
-                            text: ''
+                            text: 'Source Wise Summary'
                         },
                         subtitle: {
                             text: '',
@@ -120,9 +127,30 @@
 
 
                         xAxis: {
-                            categories: prohead,
+                            categories: sourcehead,
                             crosshair: true
                         },
+
+
+                        //xAxis: {
+                        //    type: 'category',
+                        //    labels:
+                        //    {
+                        //        formatter: function () {
+                        //            if ($.inArray(this.value, prohead) !== -1) {
+                        //                return '<span style="fill: maroon;">' + this.value + '</span>';
+                        //            } else {
+                        //                return this.value;
+                        //            }
+                        //        },
+                        //        style: {
+                        //            color: '#000',
+
+                        //        }
+                        //    }
+                        //},
+
+
                         yAxis: {
                             title: {
                                 text: ''
@@ -137,7 +165,7 @@
                                 borderWidth: 0,
                                 dataLabels: {
                                     enabled: true,
-                                    format: '{point.y:.2f}'
+                                    format: '{point.y:0f}'
                                 }
                             }
                         },
@@ -151,15 +179,109 @@
                             {
                                 "name": "",
                                 "colorByPoint": true,
-                                "data":
+                                "data": /*[0, 0, 1, 2, 3, 4]*/
                                     (function () {
                                         // generate an array of random data
-                                        var data = [],
+                                        var data = [];
+
+
+
+                                        for (var key in lstswise) {
+
+                                            if (lstswise.hasOwnProperty(key)) {
+                                                data.push([
+                                                    lstswise[key].sourcedesc,
+                                                    lstswise[key].total, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+
+                //Project Wise
+                Highcharts.chart('chartprjwise',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Project Wise Summary'
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
+
+
+                        xAxis: {
+                            categories: prohead,
+                            crosshair: true
+                        },
+
+
+                        //xAxis: {
+                        //    type: 'category',
+                        //    labels:
+                        //    {
+                        //        formatter: function () {
+                        //            if ($.inArray(this.value, prohead) !== -1) {
+                        //                return '<span style="fill: maroon;">' + this.value + '</span>';
+                        //            } else {
+                        //                return this.value;
+                        //            }
+                        //        },
+                        //        style: {
+                        //            color: '#000',
+
+                        //        }
+                        //    }
+                        //},
+
+
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:0f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data": /*[0, 0, 1, 2, 3, 4]*/
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [];
 
 
 
                                         for (var key in lstpwise) {
-                                            alert(key);
+                                          
                                             if (lstpwise.hasOwnProperty(key)) {
                                                 data.push([
                                                     lstpwise[key].prjdesc,
@@ -173,94 +295,83 @@
                         ]
                     });
 
-
-                //$('#chartprjwise').highcharts({
-                //    chart: {
-                //        type: 'bar'
-                //    },
-                //    title: {
-                //        text: 'Project Wise Summary'
-                //    },
-                //    accessibility: {
-                //        announceNewData: {
-                //            enabled: true
-                //        }
-                //    },
-                //    xAxis: {
-                //        categories: prohead,
-                //        crosshair: true
-                //    },
-                //    //yAxis: {
-                //    //    min: 0,
-                //    //    title: {
-                //    //        text: 'Total Monthly Lead status '
-                //    //    }
-                //    //},
-                //    legend: {
-                //        enabled: false
-                //    },
-                //    labels: {
-                //        overflow: 'justify'
-                //    },
-                //    tooltip: {
-                //        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-                //        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                //            '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
-                //        footerFormat: '</table>',
-                //        shared: true,
-                //        useHTML: true
-                //    },
-                //    plotOptions: {
-                //        bar: {
-                //            pointPadding: 0.1,
-                //            borderWidth: 0,
-                //            dataLabels: {
-                //                enabled: true,
-                //                format: '{point.y}'
-                //            }
-                //        }
-                //    },
+                //Lead Wise
+                Highcharts.chart('chartleadwise',
+                    {
+                        chart: {
+                            type: 'bar'
+                        },
+                        title: {
+                            text: 'Sales Funnel Stage'
+                        },
+                        subtitle: {
+                            text: '',
+                            style: {
+                                color: '#44994a',
+                                fontWeight: 'bold'
+                            }
+                        },
 
 
-                //    "series": [
-                //        {
-                //            "name": "",
-                //            "colorByPoint": true,
-                //            "data":
-                //                (function ()
-                //                {
-                                   
-                //                    var data = [],
-
-                                      
-
-                //                    for (var key in lstpwise) {
-                //                        if (lstpwise.hasOwnProperty(key))
-                //                        {
-                                            
-                //                            data.push([
-                //                                lstpwise[key].prjdesc,
-                //                                lstpwise[key].total, false
-                //                            ]);
-                //                            console.log(data);
-                //                        }
-                //                    }
-                //                    return data;
-                //                }())
-                //      }
-                //    ]
-
-                //    //series: [
-                //    //    {
-                //    //        name: "Target",
-                //    //        color: "#A50200",
-                //    //        data: [0, 0, 1, 2, 3, 4]
+                        xAxis: {
+                            categories: leadhead,
+                            crosshair: true
+                        },
 
 
-                //    //    }
 
-                //    //],
-                //});
+
+                        yAxis: {
+                            title: {
+                                text: ''
+                            }
+
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        plotOptions: {
+                            series: {
+                                borderWidth: 0,
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{point.y:0f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                            pointFormat:
+                                '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                        },
+
+                        "series": [
+                            {
+                                "name": "",
+                                "colorByPoint": true,
+                                "data": /*[0, 0, 1, 2, 3, 4]*/
+                                    (function () {
+                                        // generate an array of random data
+                                        var data = [];
+
+
+
+                                        for (var key in lstleadwise) {
+
+                                            if (lstleadwise.hasOwnProperty(key)) {
+                                                data.push([
+                                                    lstleadwise[key].leadst,
+                                                    lstleadwise[key].total, false
+                                                ]);
+                                            }
+                                        }
+                                        return data;
+                                    }())
+                            }
+                        ]
+                    });
+
+
 
             }
 
@@ -696,6 +807,38 @@
                                 <!-- end card-box-->
                             </div>
                         </div>
+
+
+                         <div class="col-md-3 col-xl-3">
+                            <div class="card  mb-1 ">
+                                <div class="card-body mb-2">
+                                    <div class="media">
+                                        <div class="avatar-md xbg-info rounded-circle mr-2">
+                                            <i class="fa fa-handshake avatar-title font-26 text-success"></i>
+
+                                        </div>
+                                        <div class="media-body align-self-center">
+                                            <div class="text-center">
+                                                <h4 class="font-20 my-0 font-weight-bold"><span class="tile-circle bg-success text-white counterup" id="lbltosign" runat="server" data-plugin="counterup">0</span></h4>
+                                                <p class="mb-0 mt-1 text-truncate">Total Sign</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 d-none">
+                                        <h6 class="text-uppercase"><span class="float-right"></span></h6>
+                                        <div class="progress progress-sm m-0">
+                                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end card-box-->
+                            </div>
+                        </div>
+
+
+
 
                     </div>
                 </div>
