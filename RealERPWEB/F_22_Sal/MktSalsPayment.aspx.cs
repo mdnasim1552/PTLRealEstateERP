@@ -344,9 +344,10 @@ namespace RealERPWEB.F_22_Sal
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
 
-            //comName,date1,prjName,prjAddress,aprtno,floorno,aprtsize,appatn
-            //appatn,txtdisamt, lbldisamt,lblunitamt,txtgntamt,txtcompinfo
-            string prjAddress = ds1.Tables[1].Rows[0]["GDATAT"].ToString();
+            string cname = ds1.Tables[1].Rows[0]["cname"].ToString();
+            string cphone = ds1.Tables[1].Rows[0]["cphone"].ToString();
+            string caddress = ds1.Tables[1].Rows[0]["caddress"].ToString();
+            string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
 
             //DataView dv1 = dt01.DefaultView;
             ////dv1.RowFilter = "gp like ('" + gp + "')";
@@ -407,7 +408,7 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("ComName", comnam));
             rpt.SetParameters(new ReportParameter("date1", date1));
             rpt.SetParameters(new ReportParameter("prjName", prjName));
-            rpt.SetParameters(new ReportParameter("prjAddress", prjAddress));
+            rpt.SetParameters(new ReportParameter("prjAddress", paddress));
             rpt.SetParameters(new ReportParameter("aprtno", aprtno));
             rpt.SetParameters(new ReportParameter("floorno", floorno));
             rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
