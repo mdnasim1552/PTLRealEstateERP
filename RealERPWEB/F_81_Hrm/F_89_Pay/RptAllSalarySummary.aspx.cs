@@ -54,24 +54,33 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlBankSumary.Visible = true;
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
+                    this.PnlGrossSummary.Visible = false;
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = true;
                     this.PnlNetComparison.Visible = false;
-
+                    this.PnlGrossSummary.Visible = false;
                     break;
                 case 2:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = true;
+                    this.PnlGrossSummary.Visible = false;
+                    break;
+
+                case 3:
+                    this.PnlBankSumary.Visible = false;
+                    this.PnlModPayment.Visible = false;
+                    this.PnlNetComparison.Visible = false;
+                    this.PnlGrossSummary.Visible = true;
 
                     break;
                 default:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
-
+                    this.PnlGrossSummary.Visible = false;
                     break;
             }
         }
@@ -95,12 +104,47 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 2:
                     this.GetNetPayComparison();
                     break;
-
+                case 3:
+                    this.GetGrossPayComparison();
+                    break;
                 default:
                     break;
             }
             
 
+        }
+
+        private void GetGrossPayComparison()
+        {
+            string comcod = this.GetComCode();
+            string prevmon = "";
+            string monthid = this.ddlmon.SelectedValue.ToString();
+            string cudate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    prevmon = Convert.ToDateTime(date).AddMonths(-1).ToString("yyyyMM");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    prevmon = Convert.ToDateTime(date).ToString("yyyyMM");
+                    break;
+            }
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "RPTGROSSCOMPARISONMONTHWISE", monthid, prevmon, "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            Session["tblSalSummary"] = ds1.Tables[0];
+            Session["tblmondesc"] = ds1.Tables[1];
+            this.Data_bind();
         }
 
         private void GetNetPayComparison()
@@ -245,6 +289,35 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = GvNetComparison;
                     ((HyperLink)this.GvNetComparison.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
+
+                case 3:
+
+
+                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                    //    this.GvModPayment.Columns[i].Visible = false;
+                    j = 1;
+                    DataTable dtmongross = (DataTable)Session["tblmondesc"];
+                    if (dtmongross == null)
+                    {
+                        return;
+                    }
+                    for (i = 0; i < dtmongross.Rows.Count; i++)
+                    {
+
+
+                        this.GvgrossSalSummary.Columns[j].HeaderText = dtmongross.Rows[i]["monname"].ToString();
+
+                        j++;
+
+                    }
+
+                    this.GvgrossSalSummary.DataSource = dt;
+                    this.GvgrossSalSummary.DataBind();
+
+                    Session["Report1"] = GvgrossSalSummary;
+                    ((HyperLink)this.GvgrossSalSummary.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
+
                 default:
                     break;
 
