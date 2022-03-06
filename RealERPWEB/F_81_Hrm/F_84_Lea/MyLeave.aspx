@@ -49,7 +49,9 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label for="ddlLvType">Apply Date</label>
+                                    <label for="ddlLvType">Apply Date  <span id="sspnlv" class="text-danger" runat="server" visible="false">
+                                            <asp:CheckBox ID="chkBoxSkippWH" AutoPostBack="true" ToolTip="If you want to skip weekend/holiday/special day, please click the checkbox and click individual date click" OnCheckedChanged="chkBoxSkippWH_CheckedChanged" Text=" Skip W,H, SP Day " runat="server" Checked="false" />
+                                        </span></label>
                                     <asp:TextBox ID="txtaplydate" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy"
                                         TargetControlID="txtaplydate"></cc1:CalendarExtender>
@@ -57,9 +59,7 @@
 
                                 <div class="form-group">
                                     <label for="ddlLvType">
-                                        Leave Type <span id="sspnlv" class="text-danger" runat="server" visible="false">
-                                            <asp:CheckBox ID="chkBoxSkippWH" AutoPostBack="true" ToolTip="If you want to skip weekend/holiday/special day, please click the checkbox and click individual date click" OnCheckedChanged="chkBoxSkippWH_CheckedChanged" Text=" Skip W,H, SP Day " runat="server" Checked="false" />
-                                        </span>
+                                        Leave Type
                                     </label>
                                     <asp:DropDownList ID="ddlLvType" class="form-control" runat="server"></asp:DropDownList>
                                 </div>
@@ -101,25 +101,47 @@
                                         <div class="form-group">
 
                                     <asp:GridView ID="gvInterstLev" runat="server" AutoGenerateColumns="False"
-                                            CssClass="" BorderWidth="0"
+                                            CssClass="table-striped table-hover table-bordered" BorderWidth="0"
                                             ShowFooter="false" ShowHeader="false" OnRowDataBound="gvInterstLev_RowDataBound">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Apply Date">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lgvapplydate" runat="server"
-                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "leavday")).ToString("dd-MMM-yyyy") %>'></asp:Label>
-                                                        <asp:LinkButton ID="LinkButton1" Width="80px" ForeColor="blue" runat="server">
-                                                            <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isHalfday"))=="True"?"Is half Day":"" %>
-                                                          </asp:LinkButton>
+                                                        
 
+                                                        <asp:Label ID="lgvapplydate" runat="server"  Width="150px" 
+                                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "leavday")).ToString("dd-MMM-yyyy") %>'></asp:Label>
+                                                      
+                                                        
+                                                    </ItemTemplate>
+                                                    
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="left" />
+                                                </asp:TemplateField>
+                                                 <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate> 
+                                                          <asp:LinkButton ID="LinkButton1"    CssClass="badge bg-purple text-white" ForeColor="blue" runat="server">
+                                                            <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isHalfday"))=="True"?"Is Half Day":"" %>
+                                                          </asp:LinkButton>
+                                                    </ItemTemplate>
+                                                    
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate> 
                                                         <asp:LinkButton ID="lnkIntsLvDelete" Width="50px" ForeColor="Red"
                                                             runat="server" ToolTip="Delete" OnClick="lnkIntsLvDelete_Click">
-                                                         <i class="fa fa-trash"></i></asp:LinkButton>
+                                                         <i class="fa fa-trash"></i></asp:LinkButton> 
                                                     </ItemTemplate>
+                                                    
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="right" />
+                                                    <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
+
+
+
+
 
                                             </Columns>
 
@@ -197,6 +219,10 @@
 
                                             <asp:TemplateField HeaderText="trnleaveid" Visible="false">
                                                 <ItemTemplate>
+                                                       <asp:Label ID="lbllevid" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
+                                                        Width="120px"></asp:Label>
+
                                                     <asp:Label ID="lgvltrnleaveid" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                         Width="120px"></asp:Label>

@@ -457,7 +457,7 @@ contain the p elements to be scrolled  */
                                 <div class="card-body">
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
-                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
+                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -556,7 +556,7 @@ contain the p elements to be scrolled  */
                                     <!-- /.d-flex -->
                                 </div>
                                 <div class="table-responsive card-body">
-                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
+                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-hover table-bordered"
                                         ShowFooter="True" Width="400px">
                                         <RowStyle />
                                         <Columns>
@@ -631,7 +631,7 @@ contain the p elements to be scrolled  */
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
                                         <asp:GridView ID="gvempservices" runat="server" AutoGenerateColumns="False"
-                                            ShowFooter="false" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                            ShowFooter="false" CssClass="table table-striped table-hover table-bordered grvContentarea">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -752,7 +752,7 @@ contain the p elements to be scrolled  */
 
 
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -825,7 +825,7 @@ contain the p elements to be scrolled  */
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -903,7 +903,7 @@ contain the p elements to be scrolled  */
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False" OnPageIndexChanging="gvSpHolidyas_PageIndexChanging"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />

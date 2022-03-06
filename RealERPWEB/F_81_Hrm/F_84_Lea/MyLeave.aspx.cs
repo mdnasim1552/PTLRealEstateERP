@@ -41,12 +41,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetComeCode();
             if (comcod == "3365")
             {
-             //   this.sspnlv.Visible = true;
+                this.sspnlv.Visible = true;
                 
             }
             else
             {
-              //  this.sspnlv.Visible = false;
+                this.sspnlv.Visible = false;
 
 
             }
@@ -77,6 +77,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.ddlLvType.DataSource = ds1.Tables[0];
             this.ddlLvType.DataBind();
 
+            this.ddlLvType.Items.Insert(0, new ListItem("--Select Leave Type--", ""));
+
+
         }
 
         private void GetCalCulateDay()
@@ -86,11 +89,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
 
             string gcod = this.ddlLvType.SelectedValue.ToString();
+           
+            if (gcod=="")
+            {
+                //string Messaged = "Oops!! Insufficient Leave Balance, Please conctact with your Managment Team";
+                //ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                this.btnSave.Enabled = false;
+                return;
+            }
+
+
             DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
             DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
 
             getLevExitingLv(fdate.ToString(), tdate.ToString());
-
             DataTable extlv = (DataTable)ViewState["tblextlv"];
 
             if (extlv.Rows.Count == 0)
@@ -183,6 +195,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if(chkBoxSkippWH.Checked==true)
             {
+
                 seLvDate();
             }
             
@@ -244,8 +257,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string frmdate = Convert.ToDateTime(this.txtgvenjoydt1.Text).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(this.txtgvenjoydt2.Text).ToString("dd-MMM-yyyy");
                 string applydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
-
-
                 string reason = this.txtLeavLreasons.Text.Trim(); ;
                 string addentime = this.txtaddofenjoytime.Text.Trim();
                 string remarks = this.txtLeavRemarks.Text.Trim();
@@ -253,16 +264,21 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string APRdate = "";
 
                 bool result = false;
+                //below code for if apply without date range 
                 if (chkBoxSkippWH.Checked == true)
                 {
                     DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
-                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    for (int j = 0; j < dt1.Rows.Count; j++)
                     {
                         frmdate = Convert.ToDateTime(dt1.Rows[j]["leavday"]).ToString("dd-MMM-yyyy");
                         isHalfday = dt1.Rows[j]["isHalfday"].ToString();
-                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, gcod, frmdate, frmdate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays.ToString(), isHalfday, usrid, "");
-
+                        ttdays = (dt1.Rows[j]["isHalfday"].ToString()=="True") ? "0.5" :"1.00";
+                        result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, gcod, frmdate, frmdate, applydat, reason, remarks, APRdate, addentime, dnameadesig, ttdays, isHalfday, usrid, "");
+                       
                     }
+                    ViewState.Remove("tblSlevDay");
+                    gvInterstLev.DataSource = null;
+                    gvInterstLev.DataBind();
 
                 }
                 else
@@ -306,6 +322,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 this.EmpLeaveInfo();
                 this.ShowEmppLeave();
+                this.txtLeavLreasons.Text = "";
+                this.chkBoxSkippWH.Checked = false;
 
             }
 
@@ -504,9 +522,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
-            string trnid = ((Label)this.gvleaveInfo.Rows[RowIndex].FindControl("lgvltrnleaveid")).Text.Trim();
+            string trnid = ((Label)this.gvleaveInfo.Rows[RowIndex].FindControl("lbllevid")).Text.Trim();
+            string lvid = ((Label)this.gvleaveInfo.Rows[RowIndex].FindControl("lgvltrnleaveid")).Text.Trim();
 
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP", lvid, trnid, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 string Messaged = "Deleted Fail";
@@ -522,8 +541,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataView dv = dt.DefaultView;
             ViewState.Remove("tblempleaveinfo");
             ViewState["tblempleaveinfo"] = dv.ToTable();
-            this.gvleaveInfo.DataSource = dv.ToTable();
-            this.gvleaveInfo.DataBind();
+             this.EmpLeaveInfo();
         }
 
        
@@ -539,6 +557,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string leavday = Convert.ToDateTime(this.txtgvenjoydt1.Text).ToString("dd-MMM-yyyy");
             string isHalfday = (this.CheckBox1.Checked ? "True" : "False");
 
+            getLevExitingLv(leavday.ToString(), leavday.ToString());
+            DataTable extlv = (DataTable)ViewState["tblextlv"];
+            if (extlv.Rows.Count != 0)
+            {
+                return;
+            }
             DataRow[] dr2 = dt1.Select("leavday='" + leavday + "'");
             if (dr2.Length > 0)
             {
