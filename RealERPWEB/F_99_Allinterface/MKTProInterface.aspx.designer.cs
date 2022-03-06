@@ -51,13 +51,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.TextBox txtfrmdate;
 
         /// <summary>
-        /// CalendarExtender_txtfrmdate control.
+        /// CalendarExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtfrmdate;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
 
         /// <summary>
         /// txttoDate control.
@@ -69,13 +69,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.TextBox txttoDate;
 
         /// <summary>
-        /// CalendarExtender_txttoDate control.
+        /// CalendarExtender2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txttoDate;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
 
         /// <summary>
         /// txtmrfno control.
@@ -121,24 +121,6 @@ namespace RealERPWEB.F_99_Allinterface
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink hyplnkCrReqAdmin;
-
-        /// <summary>
-        /// MultCom control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MultCom;
-
-        /// <summary>
-        /// ddlCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCompany;
 
         /// <summary>
         /// Label2 control.
