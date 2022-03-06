@@ -242,6 +242,38 @@
             gvDeliverd.ScrollableGv();--%>
         };
 
+
+
+        function Search_Gridview2(strKey) {
+            try {
+ 
+                var strData = strKey.value.toLowerCase().split(" ");
+                /*alert()*/
+                   var tblData = document.getElementById("<%=this.gvLvReq.ClientID %>");
+
+                   var rowData;
+                   for (var i = 1; i < tblData.rows.length; i++) {
+                       rowData = tblData.rows[i].innerHTML;
+                       var styleDisplay = 'none';
+                       for (var j = 0; j < strData.length; j++) {
+                           if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                               styleDisplay = '';
+                           else {
+                               styleDisplay = 'none';
+                               break;
+                           }
+                       }
+                       tblData.rows[i].style.display = styleDisplay;
+                   }
+               }
+
+               catch (e) {
+                   alert(e.message);
+
+               }
+
+           }
+
     </script>
 
     <%-- <asp:ObjectDataSource ID="source_session_online" runat="server" SelectMethod="session_online" TypeName="t_session" />--%>
@@ -334,7 +366,15 @@
                             </div>
                         </div>
 
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                </div>
+                                <asp:TextBox ID="txtSearch" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
 
+                            </div>
+                        </div>
 
 
                         <div class="col-md-2">

@@ -30,7 +30,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         public static int PageNumber = 0;
         // SmsSend SmsApps = new SmsSend();
         List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval> lstsalorder = new List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>();
-
+        string Messagesd;
         static string prevPage = String.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,11 +40,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     prevPage = Request.UrlReferrer.ToString();
                 }
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Leave Approval";
                 string Type = this.Request.QueryString["Type"].ToString();
@@ -66,14 +66,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             ((Label)this.Master.FindControl("lblANMgsBox")).Visible = false;
             ((Panel)this.Master.FindControl("pnlbtn")).Visible = true;
 
-
-
-
             ((LinkButton)this.Master.FindControl("lnkbtnLedger")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnHisprice")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnTranList")).Visible = false;
             ((CheckBox)this.Master.FindControl("chkBoxN")).Visible = false;
-
 
             ((LinkButton)this.Master.FindControl("lnkbtnNew")).Visible = false;
             ((LinkButton)this.Master.FindControl("lnkbtnAdd")).Visible = false;
@@ -641,18 +637,17 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (lapplied > 0)
                 {
                     string ishalfday = (((CheckBox)gvLvReq.Rows[i].FindControl("ishalfday")).Checked) ? "1" : "0";                  
+                    string lbllevid = ((Label)this.gvLvReq.Rows[i].FindControl("lbllevid")).Text.Trim();
                     string gcod = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, "", "", "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, "", "", "", "", "", "");
 
                     if (!result)
                     {
-
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-
+                        Messagesd = "Updated Fail";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true); 
                     }
                 }
 
@@ -736,8 +731,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 else
                 {
-                    if(comcod!="3365")
-                    {
+                   // if(comcod!="3365")
+                  //  {
                         if (hst["compsms"].ToString() == "True")
                         {
                             this.sendsms();
@@ -747,7 +742,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         {
                             this.sendMail();
                         }
-                    }
+                 //   }
                    
 
 
@@ -798,7 +793,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = HRData.ErrorObject["Msg"].ToString();
+                        Messagesd = HRData.ErrorObject["Msg"].ToString();
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true); 
+                     
                         return;
                     }
 
@@ -815,8 +812,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                         if (result == false)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Order Not Approved";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            Messagesd = "Order Not Approved";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                             
                             return;
                         }
 
@@ -830,19 +828,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
                 }
-             //  this.GetOrderName();
-             ((Label)this.Master.FindControl("lblmsg")).Text = "Approved";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-                //Session["tblOrder"] = dt;
-                //this.Data_Bind();
-                //this.CheckValue();
+                Messagesd = "Approved";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+
+                
 
 
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                Messagesd = "Error:" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+ 
             }
 
 
@@ -984,12 +981,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
 
                 oSmtp.SendMail(oServer, oMail);
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Your message has been successfully sent.";
+               
+                Messagesd = "Your message has been successfully sent";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error occured while sending your message." + ex.Message;
+                Messagesd = "Error occured while sending your message." + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+ 
             }
 
 
@@ -1148,7 +1149,37 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
+        protected void lnkIntsLvDelete_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
 
+            var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>)ViewState["tblt01"];
+
+            
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string trnid = ((Label)this.gvLvReq.Rows[RowIndex].FindControl("lbllevid")).Text.Trim();
+            string lvid = ((Label)this.gvLvReq.Rows[RowIndex].FindControl("lgvltrnleaveid")).Text.Trim();
+
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP", lvid, trnid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
+            {
+                string Messaged = "Deleted Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                return;
+            }
+            string Messagesd = "Deleted Success";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+
+
+            int rowindex = (this.gvLvReq.PageSize) * (this.gvLvReq.PageIndex) + RowIndex;
+            lst.RemoveAt(rowindex);
+
+            ViewState["tblt01"] = lst; 
+            this.gvLvReq.DataSource = lst;
+            this.gvLvReq.DataBind();
+
+        }
 
         protected void lbtnnotapproved_Click(object sender, EventArgs e)
         {
