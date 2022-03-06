@@ -40,6 +40,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
                 this.GetCompany();
+                //this.GetEmpName();
                 this.SelectType();
             }
         }
@@ -545,29 +546,54 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlProjectName.DataSource = ds1.Tables[0];
             this.ddlProjectName.DataBind();
             this.ddlProjectName_SelectedIndexChanged(null, null);
-
+           // this.SectionName();
 
         }
         private void SectionName()
         {
 
             string comcod = this.GetCompCode();
-            string projectcode = this.ddlProjectName.SelectedValue.ToString();
+            string projectcode =this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
+       
             string txtSSec = "%%" ;
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "SECTIONNAME", projectcode, txtSSec, "", "", "", "", "", "", "");
             this.ddlSection.DataTextField = "sectionname";
             this.ddlSection.DataValueField = "section";
             this.ddlSection.DataSource = ds2.Tables[0];
             this.ddlSection.DataBind();
-            this.GetEmpName();
+            // this.GetEmpName();
+            ddlSection_SelectedIndexChanged(null,null);
 
+        }
+
+        private void SectionNameAll()
+        {
+
+            string comcod = this.GetCompCode();
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"%";
+           // string projectcode = this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "%%" : this.ddlProjectName.SelectedValue.ToString();
+
+            string txtSSec = "%%";
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", Company, txtSSec, txtSSec, "", "", "", "", "", "", "");
+            this.ddlSection.DataTextField = "actdesc";
+            this.ddlSection.DataValueField = "actcode";
+            this.ddlSection.DataSource = ds2.Tables[0];
+            this.ddlSection.DataBind();
+            // this.GetEmpName();
+            ddlSection_SelectedIndexChanged(null, null);
+
+        }
+        protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetEmpName();
         }
 
 
         private void GetEmpName()
         {
             string comcod = this.GetCompCode();
-            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
+            string ProjectCode = (this.txtEmpSrcInfo.Text.Trim().Length > 0) ? "%" : this.ddlCompany.SelectedValue.ToString() + "%";
             string txtSProject = "%" + this.txtEmpSrcInfo.Text + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPAYSLIPEMPNAMEALL", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlEmpNameAllInfo.DataTextField = "empname";
@@ -575,12 +601,38 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             this.ddlEmpNameAllInfo.DataSource = ds5.Tables[0];
             this.ddlEmpNameAllInfo.DataBind();
             ViewState["tblemp"] = ds5.Tables[0];
-
+            this.GetComASecSelected();
         }
 
+      
+        protected void ibtnEmpListAllinfo_Click(object sender, EventArgs e)
+        {
+            SectionNameAll();
+            //this.ddlBranch_SelectedIndexChanged(null,null);
+            //this.ddlProjectName_SelectedIndexChanged(null, null);
+           
+            this.GetEmpName();
+        }
+        protected void ddlEmpNameAllInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetComASecSelected();
+        }
 
+        private void GetComASecSelected()
+        {
+            string empid = this.ddlEmpNameAllInfo.SelectedValue.ToString().Trim();
+            DataTable dt = (DataTable)ViewState["tblemp"];
+            DataRow[] dr = dt.Select("empid = '" + empid + "'");
+            if (dr.Length > 0)
+            {
+                this.ddlCompany.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
+                this.ddlProjectName.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["deptcode"].ToString();
+               // this.ddlProjectName_SelectedIndexChanged(null,null);
+                this.ddlSection.SelectedValue = ((DataTable)ViewState["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
+            }
+        }
 
-
+        // this.ddlProjectName_SelectedIndexChanged(null, null);
 
 
         protected void lnkbtnShow_Click(object sender, EventArgs e)
@@ -4461,20 +4513,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
-        protected void ddlSection_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetEmpName();
-        }
-
-        protected void ibtnEmpListAllinfo_Click(object sender, EventArgs e)
-        {
-            this.GetEmpName();
-        }
-        protected void ddlEmpNameAllInfo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
+      
       
     }
 }

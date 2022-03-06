@@ -34,14 +34,7 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (!IsPostBack)
             {
-                string qusrid = this.Request.QueryString["usrid"] ?? "";
-                if (qusrid.Length > 0)
-                {
-                    this.GetComNameAAdd();
-                    this.GetUserPermissionurl();
-                    this.MasComNameAndAddurl();
-
-                }
+              
 
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -57,25 +50,14 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txtmrfno.Attributes.Add("placeholder", ReadCookie());
 
                 this.RadioButtonList1.SelectedIndex = 0;
-                this.GetCompanyName();
+                this.PurchaseInfoRpt();
+
+
 
             }
         }
 
-        private void GetComNameAAdd()
-        {
-            string comcod = this.GetCompCode();
-            //Access Database (List View)
-            UserLogin ulog = new UserLogin();
-            DataSet ds1 = ulog.GetNameAdd();
-
-            DataView dv = ds1.Tables[0].DefaultView;
-            dv.RowFilter = ("comcod = '" + comcod + "'");
-            DataTable dt = dv.ToTable();
-            Session["tbllog"] = dt;
-            ds1.Dispose();
-        }
-
+     
         private string ReadCookie()
         {
             HttpCookie nameCookie = Request.Cookies["MRF"];
@@ -83,200 +65,11 @@ namespace RealERPWEB.F_99_Allinterface
             return refno;
         }
 
-        private void GetUserPermissionurl()
-        {
-            string comcod = this.GetCompCode();
+     
+       
 
-            string usrid = this.Request.QueryString["usrid"];
-            string HostAddress = Request.UserHostAddress.ToString();
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSERNAMEAPASS", usrid, "", "", "", "", "", "", "", "");
-
-            string username = ds1.Tables[0].Rows[0]["username"].ToString();
-            string pass = ds1.Tables[0].Rows[0]["password"].ToString();
-
-            string modulid = "AA";
-            string modulename = "All Module";
-            DataSet ds5 = accData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
-            Session["tblusrlog"] = ds5;
-
-            DataTable dt1 = (DataTable)Session["tbllog"];
-            DataTable dt2 = new DataTable();
-
-            dt2.Columns.Add("comcod", Type.GetType("System.String"));
-            dt2.Columns.Add("comnam", Type.GetType("System.String"));
-            dt2.Columns.Add("comsnam", Type.GetType("System.String"));
-            dt2.Columns.Add("comadd1", Type.GetType("System.String"));
-            dt2.Columns.Add("comadd", Type.GetType("System.String"));
-            dt2.Columns.Add("usrsname", Type.GetType("System.String"));
-            dt2.Columns.Add("session", Type.GetType("System.String"));
-            dt2.Columns.Add("compsms", Type.GetType("System.String"));
-            dt2.Columns.Add("compmail", Type.GetType("System.String"));
-
-            Session["tbllog1"] = dt2;
-
-            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
-            // Hashtable hst = (Hashtable)Session["tblLogin"];
-            Hashtable hst = new Hashtable();
-
-            if (dr.Length > 0)
-            {
-
-                hst["comnam"] = dr[0]["comnam"];
-                hst["comnam"] = dr[0]["comnam"];
-                hst["comsnam"] = dr[0]["comsnam"];
-                hst["comadd1"] = dr[0]["comadd1"];
-                hst["comweb"] = dr[0]["comadd3"];
-                hst["combranch"] = dr[0]["combranch"];
-                hst["comadd"] = dr[0]["comadd"];
-
-
-                DataRow dr2 = dt2.NewRow();
-                dr2["comcod"] = comcod;
-                dr2["comnam"] = dr[0]["comnam"];
-                dr2["comsnam"] = dr[0]["comsnam"];
-                dr2["comadd1"] = dr[0]["comadd1"];
-                dr2["comadd"] = dr[0]["comadd"];
-
-                dt2.Rows.Add(dr2);
-
-            }
-            string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
-            hst["comcod"] = comcod;
-            hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
-
-            // hst["comnam"] = ComName;
-            hst["modulenam"] = "";
-            hst["username"] = ds5.Tables[0].Rows[0]["usrsname"];
-            hst["userfname"] = ds5.Tables[0].Rows[0]["usrname"];
-            hst["compname"] = HostAddress;
-            hst["usrid"] = ds5.Tables[0].Rows[0]["usrid"];
-            hst["password"] = pass;
-            hst["session"] = sessionid;
-            hst["trmid"] = "";
-            hst["commod"] = "1";
-            hst["compsms"] = ds5.Tables[0].Rows[0]["compsms"];
-            hst["ssl"] = ds5.Tables[0].Rows[0]["ssl"];
-            hst["opndate"] = ds5.Tables[0].Rows[0]["opndate"];
-            hst["empid"] = ds5.Tables[0].Rows[0]["empid"];
-            hst["teamid"] = ds5.Tables[0].Rows[0]["teamid"];
-            hst["mcomcod"] = ds5.Tables[5].Rows[0]["mcomcod"];
-            hst["usrdesig"] = ds5.Tables[0].Rows[0]["usrdesig"];
-            hst["events"] = ds5.Tables[0].Rows[0]["eventspanel"];
-            hst["usrrmrk"] = ds5.Tables[0].Rows[0]["usrrmrk"];
-            hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
-            hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
-            hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
-
-            Session["tblLogin"] = hst;
-            dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
-            dt2.Rows[0]["session"] = sessionid;
-            Session["tbllog1"] = dt2;
-
-
-        }
-
-        private void MasComNameAndAddurl()
-        {
-            //((Image)this.Master.FindControl("ComLogo")).ImageUrl = "";
-            string comcod = this.GetCompCode();
-            DataTable dt1 = ((DataTable)Session["tbllog"]);
-            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
-            DataTable dt = ((DataTable)Session["tbllog1"]);
-            dt.Rows[0]["comcod"] = comcod;
-            Session["tbllog1"] = dt;
-            ((Label)this.Master.FindControl("LblGrpCompany")).Text = ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
-            //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]
-        }
-        private void GetCompanyName()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string usrid = ASTUtility.Right(hst["usrid"].ToString(), 3);
-            //string comcod = hst["mcomcod"].ToString();
-            string comcod = this.GetCompCode();
-            DataSet ds = accData.GetTransInfo(comcod, "SP_UTILITY_GRPUSER_MGT", "GET_MOTHER_COMPANY", usrid, "", "", "", "", "", "", "", "");
-            this.ddlCompany.DataTextField = "comname";
-            this.ddlCompany.DataValueField = "comcod";
-            this.ddlCompany.DataSource = ds.Tables[0];
-            this.ddlCompany.DataBind();
-            this.ddlCompany.SelectedValue = this.GetCompCode();
-            if (ds.Tables[0].Rows.Count > 1)
-            {
-                this.MultCom.Visible = true;
-                this.ddlCompany_SelectedIndexChanged(null, null);
-            }
-            else
-            {
-                this.MultCom.Visible = false;
-                lbtnOk_Click(null, null);
-
-            }
-
-        }
-        protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            this.GetUserPermission();
-            this.MasComNameAndAdd();
-            lbtnOk_Click(null, null);
-
-
-        }
-
-        private void MasComNameAndAdd()
-        {
-            //((Image)this.Master.FindControl("ComLogo")).ImageUrl = "";
-            string comcod = this.ddlCompany.SelectedValue.ToString();
-            DataTable dt1 = ((DataTable)Session["tbllog"]);
-            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
-            DataTable dt = ((DataTable)Session["tbllog1"]);
-            dt.Rows[0]["comcod"] = comcod;
-            Session["tbllog1"] = dt;
-            ((Label)this.Master.FindControl("LblGrpCompany")).Text = this.ddlCompany.SelectedItem.Text.Trim();
-        }
-        private void GetUserPermission()
-        {
-
-            ProcessAccess ulogin = (ASTUtility.Left(this.ddlCompany.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
-            string comcod = this.ddlCompany.SelectedValue.ToString();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string username = hst["username"].ToString();
-            string txtuserpass = hst["password"].ToString();
-            string pass = ASTUtility.EncodePassword(txtuserpass);
-
-            string modulid = "";
-            string modulename = "";
-            DataSet ds5 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
-            Session["tblusrlog"] = ds5;
-            string Comcode = this.ddlCompany.SelectedValue.ToString();
-            string ComName = this.ddlCompany.SelectedItem.ToString();
-
-            DataTable dt1 = (DataTable)Session["tbllog"];
-            DataTable dt2 = (DataTable)Session["tbllog1"];
-            DataRow[] dr = dt1.Select("comcod='" + Comcode + "'");
-            // Hashtable hst = (Hashtable)Session["tblLogin"];
-            if (dr.Length > 0)
-            {
-                hst["comnam"] = dr[0]["comnam"];
-                hst["comsnam"] = dr[0]["comsnam"];
-                hst["comadd1"] = dr[0]["comadd1"];
-                hst["comweb"] = dr[0]["comadd3"];
-                hst["combranch"] = dr[0]["combranch"];
-
-                dt2.Rows[0]["comnam"] = dr[0]["comnam"];
-                dt2.Rows[0]["comsnam"] = dr[0]["comsnam"];
-                dt2.Rows[0]["comadd1"] = dr[0]["comadd1"];
-                dt2.Rows[0]["comadd"] = dr[0]["comadd"];
-            }
-
-            hst["comcod"] = Comcode;
-            //  hst["comnam"] = ComName;
-            hst["usrid"] = ds5.Tables[0].Rows[0]["usrid"];
-            hst["modulenam"] = "";
-            hst["trmid"] = "";
-            Session["tblLogin"] = hst;
-            Session["tbllog1"] = dt2;
-
-        }
+      
+       
         private void GetFromDate()
         {
 
@@ -441,24 +234,15 @@ namespace RealERPWEB.F_99_Allinterface
         private void PurchaseInfoRpt()
         {
             Session.Remove("Alltable");
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string usrid = hst["usrid"].ToString();
-            string mcomcod = hst["mcomcod"].ToString();
-
-            //string comcod = (mcomcod == "0000") ? this.GetCompCode() : this.ddlCompany.SelectedValue.ToString();
-            //usrid = comcod + usrid.Substring(4,3);
+            Hashtable hst = (Hashtable)Session["tblLogin"];            
             string comcod = this.GetCompCode();
-            // usrid = comcod + usrid.Substring(4, 3);
-
 
             string length = this.CompanyLength(); //project permission user wise for uddl
 
             string frmdate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
-            // string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
-            string ptype = "001";
+            string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");           
             string mrfno = "%" + this.txtmrfno.Text.Trim() + "%";
-            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_MKTPROCURE_INTERFACE", "RPTPURCHASEDASHBOARD", frmdate, ptype, length, usrid, mrfno, todate, "", "", "");
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_MKTPROCURE_INTERFACE", "RPTPURCHASEDASHBOARD", frmdate,   todate, mrfno, "", "");
 
             Session["Alltable"] = ds1;
 

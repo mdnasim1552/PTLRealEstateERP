@@ -556,6 +556,7 @@ namespace RealERPWEB.F_28_MPro
                 dr1["preqty"] = 0;
                 dr1["areqty"] = 0;
                 dr1["reqrat"] = 0;
+                dr1["preqamt"] = 0;
                 dr1["expusedt"] = "";
                 dr1["reqnote"] = "";
                 tbl1.Rows.Add(dr1);
@@ -1235,153 +1236,147 @@ namespace RealERPWEB.F_28_MPro
 
         protected void gvResInfo_DataBind()
         {
-            string comcod = this.GetCompCode();
+            
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             this.gvReqInfo.DataSource = tbl1;
             this.gvReqInfo.DataBind();
-            this.lbtnResFooterTotal_Click(null, null);
+            this.FooterCalCulation();
+        }
+        private void FooterCalCulation()
+        {
+            DataTable dt = (DataTable)ViewState["tblReq"];
+            if (dt.Rows.Count > 0)
+            {
+
+                
+
+                ((Label)this.gvReqInfo.FooterRow.FindControl("lblgvFpreqamt")).Text =
+                Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(preqamt)", "")) ?
+                    0.00 : dt.Compute("Sum(preqamt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+
+            }
+
+
+
         }
 
-        protected void ddlPageNo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.Session_tblReq_Update();
-            this.gvReqInfo.PageIndex = ((DropDownList)this.gvReqInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex;
-            this.gvResInfo_DataBind();
-        }
+    
         protected void lbtnResFooterTotal_Click(object sender, EventArgs e)
         {
             this.Session_tblReq_Update();
+            this.gvResInfo_DataBind();
 
         }
         private void Session_tblReq_Update()
         {
-            //DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            //int TblRowIndex2;
+            DataTable tbl1 = (DataTable)ViewState["tblReq"];
+            int rowindex;
 
             //string Rsircode = "000000000000";
-            //double chkqty = 0.00;
-            //for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
-            //{
+            double  reqqty=0.00, price=0.00, amount;
+            for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
+            {
 
-            //    TblRowIndex2 = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
+                rowindex = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
 
-            //    string Resocde = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
+               // string Resocde = tbl1.Rows[rowindex]["rsircode"].ToString();
 
-            //    double dgvBgdQty = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdqty1"]);
-            //    double bbgdamt = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdamt1"]);
-            //    double dgvReqQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
-
-
-            //    if (this.Request.QueryString["InputType"] == "Entry")
-            //    {
-            //        if (this.chkneBudget.Checked)
-            //        {
-
-            //            string comcod = this.GetCompCode();
-
-
-            //            switch (comcod)
-            //            {
-            //                case "3336":
-            //                case "3305":
-            //                case "3306":
-            //                case "3310":
-            //                case "3311":
-            //                case "2305":
-
-            //                    if (dgvBgdQty < dgvReqQty)
-            //                    {
-            //                        // bbgdamt < 0 ||
-
-            //                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-            //                        return;
-
-            //                    }
-            //                    if (Rsircode == Resocde)
-            //                    {
-            //                        chkqty = chkqty - dgvReqQty;
-            //                        if (chkqty < 0)
-            //                        {
-            //                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-            //                            return;
-            //                        }
-            //                    }
-            //                    else
-            //                    {
-            //                        chkqty = dgvBgdQty - dgvReqQty;
-            //                    }
-            //                    Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
-
-            //                    break;
-
-
-            //                default:
-
-            //                    if (dgvBgdQty < dgvReqQty)
-            //                    {
-            //                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-            //                        return;
-
-            //                    }
-            //                    if (Rsircode == Resocde)
-            //                    {
-            //                        chkqty = chkqty - dgvReqQty;
-            //                        if (chkqty < 0)
-            //                        {
-            //                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
-            //                            return;
-            //                        }
-            //                    }
-            //                    else
-            //                    {
-            //                        chkqty = dgvBgdQty - dgvReqQty;
-            //                    }
-            //                    Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
-
-            //                    break;
+                //double dgvBgdQty = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdqty1"]);
+                // double bbgdamt = Convert.ToDouble(tbl1.Rows[TblRowIndex2]["bbgdamt1"]);
 
 
 
+                //if (this.Request.QueryString["InputType"] == "Entry")
+                //{
+                //    if (this.chkneBudget.Checked)
+                //    {
 
-            //            }
-
-            //        }
-            //    }
-
-
-
-            //    double dgvApprQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvappQty")).Text.Trim()));
-            //    double dgvReqRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text.Trim()));
-            //    double dgvReqsRat = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvReqsRat")).Text.Trim()));
-            //    double dgvStokQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text.Trim()));
-            //    string dgvUseDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvUseDat")).Text.Trim();
-            //    string dgvSupDat = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvpursupDat")).Text.Trim();
-            //    string dgvReqNote = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
-            //    double dgvReqAmt = dgvReqQty * dgvReqRat;
-            //    double dgvApprAmt = dgvApprQty * dgvReqRat;
-            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text = dgvReqQty.ToString("#,##0.000;(#,##0.000); ");
-            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvappQty")).Text = dgvApprQty.ToString("#,##0.000;(#,##0.000); ");
-            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvResRat")).Text = dgvReqRat.ToString("#,##0.0000;(#,##0.0000); ");
-            //    ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvStokQty")).Text = dgvStokQty.ToString("#,##0.000;(#,##0.000); ");
-            //    //((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTResAmt")).Text = dgvReqAmt.ToString("#,##0.000;(#,##0.000); ");
-            //    ((Label)this.gvReqInfo.Rows[j].FindControl("lblgvTAprAmt")).Text = dgvApprAmt.ToString("#,##0.000;(#,##0.000); ");
+                //        string comcod = this.GetCompCode();
 
 
+                //        switch (comcod)
+                //        {
+                //            case "3336":
+                //            case "3305":
+                //            case "3306":
+                //            case "3310":
+                //            case "3311":
+                //            case "2305":
 
-            //    tbl1.Rows[TblRowIndex2]["chqty"] = chkqty;
-            //    tbl1.Rows[TblRowIndex2]["preqty"] = dgvReqQty;
-            //    tbl1.Rows[TblRowIndex2]["areqty"] = dgvApprQty;
-            //    tbl1.Rows[TblRowIndex2]["reqrat"] = dgvReqRat;
-            //    tbl1.Rows[TblRowIndex2]["reqsrat"] = dgvReqsRat < dgvReqRat ? dgvReqRat : dgvReqsRat;
-            //    tbl1.Rows[TblRowIndex2]["preqamt"] = dgvReqAmt;
-            //    tbl1.Rows[TblRowIndex2]["areqamt"] = dgvApprAmt;
-            //    tbl1.Rows[TblRowIndex2]["pstkqty"] = dgvStokQty;
-            //    tbl1.Rows[TblRowIndex2]["expusedt"] = dgvUseDat;
-            //    tbl1.Rows[TblRowIndex2]["pursdate"] = dgvSupDat;
-            //    tbl1.Rows[TblRowIndex2]["reqnote"] = dgvReqNote;
+                //                if (dgvBgdQty < dgvReqQty)
+                //                {
 
-            //}
-            //ViewState["tblReq"] = tbl1;
+
+                //                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+                //                    return;
+
+                //                }
+                //                if (Rsircode == Resocde)
+                //                {
+                //                    chkqty = chkqty - dgvReqQty;
+                //                    if (chkqty < 0)
+                //                    {
+                //                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+                //                        return;
+                //                    }
+                //                }
+                //                else
+                //                {
+                //                    chkqty = dgvBgdQty - dgvReqQty;
+                //                }
+                //                Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
+
+                //                break;
+
+
+                //            default:
+
+                //                if (dgvBgdQty < dgvReqQty)
+                //                {
+                //                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+                //                    return;
+
+                //                }
+                //                if (Rsircode == Resocde)
+                //                {
+                //                    chkqty = chkqty - dgvReqQty;
+                //                    if (chkqty < 0)
+                //                    {
+                //                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Not Within the Budget" + "');", true);
+                //                        return;
+                //                    }
+                //                }
+                //                else
+                //                {
+                //                    chkqty = dgvBgdQty - dgvReqQty;
+                //                }
+                //                Rsircode = tbl1.Rows[TblRowIndex2]["rsircode"].ToString();
+
+                //                break;
+
+
+
+
+                //        }
+
+                //    }
+                //}
+
+
+                reqqty = ASTUtility.StrPosOrNagative(((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim());
+                price = ASTUtility.StrPosOrNagative(((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvAppUnitPrice")).Text.Trim());
+                string exdate = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvExpDate")).Text.Trim();
+                string remarks = ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqNote")).Text.Trim();
+                amount = reqqty * price;               
+                tbl1.Rows[rowindex]["preqty"] = reqqty;               
+                tbl1.Rows[rowindex]["reqrat"] = price;                
+                tbl1.Rows[rowindex]["preqamt"] = amount;
+                tbl1.Rows[rowindex]["expusedt"] = exdate;
+                tbl1.Rows[rowindex]["reqnote"] = remarks;
+               
+
+            }
+            ViewState["tblReq"] = tbl1;
         }
 
         protected void ImgbtnSpecification_Click(object sender, EventArgs e)

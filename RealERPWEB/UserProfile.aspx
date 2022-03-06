@@ -1237,7 +1237,8 @@ Earn Leave.
                                     <h6 class="text-left">Purpose:</h6>
 
                                     <p>
-                                        To ensure the maximum attendance of all employee of bti.
+                                        To ensure the maximum attendance of all employee of bti.
+
                                     </p>
                                     <h6 class="text-left">Late Attendance Procedure:</h6>
 
@@ -1255,7 +1256,8 @@ d) 6 Days Late = 3 CL & half day leave
                                     <h6 class="text-left">Note: </h6>
 
                                     <p>
-                                        i. For each late after 6 days late additional 1 EL will be deducted.
+                                        i. For each late after 6 days late additional 1 EL will be deducted.
+
                                     </p>
 
                                     <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
