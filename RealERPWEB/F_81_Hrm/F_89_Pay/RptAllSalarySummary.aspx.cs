@@ -55,18 +55,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = false;
+                    
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = true;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = false;
+
                     break;
                 case 2:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = true;
                     this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = false;
+
                     break;
 
                 case 3:
@@ -74,13 +80,26 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = true;
+                    this.PnlGrossRecon.Visible = false;
+
 
                     break;
-                default:
+                case 4:
                     this.PnlBankSumary.Visible = false;
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = true;
+
+
+                    break;
+                default:
+                    this.PnlBankSumary.Visible = false;
+                    this.PnlModPayment.Visible = true;
+                    this.PnlNetComparison.Visible = false;
+                    this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = false;
+
                     break;
             }
         }
@@ -107,11 +126,31 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 3:
                     this.GetGrossPayComparison();
                     break;
+                case 4:
+                    this.GetGrossPayRecon();
+                    break;
+                    
                 default:
                     break;
             }
             
 
+        }
+
+        private void GetGrossPayRecon()
+        {
+            string comcod = this.GetComCode();
+            string monthid = this.ddlmon.SelectedValue.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "RPTGROSSRECONCILMONTHWISE", monthid, "", "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            Session["tblSalSummary"] = ds1.Tables[0];
+         
+            this.Data_bind();
         }
 
         private void GetGrossPayComparison()
@@ -213,7 +252,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void exportexcel()
         {
-    
+            //comcod, grp, grpdesc, refno, refdesc, empid, empname, replacement, joresigndate, curamt, preamt, desig
         }
 
         private void Data_bind()
@@ -226,13 +265,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             switch (index)
             {
                 case 0:
-
-
                     this.GvBankSummary.DataSource = dt;
                     this.GvBankSummary.DataBind();
                     Session["Report1"] = GvBankSummary;
                     ((HyperLink)this.GvBankSummary.HeaderRow.FindControl("hlbtntbCdataExcelbank")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
                     break;
 
                 case 1:
@@ -247,24 +283,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     j = 2;
                   
                     for (i = 0; i < dtp.Rows.Count; i++)
-                    {
-
-                       
+                    {                   
                         this.GvModPayment.Columns[j].HeaderText = dtp.Rows[i]["bankname"].ToString();
-
-                        j++;
-                       
+                        j++;                     
                     }
-
                     this.GvModPayment.DataSource = dt;
                     this.GvModPayment.DataBind();
-
                     Session["Report1"] = GvModPayment;
                     ((HyperLink)this.GvModPayment.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
-                case 2:
-
-                   
+                case 2:               
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
                     //    this.GvModPayment.Columns[i].Visible = false;
                     j = 1;
@@ -275,24 +303,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     for (i = 0; i < dtmon.Rows.Count; i++)
                     {
-
-
                         this.GvNetComparison.Columns[j].HeaderText = dtmon.Rows[i]["monname"].ToString();
-
                         j++;
-
                     }
-
                     this.GvNetComparison.DataSource = dt;
                     this.GvNetComparison.DataBind();
-
                     Session["Report1"] = GvNetComparison;
                     ((HyperLink)this.GvNetComparison.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
                 case 3:
-
-
                     //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
                     //    this.GvModPayment.Columns[i].Visible = false;
                     j = 1;
@@ -303,14 +323,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     }
                     for (i = 0; i < dtmongross.Rows.Count; i++)
                     {
-
-
                         this.GvgrossSalSummary.Columns[j].HeaderText = dtmongross.Rows[i]["monname"].ToString();
-
                         j++;
-
                     }
-
                     this.GvgrossSalSummary.DataSource = dt;
                     this.GvgrossSalSummary.DataBind();
 
@@ -318,6 +333,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     ((HyperLink)this.GvgrossSalSummary.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
 
+
+                case 4:               
+                    this.GvGrossRecon.DataSource = dt;
+                    this.GvGrossRecon.DataBind();
+
+                    Session["Report1"] = GvGrossRecon;
+                    ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
                 default:
                     break;
 

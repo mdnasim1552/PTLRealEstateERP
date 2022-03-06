@@ -512,19 +512,19 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
         protected void gvloan_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                LinkButton lnkbtn = (LinkButton)e.Row.FindControl("lnkDel");
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    LinkButton lnkbtn = (LinkButton)e.Row.FindControl("lnkDel");
 
-                string paidamt = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paidamt")).ToString();
-                if (paidamt == "False")
-                {
-                    e.Row.ToolTip = "Already Paid";
-                    lnkbtn.Visible = false;
-                    e.Row.Enabled = false;
-                }
+            //    string paidamt = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paidamt")).ToString();
+            //    if (paidamt == "False")
+            //    {
+            //        e.Row.ToolTip = "Already Paid";
+            //        lnkbtn.Visible = false;
+            //        e.Row.Enabled = false;
+            //    }
 
-            }
+            //}
         }
     }
 }

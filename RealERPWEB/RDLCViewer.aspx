@@ -8,7 +8,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <title>Report Preview1</title>
-    <script language="javascript">
+      <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png"/>
+    <script language="javascript" type="text/javascript">
         function WStartUpSize() {
             self.resizeTo(400, 400);
             self.moveTo(screen.width / 2 - 200, screen.height / 2 - 200);
