@@ -11,6 +11,7 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
         [Serializable]
         public class LvApproval
         {
+            public string id { get; set; }
             public string comcod { get; set; }
             public string ltrnid { get; set; }
             public string lvtype { get; set; }

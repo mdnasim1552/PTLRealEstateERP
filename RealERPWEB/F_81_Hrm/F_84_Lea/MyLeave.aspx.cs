@@ -151,10 +151,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
 
-
+                
                 DataView dv = dt.Copy().DefaultView;
                 dv.RowFilter = ("gcod=" + gcod);
                 dt = dv.ToTable();
+
                 double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
                 double dfdays = Convert.ToDouble(diffdays);
                 this.Duration.Value = diffdays;
@@ -313,11 +314,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         }
                     }
 
-                    else if (hst["compmail"].ToString() == "True")
+                    if (hst["compmail"].ToString() == "True")
                     {
                         this.sendmail(frmdate, todate);
 
                     }
+
+
                 }
 
                 this.EmpLeaveInfo();
@@ -438,7 +441,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 return;
 
             double lapplied = Convert.ToDouble(this.Duration.Value.ToString());
-            string leavedesc = this.ddlLvType.SelectedValue.ToString();
+            string leavedesc = this.ddlLvType.SelectedItem.ToString();
 
 
             string idcard = (string)ds.Tables[1].Rows[0]["idcard"];

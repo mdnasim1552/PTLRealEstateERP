@@ -3728,6 +3728,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Bundle.config" />
+    <Content Include="Upload\Code of Conduct Bangla.pdf" />
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Web.config" />
     <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
@@ -11675,6 +11676,7 @@
     <Folder Include="Log Files\" />
     <Folder Include="SupWorkOreder\" />
     <Folder Include="tinymce\" />
+    <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASITMaster.Master" />

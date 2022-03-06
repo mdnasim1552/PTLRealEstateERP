@@ -187,8 +187,27 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Code" Visible="False">
+                                          <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate> 
+                                                        <asp:LinkButton ID="lnkIntsLvDelete" Width="50px" ForeColor="Red"
+                                                            runat="server" ToolTip="Delete" OnClick="lnkIntsLvDelete_Click">
+                                                         <i class="fa fa-trash"></i></asp:LinkButton> 
+                                                    </ItemTemplate>
+                                                    
+                                                    <HeaderStyle HorizontalAlign="Center" />
+                                                    <ItemStyle HorizontalAlign="Center" />
+                                                </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Code" Visible="false">
                                             <ItemTemplate>
+                                                 <asp:Label ID="lbllevid" runat="server" ForeColor="Red"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
+                                                        Width="120px"></asp:Label>
+
+                                                 <asp:Label ID="lgvltrnleaveid" runat="server"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
+                                                        Width="120px"></asp:Label>
+
                                                 <asp:Label ID="lblgvempid" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                     Width="49px"></asp:Label>
