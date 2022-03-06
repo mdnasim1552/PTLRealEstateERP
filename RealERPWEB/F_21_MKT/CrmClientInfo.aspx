@@ -1941,7 +1941,7 @@
                     </div>
                 </div>
 
-                <div class"card-body" style="min-height: 600px;">
+                <div class="card-body" style="min-height: 600px;">
                     <div class="row mb-2 justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
