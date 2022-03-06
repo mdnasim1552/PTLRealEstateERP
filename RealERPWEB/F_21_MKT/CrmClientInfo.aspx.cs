@@ -3593,9 +3593,14 @@ namespace RealERPWEB.F_21_MKT
 
 
                 int index = e.Row.RowIndex;
-                Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowup");
+                //Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowup");
                 //Lbtn.Attributes.Add("onmouseover", "AddButton(" + index + ")");
                 //Lbtn.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
+                //Lbtn.Attributes.Add("style", "cursor:pointer");
+
+                //Panel pnldel = (Panel)e.Row.FindControl("pnldeletePros");
+                //pnldel.Attributes.Add("onmouseover", "AddButton(" + index + ")");
+                //pnldel.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
                 //Lbtn.Attributes.Add("style", "cursor:pointer");
 
                 //LinkButton Lbtn1 = (LinkButton)e.Row.FindControl("lnkEditfollowup");
