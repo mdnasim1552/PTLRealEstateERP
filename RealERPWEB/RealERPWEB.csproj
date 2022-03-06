@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3721,6 +3721,8 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
+    <Content Include="ExcelFile\Book1.xlsx" />
+    <Content Include="ExcelFile\Book16.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -11683,8 +11685,6 @@
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />
-    <Content Include="ExcelFile\Book1.xlsx" />
-    <Content Include="ExcelFile\Book16.xlsx" />
     <Content Include="Image\2.3 FlowChartHR %28Revised%29.pdf" />
     <Content Include="Image\General ERP Document %2830042015%29.pdf" />
     <Content Include="Image\MicroVsOrac.pdf" />
