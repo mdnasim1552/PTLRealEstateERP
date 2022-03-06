@@ -3721,6 +3721,8 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
+    <Content Include="ExcelFile\Book1.xlsx" />
+    <Content Include="ExcelFile\Book16.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -11677,8 +11679,6 @@
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />
-    <Content Include="ExcelFile\Book1.xlsx" />
-    <Content Include="ExcelFile\Book16.xlsx" />
     <Content Include="Image\2.3 FlowChartHR %28Revised%29.pdf" />
     <Content Include="Image\General ERP Document %2830042015%29.pdf" />
     <Content Include="Image\MicroVsOrac.pdf" />
