@@ -197,7 +197,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.txtEmpSrcInfo.Visible = true;
                             this.ibtnEmpListAllinfo.Visible = true;
                             this.ddlEmpNameAllInfo.Visible = true;                            
-                            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+                            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-2).ToString("dd-MMM-yyyy");
                             this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
                             this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                             break;
