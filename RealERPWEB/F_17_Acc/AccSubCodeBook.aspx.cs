@@ -708,10 +708,14 @@ namespace RealERPWEB.F_17_Acc
                 if (this.Request.QueryString["InputType"].ToString() == "res")
                 {
                     HyperLink hlnkgvdesc = (HyperLink)e.Row.FindControl("hlnkgvdesc");
-                    if ((ASTUtility.Left(Code, 2) == "98" || ASTUtility.Left(Code, 2) == "99") && ASTUtility.Right(Code, 3) != "000")
+                    if (hlnkgvdesc != null)
                     {
-                        hlnkgvdesc.NavigateUrl = "~/F_14_Pro/PurSupplierinfo?Type=Entry" + "&ssircode=" + Code;
+                        if ((ASTUtility.Left(Code, 2) == "98" || ASTUtility.Left(Code, 2) == "99") && ASTUtility.Right(Code, 3) != "000")
+                        {
+                            hlnkgvdesc.NavigateUrl = "~/F_14_Pro/PurSupplierinfo?Type=Entry" + "&ssircode=" + Code;
+                        }
                     }
+
                 }
 
             }
