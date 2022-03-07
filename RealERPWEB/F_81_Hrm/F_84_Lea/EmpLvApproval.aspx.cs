@@ -24,6 +24,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
     public partial class EmpLvApproval : System.Web.UI.Page
     {
+        SendNotifyForUsers UserNotify = new SendNotifyForUsers();
+        private Hashtable _errObj;
+
+
         //public static string Narration = "";
         public static double TAmount = 0;
         ProcessAccess HRData = new ProcessAccess();
@@ -56,6 +60,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 //this.PanelHead.Visible = true;
                 this.PnlNarration.Visible = true;
                 this.ShowData();
+                stepForward();
+
 
             }
 
@@ -121,6 +127,23 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+        private void stepForward()
+        {
+            string comcod = this.GetCompCode();
+            if (comcod == "3365")
+            {
+                this.chkbod.Visible = false;
+                this.lblforward.Visible = false;
+                
+            }
+            else
+            {
+                this.chkbod.Visible = true;
+                this.lblforward.Visible = true;
+
+            }
         }
 
         protected void ImgbtnFindProjectName_Click(object sender, EventArgs e)
@@ -657,8 +680,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
 
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            try
-            {
+           // try
+           // {
 
 
                
@@ -779,14 +802,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                         if (result == false)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Order Not Approved";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                            Messagesd = "Order Not Approved";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+
+                           
                             return;
                         }
                         if (comcod != "3365")
                         {
                             this.SMSORMAIL();
                         }
+
+                        this.SendNotificaion(Orderno, Centrid, roletype);
+
 
                     }
 
@@ -834,14 +862,53 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 
 
 
-            }
-            catch (Exception ex)
-            {
-                Messagesd = "Error:" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+          //  }
+           // catch (Exception ex)
+           // {
+          //      Messagesd = "Error:" + ex.Message;
+           //     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
  
-            }
+           // }
 
+
+        }
+
+        private void SendNotificaion(string ltrnid, string deptcode, string roletype)
+        {
+            string comcod = this.GetCompCode();
+
+            string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[0].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[0].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
+            string empid = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempid")).Text;
+            string idcard = ((Label)this.gvLvReq.Rows[0].FindControl("lgidcard")).Text;
+            string leavedesc = ((Label)this.gvLvReq.Rows[0].FindControl("lglvtype")).Text;
+            string empdesig = ((Label)this.gvLvReq.Rows[0].FindControl("lgdesig")).Text;
+            string deptName = ((Label)this.gvLvReq.Rows[0].FindControl("lgdeptanme")).Text;
+            string empname = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempname")).Text;
+
+            string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+            string currentptah = "EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate;
+            string totalpath = uhostname + currentptah;
+
+            roletype = (roletype == "SUP" ) ?"DPT": "MGT";
+
+            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "HRAPPROVAL_DPT_HEAD_USERID", deptcode, roletype, "", "", "", "", "", "", "");
+
+            if (ds == null)
+                return;
+            string maildescription = "Employee ID : " + idcard + "," + "Employee Name : " + empname + "," + "Designation : " + empdesig + "," +
+                    "Department Name : " + deptName + //"\n" + "Leave Period : " + frmdate + " To " + todate + "\n" + "Leave Duration : " + lapplied +
+                    "," + "Leave Type : " + leavedesc + ",Request id: " + ltrnid + " .";
+                    //", <a href='" + totalpath + "'> Approved </a>
+                    
+            string eventdesc = "Leave Request";
+            string eventdesc2 = maildescription;
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
+                bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, appusrid);
+            }
+            
 
         }
 
@@ -971,12 +1038,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify; font-weight: bold;font-size: 14px'>" + "<br/>" + maildesc + "</pre></body></html>";
             // oMail.HtmlBody = "<html><head></head><body><pre style='max-width:700px;text-align:justify;'>" + "Dear Sir," + "<br/>" + maildesc + "</pre></body></html>";
-
-
-
-
-
-
+             
             try
             {
 

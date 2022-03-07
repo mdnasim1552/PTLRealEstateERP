@@ -194,7 +194,7 @@ contain the p elements to be scrolled  */
                         <li class="nav-item"><a href="#Notice" class="nav-link smooth-scroll" data-toggle="tab">Notice</a></li>
                         <li class="nav-item"><a href="#HolidayCalender" class="nav-link smooth-scroll" data-toggle="tab">Holiday Calender</a></li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="dropdown" href="#" role="button">HR Policy
+                            <a class="nav-link" id="hrpolicy" runat="server" data-toggle="dropdown" href="#" role="button">HR Policy
                             <span class="caret"></span>
                             </a>
                             <div class="dropdown-arrow dropdown-arrow-left"></div>
@@ -211,7 +211,7 @@ contain the p elements to be scrolled  */
                             <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
                         </li>
 
-                        <li class="nav-item"><a href='Upload/bti/WinnersDec_2021.pdf' class="nav-link smooth-scroll" target="_blank">Wins List</a></li>
+                        <li class="nav-item" id="winsList" runat="server"><a href='Upload/bti/WinnersDec_2021.pdf'  class="nav-link smooth-scroll" target="_blank">Wins List</a></li>
                         <li class="nav-item">
                             <asp:HyperLink ID="HyperCodeofConduct" CssClass="nav-link smooth-scrol" Visible="true" data-toggle="tab" href="#CodeofConduct" runat="server">Code of Conduct</asp:HyperLink>
 

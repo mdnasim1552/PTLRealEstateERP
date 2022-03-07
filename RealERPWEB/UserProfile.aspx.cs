@@ -110,10 +110,15 @@ namespace RealERPWEB
                     this.HypOrganogram.Visible = (userrole == "3" ? false : true); ;
 
                     break;
-                case "3354":
-
+                default:
+                
+                    this.lnkOrintation.Visible = false;
+                    this.HyperCodeofConduct.Visible = false;
+                    this.HypOrganogram.Visible = false;
                     this.pnlServHis.Visible = false;
-
+                    this.winsList.Visible = false;
+                    this.hrpolicy.Visible = false;
+                    
                     break;
 
 

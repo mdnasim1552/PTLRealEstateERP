@@ -2152,7 +2152,8 @@ namespace RealERPWEB.F_34_Mgt
 
                     body += "Dear Sir,";
                     body += "\n" + SMSText + "\n" +
-                    "<div style='float:left;  padding:10px; background:Lavender; width:150px; height:40px; text-align:center '><a href='" + totalpath + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:darkorange; color:white;text-decoration:none; text-align:center''> Click </a></div>";
+                    "<div style='float:left;  padding:10px; background:Lavender; width:150px; height:40px; text-align:center '>" +
+                    "<a href='" + totalpath + "' style='float:left; align:center; padding:10px; padding-left:40px; padding-right:45px;background:darkorange; color:white;text-decoration:none; text-align:center''> Click </a></div>";
                     body += "\n" + "\n" + "\n" + "<div style='float:left;clear:both;margin-top:40px;'>Best Regards" + "<div></pre>";
                     oMail.HtmlBody = body;
                     //return false;
