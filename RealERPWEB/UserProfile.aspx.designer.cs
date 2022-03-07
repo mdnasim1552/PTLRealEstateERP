@@ -132,6 +132,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink HyperCodeofConduct;
 
         /// <summary>
+        /// HypOrganogram control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HypOrganogram;
+
+        /// <summary>
         /// hyplPreviewCv control.
         /// </summary>
         /// <remarks>

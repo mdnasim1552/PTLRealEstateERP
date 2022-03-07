@@ -204,7 +204,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = GetCompCode();
 
             string txtCompany = "%";
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
+            string callType = (this.Request.QueryString["Type"].ToString() == "Pabx") ? "GETCOMPANYNAMEW_WPERMISSION" : "GETCOMPANYNAME";
+
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", callType, txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
             this.ddlCompany.DataSource = ds1.Tables[0];
@@ -1522,8 +1525,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         {
 
             string comcod = this.GetCompCode();
-            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            string nozero = (hrcomln == 4) ? "0000" : "00";
+            //int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            //string nozero = (hrcomln == 4) ? "0000" : "00";
 
             string txtCompanyname = (this.ddlCompany.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string txtSearchDept =  "%";

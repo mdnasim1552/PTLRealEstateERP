@@ -37,16 +37,17 @@ namespace RealERPWEB.F_99_Allinterface
                 DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));               
                 this.txtfrmdate.Text = frmdate.ToString("dd-MMM-yyyy");
                 this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
-                
-
-
-
                     GetAllSubdata();
-                //this.DataBindStatus();
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();
                 this.GetComponentData();
-                lnkbtnOk_Click(null, null);
+
+
+                //if (empid != "000000000000")
+                // this.GetGridSummary();
+               
+              //  this.GetNotificationByEmployee();
+                //lnkbtnOk_Click(null, null);
             }
         }
 
@@ -127,13 +128,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
         }
-        protected void ddlEmpid_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string empid = this.ddlEmpid.SelectedValue.ToString();
-            if (empid != "000000000000")
-               // this.GetGridSummary();
-            GetNotificationByEmployee(empid);
-        }
+      
 
         public string GetComeCode()
         {
@@ -154,8 +149,14 @@ namespace RealERPWEB.F_99_Allinterface
             ds1.Dispose();
         }
 
-        private void GetNotificationByEmployee(string ddlempid)
+        private void GetNotificationByEmployee()
         {
+
+
+
+
+            string ddlempid = this.ddlEmpid.SelectedValue.ToString();
+
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string userrole = hst["userrole"].ToString();
@@ -171,7 +172,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Empid = hst["empid"].ToString();
             }
             //Empid =((ddlempid == "000000000000") ? "" : ddlempid)+"%";
-            ddlempid = (ddlempid == "000000000000" ? "93%" : ddlempid);
+            ddlempid = (ddlempid == "000000000000" ? "93" : ddlempid)+"%";
 
             DataSet ds3 = instcrm.GetTransInfo(comcod, "dbo_kpi.SP_REPORT_CRM_INTERFACE02", "REPORTCRMDASHBOARD", "8301%", Empid, fromdate, todate, condate, ddlempid);
            // DataSet ds1 = instcrm.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", calltype, empid, cdate, prjcode, professioncode, cdatef, sourch, condate, leadstatus);
@@ -196,6 +197,8 @@ namespace RealERPWEB.F_99_Allinterface
             this.lblcsigned.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["win"]).ToString("#,##0;(#,##0);");
             this.lbllost.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["lost"]).ToString("#,##0;(#,##0);");
             this.lblDatablank.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["databank"]).ToString("#,##0;(#,##0);");
+            this.lbltosign.InnerText = Convert.ToDouble(ds3.Tables[0].Rows[0]["tosign"]).ToString("#,##0;(#,##0);");
+            
             string empId = this.ddlEmpid.SelectedValue.ToString();
             string curDate = Convert.ToDateTime(this.txtfrmdate.Text).ToString("dd-MMM-yyyy");
            // this.hyplnkOccasion.NavigateUrl="~/Notification/Occasion?EmpId=" + empId +"&curDate="+curDate;
@@ -214,8 +217,8 @@ namespace RealERPWEB.F_99_Allinterface
             var jsonSerialiser = new JavaScriptSerializer();
 
             var lstpwise = ds1.Tables[1].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassPwiseSum>();
-            var lstswise = ds1.Tables[1].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassSourceWiseSum>(); ;
-            var lstleadwise = ds1.Tables[1].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassLeadWiseSum>(); 
+            var lstswise = ds1.Tables[2].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassSourceWiseSum>(); ;
+            var lstleadwise = ds1.Tables[3].DataTableToList<RealERPEntity.C_21_MKT.EClassCRMDashBoard.EClassLeadWiseSum>(); 
 
 
 
@@ -254,10 +257,9 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
-            string empid = this.ddlEmpid.SelectedValue.ToString();
-            //if (empid != "000000000000")
+           
                 // this.GetGridSummary();
-                GetNotificationByEmployee(empid);
+                this.GetNotificationByEmployee();
         }
 
         protected void lbtnOccasion_Click(object sender, EventArgs e)

@@ -70,47 +70,49 @@
             margin-top: 0px;
         }
 
- .tbMenuWrp table {
-            border:none !important;
-            background:none !important;
+        .tbMenuWrp table {
+            border: none !important;
+            background: none !important;
         }
+
             .tbMenuWrp table tr {
-                border:none !important;
-            background:none !important;
-            }
-        .tbMenuWrp table tr td {
-            width: 140px;
-            float: left;
-            list-style: none;
-            margin: 2px 5px;
-            border: 0;
-            cursor: pointer;
-            background: #fff;
-            position: relative;
-            -webkit-border-radius: 5px;
--moz-border-radius: 5px;
-border-radius: 5px;
-        }
-
-            .tbMenuWrp table tr td label {
-                color: #000;
-                cursor: pointer;
-                font-weight: bold;
-                height: 100%;
-                margin: 1px 0;
-                padding: 2px;
-                width: 100%;
+                border: none !important;
+                background: none !important;
             }
 
-                .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
-                    /*background: #12A5A6;*/
-                    /*color: #fff;*/
+                .tbMenuWrp table tr td {
+                    width: 140px;
+                    float: left;
+                    list-style: none;
+                    margin: 2px 5px;
+                    border: 0;
+                    cursor: pointer;
+                    background: #fff;
+                    position: relative;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    border-radius: 5px;
                 }
 
+                    .tbMenuWrp table tr td label {
+                        color: #000;
+                        cursor: pointer;
+                        font-weight: bold;
+                        height: 100%;
+                        margin: 1px 0;
+                        padding: 2px;
+                        width: 100%;
+                    }
 
-            .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
-                display: none;
-            }
+                        .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
+                            /*background: #12A5A6;*/
+                            /*color: #fff;*/
+                        }
+
+
+                    .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
+                        display: none;
+                    }
 
         .tabMenu a {
             display: block;
@@ -122,40 +124,42 @@ border-radius: 5px;
         }
 
         .tbMenuWrp table tr td label span.lbldata {
-           
             border-radius: 50%;
-            color: #fff;           
+            color: #fff;
             font-size: 17px;
             font-weight: bold;
             padding: 2px;
-            
         }
 
         .rptPurInt span.lbldata2 {
             display: block;
             font-size: 12px;
-             color: #fff;        
+            color: #fff;
             line-height: 22px;
             margin: 5px 0 0;
             padding: 0;
             text-align: center;
         }
-        .tbMenuWrp table tr td:nth-child(1){
-            background:#0179a8!important;
+
+        .tbMenuWrp table tr td:nth-child(1) {
+            background: #0179a8 !important;
         }
-         .tbMenuWrp table tr td:nth-child(2){
-            background:#5f4b8b!important;
+
+        .tbMenuWrp table tr td:nth-child(2) {
+            background: #5f4b8b !important;
         }
-         .tbMenuWrp table tr td:nth-child(3){
-            background:#b76ba3!important;
+
+        .tbMenuWrp table tr td:nth-child(3) {
+            background: #b76ba3 !important;
         }
-         .tbMenuWrp table tr td:nth-child(4){
-            background:#00a28a!important;
+
+        .tbMenuWrp table tr td:nth-child(4) {
+            background: #00a28a !important;
         }
-         .tbMenuWrp table tr td:nth-child(5){
-            background:#f7c46c!important;
+
+        .tbMenuWrp table tr td:nth-child(5) {
+            background: #f7c46c !important;
         }
-         
     </style>
 
     <%--<script>
@@ -237,6 +241,38 @@ border-radius: 5px;
             <%--var gvDeliverd = $('#<%=this.gvDeliverd.ClientID %>');
             gvDeliverd.ScrollableGv();--%>
         };
+
+
+
+        function Search_Gridview2(strKey) {
+            try {
+ 
+                var strData = strKey.value.toLowerCase().split(" ");
+                /*alert()*/
+                   var tblData = document.getElementById("<%=this.gvLvReq.ClientID %>");
+
+                   var rowData;
+                   for (var i = 1; i < tblData.rows.length; i++) {
+                       rowData = tblData.rows[i].innerHTML;
+                       var styleDisplay = 'none';
+                       for (var j = 0; j < strData.length; j++) {
+                           if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                               styleDisplay = '';
+                           else {
+                               styleDisplay = 'none';
+                               break;
+                           }
+                       }
+                       tblData.rows[i].style.display = styleDisplay;
+                   }
+               }
+
+               catch (e) {
+                   alert(e.message);
+
+               }
+
+           }
 
     </script>
 
@@ -330,21 +366,20 @@ border-radius: 5px;
                             </div>
                         </div>
 
-
-
-
-                        <div class="col-md-1">
-                            <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-danger">Operations</button>
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
-                                        <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="dropdown-item" Style="padding: 0 10px">Leave</asp:HyperLink>
-
-                                    </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
                                 </div>
+                                <asp:TextBox ID="txtSearch" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
+
                             </div>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Leave Apply</asp:HyperLink>
+
                         </div>
 
 
@@ -510,7 +545,7 @@ border-radius: 5px;
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -527,19 +562,16 @@ border-radius: 5px;
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>
-                                                                    <%--  <asp:LinkButton ID="lnkbtnPrint" OnClick="lnkbtnPrintRD_Click" runat="server"><span class="glyphicon glyphicon-print"></span></asp:LinkButton>--%>
-
-                                                                    <%-- <asp:LinkButton ID="lnkbtnEdit" runat="server"><span class="glyphicon glyphicon-pencil"></span>
-                                                        </asp:LinkButton>
-                                                        <asp:LinkButton ID="lnkbtnView" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
-                                                        </asp:LinkButton>--%>
-
-                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" ForeColor="Black" CssClass="btn btn-xs btn-default" Font-Underline="false"><span class=" fa fa-print"></span>
+                                                                <ItemTemplate>                                                                    
+                                                                    <asp:HyperLink ID="lnkbtnEditUser" Visible="false" CssClass="btn btn-xs btn-default" Target="_blank" runat="server">
+                                                                        <span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
-
+                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" 
+                                                                        ForeColor="Black" CssClass="btn btn-xs btn-default" Font-Underline="false">
+                                                                        <span class=" fa fa-print"></span>
+                                                                    </asp:HyperLink>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="50px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="50px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -659,7 +691,7 @@ border-radius: 5px;
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -667,7 +699,14 @@ border-radius: 5px;
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                             </asp:TemplateField>
-
+                                                                  <asp:TemplateField HeaderText="Current Status">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class=" fa fa-print"></span>
@@ -677,10 +716,10 @@ border-radius: 5px;
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
 
-                                                                    <asp:LinkButton ID="lnkRemove" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    <asp:LinkButton ID="lnkRemove" runat="server" Visible="false" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -800,7 +839,7 @@ border-radius: 5px;
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -813,14 +852,14 @@ border-radius: 5px;
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class="fa fa-edit"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEditIN" Visible="false" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="lnkRemoveApp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveApp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    <asp:LinkButton ID="lnkRemoveApp" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveApp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -939,7 +978,7 @@ border-radius: 5px;
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbldurationfi" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotalfi" runat="server" Style="text-align: right"></asp:Label>
@@ -956,7 +995,7 @@ border-radius: 5px;
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnAppfi" runat="server" Target="_blank" CssClass="btn btn-xs btn btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:LinkButton ID="lnkRemoveFAp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    <asp:LinkButton ID="lnkRemoveFAp" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
                                                                     </asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="150px" HorizontalAlign="Center" />
@@ -1077,7 +1116,7 @@ border-radius: 5px;
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -1099,7 +1138,7 @@ border-radius: 5px;
                                                                     </asp:HyperLink>
 
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="50px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="50px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>

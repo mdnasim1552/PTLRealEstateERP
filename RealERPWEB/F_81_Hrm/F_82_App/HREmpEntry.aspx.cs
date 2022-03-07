@@ -968,7 +968,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             ViewState.Remove("tblemp");
             string comcod = this.GetCompCode();
-            string ProjectCode = (this.txtSrcEmp.Text.Trim().Length > 0) ? "%" : this.ddlProjectName.SelectedValue.ToString() + "%";
+            string ProjectCode = (this.txtSrcEmp.Text.Trim().Length > 0) ? "%" : this.ddlCompany.SelectedValue.ToString() + "%";
             string txtSProject = "%" + this.txtSrcEmp.Text + "%";
             DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", ProjectCode, txtSProject, "", "", "", "", "", "", "");
             this.ddlPEmpName.DataTextField = "empname";
@@ -992,7 +992,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         private void GetComASecSelected()
         {
-
             string empid = this.ddlPEmpName.SelectedValue.ToString().Trim();
             DataTable dt = (DataTable)ViewState["tblemp"];
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
@@ -1004,8 +1003,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
-
-
         }
 
 

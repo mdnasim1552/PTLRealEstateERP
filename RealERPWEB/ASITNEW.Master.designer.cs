@@ -195,6 +195,15 @@ namespace RealERPWEB
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl UserName1;
 
         /// <summary>
+        /// hypPasswChagne control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypPasswChagne;
+
+        /// <summary>
         /// hypCompagPerm control.
         /// </summary>
         /// <remarks>
@@ -213,13 +222,31 @@ namespace RealERPWEB
         protected global::System.Web.UI.WebControls.HyperLink hypPagPerm;
 
         /// <summary>
-        /// HypNewModules control.
+        /// HypNewDashboard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HypNewModules;
+        protected global::System.Web.UI.WebControls.HyperLink HypNewDashboard;
+
+        /// <summary>
+        /// HypOldModules control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HypOldModules;
+
+        /// <summary>
+        /// hypGroupChat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypGroupChat;
 
         /// <summary>
         /// lnkFormLink control.
@@ -229,6 +256,15 @@ namespace RealERPWEB
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkFormLink;
+
+        /// <summary>
+        /// hypTimeOfleave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hypTimeOfleave;
 
         /// <summary>
         /// mySidenav control.

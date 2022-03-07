@@ -626,24 +626,29 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="FromDate">From</label>
-                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass=" inputDateBox"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender_txtfrmdate" runat="server" Enabled="True"
-                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
-                            </div>
-                        </div>
 
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label class="control-label  lblmargin-top9px" for="todate">To </label>
-                                <asp:TextBox ID="txttoDate" runat="server" CssClass="inputDateBox"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender_txttoDate" runat="server" Enabled="True"
+                         <div class="col-md-3">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <span class="input-group-text">From</span>
+                                    <%--<button class="btn btn-secondary" type="button">From</button>--%>
+                                </div>
+                                <asp:TextBox ID="txtfrmdate" runat="server" CssClass="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                    Format="dd-MMM-yyyy" TargetControlID="txtfrmdate"></cc1:CalendarExtender>
+                                <div class="input-group-prepend ">
+                                    <span class="input-group-text">To</span>
+                                    <%--<button class="btn btn-secondary" type="button">To</button>--%>
+                                </div>
+
+                                <asp:TextBox ID="txttoDate" runat="server" CssClass="form-control"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender2" runat="server"
                                     Format="dd-MMM-yyyy" TargetControlID="txttoDate"></cc1:CalendarExtender>
                             </div>
                         </div>
 
+
+                        
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:TextBox ID="txtmrfno" runat="server" CssClass="form-control" placeholder="MRF NO"></asp:TextBox>
@@ -669,11 +674,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2" id="MultCom" runat="server">
-                            <div class="form-group">
-                                <asp:DropDownList ID="ddlCompany" CssClass="chzn-select form-control" Width="200px" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCompany_SelectedIndexChanged"></asp:DropDownList>
-                            </div>
-                        </div>
+                       
                         <div class="col-md-2" style="display: none;">
 
                             <asp:Label ID="Label2" runat="server" CssClass=" smLbl_to">Requisition Tracking</asp:Label>

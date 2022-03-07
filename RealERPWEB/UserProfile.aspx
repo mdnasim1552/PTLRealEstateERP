@@ -47,76 +47,77 @@
             }
         }
 
-        
+
 
 
     </script>
     <style>
         .topMenu li .nav-link {
             padding: 10px 10px;
-
-
         }
         /* This is the containing element, 
 it needs a div within it that will 
 contain the p elements to be scrolled  */
 
-.marquee {
-   
-    margin: 0 auto;
-    white-space: nowrap;
-    overflow: hidden;
-    box-sizing: border-box;
-    
-}
+        .marquee {
+            margin: 0 auto;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
 
-.marquee > div {
-  display: table-row;
-  white-space: nowrap;
-  padding-left: 100%; 
-  animation: marquee 30s linear infinite; /* Time must be adjusted based on total width of scrolled elements*/
-}
+            .marquee > div {
+                display: table-row;
+                white-space: nowrap;
+                padding-left: 100%;
+                animation: marquee 30s linear infinite; /* Time must be adjusted based on total width of scrolled elements*/
+            }
 
-.marquee > div p {
-  width: 100%; /* Width of p elements must match the width of marquee "window"*/
-  padding-left: 100%; /* Padding determines space between scrolled elements */
-  display: table-cell; 
-  color:crimson;
-  font-size:14px;
-}
+                .marquee > div p {
+                    width: 100%; /* Width of p elements must match the width of marquee "window"*/
+                    padding-left: 100%; /* Padding determines space between scrolled elements */
+                    display: table-cell;
+                    color: crimson;
+                    font-size: 14px;
+                }
 
-/* Make it move */
-@keyframes marquee {
-    0%   { transform: translate(0, 0); }
-    100% { transform: translate(-100%, 0); }
-}
+        /* Make it move */
+        @keyframes marquee {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-100%, 0);
+            }
+        }
     </style>
     <div class="page ">
         <!-- .page-cover -->
         <header class="Xpage-cover mt-4">
             <div class="row">
 
-                 <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
-                <div class="row">
-                    <!--Breaking box-->
-                    <div class="col-md-2 col-lg-2 pr-md-0">
-                        <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
-                    </div>
-                    
-                    <div class="col-md-10 col-lg-10 pl-md-4 py-2">
-                        <div class="breaking-box">
-                            <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
-                                
-                                <div class="marquee">
-                                    <div id="EventCaro" runat="server"></div>
+                <div class="col-12 py-0 pl-0 " id="EventNotice" runat="server" style="border: 1px solid #D6D8E1;">
+                    <div class="row">
+                        <!--Breaking box-->
+                        <div class="col-md-2 col-lg-2 pr-md-0">
+                            <div class="p-2 bg-primary text-white text-center breaking-caret"><span class="font-weight-bold">Notice/Events</span></div>
+                        </div>
+
+                        <div class="col-md-10 col-lg-10 pl-md-4 py-2">
+                            <div class="breaking-box">
+                                <div id="carouselbreaking" class="carousel slide" data-ride="carousel">
+
+                                    <div class="marquee">
+                                        <div id="EventCaro" runat="server"></div>
+                                    </div>
+
                                 </div>
-                                 
                             </div>
                         </div>
+
                     </div>
-                   
                 </div>
-            </div>
             </div>
 
             <div class="row">
@@ -207,23 +208,27 @@ contain the p elements to be scrolled  */
                             </div>
                         </li>
                         <li class="nav-item">
-                            <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
+                            <asp:HyperLink ID="lnkOrintation" CssClass="nav-link smooth-scrol" NavigateUrl="#" Target="_blank" runat="server">Orintation Link</asp:HyperLink>
                         </li>
-                       
-                        <li class="nav-item"><a href="#WinsList" class="nav-link smooth-scroll" data-toggle="tab">Wins List</a></li>
+
+                        <li class="nav-item"><a href='Upload/bti/WinnersDec_2021.pdf' class="nav-link smooth-scroll" target="_blank">Wins List</a></li>
                         <li class="nav-item">
-                            <asp:HyperLink ID="HyperCodeofConduct" CssClass="nav-link smooth-scrol" Visible="true" NavigateUrl='~/Upload/bti/Code of Conduct Bangla.pdf' Target="_blank" runat="server">Code of Conduct</asp:HyperLink>
-                            
-                        <li class="nav-item"><a href="#Organogram" class="nav-link smooth-scroll" data-toggle="tab">Organogram</a></li>
-                        
+                            <asp:HyperLink ID="HyperCodeofConduct" CssClass="nav-link smooth-scrol" Visible="true" data-toggle="tab" href="#CodeofConduct" runat="server">Code of Conduct</asp:HyperLink>
+
+                        <li class="nav-item">
+                            <asp:HyperLink ID="HypOrganogram" CssClass="nav-link smooth-scrol" Visible="true" NavigateUrl='#Organogram' data-toggle="tab" runat="server">Organogram</asp:HyperLink>
+
+
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="dropdown" href="#" role="button">Application Form
                             <span class="caret"></span>
                             </a>
                             <div class="dropdown-arrow dropdown-arrow-left"></div>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" target="_blank" href="<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>">Apply Leave</a>
-                                <a class="dropdown-item" target="_blank" href="<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>">Leave Interface</a>
+                                <a class="dropdown-item" target="_blank" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
+                                <a class="dropdown-item" target="_blank" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
                                 <a class="dropdown-item" target="_blank" href="#">Late Present Leave</a>
 
                             </div>
@@ -233,7 +238,7 @@ contain the p elements to be scrolled  */
                             <a href="#" class="nav-link smooth-scrol" data-toggle="modal" data-target="#followingModal">Change Profile Photo</a></li>
                         <li class="nav-item d-none"><a href="#" class="nav-link smooth-scroll" data-toggle="modal" data-target="#fdollowingModal">Change Pasword</a></li>
                         <li class="nav-item">
-                            <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
+                            <asp:LinkButton ID="hyplPreviewCv" CssClass=" btn btn-success btn-sm d-none" runat="server" OnClick="hyplPreviewCv_Click1"> View Profile <i class="fa fa-print "></i> </asp:LinkButton></li>
                         <li class="nav-item"><a href="MyShortCutLink.aspx?Module=" class="btn btn-light d-none">My Shortcut</a></li>
 
 
@@ -457,7 +462,7 @@ contain the p elements to be scrolled  */
                                 <div class="card-body">
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
-                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
+                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -556,7 +561,7 @@ contain the p elements to be scrolled  */
                                     <!-- /.d-flex -->
                                 </div>
                                 <div class="table-responsive card-body">
-                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
+                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-hover table-bordered"
                                         ShowFooter="True" Width="400px">
                                         <RowStyle />
                                         <Columns>
@@ -631,7 +636,7 @@ contain the p elements to be scrolled  */
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
                                         <asp:GridView ID="gvempservices" runat="server" AutoGenerateColumns="False"
-                                            ShowFooter="false" CssClass="table-striped table-hover table-bordered grvContentarea">
+                                            ShowFooter="false" CssClass="table table-striped table-hover table-bordered grvContentarea">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -735,7 +740,7 @@ contain the p elements to be scrolled  */
                 </div>
                 <div class="tab-pane fade" id="Notice">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <section class="card card-fluid" style="min-height: 345px">
                                 <div class="card-body">
                                     <!-- .card-header -->
@@ -752,7 +757,7 @@ contain the p elements to be scrolled  */
 
 
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -804,7 +809,7 @@ contain the p elements to be scrolled  */
                             </section>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-6 d-none">
                             <section class="card card-fluid" style="min-height: 345px">
                                 <div class="card-body row" id="EventBirthday" runat="server">
                                 </div>
@@ -825,7 +830,7 @@ contain the p elements to be scrolled  */
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -903,7 +908,7 @@ contain the p elements to be scrolled  */
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table-striped table-hover table-bordered"
+                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False" OnPageIndexChanging="gvSpHolidyas_PageIndexChanging"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -1184,7 +1189,7 @@ contain the p elements to be scrolled  */
                 </div>
 
 
-                 
+
 
                 <div class="tab-pane fade" id="LeavePolicy">
                     <section class="card card-fluid">
@@ -1232,7 +1237,8 @@ Earn Leave.
                                     <h6 class="text-left">Purpose:</h6>
 
                                     <p>
-                                        To ensure the maximum attendance of all employee of bti.
+                                        To ensure the maximum attendance of all employee of bti.
+
                                     </p>
                                     <h6 class="text-left">Late Attendance Procedure:</h6>
 
@@ -1250,7 +1256,8 @@ d) 6 Days Late = 3 CL & half day leave
                                     <h6 class="text-left">Note: </h6>
 
                                     <p>
-                                        i. For each late after 6 days late additional 1 EL will be deducted.
+                                        i. For each late after 6 days late additional 1 EL will be deducted.
+
                                     </p>
 
                                     <p>ii. If CL/ EL is not available than salary will be deducted from monthly salary.</p>
@@ -1287,12 +1294,13 @@ d) 6 Days Late = 3 CL & half day leave
 
                                 <div class="card-body">
                                     <h1 class="text-center">Late Present Policy</h1>
-                                   
+
                                     <h6 class="text-left">Late Attendance Procedure:</h6>
 
                                     <p>
-                                        i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.</p>
-                                     <p>
+                                        i)  The office hour at Head office and branch offices of bti is from 9:00am to 5:30pm for Saturday to Thursday.
+                                    </p>
+                                    <p>
                                         ii) Presence of an employee after scheduled office hour will be marked as late within 10:00am at Head office and branch offices.
                                     </p>
                                     <h6 class="text-left">Note: </h6>
@@ -1315,17 +1323,17 @@ d) 6 Days Late = 3 CL & half day leave
                                 <div class="card-body">
                                     <h1 class="text-center">Half day leave Policy</h1>
 
-                                <p>    •	Half day  leave  is  divided into  below 2 time  slots:</p>
-		 <p>  i.  	9:00  am to  1:00  pm</p>
-		 <p>  ii.	1:00  pm to  5:30  pm.</p>
-<p> •	3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
- <p>  •	2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
- <p>  •	Half day leave can be enjoyed maximum 10 times in a year.</p>
- <p>  •	2 half day leave will be considered as 1 day CL/ SL.</p>
- <p>  •	Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
- <p>  •	Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
- <p>  •	No half day leave information will be accepted after 9:00am. </p>
- <p>  •	All other condition regarding leave will remain unchanged.</p>
+                                    <p>•	Half day  leave  is  divided into  below 2 time  slots:</p>
+                                    <p>i.  	9:00  am to  1:00  pm</p>
+                                    <p>ii.	1:00  pm to  5:30  pm.</p>
+                                    <p>•	3 Casual Leave (CL) can be enjoyed 6 times as half day leave.</p>
+                                    <p>•	2 Sick Leave (SL) can be enjoyed 4 times as half day leave.</p>
+                                    <p>•	Half day leave can be enjoyed maximum 10 times in a year.</p>
+                                    <p>•	2 half day leave will be considered as 1 day CL/ SL.</p>
+                                    <p>•	Before  taking  half  day leave  facility  each  employee  must  get  approval from  their  respective  HOD and submit approval  copy  to HR.</p>
+                                    <p>•	Any employee taking half day leave in the morning will inform to respective concern person of his/ her department before 9:00am.</p>
+                                    <p>•	No half day leave information will be accepted after 9:00am. </p>
+                                    <p>•	All other condition regarding leave will remain unchanged.</p>
 
                                 </div>
 
@@ -1343,7 +1351,7 @@ d) 6 Days Late = 3 CL & half day leave
                                 <div class="card-body">
                                     <h1 class="text-center">Wins List</h1>
 
-                            <p>No Data Found</p>
+                                    <p>No Data Found</p>
 
                                 </div>
 
@@ -1353,7 +1361,7 @@ d) 6 Days Late = 3 CL & half day leave
                         </div>
                     </section>
                 </div>
-                
+
                 <div class="tab-pane fade" id="CodeofConduct">
                     <section class="card card-fluid">
                         <div class="card-body" style="min-height: 345px">
@@ -1362,7 +1370,7 @@ d) 6 Days Late = 3 CL & half day leave
                                 <div class="card-body">
                                     <h1 class="text-center">Code of Conduct</h1>
 
-                            <p>No Data Found</p>
+                                    <iframe src="Upload/bti/Code of Conduct Bangla.pdf#toolbar=0" width="100%" height="700px"></iframe>
 
                                 </div>
 
@@ -1372,7 +1380,7 @@ d) 6 Days Late = 3 CL & half day leave
                         </div>
                     </section>
                 </div>
-                
+
             </div>
         </div>
     </div>

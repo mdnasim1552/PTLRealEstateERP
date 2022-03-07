@@ -1866,6 +1866,8 @@ namespace RealERPWEB.F_14_Pro
             string trmnid = hst["compname"].ToString();
             string session = hst["session"].ToString();
             string Date = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
+
 
 
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
@@ -1877,10 +1879,13 @@ namespace RealERPWEB.F_14_Pro
             DataTable dt = (DataTable)Session["tblproject"];
             string pactcode = dt.Rows[0]["pactcode"].ToString();
             string reqinfo = ASTUtility.Left(reqno, 3);
-            string path = ResolveUrl("~/F_99_Allinterface/PurchasePrint?Type=");
+            string reqinfo2 = ASTUtility.Left(reqno, 2);
+            //string path = ResolveUrl("~/F_99_Allinterface/PurchasePrint?Type=");
+            //string path2 = ResolveUrl("~/F_14_Pro/PurBillEntry?Type=");
+            string path = "/F_99_Allinterface/PurchasePrint?Type=";
+            string path2 = "/F_14_Pro/PurBillEntry?Type=";
+            string path3 = "/F_17_Acc/AccPrint.aspx?Type=";
             string url = "";
-
-
             switch (reqinfo)
             {
                 case "REQ":
@@ -1890,34 +1895,22 @@ namespace RealERPWEB.F_14_Pro
                     url = path + "PurApproval&approvno=" + reqno + "&approvdat=" + reqdate;
                     break;
                 case "POR":
-                    url = path + "OrderPrintNew&orderno" + reqno;
+                    url = path + "OrderPrint&orderno=" + reqno + "&reqdat=" + reqdate;
                     break;
                 case "MRR":
                     url = path + "MRReceipt&mrno=" + reqno + "&reqdat=" + reqdate;
-                    //Type=MRReceipt&mrno=MRR20210400002&sircode=990100101012&supname=Kapita%20Auto%20Bricks%20Limited.&prjname=
                     break;
                 case "PBL":
-                    url = path + "ReqPrint&reqno=" + reqno + "&reqdat=" + reqdate;
+                    url = path2 + "BillPrint&genno=" + reqno + "&Date1=" + reqdate;
                     break;
-                default:// JV
-                    url = path + "ReqPrint&reqno=" + reqno + "&reqdat=" + reqdate;
-
+                default:
+                    if (reqinfo2 == "JV" || reqinfo2 == "BC" || reqinfo2 == "CC" || reqinfo2 == "BD" || reqinfo2 == "CD")
+                    {
+                        url = path3 + "accVou&vounum=" + reqno + "&paytype=" + "0";
+                    }                   
                     break;
             }
-
-
-            Response.Redirect(url);
-
-
-
-
-
-            //Response.Redirect("~/F_12_Inv/PurReqApproval?Type=RateInput&prjcode="+pactcode+ "&genno=" + reqno);
-
-
-            //bool resulbill = accData.UpdateXmlTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETE_BILLCS_APP", null, null, null, msrno, refno, usrid, trmnid, session, Date, reqno, "", "", "", "", "", "", "", "");
-
-
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "printTracking('" + hostname + url + "');", true);
 
         }
 

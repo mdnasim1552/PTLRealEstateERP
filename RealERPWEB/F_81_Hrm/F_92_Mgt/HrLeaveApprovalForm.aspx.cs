@@ -52,8 +52,12 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         public void LoadOrderDapp()
         {
             string comcod = GetCompCode();
-            string dptName = this.ddldpt.SelectedValue.ToString();
-            DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MGT", "SELECTLEAVEAPP", dptName, "", "", "", "", "", "", "", "");
+            string dptName = (this.ddldpt.SelectedValue.ToString() == "000000000000") ? "%%" : this.ddldpt.SelectedValue.ToString(); 
+            
+            string typrole = this.ddlTypeRole.SelectedValue.ToString();
+
+
+            DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MGT", "SELECTLEAVEAPP", dptName, typrole, "", "", "", "", "", "", "");
             DataTable UserInfoTable = ds.Tables[0];
             ViewState["UserInfoTable"] = UserInfoTable;
         }
@@ -76,29 +80,14 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             this.ddldpt.DataValueField = "actcode";
             this.ddldpt.DataSource = ds1.Tables[0];
             this.ddldpt.DataBind();
+            this.ddldpt.Items.Insert(0, new ListItem("--Set for all Department--", "000000000000"));
+
+            ViewState["tblAllDpt"] = ds1.Tables[0];
+
+
             ds1.Dispose();
         }
-        //protected void ddldpt_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    //this.GetEmployeeName();
-        //}
 
-        //private void GetEmployeeName()
-        //{
-        //    string comcod = GetCompCode();
-        //    string mSrchTxt = this.ddldpt.SelectedValue.ToString()+"%";
-
-        //    DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPREMPNAME", mSrchTxt, "%%", "", "", "", "", "", "", "");
-        //    if (ds1 == null)
-        //        return;
-
-        //    this.ddlEmploye.DataTextField = "empname";
-        //    this.ddlEmploye.DataValueField = "empid";
-        //    this.ddlEmploye.DataSource = ds1.Tables[0];
-        //    this.ddlEmploye.DataBind();
-        //    ds1.Dispose();
-
-        //}
         private void Getuser()
         {
 
@@ -125,24 +114,59 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string userName = ddlUserList.SelectedItem.Text;
             string usrid = ddlUserList.SelectedItem.Value;
             string comcod = GetCompCode();
+            string roletype = this.ddlTypeRole.SelectedValue.ToString();
 
             string centrid = this.ddldpt.SelectedValue.ToString();
             string actdesc = this.ddldpt.SelectedItem.Text;
 
             DataTable UserInfoTable = (DataTable)ViewState["UserInfoTable"];
-
-            DataRow[] dr = UserInfoTable.Select("usrid='" + usrid + "'");
-            if (dr.Length == 0)
+            if (centrid != "000000000000")
             {
-                DataRow dr1 = UserInfoTable.NewRow();
-                dr1["usrid"] = usrid;
-                dr1["usrsname"] = userName;
-                dr1["centrid"] = centrid;
-                dr1["actdesc"] = actdesc;
-                dr1["comcod"] = comcod;
-                dr1["slno"] = gvProLinkInfo.Rows.Count + 1;
-                UserInfoTable.Rows.Add(dr1);
+                DataRow[] dr = UserInfoTable.Select("usrid='" + usrid + "'");
+                if (dr.Length == 0)
+                {
+                    DataRow dr1 = UserInfoTable.NewRow();
+                    dr1["usrid"] = usrid;
+                    dr1["usrsname"] = userName;
+                    dr1["usrsname"] = userName;
+                    dr1["centrid"] = centrid;
+                    dr1["actdesc"] = actdesc;
+                    dr1["roletype"] = roletype;
+                    dr1["comcod"] = comcod;
+                    dr1["slno"] = gvProLinkInfo.Rows.Count + 1;
+                    UserInfoTable.Rows.Add(dr1);
+                }
+                else
+                {
+                    string Messaged = "Already Added !!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+
+                    return;
+                }
             }
+            else
+            {
+                DataTable dt = (DataTable)ViewState["tblAllDpt"];
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+
+                    DataRow[] dr = UserInfoTable.Select("usrid='" + usrid + "' and centrid='" + centrid + "'");
+                    if (dr.Length == 0)
+                    {
+                        DataRow dr1 = UserInfoTable.NewRow();
+                        dr1["usrid"] = usrid;
+                        dr1["usrsname"] = userName;
+                        dr1["centrid"] = dt.Rows[i]["actcode"];
+                        dr1["actdesc"] = dt.Rows[i]["actdesc"];
+                        dr1["comcod"] = comcod;
+                        dr1["roletype"] = roletype;
+                        dr1["slno"] = gvProLinkInfo.Rows.Count + 1;
+                        UserInfoTable.Rows.Add(dr1);
+                    }
+                }
+
+            }
+
 
             ViewState["UserInfoTable"] = UserInfoTable;
             gvProLinkInfo_DataBind();
@@ -152,6 +176,15 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = GetCompCode(); ;
             string centrid = this.ddldpt.SelectedValue.ToString();
             string actdesc = this.ddldpt.SelectedItem.Text;
+            string roletype = this.ddlTypeRole.SelectedValue.ToString();
+
+            if (centrid == "000000000000")
+            {
+                string Messaged = "Plese Select Department !!";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+
+                return;
+            }
 
             DataTable UserInfoTable = (DataTable)ViewState["UserInfoTable"];
             for (int i = 0; i < this.ddlUserList.Items.Count; i++)
@@ -167,6 +200,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     dr1["centrid"] = centrid;
                     dr1["actdesc"] = actdesc;
                     dr1["comcod"] = comcod;
+                    dr1["roletype"] = roletype;
+
                     dr1["slno"] = gvProLinkInfo.Rows.Count + 1;
                     UserInfoTable.Rows.Add(dr1);
                 }
@@ -198,46 +233,81 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
         protected void lbtnUpdate_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            string Messaged = "";
+            string typrole = this.ddlTypeRole.SelectedValue.ToString();
             string dpt = this.ddldpt.SelectedValue.ToString();
             string comcod = GetCompCode(); ;
 
             DataTable UserInfoTable = (DataTable)ViewState["UserInfoTable"];
-            if (!IsValid(UserInfoTable))
+            if (dpt != "000000000000")
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Invalid Serial No";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
+                if (!IsValid(UserInfoTable))
+                {
+                    Messaged = "Invalid Serial No !!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    return;
+                }
+
+                if (HasDup(UserInfoTable))
+                {
+                    Messaged = "Duplicate Serial No !!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    return;
+                }
+
+                bool result = false;
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", dpt, typrole, "", "", "", "", "", "", "", "", "", "", "");
+
+                for (int i = 0; i < UserInfoTable.Rows.Count; i++)
+                {
+
+                    //string userid = UserInfoTable.Rows[i]["usrid"].ToString();
+                    //dpt = ((Label)gvProLinkInfo.Rows[i].FindControl("lblcentrid")).Text;
+                    //typrole = ((Label)gvProLinkInfo.Rows[i].FindControl("lbltyprole")).Text;
+                    string userid = ((Label)gvProLinkInfo.Rows[i].FindControl("userid")).Text;
+                    string slNum = ((TextBox)gvProLinkInfo.Rows[i].FindControl("slno")).Text;
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "INSERTLEAVEAPP", slNum, userid, dpt, typrole, "", "", "", "", "", "", "", "", "", "", "");
+
+
+                }
+                if (!result)
+                {
+                    Messaged = "Update Failed !!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                    return;
+                }
+            }
+            else
+            {
+                bool result = false;
+               // result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", dpt, typrole, "", "", "", "", "", "", "", "", "", "", "");
+
+                for (int i = 0; i < UserInfoTable.Rows.Count; i++)
+                {
+
+                    //string userid = UserInfoTable.Rows[i]["usrid"].ToString();
+                    dpt = ((Label)gvProLinkInfo.Rows[i].FindControl("lblcentrid")).Text;
+                    typrole = ((Label)gvProLinkInfo.Rows[i].FindControl("lbltyprole")).Text;
+                    string userid = ((Label)gvProLinkInfo.Rows[i].FindControl("userid")).Text;
+                    string slNum = ((TextBox)gvProLinkInfo.Rows[i].FindControl("slno")).Text;
+
+                    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "INSERTLEAVEAPP", slNum, userid, dpt, typrole, "", "", "", "", "", "", "", "", "", "", "");
+
+
+                }
+                if (!result)
+                {
+                    Messaged = "Update Failed !!";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+
+                    return;
+                }
             }
 
-            if (HasDup(UserInfoTable))
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Duplicate Serial No";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-
-            bool result = false;
-            result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELETEUSR", dpt, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            for (int i = 0; i < UserInfoTable.Rows.Count; i++)
-            {
-
-                //string userid = UserInfoTable.Rows[i]["usrid"].ToString();
-                string userid = ((Label)gvProLinkInfo.Rows[i].FindControl("userid")).Text;
-                string slNum = ((TextBox)gvProLinkInfo.Rows[i].FindControl("slno")).Text;
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "INSERTLEAVEAPP", slNum, userid, dpt, "", "", "", "", "", "", "", "", "", "", "", "");
 
 
-            }
-            if (!result)
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Update Failed!"; //purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(01;", true);
+            Messaged = "Data Updated successfully  !!";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
 
 
 
@@ -291,9 +361,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             string comcod = this.GetCompCode();
             string centrid = this.ddldpt.SelectedValue.ToString();
+            string typrole = this.ddlTypeRole.SelectedValue.ToString();
+
             DataTable dt = (DataTable)ViewState["UserInfoTable"];
             string userid = ((Label)this.gvProLinkInfo.Rows[e.RowIndex].FindControl("userid")).Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELLEAVEAPP", userid, centrid, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELLEAVEAPP", userid, centrid, typrole, "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
@@ -309,7 +381,9 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)ViewState["UserInfoTable"];
             string centrid = this.ddldpt.SelectedValue.ToString();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", centrid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string typrole = this.ddlTypeRole.SelectedValue.ToString();
+
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MGT", "DELALLLEAVEAPP", centrid, typrole, "", "", "", "", "", "", "", "", "", "", "", "", "");
             BindGrid();
         }
 
@@ -333,6 +407,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     lbtnOkOrNew.Text = "New";
                     this.LoadOrderDapp();
                     ddldpt.Enabled = false;
+                    ddlTypeRole.Enabled = false;
                     //ddlEmploye.Enabled = false;
 
                     BindGrid();
@@ -342,6 +417,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 else
                 {
+                    ddlTypeRole.Enabled = true;
+
                     ddldpt.Enabled = true;
                     //ddlEmploye.Enabled = true;
                     this.Panel2.Visible = false;
@@ -353,6 +430,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             if (lbtnOkOrNew.Text == "New")
             {
                 ddldpt.Enabled = true;
+                ddlTypeRole.Enabled = true;
+
                 //ddlEmploye.Enabled = true;
 
                 lbtnOkOrNew.Text = "Ok";

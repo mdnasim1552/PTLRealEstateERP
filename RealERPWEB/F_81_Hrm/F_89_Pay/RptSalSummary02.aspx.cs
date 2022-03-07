@@ -108,10 +108,20 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.GetDessignationTo();
                     string comcod = this.GetComeCode();
 
-                    if (comcod == "3355")
+
+                    switch (comcod)
                     {
-                        this.rbtnlistsaltypeAddItem();
+                        case "3355":
+                            this.rbtnlistsaltypeAddItem();
+                            break;
+                        case "3354":
+                            this.PnlDesign.Visible = true;
+                            break;
+                        case "3365": // BTI 
+                            this.PnlDesign.Visible = false;
+                            break;
                     }
+
 
                     break;
 
@@ -1586,10 +1596,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void PrintCashSalary()
         {
-
-
             //Sanmar
-
             string comcod = this.GetComeCode();
             switch (comcod)
             {
@@ -1612,9 +1619,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
             }
-
         }
-
 
         private void PrintCashSalaryEdison()
         {

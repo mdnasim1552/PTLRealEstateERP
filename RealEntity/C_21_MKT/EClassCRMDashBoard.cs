@@ -15,7 +15,7 @@ namespace RealERPEntity.C_21_MKT
         {
 
            public string prjcode { get; set; }
-            public decimal total { get; set; }
+            public int total { get; set; }
             public string prjdesc { get; set; }
 
             public  EClassPwiseSum()
@@ -31,7 +31,7 @@ namespace RealERPEntity.C_21_MKT
         {
 
             public string sourcecode { get; set; }
-            public decimal total { get; set; }
+            public int total { get; set; }
             public string sourcedesc { get; set; }
 
             public EClassSourceWiseSum()
@@ -48,7 +48,7 @@ namespace RealERPEntity.C_21_MKT
         {
 
             public string leadcode { get; set; }
-            public decimal total { get; set; }
+            public int total { get; set; }
             public string leadst { get; set; }
 
             public EClassLeadWiseSum()

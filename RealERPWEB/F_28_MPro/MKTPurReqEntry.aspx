@@ -223,11 +223,7 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Description of Materials">
-                                        <FooterTemplate>
-                                            <asp:DropDownList ID="ddlPageNo" runat="server" AutoPostBack="True" Font-Bold="True" Font-Size="14px" Visible="false" OnSelectedIndexChanged="ddlPageNo_SelectedIndexChanged"
-                                                Style="border-right: navy 1px solid; border-top: navy 1px solid; border-left: navy 1px solid; border-bottom: navy 1px solid" Width="140px">
-                                            </asp:DropDownList>
-                                        </FooterTemplate>
+                                       
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvResDesc" runat="server"
                                                 Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc1")) + "</B>" +
@@ -282,6 +278,19 @@
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:LinkButton ID="lbtnUpdateResReq" runat="server" OnClick="lbtnUpdateResReq_Click" CssClass="btn  btn-danger primarygrdBtn btn-sm">Final Update</asp:LinkButton>
+                                        </FooterTemplate>
+                                    </asp:TemplateField>
+
+
+                                    <asp:TemplateField HeaderText="Amount">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvpreqamt" runat="server" Font-Size="11px"  Style="text-align: right; background-color: Transparent"
+                                                Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                              <asp:Label ID="lblgvFpreqamt" runat="server" Font-Bold="true" Font-Size="11px"  Style="text-align: right; background-color: Transparent"
+                                                 Width="70px"></asp:Label>
+                                            
                                         </FooterTemplate>
                                     </asp:TemplateField>
 

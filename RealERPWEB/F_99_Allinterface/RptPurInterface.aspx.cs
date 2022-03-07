@@ -1636,7 +1636,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         protected void lnkbtnOrder_Click(object sender, EventArgs e)
         {
-
+            LinkButton lnkbtnOrder = (LinkButton)FindControl("lnkbtnOrder");
 
             // string []paymentid=new string[100];
             string comcod = this.GetCompCode();
@@ -1688,6 +1688,9 @@ namespace RealERPWEB.F_99_Allinterface
             string currentptah = "PurWrkOrderEntry?InputType=OrderEntry&genno=" + caprovno;
             string totalpath = hostname + currentptah;
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
+
+
+            //Response.Redirect("~/F_14_Pro/PurWrkOrderEntry?InputType=OrderEntry&genno=" + caprovno);
         }
 
 

@@ -3593,18 +3593,23 @@ namespace RealERPWEB.F_21_MKT
 
 
                 int index = e.Row.RowIndex;
-                Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowup");
-                Lbtn.Attributes.Add("onmouseover", "AddButton(" + index + ")");
-                Lbtn.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
-                Lbtn.Attributes.Add("style", "cursor:pointer");
+                //Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowup");
+                //Lbtn.Attributes.Add("onmouseover", "AddButton(" + index + ")");
+                //Lbtn.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
+                //Lbtn.Attributes.Add("style", "cursor:pointer");
 
-                LinkButton Lbtn1 = (LinkButton)e.Row.FindControl("lnkEditfollowup");
-                Lbtn1.Attributes.Add("class", "hiddenb" + index);
-                Lbtn1.Attributes.Add("style", "display:none");
+                //Panel pnldel = (Panel)e.Row.FindControl("pnldeletePros");
+                //pnldel.Attributes.Add("onmouseover", "AddButton(" + index + ")");
+                //pnldel.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
+                //Lbtn.Attributes.Add("style", "cursor:pointer");
 
-                LinkButton lbtnView = (LinkButton)e.Row.FindControl("lbtnView");
-                lbtnView.Attributes.Add("class", "hiddenb" + index);
-                lbtnView.Attributes.Add("style", "display:none");
+                //LinkButton Lbtn1 = (LinkButton)e.Row.FindControl("lnkEditfollowup");
+                //Lbtn1.Attributes.Add("class", "hiddenb" + index);
+                //Lbtn1.Attributes.Add("style", "display:none");
+
+                //LinkButton lbtnView = (LinkButton)e.Row.FindControl("lbtnView");
+                //lbtnView.Attributes.Add("class", "hiddenb" + index);
+                //lbtnView.Attributes.Add("style", "display:none");
 
 
 

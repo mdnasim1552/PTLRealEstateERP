@@ -69,7 +69,7 @@ namespace RealERPWEB
                 if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
                 {
                     BindMenu();
-                    GetProFileMEnu();
+                   // GetProFileMEnu();
                 }
                 else if (comcod.Substring(0, 1) == "8")
                 {
@@ -81,6 +81,7 @@ namespace RealERPWEB
 
 
                 }
+                getLinkPRofile();
 
             }
 
@@ -114,22 +115,42 @@ namespace RealERPWEB
 
 
         }
-
-        private void GetProFileMEnu()
+        private void getLinkPRofile()
         {
             string comcod = this.GetCompCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            if (hst == null)
+            {
+                return;
+            }
+
             switch (comcod)
             {
-
                 case "3365":
-                case "3101":
-                    this.lnkFormLink.Visible = true;
-                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
-                    
-                    break;
 
+                   //sidebar nav off for bti general user
+                    string userrole = hst["userrole"].ToString();
+                    this.mySidenav.Visible = (userrole == "3" ? false : true);
+
+
+                    this.hypGroupChat.Visible = false;
+                    this.HypOldModules.Visible = false;
+                   // this.hypApplyLV.Visible = true;
+                    this.lnkFormLink.Visible = true;
+                    this.hypTimeOfleave.Visible = true;
+                    this.hypTimeOfleave.NavigateUrl = "#";
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
+                    break;
+               
+                default:
+                    this.lnkFormLink.Text = "Forum";
+                    this.lnkFormLink.Visible = true;
+                    this.hypTimeOfleave.Visible = false;
+                    this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd";
+                    break;
             }
         }
+       
         private void GetComNameAAdd()
         {
             string comcod = this.GetCompCode();
@@ -318,12 +339,14 @@ namespace RealERPWEB
             // string path = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath;
 
             string usrid = hst["usrid"].ToString();
+            string userrole = hst["userrole"].ToString();
             // string usrperm = "1";
 
             if (comcod == "3365" || comcod == "3347")
 
             {
-                this.LogoBar.Attributes.Add("href", this.ResolveUrl("~/Index?pid="));
+                string urlnorm = (userrole == "3" ? "~/UserProfile" : "~/Index?pid=");
+                this.LogoBar.Attributes.Add("href", this.ResolveUrl(urlnorm));
 
             }
             else if (comcod.Substring(0, 1) == "8")
@@ -527,12 +550,8 @@ namespace RealERPWEB
             {
                 return;
             }
-
-
-
             string qusrid = this.Request.QueryString["usrid"] ?? "";
             string usrid = qusrid.Length > 0 ? qusrid : hst["usrid"].ToString();
-
             // string usrid = hst["usrid"].ToString();
 
             string adminUid = usrid.Substring(4, 3).ToString();
@@ -540,11 +559,8 @@ namespace RealERPWEB
             {
                 this.hypCompagPerm.Visible = true;
                 this.hypCompagPerm.NavigateUrl = "~/F_34_Mgt/UserCompPagePrivilegesPtl";
-
                 this.hypPagPerm.Visible = true;
-                this.hypPagPerm.NavigateUrl = "~/F_34_Mgt/UserLoginfrmNew";
-                this.HypNewModules.Visible = true;
-                this.HypNewModules.NavigateUrl = "~/Home";
+                this.hypPagPerm.NavigateUrl = "~/F_34_Mgt/UserLoginfrmNew";               
 
             }
 
@@ -557,9 +573,7 @@ namespace RealERPWEB
             {
                 return;
             }
-
-
-
+            
 
             //string comcod = this.GetCompCode();
             //string usrid = hst["usrid"].ToString();

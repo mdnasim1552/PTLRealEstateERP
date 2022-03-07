@@ -608,11 +608,11 @@ namespace RealERPWEB.F_12_Inv
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-
-
+            string msg = "";
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                msg = "You have no permission";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
             this.SaveValue();
@@ -653,7 +653,8 @@ namespace RealERPWEB.F_12_Inv
 
             if (dr2.Length > 0)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Please Fillup Qtuantity  ";
+                msg = "Please Fillup Qtuantity  ";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 return;
             }
 
@@ -671,40 +672,55 @@ namespace RealERPWEB.F_12_Inv
             {
                 case "3340":
                 case "3338":
+                    break;
+
+                case "3101":
                 case "1205":
                 case "3351":
                 case "3352":
-
+                    if (this.Request.QueryString["Type"] == "Entry")
+                    {
+                        if (Refno.Length == 0)
+                        {
+                            msg = "Ref. No. Should Not Be Empty";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                            return;
+                        }
+                        DataSet ds3 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
+                        if (ds3.Tables[0].Rows.Count == 0)
+                            ;
+                        else
+                        {
+                            if (ds3.Tables[0].Rows.Count > 0)
+                            {
+                                msg = "Found Duplicate Ref. No.";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                                return;
+                            }
+                        }
+                    }
                     break;
 
                 default:
 
                     if (Refno.Length == 0)
                     {
-
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Ref. No. Should Not Be Empty";
-
+                        msg = "Ref. No. Should Not Be Empty";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                         return;
                     }
-
-
                     DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "CHECKEDDUPREFNO", Refno, "", "", "", "", "", "", "", "");
                     if (ds2.Tables[0].Rows.Count == 0)
                         ;
 
-
                     else
                     {
-
                         if (ds2.Tables[0].Rows.Count > 0)
                         {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Found Duplicate Ref. No.";
-
+                            msg = "Found Duplicate Ref. No.";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                             return;
-
                         }
-
-
                         //DataView dv1 = ds2.Tables[0].DefaultView;
                         //dv1.RowFilter = ("trnno <>'" + transno + "'");
                         //DataTable dt1 = dv1.ToTable();
@@ -717,9 +733,7 @@ namespace RealERPWEB.F_12_Inv
                         //    return;
                         //}
                     }
-
                     break;
-
             }
 
 
@@ -732,39 +746,22 @@ namespace RealERPWEB.F_12_Inv
                         double balqty = Convert.ToDouble(dr["balqty"]);
                         double mtrfqty = Convert.ToDouble(dr["mtrfqty"]);
                         double qty = Convert.ToDouble(dr["qty"]);
-
-
-
                         if (mtrfqty > 0)
                         {
-
-
                             if (mtrfqty < qty)
                             {
-                                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
+                                msg = "Not Within the Budget";
+                                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                                 break;
-
                             }
-
-
-
                         }
-
-
-
                         else if (balqty < qty)
                         {
-
-
-                            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
+                            msg = "Not Within the Budget";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                             break;
-
                         }
-
                     }
-
                     break;
             }
 
@@ -777,8 +774,6 @@ namespace RealERPWEB.F_12_Inv
             string fromprj = this.ddlprjlistfrom.SelectedValue.ToString().Trim();
             string toprj = this.ddlprjlistto.SelectedValue.ToString().Trim();
             string narration = this.txtNarr.Text.Trim();
-
-
 
             foreach (DataRow dr in dt.Rows)
             {
@@ -795,15 +790,12 @@ namespace RealERPWEB.F_12_Inv
                 string appxml = dr["audit"].ToString();
                 string audit = GetReqApproval(appxml); // todo check audit or not
 
-
-
-
                 bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_03", "UpdateTransferInf", transno, fromprj, toprj, trsircode,
                     spcfcod, tqty, trate, tamt, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, reqno, mtreqno, gatepno, narration, audit, "", "", "", "");
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail";
-
+                    msg = "Update Failed .. !";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                 }
             }
 
@@ -819,7 +811,8 @@ namespace RealERPWEB.F_12_Inv
             //      tunit, tqty, trate, tamt, curdate, Refno, PostedByid, Posttrmid, PostSession, Posteddat, "");
             //}
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            msg = "Updated Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
             this.txtCurTransDate.Enabled = false;
 
             if (ConstantInfo.LogStatus == true)
@@ -919,8 +912,6 @@ namespace RealERPWEB.F_12_Inv
 
             ViewState["tblmattrns"] = ds1.Tables[0];
 
-
-
             if (this.ddlGatePass.Items.Count > 0)
             {
                 string gatepno = this.ddlGatePass.SelectedValue.ToString();
@@ -931,8 +922,6 @@ namespace RealERPWEB.F_12_Inv
                 this.ddlprjlistfrom_SelectedIndexChanged(null, null);
                 this.ddlprjlistto.SelectedValue = dr[0]["ttpactcode"].ToString();
                 this.lblddlProjectTo.Text = this.ddlprjlistto.SelectedItem.Text;
-
-
 
             }
             if (mTRNNo == "NEWTRNS")
@@ -971,8 +960,6 @@ namespace RealERPWEB.F_12_Inv
             this.grvacc.Columns[1].Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             ((LinkButton)this.grvacc.FooterRow.FindControl("lnkupdate")).Visible = (this.lblVoucherNo.Text.Trim() == "" || this.lblVoucherNo.Text.Trim() == "00000000000000");
             this.FooterCalCulation();
-
-
         }
 
         private void FooterCalCulation()
@@ -983,9 +970,6 @@ namespace RealERPWEB.F_12_Inv
                 return;
             ((Label)this.grvacc.FooterRow.FindControl("lgvFAmount")).Text = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(amt)", "")) ?
             0.00 : dt1.Compute("sum(amt)", ""))).ToString("#,##0.00;(#,##0.00);-"); ;
-
-
-
 
         }
 
@@ -1274,7 +1258,7 @@ namespace RealERPWEB.F_12_Inv
             DataTable dt1 = ds1.Tables[0];
             DataTable dt2 = ds1.Tables[1];
 
-            string reqsign = dt2.Rows[0]["trnusrnam"].ToString() + "\n" + dt2.Rows[0]["trndeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["transdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["transdat"]).ToString("dd-MMM-yyyy"); 
+            string reqsign = dt2.Rows[0]["trnusrnam"].ToString() + "\n" + dt2.Rows[0]["trndeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["transdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["transdat"]).ToString("dd-MMM-yyyy");
             string aprvsign = dt2.Rows[0]["gpausrnam"].ToString() + "\n" + dt2.Rows[0]["gpadeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["gpadat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["gpadat"]).ToString("dd-MMM-yyyy");
             string gpasign = dt2.Rows[0]["mtraprvusrnam"].ToString() + "\n" + dt2.Rows[0]["mtraprvdeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["mtraprvdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["mtraprvdat"]).ToString("dd-MMM-yyyy");
             string recvsign = dt2.Rows[0]["mtrequsrnam"].ToString() + "\n" + dt2.Rows[0]["mtreqdeg"].ToString() + "\n" + Convert.ToDateTime(dt2.Rows[0]["mtreqdat"]).Year == "1900" ? "" : Convert.ToDateTime(dt2.Rows[0]["mtreqdat"]).ToString("dd-MMM-yyyy");

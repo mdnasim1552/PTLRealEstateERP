@@ -93,17 +93,21 @@ namespace RealERPWEB
         }
         private void getLink()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
             string comcod = GetCompCode();
             switch (comcod)
             {
                 case "3365":
                 case "3101":
 
+                    string userrole = hst["userrole"].ToString();
+                  
 
                     this.lnkOrintation.Visible = true;
-                    this.lnkOrintation.NavigateUrl = "https://www.facebook.com/btibd";
+                    this.lnkOrintation.NavigateUrl = "~/Upload/bti/Winners of Monthly Award Giving (Dec'21).pdf";
                     this.HyperCodeofConduct.Visible = true;
-
+                    this.HypOrganogram.Visible = (userrole == "3" ? false : true); ;
 
                     break;
                 case "3354":
