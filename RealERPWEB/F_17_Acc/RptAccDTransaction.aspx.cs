@@ -542,6 +542,7 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (ds1.Tables[0].Rows.Count > 0)
             {
+
                 if (comcod == "3354")// only edison realerp
                 {
                     ((HyperLink)this.gvrecandpay.HeaderRow.FindControl("hlbtnRcvPayCdataExel")).Enabled = true;
@@ -566,7 +567,18 @@ namespace RealERPWEB.F_17_Acc
         }
         private void RPNote()
         {
-            this.PanelNote.Visible = true;
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3356":
+                case "3357":
+                    this.PanelNote.Visible = false;
+                    break;
+                default:
+                    this.PanelNote.Visible = true;
+                    break;
+            }
             DataTable dt = (DataTable)ViewState["recandpayNote"];
             this.gvbankbal.DataSource = dt;
             this.gvbankbal.DataBind();
@@ -582,7 +594,18 @@ namespace RealERPWEB.F_17_Acc
 
         private void RPNote1()
         {
-            this.PanelNote.Visible = true;
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "3356":
+                case "3357":
+                    this.PanelNote.Visible = false;
+                    break;
+                default:
+                    this.PanelNote.Visible = true;
+                    break;
+            }
             DataTable dt = (DataTable)ViewState["recandpayNote"];
             this.gvbankbal1.DataSource = dt;
             this.gvbankbal1.DataBind();
@@ -1117,16 +1140,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
                 case 4:
                 case 5:
-                    switch (comcod)
-                    {
-                        case "3333":
-                        case "3101":
-                            this.PrintReceiveAndPayment();
-                            break;
-                        default:
-                            this.PrintReceiveAndPayment();
-                            break;
-                    }
+                    this.PrintReceiveAndPayment();                   
                     break;
                 case 6:
                     this.PrintIssuedVsCollection();
@@ -1145,7 +1159,7 @@ namespace RealERPWEB.F_17_Acc
                             this.PrintReceiveAndPayment01Credence();
                             break;
 
-                        case "3101":
+                        //case "3101":
                         case "3358":
                         case "3359":
                         case "3360":
@@ -1296,15 +1310,21 @@ namespace RealERPWEB.F_17_Acc
             var lst2 = dt2.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.RescPayment02>();
 
             LocalReport Rpt2 = new LocalReport();
-
-            if (comcod == "3101" || comcod == "3333")
+            switch (comcod)
             {
-                Rpt2 = RptSetupClass1.GetLocalReport("R_17_Acc.RptRecAndPaymentAlli", lst, lst1, lst2);
-            }
+                case "3333":
+                    Rpt2 = RptSetupClass1.GetLocalReport("R_17_Acc.RptRecAndPaymentAlli", lst, lst1, lst2);
+                    break;
 
-            else
-            {
-                Rpt2 = RptSetupClass1.GetLocalReport("R_17_Acc.RptBankBalance02", lst, lst1, lst2);
+                case "3101":
+                case "3357": //cube
+                case "3356": // intech
+                    Rpt2 = RptSetupClass1.GetLocalReport("R_17_Acc.RptBankBalance02Cube", lst, lst1, lst2);
+                    break;
+
+                default:
+                    Rpt2 = RptSetupClass1.GetLocalReport("R_17_Acc.RptBankBalance02", lst, lst1, lst2);
+                    break;
             }
 
             Rpt2.EnableExternalImages = true;
@@ -1321,11 +1341,7 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        private void PrintReceiveAndPaymentAli()
-        {
-
-        }
-
+        
         private void PrintReceiveAndPaymentProj()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
