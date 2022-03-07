@@ -423,6 +423,7 @@ namespace RealERPWEB.F_34_Mgt
             string empcode = ((DataTable)Session["tblUsrinfo"]).Rows[rowindex]["empid"].ToString();
             string userrole = ((DataTable)Session["tblUsrinfo"]).Rows[rowindex]["userrole"].ToString();
 
+           
             DropDownList ddl3 = (DropDownList)this.gvUseForm.Rows[e.NewEditIndex].FindControl("ddlempid");
             DropDownList ddlrole = (DropDownList)this.gvUseForm.Rows[e.NewEditIndex].FindControl("ddlUserRole");
 

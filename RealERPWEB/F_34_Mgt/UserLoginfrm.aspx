@@ -832,6 +832,7 @@
                                         <asp:ListItem Value="1">Admin</asp:ListItem>
                                         <asp:ListItem Value="2">Managment</asp:ListItem>
                                         <asp:ListItem Selected Value="3">User</asp:ListItem>
+                                        <asp:ListItem>HR</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
