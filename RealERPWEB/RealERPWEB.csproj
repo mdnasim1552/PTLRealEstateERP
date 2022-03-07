@@ -2010,6 +2010,7 @@
     <Content Include="DefaultPage.aspx" />
     <Content Include="DocumentAttached.aspx" />
     <Content Include="ErrorHandling.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\AgencyFB-Bold.svg" />
     <Content Include="fonts\arcena-webfont.svg" />
     <Content Include="fonts\flaticon.html" />
