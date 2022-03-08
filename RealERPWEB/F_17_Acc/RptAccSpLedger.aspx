@@ -26,6 +26,7 @@
             //   gvAllSupPay.Scrollable();
             gvSPayment02.Scrollable();
             gvAllSubAconBill.Scrollable();
+
             var gvAllSupPay = $('#<%=this.gvAllSupPay.ClientID %>');
             gvAllSupPay.gridviewScroll({
                 width: 1160,

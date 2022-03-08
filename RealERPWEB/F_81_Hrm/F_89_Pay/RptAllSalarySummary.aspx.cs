@@ -55,8 +55,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
-                    this.PnlGrossRecon.Visible = false;
-                    
+                    this.PnlGrossRecon.Visible = false;                 
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
@@ -64,7 +63,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
-
                     break;
                 case 2:
                     this.PnlBankSumary.Visible = false;
@@ -72,7 +70,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = true;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
-
                     break;
 
                 case 3:
@@ -81,8 +78,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = true;
                     this.PnlGrossRecon.Visible = false;
-
-
                     break;
                 case 4:
                     this.PnlBankSumary.Visible = false;
@@ -90,8 +85,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = true;
-
-
                     break;
                 default:
                     this.PnlBankSumary.Visible = false;
@@ -103,7 +96,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
             }
         }
-
         protected void lnkOk_Click(object sender, EventArgs e)
         {
 
@@ -132,9 +124,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     
                 default:
                     break;
-            }
-            
-
+            }          
         }
 
         private void GetGrossPayRecon()
