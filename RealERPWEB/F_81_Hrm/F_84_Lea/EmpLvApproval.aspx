@@ -132,7 +132,7 @@
                                     <div class="form-group">
                                         <asp:ListBox ID="lstOrderNo" runat="server" AutoPostBack="True" CssClass="form-control"
                                             BackColor="#DFF0D8" Font-Bold="True" Font-Size="12px" Height="100px"
-                                            OnSelectedIndexChanged="lstVouname_SelectedIndexChanged"
+                                            OnSelectedIndexChanged="lstOrderNo_SelectedIndexChanged"
                                             SelectionMode="Multiple"  TabIndex="12"></asp:ListBox>
                                     </div>
                                 </asp:Panel>
@@ -164,7 +164,8 @@
                                     <div class="col-md-6 pl-0">
                                         <div class="form-group">
                                             <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
-                                            <asp:LinkButton ID="ApprovedBtn" runat="server" CssClass="btn btn-success btn-sm ApprovedBtn" OnClick="ApprovedBtn_Click" BorderStyle="None">Approved</asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved test</asp:LinkButton>
+                                            <asp:LinkButton ID="ApprovedBtn" runat="server" CssClass="btn btn-success btn-sm ApprovedBtn d-none"   BorderStyle="None">Approved</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +174,7 @@
                     </div>
                     <div class="col-12 col-lg-12 col-xl-9">
                         <section class="card card-fluid" style="height: 650px">
-                            <header class="card-header">Leave Information</header>
+                            <header class="card-header">Leave Information (<span id="spEmpInfo" class="text-danger" runat="server"></span>)</header>
                             <div class="card-body">
                                 <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True">
@@ -203,6 +204,10 @@
                                                  <asp:Label ID="lbllevid" runat="server" ForeColor="Red"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
                                                         Width="120px"></asp:Label>
+                                                <asp:Label ID="Labempuserid" runat="server" ForeColor="Red"
+                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empuserid")) %>'
+                                                        Width="120px"></asp:Label>
+                                                
 
                                                  <asp:Label ID="lgvltrnleaveid" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
@@ -224,7 +229,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Emp Name">
+                                        <asp:TemplateField HeaderText="Emp Name" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvempname" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
@@ -232,7 +237,7 @@
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="ID Card">
+                                        <asp:TemplateField HeaderText="ID Card" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgidcard" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcard")) %>'
@@ -242,7 +247,7 @@
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Department Name">
+                                        <asp:TemplateField HeaderText="Department Name" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgdeptanme" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptanme")) %>'
@@ -252,7 +257,7 @@
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Designation Name">
+                                        <asp:TemplateField HeaderText="Designation Name" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgdesig" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
@@ -266,7 +271,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lglvtype" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
-                                                    Width="80px"></asp:Label>
+                                                    Width="150px"></asp:Label>
 
                                             </ItemTemplate>
                                             <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
