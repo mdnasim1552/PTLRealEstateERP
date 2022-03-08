@@ -799,6 +799,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703234", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=IssuedVsCollect", "Receipts & Payment(Actual)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703235", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=ProTrans", "Daily Transaction -Project", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703237", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj", "Project Wise Receipts & Payment(Honoured)", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703242", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj02", "Project Wise Receipts & Payment(Honoured) Details", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703239", "F_17_Acc", "RptAccMonthlyBgdDWise", "", "Monthly Budget (Department Wise)", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703240", "F_17_Acc", "RptAccTranSearch", "", "Transaction Search", "Accounts", "False", "False", "False", "False" }); ;
@@ -6140,6 +6141,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "09. Receipts & Payment(Honoured)", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000010", "03. Receipts & Payment(Honoured)- Details ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay02&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000011", "10. Project Wise Receipts & Payment(Honoured) ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj&comcod=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000012", "11. Project Wise Receipts & Payment(Honoured) Deatils ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj02&comcod=&Date1=&Date2=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000012", "", "", "", true, "" });//"11. Statement of Cash Flow", "F_17_Acc/RptBankCheque?Type=CashFlow", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000013", "", "", "", true, "" });//"11. Statement of Fund Flow", "F_17_Acc/RptBankCheque?Type=FundFlow", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000014", "12. Balance Confirmation", "F_17_Acc/AccTrialBalance?Type=BalConfirmation&comcod=", "", true, "" });

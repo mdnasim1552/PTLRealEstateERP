@@ -35,7 +35,8 @@ namespace RealERPWEB.F_17_Acc
                 string title = (TrMod == "DTran" ? "Cash & Bank Transaction" : (TrMod == "RecPay" ? " Receipts & Payment(Honoured)"
                     : (TrMod == "RecPay02" ? "Receipts & Payment(Honoured)- Details"
                   : (TrMod == "DelTran" ? "DELETED TRANSACTION" : (TrMod == "IssuedVsCollect" ? "Receipts & Payment(Actual)"
-                  : (TrMod == "ProTrans" ? "Daily Transaction -Project" : (TrMod == "RecPayprj" ? "Project Wise Receipts & Payment(Honoured) " : (TrMod == "DCABankSumm" ? "Cash & Bank Summary" : (TrMod == "DelPostTran" ? "Cancellation Post Dated transaction" : "FUND FLOW")))))))));
+                  : (TrMod == "ProTrans" ? "Daily Transaction -Project" : (TrMod == "RecPayprj" ? "Project Wise Receipts & Payment(Honoured) " : (TrMod == "RecPayprj02" ? "Project Wise Receipts & Payment(Honoured) Details " :
+                    (TrMod == "DCABankSumm" ? "Cash & Bank Summary" : (TrMod == "DelPostTran" ? "Cancellation Post Dated transaction" : "FUND FLOW"))))))))));
                 ((Label)this.Master.FindControl("lblTitle")).Text = title;
                 this.Master.Page.Title = title;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -56,7 +57,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 this.RbtnVisibility();
-                GetAccCode();
+                this.GetAccCode();
                 string comcod = GetCompCode();
                 string date1 = this.Request.QueryString["Date1"];
                 string date2 = this.Request.QueryString["Date2"];
@@ -150,6 +151,14 @@ namespace RealERPWEB.F_17_Acc
                     this.rbtnList1.Visible = false;
                     break;
 
+                case "RecPayprj02":
+                    this.rbtnList1.SelectedIndex = 11;
+                    this.rbtnList1.Visible = false;
+                    this.mainfiledset.Visible = false;
+                    this.LoadProj02();
+                    break;
+
+
             }
 
             this.rbtnList1_SelectedIndexChanged(null, null);
@@ -185,32 +194,23 @@ namespace RealERPWEB.F_17_Acc
             {
                 case 0:
                     this.ShowCashBook();
-
                     break;
                 case 1:
                     this.TransactionList();
-
                     break;
-
                 case 2:
                     this.ShowDailyProposal();
                     break;
                 case 3:
-
                     this.ShowDeletedtransaction();
-
                     break;
                 case 4:
                 case 5:
-
-
                     this.ReceiptAndPayment();
                     break;
-
                 case 6:
                     this.ShowIssuedVsColl();
                     break;
-
                 case 7:
                     this.ShowpProTransaction();
                     break;
@@ -218,10 +218,11 @@ namespace RealERPWEB.F_17_Acc
                     this.ReceiptAndPaymentproj();
                     break;
                 case 10:
-
                     this.ReceiptAndPaymentDet();
                     break;
-
+                    //case 11:
+                    //    this.ReceiptAndPaymentproj02();
+                    //    break;
 
 
             }
@@ -379,7 +380,7 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (RptGroup == "Receipt")
             {
-                ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtnCBdataExel")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"])); 
+                ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtnCBdataExel")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
             }
             this.FooterCalculation(dtr1, "gvcashbook");
             Session["Report1"] = gvcashbook;
@@ -497,6 +498,8 @@ namespace RealERPWEB.F_17_Acc
 
             }
         }
+
+
         private void ReceiptAndPayment()
         {
             Session.Remove("recandpay");
@@ -737,9 +740,6 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.gvcashbook.FooterRow.FindControl("lgvFBankAmt")).Text = bankamt.ToString("#,##0;(#,##0) ;");
                     ((Label)this.gvcashbook.FooterRow.FindControl("lgvnetTotal")).Text = netamt.ToString("#,##0;(#,##0) ;");
 
-
-
-
                     break;
 
 
@@ -754,8 +754,6 @@ namespace RealERPWEB.F_17_Acc
                     ((Label)this.gvcashbookp.FooterRow.FindControl("lgvCashAmt1")).Text = cashamt.ToString("#,##0;(#,##0) ;");
                     ((Label)this.gvcashbookp.FooterRow.FindControl("lgvFBankAmt1")).Text = bankamt.ToString("#,##0;(#,##0) ;");
                     ((Label)this.gvcashbookp.FooterRow.FindControl("lgvnetCashaBankAmt")).Text = netamt.ToString("#,##0;(#,##0) ;");
-
-
 
                     break;
 
@@ -924,8 +922,6 @@ namespace RealERPWEB.F_17_Acc
                            0 : dt.Compute("sum(cram)", ""))).ToString("#,##0;(#,##0) ;");
 
                     break;
-
-
 
 
             }
@@ -1140,7 +1136,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
                 case 4:
                 case 5:
-                    this.PrintReceiveAndPayment();                   
+                    this.PrintReceiveAndPayment();
                     break;
                 case 6:
                     this.PrintIssuedVsCollection();
@@ -1197,6 +1193,24 @@ namespace RealERPWEB.F_17_Acc
             this.ddlproject.DataValueField = "actcode";
             this.ddlproject.DataSource = ds1.Tables[0];
             this.ddlproject.DataBind();
+        }
+
+        private void LoadProj02()
+        {
+
+            string date1 = this.Request.QueryString["Date1"];
+            string date2 = this.Request.QueryString["Date2"];
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtfrmdat2.Text = date1.Length > 0 ? date1 : "01" + date.Substring(2);
+            this.txttodat2.Text = date2.Length > 0 ? date2 : System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompCode();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "PROJECTDESC", "", "", "", "", "", "", "", "", "");
+            this.ddlproject2.DataTextField = "actdesc";
+            this.ddlproject2.DataValueField = "actcode";
+            this.ddlproject2.DataSource = ds1.Tables[0];
+            this.ddlproject2.DataBind();
         }
 
 
@@ -1341,7 +1355,7 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        
+
         private void PrintReceiveAndPaymentProj()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1774,7 +1788,6 @@ namespace RealERPWEB.F_17_Acc
             {
                 case 0:
                     this.MultiView1.ActiveViewIndex = rbtnList1.SelectedIndex;
-
                     break;
                 case 1:
                     this.MultiView1.ActiveViewIndex = rbtnList1.SelectedIndex;
@@ -1782,7 +1795,6 @@ namespace RealERPWEB.F_17_Acc
                     this.lblVoucher.Visible = true;
                     this.ddlVouchar.Visible = true;
                     break;
-
                 case 2:
                     this.MultiView1.ActiveViewIndex = rbtnList1.SelectedIndex;
                     break;
@@ -1793,23 +1805,20 @@ namespace RealERPWEB.F_17_Acc
                 case 5:
                     this.MultiView1.ActiveViewIndex = 4;
                     break;
-
-
                 case 6:
                     this.MultiView1.ActiveViewIndex = 5;
                     break;
                 case 7:
                     this.MultiView1.ActiveViewIndex = 6;
                     break;
-
                 case 8:
                     this.MultiView1.ActiveViewIndex = 6;
                     break;
                 case 9:
                     this.MultiView1.ActiveViewIndex = 8;
                     break;
-                case 10:
-                    this.MultiView1.ActiveViewIndex = 9;
+                case 11:
+                    this.MultiView1.ActiveViewIndex = 10;
                     break;
             }
         }
@@ -2105,10 +2114,6 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
-
-
-
-
             }
         }
 
@@ -2117,7 +2122,6 @@ namespace RealERPWEB.F_17_Acc
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-
 
                 Label ActDesc = (Label)e.Row.FindControl("lgcActDescbbp");
                 Label opnam = (Label)e.Row.FindControl("lgvopnambbp");
@@ -2138,8 +2142,6 @@ namespace RealERPWEB.F_17_Acc
 
                 if (ASTUtility.Right(code, 3) == "AAA")
                 {
-
-
                     ActDesc.Font.Bold = true;
                     opnam.Font.Bold = true;
                     closam.Font.Bold = true;
@@ -2153,12 +2155,7 @@ namespace RealERPWEB.F_17_Acc
                     balam.Style.Add("color", "blue");
                     balam.NavigateUrl = "~/F_17_Acc/LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
 
-
                 }
-
-
-
-
 
             }
         }
@@ -2172,16 +2169,151 @@ namespace RealERPWEB.F_17_Acc
 
             HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvVounum1");
             string mCOMCOD = comcod;
-
             string mVOUNUM = hlink1.Text;
             string mTRNDAT2 = ((Label)e.Row.FindControl("lblgvvnump1")).Text;
             if (mTRNDAT2.Trim().Length == 14)
             {
                 hlink1.NavigateUrl = "~/F_17_Acc/RptAccVouher.aspx?vounum=" + mTRNDAT2;
+            }
 
+        }
+
+        protected void gvrecandpay03_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+        }
+
+        protected void btngvrp2recpdesc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btngvrp2paydesc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void lbtnshow2_Click(object sender, EventArgs e)
+        {
+            this.ReceiptAndPaymentproj02();
+        }
+
+        private void ReceiptAndPaymentproj02()
+        {
+            this.banksts.Visible = true;
+            Session.Remove("recandpay");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string fromdate = Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodat2.Text).ToString("dd-MMM-yyyy");
+            string comcod = GetCompCode();
+            string rp = (this.Request.QueryString["TrMod"] == "RecPayprj") ? "RP" : "";
+            string CBorBoth = (this.rbtncashbank2.SelectedIndex == 0) ? "C" : (this.rbtncashbank2.SelectedIndex == 1) ? "B" : "";
+            string net = this.cknet2.Checked ? "Net" : "";
+            string projcode = this.ddlproject2.SelectedValue.ToString();
+            //string Calltype=this.ComReePayCallType();
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_VOUCHER", "RPCOMPANY04_04", fromdate, todate, rp, CBorBoth, net, projcode, "", "", "");
+
+            //DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, "", "", "", "", "");
+
+            if (ds1 == null)
+                return;
+
+            Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
+            Session["recandpayFo"] = ds1.Tables[1];
+            ViewState["recandpayNote"] = ds1.Tables[2];
+
+            this.gvrecandpay03.DataSource = ds1.Tables[0];
+            this.gvrecandpay03.DataBind();
+            this.RPNote1();
+
+            for (int i = 0; i < gvrecandpay03.Rows.Count; i++)
+            {
+                string recpcode = ((Label)gvrecandpay03.Rows[i].FindControl("lblgvrecpcodep")).Text.Trim();
+                string paycode = ((Label)gvrecandpay03.Rows[i].FindControl("lblgvpaycodep")).Text.Trim();
+                LinkButton lbtn1 = (LinkButton)gvrecandpay03.Rows[i].FindControl("btnRecDescp");
+                LinkButton lbtn2 = (LinkButton)gvrecandpay03.Rows[i].FindControl("btnPayDescp");
+                if (lbtn1 != null)
+                {
+                    if (lbtn1.Text.Trim().Length > 0)
+                        lbtn1.CommandArgument = recpcode;
+                }
+                if (lbtn2 != null)
+                {
+                    if (lbtn2.Text.Trim().Length > 0)
+                        lbtn2.CommandArgument = paycode;
+                }
             }
 
 
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            if (ds1.Tables[0].Rows.Count > 0)
+                ((HyperLink)this.gvrecandpay03.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).Enabled = (dr1.Length == 0) ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+
+            this.FooterCalculation(ds1.Tables[0], "gvrecandpay03");
+            ds1.Dispose();
+            Session["Report1"] = gvrecandpay03;
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                ((HyperLink)this.gvrecandpay03.HeaderRow.FindControl("hlbtnRcvPayCdataExelp")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+                //((HyperLink)this.gvrecandpay.FooterRow.FindControl("lgvFNetBalance")).NavigateUrl = "LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
+
+            }
+
+            /*
+              Session.Remove("recandpay");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string fromdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
+            string comcod = GetCompCode();
+            string rp = "RP";
+            string CBorBoth = (this.rbtnlistrp02.SelectedIndex == 0) ? "C" : (this.rbtnlistrp02.SelectedIndex == 1) ? "B" : "";
+
+            string CallType = (this.rbtnlistrp02.SelectedIndex == 0 || this.rbtnlistrp02.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANK" : "RPTRECEIPTPAYMENT";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            Session["recandpay"] = this.HiddenSameDate(ds1.Tables[0]);
+            Session["recandpayFo"] = ds1.Tables[1];
+            ViewState["recandpayNote"] = ds1.Tables[2];
+
+            this.gvrecandpay02.DataSource = ds1.Tables[0];
+            this.gvrecandpay02.DataBind();
+            // this.RPNote();
+
+            for (int i = 0; i < gvrecandpay02.Rows.Count; i++)
+            {
+                string recpcode = ((Label)gvrecandpay02.Rows[i].FindControl("lblgvrecpcoderp02")).Text.Trim();
+                string paycode = ((Label)gvrecandpay02.Rows[i].FindControl("lblgvpaycoderp02")).Text.Trim();
+                LinkButton lbtn1 = (LinkButton)gvrecandpay02.Rows[i].FindControl("btnRecDescrp02");
+                LinkButton lbtn2 = (LinkButton)gvrecandpay02.Rows[i].FindControl("btnPayDescrp02");
+                if (lbtn1 != null)
+                {
+                    if (lbtn1.Text.Trim().Length > 0)
+                        lbtn1.CommandArgument = recpcode;
+                }
+                if (lbtn2 != null)
+                {
+                    if (lbtn2.Text.Trim().Length > 0)
+                        lbtn2.CommandArgument = paycode;
+                }
+            }
+
+
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            if (ds1.Tables[0].Rows.Count > 0)
+                ((HyperLink)this.gvrecandpay02.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp02")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
+
+
+            Session["Report1"] = gvrecandpay;
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                ((HyperLink)this.gvrecandpay02.HeaderRow.FindControl("hlbtnRcvPayCdataExelrp02")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+
+
+            }
+             */
         }
 
         protected void gvrecandpay02_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -2246,17 +2378,11 @@ namespace RealERPWEB.F_17_Acc
             string mTRNDAT1 = this.txtfrmdat.Text;
             string mTRNDAT2 = this.txttodat.Text;
             string mCOMCOD = this.GetCompCode();
-
-
             string opnoption = "withoutopening";
-
             if (mRESCODE != "000000000000")
             {
                 ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('AccMultiReport.aspx?rpttype=spledger&comcod=" + mCOMCOD + "&actcode=" + mACTCODE + "&rescode=" + mRESCODE + "&actdesc=" + mACTDESC + "&Date1=" + mTRNDAT1 + "&Date2=" + mTRNDAT2 + "&opnoption=" + opnoption + "', target='_blank');</script>";
             }
-
-
-
         }
     }
 
