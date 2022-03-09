@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlLvType" class="col-md-12">
-                                        Department 
+                                        Department / Section Head
                                         <asp:LinkButton ID="lbtnOkOrNew" runat="server" CssClass="btn btn-primary btn-sm float-right okBtn" OnClick="GetUserInfo">Ok</asp:LinkButton>
                                     </label>
                                     <asp:DropDownList ID="ddldpt" runat="server" CssClass="form-control inputTxt chzn-select">
