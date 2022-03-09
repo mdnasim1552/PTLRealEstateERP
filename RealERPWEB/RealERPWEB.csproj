@@ -143,11 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-<<<<<<< HEAD
-      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
-=======
-      <HintPath>C:\Users\HP\OneDrive\Desktop\Bin_real\Microsoft.ReportViewer.WinForms.dll</HintPath>
->>>>>>> f23b3937c8c01bc4fba4ab9041673c73d46e86cc
+      <HintPath>..\..\..\..\PTLRealERP\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -3069,6 +3065,7 @@
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\MonthlyTarget.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\RptgroupAttendance.aspx" />
+    <Content Include="F_81_Hrm\Image\DropDown.PNG" />
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
