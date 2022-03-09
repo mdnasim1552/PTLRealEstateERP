@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +49,61 @@ namespace RealERPLIB
 
 
         }
+
+
+
+        
+        public bool SendEmailPTL(string hostname, int portnumber,  string frmemail, string psssword, string subj, string sendUsername, string sendUsrdesig, string sendDptdesc, string compName, string tomail, string msgbody)
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+                SmtpClient client = new SmtpClient(hostname, portnumber);
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.EnableSsl = false;
+                System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(frmemail, psssword);
+                client.UseDefaultCredentials = false;
+                client.Credentials = credentials;
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress(frmemail);
+                string body = string.Empty;
+                msg.To.Add(new MailAddress(tomail));
+                /// msg.CC.Add(new MailAddress("ibrahim.diu26@gmail.com"));
+                // msg.Bcc.Add(new MailAddress(frmemail));
+                msg.Subject = subj;
+                body += msgbody;
+                body += "<br />Thanks & Regards<br/>" + sendUsername + "<br>" + sendUsrdesig + "<br>" + sendDptdesc + "<br>" + compName;
+                msg.Body = body;
+                msg.IsBodyHtml = true;
+                try
+                {
+                    client.Send(msg);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    this.SetError(ex);
+                    return false;
+
+                }
+
+
+               
+            }
+            catch (Exception exp)
+            {
+                this.SetError(exp);
+                return false;
+            }// try
+
+
+        }
+
+
+
+
 
         private void SetError(Exception exp)
         {

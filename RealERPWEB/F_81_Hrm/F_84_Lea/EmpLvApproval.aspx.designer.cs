@@ -159,6 +159,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.WebControls.LinkButton lbtnDelete;
 
         /// <summary>
+        /// LinkButton1_test control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1_test;
+
+        /// <summary>
         /// ApprovedBtn control.
         /// </summary>
         /// <remarks>
@@ -166,6 +175,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton ApprovedBtn;
+
+        /// <summary>
+        /// spEmpInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spEmpInfo;
 
         /// <summary>
         /// gvLvReq control.

@@ -476,7 +476,7 @@ namespace RealERPWEB
                 string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
                 hst["comcod"] = Comcode;
                 hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
-                hst["dptdesc"] = "";// ds5.Tables[0].Rows[0]["dptdesc"];
+                hst["dptdesc"] =   ds5.Tables[0].Rows[0]["dptdesc"];
 
                 // hst["comnam"] = ComName;
                 hst["modulenam"] = "";
