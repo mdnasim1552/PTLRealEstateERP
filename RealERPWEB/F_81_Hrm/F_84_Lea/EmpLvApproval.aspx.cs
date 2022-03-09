@@ -42,6 +42,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             if (!IsPostBack)
             {
+                string qusrid = this.Request.QueryString["usrid"] ?? "";
+                if (qusrid.Length > 0)
+                {
+                    this.GetComNameAAdd();
+                    this.GetUserPermission();
+                    this.MasComNameAndAdd();
+
+                }
+
                 if (prevPage.Length == 0)
                 {
                     prevPage = Request.UrlReferrer.ToString();
@@ -127,8 +136,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
         private string GetCompCode()
         {
+            string qcomcod = this.Request.QueryString["comcod"] ?? "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            return (hst["comcod"].ToString());
+            qcomcod = qcomcod.Length > 0 ? qcomcod : hst["comcod"].ToString();
+            return (qcomcod); 
         }
 
         private void stepForward()
@@ -1290,9 +1301,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empname = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empname"].ToString();
                 string leavedesc = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lvtype"].ToString();
 
-                string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate;
-                string totalpath = uhostname + currentptah;
+              
 
                 ///GET SMTP AND SMS API INFORMATION
                 #region
@@ -1317,12 +1326,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     return;
 
                 #region
-                string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
-                        "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
-                maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
-
+     
                 string subj = "New Leave Request";
-                string msgbody = maildescription;
+          
 
 
                 #endregion
@@ -1334,7 +1340,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
                     string phone = ds.Tables[0].Rows[i]["phone"].ToString();
                     string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+
+                    string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
+                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid;
+                    string totalpath = uhostname + currentptah;
+
+                  string  maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                      "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
+                    maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
+
+
+                    string msgbody = maildescription;
+                                       
                     bool result2 = UserNotify.SendNotification(subj, msgbody, appusrid);
+
                     if (compsms == "True")
                     {
                         SendSmsProcess sms = new SendSmsProcess();
@@ -1343,7 +1362,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     if (compmail == "True")
                     {
-
                         bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, sendUsername, sendUsrdesig, sendDptdesc, compName, tomail, msgbody);
                         if (Result_email == false)
                         {
@@ -1394,6 +1412,134 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
+
+
+        private void GetComNameAAdd()
+        {
+            string comcod = this.GetCompCode();
+            //Access Database (List View)
+            UserLogin ulog = new UserLogin();
+            DataSet ds1 = ulog.GetNameAdd();
+
+            DataView dv = ds1.Tables[0].DefaultView;
+            dv.RowFilter = ("comcod = '" + comcod + "'");
+            DataTable dt = dv.ToTable();
+            Session["tbllog"] = dt;
+            ds1.Dispose();
+
+
+        }
+        private void GetUserPermission()
+        {
+            string comcod = this.GetCompCode();
+
+            string usrid = this.Request.QueryString["usrid"];
+            string HostAddress = Request.UserHostAddress.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSERNAMEAPASS", usrid, "", "", "", "", "", "", "", "");
+
+            //  if()
+
+            //  ProcessAccess ulogin = (ASTUtility.Left(this.ddlCompany.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
+
+            string username = ds1.Tables[0].Rows[0]["username"].ToString();
+            string pass = ds1.Tables[0].Rows[0]["password"].ToString();
+
+            //string decodepass = ASTUtility.EncodePassword(pass);
+
+            //        string pass = ASTUtility.EncodePassword(hst["password"].ToString());
+            string modulid = "AA";
+            string modulename = "All Module";
+            DataSet ds5 = HRData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
+            Session["tblusrlog"] = ds5;
+
+            DataTable dt1 = (DataTable)Session["tbllog"];
+            DataTable dt2 = new DataTable();
+
+            //if ((DataTable)Session["tbllog1"] == null)
+            // {
+            dt2.Columns.Add("comcod", Type.GetType("System.String"));
+            dt2.Columns.Add("comnam", Type.GetType("System.String"));
+            dt2.Columns.Add("comsnam", Type.GetType("System.String"));
+            dt2.Columns.Add("comadd1", Type.GetType("System.String"));
+            dt2.Columns.Add("comadd", Type.GetType("System.String"));
+            dt2.Columns.Add("usrsname", Type.GetType("System.String"));
+            dt2.Columns.Add("session", Type.GetType("System.String"));
+            dt2.Columns.Add("compsms", Type.GetType("System.String"));
+            dt2.Columns.Add("compmail", Type.GetType("System.String"));
+
+            Session["tbllog1"] = dt2;
+            // }
+
+            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
+            // Hashtable hst = (Hashtable)Session["tblLogin"];
+            Hashtable hst = new Hashtable();
+
+            if (dr.Length > 0)
+            {
+
+                hst["comnam"] = dr[0]["comnam"];
+                hst["comnam"] = dr[0]["comnam"];
+                hst["comsnam"] = dr[0]["comsnam"];
+                hst["comadd1"] = dr[0]["comadd1"];
+                hst["comweb"] = dr[0]["comadd3"];
+                hst["combranch"] = dr[0]["combranch"];
+                hst["comadd"] = dr[0]["comadd"];
+
+
+                DataRow dr2 = dt2.NewRow();
+                dr2["comcod"] = comcod;
+                dr2["comnam"] = dr[0]["comnam"];
+                dr2["comsnam"] = dr[0]["comsnam"];
+                dr2["comadd1"] = dr[0]["comadd1"];
+                dr2["comadd"] = dr[0]["comadd"];
+
+                dt2.Rows.Add(dr2);
+
+            }
+            string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
+            hst["comcod"] = comcod;
+            hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
+
+            // hst["comnam"] = ComName;
+            hst["modulenam"] = "";
+            hst["username"] = ds5.Tables[0].Rows[0]["usrsname"];
+            hst["userfname"] = ds5.Tables[0].Rows[0]["usrname"];
+            hst["compname"] = HostAddress;
+            hst["usrid"] = ds5.Tables[0].Rows[0]["usrid"];
+            hst["password"] = pass;
+            hst["session"] = sessionid;
+            hst["trmid"] = "";
+            hst["commod"] = "1";
+            hst["compsms"] = ds5.Tables[0].Rows[0]["compsms"];
+            hst["ssl"] = ds5.Tables[0].Rows[0]["ssl"];
+            hst["opndate"] = ds5.Tables[0].Rows[0]["opndate"];
+            hst["empid"] = ds5.Tables[0].Rows[0]["empid"];
+            hst["teamid"] = ds5.Tables[0].Rows[0]["teamid"];
+            hst["mcomcod"] = ds5.Tables[5].Rows[0]["mcomcod"];
+            hst["usrdesig"] = ds5.Tables[0].Rows[0]["usrdesig"];
+            hst["events"] = ds5.Tables[0].Rows[0]["eventspanel"];
+            hst["usrrmrk"] = ds5.Tables[0].Rows[0]["usrrmrk"];
+            hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
+            hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
+            hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+
+            Session["tblLogin"] = hst;
+            dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
+            dt2.Rows[0]["session"] = sessionid;
+            Session["tbllog1"] = dt2;        }
+
+        private void MasComNameAndAdd()
+        {
+            //((Image)this.Master.FindControl("ComLogo")).ImageUrl = "";
+            string comcod = this.GetCompCode();
+            DataTable dt1 = ((DataTable)Session["tbllog"]);
+            DataRow[] dr = dt1.Select("comcod='" + comcod + "'");
+            DataTable dt = ((DataTable)Session["tbllog1"]);
+            dt.Rows[0]["comcod"] = comcod;
+            Session["tbllog1"] = dt;
+            ((Label)this.Master.FindControl("LblGrpCompany")).Text = ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
+            //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]
+        }
     }
 }
 
