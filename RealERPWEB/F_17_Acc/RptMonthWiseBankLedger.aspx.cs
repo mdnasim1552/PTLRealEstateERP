@@ -154,8 +154,9 @@ namespace RealERPWEB.F_17_Acc
             //this.prjcost.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvBankLedger.DataSource = (DataTable)Session["tblbankledger"];
             this.gvBankLedger.DataBind();
+            ((HyperLink)this.gvBankLedger.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-            this.FooterCalculation();
+            //fthis.FooterCalculation();
 
 
         }
@@ -177,7 +178,6 @@ namespace RealERPWEB.F_17_Acc
                          0 : dt.Compute("sum(clsamt)", ""))).ToString("#,##0;-#,##0; ");
 
             Session["Report1"] = gvBankLedger;
-            ((HyperLink)this.gvBankLedger.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 

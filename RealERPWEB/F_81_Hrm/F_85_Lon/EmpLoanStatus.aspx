@@ -190,7 +190,7 @@
                                     <FooterStyle HorizontalAlign="Right" />
                                     <HeaderStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Upto Paid <br>(Jan-22)" Visible="false">
+                                <asp:TemplateField HeaderText="Upto Paid" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblUpPaidAmt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
@@ -199,7 +199,7 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Paid Amt.">
+                                <asp:TemplateField HeaderText="Paid Amt." Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvPaidamt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
@@ -228,7 +228,7 @@
                                 </asp:TemplateField>
 
 
-                                <asp:TemplateField HeaderText="Monthly Loan">
+                                <asp:TemplateField HeaderText="Courrent Month Loan">
                                     <ItemTemplate>
                                           <asp:Label ID="lblMontloan" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"  Width="80px" 

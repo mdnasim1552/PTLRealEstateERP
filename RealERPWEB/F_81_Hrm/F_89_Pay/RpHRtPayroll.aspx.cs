@@ -77,17 +77,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 ((LinkButton)this.Master.FindControl("lnkbtnRecalculate")).Click += new EventHandler(lnkTotal_Click);
                 ((LinkButton)this.Master.FindControl("lnkbtnSave")).Click += new EventHandler(lnkFiUpdate_Click);
             }
-
-
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
         }
         protected void btnClose_Click(object sender, EventArgs e)
         {
             Response.Redirect(prevPage);
         }
-
-
 
         private string GetCompCode()
         {
@@ -341,7 +336,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                     break;
 
-                case "3101":
+             
                 case "3365"://BTI
                     this.rbtSalSheet.SelectedIndex = 21;
                  
@@ -1017,10 +1012,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         }
 
-
-
-
-
         private void EmpCashPay()
         {
             Session.Remove("tblpay");
@@ -1230,7 +1221,12 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 case "Salary":
                 case "SalResign":
-                    
+                    string comcod = this.GetCompCode();
+                    if (comcod == "3365")
+                    {
+                        this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
+                    }
+
                     this.gvpayroll.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
                     this.gvpayroll.DataSource = dt;
                     this.gvpayroll.DataBind();
@@ -1247,7 +1243,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     // this.gvpayroll.Columns[20].Visible = (this.rbtSalSheet.SelectedIndex == 0);
                     //this.gvpayroll.Columns[21].Visible = (this.rbtSalSheet.SelectedIndex == 0);
 
-                    string comcod = this.GetCompCode();
+                   
                     switch (comcod)
                     {
                         case "3365":
@@ -1261,7 +1257,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                             this.gvpayroll.Columns[18].Visible = false;
                             this.gvpayroll.Columns[29].Visible = false;
                             this.gvpayroll.Columns[40].Visible = false;
-                            this.gvpayroll.Columns[21].HeaderText = "W.F Fund";
+                          
                             break;
                         case "3101":
                         case "3347":
@@ -3683,7 +3679,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             }
 
-            else if (comcod == "3365" || comcod == "3101")
+            else if (comcod == "3365" )
             {
                 string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
                 string txtsign1 = "Md. Saiful Islam\nSenior Executive";
