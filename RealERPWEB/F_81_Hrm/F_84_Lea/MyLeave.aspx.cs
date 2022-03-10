@@ -561,7 +561,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empdesig = (string)ds1.Tables[1].Rows[0]["desig"];
                 string deptname = (string)ds1.Tables[1].Rows[0]["deptname"];
                 string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid;
+                string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid=" + suserid+ "&RoleType=SUP";
                 string totalpath = uhostname + currentptah;
               
 

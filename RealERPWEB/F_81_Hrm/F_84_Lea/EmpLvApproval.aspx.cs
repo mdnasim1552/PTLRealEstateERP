@@ -1340,12 +1340,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
                     string phone = ds.Tables[0].Rows[i]["phone"].ToString();
                     string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+                    string isrole = (roletype == "SUP" ? "DPT" :
+                                    roletype == "DPT" ? "MGT" : "MGT");
 
                     string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid;
-                    string totalpath = uhostname + currentptah;
+                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid + "&RoleType="+ isrole;
+                    string totalpath = uhostname + currentptah; 
 
-                  string  maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                    string  maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                       "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
