@@ -3525,6 +3525,7 @@
     <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
+    <Content Include="Scripts\gridviewScrollHaVertworow.min.js" />
     <Content Include="Scripts\highchart2.js" />
     <Content Include="Scripts\HighChartExportData.js" />
     <Content Include="Scripts\highchartexporting.js" />
