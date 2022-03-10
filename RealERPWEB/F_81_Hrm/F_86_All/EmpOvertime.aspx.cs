@@ -996,11 +996,13 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             this.gvothearn.HeaderRow.Cells[7].Text = "Arear Salary";
                             this.gvothearn.HeaderRow.Cells[8].Text = "Project Visit";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Car Allowance";
+                            this.gvothearn.HeaderRow.Cells[12].Text = "Refund";
+                            this.gvothearn.HeaderRow.Cells[14].Text = "Dress Bill";
 
                             //this.gvothearn.Columns[6].Visible = true;
                             //this.gvothearn.Columns[7].Visible = true;
                             //this.gvothearn.Columns[8].Visible = true;
-                            this.gvothearn.Columns[12].Visible = false;
+                            //this.gvothearn.Columns[12].Visible = false;
                             break;
 
                         case "3347":
@@ -3154,7 +3156,9 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
 
                         string Car_Allow = dt.Rows[i]["Car_Allow"].ToString().Length == 0 ? "0" : dt.Rows[i]["Car_Allow"].ToString();
                         string Fooding = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Fooding"].ToString();
+                        string Refund = dt.Rows[i]["Fooding"].ToString().Length == 0 ? "0" : dt.Rows[i]["Refund"].ToString();
                         string Others = dt.Rows[i]["Others"].ToString().Length == 0 ? "0" : dt.Rows[i]["Others"].ToString();
+                        string Dress_Bill = dt.Rows[i]["Dress_Bill"].ToString().Length == 0 ? "0" : dt.Rows[i]["Dress_Bill"].ToString();
                         if (Card.Length == 0)
                         {
                             dt.Rows.RemoveAt(i);
@@ -3184,11 +3188,19 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                         {
                             dt.Rows[i]["Fooding"] = 0.00;
                         }
-
+                        if (!IsNuoDecimal(Refund))
+                        {
+                            dt.Rows[i]["Refund"] = 0.00;
+                        }
                         if (!IsNuoDecimal(Others))
                         {
                             dt.Rows[i]["Others"] = 0.00;
                         }
+                        if (!IsNuoDecimal(Dress_Bill))
+                        {
+                            dt.Rows[i]["Dress_Bill"] = 0.00;
+                        }
+
                         dt.AcceptChanges();
                         isAllValid = true;
 
@@ -3205,10 +3217,12 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 double Earned_Leave = Convert.ToDouble("0" + rows[0]["Earned_Leave"]);
                                 double Arear_Salary = Convert.ToDouble("0" + rows[0]["Arear_Salary"]);
                                 double Project_Visit = Convert.ToDouble("0" + rows[0]["Project_Visit"]);
-
+                              
                                 double Car_Allow = Convert.ToDouble("0" + rows[0]["Car_Allow"]);
                                 double Fooding = Convert.ToDouble("0" + rows[0]["Fooding"]);
                                 double Others = Convert.ToDouble("0" + rows[0]["Others"]);
+                                double Refund = Convert.ToDouble("0" + rows[0]["Refund"]);
+                                double Dress_Bill = Convert.ToDouble("0" + rows[0]["Dress_Bill"]);
 
 
                                 dt1.Rows[i]["tptallow"] = Earned_Leave;
@@ -3218,6 +3232,8 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                                 dt1.Rows[i]["haircutal"] = Car_Allow;
                                 dt1.Rows[i]["foodal"] = Fooding;
                                 dt1.Rows[i]["othearn"] = Others;
+                                dt1.Rows[i]["nfoodal"] = Refund;
+                                dt1.Rows[i]["hardship"] = Dress_Bill;
                                 rowCount++;
                                 dt1.AcceptChanges();
 
