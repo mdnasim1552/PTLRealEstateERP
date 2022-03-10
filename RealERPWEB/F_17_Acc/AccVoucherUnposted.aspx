@@ -238,9 +238,21 @@
                                         <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                     </asp:TemplateField>
 
+                                    <asp:TemplateField HeaderText="Accounts Name">
+                                        <HeaderTemplate>
+                                            <asp:TextBox ID="txtcactdesc" BackColor="Transparent" BorderStyle="None" runat="server" Width="120px" placeholder="Accounts Name" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvcactdesc" runat="server" BackColor="Transparent"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "cactdesc")) %>'
+                                                Width="120px"></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Voucher Amount">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearchamt" BackColor="Transparent" BorderStyle="None" runat="server" Width="90px" placeholder="Vou. Amount" onkeyup="Search_Gridview(this,8)"></asp:TextBox><br />
+                                            <asp:TextBox ID="txtSearchamt" BackColor="Transparent" BorderStyle="None" runat="server" Width="90px" placeholder="Vou. Amount" onkeyup="Search_Gridview(this,9)"></asp:TextBox><br />
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvvouamt" runat="server" Style="text-align: right"
@@ -279,7 +291,7 @@
 
                                     <asp:TemplateField HeaderText="User Name">
                                         <HeaderTemplate>
-                                            <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,11)"></asp:TextBox><br />
+                                            <asp:TextBox ID="txtSearusrname" BackColor="Transparent" BorderStyle="None" runat="server" Width="80px" placeholder="User Name" onkeyup="Search_Gridview(this,12)"></asp:TextBox><br />
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvusrname" runat="server" BackColor="Transparent"
