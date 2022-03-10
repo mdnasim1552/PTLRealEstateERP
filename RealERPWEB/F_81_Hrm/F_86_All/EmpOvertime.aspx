@@ -1726,7 +1726,7 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="" Visible="false">
+                                    <asp:TemplateField HeaderText="">
                                         <HeaderTemplate>
                                             <asp:Label ID="lblCol10" runat="server" Text="HardShip Allowance" />
                                             <asp:CheckBox ID="chkCol10" runat="server" Checked="true" Class="hidden" />

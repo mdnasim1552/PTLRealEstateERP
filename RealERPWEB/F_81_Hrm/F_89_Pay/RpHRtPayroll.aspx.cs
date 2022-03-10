@@ -881,9 +881,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             //string ProName = ((this.rbtSalSheet.SelectedIndex == 8) || (this.rbtSalSheet.SelectedIndex == 9) || (this.rbtSalSheet.SelectedIndex == 7) || (this.rbtSalSheet.SelectedIndex == 6) || (this.rbtSalSheet.SelectedIndex == 10)) ? "dbo_hrm.SP_REPORT_PAYROLL03" : (this.rbtSalSheet.SelectedIndex == 5) ? "dbo_hrm.SP_REPORT_PAYROLL01" : (this.rbtSalSheet.SelectedIndex == 11) ? "dbo_hrm.SP_REPORT_PAYROLL03" : "dbo_hrm.SP_REPORT_PAYROLL";
 
-
-
-
             //DataTable dt = HiddenSameData(ds3.Tables[0]);
             //Session["tblpay"] = dt;
 
@@ -926,9 +923,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
             }
-
-
-
             if (mon > 3 || (this.lblComBonLock.Text == "True"))
             {
                 string projectcodelk = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
