@@ -51,10 +51,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 }
 
-                if (prevPage.Length == 0)
-                {
-                    prevPage = Request.UrlReferrer.ToString();
-                }
+                //if (prevPage.Length == 0)
+                //{
+                //    prevPage = Request.UrlReferrer.ToString();
+                //}
                 //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                 //    Response.Redirect("../AcceessError.aspx");
@@ -1301,20 +1301,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string empname = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empname"].ToString();
                 string leavedesc = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lvtype"].ToString();
 
-              
+
 
                 ///GET SMTP AND SMS API INFORMATION
                 #region
                 string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-                DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
                 //SMTP
                 string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
-
+                string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
                 #endregion
+
 
 
 
@@ -1450,7 +1450,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string modulid = "AA";
             string modulename = "All Module";
             DataSet ds5 = HRData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER", username, pass, modulid, modulename, "", "", "", "", "");
+            DataSet dsmenu = HRData.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGINUSER_NAHID", username, pass, modulid, modulename, "", "", "", "", "");
+
             Session["tblusrlog"] = ds5;
+            Session["dsmenu"] = dsmenu.Tables[1];
 
             DataTable dt1 = (DataTable)Session["tbllog"];
             DataTable dt2 = new DataTable();
@@ -1499,6 +1502,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
             hst["comcod"] = comcod;
             hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
+            hst["dptdesc"] = ds5.Tables[0].Rows[0]["dptdesc"];
 
             // hst["comnam"] = ComName;
             hst["modulenam"] = "";
@@ -1522,6 +1526,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             hst["userrole"] = ds5.Tables[0].Rows[0]["userrole"];
             hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
             hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
+            hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+            //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
+            //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
+
+
 
             Session["tblLogin"] = hst;
             dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
