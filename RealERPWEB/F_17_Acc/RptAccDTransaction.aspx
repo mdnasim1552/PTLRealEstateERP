@@ -2060,6 +2060,7 @@
                                                 </td>
                                                 <td class="style60">&nbsp;</td>
                                                 <td>
+                                                    <asp:HyperLink ID="btngvrp2ept2excel" runat="server" BackColor="#000066"
                                                         BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
                                                         ForeColor="White" Style="text-align: center" Width="90px">Export Excel</asp:HyperLink>
                                                 </td>

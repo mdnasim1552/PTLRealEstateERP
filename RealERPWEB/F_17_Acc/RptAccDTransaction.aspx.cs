@@ -924,6 +924,24 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "gvrecandpay03":
+
+                    dv1 = dt.Copy().DefaultView;
+                    dv1.RowFilter = ("recpcode like '%BBBBAAAAAAAA%' or paycode like '%BBBBAAAAAAAA%'");
+                    dt1 = dv1.ToTable();
+
+                    frecamt = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(recpam)", "")) ?
+                           0 : dt1.Compute("sum(recpam)", "")));
+                    fpayamt1 = Convert.ToDouble((Convert.IsDBNull(dt1.Compute("sum(payam)", "")) ?
+                         0 : dt1.Compute("sum(payam)", "")));
+
+                    netbal = frecamt - fpayamt1;
+                    ((HyperLink)this.gvrecandpay03.FooterRow.FindControl("lgvFNetBal03")).Text = netbal.ToString("#,##0;(#,##0) ;");
+                    break;
+
+
+
+
             }
 
 
@@ -2200,6 +2218,7 @@ namespace RealERPWEB.F_17_Acc
 
         private void ReceiptAndPaymentproj02()
         {
+            /*
             this.banksts.Visible = true;
             Session.Remove("recandpay");
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -2259,6 +2278,7 @@ namespace RealERPWEB.F_17_Acc
                 //((HyperLink)this.gvrecandpay.FooterRow.FindControl("lgvFNetBalance")).NavigateUrl = "LinkAccount.aspx?Type=BalConfirmation&Date1=" + this.txtfromdate.Text + "&Date2=" + this.txttodate.Text;
 
             }
+            */
 
             /*
               Session.Remove("recandpay");
