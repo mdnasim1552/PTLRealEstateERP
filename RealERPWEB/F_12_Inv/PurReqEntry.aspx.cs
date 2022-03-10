@@ -1670,6 +1670,8 @@ namespace RealERPWEB.F_12_Inv
             switch (pactcode)
             {
                 case "1102":
+                case "1101":
+
                     break;
 
                 default:
