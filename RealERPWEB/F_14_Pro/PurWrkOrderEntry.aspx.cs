@@ -871,13 +871,13 @@ namespace RealERPWEB.F_14_Pro
 
             DataTable dt2 = (DataTable)ViewState["tblProject"];
             string pactcode = "";
-            if(dt2 != null)
+            if (dt2 != null)
             {
                 for (int i = 0; i < dt2.Rows.Count; i++)
                 {
                     pactcode += dt2.Rows[i]["pactcode"].ToString();
                 }
-            }         
+            }
 
             DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
@@ -1003,7 +1003,7 @@ namespace RealERPWEB.F_14_Pro
             }
 
             //For Visible Item Serial Manama
-            if (comcod == "3353" || comcod == "3101")
+            if (comcod == "3353")
             {
                 this.gvOrderInfo.Columns[1].Visible = true;
             }
@@ -1741,11 +1741,9 @@ namespace RealERPWEB.F_14_Pro
             string type = this.Request.QueryString["InputType"];
             switch (type)
             {
-
                 case "FirstApp":
                     tbl1.Rows[0]["forward"] = forwarddesc;
                     break;
-
 
                 default:
                     break;
@@ -1762,8 +1760,10 @@ namespace RealERPWEB.F_14_Pro
                 case "1205": //p2p
                 case "3351":
                 case "3352":
+
                 case "3101":
                 case "3366": // lanco
+                case "3357": // Cube
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -2021,10 +2021,15 @@ namespace RealERPWEB.F_14_Pro
                     this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
                     break;
 
-                case "3101":
                 case "3364":
                     this.txtSubject.Text = "Purchase Order For ";
                     this.txtLETDES.Text = "This is an reference to your discussion had with us today, we are pleased to place an order for supplying Rmc at our project under the following terms & conditions.";
+                    break;
+
+                case "3101":
+                case "3357":
+                    this.txtSubject.Text = "Purchase Order For ";
+                    this.txtLETDES.Text = "Thank you very much for cooperating with Cube Holdings Ltd. Against your offer and further discussion we are offering you for the supply of ... under the following terms & condition and rate.";
                     break;
 
                 default:
@@ -2329,14 +2334,13 @@ namespace RealERPWEB.F_14_Pro
                     this.divterms.Visible = false;
                     //this.ImagePanel.Visible = false;
                     break;
-                case "3101":
-                case "3366":
 
+                case "3101":
+                case "3357":
+                case "3366":
                     this.divtermsp2p.Visible = true;
                     this.divterms.Visible = false;
-                    //this.ImagePanel.Visible = false;
                     this.txtOrderNarrP.Text = this.bindDataText();
-
                     break;
 
                 default:
@@ -2349,10 +2353,41 @@ namespace RealERPWEB.F_14_Pro
 
         private string bindDataText()
         {
-            string msg = "1. Delivery Place : \n2. Delivery Date : \n3. Contact Person : \n4. Cell Number : \n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
-                "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. \n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
-                "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque.\n9. Payment shall have to be received from this office through money receipt of the company." +
-                "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
+            string comcod = this.GetCompCode();
+            string msg = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3357":
+                    msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
+                        "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
+                        "\n3. Product delivery time must be on time." +
+                        "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
+                        "\n5. Delivery place: at project site " +
+                        "\n6. Delivery date: ……………………" +
+                        "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
+                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
+                        "\n9. Please send all bill in duplicate.";
+                    break;
+
+                case "3366":
+                    msg = "1. Delivery Place : " +
+                        "\n2. Delivery Date : " +
+                        "\n3. Contact Person : " +
+                        "\n4. Cell Number : " +
+                        "\n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
+                        "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. " +
+                        "\n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
+                        "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque." +
+                        "\n9. Payment shall have to be received from this office through money receipt of the company." +
+                        "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
+                    break;
+
+                default:
+                    msg = "";
+                    break;
+            }
+
             return msg;
         }
 
@@ -2437,10 +2472,6 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lbtnGenerate_Click(object sender, EventArgs e)
         {
-
-
-
-
             this.pnlschgenerate.Visible = false;
             DataTable dt = (DataTable)ViewState["tblpaysch"];
             int toins = Convert.ToInt32("0" + this.txtTInstall.Text.Trim());
@@ -2462,14 +2493,11 @@ namespace RealERPWEB.F_14_Pro
                 dr["rmrks"] = "";
                 dr["rmrks02"] = "";
                 dt.Rows.Add(dr);
-
-
             }
             ViewState["tblpaysch"] = dt;
 
             this.chkVisible.Checked = false;
             this.SchData_Bind();
-
 
         }
 
@@ -2488,13 +2516,6 @@ namespace RealERPWEB.F_14_Pro
                 ((Label)this.gvPayment.FooterRow.FindControl("lblgvfait")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ait)", "")) ? 0.00 : dt.Compute("sum(ait)", ""))).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvPayment.FooterRow.FindControl("lblgvfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
-
-
-
-
-
-
-
 
 
         }
