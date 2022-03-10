@@ -379,7 +379,7 @@ namespace RealERPWEB.F_17_Acc
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (RptGroup == "Receipt")
             {
-                ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtnCBdataExel")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"])); 
+                ((HyperLink)this.gvcashbook.HeaderRow.FindControl("hlbtnCBdataExel")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
             }
             this.FooterCalculation(dtr1, "gvcashbook");
             Session["Report1"] = gvcashbook;
@@ -1140,7 +1140,7 @@ namespace RealERPWEB.F_17_Acc
                     break;
                 case 4:
                 case 5:
-                    this.PrintReceiveAndPayment();                   
+                    this.PrintReceiveAndPayment();
                     break;
                 case 6:
                     this.PrintIssuedVsCollection();
@@ -1341,7 +1341,7 @@ namespace RealERPWEB.F_17_Acc
 
         }
 
-        
+
         private void PrintReceiveAndPaymentProj()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];

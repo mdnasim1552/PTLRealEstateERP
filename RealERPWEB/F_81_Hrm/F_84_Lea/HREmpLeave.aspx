@@ -130,6 +130,8 @@
 
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
 
+                            
+
                         </div>
 
 
@@ -268,7 +270,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Emp. ID">
+                                            <asp:TemplateField HeaderText="Emp. ID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvempid" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                         Width="75px"></asp:Label>
@@ -302,7 +304,7 @@
                                             <asp:TemplateField HeaderText="Join Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvjoindate" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "joindate")).ToString("dd-MMM-yyyy") %>'
-                                                        Width="65px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />

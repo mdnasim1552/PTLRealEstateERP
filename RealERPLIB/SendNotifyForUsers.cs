@@ -71,7 +71,7 @@ namespace RealERPLIB
                 string body = string.Empty;
                 msg.To.Add(new MailAddress(tomail));
                 /// msg.CC.Add(new MailAddress("ibrahim.diu26@gmail.com"));
-                // msg.Bcc.Add(new MailAddress(frmemail));
+                msg.Bcc.Add(new MailAddress("nahid@pintechltd.com"));
                 msg.Subject = subj;
                 body += msgbody;
                 body += "<br />Thanks & Regards<br/>" + sendUsername + "<br>" + sendUsrdesig + "<br>" + sendDptdesc + "<br>" + compName;

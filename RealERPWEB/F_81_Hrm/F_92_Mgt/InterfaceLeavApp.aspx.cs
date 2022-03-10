@@ -463,8 +463,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ViewState.Remove("tbltotalleav");
                 DataView dv = dt.DefaultView;
                 ViewState["tbltotalleav"] = dv.ToTable();
+
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Leave Requset Delete";
+                    string eventdesc = "Leave Requset Delete";
+                    string eventdesc2 = leavid;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
             this.SaleRequRpt();
+
 
 
         }
@@ -496,8 +506,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ViewState.Remove("tbltotalleav");
                 DataView dv = dt.DefaultView;
                 ViewState["tbltotalleav"] = dv.ToTable();
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Leave Requset Delete";
+                    string eventdesc = "Leave Requset Delete, Employe id" + empid;
+                    string eventdesc2 = leavid;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
             this.SaleRequRpt();
+
+          
 
         }
 
@@ -528,8 +548,18 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 ViewState.Remove("tbltotalleav");
                 DataView dv = dt.DefaultView;
                 ViewState["tbltotalleav"] = dv.ToTable();
+
+                if (ConstantInfo.LogStatus == true)
+                {
+                    string eventtype = "Leave Requset Delete";
+                    string eventdesc = "Leave Requset Delete, Employe id" + empid;
+                    string eventdesc2 = leavid;
+                    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+                }
             }
             this.SaleRequRpt();
+
+
         }
     }
 }
