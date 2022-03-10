@@ -78,6 +78,9 @@
     <Reference Include="CrystalDecisions.Web">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.Web.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms">
+      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="DayPilot">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\DayPilot.dll</HintPath>
     </Reference>
@@ -3522,6 +3525,7 @@
     <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
+    <Content Include="Scripts\gridviewScrollHaVertworow.min.js" />
     <Content Include="Scripts\highchart2.js" />
     <Content Include="Scripts\HighChartExportData.js" />
     <Content Include="Scripts\highchartexporting.js" />
@@ -11920,7 +11924,6 @@
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
-    <Content Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
   </ItemGroup>
   <ItemGroup>
