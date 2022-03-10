@@ -51,7 +51,7 @@
 
                                 <div class="form-group">
                                     <label for="ddlLvType">
-                                        Leave Type
+                                        Leave Type <span class="text-danger">*</span>
                                     </label>
                                     <asp:DropDownList ID="ddlLvType" class="form-control" runat="server"></asp:DropDownList>
                                 </div>
@@ -60,7 +60,7 @@
                                     <div class="col-md-6 pl-0">
                                         <!-- .form-group -->
                                         <div class="form-group">
-                                            <label for="sel1">From Date </label>
+                                            <label for="sel1">From Date <span class="text-danger">*</span></label>
                                             <asp:TextBox ID="txtgvenjoydt1" runat="server" OnTextChanged="txtgvenjoydt1_TextChanged1" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt1_CalendarExtender" runat="server" Enabled="True"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt1"></cc1:CalendarExtender>
@@ -71,7 +71,7 @@
                                     <!-- grid column -->
                                     <div class="col-md-6 pr-0" id="divBTWDay" runat="server">
                                         <div class="form-group">
-                                            <label for="sel1">To Date </label>
+                                            <label for="sel1">To Date <span class="text-danger">*</span></label>
 
                                             <asp:TextBox ID="txtgvenjoydt2" runat="server" OnTextChanged="txtgvenjoydt2_TextChanged" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt2_CalendarExtender" runat="server" Enabled="True"

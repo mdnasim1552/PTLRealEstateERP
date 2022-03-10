@@ -139,7 +139,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string qcomcod = this.Request.QueryString["comcod"] ?? "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
             qcomcod = qcomcod.Length > 0 ? qcomcod : hst["comcod"].ToString();
-            return (qcomcod); 
+            return (qcomcod);
         }
 
         private void stepForward()
@@ -254,15 +254,34 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 var lst = ds.Tables[0].DataTableToList<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>();
                 ViewState["tblt01"] = lst;
                 ViewState["tblempinfo"] = ds.Tables[2];
+
+
                 this.Data_Bind();
                 //applied informaiton 
                 DataTable dt1 = ds.Tables[2];
+                DataTable dtstatus = ds.Tables[3];
                 string empUsrID = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empuserid"].ToString();
                 string empid = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empEmail"].ToString();
                 string idcard = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["idcard"].ToString();
                 string deptName = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["deptanme"].ToString();
                 string empdesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["desig"].ToString();
                 string empname = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empname"].ToString();
+                this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
+
+              
+                string elst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["elst"].ToString();
+                string clst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["clst"].ToString();
+                string slst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["slst"].ToString();
+                this.lblelvenjoy.Attributes["class"] = "badge text-white bg-" + elst + "";
+                this.lblclenj.Attributes["class"] = "badge text-white bg-" + clst + "";
+                this.lblslenj.Attributes["class"] = "badge text-white bg-" + slst + "";
+               
+
                 this.spEmpInfo.InnerText = "Employee ID: " + idcard + "," + "Employee Name : " + empname + "," + "Designation: " + empdesig + "," +
                     "Department Name : " + deptName;
                 //end head data
@@ -462,7 +481,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         //}
 
 
- 
+
 
 
         protected void imgbtnSearchCheqNO_Click(object sender, ImageClickEventArgs e)
@@ -1090,77 +1109,111 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
         protected void lbtnDelete_Click(object sender, EventArgs e)
         {
-
-
-            string comcod = this.GetCompCode();
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string trnid = this.lstOrderNo.SelectedValue.ToString();
-            string remarks = this.txtremarks.Text;
-
-            if (remarks.Length == 0)
+            try
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Please Fill remarks');", true);
-                return;
-            }
+                string comcod = this.GetCompCode();
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string compName = hst["comnam"].ToString();
 
-            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            if (!result)
-            {
-
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted failed');", true);
-                return;
-            }
+                DataTable dt = (DataTable)ViewState["tblempinfo"];
 
 
-            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' Not Apporved');", true);
+                string empUsrID = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empuserid"].ToString();
+                string empEmail = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empEmail"].ToString();
+                string idcard = dt.Rows.Count == 0 ? "" : dt.Rows[0]["idcard"].ToString();
 
-            if (hst["compsms"].ToString() == "True")
-            {
-                string empid = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempid")).Text;
-                string canname = hst["username"].ToString(); ;
-                //string empid = this.ddlEmpName.SelectedValue.ToString();
-                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPPHONE", empid, "", "", "", "", "", "", "", "");
+                string to_empname = dt.Rows.Count == 0 ? "" : dt.Rows[0]["empname"].ToString();
+                string leavedesc = dt.Rows.Count == 0 ? "" : dt.Rows[0]["lvtype"].ToString();
 
-                if (ds == null)
+
+
+                string trnid = this.lstOrderNo.SelectedValue.ToString();
+                string remarks = this.txtremarks.Text;
+
+                if (remarks.Length == 0)
+                {
+                    string Messagesd = "Please Fill remarks";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     return;
-                string phone = (string)ds.Tables[0].Rows[0]["phone"];
-                SendSmsProcess sms = new SendSmsProcess();
-                string SMSText = "Leave Canceled by : " + canname; // 
-                bool resultsms = sms.SendSmmsPwd(SMSText, SMSText, phone);
+                }
 
-            }
-
-            else if (hst["compmail"].ToString() == "True")
-
-            {
-
-                string usrid = hst["usrid"].ToString();
-                string deptcode = hst["deptcode"].ToString();
-                string username = hst["username"].ToString();
-                string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[0].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[0].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
-                string empid = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempid")).Text;
-
-                //string empid = this.ddlEmpName.SelectedValue.ToString();
-                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPMAIL", empid, "", "", "", "", "", "", "", "");
-                var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTHEADDETAILS", usrid, "", "", "", "", "", "", "", "");
-
-                string empname = (string)ds1.Tables[0].Rows[0]["name"];
-                string empdesig = (string)ds1.Tables[0].Rows[0]["desig"];
-                string deptName = (string)ds1.Tables[0].Rows[0]["deptname"];
-                // string t = (string)ds1.Tables[0].Rows[0]["deptname"];
-
-                if (ds == null)
+                bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETEEMLEAVAPP_ALL", trnid, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                if (!result)
+                {
+                    string Messagesd = "Deleted failed";
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     return;
 
-                string mail = (string)ds.Tables[0].Rows[0]["mail"];
+                }
 
-                string maildesc = "Reason : " + remarks + "\n" + "Leave Canceled By : " + empname;
 
-                //this.SendMailPass(maildesc, mail);
+                //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert(' Not Apporved');", true);
 
+                if (hst["compsms"].ToString() == "True")
+                {
+                    string empid = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempid")).Text;
+                    string canname = hst["username"].ToString(); ;
+                    //string empid = this.ddlEmpName.SelectedValue.ToString();
+                    var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPPHONE", empid, "", "", "", "", "", "", "", "");
+
+                    if (ds == null)
+                        return;
+                    string phone = (string)ds.Tables[0].Rows[0]["phone"];
+                    SendSmsProcess sms = new SendSmsProcess();
+                    string SMSText = "Leave Canceled by : " + canname; // 
+                    bool resultsms = sms.SendSmmsPwd(SMSText, SMSText, phone);
+
+                }
+
+                else if (hst["compmail"].ToString() == "True")
+
+                {
+
+                    string usrid = hst["usrid"].ToString();
+                    string deptcode = hst["deptcode"].ToString();
+                    string username = hst["username"].ToString();
+                    string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[0].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[0].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    string empid = ((Label)this.gvLvReq.Rows[0].FindControl("lblgvempid")).Text;
+
+                    //string empid = this.ddlEmpName.SelectedValue.ToString();
+                    var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPMAIL", empid, "", "", "", "", "", "", "", "");
+                    var ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETDEPTHEADDETAILS", usrid, "", "", "", "", "", "", "", "");
+
+                    string empname = (string)ds1.Tables[0].Rows[0]["name"];
+                    string empdesig = (string)ds1.Tables[0].Rows[0]["desig"];
+                    string deptName = (string)ds1.Tables[0].Rows[0]["deptname"];
+                    // string t = (string)ds1.Tables[0].Rows[0]["deptname"];
+                    if (ds == null)
+                        return;
+
+                    ///GET SMTP AND SMS API INFORMATION
+                    #region
+                    //SMTP
+                    DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                    string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
+                    int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
+                    string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                    string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
+                    #endregion
+
+                    string mail = (string)ds.Tables[0].Rows[0]["mail"];
+                    string toEmpsub = "Leave Request Canceled";
+                    string toMSgBody = "Dear " + to_empname + ",\n" + " Reason : " + remarks + "\n" + ", Leave Canceled By : " + empname + ", Designation " + empdesig + ", Department Name" + deptName + "\n";
+                    bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, toEmpsub, empname, empdesig, deptName, compName, mail, toMSgBody);
+
+                    bool result2 = UserNotify.SendNotification(toEmpsub, toMSgBody, empUsrID);
+                }
+
+                string Messagessd = "Deleted Success";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagessd + "');", true);
+                ShowData();
             }
-
+            catch (Exception ex)
+            {
+                string Messagessd = "Something Wrong !!" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagessd + "');", true);
+            }
 
 
         }
@@ -1225,13 +1278,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string ssl = hst["ssl"].ToString();
                 //Sender Informaiton
                 string comcod = hst["comcod"].ToString();
-                string sendUsername = hst["userfname"].ToString(); 
+                string sendUsername = hst["userfname"].ToString();
 
                 string sendDptdesc = hst["dptdesc"].ToString();
                 string sendUsrdesig = hst["usrdesig"].ToString();
                 string compName = hst["comnam"].ToString();
 
-                
+
                 string ApprovByid = hst["usrid"].ToString();
                 string Approvtrmid = hst["compname"].ToString();
                 string ApprovSession = hst["session"].ToString();
@@ -1264,7 +1317,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     else
                     {
-                        this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername,  sendDptdesc,  sendUsrdesig, compName);
+                        this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
                         string Messagesd = "Leave Approved";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
@@ -1280,7 +1333,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
         }
-       
+
         private void SendNotificaion(string ltrnid, string deptcode, string roletype, string isForward, string compsms, string compmail, string ssl, string sendUsername, string sendDptdesc, string sendUsrdesig, string compName)
         {
             try
@@ -1326,9 +1379,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     return;
 
                 #region
-     
+
                 string subj = "New Leave Request";
-          
+
 
 
                 #endregion
@@ -1340,18 +1393,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string appusrid = ds.Tables[0].Rows[i]["usrid"].ToString();
                     string phone = ds.Tables[0].Rows[i]["phone"].ToString();
                     string tomail = ds.Tables[0].Rows[i]["mail"].ToString();
+                    string isrole = (roletype == "SUP" ? "DPT" :
+                                    roletype == "DPT" ? "MGT" : "MGT");
 
                     string uhostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_81_Hrm/F_84_Lea/";
-                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid;
+                    string currentptah = "EmpLvApproval?Type=Ind&comcod=" + comcod + "&refno=" + deptcode + "&ltrnid=" + ltrnid + "&Date=" + frmdate + "&usrid = " + appusrid + "&RoleType=" + isrole;
                     string totalpath = uhostname + currentptah;
 
-                  string  maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
+                    string maildescription = "Dear Sir, Please Approve Leave Request." + "<br> Employee ID Card : " + idcard + ",<br>" + "Employee Name : " + empname + ",<br>" + "Designation : " + empdesig + "," + "<br>" +
                       "Department Name : " + deptName + "," + "<br>" + "Leave Type : " + leavedesc + ",<br>" + " Request id: " + ltrnid + ". <br>";
                     maildescription += "<div style='color:red'><a style='color:blue; text-decoration:underline' href = '" + totalpath + "'>Click for Approved</a> or Login ERP Software and check Leave Interface</div>" + "<br/>";
 
 
                     string msgbody = maildescription;
-                                       
+
                     bool result2 = UserNotify.SendNotification(subj, msgbody, appusrid);
 
                     if (compsms == "True")
@@ -1367,7 +1422,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         {
                             string Messagesd = "Leave Approved, Notification did not send";
                             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                        } 
+                        }
                     }
                 }
 
@@ -1406,7 +1461,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
             catch (Exception ex)
             {
-                string Messagesd = "Leave Approved, Notification did not send "+ex.Message;
+                string Messagesd = "Leave Approved, Notification did not send " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
@@ -1535,7 +1590,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Session["tblLogin"] = hst;
             dt2.Rows[0]["usrsname"] = ds5.Tables[0].Rows[0]["usrsname"];
             dt2.Rows[0]["session"] = sessionid;
-            Session["tbllog1"] = dt2;        }
+            Session["tbllog1"] = dt2;
+        }
 
         private void MasComNameAndAdd()
         {

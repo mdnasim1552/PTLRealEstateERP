@@ -2403,8 +2403,8 @@ namespace RealERPWEB.F_17_Acc
 
                     break;
 
-                case "3101":// Assure Builders
-                case "3355": //Assure Builders
+                //case "3101":// Assure Builders
+                case "3355": //Green wood
                     this.PrintChequePostGreenwood();
                     break;
 
