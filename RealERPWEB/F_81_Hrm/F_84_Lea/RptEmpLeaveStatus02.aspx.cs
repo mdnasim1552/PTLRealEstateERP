@@ -34,16 +34,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
-
-               
-
+                    Response.Redirect("~/AcceessError.aspx");   
                 this.GetDateSet();
-
-
                 this.GetCompName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "EmpLeaveStatus") ? "Employee Leave Status"
-                    : (this.Request.QueryString["Type"].ToString() == "MonWiseLeave") ? "Employee Leave Status(Month Wise)" : "";
+                    : (this.Request.QueryString["Type"].ToString() == "MonWiseLeave") ? "Employee Leave Status(Month Wise)"
+                    : (this.Request.QueryString["Type"].ToString() == "yearlylvRegister") ? "Leave Register(Yearly)" : "Leave Register(Yearly)";
+
+
+        
                 this.ViewSaction();
 
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
@@ -97,6 +96,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 case "MonWiseLeave":
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
+
+
+                case "yearlylvRegister":
+                    this.MultiView1.ActiveViewIndex = 2;
+                    break;
+
 
 
 
@@ -230,6 +235,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.ShowMonLeave();
                     break;
 
+                case "yearlylvRegister":
+                    this.ShowyleaveRegis() ;
+                    break;
+
 
 
 
@@ -314,6 +323,45 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
         }
+
+
+        private void ShowyleaveRegis()
+        {
+            Session.Remove("tblover");
+            string comcod = this.GetCompCode();
+            string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 8) + "%";
+            string section = "";
+            if ((this.ddlDepartment.SelectedValue.ToString() != "000000000000"))
+            {
+                string[] sec = this.DropCheck1.Text.Trim().Split(',');
+
+                if (sec[0].Substring(0, 3) == "000")
+                    section = "";
+                else
+                    foreach (string s1 in sec)
+                        section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
+
+            }
+
+            string frmdate = this.txtfrmDate.Text.Trim();
+            string todate = this.txttoDate.Text.Trim();
+            string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "RPTYEARLYEMPLEAVE", compname, deptname, section, frmdate, todate, Empcode, "", "", "");
+            if (ds2 == null)
+            {
+                this.gvMonEmpLeave.DataSource = null;
+                this.gvMonEmpLeave.DataBind();
+                return;
+            }
+            Session["tblover"] = ds2.Tables[0];
+            this.Data_Bind();
+
+
+        }
+
+        
 
 
 
@@ -420,6 +468,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         this.gvMonEmpLeave.Columns[21].Visible = false;
 
                     }
+                    break;
+
+
+
+                case "yearlylvRegister":
+                   
                     break;
 
 

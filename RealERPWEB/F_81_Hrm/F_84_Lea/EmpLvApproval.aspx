@@ -164,7 +164,7 @@
                                     <div class="col-md-6 pl-0">
                                         <div class="form-group">
                                             <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
-                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved test</asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
                                             <asp:LinkButton ID="ApprovedBtn" runat="server" CssClass="btn btn-success btn-sm ApprovedBtn d-none"   BorderStyle="None">Approved</asp:LinkButton>
                                         </div>
                                     </div>

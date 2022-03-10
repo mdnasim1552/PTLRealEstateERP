@@ -3062,6 +3062,7 @@
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\MonthlyTarget.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\RptgroupAttendance.aspx" />
+    <Content Include="F_81_Hrm\Image\DropDown.PNG" />
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />

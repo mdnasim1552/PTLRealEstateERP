@@ -576,21 +576,19 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ///GET SMTP AND SMS API INFORMATION
                 #region
                 string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
-                DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_REPORT_SALSMGT", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
+                DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
 
                 //SMTP
                 string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
-                string frmemail = dssmtpandmail.Tables[1].Rows[0]["mailid"].ToString();
-                string psssword = dssmtpandmail.Tables[1].Rows[0]["mailpass"].ToString();
+                string frmemail = dssmtpandmail.Tables[0].Rows[0]["mailid"].ToString();
+                string psssword = dssmtpandmail.Tables[0].Rows[0]["mailpass"].ToString();
                 #endregion
 
 
 
               
-                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETAPPRVPMAIL", deptcode, "SUP", "", "", "", "", "", "", "");                
-                if (ds == null)
-                    return;
+ 
 
                 #region
              
