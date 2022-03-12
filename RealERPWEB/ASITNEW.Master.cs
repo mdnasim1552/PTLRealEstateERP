@@ -123,15 +123,16 @@ namespace RealERPWEB
             {
                 return;
             }
-
+            string userrole = hst["userrole"].ToString();
             switch (comcod)
             {
                 case "3365":
+                case "3101":
 
                    //sidebar nav off for bti general user
-                    string userrole = hst["userrole"].ToString();
+                  
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
-
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);                   
 
                     this.hypGroupChat.Visible = false;
                     this.HypOldModules.Visible = false;
@@ -141,16 +142,28 @@ namespace RealERPWEB
                     this.hypTimeOfleave.NavigateUrl = "#";
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break;
-               
+                   
+                case "3315":
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+
+                    break;
+
+                case "3347":
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
+                    break;
+
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
+                    this.HypLinkApplyLvCommon.Visible = false;
                     this.hypTimeOfleave.Visible = false;
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd";
                     break;
             }
+            this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
+
         }
-       
+
         private void GetComNameAAdd()
         {
             string comcod = this.GetCompCode();
@@ -463,6 +476,7 @@ namespace RealERPWEB
 
             string qcomcod = this.Request.QueryString["comcod"] ?? "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            
             qcomcod = qcomcod.Length > 0 ? qcomcod : hst["comcod"].ToString();
             return (qcomcod);
 

@@ -175,12 +175,14 @@
                                         <asp:Label ID="lblloantype" runat="server" Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "loanname"))%>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
+                              <%--  ---target="_blank"--%>
                                 <asp:TemplateField HeaderText="Loan Amt">
                                     <ItemTemplate>
+                                        <a href="<%# "EmpLoanInfo?Type=Entry&" +"&lnno="+ Eval("lnno").ToString()%>" > 
                                         <asp:Label ID="lblgvLoanamt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tloan")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </a>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFLoanamt" runat="server" Font-Bold="True" Font-Size="12px"

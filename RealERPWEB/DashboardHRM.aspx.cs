@@ -23,7 +23,7 @@ namespace RealERPWEB
         {
             if (!IsPostBack)
             {
-                ((Panel)this.Master.FindControl("pnlTitle")).Visible = false;
+               // ((Panel)this.Master.FindControl("pnlTitle")).Visible = false;
             }
         }
         private string GetCompCode()

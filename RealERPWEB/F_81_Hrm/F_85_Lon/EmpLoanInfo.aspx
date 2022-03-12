@@ -6,7 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <script type="text/javascript" language="javascript">
 
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
