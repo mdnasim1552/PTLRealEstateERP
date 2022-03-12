@@ -33,7 +33,7 @@ namespace RealERPWEB
                 getLink();
 
                 GetAllHolidays();
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
             }
 
             this.GetProfile();
