@@ -507,8 +507,24 @@ namespace RealERPWEB.F_17_Acc
             }
             this.GetSpecification();
             this.GetBillNo();
-             this.lnkSpecification_Click(null, null);  
-            this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue,2)=="99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98"?  this.ddlresuorcecode.SelectedItem.ToString().Substring(13):"");
+             this.lnkSpecification_Click(null, null);
+
+            string comcod = this.GetCompCode();
+
+            if(comcod== "3356")
+            {
+                this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2) == "99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98" ? this.ddlresuorcecode.SelectedItem.ToString() : "");
+
+            }
+
+            else
+            {
+                this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2) == "99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98" ? this.ddlresuorcecode.SelectedItem.ToString().Substring(13) : "");
+
+            }
+
+
+
         }
 
         protected void lnkOk_Click(object sender, EventArgs e)

@@ -53,7 +53,7 @@
 
                         <asp:Label ID="lcomp" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Month</asp:Label>
                         <asp:DropDownList ID="ddlmon" data-placeholder="Choose Mon.." runat="server"
-                            CssClass="chzn-select form-control col-3" AutoPostBack="true">
+                            CssClass="chzn-select form-control col-2" AutoPostBack="true">
                         </asp:DropDownList>
 
                         <asp:LinkButton ID="lnkOk" runat="server" OnClick="lnkOk_Click" CssClass="btn btn-success btn-sm ml-1 col-1">Show</asp:LinkButton>
@@ -490,7 +490,7 @@
                     <asp:Panel runat="server" ID="PnlGrossRecon" Visible="false">
                         <div class="table-responsive" runat="server">
                             <asp:GridView ID="GvGrossRecon" runat="server" AutoGenerateColumns="False"
-                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="100%">
+                                CssClass="table-striped table-hover table-bordered grvContentarea" Width="60%">
                                 <RowStyle />
                                 <Columns>
                                     <%--  <asp:TemplateField HeaderText="Sl.No.">

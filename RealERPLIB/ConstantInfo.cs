@@ -799,6 +799,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "1703000", "1703234", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=IssuedVsCollect", "Receipts & Payment(Actual)", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703235", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=ProTrans", "Daily Transaction -Project", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703237", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj", "Project Wise Receipts & Payment(Honoured)", "Accounts", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "1703000", "1703242", "F_17_Acc", "RptAccDTransaction?", "Type=Accounts&TrMod=RecPayPrj02", "Project Wise Receipts & Payment(Honoured) Details", "Accounts", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "1703000", "1703239", "F_17_Acc", "RptAccMonthlyBgdDWise", "", "Monthly Budget (Department Wise)", "Accounts", "False", "False", "False", "False" }); ;
 
             tblObj.Rows.Add(new Object[] { "1703000", "1703240", "F_17_Acc", "RptAccTranSearch", "", "Transaction Search", "Accounts", "False", "False", "False", "False" }); ;
@@ -2054,7 +2055,8 @@ namespace RealERPLIB
 
             tblObj.Rows.Add(new Object[] { "8103000", "8103015", "F_81_Hrm/F_84_Lea", "RptHREmpLeave?", "Type=EmpLeaveSt", "Individual Employee Leave Status", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103016", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=EmpLeaveStatus", "Employee Leave- Company Wise", "Leave", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103017", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=MonWiseLeave", "Employee Leave- Month Wise", "Leave", "False", "False", "False", "False" }); 
+           
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102111", "F_81_Hrm/F_84_Lea", "RptEmpLeaveRecod?", "Type=", "Employee Leave Record", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102112", "F_81_Hrm/F_84_Lea", "RptYearlyLeaveRecord", "", "Yearly Leave Record", "HR Management", "False", "False", "False", "False" }); ;
@@ -2105,6 +2107,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8103000", "8103062", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=TransList", "Employee Transfer List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103063", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=SepType", "Employee Seperation Report", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8103064", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpHold", "Employee Hold List", "HR Management", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8103000", "8103070", "F_81_Hrm/F_84_Lea", "RptEmpLeaveStatus02?", "Type=yearlylvRegister", "Leave Register(Yearly)", "Leave", "False", "False", "False", "False" });
 
             //pf
             tblObj.Rows.Add(new Object[] { "8103000", "8103044", "F_81_Hrm/F_90_PF", "RptAccDTransaction", "", "Daily transaction", "PF Account", "False", "False", "False", "False" }); ;
@@ -6140,6 +6143,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0401000009", "09. Receipts & Payment(Honoured)", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000010", "03. Receipts & Payment(Honoured)- Details ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPay02&comcod=&Date1=&Date2=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000011", "10. Project Wise Receipts & Payment(Honoured) ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj&comcod=&Date1=&Date2=", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0401000012", "11. Project Wise Receipts & Payment(Honoured) Deatils ", "F_17_Acc/RptAccDTransaction?Type=Accounts&TrMod=RecPayprj02&comcod=&Date1=&Date2=", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0401000012", "", "", "", true, "" });//"11. Statement of Cash Flow", "F_17_Acc/RptBankCheque?Type=CashFlow", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000013", "", "", "", true, "" });//"11. Statement of Fund Flow", "F_17_Acc/RptBankCheque?Type=FundFlow", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0401000014", "12. Balance Confirmation", "F_17_Acc/AccTrialBalance?Type=BalConfirmation&comcod=", "", true, "" });
@@ -14824,7 +14828,11 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0404000004", "03. Over all Leave Status", "F_81_Hrm/F_84_Lea/EmpLeaveInfo?Type=Leave", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000005", "05. Employee Leave Record", "F_81_Hrm/F_84_Lea/RptEmpLeaveRecod?Type=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0404000006", "05. Yearly Leave Record", "F_81_Hrm/F_84_Lea/RptYearlyLeaveRecord", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0404000006", "05. Leave Register(Yearly)", "F_81_Hrm/F_84_Lea/RptEmpLeaveStatus02?Type=yearlylvRegister", "", true, "" });
 
+
+
+           
 
             // Employee Transfer report
             mnuTbl1.Rows.Add(new Object[] { "0405000000", "Employee Transfer Info", "", "", false, "mb" });

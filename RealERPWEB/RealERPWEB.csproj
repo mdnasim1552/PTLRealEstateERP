@@ -2010,6 +2010,7 @@
     <Content Include="DefaultPage.aspx" />
     <Content Include="DocumentAttached.aspx" />
     <Content Include="ErrorHandling.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="fonts\AgencyFB-Bold.svg" />
     <Content Include="fonts\arcena-webfont.svg" />
     <Content Include="fonts\flaticon.html" />
@@ -3064,6 +3065,7 @@
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\MonthlyTarget.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\RptgroupAttendance.aspx" />
+    <Content Include="F_81_Hrm\Image\DropDown.PNG" />
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
@@ -3523,6 +3525,7 @@
     <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
+    <Content Include="Scripts\gridviewScrollHaVertworow.min.js" />
     <Content Include="Scripts\highchart2.js" />
     <Content Include="Scripts\HighChartExportData.js" />
     <Content Include="Scripts\highchartexporting.js" />

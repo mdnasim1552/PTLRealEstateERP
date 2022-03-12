@@ -105,15 +105,20 @@ namespace RealERPWEB
                   
 
                     this.lnkOrintation.Visible = true;
-                    this.lnkOrintation.NavigateUrl = "~/Upload/bti/Winners of Monthly Award Giving (Dec'21).pdf";
+                    this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = true;
                     this.HypOrganogram.Visible = (userrole == "3" ? false : true); ;
 
                     break;
-                case "3354":
-
+                default:
+                
+                    this.lnkOrintation.Visible = false;
+                    this.HyperCodeofConduct.Visible = false;
+                    this.HypOrganogram.Visible = false;
                     this.pnlServHis.Visible = false;
-
+                    this.winsList.Visible = false;
+                    this.hrpolicy.Visible = false;
+                    
                     break;
 
 

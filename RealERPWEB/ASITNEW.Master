@@ -95,6 +95,7 @@
         }
 
         function closeNav() {
+
             document.getElementById("mySidenav").style.width = "75px";
             document.getElementById("main").style.marginLeft = "75px";
             console.log(document.querySelectorAll(".menu-item.has-child"));
@@ -723,7 +724,7 @@
 
 
         $(document).ready(function () {
-
+            GetNotifications();
             var functionIsRunning = 0;
             closeNav();
             $('#nav-bar-open').on('click', function () {
@@ -752,7 +753,7 @@
             //auto complete
 
 
-            GetNotifications();
+            
 
 
         });

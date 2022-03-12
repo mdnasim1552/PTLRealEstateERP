@@ -4044,6 +4044,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                     case "3101": // ASIT
                     case "3366": // Lanco
+                    case "3357": // Cube
                     case "1205"://P2P
                     case "3351"://P2P
                     case "3352"://P2P 
@@ -4160,7 +4161,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderTropical.rdlc";
                         break;
 
-                    case "3101": 
+                    //case "3101": 
                     case "3366": //Lanco
                         Reportpath = "~/Report/RptPurchaseOrderLanco.rdlc";
                         break;
@@ -4224,6 +4225,11 @@ namespace RealERPWEB.F_99_Allinterface
                     //case "3101"://Asit
                     case "3364": //JBS
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
+                        break;
+
+                    case "3101"://Asit
+                    case "3357": //Cube
+                        Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
 
                     case "3354": //Edison Real Estate                        

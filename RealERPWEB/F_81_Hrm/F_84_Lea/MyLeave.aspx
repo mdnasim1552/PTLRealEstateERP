@@ -9,15 +9,7 @@
             text-align: center;
         }
     </style>
-    <script>
-        function GetEmployeeform() {
-            $('#EmployeeEntry').modal('toggle');
-        }
-        function CloseModal() {
-            $('#EmployeeEntry').modal('hide');
-        }
-
-    </script>
+ 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -43,7 +35,7 @@
 
                 <div class="row">
                     <div class="col-12 col-lg-12 col-xl-3">
-                        <section class="card card-fluid" style="height: 650px">
+                        <section class="card card-fluid" style="min-height: 650px">
                             <!-- .card-body -->
                             <header class="card-header">Leave Apply</header>
                             <div class="card-body">
@@ -59,7 +51,7 @@
 
                                 <div class="form-group">
                                     <label for="ddlLvType">
-                                        Leave Type
+                                        Leave Type <span class="text-danger">*</span>
                                     </label>
                                     <asp:DropDownList ID="ddlLvType" class="form-control" runat="server"></asp:DropDownList>
                                 </div>
@@ -68,7 +60,7 @@
                                     <div class="col-md-6 pl-0">
                                         <!-- .form-group -->
                                         <div class="form-group">
-                                            <label for="sel1">From Date </label>
+                                            <label for="sel1">From Date <span class="text-danger">*</span></label>
                                             <asp:TextBox ID="txtgvenjoydt1" runat="server" OnTextChanged="txtgvenjoydt1_TextChanged1" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt1_CalendarExtender" runat="server" Enabled="True"
                                                 Format="dd-MMM-yyyy" TargetControlID="txtgvenjoydt1"></cc1:CalendarExtender>
@@ -79,7 +71,7 @@
                                     <!-- grid column -->
                                     <div class="col-md-6 pr-0" id="divBTWDay" runat="server">
                                         <div class="form-group">
-                                            <label for="sel1">To Date </label>
+                                            <label for="sel1">To Date <span class="text-danger">*</span></label>
 
                                             <asp:TextBox ID="txtgvenjoydt2" runat="server" OnTextChanged="txtgvenjoydt2_TextChanged" AutoPostBack="true" class="form-control"></asp:TextBox>
                                             <cc1:CalendarExtender ID="txtgvenjoydt2_CalendarExtender" runat="server" Enabled="True"
@@ -194,7 +186,7 @@
                         </section>
                     </div>
                     <div class="col-12 col-lg-12 col-xl-9">
-                        <section class="card card-fluid mb-0" style="height: 650px; flex-grow: 1; overflow: auto;">
+                        <section class="card card-fluid mb-0" style="min-height: 650px; flex-grow: 1; overflow: auto;">
                             <!-- .card-body -->
                             <header class="card-header">Applied Leave</header>
 
@@ -457,21 +449,7 @@
             </div>
 
 
-
-            <div id="EmployeeEntry" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-keyboard="false" data-backdrop="static" aria-hidden="true">
-                <div class="modal-dialog ">
-                    <div class="modal-content col-md-12 col-sm-12 ">
-                        <div class="modal-header hedcon">
-                            <%--<button type="button" class="close clsicon" data-dismiss="modal">&times;</button>--%>
-                            <h4>Intersted Leave days </h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-                        </div>
-                        <div class="modal-body">
-                        </div>
-                    </div>
-                </div>
-            </div>
+ 
 
         </ContentTemplate>
     </asp:UpdatePanel>

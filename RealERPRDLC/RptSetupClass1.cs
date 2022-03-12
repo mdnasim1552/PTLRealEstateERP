@@ -394,6 +394,7 @@ namespace RealERPRDLC
                 case "R_17_Acc.RptOpPayment": Rpt1a = SetRptOpPayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptRecAndPaymentAlli": Rpt1a = SetRptRecAndPaymentAlli(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptBankBalance02": Rpt1a = SetRptBankBalance02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.RptBankBalance02Cube": Rpt1a = SetRptBankBalance02Cube(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptRecAndPaymentProj": Rpt1a = SetRptRecAndPaymentProj(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptCashFlow02": Rpt1a = SetRptCashFlow02(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.RptAccBalConfirmation": Rpt1a = SetRptAccBalConfirmation(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -3051,6 +3052,13 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetRptBankBalance02(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.RescPayment0>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_17_Acc.EClassDB_BO.RescPayment01>)RptDataSet2));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet3", (List<RealEntity.C_17_Acc.EClassDB_BO.RescPayment02>)UserDataset));
+            return Rpt1a; 
+        }
+        private static LocalReport SetRptBankBalance02Cube(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.RescPayment0>)RptDataSet));
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_17_Acc.EClassDB_BO.RescPayment01>)RptDataSet2));
