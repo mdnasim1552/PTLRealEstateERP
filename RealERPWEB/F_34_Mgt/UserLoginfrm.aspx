@@ -189,7 +189,7 @@
                                 </ItemTemplate>
                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                             </asp:TemplateField>
-                            <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" />
+                            <asp:CommandField CancelText="Can" ShowEditButton="True" UpdateText="Up" ControlStyle-CssClass="d-none" />
                             <asp:TemplateField HeaderText="User Id">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lbtnUserId" runat="server"
@@ -350,6 +350,9 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvCentrName" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                        Width="150px"></asp:Label>
+                                     <asp:Label ID="lblempid" runat="server" Visible="false"
+                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                         Width="150px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -734,7 +737,7 @@
 
                         </div>
                         <div class="modal-body form-horizontal">
-                            <div class="row">
+                            <div class="row mb-1">
                                 <asp:Label ID="lblmUserId" runat="server" Visible="false"></asp:Label>
                                 <div class="col-md-3">
                                     <label>User ID </label>
@@ -743,8 +746,8 @@
                                     <asp:TextBox ID="txtmUesrId" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                            
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Short Name</label>
                                 </div>
@@ -752,8 +755,8 @@
                                     <asp:TextBox ID="txtmShortName" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                           
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Full Name</label>
                                 </div>
@@ -761,8 +764,8 @@
                                     <asp:TextBox ID="txtmFullName" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                            
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Designation</label>
                                 </div>
@@ -770,8 +773,8 @@
                                     <asp:TextBox ID="txtmDesignation" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                          
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Password</label>
                                 </div>
@@ -779,7 +782,7 @@
                                     <asp:TextBox ID="txtmPassword" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Active</label>
                                 </div>
@@ -787,7 +790,7 @@
                                     <asp:CheckBox ID="chkmUserActive" runat="server" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Email ID</label>
                                 </div>
@@ -795,8 +798,8 @@
                                     <asp:TextBox ID="txtmUserEmail" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                           
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Web Mail Pass.</label>
                                 </div>
@@ -804,8 +807,8 @@
                                     <asp:TextBox ID="txtmWebMailPass" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                            
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Graph</label>
                                 </div>
@@ -813,8 +816,8 @@
                                     <asp:TextBox ID="txtmGraph" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                            
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Employee ID</label>
                                 </div>
@@ -822,8 +825,8 @@
                                     <asp:DropDownList ID="ddlmEmpId" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-                            <br />
-                            <div class="row">
+                            
+                            <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>User Role</label>
                                 </div>

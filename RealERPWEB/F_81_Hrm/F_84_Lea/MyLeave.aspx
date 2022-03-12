@@ -9,6 +9,27 @@
             text-align: center;
         }
     </style>
+
+     <script type="text/javascript">
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+        function pageLoaded() {
+
+            $("input, select").bind("keydown", function (event) {
+                var k1 = new KeyPress();
+                k1.textBoxHandler(event);
+
+            });
+
+            $('.chzn-select').chosen({ search_contains: true });
+        } 
+        $(document).ready(function () {
+
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+
+        });
+     </script>
  
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -39,6 +60,17 @@
                             <!-- .card-body -->
                             <header class="card-header">Leave Apply</header>
                             <div class="card-body">
+
+                                 <div class="form-group" id="empMgt" runat="server" visible="false">
+                                    <label for="ddlLvType">
+                                        Employee <span class="text-danger">*</span>
+                                    </label>
+                                   
+                                      <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
+                                                    CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
+                                                </asp:DropDownList>
+
+                                </div>
 
                                 <div class="form-group">
                                     <label for="ddlLvType">Apply Date  <span id="sspnlv" class="text-danger" runat="server" visible="false">
