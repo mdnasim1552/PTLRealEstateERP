@@ -953,7 +953,7 @@
                                                     <span class="input-group-addon glypingraddon">
                                                         <asp:Label ID="lblReqNarrP" runat="server" CssClass="lblTxt lblName">Terms & <br /> Conditions </asp:Label>
                                                     </span>
-                                                    <asp:TextBox ID="txtOrderNarrP" runat="server" class="form-control" Rows="2" TextMode="MultiLine"></asp:TextBox>
+                                                    <asp:TextBox ID="txtOrderNarrP" runat="server" class="form-control" Rows="6" TextMode="MultiLine"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>

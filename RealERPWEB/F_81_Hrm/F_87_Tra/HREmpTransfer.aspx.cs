@@ -283,7 +283,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             string comcod = this.GetCompCode();
             string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" :
                     this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-            string pactcode = this.ddlprjlistfrom.SelectedValue.ToString() + "%";
+            string pactcode =  "%";//this.ddlprjlistfrom.SelectedValue.ToString() + "%";
             string emplist = "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLIST", pactcode, emplist, company, "", "", "", "", "", "");
             if (ds1 == null)
@@ -302,6 +302,20 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 this.ddlprjlistfrom.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
                 this.ddlCompany.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
                 this.txtEmpDesignation.Text = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["desig"].ToString();
+            }
+        }
+
+        private void GetComASecSelected()
+        {
+            string empid = this.ddlEmpList.SelectedValue.ToString().Trim();
+            DataTable dt = (DataTable)Session["tblemp"];
+            DataRow[] dr = dt.Select("empid = '" + empid + "'");
+            if (dr.Length > 0)
+            {
+                this.ddlCompany.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
+                //this.ddlDepartment.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
+                // this.ddlProjectName_SelectedIndexChanged(null,null);
+                this.ddlprjlistfrom.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
             }
         }
         protected void Load_Cur_Trans_NO()
@@ -519,20 +533,21 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.ddlDepartment.DataBind();
             this.ddlDepartment_SelectedIndexChanged(null, null);
         }
+        
 
         protected void ddlEmpList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dt = (DataTable)Session["tblemp"];
-            string empid = this.ddlEmpList.SelectedValue.ToString();
-            DataRow[] dr = dt.Select("empid='" + empid + "'");
-            if (dr.Length == 0)
-            {
-                this.txtEmpDesignation.Text = "";
-                return;
+            //DataTable dt = (DataTable)Session["tblemp"];
+            //string empid = this.ddlEmpList.SelectedValue.ToString();
+            //DataRow[] dr = dt.Select("empid='" + empid + "'");
+            //if (dr.Length == 0)
+            //{
+            //    this.txtEmpDesignation.Text = "";
+            //    return;
 
-            }
-            this.txtEmpDesignation.Text = dr[0]["desig"].ToString();
-
+            //}
+            //this.txtEmpDesignation.Text = dr[0]["desig"].ToString();
+            this.GetComASecSelected();
         }
 
         protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
@@ -544,5 +559,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         {
             this.GetToSection();
         }
+
+       
     }
 }

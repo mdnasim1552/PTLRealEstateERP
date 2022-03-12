@@ -32,6 +32,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetProjectName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE OFF DAY'S INFORMATION";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+                getVisible();
             }
         }
 
@@ -48,6 +49,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
 
+        }
+        private void getVisible()
+        {
+            //string comcod = this.GetComCode();
+            //if ((comcod == "3365") || (comcod == "3101"))
+            //{
+            //    this.ChkSPTHU.Visible = true;
+            //}
         }
         private void GetCompany()
         {
@@ -308,7 +317,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string Section = (this.ddlProjectName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlProjectName.SelectedValue.ToString()) + "%";
             string employee = (this.ddlEmpName.SelectedValue.ToString() == "000000000000" ? "" : this.ddlEmpName.SelectedValue.ToString()) + "%";
             string reason = this.txtReason.Text.Trim();
-            string dStatus = (this.Chkgov.Checked == true) ? "1" : "0";
+
+            string dStatus = this.ddlType.SelectedValue.ToString()==""?"W" : this.ddlType.SelectedValue.ToString();
+            
+            
             for (int i = 0; i < this.chkDate.Items.Count; i++)
             {
                 if (this.chkDate.Items[i].Selected)
@@ -318,16 +330,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "INSERTORUPOFFDAY", Company, Department, Section, employee, offdate, reason, dStatus, "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Fail ";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Updated Fail " + "');", true);
+
+                     
                         return;
 
                     }
 
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Updated Successfully" + "');", true);
+
+            
             this.chkoffDays.Checked = false;
             this.chkoffDays_CheckedChanged(null, null);
 
@@ -513,6 +527,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             // this.GetSection();
             this.GetProjectName();
         }
+
+       
+       
     }
 }
 

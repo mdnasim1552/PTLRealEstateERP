@@ -40,7 +40,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     (this.Request.QueryString["Type"].ToString().Trim() == "TopSalary") ? "Salary Top Sheet" : (this.Request.QueryString["Type"].ToString().Trim() == "TopSheetPID") ? "Salary Top Sheet (Project)" :
                     "EMPLOYEE SALARY SUMMARY INFORMATION ";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
+               
 
 
             }
@@ -55,7 +55,35 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
 
+        private void GetDesignation()
+        {
 
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETDESIGNATION", "", "", "", "", "", "", "", "", "");
+            Session["tbldesig"] = ds1.Tables[0];
+            if (ds1 == null)
+                return;
+            this.ddlfrmDesig.DataTextField = "designation";
+            this.ddlfrmDesig.DataValueField = "desigcod";
+            this.ddlfrmDesig.DataSource = ds1.Tables[0];
+            this.ddlfrmDesig.DataBind();
+            this.ddlfrmDesig.SelectedValue = "0345001";
+            this.GetDessignationTo();
+        }
+
+        private void GetDessignationTo()
+        {
+
+            DataTable dt = (DataTable)Session["tbldesig"];
+            //string desigcod = this.ddlfrmDesig.SelectedValue.ToString().Trim();
+            //DataView dv1 = dt.DefaultView;
+            //dv1.RowFilter = "desigcod not in ('" + desigcod + "')";
+            this.ddlToDesig.DataTextField = "designation";
+            this.ddlToDesig.DataValueField = "desigcod";
+            this.ddlToDesig.DataSource = dt;
+            this.ddlToDesig.DataBind();
+
+        }
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -76,13 +104,24 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case "CashSalary":
                     this.MultiView1.ActiveViewIndex = 1;
 
-
+                    this.GetDesignation();
+                    this.GetDessignationTo();
                     string comcod = this.GetComeCode();
 
-                    if (comcod == "3355")
+
+                    switch (comcod)
                     {
-                        this.rbtnlistsaltypeAddItem();
+                        case "3355":
+                            this.rbtnlistsaltypeAddItem();
+                            break;
+                        case "3354":
+                            this.PnlDesign.Visible = true;
+                            break;
+                        case "3365": // BTI 
+                            this.PnlDesign.Visible = false;
+                            break;
                     }
+
 
                     break;
 
@@ -480,13 +519,18 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             switch (comcod)
             {
-
+                case "3354":
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
                 case "3355":
                     //exclumgt = (this.ddlSection.SelectedValue.ToString() == "000000000000" && chkExcluMgt.Checked) ? "exclumgt" : "";
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : (this.rbtnlistsaltype.SelectedIndex == 2) ? "86003%" : "86%";
                     break;
 
                 default:
+                     DesigFrom = "0399999";
+                     DesigTo = "0311001";
                     exclumgt = "";
                     break;
 
@@ -1552,10 +1596,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void PrintCashSalary()
         {
-
-
             //Sanmar
-
             string comcod = this.GetComeCode();
             switch (comcod)
             {
@@ -1578,9 +1619,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
             }
-
         }
-
 
         private void PrintCashSalaryEdison()
         {

@@ -11,6 +11,9 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
         [Serializable]
         public class LvApproval
         {
+            
+            public string id { get; set; }
+            public string empuserid { get; set; }
             public string comcod { get; set; }
             public string ltrnid { get; set; }
             public string lvtype { get; set; }
@@ -26,6 +29,8 @@ namespace RealEntity.C_81_Hrm.C_84_Lea
             public string deptanme { get; set; }
             public double duration { get; set; }
             public bool forward { get; set; }
+            public bool ishalfday { get; set; }
+            
 
         }
         [Serializable]

@@ -68,9 +68,7 @@
                 });
             }); 
           
-        }
-      
-
+        }    
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -639,7 +637,7 @@
                             </div>
 
                             <div class="table-responsive" id="SummaryAttinfo" runat="server">
-                                <asp:GridView ID="gvMonthlyattSummary" runat="server" PageSize="50"
+                                <asp:GridView ID="gvMonthlyattSummary" runat="server" PageSize="50" 
                                     AutoGenerateColumns="False" ShowFooter="True" AllowPaging="True" OnPageIndexChanging="gvMonthlyattSummary_PageIndexChanging"
                                     CssClass="table-striped table-hover table-bordered grvContentarea">
                                     <RowStyle />
@@ -667,161 +665,194 @@
 
                                         <asp:TemplateField HeaderText="01" HeaderStyle-Wrap="true">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv01summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))
+                                                <asp:Label ID="lgv01summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))=="LP"?"bg-danger d-block":""%>'
+                                                    
+                                                    
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col1s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="02">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv02summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col2s"))
+                                                <asp:Label ID="lgv02summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col2s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col2s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col2s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="03">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv03summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col3s"))
+                                                <asp:Label ID="lgv03summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col3s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col3s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col3s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="04">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv04summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col4s"))
+                                                <asp:Label ID="lgv04summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col4s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col4s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col4s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="05">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv05summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col5s"))
+                                                <asp:Label ID="lgv05summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col5s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col5s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col5s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="06">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv06summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col6s"))
+                                                <asp:Label ID="lgv06summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col6s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col6s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col6s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="07">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv07summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col7s"))
+                                                <asp:Label ID="lgv07summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col7s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col7s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col7s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="08">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv08summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col8s"))
+                                                <asp:Label ID="lgv08summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col8s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col8s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col8s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="09">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv09summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))
+                                                <asp:Label ID="lgv09summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))=="LP"?"bg-danger d-block":""%>' runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col9s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="10">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv10summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col10s"))
+                                                <asp:Label ID="lgv10summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col10s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col10s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col10s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="11">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv11summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col11s"))
+                                                <asp:Label ID="lgv11summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col11s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col11s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col11s"))
                                            %>'
-                                                    Font-Size="11px"></asp:Label>
+                                                    Font-Size="11px" ></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="12">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv12summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col12s"))
+                                                <asp:Label ID="lgv12summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col12s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col12s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col12s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="13">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv13summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col13s"))
+                                                <asp:Label ID="lgv13summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col13s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col13s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col13s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="14">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv14summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col14s"))
+                                                <asp:Label ID="lgv14summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col14s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col14s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col14s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="15">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv15summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col15s"))
+                                                <asp:Label ID="lgv15summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col15s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col15s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col15s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="16">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv16summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col16s"))
+                                                <asp:Label ID="lgv16summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col16s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col16s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col16s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
@@ -829,151 +860,181 @@
 
                                         <asp:TemplateField HeaderText="17">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv17summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col17s"))
+                                                <asp:Label ID="lgv17summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col17s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col17s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col17s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="18">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv18summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col18s"))
+                                                <asp:Label ID="lgv18summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col18s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col18s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col18s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="19">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv19summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col19s"))
+                                                <asp:Label ID="lgv19summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col19s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col19s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col19s"))
                                          %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="20">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv20summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col20s"))
+                                                <asp:Label ID="lgv20summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col20s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col20s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col20s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="21">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv21summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col21s"))
+                                                <asp:Label ID="lgv21summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col21s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col21s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col21s"))
                                         %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="22">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv22summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col22s"))
+                                                <asp:Label ID="lgv22summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col22s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col22s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col22s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="23">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv23summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col23s"))
+                                                <asp:Label ID="lgv23summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col23s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col23s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col23s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="24">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv24summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col24s"))
+                                                <asp:Label ID="lgv24summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col24s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col24s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col24s"))
                                           %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="25">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv25summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col25s"))
+                                                <asp:Label ID="lgv25summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col25s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col25s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col25s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="26">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv26summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col26s"))
+                                                <asp:Label ID="lgv26summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col26s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col26s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col26s"))
                                        %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="27">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv27summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col27s"))
+                                                <asp:Label ID="lgv27summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col27s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col27s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col27s"))
                                            %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="28">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv28summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col28s"))
+                                                <asp:Label ID="lgv28summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col28s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col28s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col28s"))
                                             %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="29">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv29summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col29s"))
+                                                <asp:Label ID="lgv29summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col29s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col29s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col29s"))
                                           %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="30">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv30summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col30s"))
+                                                <asp:Label ID="lgv30summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col30s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col30s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col30s"))
                                           %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="31">
                                             <ItemTemplate>
-                                                <asp:Label ID="lgv31summ" runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))
+                                                <asp:Label ID="lgv31summ" CssClass='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))=="L"?"bg-yellow d-block":
+                                                        Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))=="LP"?"bg-danger d-block":""%>'
+                                                    runat="server" Text='<%#  Convert.ToString(DataBinder.Eval(Container.DataItem, "col31s"))
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
@@ -983,7 +1044,9 @@
                                                 <asp:Label ID="lblPresent" runat="server" Text='<%#  Convert.ToDouble(DataBinder.Eval(Container.DataItem, "present")).ToString("#,##0; ")
                                              %>'
                                                     Font-Size="11px"></asp:Label>
+
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Late">
@@ -992,6 +1055,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
                                         <asp:TemplateField HeaderText="LP">
@@ -1000,6 +1064,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField> 
                                         
                                         <asp:TemplateField HeaderText="Absent">
@@ -1008,6 +1073,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Holiday">
@@ -1016,6 +1082,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Leave">
@@ -1024,6 +1091,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Total">
@@ -1032,6 +1100,7 @@
                                              %>'
                                                     Font-Size="11px"></asp:Label>
                                             </ItemTemplate>
+                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle BackColor="#F5F5F5" />

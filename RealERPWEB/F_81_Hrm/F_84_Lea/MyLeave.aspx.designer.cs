@@ -33,6 +33,24 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.UpdateProgress UpdateProgress2;
 
         /// <summary>
+        /// sspnlv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl sspnlv;
+
+        /// <summary>
+        /// chkBoxSkippWH control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkBoxSkippWH;
+
+        /// <summary>
         /// txtaplydate control.
         /// </summary>
         /// <remarks>
@@ -78,6 +96,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::AjaxControlToolkit.CalendarExtender txtgvenjoydt1_CalendarExtender;
 
         /// <summary>
+        /// divBTWDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBTWDay;
+
+        /// <summary>
         /// txtgvenjoydt2 control.
         /// </summary>
         /// <remarks>
@@ -94,6 +121,51 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender txtgvenjoydt2_CalendarExtender;
+
+        /// <summary>
+        /// diSkippDay control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl diSkippDay;
+
+        /// <summary>
+        /// CheckBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+
+        /// <summary>
+        /// diSkippDayDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl diSkippDayDetails;
+
+        /// <summary>
+        /// gvInterstLev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvInterstLev;
+
+        /// <summary>
+        /// divDurStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDurStatus;
 
         /// <summary>
         /// Duration control.

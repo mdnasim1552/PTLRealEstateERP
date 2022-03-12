@@ -52,7 +52,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -119,6 +119,7 @@
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_17_Acc.EClassDB_BO+SpLedger.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+EClassYearlySalesCRM.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_21_Mkt.ECRMClientInfo+RptProspectTransfer.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+AccCustPayLedgerCHL.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptMonWiseNewSales.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.EClassSales_02+RptSalPaySchedules.datasource" />
@@ -149,7 +150,12 @@
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisDetails.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasis.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptReqEntryJBS.rdlc" />
+    <EmbeddedResource Include="R_14_Pro\RptBillInfoLanco.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptAccLedgerCube.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptBankBalance02Cube.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech03.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech02.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\rptPrintVocherIntech01.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS02.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS03.rdlc" />
     <EmbeddedResource Include="R_17_Acc\rptPrintVocherJBS01.rdlc" />
@@ -582,6 +588,7 @@
     <EmbeddedResource Include="R_17_Acc\RptRatioAnalysis.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRealCollDetails.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRealCollDetailsOLD.rdlc" />
+    <EmbeddedResource Include="R_17_Acc\RptRecAndPaymentEntrust.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRecAndPayment.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRecAndPaymentActual.rdlc" />
     <EmbeddedResource Include="R_17_Acc\RptRecAndPaymentAlli.rdlc" />
@@ -615,6 +622,7 @@
     <EmbeddedResource Include="R_21_MKT\RptCallCenterLead.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptClietList.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptCRMClientInfo.rdlc" />
+    <EmbeddedResource Include="R_21_MKT\RptProspectTransfer.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptProspectWorking.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptSourceWiseLeads.rdlc" />
     <EmbeddedResource Include="R_21_MKT\RptYearlySales.rdlc" />
@@ -904,6 +912,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptGrpSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptIncomeSatatement.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipBTI_Old.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipEdisonReal.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlip.rdlc" />

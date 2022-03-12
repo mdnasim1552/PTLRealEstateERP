@@ -588,9 +588,14 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double genloan { get; set; }
             public double transded { get; set; }
             public double payables { get; set; }
-
             public int secsl { get; set; }
             public int deptsl { get; set; }
+            public double bank1 { get; set; }
+            public double bank2 { get; set; }
+            public double bank3 { get; set; }
+            public double bank4 { get; set; }
+            public double bank5 { get; set; }
+            public double bank6 { get; set; }
 
             public RptSalarySheet ()
             {
@@ -700,6 +705,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double kpi { get; set; }
             public double perbon { get; set; }
             public double foodal { get; set; }
+            public double transded { get; set; }
            
             public SalaryPaySlip()
             {

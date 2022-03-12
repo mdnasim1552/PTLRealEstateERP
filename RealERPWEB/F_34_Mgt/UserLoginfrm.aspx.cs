@@ -420,10 +420,13 @@ namespace RealERPWEB.F_34_Mgt
             string comcod = this.GetComeCode();
             //string gcode = ((Label)gvUseForm.Rows[e.NewEditIndex].FindControl("lblsecid")).Text.Trim().Replace("-", "");
             int rowindex = (this.gvUseForm.PageSize) * (this.gvUseForm.PageIndex) + e.NewEditIndex;
-
             string empcode = ((DataTable)Session["tblUsrinfo"]).Rows[rowindex]["empid"].ToString();
+            string userrole = ((DataTable)Session["tblUsrinfo"]).Rows[rowindex]["userrole"].ToString();
 
+           
             DropDownList ddl3 = (DropDownList)this.gvUseForm.Rows[e.NewEditIndex].FindControl("ddlempid");
+            DropDownList ddlrole = (DropDownList)this.gvUseForm.Rows[e.NewEditIndex].FindControl("ddlUserRole");
+
             ViewState["gindex"] = e.NewEditIndex;
             string SearchProject = "%" + ((TextBox)gvUseForm.Rows[e.NewEditIndex].FindControl("txtSrCentrid")).Text.Trim() + "%";
             DataSet ds1 = User.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "GETEMPTIDNAME", SearchProject, "", "", "", "", "", "", "", "");
@@ -432,6 +435,8 @@ namespace RealERPWEB.F_34_Mgt
             ddl3.DataSource = ds1;
             ddl3.DataBind();
             ddl3.SelectedValue = empcode;
+
+            ddlrole.SelectedValue = userrole;
 
 
 
@@ -677,11 +682,11 @@ namespace RealERPWEB.F_34_Mgt
             //    }
             //}
 
+            // temporay off send notificaition
+            //string eventdesc = "Page Permission Update";
+            //string eventdesc2 = "Dear User, Some Permission Updated, Please Check, ";
             
-            string eventdesc = "Page Permission Update";
-            string eventdesc2 = "Dear User, Some Permission Updated, Please Check, ";
-            
-            bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+            //bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
              
 
             msg="User Permission Updated Successfully";
@@ -1246,6 +1251,49 @@ namespace RealERPWEB.F_34_Mgt
             // for notification
             // title  details recvier id
             bool result2 = UserNotify.SendNotification(eventdesc, eventdesc2, usrid);
+        }
+
+        protected void lnkEditUser_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string empcode = ((LinkButton)this.gvUseForm.Rows[RowIndex].FindControl("lbtnUserId")).Text.Trim();
+
+
+            DataSet ds1 = User.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETUSERINFOBYID", empcode, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+       
+            
+            this.txtmUesrId.Text = ds1.Tables[0].Rows[0]["usrid"].ToString();
+            this.txtmShortName.Text = ds1.Tables[0].Rows[0]["usrsname"].ToString();
+            this.txtmFullName.Text = ds1.Tables[0].Rows[0]["usrname"].ToString();
+            this.txtmDesignation.Text = ds1.Tables[0].Rows[0]["usrdesig"].ToString();
+            this.txtmPassword.Text = "";
+            this.txtmUserEmail.Text = ds1.Tables[0].Rows[0]["mailid"].ToString();
+            this.txtmWebMailPass.Text = ds1.Tables[0].Rows[0]["mailpass"].ToString();
+            this.txtmGraph.Text = ds1.Tables[0].Rows[0]["eventspanel"].ToString();
+            this.ddlmEmpId.SelectedValue = ds1.Tables[0].Rows[0]["empid"].ToString();
+            this.ddlmUserRole.SelectedValue = ds1.Tables[0].Rows[0]["userrole"].ToString();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
+
+        }
+
+        private void ResetData()
+        {
+            this.txtmUesrId.Text = "";
+            this.txtmShortName.Text = "";
+            this.txtmFullName.Text = "";
+            this.txtmDesignation.Text = "";
+            this.txtmPassword.Text = "";
+            this.txtmUserEmail.Text = "";
+            this.txtmWebMailPass.Text = "";
+            this.txtmGraph.Text = "";
+            this.ddlmEmpId.SelectedValue = "";
+            this.ddlmUserRole.SelectedValue = "";
         }
     }
 }

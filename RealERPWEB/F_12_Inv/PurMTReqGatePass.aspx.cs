@@ -673,10 +673,7 @@ namespace RealERPWEB.F_12_Inv
             string PostedDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
 
-            // duplucate check
-
-
-
+            // duplicate check
 
             switch (comcod)
             {
@@ -684,8 +681,9 @@ namespace RealERPWEB.F_12_Inv
                 case "3340":
                 case "3338":
 
-
-
+                case "1205":
+                case "3351":
+                case "3352":
 
                     if (getpref.Length == 0)
                     {

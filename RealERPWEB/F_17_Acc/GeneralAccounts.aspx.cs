@@ -195,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-                // case "3101": // Test
+                case "3101": // Test
                 case "3332":
                 case "3339":
                 case "3356": // intech 
@@ -905,15 +905,13 @@ namespace RealERPWEB.F_17_Acc
                     //    (ConAccHead.Substring(0, 4) == "1901" ? "C" : "B")));
                     //string VNo2 = (VNo1 == "J" ? "V" : (((Label)this.Master.FindControl("lblTitle")).Text.Contains("Payment") ? "D" : (((Label)this.Master.FindControl("lblTitle")).Text.Contains("Contra") ? "T" : "C")));
                     string VNo3 = this.ddlvoucher.SelectedValue.ToString().Trim();
-                    ;
-
                     string date = this.txtEntryDate.Text;
 
                     DataSet ds4 = accData.GetTransInfo(comcod, ProceNameNar, "LASTNARRATION", VNo3, date, "", "", "", "", "", "", "");
-                    if (ds4.Tables[0].Rows.Count == 0)
-                        this.txtNarration.Text = "";
+                    if (ds4.Tables[0].Rows.Count > 0)
+                        this.txtNarration.Text = this.getLastNarration(ds4);
                     else
-                        this.txtNarration.Text = (comcod == "1103" || comcod == "3339") ? "" : ds4.Tables[0].Rows[0]["vernar"].ToString();
+                        this.txtNarration.Text = ""; 
                     //---------------------
 
                     this.GetVouCherNumber();
@@ -1021,6 +1019,26 @@ namespace RealERPWEB.F_17_Acc
             GetBalanceInfo();
         }
 
+        private string getLastNarration (DataSet ds1)
+        {
+            string narration = "";
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "1103":
+                case "3339":
+                case "3353":
+                case "3356":
+                    narration = "";
+                    break;
+
+                default:
+                    narration = ds1.Tables[0].Rows[0]["vernar"].ToString();
+                    break;
+            }
+            return narration;
+        }
 
 
 

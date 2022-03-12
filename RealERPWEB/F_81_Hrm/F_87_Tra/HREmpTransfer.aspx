@@ -80,7 +80,7 @@
                             </asp:DropDownList>
                             <asp:Label ID="Label5" runat="server" CssClass="btn btn-sm btn-secsondary mr-2">Employee</asp:Label>
                             <asp:DropDownList ID="ddlEmpList" data-placeholder="Choose Employee.." runat="server"
-                                CssClass="chzn-select form-control" AutoPostBack="true">
+                                CssClass="chzn-select form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpList_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
 
@@ -93,7 +93,7 @@
 
 
                             <asp:Label ID="Label2" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 ">Department</asp:Label>
-                            <asp:DropDownList ID="ddlTodept" data-placeholder="Choose ToDepartment.." runat="server" OnSelectedIndexChanged="ddlTodept_SelectedIndexChanged" CssClass="chzn-select form-control">
+                            <asp:DropDownList ID="ddlTodept" data-placeholder="Choose ToDepartment.." runat="server" OnSelectedIndexChanged="ddlTodept_SelectedIndexChanged" AutoPostBack="true" CssClass="chzn-select form-control">
                             </asp:DropDownList>
 
 

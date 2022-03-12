@@ -300,7 +300,7 @@ namespace RealERPWEB.F_22_Sal
                     this.payscheduleRDLC();
                     break;
 
-                 default:
+                default:
                     this.payscheduleCrystal();
                     break;
             }
@@ -337,16 +337,28 @@ namespace RealERPWEB.F_22_Sal
             string appatn = basicinfo.Rows[0]["custname"].ToString();
             //direct cost
             string txtdisamt = this.ldiscountt.Text.ToString();
-            double disamt = Convert.ToDouble(txtdisamt); 
-            string ldiscountpP = this.ldiscountp.Text.ToString(); 
+            double disamt = Convert.ToDouble(txtdisamt);
+            string ldiscountpP = this.ldiscountp.Text.ToString();
             string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
 
 
             DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
 
-            //comName,date1,prjName,prjAddress,aprtno,floorno,aprtsize,appatn
-            //appatn,txtdisamt, lbldisamt,lblunitamt,txtgntamt,txtcompinfo
-            string prjAddress = ds1.Tables[1].Rows[0]["GDATAT"].ToString();
+            string cname = ds1.Tables[1].Rows[0]["cname"].ToString();
+            string cphone = ds1.Tables[1].Rows[0]["cphone"].ToString();
+            string caddress = ds1.Tables[1].Rows[0]["caddress"].ToString();
+            string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
+            string salesteam = this.ddlSalesTeam.SelectedItem.Text.ToString();
+            string bkdate = Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+            string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+            string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+
+            /*
+                    this.txtBookDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtAggrementdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txthandoverdate.Text = System.DateTime.Today.AddYears(2).ToString("dd-MMM-yyyy");
+             */
+
 
             //DataView dv1 = dt01.DefaultView;
             ////dv1.RowFilter = "gp like ('" + gp + "')";
@@ -376,7 +388,7 @@ namespace RealERPWEB.F_22_Sal
             DataTable dt3 = dv3.ToTable();
 
 
-            string lbldisamt= "Budgeted Amount's Disc : " + ldiscountpP;
+            string lbldisamt = "Budgeted Amount's Disc : " + ldiscountpP;
             string txtTotal = gccamt.ToString("#,##0.00;(#,##0.00); ");
 
             var list = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
@@ -394,6 +406,13 @@ namespace RealERPWEB.F_22_Sal
                 case "3101":
                 case "3366": // Lanco
                     rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleLanco", list, list2, list3);
+                    rpt.SetParameters(new ReportParameter("cname", cname));
+                    rpt.SetParameters(new ReportParameter("cphone", cphone));
+                    rpt.SetParameters(new ReportParameter("caddress", caddress));
+                    rpt.SetParameters(new ReportParameter("salesteam", salesteam));
+                    rpt.SetParameters(new ReportParameter("bkdate", bkdate));
+                    rpt.SetParameters(new ReportParameter("agdate", agdate));
+                    rpt.SetParameters(new ReportParameter("hodate", hodate));                  
 
                     break;
 
@@ -407,7 +426,7 @@ namespace RealERPWEB.F_22_Sal
             rpt.SetParameters(new ReportParameter("ComName", comnam));
             rpt.SetParameters(new ReportParameter("date1", date1));
             rpt.SetParameters(new ReportParameter("prjName", prjName));
-            rpt.SetParameters(new ReportParameter("prjAddress", prjAddress));
+            rpt.SetParameters(new ReportParameter("prjAddress", paddress));
             rpt.SetParameters(new ReportParameter("aprtno", aprtno));
             rpt.SetParameters(new ReportParameter("floorno", floorno));
             rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
@@ -2082,12 +2101,6 @@ namespace RealERPWEB.F_22_Sal
                             jobdesc = jobdesc + litem.Text + ", ";
 
                         }
-
-
-
-
-
-
                     }
 
                 }

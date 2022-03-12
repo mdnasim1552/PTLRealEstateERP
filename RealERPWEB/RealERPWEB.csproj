@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2004,6 +2004,7 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="DashboardAll.aspx" />
     <Content Include="DashboardHRM.aspx" />
+    <Content Include="DashboardHRM_NEW.aspx" />
     <Content Include="DeafultMenu.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DefaultPage.aspx" />
@@ -2943,6 +2944,7 @@
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten01.aspx" />
@@ -2968,6 +2970,7 @@
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptHREmpLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
@@ -2990,8 +2993,10 @@
     <Content Include="F_81_Hrm\F_89_Pay\EmpLoanInfo.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpMonthSummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpOverTimeSalary.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RpHRtPayroll.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptBankStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptEmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
@@ -3060,12 +3065,14 @@
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\MonthlyTarget.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\RptgroupAttendance.aspx" />
+    <Content Include="F_81_Hrm\Image\DropDown.PNG" />
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
+    <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
@@ -3255,6 +3262,7 @@
     <Content Include="Image\erplogo.png" />
     <Content Include="Image\EX.png" />
     <Content Include="Image\f5.png" />
+    <Content Include="Image\facebook_Icon.png" />
     <Content Include="Image\favicon-16x16.png" />
     <Content Include="Image\favicon-32x32.png" />
     <Content Include="Image\favicon.ico" />
@@ -3467,6 +3475,7 @@
     <Content Include="landMenu-1.png" />
     <Content Include="LetterDefault.aspx" />
     <Content Include="LogIn.aspx" />
+    <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
@@ -3516,6 +3525,7 @@
     <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
+    <Content Include="Scripts\gridviewScrollHaVertworow.min.js" />
     <Content Include="Scripts\highchart2.js" />
     <Content Include="Scripts\HighChartExportData.js" />
     <Content Include="Scripts\highchartexporting.js" />
@@ -3714,11 +3724,14 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
+    <Content Include="ExcelFile\Book1.xlsx" />
+    <Content Include="ExcelFile\Book16.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Bundle.config" />
+    <Content Include="Upload\Code of Conduct Bangla.pdf" />
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Web.config" />
     <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
@@ -3767,6 +3780,13 @@
     </Compile>
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.designer.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>
@@ -4097,6 +4117,13 @@
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx.designer.cs">
       <DependentUpon>HREmpAbsCtAuto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx.cs">
+      <DependentUpon>HREmpHolidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx.designer.cs">
+      <DependentUpon>HREmpHolidays.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx.cs">
       <DependentUpon>HREmpLWP.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4272,6 +4299,13 @@
     <Compile Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx.designer.cs">
       <DependentUpon>RptYearlyLeaveRecord.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.cs">
+      <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.designer.cs">
+      <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx.cs">
       <DependentUpon>EmpAllow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4384,12 +4418,26 @@
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx.cs">
+      <DependentUpon>ModeofPaymentDept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx.designer.cs">
+      <DependentUpon>ModeofPaymentDept.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.cs">
+      <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.designer.cs">
+      <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
@@ -4426,6 +4474,13 @@
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.designer.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4453,6 +4508,13 @@
     </Compile>
     <Compile Include="LetterDefault.aspx.designer.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_new.aspx.cs">
+      <DependentUpon>login_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_new.aspx.designer.cs">
+      <DependentUpon>login_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -11609,7 +11671,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="assets_new\" />
     <Folder Include="bin\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
@@ -11618,6 +11679,7 @@
     <Folder Include="Log Files\" />
     <Folder Include="SupWorkOreder\" />
     <Folder Include="tinymce\" />
+    <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASITMaster.Master" />
@@ -11628,8 +11690,6 @@
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />
-    <Content Include="ExcelFile\Book1.xlsx" />
-    <Content Include="ExcelFile\Book16.xlsx" />
     <Content Include="Image\2.3 FlowChartHR %28Revised%29.pdf" />
     <Content Include="Image\General ERP Document %2830042015%29.pdf" />
     <Content Include="Image\MicroVsOrac.pdf" />

@@ -39,13 +39,13 @@ namespace RealERPWEB.F_14_Pro
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string comnam = hst["comnam"].ToString();
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("~/AcceessError.aspx");
 
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
 
-                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled =  (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Purchase Order";
                 this.txtCurOrderDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
@@ -56,7 +56,7 @@ namespace RealERPWEB.F_14_Pro
 
                 //only current date
 
-               // this.CurDate();
+                // this.CurDate();
 
                 if (Session["tblordrange"] == null)
                 {
@@ -822,6 +822,7 @@ namespace RealERPWEB.F_14_Pro
             this.ddlSuplierList.DataSource = ds1.Tables[1];
             this.ddlSuplierList.DataBind();
             ViewState["tblResP"] = ds1.Tables[0];
+            ViewState["tblProject"] = ds1.Tables[1];
             this.ddlSuplierList_SelectedIndexChanged(null, null);
         }
 
@@ -867,8 +868,18 @@ namespace RealERPWEB.F_14_Pro
                 this.lblissueno.Enabled = false;
                 mOrderNo = this.ddlPrevOrderList.SelectedValue.ToString();
             }
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1,
-                      "", "", "", "", "", "", "");
+
+            DataTable dt2 = (DataTable)ViewState["tblProject"];
+            string pactcode = "";
+            if (dt2 != null)
+            {
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    pactcode += dt2.Rows[i]["pactcode"].ToString();
+                }
+            }
+
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["dsOrder"] = ds1;
@@ -912,10 +923,9 @@ namespace RealERPWEB.F_14_Pro
             this.SchData_Bind();
 
 
-
-
             if (mOrderNo == "NEWORDER")
             {
+
                 ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTORDERINFO", CurDate1, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
@@ -936,14 +946,8 @@ namespace RealERPWEB.F_14_Pro
                     case "5101":
                     case "3330":
                         this.GetIssueNO();
-
-
                         break;
-
-
                 }
-
-
                 return;
             }
 
@@ -952,7 +956,6 @@ namespace RealERPWEB.F_14_Pro
             this.txtOrderRefNo.Text = ds1.Tables[3].Rows[0]["pordref"].ToString();
             this.txtLETDES.Text = ds1.Tables[3].Rows[0]["leterdes"].ToString();
             this.txtSubject.Text = ds1.Tables[3].Rows[0]["subject"].ToString();
-
 
             this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[3].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
             this.txtPreparedBy.Text = ds1.Tables[3].Rows[0]["pordbydes"].ToString();
@@ -978,10 +981,10 @@ namespace RealERPWEB.F_14_Pro
             //{
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnDelete")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnUpdatePurOrder")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
-           
-            
-            
-          
+
+
+
+
 
 
             //For Forward
@@ -1000,7 +1003,7 @@ namespace RealERPWEB.F_14_Pro
             }
 
             //For Visible Item Serial Manama
-            if (comcod == "3353" || comcod == "3101")
+            if (comcod == "3353")
             {
                 this.gvOrderInfo.Columns[1].Visible = true;
             }
@@ -1238,7 +1241,7 @@ namespace RealERPWEB.F_14_Pro
                         case "1205":  //P2P Construction
                         case "3351":  //wecon Properties
                         case "3352":  //p2p360
-                        //case "3101": // ASIT
+                                      //case "3101": // ASIT
 
                             break;
 
@@ -1599,28 +1602,22 @@ namespace RealERPWEB.F_14_Pro
             string mORDERDAT = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
 
             // Back date Entry  only Tropical
-            if (comcod=="3339")
+            if (comcod == "3339")
             {
                 DateTime Bdate;
                 Bdate = this.GetBackDate();
                 bool dconi = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(mORDERDAT));
                 string type1 = this.Request.QueryString["InputType"].ToString().Trim();
-                
-                    if (type1== "OrderEntry")
+
+                if (type1 == "OrderEntry")
+                {
+                    if (!dconi)
                     {
-                      if (!dconi)
-                        {
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
-                            return;
-                        }
-
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
+                        return;
                     }
-
+                }
             }
-           
-
-
-
 
             string mPORDUSRID = "";
             string mAPPRUSRID = "";
@@ -1744,11 +1741,9 @@ namespace RealERPWEB.F_14_Pro
             string type = this.Request.QueryString["InputType"];
             switch (type)
             {
-
                 case "FirstApp":
                     tbl1.Rows[0]["forward"] = forwarddesc;
                     break;
-
 
                 default:
                     break;
@@ -1762,9 +1757,13 @@ namespace RealERPWEB.F_14_Pro
             bool istxtTerms;
             switch (comcod)
             {
-                case "1205":
+                case "1205": //p2p
                 case "3351":
                 case "3352":
+
+                case "3101":
+                case "3366": // lanco
+                case "3357": // Cube
                     terms = txtOrderNarrP.Text.Trim().ToString();
                     istxtTerms = false;
                     break;
@@ -1776,8 +1775,8 @@ namespace RealERPWEB.F_14_Pro
 
             string forward = (tbl1.Rows[0]["forward"].ToString().Trim().Length == 0) ? "False" : tbl1.Rows[0]["forward"].ToString();
             result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERB",
-                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward, 
-                             terms,"","");
+                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward,
+                             terms, "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
@@ -1861,7 +1860,7 @@ namespace RealERPWEB.F_14_Pro
                 }
             }
 
-           
+
 
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
@@ -1929,12 +1928,7 @@ namespace RealERPWEB.F_14_Pro
                             string comnam = hst["comnam"].ToString();
                             string compname = hst["compname"].ToString();
                             string frmname = "PurMRREntry.aspx?Type=Entry";
-
-
                             string SMSHead = "Ready To Recived, ";
-
-
-
                             string SMSText = comnam + ":\n" + SMSHead + "\n" + dsty.Rows[0]["projdesc1"].ToString() + "\n" + "MRF No:" + dsty.Rows[0]["mrfno"].ToString() + "\n" + "to Supplier: " +
                              dsty.Rows[0]["ssirdesc1"].ToString();
                             bool resultsms = sms.SendSmms(SMSText, userid, frmname);
@@ -2027,10 +2021,15 @@ namespace RealERPWEB.F_14_Pro
                     this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
                     break;
 
-                case "3101":
                 case "3364":
                     this.txtSubject.Text = "Purchase Order For ";
                     this.txtLETDES.Text = "This is an reference to your discussion had with us today, we are pleased to place an order for supplying Rmc at our project under the following terms & conditions.";
+                    break;
+
+                case "3101":
+                case "3357":
+                    this.txtSubject.Text = "Purchase Order For ";
+                    this.txtLETDES.Text = "Thank you very much for cooperating with Cube Holdings Ltd. Against your offer and further discussion we are offering you for the supply of ... under the following terms & condition and rate.";
                     break;
 
                 default:
@@ -2263,6 +2262,8 @@ namespace RealERPWEB.F_14_Pro
 
                 case "3330":
                 case "5101":
+                    //case "3348":
+
 
 
                     var groupedData = (from pactcode in dt1.AsEnumerable()
@@ -2297,7 +2298,10 @@ namespace RealERPWEB.F_14_Pro
 
                     }
 
+
                     //case "3101":
+                    //case "3348":
+
                     this.GetOrRefno(dt1.Rows[0]["pactcode"].ToString());
                     this.GetProConPerson(dt1.Rows[0]["pactcode"].ToString());
                     this.GetPreNarration();
@@ -2331,6 +2335,14 @@ namespace RealERPWEB.F_14_Pro
                     //this.ImagePanel.Visible = false;
                     break;
 
+                case "3101":
+                case "3357":
+                case "3366":
+                    this.divtermsp2p.Visible = true;
+                    this.divterms.Visible = false;
+                    this.txtOrderNarrP.Text = this.bindDataText();
+                    break;
+
                 default:
                     this.divtermsp2p.Visible = false;
                     this.divterms.Visible = true;
@@ -2339,9 +2351,45 @@ namespace RealERPWEB.F_14_Pro
             }
         }
 
+        private string bindDataText()
+        {
+            string comcod = this.GetCompCode();
+            string msg = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3357":
+                    msg = "1. Product quality must be ensured on the basis of requirement and as per site count. " +
+                        "\n2. Product should be newly produced, fresh and free from cracks and broken edges." +
+                        "\n3. Product delivery time must be on time." +
+                        "\n4. Payment shall be made by cash/A/C cheque after ………. Days of receipt of all materials in good conditions." +
+                        "\n5. Delivery place: at project site " +
+                        "\n6. Delivery date: ……………………" +
+                        "\n7. Cube Holdings Ltd. has the right to cancel the work order in any time." +
+                        "\n8. TDS will be applicable as per TAX ordinance compliance by 3%" +
+                        "\n9. Please send all bill in duplicate.";
+                    break;
 
+                case "3366":
+                    msg = "1. Delivery Place : " +
+                        "\n2. Delivery Date : " +
+                        "\n3. Contact Person : " +
+                        "\n4. Cell Number : " +
+                        "\n5. Bill of any supply order against purchase order shall be enclosed with the copy of purchase order and challan detected description of goods. Any discrepancy shall not be accepted." +
+                        "\n6. Copy of delivery challan must be signed by proprietor of supplying designation with seal containing name of his organization. " +
+                        "\n7. Supply must be completed within 24 hours of any purchase order otherwise the purchase order will be cancelled unless otherwise instructed." +
+                        "\n8. Any payment to the supplies more than Tk. 10,000.00 (Taka Ten thousand) will be made through A/c payee cheque." +
+                        "\n9. Payment shall have to be received from this office through money receipt of the company." +
+                        "\n10. The supplier will be obliged to change the quantity if it is damaged, unspecified and if there is a mismatch in the model according to the purchase order inside the supplied product packet. If not in stock, will be obliged to return the money";
+                    break;
 
+                default:
+                    msg = "";
+                    break;
+            }
 
+            return msg;
+        }
 
         protected void chkAllfrm_CheckedChanged(object sender, EventArgs e)
         {
@@ -2424,10 +2472,6 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lbtnGenerate_Click(object sender, EventArgs e)
         {
-
-
-
-
             this.pnlschgenerate.Visible = false;
             DataTable dt = (DataTable)ViewState["tblpaysch"];
             int toins = Convert.ToInt32("0" + this.txtTInstall.Text.Trim());
@@ -2449,14 +2493,11 @@ namespace RealERPWEB.F_14_Pro
                 dr["rmrks"] = "";
                 dr["rmrks02"] = "";
                 dt.Rows.Add(dr);
-
-
             }
             ViewState["tblpaysch"] = dt;
 
             this.chkVisible.Checked = false;
             this.SchData_Bind();
-
 
         }
 
@@ -2475,13 +2516,6 @@ namespace RealERPWEB.F_14_Pro
                 ((Label)this.gvPayment.FooterRow.FindControl("lblgvfait")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ait)", "")) ? 0.00 : dt.Compute("sum(ait)", ""))).ToString("#,##0;(#,##0); ");
                 ((Label)this.gvPayment.FooterRow.FindControl("lblgvfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
             }
-
-
-
-
-
-
-
 
 
         }
@@ -2560,6 +2594,8 @@ namespace RealERPWEB.F_14_Pro
         protected void chkCharging_CheckedChanged(object sender, EventArgs e)
         {
             this.PnlCharging.Visible = (chkCharging.Checked);
+            this.imgSearchProject_Click(null, null);
+            this.imgSearchCharge_Click(null, null);
         }
         protected void imgSearchCharge_Click(object sender, EventArgs e)
         {
@@ -4631,6 +4667,6 @@ namespace RealERPWEB.F_14_Pro
 
         }
 
-       
+
     }
 }

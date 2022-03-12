@@ -189,9 +189,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.gvabscount.DataSource = dt;
             this.gvabscount.DataBind();
             this.FooterCal();
-
-
-
         }
 
         private void FooterCal()
@@ -199,13 +196,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             DataTable dt = (DataTable)Session["tblabscount"];
             if (dt.Rows.Count == 0)
                 return;
-
-
-
             ((Label)this.gvabscount.FooterRow.FindControl("lgvFabsday")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(absday)", "")) ? 0.00
                         : dt.Compute("sum(absday)", ""))).ToString("#,##0;(#,##0); ");
-
-
         }
 
         protected void ibtnFindDepartment_Click(object sender, EventArgs e)
@@ -306,8 +298,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
 
                 double absday = Convert.ToDouble("0" + ((TextBox)this.gvabscount.Rows[i].FindControl("txtabsday")).Text.Trim());
+                string reason =((TextBox)this.gvabscount.Rows[i].FindControl("txtreason")).Text.Trim();
                 rowindex = (this.gvabscount.PageSize) * (this.gvabscount.PageIndex) + i;
                 dt.Rows[rowindex]["absday"] = absday;
+                dt.Rows[rowindex]["reason"] = reason;
             }
 
             Session["tblabscount"] = dt;
@@ -319,7 +313,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             DataTable dt = (DataTable)Session["tblabscount"];
 
             //log Entry
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
@@ -333,10 +326,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 string empid = dt.Rows[i]["empid"].ToString();
                 double absday = Convert.ToDouble(dt.Rows[i]["absday"]);
+                string reason = Convert.ToString(dt.Rows[i]["reason"]);
 
                 if (absday > 0)
                 {
-                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEABSAUTO", Monthid, empid, absday.ToString(), PostedByid, Posttrmid, Posteddat, "", "", "", "", "", "", "", "", "");
+                    bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPDATEABSAUTO", Monthid, empid, absday.ToString(), PostedByid, Posttrmid, Sessionid, Posteddat, reason, "", "", "", "", "", "", "");
                     if (!result)
                         return;
 

@@ -992,7 +992,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
         private void GetComASecSelected()
         {
-
             string empid = this.ddlPEmpName.SelectedValue.ToString().Trim();
             DataTable dt = (DataTable)ViewState["tblemp"];
             DataRow[] dr = dt.Select("empid = '" + empid + "'");
@@ -1004,8 +1003,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
 
             }
-
-
         }
 
 

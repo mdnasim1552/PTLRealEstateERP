@@ -34,16 +34,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("~/AcceessError.aspx");
-
-               
-
+                    Response.Redirect("~/AcceessError.aspx");   
                 this.GetDateSet();
-
-
                 this.GetCompName();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "EmpLeaveStatus") ? "Employee Leave Status"
-                    : (this.Request.QueryString["Type"].ToString() == "MonWiseLeave") ? "Employee Leave Status(Month Wise)" : "";
+                    : (this.Request.QueryString["Type"].ToString() == "MonWiseLeave") ? "Employee Leave Status(Month Wise)"
+                    : (this.Request.QueryString["Type"].ToString() == "yearlylvRegister") ? "Leave Register(Yearly)" : "Leave Register(Yearly)";
+
+
+        
                 this.ViewSaction();
 
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
@@ -97,6 +96,16 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 case "MonWiseLeave":
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
+
+
+                case "yearlylvRegister":
+
+                    DateTime curdate = System.DateTime.Today;
+                    this.txtfrmDate.Text = Convert.ToDateTime("01-Jan-" + curdate.ToString("yyyy")).ToString("dd-MMM-yyyy");
+                    this.txttoDate.Text = Convert.ToDateTime(this.txtfrmDate.Text).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");                    
+                    this.MultiView1.ActiveViewIndex = 2;
+                    break;
+
 
 
 
@@ -230,6 +239,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.ShowMonLeave();
                     break;
 
+                case "yearlylvRegister":
+                    this.ShowyleaveRegis() ;
+                    break;
+
 
 
 
@@ -314,6 +327,45 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
 
         }
+
+
+        private void ShowyleaveRegis()
+        {
+            Session.Remove("tblover");
+            string comcod = this.GetCompCode();
+            string compname = (this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) == "00") ? "%" : this.ddlCompanyName.SelectedValue.ToString().Substring(0, 2) + "%";
+            string deptname = (this.ddlDepartment.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartment.SelectedValue.ToString().Substring(0, 8) + "%";
+            string section = "";
+            if ((this.ddlDepartment.SelectedValue.ToString() != "000000000000"))
+            {
+                string[] sec = this.DropCheck1.Text.Trim().Split(',');
+
+                if (sec[0].Substring(0, 3) == "000")
+                    section = "";
+                else
+                    foreach (string s1 in sec)
+                        section = section + this.ddlDepartment.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
+
+            }
+
+            string frmdate = this.txtfrmDate.Text.Trim();
+            string todate = this.txttoDate.Text.Trim();
+            string Empcode = "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVE_SUMMARY", "RPTYEARLYEMPLEAVE", compname, deptname, section, frmdate, todate, Empcode, "", "", "");
+            if (ds2 == null)
+            {
+                this.gvMonEmpLeave.DataSource = null;
+                this.gvMonEmpLeave.DataBind();
+                return;
+            }
+            Session["tblover"] = ds2.Tables[0];
+            this.Data_Bind();
+
+
+        }
+
+        
 
 
 
@@ -420,6 +472,22 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         this.gvMonEmpLeave.Columns[21].Visible = false;
 
                     }
+                    break;
+
+
+
+                case "yearlylvRegister":
+                    this.gvyearlylv.DataSource = dt;
+                    this.gvyearlylv.DataBind();
+
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        Session["Report1"] = gvyearlylv;
+                        ((HyperLink)this.gvyearlylv.FooterRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    }
+
+
                     break;
 
 
@@ -645,6 +713,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string username = hst["username"].ToString();
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
 
+
+
             string frmdate = Convert.ToDateTime(this.txtfrmDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
 
@@ -803,6 +873,187 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             this.gvMonEmpLeave.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void gvyearlylv_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+
+            GridViewRow gvRow = e.Row;
+            if (gvRow.RowType == DataControlRowType.Header)
+            {
+
+                if (this.txtfrmDate.Text.Trim().Length == 0)
+                    return;
+
+
+                string year = Convert.ToDateTime(this.txtfrmDate.Text).ToString("yyyy");
+                string uptoachive = Convert.ToDateTime(this.txttoDate.Text).ToString("MMM-yy");
+
+                GridViewRow gvrow = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
+
+                //  gvrow.Cells.Remove(TableCell [0]);
+
+                TableCell cell01 = new TableCell();
+                cell01.Text = "Sl";
+                cell01.HorizontalAlign = HorizontalAlign.Center;
+                cell01.RowSpan = 2;
+                gvrow.Cells.Add(cell01);
+
+
+
+                TableCell cell02 = new TableCell();
+                cell02.Text = "Employee Details";
+                cell02.HorizontalAlign = HorizontalAlign.Center;
+                cell02.Attributes["style"] = "font-weight:bold;";
+                cell02.ColumnSpan = 5;
+                gvrow.Cells.Add(cell02);
+
+                TableCell cell03 = new TableCell();
+                cell03.Text = "Standard Leave-"+ year;
+                cell03.HorizontalAlign = HorizontalAlign.Center;
+                cell03.Attributes["style"] = "font-weight:bold;";
+                cell03.ColumnSpan = 4;
+                gvrow.Cells.Add(cell03);
+
+
+
+                TableCell cell04 = new TableCell();
+                cell04.Text = "Achieved upto "+ uptoachive;
+                cell04.Attributes["style"] = "font-weight:bold;";
+                cell04.HorizontalAlign = HorizontalAlign.Center;
+                cell04.ColumnSpan = 4;
+                gvrow.Cells.Add(cell04);
+
+                TableCell cell05 = new TableCell();
+                cell05.Text = "Jan";                
+                cell05.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell05.ColumnSpan = 4;
+                gvrow.Cells.Add(cell05);
+
+                TableCell cell06 = new TableCell();
+                cell06.Text = "FEB";
+                cell06.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell06.ColumnSpan = 4;
+                gvrow.Cells.Add(cell06);
+
+                TableCell cell07 = new TableCell();
+                cell07.Text = "Mar";
+                cell07.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell07.ColumnSpan = 4;
+                gvrow.Cells.Add(cell07);
+                
+                TableCell cell08 = new TableCell();
+                cell08.Text = "Apr";
+                cell08.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell08.ColumnSpan = 4;
+                gvrow.Cells.Add(cell08);
+
+                TableCell cell09 = new TableCell();
+                cell09.Text = "May";
+                cell09.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell09.ColumnSpan = 4;
+                gvrow.Cells.Add(cell09);
+
+                TableCell cell10 = new TableCell();
+                cell10.Text = "Jun";
+                cell10.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell10.ColumnSpan = 4;
+                gvrow.Cells.Add(cell10);
+
+                TableCell cell11 = new TableCell();
+                cell11.Text = "Jul";
+                cell11.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell11.ColumnSpan = 4;
+                gvrow.Cells.Add(cell11);
+
+                TableCell cell12 = new TableCell();
+                cell12.Text = "Aug";
+                cell12.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell12.ColumnSpan = 4;
+                gvrow.Cells.Add(cell12);
+
+                TableCell cell13 = new TableCell();
+                cell13.Text = "Sep";
+                cell13.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell13.ColumnSpan = 4;
+                gvrow.Cells.Add(cell13);
+
+                TableCell cell14 = new TableCell();
+                cell14.Text = "Oct";
+                cell14.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell14.ColumnSpan = 4;
+                gvrow.Cells.Add(cell14);
+
+                TableCell cell15 = new TableCell();
+                cell15.Text = "Nov";
+                cell15.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell15.ColumnSpan = 4;
+                gvrow.Cells.Add(cell15);
+
+                TableCell cell16 = new TableCell();
+                cell16.Text = "Dec";
+                cell16.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell16.ColumnSpan = 4;
+                gvrow.Cells.Add(cell16);
+
+
+                TableCell cell17 = new TableCell();
+                cell17.Text = "Total Enjoyed upto "+ uptoachive;
+                cell17.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell17.ColumnSpan = 4;
+                gvrow.Cells.Add(cell17);
+
+
+                TableCell cell18 = new TableCell();
+                cell18.Text = "Supplus/(Excess)";
+                cell18.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell18.ColumnSpan = 4;
+                gvrow.Cells.Add(cell18);
+
+                TableCell cell19 = new TableCell();
+                cell19.Text = "Balance In Hand";
+                cell19.Attributes["style"] = "font-weight:bold; text-align:center;";
+                cell19.ColumnSpan = 4;
+                gvrow.Cells.Add(cell19);
+                gvyearlylv.Controls[0].Controls.AddAt(0, gvrow);
+
+            }
+        }
+
+        protected void gvyearlylv_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                e.Row.Cells[0].Visible = false;
+               
+
+            }
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+                Label lblgvempnamemwiseylv = (Label)e.Row.FindControl("lblgvempnamemwiseylv");
+
+                if (empid.Length == 0)
+                    return;
+
+                if (empid == "000000000000")
+                {
+
+                    lblgvempnamemwiseylv.Attributes["style"] = "font-weight:bold; font-size:14px;color:blue;";
+
+
+
+                }
+
+
+
+
+
+            }
+
         }
     }
 }

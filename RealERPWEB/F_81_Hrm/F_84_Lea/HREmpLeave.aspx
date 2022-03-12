@@ -53,9 +53,11 @@
             </div>
 
             <div class="row justify-content-md-center mt-4 mb-1">
-                <div class="col-11"></div>
+                <div class="col-9"></div>
 
-                <div class="col-1">
+                <div class="col-2">
+                    <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-denger btn-sm pull-right" NavigateUrl="~/F_81_Hrm/F_84_Lea/UploadLeavExcel.aspx" Target="_blank"><i class="fas fa-plus"></i> Upload Excel </asp:HyperLink>
+
                     <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>
                 </div>
 
@@ -127,6 +129,8 @@
                         <div class="col-1">
 
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
+
+                            
 
                         </div>
 
@@ -266,7 +270,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Emp. ID">
+                                            <asp:TemplateField HeaderText="Emp. ID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvempid" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                         Width="75px"></asp:Label>
@@ -300,7 +304,7 @@
                                             <asp:TemplateField HeaderText="Join Date">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvjoindate" runat="server" Height="16px" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "joindate")).ToString("dd-MMM-yyyy") %>'
-                                                        Width="65px"></asp:Label>
+                                                        Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
@@ -757,7 +761,7 @@
 
                                     </div>
                                     <div class="col-4">
-                                         <div class="form-group row">
+                                        <div class="form-group row">
                                             <label for="staticEmail" class="col-4 col-form-label">Remarks</label>
                                             <div class="col-8">
                                                 <asp:TextBox ID="txtLeavRemasrks" runat="server" BorderWidth="1px"
@@ -779,7 +783,7 @@
                                         </div>
                                     </div>
 
-                                     <div class="col-4">
+                                    <div class="col-4">
 
                                         <div class="form-group row">
                                             <label for="staticEmail" class="col-4 col-form-label">Reason</label>
@@ -792,7 +796,7 @@
                                     </div>
 
 
-                                     
+
 
                                 </div>
                             </asp:Panel>

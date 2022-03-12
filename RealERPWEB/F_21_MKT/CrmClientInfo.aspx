@@ -442,9 +442,9 @@
 
 
         function pageLoaded() {
-            // document.getElementById("divscroll").scrollTop = 0;
+           
             try {
-
+                VisibilitycomNotification();
 
                 $('.lbtnschedule').click(function () {
 
@@ -729,20 +729,43 @@
 
 
 
+        function VisibilitycomNotification()
+        {
+
+            try
+            {
+
+                var comcod =<%=this.GetComeCode()%>;
+
+                switch (comcod) {
+                    case 3354://Edison Real Estate                 
+                  
+                        $('#<%=this.lnkBtnDaypassed.ClientID%>').hide();
+                        $('#<%=this.lnkBtnComments.ClientID%>').hide();
+                        $('#<%=this.lnkBtnFreezing.ClientID%>').hide();
+                        $('#<%=this.lnkBtnDeadProspect.ClientID%>').hide();
+                        
+                        
+                        break;
+
+                    default:
+                      
+                        break;
+                }
 
 
-        //function scrollUp($select, numOptions) {
-        //    // Assuming default of 8 visible options in select without a 'size' attribute
-        //    var selectSize = $select.attr('size') || 8;
-        //    // Option height calculated below - may not be completely accurate?
-        //    var approxOptionHeight = Math.floor($select.height() / selectSize);
-        //    var newScrollTop = $select.scrollTop() - (numOptions * approxOptionHeight);
-        //    if (newScrollTop < 0) {
-        //        newScrollTop = 0;
-        //    }
-        //    $select.scrollTop(newScrollTop);
-        //}
 
+            }
+
+            catch (e)
+            {
+                alert(e.message);
+            }
+
+        }
+
+
+      
 
         $(document).on('click', '.panel-heading span.clickable', function (e) {
 
@@ -1918,7 +1941,7 @@
                     </div>
                 </div>
 
-                <div class"card-body" style="min-height: 600px;">
+                <div class="card-body" style="min-height: 600px;">
                     <div class="row mb-2 justify-content-between">
                         <div class="col-2">
                             <div class="form-group">
@@ -2862,15 +2885,12 @@
 
                                                         <asp:Panel ID="pnlfollowup" runat="server" Width="110px" ClientIDMode="Static">
 
-                                                            <asp:Label ID="lbllfollowuplink" Width="70px" Font-Size="11px" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "appbydat")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "appbydat")).ToString("dd-MMM-yyyy") %>'>
-                                                                                             
-
-
+                                                            <asp:Label ID="lbllfollowuplink" Width="70px" Font-Size="11px" runat="server" ToolTip="Followup" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "appbydat")).ToString("dd-MMM-yyyy")=="01-Jan-1900"?"":Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "appbydat")).ToString("dd-MMM-yyyy") %>'>
                                                             </asp:Label>
 
-                                                            <asp:LinkButton ID="lbtnView" Visible="false" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="View" runat="server" OnClick="lbtnView_Click"><span class="fa  fa-eye"></span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lbtnView" ClientIDMode="Static" Style="float: right !important;" Width="15px" ToolTip="View" runat="server" OnClick="lbtnView_Click" CssClass="d-none"><span class="fa  fa-eye"></span></asp:LinkButton>
 
-                                                            <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="10px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkEditfollowup" ClientIDMode="Static" Style="float: right !important;" Width="15px" ToolTip="Discoussion" runat="server" OnClick="lnkEditfollowup_Click"><span class="fa fa-edit"></span></asp:LinkButton>
 
 
 
@@ -3548,18 +3568,7 @@
 
                                         </asp:LinkButton>
 
-                                        <asp:LinkButton ID="LinkButton1" class="list-group-item list-group-item-action" runat="server">
-                                            <div class="list-group-item-figure">
-                                                <div class="tile tile-circle bg-primary">OTH </div>
-                                            </div>
-                                            <div class="list-group-item-body">Others</div>
-                                            <div class="list-group-item-figure">
-                                                <button class="btn btn-sm btn-light">
-                                                    <span class="badge badge-pill badge-danger" id="Span2" runat="server">0</span>
-                                                </button>
-                                            </div>
-
-                                        </asp:LinkButton>
+                                     
 
                                         <asp:LinkButton ID="lnkBtnCall" class="list-group-item list-group-item-action" runat="server" OnClick="lnkBtnCall_Click">
                                             <div class="list-group-item-figure">
