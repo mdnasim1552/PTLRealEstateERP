@@ -10,6 +10,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });

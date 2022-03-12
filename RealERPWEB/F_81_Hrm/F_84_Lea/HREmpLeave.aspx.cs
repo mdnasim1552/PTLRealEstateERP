@@ -610,10 +610,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             this.ShowEmppLeave();
             this.EmpLeaveInfo();
-            this.RefreshLeave();
-
-
-
+            this.RefreshLeave(); 
         }
 
         private void RefreshLeave()

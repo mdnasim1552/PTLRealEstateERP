@@ -30,14 +30,48 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txtgvenjoydt2.Text = nextday;
                 txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                getVisibilty();
-                CreateTable();
-                this.EmpLeaveInfo();
-                this.ShowEmppLeave();
-                GetCalCulateDay();
+                string qtype = this.Request.QueryString["Type"] ?? "";
+                if (qtype == "MGT")
+                {
+                    this.empMgt.Visible = true;
+                    GetEmpLoyee();
+                    this.ddlEmpName_SelectedIndexChanged(null, null);
+                }
+                else
+                {
+                    getVisibilty();
+                    CreateTable();
+                    this.EmpLeaveInfo();
+                    this.ShowEmppLeave();
+                    GetCalCulateDay();
+                }
+               
 
             }
         }
+        private void GetEmpLoyee()
+        {
+           
+            string comcod = this.GetComeCode();           
+          
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTWSEMPNAME", "94%", "%%", "%%", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            this.ddlEmpName.DataTextField = "empname";
+            this.ddlEmpName.DataValueField = "empid";
+            this.ddlEmpName.DataSource = ds1.Tables[0];
+            this.ddlEmpName.DataBind(); 
+        }
+        protected void ddlEmpName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            getVisibilty();
+            CreateTable();
+            this.EmpLeaveInfo();
+            this.ShowEmppLeave();
+            GetCalCulateDay();
+        }
+
         private void getVisibilty()
         {
             string comcod = this.GetComeCode();
@@ -242,12 +276,24 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         }
         public string GetEmpID()
         {
-
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string Empid = (hst["empid"].ToString() == "") ? "" : hst["empid"].ToString();
-            return (Empid);
+            string Empid = "";
+            string qtype = this.Request.QueryString["Type"] ?? "";
+            if(qtype == "MGT")
+            {
+                Empid = this.ddlEmpName.SelectedValue.ToString();               
+                return (Empid);
+            }
+            else
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                 Empid = (hst["empid"].ToString() == "") ? "" : hst["empid"].ToString();
+                return (Empid);
+            }
+           
 
         }
+
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
 
@@ -577,7 +623,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 #region
                 string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
                 DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
+                if (dssmtpandmail == null)
+                    return;
                 //SMTP
                 string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());

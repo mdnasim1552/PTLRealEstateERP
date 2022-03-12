@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="AcceessError.aspx.cs" Inherits="RealERPWEB.AcceessError" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="AcceessError.aspx.cs" Inherits="RealERPWEB.AcceessError" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 <style>
-    .btnRegView {
+    .state-header {
     animation: 1s ease 0s alternate none infinite running color_change;
     color: #ffffff;
     padding: 5px 35px;
     font-size:20px;
 }
-    .btnRegView h4{
+    .state-header{
         font-size:25px;
     }
 @keyframes color_change {
@@ -35,32 +35,24 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    
-    
-    <div class="container moduleItemWrpper">
-        <div class="contentPart">
-            <div class="row" style="margin-top:100px;">
-
-                <div class="col-md-7 col-md-offset-2">
-            <div class="panel panel-primary">
-                <div class="panel-heading btnRegView" style=" background:#ff0000;" >
-                    <h4 class="panel-title">
-                       <asp:Label ID="lblAccessError" runat="server" style="text-align:center;" 
-        Text="Required Authentication Not Found. Access Is Denied"></asp:Label>
-
-                    </h4>
-                    
-                </div>
-                <div class="panel-body">
-                   Access Denied. Contact your administrator, or please send your Query, <a href="mailto:info@pintechltd.bd">info@pintechltd.com</a></div>
+      <!-- .empty-state -->
+          <section class="empty-state">
+            <!-- .empty-state-container -->
+            <div class="empty-state-container">
+              <div class="state-figure">
+                <img class="img-fluid" src="images/illustration/img-2.png" alt="" style="max-width: 320px"> </div>
+              <h3 class="state-header badge badge-lg badge-danger"><span class="oi oi-media-record pulse mr-1"></span> Page Not found! </h3>
+              <p class="state-description lead text-muted"> Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. </p>
+              <div class="state-action">
+                    Contact your administrator, or please send your Query, <a class="badge badge-lg badge-danger" href="mailto:info@pintechltd.bd">info@pintechltd.com</a> 
+               
+              </div>
             </div>
-        </div>
-
-                 
-            </div>
-        </div>
-    </div>
-
+            <!-- /.empty-state-container -->
+          </section>
+          <!-- /.empty-state -->
+ 
+  
     
 
 
