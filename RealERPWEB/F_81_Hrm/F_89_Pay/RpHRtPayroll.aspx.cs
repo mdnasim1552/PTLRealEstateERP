@@ -2978,14 +2978,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string todate1 = Convert.ToDateTime(this.txttodate.Text).ToString("MMMM, yyyy");
             string companyname = this.ddlCompany.SelectedItem.Text.Trim();
             double netpayatax = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(netpay)", "")) ? 0.00 : dt.Compute("sum(netpay)", "")));
-
+            string deptname = this.ddlBranch.SelectedItem.Text.ToString();
             LocalReport Rpt1 = new LocalReport();
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.RptSalarySheet>();
             Rpt1 = RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.RptSalaryBTI", list, null, null);
             Rpt1.EnableExternalImages = true;
             Rpt1.SetParameters(new ReportParameter("compName", companyname));
             Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
-            Rpt1.SetParameters(new ReportParameter("txtHeader2", "Salary Sheet (Month of "+ todate1 + ")"));
+            Rpt1.SetParameters(new ReportParameter("txtHeader2", deptname+ " Salary (Month of " + todate1 + ")"));
             Rpt1.SetParameters(new ReportParameter("rptTitle",  ""));
             Rpt1.SetParameters(new ReportParameter("txtheader", "Grand Total"));
             Rpt1.SetParameters(new ReportParameter("TkInWord", "In Word: " + ASTUtility.Trans(netpayatax, 2)));

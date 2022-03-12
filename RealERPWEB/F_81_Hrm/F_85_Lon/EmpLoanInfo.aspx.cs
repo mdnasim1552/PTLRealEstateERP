@@ -25,14 +25,28 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
             if (!IsPostBack)
             {
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../../AcceessError.aspx");
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                if ((!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp),
+                        (DataSet)Session["tblusrlog"])) && !Convert.ToBoolean(hst["permission"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../../AcceessError.aspx");
                 this.txtCurDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE LOAN INFORMATION";
                 // this.GetLoanNo();
                 this.GetEmplist();
                 this.GetLoanType();
                 this.txtstrdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string lnno = this.Request.QueryString["lnno"] ?? "";
+
+                if (lnno.Length > 0)
+                {
+                    this.ShowLoanInfo();
+                }
             }
         }
         protected void Page_PreInit(object sender, EventArgs e)
@@ -129,11 +143,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 this.chkVisible.Visible = true;
                 this.chkVisible.Text = "Gen. Installment";
                 this.ShowLoanInfo();
-                if (this.ddlPrevLoanList.Items.Count > 0)               
+                if (this.ddlPrevLoanList.Items.Count > 0)
                 {
-                    lbtnTotal_Click(null,null);
+                    lbtnTotal_Click(null, null);
                 }
-                    return;
+                return;
             }
             this.lbtnOk.Text = "Ok";
             this.lblEmpName.Text = "";
@@ -160,6 +174,8 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             ViewState.Remove("tblln");
             string comcod = this.GetComeCode();
             string CurDate1 = this.txtCurDate.Text.Trim();
+
+            string lnno = this.Request.QueryString["lnno"] ?? "";
             string mLNNo = "NEWLN";
             if (this.ddlPrevLoanList.Items.Count > 0)
             {
@@ -169,6 +185,18 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 mLNNo = this.ddlPrevLoanList.SelectedValue.ToString();
                 this.ddlLoantype.Enabled = false;
             }
+            if (lnno.Length > 0)
+            {
+                this.txtCurDate.Enabled = false;
+                this.chkAddIns.Visible = true;
+                this.chkVisible.Visible = false;
+                this.ddlPrevLoanList.Visible = false;
+                mLNNo = lnno.ToString();
+                this.ddlLoantype.Enabled = false;
+                this.ddlEmpList.Enabled = false;
+            }
+
+
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLNINFO", mLNNo, CurDate1,
                           "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -221,7 +249,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
         }
         protected void lbtnGenerate_Click(object sender, EventArgs e)
-        {  
+        {
             //this.pnlloan.Visible = false;
             this.chkVisible.Checked = false;
             DataTable dt = (DataTable)ViewState["tblln"];
@@ -231,7 +259,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
 
             double toamt = Convert.ToDouble("0" + this.txtToamt.Text.Trim());
             double lnamt = Convert.ToDouble("0" + this.txtinsamt.Text.Trim());
-            if (toamt == 0 || lnamt==0)
+            if (toamt == 0 || lnamt == 0)
             {
                 string Msg = "Please enter amount for generate loan";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
@@ -289,8 +317,11 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             {
                 DataTable dt = (DataTable)ViewState["tblln"];
                 string lnno = "";
+                string lnnoqu = this.Request.QueryString["lnno"] ?? "";
                 string textamt = this.txtToamt.Text == "" ? "0" : this.txtToamt.Text;
                 double loanamt = Convert.ToDouble(textamt);
+
+
                 if (this.ddlPrevLoanList.Items.Count > 0)
                 {
                     this.txtCurDate.Enabled = false;
@@ -305,14 +336,37 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
                 }
 
-                lbtnTotal_Click(null,null);
-                
+                if (lnnoqu.Length > 0)
+                {
+                    this.txtCurDate.Enabled = false;
+
+
+                    DataTable dt1 = (DataTable)ViewState["tblln1"];
+                    if (dt1 == null)
+                    {
+                        return;
+                    }
+                    DataRow[] dr = dt1.Select("lnno='" + lnnoqu + "'");
+                    loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
+                    lnno = lnnoqu;
+                }
+
+                lbtnTotal_Click(null, null);
+
                 string comcod = this.GetComeCode();
                 if (this.ddlPrevLoanList.Items.Count == 0)
                     this.GetLNNo();
-                
+
                 string curdate = Convert.ToDateTime(this.txtCurDate.Text.Trim()).ToString("dd-MMM-yyyy");
-                 lnno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
+                if (lnnoqu.Length > 0)
+                {
+                    lnno = lnnoqu;
+                }
+                else
+                {
+                    lnno = this.lblCurNo1.Text.ToString().Trim().Substring(0, 3) + curdate.Substring(7, 4) + this.lblCurNo1.Text.ToString().Trim().Substring(3, 2) + this.lblCurNo2.Text.ToString().Trim();
+
+                }
                 string empid = this.ddlEmpList.SelectedValue.ToString();
                 double toamt = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", "")));
                 string loantype = ddlLoantype.SelectedValue.ToString();
@@ -321,20 +375,20 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 double balance1 = loanamt - tloan;
                 string balance = balance1 == 0 ? "Level" : balance1.ToString();
 
-                if (loanamt < tloan)
-                {
-                    string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //if (loanamt < tloan)
+                //{
+                //    string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-                    return;
-                }
-                else if (loanamt > tloan)
-                {
-                    string msg = "Sorry, Please adjust the amount. Balance amount " + balance;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //    return;
+                //}
+                //else if (loanamt > tloan)
+                //{
+                //    string msg = "Sorry, Please adjust the amount. Balance amount " + balance;
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-                    return;
-                }
+                //    return;
+                //}
                 bool result;
                 //Delete Loaninfo
                 result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "DELETELNINFO", lnno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
@@ -357,7 +411,15 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 }
                 string Msg = "Updated Successfully";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
-                lbtnOk_Click(null,null);
+                lbtnOk_Click(null, null);
+
+                lnno = this.Request.QueryString["lnno"] ?? "";
+                if (lnno.Length > 0)
+                {
+                    Response.Redirect("~/F_81_Hrm/F_85_Lon/EmpLoanStatus?Type=Report&comcod=&lnno=update");
+                }
+
+
 
             }
             catch (Exception ex)
@@ -369,11 +431,12 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
             string ulndat = "26-Jan-22 12:00:00 AM";
-           
+
             DataTable dt = (DataTable)ViewState["tblln"];
             string lnno = "";
+            string lnnoqu = this.Request.QueryString["lnno"] ?? "";
             string textamt = this.txtToamt.Text == "" ? "0" : this.txtToamt.Text;
-            double loanamt = Convert.ToDouble(textamt) ;
+            double loanamt = Convert.ToDouble(textamt);
             if (this.ddlPrevLoanList.Items.Count > 0)
             {
                 this.txtCurDate.Enabled = false;
@@ -387,8 +450,22 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 DataRow[] dr = dt1.Select("lnno='" + lnno + "'");
                 loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
             }
-          
-           
+            if (lnnoqu.Length > 0)
+            {
+                this.txtCurDate.Enabled = false;
+
+
+                DataTable dt1 = (DataTable)ViewState["tblln1"];
+                if (dt1 == null)
+                {
+                    return;
+                }
+                DataRow[] dr = dt1.Select("lnno='" + lnnoqu + "'");
+                loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]); // Get Loan Amount
+                lnno = lnnoqu;
+            }
+
+
             for (int i = 0; i < this.gvloan.Rows.Count; i++)
             {
                 string Insdate = Convert.ToDateTime(((TextBox)this.gvloan.Rows[i].FindControl("txtgvinstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
@@ -404,28 +481,28 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 else
                 {
                     dt.Rows[i]["paidamt"] = paidamt;
-                }               
+                }
             }
 
             double tloan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", ""))); //Installment Loan
             double balance1 = loanamt - tloan;
-            string balance = balance1==0?"Level": balance1.ToString();
+            string balance = balance1 == 0 ? "Level" : balance1.ToString();
 
-            if (loanamt < tloan)
-            {
-                string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-               
-                return;
-            }
+            //if (loanamt < tloan)
+            //{
+            //    string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-            else if (loanamt > tloan)
-            {
-                string msg = "Sorry, Please adjust the amount. Balance amount " + balance;
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-                
-                return;
-            }
+            //    return;
+            //}
+
+            //else if (loanamt > tloan)
+            //{
+            //    string msg = "Sorry, Please adjust the amount. Balance amount " + balance;
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+            //    return;
+            //}
             DataTable dt2 = dt.Copy();
             DataView dv1 = dt2.DefaultView;
             dv1.RowFilter = ("lndate<'" + ulndat + "'");
@@ -443,30 +520,38 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             DataTable dt = (DataTable)ViewState["tblln"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string lnno = "";
-            if (this.ddlPrevLoanList.Items.Count > 0)
+            string lnnoqu = this.Request.QueryString["lnno"] ?? "";
+            if (this.ddlPrevLoanList.Items.Count > 0 || lnnoqu.Length>0)
             {
                 this.txtCurDate.Enabled = false;
-                lnno = this.ddlPrevLoanList.SelectedValue.ToString();
+
+                if (lnnoqu.Length > 0)
+                {
+                    lnno = lnnoqu;
+                }
+                else
+                {
+                    lnno = this.ddlPrevLoanList.SelectedValue.ToString();
+
+                }
 
                 DataRow[] dr = dt1.Select("lnno='" + lnno + "'");
                 double loanamt = (dr.Length == 0) ? 0.00 : Convert.ToDouble(dr[0]["lnamt"]);
                 double tloan = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lnamt)", "")) ? 0.00 : dt.Compute("sum(lnamt)", "")));
                 double balance1 = loanamt - tloan;
                 string balance = balance1 == 0 ? "Level" : balance1.ToString();
-                if (loanamt <= tloan)
-                {
-                    string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //if (loanamt <= tloan)
+                //{
+                //    string msg = "Sorry, Please adjust or delete before add Installment. Balance amount " + balance;
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
 
-                    return;
-                }
-                else if (loanamt > tloan)
-                {
-                    string msg = "Please adjust the amount. Balance amount " + balance;
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
-
-
-                }
+                //    return;
+                //}
+                //else if (loanamt > tloan)
+                //{
+                //    string msg = "Please adjust the amount. Balance amount " + balance;
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                //}
                 if (dr.Length != 0)
                 {
                     DataRow dr1 = dt.NewRow();
@@ -477,7 +562,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                     dt.Rows.Add(dr1);
                 }
             }
-           
+
             //Session["tblln"] = dt;
             this.gvloan.DataSource = dt;
             this.gvloan.DataBind();
@@ -501,7 +586,7 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
             int index = row.RowIndex;
             DataTable dt = (DataTable)ViewState["tblln"];
             string msg = "Data deleted successfully ";
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);     
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
             int ins = this.gvloan.PageSize * this.gvloan.PageIndex + index;
             dt.Rows[ins].Delete();
             ViewState.Remove("tblln");
