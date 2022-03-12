@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmpEntry01.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.EmpEntry011" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="EmpProfileEdit.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_82_App.EmpProfileEdit" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -10,7 +10,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -46,8 +45,6 @@
 
     </script>
 
-
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -57,26 +54,14 @@
                 <div class="card-header mt-3 mb-0 pb-0">
                     <div class="row mb-0 pb-0">
 
-                        <asp:Label ID="lbl" runat="server" CssClass="col-1 col-form-label">Employee List</asp:Label>
-
-                        <div class="col-4">
-
-                            <asp:DropDownList ID="ddlEmpName" data-placeholder="Choose Employee.." runat="server"
-                                CssClass="select2" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged" AutoPostBack="true">
-                            </asp:DropDownList>
-                        </div>
-
-                        <asp:LinkButton ID="lnkCreate" OnClick="lnkCreate_Click" runat="server" CssClass="btn  btn-secondary  btn-sm float-right" ToolTip="Create New Employee"><i class="fa fa-plus" aria-hidden="true"></i></asp:LinkButton>
-
                         <asp:Label ID="Label1" runat="server" CssClass="col-1 col-form-label">Information</asp:Label>
-                        <div class=" col-2">
+                        <div class=" col-4">
 
                             <asp:DropDownList ID="ddlInformation" data-placeholder="Choose Information.." ClientIDMode="Static" runat="server"
                                 CssClass="select2" AutoPostBack="true" OnSelectedIndexChanged="ddlInformation_SelectedIndexChanged">
                             </asp:DropDownList>
                         </div>
 
-                        <asp:Label ID="lblLastCardNo" runat="server" Visible="false" CssClass=" btn btn-info col-2 btn-sm mr-2 ml-2"></asp:Label>
                         <asp:HyperLink ID="addOcupation" Visible="False" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_82_App/HRCodeBook.aspx" CssClass=" btn btn-warning col-1 btn-sm mr-1 ml-1" Style="padding: 0 10px">Add Occupation</asp:HyperLink>
 
                     </div>
@@ -116,9 +101,9 @@
 
                                                     <asp:Label ID="lgcResDesc1" runat="server" CssClass="d-block" Height="16px">
                                                         <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gdesc")) %>
-                                                        <asp:LinkButton ID="ibtngrdEmpList" runat="server" ToolTip="New Field" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
+                                                       <%-- <asp:LinkButton ID="ibtngrdEmpList" runat="server" ToolTip="New Field" Visible="false" CssClass="badge badge-info float-right" OnClick="ibtngrdEmpList_Click">
                                                                     <i class="fa fa-plus "></i>
-                                                        </asp:LinkButton>
+                                                        </asp:LinkButton>--%>
                                                     </asp:Label>
 
                                                 </ItemTemplate>
@@ -143,11 +128,11 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField>
 
-                                                <HeaderTemplate>
+                                                <%--<HeaderTemplate>
 
                                                     <asp:HyperLink ID="hlbtAddnew" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_82_App/HRCodeBook.aspx" CssClass="btn  btn-success btn-sm float-right" ToolTip="Add New"><i class="fa fa-plus" aria-hidden="true"></i></i>
                                                     </asp:HyperLink>
-                                                </HeaderTemplate>
+                                                </HeaderTemplate>--%>
 
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lUpdatPerInfo" runat="server" Visible="false" CssClass="btn btn-danger  btn-xs" OnClick="lUpdatPerInfo_Click">Update</asp:LinkButton>
@@ -267,7 +252,7 @@
                                                     <cc1:CalendarExtender ID="txtgvdVal_CalendarExtender" runat="server"
                                                         Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvdVal" PopupPosition="TopLeft" PopupButtonID="txtgvdVal"></cc1:CalendarExtender>
                                                     <asp:Panel ID="Panegrd" runat="server">
-                                                        <div class="  mb-0" style="width:260px;">
+                                                        <div class="  mb-0" style="width: 260px;">
 
                                                             <asp:DropDownList ID="ddlval" runat="server" OnSelectedIndexChanged="ddlval_SelectedIndexChanged"
                                                                 CssClass="select2 col-12" AutoPostBack="true" TabIndex="2">
@@ -335,7 +320,7 @@
                                             <div class="form-group">
                                                 <label for="sel4">Exam/Degree Title	</label>
 
-                                                <asp:DropDownList ID="ddlAcadegreeList" runat="server" CssClass="form-control select2"  OnSelectedIndexChanged="ddlAcadegreeList_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlAcadegreeList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlAcadegreeList_SelectedIndexChanged">
                                                 </asp:DropDownList>
 
                                             </div>
@@ -343,35 +328,35 @@
                                             <!-- .form-group -->
                                             <div class="form-group">
                                                 <label for="sel5">Major Subject	</label>
-                                                <asp:DropDownList ID="ddlMajorSubjList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlMajorSubjList_SelectedIndexChanged"  AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlMajorSubjList" runat="server" CssClass="form-control select2" OnSelectedIndexChanged="ddlMajorSubjList_SelectedIndexChanged" AutoPostBack="True">
                                                 </asp:DropDownList>
-                                                
+
                                             </div>
                                             <!-- /.form-group -->
                                             <!-- /.form-group -->
                                             <!-- .form-group -->
                                             <div class="form-group">
                                                 <label for="sel5">Result</label>
-                                                <asp:DropDownList ID="ddlResultList" runat="server" CssClass="form-control select2"   AutoPostBack="True">
+                                                <asp:DropDownList ID="ddlResultList" runat="server" CssClass="form-control select2" AutoPostBack="True">
                                                 </asp:DropDownList>
-                                                
-                                            </div>
-                                              <div class="form-group">
-                                                <label for="sel5">Institution</label>
-                                                 <asp:TextBox ID="txtInstitue" runat="server" CssClass="form-control"></asp:TextBox>
+
                                             </div>
                                             <div class="form-group">
-                                                 <asp:LinkButton ID="lnkaccAdd" runat="server" CssClass="btn btn-sm btn-primary float-right">Add</asp:LinkButton>
-                                                
+                                                <label for="sel5">Institution</label>
+                                                <asp:TextBox ID="txtInstitue" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:LinkButton ID="lnkaccAdd" runat="server" CssClass="btn btn-sm btn-primary float-right">Add</asp:LinkButton>
+
                                             </div>
                                             <!-- /.form-group -->
 
                                         </fieldset>
                                     </div>
                                     <div class="col-12">
-                                          <legend>Academic Information</legend>
+                                        <legend>Academic Information</legend>
                                         <asp:GridView ID="gvDegree" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                            ShowFooter="True"   OnRowDeleting="gvDegree_RowDeleting">
+                                            ShowFooter="True" OnRowDeleting="gvDegree_RowDeleting">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:CommandField ShowDeleteButton="True" />
@@ -583,7 +568,7 @@
 
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvesDurationfrm" runat="server" BackColor="Transparent"
-                                                        BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="20px"
+                                                        BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="20px" AutoCompleteType="Disabled"
                                                         Text='<%#   (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "frmdur")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "frmdur")).ToString("dd-MMM-yyyy")) %>'
                                                         Width="80px"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txtgvesDurationfrm_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtgvesDurationfrm" />
@@ -602,7 +587,7 @@
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvesDurationto" runat="server" BackColor="Transparent"
-                                                        BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="20px"
+                                                        BorderColor="#660033" BorderStyle="None" BorderWidth="1px" Height="20px" AutoCompleteType="Disabled"
                                                         Text='<%#   (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "todur")).Year==1900? "" :Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "todur")).ToString("dd-MMM-yyyy")) %>'
                                                         Width="80px"></asp:TextBox>
                                                     <cc1:CalendarExtender ID="txtgvesDurationto_CalendarExtender" runat="server" Format="dd-MMM-yyyy" TargetControlID="txtgvesDurationto" />
@@ -840,8 +825,6 @@
                                     </asp:GridView>
                                 </div>
                             </asp:View>
-
-
 
                             <asp:View ID="View1" runat="server">
                                 <div>

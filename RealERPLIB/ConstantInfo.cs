@@ -1938,7 +1938,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102035", "F_81_Hrm/F_84_Lea", "HRLeaveOpening", "", "Earn Leave Opening", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102036", "F_81_Hrm/F_84_Lea", "MyLeave?", "Type=User", "Online Leave Application (Ind)", "Leave", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102037", "F_81_Hrm/F_84_Lea", "MyLeave?", "Type=Mgt", "Online Leave Application (Mgt)", "Leave", "False", "False", "False", "False" }); ;
-            tblObj.Rows.Add(new Object[] { "8102000", "8102038", "F_81_Hrm/F_85_Lon", "EmpLoanInfo", "", "Loan Installment", "Loan", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102038", "F_81_Hrm/F_85_Lon", "EmpLoanInfo?", "Type=Entry", "Loan Installment", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102039", "F_81_Hrm/F_86_All", "EmpOvertime?", "Type=loan", "Loan Deduction", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102040", "F_81_Hrm/F_85_Lon", "EmpLoanStatus?", "Type=Report", "Employee Loan Status", "Loan", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8103000", "8102043", "F_81_Hrm/F_85_Lon", "RptIndLoanStatus", "", "Employee Loan Installment Details", "Loan", "False", "False", "False", "False" });
@@ -14731,7 +14731,7 @@ namespace RealERPLIB
 
             // E. Loan Monitoring  //"", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000000", "Loan Monitoring", "", "", false, "mb" });
-            mnuTbl1.Rows.Add(new Object[] { "0305000001", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0305000001", "01. Loan Installment", "F_81_Hrm/F_85_Lon/EmpLoanInfo?Type=Entry", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000002", "", "", "", true, "" });// "02. Loan Deduction", "F_81_Hrm/F_86_All/EmpOvertime?Type=loan", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0305000003", "03. Deduction Other", "F_81_Hrm/F_85_Lon/EmpDeducOther", "", true, "" });
 

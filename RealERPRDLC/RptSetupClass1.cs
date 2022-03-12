@@ -529,8 +529,8 @@ namespace RealERPRDLC
                 case "R_17_Acc.rptBankVoucherAcme": Rpt1a = SetrptBankVoucherAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptBankVoucherManama": Rpt1a = SetrptBankVoucherManama(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_17_Acc.rptBankVoucherTanvir": Rpt1a = SetrptBankVoucherTanvir(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
-                case "R_17_Acc.rptBankVoucherGreenwood":
-                    Rpt1a = SetrptBankVoucherGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptBankVoucherGreenwood": Rpt1a = SetrptBankVoucherGreenwood(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_17_Acc.rptBankVoucherIntech": Rpt1a = SetrptBankVoucherIntech(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
 
 
                 case "R_17_Acc.RptAccCashbook1": Rpt1a = SetRptAccCashbook1(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -1455,6 +1455,11 @@ namespace RealERPRDLC
             return Rpt1a;
         }
         private static LocalReport SetrptBankVoucherGreenwood(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
+            return Rpt1a;
+        }
+        private static LocalReport SetrptBankVoucherIntech(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>)RptDataSet));
             return Rpt1a;

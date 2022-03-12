@@ -33,7 +33,7 @@ namespace RealERPWEB
                 getLink();
 
                 GetAllHolidays();
-
+                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
             }
 
             this.GetProfile();
@@ -373,7 +373,7 @@ namespace RealERPWEB
 
 
 
-                this.hlnkbtnNext.NavigateUrl = "../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+                this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
