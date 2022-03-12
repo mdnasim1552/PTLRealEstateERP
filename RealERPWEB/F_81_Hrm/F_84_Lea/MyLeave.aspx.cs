@@ -623,7 +623,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 #region
                 string usrid = ((Hashtable)Session["tblLogin"])["usrid"].ToString();
                 DataSet dssmtpandmail = HRData.GetTransInfo(comcod, "SP_UTILITY_ACCESS_PRIVILEGES", "SMTPPORTANDMAIL", usrid, "", "", "", "", "", "", "", "");
-
+                if (dssmtpandmail == null)
+                    return;
                 //SMTP
                 string hostname = dssmtpandmail.Tables[0].Rows[0]["smtpid"].ToString();
                 int portnumber = Convert.ToInt32(dssmtpandmail.Tables[0].Rows[0]["portno"].ToString());
