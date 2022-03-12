@@ -38,6 +38,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.GetDepartment();
                 this.GetLoanType();
+
+                string lnno = this.Request.QueryString["lnno"] ?? "";
+                if(lnno== "update")
+                {
+                    this.lnkbtnShow_Click(null, null);
+                }
+
                 //this.lnkbtnShow_Click(null, null);
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
                 {
