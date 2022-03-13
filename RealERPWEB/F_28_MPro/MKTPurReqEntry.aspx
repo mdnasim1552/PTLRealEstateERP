@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MKTPurReqEntry.aspx.cs" Inherits="RealERPWEB.F_28_MPro.MKTPurReqEntry" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="MktPurReqEntry.aspx.cs" Inherits="RealERPWEB.F_28_MPro.MktPurReqEntry" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -71,8 +71,8 @@
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Click for Prev." OnClick="ImgbtnFindReq_Click"><i class="fas fa-search"></i></asp:LinkButton>
-                                    <asp:Label ID="lblpreReq" runat="server" class="control-label  lblmargin-top9px" Text="Prev. Req.List"></asp:Label>
+                                    <%--<asp:LinkButton ID="ImgbtnFindReq" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Click for Prev." OnClick="ImgbtnFindReq_Click"><i class="fas fa-search"></i></asp:LinkButton>--%>
+                                    <asp:LinkButton ID="ImgbtnFindReq" runat="server" Text="Prev. Req.List" OnClick="ImgbtnFindReq_Click"></asp:LinkButton>
                                     <asp:DropDownList ID="ddlPrevReqList" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
