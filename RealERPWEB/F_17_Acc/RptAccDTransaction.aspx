@@ -2052,7 +2052,6 @@
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Head Accounts Head">
-
                                     <HeaderTemplate>
                                         <table style="width: 47%;">
                                             <tr>
