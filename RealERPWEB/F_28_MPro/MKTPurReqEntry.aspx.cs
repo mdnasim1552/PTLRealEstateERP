@@ -20,7 +20,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace RealERPWEB.F_28_MPro
 {
-    public partial class MKTPurReqEntry : System.Web.UI.Page
+    public partial class MktPurReqEntry : System.Web.UI.Page
     {
         ProcessAccess purData = new ProcessAccess();
         UserManGenAccount objuserman = new UserManGenAccount();
@@ -276,7 +276,7 @@ namespace RealERPWEB.F_28_MPro
             {
 
                 //this.txtSrchMrfNo.Visible = true;
-                this.lblpreReq.Visible = true;
+                //this.lblpreReq.Visible = true;
                 this.ImgbtnFindReq.Visible = true;
                 this.ddlPrevReqList.Visible = true;
                 this.ddlPrevReqList.Items.Clear();
@@ -362,7 +362,7 @@ namespace RealERPWEB.F_28_MPro
 
 
             //this.txtSrchMrfNo.Visible = false;
-            this.lblpreReq.Visible = false;
+            //this.lblpreReq.Visible = false;
             this.ImgbtnFindReq.Visible = false;
             this.ddlPrevReqList.Visible = false; //
             this.ddlProject.Enabled = false;
