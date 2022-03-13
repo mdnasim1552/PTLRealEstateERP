@@ -27,15 +27,15 @@
             gvempattn.Scrollable();
             var gvMoLateAttn = $('#<%=this.gvMoLateAttn.ClientID %>');
             gvMoLateAttn.Scrollable();
+
+            var gvdeptlist = $('#<%=this.gvdeptlist.ClientID %>');
+            gvdeptlist.Scrollable();
+
         }
 
     </script>
 
 
-
-
-    
-    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -150,6 +150,8 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
 

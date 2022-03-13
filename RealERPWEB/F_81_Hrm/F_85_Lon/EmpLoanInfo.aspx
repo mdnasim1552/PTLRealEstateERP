@@ -22,6 +22,9 @@
                 allow_single_deselect: true
             });
 
+            var gvloan = $('#<%=this.gvloan.ClientID %>');
+            gvloan.Scrollable();
+
         }
 
     </script>

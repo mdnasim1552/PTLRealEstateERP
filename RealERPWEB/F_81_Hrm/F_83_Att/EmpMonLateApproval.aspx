@@ -10,8 +10,6 @@
 
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
         });
 
         function openModal() {
@@ -30,13 +28,9 @@
         function CloseMOdal() {
 
             $('#myModal').modal('hide');
-
-
-
         }
-
-
-        function openModalAbs() {
+        function openModalAbs()
+        {
             //    $('#myModal').modal('show');
             // alert("Hello");
             $('#absmodal').modal('toggle');
@@ -46,14 +40,7 @@
         function CloseModalAbs() {
 
             $('#absmodal').modal('hide');
-
-
-
         }
-
-
-
-
 
         function pageLoaded() {
 
@@ -64,8 +51,18 @@
             });
 
 
+            var gvAllLate = $('#<%=this.grvAdjDay.ClientID %>');
+            gvAllLate.Scrollable();
 
 
+            var gvAllLp = $('#<%=this.gvmapsapp.ClientID %>');
+            gvAllLp.Scrollable();
+
+
+            var gvabsapp02 = $('#<%=this.gvabsapp02.ClientID %>');
+            gvabsapp02.Scrollable();
+
+            
 
             $('.chzn-select').chosen({ search_contains: true });
         }
@@ -240,7 +237,7 @@
                                             <asp:ListItem>100</asp:ListItem>
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
-                                            <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">300</asp:ListItem>
                                             <asp:ListItem>600</asp:ListItem>
                                             <asp:ListItem>900</asp:ListItem>
                                            

@@ -31,7 +31,8 @@
                     k1.textBoxHandler(event);
 
                 });
-
+                var gvLeaveStatus = $('#<%=this.gvLeaveStatus.ClientID %>');
+                gvLeaveStatus.Scrollable();
                 $('#<%=this.gvMonEmpLeave.ClientID%>').tblScrollable();
               
 
@@ -246,6 +247,11 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                            <asp:ListItem>1500</asp:ListItem>
+                                           
+                                           
                                         </asp:DropDownList>
                                     </div>
 

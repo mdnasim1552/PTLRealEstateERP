@@ -33,6 +33,8 @@
                 freezesize: 10
             });
 
+            var gvati = $('#<%=this.gvati.ClientID %>');
+            gvati.Scrollable();
 
             $('.chzn-select').chosen({ search_contains: true });
 
@@ -142,6 +144,8 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-1">

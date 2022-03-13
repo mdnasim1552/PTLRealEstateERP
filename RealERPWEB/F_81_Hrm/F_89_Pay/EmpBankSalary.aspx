@@ -14,8 +14,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+     <script language="javascript" type="text/javascript">
+         $(document).ready(function () {
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+         });
+         function pageLoaded() {
 
-
+             $("input, select").bind("keydown", function (event) {
+                 var k1 = new KeyPress();
+                 k1.textBoxHandler(event);
+             });
+             var grvJoinStat = $('#<%=this.gvBankPayment.ClientID %>');
+             grvJoinStat.Scrollable();
+       
+         };
+</script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -102,6 +115,8 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
 
                                     </div>

@@ -53,8 +53,20 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
+   
 
-            $('.select2').each(function () {
+           var gvMonthlyattSummary = $('#<%=this.gvMonthlyattSummary.ClientID %>');
+            gvMonthlyattSummary.Scrollable();
+
+            var gvemplateatt = $('#<%=this.gvemplateatt.ClientID %>');
+            gvemplateatt.Scrollable();
+
+            var gvEmpStatus = $('#<%=this.gvEmpStatus.ClientID %>');
+            gvEmpStatus.Scrollable();
+
+
+            $('.select2').each(function ()
+            {
                 var select = $(this);
                 select.select2({
                     placeholder: 'Select an option',
@@ -66,9 +78,31 @@
                         }
                     }
                 });
-            }); 
-          
-        }    
+            });         
+        }
+        function Search_Gridview(strKey) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvMonthlyattSummary.ClientID %>");
+             var rowData;
+             for (var i = 1; i < tblData.rows.length; i++) {
+
+                 rowData = tblData.rows[i].innerHTML;
+                 var styleDisplay = 'none';
+                 for (var j = 0; j < strData.length; j++) {
+                     if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                         styleDisplay = '';
+                     else {
+                         styleDisplay = 'none';
+                         break;
+                     }
+                 }
+                 tblData.rows[i].style.display = styleDisplay;
+             }
+        }
+
+
+
     </script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -637,8 +671,17 @@
                             </div>
 
                             <div class="table-responsive" id="SummaryAttinfo" runat="server">
-                                <asp:GridView ID="gvMonthlyattSummary" runat="server" PageSize="50" 
-                                    AutoGenerateColumns="False" ShowFooter="True" AllowPaging="True" OnPageIndexChanging="gvMonthlyattSummary_PageIndexChanging"
+                                <div class="col-3">
+                                  <div class="input-group input-group-alt">
+                                                <div class="input-group-prepend ">
+                                                    <asp:Label ID="Label3" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                                </div>
+                                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+
+                                            </div>
+                                    </div>
+                                <br />
+                                <asp:GridView ID="gvMonthlyattSummary" runat="server" AutoGenerateColumns="False" ShowFooter="True"  
                                     CssClass="table-striped table-hover table-bordered grvContentarea">
                                     <RowStyle />
                                     <Columns>
