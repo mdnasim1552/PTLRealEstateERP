@@ -2208,7 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
-    <Content Include="F_28_MPro\MKTPurReqEntry.aspx" />
+    <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
     <Content Include="F_12_Inv\PurMatIssue.aspx" />
     <Content Include="F_12_Inv\PurMRREntry.aspx" />
@@ -2643,6 +2643,7 @@
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
+    <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
     <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
@@ -3824,12 +3825,12 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.cs">
-      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+    <Compile Include="F_28_MPro\MktPurReqEntry.aspx.cs">
+      <DependentUpon>MktPurReqEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.designer.cs">
-      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+    <Compile Include="F_28_MPro\MktPurReqEntry.aspx.designer.cs">
+      <DependentUpon>MktPurReqEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\PurMktSurveyCont.aspx.cs">
       <DependentUpon>PurMktSurveyCont.aspx</DependentUpon>
@@ -4012,6 +4013,13 @@
     </Compile>
     <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.designer.cs">
       <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.cs">
+      <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
+      <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
