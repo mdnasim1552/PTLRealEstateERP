@@ -75,22 +75,22 @@
     <%-- <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>--%>
     <div class="RealProgressbar">
-                <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
-                    <ProgressTemplate>
-                        <div id="loader">
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="lading"></div>
-                        </div>
-                    </ProgressTemplate>
-                </asp:UpdateProgress>
-            </div>
+        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="30">
+            <ProgressTemplate>
+                <div id="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="lading"></div>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
     <div class="container moduleItemWrpper">
         <div class="contentPart">
             <div class="row">
@@ -112,6 +112,7 @@
                                     <asp:ListItem>Day Book</asp:ListItem>
                                     <asp:ListItem>Receipt Payment</asp:ListItem>
                                     <asp:ListItem>Receipt Payment2</asp:ListItem>
+                                    <asp:ListItem>Receipt Payment3</asp:ListItem>
                                 </asp:RadioButtonList>
 
                             </div>
@@ -292,7 +293,7 @@
                                             Width="125px"></asp:Label>
                                     </ItemTemplate>
 
-                                        <FooterTemplate>
+                                    <FooterTemplate>
                                         <table style="width: 7%;">
                                             <tr>
                                                 <td>
@@ -349,19 +350,19 @@
                                             Width="65px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                         <table style="width: 7%;">
+                                        <table style="width: 7%;">
                                             <tr>
                                                 <td>
-                                                  
-                                        <asp:Label ID="lgvFBankAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+
+                                                    <asp:Label ID="lgvFBankAmt" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                        Style="text-align: right" Width="70px"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td>
-                                                   
-                                        <asp:Label ID="lgvFBankAmtgap" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+
+                                                    <asp:Label ID="lgvFBankAmtgap" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                        Style="text-align: right" Width="70px"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -462,8 +463,8 @@
                                             Width="125px"></asp:Label>
                                     </ItemTemplate>
 
-                                     <FooterTemplate>
-                                        <table style="width:100%;">
+                                    <FooterTemplate>
+                                        <table style="width: 100%;">
                                             <tr>
                                                 <td>
                                                     <asp:Label ID="lgvCashAmt1text" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000" Style="text-align: right" Width="70px" Text="Total"></asp:Label>
@@ -471,7 +472,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <asp:Label ID="lgvnetCashaBankAmttext" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000" Style="text-align: right" Width="70px"  Text="Grand Total"></asp:Label>
+                                                    <asp:Label ID="lgvnetCashaBankAmttext" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000" Style="text-align: right" Width="70px" Text="Grand Total"></asp:Label>
                                                 </td>
                                             </tr>
                                         </table>
@@ -491,7 +492,7 @@
                                             Width="65px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <table style="width:100%;">
+                                        <table style="width: 100%;">
                                             <tr>
                                                 <td>
                                                     <asp:Label ID="lgvCashAmt1" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000" Style="text-align: right" Width="70px"></asp:Label>
@@ -516,11 +517,11 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
 
-                                         <table style="width:100%;">
+                                        <table style="width: 100%;">
                                             <tr>
                                                 <td>
-                                                   <asp:Label ID="lgvFBankAmt1" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
-                                            Style="text-align: right" Width="70px"></asp:Label>
+                                                    <asp:Label ID="lgvFBankAmt1" runat="server" Font-Bold="True" Font-Size="12px" ForeColor="#000"
+                                                        Style="text-align: right" Width="70px"></asp:Label>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -530,7 +531,7 @@
                                             </tr>
                                         </table>
 
-                                       
+
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                 </asp:TemplateField>
@@ -1981,6 +1982,168 @@
                     </div>
 
                 </asp:View>
+
+
+                <asp:View ID="ViewRecAndPayment03" runat="server">
+                    <div class="row">
+                        <fieldset class="scheduler-border fieldset_B">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-4 pading5px asitCol4">
+                                        <asp:Label ID="Label3" runat="server" CssClass="lblTxt lblName" Text="Project"></asp:Label>
+                                        <asp:DropDownList ID="ddlproject2" runat="server" CssClass="form-control chzn-select" TabIndex="3" Width="220px">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-4 pading5px asitCol4">
+                                        <asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Text="From"></asp:Label>
+                                        <asp:TextBox ID="txtfrmdat2" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="CalendarExtender3" runat="server"
+                                            Format="dd-MMM-yyyy" TargetControlID="txtfrmdat2" Enabled="true"></cc1:CalendarExtender>
+
+                                        <asp:Label ID="Label9" runat="server" CssClass="smLbl_to" Text="To"></asp:Label>
+                                        <asp:TextBox ID="txttodat2" runat="server" AutoCompleteType="Disabled" CssClass="inputtextbox" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
+                                        <cc1:CalendarExtender ID="CalendarExtender4" runat="server"
+                                            Format="dd-MMM-yyyy" TargetControlID="txttodat2" Enabled="true"></cc1:CalendarExtender>
+                                    </div>
+                                    <div class="col-md-1" style="margin-left: -75px;">
+                                        <div class="colMdbtn">
+                                            <asp:LinkButton ID="lbtnshow2" runat="server" CssClass="btn btn-primary okBtn" OnClick="lbtnshow2_Click">Show</asp:LinkButton>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-5 pading5px">
+                                        <asp:Label ID="Label11" runat="server" CssClass=" lblTxt lblName " Text="Group"></asp:Label>
+                                        <asp:RadioButtonList ID="rbtncashbank2" runat="server" CssClass="smDropDown inputTxt" TabIndex="6" RepeatColumns="6" RepeatDirection="Horizontal">
+                                            <asp:ListItem>Cash</asp:ListItem>
+                                            <asp:ListItem>Bank</asp:ListItem>
+                                            <asp:ListItem Selected="True">Both</asp:ListItem>
+                                        </asp:RadioButtonList>
+                                        <asp:CheckBox ID="cknet2" runat="server" TabIndex="10" Text="Net" Checked="true" CssClass="btn btn-primary checkBox" />
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </fieldset>
+
+                    </div>
+                    <div class="row table-responsive">
+
+                        <asp:GridView ID="gvrecandpay03" runat="server" AutoGenerateColumns="False" ShowFooter="True"
+                            Width="973px" OnRowDataBound="gvrecandpay03_RowDataBound" CssClass="table-striped table-hover table-bordered grvContentarea">
+                            <RowStyle />
+                            <Columns>
+                                <asp:TemplateField HeaderText="Sl.No.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrp2sl" runat="server" Style="text-align: right"
+                                            Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="RecCode" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrp2recpcode" runat="server" Font-Bold="True" Style="text-align: right"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "recpcode")) %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Head Accounts Head">
+
+                                    <HeaderTemplate>
+                                        <table style="width: 47%;">
+                                            <tr>
+                                                <td class="style58">
+                                                    <asp:Label ID="Label4gvrp2" runat="server" Font-Bold="True"
+                                                        Text="Head Accounts Head" Width="180px"></asp:Label>
+                                                </td>
+                                                <td class="style60">&nbsp;</td>
+                                                <td>
+                                                    <asp:HyperLink ID="btngvrp2ept2excel" runat="server" BackColor="#000066"
+                                                        BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
+                                                        ForeColor="White" Style="text-align: center" Width="90px">Export Excel</asp:HyperLink>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </HeaderTemplate>
+
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btngvrp2recpdesc" runat="server"
+                                            Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grprpdesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "recpdesc").ToString().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "grprpdesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
+                                                                         
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "recpdesc")): "") 
+                                                                         
+                                                                    %>'
+                                            Width="395px" Font-Underline="False" Style="color: Black"
+                                            OnClick="btngvrp2recpdesc_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" Height="35px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Receipt Amt.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrp2recpam" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "recpam")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <ItemStyle HorizontalAlign="Right" />
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" Height="35px" VerticalAlign="Top" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="PayCode" Visible="false">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrp2paycode" runat="server" Font-Bold="True" Style="text-align: right"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "paycode")) %>' Width="50px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                </asp:TemplateField>
+
+                                <asp:TemplateField HeaderText="Head of Accounts">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btngvrp2paydesc" runat="server"
+                                            Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "grppaydesc")) + "</B>"+
+                                                                         (DataBinder.Eval(Container.DataItem, "paydesc").ToString().Length>0 ? 
+                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "grppaydesc")).Trim().Length>0 ?  "<br>" : "")+                                                             
+                                                                      
+                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "paydesc")): "") 
+                                                                         
+                                                                    %>'
+                                            Width="300px" Font-Underline="False"
+                                            Style="color: Black" OnClick="btngvrp2paydesc_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lgvFNetBal03" runat="server" Font-Bold="True" Font-Size="12px"
+                                            Style="text-align: right" Text="" Width="100px"></asp:Label>
+
+                                    </FooterTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Payment Amt.">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvrp2payam" runat="server" Style="text-align: right" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "payam")).ToString("#,##0;(#,##0); ") %>'
+                                            Width="100px"></asp:Label>
+                                    </ItemTemplate>
+
+                                    <FooterStyle HorizontalAlign="Right" />
+                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                    <ItemStyle HorizontalAlign="Right" />
+                                </asp:TemplateField>
+                            </Columns>
+                            <FooterStyle BackColor="#F5F5F5" />
+                            <EditRowStyle />
+                            <AlternatingRowStyle />
+                            <PagerStyle CssClass="gvPagination" />
+                            <HeaderStyle BackColor="#5F9467" ForeColor="#ffffff" />
+                        </asp:GridView>
+
+                    </div>
+
+                </asp:View>
+
 
             </asp:MultiView>
 

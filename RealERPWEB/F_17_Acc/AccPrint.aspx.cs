@@ -177,7 +177,6 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintTanvir";
                     break;
 
-
                 //case "3101":
                 case "3358":
                 case "3359":
@@ -186,18 +185,18 @@ namespace RealERPWEB.F_17_Acc
                     vouprint = "VocherPrintEntrust";
                     break;
 
-
                 case "3355":
                     vouprint = "VocherPrintGreenwood";
                     break;
 
-
-                case "3101":
                 case "3364":
                     vouprint = "VocherPrintJBS";
                     break;
-
-
+                
+                case "3101":
+                case "3356":
+                    vouprint = "VocherPrintIntech";
+                    break;
 
                 default:
                     vouprint = "VocherPrint";
@@ -334,8 +333,7 @@ namespace RealERPWEB.F_17_Acc
 
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucher", list, null, null);
                     Rpt1.EnableExternalImages = true;
-
-                }
+                }               
 
 
                 else if (Type == "VocherPrintAlliance")
@@ -477,7 +475,6 @@ namespace RealERPWEB.F_17_Acc
                 }
 
 
-
                 else if (Type == "VocherPrintManama")
                 {
                     var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
@@ -520,6 +517,14 @@ namespace RealERPWEB.F_17_Acc
 
                 }
 
+                else if (Type == "VocherPrintIntech")
+                {
+                    var list = dt.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.PostVoucherPrint>();
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.rptBankVoucherIntech", list, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("txtSign1", txtsign1));
+
+                }
 
 
                 else
