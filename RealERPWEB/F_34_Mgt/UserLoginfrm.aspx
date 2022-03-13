@@ -28,6 +28,9 @@
             var gv = $('#<%=this.gvPermission.ClientID %>');
             gv.Scrollable();
 
+            var gvUseForm = $('#<%=this.gvUseForm.ClientID %>');
+            gvUseForm.Scrollable();
+
 
         }
         //User Modal
@@ -56,6 +59,28 @@
             }
             return true;
         }
+
+        function Search_Gridview(strKey) {
+
+            var strData = strKey.value.toLowerCase().split(" ");
+            var tblData = document.getElementById("<%=gvUseForm.ClientID %>");
+            var rowData;
+            for (var i = 1; i < tblData.rows.length; i++) {
+
+                rowData = tblData.rows[i].innerHTML;
+                var styleDisplay = 'none';
+                for (var j = 0; j < strData.length; j++) {
+                    if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                        styleDisplay = '';
+                    else {
+                        styleDisplay = 'none';
+                        break;
+                    }
+                }
+                tblData.rows[i].style.display = styleDisplay;
+            }
+        }
+
        <%-- function Search_Gridview(strKey, cellNr, gvname) {
             try {
 
@@ -154,7 +179,16 @@
                         </div>
 
                         <div class="col-md-3">
-                            <div class="input-group">
+
+
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label2" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
+                                </div>
+                                <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
+
+                            </div>
+                            <div class="input-group" hidden="hidden">
 
                                 <asp:TextBox ID="txtSrcName" runat="server" class="form-control" placeholder="Username" aria-label="Username"></asp:TextBox>
                                 <asp:LinkButton ID="ibtnFindName" CssClass="btn btn-primary srearchBtn" runat="server" OnClick="ibtnFindName_Click" TabIndex="9">
@@ -174,11 +208,10 @@
 
                 <div class="row table-responsive ">
                     <asp:GridView ID="gvUseForm" runat="server" AutoGenerateColumns="False"
-                        ShowFooter="True" AllowPaging="True" CssClass="table-striped table-hover table-bordered grvContentarea"
+                        ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
                         OnPageIndexChanging="gvUseForm_PageIndexChanging"
                         OnRowCancelingEdit="gvUseForm_RowCancelingEdit"
-                        OnRowEditing="gvUseForm_RowEditing" OnRowUpdating="gvUseForm_RowUpdating"
-                        PageSize="100">
+                        OnRowEditing="gvUseForm_RowEditing" OnRowUpdating="gvUseForm_RowUpdating">
                         <RowStyle />
                         <Columns>
                             <asp:TemplateField HeaderText="Sl.No.">
@@ -351,7 +384,7 @@
                                     <asp:Label ID="lblgvCentrName" runat="server"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
                                         Width="150px"></asp:Label>
-                                     <asp:Label ID="lblempid" runat="server" Visible="false"
+                                    <asp:Label ID="lblempid" runat="server" Visible="false"
                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                         Width="150px"></asp:Label>
                                 </ItemTemplate>
@@ -397,7 +430,7 @@
                                        </HeaderTemplate>--%>
 
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEditUser" OnClick="lnkEditUser_Click" ToolTip="Edit Users"  runat="server" CssClass="btn btn-xs btn-success"><i class="fas fa-edit"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkEditUser" OnClick="lnkEditUser_Click" ToolTip="Edit Users" runat="server" CssClass="btn btn-xs btn-success"><i class="fas fa-edit"></i></asp:LinkButton>
                                     <asp:LinkButton ID="lbtnLink" OnClick="lbtnLink_Click" ToolTip="Copy From " runat="server" CssClass="btn btn-xs btn-info"><i class="fas fa-copy"></i></asp:LinkButton>
                                 </ItemTemplate>
                                 <ItemStyle Font-Size="12px" HorizontalAlign="Left" Width="100" />
@@ -433,7 +466,9 @@
                                     <asp:ListItem Value="150">150</asp:ListItem>
                                     <asp:ListItem Value="200">200</asp:ListItem>
                                     <asp:ListItem Value="300">300</asp:ListItem>
-                                    <asp:ListItem Value="800">400</asp:ListItem>
+                                    <asp:ListItem Value="400">400</asp:ListItem>
+                                    <asp:ListItem Value="600">600</asp:ListItem>
+                                    <asp:ListItem Value="900">900</asp:ListItem>
                                 </asp:DropDownList>
 
                             </div>
@@ -470,9 +505,8 @@
                         </div>
                         <div class="row mt-2">
 
-                            <asp:GridView ID="gvPermission" runat="server" AllowPaging="True"
+                            <asp:GridView ID="gvPermission" runat="server"
                                 AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                OnPageIndexChanging="gvPermission_PageIndexChanging"
                                 OnRowDeleting="gvPermission_RowDeleting" ShowFooter="True">
                                 <RowStyle />
                                 <Columns>
@@ -746,7 +780,7 @@
                                     <asp:TextBox ID="txtmUesrId" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Short Name</label>
@@ -755,7 +789,7 @@
                                     <asp:TextBox ID="txtmShortName" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                           
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Full Name</label>
@@ -764,7 +798,7 @@
                                     <asp:TextBox ID="txtmFullName" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Designation</label>
@@ -773,7 +807,7 @@
                                     <asp:TextBox ID="txtmDesignation" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                          
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Password</label>
@@ -798,7 +832,7 @@
                                     <asp:TextBox ID="txtmUserEmail" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                           
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Web Mail Pass.</label>
@@ -807,7 +841,7 @@
                                     <asp:TextBox ID="txtmWebMailPass" runat="server" AutoCompleteType="Disabled" CssClass="form-control" TextMode="Password" onkeypress="return IsNumberWithOneDecimal(this,event);"></asp:TextBox>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Graph</label>
@@ -816,7 +850,7 @@
                                     <asp:TextBox ID="txtmGraph" runat="server" AutoCompleteType="Disabled" CssClass="form-control"></asp:TextBox>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>Employee ID</label>
@@ -825,7 +859,7 @@
                                     <asp:DropDownList ID="ddlmEmpId" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-                            
+
                             <div class="row mb-1">
                                 <div class="col-md-3">
                                     <label>User Role</label>

@@ -18,8 +18,7 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
-            var grvJoinStat = $('#<%=this.grvJoinStat.ClientID %>');
+          var grvJoinStat = $('#<%=this.grvJoinStat.ClientID %>');
             grvJoinStat.Scrollable();
           <%--  var gvJoinEmp = $('#<%=this.gvJoinEmp.ClientID %>');
             gvJoinEmp.Scrollable();--%>

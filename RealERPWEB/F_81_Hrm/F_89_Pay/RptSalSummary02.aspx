@@ -600,7 +600,7 @@
                             </asp:View>
 
                             <asp:View ID="Vsalsum" runat="server">
-                                <asp:GridView ID="gvLACA" runat="server" AllowPaging="True"
+                                <asp:GridView ID="gvLACA" runat="server"
                                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" Width="500px"
                                     OnPageIndexChanging="gvLACA_PageIndexChanging">

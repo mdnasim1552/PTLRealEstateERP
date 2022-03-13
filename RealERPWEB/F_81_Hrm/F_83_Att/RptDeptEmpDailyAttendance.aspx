@@ -26,18 +26,16 @@
 
             var gvempattn = $('#<%=this.gvDailyAttn.ClientID %>');
             gvempattn.Scrollable();
+
             var gvMoLateAttn = $('#<%=this.gvMoLateAttn.ClientID %>');
             gvMoLateAttn.Scrollable();
 
 
+          
 
         }
 
     </script>
-
-
-
-
 
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

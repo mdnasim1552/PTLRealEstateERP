@@ -24,6 +24,12 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
+
+
+            var gvAllPayroll = $('#<%=this.gvEmpLoanStatus.ClientID %>');
+            gvAllPayroll.Scrollable();
+           
+
         };
 
         function Search_Gridview(strKey) {
@@ -178,7 +184,7 @@
                               <%--  ---target="_blank"--%>
                                 <asp:TemplateField HeaderText="Loan Amt">
                                     <ItemTemplate>
-                                        <a href="<%# "EmpLoanInfo?Type=Entry&" +"&lnno="+ Eval("lnno").ToString()%>" > 
+                                        <a href="<%# "EmpLoanInfo?Type=Entry" +"&lnno="+ Eval("lnno").ToString()%>" > 
                                         <asp:Label ID="lblgvLoanamt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tloan")).ToString("#,##0;(#,##0); ") %>'></asp:Label>

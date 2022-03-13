@@ -21,7 +21,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
+            var gvMoLateAttn = $('#<%=this.gvMoLateAttn.ClientID %>');
+            gvMoLateAttn.Scrollable();
         };
     </script>
 
@@ -158,6 +159,9 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem  Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                           
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
