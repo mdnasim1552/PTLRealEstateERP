@@ -10,7 +10,7 @@
         }
     </style>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
         });
@@ -23,14 +23,12 @@
             });
 
             $('.chzn-select').chosen({ search_contains: true });
-        } 
-        $(document).ready(function () {
+        }
 
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
-        });
-     </script>
- 
+
+    </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -61,21 +59,23 @@
                             <header class="card-header">Leave Apply</header>
                             <div class="card-body">
 
-                                 <div class="form-group" id="empMgt" runat="server" visible="false">
-                                    <label for="ddlLvType">
+                                <div class="form-group" id="empMgt" runat="server" visible="false">
+                                    <label for="Employee">
                                         Employee <span class="text-danger">*</span>
                                     </label>
-                                   
-                                      <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
-                                                    CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
-                                                </asp:DropDownList>
+
+                                    <asp:DropDownList ID="ddlEmpName" runat="server" OnSelectedIndexChanged="ddlEmpName_SelectedIndexChanged"
+                                        CssClass="chzn-select form-control" TabIndex="2" AutoPostBack="true">
+                                    </asp:DropDownList>
 
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="ddlLvType">Apply Date  <span id="sspnlv" class="text-danger" runat="server" visible="false">
+                                    <label for="ddlLvType">
+                                        Apply Date  <span id="sspnlv" class="text-danger" runat="server" visible="false">
                                             <asp:CheckBox ID="chkBoxSkippWH" AutoPostBack="true" ToolTip="If you want to skip weekend/holiday/special day, please click the checkbox and click individual date click" OnCheckedChanged="chkBoxSkippWH_CheckedChanged" Text=" Skip W,H, SP Day " runat="server" Checked="false" />
-                                        </span></label>
+                                        </span>
+                                    </label>
                                     <asp:TextBox ID="txtaplydate" runat="server" AutoPostBack="true" class="form-control"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="dd-MMM-yyyy"
                                         TargetControlID="txtaplydate"></cc1:CalendarExtender>
@@ -85,7 +85,7 @@
                                     <label for="ddlLvType">
                                         Leave Type <span class="text-danger">*</span>
                                     </label>
-                                    <asp:DropDownList ID="ddlLvType" class="form-control" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlLvType" OnSelectedIndexChanged="ddlLvType_SelectedIndexChanged" AutoPostBack="true" class="form-control" runat="server"></asp:DropDownList>
                                 </div>
                                 <div class="row">
                                     <!-- grid column -->
@@ -112,53 +112,67 @@
                                     </div>
                                     <div class="col-md-6 pr-0" id="diSkippDay" runat="server" visible="false">
                                         <div class="form-group">
-                                            <label for="Duration">Is Half Day</label>
-                                            <asp:CheckBox ID="CheckBox1" class="form-control" ToolTip="" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" runat="server" Text=" Half Day Leave" />
+                                            <label for="Duration">Is Half Day </label>
+
+
+                                            <div class="input-group flex-nowrap">
+
+                                                <asp:CheckBox ID="CheckBox1" class="form-control" ToolTip="" OnCheckedChanged="CheckBox1_CheckedChanged" AutoPostBack="true" runat="server" Text=" Half Day" />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text d-none" id="addon-wrapping">
+                                                        <asp:LinkButton ID="lnkAddSKDAy" CssClass="badge bg-primary text-white mr-1" OnClientClick="lnkAddSKDAy_Click" ToolTip="Add" ForeColor="blue" runat="server">+</asp:LinkButton>
+                                                    </span>
+                                                </div>
+                                            </div>
+
                                         </div>
-                                        
+
+ 
+
+
 
                                     </div>
                                     <!-- /grid column -->
                                 </div>
 
                                 <div class="row" id="diSkippDayDetails" runat="server" visible="false">
-                                        <div class="form-group">
+                                    <div class="form-group">
 
-                                    <asp:GridView ID="gvInterstLev" runat="server" AutoGenerateColumns="False"
+                                        <asp:GridView ID="gvInterstLev" runat="server" AutoGenerateColumns="False"
                                             CssClass="table-striped table-hover table-bordered" BorderWidth="0"
                                             ShowFooter="false" ShowHeader="false" OnRowDataBound="gvInterstLev_RowDataBound">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Apply Date">
                                                     <ItemTemplate>
-                                                        
 
-                                                        <asp:Label ID="lgvapplydate" runat="server"  Width="150px" 
+
+                                                        <asp:Label ID="lgvapplydate" runat="server" Width="150px"
                                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "leavday")).ToString("dd-MMM-yyyy") %>'></asp:Label>
-                                                      
-                                                        
+
+
                                                     </ItemTemplate>
-                                                    
+
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                     <ItemStyle HorizontalAlign="left" />
                                                 </asp:TemplateField>
-                                                 <asp:TemplateField HeaderText="">
-                                                    <ItemTemplate> 
-                                                          <asp:LinkButton ID="LinkButton1"    CssClass="badge bg-purple text-white" ForeColor="blue" runat="server">
+                                                <asp:TemplateField HeaderText="">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="LinkButton1" CssClass="badge bg-purple text-white" ForeColor="blue" runat="server">
                                                             <%# Convert.ToString(DataBinder.Eval(Container.DataItem, "isHalfday"))=="True"?"Is Half Day":"" %>
-                                                          </asp:LinkButton>
+                                                        </asp:LinkButton>
                                                     </ItemTemplate>
-                                                    
+
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="">
-                                                    <ItemTemplate> 
+                                                    <ItemTemplate>
                                                         <asp:LinkButton ID="lnkIntsLvDelete" Width="50px" ForeColor="Red"
                                                             runat="server" ToolTip="Delete" OnClick="lnkIntsLvDelete_Click">
-                                                         <i class="fa fa-trash"></i></asp:LinkButton> 
+                                                         <i class="fa fa-trash"></i></asp:LinkButton>
                                                     </ItemTemplate>
-                                                    
+
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                     <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
@@ -170,7 +184,7 @@
                                             </Columns>
 
                                         </asp:GridView>
-                                </div>
+                                    </div>
                                 </div>
 
                                 <div class="row" id="divDurStatus" runat="server">
@@ -243,7 +257,7 @@
 
                                             <asp:TemplateField HeaderText="trnleaveid" Visible="false">
                                                 <ItemTemplate>
-                                                       <asp:Label ID="lbllevid" runat="server"
+                                                    <asp:Label ID="lbllevid" runat="server"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "id")) %>'
                                                         Width="120px"></asp:Label>
 
@@ -481,7 +495,7 @@
             </div>
 
 
- 
+
 
         </ContentTemplate>
     </asp:UpdatePanel>

@@ -28,6 +28,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
                 this.txtgvenjoydt1.Text = nextday;
                 this.txtgvenjoydt2.Text = nextday;
+
                 txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string qtype = this.Request.QueryString["Type"] ?? "";
@@ -78,11 +79,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             if (comcod == "3365")
             {
                 this.sspnlv.Visible = true;
+                this.chkBoxSkippWH.Checked = true;
+                chkBoxSkippWH_CheckedChanged(null, null);
+
 
             }
             else
             {
                 this.sspnlv.Visible = false;
+                this.chkBoxSkippWH.Checked = false;
 
 
             }
@@ -120,6 +125,8 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void GetCalCulateDay()
         {
+            string comcod = this.GetComeCode();
+
             string gcod = this.ddlLvType.SelectedValue.ToString();
             if (gcod == "")
             {
@@ -131,6 +138,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
             DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
+           
 
             getLevExitingLv(fdate.ToString(), tdate.ToString());
             DataTable extlv = (DataTable)ViewState["tblextlv"];
@@ -141,8 +149,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
                 TimeSpan difference = (tdate - fdate); //create TimeSpan object
                 string diffdays = "0.00";
-
-
                 if (chkBoxSkippWH.Checked == false)
                 {
                     isHalfday = (this.CheckBox1.Checked ? 0.5 : 0.00);
@@ -175,12 +181,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         diffdays = (skpday + isHalfday).ToString();
                     }
                 }
-
-
                 DataView dv = dt.Copy().DefaultView;
                 dv.RowFilter = ("gcod=" + gcod);
                 dt = dv.ToTable();
-
                 double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
                 double dfdays = Convert.ToDouble(diffdays);
                 this.Duration.Value = diffdays;
@@ -216,27 +219,67 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             ViewState["tblextlv"] = ds5.Tables[0];
         }
+        private void getLevExitingHoliday(string fdate, string tdate)
+        {
+            string comcod = this.GetComeCode();
+            string empid = this.GetEmpID();
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "GET_EXITINGE_HOLIDAY_BYEMPID", empid, fdate, tdate, "", "", "", "", "", "");
+
+
+            ViewState["tblextHoliday"] = ds5.Tables[0];
+        }
+
+        
+
+
 
         protected void txtgvenjoydt1_TextChanged1(object sender, EventArgs e)
         {
             string gcod = this.ddlLvType.SelectedValue.ToString();
+            string comcod = this.GetComeCode();
+            DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+            string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
 
             if (gcod == "")
             {
+                string Messaged = "Please Select Leave Type";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+               
+                this.txtgvenjoydt1.Text = nextday;
+                this.txtgvenjoydt2.Text = nextday;
+
                 this.btnSave.Enabled = false;
                 return;
             }
 
             if (chkBoxSkippWH.Checked == true)
             {
+                bool isvalidate = true;
+                if (comcod == "3365")
+                {
+                    getLevExitingHoliday(fdate.ToString(), fdate.ToString());
+                    DataTable extHoliday = (DataTable)ViewState["tblextHoliday"];
+                    if (extHoliday.Rows.Count != 0)
+                    {
+                        this.txtgvenjoydt1.Text = nextday;
+                        this.txtgvenjoydt2.Text = nextday;
+
+                        string Messaged = "Oops!! This Date Holiday:  " + extHoliday.Rows[0]["REASON"];
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        this.btnSave.Enabled = false;
+                        isvalidate = false;
+                    }
+                }
+                if (isvalidate == false)
+                    return;
+
 
                 seLvDate();
             }
 
 
 
-            DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
-            string nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+             nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
             this.txtgvenjoydt2.Text = nextday;
             txtgvenjoydt2_CalendarExtender.StartDate = fdate;
             GetCalCulateDay();
@@ -248,6 +291,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             if (gcod == "")
             {
+                string Messaged = "Please Select Leave Type";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+
                 this.btnSave.Enabled = false;
                 return;
             }
@@ -337,7 +383,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     //below code for if apply without date range 
                     if (chkBoxSkippWH.Checked == true)
                     {
-                        htmtableboyd = "<table><tr><th>Date<th><th>Days<th></tr>";
+                        htmtableboyd = "<table><tr><th>Date</th><th>Days<th></tr>";
                         for (int j = 0; j < dt1.Rows.Count; j++)
                         {
                             frmdate = Convert.ToDateTime(dt1.Rows[j]["leavday"]).ToString("dd-MMM-yyyy");
@@ -824,6 +870,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
             string leavday = Convert.ToDateTime(this.txtgvenjoydt1.Text).ToString("dd-MMM-yyyy");
             string isHalfday = (this.CheckBox1.Checked ? "True" : "False");
+           
 
             getLevExitingLv(leavday.ToString(), leavday.ToString());
             DataTable extlv = (DataTable)ViewState["tblextlv"];
@@ -867,7 +914,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             if (chkBoxSkippWH.Checked == false)
             {
                 divDurStatus.Visible = true;
-
                 divBTWDay.Visible = true;
                 diSkippDay.Visible = false;
                 diSkippDayDetails.Visible = false;
@@ -878,9 +924,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 diSkippDay.Visible = true;
                 diSkippDayDetails.Visible = true;
                 divDurStatus.Visible = false;
-
-
             }
+            this.Duration.Value = "0";
+            ViewState.Remove("tblSlevDay");
+
+
         }
 
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
@@ -893,5 +941,45 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this._errObj["Msg"] = exp.Message;
             this._errObj["Location"] = exp.StackTrace;
         }
+
+        protected void lnkAddSKDAy_Click(object sender, EventArgs e)
+        {
+            string gcod = this.ddlLvType.SelectedValue.ToString();
+
+            if (gcod == "")
+            {
+                string Messaged = "Please Select Leave Type";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                this.btnSave.Enabled = false;
+                return;
+            }
+             
+            GetCalCulateDay();
+        }
+
+        protected void ddlLvType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
+            this.txtgvenjoydt1.Text = nextday;
+            this.txtgvenjoydt2.Text = nextday;
+            //   GetCalCulateDay();
+        }
+
+
+        //protected void txtgvenjoydt1_DayRender(object sender, DayRenderEventArgs e)
+        //{
+        //    DateTime stratDate = new DateTime(2022, 3, 13); ;
+        //    DateTime endDate = new DateTime(2022, 3, 21); ;
+
+        //    if (e.Day.Date > stratDate && e.Day.Date < endDate)
+        //    {
+        //        e.Cell.Font.Italic = true;
+        //        e.Cell.Font.Size = FontUnit.XLarge;
+        //        e.Cell.Font.Strikeout = true;
+        //        e.Day.IsSelectable = false;
+        //        e.Cell.BackColor = System.Drawing.Color.DarkRed;
+        //        e.Cell.Font.Name = "Courier New Baltic";
+        //    }
+        //}
     }
 }
