@@ -20,11 +20,7 @@
 
             $('.chzn-select').chosen({ search_contains: true });
         } 
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
+       
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

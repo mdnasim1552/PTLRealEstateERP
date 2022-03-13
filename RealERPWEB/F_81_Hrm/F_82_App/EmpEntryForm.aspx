@@ -247,35 +247,35 @@
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
                                                 <div class="dropdown">
-                                                       <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
                                                         Action
                                                         
                                                     </button>
-                                                      <ul class="dropdown-menu">
-                                                        <li >
-                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="btn btn-xs btn-info "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkView" Target="_blank" ToolTip="Employee Information view"
                                                                 NavigateUrl='<%# "~/F_81_Hrm/F_82_App/EmpEntry01?Type=Entry&empid="+Eval("empid") %>'
-                                                                CssClass="btn btn-xs btn-primary " runat="server"><i class="fa fa-eye "></i> View</asp:HyperLink>
+                                                                CssClass="dropdown-item" runat="server"><i class="fa fa-eye "></i> View</asp:HyperLink>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkOfferLetter" Target="_blank"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10003&Entry=Offer Letter For General&empid="+Eval("empid") %>'
-                                                                CssClass="btn btn-xs btn-warning " runat="server">Offer Letter</asp:HyperLink>
+                                                                CssClass="dropdown-item " runat="server">Offer Letter</asp:HyperLink>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkAppoint" Target="_blank"
                                                                 NavigateUrl='<%# "~/LetterDefault?Type=10002&Entry=appoinment Letter &empid="+Eval("empid") %>'
-                                                                CssClass="btn btn-xs btn-secondary " Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Appoinment Letter</asp:HyperLink>
+                                                                CssClass="dropdown-item" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>' runat="server">Appoinment Letter</asp:HyperLink>
                                                             <%--  Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' --%>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkbtnAggrement" Target="_blank"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
                                                                 NavigateUrl='<%# "~/F_81_Hrm/F_82_App/HREmpEntry?Type=Aggrement&empid="+Eval("empid") %>'
-                                                                CssClass="btn btn-xs btn-success  " runat="server">Agreement</asp:HyperLink>
+                                                                CssClass="dropdown-item" runat="server">Agreement</asp:HyperLink>
 
 
 
@@ -283,9 +283,31 @@
                                                         <li class="mt-2">
                                                             <asp:LinkButton ID="hypDelbtn" OnClick="hypDelbtn_Click" OnClientClick="return confirm('Are You Sure To Delete This Data?');"
                                                                 Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>'
-                                                                CssClass="btn btn-xs btn-danger " runat="server"><i class="fa fa-trash-alt "></i> Delete</asp:LinkButton>
+                                                                CssClass="dropdown-item " runat="server"><i class="fa fa-trash-alt "></i> Delete</asp:LinkButton>
                                                         </li>
-                                                   </ul>
+
+                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink1" Target="_blank"
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
+                                                                NavigateUrl='<%# "~/F_81_Hrm/F_84_Lea/HRLeaveOpening"%>'
+                                                                CssClass="dropdown-item " runat="server">Earn Leave Opening</asp:HyperLink>
+                                                        </li>
+
+                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink2" Target="_blank"
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
+                                                                NavigateUrl='<%# "~/F_81_Hrm/F_84_Lea/HREmpLeave?Type=LeaveRule"%>'
+                                                                CssClass="dropdown-item" runat="server">Company Leave Rule</asp:HyperLink>
+                                                        </li>
+                                                        <li class="mt-2">
+                                                            <asp:HyperLink ID="HyperLink3" Target="_blank"
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? false:true %>'
+                                                                NavigateUrl='<%# "~/F_81_Hrm/F_83_Att/HREmpOffDays"%>'
+                                                                CssClass="dropdown-item " runat="server">Employee Off Days</asp:HyperLink>
+                                                        </li>
+                                                        
+
+                                                    </ul>
                                                 </div>
 
                                             </ItemTemplate>

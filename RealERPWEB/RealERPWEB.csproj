@@ -3726,8 +3726,6 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
-    <Content Include="ExcelFile\Book1.xlsx" />
-    <Content Include="ExcelFile\Book16.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -11688,6 +11686,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
+    <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
