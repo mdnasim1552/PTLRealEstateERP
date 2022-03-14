@@ -167,7 +167,6 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 case "LeaveApp":
                     this.ShowLeaveApp();
-
                     break;
 
                 case "FLeaveApp":
@@ -288,8 +287,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             Session.Remove("YearLeav");
 
-            string comcod = this.GetComeCode();
-         
+            string comcod = this.GetComeCode();         
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string nozero = (hrcomln == 4) ? "0000" : "00";
             string company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"%";//(this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" : this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
@@ -306,15 +304,42 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             DataTable dt = HiddenSameData(ds4.Tables[0]);
             Session["YearLeav"] = dt;
             this.LoadGrid();
-
         }
-
+        protected void ddlModiType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.ShowValue();
+        }
         private void LoadGrid()
         {
 
             DataTable dt = (DataTable)Session["YearLeav"];
+            // Wokign Progress
+            dt.TableName = "Table";
+            DataTable dtfilter = new DataTable();
+            DataView view = new DataView();
+            view.Table = dt;
+            string mtype = this.ddlModiType.SelectedValue.ToString();
+            if(mtype== "Updated")
+            {
+
+             
+                // for New assign Task                             
+                view.RowFilter = "lvupdate='Updated'";
+                dtfilter = view.ToTable();
+            }
+            else if (mtype == "Notupdate")
+            {
+                
+                view.RowFilter = "lvupdate='NotUpdated'";
+                dtfilter = view.ToTable();
+            }
+            else
+            {
+                dtfilter = view.ToTable();
+            }
+
             this.gvLeaveRule.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-            this.gvLeaveRule.DataSource = dt;
+            this.gvLeaveRule.DataSource = dtfilter;
             this.gvLeaveRule.DataBind();
         }
 
@@ -1651,5 +1676,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             this.GetEmployeeName();
 
         }
+
+      
     }
 }
