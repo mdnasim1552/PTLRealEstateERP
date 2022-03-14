@@ -147,7 +147,7 @@
 
             <div class="card card-fluid container-data5 ">
                 <div class="card-body">
-                    <header class="card-header p-0 m-0">Leave Information</header>
+                    <header class="card-header p-0 m-0">Details Information</header>
 
                     <asp:Repeater ID="RptMyAttenView" runat="server" OnItemDataBound="RptMyAttenView_ItemDataBound">
 
