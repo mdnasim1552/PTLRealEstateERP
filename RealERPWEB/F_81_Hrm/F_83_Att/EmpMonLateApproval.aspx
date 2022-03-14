@@ -51,8 +51,8 @@
             });
 
 
-            var gvAllLate = $('#<%=this.grvAdjDay.ClientID %>');
-            gvAllLate.Scrollable();
+           <%-- var gvAllLate = $('#<%=this.grvAdjDay.ClientID %>');
+            gvAllLate.Scrollable();--%>
 
 
             var gvAllLp = $('#<%=this.gvmapsapp.ClientID %>');
