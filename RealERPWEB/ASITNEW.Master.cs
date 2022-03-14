@@ -66,7 +66,7 @@ namespace RealERPWEB
                 this.GetAdminUserMenu();
                 string comcod = this.GetCompCode();
 
-                if ((comcod == "3365") || (comcod == "3347") || (comcod == "3101"))
+                if ((comcod == "3365") || (comcod == "3347"))
                 {
                     BindMenu();
                    // GetProFileMEnu();
@@ -127,7 +127,7 @@ namespace RealERPWEB
             switch (comcod)
             {
                 case "3365":
-                case "3101":
+               // case "3101":
 
                    //sidebar nav off for bti general user
                   
