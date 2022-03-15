@@ -105,7 +105,27 @@
             </div>
 
             <div class="card-fluid container-data  mt-2">
-                <div class="row">
+                <div class="row" id="warning" runat="server" visible="false">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="section-block">
+
+
+                            <div class="alert alert-danger has-icon" role="alert">
+                                <div class="alert-icon">
+                                    <span class="fa fa-bullhorn"></span>
+                                </div>
+                                The Department: <b><span id="dptNameset" runat="server"></span> </b> Approval user  did not set.
+                                <br />
+                                Please Contact you HR Department 
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="levapp" runat="server">
                     <div class="col-12 col-lg-12 col-xl-3">
                         <section class="card card-fluid" style="height: 650px">
                             <header class="card-header">LEAVE APPROVAL</header>
@@ -131,7 +151,7 @@
                                 <asp:Panel ID="Panel2" runat="server">
                                     <div class="form-group">
                                         <asp:ListBox ID="lstOrderNo" runat="server" AutoPostBack="True" CssClass="form-control"
-                                            BackColor="#DFF0D8" Font-Bold="True" Font-Size="12px" Height="100px"
+                                            BackColor="#DFF0D8" Font-Bold="True" Font-Size="12px" Height="50px"
                                             OnSelectedIndexChanged="lstOrderNo_SelectedIndexChanged"
                                             SelectionMode="Multiple" TabIndex="12"></asp:ListBox>
                                     </div>
@@ -163,8 +183,6 @@
                                     </div>
                                     <div class="col-md-6 pl-0">
                                         <div class="form-group">
-                                            <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
-                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
                                             <asp:LinkButton ID="ApprovedBtn" runat="server" CssClass="btn btn-success btn-sm ApprovedBtn d-none" BorderStyle="None">Approved</asp:LinkButton>
                                         </div>
                                     </div>
@@ -178,7 +196,8 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-9">
-                                        <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                        <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" 
+                                            CssClass="table-striped table-hover table-bordered"
                                             ShowFooter="True">
                                             <RowStyle />
                                             <Columns>
@@ -316,6 +335,10 @@
                                                         <cc1:CalendarExtender ID="txtgvlstdate_CalendarExtender" runat="server" Enabled="True"
                                                             Format="dd-MMM-yyyy" TargetControlID="txtgvlstdate"></cc1:CalendarExtender>
                                                     </ItemTemplate>
+                                                    <FooterTemplate>
+                                            <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
+
+                                                    </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
                                                     <ItemStyle HorizontalAlign="left" />
                                                 </asp:TemplateField>
@@ -329,6 +352,10 @@
                                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "enddat")).ToString("dd-MMM-yyyy") %>'
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
+                                                    <FooterTemplate>
+                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
+
+                                                    </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
 
@@ -349,16 +376,14 @@
 
 
                                             </Columns>
-                                            <FooterStyle CssClass="grvFooter" />
+                                            
                                             <EditRowStyle />
-                                            <AlternatingRowStyle />
-                                            <PagerStyle CssClass="gvPagination" />
-                                            <HeaderStyle CssClass="grvHeader" />
+                                            <AlternatingRowStyle />                                           
                                         </asp:GridView>
                                     </div>
                                     <div class="col-3">
                                         <p class="m-0 badge text-white bg-primary">Current Leave Status</p>
-                                        <table class="table-striped table-hover text-center table-bordered grvContentarea">
+                                        <table class="table-striped table-hover table-bordered text-center">
                                             <tr>
                                                 <td>Type</td>
                                                 <td>Achieved</td>
@@ -366,18 +391,24 @@
                                             </tr>
                                             <tr>
                                                 <td>EARNED LEAVE</td>
-                                                <td><asp:Label ID="lblelv" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblelvenjoy" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblelv" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblelvenjoy" runat="server">0</asp:Label></td>
                                             </tr>
                                             <tr>
                                                 <td>CASUAL LEAVE</td>
-                                                <td><asp:Label ID="lblclv" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblclenj" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblclv" runat="server">0</asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblclenj" runat="server">0</asp:Label></td>
                                             </tr>
                                             <tr>
                                                 <td>SICK LEAVE</td>
-                                                 <td><asp:Label ID="lblslv" runat="server"></asp:Label></td>
-                                                <td><asp:Label ID="lblslenj" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblslv" runat="server"></asp:Label></td>
+                                                <td>
+                                                    <asp:Label ID="lblslenj" runat="server"></asp:Label></td>
                                             </tr>
                                         </table>
 
@@ -386,8 +417,8 @@
                             </div>
                             <header class="card-header">Leave Status</header>
                             <div class="card-body">
-                                <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                    Width="925px">
+                                <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" 
+                                    CssClass="table-striped table-hover table-bordered text-center">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl.No.">
@@ -407,43 +438,43 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Opening Bal.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvlentitled0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "entitle")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvlentitled0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "entitle")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Entitlement">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "permonth")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "permonth")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Leave This Year">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Present Bal.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0.00;(#,##0.00);") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Requested">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "applyday")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "applyday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Requested  Std. Date">
@@ -458,7 +489,7 @@
 
                                         <asp:TemplateField HeaderText="Approved">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "appday")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "appday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
@@ -466,11 +497,11 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Closing Bal.">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balleave")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balleave")).ToString("#,##0.00;(#,##0.00);") %>'
                                                     Width="70px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Last Leave Std. Date">
                                             <ItemTemplate>
@@ -490,18 +521,17 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Last Leave Day's">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvenjoyday0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lenjoyday")).ToString("#,##0;(#,##0); ") %>'
+                                                <asp:Label ID="lblgvenjoyday0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lenjoyday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                             <HeaderStyle HorizontalAlign="Center" />
-                                            <ItemStyle HorizontalAlign="right" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle CssClass="grvFooter" />
+                                    
                                     <EditRowStyle />
                                     <AlternatingRowStyle />
-                                    <PagerStyle CssClass="gvPagination" />
-                                    <HeaderStyle CssClass="grvHeader" />
+                                    
                                 </asp:GridView>
                             </div>
 
