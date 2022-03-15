@@ -1087,16 +1087,22 @@ namespace RealERPWEB.F_17_Acc
                         dt1.Rows[j]["grprpdesc"] = "";
                         dt1.Rows[j]["grppaydesc"] = "";
                     }
-
-
                     grp1 = dt1.Rows[j]["grp1"].ToString();
-
-
                 }
+            }
 
-
-
-
+            else if (this.rbtnList1.SelectedIndex == 11)
+            {
+                string grp1 = dt1.Rows[0]["grp1"].ToString();
+                for (j = 1; j < dt1.Rows.Count; j++)
+                {
+                    if (dt1.Rows[j]["grp1"].ToString() == grp1)
+                    {
+                        dt1.Rows[j]["grprpdesc"] = "";
+                        dt1.Rows[j]["grppaydesc"] = "";
+                    }
+                    grp1 = dt1.Rows[j]["grp1"].ToString();
+                }
             }
 
             else
@@ -2259,11 +2265,6 @@ namespace RealERPWEB.F_17_Acc
                         lbtn2.CommandArgument = paycode;
                 }
             }
-
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            if (ds1.Tables[0].Rows.Count > 0)
-                ((HyperLink)this.gvrecandpay03.HeaderRow.FindControl("btngvrp2ept2excel")).Enabled = dr1.Length == 0 ? false : (Convert.ToBoolean(dr1[0]["printable"]));
-
             Session["Report1"] = gvrecandpay03;
             if (ds1.Tables[0].Rows.Count > 0)
             {
@@ -2288,13 +2289,10 @@ namespace RealERPWEB.F_17_Acc
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                LinkButton HyRecDesc = (LinkButton)e.Row.FindControl("btnRecDescrp02");
-                Label lgvRecAmt = (Label)e.Row.FindControl("lblgvrecpamrp02");
-
-                LinkButton HyPayDesc = (LinkButton)e.Row.FindControl("btnPayDescrp02");
-
-                Label lgvPayAmt = (Label)e.Row.FindControl("lgvpayamrp02");
-
+                LinkButton HyRecDesc = (LinkButton)e.Row.FindControl("btngvrp2recpdesc");
+                Label lgvRecAmt = (Label)e.Row.FindControl("lblgvrp2recpam");
+                LinkButton HyPayDesc = (LinkButton)e.Row.FindControl("btngvrp2paydesc");
+                Label lgvPayAmt = (Label)e.Row.FindControl("lblgvrp2payam");
 
                 string code1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "recpcode")).ToString();
                 string code2 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "paycode")).ToString();
