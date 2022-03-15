@@ -116,6 +116,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.rptLabIssueSuvastu": Rpt1a = SetrptLabIssueSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.rptLabIssueAcme": Rpt1a = SetrptLabIssueAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.rptLabIssueAssure": Rpt1a = SetrptLabIssueAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptLabIssueRup": Rpt1a = SetRptLabIssueRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptTopSheet": Rpt1a = SetRptTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillAcme": Rpt1a = SetRptConBillAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillEdi": Rpt1a = SetRptConBillEdi(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -4083,6 +4084,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetrptLabIssueAssure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
+            return Rpt1a;
+        }        
+        private static LocalReport SetRptLabIssueRup(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
             return Rpt1a;
