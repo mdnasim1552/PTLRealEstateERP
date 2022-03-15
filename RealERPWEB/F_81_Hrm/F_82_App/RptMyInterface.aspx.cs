@@ -188,7 +188,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             switch (comcod)
             {
                 case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
-                case "3365": 
+                case "3365":
                     calltype = "RPTMYSERVICESBTI";
                     break;
 
@@ -341,8 +341,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     return;
 
                 string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+           
                 string ymonid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ymonid")).ToString();
-                string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/01/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
+                string frmdate = Convert.ToDateTime(startdate + "/"+ ymonid.Substring(4, 2) + "/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy"); //"
                 string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
                 lnkyearmon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;

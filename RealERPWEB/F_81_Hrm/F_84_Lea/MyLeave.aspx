@@ -50,9 +50,31 @@
                 </asp:UpdateProgress>
             </div>
             <div class="card-fluid container-data  mt-2">
+                <div class="row" id="warning" runat="server" visible="false">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="section-block">
+                             
+
+                            <div class="alert alert-danger has-icon" role="alert">
+                        <div class="alert-icon">
+                          <span class="fa fa-bullhorn"></span>
+                        </div>
+                                The supervisor did not set. <br />
+                       
+                                  Please set your supervisor  
+                                <asp:HyperLink ID="hylnkUserProfileEdit" class="alert-link" runat="server" NavigateUrl="~/F_81_Hrm/F_82_App/EmpProfileEdit.aspx" Target="_blank" ToolTip="Edit Your Profile"><i class="fas fa-user-edit">&nbsp;Click</i></asp:HyperLink>
 
 
-                <div class="row">
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="Lvform" runat="server" visible="true">
                     <div class="col-12 col-lg-12 col-xl-3">
                         <section class="card card-fluid" style="min-height: 650px">
                             <!-- .card-body -->
@@ -127,7 +149,7 @@
 
                                         </div>
 
- 
+
 
 
 
@@ -238,7 +260,7 @@
 
                             <div class="card-body card card-fluid mb-0">
 
-                                <div class="row" style="height: 180px; flex-grow: 1; overflow: auto;">
+                                <div class="row" style="height: 280px; flex-grow: 1; overflow: auto;">
                                     <asp:GridView ID="gvleaveInfo" runat="server" AutoGenerateColumns="False"
                                         CssClass="table-striped table-hover table-bordered"
                                         ShowFooter="True" OnRowDataBound="gvleaveInfo_RowDataBound">
@@ -372,8 +394,8 @@
                                 <div class="row mt">
                                     <header class="card-header">Leave Status</header>
 
-
-                                    <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True"
+                                    <div class="col-md-12">
+                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="True"
                                         CssClass="table-striped table-hover table-bordered">
                                         <RowStyle />
                                         <Columns>
@@ -399,7 +421,7 @@
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="right" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Entitlement" ItemStyle-BackColor="#cccccc">
                                                 <ItemTemplate>
@@ -407,23 +429,24 @@
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="right" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Leave <br> This Year" ItemStyle-BackColor="#999999">
+                                            <asp:TemplateField HeaderText="Leave <br> This Year"  >
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ltaken")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="middle" />
-                                                <ItemStyle HorizontalAlign="right" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Present <br> Bal." ItemStyle-BackColor="#cccccc">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvlentitled1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    <asp:Label ID="lblgvlentitled1" runat="server" 
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "pbal")).ToString("#,##0.00;(#,##0.00);") %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="right" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Requested">
                                                 <ItemTemplate>
@@ -431,7 +454,7 @@
                                                         Width="60px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
-                                                <ItemStyle HorizontalAlign="right" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
 
@@ -454,13 +477,13 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Closing <br> Bal." ItemStyle-BackColor="#99ccff">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                    <asp:Label ID="lblgvballeave1" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balleave")).ToString("#,##0.00;(#,##0.00);") %>'
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Last Leave <br> Std. Date">
+                                            <asp:TemplateField HeaderText="Last Leave <br> Std. Date" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvenjoydt10" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt1")).ToString("dd-MMM-yyyy") %>'
                                                         Width="80px" Visible='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt1")).ToString("dd-MMM-yyyy")!="01-Jan-1900" %>'></asp:Label>
@@ -468,7 +491,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Last Leave <br> End Date">
+                                            <asp:TemplateField HeaderText="Last Leave <br> End Date" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvleavedt20" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt2")).ToString("dd-MMM-yyyy ") %>'
                                                         Width="80px" Visible='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "lenjoydt2")).ToString("dd-MMM-yyyy")!="01-Jan-1900" %>'></asp:Label>
@@ -476,7 +499,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Last Leave <br> Day's">
+                                            <asp:TemplateField HeaderText="Last Leave <br> Day's" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvenjoyday0" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lenjoyday")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="80px"></asp:Label>
@@ -487,6 +510,8 @@
                                         </Columns>
 
                                     </asp:GridView>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </section>
