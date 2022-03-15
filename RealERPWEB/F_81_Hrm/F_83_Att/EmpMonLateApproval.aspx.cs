@@ -1083,6 +1083,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void InsertUpdateDataBTI()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string compsms = hst["compsms"].ToString();
+            string compmail = hst["compmail"].ToString();
+            string ssl = hst["ssl"].ToString();
+     
+            string sendUsername = hst["userfname"].ToString();
+
+            string sendDptdesc = hst["dptdesc"].ToString();
+            string sendUsrdesig = hst["usrdesig"].ToString();
+            string compName = hst["comnam"].ToString();
+
+            string usrid = hst["usrid"].ToString();
+            string deptcode = hst["deptcode"].ToString();
+
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
@@ -1103,6 +1117,9 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 double leaveadj = Convert.ToDouble("0" + dt.Rows[i]["leaveadj"]);
                 double leaveadjel = Convert.ToDouble("0" + dt.Rows[i]["leaveadjel"]);
                 double ttdelv = Convert.ToDouble("0" + dt.Rows[i]["ttdelv"]);
+               
+
+
 
                 double ttlCallv = dedday + leaveadj + leaveadjel;
                 if (isadjust == "True")
@@ -1116,6 +1133,35 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), leaveadjel.ToString(), "", "", "", "", "", "", "", "");
                         if (!result)
                             return;
+
+                        string reason = "Late Adjustment";
+                        // for leave creatrion bti
+                        if (comcod == "3365" && leaveadj.ToString() != "0")
+                        {
+                            string frmdate = this.txtfrmDate.Text.Trim();
+                            string todate = this.txttoDate.Text.Trim();
+                            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL", frmdate, todate, empid);
+                            DataTable dts = ds2.Tables[0];
+                            string trnid = this.GetLeaveid();                           
+                            int lvrow = (Int32)(Math.Round(leaveadj, 0));                           
+                                //Convert.ToInt32(leaveadj);
+                            for (int j = 0; j < dts.Rows.Count; j++)
+                            {
+                                if (lvrow > j)
+                                {
+                                    string tdays = (leaveadj < j ? "0.5" : "1");
+                                    bool ishalfday = (leaveadj < j ? true : false);
+                                    frmdate = Convert.ToDateTime(dts.Rows[j]["intime"]).ToString("dd-MMM-yyyy");                                      
+                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_SKIPPHOLIDAY", trnid, empid, "51001", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
+                                     
+                                }
+                                
+
+
+                            }
+
+                        }
+
                     }
                 }
                 else
@@ -1123,7 +1169,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), leaveadjel.ToString(), "", "", "", "", "", "", "", "");
                     if (!result)
                         return;
+                  
+
+
+
+
                 }
+
+
+
+
+
 
             }
             if (Errocard.Length == 0)
@@ -1137,6 +1193,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
             }
         }
+
+        private string GetLeaveid()
+        {
+
+            string comcod = this.GetCompCode();
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLEAVEID", "", "", "", "", "", "", "", "", "");
+            string lstid = ds5.Tables[0].Rows[0]["ltrnid"].ToString().Trim();
+            return lstid;
+        }
+
         private void InsertUpdateDataALL()
         {
             this.SaveValue();
@@ -2429,8 +2495,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
 
                         return;
-                    }    
-                        
+                    }
+
                 }
 
 

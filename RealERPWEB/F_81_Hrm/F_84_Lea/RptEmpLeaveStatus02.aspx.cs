@@ -893,11 +893,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 //  gvrow.Cells.Remove(TableCell [0]);
 
-                TableCell cell01 = new TableCell();
-                cell01.Text = "Sl";
-                cell01.HorizontalAlign = HorizontalAlign.Center;
-                cell01.RowSpan = 2;
-                gvrow.Cells.Add(cell01);
+                //TableCell cell01 = new TableCell();
+                //cell01.Text = "Sl";
+                //cell01.HorizontalAlign = HorizontalAlign.Center;
+                //cell01.RowSpan = 2;
+                //gvrow.Cells.Add(cell01);
 
 
 
@@ -905,14 +905,14 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 cell02.Text = "Employee Details";
                 cell02.HorizontalAlign = HorizontalAlign.Center;
                 cell02.Attributes["style"] = "font-weight:bold;";
-                cell02.ColumnSpan = 5;
+                cell02.ColumnSpan = 6;
                 gvrow.Cells.Add(cell02);
 
                 TableCell cell03 = new TableCell();
                 cell03.Text = "Standard Leave-"+ year;
                 cell03.HorizontalAlign = HorizontalAlign.Center;
                 cell03.Attributes["style"] = "font-weight:bold;";
-                cell03.ColumnSpan = 4;
+                cell03.ColumnSpan = 3;
                 gvrow.Cells.Add(cell03);
 
 
@@ -921,43 +921,43 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 cell04.Text = "Achieved upto "+ uptoachive;
                 cell04.Attributes["style"] = "font-weight:bold;";
                 cell04.HorizontalAlign = HorizontalAlign.Center;
-                cell04.ColumnSpan = 4;
+                cell04.ColumnSpan = 3;
                 gvrow.Cells.Add(cell04);
 
                 TableCell cell05 = new TableCell();
                 cell05.Text = "Jan";                
                 cell05.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell05.ColumnSpan = 4;
+                cell05.ColumnSpan = 3;
                 gvrow.Cells.Add(cell05);
 
                 TableCell cell06 = new TableCell();
                 cell06.Text = "FEB";
                 cell06.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell06.ColumnSpan = 4;
+                cell06.ColumnSpan = 3;
                 gvrow.Cells.Add(cell06);
 
                 TableCell cell07 = new TableCell();
                 cell07.Text = "Mar";
                 cell07.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell07.ColumnSpan = 4;
+                cell07.ColumnSpan = 3;
                 gvrow.Cells.Add(cell07);
                 
                 TableCell cell08 = new TableCell();
                 cell08.Text = "Apr";
                 cell08.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell08.ColumnSpan = 4;
+                cell08.ColumnSpan = 3;
                 gvrow.Cells.Add(cell08);
 
                 TableCell cell09 = new TableCell();
                 cell09.Text = "May";
                 cell09.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell09.ColumnSpan = 4;
+                cell09.ColumnSpan = 3;
                 gvrow.Cells.Add(cell09);
 
                 TableCell cell10 = new TableCell();
                 cell10.Text = "Jun";
                 cell10.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell10.ColumnSpan = 4;
+                cell10.ColumnSpan = 3;
                 gvrow.Cells.Add(cell10);
 
                 TableCell cell11 = new TableCell();
@@ -969,51 +969,51 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 TableCell cell12 = new TableCell();
                 cell12.Text = "Aug";
                 cell12.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell12.ColumnSpan = 4;
+                cell12.ColumnSpan = 3;
                 gvrow.Cells.Add(cell12);
 
                 TableCell cell13 = new TableCell();
                 cell13.Text = "Sep";
                 cell13.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell13.ColumnSpan = 4;
+                cell13.ColumnSpan = 3;
                 gvrow.Cells.Add(cell13);
 
                 TableCell cell14 = new TableCell();
                 cell14.Text = "Oct";
                 cell14.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell14.ColumnSpan = 4;
+                cell14.ColumnSpan = 3;
                 gvrow.Cells.Add(cell14);
 
                 TableCell cell15 = new TableCell();
                 cell15.Text = "Nov";
                 cell15.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell15.ColumnSpan = 4;
+                cell15.ColumnSpan = 3;
                 gvrow.Cells.Add(cell15);
 
                 TableCell cell16 = new TableCell();
                 cell16.Text = "Dec";
                 cell16.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell16.ColumnSpan = 4;
+                cell16.ColumnSpan = 3;
                 gvrow.Cells.Add(cell16);
 
 
                 TableCell cell17 = new TableCell();
                 cell17.Text = "Total Enjoyed upto "+ uptoachive;
                 cell17.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell17.ColumnSpan = 4;
+                cell17.ColumnSpan = 3;
                 gvrow.Cells.Add(cell17);
 
 
                 TableCell cell18 = new TableCell();
                 cell18.Text = "Supplus/(Excess)";
                 cell18.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell18.ColumnSpan = 4;
+                cell18.ColumnSpan = 3;
                 gvrow.Cells.Add(cell18);
 
                 TableCell cell19 = new TableCell();
                 cell19.Text = "Balance In Hand";
                 cell19.Attributes["style"] = "font-weight:bold; text-align:center;";
-                cell19.ColumnSpan = 4;
+                cell19.ColumnSpan = 3;
                 gvrow.Cells.Add(cell19);
                 gvyearlylv.Controls[0].Controls.AddAt(0, gvrow);
 
@@ -1024,12 +1024,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
 
 
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                e.Row.Cells[0].Visible = false;
+            //if (e.Row.RowType == DataControlRowType.Header)
+            //{
+            //    e.Row.Cells[0].Visible = false;
                
 
-            }
+            //}
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
