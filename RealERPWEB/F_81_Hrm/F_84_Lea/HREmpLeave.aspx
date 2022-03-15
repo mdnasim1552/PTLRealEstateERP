@@ -367,6 +367,9 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
+
+                                        
+
                                             <asp:TemplateField HeaderText="Maternity Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvml" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -377,7 +380,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Paternity Leave">
+                                            <asp:TemplateField HeaderText="Star Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvpl" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ptleave")).ToString("#,##0.00;(#,##0.00); ") %>'

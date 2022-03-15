@@ -25,21 +25,24 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ////if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                 ////    Response.Redirect("../../AcceessError.aspx");
                 GetLeavType();
-                string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
+                string nextday = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtgvenjoydt1.Text = nextday;
                 this.txtgvenjoydt2.Text = nextday;
 
                 txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string qtype = this.Request.QueryString["Type"] ?? "";
+               
                 if (qtype == "MGT")
                 {
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
+                    GetSupvisorCheck();
                     this.ddlEmpName_SelectedIndexChanged(null, null);
                 }
                 else
                 {
+                    GetSupvisorCheck();
                     getVisibilty();
                     CreateTable();
                     this.EmpLeaveInfo();
@@ -49,6 +52,36 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                
 
             }
+        }
+
+        private void GetSupvisorCheck()
+        {
+            string comcod = this.GetComeCode();
+
+            string empid = this.GetEmpID();
+            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
+            if (ds == null)
+            {
+                this.Lvform.Visible = false;
+
+                this.warning.Visible = true;
+                return;
+            }
+            if (ds.Tables[0].Rows[0]["sempid"].ToString() == "000000000000")
+            {
+                
+                this.Lvform.Visible = false;
+                this.warning.Visible = true;
+                this.btnSave.Enabled = false;
+                return;
+            }
+            else
+            {
+                this.Lvform.Visible = true;
+
+                this.warning.Visible = false;
+            }
+
         }
         private void GetEmpLoyee()
         {
@@ -110,9 +143,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         private void GetLeavType()
         {
             string comcod = this.GetComeCode();
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETLEAVETYPE", "", "", "", "", "", "", "", "", "");
+            string empid = this.GetEmpID();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETLEAVETYPE", empid, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             this.ddlLvType.DataTextField = "hrgdesc";
             this.ddlLvType.DataValueField = "hrgcod";
             this.ddlLvType.DataSource = ds1.Tables[0];
@@ -417,16 +453,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     else
                     {
-                        string Messaged = "Congratulations !! Your leave applied, please wait for approval";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
-
-
-
-                         
-                            this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);
-
-
-
+                        string Messaged = "Successfully applied Your leave, please wait for approval";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);                        
+                        this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);
                     }
 
                     this.EmpLeaveInfo();
@@ -959,6 +988,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void ddlLvType_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
             this.txtgvenjoydt1.Text = nextday;
             this.txtgvenjoydt2.Text = nextday;

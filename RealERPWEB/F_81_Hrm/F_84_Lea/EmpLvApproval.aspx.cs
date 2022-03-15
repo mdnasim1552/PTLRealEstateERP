@@ -65,6 +65,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Type = this.Request.QueryString["Type"].ToString();
                 string Date = (Type == "Ind") ? this.Request.QueryString["Date"].ToString() : System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
                 this.txtdate.Text = Date;
+
+                GetDptUserCheck();
+
                 // this.CommonButton();
                 this.GetProjectName();
                 this.GetOrderName();
@@ -76,6 +79,33 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             }
 
+        }
+
+        private void GetDptUserCheck()
+        {
+            string comcod = this.GetCompCode();
+            string refno = this.Request.QueryString["refno"] ?? "";
+            string RoleType = this.Request.QueryString["RoleType"] ?? "";
+            if(RoleType=="SUP")
+            {
+                RoleType = RoleType == "SUP" ? "DPT" : "";
+
+                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLEAVEDPTSETUSER", refno, RoleType, "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    return;
+                }
+                string dptdesc = ds.Tables[0].Rows[0]["dptname"].ToString();
+                if (dptdesc != "000000000000")
+                {
+                    this.dptNameset.InnerText = ds.Tables[0].Rows[0]["dptname"].ToString();
+                    this.warning.Visible = true;
+                    this.levapp.Visible = false;
+
+                    return;
+                }
+            }
+           
         }
         private void CommonButton()
         {
