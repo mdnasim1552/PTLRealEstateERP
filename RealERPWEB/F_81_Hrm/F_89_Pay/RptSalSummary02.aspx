@@ -4,8 +4,8 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
-        .grvContentarea {
-        }
+       
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -49,6 +49,12 @@
 
         }
 
+        function loadModal() {
+            $('#bankChecksInfo').modal('toggle');
+        };
+        function CloseModal() {
+            $('#bankChecksInfo').modal('hide');
+        };
     </script>
 
 
@@ -149,50 +155,27 @@
                                             Enabled="True" Format="yyyyMM" TargetControlID="txtfMonth"
                                             PopupButtonID="Image2"></cc1:CalendarExtender>
 
-                                     <div class="col-md-3 pading5px asitCol2" >
-                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName" Visible="false">From</asp:Label>
-                                        <asp:DropDownList ID="ddlfrmDesig" runat="server" Visible="false" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
-                                        </asp:DropDownList>
+                                        <div id="PnlDesign" runat="server" visible="false">
+                                            <div class="col-md-3 pading5px">
+                                                <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">From</asp:Label>
+                                                <asp:DropDownList ID="ddlfrmDesig" runat="server" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="110px" TabIndex="6">
+                                                </asp:DropDownList>
+                                            </div>
+
+                                            <div class="col-md-4 pading5px">
+                                                <asp:Label ID="lbltdeg" runat="server" CssClass=" smLbl_to">To</asp:Label>
+
+
+                                                <asp:DropDownList ID="ddlToDesig" runat="server" Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
+                                                </asp:DropDownList>
+
+                                            </div>
+                                        </div>
                                     </div>
-
-                                    <div class="col-md-4 pading5px">
-                                        <asp:Label ID="lbltdeg" runat="server" Visible="false" CssClass=" smLbl_to">To</asp:Label>
-
-
-                                        <asp:DropDownList ID="ddlToDesig" runat="server" Visible="false" Width="120px" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                        </asp:DropDownList>
-
-                                    </div>
-
-
-                                    </div>
-
-                       <%--           <div class="form-group">
-                                    <div class="col-md-3 pading5px asitCol2">
-                                        <asp:Label ID="lblfrmd" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
-                                        <asp:DropDownList ID="ddlfrmDesig" runat="server" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="ddlPage chzn-select" Width="100px" TabIndex="6">
-                                        </asp:DropDownList>
-                                    </div>
-
-                                    <div class="col-md-4 pading5px">
-                                        <asp:Label ID="lbltdeg" runat="server" CssClass=" smLbl_to">To</asp:Label>
-
-
-                                        <asp:DropDownList ID="ddlToDesig" runat="server" Width="120" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                        </asp:DropDownList>
-
-                                    </div>
-
-                                </div>--%>
-
-
-
-
 
                                     <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                         Font-Size="14px" Height="14px" RepeatColumns="14" RepeatDirection="Horizontal"
                                         Width="500px" Visible="false">
-
                                     </asp:RadioButtonList>
                                     <div class="col-md-3 pading5px asitCol3">
                                         <asp:Label ID="lblPage" runat="server" Visible="false" CssClass=" lblTxt lblName ">Page Size</asp:Label>
@@ -210,7 +193,7 @@
                                         <asp:CheckBox ID="chkBonustype" runat="server" CssClass=" checkbox chkBoxControl margin5px" Text="EID UL AZHA" Visible="False" />
                                         <asp:CheckBox ID="chkExcluMgt" runat="server" CssClass="checkbox chkBoxControl" Text="Exclude Management" Visible="False" />
 
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-3">
                                         <asp:Label ID="lblmsg" runat="server" Visible="false" CssClass="btn btn-danger primaryBtn"></asp:Label>
                                     </div>
@@ -476,7 +459,7 @@
                             <asp:View ID="VCashSalary" runat="server">
                                 <asp:GridView ID="gvcashpay" runat="server" AllowPaging="false" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     AutoGenerateColumns="False" OnPageIndexChanging="gvcashpay_PageIndexChanging"
-                                    ShowFooter="True" Width="745px">
+                                    ShowFooter="True">
                                     <RowStyle />
                                     <Columns>
                                         <asp:TemplateField HeaderText="Sl">
@@ -522,16 +505,6 @@
                                         </asp:TemplateField>
 
 
-                                        <%--  <asp:TemplateField HeaderText="Section">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lgvSectioncash" runat="server"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "sectionname")) %>'
-                                                    Width="150px"></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
-                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
-                                        </asp:TemplateField>--%>
-
 
                                         <asp:TemplateField HeaderText="ID CARD">
                                             <ItemTemplate>
@@ -549,10 +522,14 @@
                                                 <asp:Label ID="lgvndesigcash" runat="server"
                                                     Text='<%#"<b>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "empname"))+"</b>"+"<br>"+Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
                                                     Width="160px"></asp:Label>
+                                                <asp:Label ID="lblempname" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                                    Width="160px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Working Day">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvwdaycah" runat="server" Style="text-align: right"
@@ -563,6 +540,7 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Net Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgvnetamtcash" runat="server" Style="text-align: right"
@@ -577,6 +555,40 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Bank" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:DropDownList ID="ddlBankList" CssClass="form-control" runat="server">
+                                                </asp:DropDownList>
+                                            </ItemTemplate>
+                                            <ItemStyle Width="220px" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Check Date" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtckDate" runat="server" CssClass=" form-control "></asp:TextBox>
+
+                                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtckDate"
+                                                    PopupButtonID="Image2"></cc1:CalendarExtender>
+
+                                            </ItemTemplate>
+                                            <ItemStyle Width="100" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="" Visible="false">
+                                            <ItemTemplate>
+
+                                                <asp:LinkButton ID="btnPrintCheck" runat="server" OnClick="btnPrintCheck_Click" CssClass="btn btn-sm btn-primary"><i class="fa fa-print "></i></asp:LinkButton>
+                                                <asp:LinkButton ID="chekPrint" runat="server" OnClick="chekPrint_Click" CssClass="btn btn-sm btn-primary hidden">Entry</asp:LinkButton>
+                                            </ItemTemplate>
+                                            <FooterStyle HorizontalAlign="Right" />
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="right" />
+                                        </asp:TemplateField>
+
+
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
                                     <EditRowStyle />
@@ -588,7 +600,7 @@
                             </asp:View>
 
                             <asp:View ID="Vsalsum" runat="server">
-                                <asp:GridView ID="gvLACA" runat="server" AllowPaging="True"
+                                <asp:GridView ID="gvLACA" runat="server"
                                     AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" Width="500px"
                                     OnPageIndexChanging="gvLACA_PageIndexChanging">
@@ -1908,6 +1920,50 @@
                 </div>
             </div>
 
+
+
+
+            <div id="bankChecksInfo" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-mid-width">
+                    <div class="modal-content modal-content-mid-width">
+                        <div class="modal-header">
+                            <h4 class="modal-title">
+                                <i class="fa fa-hand-point-right"></i>Cheque Information </h4>
+                            <button type="button" class="btn btn-xs pull-right" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i></button>
+
+                        </div>
+                        <div class="modal-body ">
+                            <div class="form-group">
+                                <asp:HiddenField ID="cardNo" runat="server" />
+                                <label for="recipient-name" class="col-form-label">Bank</label>
+                                <asp:DropDownList ID="ddlBank" CssClass="form-control" OnSelectedIndexChanged="ddlBank_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Cheque Number</label>
+                                <asp:DropDownList ID="ddlcheque" CssClass="form-control" runat="server">
+                                </asp:DropDownList>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Date</label>
+                                <asp:TextBox ID="txtckDatex" runat="server" CssClass=" form-control "></asp:TextBox>
+
+                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server"
+                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtckDatex"
+                                    PopupButtonID="Image2"></cc1:CalendarExtender>
+
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="btnPrint" OnClientClick="closeComModal();" runat="server" OnClick="btnPrint_Click" CssClass="btn btn-info"><i class="fa fa-print "></i> Print</asp:LinkButton>
+                            <asp:LinkButton ID="btnUpdateChekNumber" runat="server" OnClick="btnUpdateChekNumber_Click" CssClass="btn btn-primary">Save</asp:LinkButton>
+
+                            <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 

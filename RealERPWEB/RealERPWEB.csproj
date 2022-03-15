@@ -227,21 +227,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualStudio.WCFReference.Interop, Version=9.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.VisualStudio.WCFReference.Interop.dll</HintPath>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\ASITINTERIOR PROJECT BACKUP\PTLRealERP Before 210811\PTLRealERP Before 210811\RealERPWEB\bin\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Win32.Primitives" />
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RealERPRPT">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\RealERPRPT.dll</HintPath>
+    <Reference Include="RealERPRPT, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\RealERPRPT.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
@@ -342,6 +336,8 @@
     <Content Include="assets\js\responsiveslides.js" />
     <Content Include="assets\js\scripts.js" />
     <Content Include="assets\js\wd-ajax-load\js\load-posts.js" />
+    <Content Include="assets\vendor\flatpickr\flatpickr.min.css" />
+    <Content Include="assets\vendor\flatpickr\flatpickr.min.js" />
     <Content Include="assets\vendor\simplemde\simplemde.min.css" />
     <Content Include="assets\vendor\simplemde\simplemde.min.js" />
     <Content Include="AutoCompleted.asmx" />
@@ -387,6 +383,8 @@
     <Content Include="Content\Theme\images\avatars\uifaces16.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces17.jpg" />
     <Content Include="Content\Theme\images\avatars\uifaces18.jpg" />
+    <Content Include="Content\Theme\main.min.css" />
+    <Content Include="Content\Theme\main.min.js" />
     <Content Include="Content\Theme\sb-admin-2.css" />
     <Content Include="Content\Theme\sb-admin-2.js" />
     <Content Include="Content\Theme\select2-demo.js" />
@@ -2001,10 +1999,12 @@
     <Content Include="Content\Theme\vendor\toastr\toastr-demo.js" />
     <Content Include="Content\Theme\vendor\toastr\toastr.min.css" />
     <Content Include="Content\Theme\vendor\toastr\toastr.min.js" />
+    <Content Include="Content\tinymcc.css" />
     <Content Include="Content\wheelmenu.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="DashboardAll.aspx" />
     <Content Include="DashboardHRM.aspx" />
+    <Content Include="DashboardHRM_NEW.aspx" />
     <Content Include="DeafultMenu.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DefaultPage.aspx" />
@@ -2208,6 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
     <Content Include="F_12_Inv\PurMatIssue.aspx" />
     <Content Include="F_12_Inv\PurMRREntry.aspx" />
@@ -2494,6 +2495,7 @@
     <Content Include="F_21_MKT\MktTeamMember.aspx" />
     <Content Include="F_21_MKT\MonthsWiseSale.aspx" />
     <Content Include="F_21_MKT\ProsclntCodeBook.aspx" />
+    <Content Include="F_21_MKT\ProspectTransfer.aspx" />
     <Content Include="F_21_MKT\RptCallCenterLead.aspx" />
     <Content Include="F_21_MKT\RptCenterWiseClient.aspx" />
     <Content Include="F_21_MKT\RptClientInitial.aspx" />
@@ -2640,6 +2642,8 @@
     <Content Include="F_25_Reg\OtherCollectionReport.aspx" />
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
+    <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
+    <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
     <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
@@ -2917,8 +2921,11 @@
     <Content Include="F_81_Hrm\F_82_App\EmpAcaRecord.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpBirthDeath.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpEntry.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EntryAllEmp.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRDesigCode.aspx" />
@@ -2939,6 +2946,7 @@
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCt.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtSpecial.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx" />
+    <Content Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\HREmpMonthlyAtten01.aspx" />
@@ -2952,20 +2960,23 @@
     <Content Include="F_81_Hrm\F_83_Att\RptHREmpStatus.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptMonthlyLate.aspx" />
     <Content Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\EmpLvApproval.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\HREmpLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\HRLeaveOpening.aspx" />
-    <Content Include="F_81_Hrm\F_84_Lea\MyLeave.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\MyLeave_old.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpLeaveRecod.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpLeaveStatus02.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptHREmpLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx" />
+    <Content Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpLoanStatusOpn.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\RptIndLoanStatus.aspx" />
@@ -2984,13 +2995,16 @@
     <Content Include="F_81_Hrm\F_89_Pay\EmpLoanInfo.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpMonthSummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\EmpOverTimeSalary.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RpHRtPayroll.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptBankStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptEmpLeaveStatus.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptIncomeStatement.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptMonthWiseTax.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptOvertimeSalary2.aspx" />
+    <Content Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalarySummary.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummary02.aspx" />
     <Content Include="F_81_Hrm\F_89_Pay\RptSalSummaryDetails.aspx" />
@@ -3053,12 +3067,14 @@
     <Content Include="F_81_Hrm\F_99_MgtAct\LinkLateElLeaveAAbs.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\MonthlyTarget.aspx" />
     <Content Include="F_81_Hrm\F_99_MgtAct\RptgroupAttendance.aspx" />
+    <Content Include="F_81_Hrm\Image\DropDown.PNG" />
     <Content Include="F_99_Allinterface\AccountInterface.aspx" />
     <Content Include="F_99_Allinterface\AddLandInfo.aspx" />
     <Content Include="F_99_Allinterface\AddWorkInterface.aspx" />
     <Content Include="F_99_Allinterface\BrandInterface.aspx" />
     <Content Include="F_99_Allinterface\BudgetInterface.aspx" />
     <Content Include="F_99_Allinterface\BusinessDashboard.aspx" />
+    <Content Include="F_99_Allinterface\CRMDashboard02.aspx" />
     <Content Include="F_99_Allinterface\CRMDashboard.aspx" />
     <Content Include="F_99_Allinterface\Defaulthide.aspx" />
     <Content Include="F_99_Allinterface\FeasibilityInterface.aspx" />
@@ -3068,6 +3084,7 @@
     <Content Include="F_99_Allinterface\KPIDashboard.aspx" />
     <Content Include="F_99_Allinterface\LandInterface_Land.aspx" />
     <Content Include="F_99_Allinterface\LinkQutaAttached.aspx" />
+    <Content Include="F_99_Allinterface\MKTProInterface.aspx" />
     <Content Include="F_99_Allinterface\ProjectDashBoard.aspx" />
     <Content Include="F_99_Allinterface\ProjectDashBoardAllNew.aspx" />
     <Content Include="F_99_Allinterface\PurchasePrint.aspx" />
@@ -3247,6 +3264,7 @@
     <Content Include="Image\erplogo.png" />
     <Content Include="Image\EX.png" />
     <Content Include="Image\f5.png" />
+    <Content Include="Image\facebook_Icon.png" />
     <Content Include="Image\favicon-16x16.png" />
     <Content Include="Image\favicon-32x32.png" />
     <Content Include="Image\favicon.ico" />
@@ -3459,6 +3477,7 @@
     <Content Include="landMenu-1.png" />
     <Content Include="LetterDefault.aspx" />
     <Content Include="LogIn.aspx" />
+    <Content Include="login_new.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="MyDashboard.aspx" />
     <Content Include="MyDashboardUddl.aspx" />
@@ -3478,6 +3497,7 @@
     <Content Include="Notices\Notice.aspx" />
     <Content Include="Notification\GetNotification.aspx" />
     <Content Include="Notification\Occasion.aspx" />
+    <Content Include="Oops.aspx" />
     <Content Include="p1.PNG" />
     <Content Include="p2.PNG" />
     <Content Include="p3.PNG" />
@@ -3504,8 +3524,10 @@
     <Content Include="Scripts\export-data.js" />
     <Content Include="Scripts\exporting.js" />
     <Content Include="Scripts\Extension.min.js" />
+    <Content Include="Scripts\flatpickr-demo.js" />
     <Content Include="Scripts\GoogleChart.js" />
     <Content Include="Scripts\gridviewScrollHaVer.min.js" />
+    <Content Include="Scripts\gridviewScrollHaVertworow.min.js" />
     <Content Include="Scripts\highchart2.js" />
     <Content Include="Scripts\HighChartExportData.js" />
     <Content Include="Scripts\highchartexporting.js" />
@@ -3534,6 +3556,7 @@
     <Content Include="Scripts\Mchart.js" />
     <Content Include="Scripts\Mchartpie.js" />
     <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\Multicheckboxes.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\ScrollableGridPlugin.js" />
     <Content Include="Scripts\ScrollableTablePlugin.js" />
@@ -3577,84 +3600,6 @@
     <Content Include="Tickets\CreateTicket.aspx" />
     <Content Include="Tickets\Index.aspx" />
     <Content Include="Tickets\TicketDetails.aspx" />
-    <Content Include="tinymce\jquery.tinymce.min.js" />
-    <Content Include="tinymce\license.txt" />
-    <Content Include="tinymce\plugins\advlist\plugin.min.js" />
-    <Content Include="tinymce\plugins\anchor\plugin.min.js" />
-    <Content Include="tinymce\plugins\autolink\plugin.min.js" />
-    <Content Include="tinymce\plugins\autoresize\plugin.min.js" />
-    <Content Include="tinymce\plugins\autosave\plugin.min.js" />
-    <Content Include="tinymce\plugins\bbcode\plugin.min.js" />
-    <Content Include="tinymce\plugins\charmap\plugin.min.js" />
-    <Content Include="tinymce\plugins\codesample\css\prism.css" />
-    <Content Include="tinymce\plugins\codesample\plugin.min.js" />
-    <Content Include="tinymce\plugins\code\plugin.min.js" />
-    <Content Include="tinymce\plugins\colorpicker\plugin.min.js" />
-    <Content Include="tinymce\plugins\contextmenu\plugin.min.js" />
-    <Content Include="tinymce\plugins\directionality\plugin.min.js" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-cool.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-cry.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-frown.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-innocent.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-kiss.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-laughing.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-sealed.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-smile.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-surprised.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-undecided.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-wink.gif" />
-    <Content Include="tinymce\plugins\emoticons\img\smiley-yell.gif" />
-    <Content Include="tinymce\plugins\emoticons\plugin.min.js" />
-    <Content Include="tinymce\plugins\example\dialog.html" />
-    <Content Include="tinymce\plugins\example\plugin.min.js" />
-    <Content Include="tinymce\plugins\example_dependency\plugin.min.js" />
-    <Content Include="tinymce\plugins\fullpage\plugin.min.js" />
-    <Content Include="tinymce\plugins\fullscreen\plugin.min.js" />
-    <Content Include="tinymce\plugins\hr\plugin.min.js" />
-    <Content Include="tinymce\plugins\imagetools\plugin.min.js" />
-    <Content Include="tinymce\plugins\image\plugin.min.js" />
-    <Content Include="tinymce\plugins\importcss\plugin.min.js" />
-    <Content Include="tinymce\plugins\insertdatetime\plugin.min.js" />
-    <Content Include="tinymce\plugins\legacyoutput\plugin.min.js" />
-    <Content Include="tinymce\plugins\link\plugin.min.js" />
-    <Content Include="tinymce\plugins\lists\plugin.min.js" />
-    <Content Include="tinymce\plugins\media\plugin.min.js" />
-    <Content Include="tinymce\plugins\nonbreaking\plugin.min.js" />
-    <Content Include="tinymce\plugins\noneditable\plugin.min.js" />
-    <Content Include="tinymce\plugins\pagebreak\plugin.min.js" />
-    <Content Include="tinymce\plugins\paste\plugin.min.js" />
-    <Content Include="tinymce\plugins\preview\plugin.min.js" />
-    <Content Include="tinymce\plugins\print\plugin.min.js" />
-    <Content Include="tinymce\plugins\save\plugin.min.js" />
-    <Content Include="tinymce\plugins\searchreplace\plugin.min.js" />
-    <Content Include="tinymce\plugins\spellchecker\plugin.min.js" />
-    <Content Include="tinymce\plugins\tabfocus\plugin.min.js" />
-    <Content Include="tinymce\plugins\table\plugin.min.js" />
-    <Content Include="tinymce\plugins\template\plugin.min.js" />
-    <Content Include="tinymce\plugins\textcolor\plugin.min.js" />
-    <Content Include="tinymce\plugins\textpattern\plugin.min.js" />
-    <Content Include="tinymce\plugins\toc\plugin.min.js" />
-    <Content Include="tinymce\plugins\visualblocks\css\visualblocks.css" />
-    <Content Include="tinymce\plugins\visualblocks\plugin.min.js" />
-    <Content Include="tinymce\plugins\visualchars\plugin.min.js" />
-    <Content Include="tinymce\plugins\wordcount\plugin.min.js" />
-    <Content Include="tinymce\skins\lightgray\content.inline.min.css" />
-    <Content Include="tinymce\skins\lightgray\content.min.css" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.svg" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce.svg" />
-    <Content Include="tinymce\skins\lightgray\img\anchor.gif" />
-    <Content Include="tinymce\skins\lightgray\img\loader.gif" />
-    <Content Include="tinymce\skins\lightgray\img\object.gif" />
-    <Content Include="tinymce\skins\lightgray\img\trans.gif" />
-    <Content Include="tinymce\skins\lightgray\skin.ie7.min.css" />
-    <Content Include="tinymce\skins\lightgray\skin.min.css" />
-    <Content Include="tinymce\themes\inlite\theme.min.js" />
-    <Content Include="tinymce\themes\modern\theme.min.js" />
-    <Content Include="tinymce\tinymce.min.js" />
     <Content Include="UnderMaintain.html" />
     <Content Include="Upload\ClientImg\3101_32982.jpg" />
     <Content Include="Upload\ClientImg\3101_35538.jpg" />
@@ -3786,13 +3731,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="Bundle.config" />
-    <Content Include="tinymce\langs\readme.md" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.eot" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce-small.woff" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce.eot" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce.ttf" />
-    <Content Include="tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Upload\Code of Conduct Bangla.pdf" />
     <None Include="Web References\HrWebService\HRDailyAtten.disco" />
     <Content Include="Web.config" />
     <None Include="Web References\HrWebService\HRDailyAtten.wsdl" />
@@ -3842,6 +3781,13 @@
     <Compile Include="Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DashboardHRM_NEW.aspx.designer.cs">
+      <DependentUpon>DashboardHRM_NEW.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_01_LPA\LandSearch.aspx.cs">
       <DependentUpon>LandSearch.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3876,6 +3822,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktPurReqEntry.aspx.cs">
+      <DependentUpon>MktPurReqEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktPurReqEntry.aspx.designer.cs">
+      <DependentUpon>MktPurReqEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\PurMktSurveyCont.aspx.cs">
       <DependentUpon>PurMktSurveyCont.aspx</DependentUpon>
@@ -3953,6 +3906,13 @@
     </Compile>
     <Compile Include="F_21_MKT\MonthsWiseSale.aspx.designer.cs">
       <DependentUpon>MonthsWiseSale.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_21_MKT\ProspectTransfer.aspx.designer.cs">
+      <DependentUpon>ProspectTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_21_MKT\RptProspectWorking.aspx.cs">
       <DependentUpon>RptProspectWorking.aspx</DependentUpon>
@@ -4045,6 +4005,20 @@
     <Compile Include="F_25_Reg\OtherCollectionReport.aspx.designer.cs">
       <DependentUpon>OtherCollectionReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.cs">
+      <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.designer.cs">
+      <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.cs">
+      <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
+      <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4086,6 +4060,27 @@
     </Compile>
     <Compile Include="F_34_Mgt\ViewAllTemplate.aspx.designer.cs">
       <DependentUpon>ViewAllTemplate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry.aspx.cs">
+      <DependentUpon>EmpEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry.aspx.designer.cs">
+      <DependentUpon>EmpEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
+      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
+      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.cs">
+      <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.designer.cs">
+      <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
@@ -4135,6 +4130,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpAbsCtAuto.aspx.designer.cs">
       <DependentUpon>HREmpAbsCtAuto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx.cs">
+      <DependentUpon>HREmpHolidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_83_Att\HREmpHolidays.aspx.designer.cs">
+      <DependentUpon>HREmpHolidays.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_83_Att\HREmpLWP.aspx.cs">
       <DependentUpon>HREmpLWP.aspx</DependentUpon>
@@ -4227,6 +4229,13 @@
     <Compile Include="F_81_Hrm\F_83_Att\RptWeekPresence.aspx.designer.cs">
       <DependentUpon>RptWeekPresence.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.cs">
+      <DependentUpon>MyLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.designer.cs">
+      <DependentUpon>MyLeave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\CreateLeavRule.aspx.cs">
       <DependentUpon>CreateLeavRule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4262,12 +4271,12 @@
     <Compile Include="F_81_Hrm\F_84_Lea\HRLeaveOpening.aspx.designer.cs">
       <DependentUpon>HRLeaveOpening.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.cs">
-      <DependentUpon>MyLeave.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave_old.aspx.cs">
+      <DependentUpon>MyLeave_old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave.aspx.designer.cs">
-      <DependentUpon>MyLeave.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_84_Lea\MyLeave_old.aspx.designer.cs">
+      <DependentUpon>MyLeave_old.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\RptEmpLeaveRecod.aspx.cs">
       <DependentUpon>RptEmpLeaveRecod.aspx</DependentUpon>
@@ -4304,6 +4313,13 @@
     <Compile Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx.designer.cs">
       <DependentUpon>RptYearlyLeaveRecord.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.cs">
+      <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.designer.cs">
+      <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx.cs">
       <DependentUpon>EmpAllow.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4324,6 +4340,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfo.aspx.designer.cs">
       <DependentUpon>EmpLoanInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx.cs">
+      <DependentUpon>EmpLoanInfoOld.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanInfoOld.aspx.designer.cs">
+      <DependentUpon>EmpLoanInfoOld.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_85_Lon\EmpLoanStatus.aspx.cs">
       <DependentUpon>EmpLoanStatus.aspx</DependentUpon>
@@ -4409,12 +4432,33 @@
     <Compile Include="F_81_Hrm\F_87_Tra\HREmpTransferSpecial.aspx.designer.cs">
       <DependentUpon>HREmpTransferSpecial.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx.cs">
+      <DependentUpon>ModeofPaymentDept.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\ModeofPaymentDept.aspx.designer.cs">
+      <DependentUpon>ModeofPaymentDept.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\PrintPaySlip.aspx.designer.cs">
       <DependentUpon>PrintPaySlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.cs">
+      <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptAllSalarySummary.aspx.designer.cs">
+      <DependentUpon>RptAllSalarySummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
+      <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
@@ -4444,6 +4488,13 @@
     <Compile Include="F_81_Hrm\F_97_MIS\linkEmployeeStatus.aspx.designer.cs">
       <DependentUpon>linkEmployeeStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\CRMDashboard02.aspx.designer.cs">
+      <DependentUpon>CRMDashboard02.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_99_Allinterface\CRMDashboard.aspx.cs">
       <DependentUpon>CRMDashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4458,12 +4509,26 @@
     <Compile Include="F_99_Allinterface\HRMAllInOne.aspx.designer.cs">
       <DependentUpon>HRMAllInOne.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_99_Allinterface\MKTProInterface.aspx.cs">
+      <DependentUpon>MKTProInterface.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_99_Allinterface\MKTProInterface.aspx.designer.cs">
+      <DependentUpon>MKTProInterface.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LetterDefault.aspx.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="LetterDefault.aspx.designer.cs">
       <DependentUpon>LetterDefault.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login_new.aspx.cs">
+      <DependentUpon>login_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_new.aspx.designer.cs">
+      <DependentUpon>login_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="Logout.aspx.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
@@ -4499,6 +4564,13 @@
     </Compile>
     <Compile Include="Notification\Occasion.aspx.designer.cs">
       <DependentUpon>Occasion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Oops.aspx.cs">
+      <DependentUpon>Oops.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Oops.aspx.designer.cs">
+      <DependentUpon>Oops.aspx</DependentUpon>
     </Compile>
     <Compile Include="RDLCViewerWin.aspx.cs">
       <DependentUpon>RDLCViewerWin.aspx</DependentUpon>
@@ -10691,12 +10763,12 @@
     <Compile Include="F_81_Hrm\F_82_App\EmpDesignationlinkDeptWise.aspx.designer.cs">
       <DependentUpon>EmpDesignationlinkDeptWise.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.cs">
-      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx.cs">
+      <DependentUpon>EmpEntry01Old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
-      <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    <Compile Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx.designer.cs">
+      <DependentUpon>EmpEntry01Old.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx.cs">
       <DependentUpon>EmpEntryForm.aspx</DependentUpon>
@@ -11614,12 +11686,15 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
+    <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />
     <Folder Include="Image1\" />
     <Folder Include="Log Files\" />
     <Folder Include="SupWorkOreder\" />
+    <Folder Include="tinymce\" />
+    <Folder Include="Upload\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ASITMaster.Master" />
@@ -11630,8 +11705,6 @@
     <Content Include="Document\Collection %28Current MRR%29.xlsx" />
     <Content Include="Document\Opeing MRR.xlsx" />
     <Content Include="Document\Sheet.xlsx" />
-    <Content Include="ExcelFile\Book1.xlsx" />
-    <Content Include="ExcelFile\Book16.xlsx" />
     <Content Include="Image\2.3 FlowChartHR %28Revised%29.pdf" />
     <Content Include="Image\General ERP Document %2830042015%29.pdf" />
     <Content Include="Image\MicroVsOrac.pdf" />
@@ -11863,21 +11936,10 @@
     <Content Include="Report\RptPurchaseOrderP2P.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
+    <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
-      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
-      <Name>RealEntity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
-      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
-      <Name>RealERPLIB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
-      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
-      <Name>RealERPRDLC</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
@@ -11894,6 +11956,24 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>RealERPWEB_HrWebService_HrDailyAtten</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RealEntity\RealEntity.csproj">
+      <Project>{24c0577d-b0f3-4ab5-a18b-c7050bbb97cc}</Project>
+      <Name>RealEntity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPLIB\RealERPLIB.csproj">
+      <Project>{47d3c66a-f401-439a-af42-61228bd93f60}</Project>
+      <Name>RealERPLIB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
+      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
+      <Name>RealERPRDLC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RealERPRDLC\RealERPRDLC.csproj">
+      <Project>{f2ccaf88-c206-46a0-ad41-b804a853ae27}</Project>
+      <Name>RealERPRDLC</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

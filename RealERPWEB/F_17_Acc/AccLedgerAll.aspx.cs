@@ -131,13 +131,25 @@ namespace RealERPWEB.F_17_Acc
                     this.gvSpledger.DataBind();
                     break;
 
-                  
-                    
+
+                case "DetailLedger02":
+                    this.txtdatefrmsp02.Text = System.DateTime.Today.AddDays(-30).ToString("dd-MMM-yyyy");
+                    this.txtDatetosp02.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.ibtnFindResSP_Click(null, null);
+                    this.MultiView1.ActiveViewIndex = 2;
+                    this.ddlConAccResHead.Items.Clear();
+                    this.gvSpledger.DataSource = null;
+                    this.gvSpledger.DataBind();
+                    break;
+
+
+
+
 
 
             }
 
-           
+
 
         }
         protected void IbtnSearchAcc_Click(object sender, EventArgs e)
@@ -200,6 +212,26 @@ namespace RealERPWEB.F_17_Acc
         protected void ibtnFindResSP_Click(object sender, EventArgs e)
         {
             this.GetResList();
+        }
+
+
+        protected void lnkbtnRessp02_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompcode();
+            string filter = "%" + this.txtSrchRes.Text.Trim() + "%";
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTSPLGACCRESLIST", "%", filter, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            this.ddlResoucesp02.DataTextField = "resdesc1";
+            this.ddlResoucesp02.DataValueField = "rescode";
+            this.ddlResoucesp02.DataSource = ds1.Tables[0];
+            this.ddlResoucesp02.DataBind();
+
+            ds1.Dispose();
+
+
         }
         private void GetResList()
         {
@@ -411,8 +443,8 @@ namespace RealERPWEB.F_17_Acc
 
                 // ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_LG", "ACCOUNTSLEDGERSUB", mACTCODE, mTRNDAT1, mTRNDAT2, mRESCODE, "", "", "", withOutOpn, spclcode);
                 ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_LG", "ACCOUNTSLEDGERSUB", actcode, date1, date2, rescode, Narration, "", "", withOutOpn, spclcode);
-                
-                
+
+
                 string events = hst["events"].ToString();
                 if (Convert.ToBoolean(events) == true)
                 {
@@ -496,7 +528,7 @@ namespace RealERPWEB.F_17_Acc
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
-                string eventdesc = "Show Data Special Ledger " ;
+                string eventdesc = "Show Data Special Ledger ";
                 string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To "+ todate+ " )";
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
 
@@ -566,11 +598,82 @@ namespace RealERPWEB.F_17_Acc
                 return dt;
             double opnam, dramt, cramt, bbalamt = 0.00;
 
-            bool result = this.Checkdaywise.Checked;
-            switch (result)
-            {
-                case true:
 
+
+
+
+
+
+
+
+
+
+            string type = this.rbtnLedger.SelectedValue.ToString();
+            switch (type)
+            {
+
+
+
+
+                case "DetailLedger":
+                    bool result = this.Checkdaywise.Checked;
+                    switch (result)
+                    {
+                        case true:
+
+                            foreach (DataRow dr1 in dt.Rows)
+                            {
+                                if ((dr1["vounum"]).ToString().Trim() == "CURRENT DR/CR" || (dr1["vounum"]).ToString().Trim() == "Total:" || (dr1["vounum"]).ToString().Trim() == "Balance:")
+                                    continue;
+                                opnam = Convert.ToDouble(dr1["opam"]);
+                                dramt = Convert.ToDouble(dr1["dram"]);
+                                cramt = Convert.ToDouble(dr1["cram"]);
+                                bbalamt = bbalamt + (opnam + dramt - cramt);
+                                dr1["clsam"] = bbalamt;
+                            }
+
+
+                            break;
+
+
+                        default:
+                            string actcode = dt.Rows[0]["actcode"].ToString();
+                            //string grp=
+                            for (int i = 0; i < dt.Rows.Count - 1; i++)
+                            {
+                                if ((dt.Rows[i]["actcode"]).ToString().Trim() != actcode)
+                                {
+                                    bbalamt = 0.00;
+                                }
+                                actcode = dt.Rows[i]["actcode"].ToString();
+
+                                if ((dt.Rows[i]["vounum"]).ToString().Trim() == "CURRENT DR/CR" || (dt.Rows[i]["vounum"]).ToString().Trim() == "SUB TOTAL" || (dt.Rows[i]["vounum"]).ToString().Trim() == "Balance:")
+                                    continue;
+
+
+
+                                //if (((dt.Rows[i]["actcode"]).ToString().Trim()).Length == 12)
+                                //{
+                                opnam = Convert.ToDouble(dt.Rows[i]["opam"]);
+                                dramt = Convert.ToDouble(dt.Rows[i]["dram"]);
+                                cramt = Convert.ToDouble(dt.Rows[i]["cram"]);
+                                bbalamt = bbalamt + (opnam + dramt - cramt);
+                                dt.Rows[i]["clsam"] = bbalamt;
+                                //}
+
+
+                            }
+
+                            break;
+
+
+
+                    }
+
+                    break;
+
+
+                case "DetailLedger02":
                     foreach (DataRow dr1 in dt.Rows)
                     {
                         if ((dr1["vounum"]).ToString().Trim() == "CURRENT DR/CR" || (dr1["vounum"]).ToString().Trim() == "Total:" || (dr1["vounum"]).ToString().Trim() == "Balance:")
@@ -582,39 +685,10 @@ namespace RealERPWEB.F_17_Acc
                         dr1["clsam"] = bbalamt;
                     }
 
-
                     break;
 
 
-                default:
-                    string actcode = dt.Rows[0]["actcode"].ToString();
-                    //string grp=
-                    for (int i = 0; i < dt.Rows.Count - 1; i++)
-                    {
-                        if ((dt.Rows[i]["actcode"]).ToString().Trim() != actcode)
-                        {
-                            bbalamt = 0.00;
-                        }
-                        actcode = dt.Rows[i]["actcode"].ToString();
 
-                        if ((dt.Rows[i]["vounum"]).ToString().Trim() == "CURRENT DR/CR" || (dt.Rows[i]["vounum"]).ToString().Trim() == "SUB TOTAL" || (dt.Rows[i]["vounum"]).ToString().Trim() == "Balance:")
-                            continue;
-
-
-
-                        //if (((dt.Rows[i]["actcode"]).ToString().Trim()).Length == 12)
-                        //{
-                        opnam = Convert.ToDouble(dt.Rows[i]["opam"]);
-                        dramt = Convert.ToDouble(dt.Rows[i]["dram"]);
-                        cramt = Convert.ToDouble(dt.Rows[i]["cram"]);
-                        bbalamt = bbalamt + (opnam + dramt - cramt);
-                        dt.Rows[i]["clsam"] = bbalamt;
-                        //}
-
-
-                    }
-
-                    break;
 
 
 
@@ -624,43 +698,10 @@ namespace RealERPWEB.F_17_Acc
             return dt;
 
 
-
-
-
-
-            //if (dt.Rows.Count == 0)
-            //    return dt;
-            //double opnam, dramt, cramt, bbalamt = 0.00;
-            //string actcode = dt.Rows[0]["actcode"].ToString();
-            ////string grp=
-            //for (int i = 0; i < dt.Rows.Count - 1; i++)
-            //{
-            //    if ((dt.Rows[i]["actcode"]).ToString().Trim() != actcode)
-            //    {
-            //        bbalamt = 0.00;
-            //    }
-            //    actcode = dt.Rows[i]["actcode"].ToString();
-
-            //    if ((dt.Rows[i]["vounum"]).ToString().Trim() == "SUB TOTAL" || (dt.Rows[i]["vounum"]).ToString().Trim() == "BALANCE")
-            //        continue;
-
-
-
-            //    //if (((dt.Rows[i]["actcode"]).ToString().Trim()).Length == 12)
-            //    //{
-            //    opnam = Convert.ToDouble(dt.Rows[i]["opam"]);
-            //    dramt = Convert.ToDouble(dt.Rows[i]["dram"]);
-            //    cramt = Convert.ToDouble(dt.Rows[i]["cram"]);
-            //    bbalamt = bbalamt + (opnam + dramt - cramt);
-            //    dt.Rows[i]["clsam"] = bbalamt;
-            //    //}
-
-
-            //}
-            //return dt;
-
-
         }
+
+
+
         protected void gvSpledger_RowDataBound1(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -737,6 +778,51 @@ namespace RealERPWEB.F_17_Acc
 
 
 
+        protected void lnkShowsp02_Click(object sender, EventArgs e)
+        {
+            Session.Remove("tblspledger");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = GetCompcode();
+            string frmdate = Convert.ToDateTime(this.txtdatefrmsp02.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txtDatetosp02.Text).ToString("dd-MMM-yyyy");
+            string resource = this.ddlResoucesp02.SelectedValue.ToString();
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTSUPPLIERLEDGER", resource, frmdate, todate, "", "", "", "", "", "");
+
+            //DataSet ds1 = accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_SPLG", "RPTACCRESOURCELG", resource, frmdate, todate, "", "", "", "", "", "");
+            if (ds1 == null)
+            {
+
+                this.gvspleder02.DataSource = null;
+                this.gvspleder02.DataBind();
+                return;
+            }
+            DataTable dt = ds1.Tables[0];
+            DataTable dt1 = BalCalculationSp(dt);
+            Session["tblspledger"] = dt1;
+            this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+            this.gvspleder02.DataSource = dt1;
+            this.gvspleder02.DataBind();
+            Session["Report1"] = gvspleder02;
+            if (dt1.Rows.Count > 0)
+            {
+                ((HyperLink)this.gvspleder02.HeaderRow.FindControl("hlbtnCBdataExelsp02")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+            }
+
+            string events = hst["events"].ToString();
+            if (Convert.ToBoolean(events) == true)
+            {
+                string eventtype = ((Label)this.Master.FindControl("lblTitle")).Text;
+                string eventdesc = "Show Data Special Ledger ";
+                string eventdesc2 = "Resource Head  " + this.ddlRescode.SelectedItem.Text.ToString() + " ( From " + frmdate + "To " + todate + " )";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
+
+            }
+
+        }
+
 
 
         protected void lnkPrint_Click(object sender, EventArgs e)
@@ -745,16 +831,14 @@ namespace RealERPWEB.F_17_Acc
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = GetCompcode();
 
-
-            //if (this.chkqty.Checked == true && rbtnLedger.SelectedValue.ToString() == "SubLedger")
-            //{
-            //    this.PrintLedgerWithQty();
-            //}
             if (rbtnLedger.SelectedValue.ToString() == "DetailLedger")
             {
                 this.PrintDetailLedger();
+            }
 
-
+            else if (rbtnLedger.SelectedValue.ToString()=="DetailLedger02")
+            {
+                this.PrintDetailLedger02();
             }
 
             else
@@ -766,29 +850,14 @@ namespace RealERPWEB.F_17_Acc
             if (Convert.ToBoolean(events) == true)
             {
                 string eventtype = "Account Ledger";
-                string eventdesc =  rbtnLedger.SelectedValue.ToString() == "DetailLedger" ? "Print Special Ledger" : rbtnLedger.SelectedValue.ToString() == "Ledger" ? " Print Account's Ledger" : " Print Sub-Ledger";
+                string eventdesc = rbtnLedger.SelectedValue.ToString() == "DetailLedger" ? "Print Special Ledger" : rbtnLedger.SelectedValue.ToString() == "Ledger" ? " Print Account's Ledger" : " Print Sub-Ledger";
                 string eventdesc2 = "From: " + this.txtDateFrom.Text + " To: " + this.txtDateto.Text;
                 bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-
-
-
             }
-
-
-            //if (ConstantInfo.LogStatus)
-            //{
-            //    string eventtype = "Account Ledger";
-            //    string eventdesc = "Print " + ((Label)this.Master.FindControl("lblTitle")).Text;
-            //    string eventdesc2 = "From: " + this.txtDateFrom.Text + " To: " + this.txtDateto.Text;
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-
 
         }
         private void PrintDetailLedger()
         {
-
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompcode();
             string comnam = hst["comnam"].ToString();
@@ -809,7 +878,7 @@ namespace RealERPWEB.F_17_Acc
             if (rbtnLedger.SelectedValue == "DetailLedger")
             {
                 fdate = Convert.ToDateTime(this.txtDateFromSp.Text).ToString("dd-MMM-yyyy");
-                tdate = Convert.ToDateTime(this.txtDatetoSp.Text).ToString("dd-MMM-yyyy");               
+                tdate = Convert.ToDateTime(this.txtDatetoSp.Text).ToString("dd-MMM-yyyy");
             }
             else
             {
@@ -834,39 +903,59 @@ namespace RealERPWEB.F_17_Acc
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
-
-
-            //Hashtable hst = (Hashtable)Session["tblLogin"];
-            //string comnam = hst["comnam"].ToString();
-            //string compname = hst["compname"].ToString();
-            //string username = hst["username"].ToString();
-            //string comadd = hst["comadd1"].ToString();
-
-            //string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            //ReportDocument rptsl = new RealERPRPT.R_17_Acc.RPTSpecialLedger();
-            //DataTable dt = (DataTable)Session["tblspledger"];
-            //TextObject txtCompany = rptsl.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-
-            //TextObject txtcomadd = rptsl.ReportDefinition.ReportObjects["txtcomadd"] as TextObject;
-            //txtcomadd.Text = comadd;
-            //TextObject txtdate = rptsl.ReportDefinition.ReportObjects["txtdate"] as TextObject;
-            //txtdate.Text = "(From " + Convert.ToDateTime(this.txtDateFromSp.Text).ToString("dd-MMM-yyyy") + " To " + Convert.ToDateTime(this.txtDatetoSp.Text).ToString("dd-MMM-yyyy") + ")";
-            //TextObject rpttxtAccDesc = rptsl.ReportDefinition.ReportObjects["actdesc"] as TextObject;
-            //rpttxtAccDesc.Text = "Account Description: " + this.ddlRescode.SelectedItem.ToString().Substring(13);
-            //TextObject txtuserinfo = rptsl.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            //rptsl.SetDataSource((DataTable)Session["tblspledger"]);
-            ////string comcod = GetCompcode();
-            ////string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            ////rptsl.SetParameterValue("ComLogo", ComLogo);
-            //Session["Report1"] = rptsl;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
         }
+        private void PrintDetailLedger02()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = this.GetCompcode();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string comsnam = hst["comsnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string session = hst["session"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string txtuserinfo = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
+            string todate = Convert.ToDateTime(this.txtDateto.Text.Trim()).ToString("dd-MMM-yyyy");
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string suppName = this.ddlResoucesp02.SelectedItem == null ? "" : this.ddlResoucesp02.SelectedItem.ToString().Substring(13);
+            string fdate = Convert.ToDateTime(this.txtdatefrmsp02.Text).ToString("dd-MMM-yyyy");
+            string tdate = Convert.ToDateTime(this.txtDatetosp02.Text).ToString("dd-MMM-yyyy");
 
+            string sscode = ASTUtility.Left(this.ddlResoucesp02.SelectedValue.ToString(), 2); ;
+            string txthead = "";
+            switch (sscode)
+            {
+                case "99":
+                    txthead = "- SUPPLIER";
+                    break;
+                case "98":
+                    txthead = "- SUBCONTRACTOR";
+                    break;
+                default:
+                    txthead = "";
+                    break;
+            }
+            DataTable dt1 = (DataTable)Session["tblspledger"];
+
+            var list = dt1.DataTableToList<RealEntity.C_17_Acc.EClassDB_BO.SpLedger>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptSPLedger02", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compLogo", ComLogo));
+            Rpt1.SetParameters(new ReportParameter("txtDate", "(From " + fdate + " To " + tdate + ")"));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "SPECIAL LEDGER " + txthead));
+            Rpt1.SetParameters(new ReportParameter("suppName", "Supplier Name: " + suppName));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", txtuserinfo));
+
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+
+        }
 
         private string ComLedger()
         {
@@ -920,7 +1009,7 @@ namespace RealERPWEB.F_17_Acc
                 case "3101":
                     comledger = "LedgerCube";
                     break;
-                    
+
                 default:
                     comledger = "LedgerGen";
                     break;
@@ -977,7 +1066,7 @@ namespace RealERPWEB.F_17_Acc
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptLedgerTanvir", lst, null, null);
                 Rpt1.EnableExternalImages = true;
             }
-            
+
 
             else if (comledger == "LedgerBridge")
             {
@@ -1019,7 +1108,7 @@ namespace RealERPWEB.F_17_Acc
 
             else
             {
-                
+
                 string checkby = (comcod == "3340") ? "Checked By" : "Recommended By";
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_17_Acc.RptAccLedger", lst, null, null);
                 Rpt1.EnableExternalImages = true;
@@ -1074,6 +1163,13 @@ namespace RealERPWEB.F_17_Acc
                     break;
 
 
+                case "DetailLedger02":
+                    this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    //this.gvSpledger.DataBind();
+                    this.Data_Bind();
+                    break;
+
+
 
 
 
@@ -1092,22 +1188,45 @@ namespace RealERPWEB.F_17_Acc
         private void Data_Bind()
         {
             DataTable dt = (DataTable)Session["tblspledger"];
+            string type = this.rbtnLedger.SelectedValue.ToString();
 
-            if (dt.Rows.Count > 0)
+            switch (type)
+
             {
-                this.gvSpledger.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                this.gvSpledger.DataSource = dt;
-                this.gvSpledger.DataBind();
+                case "DetailLedger":
+                    if (dt.Rows.Count > 0)
+                    {
+                        this.gvSpledger.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                        this.gvSpledger.DataSource = dt;
+                        this.gvSpledger.DataBind();
+
+                    }
+                    else
+                    {
+                        this.gvSpledger.DataSource = null;
+                        this.gvSpledger.DataBind();
+                        ((Label)this.Master.FindControl("lblmsg")).Text = "No Data Found";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        return;
+                    }
+
+                    break;
+
+
+                case "DetailLedger02":
+
+                    this.gvspleder02.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvspleder02.DataSource = dt;
+                    this.gvspleder02.DataBind();
+
+                    break;
+
 
             }
-            else
-            {
-                this.gvSpledger.DataSource = null;
-                this.gvSpledger.DataBind();
-                ((Label)this.Master.FindControl("lblmsg")).Text = "No Data Found";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
+
+
+
+
         }
 
 
@@ -1182,6 +1301,66 @@ namespace RealERPWEB.F_17_Acc
 
             //this.dgv2.PageIndex = e.NewPageIndex;
             //this.Data_Bind();
+        }
+
+
+
+
+
+        protected void gvspleder02_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink = (HyperLink)e.Row.FindControl("HLgvvounumsp02");
+                //Label OpAmt = (Label)e.Row.FindControl("lblgvOpAmount");
+                Label DrAmt = (Label)e.Row.FindControl("lblgvDrAmountsp02");
+                Label CrAmt = (Label)e.Row.FindControl("lblgvCrAmountsp02");
+                Label ClAmt = (Label)e.Row.FindControl("lblgvClAmountsp02");
+
+                string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "head1")).ToString();
+
+                if (code == "")
+                {
+                    return;
+                }
+                if (code.Trim() == "AB" || code.Trim() == "04CT")
+                {
+                    hlink.Font.Bold = true;
+                    // OpAmt.Font.Bold = true;
+                    DrAmt.Font.Bold = true;
+                    CrAmt.Font.Bold = true;
+                    ClAmt.Font.Bold = true;
+                    hlink.Style.Add("text-align", "right");
+                }
+            }
+
+            if (e.Row.RowType != DataControlRowType.DataRow)
+                return;
+
+            HyperLink hlink1 = (HyperLink)e.Row.FindControl("HLgvvounumsp02");
+            string voucher = ((HyperLink)e.Row.FindControl("HLgvvounumsp02")).Text.ToString();
+            if (voucher.Trim().Length == 14)
+            {
+                if (ASTUtility.Left(voucher, 2) == "PV" || ASTUtility.Left(voucher, 2) == "DV")
+                {
+                    hlink1.NavigateUrl = "RptAccVouher02.aspx?vounum=" + voucher;
+                    hlink1.Text = voucher.Substring(0, 2) + voucher.Substring(6, 2) + "-" + voucher.Substring(8, 6);
+                }
+                else
+                {
+                    hlink1.NavigateUrl = "RptAccVouher.aspx?vounum=" + voucher;
+                    hlink1.Text = voucher.Substring(0, 2) + voucher.Substring(6, 2) + "-" + voucher.Substring(8, 6);
+                }
+            }
+
+        }
+
+        protected void gvspleder02_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+
+            this.gvspleder02.PageIndex = e.NewPageIndex;
+            this.Data_Bind();
         }
     }
 }

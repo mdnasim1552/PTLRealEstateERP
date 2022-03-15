@@ -4106,7 +4106,6 @@ Date</Value>
                               </Style>
                             </Rectangle>
                             <ColSpan>16</ColSpan>
-                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell />
@@ -4682,7 +4681,7 @@ Date</Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>MRF No </Value>
+                      <Value>=Parameters!lblmrfno.Value</Value>
                       <Style>
                         <FontFamily>Cambria</FontFamily>
                         <FontSize>9pt</FontSize>
@@ -5275,11 +5274,17 @@ Date</Value>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="lblmrfno">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>2</NumberOfColumns>
-      <NumberOfRows>9</NumberOfRows>
+      <NumberOfRows>10</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -5370,6 +5375,11 @@ Date</Value>
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>8</RowIndex>
           <ParameterName>txtReqAprname</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>9</RowIndex>
+          <ParameterName>lblmrfno</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

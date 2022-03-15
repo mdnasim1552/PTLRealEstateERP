@@ -70,196 +70,49 @@
             margin-top: 0px;
         }
 
-
-        ul.sidebarMenu {
-            margin: 0;
-            padding: 0;
-            width: 115%;
-        }
-
-            ul.sidebarMenu li {
-                display: block;
-                height: 30px;
-                list-style: none;
-                border: 1px solid #DFF0D8;
-                border-bottom: 0;
-            }
-
-                ul.sidebarMenu li:last-child {
-                    border-bottom: 1px solid #DFF0D8;
-                }
-
-                ul.sidebarMenu li a {
-                    text-align: left;
-                    display: block;
-                    line-height: 30px;
-                    font-size: 14px;
-                    font-family: Calibri;
-                }
-
-                ul.sidebarMenu li h4 {
-                    line-height: 50px;
-                    text-align: center;
-                    display: block;
-                }
-
-                ul.sidebarMenu li a:hover {
-                    background: #D7E6D1;
-                    color: black;
-                }
-
-        ul.tbMenuWrp {
-            margin: 0;
-            padding: 0;
-            border: 0;
+        .tbMenuWrp table {
+            border: none !important;
             background: none !important;
         }
 
-            ul.tbMenuWrp li {
-                height: 50px;
-                width: 155px;
-                padding: 0px 0;
-                float: left;
-                list-style: none;
-                margin: 0 2px;
-                color: #fff;
-                background: #5F5F5F;
-                -webkit-border-radius: 4px;
-                -moz-border-radius: 4px;
-                border-radius: 4px;
+            .tbMenuWrp table tr {
+                border: none !important;
+                background: none !important;
             }
 
-                ul.tbMenuWrp li a {
-                    padding: 0 0;
-                    height: 50px;
-                    background: #5F5F5F;
-                    -webkit-border-radius: 4px;
-                    -moz-border-radius: 4px;
-                    border-radius: 4px;
-                    display: block;
-                    color: #fff;
-                    padding: 0px 0 0 0;
-                    vertical-align: middle;
-                    border: none !important;
+                .tbMenuWrp table tr td {
+                    width: 140px;
+                    float: left;
+                    list-style: none;
+                    margin: 2px 5px;
+                    border: 0;
+                    cursor: pointer;
+                    background: #fff;
+                    position: relative;
+                    -webkit-border-radius: 5px;
+                    -moz-border-radius: 5px;
+                    border-radius: 5px;
                 }
 
-                    ul.tbMenuWrp li a:hover {
-                        background: #12A5A6;
-                    }
-
-                    ul.tbMenuWrp li a:focus {
-                        outline: none;
-                        outline-offset: 0;
-                    }
-
-                    ul.tbMenuWrp li a label {
-                        color: #fff;
-                        background: none;
-                        border: none;
-                        text-align: center;
-                        font-weight: bold;
-                        font-size: 16px;
-                        display: block;
+                    .tbMenuWrp table tr td label {
+                        color: #000;
                         cursor: pointer;
+                        font-weight: bold;
+                        height: 100%;
+                        margin: 1px 0;
+                        padding: 2px;
                         width: 100%;
                     }
 
-        .tbMenuWrp > li.active > a, .tbMenuWrp > li.active > a:focus, .tbMenuWrp > li.active > a:hover {
-            background: #199698;
-            color: #fff;
-        }
+                        .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
+                            /*background: #12A5A6;*/
+                            /*color: #fff;*/
+                        }
 
 
-        .tbMenuWrp table tr td {
-            /*height: 50px;*/
-            height: 65px;
-            width: 140px;
-            padding: 0 0;
-            float: left;
-            list-style: none;
-            margin: 0 1px;
-            color: #fff;
-            text-align: center;
-            border: 2px solid #D1D735;
-            /*-webkit-border-radius: 30px;
-            -moz-border-radius: 30px;
-            border-radius: 30px;*/
-            cursor: pointer;
-            background: #fff;
-            position: relative;
-        }
-
-            .tbMenuWrp table tr td:nth-child(1) {
-                background: #3BA8E0;
-            }
-
-            .tbMenuWrp table tr td:nth-child(2) {
-                background: #5EB75B;
-            }
-
-            .tbMenuWrp table tr td:nth-child(3) {
-                background: #EFAD4D;
-            }
-
-            .tbMenuWrp table tr td:nth-child(4) {
-                background: #D95350;
-            }
-
-            .tbMenuWrp table tr td:nth-child(5) {
-                background: #76C9B5;
-            }
-
-            .tbMenuWrp table tr td:nth-child(6) {
-                background: #769BF4;
-            }
-
-            .tbMenuWrp table tr td:nth-child(7) {
-                background: #00CBF3;
-            }
-
-            .tbMenuWrp table tr td:nth-child(8) {
-                background: #4BCF9E;
-            }
-
-        /*.tbMenuWrp table tr td:nth-child(7) {
-                width: 115px;
-                padding: 0 3px;
-            }
-
-            .tbMenuWrp table tr td:nth-child(8) {
-                width: 115px;
-                padding: 0 3px;
-            }
-
-            .tbMenuWrp table tr td:nth-child(9) {
-                width: 115px;
-                padding: 0 3px;
-            }*/
-
-
-        table.grvContentarea tr td span.glyphicon {
-            margin: 0 4px;
-        }
-
-        .tbMenuWrp table tr td label {
-            color: #000;
-            cursor: pointer;
-            font-weight: bold;
-            height: 100%;
-            margin: 1px 0;
-            padding: 2px;
-            width: 100%;
-        }
-
-            .tbMenuWrp table tr td label.active > a, .tbMenuWrp table tr td label.active > .tbMenuWrp table tr td label:focus, .tbMenuWrp table tr td label.active > a:hover {
-                /*background: #12A5A6;*/
-                /*color: #fff;*/
-            }
-
-
-        .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
-            display: none;
-        }
+                    .tbMenuWrp table tr td input[type="checkbox"], input[type="radio"] {
+                        display: none;
+                    }
 
         .tabMenu a {
             display: block;
@@ -271,103 +124,42 @@
         }
 
         .tbMenuWrp table tr td label span.lbldata {
-            border: 2px solid #fff;
             border-radius: 50%;
             color: #fff;
-            display: inline-block;
-            float: left;
             font-size: 17px;
             font-weight: bold;
             padding: 2px;
-            position: absolute;
-            right: 4px;
-            top: 7px;
         }
 
         .rptPurInt span.lbldata2 {
-            background: #e5dcdd none repeat scroll 0 0;
-            border: 1px solid #3ba8e0;
             display: block;
             font-size: 12px;
+            color: #fff;
             line-height: 22px;
-            margin: 14px 0 0;
+            margin: 5px 0 0;
             padding: 0;
             text-align: center;
         }
 
-        .tbMenuWrp table tr td label .lblactive {
-            /*background: #12A5A6;
-            color: #fff;*/
+        .tbMenuWrp table tr td:nth-child(1) {
+            background: #0179a8 !important;
         }
 
-        .grvContentarea tr td:last-child {
-            /*width: 120px;*/
+        .tbMenuWrp table tr td:nth-child(2) {
+            background: #5f4b8b !important;
         }
 
-
-
-        .fan {
-            border: 2px solid #f3b728;
-            border-radius: 50%;
-            display: inline-block;
-            float: left;
-            font-size: 18px;
-            margin-top: 4px;
-            padding: 2px;
+        .tbMenuWrp table tr td:nth-child(3) {
+            background: #b76ba3 !important;
         }
 
-            .fan:nth-child(1) {
-                background: #FF9C40 !important;
-                color: #fff;
-                border: 2px solid #E4DDDD;
-            }
+        .tbMenuWrp table tr td:nth-child(4) {
+            background: #00a28a !important;
+        }
 
-            .fan:nth-child(2) {
-                color: #E49015;
-                background-color: #5EB75A !important;
-            }
-
-            .fan:nth-child(3) {
-                color: #fff;
-                background: #085407 !important;
-            }
-
-            .fan:nth-child(4) {
-                color: #fff;
-                background: #DA3F40 !important;
-                border: 2px solid #E4DDDD;
-            }
-
-            .fan:nth-child(5) {
-                color: #fff;
-                background: #009BFF !important;
-                border: 2px solid #E4DDDD;
-            }
-
-            .fan:nth-child(6) {
-                color: #E4DDDD;
-                background: #539250 !important;
-                border: 2px solid #E4DDDD;
-            }
-
-            .fan:nth-child(1) {
-                color: #E4DDDD;
-                background: #E79956 !important;
-                border: 2px solid #E4DDDD;
-            }
-
-            .fan:nth-child(1) {
-                color: #fff;
-                background: #459A42 !important;
-                border: 2px solid #E4DDDD;
-            }
-
-
-
-
-        /*.modalPopup{
-            top:185px !important;
-        }*/
+        .tbMenuWrp table tr td:nth-child(5) {
+            background: #f7c46c !important;
+        }
     </style>
 
     <%--<script>
@@ -409,24 +201,23 @@
 
 
             comcod = <%=this.GetCompCode()%>;
-            switch(comcod)
-            {
-               
+            switch (comcod) {
+
                 case 3348:   // Credence   
                 case 3101:   // Credence   
                 case 3315:   // Credence 
                 case 3347:   // Credence   
-                    
+
                     break;
 
-                default:                       
+                default:
                     //    $("table[id*=RadioButtonList1] input:first").next().next().hide();
                     $(".tbMenuWrp table tr td:nth-child(4)").hide();
-                  
+
                     break;
 
-                
-                
+
+
             }
 
 
@@ -450,6 +241,38 @@
             <%--var gvDeliverd = $('#<%=this.gvDeliverd.ClientID %>');
             gvDeliverd.ScrollableGv();--%>
         };
+
+
+
+        function Search_Gridview2(strKey) {
+            try {
+ 
+                var strData = strKey.value.toLowerCase().split(" ");
+                /*alert()*/
+                   var tblData = document.getElementById("<%=this.gvLvReq.ClientID %>");
+
+                   var rowData;
+                   for (var i = 1; i < tblData.rows.length; i++) {
+                       rowData = tblData.rows[i].innerHTML;
+                       var styleDisplay = 'none';
+                       for (var j = 0; j < strData.length; j++) {
+                           if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                               styleDisplay = '';
+                           else {
+                               styleDisplay = 'none';
+                               break;
+                           }
+                       }
+                       tblData.rows[i].style.display = styleDisplay;
+                   }
+               }
+
+               catch (e) {
+                   alert(e.message);
+
+               }
+
+           }
 
     </script>
 
@@ -503,8 +326,6 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label class="control-label  lblmargin-top9px" for="lblfrmdate">From</label>
-
-
                             </div>
                         </div>
 
@@ -527,7 +348,7 @@
 
                         <div class="col-md-2">
                             <div class="form-group">
-                                <asp:TextBox ID="txtdate" runat="server" CssClass="form-control"  Width="160px"></asp:TextBox>
+                                <asp:TextBox ID="txtdate" runat="server" CssClass="form-control" Width="160px"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtdate_CalendarExtender" runat="server" Enabled="True"
                                     Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
 
@@ -538,28 +359,27 @@
 
                         </div>
 
-                        
+
                         <div class="col-md-1">
                             <div class="form-group">
                                 <asp:LinkButton ID="lnkbtnok" runat="server" CssClass=" btn btn-primary" OnClick="lnkbtnok_Click">Ok</asp:LinkButton></li>
                             </div>
                         </div>
 
-
-
-
-                         <div class="col-md-1">
-                            <div class=" btn-group" role="group" aria-label="Button group with nested dropdown">
-                                <button type="button" class="btn btn-danger">Operations</button>
-                                <div class="btn-group" role="group">
-                                    <button id="btnGroupDrop4" type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
-                                        <div class="dropdown-arrow"></div>
-                                        <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="dropdown-item" Style="padding: 0 10px">Leave</asp:HyperLink>
-                                        
-                                    </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-alt">
+                                <div class="input-group-prepend ">
+                                    <asp:Label ID="Label1" runat="server" CssClass="btn btn-secondary btn-sm">Search</asp:Label>
                                 </div>
+                                <asp:TextBox ID="txtSearch" Style="height: 29px" runat="server" CssClass="form-control" placeholder="Search..." onkeyup="Search_Gridview2(this)"></asp:TextBox>
+
                             </div>
+                        </div>
+
+
+                        <div class="col-md-2">
+                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Leave Apply</asp:HyperLink>
+
                         </div>
 
 
@@ -576,7 +396,7 @@
             <div class="card card-fluid">
                 <div class="card-body">
                     <div class="row">
-                       <%-- <div class="col-md-2 pading5px">
+                        <%-- <div class="col-md-2 pading5px">
 
                             <ul class="sidebarMenu">
 
@@ -591,7 +411,7 @@
                         </div>--%>
 
                         <asp:Panel ID="pnlInt" runat="server" Visible="false">
-                            <div id="slSt" class=" col-md-12"  style=" float:left;clear:both;">
+                            <div id="slSt" class=" col-md-12" style="float: left; clear: both;">
                                 <div class="panel with-nav-tabs panel-primary">
                                     <fieldset class="tabMenu">
                                         <div class="form-horizontal">
@@ -602,7 +422,7 @@
                                                         <asp:ListItem Value="0"></asp:ListItem>
                                                         <asp:ListItem Value="1"></asp:ListItem>
                                                         <asp:ListItem Value="2"></asp:ListItem>
-                                                         <asp:ListItem Value="3"></asp:ListItem>
+                                                        <asp:ListItem Value="3"></asp:ListItem>
                                                         <asp:ListItem Value="4"></asp:ListItem>
                                                     </asp:RadioButtonList>
 
@@ -630,7 +450,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                               <asp:TemplateField HeaderText="leaveId" Visible="False">
+                                                            <asp:TemplateField HeaderText="leaveId" Visible="False">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvempleaveId" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
@@ -725,7 +545,7 @@
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -742,19 +562,16 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
-                                                                <ItemTemplate>
-                                                                    <%--  <asp:LinkButton ID="lnkbtnPrint" OnClick="lnkbtnPrintRD_Click" runat="server"><span class="glyphicon glyphicon-print"></span></asp:LinkButton>--%>
-
-                                                                    <%-- <asp:LinkButton ID="lnkbtnEdit" runat="server"><span class="glyphicon glyphicon-pencil"></span>
-                                                        </asp:LinkButton>
-                                                        <asp:LinkButton ID="lnkbtnView" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
-                                                        </asp:LinkButton>--%>
-
-                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" ForeColor="Black" CssClass="btn btn-xs btn-default" Font-Underline="false"><span class=" fa fa-print"></span>
+                                                                <ItemTemplate>                                                                    
+                                                                    <asp:HyperLink ID="lnkbtnEditUser" Visible="false" CssClass="btn btn-xs btn-default" Target="_blank" runat="server">
+                                                                        <span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
-
+                                                                    <asp:HyperLink ID="HyperApplyPrint" runat="server" Target="_blank" 
+                                                                        ForeColor="Black" CssClass="btn btn-xs btn-default" Font-Underline="false">
+                                                                        <span class=" fa fa-print"></span>
+                                                                    </asp:HyperLink>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="50px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="50px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -789,7 +606,7 @@
                                                                     <asp:Label ID="lblgvempid" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                                         Width="49px"></asp:Label>
-                                                                     <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                    <asp:Label ID="lblLeavId" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                                         Width="49px"></asp:Label>
                                                                 </ItemTemplate>
@@ -874,7 +691,7 @@
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -882,20 +699,27 @@
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                                 <FooterStyle HorizontalAlign="Right" Font-Bold="true" />
                                                             </asp:TemplateField>
-
+                                                                  <asp:TemplateField HeaderText="Current Status">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                </ItemTemplate>
+                                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="">
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"> <span class="fa fa-edit"></i>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
+                                                                    <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
 
-                                                                      <asp:linkButton ID="lnkRemove" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
-                                                                    </asp:linkButton>
+                                                                    <asp:LinkButton ID="lnkRemove" runat="server" Visible="false" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemove_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    </asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -930,7 +754,7 @@
                                                                     <asp:Label ID="lblgvempid" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                                         Width="49px"></asp:Label>
-                                                                      <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                    <asp:Label ID="lblLeavId" runat="server" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
                                                                         Width="49px"></asp:Label>
                                                                 </ItemTemplate>
@@ -1015,7 +839,7 @@
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -1028,14 +852,14 @@
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="HylvPrint" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnEditIN" runat="server" Target="_blank" CssClass="btn btn-xs btn-default" ><span class="fa fa-edit"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEditIN" Visible="false" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
                                                                     <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
-                                                                        <asp:linkButton ID="lnkRemoveApp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveApp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
-                                                                    </asp:linkButton>
+                                                                    <asp:LinkButton ID="lnkRemoveApp" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveApp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    </asp:LinkButton>
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="150px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="150px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>
@@ -1051,12 +875,12 @@
                                         </asp:Panel>
 
 
-                                          <asp:Panel ID="pnlFApp" runat="server" Visible="false">
+                                        <asp:Panel ID="pnlFApp" runat="server" Visible="false">
                                             <div class="row">
                                                 <div class="table-responsive col-lg-12" style="min-height: 350px;">
 
                                                     <asp:GridView ID="gvfiApproved" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvfiApproved_RowDataBound" >
+                                                        ShowFooter="True" OnRowDataBound="gvfiApproved_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
@@ -1154,7 +978,7 @@
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbldurationfi" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotalfi" runat="server" Style="text-align: right"></asp:Label>
@@ -1167,12 +991,12 @@
                                                                 <ItemTemplate>
                                                                     <asp:HyperLink ID="HylvPrintfi" runat="server" Target="_blank" ForeColor="Black" Font-Underline="false" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnEditINfi" runat="server" Target="_blank" CssClass="btn btn-xs btn-default" ><span class="fa fa-edit"></span>
+                                                                    <asp:HyperLink ID="lnkbtnEditINfi" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class="fa fa-edit"></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:HyperLink ID="lnkbtnAppfi" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span  class=" fa fa-check "></span>
+                                                                    <asp:HyperLink ID="lnkbtnAppfi" runat="server" Target="_blank" CssClass="btn btn-xs btn btn-success"><span  class=" fa fa-check "></span>
                                                                     </asp:HyperLink>
-                                                                    <asp:linkButton ID="lnkRemoveFAp" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
-                                                                    </asp:linkButton>
+                                                                    <asp:LinkButton ID="lnkRemoveFAp" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to delete this item?');" OnClick="lnkRemoveFAp_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-trash"></span>
+                                                                    </asp:LinkButton>
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="150px" HorizontalAlign="Center" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="110px" VerticalAlign="Top" />
@@ -1292,7 +1116,7 @@
                                                             <asp:TemplateField HeaderText="Duration">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblduration" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "duration")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
                                                                     <asp:Label ID="lblAmtTotal" runat="server" Style="text-align: right"></asp:Label>
@@ -1310,11 +1134,11 @@
                                                         <asp:LinkButton ID="lnkbtnView" runat="server"><span class="glyphicon glyphicon-eye-open"></span>
                                                         </asp:LinkButton>--%>
 
-                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank"  CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
+                                                                    <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
 
                                                                 </ItemTemplate>
-                                                                <ItemStyle Width="50px" HorizontalAlign="Center" />
+                                                                <ItemStyle Width="50px" HorizontalAlign="left" />
                                                                 <HeaderStyle HorizontalAlign="Center" Width="80px" VerticalAlign="Top" />
                                                             </asp:TemplateField>
                                                         </Columns>

@@ -21,7 +21,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
+            var gvMoLateAttn = $('#<%=this.gvMoLateAttn.ClientID %>');
+            gvMoLateAttn.Scrollable();
         };
     </script>
 
@@ -108,7 +109,7 @@
                                   
 
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="pnlDesig" runat="server" visible="false">
                                     <div class="col-md-4 pading5px asitCol4">
                                         <asp:Label ID="lblfrmDesig" runat="server" CssClass="lblTxt lblName">Form</asp:Label>
                                         <asp:DropDownList ID="ddlfrmDesig" runat="server" Width="100" OnSelectedIndexChanged="ddlfrmDesig_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control inputTxt" TabIndex="6">
@@ -158,6 +159,9 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem  Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                           
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">

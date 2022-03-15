@@ -4,19 +4,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>Pinovation ERP </title>
-    <meta property="og:title" content="Dashboard">
-    <meta name="author" content="Pinovation Tech Ltd.">
-    <meta property="og:locale" content="en_US">
-    <meta name="description" content="ERP SOFTWARE BY Pinovation Tech Ltd">
-    <meta property="og:description" content="Realstate ERP Pinovation Tech Ltd">
-    <meta property="og:site_name" content="Realstate ERP">
-    <meta name="theme-color" content="#3063A0">
-    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png">
+    <meta property="og:title" content="Dashboard"/>
+    <meta name="author" content="Pinovation Tech Ltd."/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="ERP SOFTWARE BY Pinovation Tech Ltd"/>
+    <meta property="og:description" content="Realstate ERP Pinovation Tech Ltd"/>
+    <meta property="og:site_name" content="Realstate ERP" />
+    <meta name="theme-color" content="#3063A0"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="Image/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="Image/favicon-16x16.png"/>
 
     <asp:PlaceHolder runat="server">
 
@@ -433,8 +433,12 @@
 
         .mainpage {
             /*width:99%;*/
+           
         }
-
+        .pagebody {
+            /*width:99%;*/
+            background-color:white;
+        }
 
         #main {
             display: table;
@@ -709,14 +713,11 @@
     </script>
 </head>
 
-<body>
+<body class="pagebody">
 
     <form id="form1" runat="server" enctype="multipart/form-data">
         <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="0">
             <Scripts>
-
-
-
                 <%--  <asp:ScriptReference Path="~/Scripts/jqplot.dateAxisRenderer.min.js" />
                 <asp:ScriptReference Path="~/Scripts/jqplot.highlighter.min.js" />
                 <asp:ScriptReference Path="~/Scripts/jquery.jqplot.min.js" />

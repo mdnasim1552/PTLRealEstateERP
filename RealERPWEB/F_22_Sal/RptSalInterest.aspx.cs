@@ -194,6 +194,7 @@ namespace RealERPWEB.F_22_Sal
 
                 case "3338":
                 case "3101":
+                //case "3366":
                     this.lblinterest.Text = "Interest Per Year(%):";
                     break;
 

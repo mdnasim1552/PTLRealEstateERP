@@ -22,6 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
     {
 
         ProcessAccess HRData = new ProcessAccess();
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -60,16 +61,25 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
+        private string Getdatestart()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+
+            return startdate;
+        }
 
         private void GetYearMonth()
         {
             string comcod = this.GetCompCode();
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "GETMONTHFORABS", "", "", "", "", "", "", "", "", "");
             this.ddlMonth.DataTextField = "mnam";
-            this.ddlMonth.DataValueField = "mno";
+            this.ddlMonth.DataValueField = "yearmon";
             this.ddlMonth.DataSource = ds1.Tables[0];
             this.ddlMonth.DataBind();
-            this.ddlMonth.SelectedValue = System.DateTime.Today.Month.ToString().Trim();
+            this.ddlMonth.SelectedValue = System.DateTime.Today.ToString("yyyyMM").Trim();
+            //this.ddlMonth.SelectedValue = System.DateTime.Today.Month.ToString().Trim();
         }
        
 
@@ -122,14 +132,30 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string date = "01-" + Month + "-" + year;
+            string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
+            string cudate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
 
-           
-           // string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
+                default:
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                    break;
+            }
+
+
+            // string date = Convert.ToDateTime(ASTUtility.Right(this.ddlyearmon.Text.Trim(), 2) + "/01/" + this.ddlyearmon.Text.Trim().Substring(0, 4)).ToString("dd-MMM-yyyy");
             string Empcode ="%"+ this.txtSrcEmployee.Text.Trim() + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "SHOWEMPABSENTSSPECIAL", compname, date, deptname, Empcode, section, "","", "", "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "SHOWEMPABSENTSSPECIAL", compname, cudate, deptname, Empcode, section, "","", "", "");
             if (ds2 == null)
             {
                 this.gvabsspecialcount.DataSource = null;
@@ -286,12 +312,38 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void GetEmployeeAbs(string empid)
         {
+         
+            //
             this.chkDate.Items.Clear();          
             string comcod = this.GetCompCode();
-            string Month = this.ddlMonth.SelectedItem.Text.Substring(0, 3);
-            string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string date = "01-" + Month + "-" + year;                                
-            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", date, empid, "", "", "", "", "", "", "");
+            string yearmon = this.ddlMonth.SelectedValue.ToString(); ;
+            // string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+
+
+            //  DateTime date2 = DateTime.ParseExact(date1, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+
+
+
+            //DateTime date1 = DateTime.Parse(this.ddlMonth.SelectedValue.ToString());
+            string cudate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(yearmon.Substring(4, 2))) + "-" + yearmon.Substring(0, 4);
+                    cudate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                    break;
+            }
+
+            //string date = "01-" + Month + "-" + year;                                
+            DataSet ds4 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "ABSENT_DATE", cudate, empid, "", "", "", "", "", "", "");
 
             if (ds4 == null)
             {
@@ -324,12 +376,13 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = hst["comcod"].ToString();
       
            string empid = this.lblselectempid.Text.ToString();
-
-            
-            string month = this.ddlMonth.SelectedValue.ToString().Trim();
-            string month1 = month.PadLeft(2, '0');
+            string month = this.ddlMonth.SelectedValue.ToString();
+            string month1 = month;
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string monyr = month1 + year;
+            //string month = this.ddlMonth.SelectedValue.ToString().Trim();
+            //string month1 = month.PadLeft(2, '0');
+            //string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            string monyr = this.ddlMonth.SelectedValue.ToString();
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "DELETEABSCT", empid, monyr, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (result == false)
             {

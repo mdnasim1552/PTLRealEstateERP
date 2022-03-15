@@ -1,29 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CRMDashboard.aspx.cs" Inherits="RealERPWEB.F_99_Allinterface.CRMDashboard" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="head" runat="Server">
-</asp:Content>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <%--  <script src="<%=this.ResolveUrl("~/Scripts/highchartwithmap.js")%>"></script>
-    <script src="<%=this.ResolveUrl("~/Scripts/highchartexporting.js")%>"></script>
-    --%>
-
-    <script type="text/javascript" language="javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
 
             document.getElementById('<%= lnkbtnOk.ClientID %>').click();
 
         });
-     
+
         function ExecuteGraph(data, data1, data2, gtype) {
             var lead_m = JSON.parse(data);
             var lead_w = JSON.parse(data1);
             var lead_d = JSON.parse(data2);
 
-
             $('#chartleadMonths').highcharts({
-
                 chart: {
                     type: 'column'
                 },
@@ -54,9 +47,7 @@
                         '<td style="padding:0"><b>{point.y:0f}</b></td></tr>',
                     footerFormat: '</table>',
                     shared: true,
-                    useHTML: true,
-
-
+                    useHTML: true
                 },
                 plotOptions: {
                     column: {
@@ -82,8 +73,6 @@
                         data: [lead_m[0].call, lead_m[0].extmeeting, lead_m[0].intmeeting, lead_m[0].visit, lead_m[0].proposal, lead_m[0].close]
                     }
                 ],
-
-
             });
 
             var chartlead_w = Highcharts.chart('chartleadweek', {
@@ -108,7 +97,6 @@
                     title: {
                         text: 'Total Weekly Lead status'
                     }
-
                 },
                 legend: {
                     enabled: false
@@ -239,19 +227,12 @@
                 ]
             });
 
-
-
-
             let w = $(".graph-main").width();
             let h = 350;
-
-
             chartlead_w.setSize(w, h);
             chartlead_d.setSize(w, h);
             const elem = $(".graph-main")[0];
-
             let resizeObserver = new ResizeObserver(function () {
-
                 chartlead_w.setSize(w, h);
                 chartlead_d.setSize(w, h);
                 w = $(".graph-main").width();
@@ -302,8 +283,8 @@
 
 
 
-    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
 
     <div class="card card-fluid container-data mt-5">
         <div class="card-body">
@@ -324,7 +305,8 @@
                         <div class="input-group-prepend">
                             <button class="btn btn-secondary ml-1" type="button">Team Lead</button>
                         </div>
-                        <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" data-placeholder="Choose Employee.." runat="server" CssClass="custom-select chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlEmpid" ClientIDMode="Static" data-placeholder="Choose Employee.." runat="server"
+                            CssClass="form-control select2" AutoPostBack="true" OnSelectedIndexChanged="ddlEmpid_SelectedIndexChanged">
                         </asp:DropDownList>
 
                     </div>
@@ -571,7 +553,7 @@
                 <div class="col-md-2 col-xl-2">
                     <div class="card  mb-1 ">
                         <div class="card-body mb-2">
-                            <asp:HyperLink ID="hyplnkOccasion" runat="server" Target="_blank" class="media" >                         
+                            <asp:HyperLink ID="hyplnkOccasion" runat="server" Target="_blank" class="media">
                                 <div class="avatar-md xbg-info rounded-circle mr-2">
                                     <i class="fas fa-birthday-cake avatar-title font-26 text-red"></i>
                                 </div>
@@ -582,7 +564,7 @@
                                         <p class="mb-0 mt-1 text-truncate">Celebrate</p>
                                     </div>
                                 </div>
-                           </asp:HyperLink>
+                            </asp:HyperLink>
 
 
                         </div>
@@ -619,8 +601,8 @@
     </div>
 
 
+ 
 
-
-    <%--</ContentTemplate>
-    </asp:UpdatePanel>--%>
+    </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

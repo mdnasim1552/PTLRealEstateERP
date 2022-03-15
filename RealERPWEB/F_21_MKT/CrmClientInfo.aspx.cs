@@ -30,6 +30,8 @@ namespace RealERPWEB.F_21_MKT
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("~/AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Client Information";
+
+
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.txtentryEmpID.Visible = false;
                 string comcod = this.GetComeCode();
@@ -3591,18 +3593,23 @@ namespace RealERPWEB.F_21_MKT
 
 
                 int index = e.Row.RowIndex;
-                Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowup");
-                Lbtn.Attributes.Add("onmouseover", "AddButton(" + index + ")");
-                Lbtn.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
-                Lbtn.Attributes.Add("style", "cursor:pointer");
+                //Panel Lbtn = (Panel)e.Row.FindControl("pnlfollowup");
+                //Lbtn.Attributes.Add("onmouseover", "AddButton(" + index + ")");
+                //Lbtn.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
+                //Lbtn.Attributes.Add("style", "cursor:pointer");
 
-                LinkButton Lbtn1 = (LinkButton)e.Row.FindControl("lnkEditfollowup");
-                Lbtn1.Attributes.Add("class", "hiddenb" + index);
-                Lbtn1.Attributes.Add("style", "display:none");
+                //Panel pnldel = (Panel)e.Row.FindControl("pnldeletePros");
+                //pnldel.Attributes.Add("onmouseover", "AddButton(" + index + ")");
+                //pnldel.Attributes.Add("onmouseout", "HiddenButton(" + index + ")");
+                //Lbtn.Attributes.Add("style", "cursor:pointer");
 
-                LinkButton lbtnView = (LinkButton)e.Row.FindControl("lbtnView");
-                lbtnView.Attributes.Add("class", "hiddenb" + index);
-                lbtnView.Attributes.Add("style", "display:none");
+                //LinkButton Lbtn1 = (LinkButton)e.Row.FindControl("lnkEditfollowup");
+                //Lbtn1.Attributes.Add("class", "hiddenb" + index);
+                //Lbtn1.Attributes.Add("style", "display:none");
+
+                //LinkButton lbtnView = (LinkButton)e.Row.FindControl("lbtnView");
+                //lbtnView.Attributes.Add("class", "hiddenb" + index);
+                //lbtnView.Attributes.Add("style", "display:none");
 
 
 
@@ -3702,7 +3709,7 @@ namespace RealERPWEB.F_21_MKT
                 dv.RowFilter = ("active='False'");
                 this.gvSummary.DataSource = dv.ToTable();
                 this.gvSummary.DataBind();
-
+                
 
 
                 if (dv.ToTable().Rows.Count > 0)

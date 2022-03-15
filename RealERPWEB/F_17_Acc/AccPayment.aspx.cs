@@ -237,13 +237,18 @@ namespace RealERPWEB.F_17_Acc
             try
             {
                 Hashtable hst = (Hashtable)Session["tblLogin"];
+                string ddldesc = hst["ddldesc"].ToString();
                 string comcod = this.GetCompCode();
                 string ttsrch = "%" + this.txtScrchConCode.Text.Trim() + "%";
                 string UserId = hst["usrid"].ToString();
                 DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "GETCONACCHEAD", ttsrch, UserId, "", "", "", "", "", "", "");
+                if (ds1==null)
+                    return;
+
                 DataTable dt1 = ds1.Tables[0];
+                string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
                 this.ddlConAccHead.DataSource = dt1;
-                this.ddlConAccHead.DataTextField = "actdesc1";
+                this.ddlConAccHead.DataTextField = TextField;
                 this.ddlConAccHead.DataValueField = "actcode";
                 this.ddlConAccHead.DataBind();
                 this.ddlConAccHead.Focus();
@@ -308,20 +313,29 @@ namespace RealERPWEB.F_17_Acc
         //}
         protected void lnkAcccode_Click(object sender, EventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string ddldesc = hst["ddldesc"].ToString();
             string comcod = this.GetCompCode();
             string filter = "%" + this.txtserceacc.Text + "%";
             string accconhead = this.ddlConAccHead.SelectedValue.ToString();
             DataSet ds2 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETACCCODE02", filter, accconhead, "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
+
             DataTable dt2 = ds2.Tables[0];
             ViewState["HeadAcc1"] = ds2.Tables[0];
+            string TextField = (ddldesc == "True" ? "actdesc" : "actdesc1");
             this.ddlacccode.DataSource = dt2;
-            this.ddlacccode.DataTextField = "actdesc1";
+            this.ddlacccode.DataTextField = TextField;
             this.ddlacccode.DataValueField = "actcode";
             this.ddlacccode.DataBind();
+
+            DataRow[] dr = dt2.Select("actcode='260100010001'");
+            if(dr.Length>0)
             this.ddlacccode.SelectedValue = "260100010001"; // req by rahin uzzal dev by nahid
+           
+            
+            
             //----Show Resource code and Specification Code------------// 
 
             DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
@@ -335,7 +349,8 @@ namespace RealERPWEB.F_17_Acc
                 this.txtserchReCode.Visible = true;
                 this.lnkRescode.Visible = true;
                 this.ddlresuorcecode.Visible = true;
-                this.GetResource();
+                //this.GetResource();
+                lnkRescode_Click(null, null);
 
             }
             else
@@ -357,7 +372,8 @@ namespace RealERPWEB.F_17_Acc
 
             try
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"];
+                Hashtable hst = (Hashtable)Session["tblLogin"]; 
+                string ddldesc = hst["ddldesc"].ToString();
                 string comcod = hst["comcod"].ToString();
                 string actcode = this.ddlacccode.SelectedValue.ToString();
                 string filter1 = "%" + this.txtserchReCode.Text.Trim() + "%";
@@ -387,10 +403,14 @@ namespace RealERPWEB.F_17_Acc
 
 
                 DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETRESCODE", actcode, filter1, SearchInfo, "", "", "", "", "", "");
+                if (ds3==null)
+                    return;
+
                 DataTable dt3 = ds3.Tables[0];
                 Session["HeadRsc1"] = ds3.Tables[0];
+                string TextField = (ddldesc == "True" ? "resdesc" : "resdesc1");
                 this.ddlresuorcecode.DataSource = dt3;
-                this.ddlresuorcecode.DataTextField = "resdesc1";
+                this.ddlresuorcecode.DataTextField = TextField;
                 this.ddlresuorcecode.DataValueField = "rescode";
                 this.ddlresuorcecode.DataBind();
                 this.txtserchReCode.Text = "";
@@ -487,8 +507,24 @@ namespace RealERPWEB.F_17_Acc
             }
             this.GetSpecification();
             this.GetBillNo();
-             this.lnkSpecification_Click(null, null);  
-            this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue,2)=="99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98"?  this.ddlresuorcecode.SelectedItem.ToString().Substring(13):"");
+             this.lnkSpecification_Click(null, null);
+
+            string comcod = this.GetCompCode();
+
+            if(comcod== "3356")
+            {
+                this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2) == "99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98" ? this.ddlresuorcecode.SelectedItem.ToString() : "");
+
+            }
+
+            else
+            {
+                this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2) == "99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98" ? this.ddlresuorcecode.SelectedItem.ToString().Substring(13) : "");
+
+            }
+
+
+
         }
 
         protected void lnkOk_Click(object sender, EventArgs e)
@@ -1385,7 +1421,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-            lnkRescode_Click(null,null);
+           
         }
         protected void ibtnvounu_Click(object sender, ImageClickEventArgs e)
         {

@@ -9,10 +9,6 @@
         $(document).ready(function () {
 
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-
-
-
         });
         function pageLoaded() {
 

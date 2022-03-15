@@ -42,9 +42,24 @@ namespace RealERPWEB.Notification
             DataSet ds1 = accData.GetTransInfoNew(comcod, "SP_ENTRY_CRM_MODULE", "RPT_PROSPECT_OCCASION", null, null, null, curDate, empId, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             Session["tbloccasion"] = ds1.Tables[0];
-            this.gvOccasion.DataSource = ds1.Tables[0];
-            this.gvOccasion.DataBind();
+            this.Data_Bind();
+        }
+
+        private void Data_Bind()
+        {
+            DataTable dt = (DataTable)Session["tbloccasion"];
+            
+            DataView dv = dt.Copy().DefaultView;
+            dv.RowFilter = ("gcod like '0306003%'"); //Birthday
+            this.gvBirthday.DataSource = dv.ToTable();
+            this.gvBirthday.DataBind();
+
+            DataView dv1 = dt.Copy().DefaultView;
+            dv1.RowFilter = ("gcod like '0306005%'"); //Marriage day
+            this.gvMarriageday.DataSource = dv1.ToTable();
+            this.gvMarriageday.DataBind();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
     public partial class RptEmpAbsCount : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
-
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -22,11 +22,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE ABSENT COUNT LIST";
-                DateTime curdate = System.DateTime.Today;
-                DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
-                DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));
-                this.txtfodate.Text = frmdate.ToString("dd-MMM-yyyy");
-                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                this.GetDate();
                 this.GetCompName();
                 this.GetYearMonth();
 
@@ -34,6 +30,17 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         }
 
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)            
+            return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            this.txtfodate.Text = startdate + date.Substring(2);
+            this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
 
         private string GetComeCode()
         {
@@ -184,8 +191,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 return;
             ((Label)this.gvabscount.FooterRow.FindControl("lgvFabsday")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(abscount)", "")) ? 0.00
                         : dt.Compute("sum(abscount)", ""))).ToString("#,##0;(#,##0); ");
-
-
         }
 
         private DataTable HiddenSameData(DataTable dt1)
@@ -247,8 +252,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             this.GvEmpDetails.DataSource = this.HiddenSameDataDetails(ds2.Tables[0]);
             this.GvEmpDetails.DataBind();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalDeails();", true);
-            
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "OpenModalDeails();", true);      
         }
 
 

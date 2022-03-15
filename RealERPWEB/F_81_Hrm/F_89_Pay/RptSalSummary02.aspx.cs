@@ -40,6 +40,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     (this.Request.QueryString["Type"].ToString().Trim() == "TopSalary") ? "Salary Top Sheet" : (this.Request.QueryString["Type"].ToString().Trim() == "TopSheetPID") ? "Salary Top Sheet (Project)" :
                     "EMPLOYEE SALARY SUMMARY INFORMATION ";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
+               
 
 
             }
@@ -54,7 +55,35 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
 
 
+        private void GetDesignation()
+        {
 
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "GETDESIGNATION", "", "", "", "", "", "", "", "", "");
+            Session["tbldesig"] = ds1.Tables[0];
+            if (ds1 == null)
+                return;
+            this.ddlfrmDesig.DataTextField = "designation";
+            this.ddlfrmDesig.DataValueField = "desigcod";
+            this.ddlfrmDesig.DataSource = ds1.Tables[0];
+            this.ddlfrmDesig.DataBind();
+            this.ddlfrmDesig.SelectedValue = "0345001";
+            this.GetDessignationTo();
+        }
+
+        private void GetDessignationTo()
+        {
+
+            DataTable dt = (DataTable)Session["tbldesig"];
+            //string desigcod = this.ddlfrmDesig.SelectedValue.ToString().Trim();
+            //DataView dv1 = dt.DefaultView;
+            //dv1.RowFilter = "desigcod not in ('" + desigcod + "')";
+            this.ddlToDesig.DataTextField = "designation";
+            this.ddlToDesig.DataValueField = "desigcod";
+            this.ddlToDesig.DataSource = dt;
+            this.ddlToDesig.DataBind();
+
+        }
         private string GetComeCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -74,18 +103,25 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
                 case "CashSalary":
                     this.MultiView1.ActiveViewIndex = 1;
-                    this.lblfrmd.Visible = true;
-                    this.ddlfrmDesig.Visible = true;
-                    this.lbltdeg.Visible = true;
-                    this.ddlToDesig.Visible = true;
 
-
-                    string comcod = this.GetComeCode();
                     this.GetDesignation();
-                    if (comcod == "3355")
+                    this.GetDessignationTo();
+                    string comcod = this.GetComeCode();
+
+
+                    switch (comcod)
                     {
-                        this.rbtnlistsaltypeAddItem();
+                        case "3355":
+                            this.rbtnlistsaltypeAddItem();
+                            break;
+                        case "3354":
+                            this.PnlDesign.Visible = true;
+                            break;
+                        case "3365": // BTI 
+                            this.PnlDesign.Visible = false;
+                            break;
                     }
+
 
                     break;
 
@@ -280,7 +316,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashSalary":
+                    GetBankName();
                     this.ShowCashSalary();
+
                     break;
                 case "SalLACA":
                     this.ShowSalaLACA();
@@ -471,23 +509,28 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
 
-            string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString().Substring(0,9) + "%";
+            string Department = (this.ddlDepartName.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlDepartName.SelectedValue.ToString().Substring(0, 9) + "%";
             string section = (this.ddlSection.SelectedValue.ToString() == "000000000000") ? "%" : this.ddlSection.SelectedValue.ToString() + "%";
-            string DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
-            string DesigTo = this.ddlToDesig.SelectedValue.ToString();
+            string DesigFrom = "0399999";
+            string DesigTo = "0311001";
 
             string exclumgt = "";
             string mantype = "";
-        
+
             switch (comcod)
             {
-
+                case "3354":
+                    DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
+                    DesigTo = this.ddlToDesig.SelectedValue.ToString();
+                    break;
                 case "3355":
                     //exclumgt = (this.ddlSection.SelectedValue.ToString() == "000000000000" && chkExcluMgt.Checked) ? "exclumgt" : "";
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : (this.rbtnlistsaltype.SelectedIndex == 2) ? "86003%" : "86%";
                     break;
 
                 default:
+                     DesigFrom = "0399999";
+                     DesigTo = "0311001";
                     exclumgt = "";
                     break;
 
@@ -686,6 +729,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         private void Data_Bind()
         {
+            string comcod = this.GetComeCode();
 
             string type = this.Request.QueryString["Type"].ToString().Trim();
             switch (type)
@@ -700,16 +744,49 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
                 case "CashSalary":
-                    this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
-                    this.gvcashpay.DataSource = (DataTable)Session["tblSalSum"];
-                    this.gvcashpay.DataBind();
+                    DataTable dt1 = (DataTable)Session["tblSalSum"];
+                    DataTable tbnk = (DataTable)Session["tblbank"];
 
+
+                  
+                    this.gvcashpay.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
+                    this.gvcashpay.DataSource = dt1;
+                    this.gvcashpay.DataBind();
                     if (this.gvcashpay.Rows.Count > 0)
                     {
                         this.FooterCalculation((DataTable)Session["tblSalSum"]);
                         Session["Report1"] = gvcashpay;
                         ((HyperLink)this.gvcashpay.HeaderRow.FindControl("hlbtntbCdataExcel22")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     }
+                    if ((comcod=="3365") || (comcod=="3101"))
+                    {
+                        this.gvcashpay.Columns[7].Visible = true;
+                        this.gvcashpay.Columns[8].Visible = true;
+                        this.gvcashpay.Columns[9].Visible = true;
+
+                        DropDownList ddlBankList; TextBox ckdate;
+                        for (int j = 0; j < dt1.Rows.Count; j++)
+                        {
+                            ckdate = ((TextBox)this.gvcashpay.Rows[j].FindControl("txtckDate"));
+                            ddlBankList = ((DropDownList)this.gvcashpay.Rows[j].FindControl("ddlBankList"));
+                            ddlBankList.DataTextField = "actdesc";
+                            ddlBankList.DataValueField = "bankcode";
+                            ddlBankList.DataSource = tbnk;
+                            ddlBankList.DataBind();
+                            ddlBankList.Items.Insert(0, new ListItem("--Please Select--", ""));
+
+                            ckdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                        }
+                    }
+                    else
+                    {
+                        this.gvcashpay.Columns[7].Visible = false;
+                        this.gvcashpay.Columns[8].Visible = false;
+                        this.gvcashpay.Columns[9].Visible = false;
+                    }
+
+                    
+
 
                     break;
 
@@ -783,9 +860,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = gvtopsheetpid;
                     ((HyperLink)this.gvtopsheetpid.HeaderRow.FindControl("hlbtntTopSheetExcelpid")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
-
-
-
 
             }
 
@@ -1522,10 +1596,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         }
         private void PrintCashSalary()
         {
-
-
             //Sanmar
-
             string comcod = this.GetComeCode();
             switch (comcod)
             {
@@ -1548,9 +1619,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
             }
-
         }
-
 
         private void PrintCashSalaryEdison()
         {
@@ -2435,54 +2504,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = hst["comcod"].ToString();          
+            string comcod = hst["comcod"].ToString();
             return comcod;
         }
-        private void GetDesignation()
-        {
-
-            string comcod = this.GetCompCode();         
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS2", "DESIGNAME", "", "", "", "", "", "", "", "", "");
-            Session["tbldesig"] = ds1.Tables[0];
-            if (ds1 == null)
-                return;
-            this.ddlfrmDesig.DataTextField = "designation";
-            this.ddlfrmDesig.DataValueField = "desigcod";
-            this.ddlfrmDesig.DataSource = ds1.Tables[0];
-            this.ddlfrmDesig.DataBind();
-            if (this.Request.QueryString["Type"].ToString() == "EmpGradeADesig")
-            {
-                this.ddlfrmDesig.SelectedValue = "0357000";
-            }
-            else
-            {
-                this.ddlfrmDesig.SelectedValue = "0357999";
-            }
-            this.GetDessignationTo();
-        }
-        private void GetDessignationTo()
-        {
-
-            DataTable dt = (DataTable)Session["tbldesig"];
-            this.ddlToDesig.DataTextField = "designation";
-            this.ddlToDesig.DataValueField = "desigcod";
-            this.ddlToDesig.DataSource = dt;
-            this.ddlToDesig.DataBind();
-            if (this.Request.QueryString["Type"].ToString() == "EmpGradeADesig")
-            {
-                this.ddlToDesig.SelectedValue = "0311000";
-            }
-            else
-            {
-                // this.ddlToDesig.SelectedValue = "0311001";
-            }
 
 
-        }
-        protected void ddlfrmDesig_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.GetDessignationTo();
-        }
         protected void gvtopsheetfactory_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
@@ -2773,6 +2799,153 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 //}
             }
 
+        }
+
+
+        protected void chekPrint_Click(object sender, EventArgs e)
+        {
+            string msg;
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["entry"]))
+            //{
+
+            //    msg = "You have no permission";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            //    return;
+            //}
+
+            try
+            {
+                this.cardNo.Value = "";
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                int index = this.gvcashpay.PageSize * this.gvcashpay.PageIndex + RowIndex;
+                string card = ((Label)this.gvcashpay.Rows[index].FindControl("lgIdCardcash")).Text.ToString();
+                string empname = ((Label)this.gvcashpay.Rows[index].FindControl("lgvndesigcash")).Text.ToString();
+                this.ddlBank.Items.Clear();
+                this.ddlcheque.Items.Clear();
+                this.cardNo.Value = card;
+                GetBankName();
+
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+            }
+
+
+            catch (Exception ex)
+            {
+
+                msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+
+
+            }
+        }
+
+        private void GetBankName()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string txtSProject = "%%";
+            string bankcode = "1902%";
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETBANKNAME", txtSProject, bankcode, "", "", "", "", "", "", "");
+            this.ddlBank.DataTextField = "actdesc";
+            this.ddlBank.DataValueField = "bankcode";
+            this.ddlBank.DataSource = ds1.Tables[0];
+            this.ddlBank.DataBind();
+            ddlBank.Items.Insert(0, new ListItem("--Please Select--", ""));
+            Session["tblbank"] = ds1.Tables[0];
+
+
+
+        }
+
+        protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string comcod = this.GetCompCode();
+            string bankcode = this.ddlBank.SelectedValue.ToString();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "TOPCHEQUE", bankcode, "", "", "", "", "", "", "", "");
+            this.ddlcheque.DataTextField = "chequeno";
+            this.ddlcheque.DataValueField = "chequeno";
+            this.ddlcheque.DataSource = ds1.Tables[0];
+
+            this.ddlcheque.DataBind();
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
+        }
+
+        protected void btnUpdateChekNumber_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+            string chekno = this.ddlcheque.SelectedValue.ToString();
+            string bankcode = this.ddlBank.SelectedValue.ToString();
+            string cardno = this.cardNo.Value;
+            string comcod = this.GetCompCode();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "INSERTMONTHLYCHECKGIVEN", bankcode, chekno, "", "", "", "", "", "", "");
+
+        }
+
+        protected void btnPrintCheck_Click(object sender, EventArgs e)
+        {
+            string msg;
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["entry"]))
+            //{
+
+            //    msg = "You have no permission";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+            //    return;
+            //}
+
+            try
+            {
+
+                GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+                int RowIndex = gvr.RowIndex;
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+                int index = this.gvcashpay.PageSize * this.gvcashpay.PageIndex + RowIndex;
+
+
+                LinkButton linkBtn =((LinkButton)this.gvcashpay.Rows[index].FindControl("btnPrintCheck"));
+                string amt = ((Label)this.gvcashpay.Rows[index].FindControl("lgvnetamtcash")).Text.ToString();
+                string card = ((Label)this.gvcashpay.Rows[index].FindControl("lgIdCardcash")).Text.ToString();
+                string empname = ((Label)this.gvcashpay.Rows[index].FindControl("lblempname")).Text.ToString();
+                string bankcode = ((DropDownList)this.gvcashpay.Rows[index].FindControl("ddlBankList")).SelectedValue.ToString();
+                string ckdate = ((TextBox)this.gvcashpay.Rows[index].FindControl("txtckDate")).Text.ToString();
+
+              
+                if (bankcode.Length != 12)
+                {
+                    msg = "Please Select Bank Name, Emp Name: " + empname;
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+                    return;
+                }
+                else
+                {
+                    //Response.Write("<script>window.open ('~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate + "','_blank');</script>");
+                    Response.Redirect("~/F_17_Acc/AccPrint.aspx?Type=CashSalaryCheque&empname=" + empname + "&amt=" + amt + "&ckdate=" + ckdate+ "&bankcode="+ bankcode);    
+                }
+            }
+
+
+            catch (Exception ex)
+            {
+                msg = "Error: " + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
+
+            }
         }
     }
 }

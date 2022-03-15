@@ -624,7 +624,24 @@
                         break;
 
 
+
                     case 3354:  //Edison Real Estate
+                   
+                        $(".tbMenuWrp table tr td:nth-child(2)").hide();//CRM Check  
+                        $(".tbMenuWrp table tr td:nth-child(4)").hide();//1st Approval
+                        $(".tbMenuWrp table tr td:nth-child(5)").hide();//2nd Approval                      
+                        $(".tbMenuWrp table tr td:nth-child(7)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(8)").hide()
+                        $(".tbMenuWrp table tr td:nth-child(9)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(12)").hide();
+                        //$(".tbMenuWrp table tr td:nth-child(14)").hide();
+                        $(".tbMenuWrp table tr td:nth-child(17)").hide();
+                        break;
+
+
+
+
+                    
                     case 1205:  //P2P Construction
                     case 3351:  //wecon Properties
                     case 3352:  //p2p360
@@ -1013,10 +1030,10 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                            <asp:TemplateField HeaderText="">
 
                                                                 <HeaderTemplate>
-                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
+                                                                    <asp:TextBox ID="txtSearchrefnum" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" onkeyup="Search_Gridview(this,4,'gvReqInfo')"></asp:TextBox><br />
 
                                                                 </HeaderTemplate>
 
@@ -1338,7 +1355,7 @@
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Mrf No.">
+                                                            <asp:TemplateField HeaderText="">
                                                                 <HeaderTemplate>
                                                                     <asp:TextBox ID="txtSearchrefnumrchq" SortExpression="mrfno" BackColor="Transparent" BorderStyle="None" runat="server" Width="70px" placeholder="Mrf No." onkeyup="Search_Gridview(this,4,'gvReqChk')"></asp:TextBox><br />
 

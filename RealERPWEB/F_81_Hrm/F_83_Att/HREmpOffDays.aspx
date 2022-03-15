@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="HREmpOffDays.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HREmpOffDays" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITMaster.Master" AutoEventWireup="true" CodeBehind="HREmpOffDays.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_83_Att.HREmpOffDays" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -7,8 +6,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    
-    
+
+
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -71,7 +70,7 @@
                                         <asp:LinkButton ID="imgbtnProSrch" runat="server" CssClass="btn btn-primary srearchBtn" OnClick="imgbtnProSrch_Click"><span class="glyphicon glyphicon-search asitGlyp"> </span></asp:LinkButton>
                                     </div>
                                     <div class="col-md-3 pading5px asitCol3">
-                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt"  Width="240" TabIndex="2">
+                                        <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="form-control inputTxt" Width="240" TabIndex="2">
                                         </asp:DropDownList>
                                     </div>
 
@@ -93,7 +92,7 @@
 
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3">
-                                            <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control inputTxt"  TabIndex="2">
+                                            <asp:DropDownList ID="ddlMonth" runat="server" CssClass="form-control inputTxt" TabIndex="2">
                                             </asp:DropDownList>
                                         </div>
                                         <div class="col-md-5 pading5px asitCol5">
@@ -133,20 +132,26 @@
                                 <div class="form-horizontal">
 
                                     <div class="form-group">
-                                        <div class="col-md-4 pading5px asitCol4">
-                                            <asp:CheckBoxList ID="chkDate" runat="server" CssClass=" btn  checkBox" Style="border:1px solid yellow;" 
+                                        <div class="col-md-6">
+                                            <asp:CheckBoxList ID="chkDate" runat="server" CssClass=" btn  checkBox" Style="border: 1px solid yellow;"
                                                 RepeatColumns="7" RepeatDirection="Horizontal">
                                             </asp:CheckBoxList>
+                                        </div>
+                                        <div class="col-md-4">
 
                                             <asp:Label ID="Label20" runat="server" CssClass="lblTxt lblName" Text="Reason's:"></asp:Label>
 
-                                            <asp:TextBox ID="txtReason" runat="server"
-                                                CssClass="inputTxt inputName inpPixedWidth" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
+                                            <asp:TextBox ID="txtReason" style="margin:5px 0" runat="server"
+                                                CssClass="form-control" Font-Bold="True" TextMode="MultiLine"></asp:TextBox>
 
-                                            
-                                            <asp:CheckBox ID="Chkgov" runat="server" AutoPostBack="True" CssClass="btn btn-primary checkBox" Text="Govt.Holiday"
-                                            Width="120px" />
-                                                
+                                            <asp:DropDownList ID="ddlType" CssClass="form-control" style="margin:5px 0" runat="server" AutoPostBack="true">
+                                                <asp:ListItem>Select Holidays </asp:ListItem>
+                                                <asp:ListItem Value="W">Weekend Day</asp:ListItem>
+                                                <asp:ListItem Value="H">Govt.Holi Day</asp:ListItem>
+                                                <asp:ListItem Value="ST">Special Thursday Day</asp:ListItem>
+                                            </asp:DropDownList>
+
+
 
 
 
@@ -169,31 +174,29 @@
 
                                     <div class="form-group">
                                         <div class="col-md-2 pading5px">
-                                             <asp:CheckBox ID="chkoffDays" runat="server" AutoPostBack="True" CssClass="btn btn-primary checkBox"
-                                           
-                                            OnCheckedChanged="chkoffDays_CheckedChanged" Text="Off Days" Visible="False"
-                                            Width="97px" />
+                                            <asp:CheckBox ID="chkoffDays" runat="server" AutoPostBack="True" CssClass="btn btn-primary checkBox"
+                                                OnCheckedChanged="chkoffDays_CheckedChanged" Text="Off Days" Visible="False"
+                                                Width="97px" />
 
 
 
                                         </div>
                                         <div class="col-md-3 pading5px asitCol3">
-                                              <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page Size:" Visible="False"
-                                            Width="100px"></asp:Label>
+                                            <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName" Text="Page Size:" Visible="False"
+                                                Width="100px"></asp:Label>
 
-                                              <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage"
-                                           
-                                            OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
-                                            <asp:ListItem Value="10">10</asp:ListItem>
-                                            <asp:ListItem Value="15">15</asp:ListItem>
-                                            <asp:ListItem Value="20">20</asp:ListItem>
-                                            <asp:ListItem Value="30">30</asp:ListItem>
-                                            <asp:ListItem Value="50">50</asp:ListItem>
-                                            <asp:ListItem Value="100">100</asp:ListItem>
-                                            <asp:ListItem Value="150">150</asp:ListItem>
-                                            <asp:ListItem Value="200">200</asp:ListItem>
-                                            <asp:ListItem Value="300">300</asp:ListItem>
-                                        </asp:DropDownList>
+                                            <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage"
+                                                OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged" Visible="False">
+                                                <asp:ListItem Value="10">10</asp:ListItem>
+                                                <asp:ListItem Value="15">15</asp:ListItem>
+                                                <asp:ListItem Value="20">20</asp:ListItem>
+                                                <asp:ListItem Value="30">30</asp:ListItem>
+                                                <asp:ListItem Value="50">50</asp:ListItem>
+                                                <asp:ListItem Value="100">100</asp:ListItem>
+                                                <asp:ListItem Value="150">150</asp:ListItem>
+                                                <asp:ListItem Value="200">200</asp:ListItem>
+                                                <asp:ListItem Value="300">300</asp:ListItem>
+                                            </asp:DropDownList>
 
                                         </div>
                                     </div>
@@ -250,7 +253,7 @@
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lnkbtnFUpOff" runat="server" Font-Bold="True"
-                                            Font-Size="12px"  CssClass="btn  btn-danger   primarygrdBtn" OnClick="lnkbtnFUpOff_Click">Final Update</asp:LinkButton>
+                                            Font-Size="12px" CssClass="btn  btn-danger   primarygrdBtn" OnClick="lnkbtnFUpOff_Click">Final Update</asp:LinkButton>
                                     </FooterTemplate>
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="left" />
@@ -283,8 +286,7 @@
                                             Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wkdate")).ToString("dd-MMM-yyyy") %>'
                                             Width="75px"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtgvOffdate_CalendarExtender" runat="server"
-                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvOffdate">
-                                        </cc1:CalendarExtender>
+                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvOffdate"></cc1:CalendarExtender>
                                     </ItemTemplate>
                                     <HeaderStyle HorizontalAlign="Center" />
                                     <ItemStyle HorizontalAlign="left" />

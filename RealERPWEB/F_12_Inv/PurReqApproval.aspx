@@ -154,8 +154,7 @@
                                             Format="dd-MMM-yyyy" TargetControlID="txtdate"></cc1:CalendarExtender>
                                     </div>
                                     <div class="col-md-9 pading5px">
-                                        <asp:Label ID="lblmrfno" runat="server" CssClass=" smLbl_to"
-                                            Text="MRF/Quotation"></asp:Label>
+                                        <asp:Label ID="lblmrfno" runat="server" CssClass=" smLbl_to" Text=""></asp:Label>
                                         <asp:TextBox ID="txtserchmrf" runat="server" CssClass=" inputtextbox" Style="width: 83px;"
                                             TabIndex="2"></asp:TextBox>
 
@@ -240,7 +239,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="MRF No">
+                                    <asp:TemplateField HeaderText="">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvmrfno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mrfno")) %>'
                                                 Width="50px"></asp:Label>
@@ -331,7 +330,7 @@
                                     </asp:TemplateField>
 
 
-                                    <asp:TemplateField HeaderText="Rate">
+                                    <asp:TemplateField HeaderText="New Rate">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtgvsupRat" runat="server" BorderColor="#99CCFF" BackColor="White" BorderStyle="Solid"
                                                 BorderWidth="0px" Font-Size="11px" Style="text-align: right;"

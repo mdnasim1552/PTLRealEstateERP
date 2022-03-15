@@ -517,7 +517,7 @@
 
             switch (comcod) {
 
-                case 3101:   // ptl 
+                //case 3101:   // ptl 
                 case 1205:   // p2p 
                 case 3351:   // p2p 
                 case 3352:   // p2p   
@@ -971,12 +971,6 @@
                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
-
-
-
-
-
-
                                         <asp:TemplateField HeaderText="From Project">
                                             <ItemTemplate>
                                                 <asp:Label ID="lgtfprjgp" runat="server"
@@ -1022,7 +1016,8 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkremovegp" CssClass="btn btn-xs btn-default" OnClientClick="return confirm('Are you sure you want delete');" runat="server" ToolTip="Cancel" OnClick="lnkremovegp_Click"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                 <asp:HyperLink ID="lnkgpass" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Gate Pass"><span class=" fa fa-check"></span> </asp:HyperLink>
-                                                
+                                                <asp:HyperLink ID="lnkgpareqedit" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Requisition Edit"><span class=" fa fa-edit"></span> </asp:HyperLink>
+
                                             </ItemTemplate>
                                             <ItemStyle Width="120px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="120px" VerticalAlign="Top" />
@@ -1082,6 +1077,10 @@
 
                                         <asp:TemplateField HeaderText="MTRF No </Br>(Manual) ">
                                             <ItemTemplate>
+                                                <asp:Label ID="lblmtrno1" runat="server" Visible="false"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtreqno")) %>'
+                                                    Width="70px"></asp:Label>
+
                                                 <asp:Label ID="lblmtrdapmanual" runat="server"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mtrref")) %>'
                                                     Width="70px"></asp:Label>
@@ -1144,8 +1143,10 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="lnkremoveap" CssClass="btn btn-xs btn-default" OnClick="lnkremoveap_Click" OnClientClick="return cofirm('Are you want to delete?');" runat="server" ToolTip="Cancel"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                 <asp:HyperLink ID="lnkapp" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Approval"><span style="color:green" class="fa fa-check"></span> </asp:HyperLink>
+                                                <asp:HyperLink ID="lnkgpapdit" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Approval Edit"><span class=" fa fa-edit"></span> </asp:HyperLink>
+
                                             </ItemTemplate>
-                                            <ItemStyle Width="70px" />
+                                            <ItemStyle Width="120px" />
                                             <HeaderStyle HorizontalAlign="Center" Width="70px" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
@@ -1415,7 +1416,7 @@
             </div>
 
 
-<%--            <div id="modalReqEdit" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
+            <%--            <div id="modalReqEdit" class="modal fade   " role="dialog" data-keyboard="false" data-backdrop="static">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content modal-content">
                         <div class="modal-header">
@@ -1591,9 +1592,7 @@
                     </div>
                 </div>
             </div>
---%>
-
-
+            --%>
         </ContentTemplate>
     </asp:UpdatePanel>
 

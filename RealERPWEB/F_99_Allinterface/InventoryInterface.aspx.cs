@@ -166,7 +166,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
 
-                case "3101":
+                //case "3101":
                 case "1205":
                 case "3351":
                 case "3352":
@@ -260,10 +260,24 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkgpass");
+                HyperLink hlnkreqedit = (HyperLink)e.Row.FindControl("lnkgpareqedit");
 
                 string mtrfno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
-                hlnkchk.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&genno=" + mtrfno;
+                string comcod = this.GetCompCode();
+                switch (comcod)
+                {
+                    case "3340":
+                    case "3101":
+                        hlnkreqedit.Visible = true;
+                        break;
+                    default:
+                        hlnkreqedit.Visible = false;
+                        break;
+                }
 
+                //PurMTReqEntry?Type=Entry&prjcode=&genno=
+                hlnkchk.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&genno=" + mtrfno;
+                hlnkreqedit.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=ReqEdit&prjcode=&genno=" + mtrfno;
 
             }
         }
@@ -274,9 +288,29 @@ namespace RealERPWEB.F_99_Allinterface
             {
 
                 HyperLink hlnkchk = (HyperLink)e.Row.FindControl("lnkapp");
+                HyperLink hlnkapedit = (HyperLink)e.Row.FindControl("lnkgpapdit");
+                string comcod = this.GetCompCode();
+
+                switch (comcod)
+                {
+                    case "3340":
+                    case "3101":
+                        hlnkapedit.Visible = true;
+                        break;
+                    default:
+                        hlnkapedit.Visible = false;
+                        break;
+                }
 
                 string getpasno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "getpno")).ToString();
+                string mtreqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mtreqno")).ToString();
+                string getpref = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "getpref")).ToString();
+
                 hlnkchk.NavigateUrl = "~/F_12_Inv/MaterialsTransfer?Type=Entry&genno=" + getpasno;
+                hlnkapedit.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=GpaEdit&genno=" + mtreqno + "&getpasno=" + getpasno + "&gpref=" + getpref;
+
+
+
 
 
             }
@@ -319,7 +353,7 @@ namespace RealERPWEB.F_99_Allinterface
             switch (comcod)
             {
                 // todo for  mrtreq approval part 
-                case "3101":
+                //case "3101":
                 case "1205":
                 case "3351":
                 case "3352":
@@ -384,7 +418,7 @@ namespace RealERPWEB.F_99_Allinterface
             string ctype = "";
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "3338":
                     ctype = "SingleGPA";
                     break;

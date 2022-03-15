@@ -23,21 +23,33 @@ namespace RealERPWEB.F_14_Pro
     {
         ProcessAccess MktData = new ProcessAccess();
         ProcessAccess _processAccessMsgdb = new ProcessAccess("ASTREALERPMSG");
+        int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-            ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
-
-
-            ((Label)this.Master.FindControl("lblTitle")).Text = " Supplier/Sub-Contractor INFORMATION";
-
-            if (this.ddlSName.Items.Count == 0)
             {
-                this.GetProjectName();
-            }
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
+                ((Label)this.Master.FindControl("lblTitle")).Text = " Supplier/Sub-Contractor INFORMATION";
+
+                if (this.Request.QueryString["Type"].ToString() == "Entry")
+                {
+                    if (this.Request.QueryString.AllKeys.Contains("ssircode"))
+                    {
+                        getSupplierInfo();
+                    }
+                }
+                if (this.ddlSName.Items.Count == 0)
+                {
+                    this.GetProjectName();
+                }
+
+            }          
+           
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -45,6 +57,22 @@ namespace RealERPWEB.F_14_Pro
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+
+        private void getSupplierInfo()
+        {
+            string ssircode = this.Request.QueryString["ssircode"].ToString();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string txtSProject = "%" + ssircode + "%";
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETPSNAME", txtSProject, "", "", "", "", "", "", "", "");
+            this.ddlSName.DataTextField = "sirdesc";
+            this.ddlSName.DataValueField = "sircode";
+            this.ddlSName.DataSource = ds1.Tables[0];
+            this.ddlSName.DataBind();
+
+            this.lbtnOk_Click(null, null);
 
         }
 
@@ -119,11 +147,26 @@ namespace RealERPWEB.F_14_Pro
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
+            string txtsign1, txtsign2, txtsign3;
+            switch (comcod)
+            {
+                case "3101":
+                case "3366":
+                    txtsign1 = "Site Engineer";
+                    txtsign2 = "Engineer";
+                    txtsign3 = "Head Engineer";
+                    break;
+
+                default:
+                    txtsign1= "Md. Golam Rashul,\nAssistant Manager,\nContract Management";
+                    txtsign2= "Md. Shamsur Rahamam,\nD.G.M. Customar Management ";
+                    txtsign3= "Engr. Md. Abdur Razzaque,\nG.M. Construction";
+                    break;
+            }
+
             //  string BillList = this.ddlBillList.SelectedValue.Trim().ToString();
             DataTable dt = (DataTable)ViewState["tblsup"];
-
             var lst = dt.DataTableToList<RealEntity.C_14_Pro.EClassPur.EClassSuppaContractior02>();
-
             LocalReport Rpt1 = new LocalReport();
             Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_14_Pro.RptSubContEnlistmentForm", lst, null, null);
             Rpt1.EnableExternalImages = true;
@@ -135,6 +178,9 @@ namespace RealERPWEB.F_14_Pro
             Rpt1.SetParameters(new ReportParameter("Rptname", "Sub-Contractor Enlistment Form"));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
+            Rpt1.SetParameters(new ReportParameter("txtsign1", txtsign1));
+            Rpt1.SetParameters(new ReportParameter("txtsign2", txtsign2));
+            Rpt1.SetParameters(new ReportParameter("txtsign3", txtsign3));
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
@@ -142,7 +188,7 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lUpdatPerInfo_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
@@ -177,7 +223,8 @@ namespace RealERPWEB.F_14_Pro
 
         protected void lnkMesSend_Click(object sender, EventArgs e)
         {
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
@@ -192,10 +239,10 @@ namespace RealERPWEB.F_14_Pro
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
                 string gtype = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lgvgval")).Text.Trim();
-                string Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();              
-                if (Gcode == "71003" &&  Gvalue.Length > 11)
+                string Gvalue = ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                if (Gcode == "71003" && Gvalue.Length > 11)
                 {
-                   ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
+                    ((Label)this.Master.FindControl("lblmsg")).Text = "Mobile noumber length must be 11 digit";
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
                     return;
                 }
@@ -213,14 +260,14 @@ namespace RealERPWEB.F_14_Pro
                     switch (comcod)
                     {
                         case "3101": // Pintech                   
-                        case "3356"://Liesure
+                        case "3356"://Intech
                             this.SMSSendforSupplier(comcod, cellphone);
                             break;
 
 
                         default:
                             break;
-                    }                   
+                    }
                 }
             }
         }
@@ -231,11 +278,11 @@ namespace RealERPWEB.F_14_Pro
             string comnam = hst["comnam"].ToString();
             DataSet ds1 = this._processAccessMsgdb.GetTransInfo(comcod, "ASTREALERPMSGDB.dbo.SP_ENTRY_SMS_MAIL_INFO", "GETSMSMAILTEMPLATE", "140202%", "", "", "", "", "", "", "", "");
 
-
-
             string supcode = this.ddlSName.SelectedValue.ToString();
-            string supname = this.ddlSName.SelectedItem.ToString();
-         
+            string supname1 = this.ddlSName.SelectedItem.ToString();
+            int supname2 = this.ddlSName.SelectedItem.ToString().Length;
+            string supname = supname1.Substring(13, supname2 - 13);
+
             string tempeng = ds1.Tables[0].Rows[0]["smscont"].ToString();
             tempeng = tempeng.Replace("[compname]", supname);
             tempeng = tempeng.Replace("[username]", comnam);
@@ -250,7 +297,7 @@ namespace RealERPWEB.F_14_Pro
             SendSmsProcess sms = new SendSmsProcess();
             string ntype = ds1.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (ds1.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            bool resultsms = sms.SendSMSClient("", smtext, cellphone);
+            bool resultsms = sms.SendSMSClient(comcod, smtext, cellphone);
             if (resultsms == true)
             {
                 bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), supcode, "", "", "", ntype, smsstatus, smtext, "",

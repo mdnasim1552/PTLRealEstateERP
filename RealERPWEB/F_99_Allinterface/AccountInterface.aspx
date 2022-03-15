@@ -1257,7 +1257,7 @@
                                                             </HeaderTemplate>
 
                                                             <ItemTemplate>
-                                                                <asp:HyperLink ID="lnkbtnPrintIN" runat="server" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
+                                                                <asp:HyperLink ID="lnkbtnPrintBill" runat="server" CssClass="btn btn-default btn-xs" ToolTip="Print Bill" Target="_blank"><span class="fa fa-print"></span></asp:HyperLink>
                                                                 <asp:HyperLink ID="lnkbtnEditRD" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
                                                                 </asp:HyperLink>
                                                                 <asp:LinkButton ID="btnDelOrder" OnClick="btnDelPurchase_Click" OnClientClick="javascript:return FunConfirm();" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
@@ -1534,16 +1534,13 @@
                                                                             <asp:HyperLink ID="hyperMattrns" runat="server" BackColor="#000066"
                                                                                 BorderColor="White" BorderStyle="Solid" BorderWidth="1px" Font-Bold="True"
                                                                                 ForeColor="White" Style="text-align: center" Target="_blank" Width="100px">All Pending Transfer</asp:HyperLink>
-
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </HeaderTemplate>
-
                                                             <ItemTemplate>
                                                                 <asp:HyperLink ID="lnkbtnPrintIN" runat="server" CssClass="btn btn-default btn-xs"><span class="fa fa-print"></span></asp:HyperLink>
-                                                                <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
-                                                                </asp:HyperLink>
+                                                                <asp:HyperLink ID="lnkbtnApp" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span></asp:HyperLink>
                                                                 <asp:LinkButton ID="btnDelOrder" runat="server" CssClass="btn btn-default btn-xs"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                                             </ItemTemplate>
                                                             <ItemStyle Width="80px" />
@@ -1902,7 +1899,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="">
                                                             <ItemTemplate>
-                                                                <asp:LinkButton ID="btnokpdc" runat="server"  OnClick="btnokpdc_Click" Width="30px">OK</asp:LinkButton>
+                                                                <asp:LinkButton ID="btnokpdc" runat="server" OnClick="btnokpdc_Click" Width="30px">OK</asp:LinkButton>
                                                             </ItemTemplate>
                                                             <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                         </asp:TemplateField>

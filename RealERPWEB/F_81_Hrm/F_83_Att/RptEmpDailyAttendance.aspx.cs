@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 {
     public partial class RptEmpDailyAttendance : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -168,6 +169,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void ViewSection()
         {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+            return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
             string Type = this.Request.QueryString["Type"].ToString();
             switch (Type)
             {
@@ -181,7 +186,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MonthlyLateAtten":
                     this.lblfrmdate.Text = "From:";
                     this.txtDate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                    this.txtDate.Text = "26" + this.txtDate.Text.Trim().Substring(2);
+                    this.txtDate.Text = startdate + this.txtDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
@@ -203,7 +208,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "AttendanceSummary":
                     this.lblfrmdate.Text = "From:";
                     this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                    this.txtDate.Text = "01" + this.txtDate.Text.Trim().Substring(2);
+                    this.txtDate.Text = startdate + this.txtDate.Text.Trim().Substring(2);
                     this.txttoDate.Text = Convert.ToDateTime(this.txtDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                     this.MultiView1.ActiveViewIndex = 3;
                     break;
@@ -284,8 +289,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             }
 
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
+
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTN02", Company, ToDesignation, FrmDesignation, date, DeptCode, section, "", "", "");
             if (ds1 == null)
@@ -372,9 +391,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         section = section + this.ddlDeptName.SelectedValue.ToString().Substring(0, 8) + s1.Substring(0, 4);
 
             }
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
 
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTDAILYOVERTIME", Company, ToDesignation, FrmDesignation, date, DeptCode, section, "", "", "");
             if (ds1 == null)
@@ -410,10 +442,22 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         section = section + this.ddlDeptName.SelectedValue.ToString().Substring(0, 8) + s1.Substring(0, 4);
 
             }
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
 
-
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
             string frmdate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTMONTHLYLATEATTN02", Company, ToDesignation, FrmDesignation, frmdate, todate, DeptCode, section, "", "");
@@ -485,9 +529,23 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         section = section + this.ddlDeptName.SelectedValue.ToString().Substring(0, 9) + s1.Substring(0, 3);
 
             }
+            //added khalil
+            string FrmDesignation = "0399999";
+            string ToDesignation = "0300001";
+            switch (comcod)
+            {
+                case "3102":
+                    //pnlDesig.Visible = true;
 
-            string FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
-            string ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    FrmDesignation = this.ddlfrmDesig.SelectedValue.ToString();
+                    ToDesignation = this.ddlToDesig.SelectedValue.ToString();
+                    break;
+                default:
+                    //pnlDesig.Visible = false;
+                    break;
+            }
+            //end Khalil
+            
             string date = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "RPTEMPDAILYATTNSUMMARY", Company, ToDesignation, FrmDesignation, date, DeptCode, section, todate, "", "");
@@ -500,10 +558,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             }
             Session["tbldailyattn"] = ds1.Tables[0];
             this.Data_Bind();
-
-
-
-
         }
         private void Data_Bind()
         {

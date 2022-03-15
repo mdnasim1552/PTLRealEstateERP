@@ -1194,15 +1194,13 @@ namespace RealERPWEB.F_23_CR
 
                 //}
                 PactCode = this.ddlProjectName.SelectedValue.ToString();
-                string usercode = ViewState["usricode"].ToString();
+               // string usercode = ViewState["usricode"].ToString();
                 switch (comcod)
                 {
 
                     case "3101": // Pintech                   
-                    case "3356": //Intech
-                        
-
-                        //this.SMSSendMoneyRecipt(comcod, PactCode, usercode,  mrno,  mrdate);
+                    case "3356": //Intech                    
+                      this.SMSSendMoneyRecipt(comcod, PactCode, Usircode,  mrno,  mrdate);
                         break;
 
 
@@ -1227,7 +1225,6 @@ namespace RealERPWEB.F_23_CR
             {
                 return;
             }
-
             DataSet dssms = CALogRecord.CheckStatus(comcod, "2301");
             string payableamt = Convert.ToDouble(((Label)this.grvacc.FooterRow.FindControl("txtFTotal")).Text).ToString("#,##0.00; (#,##0.00) ");
             string cutname = ds.Tables[0].Rows[0]["custname"].ToString() == "" ? "" : ds.Tables[0].Rows[0]["custname"].ToString();
@@ -1247,21 +1244,17 @@ namespace RealERPWEB.F_23_CR
             tempeng = tempeng.Replace("[duesamt]", dues);
             tempeng = tempeng.Replace("[paymode]", paymod);
             tempeng = tempeng.Replace("[chequeno]", cheq);
-
             string smtext = tempeng;
-
             SendSmsProcess sms = new SendSmsProcess();
             string ntype = dssms.Tables[0].Rows[0]["gcod"].ToString();
             string smsstatus = (dssms.Tables[0].Rows[0]["sactive"].ToString() == "True") ? "Y" : "N";
-            bool resultsms = sms.SendSMSClient("", smtext, custphone);
+            bool resultsms = sms.SendSMSClient(comcod, smtext, custphone);
             if (resultsms == true)
             {
                 bool IsSMSaved = CALogRecord.AddSMRecord(comcod, ((Hashtable)Session["tblLogin"]), PactCode, Usircode, mrno, mrdate, ntype, smsstatus, smtext, "",
                            "", "", custphone, "");
             }
-
         }
-
         private string GetSchCode(string instype)
         {
             string SchCode = "";
@@ -1270,8 +1263,6 @@ namespace RealERPWEB.F_23_CR
             string sindex = instype.Substring(0, 2);
             switch (sindex)
             {
-
-
                 case "11":
                     SchCode = "81988";
                     break;
@@ -1297,7 +1288,6 @@ namespace RealERPWEB.F_23_CR
                     SchCode = "81998";
                     break;
             }
-
             if (SchCode == "")
                 return "";
 
@@ -1835,9 +1825,6 @@ namespace RealERPWEB.F_23_CR
             string mrrno = this.ddlPreMrr.SelectedValue.ToString().Trim();
             string mPrint = this.chkOrginal.Checked ? "1" : "0";
             bool result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSORUPDATEMPRINT", mrrno, mPrint, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-
-
         }
         protected void rbtnList1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1915,12 +1902,7 @@ namespace RealERPWEB.F_23_CR
                 //            lstitem.Value = value;
                 //            break;
                 //        }
-
-
                 //}
-
-
-
                 this.ddlType.Enabled = false;
                 this.chkOrginal.Checked = Convert.ToBoolean(dr1[0]["oprint"]);
                 this.chkOrginal.Enabled = !(Convert.ToBoolean(dr1[0]["oprint"]));
@@ -1953,18 +1935,12 @@ namespace RealERPWEB.F_23_CR
                 dt01.Rows.Add(drforgrid);
                 //---------
             }
-
-
             this.chkPrevious.Checked = false;
             this.chkPrevious_CheckedChanged(null, null);
             this.grvacc_DataBind();
         }
-
-
-
         protected void tableintosession()
         {
-
             DataTable dttemp = new DataTable();
             dttemp.Columns.Add("mrno", Type.GetType("System.String"));
             dttemp.Columns.Add("paidamount", Type.GetType("System.Double"));
@@ -1987,7 +1963,6 @@ namespace RealERPWEB.F_23_CR
             dttemp.Columns.Add("RecTyped", Type.GetType("System.String"));
             dttemp.Columns.Add("disamt", Type.GetType("System.Double"));
             Session["sessionforgrid"] = dttemp;
-
         }
         protected void ibtnCollfrm_Click(object sender, EventArgs e)
         {
@@ -1998,29 +1973,20 @@ namespace RealERPWEB.F_23_CR
         //    string comcod = this.GetComCode();
         //    string SechSorCusName = "%" + this.txtSrchCollfrm.Text.Trim() + "%";
         //    DataSet ds4 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "GETSALEORCUSTCARETM", SechSorCusName, "", "", "", "", "", "", "", "");
-
         //    DataTable dt = this.GetCollectTeam02(ds4);
         //    this.ddlCollType.DataTextField = "gdesc";
         //    this.ddlCollType.DataValueField = "gcod";
         //    this.ddlCollType.DataSource = dt;
         //    this.ddlCollType.DataBind();
-
         //    //this.ddlCollType.SelectedValue = "53061001001";
         //    //this.ddlCollType.DataTextField = "gdesc";
         //    //this.ddlCollType.DataValueField = "gcod";
         //    //this.ddlCollType.DataSource = ds4.Tables[0];
         //    //this.ddlCollType.DataBind();
         //   // this.ddlCollType.SelectedValue = "53061001001";
-
-
-
-
         // }
-
-
         private DataTable GetCollectTeam02(DataSet ds1)
         {
-
             DataTable dt;
             string comcod = this.GetComCode();
             switch (comcod)
@@ -2035,18 +2001,11 @@ namespace RealERPWEB.F_23_CR
 
                     dt = ds1.Tables[1];
                     break;
-
                 default:
                     dt = ds1.Tables[0];
                     break;
-
-
-
             }
-
-
             return dt;
-
         }
 
         protected void lblAddToTable_Click(object sender, EventArgs e)
@@ -2056,19 +2015,14 @@ namespace RealERPWEB.F_23_CR
                 string chequeno = this.txtchqno.Text.Trim();
                 string instype = this.ddlType.SelectedValue.ToString().Trim();
                 string mrno = this.lblReceiveNo.Text.Trim();
-
-
                 string comcod = this.GetComCode();
                 switch (comcod)
                 {
-
                     //case "3336":
-
                     case "3340":
                     case "3337":
                     case "3101":
                     case "3353":
-
                         string refno = this.txtrefid.Text.Trim();
                         if (refno.Length == 0)
                         {
@@ -2076,22 +2030,11 @@ namespace RealERPWEB.F_23_CR
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
                         }
-
-
                         DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "CHECKMRRREFNO", refno, "", "", "",
                             "", "", "", "", "");
-
-
-
-
-
-                        if (ds1.Tables[0].Rows.Count == 0)
-                            ;
-
-
+                        if (ds1.Tables[0].Rows.Count == 0);
                         else
                         {
-
                             DataView dv1 = ds1.Tables[0].DefaultView;
                             dv1.RowFilter = ("mrno <>'" + mrno + "'");
                             DataTable dtc = dv1.ToTable();
@@ -2104,9 +2047,7 @@ namespace RealERPWEB.F_23_CR
                                 //this.ddlPrevReqList.Items.Clear();
                                 return;
                             }
-
                         }
-
                         break;
                     //case "3336":
                     //case "3340":
@@ -2124,11 +2065,7 @@ namespace RealERPWEB.F_23_CR
                     //  break;
                     default:
                         break;
-
                 }
-
-
-
 
                 DataTable dt = ((DataTable)Session["sessionforgrid"]);
                 // Company Balance
@@ -2138,18 +2075,12 @@ namespace RealERPWEB.F_23_CR
                     case "3340"://Urban
                     case "3101"://Urban
 
-
-
-
                         double SAmount = 0;
                         double PAmount = 0, BalAmt = 0;
                         DataTable dts = ((DataTable)Session["status"]).Copy();
                         DataView dv = dts.DefaultView;
                         dv.RowFilter = ("mrno <>'" + mrno + "'");
                         DataTable dep = dv.ToTable();
-
-
-
 
                         SAmount = Convert.ToDouble((Convert.IsDBNull(dts.Compute("Sum(schamt)", "")) ? 0.00 : dts.Compute("Sum(schamt)", "")));
                         PAmount = Convert.ToDouble((Convert.IsDBNull(dep.Compute("Sum(paidamt)", "")) ? 0.00 : dep.Compute("Sum(paidamt)", "")));
@@ -2166,41 +2097,28 @@ namespace RealERPWEB.F_23_CR
                             ((Label)this.Master.FindControl("lblmsg")).Text = "Receipt Amount exceed schedule";
                             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
                             return;
-
                         }
 
                         break;
                     default:
                         break;
-
-
-
                 }
 
                 string paytype = this.ddlpaytype.SelectedValue.ToString();
                 switch (comcod)
                 {
-
                     case "3339": // Tropical
                         chequeno = (chequeno.Length == 0) ? (paytype == "82001" ? chequeno : this.ddlpaytype.SelectedItem.Text) : chequeno;
                         break;
-
                     default:
 
                         chequeno = (chequeno.Length == 0) ? "CASH" : chequeno;
                         break;
-
-
                 }
-
                 DataRow[] projectrow1 = dt.Select("chequeno = '" + chequeno + "'and instype='" + instype + "'"); //repchqno
-
-
                 if (projectrow1.Length == 0)
                 {
-
                     DataRow drforgrid = dt.NewRow();
-
                     drforgrid["instype"] = this.ddlType.SelectedValue.ToString();
                     drforgrid["insdesc"] = this.ddlType.SelectedItem.Text;
                     drforgrid["paidamount"] = ASTUtility.StrPosOrNagative(this.txtPaidamt.Text.Trim());
@@ -2208,11 +2126,7 @@ namespace RealERPWEB.F_23_CR
                     drforgrid["paytypecod"] = this.ddlpaytype.SelectedValue.ToString();
                     //string comcod = this.GetComCode();
                     //  string chequeno = this.txtchqno.Text.Trim();
-
                     drforgrid["chequeno"] = chequeno;
-
-
-
                     drforgrid["bankname"] = (this.ddlpaytype.SelectedValue.ToString() == "82002") ? "" : this.ddlbank.SelectedItem.Text.ToString(); //this.txtBName.Text.Trim();
                     drforgrid["branchname"] = this.txtBranchName.Text.Trim();
                     drforgrid["paydate"] = this.txtpaydate.Text.Trim();
@@ -2236,16 +2150,11 @@ namespace RealERPWEB.F_23_CR
 
                 }
 
-
                 //Two Time 
-
                 switch (comcod)
                 {
                     case "3340"://Urban
                     case "3101"://Urban
-
-
-
 
                         double SAmount = 0;
                         double PAmount = 0, BalAmt = 0;

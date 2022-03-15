@@ -57,7 +57,9 @@ namespace RealERPWEB.F_17_Acc
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string txtSProject = "%%";
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETBANKNAME", txtSProject, "", "", "", "", "", "", "", "");
+            string bankcode = "%";
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_TRANS_SEARCH", "GETBANKNAME", txtSProject, bankcode, "", "", "", "", "", "", "");
             this.ddlBankName.DataTextField = "bankName";
             this.ddlBankName.DataValueField = "bankcode";
             this.ddlBankName.DataSource = ds1.Tables[0];
@@ -152,8 +154,9 @@ namespace RealERPWEB.F_17_Acc
             //this.prjcost.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvBankLedger.DataSource = (DataTable)Session["tblbankledger"];
             this.gvBankLedger.DataBind();
+            ((HyperLink)this.gvBankLedger.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
-            this.FooterCalculation();
+            //fthis.FooterCalculation();
 
 
         }
@@ -175,7 +178,6 @@ namespace RealERPWEB.F_17_Acc
                          0 : dt.Compute("sum(clsamt)", ""))).ToString("#,##0;-#,##0; ");
 
             Session["Report1"] = gvBankLedger;
-            ((HyperLink)this.gvBankLedger.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
 
         }
 

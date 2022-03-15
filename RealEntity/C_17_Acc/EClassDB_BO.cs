@@ -346,7 +346,9 @@ namespace RealEntity.C_17_Acc
             public string grp { get; set; }
             public string grpdesc { get; set; }
             public string actcode { get; set; }
+            public string cactcode { get; set; }
             public string actdesc { get; set; }
+            public string cactdesc { get; set; }
             public string head1 { get; set; }
             public DateTime voudat { get; set; }
             public string vounum { get; set; }
@@ -977,7 +979,7 @@ namespace RealEntity.C_17_Acc
 
 
         [Serializable]
-        public class OppPayment
+        public class OppPayment1
         {
             //Iqbal Nayan
             public string comcod { get; set; }
@@ -988,9 +990,10 @@ namespace RealEntity.C_17_Acc
             public double payam1 { get; set; }
             public double payam2 { get; set; }
             public double payam3 { get; set; }
+            public double payam4 { get; set; }
             public double tpay { get; set; }
             public string section { get; set; }
-            public OppPayment() { }
+            public OppPayment1() { }
         }
 
         [Serializable]

@@ -170,7 +170,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.42708in</Height>
+                  <Height>0.41666in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -395,7 +395,7 @@
                             </TablixColumns>
                             <TablixRows>
                               <TablixRow>
-                                <Height>0.21354in</Height>
+                                <Height>0.20833in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -447,7 +447,7 @@
                                 </TablixCells>
                               </TablixRow>
                               <TablixRow>
-                                <Height>0.21354in</Height>
+                                <Height>0.20833in</Height>
                                 <TablixCells>
                                   <TablixCell>
                                     <CellContents>
@@ -618,7 +618,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!voudat1.Value</Value>
+                                  <Value>=iif(trim(Fields!cactcode.Value)="Narration:","", Fields!voudat1.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -629,20 +629,25 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>voudat1</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>= trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -654,7 +659,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=iif(len (trim(Fields!cactcode.Value)) =12,Fields!vounum2.Value,Fields!cactcode.Value)</Value>
+                                  <Value>=iif(trim(Fields!cactcode.Value)="Narration:","", iif(len (trim(Fields!cactcode.Value)) =12,Fields!vounum2.Value,Fields!cactcode.Value))</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -667,14 +672,18 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>vounum2</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -692,7 +701,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!refnum.Value</Value>
+                                  <Value>=iif(trim(Fields!cactcode.Value)="Narration:", "" ,Fields!refnum.Value)</Value>
                                   <Style>
                                     <FontFamily>cambria</FontFamily>
                                     <FontSize>7pt</FontSize>
@@ -703,14 +712,18 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>refnum</rd:DefaultName>
-                          <Visibility>
-                            <Hidden>=trim(Fields!cactcode.Value)="Narration:"</Hidden>
-                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -747,7 +760,14 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -786,7 +806,14 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -825,7 +852,14 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -863,7 +897,14 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                             <Border>
                               <Color>LightGrey</Color>
                               <Style>None</Style>
+                              <Width>0.5pt</Width>
                             </Border>
+                            <TopBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","None","Solid")</Style>
+                            </TopBorder>
+                            <BottomBorder>
+                              <Style>=iif(trim(Fields!cactcode.Value)="Narration:","Solid","None")</Style>
+                            </BottomBorder>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -900,7 +941,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
             </TablixRowHierarchy>
             <DataSetName>DataSetLedger</DataSetName>
             <Top>0.06125in</Top>
-            <Height>0.63541in</Height>
+            <Height>0.62499in</Height>
             <Width>8.05248in</Width>
             <Style>
               <Border>
@@ -908,11 +949,142 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
               </Border>
             </Style>
           </Tablix>
+          <Rectangle Name="Rectangle1">
+            <ReportItems>
+              <Textbox Name="Textbox3">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Prepared By</Value>
+                        <Style>
+                          <FontFamily>cambria</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox3</rd:DefaultName>
+                <Top>0.59583in</Top>
+                <Left>0.03776in</Left>
+                <Height>0.25in</Height>
+                <Width>1.72917in</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <TopBorder>
+                    <Style>Solid</Style>
+                  </TopBorder>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="txtcheckedby">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!txtcheckedby.Value</Value>
+                        <Style>
+                          <FontFamily>Cambria</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>txtcheckedby</rd:DefaultName>
+                <Top>0.59583in</Top>
+                <Left>2.85867in</Left>
+                <Height>0.25in</Height>
+                <Width>2.14399in</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <TopBorder>
+                    <Style>Solid</Style>
+                  </TopBorder>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox5">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>Approved  By</Value>
+                        <Style>
+                          <FontFamily>cambria</FontFamily>
+                          <FontSize>9pt</FontSize>
+                          <FontWeight>Bold</FontWeight>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox3</rd:DefaultName>
+                <Top>0.59583in</Top>
+                <Left>6.09806in</Left>
+                <Height>0.25in</Height>
+                <Width>1.80208in</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <TopBorder>
+                    <Style>Solid</Style>
+                  </TopBorder>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0.99513in</Top>
+            <Left>0.06236in</Left>
+            <Height>0.88542in</Height>
+            <Width>7.92748in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
         </ReportItems>
-        <Height>0.97791in</Height>
+        <Height>1.92583in</Height>
         <Style />
       </Body>
-      <Width>8.06289in</Width>
+      <Width>8.06484in</Width>
       <Page>
         <PageHeader>
           <Height>1.12862in</Height>
@@ -1150,7 +1322,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>0.5625in</Height>
+          <Height>0.39583in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1172,7 +1344,8 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>txtuserinfo</rd:DefaultName>
-              <Top>0.3125in</Top>
+              <Top>0.06944in</Top>
+              <Left>0.02973in</Left>
               <Height>0.25in</Height>
               <Width>6.44791in</Width>
               <Style>
@@ -1206,8 +1379,8 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox50</rd:DefaultName>
-              <Top>0.29514in</Top>
-              <Left>6.51735in</Left>
+              <Top>0.06944in</Top>
+              <Left>6.51931in</Left>
               <Height>0.25in</Height>
               <Width>1.54553in</Width>
               <ZIndex>1</ZIndex>
@@ -1218,129 +1391,6 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox3">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Prepared By</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.02764in</Top>
-              <Left>0.02084in</Left>
-              <Height>0.25in</Height>
-              <Width>1.72917in</Width>
-              <ZIndex>2</ZIndex>
-              <Visibility>
-                <Hidden>=IIf(Globals!PageNumber = Globals!TotalPages,False,True)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <TopBorder>
-                  <Style>Solid</Style>
-                </TopBorder>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="Textbox5">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Approved  By</Value>
-                      <Style>
-                        <FontFamily>cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>0.02764in</Top>
-              <Left>6.25039in</Left>
-              <Height>0.25in</Height>
-              <Width>1.80208in</Width>
-              <ZIndex>3</ZIndex>
-              <Visibility>
-                <Hidden>=IIf(Globals!PageNumber = Globals!TotalPages,False,True)</Hidden>
-              </Visibility>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <TopBorder>
-                  <Style>Solid</Style>
-                </TopBorder>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
-            <Textbox Name="txtcheckedby">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Parameters!txtcheckedby.Value</Value>
-                      <Style>
-                        <FontFamily>Cambria</FontFamily>
-                        <FontSize>9pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>txtcheckedby</rd:DefaultName>
-              <Top>0.02764in</Top>
-              <Left>3.00059in</Left>
-              <Height>0.25in</Height>
-              <Width>2.14399in</Width>
-              <ZIndex>4</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <TopBorder>
-                  <Style>Solid</Style>
-                </TopBorder>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>
@@ -1358,7 +1408,7 @@ IIf((Fields!vounum.Value).ToString().Trim() = "BALANCE","Bold",
         <PageWidth>8.27in</PageWidth>
         <LeftMargin>0.15in</LeftMargin>
         <TopMargin>0.25in</TopMargin>
-        <BottomMargin>1in</BottomMargin>
+        <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

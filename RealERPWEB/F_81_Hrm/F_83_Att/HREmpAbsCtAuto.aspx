@@ -181,7 +181,7 @@
                                                                                                                                         
                             
                             <asp:GridView ID="gvabscount" runat="server" AutoGenerateColumns="False" AllowPaging="false" 
-                                OnPageIndexChanging="gvabscount_PageIndexChanging" ShowFooter="True" Width="572px" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                OnPageIndexChanging="gvabscount_PageIndexChanging" ShowFooter="True" Width="650px" CssClass="table-striped table-hover table-bordered grvContentarea"
                                 OnRowDeleting="gvabscount_RowDeleting">
                                 <RowStyle  />
                                 <Columns>
@@ -276,7 +276,16 @@
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="Right" />
                                         <FooterStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>                                   
+                                    </asp:TemplateField>  
+                                    
+                                    <asp:TemplateField HeaderText="Reason">
+                                        <ItemTemplate>
+                                              <asp:TextBox ID="txtreason" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                 Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reason")) %>'
+                                                Font-Size="11px"></asp:TextBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                 </Columns>
                                <FooterStyle CssClass="grvFooter" />
                                 <EditRowStyle />

@@ -15,9 +15,10 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using Microsoft.Reporting.WinForms;
+
 namespace RealERPWEB.F_81_Hrm.F_87_Tra
 {
-    public partial class HREmpTransfer : System.Web.UI.Page
+    public partial class HREmpTransfer1 : System.Web.UI.Page
     {
         ProcessAccess purData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
@@ -31,6 +32,8 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 ((Label)this.Master.FindControl("lblTitle")).Text = "EMPLOYEE TRANSFER INFORMATION";
                 this.Get_Trnsno();
                 this.tableintosession();
+                this.GetCompany();
+                this.GetToCompany();
 
             }
 
@@ -52,7 +55,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         }
         protected void GetPrvNm()
         {
-
             string comcod = GetCompCode();
             //string mREQNO = "NEWISS";
             string mREQNO;
@@ -77,7 +79,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         }
         private void Get_Trnsno()
         {
-
             string comcod = this.GetCompCode();
             string date = this.GetStdDate(this.txtCurTransDate.Text);
             DataSet ds3 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LASTTRANSFETNO", date, "", "", "", "", "", "", "", "");
@@ -88,9 +89,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.lblCurTransNo1.Text = ds3.Tables[0].Rows[0]["maxtrnno1"].ToString().Substring(0, 5);
             this.txtCurTransNo2.Text = ds3.Tables[0].Rows[0]["maxtrnno1"].ToString().Substring(6);
         }
-
-
-
         protected void tableintosession()
         {
             DataTable dttemp = new DataTable();
@@ -118,11 +116,10 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         }
         protected void GetSection()
         {
-
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txtsrchSection = "%" + this.txtSrchSection.Text.Trim();
+            string txtsrchSection = "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", Company, txtsrchSection, "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -131,16 +128,13 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.ddlprjlistfrom.DataSource = ds1.Tables[0];
             this.ddlprjlistfrom.DataBind();
             this.ddlprjlistfrom_SelectedIndexChanged(null, null);
-
-
         }
-
         private void GetToSection()
         {
             string comcod = this.GetCompCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlToCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
             string Company = this.ddlToCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
-            string txttoSection = "%" + this.txtSrchToSection.Text.Trim() + "%";
+            string txttoSection = "%%";
 
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETPROJECTNAME", Company, txttoSection, "", "", "", "", "", "", "");
             if (ds1 == null)
@@ -150,9 +144,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.ddlprjlistto.DataSource = ds1.Tables[0];
             this.ddlprjlistto.DataBind();
         }
-
-
-
         protected string GetStdDate(string Date1)
         {
             Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
@@ -160,11 +151,8 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             Date1 = Date1.Substring(0, 2) + "-" + moth1[Convert.ToInt32(Date1.Substring(3, 2))] + "-" + Date1.Substring(6, 4);
             return Date1;
         }
-
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
-
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string comnam = hst["comnam"].ToString();
@@ -236,8 +224,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.ddlPrevISSList.DataBind();
 
         }
-
-
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             if (lbtnOk.Text.Trim() == "Ok")
@@ -247,8 +233,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 this.pnlToCompany.Visible = true;
                 this.pnlremarks.Visible = true;
                 this.txtCurTransDate.Enabled = true;
-
-
                 if (this.ddlPrevISSList.Items.Count > 0)
                 {
                     this.txtCurTransDate.Enabled = false;
@@ -265,15 +249,11 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 {
                     this.Get_Trnsno();
                 }
-
-
                 this.lbtnPrevTransList.Visible = false;
                 this.ddlPrevISSList.Visible = false;
             }
             else
             {
-
-
                 this.txtfmaters.Text = "";
                 this.txtspnote.Text = "";
                 this.ddlPrevISSList.Items.Clear();
@@ -281,7 +261,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 this.lbtnPrevTransList.Visible = true;
                 this.ddlPrevISSList.Visible = true;
                 //Session("sessionforgrid").remove;
-
                 Session.Remove("sessionforgrid");
                 this.tableintosession();
                 this.grvacc.DataSource = null;
@@ -291,24 +270,21 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 this.pnlremarks.Visible = false;
                 lbtnOk.Text = "Ok";
             }
-
         }
 
         protected void grvacc_DataBind()
         {
-
             this.grvacc.DataSource = (DataTable)Session["sessionforgrid"];
             this.grvacc.DataBind();
         }
-
         protected void Employee_List()
         {
             Session.Remove("tblemp");
             string comcod = this.GetCompCode();
-            string company = (this.txtsrchEmp.Text.Trim().Length > 0) ? "%" : (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" :
+            string company = (this.ddlCompany.SelectedValue.Substring(0, 2).ToString() == "00") ? "%" :
                     this.ddlCompany.SelectedValue.Substring(0, 2).ToString() + "%";
-            string pactcode = (this.txtsrchEmp.Text.Trim().Length > 0) ? "%" : this.ddlprjlistfrom.SelectedValue.ToString() + "%";
-            string emplist = this.txtsrchEmp.Text.Trim() + "%";
+            string pactcode =  "%";//this.ddlprjlistfrom.SelectedValue.ToString() + "%";
+            string emplist = "%";
             DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETEMPLIST", pactcode, emplist, company, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -326,6 +302,20 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 this.ddlprjlistfrom.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
                 this.ddlCompany.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
                 this.txtEmpDesignation.Text = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["desig"].ToString();
+            }
+        }
+
+        private void GetComASecSelected()
+        {
+            string empid = this.ddlEmpList.SelectedValue.ToString().Trim();
+            DataTable dt = (DataTable)Session["tblemp"];
+            DataRow[] dr = dt.Select("empid = '" + empid + "'");
+            if (dr.Length > 0)
+            {
+                this.ddlCompany.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["companycode"].ToString();
+                //this.ddlDepartment.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
+                // this.ddlProjectName_SelectedIndexChanged(null,null);
+                this.ddlprjlistfrom.SelectedValue = ((DataTable)Session["tblemp"]).Select("empid='" + empid + "'")[0]["refno"].ToString();
             }
         }
         protected void Load_Cur_Trans_NO()
@@ -353,28 +343,17 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.Employee_List();
         }
 
-
-
         protected void imgbtntoCompany_Click(object sender, EventArgs e)
         {
             this.GetToCompany();
-
-
         }
-
 
         protected void imgbtnToSection_Click(object sender, EventArgs e)
         {
             this.GetToSection();
         }
-
-
-
-
-
         protected void lnkselect_Click(object sender, EventArgs e)
         {
-
             this.SaveValue();
             string empid = this.ddlEmpList.SelectedValue.ToString().Trim();
             DataTable dt = (DataTable)Session["sessionforgrid"];
@@ -406,19 +385,15 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             Session["sessionforgrid"] = dt;
             this.grvacc_DataBind();
         }
-
         private void SaveValue()
         {
             DataTable dt = (DataTable)Session["sessionforgrid"];
             int TblRowIndex;
             for (int i = 0; i < this.grvacc.Rows.Count; i++)
             {
-
                 string txtremarks = ((TextBox)this.grvacc.Rows[i].FindControl("txtgvremarks")).Text;
                 TblRowIndex = (grvacc.PageIndex) * grvacc.PageSize + i;
-
                 dt.Rows[TblRowIndex]["rmrks"] = txtremarks;
-
             }
             Session["sessionforgrid"] = dt;
 
@@ -429,8 +404,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         {
             this.Employee_List();
         }
-
-
         protected void lnkupdate_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -474,7 +447,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
                 ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
 
             }
-
         }
         private void GetCompany()
         {
@@ -482,7 +454,7 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             string userid = hst["usrid"].ToString();
-            string txtCompany = "%" + this.txtSrcCompany.Text.Trim() + "%";
+            string txtCompany = "%%";
             DataSet ds5 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
             this.ddlCompany.DataTextField = "actdesc";
             this.ddlCompany.DataValueField = "actcode";
@@ -495,15 +467,11 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
 
         private void GetToCompany()
         {
-
-
             //Hashtable hst = (Hashtable)Session["tblLogin"];
             //string comcod = hst["comcod"].ToString();
             //string userid = hst["usrid"].ToString();
             //string txtCompany = "%" + this.txtSrctoCompany.Text.Trim() + "%";
             //DataSet ds5 = purData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETTRNSCOMPANYNAME", txtCompany, userid, "", "", "", "", "", "", "");
-
-
             DataTable dt = (DataTable)Session["tblcompany"];
 
             this.ddlToCompany.DataTextField = "actdesc";
@@ -511,9 +479,6 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
             this.ddlToCompany.DataSource = dt;
             this.ddlToCompany.DataBind();
             this.ddlToCompany_SelectedIndexChanged(null, null);
-
-
-
         }
 
         protected void imgbtnCompany_Click(object sender, EventArgs e)
@@ -522,27 +487,79 @@ namespace RealERPWEB.F_81_Hrm.F_87_Tra
         }
         protected void ddlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetSection();
+            this.GetDeptment();
         }
 
         protected void ddlToCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetToSection();
+            this.GetToDeptment();
         }
-        protected void ddlEmpList_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void GetToDeptment()
         {
-            DataTable dt = (DataTable)Session["tblemp"];
-            string empid = this.ddlEmpList.SelectedValue.ToString();
-            DataRow[] dr = dt.Select("empid='" + empid + "'");
-            if (dr.Length == 0)
-            {
-                this.txtEmpDesignation.Text = "";
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
                 return;
 
-            }
-            this.txtEmpDesignation.Text = dr[0]["desig"].ToString();
 
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+
+            string txtSProject = "%%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
+            this.ddlTodept.DataTextField = "actdesc";
+            this.ddlTodept.DataValueField = "actcode";
+            this.ddlTodept.DataSource = ds1.Tables[0];
+            this.ddlTodept.DataBind();
+
+            ddlTodept_SelectedIndexChanged(null,null);
         }
 
+        private void GetDeptment()
+        {
+            string comcod = this.GetCompCode();
+            if (this.ddlCompany.Items.Count == 0)
+                return;
+
+
+            int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln) + "%";
+
+            string txtSProject = "%%";
+            DataSet ds1 = purData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETPROJECTNAME", Company, txtSProject, "", "", "", "", "", "", "");
+            this.ddlDepartment.DataTextField = "actdesc";
+            this.ddlDepartment.DataValueField = "actcode";
+            this.ddlDepartment.DataSource = ds1.Tables[0];
+            this.ddlDepartment.DataBind();
+            this.ddlDepartment_SelectedIndexChanged(null, null);
+        }
+        
+
+        protected void ddlEmpList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //DataTable dt = (DataTable)Session["tblemp"];
+            //string empid = this.ddlEmpList.SelectedValue.ToString();
+            //DataRow[] dr = dt.Select("empid='" + empid + "'");
+            //if (dr.Length == 0)
+            //{
+            //    this.txtEmpDesignation.Text = "";
+            //    return;
+
+            //}
+            //this.txtEmpDesignation.Text = dr[0]["desig"].ToString();
+            this.GetComASecSelected();
+        }
+
+        protected void ddlDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetSection();
+        }
+
+        protected void ddlTodept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.GetToSection();
+        }
+
+       
     }
 }

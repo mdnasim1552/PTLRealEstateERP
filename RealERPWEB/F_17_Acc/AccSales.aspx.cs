@@ -1190,21 +1190,18 @@ namespace RealERPWEB.F_17_Acc
 
                     }
 
-
                     //string comcod = this.GetCompCode();
                    
                     switch (comcod)
                     {
                         case "3101":
                         case "3356": // intech
-                            //this.CollectionUpdateSMS(pactcode, usircode);
+                           this.CollectionUpdateSMS(pactcode, usircode);
                             break;
 
                         default:
-                           
+                       
                             break;
-
-
                     }
 
 
@@ -1222,17 +1219,7 @@ namespace RealERPWEB.F_17_Acc
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]),
                             eventtype, eventdesc, eventdesc2);
                     }
-
-
-
-
-
-
-
-
                 }
-
-
 
 
                 //////////////////////////////// JV Part /////////////////////////////////////////////
@@ -1456,7 +1443,7 @@ namespace RealERPWEB.F_17_Acc
 
             SendSmsProcess sms = new SendSmsProcess();
 
-            bool resultsms = sms.SendSMSClient("", smtext, custphone);
+            bool resultsms = sms.SendSMSClient(comcod, smtext, custphone);
             if (resultsms == true)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = "Message sent Successfully.";

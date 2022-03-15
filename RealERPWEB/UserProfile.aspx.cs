@@ -25,6 +25,17 @@ namespace RealERPWEB
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!IsPostBack)
+            {
+
+                Get_UpComingHoliday();
+                Get_Events();
+                getLink();
+
+                GetAllHolidays();
+                ((Label)this.Master.FindControl("lblTitle")).Text = "User Profile";
+            }
+
             this.GetProfile();
 
             if (fileuploaddropzone.HasFile)
@@ -54,7 +65,7 @@ namespace RealERPWEB
 
 
                     fileuploaddropzone.SaveAs(savelocation);
-                    
+
                     updatPhoto = UserData.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSERTUSERIMAGES", UserId, dburl, "", "", "", "", "", "", "", "");
                     if (updatPhoto)
                     {
@@ -74,11 +85,45 @@ namespace RealERPWEB
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('Profile Picture Size Large');", true);
 
-                  
+
                 }
 
 
             }
+        }
+        private void getLink()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+
+            string comcod = GetCompCode();
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+
+                    string userrole = hst["userrole"].ToString();
+                  
+
+                    this.lnkOrintation.Visible = true;
+                    this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
+                    this.HyperCodeofConduct.Visible = true;
+                    this.HypOrganogram.Visible = (userrole == "3" ? false : true); ;
+
+                    break;
+                default:
+                
+                    this.lnkOrintation.Visible = false;
+                    this.HyperCodeofConduct.Visible = false;
+                    this.HypOrganogram.Visible = false;
+                    this.pnlServHis.Visible = false;
+                    this.winsList.Visible = false;
+                    this.hrpolicy.Visible = false;
+                    
+                    break;
+
+
+            }
+
         }
 
         public void GetProfile()
@@ -90,6 +135,7 @@ namespace RealERPWEB
             {
                 Response.Redirect("~/Error404.aspx");
             }
+            this.UDptment.InnerHtml = hst["dptdesc"].ToString();
             this.UDesignation.InnerHtml = hst["usrdesig"].ToString();
             UserName.InnerHtml = "Hi, " + hst["username"].ToString();
             UserName1.InnerHtml = "Hey <b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
@@ -127,6 +173,15 @@ namespace RealERPWEB
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
+        }
+
+        public string GetEmpID()
+        {
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string Empid = (hst["empid"].ToString() == "") ? "93" : hst["empid"].ToString();
+            return (Empid);
+
         }
 
         private void getData()
@@ -247,16 +302,16 @@ namespace RealERPWEB
 
 
 
-                ((Label)e.Item.FindControl("lblacintime")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(acintime)", "")) ? 0.00 : dt3.Compute("Sum(acintime)", ""))).ToString("#,##0;(#,##0)");
-                ((Label)e.Item.FindControl("lbltotalabs")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(absnt)", "")) ? 0.00 : dt3.Compute("Sum(absnt)", ""))).ToString("#,##0;(#,##0)");
-                ((Label)e.Item.FindControl("lbltotallate")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(aclate)", "")) ? 0.00 : dt3.Compute("Sum(aclate)", ""))).ToString("#,##0;(#,##0)");
-                ((Label)e.Item.FindControl("lbltotalleave")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0;(#,##0)");
+                ((Label)e.Item.FindControl("lblacintime")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(acintime)", "")) ? 0.00 : dt3.Compute("Sum(acintime)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)e.Item.FindControl("lbltotalabs")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(absnt)", "")) ? 0.00 : dt3.Compute("Sum(absnt)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)e.Item.FindControl("lbltotallate")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(aclate)", "")) ? 0.00 : dt3.Compute("Sum(aclate)", ""))).ToString("#,##0.00;(#,##0.00); ");
+                ((Label)e.Item.FindControl("lbltotalleave")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
-                ((Label)e.Item.FindControl("lbltolvadj")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(lvadj)", "")) ? 0.00 : dt3.Compute("Sum(lvadj)", ""))).ToString("#,##0;(#,##0)");
+                ((Label)e.Item.FindControl("lbltolvadj")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(lvadj)", "")) ? 0.00 : dt3.Compute("Sum(lvadj)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
 
-                ((Label)e.Item.FindControl("lblfrtolateapp")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(lateapp)", "")) ? 0.00 : dt3.Compute("Sum(lateapp)", ""))).ToString("#,##0;(#,##0)");
+                ((Label)e.Item.FindControl("lblfrtolateapp")).Text = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(lateapp)", "")) ? 0.00 : dt3.Compute("Sum(lateapp)", ""))).ToString("#,##0.00;(#,##0.00); ");
 
 
 
@@ -318,7 +373,7 @@ namespace RealERPWEB
 
 
 
-                this.hlnkbtnNext.NavigateUrl = "../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+                this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
@@ -420,5 +475,164 @@ namespace RealERPWEB
             //this.lbtnOk_Click(null, null);
 
         }
+
+        private object HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+
+            string type = "Pabx";
+            string company, secid;
+            switch (type)
+            {
+
+                case "Pabx":
+                    company = dt1.Rows[0]["company"].ToString();
+                    secid = dt1.Rows[0]["secid"].ToString();
+
+                    for (int j = 1; j < dt1.Rows.Count; j++)
+                    {
+                        if (dt1.Rows[j]["company"].ToString() == company && dt1.Rows[j]["secid"].ToString() == secid)
+                        {
+
+                            dt1.Rows[j]["companyname"] = "";
+                            dt1.Rows[j]["section"] = "";
+                        }
+
+                        else
+                        {
+                            if (dt1.Rows[j]["company"].ToString() == company)
+                                dt1.Rows[j]["companyname"] = "";
+
+                            if (dt1.Rows[j]["secid"].ToString() == secid)
+                                dt1.Rows[j]["secton"] = "";
+                        }
+
+
+                        company = dt1.Rows[j]["company"].ToString();
+                        secid = dt1.Rows[j]["secid"].ToString();
+                    }
+
+                    break;
+
+
+            }
+
+            return dt1;
+
+        }
+
+        private void Get_Events()
+        {
+            string comcod = this.GetCompCode();
+            string fdate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string usrid = hst["usrid"].ToString();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "SP_REPORT_NOTICE", "GET_UPCOMMING_EVENTS", fdate, usrid, "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+            string innHTML = "";
+            string innHTMLTopnot = "";
+            string BirthdayHTML = "";
+            string status = "";
+            int i = 0;
+
+            foreach (DataRow dr in ds1.Tables[0].Rows)
+            {
+                string type = dr["evtype"].ToString();
+                if (type == "Birthday")
+                {
+                    BirthdayHTML += @"<div class='col-12 col-sm-6 col-lg-4'><div class='media align-items-center mb-2'><a href='#' class='user-avatar user-avatar-lg mr-3'><img src='" + dr["imgurl"] + "' alt=''></a><div class='media-body'><h6 class='card-subtitle text-muted'>" + dr["eventitle"] + "</h6></div><a href='#' class='btn btn-reset text-muted' data-toggle='tooltip' title='' data-original-title='Chat with teams'><i class='oi oi-chat'></i></a></div></div>";
+                }
+                i++;
+            }
+
+            foreach (DataRow dr in ds1.Tables[1].Rows)
+            {
+                status = (i == 0) ? "active" : "";
+                innHTMLTopnot += @"<p>" + dr["eventitle"] + "</p>";
+                i++;
+            }
+
+
+            this.gvAllNotice.DataSource = ds1.Tables[1];
+            this.gvAllNotice.DataBind();
+
+            this.EventBirthday.InnerHtml = BirthdayHTML;
+            this.EventCaro.InnerHtml = innHTMLTopnot;
+
+
+        }
+
+
+        private void Get_UpComingHoliday()
+        {
+
+            string comcod = this.GetCompCode();
+            string empid = GetEmpID();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPOFFDAYINFORAMTIONUPCOMING", empid, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+
+
+            string innHTML = "";
+            int i = 0;
+            foreach (DataRow dr in ds1.Tables[0].Rows)
+            {
+
+                innHTML += @"<div class='row mb-2 pb-1' style='border-bottom:1px solid #ecedf1'><div class='col-8'><a href='#' class='tile bg-pink text-white mr-1'>" + dr["shortday"] + "</a><a href='#'>" + dr["daynam"] + " <small> ( " + dr["reason"] + " ) </small></a></div><div class='col-4'><span class='badge bg-purple text-white'>" + dr["wkdate1"] + "</span></div></div>";
+
+                i++;
+            }
+
+            this.upComingHolidays.InnerHtml = innHTML;
+
+
+        }
+
+        private void GetAllHolidays()
+        {
+            string comcod = this.GetCompCode();
+            string empid = GetEmpID();
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_HREMPOFFDAY", "GETEMPOFFDAYINFORAMTION", empid, "", "", "", "", "", "");
+            if (ds1 == null || ds1.Tables[0].Rows.Count == 0)
+                return;
+
+            Session["tblHolidays"] = ds1.Tables[0];
+
+            this.LoadGridHolidays();
+        }
+
+        private void LoadGridHolidays()
+        {
+            DataTable dtx = (DataTable)Session["tblHolidays"];
+            DataView dv1 = dtx.DefaultView;
+            dv1.RowFilter = ("dstatus ='H'");
+            DataTable dt = dv1.ToTable();
+
+
+            DataView dv2 = dtx.DefaultView;
+            dv2.RowFilter = ("dstatus ='ST'");
+            DataTable dt2 = dv2.ToTable();
+
+
+
+            this.GvHoliday.DataSource = dt;
+            this.GvHoliday.DataBind();
+            this.gvSpHolidyas.DataSource = dt2;
+            this.gvSpHolidyas.DataBind();
+        }
+
+        protected void gvSpHolidyas_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            this.gvSpHolidyas.PageIndex = e.NewPageIndex;
+            this.LoadGridHolidays();
+
+        }
     }
 }
+
+

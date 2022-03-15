@@ -173,11 +173,16 @@ namespace RealERPWEB.F_39_MyPage
                 string val = dt.Rows[i]["gdesc1"].ToString();
                 switch (Gcode)
                 {
-                    case "01009": //BirthDay              
+                    case "01009": //BirthDay
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = true;
+                        ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
+                        break;
                     case "01010": //MarriageDay
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvVal")).Visible = false;
                         ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Visible = true;
                         ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).Visible = false;
+                        ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text="";
                         break;
 
                     case "01021": //File No
@@ -263,6 +268,9 @@ namespace RealERPWEB.F_39_MyPage
             string comcod = hst["comcod"].ToString();
             string PactCode = this.Request.QueryString["prjcode"].ToString().Trim();
             string Usircode = this.Request.QueryString["genno"].ToString().Trim();
+            string msg = "";
+
+
             for (int i = 0; i < this.gvPersonalInfo.Rows.Count; i++)
             {
                 string Gcode = ((Label)this.gvPersonalInfo.Rows[i].FindControl("lblgvItmCode")).Text.Trim();
@@ -275,11 +283,16 @@ namespace RealERPWEB.F_39_MyPage
 
                 string Gvalue = "";
 
-                if (Gcode == "01009" || Gcode == "01010")
+                if (Gcode == "01009")
                 {
                     Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? System.DateTime.Today.ToString("dd-MMM-yyyy") : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
                 }
-                else if(Gcode=="01021")
+                else if (Gcode == "01010")
+                {
+                    Gvalue = (((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim() == "") ? "01-Jan-1900" : ((TextBox)this.gvPersonalInfo.Rows[i].FindControl("txtgvdVal")).Text.Trim();
+
+                }
+                else if (Gcode == "01021")
                 {
                     Gvalue = ((DropDownList)this.gvPersonalInfo.Rows[i].FindControl("ddlFileNo")).SelectedValue;
                 }
@@ -288,29 +301,26 @@ namespace RealERPWEB.F_39_MyPage
                     Gvalue = Gvalue1;
                 }
 
-
-
-
                 Gvalue = (gtype == "D") ? ASTUtility.DateFormat(Gvalue) : Gvalue;
                 bool result = MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATECUSTINF", PactCode, Usircode, Gcode, gtype, Gvalue, "", "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
 
-
-                    ((Label)this.Master.FindControl("lblmsg")).Text = MktData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    msg = MktData.ErrorObject["Msg"].ToString();
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + msg + "');", true);
                     return;
-
-
                 }
 
             }
             //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
 
 
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            //((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+            msg = "Update Successfully";
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + msg + "');", true);
 
+            this.LoadGrid();
 
             if (ConstantInfo.LogStatus == true)
             {

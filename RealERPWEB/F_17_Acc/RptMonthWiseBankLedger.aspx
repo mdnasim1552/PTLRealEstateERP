@@ -161,7 +161,7 @@
                                 </HeaderTemplate>
 
                                 <FooterTemplate>
-                                    <asp:Label ID="lgvFmonth" runat="server" Font-Bold="True"> Total :</asp:Label>
+                                    <asp:Label ID="lgvFmonth" runat="server" Font-Bold="True"> </asp:Label>
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:HyperLink ID="lblgvactDesc" runat="server"

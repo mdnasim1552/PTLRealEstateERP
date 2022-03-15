@@ -587,6 +587,15 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double perloan { get; set; }
             public double genloan { get; set; }
             public double transded { get; set; }
+            public double payables { get; set; }
+            public int secsl { get; set; }
+            public int deptsl { get; set; }
+            public double bank1 { get; set; }
+            public double bank2 { get; set; }
+            public double bank3 { get; set; }
+            public double bank4 { get; set; }
+            public double bank5 { get; set; }
+            public double bank6 { get; set; }
 
             public RptSalarySheet ()
             {
@@ -604,7 +613,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             othded, dallow, teallow, oallow, ohour, thday, hallow, elallow,  lwpday, lwided,  gssal, salpday, gspay, 
 	        absded,  tdeduc, mcallow, mcadj, othallow, othearn, sdedamt,dedday, netpay,bankamt, cashamt,CHEQUEPAY, todecashsal,
 	        totadd,tdeduc,tgrsmon, todecmon,netpayable, redamt,mbillded,stamp,  netsalarypay,grossal1,grossalsub, totaldeduction, idcard, empname, desig, comnam, comadd, refdesc ,aminword, bankacno 
-             
+             genloan, , , , , , ,
              */
 
 
@@ -635,8 +644,8 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double itax { get; set; }
             public double adv { get; set; }
             public double mbill { get; set; }
-            public double EMPCONT { get; set; }
-            public double FALLDED { get; set; }
+            public double empcont { get; set; }
+            public double fallded { get; set; }
             public double loanins { get; set; }
             public double othded { get; set; }
             public double dallow { get; set; }
@@ -663,7 +672,7 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double netpay { get; set; }
             public double bankamt { get; set; }
             public double cashamt { get; set; }
-            public double CHEQUEPAY { get; set; }
+            public double chequepay { get; set; }
             public double todecashsal { get; set; }
             public double totadd { get; set; }
             public double tgrsmon { get; set; }
@@ -685,7 +694,19 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public string aminword { get; set; }
             public string bankacno { get; set; }
             public double haircutal { get; set; }
-
+            public double genloan { get; set; }
+            public double carloan { get; set; }
+            public double perloan { get; set; }
+            public double motolon { get; set; }
+            public double dresslon { get; set; }
+            public double msetloan { get; set; }
+            public double mscloan { get; set; }
+            public double tptallow { get; set; }
+            public double kpi { get; set; }
+            public double perbon { get; set; }
+            public double foodal { get; set; }
+            public double transded { get; set; }
+           
             public SalaryPaySlip()
             {
 
@@ -745,6 +766,19 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double salam { get; set; }
             public EClassBankStatment() { }
         }
-       
+        [Serializable]
+        public class RptSalaryReconciliation
+        {
+            public string empid { get; set; }
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string empname { get; set; }
+            public string desig { get; set; }
+            public string replacement { get; set; }
+            public string joresigndate { get; set; }
+            public double curamt { get; set; }
+            public double preamt { get; set; }
+            public RptSalaryReconciliation() { }
+        }
     }
 }

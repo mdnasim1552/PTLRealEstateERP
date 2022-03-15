@@ -33,6 +33,8 @@
                 freezesize: 10
             });
 
+            var gvati = $('#<%=this.gvati.ClientID %>');
+            gvati.Scrollable();
 
             $('.chzn-select').chosen({ search_contains: true });
 
@@ -142,6 +144,8 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="col-md-1">
@@ -149,15 +153,23 @@
                                     </div>
                                     <div class="col-md-2 pading5px">
 
-                                        <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn margin5px" OnClick="lnkbtnShow_Click">Ok</asp:LinkButton>
-                                         <asp:UpdateProgress ID="UpdateProgress2" runat="server">
+                                        <asp:LinkButton ID="lnkbtnShow" runat="server" CssClass="btn btn-primary okBtn margin5px" OnClick="lnkbtnShow_Click">Ok </asp:LinkButton>
+                                      
+                                        <asp:UpdateProgress ID="UpdateProgress2" runat="server">
                                             <ProgressTemplate>
                                                 <asp:Label ID="s" runat="server" CssClass="margin5px primaryBtn btn-sm " ForeColor="#ff3300" Text="Please wait...."></asp:Label>
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
+                                        
                                         </div>
-                                    <div class="col-md-2 pading5px">
+                                    <div class="col-md-1">
+                                        <asp:CheckBox ID="ChkAllWithwithout" runat="server" Text="With/Without AIT" AutoPostBack="true"  Visible="false" />
+                                        
+                                    </div>
 
+
+                                    <div class="col-md-2 pading5px">
+                                        
                                           <asp:DropDownList ID="ddlEmplist"  AutoPostBack="True" runat="server" Width="180" CssClass="chzn-select form-control inputTxt pull-left" TabIndex="6">
                                         </asp:DropDownList>                                     
                                     </div>

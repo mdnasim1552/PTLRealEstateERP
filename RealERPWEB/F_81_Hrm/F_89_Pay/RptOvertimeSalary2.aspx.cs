@@ -24,7 +24,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
     public partial class RptOvertimeSalary2 : System.Web.UI.Page
     {
         ProcessAccess HRData = new ProcessAccess();
-
+        Common compUtility = new Common();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -33,20 +33,30 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
                 DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                //((Label)this.Master.FindControl("lblTitle")).Text = (Convert.ToBoolean(dr1[0]["printable"]));
-
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Overtime salary Sheet ";
-                this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
-
-
                 this.GetCompany();
+                this.GetDate();
 
             }
 
         }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
 
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+            //string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //this.txtfromdate.Text = startdate + date.Substring(2);
+            //this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+        }
         protected void Page_PreInit(object sender, EventArgs e)
         {
 

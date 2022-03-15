@@ -243,16 +243,12 @@
 
 
                     <asp:Panel ID="pnlondated" runat="server" Visible="false">
-
                         <div class="row">
                             <div class="col-md-5 pading5px">
                                 <div class="row">
-
                                     <asp:Panel ID="Panel2" runat="server" Visible="False">
                                         <fieldset class="scheduler-border fieldset_B">
-
                                             <div class="form-horizontal">
-
                                                 <div class="form-group">
                                                     <div class="col-md-3">
 
@@ -470,94 +466,91 @@
                                     <asp:Panel ID="pnlNarration" runat="server" Visible="False">
                                         <fieldset class="scheduler-border fieldset_Nar">
                                             <div class="form-horizontal">
-                                                <div class="form-group">
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblchequedate" runat="server" CssClass=" lblTxt lblName" Text=" Cheque Date"></asp:Label>
+                                                                        <asp:TextBox ID="txtchequedate" runat="server" CssClass="inputtextbox" Width="100px"></asp:TextBox>
+                                                                        <cc1:CalendarExtender ID="txtchequedate_CalendarExtender" runat="server"
+                                                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtchequedate"></cc1:CalendarExtender>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblRecived" runat="server" CssClass=" lblTxt lblName" Text="Received Bank"></asp:Label>
+                                                                        <asp:TextBox ID="txtBankNam" runat="server" CssClass="inputtextbox" Width="130px"></asp:TextBox>
+                                                                    </div>
 
-                                                    <div class="col-md-2 pading5px asitCol2">
-                                                        <asp:Label ID="lblchequedate" runat="server" CssClass=" lblTxt lblName" Text=" Cheque Date"></asp:Label>
-                                                        <asp:TextBox ID="txtchequedate" runat="server" CssClass="inputtextbox"></asp:TextBox>
-                                                        <cc1:CalendarExtender ID="txtchequedate_CalendarExtender" runat="server"
-                                                            Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtchequedate"></cc1:CalendarExtender>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Cheque No"></asp:Label>
+                                                                        <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox" Width="100px"></asp:TextBox>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblSrInfo" runat="server" CssClass=" lblTxt lblName" Text=" Referecne No"></asp:Label>
+                                                                        <asp:TextBox ID="txtSrinfo" runat="server" CssClass="inputtextbox" Width="130px"></asp:TextBox>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                     </div>
 
-                                                    <div class="col-md-6 pading5px">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblchelist" runat="server" CssClass="lblTxt lblName" Text="Cheque List"></asp:Label>
+                                                                        <asp:DropDownList ID="ddlcheque" runat="server" CssClass="chzn-select" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged" AutoPostBack="true" Style="width: 100px;">
+                                                                        </asp:DropDownList>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-7">
+                                                                    <div class="form-group row">
+                                                                        <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
+                                                                        <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="130"></asp:TextBox>
+                                                                        <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
+                                                                            runat="server" CompletionListCssClass="AutoExtender"
+                                                                            CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
+                                                                            CompletionListItemCssClass="AutoExtenderList" CompletionSetCount="15"
+                                                                            DelimiterCharacters="" Enabled="True" FirstRowSelected="True"
+                                                                            MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"
+                                                                            ServicePath="~/AutoCompleted.asmx" TargetControlID="txtPayto">
+                                                                        </cc1:AutoCompleteExtender>
+                                                                    </div>
 
-                                                        <asp:Label ID="lblRecived" runat="server" CssClass=" lblTxt lblName" Text="Received Bank"></asp:Label>
-
-                                                        <asp:TextBox ID="txtBankNam" runat="server" CssClass="inputtextbox" Style="width: 130px;"></asp:TextBox>
-
-
-
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-md-2 pading5px asitCol2 ">
-                                                        <asp:Label ID="lblRefNum" runat="server" CssClass="lblTxt lblName" Text="Cheque No"></asp:Label>
-                                                        <asp:TextBox ID="txtRefNum" runat="server" CssClass="inputtextbox"></asp:TextBox>
-
-
-                                                    </div>
-                                                    <div class="col-md-6 pading5px">
-
-                                                        <asp:Label ID="lblSrInfo" runat="server" CssClass=" lblTxt lblName" Text=" Referecne No"></asp:Label>
-                                                        <asp:TextBox ID="txtSrinfo" runat="server" CssClass="inputtextbox" Width="130px"></asp:TextBox>
-
-
-                                                    </div>
-
-
-
-
-                                                </div>
-                                                <div class="form-group">
-
-                                                    <div class="col-md-2 pading5px asitCol2 ">
-
-                                                        <asp:Label ID="lblchelist" runat="server" CssClass="lblTxt lblName" Text="Cheque List"></asp:Label>
-
-                                                        <asp:DropDownList ID="ddlcheque" runat="server" CssClass="chzn-select" OnSelectedIndexChanged="ddlcheque_SelectedIndexChanged" AutoPostBack="true" Style="width: 100px;">
-                                                        </asp:DropDownList>
-                                                    </div>
-
-
-
-                                                    <div class="col-md-6 pading5px">
-
-                                                        <asp:Label ID="lblPayto" runat="server" CssClass="lblTxt lblName" Text="Pay To"></asp:Label>
-                                                        <asp:TextBox ID="txtPayto" runat="server" CssClass="inputtextbox" Width="130"></asp:TextBox>
-                                                        <cc1:AutoCompleteExtender ID="txtPayto_AutoCompleteExtender"
-                                                            runat="server" CompletionListCssClass="AutoExtender"
-                                                            CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
-                                                            CompletionListItemCssClass="AutoExtenderList" CompletionSetCount="15"
-                                                            DelimiterCharacters="" Enabled="True" FirstRowSelected="True"
-                                                            MinimumPrefixLength="0" ServiceMethod="GetRecandPayDetails"
-                                                            ServicePath="~/AutoCompleted.asmx" TargetControlID="txtPayto">
-                                                        </cc1:AutoCompleteExtender>
-
-
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group">
-                                                    <div class="col-md-12 pading5px">
-                                                        <div class="input-group">
-                                                            <span class="input-group-addon glypingraddon">
-                                                                <asp:Label ID="lblNaration" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
-                                                            </span>
-                                                            <asp:TextBox ID="txtNarration" runat="server" class="form-control" Rows="2" Width="345" TextMode="MultiLine"></asp:TextBox>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 pading5px">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon glypingraddon">
+                                                                    <asp:Label ID="lblNaration" runat="server" CssClass="lblTxt lblName" Text="Narration:"></asp:Label>
+                                                                </span>
+                                                                <asp:TextBox ID="txtNarration" runat="server" class="form-control" Rows="2" Width="345" TextMode="MultiLine"></asp:TextBox>
+                                                            </div>
                                                         </div>
                                                     </div>
-
-
                                                 </div>
-
-
-
 
                                             </div>
                                         </fieldset>
@@ -566,27 +559,10 @@
 
                                             <div class=" col-md-offset-1 col-md-11   pading5px">
 
-
-
-
-
-
-
-
-
                                                 <asp:CheckBox ID="checkpb" runat="server" Visible="false" CssClass="btn btn-primary checkBox" Text="Pubali Bank Cheque Print" />
                                                 <asp:CheckBox ID="withoutchqdate" runat="server" Text="Without Chq Date" Visible="false" CssClass="btn btn-primary checkBox" AutoPostBack="true" />
-
-
                                                 <asp:Label ID="lblisunum" runat="server" CssClass=" smLbl" Visible="False"></asp:Label>
                                                 <asp:CheckBox ID="chkpost" runat="server" TabIndex="10" Text="post" CssClass="btn btn-primary checkBox" Visible="false" />
-
-
-
-
-
-
-
                                             </div>
                                         </div>
 
@@ -779,7 +755,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvQty" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None"
-                                                        onkeypress="return isNumberKey(this, event);" 
+                                                        onkeypress="return isNumberKey(this, event);"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnqty")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="50px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="79"></asp:TextBox>
@@ -799,7 +775,7 @@
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trnrate")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="60px" Font-Size="12px" ForeColor="Black"
-                                                        onkeypress="return isNumberKey(this, event);" 
+                                                        onkeypress="return isNumberKey(this, event);"
                                                         Style="text-align: right" TabIndex="80"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <HeaderStyle Width="50px" />
@@ -808,8 +784,8 @@
                                             <asp:TemplateField HeaderText="Dr.Amount" HeaderStyle-Width="70px">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvDrAmt" runat="server" BackColor="Transparent"
-                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"  
-                                                        onkeypress="return isNumberKey(this, event);" 
+                                                        BorderColor="Transparent" BorderStyle="None" BorderWidth="0px"
+                                                        onkeypress="return isNumberKey(this, event);"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trndram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="81"></asp:TextBox>
@@ -828,7 +804,7 @@
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvCrAmt" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px"
-                                                        onkeypress="return isNumberKey(this, event);" 
+                                                        onkeypress="return isNumberKey(this, event);"
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trncram")).ToString("#,##0.00;-#,##0.00; ") %>'
                                                         Width="70px" Font-Size="12px" ForeColor="Black" Style="text-align: right"
                                                         TabIndex="82"></asp:TextBox>
@@ -845,8 +821,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent" 
-                                                         
+                                                    <asp:TextBox ID="txtgvRemarks" runat="server" BackColor="Transparent"
                                                         BorderColor="Transparent" BorderStyle="None" BorderWidth="1px" Font-Size="12px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "trnrmrk")) %>'
                                                         Width="80px" ForeColor="Black" TabIndex="83"></asp:TextBox>

@@ -20,6 +20,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 {
     public partial class RptIncomeStatement : System.Web.UI.Page
     {
+        Common compUtility = new Common();
         ProcessAccess HRData = new ProcessAccess();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,15 +29,23 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
                     Response.Redirect("../../AcceessError.aspx");
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Employee Income Statement Month Wise";
-
-
-                //   this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.GetCompanyName();
-
-                this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
-                this.txtfromdate.Text = "01" + this.txtfromdate.Text.Trim().Substring(2);
-                this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                this.GetDate();
             }
+        }
+        private void GetDate()
+        {
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txtfromdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txtfromdate.Text = startdate + this.txtfromdate.Text.Trim().Substring(2);
+            this.txttodate.Text = Convert.ToDateTime(this.txtfromdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+            //string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //this.txtfromdate.Text = startdate + date.Substring(2);
+            //this.txttodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
         protected void Page_PreInit(object sender, EventArgs e)
         {

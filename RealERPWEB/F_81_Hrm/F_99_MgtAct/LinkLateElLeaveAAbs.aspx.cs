@@ -45,12 +45,6 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
             return (hst["comcod"].ToString());
 
         }
-
-
-
-
-
-
         private void ShowView()
         {
             string rpt = this.Request.QueryString["Type"].ToString().Trim();
@@ -68,22 +62,6 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
             string rpt = this.Request.QueryString["Type"].ToString().Trim();
@@ -93,19 +71,8 @@ namespace RealERPWEB.F_81_Hrm.F_99_MgtAct
                     this.ShowLELLAndAbsent();
                     break;
 
-
-
-
-
             }
-
-
-
         }
-
-
-
-
 
         private void ShowLELLAndAbsent()
         {

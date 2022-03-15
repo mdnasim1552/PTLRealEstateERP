@@ -1,4 +1,5 @@
-﻿using RealERPLIB;
+﻿using Microsoft.Reporting.WinForms;
+using RealERPLIB;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,9 +21,14 @@ namespace RealERPWEB.F_21_MKT
             if (!IsPostBack)
             {
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Prospect Working Report";
-                this.txtDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                string txtDate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                this.txtFrmDate.Text = "01-"+Convert.ToDateTime(txtDate).ToString("MMM-yyyy");
+                this.txtToDate.Text = Convert.ToDateTime(this.txtFrmDate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 this.GetAllSubdata();
+                this.GETEMPLOYEEUNDERSUPERVISED();
+
                 this.BindDDLLead();
+                this.lnkbtnOk_Click(null, null);
             }
         }
         public string GetComeCode()
@@ -30,6 +36,27 @@ namespace RealERPWEB.F_21_MKT
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            // Create an event handler for the master page's contentCallEvent event
+            ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
+
+            //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+
+        private void GETEMPLOYEEUNDERSUPERVISED()
+        {
+            string comcod = GetComeCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+            DataSet ds1 = accessData.GetTransInfo(comcod, "SP_ENTRY_CRM_MODULE", "GETEMPLOYEEUNDERSUPERVISED", empid, "", "", "", "", "", "", "", "");
+            ViewState["tblempsup"] = ds1.Tables[0];
+            ds1.Dispose();
+
+
+        }
+
         private void GetAllSubdata()
         {
             string comcod = GetComeCode();
@@ -92,16 +119,41 @@ namespace RealERPWEB.F_21_MKT
         protected void lnkbtnOk_Click(object sender, EventArgs e)
         {
             string comcod = this.GetComeCode();
-            string txtDate = Convert.ToDateTime(this.txtDate.Text).ToString("dd-MMM-yyyy");
+            string txtFrmDate = Convert.ToDateTime(this.txtFrmDate.Text).ToString("dd-MMM-yyyy");
+            string txtToDate = Convert.ToDateTime(this.txtToDate.Text).ToString("dd-MMM-yyyy");
+           
             string empId = this.ddlEmpid.SelectedValue.ToString();
-            DataSet ds1 = accessData.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_WORKING_REPORT", null, null, null, txtDate, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+            DataSet ds1 = accessData.GetTransInfoNew(comcod, "SP_REPORT_CRM_MODULE", "PROSPECT_WORKING_REPORT", null, null, null, txtFrmDate, txtToDate, empId, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (ds1==null)
                 return;
 
-            ViewState["tblproswork"] = ds1.Tables[0];
+            ViewState["tblproswork"] = HiddenSameData(ds1.Tables[0]);
             this.Data_Bind();
         }
+        private DataTable HiddenSameData(DataTable dt1)
+        {
+            if (dt1.Rows.Count == 0)
+                return dt1;
+            string grp = dt1.Rows[0]["grp"].ToString();
+            for (int j = 1; j < dt1.Rows.Count; j++)
+            {
+                if (dt1.Rows[j]["grp"].ToString() == grp)
+                {
+                    dt1.Rows[j]["grpdesc"] = "";
+                    grp = dt1.Rows[j]["grp"].ToString();
+                }
 
+                else
+                {
+                    grp = dt1.Rows[j]["grp"].ToString();
+                }
+
+            }
+
+            return dt1;
+        }
         private void Data_Bind()
         {
             DataTable dt = (DataTable)ViewState["tblproswork"];
@@ -117,6 +169,7 @@ namespace RealERPWEB.F_21_MKT
 
         protected void ddlpage_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.gvProspectWorking.PageSize = Convert.ToInt32(this.ddlpage.SelectedValue.ToString());
             this.Data_Bind();
         }
 
@@ -124,6 +177,36 @@ namespace RealERPWEB.F_21_MKT
         {
             this.gvProspectWorking.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        private void lbtnPrint_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string comadd = hst["comadd1"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string session = hst["session"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string compLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            DataTable dt = (DataTable)ViewState["tblproswork"];
+            string txtDate = "( From "+ Convert.ToDateTime(this.txtFrmDate.Text).ToString("dd-MMM-yyyy") + " To " +Convert.ToDateTime(this.txtToDate.Text).ToString("dd-MMM-yyyy") + " )";
+
+            LocalReport Rpt1 = new LocalReport();            
+            var list = dt.DataTableToList<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectWorking>();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_21_MKT.RptProspectWorking", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("compName", comnam));
+            Rpt1.SetParameters(new ReportParameter("compAdd", comadd));
+            Rpt1.SetParameters(new ReportParameter("compLogo", compLogo));
+            Rpt1.SetParameters(new ReportParameter("rptTitle", "WORKING REPORT"));
+            Rpt1.SetParameters(new ReportParameter("txtDate", txtDate));
+            Rpt1.SetParameters(new ReportParameter("txtUserInfo", ASTUtility.Concat(compname, username, printdate, session)));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewerWin.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
         }
     }
 }

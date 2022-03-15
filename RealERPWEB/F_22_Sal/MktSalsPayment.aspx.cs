@@ -15,6 +15,9 @@ using CrystalDecisions.ReportSource;
 using RealERPLIB;
 using RealERPRPT;
 using RealEntity;
+using Microsoft.Reporting.WinForms;
+using RealERPRDLC;
+
 namespace RealERPWEB.F_22_Sal
 {
     public partial class MktSalsPayment : System.Web.UI.Page
@@ -92,7 +95,7 @@ namespace RealERPWEB.F_22_Sal
             {
 
                 case "3352": //p2p 360
-                //case "3101": //Asit
+                             //case "3101": //Asit
                     this.gvPayment.Columns[5].Visible = true;
                     this.gvPayment.Columns[6].Visible = true;
                     this.gvPayment.Columns[7].Visible = true;
@@ -217,7 +220,7 @@ namespace RealERPWEB.F_22_Sal
                 this.lbtnOk.Text = "New";
                 //this.lblProjectdesc.Text = this.ddlProjectName.SelectedItem.Text;
                 Hashtable hst = (Hashtable)Session["tblLogin"];
-                string ddldesc = hst["ddldesc"].ToString();             
+                string ddldesc = hst["ddldesc"].ToString();
                 this.lblProjectmDesc.Text = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
 
                 // this.lblProjectmDesc.Text = this.ddlProjectName.SelectedItem.Text.Substring(13);
@@ -287,6 +290,164 @@ namespace RealERPWEB.F_22_Sal
         }
         protected void lbtnPrint_Click(object sender, EventArgs e)
         {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                // format for cube holdings
+                case "3101":
+                case "3356":
+                case "3366":
+                    this.payscheduleRDLC();
+                    break;
+
+                default:
+                    this.payscheduleCrystal();
+                    break;
+            }
+            //this.payscheduleCube();
+        }
+
+        private void payscheduleRDLC()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+            string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+            string date1 = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            string ddldesc = hst["ddldesc"].ToString();
+
+            DataTable basicinfo = (DataTable)Session["UsirBasicInformation"];
+            string PactCode = this.ddlProjectName.SelectedValue.ToString();
+            string UsirCode = this.lblCode.Text;
+            string prjName = (ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.Trim().ToString() : this.ddlProjectName.SelectedItem.Text.Substring(13));
+            string aprtno = basicinfo.Rows[0]["udesc"].ToString();
+            string floorno = "";
+            double usize = Convert.ToDouble(basicinfo.Rows[0]["usize"]);
+            double urate = Convert.ToDouble(basicinfo.Rows[0]["urate"]);
+            double uamt = Convert.ToDouble(basicinfo.Rows[0]["uamt"]);
+            double tamt = Convert.ToDouble(basicinfo.Rows[0]["tamt"]);
+
+            string size = usize.ToString("#,##0.00;(#,##0.00); ");
+            string rate = urate.ToString("#,##0.00;(#,##0.00); ");
+            string unit = basicinfo.Rows[0]["munit"].ToString();
+            string aprtsize = size + " " + unit;
+            string appatn = basicinfo.Rows[0]["custname"].ToString();
+            //direct cost
+            string txtdisamt = this.ldiscountt.Text.ToString();
+            double disamt = Convert.ToDouble(txtdisamt);
+            string ldiscountpP = this.ldiscountp.Text.ToString();
+            string txtunitamt = tamt.ToString("#,##0.00;(#,##0.00); ");
+
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
+
+            string cname = ds1.Tables[1].Rows[0]["cname"].ToString();
+            string cphone = ds1.Tables[1].Rows[0]["cphone"].ToString();
+            string caddress = ds1.Tables[1].Rows[0]["caddress"].ToString();
+            string paddress = ds1.Tables[1].Rows[0]["paddress"].ToString();
+            string salesteam = this.ddlSalesTeam.SelectedItem.Text.ToString();
+            string bkdate = Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+            string agdate = Convert.ToDateTime(this.txtAggrementdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+            string hodate = Convert.ToDateTime(this.txthandoverdate.Text).ToString("dd-MMM-yyyy") == "01-Jan-1900" ? "" : Convert.ToDateTime(this.txtBookDate.Text).ToString("dd-MMM-yyyy");
+
+            /*
+                    this.txtBookDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txtAggrementdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                    this.txthandoverdate.Text = System.DateTime.Today.AddYears(2).ToString("dd-MMM-yyyy");
+             */
+
+
+            //DataView dv1 = dt01.DefaultView;
+            ////dv1.RowFilter = "gp like ('" + gp + "')";
+            //DataTable dt1 = dv1.ToTable();
+
+            // insatllment part
+            DataTable dt01 = ds1.Tables[0].Copy();
+            DataView dv1 = dt01.DefaultView;
+            dv1.RowFilter = "grp like ('gp3')";
+            DataTable dt1 = dv1.ToTable();
+
+
+            // others cost utility 
+            DataTable dt02 = ds1.Tables[0].Copy();
+            DataView dv2 = dt02.DefaultView;
+            dv2.RowFilter = "grp like ('gp2')";
+            DataTable dt2 = dv2.ToTable();
+            //tbl1.Compute("Sum(areqamt)", ""))).ToString("#,##0;(#,##0); ")
+
+            double actuamt = Convert.ToDouble(dt2.Compute("Sum(uamt)", ""));
+            double gccamt = actuamt;
+
+
+            DataTable dt03 = ds1.Tables[0].Copy();
+            DataView dv3 = dt03.DefaultView;
+            dv3.RowFilter = "grp like ('gp1')";
+            DataTable dt3 = dv3.ToTable();
+
+
+            string lbldisamt = "Budgeted Amount's Disc : " + ldiscountpP;
+            string txtTotal = gccamt.ToString("#,##0.00;(#,##0.00); ");
+
+            var list = dt1.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+            var list2 = dt2.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+            var list3 = dt3.DataTableToList<RealEntity.C_22_Sal.EClassSales_02.RptSalPaySchedules>();
+
+            LocalReport rpt = new LocalReport();
+
+            switch (comcod)
+            {
+                case "3356": // cube
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
+                    break;
+
+                case "3101":
+                case "3366": // Lanco
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPayScheduleLanco", list, list2, list3);
+                    rpt.SetParameters(new ReportParameter("cname", cname));
+                    rpt.SetParameters(new ReportParameter("cphone", cphone));
+                    rpt.SetParameters(new ReportParameter("caddress", caddress));
+                    rpt.SetParameters(new ReportParameter("salesteam", salesteam));
+                    rpt.SetParameters(new ReportParameter("bkdate", bkdate));
+                    rpt.SetParameters(new ReportParameter("agdate", agdate));
+                    rpt.SetParameters(new ReportParameter("hodate", hodate));                  
+
+                    break;
+
+                default:
+                    rpt = RptSetupClass1.GetLocalReport("R_22_Sal.RptSalPaySchedule", list, list2, list3);
+
+                    break;
+
+            }
+            rpt.EnableExternalImages = true;
+            rpt.SetParameters(new ReportParameter("ComName", comnam));
+            rpt.SetParameters(new ReportParameter("date1", date1));
+            rpt.SetParameters(new ReportParameter("prjName", prjName));
+            rpt.SetParameters(new ReportParameter("prjAddress", paddress));
+            rpt.SetParameters(new ReportParameter("aprtno", aprtno));
+            rpt.SetParameters(new ReportParameter("floorno", floorno));
+            rpt.SetParameters(new ReportParameter("aprtsize", aprtsize));
+            rpt.SetParameters(new ReportParameter("appatn", appatn));
+            rpt.SetParameters(new ReportParameter("lbldisamt", lbldisamt));
+            rpt.SetParameters(new ReportParameter("txtdisamt", txtdisamt));
+            rpt.SetParameters(new ReportParameter("lblunitamt", ""));
+            rpt.SetParameters(new ReportParameter("txtunitamt", txtunitamt));
+            rpt.SetParameters(new ReportParameter("txtgntamt", actuamt.ToString("#,##0.00;(#,##0.00); ")));
+            rpt.SetParameters(new ReportParameter("txtTotal", txtTotal));
+            rpt.SetParameters(new ReportParameter("ComLogo", ComLogo));
+            rpt.SetParameters(new ReportParameter("printFooter", ASTUtility.Concat(compname, username, printdate)));
+            rpt.SetParameters(new ReportParameter("txtcompinfo", ASTUtility.ComInfoWithoutNumber()));
+
+            Session["Report1"] = rpt;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
+        }
+
+        private void payscheduleCrystal()
+        {
             string prjname = this.ddlProjectName.SelectedItem.Text;
             string PactCode = this.ddlProjectName.SelectedValue.ToString();
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -314,6 +475,8 @@ namespace RealERPWEB.F_22_Sal
 
             string salesteams = ddlSalesTeam.SelectedItem.Text;
             DataSet dss = MktData.GetTransInfo(comcod, "SP_ENTRY_SALSMGT", "COMBINEDTABLEFORSALES", PactCode, UsirCode, "", "", "", "", "", "", "");
+
+
             ReportDocument rpcp = new RealERPRPT.R_22_Sal.RptPCPayment();
 
             //TextObject CompName = rpcp.ReportDefinition.ReportObjects["CompName"] as TextObject;
@@ -364,7 +527,6 @@ namespace RealERPWEB.F_22_Sal
                               ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
-
 
         protected void lbtnusize_Click(object sender, EventArgs e)
         {
@@ -434,7 +596,7 @@ namespace RealERPWEB.F_22_Sal
                     this.chkAddIns.Visible = true;
                     ((LinkButton)this.gvPayment.FooterRow.FindControl("lUpdatpayment")).Enabled = true;
 
-                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod=="3349")
+                    if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3348" || comcod == "3349" || comcod == "3354")
                     {
 
                     }
@@ -534,7 +696,7 @@ namespace RealERPWEB.F_22_Sal
             //this.ddlSalesTeam.SelectedValue = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["agdate"]).ToString("dd-MMM-yyyy");
             //this.txthandoverdate.Text = (ds1.Tables[7].Rows.Count == 0) ? System.DateTime.Today.ToString("dd-MMM-yyyy") : Convert.ToDateTime(ds1.Tables[7].Rows[0]["hdate"]).ToString("dd-MMM-yyyy");
 
-            if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3315" || comcod == "3316" || comcod == "3353" || comcod == "3355")
+            if (comcod == "3305" || comcod == "2305" || comcod == "3306" || comcod == "3311" || comcod == "3310" || comcod == "3353" || comcod == "3355")
             {
 
             }
@@ -552,8 +714,6 @@ namespace RealERPWEB.F_22_Sal
                 {
                     this.ddlCollectionTeam.SelectedValue = drct[0]["scteam"].ToString();
                 }
-
-
             }
 
 
@@ -697,7 +857,7 @@ namespace RealERPWEB.F_22_Sal
         protected void lbtnTotalCost_Click(object sender, EventArgs e)
         {
             double Amount = 0;
-           // double Usize = 0;
+            // double Usize = 0;
             // double PaidAmt = 0;
             double iamount, irate, disamt;
             foreach (GridViewRow gv1 in gvCost.Rows)
@@ -711,7 +871,7 @@ namespace RealERPWEB.F_22_Sal
                 // Amount += dAmt;
                 //Usize += dUsize;
                 //iamount = dAmt > 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? (dUsize * dRate) : 0.00);
-                iamount = dAmt != 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? ((dUsize * dRate)- disamt) : 0.00);
+                iamount = dAmt != 0 ? dAmt : ((dUsize > 0 & dRate > 0) ? ((dUsize * dRate) - disamt) : 0.00);
                 irate = dRate > 0 ? dRate : ((dUsize > 0 & iamount > 0) ? (iamount / dUsize) : 0.00);
                 ((TextBox)gv1.FindControl("lgvRate")).Text = irate.ToString("#,##0.00;(#,##0.00); ");
                 ((TextBox)gv1.FindControl("txtgvuamt")).Text = iamount.ToString("#,##0; -#,##0; ");
@@ -960,9 +1120,13 @@ namespace RealERPWEB.F_22_Sal
                     double percent = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvtPercent")).Text.Trim()));
                     string jobcode = ((Label)this.gvPayment.Rows[i].FindControl("lblgvjobcode")).Text.Trim();
                     string jobdesc = ((Label)this.gvPayment.Rows[i].FindControl("lblgvjobdesc")).Text.Trim();
+                    string rmrks = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvrmrks")).Text.Trim();
+
+
+
                     //if (Amount != 0)
                     //{
-                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), "", Gdesc, percent.ToString(), jobcode, jobdesc, "", "", "", "", "");
+                    MktData.UpdateTransInfo(comcod, "SP_ENTRY_SALSMGT", "INSERTORUPDATEPAYMENTINF", PactCode, Usircode, Gcode, schDate, Amount.ToString(), rmrks, Gdesc, percent.ToString(), jobcode, jobdesc, "", "", "", "", "");
                     //}
 
                 }
@@ -1643,7 +1807,7 @@ namespace RealERPWEB.F_22_Sal
 
                 string code = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "usircode")).ToString();
                 string pactcode = this.ddlProjectName.SelectedValue.ToString();
-                string pactdesc = ddldesc=="True"?this.ddlProjectName.SelectedItem.Text.ToString(): this.ddlProjectName.SelectedItem.Text.ToString().Substring(13);
+                string pactdesc = ddldesc == "True" ? this.ddlProjectName.SelectedItem.Text.ToString() : this.ddlProjectName.SelectedItem.Text.ToString().Substring(13);
 
                 string custname = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "custname")).ToString();
 
@@ -1937,12 +2101,6 @@ namespace RealERPWEB.F_22_Sal
                             jobdesc = jobdesc + litem.Text + ", ";
 
                         }
-
-
-
-
-
-
                     }
 
                 }

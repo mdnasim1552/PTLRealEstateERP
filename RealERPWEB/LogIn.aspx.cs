@@ -87,8 +87,6 @@ namespace RealERPWEB
             cntlim1 = Convert.ToDouble(ds2.Tables[0].Rows[0]["cntval"]);
             cntlim2 = Convert.ToDouble(ds2.Tables[0].Rows[1]["cntval"]);
             cntlim3 = Convert.ToDouble(ds2.Tables[0].Rows[2]["cntval"]);
-
-
             dcntlim1 = Convert.ToDouble(ds5.Tables[0].Rows[0]["cntval"]);
             dcntlim2 = Convert.ToDouble(ds5.Tables[0].Rows[1]["cntval"]);
             dcntlim3 = Convert.ToDouble(ds5.Tables[0].Rows[2]["cntval"]);
@@ -287,13 +285,7 @@ namespace RealERPWEB
             //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]["comadd"].ToString().Substring(0, 6) == "<br />") ? dr[0]["comadd"].ToString().Substring(6) : dr[0]["comadd"].ToString();
             //((Image)this.Master.FindControl("Image1")).ImageUrl = "~/Image/" + "LOGO" + this.listComName.SelectedValue.ToString() + ".PNG";
 
-
-
             this.Image1.ImageUrl = "~/Image/" + "LOGO" + this.listComName.SelectedValue.ToString() + ".PNG";
-
-
-
-
 
         }
 
@@ -333,6 +325,7 @@ namespace RealERPWEB
                 UserLogin ulog = new UserLogin();
                 DataSet ds1 = ulog.GetHitCounter();
                 string comcod = this.listComName.SelectedValue.ToString();
+                this.setCookieFieldName(comcod);
                 ProcessAccess ulogin = (ASTUtility.Left(this.listComName.SelectedValue.ToString(), 1) == "4") ? new ProcessAccess() : new ProcessAccess();
                 DataSet ds51 = ulogin.GetTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "LOGIN", "", "", "", "", "", "", "", "", "");
 
@@ -483,6 +476,7 @@ namespace RealERPWEB
                 string sessionid = (ASTUtility.RandNumber(111111, 999999)).ToString();
                 hst["comcod"] = Comcode;
                 hst["deptcode"] = ds5.Tables[0].Rows[0]["deptcode"];
+                hst["dptdesc"] =   ds5.Tables[0].Rows[0]["dptdesc"];
 
                 // hst["comnam"] = ComName;
                 hst["modulenam"] = "";
@@ -507,6 +501,8 @@ namespace RealERPWEB
                 hst["compmail"] = ds5.Tables[0].Rows[0]["compmail"];
                 hst["userimg"] = ds5.Tables[0].Rows[0]["imgurl"];
                 hst["ddldesc"] = ds5.Tables[0].Rows[0]["ddldesc"];
+                //hst["logowidth"] = ds5.Tables[0].Rows[0]["logowidth"];
+                //hst["logoheight"] = ds5.Tables[0].Rows[0]["logoheight"];
 
 
 
@@ -570,29 +566,24 @@ namespace RealERPWEB
                     Url1 = "UserProfile";
 
                 }
-              
+                else if (userrole == "4" && hrmodule == "81")
+                {
+                    Url1 = "DashboardHRM_NEW";
+
+                }
+                else if (comcod.Substring(0, 1) == "8")
+                {
+                    Url1 = "F_46_GrMgtInter/RptGrpDailyReportJq?Type=Report&comcod=";
+                }
+
                 else
                 {
                     if (masterurl != "")
-                    {
-                        //if (comcod == "1102")
-                        //{
-                        //    Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
-                        //}
-                        //else
-                        //{
-                        
+                    {                        
                         Url1 = ds5.Tables[4].Rows[0]["url"].ToString();
-
-                        //}
-                        // Url1 = "~/Index?pid=";
-
-
                     }
                     else
                     {
-
-
                         if (comcod == "3333")
                         {
                             Url1 = "DeafultMenu?Type=3333";
@@ -614,28 +605,9 @@ namespace RealERPWEB
                         {
                             Url1 = "HrWinMenu";
                         }
-
-                        //else if (comcod == "1102" || comcod == "3316" || comcod == "3315" || comcod == "3317")
-                        //{
-                        //    Url1 = "Dashboard";
-                        //}
-                        //else if (comcod.Substring(0, 1) == "1")
-                        //{
-                        //    Url1 = "MyDashboard?Type=7000";
-                        //}
-                        else if (comcod.Substring(0, 1) == "8")
-                        {
-                            Url1 = "DeafultMenu?Type=9000";
-                        }
-                        //else if (comcod.Substring(0, 1) == "1")
-                        //{
-                        //    Url1 = "DashboardAll?Type=7000";
-                        //}
                         else
                         {
                             Url1 = "MyDashboard?Type=";
-
-
                             string UComcode = ASTUtility.Left(Comcode, 1);
                             if (UComcode == "3")
                             {
@@ -650,15 +622,9 @@ namespace RealERPWEB
                                 Url1 += "5000";
 
                             }
-
-
                         }
 
                     }
-
-
-
-
                 }
 
                 Response.Redirect(Url1, false);
@@ -803,5 +769,40 @@ namespace RealERPWEB
                 this.lblmsg.Text = "<span class='glyphicon glyphicon-warning-sign'></span>   Sorry Your Given Information Are Invalid";
             }
         }
+
+        private void setCookieFieldName(string comcod)
+        {
+            //Create a Cookie with a suitable Key.
+            HttpCookie nameCookie = new HttpCookie("MRF");
+            string refno = "";
+            switch (comcod)
+            {
+                case "2305":
+                case "3305":
+                case "3306":
+                case "3310":
+                case "3311":
+                case "3315":
+                case "3325":
+                case "3353":
+                case "3101":
+                case "3364":
+                    refno = "MPR No";
+                    break;
+                default:
+                    refno = "MRF No";
+                    break;
+
+            }
+            //Set the Cookie value.
+            nameCookie.Values["MRF"] = refno;
+
+            //Set the Expiry date.
+            nameCookie.Expires = DateTime.Now.AddDays(30);
+
+            //Add the Cookie to Browser.
+            Response.Cookies.Add(nameCookie);
+        }
+
     }
 }

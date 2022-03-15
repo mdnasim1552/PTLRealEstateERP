@@ -683,6 +683,9 @@ namespace RealERPWEB.F_17_Acc
             if (TotalPage > 1)
                 ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).Visible = true;
             ((DropDownList)this.dgv2.FooterRow.FindControl("dgv2ddlPageNo")).SelectedIndex = this.dgv2.PageIndex;
+
+            Session["Report1"] = dgv2;
+            ((HyperLink)this.dgv2.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
         }
 
 
