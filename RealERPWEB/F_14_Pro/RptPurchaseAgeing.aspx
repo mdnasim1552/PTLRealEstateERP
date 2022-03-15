@@ -103,7 +103,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="col-md-3">
                             <div class="form-group">
                                 <div class="margin-top30px">
@@ -118,13 +118,13 @@
                                 <asp:LinkButton ID="lnkbtnOk" runat="server" CssClass="margin-top30px btn btn-primary" OnClick="lnkbtnOk_Click">Ok</asp:LinkButton>
                             </div>
                         </div>
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <div class="form-group">
-                                <asp:HyperLink ID="hlnkSupinfo" runat="server" CssClass="margin-top30px btn btn-primary pull-right" style="position:relative; float:right;" Target="_blank" >Supplier Info</asp:HyperLink>
+                                <asp:HyperLink ID="hlnkSupinfo" runat="server" CssClass="margin-top30px btn btn-primary pull-right" Style="position: relative; float: right;" Target="_blank">Supplier Info</asp:HyperLink>
                             </div>
                         </div>
 
-                        
+
 
                     </div>
                 </div>
@@ -226,8 +226,8 @@
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Bill In A/C">
-                                        <ItemTemplate>         
-                                         <asp:HyperLink ID="hlnkgvbillacamt" runat="server" Font-Size="11px"
+                                        <ItemTemplate>
+                                            <asp:HyperLink ID="hlnkgvbillacamt" runat="server" Font-Size="11px"
                                                 Style="text-align: right" Font-Underline="false" Target="_blank"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "billacamt")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="70px"></asp:HyperLink>
@@ -347,7 +347,7 @@
                                     <asp:TemplateField HeaderText="Upto 90 Days">
                                         <ItemTemplate>
                                             <asp:HyperLink ID="hlnkgvmon13amt" runat="server" Font-Size="11px"
-                                                Style="text-align: right"  Font-Underline="false" Target="_blank"
+                                                Style="text-align: right" Font-Underline="false" Target="_blank"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "mon13amt")).ToString("#,##0;(#,##0); ") %>'
                                                 Width="70px"></asp:HyperLink>
                                         </ItemTemplate>

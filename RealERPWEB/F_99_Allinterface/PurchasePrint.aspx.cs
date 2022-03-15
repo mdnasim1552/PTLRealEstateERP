@@ -4207,7 +4207,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3330": //bridge 
-                        if (pactcode == "160100010025")
+                        if (pactcode == "160100010025" || pactcode == "160100010027")
                         {
                             Reportpath = "~/Report/RptPurchaseOrderBridgeWLogo.rdlc";
                         }
