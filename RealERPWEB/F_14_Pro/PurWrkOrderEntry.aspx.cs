@@ -2005,7 +2005,12 @@ namespace RealERPWEB.F_14_Pro
         {
 
             this.Get_Pur_Order_Info();
-            string comcod = this.GetCompCode();
+       
+
+
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
             if (comcod == "3335")
             {
                 this.ddltypecod.Visible = true;
@@ -2026,17 +2031,22 @@ namespace RealERPWEB.F_14_Pro
                     this.txtLETDES.Text = "This is an reference to your discussion had with us today, we are pleased to place an order for supplying Rmc at our project under the following terms & conditions.";
                     break;
 
-                case "3101":
+     
                 case "3357":
                     this.txtSubject.Text = "Purchase Order For ";
                     this.txtLETDES.Text = "Thank you very much for cooperating with Cube Holdings Ltd. Against your offer and further discussion we are offering you for the supply of ... under the following terms & condition and rate.";
                     break;
 
-                default:
-                    this.txtSubject.Text = "Purchase Order For Materials";
-                    this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
-
+                case "3330":
+                    //case "3101":
+                    this.txtSubject.Text = "Purchase Order For ";
+                    this.txtLETDES.Text = comnam + " "+ "requests you to arrange supply of following materials from your organization.";
                     break;
+                default:
+                    this.txtSubject.Text = "Purchase Order For ";
+                    this.txtLETDES.Text = " requests you to arrange supply of following materials from your organization.";
+                    break;
+
 
             }
 
