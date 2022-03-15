@@ -861,7 +861,7 @@ namespace RealERPWEB.F_09_PImp
             DataTable dt = (DataTable)ViewState["tblmatissue"];
             if (dt.Rows.Count == 0)
                 return;
-            ((Label)this.grvissue.FooterRow.FindControl("lblFissueamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblFissueamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0.0000;(#,##0.0000); ");
 
 
         }

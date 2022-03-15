@@ -988,7 +988,7 @@ namespace RealERPWEB.F_09_PImp
 
             ((Label)this.grvissue.FooterRow.FindControl("lblgvFadedamount")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(adedamt)", "")) ? 0.00 : dt.Compute("Sum(adedamt)", ""))).ToString("#,##0;(#,##0); ");
 
-            ((Label)this.grvissue.FooterRow.FindControl("lblFissueamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0;(#,##0); ");
+            ((Label)this.grvissue.FooterRow.FindControl("lblFissueamt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("Sum(isuamt)", "")) ? 0.00 : dt.Compute("Sum(isuamt)", ""))).ToString("#,##0.0000;(#,##0.0000); ");
 
 
         }
