@@ -174,7 +174,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
 
-
+                string comcod = this.GetComeCode();
                 string ahleave = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "leav")).ToString();
                 string lateapp = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "lateapp")).ToString();
 
@@ -186,22 +186,49 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 DateTime actualout = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "actualout"));
 
 
-
-                if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
+                switch (comcod)
                 {
-                    ((Label)e.Item.FindControl("lblactualout")).Visible = false;
-                    ((Label)e.Item.FindControl("lblactualin")).Visible = false;
-                    ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
+                    case "3365":
+                        if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Visible = false;
+                            ((Label)e.Item.FindControl("lblactualin")).Visible = false;
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
 
+                        }
+
+                        else if ((offimein < actualin ) && lateapp == "False")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
+
+
+                        }
+
+
+                        break;
+                    default:
+                        if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Visible = false;
+                            ((Label)e.Item.FindControl("lblactualin")).Visible = false;
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
+
+                        }
+                        else if ((offimein < actualin || offouttim > actualout) && lateapp == "False")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
+
+
+                        }
+                        break;
                 }
-                else if ((offimein < actualin || offouttim > actualout) && lateapp == "False")
-                {
-                    ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
-                    ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
-                    ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
 
 
-                }
+               
 
             }
 
