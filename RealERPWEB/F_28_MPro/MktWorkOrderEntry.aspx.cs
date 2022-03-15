@@ -174,65 +174,6 @@ namespace RealERPWEB.F_28_MPro
             return PrintWorkOrder;
         }
       
-        private string ComOrderNo()
-        {
-            string comcod = this.GetCompCode();
-            string orderno = "";
-            switch (comcod)
-            {
-                case "1108":
-                case "1109":
-                case "3315":
-                case "3316":
-                case "3317":
-                    //case "3101":
-                    orderno = ASTUtility.Right(this.lblissueno.Text.Trim(), 6);
-                    break;
-
-                default:
-                    orderno = this.lblCurOrderNo1.Text.Trim() + this.txtCurOrderNo2.Text;
-                    break;
-
-
-            }
-            return orderno;
-        }
-
-        private string GetCompOrderCopy()
-        {
-
-            string comcod = this.GetCompCode();
-            string ordernocopy = "";
-            switch (comcod)
-            {
-
-                case "3330":
-                    // case "3101":
-                    ordernocopy = "Bridge";
-                    break;
-                // case "3101":
-                case "3332":
-                    ordernocopy = "Innstar";
-                    break;
-                default:
-                    ordernocopy = "";
-                    break;
-
-
-            }
-            return ordernocopy;
-
-
-        }
-
-
-
-
-
-
-
-
-
         protected string GetStdDate(string Date1)
         {
             Date1 = (Date1.Trim().Length == 0 ? DateTime.Today.ToString("dd.MM.yyyy") : Date1);
@@ -272,16 +213,11 @@ namespace RealERPWEB.F_28_MPro
             string orderno = (this.Request.QueryString["genno"].ToString().Trim().Length == 0 ? "" : this.Request.QueryString["genno"].ToString()) + "%";
 
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPREVORDERLIST", CurDate1,
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_PREV_ORDER_LIST", CurDate1,
                           orderno, length, usrid, "", "", "", "", "");
-
-
-
-
-
-
             if (ds1 == null)
                 return;
+
             this.ddlPrevOrderList.Items.Clear();
             this.ddlPrevOrderList.DataTextField = "orderno1";
             this.ddlPrevOrderList.DataValueField = "orderno";
@@ -351,20 +287,10 @@ namespace RealERPWEB.F_28_MPro
             this.hideTermsConditions();
         }
 
-
-        private void GetIssueNO()
-        {
-            string comcod = this.GetCompCode();
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETISSUENO", "", "", "", "", "", "", "", "", "");
-            this.lblissueno.Text = ds2.Tables[0].Rows[0]["isunum"].ToString();
-
-        }
         private void GetProConPerson(string pactcode)
         {
-            //Session.Remove("tblproconper");
             string comcod = this.GetCompCode();
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPREPROCONPER", pactcode, "", "", "", "", "", "", "", "");
-            //  Session["tblproconper"] = ds2.Tables[0];
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_ORDER_TERMS", pactcode, "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count > 0)
             {
                 this.gvOrderTerms.DataSource = ds2.Tables[0];
@@ -375,10 +301,8 @@ namespace RealERPWEB.F_28_MPro
 
         private void GetPreNarration()
         {
-            //Session.Remove("tblproconper");
             string comcod = this.GetCompCode();
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPRENARRATION", "", "", "", "", "", "", "", "", "");
-            //  Session["tblproconper"] = ds2.TabltxtLETDESes[0];
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_PREV_NARRATION:", "", "", "", "", "", "", "", "", "");
             if (ds2.Tables[0].Rows.Count > 0)
             {
                 this.txtOrderNarr.Text = ds2.Tables[0].Rows[0]["pordnar"].ToString().Trim();
@@ -387,10 +311,8 @@ namespace RealERPWEB.F_28_MPro
         }
         private void GetOrRefno(string pactcode)
         {
-
-
             string comcod = this.GetCompCode();
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETORDERREFNO", pactcode, "", "", "", "", "", "", "", "");
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_ORDER_REF_NO", pactcode, "", "", "", "", "", "", "", "");
             this.txtOrderRefNo.Text = ds2.Tables[0].Rows[0]["pordref"].ToString();
 
         }
@@ -408,7 +330,7 @@ namespace RealERPWEB.F_28_MPro
 
 
 
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTORDERINFO", mOrderdate, "", "", "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_LAST_ORDER_INFO", mOrderdate, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
@@ -428,29 +350,34 @@ namespace RealERPWEB.F_28_MPro
 
         private void ResourceForOrder()
         {
-
             ViewState.Remove("tblResP");
-
             string comcod = this.GetCompCode();
             string CurDate1 = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
             string findSupplier = this.txtsrchSupplier.Text.Trim() + "%";
             string[] approvno;
 
-
             string qgenno = this.Request.QueryString["genno"] ?? "";
-
             string findReq = qgenno.Length == 0 ? "%%" : this.Request.QueryString["genno"].ToString();
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "RESOURCEINFFORORDER", CurDate1,
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "ORDER_RESOURCE_INFO", CurDate1,
                          findSupplier, findReq, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
-            this.ddlSuplierList.DataTextField = "ssirdesc1";
-            this.ddlSuplierList.DataValueField = "ssircode";
-            this.ddlSuplierList.DataSource = ds1.Tables[1];
-            this.ddlSuplierList.DataBind();
+
+            //this.ddlSuplierList.DataTextField = "ssirdesc1";
+            //this.ddlSuplierList.DataValueField = "ssircode";
+            //this.ddlSuplierList.DataSource = ds1.Tables[1];
+            //this.ddlSuplierList.DataBind();
             ViewState["tblResP"] = ds1.Tables[0];
             ViewState["tblProject"] = ds1.Tables[1];
-            this.ddlSuplierList_SelectedIndexChanged(null, null);
+            this.Data_Bind();
+            //this.ddlSuplierList_SelectedIndexChanged(null, null);
+        }
+
+        private void Data_Bind()
+        {
+            DataTable dt = (DataTable)ViewState["tblResP"];
+            this.gvAprovInfo.DataSource = dt;
+            this.gvAprovInfo.DataBind();
         }
 
         protected void imgSearchOrderno_Click(object sender, EventArgs e)
@@ -458,23 +385,23 @@ namespace RealERPWEB.F_28_MPro
             this.ResourceForOrder();
         }
 
-        protected void ddlSuplierList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)ViewState["tblResP"];
-            string supcode = this.ddlSuplierList.SelectedValue.ToString();
-            DataView dv1 = dt.DefaultView;
-            dv1.RowFilter = "ssircode in ('" + supcode + "')";
-            this.gvAprovInfo.DataSource = dv1.ToTable();
-            this.gvAprovInfo.DataBind();
+        //protected void ddlSuplierList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    DataTable dt = (DataTable)ViewState["tblResP"];
+        //    string supcode = this.ddlSuplierList.SelectedValue.ToString();
+        //    DataView dv1 = dt.DefaultView;
+        //    dv1.RowFilter = "ssircode in ('" + supcode + "')";
+        //    this.gvAprovInfo.DataSource = dv1.ToTable();
+        //    this.gvAprovInfo.DataBind();
 
-            //For Visible Item Serial Manama
-            string comcod = GetCompCode();
-            if (comcod == "3353" || comcod == "3101")
-            {
-                this.gvAprovInfo.Columns[1].Visible = true;
-            }
+        //    //For Visible Item Serial Manama
+        //    string comcod = GetCompCode();
+        //    if (comcod == "3353" || comcod == "3101")
+        //    {
+        //        this.gvAprovInfo.Columns[1].Visible = true;
+        //    }
 
-        }
+        //}
 
 
         protected void Get_Pur_Order_Info()
@@ -506,7 +433,7 @@ namespace RealERPWEB.F_28_MPro
                 }
             }
 
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_PUR_ORDER_INFO", mOrderNo, CurDate1, pactcode, "", "", "", "", "", "");
             if (ds1 == null)
                 return;
             ViewState["dsOrder"] = ds1;
@@ -517,19 +444,14 @@ namespace RealERPWEB.F_28_MPro
             this.gvOrderTerms.DataBind();
            
 
-            if (comcod == "3338")
-            {
-                gvOrderTerms.Columns[2].Visible = false;
-            }
-
-            ViewState["tblpaysch"] = ds1.Tables[2];
-            this.SchData_Bind();
+            //ViewState["tblpaysch"] = ds1.Tables[2];
+            //this.SchData_Bind();
 
 
             if (mOrderNo == "NEWORDER")
             {
 
-                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTORDERINFO", CurDate1, "", "", "", "", "", "", "", "");
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_LAST_ORDER_INFO", CurDate1, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
@@ -537,21 +459,7 @@ namespace RealERPWEB.F_28_MPro
                     this.lblCurOrderNo1.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(0, 6);
                     this.txtCurOrderNo2.Text = ds1.Tables[0].Rows[0]["maxorderno1"].ToString().Substring(6, 5);
                 }
-
-                switch (comcod)
-                {
-                    case "1108":
-                    case "1109":
-                    case "3315":
-                    case "3316":
-                    case "3317":
-                    //case "3101":
-                    case "5101":
-                    case "3330":
-                        this.GetIssueNO();
-                        break;
-                }
-                return;
+                
             }
 
             this.lblCurOrderNo1.Text = ds1.Tables[3].Rows[0]["orderno1"].ToString().Substring(0, 6);
@@ -584,10 +492,6 @@ namespace RealERPWEB.F_28_MPro
             //{
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnDelete")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
             ((LinkButton)this.gvOrderInfo.FooterRow.FindControl("lbtnUpdatePurOrder")).Visible = (this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry" || this.Request.QueryString["InputType"].ToString().Trim() == "OrderEdit" || this.Request.QueryString["InputType"].ToString().Trim() == "FirstApp" || this.Request.QueryString["InputType"].ToString().Trim() == "SecondApp");
-
-
-
-
 
 
             //For Forward
@@ -664,48 +568,6 @@ namespace RealERPWEB.F_28_MPro
             return dt1;
         }
 
-
-        private DataTable HiddenSameDataPrint(DataTable dt1)
-        {
-            if (dt1.Rows.Count == 0)
-                return dt1;
-
-            string reqno = dt1.Rows[0]["reqno"].ToString();
-            string rsircode = dt1.Rows[0]["rsircode"].ToString();
-
-            for (int j = 1; j < dt1.Rows.Count; j++)
-            {
-                if (dt1.Rows[j]["reqno"].ToString() == reqno && dt1.Rows[j]["rsircode"].ToString() == rsircode)
-                {
-                    reqno = dt1.Rows[j]["reqno"].ToString();
-                    rsircode = dt1.Rows[j]["rsircode"].ToString();
-                    dt1.Rows[j]["reqno"] = "";
-                    dt1.Rows[j]["mrfno"] = "";
-                    dt1.Rows[j]["rsirdesc"] = "";
-                }
-
-                else
-                {
-                    if (dt1.Rows[j]["reqno"].ToString() == reqno)
-                    {
-                        dt1.Rows[j]["reqno"] = "";
-                        dt1.Rows[j]["mrfno"] = "";
-
-                    }
-
-                    if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
-                        dt1.Rows[j]["rsirdesc"] = "";
-
-
-                    reqno = dt1.Rows[j]["reqno"].ToString();
-                    rsircode = dt1.Rows[j]["rsircode"].ToString();
-                }
-
-            }
-
-            return dt1;
-        }
-
         protected void Session_tblOrder_Update()
         {
 
@@ -755,11 +617,6 @@ namespace RealERPWEB.F_28_MPro
                     tbl1.Rows[TblRowIndex2]["aprovrate"] = aprovrate;
                     tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;
                 }
-
-
-
-
-
 
             }
             ViewState["tblOrder"] = tbl1;
@@ -1169,8 +1026,7 @@ namespace RealERPWEB.F_28_MPro
             DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
             if (!Convert.ToBoolean(dr1[0]["entry"]))
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
                 return;
             }
 
@@ -1192,7 +1048,7 @@ namespace RealERPWEB.F_28_MPro
                 {
                     if (!dconi)
                     {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Purchase Order Entry Only Current Date');", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Purchase Order Entry Only Current Date" + "');", true);
                         return;
                     }
                 }
@@ -1227,7 +1083,7 @@ namespace RealERPWEB.F_28_MPro
                 bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(drf["aprovdat"].ToString()), Convert.ToDateTime(mORDERDAT));
                 if (!dcon)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Order Date is equal or greater Approved Date');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Order Date is equal or greater Approved Date" + "');", true);
                     return;
                 }
 
@@ -1238,64 +1094,40 @@ namespace RealERPWEB.F_28_MPro
                 this.GetOrderNo();
 
             string mORDERNO = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
+           
+            //Commented by Parbaz 14 March 2022
 
-            if ((this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry"))
-            {
+            //if ((this.Request.QueryString["InputType"].ToString().Trim() == "OrderEntry"))
+            //{
 
-                for (int i = 0; i < tbl1.Rows.Count; i++)
-                {
-                    string mAPROVNO = tbl1.Rows[i]["aprovno"].ToString();
-                    string mREQNO = tbl1.Rows[i]["reqno"].ToString();
-                    string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                    string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
-                    DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "EMPTYORDERNO", mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, "", "", "", "", "");
-                    if (ds1 == null)
-                        return;
-                    if (ds1.Tables[0].Rows.Count == 0)
-                        continue;
-                    if (ds1.Tables[0].Rows[0]["orderno"].ToString().Trim() != "")
-                    {
+            //    for (int i = 0; i < tbl1.Rows.Count; i++)
+            //    {
+            //        string mAPROVNO = tbl1.Rows[i]["aprovno"].ToString();
+            //        string mREQNO = tbl1.Rows[i]["reqno"].ToString();
+            //        string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
+            //        string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
+            //        DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "EMPTYORDERNO", mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, "", "", "", "", "");
+            //        if (ds1 == null)
+            //            return;
+            //        if (ds1.Tables[0].Rows.Count == 0)
+            //            continue;
+            //        if (ds1.Tables[0].Rows[0]["orderno"].ToString().Trim() != "")
+            //        {
 
-                        DataView dv1 = ds1.Tables[0].DefaultView;
-                        dv1.RowFilter = ("orderno <>'" + mORDERNO + "'");
-                        DataTable dt = dv1.ToTable();
-                        if (dt.Rows.Count == 0)
-                            ;
-                        else
-                        {
-                            ((Label)this.Master.FindControl("lblmsg")).Text = "Materials  already Orderred another order";
-                            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                            return;
-                        }
-                    }
-                }
+            //            DataView dv1 = ds1.Tables[0].DefaultView;
+            //            dv1.RowFilter = ("orderno <>'" + mORDERNO + "'");
+            //            DataTable dt = dv1.ToTable();
+            //            if (dt.Rows.Count == 0)
+            //                ;
+            //            else
+            //            {
+            //                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Materials  already Orderred another order" + "');", true);
+            //                return;
+            //            }
+            //        }
+            //    }
 
-                switch (comcod)
-                {
-                    case "1108":// Assure
-                    case "1109":// Assure
-                    case "3315":// Assure
-                    case "3316":// Assure
-                    case "3317":// Assure
-                    //case "3101":
-                    case "5101":
-                    case "3330":// Bridge
-
-                        if (this.lblissueno.Enabled)
-                        {
-                            this.GetIssueNO();
-                            this.lblissueno.Enabled = false;
-                        }
-
-                        break;
-
-
-                }
-
-
-
-
-            }
+            //}
 
             double netamt = Convert.ToDouble(((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text.ToString());  //(Label)gvOrderInfo.FindControl("lblgvFooterTOrderAmt");
 
@@ -1305,7 +1137,7 @@ namespace RealERPWEB.F_28_MPro
 
             else
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Advanced Amount must be equal /less in Total Amount');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Advanced Amount must be equal /less in Total Amount" + "');", true);
                 return;
             }
 
@@ -1333,33 +1165,15 @@ namespace RealERPWEB.F_28_MPro
 
 
             string terms = "";
-            bool istxtTerms;
-            switch (comcod)
-            {
-                case "1205": //p2p
-                case "3351":
-                case "3352":
-
-                case "3101":
-                case "3366": // lanco
-                case "3357": // Cube
-                    terms = txtOrderNarrP.Text.Trim().ToString();
-                    istxtTerms = false;
-                    break;
-                default:
-                    terms = "";
-                    istxtTerms = true;
-                    break;
-            }
+            bool istxtTerms = true;
 
             string forward = (tbl1.Rows[0]["forward"].ToString().Trim().Length == 0) ? "False" : tbl1.Rows[0]["forward"].ToString();
-            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERB",
-                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDUSRID, mAPPRUSRID, mAPPRDAT, mPORDBYDES, mAPPBYDES, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Sessionid, Terminal, AdvAmt.ToString(), issueno, Approval, forward,
-                             terms, "", "");
+            result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_PUR_ORDER_INFO", "MKTORDERB",
+                             mORDERNO, mORDERDAT, mSSIRCODE, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Terminal, Sessionid, Approval, forward,
+                             "", "", "");
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                 return;
             }
 
@@ -1371,7 +1185,7 @@ namespace RealERPWEB.F_28_MPro
                 bool dcon = ASITUtility02.PurChaseOperation(Convert.ToDateTime(tbl1.Rows[i]["aprovdat"].ToString()), Convert.ToDateTime(mORDERDAT));
                 if (!dcon)
                 {
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Order Date is equal or greater Approved Date');", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Order Date is equal or greater Approved Date" + "');", true);
                     return;
                 }
 
@@ -1389,31 +1203,31 @@ namespace RealERPWEB.F_28_MPro
                 // string mORDRQTY = tbl1.Rows[i]["ordrqty"].ToString();
                 if (mAprovqty < mORDRQTY)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Order Qty Must be Less Or Equal  Approve Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Order Qty Must be Less Or Equal  Approve Qty" + "');", true);
                     return;
                 }
 
-                purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURPROPOSAL", mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, mSSIRCODE, mORDERNO, mORDRQTY.ToString(), "", "", "", "", "", "", "", "");
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURPROPOSAL", mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, mSSIRCODE, mORDERNO, mORDRQTY.ToString(), "", "", "", "", "", "", "", "");
 
                 if (mREQNO != "")
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERA",
-                             mORDERNO, mAPROVNO, mREQNO, mRSIRCODE, mSPCFCOD, mORDRQTY.ToString(), dispercnt, "", "", "", "", "", "", "", "", "", "", "", "", "");
-
-                else
                 {
-                    string mPactcode = tbl1.Rows[i]["pactcode"].ToString();
-                    string mOrderAmt = Convert.ToDouble(tbl1.Rows[i]["ordramt"]).ToString();
+                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_PUR_ORDER_INFO", "MKTORDERA",
+                                                 mORDERNO, mREQNO, mRSIRCODE, mSPCFCOD, mORDRQTY.ToString(), "", "", "", "", "", "", "", "", "", "", "", "", "", "","");
+                }                    
 
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERE", mORDERNO, mPactcode, mRSIRCODE, "000000000000", mOrderAmt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                }
+                //else
+                //{
+                //    string mPactcode = tbl1.Rows[i]["pactcode"].ToString();
+                //    string mOrderAmt = Convert.ToDouble(tbl1.Rows[i]["ordramt"]).ToString();
+
+                //    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERE", mORDERNO, mPactcode, mRSIRCODE, "000000000000", mOrderAmt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                //}
 
 
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
             }
@@ -1427,12 +1241,11 @@ namespace RealERPWEB.F_28_MPro
                     string mTERMSSUBJ = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvSubject")).Text.Trim();
                     string mTERMSDESC = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvDesc")).Text.Trim();
                     string mTERMSRMRK = ((TextBox)this.gvOrderTerms.Rows[j].FindControl("txtgvRemarks")).Text.Trim();
-                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERC",
+                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_PUR_ORDER_INFO", "MKTORDERC",
                             mORDERNO, mTERMSID, mTERMSSUBJ, mTERMSDESC, mTERMSRMRK, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
                     if (!result)
                     {
-                        ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                         return;
                     }
 
@@ -1452,43 +1265,39 @@ namespace RealERPWEB.F_28_MPro
                 result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURAPPROVA", mAPROVNO, mREQNO, mRSIRCODE, SSIRCODE, mORDERNO, mSPCFCOD, "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
             }
 
 
-            for (int i = 0; i < this.gvPayment.Rows.Count; i++)
-            {
+            //for (int i = 0; i < this.gvPayment.Rows.Count; i++)
+            //{
 
-                string inscode = ((Label)this.gvPayment.Rows[i].FindControl("lblgvschcode")).Text.Trim();
-                string desc = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschdesc")).Text.Trim();
-                string Date = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                string Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvPayment.Rows[i].FindControl("lblnetamt")).Text.Trim())).ToString();
-                string ait = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvait")).Text.Trim())).ToString();
-                string Remarks = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks")).Text.Trim();
-                string Remarks02 = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks02")).Text.Trim();
-
-
+            //    string inscode = ((Label)this.gvPayment.Rows[i].FindControl("lblgvschcode")).Text.Trim();
+            //    string desc = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschdesc")).Text.Trim();
+            //    string Date = Convert.ToDateTime(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvDate")).Text.Trim()).ToString("dd-MMM-yyyy");
+            //    string Amt = Convert.ToDouble(ASTUtility.StrPosOrNagative(((Label)this.gvPayment.Rows[i].FindControl("lblnetamt")).Text.Trim())).ToString();
+            //    string ait = Convert.ToDouble(ASTUtility.StrPosOrNagative(((TextBox)this.gvPayment.Rows[i].FindControl("txtgvait")).Text.Trim())).ToString();
+            //    string Remarks = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks")).Text.Trim();
+            //    string Remarks02 = ((TextBox)this.gvPayment.Rows[i].FindControl("txtgvschrmrks02")).Text.Trim();
 
 
-                result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERD",
-                        mORDERNO, inscode, desc, Date, Amt, Remarks, Remarks02, ait, "", "", "", "", "", "", "", "", "", "", "", "");
-                if (!result)
-                {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
-                }
 
-            }
+
+            //    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURORDERINFO", "PURORDERD",
+            //            mORDERNO, inscode, desc, Date, Amt, Remarks, Remarks02, ait, "", "", "", "", "", "", "", "", "", "", "", "");
+            //    if (!result)
+            //    {
+            //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+            //        return;
+            //    }
+
+            //}
 
             DataTable dsty = (DataTable)ViewState["tblOrder"];
             this.txtCurOrderDate.Enabled = false;
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Data Updated successfully";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
-            //string projname=dsty.Tables[0].Rows[]
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Purchase Order Updated successfully" + "');", true);
             ViewState["purtermcon"] = null;
 
             if (hst["compsms"].ToString() == "True")
@@ -1805,24 +1614,10 @@ namespace RealERPWEB.F_28_MPro
                     {
                         dt1.Clear();
 
-                        ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-                        ((Label)this.Master.FindControl("lblmsg")).Text = "Please Select only One Project";
-                        ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Please Select only One Project" + "');", true);
                         return;
 
                     }
-
-                    else
-                    {
-
-                        ((Label)this.Master.FindControl("lblmsg")).Visible = false;
-
-
-                    }
-
-
-                    //case "3101":
-                    //case "3348":
 
                     this.GetOrRefno(dt1.Rows[0]["pactcode"].ToString());
                     this.GetProConPerson(dt1.Rows[0]["pactcode"].ToString());
@@ -1957,8 +1752,7 @@ namespace RealERPWEB.F_28_MPro
 
             if (!result)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Failed";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Deleted Failed!" + "');", true);
                 return;
             }
 
@@ -1973,13 +1767,12 @@ namespace RealERPWEB.F_28_MPro
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
                     return;
                 }
             }
-            ((Label)this.Master.FindControl("lblmsg")).Text = "Successfully Deleted";
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Successfully Deleted" + "');", true);
 
             if (ConstantInfo.LogStatus == true)
             {
@@ -2019,28 +1812,28 @@ namespace RealERPWEB.F_28_MPro
             ViewState["tblpaysch"] = dt;
 
             this.chkVisible.Checked = false;
-            this.SchData_Bind();
+            //this.SchData_Bind();
 
         }
 
 
-        private void SchData_Bind()
-        {
-            DataTable dt = (DataTable)ViewState["tblpaysch"];
+        //private void SchData_Bind()
+        //{
+        //    DataTable dt = (DataTable)ViewState["tblpaysch"];
 
-            this.gvPayment.DataSource = dt;
-            this.gvPayment.DataBind();
+        //    this.gvPayment.DataSource = dt;
+        //    this.gvPayment.DataBind();
 
-            if (dt.Rows.Count > 0)
-            {
+        //    if (dt.Rows.Count > 0)
+        //    {
 
-                ((Label)this.gvPayment.FooterRow.FindControl("lblgvfschAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(insamt)", "")) ? 0.00 : dt.Compute("sum(insamt)", ""))).ToString("#,##0;(#,##0); ");
-                ((Label)this.gvPayment.FooterRow.FindControl("lblgvfait")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ait)", "")) ? 0.00 : dt.Compute("sum(ait)", ""))).ToString("#,##0;(#,##0); ");
-                ((Label)this.gvPayment.FooterRow.FindControl("lblgvfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
-            }
+        //        ((Label)this.gvPayment.FooterRow.FindControl("lblgvfschAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(insamt)", "")) ? 0.00 : dt.Compute("sum(insamt)", ""))).ToString("#,##0;(#,##0); ");
+        //        ((Label)this.gvPayment.FooterRow.FindControl("lblgvfait")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ait)", "")) ? 0.00 : dt.Compute("sum(ait)", ""))).ToString("#,##0;(#,##0); ");
+        //        ((Label)this.gvPayment.FooterRow.FindControl("lblgvfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
+        //    }
 
 
-        }
+        //}
         private void SavePaymentSchdule()
         {
 
@@ -2102,7 +1895,7 @@ namespace RealERPWEB.F_28_MPro
         protected void lTotalPayment_Click(object sender, EventArgs e)
         {
             this.SavePaymentSchdule();
-            this.SchData_Bind();
+            //this.SchData_Bind();
         }
         protected void chkVisible_CheckedChanged(object sender, EventArgs e)
         {
@@ -2214,16 +2007,10 @@ namespace RealERPWEB.F_28_MPro
                 tbl1.Rows.Add(dr1);
             }
 
-
-
-
-
-
             ViewState["tblOrder"] = this.HiddenSameData(tbl1);
             this.gvOrderInfo_DataBind();
             // this.gvBillInfo_DataBind();
         }
-
 
         protected void lbtnTotal_Click(object sender, EventArgs e)
         {
@@ -2231,32 +2018,7 @@ namespace RealERPWEB.F_28_MPro
             this.gvOrderInfo_DataBind();
 
         }
-        private string Compserial()
-        {
-            string comcod = this.GetCompCode();
-            string comserial = "";
-            switch (comcod)
-            {
-                case "3305":
-                case "3306":
-                case "3309":
-                case "3310":
-                case "3311":
-                case "2305":
-                case "2306":
-                case "3101":
-                    comserial = "Rup";
-                    break;
-
-                default:
-                    comserial = "";
-                    break;
-
-
-            }
-            return comserial;
-        }
-
+      
         protected void lnkPrint_Click(object sender, EventArgs e)
         {
           
@@ -2433,7 +2195,6 @@ namespace RealERPWEB.F_28_MPro
             this.gvOrderInfo_DataBind();
 
         }
-
 
         private void ShowProjectFiles()
         {
@@ -2633,8 +2394,7 @@ namespace RealERPWEB.F_28_MPro
 
                 if (!result)
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Failed";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Deleted Failed" + "');", true);
                     return;
                 }
                 else
@@ -2645,8 +2405,7 @@ namespace RealERPWEB.F_28_MPro
                     gvOrderTerms.DataSource = (DataTable)ViewState["purtermcon"];
                     gvOrderTerms.DataBind();
 
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Successfully";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Deleted Successfully" + "');", true);
 
                 }
             }
@@ -2659,8 +2418,7 @@ namespace RealERPWEB.F_28_MPro
                 gvOrderTerms.DataSource = (DataTable)ViewState["purtermcon"];
                 gvOrderTerms.DataBind();
 
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Deleted Successfully";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Deleted Successfully" + "');", true);
 
 
             }

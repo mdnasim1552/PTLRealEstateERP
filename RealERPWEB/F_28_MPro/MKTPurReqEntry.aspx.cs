@@ -285,7 +285,7 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlFloor.Visible = false;
                 this.lblddlFloor.Visible = false;
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.lblCurReqNo1.Text = "MREQ" + DateTime.Today.ToString("MM") + "-";
+                this.lblCurReqNo1.Text = "MRQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
                 this.txtMRFNo.Text = "";
 
@@ -793,13 +793,14 @@ namespace RealERPWEB.F_28_MPro
                 string mrkType = tbl1.Rows[i]["acttype"].ToString();
                 string actType = tbl1.Rows[i]["mkttype"].ToString();
                 string expectDate =tbl1.Rows[i]["expusedt"].ToString();
+                string reqNote = tbl1.Rows[i]["reqnote"].ToString();
                 string filePath = tbl1.Rows[i]["filepath"].ToString();
 
                 if (mPREQTY >= mAREQTY)
                 {
                     result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
                                 mREQNO, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, prType, mrkType, actType,
-                                expectDate, filePath, "", "", "", "", "", "");
+                                expectDate, filePath, reqNote, "", "", "", "", "");
 
 
                     if (!result)
