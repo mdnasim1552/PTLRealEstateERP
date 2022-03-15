@@ -49,8 +49,9 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtmrfno.Attributes.Add("placeholder", ReadCookie());
 
-                //this.RadioButtonList1.SelectedIndex = 0;
+               
                 this.PurchaseInfoRpt();
+                this.RadioButtonList1.SelectedIndex = 0;
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
 
 
