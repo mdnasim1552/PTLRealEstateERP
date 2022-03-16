@@ -129,7 +129,7 @@ namespace RealERPWEB.F_17_Acc
         private void TxtnameChange()
         {
             this.lblPayto.Text = this.Request.QueryString["tname"].ToString().Contains("Payment") ? "Pay To: " : "Received From:";
-           // this.dgv1.Columns[11].HeaderText = this.Request.QueryString["tname"].ToString().Contains("Payment") ? "Pay To " : "Received From";
+            // this.dgv1.Columns[11].HeaderText = this.Request.QueryString["tname"].ToString().Contains("Payment") ? "Pay To " : "Received From";
 
         }
         private string CompanyPrintVou()
@@ -242,7 +242,7 @@ namespace RealERPWEB.F_17_Acc
                 string ttsrch = "%" + this.txtScrchConCode.Text.Trim() + "%";
                 string UserId = hst["usrid"].ToString();
                 DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_PAYMENT", "GETCONACCHEAD", ttsrch, UserId, "", "", "", "", "", "", "");
-                if (ds1==null)
+                if (ds1 == null)
                     return;
 
                 DataTable dt1 = ds1.Tables[0];
@@ -331,11 +331,11 @@ namespace RealERPWEB.F_17_Acc
             this.ddlacccode.DataBind();
 
             DataRow[] dr = dt2.Select("actcode='260100010001'");
-            if(dr.Length>0)
-            this.ddlacccode.SelectedValue = "260100010001"; // req by rahin uzzal dev by nahid
-           
-            
-            
+            if (dr.Length > 0)
+                this.ddlacccode.SelectedValue = "260100010001"; // req by rahin uzzal dev by nahid
+
+
+
             //----Show Resource code and Specification Code------------// 
 
             DataTable dt01 = (DataTable)ViewState["HeadAcc1"];
@@ -372,7 +372,7 @@ namespace RealERPWEB.F_17_Acc
 
             try
             {
-                Hashtable hst = (Hashtable)Session["tblLogin"]; 
+                Hashtable hst = (Hashtable)Session["tblLogin"];
                 string ddldesc = hst["ddldesc"].ToString();
                 string comcod = hst["comcod"].ToString();
                 string actcode = this.ddlacccode.SelectedValue.ToString();
@@ -403,7 +403,7 @@ namespace RealERPWEB.F_17_Acc
 
 
                 DataSet ds3 = accData.GetTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "GETRESCODE", actcode, filter1, SearchInfo, "", "", "", "", "", "");
-                if (ds3==null)
+                if (ds3 == null)
                     return;
 
                 DataTable dt3 = ds3.Tables[0];
@@ -419,7 +419,7 @@ namespace RealERPWEB.F_17_Acc
                 DataRow[] dr1 = dt3.Select("rescode='" + seaRes + "'");
                 if (dr1.Length == 0)
                     return;
-                
+
                 if (ASTUtility.Left(dr1[0]["rescode"].ToString(), 1) == "9")
                 {
 
@@ -507,11 +507,11 @@ namespace RealERPWEB.F_17_Acc
             }
             this.GetSpecification();
             this.GetBillNo();
-             this.lnkSpecification_Click(null, null);
+            this.lnkSpecification_Click(null, null);
 
             string comcod = this.GetCompCode();
 
-            if(comcod== "3356")
+            if (comcod == "3356")
             {
                 this.txtRecAndPayto.Text = ((ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2) == "99") || (ASTUtility.Left(this.ddlresuorcecode.SelectedValue, 2)) == "98" ? this.ddlresuorcecode.SelectedItem.ToString() : "");
 
@@ -610,7 +610,24 @@ namespace RealERPWEB.F_17_Acc
 
                 //this.ddlConAccHead.BackColor = System.Drawing.Color.Pink;
                 //this.txtEntryDate.BackColor = System.Drawing.Color.Aqua;
-                lnkAcccode_Click(null,null);
+
+                switch (comcod)
+                {
+                    case "2305":
+                    case "3305":
+                    case "3306":
+                    case "3309":
+                    case "3310":
+                    case "3311":
+                        break;
+                    default:
+                        lnkAcccode_Click(null, null);
+                        break;
+
+
+                }
+
+                // 
             }
             else
             {
@@ -1421,7 +1438,7 @@ namespace RealERPWEB.F_17_Acc
 
             }
 
-           
+
         }
         protected void ibtnvounu_Click(object sender, ImageClickEventArgs e)
         {

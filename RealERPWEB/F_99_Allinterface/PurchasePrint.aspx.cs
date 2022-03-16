@@ -4207,7 +4207,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
                     case "3330": //bridge 
-                        if (pactcode == "160100010025")
+                        if (pactcode == "160100010025" || pactcode == "160100010027")
                         {
                             Reportpath = "~/Report/RptPurchaseOrderBridgeWLogo.rdlc";
                         }
@@ -5998,6 +5998,16 @@ namespace RealERPWEB.F_99_Allinterface
                 //    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_83_Att.DailyAttendenceCHL", lst, null, null);
                 //    break;
 
+                case "2305"://Rupayan
+                case "3305":
+                case "3306":
+                case "3307":
+                case "3308":
+                case "3309":
+                case "3310":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssueRup", lst, null, null);
+                    // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
+                    break;
                 default:
                     Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptLabIssue", lst, null, null);
                     // rptstk = new RealERPRPT.R_09_PImp.rptLabIssue();
