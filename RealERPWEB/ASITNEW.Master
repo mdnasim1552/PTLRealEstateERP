@@ -418,7 +418,7 @@
                                     <asp:HyperLink class="dropdown-item" ID="hypGroupChat" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>' Text="Group Chat"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
                                     <asp:HyperLink class="dropdown-item" ID="lnkFormLink" Target="_blank" Visible="false" runat="server" Text="bti Form"></asp:HyperLink>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'>Give Attendance</a>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'>Online Attendance</a>
                                     <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
 
                                     

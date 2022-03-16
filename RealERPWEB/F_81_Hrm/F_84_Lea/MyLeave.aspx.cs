@@ -225,7 +225,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.Duration.Value = diffdays;
                 if (dfdays > ballv)
                 {
-                    string Messaged = "Oops!! Insufficient Leave Balance, Please conctact with your Managment Team";
+                    string Messaged = "Oops!! Insufficient Leave Balance, please conctact with your Managment";
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                     this.btnSave.Enabled = false;
                 }
@@ -238,7 +238,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             else
             {
-                string Messaged = "Oops!! Already Applied between date";
+                string Messaged = "Oops!! Already applied for leave within date range";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
@@ -300,7 +300,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         this.txtgvenjoydt1.Text = nextday;
                         this.txtgvenjoydt2.Text = nextday;
 
-                        string Messaged = "Oops!! This Date Holiday:  " + extHoliday.Rows[0]["REASON"];
+                        string Messaged = "Oops!! This Date is already a Holiday:  " + extHoliday.Rows[0]["REASON"];
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                         this.btnSave.Enabled = false;
                         isvalidate = false;
@@ -453,7 +453,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     else
                     {
-                        string Messaged = "Successfully applied Your leave, please wait for approval";
+                        string Messaged = "Successfully applied for leave, please wait for approval";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);                        
                         this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);                       
                         string eventdesc2 = "Details: "+ htmtableboyd;
@@ -735,7 +735,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody);
                     if (Result_email == false)
                     {
-                        string Messagesd = "Leave Send, Notification did not send";
+                        string Messagesd = "Leave Applied but Notification has not been sent";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     }
                 }
@@ -743,7 +743,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
             catch (Exception ex)
             {
-                string Messagesd = "Leave Approved, Notification did not send " + ex.Message;
+                string Messagesd = "Leave Applied but Notification has not been sent " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
@@ -757,7 +757,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string empid = this.GetEmpID();
             if (empid.Length==0)
             {
-                string Messaged = "Please contact your management team, Employee ID did not set";
+                string Messaged = "Employee ID has not been set, Please contact your management team";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }

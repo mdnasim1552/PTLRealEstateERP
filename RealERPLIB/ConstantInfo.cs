@@ -2011,6 +2011,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102108", "F_81_Hrm/F_86_All", "EntryDeduction02", " ", "Entry Deduction 02", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102109", "F_81_Hrm/F_89_Pay", "ModeofPaymentDept", "", "Others Department Setup", "HR Management", "False", "False", "False", "False" }); ;
 
+            tblObj.Rows.Add(new Object[] { "8102000", "8102113", "F_81_Hrm/F_83_Att", "AttnOutOfOffice", "", "Online Attendance", "Attendance", "False", "False", "False", "False" }); ;
+
+            
             //////90. PF Account  
             tblObj.Rows.Add(new Object[] { "8102000", "8102120", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Payment Voucher", "Payment Voucher", "PF Account", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102125", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Deposit Voucher", "Deposit Voucher", "PF Account", "False", "False", "False", "False" }); ;
@@ -14700,6 +14703,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000009", "08. Office Time Setup", "F_81_Hrm/F_82_App/HREmpEntry?Type=Officetime", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000010", "09. Office Time Setup(Special Day)", "F_81_Hrm/F_82_App/HREmpEntry?Type=shifttime", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000011", "10.  Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });//"07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0303000012", "", "", "", true, "" });// "08. Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000013", "", "", "", true, "" });//"09. LWP Count", "F_81_Hrm/F_83_Att/HREmpLWP", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Employee Monthly Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MLateAppDay", "", true, "" });
