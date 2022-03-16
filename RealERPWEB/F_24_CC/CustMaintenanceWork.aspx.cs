@@ -812,6 +812,7 @@ namespace RealERPWEB.F_24_CC
                         case "3344": // Terranova
                         case "3101": // Asit Own
                         case "3354": // ERL Own
+                        case "3343": // Dominion
 
 
                             if (approval == "")
