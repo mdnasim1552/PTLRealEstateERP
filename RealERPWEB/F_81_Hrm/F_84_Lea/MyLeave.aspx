@@ -59,9 +59,9 @@
                         <div class="alert-icon">
                           <span class="fa fa-bullhorn"></span>
                         </div>
-                                The supervisor did not set. <br />
+                                The supervisor setup incomplete <br />
                        
-                                  Please set your supervisor  
+                                  Please update your supervisor  
                                 <asp:HyperLink ID="hylnkUserProfileEdit" class="alert-link" runat="server" NavigateUrl="~/F_81_Hrm/F_82_App/EmpProfileEdit.aspx" Target="_blank" ToolTip="Edit Your Profile"><i class="fas fa-user-edit">&nbsp;Click</i></asp:HyperLink>
 
 

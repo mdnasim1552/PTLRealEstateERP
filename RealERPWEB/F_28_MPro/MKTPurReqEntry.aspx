@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="col-2">
-                                <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm"></asp:LinkButton>
+                                <asp:LinkButton ID="lbtnOk" runat="server" Text="Ok" OnClick="lbtnOk_Click" CssClass="btn btn-primary btn-sm lblmargin-top20px"></asp:LinkButton>
                                 <asp:LinkButton ID="lbtnSurVey" runat="server" CssClass="btn btn-primary btn-sm" Visible="False">Survey</asp:LinkButton>
                             </div>
 
@@ -125,42 +125,14 @@
                                     <asp:DropDownList ID="ddlMarkType" runat="server" CssClass="form-control chzn-select"></asp:DropDownList>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <asp:Label ID="lblCategory" runat="server" class="control-label  lblmargin-top9px" Text="Catagory"></asp:Label>
-                                    <asp:DropDownList ID="ddlCatagory" runat="server" CssClass=" form-control chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlCatagory_SelectedIndexChanged"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-3 ml-1">
-                                <div class="form-group">
-                                    <asp:Label ID="lblResList" runat="server" class="control-label  lblmargin-top9px" Text="Materials List"></asp:Label>
-                                    <asp:DropDownList ID="ddlResList" runat="server" CssClass="form-control chzn-select" AutoPostBack="True" OnSelectedIndexChanged="ddlResList_SelectedIndexChanged" TabIndex="3"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="form-group">
-                                    <a class="btn btn-success pull-left btn-sm" data-toggle="modal" data-target="#detialsinfo" title="Add Specification"><i class="fas fa-plus-circle"></i></span>
-                                    </a>
-                                    <asp:Label ID="lblSpecification" runat="server" CssClass="control-label  lblmargin-top9px" Text="Specification"></asp:Label>
 
-                                    <asp:DropDownList ID="ddlResSpcf" runat="server" CssClass=" form-control chzn-select"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="col-1">
+                             <div class="col-1">
                                 <div class="form-group">
-                                    <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm">Select</asp:LinkButton>
-                                </div>
-                            </div>
-                            <div class="col-2">
-                                <div class="form-group">
-                                    <asp:Label ID="lblfloor" runat="server" CssClass="control-label  lblmargin-top9px" Visible="False"></asp:Label>
-                                    <asp:Label ID="lblddlFloor" runat="server" CssClass="control-label  lblmargin-top9px" Visible="False"></asp:Label>
-                                    <asp:DropDownList ID="ddlFloor" runat="server" AutoPostBack="True" Visible="False" CssClass=" form-control"></asp:DropDownList>
+                                    <asp:LinkButton ID="lbtnSelectRes" runat="server" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm  lblmargin-top20px">Select</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
+                      
                     </asp:Panel>
                 </div>
                 <div class="card-body" style="min-height: 350px;">
@@ -340,54 +312,12 @@
                                 <asp:TextBox ID="txtCCDNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="7"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-6" id="uPrj" runat="server">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="lbluPrj" runat="server" CssClass="lblTxt lblName" Text="Use Project"></asp:Label>
-                                </div>
-                                <asp:DropDownList ID="ddlPrjForUse" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3" Style="width: 313px;"></asp:DropDownList>
-                            </div>
-                        </div>
+                       
                         <div class="col-6 mb-2" id="dCMat" runat="server">
                             <asp:HyperLink ID="lnkCreateMat" runat="server" CssClass="btn btn-warning primaryBtn"
                                 NavigateUrl="~/F_17_Acc/AccSubCodeBook.aspx?InputType=Res" Target="_blank" Visible="false">Create Material</asp:HyperLink>
                         </div>
 
-                        <div class="col-6" id="dPrep" runat="server" visible="false">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="lblPreparedBy" runat="server" CssClass="lblTxt" Text="Prepared By:"></asp:Label>
-                                </div>
-                                <asp:TextBox ID="txtPreparedBy" runat="server" CssClass="form-control inputTxt"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="col-6" id="dApp" runat="server" visible="false">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="lblApprovedBy" runat="server" CssClass="lblTxt" Text="Approved By:"></asp:Label>
-                                </div>
-                                <asp:TextBox ID="txtApprovedBy" runat="server" CssClass="form-control inputTxt"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="col-6" id="dAppDate" runat="server" visible="false">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="lblApprovalDate" runat="server" CssClass="lblTxt" Text="Approv.Date:"></asp:Label>
-                                </div>
-                                <asp:TextBox ID="txtApprovalDate" runat="server" CssClass="form-control inputTxt" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
-                            </div>
-                        </div>
-
-                        <div class="col-6" id="dExpDDate" runat="server" visible="false">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="lblExpDeliveryDate" runat="server" CssClass="lblTxt" Text="Exp.Del. Date:"></asp:Label>
-                                </div>
-                                <asp:TextBox ID="txtExpDeliveryDate" runat="server" CssClass="form-control inputTxt" ToolTip="(dd.mm.yyyy)"></asp:TextBox>
-                            </div>
-                        </div>
                     </asp:Panel>
                 </div>
             </div>

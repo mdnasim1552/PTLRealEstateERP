@@ -26,17 +26,22 @@ namespace RealERPWEB.F_99_Allinterface
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "CRM Dashboard";
 
-              //  string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                //  string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfodate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
 
-                
+
 
 
                 DateTime curdate = System.DateTime.Today;
-                DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
-                DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));               
-                this.txtfrmdate.Text = frmdate.ToString("dd-MMM-yyyy");
-                this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
+                this.txtfrmdate.Text = Convert.ToDateTime("01-Jan-" + curdate.ToString("yyyy")).ToString("dd-MMM-yyyy");
+                this.txttodate.Text = Convert.ToDateTime(this.txtfrmdate.Text).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
+
+                //DateTime curdate = System.DateTime.Today;
+                //DateTime frmdate = Convert.ToDateTime("01" + curdate.ToString("dd-MMM-yyyy").Substring(2));
+                //DateTime todate = Convert.ToDateTime(frmdate.AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy"));               
+                //this.txtfrmdate.Text = frmdate.ToString("dd-MMM-yyyy");
+                //this.txttodate.Text = todate.ToString("dd-MMM-yyyy");
                     GetAllSubdata();
                 GETEMPLOYEEUNDERSUPERVISED();
                 ModalDataBind();

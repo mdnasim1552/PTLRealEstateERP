@@ -1355,6 +1355,7 @@ namespace RealERPLIB
             #region Marketing Procument
             tblObj.Rows.Add(new Object[] { "2801000", "2801001", "F_28_MPro", "MktProGenCodeBook?", "Type=Entry", "General Code(M. Procurement) ", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801020", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqCheck", "Material Requisition (1st Approval)", "Marketing Procurement", "False", "False", "False", "False" });
 
 
             tblObj.Rows.Add(new Object[] { "2851000", "2851001", "F_99_Allinterface", "MKTProInterface?", "Type=Report", "Marketing Procurement", "Marketing Procurement", "False", "False", "False", "False" });
@@ -1971,6 +1972,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102062", "F_81_Hrm/F_92_Mgt", "HREmpConfirmation", "", "Employee Confirmation Date", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102063", "F_81_Hrm/F_92_Mgt", "EmpPro", "", "Promotion", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102064", "F_81_Hrm/F_89_Pay", "PayrollLink", "", "Department Permission Access", "HR Management", "False", "False", "False", "False" }); ;
+            
             tblObj.Rows.Add(new Object[] { "8102000", "8102065", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=joiningRpt", "Joining Report Summary", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102066", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=JoinigdWise", "New Joiners List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102067", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpList", "Employee List", "HR Management", "False", "False", "False", "False" }); ;
@@ -2011,6 +2013,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102108", "F_81_Hrm/F_86_All", "EntryDeduction02", " ", "Entry Deduction 02", "Allowances", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102109", "F_81_Hrm/F_89_Pay", "ModeofPaymentDept", "", "Others Department Setup", "HR Management", "False", "False", "False", "False" }); ;
 
+            tblObj.Rows.Add(new Object[] { "8102000", "8102113", "F_81_Hrm/F_83_Att", "AttnOutOfOffice", "", "Online Attendance", "Attendance", "False", "False", "False", "False" }); ;
+
+            
             //////90. PF Account  
             tblObj.Rows.Add(new Object[] { "8102000", "8102120", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Payment Voucher", "Payment Voucher", "PF Account", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102125", "F_81_Hrm/F_90_PF", "GeneralAccounts?", "tcode=99&tname=Deposit Voucher", "Deposit Voucher", "PF Account", "False", "False", "False", "False" }); ;
@@ -2151,6 +2156,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102085", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Ind", "HR Leave Interface(Individual)", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102220", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Mgt", "HR Leave Interface(Mgt)", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102221", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=DeptHead", "HR Leave Interface(Department Head)", "HR Management", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102225", "F_81_Hrm/F_92_Mgt", "EntrySectionWisePermission", "", "Section Wise Permission ", "HR Management", "False", "False", "False" });
 
 
 
@@ -8199,13 +8205,13 @@ namespace RealERPLIB
 
 
 
+            
 
-
-
+ 
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "", "", "", true, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Material Requisition", "F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0301000002","", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000002", "02. Material Requisition (1st Approval)", "F_28_MPro/MKTPurReqEntry?InputType=ReqCheck&prjcode=&genno=", "", true, "" });           
             mnuTbl1.Rows.Add(new Object[] { "0301000003","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000004","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000005","", "", "", true, "" });
@@ -14612,8 +14618,9 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });                    
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000004", "01.Section Wise Permission", "F_81_Hrm/F_92_Mgt/EntrySectionWisePermission", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000005", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000006", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000007", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
@@ -14700,6 +14707,7 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0303000009", "08. Office Time Setup", "F_81_Hrm/F_82_App/HREmpEntry?Type=Officetime", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000010", "09. Office Time Setup(Special Day)", "F_81_Hrm/F_82_App/HREmpEntry?Type=shifttime", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000011", "10.  Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });//"07. Daily Attendance - System", "F_81_Hrm/F_83_Att/HRDailyAtten", "", true, "" });
+            
             mnuTbl1.Rows.Add(new Object[] { "0303000012", "", "", "", true, "" });// "08. Daily Absent", "F_81_Hrm/F_83_Att/EmpDaillyAbsent", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000013", "", "", "", true, "" });//"09. LWP Count", "F_81_Hrm/F_83_Att/HREmpLWP", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0303000014", "11. Employee Monthly Late Approval", "F_81_Hrm/F_83_Att/EmpMonLateApproval?Type=MLateAppDay", "", true, "" });
