@@ -340,14 +340,7 @@
                                 <asp:TextBox ID="txtCCDNarr" runat="server" class="form-control" TextMode="MultiLine" Rows="7"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="col-6" id="uPrj" runat="server">
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <asp:Label ID="lbluPrj" runat="server" CssClass="lblTxt lblName" Text="Use Project"></asp:Label>
-                                </div>
-                                <asp:DropDownList ID="ddlPrjForUse" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="3" Style="width: 313px;"></asp:DropDownList>
-                            </div>
-                        </div>
+                       
                         <div class="col-6 mb-2" id="dCMat" runat="server">
                             <asp:HyperLink ID="lnkCreateMat" runat="server" CssClass="btn btn-warning primaryBtn"
                                 NavigateUrl="~/F_17_Acc/AccSubCodeBook.aspx?InputType=Res" Target="_blank" Visible="false">Create Material</asp:HyperLink>

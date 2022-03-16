@@ -411,33 +411,6 @@ namespace RealERPWEB.F_28_MPro
         protected global::System.Web.UI.WebControls.TextBox txtCCDNarr;
 
         /// <summary>
-        /// uPrj control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl uPrj;
-
-        /// <summary>
-        /// lbluPrj control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbluPrj;
-
-        /// <summary>
-        /// ddlPrjForUse control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrjForUse;
-
-        /// <summary>
         /// dCMat control.
         /// </summary>
         /// <remarks>
