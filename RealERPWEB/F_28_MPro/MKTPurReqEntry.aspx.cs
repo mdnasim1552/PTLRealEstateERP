@@ -200,32 +200,18 @@ namespace RealERPWEB.F_28_MPro
             this.ddlFloor.DataBind();
 
             ViewState["tblprojlist"] = ds2.Tables[0];
+
             this.ddlProject_SelectedIndexChanged(null, null);
 
         }
         protected void GetPRType()
         {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string comcod = this.GetCompCode();
-            string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
-                        : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
-                        : (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
-                        : (this.Request.QueryString["InputType"].ToString() == "HeadUsed") ? "HeadUsed" : "";
-
-
-            string Aproval = (this.Request.QueryString["InputType"].ToString() == "Approval") ? "Aproval" : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "Aproval" : "";
-
-            string CallType = (this.Request.QueryString["InputType"].ToString() == "Entry" || this.Request.QueryString["InputType"].ToString() == "LcEntry") ? "GET_MKT_DDL_LIST" : "PRJCODELIST";
-
-            string userid = hst["usrid"].ToString();
-            string type = this.Request.QueryString["InputType"];
-            string ReFindProject;
-            ReFindProject = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? "%" : this.Request.QueryString["prjcode"].ToString() + "%";
-
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", CallType, ReFindProject, "", "", "", "", "", "", "", "");
+            
+            string comcod = this.GetCompCode();           
+            string ReFindProject = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? "%" : this.Request.QueryString["prjcode"].ToString() + "%";
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_DDL_LIST", ReFindProject, "", "", "", "", "", "", "", "");
             if (ds2 == null)
                 return;
-
             string gcod = "62%";
             DataView dv = ds2.Tables[0].Copy().DefaultView;
             dv.RowFilter = ("gcod  like '" + gcod + "'");
@@ -252,21 +238,7 @@ namespace RealERPWEB.F_28_MPro
             this.ddlMarkType.DataBind();
 
         }
-        protected void Load_Project_To_Combo()
-        {
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblprojlist"];
-            string actcode = "16%";
-            DataView dv1 = dt.DefaultView;
-            //dv1.RowFilter = "actcode not in ('" + actcode + "')";
-            dv1.RowFilter = "actcode like ('" + actcode + "')";
-            DataTable dt1 = dv1.ToTable();
-            this.ddlPrjForUse.DataTextField = "actdesc1";
-            this.ddlPrjForUse.DataValueField = "actcode";
-            this.ddlPrjForUse.DataSource = dt1;
-            this.ddlPrjForUse.DataBind();
-
-        }
+      
 
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
@@ -287,9 +259,7 @@ namespace RealERPWEB.F_28_MPro
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.lblCurReqNo1.Text = "MRQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
-                this.txtMRFNo.Text = "";
-
-                //this.txtResSearch.Text = "";
+                this.txtMRFNo.Text = "";                
                 this.ddlResSpcf.Items.Clear();
                 this.ddlResList.Items.Clear();
                 this.txtPreparedBy.Text = "";
@@ -302,10 +272,8 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlProject.Enabled = true;
 
                 this.pnlSpeDet.Visible = false;
-                this.Panel2.Visible = false;
-                //this.PnlDesc.Visible = false;
-                this.lbtnOk.Text = "Ok";
-                // this.ImgbtnSpecification_Click(null, null);
+                this.Panel2.Visible = false;               
+                this.lbtnOk.Text = "Ok";              
 
                 if (Request.QueryString["InputType"].ToString() == "Approval" || Request.QueryString["InputType"].ToString() == "ReqEdit" || Request.QueryString["InputType"].ToString() == "HeadUsed")
                 {
@@ -314,27 +282,15 @@ namespace RealERPWEB.F_28_MPro
                     this.chkneBudget.Visible = false;
                     this.ddlFloor.Visible = false;
                     this.lblddlFloor.Visible = false;
-                    // this.lblResList.Visible = false;
-                    //this.txtResSearch.Visible = false;
-                    //this.ImgbtnFindRes.Visible = false;
-                    //this.ddlResList.Visible = false;
-                    // this.lblSpecification.Visible = false;
-                    // this.txtSrchSpecification.Visible = false;
-                    // this.ImgbtnSpecification.Visible = false;
-                    //this.ddlResSpcf.Visible = false;
-                    //this.lbtnSelectRes.Visible = false;
+                   
                     this.lblfloor.Visible = false;
                     this.lblddlFloor.Visible = false;
                     this.lblmrfno.Visible = false;
                     this.txtMRFNo.Visible = false;
                     this.lblCurNo.Visible = false;
                     this.lblCurReqNo1.Visible = false;
-                    this.txtCurReqNo2.Visible = false;
-                    //this.txtReqText.Visible = false;
-                    //this.ImgbtnReqse.Visible = false;
-                    this.lbtnSurVey.Visible = true;
-
-                    // this.ImgbtnFindReq_Click(null, null);
+                    this.txtCurReqNo2.Visible = false;                   
+                    this.lbtnSurVey.Visible = true;                
 
                 }
 
@@ -347,37 +303,26 @@ namespace RealERPWEB.F_28_MPro
                 this.lblfloor.Visible = false;
                 this.lblddlFloor.Visible = false;
                 this.lblmrfno.Visible = true;
-                this.txtMRFNo.Visible = true;
-                //this.lnkDeleteReqNo.Visible = true;
-
+                this.txtMRFNo.Visible = true;               
                 this.lblCurNo.Visible = true;
                 this.lblCurReqNo1.Visible = true;
-                this.txtCurReqNo2.Visible = true;
-                // this.txtReqText.Visible = true;
-                //this.ImgbtnReqse.Visible = true;
-
-                //this.Panel1.Visible = false;
+                this.txtCurReqNo2.Visible = true;             
 
             }
 
 
-            //this.txtSrchMrfNo.Visible = false;
-            //this.lblpreReq.Visible = false;
             this.ImgbtnFindReq.Visible = false;
             this.ddlPrevReqList.Visible = false; //
             this.ddlProject.Enabled = false;
             this.lblddlFloor.Text = this.ddlFloor.SelectedItem.Text.Trim();
             this.ddlFloor.Visible = false;
-            this.lblddlFloor.Visible = false;
-            // this.txtCurReqDate.ReadOnly = true;
+            this.lblddlFloor.Visible = false;           
             this.txtCurReqNo2.ReadOnly = true;
             this.pnlSpeDet.Visible = true;
-            this.Panel2.Visible = true;
-            //this.PnlDesc.Visible = false;
+            this.Panel2.Visible = true;            
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
-            this.LinkMarketSurvey();
-            //this.ImgbtnFindReq_Click(null, null);
+            this.LinkMarketSurvey();           
             this.ImgbtnFindRes_Click(null, null);
 
         }
@@ -438,7 +383,7 @@ namespace RealERPWEB.F_28_MPro
 
             ViewState["tblReq"] = this.HiddenSameData(ds1.Tables[0]);
             Session["tblUserReq"] = ds1.Tables[1];
-            ViewState["tblreqdesc"] = ds1.Tables[2];
+           
 
             if (Request.QueryString["InputType"].ToString() == "Approval" || Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "HeadUsed")
             {
@@ -467,18 +412,7 @@ namespace RealERPWEB.F_28_MPro
 
 
             this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-            if (ASTUtility.Left(ds1.Tables[1].Rows[0]["pactcode"].ToString(), 4) == "1102")
-            {
-                this.uPrj.Visible = true; ;
-                this.ddlPrjForUse.DataTextField = "upactdesc";
-                this.ddlPrjForUse.DataValueField = "upactcode";
-                this.ddlPrjForUse.DataSource = ds1.Tables[1];
-                this.ddlPrjForUse.DataBind();
-            }
-            else
-            {
-                this.uPrj.Visible = false; ;
-            }
+           
 
             this.ddlFloor.SelectedValue = ds1.Tables[1].Rows[0]["flrcod"].ToString();
             //this.lblddlProject.Text = (this.ddlProject.Items.Count == 0 ? "XXX" : this.ddlProject.SelectedItem.Text.Trim());
@@ -1556,80 +1490,33 @@ namespace RealERPWEB.F_28_MPro
             //this.ImgbtnSpecification_Click(null, null); //w
 
 
-            string actcode = this.ddlProject.SelectedValue.ToString().Trim();
-            if (ASTUtility.Left(actcode, 4) == "1102")
-            {
-                this.uPrj.Visible = true;
-                this.Load_Project_To_Combo();
-            }
-            else
-            {
-                this.uPrj.Visible = false;
-                this.ddlPrjForUse.Items.Clear();
-            }
+         
 
 
 
         }
 
-        private string CompanyLength()
-        {
-            string comcod = this.GetCompCode();
-            string length = "";
-            switch (comcod)
-            {
-                case "3101":
-                case "3340":
-                    length = "length";
-                    break;
-
-
-                default:
-                    length = "";
-                    break;
-            }
-
-            return length;
-
-        }
-
+       
 
         protected void ImgbtnFindReq_Click(object sender, EventArgs e)
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string usrid = hst["usrid"].ToString();
-            string comcod = this.GetCompCode();
-            string length = this.CompanyLength();
-            string fxtast = (this.Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "FxtAst"
-                : (this.Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? "FxtAst"
-                : (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
-                : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? "ReqCheck"
-                : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? "ReqcRMCheck"
-                : (Request.QueryString["InputType"].ToString() == "ReqFirstApproved") ? "ReqFirstApproved"
-                : (Request.QueryString["InputType"].ToString() == "ReqSecondApproved") ? "ReqSecondApproved"
+            string comcod = this.GetCompCode();           
+            string fxtast = (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
+                : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? "ReqCheck"               
+                 : "";
 
-                : (Request.QueryString["InputType"].ToString() == "LcEntry") ? "FxtAst"
-                : (Request.QueryString["InputType"].ToString() == "LcApproval") ? "LcApproval" : "";
-
-
-
-
-            string prjcode = ((Request.QueryString["InputType"].ToString() == "Approval") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "FxtAstApproval") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "HeadUsed") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "ReqFirstApproved") ? this.ddlProject.SelectedValue.ToString()
-                : (Request.QueryString["InputType"].ToString() == "ReqSecondApproved") ? this.ddlProject.SelectedValue.ToString()
-
+            string prjcode = ((Request.QueryString["InputType"].ToString() == "Approval") ? this.ddlProject.SelectedValue.ToString()               
+                : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? this.ddlProject.SelectedValue.ToString()              
+                : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? this.ddlProject.SelectedValue.ToString()   
                 : "") + "%";
 
 
             string mrfno = (this.Request.QueryString["genno"].ToString().Length == 0) ? "%" : this.Request.QueryString["genno"].ToString() + "%";
             string CurDate1 = this.GetStdDate(this.txtCurReqDate.Text.Trim());
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETPREVREQLIST", CurDate1,
-                          prjcode, fxtast, mrfno, length, usrid, "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GETPREVMKTREQLIST", CurDate1,
+                          prjcode, fxtast, mrfno, "", "", "", "", "");
             if (ds1 == null)
                 return;
             this.ddlPrevReqList.Items.Clear();
