@@ -780,5 +780,22 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double preamt { get; set; }
             public RptSalaryReconciliation() { }
         }
+
+        [Serializable]
+        public class AllBankSummary
+        {
+            public string comcod { get; set; }
+            public string seq { get; set; }
+            public string bankcode { get; set; }
+            public string bankname { get; set; }
+            public double bankamt { get; set; }
+            public double cashamt { get; set; }
+            public string remarks { get; set; }
+        }
+
+
+
+
+
     }
 }
