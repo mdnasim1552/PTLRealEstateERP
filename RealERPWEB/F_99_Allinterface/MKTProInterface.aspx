@@ -1027,17 +1027,6 @@
 
 
 
-                                                            <asp:TemplateField HeaderText="CCD Status" Visible="false">
-                                                                <ItemTemplate>
-
-
-                                                                    <asp:Label ID="lblgvApamtf" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "iscrchecked"))%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle Width="100px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
-
 
 
                                                         </Columns>
