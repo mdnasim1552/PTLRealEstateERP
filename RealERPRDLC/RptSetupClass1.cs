@@ -116,6 +116,7 @@ namespace RealERPRDLC
                 case "R_09_PIMP.rptLabIssueSuvastu": Rpt1a = SetrptLabIssueSuvastu(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.rptLabIssueAcme": Rpt1a = SetrptLabIssueAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.rptLabIssueAssure": Rpt1a = SetrptLabIssueAssure(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_09_PIMP.RptLabIssueRup": Rpt1a = SetRptLabIssueRup(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptTopSheet": Rpt1a = SetRptTopSheet(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillAcme": Rpt1a = SetRptConBillAcme(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_09_PIMP.RptConBillEdi": Rpt1a = SetRptConBillEdi(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -954,6 +955,11 @@ namespace RealERPRDLC
                 case "R_81_Hrm.R_84_Lea.RptEmployeeLeaveRecord": Rpt1a = SetRptEmployeeLeaveRecord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_84_Lea.RptYearlyLeaveRecord": Rpt1a = SetRptYearlyLeaveRecord(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_81_Hrm.R_89_Pay.rptAllBankSummary": Rpt1a = SetAllBankSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptGrossRecon": Rpt1a = SetGrossRecon(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptModePayment": Rpt1a = SetModePayment(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                case "R_81_Hrm.R_89_Pay.rptNetComparison": Rpt1a = SetNetComparison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;          
+                case "R_81_Hrm.R_89_Pay.rptGrossComparison": Rpt1a = SetGrossComparison(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+             
                 #endregion
 
                 #region Management
@@ -1011,6 +1017,35 @@ namespace RealERPRDLC
             return Rpt1a;
         }
 
+        private static LocalReport SetModePayment(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>)RptDataSet2));
+            return Rpt1a;
+        }
+
+        private static LocalReport SetNetComparison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>)RptDataSet2));
+            return Rpt1a;
+        }
+
+
+        private static LocalReport SetGrossComparison(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet2", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>)RptDataSet2));
+
+            return Rpt1a;
+        }
+
+
+        private static LocalReport SetGrossRecon(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>)RptDataSet));
+            return Rpt1a;
+        }
         private static LocalReport SetRptEmployeeTransfer(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_81_Hrm.C_87_Tra.EmployeeTransInfo01>)RptDataSet));
@@ -4088,6 +4123,11 @@ namespace RealERPRDLC
         }
 
         private static LocalReport SetrptLabIssueAssure(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
+            return Rpt1a;
+        }        
+        private static LocalReport SetRptLabIssueRup(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
         {
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_09_PIMP.SubConBill.ConRaBill>)RptDataSet));
             return Rpt1a;

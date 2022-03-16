@@ -791,8 +791,53 @@ namespace RealEntity.C_81_Hrm.C_89_Pay
             public double bankamt { get; set; }
             public double cashamt { get; set; }
             public string remarks { get; set; }
+
+            public string refno { get; set; }
+            public string refdesc { get; set; }
+            public double netpay { get; set; }
+            public double p1 { get; set; }
+            public double p2 { get; set; }
+            public double p3 { get; set; }
+            public double p4 { get; set; }
+            public double p5 { get; set; }
+            public double p6 { get; set; }
+            public double p7 { get; set; }
+            public double netpayprev { get; set; }
+            public double diffrent { get; set; }
+            public double per { get; set; }
+            public string grp { get; set; }
+            public string empname { get; set; }
+            public string replacement { get; set; }
+            public string joresigndate { get; set; }
+            public string desig { get; set; }
+            public double preamt { get; set; }
+            public double curamt { get; set; }
+            public string empid { get; set; }
+            public double gssal { get; set; }
+            public double incamt { get; set; }
+            public double inper { get; set; }
+            public double gssalfinal { get; set; }
+            public double gssalprev { get; set; }
+
+
+
+
+        }
+        [Serializable]
+        public class MonthDesc
+        {
+            public string mon1 { get; set; }
+            public string monname { get; set; }
         }
 
+        public class BankDesc
+        {
+            public string comcod { get; set; }
+            public string seq { get; set; }
+            public string bankcode { get; set; }
+            public string bankname { get; set; }
+
+        }
 
 
 

@@ -46,28 +46,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportSource">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.ReportSource.dll</HintPath>
@@ -2208,6 +2208,7 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
+    <Content Include="F_28_MPro\MktMRREntry.aspx" />
     <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
     <Content Include="F_12_Inv\PurMatIssue.aspx" />
@@ -3822,6 +3823,13 @@
     </Compile>
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktMRREntry.aspx.cs">
+      <DependentUpon>MktMRREntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktMRREntry.aspx.designer.cs">
+      <DependentUpon>MktMRREntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_28_MPro\MktPurReqEntry.aspx.cs">
       <DependentUpon>MktPurReqEntry.aspx</DependentUpon>

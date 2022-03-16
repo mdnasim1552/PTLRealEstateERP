@@ -365,23 +365,75 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
             string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
             string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
+            string rptitle = "";
             DataTable dt = (DataTable)Session["tblSalSummary"];
+            DataTable dt2 = (DataTable)Session["tblmondesc"];
+            DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
 
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>();
+     
+          
 
             LocalReport Rpt1 = new LocalReport();
 
-
-
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
+            int index = this.rbtnAtten.SelectedIndex;
+            if (index == 0)
+            {
+                 rptitle= "Summary For Bank Advice";
+                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
+                 Rpt1.EnableExternalImages = true;
+            }
+            else if (index == 1)
+            {
+                rptitle = "Mode of payment";
+                var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
                 Rpt1.EnableExternalImages = true;
+                for (int i = 0; i < dt3.Rows.Count; i++)
+                {
+                    string monname = dt3.Rows[i]["bankname"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+                }
+            }
+            else if (index == 2)
+            {
+                rptitle = "Net Comparison";
+                var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptNetComparison", list, list2, null);
+                Rpt1.EnableExternalImages = true;
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                    string monname = dt2.Rows[i]["monname"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("monname" + i.ToString(), monname));
+                }
+            }
+            else if (index == 3)
+            {
+                rptitle = "Gross Comparison";
+                var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossComparison", list, list2, null);
+                Rpt1.EnableExternalImages = true;
+
+
+                for (int i = 0; i < dt2.Rows.Count; i++)
+                {
+                  string monname = dt2.Rows[i]["monname"].ToString();
+                    Rpt1.SetParameters(new ReportParameter("monname"+i.ToString(), monname));
+                }
+            }
+            else 
+            {
+                rptitle = "Gross Recon";
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
+                Rpt1.EnableExternalImages = true;
+            }
+      
    
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-            Rpt1.SetParameters(new ReportParameter("RptTitle", "Summary For Bank Advice"));
+            Rpt1.SetParameters(new ReportParameter("RptTitle", rptitle));
             Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
             Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
          
@@ -392,56 +444,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
         }
 
-        //private void lnkPrint_Click(object sender, EventArgs e)
-        //{
-        //    Hashtable hst = (Hashtable)Session["tblLogin"];
-        //    string comcod = hst["comcod"].ToString();
-        //    string comnam = hst["comnam"].ToString();
-        //    string compname = hst["compname"].ToString();
-        //    string comsnam = hst["comsnam"].ToString();
-        //    string comadd = hst["comadd1"].ToString();
-        //    string session = hst["session"].ToString();
-        //    string username = hst["username"].ToString();
-        //    string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
-        //    string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-        //    string printFooter = "Printed from Computer Address :" + compname + " ,Session: " + session + " ,User: " + username + " ,Time: " + printdate;
-
-        //    DataTable dt = (DataTable)ViewState["tblt01"];
-        //    var list = dt.DataTableToList<RealEntity.C_07_Ten.RptCivilConBOQ>();
-
-        //    string projectName = ddlProject.SelectedItem.Text;
-        //    string profitRate = txtSbtRate_Per.Text;
-        //    string overHead = txtACCost_Per.Text;
-        //    string vatTax = txtACCostVatOH_Per.Text;
-        //    string printType = txtPrintId.SelectedValue;
-        //    LocalReport Rpt1 = new LocalReport();
-        //    if (printType == "management")
-        //    {
 
 
-        //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_07_Ten.RptCivilConBOQ", list, null, null);
-        //        Rpt1.EnableExternalImages = true;
-        //    }
-        //    else
-        //    {
-        //        Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_07_Ten.RptCivilConBOQTender", list, null, null);
-        //        Rpt1.EnableExternalImages = true;
-        //    }
-        //    Rpt1.SetParameters(new ReportParameter("comnam", comnam));
-        //    Rpt1.SetParameters(new ReportParameter("comadd", comadd));
-        //    Rpt1.SetParameters(new ReportParameter("RptTitle", "Civil Construction BOQ"));
-        //    Rpt1.SetParameters(new ReportParameter("printFooter", printFooter));
-        //    Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
-        //    Rpt1.SetParameters(new ReportParameter("projectName", projectName));
-
-        //    Session["Report1"] = Rpt1;
-        //    ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
-        //      ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-        //}
-
-
-
-    }
+}
 
 }

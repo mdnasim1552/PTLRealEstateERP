@@ -140,11 +140,13 @@
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+AllBankSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+EmpMonthSummary.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_22_Sal.Sales_BO+BudgetnSales.datasource" />
+    <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+MonthDesc.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+RptSalarySheet.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryGrandT.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet+SalaryPaySlip.datasource" />
     <None Include="Properties\DataSources\RealEntity.C_81_Hrm.C_89_Pay.SalarySheet2+bnkStatement.datasource" />
     <EmbeddedResource Include="R_09_PIMP\RptConBillIntech.rdlc" />
+    <EmbeddedResource Include="R_09_PIMP\RptLabIssueRup.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenAmtBasisPeriodic.rdlc" />
     <EmbeddedResource Include="R_12_Inv\RptInvenQtyBasis.rdlc" />
@@ -913,6 +915,10 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterBridge.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterGreenwood.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptForLetterTerra.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptModePayment.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptNetComparison.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptGrossComparison.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\rptGrossRecon.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptGrpSummary.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptIncomeSatatement.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipBTI_Old.rdlc" />
