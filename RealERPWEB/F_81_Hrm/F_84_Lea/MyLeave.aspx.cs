@@ -455,7 +455,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         string Messaged = "Successfully applied Your leave, please wait for approval";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);                        
-                        this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);
+                        this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);                       
+                        string eventdesc2 = "Details: "+ htmtableboyd;
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", htmtableboyd, Messaged);
                     }
 
                     this.EmpLeaveInfo();
