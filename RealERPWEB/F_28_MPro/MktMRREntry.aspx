@@ -107,7 +107,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon2">Project List</span>
                                     </div>
-                                    <asp:TextBox ID="txtProjectSearch" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <asp:TextBox ID="txtProjectSearch" runat="server" CssClass="form-control form-control-sm" ></asp:TextBox>
                                     <div class="input-group-prepend">
                                         <asp:LinkButton ID="ImgbtnFindProject" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Find Project" OnClick="ImgbtnFindProject_Click"><i class="fas fa-search"></i></asp:LinkButton>
                                     </div>
@@ -200,7 +200,7 @@
                 </div>
                 <div class="card-body" style="min-height: 350px;">
                     <asp:GridView ID="gvMRRInfo" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        ShowFooter="True" OnRowDeleting="gvMRRInfo_RowDeleting" CssClass="table-striped table-hover table-bordered grvContentarea" OnSelectedIndexChanged="gvMRRInfo_SelectedIndexChanged">
+                        ShowFooter="True" CssClass="table-striped table-hover table-bordered grvContentarea" OnSelectedIndexChanged="gvMRRInfo_SelectedIndexChanged">
                         <PagerSettings Visible="False" />
                         <RowStyle />
                         <Columns>
@@ -237,14 +237,18 @@
                                         Width="80px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:CommandField ShowDeleteButton="True" />
 
-
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lbtngvDelete" runat="server" Font-Bold="True" CssClass=" btn btn-xs" OnClick="lbtngvDelete_Click"><i class="fas fa-trash" style="color:red;"></i></asp:LinkButton>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="Right" />
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Req No.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvReqno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1")) %>'
-                                        Width="70px"></asp:Label>
+                                        Width="80px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Description of Materials">

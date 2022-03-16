@@ -18,6 +18,11 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
             if (!IsPostBack)
             {
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("../../AcceessError.aspx");
+
+                ((Label)this.Master.FindControl("lblTitle")).Text = "Online Attendance";
+
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string userrole = hst["userrole"].ToString();
                 if(userrole !="3")

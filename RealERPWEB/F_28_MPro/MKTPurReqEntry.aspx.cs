@@ -193,12 +193,6 @@ namespace RealERPWEB.F_28_MPro
             this.ddlProject.DataValueField = "actcode";
             this.ddlProject.DataSource = ds2.Tables[0];
             this.ddlProject.DataBind();
-
-            this.ddlFloor.DataTextField = "flrdes";
-            this.ddlFloor.DataValueField = "flrcod";
-            this.ddlFloor.DataSource = ds2.Tables[1];
-            this.ddlFloor.DataBind();
-
             ViewState["tblprojlist"] = ds2.Tables[0];
 
             this.ddlProject_SelectedIndexChanged(null, null);
@@ -254,18 +248,12 @@ namespace RealERPWEB.F_28_MPro
                 this.ddlPrevReqList.Items.Clear();
                 this.ddlProject.Visible = true;
 
-                this.ddlFloor.Visible = false;
-                this.lblddlFloor.Visible = false;
+               
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.lblCurReqNo1.Text = "MRQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
                 this.txtMRFNo.Text = "";                
-                this.ddlResSpcf.Items.Clear();
-                this.ddlResList.Items.Clear();
-                this.txtPreparedBy.Text = "";
-                this.txtApprovedBy.Text = "";
-                this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
-                this.txtExpDeliveryDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+                         
                 this.txtReqNarr.Text = "";
                 this.gvReqInfo.DataSource = null;
                 this.gvReqInfo.DataBind();
@@ -280,11 +268,7 @@ namespace RealERPWEB.F_28_MPro
 
                     this.chkdupMRF.Visible = false;
                     this.chkneBudget.Visible = false;
-                    this.ddlFloor.Visible = false;
-                    this.lblddlFloor.Visible = false;
                    
-                    this.lblfloor.Visible = false;
-                    this.lblddlFloor.Visible = false;
                     this.lblmrfno.Visible = false;
                     this.txtMRFNo.Visible = false;
                     this.lblCurNo.Visible = false;
@@ -300,8 +284,7 @@ namespace RealERPWEB.F_28_MPro
 
             if (Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit" || Request.QueryString["InputType"].ToString() == "HeadUsed")
             {
-                this.lblfloor.Visible = false;
-                this.lblddlFloor.Visible = false;
+               
                 this.lblmrfno.Visible = true;
                 this.txtMRFNo.Visible = true;               
                 this.lblCurNo.Visible = true;
@@ -314,16 +297,14 @@ namespace RealERPWEB.F_28_MPro
             this.ImgbtnFindReq.Visible = false;
             this.ddlPrevReqList.Visible = false; //
             this.ddlProject.Enabled = false;
-            this.lblddlFloor.Text = this.ddlFloor.SelectedItem.Text.Trim();
-            this.ddlFloor.Visible = false;
-            this.lblddlFloor.Visible = false;           
+                     
             this.txtCurReqNo2.ReadOnly = true;
             this.pnlSpeDet.Visible = true;
             this.Panel2.Visible = true;            
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();           
-            this.ImgbtnFindRes_Click(null, null);
+           
 
         }
         protected string GetStdDate(string Date1)
@@ -414,15 +395,11 @@ namespace RealERPWEB.F_28_MPro
             this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
            
 
-            this.ddlFloor.SelectedValue = ds1.Tables[1].Rows[0]["flrcod"].ToString();
+           
             //this.lblddlProject.Text = (this.ddlProject.Items.Count == 0 ? "XXX" : this.ddlProject.SelectedItem.Text.Trim());
             //this.lblddlProject.Text = this.ddlProject.SelectedItem.Text.Trim();
-            this.ddlProject.Enabled=false;
-            this.lblddlFloor.Text = (this.ddlFloor.Items.Count == 0 ? "YYY" : this.ddlFloor.SelectedItem.Text.Trim());
-            this.txtPreparedBy.Text = ds1.Tables[1].Rows[0]["reqbydes"].ToString();
-            this.txtApprovedBy.Text = ds1.Tables[1].Rows[0]["appbydes"].ToString();
-            this.txtApprovalDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["apprdat"]).ToString("dd.MM.yyyy");
-            this.txtExpDeliveryDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["eddat"]).ToString("dd.MM.yyyy");
+            this.ddlProject.Enabled=false;        
+          
             this.txtReqNarr.Text = ds1.Tables[1].Rows[0]["reqnar"].ToString();
             //this.ddlptype.SelectedValue = ds1.Tables[1].Rows[0]["ptype"].ToString();
             this.gvResInfo_DataBind();
@@ -467,20 +444,12 @@ namespace RealERPWEB.F_28_MPro
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string ddldesc = hst["ddldesc"].ToString();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
-            string mResCode = this.ddlResList.SelectedValue.ToString();
-            string Specification = this.ddlResSpcf.SelectedValue.ToString();
-            DataRow[] dr2 = tbl1.Select("rsircode = '" + mResCode + "' and spcfcod='" + Specification + "'");
+           string acttype= this.ddlActType.SelectedValue.ToString();           
+            DataRow[] dr2 = tbl1.Select("acttype = '" + acttype + "'");
             if (dr2.Length == 0)
             {
-                DataRow dr1 = tbl1.NewRow();
-                dr1["rsircode"] = this.ddlResList.SelectedValue.ToString();
-                dr1["spcfcod"] = this.ddlResSpcf.SelectedValue.ToString();
-                dr1["rsirdesc1"] = ddldesc == "True" ? this.ddlResList.SelectedItem.Text.Trim() : this.ddlResList.SelectedItem.Text.Trim().Substring(14);
-                dr1["spcfdesc"] = this.ddlResSpcf.SelectedItem.Text.Trim();
-                DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                DataRow[] dr3 = tbl2.Select("rsircode = '" + mResCode + "'");
-                dr1["rsirunit"] = dr3[0]["rsirunit"];
-                dr1["bbgdqty1"] = dr3[0]["bbgdqty1"];
+                DataRow dr1 = tbl1.NewRow();                             
+                DataTable tbl2 = (DataTable)ViewState["tblMat"];               
                 dr1["prtype"] = this.ddlPRType.SelectedValue.ToString();
                 dr1["acttype"] = this.ddlActType.SelectedValue.ToString();
                 dr1["mkttype"] = this.ddlMarkType.SelectedValue.ToString();
@@ -714,26 +683,23 @@ namespace RealERPWEB.F_28_MPro
             }
 
 
-            for (int i = 0; i < tbl1.Rows.Count; i++)
+            foreach (DataRow dr1 in tbl1.Rows)
             {
-                string rowId = i.ToString();
-                string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
-
-                double mPREQTY = Convert.ToDouble(tbl1.Rows[i]["preqty"]);
-                double mAREQTY = Convert.ToDouble(tbl1.Rows[i]["areqty"]);
-                string mREQRAT = tbl1.Rows[i]["reqrat"].ToString();
-                string prType = tbl1.Rows[i]["prtype"].ToString();
-                string mrkType = tbl1.Rows[i]["acttype"].ToString();
-                string actType = tbl1.Rows[i]["mkttype"].ToString();
-                string expectDate =tbl1.Rows[i]["expusedt"].ToString();
-                string reqNote = tbl1.Rows[i]["reqnote"].ToString();
-                string filePath = tbl1.Rows[i]["filepath"].ToString();
+                
+                double mPREQTY = Convert.ToDouble(dr1["preqty"]);
+                double mAREQTY = Convert.ToDouble(dr1["areqty"]);
+                string mREQRAT = dr1["reqrat"].ToString();
+                string prType = dr1["prtype"].ToString();
+                string mrkType = dr1["acttype"].ToString();
+                string actType = dr1["mkttype"].ToString();
+                string expectDate =dr1["expusedt"].ToString();
+                string reqNote = dr1["reqnote"].ToString();
+                string filePath = dr1["filepath"].ToString();
 
                 if (mPREQTY >= mAREQTY)
                 {
                     result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
-                                mREQNO, mRSIRCODE, mSPCFCOD, mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, prType, mrkType, actType,
+                                mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, prType, mrkType, actType,
                                 expectDate, filePath, reqNote, "", "", "", "", "");
 
 
@@ -1314,160 +1280,9 @@ namespace RealERPWEB.F_28_MPro
             ViewState["tblReq"] = tbl1;
         }
 
-        protected void ImgbtnSpecification_Click(object sender, EventArgs e)
-        {
-            string mResCode = this.ddlResList.SelectedValue.ToString().Substring(0, 9);
-            string spcfcod1 = this.ddlResSpcf.SelectedValue.ToString();
-            this.ddlResSpcf.Items.Clear();
-            DataTable tbl1 = (DataTable)ViewState["tblSpcf"];
-            DataView dv1 = tbl1.DefaultView;
-            dv1.RowFilter = "mspcfcod = '" + mResCode + "' or spcfcod = '000000000000'";
-            DataTable dt = dv1.ToTable();
-            this.ddlResSpcf.DataTextField = "spcfdesc";
-            this.ddlResSpcf.DataValueField = "spcfcod";
-            this.ddlResSpcf.DataSource = dt;
-            this.ddlResSpcf.DataBind();
-            DataRow[] dr = dt.Select("spcfcod='" + spcfcod1 + "'");
-            if (dr.Length > 0)
-            {
-                this.ddlResSpcf.SelectedValue = spcfcod1;
-            }
-
-        }
+        
 
 
-
-        protected void ImgbtnFindRes_Click(object sender, EventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            string approved = "";
-
-            string mProject = this.ddlProject.SelectedValue.ToString();
-            string mSrchTxt = "%%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_MATERAILS", mSrchTxt, mProject, approved, "", "", "", "", "", "");
-            if (ds1 == null)
-                return;
-
-            ViewState["tblcat"] = ds1.Tables[0];
-            ViewState["tblMat"] = ds1.Tables[1];
-            ViewState["tblSpcf"] = ds1.Tables[2];
-
-
-            // Catagory
-            this.ddlCatagory.DataTextField = "catdesc";
-            this.ddlCatagory.DataValueField = "catcode";
-            this.ddlCatagory.DataSource = ds1.Tables[0];
-            this.ddlCatagory.DataBind();
-            this.ddlResourceBound();
-
-        }
-        protected void ddlResList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataTable dt = (DataTable)ViewState["tblMat"];
-            int tindex = dt.Rows.Count;
-            if (tindex > 15)
-            {
-                string rsircode = this.ddlResList.SelectedValue.ToString();
-                int sindex = Convert.ToInt16((dt.Select("rsircode='" + rsircode + "'"))[0]["rowid"].ToString());
-
-                DataTable dt2 = dt.Clone();
-                int rowid = 1;
-                for (int i = sindex - 1; i < tindex; i++)
-                {
-                    DataRow dr1 = dt2.NewRow();
-
-
-                    dr1["rowid"] = rowid;
-                    dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
-                    dr1["rsircode"] = dt.Rows[i]["rsircode"].ToString();
-                    dr1["rsirdesc"] = dt.Rows[i]["rsirdesc"].ToString();
-                    dr1["rsirdesc1"] = dt.Rows[i]["rsirdesc1"].ToString();
-                    dr1["rsirdesc2"] = dt.Rows[i]["rsirdesc2"].ToString();
-                    dr1["rsirunit"] = dt.Rows[i]["rsirunit"].ToString();
-                    dr1["bgdqty"] = dt.Rows[i]["bgdqty"].ToString();
-                    dr1["bgdrat"] = dt.Rows[i]["bgdrat"].ToString();
-                    dr1["treceived"] = dt.Rows[i]["treceived"].ToString();
-                    dr1["bbgdqty"] = dt.Rows[i]["bbgdqty"].ToString();
-                    dr1["bbgdqty1"] = dt.Rows[i]["bbgdqty1"].ToString();
-                    dr1["bgdamt"] = dt.Rows[i]["bgdamt"].ToString();
-                    dr1["bbgdamt"] = dt.Rows[i]["bbgdamt"].ToString();
-                    dr1["bbgdamt1"] = dt.Rows[i]["bbgdamt1"].ToString();
-                    dr1["stkqty"] = dt.Rows[i]["stkqty"].ToString();
-                    dr1["stdrat"] = dt.Rows[i]["stdrat"].ToString();
-                    dr1["tbgdqty"] = dt.Rows[i]["tbgdqty"].ToString();
-                    dr1["tbbgdqty"] = dt.Rows[i]["tbbgdqty"].ToString();
-                    rowid++;
-                    dt2.Rows.Add(dr1);
-
-                }
-
-
-                for (int i = 0; i < sindex - 1; i++)
-                {
-                    DataRow dr1 = dt2.NewRow();
-                    dr1["rowid"] = rowid;
-                    dr1["pactcode"] = dt.Rows[i]["pactcode"].ToString();
-                    dr1["rsircode"] = dt.Rows[i]["rsircode"].ToString();
-                    dr1["rsirdesc"] = dt.Rows[i]["rsirdesc"].ToString();
-                    dr1["rsirdesc1"] = dt.Rows[i]["rsirdesc1"].ToString();
-                    dr1["rsirdesc2"] = dt.Rows[i]["rsirdesc2"].ToString();
-                    dr1["rsirunit"] = dt.Rows[i]["rsirunit"].ToString();
-                    dr1["bgdqty"] = dt.Rows[i]["bgdqty"].ToString();
-                    dr1["bgdrat"] = dt.Rows[i]["bgdrat"].ToString();
-                    dr1["treceived"] = dt.Rows[i]["treceived"].ToString();
-                    dr1["bbgdqty"] = dt.Rows[i]["bbgdqty"].ToString();
-                    dr1["bbgdqty1"] = dt.Rows[i]["bbgdqty1"].ToString();
-                    dr1["bgdamt"] = dt.Rows[i]["bgdamt"].ToString();
-                    dr1["bbgdamt"] = dt.Rows[i]["bbgdamt"].ToString();
-                    dr1["bbgdamt1"] = dt.Rows[i]["bbgdamt1"].ToString();
-                    dr1["stkqty"] = dt.Rows[i]["stkqty"].ToString();
-                    dr1["stdrat"] = dt.Rows[i]["stdrat"].ToString();
-                    dr1["tbgdqty"] = dt.Rows[i]["tbgdqty"].ToString();
-                    dr1["tbbgdqty"] = dt.Rows[i]["tbbgdqty"].ToString();
-                    rowid++;
-                    dt2.Rows.Add(dr1);
-
-                }
-                ViewState["tblMat"] = dt2;
-
-                this.ddlResourceBound();
-
-
-
-            }
-
-            else
-            {
-
-                this.ImgbtnSpecification_Click(null, null);
-            }
-
-        }
-
-
-        private void ddlResourceBound()
-        {
-            Hashtable hst = (Hashtable)Session["tblLogin"];
-            string ddldesc = hst["ddldesc"].ToString();
-            string TextField = (ddldesc == "True" ? "rsirdesc" : "rsirdesc1");
-            DataTable dt = (DataTable)ViewState["tblMat"];
-            this.ddlResList.Items.Clear();
-            string catcode = this.ddlCatagory.SelectedValue.ToString();
-            DataView dv = dt.DefaultView;
-            if (catcode == "000000000000") ;
-            else
-            {
-                catcode = catcode.Substring(0, 4) + "%";
-                dv.RowFilter = ("rsircode  like '" + catcode + "'");
-            }
-
-            this.ddlResList.DataTextField = TextField;
-            this.ddlResList.DataValueField = "rsircode";
-            this.ddlResList.DataSource = dv.ToTable();
-            this.ddlResList.DataBind();
-
-            this.ImgbtnSpecification_Click(null, null);
-        }
 
 
 
@@ -1634,10 +1449,7 @@ namespace RealERPWEB.F_28_MPro
         }
 
 
-        protected void ddlCatagory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            this.ddlResourceBound();
-        }
+       
         protected void lbtnAddspecifiation_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
@@ -1646,23 +1458,23 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnUpdateSpeDetails_Click(object sender, EventArgs e)
         {
 
-            string comcod = this.GetCompCode();
-            string Desc = this.txtspcfdesc.Text.Trim();
-            string sircode = this.ddlResList.SelectedValue.ToString().Substring(0, 9);
-            List<RealEntity.C_17_Acc.EClassSpecification.EClassLastSpcfcodeofRes> lst = objuserman.GetLastSpeciCode(comcod, sircode);
-            string spcfcod = lst[0].spcfcod;
-            bool result = this.purData.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "SPACCOUNTUPDATE", spcfcod.Substring(0, 2), spcfcod, Desc, "", "", "", "", "", "", "", "", "", "", "", "");
+            //string comcod = this.GetCompCode();
+            //string Desc = this.txtspcfdesc.Text.Trim();
+            //string sircode = this.ddlResList.SelectedValue.ToString().Substring(0, 9);
+            //List<RealEntity.C_17_Acc.EClassSpecification.EClassLastSpcfcodeofRes> lst = objuserman.GetLastSpeciCode(comcod, sircode);
+            //string spcfcod = lst[0].spcfcod;
+            //bool result = this.purData.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "SPACCOUNTUPDATE", spcfcod.Substring(0, 2), spcfcod, Desc, "", "", "", "", "", "", "", "", "", "", "", "");
 
-            if (!result)
-            {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +  purData.ErrorObject["Msg"].ToString() + "');", true);
-                return;
-            }
-            else
-            {
+            //if (!result)
+            //{
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +  purData.ErrorObject["Msg"].ToString() + "');", true);
+            //    return;
+            //}
+            //else
+            //{
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Specification Update Successfully" + "');", true);
-            }
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Specification Update Successfully" + "');", true);
+            //}
 
         }
 
