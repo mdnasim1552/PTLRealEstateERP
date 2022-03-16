@@ -108,10 +108,15 @@ ul.ui-autocomplete.ui-menu {
 .lblmargin-top9px {
     margin-top: 9px !important;
 }
+
+.lblmargin-top20px {
+    margin-top: 20px !important;
+}
+
+
 .lblleftwidth {
-    width: 100px ;
-    text-align:right;
-  
+    width: 100px;
+    text-align: right;
 }
 .lblleftwidth80 {
     width: 90px;
