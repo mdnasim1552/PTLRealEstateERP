@@ -1972,6 +1972,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102062", "F_81_Hrm/F_92_Mgt", "HREmpConfirmation", "", "Employee Confirmation Date", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102063", "F_81_Hrm/F_92_Mgt", "EmpPro", "", "Promotion", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102064", "F_81_Hrm/F_89_Pay", "PayrollLink", "", "Department Permission Access", "HR Management", "False", "False", "False", "False" }); ;
+            
             tblObj.Rows.Add(new Object[] { "8102000", "8102065", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=joiningRpt", "Joining Report Summary", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102066", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=JoinigdWise", "New Joiners List", "HR Management", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102067", "F_81_Hrm/F_92_Mgt", "EmpStatus02?", "Type=EmpList", "Employee List", "HR Management", "False", "False", "False", "False" }); ;
@@ -2155,6 +2156,7 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102085", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Ind", "HR Leave Interface(Individual)", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102220", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=Mgt", "HR Leave Interface(Mgt)", "HR Management", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "8102000", "8102221", "F_81_Hrm/F_92_Mgt", "InterfaceLeavApp?", "Type=DeptHead", "HR Leave Interface(Department Head)", "HR Management", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "8102000", "8102225", "F_81_Hrm/F_92_Mgt", "EntrySectionWisePermission", "", "Section Wise Permission ", "HR Management", "False", "False", "False" });
 
 
 
@@ -14616,8 +14618,9 @@ namespace RealERPLIB
 
             mnuTbl1.Rows.Add(new Object[] { "0206000001", "01. Employee Confirmation Date", "F_81_Hrm/F_92_Mgt/HREmpConfirmation", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000002", "03. Salary Hold", "F_81_Hrm/F_92_Mgt/EmpHold", "", true, "" });
-            mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000003", "05. HR Leave Approval Setup", "F_81_Hrm/F_92_Mgt/HrLeaveApprovalForm", "", true, "" });                    
             mnuTbl1.Rows.Add(new Object[] { "0206000004", "01. Department Permission Access", "F_81_Hrm/F_92_Mgt/PayrollLink", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0206000004", "01.Section Wise Permission", "F_81_Hrm/F_92_Mgt/EntrySectionWisePermission", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000005", "06. Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=EmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000006", "06. Inactive Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=InActiveEmpList&comcod=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0206000007", "06. Total Employee List", "F_81_Hrm/F_92_Mgt/EmpStatus02?Type=TotalEmplist&comcod=", "", true, "" });
