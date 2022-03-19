@@ -75,8 +75,8 @@
                                     <button class="btn btn-secondary " type="button">Date</button>
                                 </div>
 
-                                <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control " AutoComplete="off"></asp:TextBox>
-                                <cc1:calendarextender id="txtfromdate_CalendarExtender" runat="server"
+                                <asp:TextBox ID="txtfromdate" runat="server" CssClass=" form-control"  AutoComplete="off"></asp:TextBox>
+                                <cc1:calendarextender id="txtfromdate_CalendarExtender" runat="server" Format="dd-MMM-yyyy hh:mm:ss tt"
                                     enabled="True"  targetcontrolid="txtfromdate"></cc1:calendarextender>
 
                             </div>
@@ -114,13 +114,13 @@
                         
                     </div>
 
-                    <div class="row" >
-                        <div class="col-md-4 p-0" id="ShowEmp" runat="server">
+                    <div class="row mt-1">
+                        <div class="col-md-6 p-0" id="ShowEmp" runat="server">
                             <div class="input-group input-group-alt">
                                 <div class="input-group-prepend">
-                                    <button class="btn btn-secondary ml-1" type="button">Emp</button>
+                                    <button class="btn btn-secondary ml-1" type="button">Employee </button>
                                 </div>
-                                <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="form-control chzn-select " OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
+                                <asp:DropDownList ID="ddlEmpNameAllInfo" runat="server" CssClass="chzn-select form-control" OnSelectedIndexChanged="ddlEmpNameAllInfo_SelectedIndexChanged" AutoPostBack="true" TabIndex="2">
                                 </asp:DropDownList>
 
                             </div>
@@ -134,7 +134,7 @@
                     </div>
                     <div class=" clearfix"><br /></div>
 
-                    <div class="row" >
+                    <div class="row mt-1" >
                         <div class="col-md-3" id="ReasonType" runat="server">
                             <div class="form-group">
                                 <label for="txtNote">Reason</label>

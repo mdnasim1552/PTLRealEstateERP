@@ -107,7 +107,7 @@ namespace RealERPWEB
                     this.lnkOrintation.Visible = true;
                     this.lnkOrintation.NavigateUrl = "http://172.16.4.113/bti_training/orientation.html";
                     this.HyperCodeofConduct.Visible = true;
-                    this.HypOrganogram.Visible = (userrole == "3" ? false : true); ;
+                    this.HypOrganogram.Visible = (userrole == "1" || userrole == "2" || userrole == "4" ? true : false); ;
 
                     break;
                 default:

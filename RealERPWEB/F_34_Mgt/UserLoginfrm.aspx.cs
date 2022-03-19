@@ -96,6 +96,10 @@ namespace RealERPWEB.F_34_Mgt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+
+    
+        
+
         private void ModuleVisible()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1221,6 +1225,8 @@ namespace RealERPWEB.F_34_Mgt
             string webmailpwd = this.txtmWebMailPass.Text.Trim();
             string userRole = this.ddlmUserRole.SelectedValue.ToString();
 
+            
+
             usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
             bool result = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
                       usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
@@ -1286,7 +1292,7 @@ namespace RealERPWEB.F_34_Mgt
             }
 
             this.ddlmUserRole.SelectedValue = ds1.Tables[0].Rows[0]["userrole"].ToString();
-            this.chkmUserActive.Checked= (ds1.Tables[0].Rows[0]["usractive"].ToString()=="1")?true:false;
+            this.chkmUserActive.Checked= (ds1.Tables[0].Rows[0]["usractive"].ToString()=="True")?true:false;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
 
         }
@@ -1305,6 +1311,13 @@ namespace RealERPWEB.F_34_Mgt
             this.ddlmUserRole.SelectedValue = "";
             this.chkmUserActive.Checked = false;
         }
+
+        protected void ddlmUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
 

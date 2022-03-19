@@ -123,6 +123,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected global::System.Web.UI.WebControls.DropDownList ddlLvType;
 
         /// <summary>
+        /// frmdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl frmdate;
+
+        /// <summary>
         /// txtgvenjoydt1 control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,15 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divBTWDay;
+
+        /// <summary>
+        /// todate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl todate;
 
         /// <summary>
         /// txtgvenjoydt2 control.

@@ -25,16 +25,23 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string userrole = hst["userrole"].ToString();
-                if(userrole !="3")
+                if(userrole != "3")
                 {
                     this.GetCompany();
                     this.topPanle.Visible = true;
-                    
+                    string comcod = GetCompCode();
+                    if (comcod == "3365" || comcod == "3101")
+                    {
+                        this.GetEmpName();
+                        this.WorkComments.Visible = false;
+                        this.ReasonType.Visible = false;
+
+                    }
+
                 }
                 else
                 {
                     string comcod = GetCompCode();
-
                     if (comcod == "3365"||comcod=="3101")
                     {
                         this.GetEmpName();
