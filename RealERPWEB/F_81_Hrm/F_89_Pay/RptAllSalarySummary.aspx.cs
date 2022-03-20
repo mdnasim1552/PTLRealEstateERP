@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -445,6 +446,15 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataTable dt3 = (DataTable)Session["tblbankdesc"];
 
 
+            string getdate = this.ddlmon.SelectedValue.ToString();
+            string subyear = getdate.Substring(0, 4);
+            int submonth=Convert.ToInt32(getdate.Substring(4));
+    
+            DateTimeFormatInfo dateTimeInfo = new DateTimeFormatInfo();
+           string mon =dateTimeInfo.GetAbbreviatedMonthName(submonth);
+
+            string month = mon + "-" + subyear;
+
 
             var list = dt.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.AllBankSummary>();
      
@@ -455,13 +465,13 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             int index = this.rbtnAtten.SelectedIndex;
             if (index == 0)
             {
-                 rptitle= "Summary For Bank Advice";
+                 rptitle= "All bank summary "+month;
                  Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptAllBankSummary", list, null, null);
                  Rpt1.EnableExternalImages = true;
             }
             else if (index == 1)
             {
-                rptitle = "Mode of payment";
+                rptitle = "Mode of payment "+month;
                 var list3 = dt3.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.BankDesc>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptModePayment", list, list3, null);
                 Rpt1.EnableExternalImages = true;
@@ -473,7 +483,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else if (index == 2)
             {
-                rptitle = "Net Comparison";
+                rptitle = "Net salary comparison for " + month;
                 var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptNetComparison", list, list2, null);
                 Rpt1.EnableExternalImages = true;
@@ -485,7 +495,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else if (index == 3)
             {
-                rptitle = "Gross Comparison";
+                rptitle = "Gross salary comparison for " +month;
                 var list2 = dt2.DataTableToList<RealEntity.C_81_Hrm.C_89_Pay.SalarySheet.MonthDesc>();
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossComparison", list, list2, null);
                 Rpt1.EnableExternalImages = true;
@@ -499,7 +509,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
             else 
             {
-                rptitle = "Gross Recon";
+                rptitle = "Reconciliation of gross salary"+ month;
                 Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_81_Hrm.R_89_Pay.rptGrossRecon", list, null, null);
                 Rpt1.EnableExternalImages = true;
             }
