@@ -224,14 +224,45 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     break;
             }
         }
+
+        private string Calltype()
+        {
+            string comcod = this.GetComCode();
+            string calltype = "";
+            switch (comcod)
+            {
+                case "3101":
+                case "3347":
+
+
+                    calltype = "SECTIONNAMEDP01";
+                    break;
+              
+
+                  
+
+
+                default:
+                    calltype = "SECTIONNAMEDP";
+                    
+                    break;
+            }
+
+            return calltype;
+
+        }
         private void GetSectionName()
         {
 
-            string comcod = this.GetComCode();
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string userid = hst["usrid"].ToString();
             string Company = ((this.ddlCompany.SelectedValue.ToString() == "000000000000") ? "" : this.ddlCompany.SelectedValue.ToString().Substring(0, 2)) + "%";
             string Department = ((this.ddlProjectName.SelectedValue.ToString() == "000000000000") ? "" : this.ddlProjectName.SelectedValue.ToString().Substring(0, 9)) + "%";
             string txtSSec = "%%";
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", "SECTIONNAMEDP", Company, Department, txtSSec, "", "", "", "", "", "");
+            string calltype = this.Calltype();
+
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_ATTENDENCE", calltype, Company, Department, txtSSec, userid, "", "", "", "", "");
             this.DropCheck1.DataTextField = "sectionname";
             this.DropCheck1.DataValueField = "sectionname";
             this.DropCheck1.DataSource = ds2.Tables[0];
