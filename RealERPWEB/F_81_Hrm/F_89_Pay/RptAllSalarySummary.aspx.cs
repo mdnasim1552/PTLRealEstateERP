@@ -56,7 +56,9 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlModPayment.Visible = false;
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
-                    this.PnlGrossRecon.Visible = false;                 
+                    this.PnlGrossRecon.Visible = false;
+                    this.PnlTotal.Visible = false;
+                    
                     break;
                 case 1:
                     this.PnlBankSumary.Visible = false;
@@ -64,6 +66,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
+                    this.PnlTotal.Visible = false;
                     break;
                 case 2:
                     this.PnlBankSumary.Visible = false;
@@ -71,6 +74,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = true;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
+                    this.PnlTotal.Visible = false;
                     break;
 
                 case 3:
@@ -79,6 +83,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = true;
                     this.PnlGrossRecon.Visible = false;
+                    this.PnlTotal.Visible = false;
                     break;
                 case 4:
                     this.PnlBankSumary.Visible = false;
@@ -86,6 +91,16 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = true;
+                    this.PnlTotal.Visible = false;
+                    break;
+
+                case 5:
+                    this.PnlBankSumary.Visible = false;
+                    this.PnlModPayment.Visible = false;
+                    this.PnlNetComparison.Visible = false;
+                    this.PnlGrossSummary.Visible = false;
+                    this.PnlGrossRecon.Visible = true;
+                    this.PnlTotal.Visible = true;
                     break;
                 default:
                     this.PnlBankSumary.Visible = false;
@@ -93,6 +108,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     this.PnlNetComparison.Visible = false;
                     this.PnlGrossSummary.Visible = false;
                     this.PnlGrossRecon.Visible = false;
+                    this.PnlTotal.Visible = false;
 
                     break;
             }
@@ -122,10 +138,45 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 case 4:
                     this.GetGrossPayRecon();
                     break;
-                    
+                case 5:
+                    this.GetTotalSalSum();
+                    break;
                 default:
                     break;
             }          
+        }
+
+        private void GetTotalSalSum()
+        {
+            string comcod = this.GetComCode();
+            string prevmon = "";
+            string monthid = this.ddlmon.SelectedValue.ToString();
+            string cudate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    prevmon = Convert.ToDateTime(date).AddMonths(-1).ToString("yyyyMM");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(monthid.Substring(4, 2))) + "-" + monthid.Substring(0, 4);
+                    prevmon = Convert.ToDateTime(date).ToString("yyyyMM");
+                    break;
+            }
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_SALARY_RECON", "RPTNETCOMPARISONTOTAL", monthid, prevmon, "", "", "", "", "", "", "");
+
+            if (ds1 == null)
+            {
+                return;
+            }
+
+            Session["tblSalSummary"] = ds1.Tables[0];
+            Session["tblmondesc"] = ds1.Tables[1];
+            this.Data_bind();
         }
 
         private void GetGrossPayRecon()
@@ -332,6 +383,29 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = GvGrossRecon;
                     ((HyperLink)this.GvGrossRecon.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
+
+                case 5:
+                    //for (i = 2; i < this.GvModPayment.Columns.Count - 1; i++)
+                    //    this.GvModPayment.Columns[i].Visible = false;
+                    j = 1;
+                    DataTable dtmontotal = (DataTable)Session["tblmondesc"];
+                    if (dtmontotal == null)
+                    {
+                        return;
+                    }
+                    for (i = 0; i < dtmontotal.Rows.Count; i++)
+                    {
+                        this.GvTotalSumm.Columns[j].HeaderText = dtmontotal.Rows[i]["monname"].ToString();
+                        j++;
+                    }
+                    this.GvTotalSumm.DataSource = dt;
+                    this.GvTotalSumm.DataBind();
+
+                    Session["Report1"] = GvTotalSumm;
+                    ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
+                    break;
+
+
                 default:
                     break;
 

@@ -69,15 +69,6 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.DropDownList ddlProject;
 
         /// <summary>
-        /// lblProjectDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProjectDesc;
-
-        /// <summary>
         /// lbtnOk1 control.
         /// </summary>
         /// <remarks>
@@ -85,15 +76,6 @@ namespace RealERPWEB.F_04_Bgd
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbtnOk1;
-
-        /// <summary>
-        /// chkShorting control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkShorting;
 
         /// <summary>
         /// ChkCopyProject control.
@@ -114,6 +96,15 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.CheckBox ChkCopyTender;
 
         /// <summary>
+        /// chkShorting control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkShorting;
+
+        /// <summary>
         /// lblprocopy control.
         /// </summary>
         /// <remarks>
@@ -130,15 +121,6 @@ namespace RealERPWEB.F_04_Bgd
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProjectLock;
-
-        /// <summary>
-        /// Label8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
         /// rbtnList1 control.

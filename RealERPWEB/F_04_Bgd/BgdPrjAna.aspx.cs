@@ -153,7 +153,7 @@ namespace RealERPWEB.F_04_Bgd
                 this.txtProjectSearch.Enabled = true;
                 this.ImgbtnFindProject.Enabled = true;
                 this.ddlProject.Visible = true;
-                this.lblProjectDesc.Visible = false;
+                //this.lblProjectDesc.Visible = false;
                 // this.lblProjectDesc2.Text = "";
                 this.rbtnList1.Visible = false;
                 this.lblcreationdate.Visible = false;
@@ -190,9 +190,9 @@ namespace RealERPWEB.F_04_Bgd
             this.txtProjectSearch.Enabled = false;
             this.ImgbtnFindProject.Enabled = false;
             this.ddlProject.Visible = false;
-            this.lblProjectDesc.Text = this.ddlProject.SelectedItem.Text.Trim();
-            this.lblProjectDesc.Width = this.ddlProject.Width;
-            this.lblProjectDesc.Visible = true;
+            //this.lblProjectDesc.Text = this.ddlProject.SelectedItem.Text.Trim();
+            //this.lblProjectDesc.Width = this.ddlProject.Width;
+            //this.lblProjectDesc.Visible = true;
             string PrjCod = this.ddlProject.SelectedValue.ToString().Trim();
 
             DataRow[] dr1 = ((DataTable)Session["tblPrjCod"]).Select("prjcod='" + PrjCod + "'");

@@ -127,10 +127,10 @@ namespace RealERPWEB
             switch (comcod)
             {
                 case "3365":
-               // case "3101":
+                    // case "3101":
 
-                   //sidebar nav off for bti general user
-                  
+                    //sidebar nav off for bti general user
+                    hypOnlineAttendance.Visible= (userrole == "3" ? false : true);
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);                   
 
@@ -161,6 +161,7 @@ namespace RealERPWEB
                     break;
             }
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
+            this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
 
         }
 

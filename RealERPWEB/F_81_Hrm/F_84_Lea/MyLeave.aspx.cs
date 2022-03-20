@@ -56,31 +56,39 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void GetSupvisorCheck()
         {
-            string comcod = this.GetComeCode();
-
-            string empid = this.GetEmpID();
-            var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
-            if (ds == null)
+            try
             {
-                this.Lvform.Visible = false;
+                string comcod = this.GetComeCode();
+                string empid = this.GetEmpID();
+                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETSUPERVISERMAIL", empid, "", "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    this.Lvform.Visible = false;
 
-                this.warning.Visible = true;
-                return;
-            }
-            if (ds.Tables[0].Rows[0]["sempid"].ToString() == "000000000000")
-            {
-                
-                this.Lvform.Visible = false;
-                this.warning.Visible = true;
-                this.btnSave.Enabled = false;
-                return;
-            }
-            else
-            {
-                this.Lvform.Visible = true;
+                    this.warning.Visible = true;
+                    return;
+                }
+                if (ds.Tables[0].Rows[0]["sempid"].ToString() == "000000000000")
+                {
 
-                this.warning.Visible = false;
+                    this.Lvform.Visible = false;
+                    this.warning.Visible = true;
+                    this.btnSave.Enabled = false;
+                    return;
+                }
+                else
+                {
+                    this.Lvform.Visible = true;
+
+                    this.warning.Visible = false;
+                }
             }
+            catch (Exception ex)
+            {
+                string Messaged = "Oops!! "+ ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+            }
+           
 
         }
         private void GetEmpLoyee()
@@ -140,6 +148,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             return (hst["comcod"].ToString());
 
         }
+
         private void GetLeavType()
         {
             string comcod = this.GetComeCode();
@@ -161,87 +170,129 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         private void GetCalCulateDay()
         {
-            string comcod = this.GetComeCode();
-
-            string gcod = this.ddlLvType.SelectedValue.ToString();
-            if (gcod == "")
+            try
             {
-                this.btnSave.Enabled = false;
-                return;
-            }
-            DataTable dt = (DataTable)Session["tblleavest"];
-            DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
-
-            DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
-            DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
-           
-
-            getLevExitingLv(fdate.ToString(), tdate.ToString());
-            DataTable extlv = (DataTable)ViewState["tblextlv"];
-
-            if (extlv.Rows.Count == 0)
-            {
-
-                double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
-                TimeSpan difference = (tdate - fdate); //create TimeSpan object
-                string diffdays = "0.00";
-                if (chkBoxSkippWH.Checked == false)
+                string comcod = this.GetComeCode();
+                string gcod = this.ddlLvType.SelectedValue.ToString();
+                if (gcod == "")
                 {
-                    isHalfday = (this.CheckBox1.Checked ? 0.5 : 0.00);
-                    if (difference.Days == 0 && isHalfday == 0.5)
-                    {
-                        diffdays = (difference.Days + isHalfday).ToString();
-                    }
-                    else if (difference.Days != 0 && isHalfday == 0.5)
-                    {
-                        diffdays = (difference.Days + isHalfday).ToString();
-                    }
-                    else
-                    {
-                        diffdays = (difference.Days + isHalfday + 1).ToString();
-                    }
-                }
-                else
-                {
-                    int skpday = dt1.Rows.Count;
-                    if (skpday == 1 && isHalfday == 0.5)
-                    {
-                        diffdays = (skpday - isHalfday).ToString();
-                    }
-                    else if (skpday != 0 && isHalfday == 0.5)
-                    {
-                        diffdays = (skpday + isHalfday).ToString();
-                    }
-                    else
-                    {
-                        diffdays = (skpday + isHalfday).ToString();
-                    }
-                }
-                DataView dv = dt.Copy().DefaultView;
-                dv.RowFilter = ("gcod=" + gcod);
-                dt = dv.ToTable();
-                double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
-                double dfdays = Convert.ToDouble(diffdays);
-                this.Duration.Value = diffdays;
-                if (dfdays > ballv)
-                {
-                    string Messaged = "Oops!! Insufficient Leave Balance, Please conctact with your Managment Team";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                     this.btnSave.Enabled = false;
+                    return;
+                }
+                else if (gcod == "51999")
+                {
+                    DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+                    DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
+                    getLevExitingLv(fdate.ToString(), fdate.ToString());
+                    DataTable extlv = (DataTable)ViewState["tblextlv"];
+                    if (extlv.Rows.Count == 0)
+                    {
+
+                        //getLevExitingHoliday(tdate.ToString(), tdate.ToString());
+                        //DataTable extHoliday = (DataTable)ViewState["tblextHoliday"];
+                        //if (extHoliday.Rows.Count != 0)
+                        //{
+                        //    string Messaged = "Oops!! This Date is not  a Holiday:  " + extHoliday.Rows[0]["REASON"];
+                        //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        //    this.btnSave.Enabled = false;
+
+                        //}
+
+                        this.Duration.Value = "1";
+                        this.btnSave.Enabled = true;
+
+
+                    }
+                    else
+                    {
+                        string Messaged = "Oops!! Already applied for leave within date range";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        this.btnSave.Enabled = false;
+                    }
+
+                   
                 }
                 else
                 {
-                    this.btnSave.Enabled = true;
+                    DataTable dt = (DataTable)Session["tblleavest"];
+                    DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
+                    DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+                    DateTime tdate = Convert.ToDateTime(this.txtgvenjoydt2.Text);
+                    getLevExitingLv(fdate.ToString(), tdate.ToString());
+                    DataTable extlv = (DataTable)ViewState["tblextlv"];
+                    if (extlv.Rows.Count == 0)
+                    {
+
+                        double isHalfday = (this.chkHalfDay.Checked ? 0.5 : 0.00);
+                        TimeSpan difference = (tdate - fdate); //create TimeSpan object
+                        string diffdays = "0.00";
+                        if (chkBoxSkippWH.Checked == false)
+                        {
+                            isHalfday = (this.CheckBox1.Checked ? 0.5 : 0.00);
+                            if (difference.Days == 0 && isHalfday == 0.5)
+                            {
+                                diffdays = (difference.Days + isHalfday).ToString();
+                            }
+                            else if (difference.Days != 0 && isHalfday == 0.5)
+                            {
+                                diffdays = (difference.Days + isHalfday).ToString();
+                            }
+                            else
+                            {
+                                diffdays = (difference.Days + isHalfday + 1).ToString();
+                            }
+                        }
+                        else
+                        {
+                            int skpday = dt1.Rows.Count;
+                            if (skpday == 1 && isHalfday == 0.5)
+                            {
+                                diffdays = (skpday - isHalfday).ToString();
+                            }
+                            else if (skpday != 0 && isHalfday == 0.5)
+                            {
+                                diffdays = (skpday + isHalfday).ToString();
+                            }
+                            else
+                            {
+                                diffdays = (skpday + isHalfday).ToString();
+                            }
+                        }
+                        DataView dv = dt.Copy().DefaultView;
+                        dv.RowFilter = ("gcod=" + gcod);
+                        dt = dv.ToTable();
+                        double ballv = Convert.ToDouble(dt.Rows[0]["balleave"]);
+                        double dfdays = Convert.ToDouble(diffdays);
+                        this.Duration.Value = diffdays;
+                        if (dfdays > ballv)
+                        {
+                            string Messaged = "Oops!! Insufficient Leave Balance, please conctact with your Managment";
+                            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                            this.btnSave.Enabled = false;
+                        }
+                        else
+                        {
+                            this.btnSave.Enabled = true;
+                        }
+
+                    }
+                    else
+                    {
+                        string Messaged = "Oops!! Already applied for leave within date range";
+                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
+                        this.btnSave.Enabled = false;
+                    }
                 }
 
+                
             }
-
-            else
+            catch (Exception ex)
             {
-                string Messaged = "Oops!! Already Applied between date";
+                string Messaged = "Oops!! "+ ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 this.btnSave.Enabled = false;
             }
+            
 
 
         }
@@ -300,7 +351,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         this.txtgvenjoydt1.Text = nextday;
                         this.txtgvenjoydt2.Text = nextday;
 
-                        string Messaged = "Oops!! This Date Holiday:  " + extHoliday.Rows[0]["REASON"];
+                        string Messaged = "Oops!! This Date is already a Holiday:  " + extHoliday.Rows[0]["REASON"];
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                         this.btnSave.Enabled = false;
                         isvalidate = false;
@@ -314,10 +365,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
 
 
-
-             nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
-            this.txtgvenjoydt2.Text = nextday;
-            txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+            if (gcod == "51999")
+            {
+               
+                txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
+               
+            }
+            else
+            {
+                nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+                this.txtgvenjoydt2.Text = nextday;
+                txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+            }
+            
+            
             GetCalCulateDay();
         }
 
@@ -333,11 +394,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.btnSave.Enabled = false;
                 return;
             }
+           else if (gcod == "51999")
+            {
+               // this.txtgvenjoydt1.Text = nextday;
+               // this.txtgvenjoydt2.Text = nextday;
+            }
+            else
+            {
+                DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+                //string nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+                //this.txtgvenjoydt2.Text = nextday;
+                txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+            }
 
-            DateTime fdate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
-            //string nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
-            //this.txtgvenjoydt2.Text = nextday;
-            txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+           
 
 
             GetCalCulateDay();
@@ -453,9 +523,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     else
                     {
-                        string Messaged = "Successfully applied Your leave, please wait for approval";
+                        string Messaged = "Successfully applied for leave, please wait for approval";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);                        
-                        this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);
+                        this.SendNotificaion(frmdate, todate, trnid, deptcode,  compsms,  compmail,  ssl,  compName, htmtableboyd);                       
+                        string eventdesc2 = "Details: "+ htmtableboyd;
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", htmtableboyd, Messaged);
                     }
 
                     this.EmpLeaveInfo();
@@ -733,7 +805,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     bool Result_email = UserNotify.SendEmailPTL(hostname, portnumber, frmemail, psssword, subj, empname, empdesig, deptname, compName, tomail, msgbody);
                     if (Result_email == false)
                     {
-                        string Messagesd = "Leave Send, Notification did not send";
+                        string Messagesd = "Leave Applied but Notification has not been sent";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
                     }
                 }
@@ -741,7 +813,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
             catch (Exception ex)
             {
-                string Messagesd = "Leave Approved, Notification did not send " + ex.Message;
+                string Messagesd = "Leave Applied but Notification has not been sent " + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
             }
 
@@ -755,7 +827,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string empid = this.GetEmpID();
             if (empid.Length==0)
             {
-                string Messaged = "Please contact your management team, Employee ID did not set";
+                string Messaged = "Employee ID has not been set, Please contact your management team";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messaged + "');", true);
                 return;
             }
@@ -988,7 +1060,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         protected void ddlLvType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string gcod = this.ddlLvType.SelectedValue.ToString();
 
+            if (gcod== "51999")
+            {
+                chkBoxSkippWH.Checked = false;
+                chkBoxSkippWH_CheckedChanged(null, null);
+                frmdate.InnerText = "Leave Day";
+                todate.InnerText = "For Duty/Off Day";
+                this.divDurStatus.Visible = false;
+            }
+            else
+            {
+
+            }
             string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
             this.txtgvenjoydt1.Text = nextday;
             this.txtgvenjoydt2.Text = nextday;

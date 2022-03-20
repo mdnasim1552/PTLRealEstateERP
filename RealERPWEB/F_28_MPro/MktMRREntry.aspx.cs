@@ -93,15 +93,11 @@ namespace RealERPWEB.F_28_MPro
 
         protected void Load_Project_Combo()
         {
-
-            //PRJCODELIST1
             this.ddlSupList.Items.Clear();
             this.ddlOrderList.Items.Clear();
             string comcod = this.GetCompCode();
-            //string FindProject =  this.txtProjectSearch.Text.Trim() + "%" ;
             string FindProject = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? this.txtProjectSearch.Text.Trim() + "%" : this.Request.QueryString["prjcode"].ToString() + "%";
-            //string CallType = (this.Request.QueryString["InputType"].ToString() == "Entry") ? "PRJCODELIST1" : "PRJCODELIST";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETMRRPRJLIST", FindProject, "", "", "", "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_MRR_PROJECT_LIST", FindProject, "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -110,8 +106,6 @@ namespace RealERPWEB.F_28_MPro
             this.ddlProject.DataSource = ds1.Tables[0];
             this.ddlProject.DataBind();
             this.ddlProject_SelectedIndexChanged(null, null);
-            //if((this.Request.QueryString["prjcode"].ToString()).Length == 0)
-
 
         }
         protected string GetStdDate(string Date1)
@@ -337,11 +331,6 @@ namespace RealERPWEB.F_28_MPro
 
         }
 
-
-
-
-
-
         private void PrintMrrBridge()
         {
 
@@ -491,11 +480,9 @@ namespace RealERPWEB.F_28_MPro
             string comcod = this.GetCompCode();
             string length = this.CompanyLength();
             string CurDate1 = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
-            // string SearchMrr = "%%";
             string qgenno = this.Request.QueryString["genno"] ?? "";
             string SearchMrr = (qgenno.Length == 0 ? "%" : this.Request.QueryString["genno"].ToString()) + "%";
-            //string SearchMrr = this.txtSrchPreMRR.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPREVMRRLIST", CurDate1, SearchMrr, length, usrid, "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_PREV_MRR_LIST", CurDate1, SearchMrr, length, usrid, "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -504,7 +491,6 @@ namespace RealERPWEB.F_28_MPro
             this.ddlPrevMRRList.DataValueField = "mrrno";
             this.ddlPrevMRRList.DataSource = ds1.Tables[0];
             this.ddlPrevMRRList.DataBind();
-
 
         }
 
@@ -698,10 +684,6 @@ namespace RealERPWEB.F_28_MPro
             return dt1;
         }
 
-
-
-
-
         protected void GetReceiveNo()
         {
             string comcod = this.GetCompCode();
@@ -712,7 +694,7 @@ namespace RealERPWEB.F_28_MPro
 
             if (mMRRNo == "NEWMRR")
             {
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTMRRINFO", CurDate1, "", "", "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_LAST_MRR_INFO", CurDate1, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
@@ -742,7 +724,7 @@ namespace RealERPWEB.F_28_MPro
                 mMRRNo = this.ddlPrevMRRList.SelectedValue.ToString();
 
             }
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1,
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_PUR_MRR_INFO", mMRRNo, CurDate1,
                           "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
@@ -754,7 +736,7 @@ namespace RealERPWEB.F_28_MPro
 
             if (mMRRNo == "NEWMRR")
             {
-                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETLASTMRRINFO", CurDate1, "", "", "", "", "", "", "", "");
+                ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_LAST_MRR_INFO", CurDate1, "", "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
                 if (ds1.Tables[0].Rows.Count > 0)
@@ -763,11 +745,7 @@ namespace RealERPWEB.F_28_MPro
                     this.txtCurMRRNo2.Text = ds1.Tables[0].Rows[0]["maxmrrno1"].ToString().Substring(6, 5);
                 }
 
-                // this.GetMRRefno();
                 return;
-
-
-
 
             }
 
@@ -1009,113 +987,26 @@ namespace RealERPWEB.F_28_MPro
             string mPACTCODE = this.ddlProject.SelectedValue.ToString().Trim();
             string mSSIRCODE = this.ddlSupList.SelectedValue.ToString().Trim();
             string mORDERNO = this.ddlOrderList.SelectedValue.ToString().Trim();
-            string mMRRUSRID = "";
-            string mAPPRUSRID = "";
-            string mAPPRDAT = this.GetStdDate(this.txtApprovalDate.Text.Trim());  // DateTime.Today.ToString("dd-MMM-yyyy");
-            string mMRRBYDES = this.txtPreparedBy.Text.Trim();
-            string mAPPBYDES = this.txtApprovedBy.Text.Trim();
             string mMRRNAR = this.txtMRRNarr.Text.Trim();
             string mMRRChlnNo = this.txtChalanNo.Text.Trim();
-            string mrrno = this.txtMRRRef.Text.Trim();
+            //string mrrno = this.txtMRRRef.Text.Trim();
             string mchlndate = this.GetStdDate(this.txtChaDate.Text.Trim()); ;
             string mQcno = this.txtQc.Text.Trim();
 
-            //Chalan No
-            switch (comcod)
-
-            {
-                case "3315":
-                case "3316":
-                case "3317":
-                case "3339": // THL
-
-                    // case "3101":
-
-
-                    if (mMRRChlnNo.Length <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Chalan No Required" + "');", true);
-                        return;
-                    }
-
-
-                    break;
-
-                // case "3101":
-                case "3330":
-
-                    if (mrrno.Length <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR No Required" + "');", true);
-                        return;
-                    }
-
-                    break;
-
-
-                case "3340":
-                case "3336":
-                    if (this.txtMRRRef.Text.Trim().Length <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR Ref. No Required" + "');", true);
-                        return;
-                    }
-
-                    if (mMRRChlnNo.Length <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Chalan No Required" + "');", true);
-                        return;
-                    }
-
-                    break;
-
-                default:
-                    break;
-
-
-
-            }
-
             //MRR No
-            switch (comcod)
+            if (this.txtMRRRef.Text.Trim().Length <= 0)
             {
-
-                case "5101":
-                case "3330":
-                    if (this.txtMRRRef.ToString().Trim().Length <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR No Required" + "');", true);
-                        return;
-                    }
-                    break;
-
-
-
-
-                case "1205": //p2p Engineering
-                case "3351": //WECON Properties
-                case "3352": //P2P 360
-                case "3101": //P2P 360
-
-                    if (this.txtMRRRef.ToString().Trim().Length <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR No Required" + "');", true);
-                        return;
-                    }
-
-
-                    break;
-
-
-
-                default:
-                    break;
-
-
-
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR Ref. No Required" + "');", true);
+                return;
             }
 
-
+            //Chalan No
+            else if (mMRRChlnNo.Length <= 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Chalan No Required" + "');", true);
+                return;
+            }
+           
             ////For Balace Orderqty Qty
 
             if (this.Request.QueryString["type"].ToString().Trim() == "Entry")
@@ -1125,7 +1016,7 @@ namespace RealERPWEB.F_28_MPro
                     string mreqno = tbl1.Rows[i]["reqno"].ToString();
                     string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                     string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
-                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "BALORDERQTY", mORDERNO, mreqno, mRSIRCODE, mSPCFCOD, "", "", "", "", "");
+                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "BAL_ORDER_QTY", mORDERNO, mreqno, mRSIRCODE, mSPCFCOD, "", "", "", "", "");
                     if (ds.Tables[0].Rows.Count == 0) continue;
                     else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)
                     {
@@ -1148,9 +1039,6 @@ namespace RealERPWEB.F_28_MPro
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR Date is equal or greater Order Date" + "');", true);
                     return;
                 }
-
-
-
             }
 
 
@@ -1164,7 +1052,7 @@ namespace RealERPWEB.F_28_MPro
             if (this.chkdupMRR.Checked)
             {
 
-                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "CHECKEDDUPMRRNO", mMRRREF, "", "", "", "", "", "", "", "");
+                DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "CHECKED_DUP_MRRNO", mMRRREF, "", "", "", "", "", "", "", "");
                 if (ds2.Tables[0].Rows.Count == 0)
                     ;
 
@@ -1186,14 +1074,8 @@ namespace RealERPWEB.F_28_MPro
                 }
             }
 
-
-
-
-
-
-
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRB",
-                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRUSRID, mAPPRUSRID, mAPPRDAT, mMRRBYDES, mAPPBYDES, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, "");
+            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "UPDATE_MKT_MRR_INFO", "MKTMRRB",
+                             mMRRNO, mMRRDAT, mPACTCODE, mSSIRCODE, mORDERNO, mMRRREF, mMRRNAR, mMRRChlnNo, PostedByid, PostSession, Posttrmid, Posteddat, EditByid, Editdat, mQcno, mchlndate, "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1212,20 +1094,20 @@ namespace RealERPWEB.F_28_MPro
 
 
 
-                string orderno = tbl1.Rows[i]["orderno"].ToString();
+                //string orderno = tbl1.Rows[i]["orderno"].ToString();
                 string mreqno = tbl1.Rows[i]["reqno"].ToString();
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
                 double orbal = Convert.ToDouble(tbl1.Rows[i]["orderbal"].ToString());
                 double mMRRQTY = Convert.ToDouble(tbl1.Rows[i]["mrrqty"].ToString());
                 string mMRRAMT = tbl1.Rows[i]["mrramt"].ToString();
-                string mMRRNOTE = tbl1.Rows[i]["mrrnote"].ToString();
-                string mMRRchlnqty = tbl1.Rows[i]["chlnqty"].ToString();
+                //string mMRRNOTE = tbl1.Rows[i]["mrrnote"].ToString();
+                //string mMRRchlnqty = tbl1.Rows[i]["chlnqty"].ToString();
                 if (orbal >= mMRRQTY)
                 {
                     if (mMRRQTY > 0)
-                        result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURMRRINFO", "PURMRRA",
-                                 mMRRNO, mRSIRCODE, mSPCFCOD, mMRRQTY.ToString(), mMRRAMT, mMRRNOTE, mMRRchlnqty, mreqno, orderno, "", "", "", "", "", "", "", "", "", "", "");
+                        result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "UPDATE_MKT_MRR_INFO", "MKTMRRA",
+                                 mMRRNO, mRSIRCODE, mSPCFCOD, mMRRQTY.ToString(), mMRRAMT, mreqno, "", "", "", "", "", "", "", "", "", "", "","","","");
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1281,28 +1163,6 @@ namespace RealERPWEB.F_28_MPro
                     0.00 : tbl1.Compute("Sum(mrramt)", ""))).ToString("#,##0.00;(#,##0.00); ");
         }
 
-        private string GetResSupplier()
-        {
-            string comcod = this.GetCompCode();
-            string Calltype = "";
-            switch (comcod)
-            {
-                case "3336":
-                case "3340":
-
-                    Calltype = "GETALLMRRSUPLIST";
-                    break;
-
-                default:
-                    Calltype = "GETMRRSUPLIST";
-                    break;
-
-            }
-            return Calltype;
-
-
-        }
-
         protected void ImgbtnFindSup_Click(object sender, EventArgs e)
         {
             if (this.lbtnOk.Text == "Ok")
@@ -1311,10 +1171,10 @@ namespace RealERPWEB.F_28_MPro
                 string comcod = this.GetCompCode();
                 string FindSupplier = (this.Request.QueryString["sircode"].ToString()).Length == 0 ? this.txtSupSearch.Text.Trim() + "%" : this.Request.QueryString["sircode"].ToString() + "%";
                 string mProjCode = this.ddlProject.SelectedValue.ToString();
-                string CallType = this.GetResSupplier();
-                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", CallType, FindSupplier, mProjCode, "", "", "", "", "", "", "");
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_MRR_SUP_LIST", FindSupplier, mProjCode, "", "", "", "", "", "", "");
                 if (ds1 == null)
                     return;
+
                 this.ddlSupList.DataTextField = "ssirdesc1";
                 this.ddlSupList.DataValueField = "ssircode";
                 this.ddlSupList.DataSource = ds1.Tables[0];
@@ -1332,10 +1192,10 @@ namespace RealERPWEB.F_28_MPro
             string mSupCode = this.ddlSupList.SelectedValue.ToString();
             string Date = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
             string orderno = (this.Request.QueryString["genno"].ToString()).Length == 0 ? "%" + "%" : this.Request.QueryString["genno"].ToString() + "%";
-            //(this.Request.QueryString["prjcode"].ToString()).Length == 0 ? this.txtProjectSearch.Text.Trim() + "%" : this.Request.QueryString["prjcode"].ToString() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETMRRORDERLIST", orderno, mProjCode, mSupCode, Date, "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_MRR_ORDER_LIST", orderno, mProjCode, mSupCode, Date, "", "", "", "", "");
             if (ds1 == null)
                 return;
+
             this.ddlOrderList.DataTextField = "orderno1";
             this.ddlOrderList.DataValueField = "orderno";
             this.ddlOrderList.DataSource = ds1.Tables[0];
@@ -1351,7 +1211,7 @@ namespace RealERPWEB.F_28_MPro
             string mSupCode = this.ddlSupList.SelectedValue.ToString();
             string mOrderNo = this.ddlOrderList.SelectedValue.ToString();
             string mSrchTxt = "%" + this.txtResSearch.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETMRRRESLIST", mSrchTxt, mProject, mSupCode, mOrderNo, "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_MRR_RES_LIST", mSrchTxt, mProject, mSupCode, mOrderNo, "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -1387,26 +1247,6 @@ namespace RealERPWEB.F_28_MPro
                 this.Load_Project_Combo();
         }
 
-
-        protected void gvMRRInfo_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            string comcod = this.GetCompCode();
-            DataTable dt = (DataTable)ViewState["tblMRR"];
-            string MRRNO = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            string reqno = ((Label)this.gvMRRInfo.Rows[e.RowIndex].FindControl("lblgvReqnomain")).Text.Trim();
-            string rescode = ((Label)this.gvMRRInfo.Rows[e.RowIndex].FindControl("lblgvResCod")).Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEMRRMAT", MRRNO, reqno, rescode, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            if (result == true)
-            {
-                int rowindex = (this.gvMRRInfo.PageSize) * (this.gvMRRInfo.PageIndex) + e.RowIndex;
-                dt.Rows[rowindex].Delete();
-            }
-
-            DataView dv = dt.DefaultView;
-            ViewState["tblMRR"] = dv.ToTable();
-            this.gvMRRInfo_DataBind();
-        }
         protected void lbtnDelMRR_Click(object sender, EventArgs e)
         {
             ((Label)this.Master.FindControl("lblmsg")).Visible = true;
@@ -1418,7 +1258,7 @@ namespace RealERPWEB.F_28_MPro
             string Sessionid = hst["session"].ToString();
             string date = System.DateTime.Today.ToString();
             string mMRRNO = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEMRR", mMRRNO, userid, Terminal, Sessionid, date, "", "", "", "", "", "", "", "", "", "");
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_MRR", mMRRNO, userid, Terminal, Sessionid, date, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Data Deleted Failed" + "');", true);
@@ -1437,6 +1277,27 @@ namespace RealERPWEB.F_28_MPro
         protected void gvMRRInfo_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void lbtngvDelete_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            DataTable dt = (DataTable)ViewState["tblMRR"];
+            int gvRowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            int rowIndex = (this.gvMRRInfo.PageSize * this.gvMRRInfo.PageIndex) + gvRowIndex;
+            string MRRNO = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
+            string reqno = ((Label)this.gvMRRInfo.Rows[rowIndex].FindControl("lblgvReqnomain")).Text.Trim();
+            string rescode = ((Label)this.gvMRRInfo.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_MRR_MAT", MRRNO, reqno, rescode, "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (result == true)
+            {
+                dt.Rows[rowIndex].Delete();
+            }
+
+            DataView dv = dt.DefaultView;
+            ViewState["tblMRR"] = dv.ToTable();
+            this.gvMRRInfo_DataBind();
         }
     }
 }

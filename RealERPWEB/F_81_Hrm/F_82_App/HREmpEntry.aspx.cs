@@ -1396,7 +1396,26 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 rate = dtallowsub.Rows[i]["rate"].ToString();
                 result = HRData.UpdateTransHREMPInfo3(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPDATEHREMPDLINF", empid, gcode, gtype, gval, projectcode, "", "", "", "", percnt, unit, qty, rate, "0", "0", "0", "0", "", "", "", "0", "0", "0", "", "01-jan-1900", "01-jan-1900");
             }
-           ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
+
+            //Auto Create User for bti
+            string usrid = "";
+            string usrsname = "";
+            string usrfname = this.lblPEmpName.Text.Trim();
+            string usrdesig = this.lblProjectdesc.Text.Trim();
+            string usrpass = "123456";
+            string usrrmrk = "";
+            string active = "1";
+            
+            string usermail = "";
+            string webmailpwd = "";
+            string userRole = "3";
+
+            //result = User.UpdateTransHREMPInfo3(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
+            //         usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "","");
+
+
+
+            ((Label)this.Master.FindControl("lblmsg")).Text = "Updated Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(1);", true);
 
 
