@@ -163,6 +163,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
             this.Panel2.Visible = true;
             this.lbtnOk.Text = "New";
+            this.GetCompany();
 
             this.Get_Receive_Info();
         }
@@ -362,8 +363,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             string comcod = this.GetCompCode();
             DataTable dt = (DataTable)Session["tbPreLink"];
             string UserName = this.ddlUserList.SelectedValue.ToString();
-            string BankCode = ((Label)this.gvProLinkInfo.Rows[e.RowIndex].FindControl("lblgvprocode")).Text.Trim();
-            bool result = HRData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_04", "DELETEPROCODE", UserName, BankCode, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            string Code = ((Label)this.gvProLinkInfo.Rows[e.RowIndex].FindControl("lblgvprocode")).Text.Trim();
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_ALLOWANCE", "DELETESECTIONCODE", UserName, Code, "", "", "", "", "", "", "", "", "", "", "", "", "");
 
             if (result == true)
             {
