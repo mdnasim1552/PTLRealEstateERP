@@ -617,7 +617,7 @@ contain the p elements to be scrolled  */
                         <!-- grid column -->
                         <div class="col-xl-6">
                             <!-- .card -->
-                            <div class="card card-fluid" id="pnlServHis" runat="server">
+                            <div class="card card-fluid" id="pnlServHis" visible="false" runat="server">
                                 <!-- .card-header -->
                                 <div class="card-header border-0">
                                     <!-- .d-flex -->
