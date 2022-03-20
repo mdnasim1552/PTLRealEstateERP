@@ -362,7 +362,7 @@ namespace RealERPWEB.F_28_MPro
             if (ds1 == null)
                 return;
 
-            ViewState["tblReq"] = this.HiddenSameData(ds1.Tables[0]);
+            ViewState["tblReq"] = ds1.Tables[0];
             Session["tblUserReq"] = ds1.Tables[1];
            
 
@@ -468,7 +468,7 @@ namespace RealERPWEB.F_28_MPro
 
             }
 
-            ViewState["tblReq"] = this.HiddenSameData(tbl1);
+            ViewState["tblReq"] = tbl1;
             this.gvResInfo_DataBind();
 
         }
@@ -690,8 +690,8 @@ namespace RealERPWEB.F_28_MPro
                 double mAREQTY = Convert.ToDouble(dr1["areqty"]);
                 string mREQRAT = dr1["reqrat"].ToString();
                 string prType = dr1["prtype"].ToString();
-                string mrkType = dr1["acttype"].ToString();
-                string actType = dr1["mkttype"].ToString();
+                string actType = dr1["acttype"].ToString(); 
+                string mrkType = dr1["mkttype"].ToString();
                 string expectDate =dr1["expusedt"].ToString();
                 string reqNote = dr1["reqnote"].ToString();
                 string filePath = dr1["filepath"].ToString();
@@ -699,7 +699,7 @@ namespace RealERPWEB.F_28_MPro
                 if (mPREQTY >= mAREQTY)
                 {
                     result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATE_MKT_REQ_INFO", "MKTREQA",
-                                mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, prType, mrkType, actType,
+                                mREQNO, "", "", mPREQTY.ToString(), mAREQTY.ToString(), mREQRAT, prType, actType, mrkType,
                                 expectDate, filePath, reqNote, "", "", "", "", "");
 
 

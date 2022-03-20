@@ -159,19 +159,6 @@
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Res Code" Visible="False">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvResCod" runat="server" Height="16px" 
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>' Width="80px"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Spcf Code" Visible="False">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvSpcfCod" runat="server" Height="16px" 
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>' Width="80px"></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="PR Type">
                                         <ItemTemplate>
@@ -194,23 +181,6 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Description of Materials">
-                                       
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvResDesc" runat="server"
-                                                Text='<%# "<B>" + Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc1")) + "</B>" +
-                                                                         (DataBinder.Eval(Container.DataItem, "spcfdesc").ToString().Trim().Length>0 ? 
-                                                                         (Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc1")).Trim().Length>0 ? "<br>" : "") + 
-                                                                         "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + 
-                                                                         Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")).Trim(): "")   %>'
-                                                Width="180px">
-                                                            
-                                                            
-                                            </asp:Label>
-                                        </ItemTemplate>
-                                        <FooterStyle HorizontalAlign="Center" />
-                                        <HeaderStyle HorizontalAlign="Left" />
-                                    </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Justification">
                                         <ItemTemplate>
@@ -221,13 +191,6 @@
                                             <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click" 
                                                 CssClass="btn btn-primary  primarygrdBtn btn-sm">Total :</asp:LinkButton>
                                         </FooterTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Unit">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblgvResUnit" runat="server" 
-                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirunit")) %>' Width="40px"></asp:Label>
-                                        </ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="Quantity">
