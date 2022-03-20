@@ -205,10 +205,10 @@
                   <Width>1.03196in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.77545in</Width>
+                  <Width>0.54628in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.88602in</Width>
+                  <Width>3.10478in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -686,7 +686,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.125in</Top>
             <Height>0.38542in</Height>
-            <Width>7.6425in</Width>
+            <Width>7.63208in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
