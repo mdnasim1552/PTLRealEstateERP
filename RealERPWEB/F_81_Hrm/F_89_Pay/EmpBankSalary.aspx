@@ -128,8 +128,6 @@
 
                                         <asp:CheckBox ID="ChkAll" runat="server" CssClass=" btn btn-primary  checkBox" Style="height: 25px !important;" Text="Bank Wise" />
 
-
-
                                         <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                             Font-Size="14px" Height="16px" RepeatColumns="14" RepeatDirection="Horizontal"
                                             Width="520px" Visible="false">
