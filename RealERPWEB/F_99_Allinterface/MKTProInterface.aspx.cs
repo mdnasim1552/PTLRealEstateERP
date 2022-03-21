@@ -281,7 +281,7 @@ namespace RealERPWEB.F_99_Allinterface
             DataTable dt = new DataTable();
             DataTable dt1 = new DataTable();
             DataView dv = new DataView();
-            string comcod = this.GetCompCode();
+          
             switch (value)
             {
                 //Status (All Reqinfo )                

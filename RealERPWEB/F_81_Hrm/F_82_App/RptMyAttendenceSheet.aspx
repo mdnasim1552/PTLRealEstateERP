@@ -110,27 +110,27 @@
                             <div class="form-row">
                                 <label for="input04" class="col-md-3  mb-0">Total Late Day</label>
                                 <div class="col-md-9 ">
-                                    <asp:Label ID="lblLate" runat="server" CssClass="control-label"> Card</asp:Label>
+                                    <asp:Label ID="lblLate" runat="server" CssClass="control-label badge bg-warning text-white"> Card</asp:Label>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <label for="input04" class="col-md-3  mb-0">Total Leave Day</label>
                                 <div class="col-md-9 ">
-                                    <asp:Label ID="lblLeave" runat="server" CssClass="control-label"> Card</asp:Label>
+                                    <asp:Label ID="lblLeave" runat="server" CssClass="control-label badge bg-green text-white"> Card</asp:Label>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <label for="input04" class="col-md-3  mb-0">Total Absent Day</label>
                                 <div class="col-md-9 ">
-                                    <asp:Label ID="lblAbsent" runat="server" CssClass="control-label"> Card</asp:Label>
+                                    <asp:Label ID="lblAbsent" runat="server" CssClass="control-label badge bg-danger text-white"> Card</asp:Label>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <label for="input04" class="col-md-3  mb-0">Total Holiday Day</label>
                                 <div class="col-md-9 ">
-                                    <asp:Label ID="lblHoliday" runat="server" CssClass="control-label"> Card</asp:Label>
+                                    <asp:Label ID="lblHoliday" runat="server" CssClass="control-label badge bg-info text-white"> Card</asp:Label>
                                 </div>
                             </div>
 

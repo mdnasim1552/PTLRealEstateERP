@@ -177,13 +177,13 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.LinkButton lbtnUpdatePCDate;
 
         /// <summary>
-        /// details control.
+        /// pnlspclrpt02 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl details;
+        protected global::System.Web.UI.WebControls.Panel pnlspclrpt02;
 
         /// <summary>
         /// ddldetails control.
@@ -960,15 +960,6 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.View SpReport;
 
         /// <summary>
-        /// Panel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel1;
-
-        /// <summary>
         /// lblTitle5 control.
         /// </summary>
         /// <remarks>
@@ -1041,13 +1032,13 @@ namespace RealERPWEB.F_04_Bgd
         protected global::System.Web.UI.WebControls.DropDownList ddlRptWork;
 
         /// <summary>
-        /// lblPage control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage;
+        protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
         /// ddlpagesize control.
