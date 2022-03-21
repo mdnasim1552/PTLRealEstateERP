@@ -33,6 +33,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 this.rbtBankSt.SelectedIndex = 0;
                 this.GetMonth();
                 this.GetBankName();
+                this.GetBranch();
                 this.GetSalTypeVisible();
 
 
@@ -48,6 +49,27 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
 
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
+
+        }
+
+        private void GetBranch()
+        {
+
+            string comcod = this.GetComeCode();
+            //if (this.ddlCompany.Items.Count == 0)
+            //    return;
+
+
+           // int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
+            string Company = "94" + "%";
+
+            string txtSProject = "%";
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "GETBRANCH", Company, txtSProject, "", "", "", "", "", "", "");
+            this.ddlBranch.DataTextField = "actdesc";
+            this.ddlBranch.DataValueField = "actcode";
+            this.ddlBranch.DataSource = ds1.Tables[0];
+            this.ddlBranch.DataBind();
+           // this.ddlBranch_SelectedIndexChanged(null, null);
 
         }
         private void GetMonth()
@@ -333,8 +355,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_PAYROLL", "BANKLOCK", date, bankname, "", "", "", "", "", "", "");
             this.lblBankLock.Text = (ds1.Tables[0].Rows.Count == 0) ? "False" : Convert.ToBoolean(ds1.Tables[0].Rows[0]["lock"]).ToString();
 
-
-
             string banklock = (this.lblBankLock.Text == "True") ? "Lock" : "";
             string CallType = (this.chkBonus.Checked) ? this.ComBonusStatement() : this.ComBankStatement();
             // string CallType = (this.chkBonus.Checked) ? "EMPBONBANKPAYINFO" : this.ComBankStatement();
@@ -345,7 +365,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             string mantype = "";
             switch (comcod)
             {
-
                 case "3338":
                     mantype = (this.rbtnlistsaltype.SelectedIndex == 0) ? "86001%" : (this.rbtnlistsaltype.SelectedIndex == 1) ? "86002%" : "86%";
                     break;
@@ -357,8 +376,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 default:
                     mantype = "86%";
                     break;
-
-
             }
 
             string company = comcod == "3347" ? ddlCompany.SelectedValue.ToString().Substring(0, 4) + "%" : "";
@@ -378,12 +395,8 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             {
                 Session["tblBankTrns"] = ds2.Tables[1];
             }
-
             this.Data_Bind();
         }
-
-
-
         private void Data_Bind()
         {
 
@@ -399,19 +412,14 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                 this.FooterCalculation();
                 Session["Report1"] = gvBankPayment;
                 ((HyperLink)this.gvBankPayment.HeaderRow.FindControl("hlbtnCBdataExel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
             }
-
-
             if (Request.QueryString["Type"].ToString() == "Entry")
             {
-
                 if (dt.Rows.Count > 0)
                 {
                     ((LinkButton)this.gvBankPayment.FooterRow.FindControl("lbtSalUpdate")).Visible = (((CheckBox)this.gvBankPayment.FooterRow.FindControl("chkBankLock")).Checked) ? false : true;
                     ((CheckBox)this.gvBankPayment.FooterRow.FindControl("chkBankLock")).Enabled = false;
                 }
-
             }
 
         }
@@ -485,9 +493,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
             }
-
-
-
         }
 
         private void PrintBankStatementEdison()
