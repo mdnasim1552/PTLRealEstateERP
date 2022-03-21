@@ -317,6 +317,31 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         }
+        private string GetWithoutResign()
+        {
+
+
+            string comcod = this.GetComeCode();
+
+            string withoutresign = "";
+            switch (comcod)
+            {
+                
+                case "3365": //BTI
+                    withoutresign = "withoutresign";
+                    break;
+
+                
+
+                default:
+                    withoutresign = "";
+                    //this.PrintAccountTrans();
+                    break;
+            }
+
+            return withoutresign;
+
+        }
 
 
 
@@ -362,10 +387,11 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
             }
 
             string company = comcod == "3347" ? ddlCompany.SelectedValue.ToString().Substring(0, 4) + "%" : "";
+            string withoutresign = this.GetWithoutResign();
 
             //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, "", "", "");
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, all, company, "");
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, all, company, withoutresign);
             if (ds2 == null)
             {
                 this.gvBankPayment.DataSource = null;
