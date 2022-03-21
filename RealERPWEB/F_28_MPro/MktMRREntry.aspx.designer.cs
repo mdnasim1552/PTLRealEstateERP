@@ -294,31 +294,40 @@ namespace RealERPWEB.F_28_MPro
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txtChaDate;
 
         /// <summary>
-        /// txtResSearch control.
+        /// lblPRType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtResSearch;
+        protected global::System.Web.UI.WebControls.Label lblPRType;
 
         /// <summary>
-        /// LinkButton2 control.
+        /// ddlPRType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPRType;
 
         /// <summary>
-        /// listGroup control.
+        /// lblActType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox listGroup;
+        protected global::System.Web.UI.WebControls.Label lblActType;
+
+        /// <summary>
+        /// ddlActType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlActType;
 
         /// <summary>
         /// LinkButton1 control.
