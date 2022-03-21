@@ -405,10 +405,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
             string company = comcod == "3347" ? ddlCompany.SelectedValue.ToString().Substring(0, 4) + "%" : "";
             string withoutresign = this.GetWithoutResign();
-
+            string branch = this.ddlBranch.SelectedValue.ToString().Substring(0, 4)=="0000"? "%%" : this.ddlBranch.SelectedValue.ToString().Substring(0, 4) + "%";
             //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, "", "", "");
 
-            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, all, company, withoutresign);
+            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", CallType, date, bankname, banklock, todaysbs, saldate, mantype, all, company, withoutresign, branch);
             if (ds2 == null)
             {
                 this.gvBankPayment.DataSource = null;
