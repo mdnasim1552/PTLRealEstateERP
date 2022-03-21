@@ -29,7 +29,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.txtgvenjoydt1.Text = nextday;
                 this.txtgvenjoydt2.Text = nextday;
 
-                txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
+                //txtgvenjoydt2_CalendarExtender.StartDate = Convert.ToDateTime(this.txtgvenjoydt1.Text);
                 this.txtaplydate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 string qtype = this.Request.QueryString["Type"] ?? "";
                
@@ -37,7 +37,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     this.empMgt.Visible = true;
                     GetEmpLoyee();
-                    GetSupvisorCheck();
+                   // GetSupvisorCheck();
                     this.ddlEmpName_SelectedIndexChanged(null, null);
                 }
                 else
@@ -1069,6 +1069,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 frmdate.InnerText = "Leave Day";
                 todate.InnerText = "For Duty/Off Day";
                 this.divDurStatus.Visible = false;
+
+                txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+                txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+
             }
             else
             {

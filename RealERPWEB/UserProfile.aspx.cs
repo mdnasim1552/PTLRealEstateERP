@@ -207,9 +207,24 @@ namespace RealERPWEB
             string comcod = this.GetCompCode();
 
             string qempid = this.Request.QueryString["empid"] ?? "";
-
+            string calltype = "";
             string Date = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
+            //string Date = this.txtDate.Text.Trim();
+            switch (comcod)
+            {
+                case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+                case "3365":
+                    calltype = "RPTMYSERVICESBTI";
+                    break;
+
+                default:
+                    calltype = "RPTMYSERVICES";
+                    break;
+            }
+
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", calltype, empid, Date, "", "", "", "", "", "", "");
+           
+           // DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "RPTMYSERVICES", empid, Date, "", "", "", "", "", "", "");
             //this.lbldesg.Visible = true;
 
             if (ds1 == null)
@@ -267,7 +282,32 @@ namespace RealERPWEB
                 HyperLink lnkyearmon = (HyperLink)e.Item.FindControl("hlnkbtnadd");
                 string comcod = this.GetCompCode();
                 string ymonid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ymonid")).ToString();
-                string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/01/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
+                string frmdate = "";
+                string date = "";
+                switch (comcod)
+                {
+                    case "3365":
+                    case "3101":
+                        date = "26-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
+                        frmdate = Convert.ToDateTime(date).AddMonths(-1).ToString("dd-MMM-yyyy");
+                        //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                        break;
+
+                    default:
+                        date = "01-" + ASTUtility.Month3digit(Convert.ToInt32(ymonid.Substring(4, 2))) + "-" + ymonid.Substring(0, 4);
+                        frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                        break;
+                }
+
+                //string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/"+ Convert.ToDateTime(ymonid.Substring(4, 2) + "/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
+                //string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+                //string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
+                //lnkyearmon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+
+                //HyperLink lnkyearmon = (HyperLink)e.Item.FindControl("hlnkbtnadd");
+                //string comcod = this.GetCompCode();
+                //string ymonid = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "ymonid")).ToString();
+                //string frmdate = Convert.ToDateTime(ymonid.Substring(4, 2) + "/01/" + ymonid.Substring(0, 4)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
                 lnkyearmon.NavigateUrl = "~/F_81_Hrm/F_82_App/RptMyAttendenceSheet.aspx?Type=&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
