@@ -38,11 +38,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 //((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
                 ((Label)this.Master.FindControl("lblTitle")).Text = "LEAVE INTERFACE";//
-                double day = Convert.ToInt32(System.DateTime.Today.ToString("dd")) - 1;
-                this.txFdate.Text = DateTime.Today.AddDays(-day).ToString("dd-MMM-yyyy");
-                // this.txtdate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(2).AddDays(-1).ToString("dd-MMM-yyyy");
-
+                
+                this.SelectDate();
                 this.RadioButtonList1.SelectedIndex = 0;
                 this.pnlInt.Visible = true;
                 GetStep();                
@@ -51,6 +48,20 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 this.RadioButtonList1_SelectedIndexChanged(null, null);
 
             }
+        }
+
+        private void SelectDate()
+        {
+            string comcod = this.GetCompCode();
+            DataSet datSetup = compUtility.GetCompUtility();
+            if (datSetup == null)
+                return;
+
+            string startdate = datSetup.Tables[0].Rows.Count == 0 ? "01" : Convert.ToString(datSetup.Tables[0].Rows[0]["HR_ATTSTART_DAT"]);
+            this.txFdate.Text = System.DateTime.Today.AddMonths(-1).ToString("dd-MMM-yyyy");
+            this.txFdate.Text = startdate + this.txFdate.Text.Trim().Substring(2);
+            this.txtdate.Text = Convert.ToDateTime(this.txFdate.Text).AddMonths(1).AddDays(-1).ToString("dd-MMM-yyyy");
+
         }
         private void GetStep()
         {

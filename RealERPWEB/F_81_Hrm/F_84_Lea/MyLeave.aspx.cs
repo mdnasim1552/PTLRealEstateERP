@@ -355,7 +355,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 if (gcod == "51999")
                 {
 
-                    txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
+                    //txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
 
                 }
                 else
@@ -474,6 +474,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 DataTable dt1 = (DataTable)ViewState["tblSlevDay"];
                 string isHalfday = (this.chkHalfDay.Checked ? "True" : "False");
                 string ttdays = this.Duration.Value.ToString();
+                string qtype = this.Request.QueryString["Type"] ?? "";
 
                 if (ttdays != "0")
                 {
@@ -485,7 +486,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string addentime = this.txtaddofenjoytime.Text.Trim();
                     string remarks = this.txtLeavRemarks.Text.Trim();
                     string dnameadesig = this.txtdutiesnameandDesig.Text.Trim();
-                    string APRdate = "";
+                    string APRdate = (qtype=="MGT"? applydat:"");
 
                     bool result = false;
                     //below code for if apply without date range 
