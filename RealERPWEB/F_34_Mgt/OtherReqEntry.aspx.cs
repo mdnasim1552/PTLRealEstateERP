@@ -92,7 +92,7 @@ namespace RealERPWEB.F_34_Mgt
 
                 if (Request.QueryString["Type"].ToString() == "OreqPrint")
                 {
-                    if (comcod == "1102")
+                    if (comcod == "1102" || comcod == "3101")
                     {
                         this.RequisitionPrint();
                     }
