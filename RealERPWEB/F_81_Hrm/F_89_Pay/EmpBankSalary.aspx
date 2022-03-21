@@ -75,6 +75,10 @@
                                             <asp:ListItem>Account Transfer</asp:ListItem>
                                         </asp:RadioButtonList>
                                     </div>
+                                    <div class="col-md-3 pading5px ">
+                                     <asp:DropDownList ID="ddlBranch" runat="server"  CssClass="form-control inputTxt  chzn-select"  AutoPostBack="true" TabIndex="2">
+                                        </asp:DropDownList>
+                                        </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
@@ -89,11 +93,13 @@
                                             <asp:CheckBox ID="ChkAll" runat="server" Text="All" Visible="false"/>
                                             
                                         </div>--%>
-
+                                        
                                         <div class="pull-left">
                                             <asp:LinkButton ID="lnkbtnShow" runat="server" OnClick="lnkbtnShow_Click" CssClass="btn btn-primary okBtn">Ok</asp:LinkButton>
                                         </div>
                                     </div>
+
+
 
                                     <div class="pull-left">
                                         <asp:Label ID="lblcompany" runat="server" CssClass="lblTxt lblName" Visible="false">Company</asp:Label>
@@ -104,7 +110,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-3 pading5px asitCol3">
-                                        <asp:Label ID="lblPage" runat="server" CssClass=" lblTxt lblName ">Page Size</asp:Label>
+                                        <asp:Label ID="lblPage" runat="server" CssClass="lblTxt lblName ">Page Size</asp:Label>
                                         <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="ddlPage" Style="width: 71px;" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
                                             <asp:ListItem>10</asp:ListItem>
                                             <asp:ListItem>15</asp:ListItem>
