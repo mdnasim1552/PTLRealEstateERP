@@ -3032,6 +3032,7 @@
     <Content Include="F_81_Hrm\F_91_ACR\LinkRptPerAppraisal.aspx" />
     <Content Include="F_81_Hrm\F_91_ACR\RptPerAppraisal.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\AllEmpList.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\DropDown2.PNG" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpHold.aspx" />
@@ -4367,6 +4368,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_89_Pay\RptSalaryReconciliation.aspx.designer.cs">
       <DependentUpon>RptSalaryReconciliation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.cs">
+      <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\DeparmentCodeLink.aspx.designer.cs">
+      <DependentUpon>DeparmentCodeLink.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
