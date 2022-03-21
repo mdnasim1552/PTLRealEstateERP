@@ -454,7 +454,7 @@
                                   <Value>=Fields!refdesc.Value</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "12pt", Fields!refno.Value = "BBBBBBBBBBBB","12pt", Fields!refno.Value = "00000000000","12pt")</FontSize>
                                     <FontWeight>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Bold", Fields!refno.Value = "BBBBBBBBBBBB", "Bold", Fields!refno.Value = "00000000000","Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -626,7 +626,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -694,7 +693,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.125in</Top>
             <Height>0.38542in</Height>
-            <Width>10.63416in</Width>
+            <Width>10.63415in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -734,7 +733,7 @@
                       <Value>=Parameters!comnam.Value</Value>
                       <Style>
                         <FontFamily>calibri</FontFamily>
-                        <FontSize>11pt</FontSize>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -781,7 +780,7 @@
               <rd:DefaultName>Textbox20</rd:DefaultName>
               <Top>0.25778in</Top>
               <Left>1.54167in</Left>
-              <Height>0.14583in</Height>
+              <Height>0.1875in</Height>
               <Width>7.58556in</Width>
               <ZIndex>2</ZIndex>
               <Style>
@@ -856,6 +855,7 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox23</rd:DefaultName>
+              <Top>0in</Top>
               <Left>9.91541in</Left>
               <Height>0.17639in</Height>
               <Width>0.71875in</Width>
@@ -881,7 +881,7 @@
         <PageWidth>11.69in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>
         <RightMargin>0.5in</RightMargin>
-        <TopMargin>0.25in</TopMargin>
+        <TopMargin>0.1in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>
