@@ -969,7 +969,7 @@ namespace RealERPWEB.F_99_Allinterface
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
 
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintpay");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkpaymentSch");
                 LinkButton hlink3 = (LinkButton)e.Row.FindControl("hlnkprjlink");
 
