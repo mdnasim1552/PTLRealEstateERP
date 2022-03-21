@@ -754,6 +754,7 @@ namespace RealERPWEB.F_04_Bgd
                     this.ChkCopyProject.Visible = true;
                     this.ChkCopyTender.Visible = true;
                     this.chkFlrShowSelected_CheckedChanged(null, null);
+                    this.pnlspclrpt02.Visible = false;
                     break;
                 case 1:
                     this.crDate.Visible = false;
@@ -764,6 +765,7 @@ namespace RealERPWEB.F_04_Bgd
                     this.GetMetarilsList();
                     this.ShowScheduledItemList();
                     //ImgbtnFindItem
+                    this.pnlspclrpt02.Visible = false;
 
                     break;
                 case 2:
@@ -773,12 +775,14 @@ namespace RealERPWEB.F_04_Bgd
                     //this.gvAnalysis2.PageIndex = 0;
                     //this.gvAnalysis2.EditIndex = -1;
                     this.ShowFloorScheduledItemList();
+                    this.pnlspclrpt02.Visible = false;
 
                     break;
                 case 3:
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     this.ChkCopyTender.Visible = true;
+                    this.pnlspclrpt02.Visible = false;
 
                     break;
                 case 4:
@@ -786,6 +790,7 @@ namespace RealERPWEB.F_04_Bgd
                     this.ChkCopyProject.Visible = true;
                     this.ChkCopyTender.Visible = true;
                     this.ShowReportOptions();
+                    this.pnlspclrpt02.Visible = false;
                     break;
                 case 5:
                     this.crDate.Visible = false;
@@ -796,15 +801,17 @@ namespace RealERPWEB.F_04_Bgd
                     this.gvSpRpt.DataBind();
                     this.GetDiffWork();
                     this.ShowSpReport();
+
+                    this.pnlspclrpt02.Visible = false;
                     break;
 
 
                 case 6:
-                    this.details.Visible = true;
+                    //this.details.Visible = true;
+                    this.pnlspclrpt02.Visible = true;
                     this.crDate.Visible = false;
                     this.ChkCopyProject.Visible = true;
                     this.ChkCopyTender.Visible = true;
-
                     break;
             }
             this.MultiView1.ActiveViewIndex = rbtnList1.SelectedIndex;
@@ -848,12 +855,6 @@ namespace RealERPWEB.F_04_Bgd
 
 
             ((HyperLink)this.gvRptResBasis02.HeaderRow.FindControl("hlbtntbCdataExel")).NavigateUrl = "../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
-
-
-
-
-
-
 
 
         }

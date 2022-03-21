@@ -2185,12 +2185,8 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-
-                                                <asp:HyperLink ID="HyInprPrint" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
+                                                <asp:HyperLink ID="HyInprPrintpay" runat="server" CssClass="btn btn-xs btn-default" Target="_blank" ForeColor="Blue" Font-Underline="false"><span class="fa fa-print"></span>
                                                 </asp:HyperLink>
-
-
-
                                                 <asp:LinkButton ID="btnDelOrder" CssClass="btn btn-xs btn-default" runat="server"><span style="color:red" class="fa fa-recycle"></span> </asp:LinkButton>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />
@@ -2198,10 +2194,8 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="">
                                             <ItemTemplate>
-
                                                 <asp:LinkButton ID="hlnkprjlink"  CssClass="btn btn-xs btn-default" runat="server" ToolTip="Project Linking" OnClientClick="Confirm (Do You Want To Link this Project?) return;" OnClick="hlnkprjlink_Click" Font-Underline="false"><span class="fa fa-check"></span>
                                                 </asp:LinkButton>
-
                                                 <asp:HyperLink ID="hlnkpaymentSch"  CssClass="btn btn-xs btn-default" Target="_blank" ToolTip="Go Payment Schedule" runat="server" Font-Size="15px"><span  class="fa fa-check"></span> </asp:HyperLink>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />

@@ -187,7 +187,7 @@
                                 </div>
                             </div>
                             <div class="col-1">
-                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Select" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton1" runat="server" Text="Select" OnClick="lbtnSelectRes_Click" CssClass="btn btn-primary btn-sm" style="margin-top:20px;"></asp:LinkButton>
                             </div>
                             <div class="col-1">
                                 <asp:LinkButton ID="lbtnSelectResAll" runat="server" Text="Select All" OnClick="lbtnSelectResAll_Click" Visible="false" CssClass="btn btn-primary btn-sm"></asp:LinkButton>
@@ -225,10 +225,24 @@
                             <asp:TemplateField HeaderText="Req No.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvReqno" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1")) %>'
-                                        Width="80px"></asp:Label>
+                                        Width="120px"></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>     
                           
+                             <asp:TemplateField HeaderText="Pur. Req. Type">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvPurReqType" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtypedesc")) %>'
+                                        Width="120px"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>    
+
+                             <asp:TemplateField HeaderText="Activity Type">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblgvActType" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttypedesc")) %>'
+                                        Width="120px"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>    
+
                             <asp:TemplateField HeaderText="Order Qty.">
                                 <ItemTemplate>
                                     <asp:Label ID="lblgvOrderQty" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "orderqty")).ToString("#,##0.000;(#,##0.000); ") %>'
@@ -292,7 +306,7 @@
                                 <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                 <ItemStyle HorizontalAlign="Right" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Chalan Qty">
+                            <asp:TemplateField HeaderText="Chalan Qty" Visible="false">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtgvChlnqty" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                         BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
@@ -304,7 +318,7 @@
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtgvMRRNote" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                         BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
-                                        Text='<%# DataBinder.Eval(Container.DataItem, "mrrnote").ToString() %>' Width="80px"></asp:TextBox>
+                                        Text='<%# DataBinder.Eval(Container.DataItem, "mrrnote").ToString() %>' Width="180px"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
