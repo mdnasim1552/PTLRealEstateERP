@@ -479,7 +479,6 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
 
 
         private void GetBranch()
-
         {
 
             string comcod = this.GetCompCode();

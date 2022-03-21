@@ -623,6 +623,12 @@
                                                     <asp:Label ID="lgvEmpIdabs" runat="server" Font-Bold="True" Font-Size="11px"
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                         Width="180px"></asp:Label>
+
+                                                      <asp:Label ID="emdname" runat="server" Height="16px"
+                                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
+                                                            Width="120px"></asp:Label>
+                                                       
+
                                                 </ItemTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -637,21 +643,28 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Section">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblgvdeptandemployeeempabs" runat="server"
-                                                        Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) + "</B>"+
+                                                
+
+                                                         <asp:LinkButton OnClick="lnkbtnAbsAppGVmapsapp_Click" ID="lnkbtnAbsAppGVmapsapp" runat="server"
+                                                            Text='<%# "<B>"+ Convert.ToString(DataBinder.Eval(Container.DataItem, "section")) + "</B>"+
                                                                          (DataBinder.Eval(Container.DataItem, "empname").ToString().Trim().Length>0 ? 
                                                                          (Convert.ToString(DataBinder.Eval(Container.DataItem, "section")).Trim().Length>0 ?  "<br>" : "")+                                                             
                                                                          "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+ 
                                                                           Convert.ToString(DataBinder.Eval(Container.DataItem, "rowid")).Trim()+". "+
                                                                          Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")).Trim(): "")  %>'
-                                                        Width="250px"></asp:Label>
+                                                            Width="250px"></asp:LinkButton>
+
+
+
+
+
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Card #">
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lbtnTotalabs" runat="server" OnClick="lbtnTotalabs_Click"
-                                                        CssClass="btn   btn-primary primarygrdBtn">Total</asp:LinkButton>
+                                                        CssClass="btn btn-sm   btn-primary primarygrdBtn">Total</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblgvCardnoearnabs" runat="server" Height="16px"
@@ -669,7 +682,7 @@
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="btnUpdateAbsent" runat="server"
                                                         OnClick="btnUpdateAbsent_Click"
-                                                        CssClass="btn   btn-danger primarygrdBtn">Update</asp:LinkButton>
+                                                        CssClass="btn btn-sm  btn-danger primarygrdBtn">Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -971,7 +984,7 @@
                                                 <FooterTemplate>
                                                     <asp:LinkButton ID="lbtnUpdateMonthAbsDay" runat="server" Font-Bold="True"
                                                         Font-Size="12px" OnClick="lbtnUpdateMonthAbsDay_Click"
-                                                        CssClass="btn    btn-primary primarygrdBtn">Update</asp:LinkButton>
+                                                        CssClass="btn btn-sm   btn-primary primarygrdBtn">Update</asp:LinkButton>
                                                 </FooterTemplate>
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtabsaprdaylp" runat="server" BackColor="Transparent" AutoPostBack="true"
@@ -988,6 +1001,9 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balday")).ToString("#,##0;(#,##0); ") %>'
                                                         Width="80px"></asp:Label>
                                                 </ItemTemplate>
+                                                <FooterTemplate>
+                                                    
+                                                </FooterTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
@@ -1450,7 +1466,11 @@
                             <div class="modal-footer">
                                 <asp:LinkButton ID="ModalUpdateBtn" OnClientClick="CloseModal();" OnClick="ModalUpdateBtn_Click"
                                     runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+
+                                <asp:LinkButton ID="ModallnkBtnLateAFTER10AM" OnClientClick="CloseModal();" OnClick="ModallnkBtnLateAFTER10AM_Click" Visible="false"
+                                    runat="server" CssClass="btn btn-sm btn-primary"> <span class="glyphicon glyphicon-saved"></span> Update</asp:LinkButton>
+
+                                <button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">Close</button>
                             </div>
 
                         </div>
@@ -1807,13 +1827,15 @@
                                                 <HeaderTemplate>
                                                     Inform?
                                                    
-                                                          <asp:CheckBox ID="checkAll" runat="server" onclick="checkAll(this);" />
+                                                          <asp:CheckBox ID="checkAll" runat="server"  onclick="checkAll(this);" />
 
 
 
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:CheckBox ID="lblchkaabs02" runat="server"
+                                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? true : false %>'
+                                                        Enabled='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "absapp"))=="True" ? false : true%>'
                                                         Width="20px" />
                                                 </ItemTemplate>
                                                 <HeaderStyle HorizontalAlign="Center" />
