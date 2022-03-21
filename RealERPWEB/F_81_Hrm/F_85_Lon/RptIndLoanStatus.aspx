@@ -10,10 +10,7 @@
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
-        function pageLoaded() {
-            //$('.datepicker').datepicker({
-            //    format: 'mm/dd/yyyy',
-            //});
+        function pageLoaded() {          
             $("input, select").bind("keydown", function (event) {
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
@@ -24,7 +21,14 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
+
+
+            var gv2 = $('#<%=this.gvEmpLoanStatus.ClientID %>');
+            gv2.Scrollable();
         };
+
+     
+
 
         function Search_Gridview(strKey) {
 
@@ -69,7 +73,7 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid container-data">
+            <div class="card card-fluid ">
                 <div class="card-header mt-3 mb-0 pb-0">
                     <div class="row mb-0 pb-0">
                         <asp:Label ID="lbldate" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Date</asp:Label>
@@ -106,7 +110,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <asp:GridView ID="gvEmpLoanStatus" runat="server" AllowPaging="false"
+                        <asp:GridView ID="gvEmpLoanStatus" runat="server" 
                             AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                             ShowFooter="True">
                             <RowStyle />

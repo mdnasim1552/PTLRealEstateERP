@@ -46,28 +46,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.bootstrap">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\AspNet.ScriptManager.bootstrap.dll</HintPath>
     </Reference>
     <Reference Include="AspNet.ScriptManager.jQuery">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\AspNet.ScriptManager.jQuery.dll</HintPath>
     </Reference>
     <Reference Include="BilSimser.GeoJson">
-      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\BilSimser.GeoJson.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\CrystalDecisions.CrystalReports.Design.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportAppServer.DataSetConversion">
-      <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
+      <HintPath>..\..\..\..\..\New Collection TFS\Interior 2019\PTLRealERP\RealERPWEB\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.ReportSource">
       <HintPath>..\..\..\..\Backup Project\PROJECT\Real Estate Bin 211213\bin\CrystalDecisions.ReportSource.dll</HintPath>
@@ -143,7 +143,7 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Backup\Real Estate Bin\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+      <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ScriptManager.MSAjax">
       <HintPath>..\..\..\Tarikul\Working\PTLRealERP\PTLRealEstate\RealERPWEB\bin\Microsoft.ScriptManager.MSAjax.dll</HintPath>
@@ -2208,7 +2208,8 @@
     <Content Include="F_12_Inv\Material_Issue.aspx" />
     <Content Include="F_12_Inv\MatTransfer02.aspx" />
     <Content Include="F_12_Inv\MatTransStatus.aspx" />
-    <Content Include="F_28_MPro\MKTPurReqEntry.aspx" />
+    <Content Include="F_28_MPro\MktMRREntry.aspx" />
+    <Content Include="F_28_MPro\MktPurReqEntry.aspx" />
     <Content Include="F_12_Inv\PurInterComMatTransfer.aspx" />
     <Content Include="F_12_Inv\PurMatIssue.aspx" />
     <Content Include="F_12_Inv\PurMRREntry.aspx" />
@@ -2643,6 +2644,7 @@
     <Content Include="F_25_Reg\RptRegclearacne.aspx" />
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
+    <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
     <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
@@ -2924,6 +2926,7 @@
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntry01Old.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EmpEntryForm.aspx" />
+    <Content Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx" />
     <Content Include="F_81_Hrm\F_82_App\EntryAllEmp.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRCodeBook.aspx" />
     <Content Include="F_81_Hrm\F_82_App\HRDesigCode.aspx" />
@@ -3035,6 +3038,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\EmpPro.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\EmpStatus02.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HREmpConfirmation.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
@@ -3724,8 +3728,6 @@
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.eot" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.ttf" />
     <Content Include="assets\css\font-awesome-4-menus\fonts\fontawesome-webfont.woff" />
-    <Content Include="ExcelFile\Book1.xlsx" />
-    <Content Include="ExcelFile\Book16.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -3823,12 +3825,19 @@
     <Compile Include="F_07_Ten\UnitConversion.aspx.designer.cs">
       <DependentUpon>UnitConversion.aspx</DependentUpon>
     </Compile>
-    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.cs">
-      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+    <Compile Include="F_28_MPro\MktMRREntry.aspx.cs">
+      <DependentUpon>MktMRREntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="F_28_MPro\MKTPurReqEntry.aspx.designer.cs">
-      <DependentUpon>MKTPurReqEntry.aspx</DependentUpon>
+    <Compile Include="F_28_MPro\MktMRREntry.aspx.designer.cs">
+      <DependentUpon>MktMRREntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_28_MPro\MktPurReqEntry.aspx.cs">
+      <DependentUpon>MktPurReqEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktPurReqEntry.aspx.designer.cs">
+      <DependentUpon>MktPurReqEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_14_Pro\PurMktSurveyCont.aspx.cs">
       <DependentUpon>PurMktSurveyCont.aspx</DependentUpon>
@@ -4012,6 +4021,13 @@
     <Compile Include="F_28_MPro\MktProGenCodeBook.aspx.designer.cs">
       <DependentUpon>MktProGenCodeBook.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.cs">
+      <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
+      <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4067,6 +4083,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\EmpEntry01.aspx.designer.cs">
       <DependentUpon>EmpEntry01.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.cs">
+      <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_82_App\EmpProfileEdit.aspx.designer.cs">
+      <DependentUpon>EmpProfileEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_82_App\LandEmployeeEntry.aspx.cs">
       <DependentUpon>LandEmployeeEntry.aspx</DependentUpon>
@@ -4452,6 +4475,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EmpSettlement.aspx.designer.cs">
       <DependentUpon>EmpSettlement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx.cs">
+      <DependentUpon>EntrySectionWisePermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx.designer.cs">
+      <DependentUpon>EntrySectionWisePermission.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
       <DependentUpon>InterfaceHR.aspx</DependentUpon>
@@ -11672,6 +11702,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="bin\" />
+    <Folder Include="ExcelFile\" />
     <Folder Include="ftpdown\" />
     <Folder Include="ftp\" />
     <Folder Include="F_81_Hrm\F_88_Res\" />

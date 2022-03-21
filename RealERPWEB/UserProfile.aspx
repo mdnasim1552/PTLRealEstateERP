@@ -132,7 +132,7 @@ contain the p elements to be scrolled  */
 
                                 <p class="text-muted  mb-0" id="UDesignation" runat="server">Project Manager @CreativeDivision </p>
                                 <p class="text-muted" id="UDptment" runat="server">Project Manager @UDptment </p>
-
+                                <asp:HyperLink ID="hylnkUserProfileEdit" runat="server" NavigateUrl="~/F_81_Hrm/F_82_App/EmpProfileEdit.aspx" Target="_blank" ToolTip="Edit Your Profile"><i class="fas fa-user-edit">&nbsp;Edit</i></asp:HyperLink>
                             </div>
 
                         </div>
@@ -366,22 +366,22 @@ contain the p elements to be scrolled  */
                                                     </td>
 
                                                     <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblLate" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aclate")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
+                                                        <asp:Label ID="lblLate" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aclate")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
                                                     <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblAbsent" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#, ##0;(#, ##0); ") %>'></asp:Label>
+                                                        <asp:Label ID="lblAbsent" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#,##0.00;(#,##0.00); ") %>'></asp:Label>
                                                     </td>
                                                     <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblLeave" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leave")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
-                                                    </td>
-
-                                                    <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lbllvadj" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lvadj")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
+                                                        <asp:Label ID="lblLeave" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leave")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
 
+                                                    <td style="width: 80px; text-align: right !important;">
+                                                        <asp:Label ID="lbllvadj" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lvadj")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
+                                                    </td>
+
 
                                                     <td style="width: 80px; text-align: right !important;">
-                                                        <asp:Label ID="lblrlateapp" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lateapp")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
+                                                        <asp:Label ID="lblrlateapp" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lateapp")).ToString("#,##0.00;(#,##0.00); ")%>'></asp:Label>
                                                     </td>
 
                                                 </tr>
@@ -462,7 +462,7 @@ contain the p elements to be scrolled  */
                                 <div class="card-body">
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
-                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table table-striped table-hover table-bordered">
+                                        <asp:GridView ID="gvLeaveStatus" runat="server" AutoGenerateColumns="False" ShowFooter="false" CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -561,7 +561,7 @@ contain the p elements to be scrolled  */
                                     <!-- /.d-flex -->
                                 </div>
                                 <div class="table-responsive card-body">
-                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-hover table-bordered"
+                                    <asp:GridView ID="grvJobRespo" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered"
                                         ShowFooter="True" Width="400px">
                                         <RowStyle />
                                         <Columns>
@@ -617,7 +617,7 @@ contain the p elements to be scrolled  */
                         <!-- grid column -->
                         <div class="col-xl-6">
                             <!-- .card -->
-                            <div class="card card-fluid" id="pnlServHis" runat="server">
+                            <div class="card card-fluid" id="pnlServHis" visible="false" runat="server">
                                 <!-- .card-header -->
                                 <div class="card-header border-0">
                                     <!-- .d-flex -->
@@ -636,7 +636,7 @@ contain the p elements to be scrolled  */
                                     <div class="table-responsive pb-3">
                                         <!-- .table -->
                                         <asp:GridView ID="gvempservices" runat="server" AutoGenerateColumns="False"
-                                            ShowFooter="false" CssClass="table table-striped table-hover table-bordered grvContentarea">
+                                            ShowFooter="false" CssClass="table-striped table-hover table-bordered">
                                             <RowStyle />
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Sl.No.">
@@ -757,7 +757,7 @@ contain the p elements to be scrolled  */
 
 
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table table-striped table-hover table-bordered"
+                                        <asp:GridView ID="gvAllNotice" runat="server" CssClass="table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -830,7 +830,7 @@ contain the p elements to be scrolled  */
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table table-striped table-hover table-bordered"
+                                        <asp:GridView ID="GvHoliday" runat="server" CssClass="table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />
@@ -908,7 +908,7 @@ contain the p elements to be scrolled  */
                                         </div>
                                     </div>
                                     <div class="table table-responsive card-body pt-0 pb-0">
-                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table table-striped table-hover table-bordered"
+                                        <asp:GridView ID="gvSpHolidyas" runat="server" CssClass="table-striped table-hover table-bordered"
                                             AutoGenerateColumns="False" OnPageIndexChanging="gvSpHolidyas_PageIndexChanging"
                                             ShowFooter="false" AllowPaging="true" PageSize="5">
                                             <RowStyle />

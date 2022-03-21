@@ -14,17 +14,16 @@
          
         });
         function pageLoaded() {
-
-
             try {
                 var gv1 = $('#<%=this.dgv1.ClientID %>');
                 gv1.Scrollable();
+
                 var gv2 = $('#<%=this.gvDetails.ClientID %>');
                 var gv3 = $('#<%=this.gvBankPosition.ClientID %>');
                 var gvtbcon = $('#<%=this.gvtbcon.ClientID %>');
                 var dgvIS = $('#<%=this.dgvIS.ClientID %>');
 
-              //  gv1.Scrollable();
+               //gv1.Scrollable();
 
                 gv2.Scrollable();
                 gv3.Scrollable();
@@ -235,10 +234,6 @@
 
                                         </div>
                                     </div>
-
-                                   
-
-
 
                                 </div>
                             </div>

@@ -38,6 +38,13 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
                 ((Label)this.Master.FindControl("lblmsg")).Visible = false;
                 this.GetDepartment();
                 this.GetLoanType();
+
+                string lnno = this.Request.QueryString["lnno"] ?? "";
+                if(lnno== "update")
+                {
+                    this.lnkbtnShow_Click(null, null);
+                }
+
                 //this.lnkbtnShow_Click(null, null);
                 if (hst["comcod"].ToString().Substring(0, 1) == "8")
                 {
@@ -155,6 +162,27 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
             string comcod = this.GetComeCode();
             DataTable dt = (DataTable)Session["tbloan"];
+            string empst = this.ddlempst.SelectedValue.ToString();
+            DataView view = new DataView();      
+            view.Table = dt;
+            if (empst == "1")
+            {
+                view.RowFilter = "empst='1'";
+               
+                dt = view.ToTable();
+            }
+            else if (empst == "0")
+            {
+                view.RowFilter = "empst='0'";
+                
+                dt = view.ToTable();
+            }
+            else
+            {
+                dt = view.ToTable();
+            }
+
+
             this.gvEmpLoanStatus.PageSize = Convert.ToInt32(this.ddlpagesize.SelectedValue.ToString());
             this.gvEmpLoanStatus.DataSource = dt;
             this.gvEmpLoanStatus.DataBind();
@@ -279,6 +307,16 @@ namespace RealERPWEB.F_81_Hrm.F_85_Lon
         {
             this.gvEmpLoanStatus.PageIndex = e.NewPageIndex;
             this.Data_Bind();
+        }
+
+        protected void ddlempst_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.empLoanStatus();
+        }
+
+        protected void ddlLoantype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.empLoanStatus();
         }
     }
 }

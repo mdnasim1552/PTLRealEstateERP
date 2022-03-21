@@ -49,8 +49,10 @@ namespace RealERPWEB.F_99_Allinterface
                 this.txttoDate.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 this.txtmrfno.Attributes.Add("placeholder", ReadCookie());
 
-                this.RadioButtonList1.SelectedIndex = 0;
+               
                 this.PurchaseInfoRpt();
+                this.RadioButtonList1.SelectedIndex = 0;
+                this.RadioButtonList1_SelectedIndexChanged(null, null);
 
 
 
@@ -250,19 +252,19 @@ namespace RealERPWEB.F_99_Allinterface
                 return;
 
 
-            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
+            this.RadioButtonList1.Items[0].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["reqst"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>Status</div></div></div>";
 
-            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "1st Approval." + "</div></div></div>";
+            this.RadioButtonList1.Items[1].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["reqchk"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>" + "1st Approval." + "</div></div></div>";
 
-            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Final App.</div></div></div>";
+            this.RadioButtonList1.Items[2].Text = "<div class='circle-tile'><a><div class='circle-tile-heading purple counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["reqapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content purple'><div class='circle-tile-description text-faded'>Final App.</div></div></div>";
 
-            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>CS Preparation</div></div></div>";
+            this.RadioButtonList1.Items[3].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-blue counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["cscreate"]).ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-blue'><div class='circle-tile-description text-faded'>CS Preparation</div></div></div>";
 
-            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>CS Approved</div></div></div>";
+            this.RadioButtonList1.Items[4].Text = "<div class='circle-tile'><a><div class='circle-tile-heading orange counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["csapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content orange'><div class='circle-tile-description text-faded'>CS Approved</div></div></div>";
 
-            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Purchase Order</div></div></div>";
+            this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading dark-gray counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["ordr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content dark-gray'><div class='circle-tile-description text-faded'>Purchase Order</div></div></div>";
 
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble("0").ToString("#,##0;(#,##0); ") + "</i></div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[4].Rows[0]["mrr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
        
 
@@ -310,8 +312,8 @@ namespace RealERPWEB.F_99_Allinterface
                 case "1":
                     dt = ((DataTable)ds1.Tables[1]).Copy();
                     dv = dt.DefaultView;
-                    dv.RowFilter = ("cstatus = 'CRM Check' ");
-                    this.Data_Bind("gvCRM", dv.ToTable());
+                    dv.RowFilter = ("cstatus = 'Checked' ");
+                    this.Data_Bind("gvReqChk", dv.ToTable());
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = true;
@@ -512,19 +514,12 @@ namespace RealERPWEB.F_99_Allinterface
             {
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
                 HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
-
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
-                //string comcod1 = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "comcod")).ToString();
-                //string imesimeno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "mimei")).ToString();
-
-                //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
-
-                hlink2.NavigateUrl = "~/F_12_Inv/PurReqEntry?InputType=ReqCheck&prjcode=" + pactcode + "&genno=" + reqno;
-
+                string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");  
+                hlink2.NavigateUrl = "~/F_28_MPro/MKTPurReqEntry?InputType=ReqCheck&prjcode=" + pactcode + "&genno=" + reqno;
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
 
 

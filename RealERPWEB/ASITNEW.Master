@@ -224,6 +224,14 @@
         .ps {
             overflow-x: hidden !important;
         }
+
+        .top-bar-brand {
+            margin-top: 8px !important;
+        }
+
+        .app-header-dark .top-bar-brand {
+            background: none;
+        }
     </style>
 
 
@@ -400,7 +408,7 @@
                                     <h6 class="dropdown-header d-none d-md-block d-lg-none" id="UserName1" runat="server"></h6>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/UserProfile")%>'>
                                         <span class="dropdown-icon oi oi-person"></span>Profile</a>
-                                    
+
                                     <asp:HyperLink class="dropdown-item" ID="hypPasswChagne" Visible="false" runat="server" Text="Change Password"></asp:HyperLink>
 
                                     <div class="dropdown-divider"></div>
@@ -412,13 +420,22 @@
                                     <asp:HyperLink class="dropdown-item" ID="hypGroupChat" Visible="false" runat="server" NavigateUrl='<%=this.ResolveUrl("~/F_33_Doc/GroupChat")%>' Text="Group Chat"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/EmpStatus02?Type=Pabx&comcod=")%>'>PABX List</a>
                                     <asp:HyperLink class="dropdown-item" ID="lnkFormLink" Target="_blank" Visible="false" runat="server" Text="bti Form"></asp:HyperLink>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_83_Att/AttnOutOfOffice")%>'>Give Attendance</a>
+                                    
+                                    <asp:HyperLink class="dropdown-item" ID="hypOnlineAttendance" Visible="false" runat="server" Text="Online Attendance"></asp:HyperLink>
+
+                                    <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Visible="false" runat="server" Text="Apply Leave (MGT)"></asp:HyperLink>
+
+
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_84_Lea/MyLeave?Type=User")%>'>Apply Leave</a>
-                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>                                
-                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server"   Text="Time Of leave"></asp:HyperLink>
+                                    <a class="dropdown-item" href='<%=this.ResolveUrl("~/F_81_Hrm/F_92_Mgt/InterfaceLeavApp?Type=Ind")%>'>Leave Interface</a>
+
+
+                                    <%--  <asp:HyperLink class="dropdown-item" ID="HypLinkApplyLvCommon" Target="_blank" Visible="false" runat="server" Text="Apply Leave MGT"></asp:HyperLink>
+                                    --%>
 
 
 
+                                    <asp:HyperLink class="dropdown-item" ID="hypTimeOfleave" Visible="false" runat="server" Text="Time Of leave"></asp:HyperLink>
                                     <a class="dropdown-item" href='<%=this.ResolveUrl("~/Logout")%>'><span class="dropdown-icon oi oi-account-logout"></span>Logout</a>
                                 </div>
                                 <!-- /.dropdown-menu -->
@@ -753,7 +770,7 @@
             //auto complete
 
 
-            
+
 
 
         });
@@ -950,7 +967,7 @@
             }
         }
 
-
+       
 
     </script>
 

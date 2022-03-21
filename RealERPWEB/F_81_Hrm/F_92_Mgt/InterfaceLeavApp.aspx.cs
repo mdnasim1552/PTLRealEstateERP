@@ -318,23 +318,49 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 HyperLink hlink1 = (HyperLink)e.Row.FindControl("HylvPrint");
                 HyperLink hlink3 = (HyperLink)e.Row.FindControl("lnkbtnApp");
+                HyperLink lnkbtnDptApp = (HyperLink)e.Row.FindControl("lnkbtnDptApp");
                 HyperLink hlnEdit = (HyperLink)e.Row.FindControl("lnkbtnEditIN");
                 LinkButton hlnDel = (LinkButton)e.Row.FindControl("lnkRemove");
                 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
                 string userid = hst["usrid"].ToString();
-                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString();
-                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString();
+                string empusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empusrid")).ToString().Trim();
+                string dptusrid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "dptusid")).ToString().Trim();
+                string empid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "empid")).ToString().Trim();
                 string strtdat = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "strtdat")).ToString();
                  
                 string refno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "refno")).ToString();
                 string suserid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "susrid")).ToString();
                 string ltrnid = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ltrnid")).ToString();
                 string aplydat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "aplydat")).ToString("dd-MMM-yyyy");
-                hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat+"&RoleType=SUP";
+                
+                if (userid == dptusrid)
+                {
+                    hlink3.Visible = false;
+                    lnkbtnDptApp.Visible = true;
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
 
-                hlink3.Visible = (userid == suserid) ? true : false;
+
+                }
+                if (userid == suserid)
+                {
+                    lnkbtnDptApp.Visible = false;
+                    hlink3.Visible = true;
+                    hlink3.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=SUP";
+
+                }
+
+                if ((userid == suserid) && (userid == dptusrid))
+                {
+                    lnkbtnDptApp.Visible = true;
+                    hlink3.Visible = false;
+
+                    lnkbtnDptApp.NavigateUrl = "~/F_81_Hrm/F_84_Lea/EmpLvApproval.aspx?Type=Ind&comcod=" + comcod + "&refno=" + refno + "&ltrnid=" + ltrnid + "&Date=" + aplydat + "&RoleType=DPT";
+
+                }
+
+
                 hlnDel.Visible = (userid == empusrid) ? true : false;
                 hlnEdit.Visible = (userid == empusrid) ? true : false;
 

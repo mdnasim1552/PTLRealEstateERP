@@ -65,6 +65,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string Type = this.Request.QueryString["Type"].ToString();
                 string Date = (Type == "Ind") ? this.Request.QueryString["Date"].ToString() : System.DateTime.Today.ToString("dd-MMM-yyyy"); ;
                 this.txtdate.Text = Date;
+
+                GetDptUserCheck();
+
                 // this.CommonButton();
                 this.GetProjectName();
                 this.GetOrderName();
@@ -76,6 +79,33 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
             }
 
+        }
+
+        private void GetDptUserCheck()
+        {
+            string comcod = this.GetCompCode();
+            string refno = this.Request.QueryString["refno"] ?? "";
+            string RoleType = this.Request.QueryString["RoleType"] ?? "";
+            if(RoleType=="SUP")
+            {
+                RoleType = RoleType == "SUP" ? "DPT" : "";
+
+                var ds = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLEAVEDPTSETUSER", refno, RoleType, "", "", "", "", "", "", "");
+                if (ds == null)
+                {
+                    return;
+                }
+                string dptdesc = ds.Tables[0].Rows[0]["dptname"].ToString();
+                if (dptdesc != "000000000000")
+                {
+                    this.dptNameset.InnerText = ds.Tables[0].Rows[0]["dptname"].ToString();
+                    this.warning.Visible = true;
+                    this.levapp.Visible = false;
+
+                    return;
+                }
+            }
+           
         }
         private void CommonButton()
         {
@@ -298,8 +328,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             }
             catch (Exception ex)
             {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "Error :" + ex.Message;
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                string Messagesd = "Error :" + ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
+                return; 
             }
 
         }
@@ -675,6 +706,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
+
                     result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, "", "", "", "", "", "");
 
                     if (!result)
@@ -1259,17 +1291,17 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
             try
             {
-                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
-                    Response.Redirect("../AcceessError.aspx");
-                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
-                if (!Convert.ToBoolean(dr1[0]["entry"]))
-                {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                    return;
-                }
+                //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                //    Response.Redirect("../AcceessError.aspx");
+                //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ////DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]);
+                //if (!Convert.ToBoolean(dr1[0]["entry"]))
+                //{
+                //    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+                //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                //    return;
+                //}
 
                 //this.CheckValue();
                 Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1320,6 +1352,9 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         this.SendNotificaion(Orderno, Centrid, roletype, isForward, compsms, compmail, ssl, sendUsername, sendDptdesc, sendUsrdesig, compName);
                         string Messagesd = "Leave Approved";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
+
+                        string eventdesc2 = "Details: " + sendUsername+ sendDptdesc+ sendUsrdesig+ compName;
+                        bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
 
                     }
                 }

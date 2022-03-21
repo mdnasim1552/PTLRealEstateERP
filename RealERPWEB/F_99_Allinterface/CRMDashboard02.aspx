@@ -597,14 +597,20 @@
                         <div class="col-md-1">
                             <asp:LinkButton ID="lnkbtnOk" OnClick="lnkbtnOk_Click" Class="btn btn-sm btn-primary" runat="server">Ok</asp:LinkButton>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
                             <a href="../F_21_MKT/CrmClientInfo?Type=Entry" target="_blank" class="btn btn-sm btn-primary float-right">Go Interface</a>
 
 
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-1">
 
-                            <asp:HyperLink ID="HyperLink2" class="btn btn-sm btn-success float-left" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel Reports</asp:HyperLink>
+                            <asp:HyperLink ID="HyperLink2" class="btn btn-sm btn-success float-left" Target="_blank" NavigateUrl="~/F_21_Mkt/RptSalesFunnel" runat="server">Sales Funnel</asp:HyperLink>
+
+                        </div>
+
+                         <div class="col-md-1">
+
+                            <asp:HyperLink ID="hlnkMonthlySales" class="btn btn-sm btn-success float-left" Target="_blank" NavigateUrl="~/F_21_MKT/MonthsWiseSale?Type=CRM" runat="server">Monthly Sales</asp:HyperLink>
 
                         </div>
                     </div>

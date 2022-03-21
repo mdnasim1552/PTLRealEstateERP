@@ -96,6 +96,10 @@ namespace RealERPWEB.F_34_Mgt
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
         }
+
+    
+        
+
         private void ModuleVisible()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
@@ -1221,6 +1225,8 @@ namespace RealERPWEB.F_34_Mgt
             string webmailpwd = this.txtmWebMailPass.Text.Trim();
             string userRole = this.ddlmUserRole.SelectedValue.ToString();
 
+            
+
             usrpass = (usrpass.Length == 0) ? "" : ASTUtility.EncodePassword(usrpass);
             bool result = User.UpdateTransInfo(comcod, "SP_UTILITY_LOGIN_MGT", "INSORUPDATEUSR", usrid, usrsname,
                       usrfname, usrdesig, usrpass, usrrmrk, active, empid, usermail, webmailpwd, userRole, "", "", "", "");
@@ -1236,7 +1242,7 @@ namespace RealERPWEB.F_34_Mgt
 
             msg="New User Created Successfully";
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('"+msg+"');", true);
-            this.gvUseForm.EditIndex = -1;
+           
             this.ShowUserInfo();
 
 
@@ -1256,10 +1262,13 @@ namespace RealERPWEB.F_34_Mgt
         protected void lnkEditUser_Click(object sender, EventArgs e)
         {
             string comcod = this.GetComeCode();
+            this.Bind_EmpId();
             DataTable dt = (DataTable)ViewState["tblempleaveinfo"];
             int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
 
             string empcode = ((LinkButton)this.gvUseForm.Rows[RowIndex].FindControl("lbtnUserId")).Text.Trim();
+            string empid = ((Label)this.gvUseForm.Rows[RowIndex].FindControl("lblempid")).Text.Trim();
+            
 
 
             DataSet ds1 = User.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETUSERINFOBYID", empcode, "", "", "", "", "", "", "", "");
@@ -1275,9 +1284,15 @@ namespace RealERPWEB.F_34_Mgt
             this.txtmUserEmail.Text = ds1.Tables[0].Rows[0]["mailid"].ToString();
             this.txtmWebMailPass.Text = ds1.Tables[0].Rows[0]["mailpass"].ToString();
             this.txtmGraph.Text = ds1.Tables[0].Rows[0]["eventspanel"].ToString();
-            this.ddlmEmpId.SelectedValue = ds1.Tables[0].Rows[0]["empid"].ToString();
-            this.ddlmUserRole.SelectedValue = ds1.Tables[0].Rows[0]["userrole"].ToString();
+            
+            if (empid != "")
+            {
+                this.ddlmEmpId.SelectedValue = empid;
 
+            }
+
+            this.ddlmUserRole.SelectedValue = ds1.Tables[0].Rows[0]["userrole"].ToString();
+            this.chkmUserActive.Checked= (ds1.Tables[0].Rows[0]["usractive"].ToString()=="True")?true:false;
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openUserModal();", true);
 
         }
@@ -1294,7 +1309,15 @@ namespace RealERPWEB.F_34_Mgt
             this.txtmGraph.Text = "";
             this.ddlmEmpId.SelectedValue = "";
             this.ddlmUserRole.SelectedValue = "";
+            this.chkmUserActive.Checked = false;
         }
+
+        protected void ddlmUserRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
 

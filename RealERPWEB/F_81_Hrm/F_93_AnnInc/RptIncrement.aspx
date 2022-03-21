@@ -19,6 +19,9 @@
                 k1.textBoxHandler(event);
             });
 
+            var gvAnnIncre = $('#<%=this.gvAnnIncre.ClientID %>');
+            gvAnnIncre.Scrollable();
+
         };
     </script>
 
@@ -110,6 +113,8 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
 
@@ -191,7 +196,7 @@
                     <div class="row">
                         <asp:GridView ID="gvAnnIncre" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                             OnPageIndexChanging="gvAnnIncre_PageIndexChanging" ShowFooter="True" Width="831px" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            Height="200px">
+                            >
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">

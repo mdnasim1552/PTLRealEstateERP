@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
-    </style>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -20,7 +20,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-
+            var gvAnnIncre = $('#<%=this.gvAnnIncre.ClientID %>');
+            gvAnnIncre.Scrollable();
 
             var gridview = $('#<%=this.gvAnnIncre.ClientID %>');
             $.keynavigation(gridview);
@@ -30,11 +31,6 @@
         };
     </script>
 
-
-
-
-    
-    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -128,6 +124,9 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
+                                            <asp:ListItem>1500</asp:ListItem>
                                         </asp:DropDownList>
 
                                     </div>
@@ -166,7 +165,7 @@
                         <div class="table-responsive">
                    <asp:GridView ID="gvAnnIncre" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                             OnPageIndexChanging="gvAnnIncre_PageIndexChanging" ShowFooter="True" Width="831px" CssClass="table-striped table-hover table-bordered grvContentarea"
-                            Height="200px">
+                           >
                             <RowStyle />
                             <Columns>
                                 <asp:TemplateField HeaderText="Sl">

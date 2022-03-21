@@ -24,6 +24,12 @@
                 no_results_text: "Sorry, no match!",
                 allow_single_deselect: true
             });
+
+
+            var gvAllPayroll = $('#<%=this.gvEmpLoanStatus.ClientID %>');
+            gvAllPayroll.Scrollable();
+           
+
         };
 
         function Search_Gridview(strKey) {
@@ -87,7 +93,11 @@
                             </asp:DropDownList>
                         </div>
                         <asp:LinkButton ID="lnkbtnShow" runat="server" OnClick="lnkbtnShow_Click" CssClass="btn btn-success btn-sm ml-1 col-1">Ok</asp:LinkButton>
-
+                        <asp:DropDownList ID="ddlempst" runat="server" AutoPostBack="True" CssClass="chzn-select form-control col-1" OnSelectedIndexChanged="ddlempst_SelectedIndexChanged">                          
+                            <asp:ListItem  Value="2">All</asp:ListItem>
+                            <asp:ListItem Selected="True" Value="1">Active</asp:ListItem>
+                            <asp:ListItem  Value="0">InActive</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
 
                     <div class="row mt-2  pb-0">
@@ -99,7 +109,7 @@
                         <asp:Label ID="Label5" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Loan Type</asp:Label>
 
                         <asp:DropDownList ID="ddlLoantype" data-placeholder="Choose loan.." runat="server"
-                            CssClass="chzn-select form-control col-2" AutoPostBack="true">
+                            CssClass="chzn-select form-control col-2" AutoPostBack="true" OnSelectedIndexChanged="ddlLoantype_SelectedIndexChanged">
                         </asp:DropDownList>
 
                         <asp:Label ID="lblPage" runat="server" Visible="false" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Page Size</asp:Label>
@@ -118,7 +128,7 @@
                         <asp:Label ID="lblser" runat="server" CssClass="btn btn-sm btn-secsondary mr-2 col-1">Search</asp:Label>
 
                         <asp:TextBox ID="inputtextbox" Style="height: 29px" runat="server" CssClass="form-control col-2" placeholder="Search here..." onkeyup="Search_Gridview(this)"></asp:TextBox>
-
+                        
                     </div>
                 </div>
 
@@ -175,12 +185,14 @@
                                         <asp:Label ID="lblloantype" runat="server" Text='<%#Convert.ToString(DataBinder.Eval(Container.DataItem, "loanname"))%>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
+                              <%--  ---target="_blank"--%>
                                 <asp:TemplateField HeaderText="Loan Amt">
                                     <ItemTemplate>
+                                        <a href="<%# "EmpLoanInfo?Type=Entry" +"&lnno="+ Eval("lnno").ToString()%>" > 
                                         <asp:Label ID="lblgvLoanamt" runat="server" BackColor="Transparent"
                                             BorderStyle="None" Style="text-align: right"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tloan")).ToString("#,##0;(#,##0); ") %>'></asp:Label>
+                                        </a>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFLoanamt" runat="server" Font-Bold="True" Font-Size="12px"

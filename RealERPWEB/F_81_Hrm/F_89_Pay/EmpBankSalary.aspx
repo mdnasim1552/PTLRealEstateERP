@@ -14,8 +14,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
+     <script language="javascript" type="text/javascript">
+         $(document).ready(function () {
+             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+         });
+         function pageLoaded() {
 
-
+             $("input, select").bind("keydown", function (event) {
+                 var k1 = new KeyPress();
+                 k1.textBoxHandler(event);
+             });
+             var grvJoinStat = $('#<%=this.gvBankPayment.ClientID %>');
+             grvJoinStat.Scrollable();
+       
+         };
+</script>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="RealProgressbar">
@@ -102,6 +115,8 @@
                                             <asp:ListItem>150</asp:ListItem>
                                             <asp:ListItem>200</asp:ListItem>
                                             <asp:ListItem>300</asp:ListItem>
+                                            <asp:ListItem Selected="True">600</asp:ListItem>
+                                            <asp:ListItem>900</asp:ListItem>
                                         </asp:DropDownList>
 
                                     </div>
@@ -112,8 +127,6 @@
                                         <asp:CheckBox ID="chklksalary" runat="server" CssClass=" btn btn-primary  checkBox" Style="height: 25px !important;" Text="Previous" />
 
                                         <asp:CheckBox ID="ChkAll" runat="server" CssClass=" btn btn-primary  checkBox" Style="height: 25px !important;" Text="Bank Wise" />
-
-
 
                                         <asp:RadioButtonList ID="rbtnlistsaltype" runat="server" CssClass="rbtnList1 margin5px"
                                             Font-Size="14px" Height="16px" RepeatColumns="14" RepeatDirection="Horizontal"

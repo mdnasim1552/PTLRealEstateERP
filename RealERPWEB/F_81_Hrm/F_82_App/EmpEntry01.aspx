@@ -10,6 +10,7 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $(".select2").select2();
             Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
 
         });
@@ -68,7 +69,7 @@
                         <asp:LinkButton ID="lnkCreate" OnClick="lnkCreate_Click" runat="server" CssClass="btn  btn-secondary  btn-sm float-right" ToolTip="Create New Employee"><i class="fa fa-plus" aria-hidden="true"></i></asp:LinkButton>
 
                         <asp:Label ID="Label1" runat="server" CssClass="col-1 col-form-label">Information</asp:Label>
-                        <div class=" col-2">
+                        <div class="col-2">
 
                             <asp:DropDownList ID="ddlInformation" data-placeholder="Choose Information.." ClientIDMode="Static" runat="server"
                                 CssClass="select2" AutoPostBack="true" OnSelectedIndexChanged="ddlInformation_SelectedIndexChanged">

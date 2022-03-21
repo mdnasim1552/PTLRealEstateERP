@@ -668,8 +668,8 @@
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop4" style="">
                                         <div class="dropdown-arrow"></div>
                                         <asp:HyperLink ID="hyplnkCrReqMkt" runat="server" Target="_blank" NavigateUrl="~/F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=&comcod=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Marketing</asp:HyperLink>
-                                        <asp:HyperLink ID="hyplnkCrReqIT" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition IT</asp:HyperLink>
-                                        <asp:HyperLink ID="hyplnkCrReqAdmin" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Admin</asp:HyperLink>
+                                        <%--<asp:HyperLink ID="hyplnkCrReqIT" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition IT</asp:HyperLink>
+                                        <asp:HyperLink ID="hyplnkCrReqAdmin" runat="server" Target="_blank" NavigateUrl="~/F_12_Inv/PurReqEntry?InputType=FxtAstEntry&prjcode=&genno=" CssClass="dropdown-item" Style="padding: 0 10px">Create Requisition Admin</asp:HyperLink>--%>
                                     </div>
                                 </div>
                             </div>
@@ -1026,17 +1026,6 @@
                                                             </asp:TemplateField>
 
 
-
-                                                            <asp:TemplateField HeaderText="CCD Status" Visible="false">
-                                                                <ItemTemplate>
-
-
-                                                                    <asp:Label ID="lblgvApamtf" runat="server" Style="text-align: right"
-                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "iscrchecked"))%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle Width="100px" />
-                                                                <HeaderStyle HorizontalAlign="Center" Width="100px" VerticalAlign="Top" />
-                                                            </asp:TemplateField>
 
 
 

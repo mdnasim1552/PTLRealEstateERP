@@ -32,7 +32,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 this.GetCompName();
                 this.GetDesignation();
                 ((Label)this.Master.FindControl("lblTitle")).Text = (this.Request.QueryString["Type"].ToString() == "MLateAppDay") ? "Monthly Late  Approval Information"
-                    : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly One Time Punch Approval Information"
+                    : (this.Request.QueryString["Type"].ToString() == "MPunchAppDay") ? "Monthly Absent / Punch Approval"
                     : (this.Request.QueryString["Type"].ToString() == "MEarlyleave") ? "Monthly Early Leave Approval Information"
                     : (this.Request.QueryString["Type"].ToString() == "LPAproval") ? "Monthly (L.P) Late Approval"
                     : "Monthly Absent Approval";
@@ -287,17 +287,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             {
                 this.txtfrmDate.Enabled = false;
                 this.txttoDate.Enabled = false;
-                this.ddlCompanyName.Visible = false;
-                this.ddlDepartment.Visible = false;
-                this.lblCompanyName.Visible = true;
-                this.lblDeptDesc.Visible = true;
+                this.ddlCompanyName.Enabled = false;
+                this.ddlDepartment.Enabled = false;
+                this.DropCheck1.Enabled = false;
 
 
-                this.lblPage.Visible = true;
+
                 this.ddlpagesize.Visible = true;
                 this.lnkbtnShow.Text = "New";
-                this.lblCompanyName.Text = this.ddlCompanyName.SelectedItem.Text;
-                this.lblDeptDesc.Text = this.ddlDepartment.SelectedItem.Text;
+
 
                 this.ShowData();
                 return;
@@ -305,11 +303,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             this.txtfrmDate.Enabled = true;
             this.txttoDate.Enabled = true;
-            this.ddlCompanyName.Visible = true;
-            this.ddlDepartment.Visible = true;
-            this.lblCompanyName.Visible = false;
-            this.lblDeptDesc.Visible = false;
-            this.lblPage.Visible = false;
+            this.ddlCompanyName.Enabled = true;
+            this.ddlDepartment.Enabled = true;
+            this.DropCheck1.Enabled = true;
+
+
+
             this.ddlpagesize.Visible = false;
             this.grvAdjDay.DataSource = null;
             this.grvAdjDay.DataBind();
@@ -318,7 +317,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             this.gvmapsapp.DataSource = null;
             this.gvmapsapp.DataBind();
             this.lnkbtnShow.Text = "Ok";
-            this.lblCompanyName.Text = "";
+
 
         }
 
@@ -835,9 +834,12 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 case "MPunchAppDay":
                     for (int i = 0; i < this.gvOPunch.Rows.Count; i++)
                     {
-                        double dedday = Convert.ToDouble("0" + ((TextBox)this.gvOPunch.Rows[i].FindControl("txtpAdj")).Text.Trim());
+                        double opunchday = Convert.ToDouble("0" + ((Label)this.gvOPunch.Rows[i].FindControl("lblgvPunchDay")).Text.Trim());
+                        double paprday = Convert.ToDouble("0" + ((TextBox)this.gvOPunch.Rows[i].FindControl("txtpaprday")).Text.Trim());
+                       
                         rowindex = (this.gvOPunch.PageSize) * (this.gvOPunch.PageIndex) + i;
-                        dt.Rows[rowindex]["pdedday"] = dedday;
+                        dt.Rows[rowindex]["paprday"] = paprday;
+                        dt.Rows[rowindex]["pdedday"] = opunchday - paprday;
 
                     }
                     break;
@@ -1083,6 +1085,20 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         private void InsertUpdateDataBTI()
         {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string compsms = hst["compsms"].ToString();
+            string compmail = hst["compmail"].ToString();
+            string ssl = hst["ssl"].ToString();
+
+            string sendUsername = hst["userfname"].ToString();
+
+            string sendDptdesc = hst["dptdesc"].ToString();
+            string sendUsrdesig = hst["usrdesig"].ToString();
+            string compName = hst["comnam"].ToString();
+
+            string usrid = hst["usrid"].ToString();
+            string deptcode = hst["deptcode"].ToString();
+
             this.SaveValue();
             DataTable dt = (DataTable)Session["tblover"];
             string comcod = this.GetCompCode();
@@ -1103,7 +1119,6 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 double leaveadj = Convert.ToDouble("0" + dt.Rows[i]["leaveadj"]);
                 double leaveadjel = Convert.ToDouble("0" + dt.Rows[i]["leaveadjel"]);
                 double ttdelv = Convert.ToDouble("0" + dt.Rows[i]["ttdelv"]);
-
                 double ttlCallv = dedday + leaveadj + leaveadjel;
                 if (isadjust == "True")
                 {
@@ -1116,6 +1131,63 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", ComCalltype, monthid, empid, dedday.ToString(), delday, aprday, leaveadj.ToString(), leaveadjel.ToString(), "", "", "", "", "", "", "", "");
                         if (!result)
                             return;
+                        if (comcod == "3365")
+                        {
+                            string reason = "Late Adjustment";
+                            // for leave creatrion bti
+                            string frmdate = this.txtfrmDate.Text.Trim();
+                            string todate = this.txttoDate.Text.Trim();
+                            DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL", frmdate, todate, empid);
+                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT_DELETE", empid, frmdate, todate);
+
+                            DataTable dts;
+                            DataTable dtcl;
+                            DataTable dtel;
+                            DataView dv = ds2.Tables[0].DefaultView;
+                            dv.RowFilter = "(lateapp = 'False')";
+                            dts = dv.ToTable();
+                            dtcl = dts;
+                            dtel = dts;
+
+                            // CL Adjust  table dbo_hrm.HREMPLVEAPP
+                            if (leaveadj.ToString() != "0")
+                            {
+                                string trnid = this.GetLeaveid();
+                                //int lvrow = (Int32)(Math.Round(leaveadj, 0));                                                          
+                                for (int j = 0; j < dtcl.Rows.Count; j++)
+                                {
+
+                                    string tdays = (leaveadj > 1 ? "1" : leaveadj.ToString("#,##0.00;(#,##0.00);"));
+                                    bool ishalfday = (leaveadj <= 0.5 ? true : false);
+                                    frmdate = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
+                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
+                                    dtel.Rows.RemoveAt(j);
+                                    leaveadj = leaveadj - 1;
+                                    if (leaveadj <= 0)
+                                        break;
+                                }
+                            }
+
+                            // EL Adjust  table dbo_hrm.HREMPLVEAPP
+
+                            if (leaveadjel.ToString() != "0")
+                            {
+                                string trnid = this.GetLeaveid();
+                                int lvrow = (Int32)(Math.Round(leaveadjel, 0));
+                                for (int j = 0; j < dtel.Rows.Count; j++)
+                                {
+                                    string tdays = (leaveadjel > 1 ? "1" : leaveadjel.ToString("#,##0.00;(#,##0.00);"));
+                                    bool ishalfday = (leaveadjel <= 0.5 ? true : false);
+                                    frmdate = Convert.ToDateTime(dtel.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
+                                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51001", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
+                                    dtel.Rows.RemoveAt(j);
+                                    leaveadjel = leaveadjel - 1;
+                                    if (leaveadjel <= 0)
+                                        break;
+                                }
+                            }
+                        }
+
                     }
                 }
                 else
@@ -1124,6 +1196,14 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                     if (!result)
                         return;
                 }
+
+
+                string eventtype = "Monthly Late  Approval";
+                string eventdesc = "Late  Approval, ID CARD # " + idcardno;
+                string eventdesc2 = "Something Change for Empoyee";
+                bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
+
+
 
             }
             if (Errocard.Length == 0)
@@ -1137,6 +1217,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
             }
         }
+
+        private string GetLeaveid()
+        {
+
+            string comcod = this.GetCompCode();
+            DataSet ds5 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "GETLEAVEID", "", "", "", "", "", "", "", "", "");
+            string lstid = ds5.Tables[0].Rows[0]["ltrnid"].ToString().Trim();
+            return lstid;
+        }
+
         private void InsertUpdateDataALL()
         {
             this.SaveValue();
@@ -1787,16 +1877,24 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         {
 
             string comcod = this.GetCompCode();
-            this.lbmodalheading.Text = "Individual Monthly Late Approval Details Information. Date :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
+            this.lbmodalheading.Text = "Late Approval Details Information";
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-
             int index = row.RowIndex;
+
+            string Empcode = ((Label)this.grvAdjDay.Rows[index].FindControl("lgvEmpIdAdj")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
+
+
+
 
             string frmdate = this.txtfrmDate.Text.Trim();
             string todate = this.txttoDate.Text.Trim();
-            string Empcode = ((Label)this.grvAdjDay.Rows[index].FindControl("lgvEmpIdAdj")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            string emdname = ((Label)this.grvAdjDay.Rows[index].FindControl("emdname")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            string empdesig = ((Label)this.grvAdjDay.Rows[index].FindControl("lblgvEmpNameearn")).Text.ToString(); // "%" + this.txtSrcEmployee.Text.Trim() + "%";
+            EmpDeatials.InnerText = "Name : " + emdname + " , Designation: " + empdesig;
+            DeatialsDate.InnerText= "From Date :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
             string frmdesig = this.ddlfrmDesig.SelectedValue.ToString();
             string todesig = this.ddlToDesig.SelectedValue.ToString();
+
             DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL", frmdate, todate, Empcode);
             if (ds2 == null)
             {
@@ -2429,8 +2527,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msgs + "');", true);
 
                         return;
-                    }    
-                        
+                    }
+
                 }
 
 

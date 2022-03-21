@@ -17,19 +17,11 @@
                 k1.textBoxHandler(event);
 
             });
-
+            var gvLeaveRule = $('#<%=this.gvLeaveRule.ClientID %>');
+            gvLeaveRule.Scrollable();
             $('.chzn-select').chosen({ search_contains: true });
         }
 
-    </script>
-
-    <script type="text/javascript" language="javascript">
-
-        $(document).ready(function () {
-
-            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
-
-        });
     </script>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -56,7 +48,7 @@
                 <div class="col-9"></div>
 
                 <div class="col-2">
-                    <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-denger btn-sm pull-right" NavigateUrl="~/F_81_Hrm/F_84_Lea/UploadLeavExcel.aspx" Target="_blank"><i class="fas fa-plus"></i> Upload Excel </asp:HyperLink>
+                    <asp:HyperLink ID="LinkButton1" runat="server" CssClass="btn btn-denger d-none btn-sm pull-right" NavigateUrl="~/F_81_Hrm/F_84_Lea/UploadLeavExcel.aspx" Target="_blank"><i class="fas fa-plus"></i> Upload Excel </asp:HyperLink>
 
                     <asp:LinkButton ID="lnkRule" runat="server" CssClass="btn btn-info btn-sm pull-right" OnClick="lnkRule_Click"><i class="fas fa-plus"></i> Create Rule </asp:LinkButton>
                 </div>
@@ -106,35 +98,47 @@
                             </div>
                         </div>
 
+
+
+
                         <div class="col-2" id="divPage" runat="server">
                             <div class="input-group input-group-alt ">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-secondary ml-1" type="button">Page Size</button>
                                 </div>
                                 <asp:DropDownList ID="ddlpagesize" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlpagesize_SelectedIndexChanged">
-                                    <asp:ListItem>10</asp:ListItem>
-                                    <asp:ListItem>15</asp:ListItem>
-                                    <asp:ListItem>20</asp:ListItem>
-                                    <asp:ListItem>30</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>                                                           
                                     <asp:ListItem>50</asp:ListItem>
                                     <asp:ListItem>100</asp:ListItem>
                                     <asp:ListItem>150</asp:ListItem>
                                     <asp:ListItem>200</asp:ListItem>
                                     <asp:ListItem>300</asp:ListItem>
+                                    <asp:ListItem Selected="True">600</asp:ListItem>
                                     <asp:ListItem>1000</asp:ListItem>
                                 </asp:DropDownList>
 
                             </div>
                         </div>
+
+                        
+
+
                         <div class="col-1">
 
                             <asp:LinkButton ID="lbtnOk" runat="server" CssClass="btn btn-primary okBtn pull-left" OnClick="lbtnOk_Click" Text="Ok"></asp:LinkButton>
 
-                            
+
 
                         </div>
 
-
+                        <div class="col-2" id="divType" runat="server">
+                            
+                             <asp:DropDownList ID="ddlModiType" runat="server" AutoPostBack="True" CssClass="form-control" OnSelectedIndexChanged="ddlModiType_SelectedIndexChanged" >
+                                    <asp:ListItem id="All">All</asp:ListItem>
+                                    <asp:ListItem id="Updated">Updated</asp:ListItem>
+                                    <asp:ListItem id="Notupdate">Notupdate</asp:ListItem>
+                                </asp:DropDownList>
+                        </div>
 
                     </div>
 
@@ -248,8 +252,8 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="table-responsive">
-                                    <asp:GridView ID="gvLeaveRule" runat="server" AllowPaging="True" AutoGenerateColumns="False"
+                                <div class="table-responsives">
+                                    <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False"
                                         OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" Width="834px" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         PageSize="15">
                                         <PagerSettings Position="Top" />
@@ -363,6 +367,9 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
+
+                                        
+
                                             <asp:TemplateField HeaderText="Maternity Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvml" runat="server" BackColor="Transparent" BorderStyle="None"
@@ -373,7 +380,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Paternity Leave">
+                                            <asp:TemplateField HeaderText="Star Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvpl" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "ptleave")).ToString("#,##0.00;(#,##0.00); ") %>'

@@ -812,6 +812,7 @@ namespace RealERPWEB.F_24_CC
                         case "3344": // Terranova
                         case "3101": // Asit Own
                         case "3354": // ERL Own
+                        case "3343": // Dominion
 
 
                             if (approval == "")
@@ -893,7 +894,7 @@ namespace RealERPWEB.F_24_CC
                     {
                         this.CreateDataTable();
                         DataTable dt = (DataTable)ViewState["tblapproval"];
-                        if (comcod == "3315" || comcod == "3316" )
+                        if (comcod == "3315" || comcod == "3316" ||comcod=="3364" )
                         {
                             DataRow dr1 = dt.NewRow();
                             dr1["chkbyid"] = usrid;
@@ -1026,6 +1027,8 @@ namespace RealERPWEB.F_24_CC
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
+                        case "3364": //jbs
+
                             break;
                         default:
                             approval = "approval";
@@ -1047,6 +1050,7 @@ namespace RealERPWEB.F_24_CC
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
+                        case "3364": //jbs
                             break;
 
                     }
@@ -1059,6 +1063,7 @@ namespace RealERPWEB.F_24_CC
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
+                        case "3364": //jbs
                             break;
 
                     }
@@ -1072,6 +1077,7 @@ namespace RealERPWEB.F_24_CC
                         case "3315"://Assure 
                         case "3316":
                         case "3317":
+                        case "3364": //jbs
                             approval = "approval";
 
                             break;
@@ -1106,7 +1112,7 @@ namespace RealERPWEB.F_24_CC
             string curdate = Convert.ToDateTime(this.txtCurTransDate.Text).ToString("dd-MMM-yyyy");
 
             string paysch = "";
-            if (comcod=="3315" || comcod=="3316"|| comcod=="3317" )
+            if (comcod=="3315" || comcod=="3316"|| comcod=="3317"|| comcod=="3364" )
             {
                 paysch = this.GetSchCode();
             }
