@@ -1250,10 +1250,10 @@ namespace RealERPWEB.F_04_Bgd
             if (this.lbtnSelectFloor.Text == "Select Floor")
             {
                 this.lbtnSelectFloor.Text = "Other Floor";
-                this.lblFloorName.Text = this.ddlFloorList.SelectedItem.Text.Trim();
+                //this.lblFloorName.Text = this.ddlFloorList.SelectedItem.Text.Trim();
 
                 this.ddlFloorList.Visible = false;
-                this.lblFloorName.Visible = true;
+                //this.lblFloorName.Visible = true;
 
                 this.ChkCopy.Visible = true;
 
@@ -1278,7 +1278,7 @@ namespace RealERPWEB.F_04_Bgd
                 this.ChkCopy.Visible = false;
 
                 this.ddlFloorList.Visible = true;
-                this.lblFloorName.Visible = false;
+                //this.lblFloorName.Visible = false;
 
                 this.lblItem2.Visible = false;
                 this.txtItemSearch2.Visible = false;

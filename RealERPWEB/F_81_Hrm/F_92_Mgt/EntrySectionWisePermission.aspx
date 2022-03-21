@@ -101,7 +101,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label d-block" for="ddlUserName">   <asp:LinkButton ID="ImgbtnFindProject"  class="p-0"  runat="server" OnClick="ImgbtnFindProject_Click"> Project Code</asp:LinkButton></label>
+                                    <label class="control-label d-block" for="ddlUserName">   <asp:LinkButton ID="ImgbtnFindProject"  class="p-0"  runat="server" OnClick="ImgbtnFindProject_Click">Compnay Name</asp:LinkButton></label>
                                  
                                     <%--<label class="control-label" for="ddlUserName">Project Code</label>--%>
                                  <%--   <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select chzn-select">--%>
@@ -118,7 +118,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label d-block" for="ddlUserName">   <asp:LinkButton ID="LinkButton1"  class="p-0"  runat="server" OnClick="ImgbtnFindProject_Click"> Project Code</asp:LinkButton></label>
+                                    <label class="control-label d-block" for="ddlUserName">   <asp:LinkButton ID="LinkButton1"  class="p-0"  runat="server" OnClick="ImgbtnFindProject_Click">Department Name</asp:LinkButton></label>
                                  
                                     <%--<label class="control-label" for="ddlUserName">Project Code</label>--%>
                                  <%--   <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select chzn-select">--%>
@@ -136,7 +136,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="control-label d-block" for="ddlUserName">   <asp:LinkButton ID="LinkButton4"  class="p-0"  runat="server" OnClick="ImgbtnFindProject_Click"> Project Code</asp:LinkButton></label>
+                                    <label class="control-label d-block" for="ddlUserName">   <asp:LinkButton ID="LinkButton4"  class="p-0"  runat="server" OnClick="ImgbtnFindProject_Click">Section Name</asp:LinkButton></label>
                                  
                                     <%--<label class="control-label" for="ddlUserName">Project Code</label>--%>
                                  <%--   <asp:DropDownList ID="ddlProjectName" runat="server" CssClass="custom-select chzn-select">--%>
