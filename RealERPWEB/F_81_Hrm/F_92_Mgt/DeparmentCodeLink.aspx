@@ -1,7 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="CodeLinkCoReBa.aspx.cs" Inherits="RealERPWEB.F_34_Mgt.CodeLinkCoReBa" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/ASITNEW.Master" AutoEventWireup="true" CodeBehind="DeparmentCodeLink.aspx.cs" Inherits="RealERPWEB.F_81_Hrm.F_92_Mgt.DeparmentCodeLink" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -130,7 +131,7 @@
 
 
 
-                                <asp:TemplateField HeaderText="Cost Code Description">
+                                <asp:TemplateField HeaderText=" Description">
                                     <EditItemTemplate>
                                         <asp:Panel ID="pnlTeam" runat="server" BorderColor="Yellow" BorderStyle="Solid"
                                             BorderWidth="1px">
@@ -182,4 +183,3 @@
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
-
