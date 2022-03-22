@@ -43,10 +43,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 }
                 else
                 {
+                    CreateTable();
                     GetLeavType();
                     GetSupvisorCheck();
                     getVisibilty();
-                    CreateTable();
+                    
                     this.EmpLeaveInfo();
                     this.ShowEmppLeave();
                     GetCalCulateDay();
@@ -325,6 +326,18 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     this.btnSave.Enabled = false;
                     return;
                 }
+                else if (gcod == "51999")
+                {
+
+                    //txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
+
+                }
+                else
+                {
+                    nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
+                    this.txtgvenjoydt2.Text = nextday;
+                    txtgvenjoydt2_CalendarExtender.StartDate = fdate;
+                }
 
                 if (chkBoxSkippWH.Checked == true)
                 {
@@ -346,24 +359,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     }
                     if (isvalidate == false)
                         return;
-
-
                     seLvDate();
                 }
 
 
-                if (gcod == "51999")
-                {
-
-                    //txtgvenjoydt2_CalendarExtender.StartDate = DateTime.Now.AddMonths(1);
-
-                }
-                else
-                {
-                    nextday = fdate.AddDays(+0).ToString("dd-MMM-yyyy");
-                    this.txtgvenjoydt2.Text = nextday;
-                    txtgvenjoydt2_CalendarExtender.StartDate = fdate;
-                }
+               
 
 
                 GetCalCulateDay();
@@ -528,7 +528,12 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     {
                         string Messaged = "Successfully applied for leave, please wait for approval";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messaged + "');", true);
-                        this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
+                        if(qtype != "MGT")
+                        {
+                            this.SendNotificaion(frmdate, todate, trnid, deptcode, compsms, compmail, ssl, compName, htmtableboyd);
+
+                        }
+
                         string eventdesc2 = "Details: " + htmtableboyd;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), "New Leave Request", htmtableboyd, Messaged);
                     }
@@ -1001,6 +1006,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     return;
                 }
+                if (dt1== null)
+                {
+                    return;
+                }
                 DataRow[] dr2 = dt1.Select("leavday='" + leavday + "'");
                 if (dr2.Length > 0)
                 {
@@ -1045,6 +1054,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 divBTWDay.Visible = true;
                 diSkippDay.Visible = false;
                 diSkippDayDetails.Visible = false;
+                ViewState.Remove("tblSlevDay");
             }
             else
             {
@@ -1052,9 +1062,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 diSkippDay.Visible = true;
                 diSkippDayDetails.Visible = true;
                 divDurStatus.Visible = false;
+                 ViewState.Remove("tblSlevDay");
             }
             this.Duration.Value = "0";
-            ViewState.Remove("tblSlevDay");
+            CreateTable();
+
 
 
         }
@@ -1095,21 +1107,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 chkBoxSkippWH_CheckedChanged(null, null);
                 frmdate.InnerText = "Leave Day";
                 todate.InnerText = "For Duty/Off Day";
-                this.divDurStatus.Visible = false;
-
-                txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-                txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
-
-
+                this.divDurStatus.Visible = false; 
             }
-            else
-            {
-
-            }
-            string nextday = DateTime.Now.AddDays(+1).ToString("dd-MMM-yyyy");
-            this.txtgvenjoydt1.Text = nextday;
-            this.txtgvenjoydt2.Text = nextday;
-            //   GetCalCulateDay();
+            
+            txtgvenjoydt1.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            txtgvenjoydt2.Text = System.DateTime.Today.ToString("dd-MMM-yyyy");
         }
 
 
