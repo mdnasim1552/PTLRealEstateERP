@@ -2714,7 +2714,7 @@
                                                 <asp:ListItem>20</asp:ListItem>
                                                 <asp:ListItem>30</asp:ListItem>
                                                 <asp:ListItem>40</asp:ListItem>
-                                                <asp:ListItem>50</asp:ListItem>
+                                                <asp:ListItem Selected="true">50</asp:ListItem>
                                                 <asp:ListItem>100</asp:ListItem>
                                                 <asp:ListItem>150</asp:ListItem>
                                                 <asp:ListItem>200</asp:ListItem>
@@ -2728,7 +2728,7 @@
                                                 <asp:ListItem>5000</asp:ListItem>
                                                 <asp:ListItem>7000</asp:ListItem>
                                                 <asp:ListItem>8000</asp:ListItem>
-                                                <asp:ListItem Selected="true">10000</asp:ListItem>
+                                                <asp:ListItem >10000</asp:ListItem>
                                             </asp:DropDownList>
 
 
