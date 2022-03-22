@@ -405,20 +405,10 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     Session["Report1"] = GvTotalSumm;
                     ((HyperLink)this.GvTotalSumm.HeaderRow.FindControl("hlbtntbCdataExcel")).NavigateUrl = "../../RptViewer.aspx?PrintOpt=GRIDTOEXCEL";
                     break;
-
-
                 default:
                     break;
-
             }
-
-
-
-
-
-
         }
-
         protected void Page_PreInit(object sender, EventArgs e)
         {
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lnkPrint_Click);

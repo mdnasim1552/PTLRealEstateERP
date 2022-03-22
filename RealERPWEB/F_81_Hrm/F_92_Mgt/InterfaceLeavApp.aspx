@@ -162,29 +162,7 @@
         }
     </style>
 
-    <%--<script>
-        $(document).ready(function () {
-            $("#slSt").load("~/F_23_SaM/SalesInterface.aspx");
-            var refreshId = setInterval(function () {
-                $("#slSt").load('~/F_23_SaM/SalesInterface.aspx?randval=' + Math.random());
-            }, 10000);
-            $.ajaxSetup({ cache: false });
-        });
-
-
-
-        //var refreshId = setInterval(function()
-        //{
-        //    $(‘#responsecontainer’).load(‘response.php’);
-        //    $(‘#responsecontainer2’).load(‘response2.php’);
-        //}, 60000);
-
-        //$(document).ready(function()
-        //{
-        //    $(‘#responsecontainer’).fadeOut(“slow”).load(‘response.php’).fadeIn(“slow”);
-        //    $(‘#responsecontainer2’).fadeOut(“slow”).load(‘response2.php’).fadeIn(“slow”);
-        //});
-    </script>--%>
+ 
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -223,23 +201,18 @@
 
 
 
+            var gvLvReq = $('#<%=this.gvLvReq.ClientID %>');
+            gvLvReq.Scrollable();
 
+            var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
+            gvInprocess.Scrollable();
 
-
-            <%--var gvProSlInfo = $('#<%=this.gvProSlInfo.ClientID %>');
-            gvProSlInfo.ScrollableGv();--%>
-            <%-- var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
-            gvInprocess.ScrollableGv();
             var gvApproved = $('#<%=this.gvApproved.ClientID %>');
-            gvApproved.ScrollableGv();
-            var gvReadyDelivery = $('#<%=this.gvReadyDelivery.ClientID %>');
-            gvReadyDelivery.ScrollableGv();
-            var gvPayConfr = $('#<%=this.gvPayConfr.ClientID %>');
-            gvPayConfr.ScrollableGv();
-            var gvDispatch = $('#<%=this.gvDispatch.ClientID %>');
-            gvDispatch.ScrollableGv();--%>
-            <%--var gvDeliverd = $('#<%=this.gvDeliverd.ClientID %>');
-            gvDeliverd.ScrollableGv();--%>
+            gvApproved.Scrollable();
+
+            var gvConfirm = $('#<%=this.gvConfirm.ClientID %>');
+            gvConfirm.Scrollable();
+         
         };
 
 
@@ -470,7 +443,7 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblgvempname" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empname")) %>'
-                                                                        Width="110px"></asp:Label>
+                                                                        Width="200px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
@@ -488,7 +461,7 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lgdeptanme" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "deptanme")) %>'
-                                                                        Width="120px"></asp:Label>
+                                                                        Width="150px"></asp:Label>
 
                                                                 </ItemTemplate>
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -498,7 +471,7 @@
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lgdesig" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "desig")) %>'
-                                                                        Width="120px"></asp:Label>
+                                                                        Width="200px"></asp:Label>
 
                                                                 </ItemTemplate>
                                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
@@ -555,8 +528,11 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Current Status">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                    <asp:Label ID="Label3" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus1")) %>'
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -701,14 +677,17 @@
                                                             </asp:TemplateField>
                                                                   <asp:TemplateField HeaderText="Current Status">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent"
+                                                                    <asp:Label ID="txtgvCust" runat="server" BackColor="Transparent" Visible="false"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus")) %>'
+                                                                        Width="80px"></asp:Label>
+                                                                     <asp:Label ID="Label2" runat="server" BackColor="Transparent"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvstatus1")) %>'
                                                                         Width="80px"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                             </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Remarks">
+                                                            <asp:TemplateField HeaderText="Remarks" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="txtgvRemarks" runat="server" BackColor="Transparent"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "susrid")) %>'
@@ -1032,7 +1011,7 @@
                                                 <div class="table-responsive col-lg-12" style="min-height: 350px;">
 
                                                     <asp:GridView ID="gvConfirm" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvProSlInfo_RowDataBound">
+                                                        ShowFooter="True" OnRowDataBound="gvConfirm_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
@@ -1045,6 +1024,13 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Code" Visible="False">
                                                                 <ItemTemplate>
+                                                                    <asp:Label ID="lbldptusid" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "dptusid")) %>'
+                                                                        Width="49px"></asp:Label>
+
+                                                                     <asp:Label ID="lblLeavId" runat="server" Visible="false"
+                                                                        Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ltrnid")) %>'
+                                                                        Width="49px"></asp:Label>
                                                                     <asp:Label ID="lblgvempid" runat="server"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "empid")) %>'
                                                                         Width="49px"></asp:Label>
@@ -1150,6 +1136,9 @@
 
                                                                     <asp:HyperLink ID="HyOrderPrint" runat="server" Target="_blank" CssClass="btn btn-xs btn-default"><span class=" fa fa-print"></span>
                                                                     </asp:HyperLink>
+
+                                                                     <asp:LinkButton ID="lnkRemoveForward" Visible="false" runat="server" ForeColor="red" OnClientClick="return confirm('Are you sure to Forward this Leave?');" OnClick="lnkRemoveForward_Click" Font-Underline="false" CssClass="btn btn-xs btn-default"><span  class="fa fa-undo"></span>
+                                                                    </asp:LinkButton>
 
                                                                 </ItemTemplate>
                                                                 <ItemStyle Width="50px" HorizontalAlign="left" />

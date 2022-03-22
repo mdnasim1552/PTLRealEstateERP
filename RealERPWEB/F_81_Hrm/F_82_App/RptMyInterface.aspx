@@ -254,16 +254,16 @@
                                                 <asp:Label ID="lblAbsent" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "absnt")).ToString("#, ##0;(#, ##0); ") %>'></asp:Label>
                                             </td>
                                             <td style="width: 80px; text-align: right !important;">
-                                                <asp:Label ID="lblLeave" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leave")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
+                                                <asp:Label ID="lblLeave" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leave")).ToString("#, ##0.00;(#, ##0.00); ")%>'></asp:Label>
                                             </td>
 
                                             <td style="width: 80px; text-align: right !important;">
-                                                <asp:Label ID="lbllvadj" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lvadj")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
+                                                <asp:Label ID="lbllvadj" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lvadj")).ToString("#, ##0.00;(#, ##0.00); ")%>'></asp:Label>
                                             </td>
 
 
                                             <td style="width: 80px; text-align: right !important;">
-                                                <asp:Label ID="lblrlateapp" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lateapp")).ToString("#, ##0;(#, ##0); ")%>'></asp:Label>
+                                                <asp:Label ID="lblrlateapp" runat="server" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lateapp")).ToString("#, ##0.00;(#, ##0); ")%>'></asp:Label>
                                             </td>
 
                                         </tr>

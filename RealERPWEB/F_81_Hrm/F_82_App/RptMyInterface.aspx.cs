@@ -239,7 +239,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             dr1["absnt"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(absnt)", "")) ? 0.00 : dt3.Compute("Sum(absnt)", ""))).ToString("#,##0;(#,##0)"); ;
             dr1["acintime"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(acintime)", "")) ? 0.00 : dt3.Compute("Sum(acintime)", ""))).ToString("#,##0;(#,##0)"); ; ;
             dr1["aclate"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(aclate)", "")) ? 0.00 : dt3.Compute("Sum(aclate)", ""))).ToString("#,##0;(#,##0)"); ; ;
-            dr1["leave"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0;(#,##0)"); ; ;
+            dr1["leave"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0.00;(#,##0.00)"); ; ;
             dt1.Rows.Add(dr1);
             ViewState["tblgrph"] = dt1;
             this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgEmp";
@@ -282,19 +282,9 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
                 string empid = this.ddlEmpName.SelectedValue.ToString().Trim();
-
-
-
-
-
-
                 ////lnknextbtn.NavigateUrl = "~/F_82_App/LinkMyHRLeave.aspx?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 ((HyperLink)this.gvLeaveStatus.HeaderRow.FindControl("hlnkbtnNext")).NavigateUrl = "../F_82_App/LinkMyHRLeave.aspx?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
-
-
-
-
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];

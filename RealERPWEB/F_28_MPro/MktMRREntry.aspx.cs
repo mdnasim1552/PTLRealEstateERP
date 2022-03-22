@@ -185,45 +185,6 @@ namespace RealERPWEB.F_28_MPro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-            // DataTable dt = this.HiddenSameData(ds1.Tables[0]);
-            //ReportDocument rptstk = new RealERPRPT.R_12_Inv.rptPurMrrEdision();
-
-            //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-            //TextObject rptProjectName = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //rptProjectName.Text = "Project Name: " + this.ddlProject.SelectedItem.Text.Substring(14);
-            //TextObject rpttxtsupplier = rptstk.ReportDefinition.ReportObjects["txtsupplier"] as TextObject;
-            //rpttxtsupplier.Text = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
-            ////////TextObject rpttxtorder = rptstk.ReportDefinition.ReportObjects["txtorder"] as TextObject;
-            ////////rpttxtorder.Text = "Order No: " + this.ddlOrderList.SelectedValue.ToString();
-            //TextObject rpttxtchlnno = rptstk.ReportDefinition.ReportObjects["txtchalanno"] as TextObject;
-            //rpttxtchlnno.Text = "Chalan No : " + this.txtChalanNo.Text;
-            //TextObject rpttxtmrfno = rptstk.ReportDefinition.ReportObjects["rpttxtmrfno"] as TextObject;
-            //rpttxtmrfno.Text = "Mrf No : " + ds1.Tables[0].Rows[0]["mrfno"].ToString();
-            //TextObject rpttxtMrrno = rptstk.ReportDefinition.ReportObjects["Mrrno"] as TextObject;
-            //rpttxtMrrno.Text = "MRR No: " + this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim();
-            //TextObject rpttxtMrrRef = rptstk.ReportDefinition.ReportObjects["MrrRef"] as TextObject;
-            //rpttxtMrrRef.Text = "MRR Ref: " + this.txtMRRRef.Text.Trim();
-            //TextObject rpttxtdate = rptstk.ReportDefinition.ReportObjects["date"] as TextObject;
-            //rpttxtdate.Text = "Date: " + this.txtCurMRRDate.Text.Trim();
-            //TextObject rpttxtQc = rptstk.ReportDefinition.ReportObjects["txtQc"] as TextObject;
-            //rpttxtQc.Text = "Quality Certificate: " + this.txtQc.Text.Trim();
-
-            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-
-            //if (ConstantInfo.LogStatus == true)
-            //{
-            //    //string comcod = this.GetCompCode();
-            //    string eventtype = "Materials Receive Information";
-            //    string eventdesc = "Print Report";
-            //    string eventdesc2 = this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim();
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-            //rptstk.SetDataSource(dt);
-            //Session["Report1"] = rptstk;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -269,65 +230,6 @@ namespace RealERPWEB.F_28_MPro
             Session["Report1"] = Rpt1;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-            // Hashtable hst = (Hashtable)Session["tblLogin"];
-            // string comnam = hst["comnam"].ToString();
-            // string comadd = hst["comadd1"].ToString();
-            // string compname = hst["compname"].ToString();
-            // string username = hst["username"].ToString();
-            // string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
-            // DataTable dt = (DataTable)ViewState["tblMRR"];
-
-            //string comcod = this.GetCompCode();
-            //string CurDate1 = this.GetStdDate(this.txtCurMRRDate.Text.Trim());
-            //string mMRRNo = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
-            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURMRRINFO", mMRRNo, CurDate1,
-            //             "", "", "", "", "", "", "");
-            //if (ds1 == null)
-            //    return;
-            //// DataTable dt = this.HiddenSameData(ds1.Tables[0]);
-            //ReportDocument rptstk = new RealERPRPT.R_12_Inv.rptPurMrrEntry();
-
-            //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-            //TextObject rptProjectName = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //rptProjectName.Text = "Project Name: " + this.ddlProject.SelectedItem.Text.Substring(14);
-            //TextObject rpttxtsupplier = rptstk.ReportDefinition.ReportObjects["txtsupplier"] as TextObject;
-            //rpttxtsupplier.Text = "Supplier Name: " + this.ddlSupList.SelectedItem.Text.Trim();
-            ////////TextObject rpttxtorder = rptstk.ReportDefinition.ReportObjects["txtorder"] as TextObject;
-            ////////rpttxtorder.Text = "Order No: " + this.ddlOrderList.SelectedValue.ToString();
-            //TextObject rpttxtchlnno = rptstk.ReportDefinition.ReportObjects["txtchalanno"] as TextObject;
-            //rpttxtchlnno.Text = "Chalan No: " + this.txtChalanNo.Text.Trim();
-            ////TextObject rpttxtchlnnoDate = rptstk.ReportDefinition.ReportObjects["rpttxtchlnnoDate"] as TextObject;
-            ////rpttxtchlnnoDate.Text = "Chalan Date: " + this.txtChalanDate.Text.Trim();
-            //TextObject rpttxtMrrno = rptstk.ReportDefinition.ReportObjects["Mrrno"] as TextObject;
-            //rpttxtMrrno.Text = "MRR No: " + this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim();
-            //TextObject rpttxtMrrRef = rptstk.ReportDefinition.ReportObjects["MrrRef"] as TextObject;
-            //rpttxtMrrRef.Text = "MRR Ref: " + this.txtMRRRef.Text.Trim();
-            //TextObject rpttxtdate = rptstk.ReportDefinition.ReportObjects["date"] as TextObject;
-            //rpttxtdate.Text = "Date: " + this.txtCurMRRDate.Text.Trim();
-            //TextObject rpttxtQc = rptstk.ReportDefinition.ReportObjects["txtQc"] as TextObject;
-            //rpttxtQc.Text = "Quality Certificate: " + this.txtQc.Text.Trim();
-
-            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-            //TextObject txtpostedby = rptstk.ReportDefinition.ReportObjects["txtpostedby"] as TextObject;
-            //txtpostedby.Text = ds1.Tables[1].Rows[0]["usrnam"].ToString();
-
-
-
-            //if (ConstantInfo.LogStatus == true)
-            //{
-            //    //string comcod = this.GetCompCode();
-            //    string eventtype = "Materials Receive Information";
-            //    string eventdesc = "Print Report";
-            //    string eventdesc2 = this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim();
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-            //rptstk.SetDataSource(dt);
-            //Session["Report1"] = rptstk;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
         }
 
@@ -385,72 +287,6 @@ namespace RealERPWEB.F_28_MPro
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
                         ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
 
-            //ReportDocument rptstk = new RealERPRPT.R_12_Inv.rptPurMrrEntryBridge();
-
-            //TextObject txtCompany = rptstk.ReportDefinition.ReportObjects["companyname"] as TextObject;
-            //txtCompany.Text = comnam;
-            //TextObject rptProjectName = rptstk.ReportDefinition.ReportObjects["ProjectName"] as TextObject;
-            //rptProjectName.Text =  this.ddlProject.SelectedItem.Text.Substring(14);
-            //TextObject rpttxtsupplier = rptstk.ReportDefinition.ReportObjects["txtsupplier"] as TextObject;
-            //rpttxtsupplier.Text = this.ddlSupList.SelectedItem.Text.Trim();
-            //TextObject rpttxtorder = rptstk.ReportDefinition.ReportObjects["txtorder"] as TextObject;
-            //rpttxtorder.Text = ds1.Tables[1].Rows[0]["pordref"].ToString(); ;
-            //TextObject rpttxtchlnno = rptstk.ReportDefinition.ReportObjects["txtchalanno"] as TextObject;
-            //rpttxtchlnno.Text =this.txtChalanNo.Text.Trim();
-            //TextObject rpttxtchlnnoDate = rptstk.ReportDefinition.ReportObjects["rpttxtchlnnoDate"] as TextObject;
-            //rpttxtchlnnoDate.Text = this.txtChaDate.Text.Trim();
-
-            //TextObject txtorderdate = rptstk.ReportDefinition.ReportObjects["txtorderdat"] as TextObject;
-            //txtorderdate.Text = Convert.ToDateTime(dt.Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
-
-            //TextObject txtaddress = rptstk.ReportDefinition.ReportObjects["txtaddress"] as TextObject;
-            //txtaddress.Text = ds1.Tables[1].Rows[0]["address"].ToString();
-
-            //TextObject txtdeg = rptstk.ReportDefinition.ReportObjects["txtdeg"] as TextObject;
-            //txtdeg.Text = ds1.Tables[1].Rows[0]["usrnam"].ToString() + "," + ds1.Tables[1].Rows[0]["deg"].ToString() + "\n" + Convert.ToDateTime( ds1.Tables[1].Rows[0]["apprdat"]).ToString("dd-MMM-yyyy"); 
-
-            //TextObject txtmrfno = rptstk.ReportDefinition.ReportObjects["txtmrfno"] as TextObject;
-            //txtmrfno.Text = dt.Rows[0]["mrfno"].ToString();
-
-
-            //TextObject txtreqno = rptstk.ReportDefinition.ReportObjects["txtreqno"] as TextObject;
-            //txtreqno.Text =  dt.Rows[0]["reqno"].ToString().Substring(0, 3) + dt.Rows[0]["reqno"].ToString().Substring(7, 2) + '-' + dt.Rows[0]["reqno"].ToString().Substring(9);
-            //TextObject txtreadate = rptstk.ReportDefinition.ReportObjects["txtreadate"] as TextObject;
-            //txtreadate.Text = Convert.ToDateTime(dt.Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
-
-
-            //TextObject rpttxtMrrno = rptstk.ReportDefinition.ReportObjects["Mrrno"] as TextObject;
-            //rpttxtMrrno.Text =this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim();
-            //TextObject rpttxtMrrRef = rptstk.ReportDefinition.ReportObjects["MrrRef"] as TextObject;
-            //rpttxtMrrRef.Text =this.txtMRRRef.Text.Trim();
-            //TextObject rpttxtdate = rptstk.ReportDefinition.ReportObjects["date"] as TextObject;
-            //rpttxtdate.Text = this.txtCurMRRDate.Text.Trim();
-
-
-
-            //TextObject rpttxtnaration = rptstk.ReportDefinition.ReportObjects["narrationname"] as TextObject;
-            //rpttxtnaration.Text = this.txtMRRNarr.Text.Trim();
-
-            //TextObject txtuserinfo = rptstk.ReportDefinition.ReportObjects["txtuserinfo"] as TextObject;
-            //txtuserinfo.Text = ASTUtility.Concat(compname, username, printdate);
-
-            //if (ConstantInfo.LogStatus == true)
-            //{
-
-            //    string eventtype = "Materials Receive Information";
-            //    string eventdesc = "Print Report";
-            //    string eventdesc2 = this.lblCurMRRNo1.Text.Trim() + this.txtCurMRRNo2.Text.Trim();
-            //    bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), eventtype, eventdesc, eventdesc2);
-            //}
-            //rptstk.SetDataSource(dt);
-            //string ComLogo = Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg");
-            //rptstk.SetParameterValue("ComLogo", ComLogo);
-
-            //Session["Report1"] = rptstk;
-            //((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RptViewer.aspx?PrintOpt=" +
-            //          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
         }
 
         private string CompanyLength()
@@ -499,13 +335,10 @@ namespace RealERPWEB.F_28_MPro
         {
             if (this.lbtnOk.Text == "New")
             {
-                //this.lblPreMRR.Visible = true;          // gvMRRInfo
-                //this.txtSrchPreMRR.Visible = true;
                 this.ImgbtnPreMRR.Visible = true;
                 this.ddlPrevMRRList.Visible = true;
                 this.ddlPrevMRRList.Items.Clear();
                 this.ddlProject.Visible = true;
-                //this.lblddlProject.Visible = false;
 
                 this.ddlSupList.Enabled = true;
                 this.ImgbtnFindSup.Enabled = true;
@@ -514,11 +347,6 @@ namespace RealERPWEB.F_28_MPro
                 this.txtMRRRef.Text = "";
                 ((Label)this.Master.FindControl("lblmsg")).Visible = true;
                 this.ddlOrderList.Enabled = true;
-                this.txtResSearch.Text = "";
-                //this.DropCheck1.Items.Clear();
-                this.listGroup.Items.Clear();
-
-                //  this.ddlResList.Items.Clear();
                 this.txtPreparedBy.Text = "";
                 this.txtApprovedBy.Text = "";
                 this.txtMRRNarr.Text = "";
@@ -535,16 +363,10 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
-            //this.lblPreMRR.Visible = false;
-            //this.txtSrchPreMRR.Visible = false;
             this.ImgbtnPreMRR.Visible = false;
             this.ddlPrevMRRList.Visible = false;
-
-            //this.lblddlProject.Text = (this.ddlProject.Items.Count == 0 ? "XXX" : this.ddlProject.SelectedItem.Text.Trim());
             this.ddlProject.Visible = true;
             this.ddlProject.Enabled = false;
-            //this.lblddlProject.Visible = true;
-
             this.ddlSupList.Enabled = false;
             this.ImgbtnFindSup.Enabled = false;
             this.txtCurMRRNo2.ReadOnly = true;
@@ -564,7 +386,6 @@ namespace RealERPWEB.F_28_MPro
 
         protected void Session_tblMRR_Update()
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
             DataTable tbl1 = (DataTable)ViewState["tblMRR"];
             int TblRowIndex2;
             for (int j = 0; j < this.gvMRRInfo.Rows.Count; j++)
@@ -612,13 +433,7 @@ namespace RealERPWEB.F_28_MPro
             this.gvMRRInfo.DataSource = tbl1;
             this.gvMRRInfo.DataBind();
 
-            //For Visible Item Serial Manama
-            string comcod = GetCompCode();
-            if (comcod == "3353" || comcod == "3101")
-            {
-                this.gvMRRInfo.Columns[1].Visible = true;
-            }
-
+            string comcod = GetCompCode();        
             if (this.Request.QueryString["Type"].ToString() == "Entry")
             {
 
@@ -638,16 +453,7 @@ namespace RealERPWEB.F_28_MPro
 
             }
 
-            if (tbl1.Rows.Count == 0)
-                return;
-            ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Visible = false;
-            double TotalPage = Math.Ceiling(tbl1.Rows.Count * 1.00 / this.gvMRRInfo.PageSize);
-            ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Items.Clear();
-            for (int i = 1; i <= TotalPage; i++)
-                ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Items.Add("Page: " + i.ToString() + " of " + TotalPage.ToString());
-            if (TotalPage > 1)
-                ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).Visible = true;
-            ((DropDownList)this.gvMRRInfo.FooterRow.FindControl("ddlPageNo")).SelectedIndex = this.gvMRRInfo.PageIndex;
+          
             this.lbtnResFooterTotal_Click(null, null);
         }
         private DataTable HiddenSameData(DataTable dt1)
@@ -731,7 +537,7 @@ namespace RealERPWEB.F_28_MPro
 
 
 
-            ViewState["tblMRR"] = this.HiddenSameData(ds1.Tables[0]);
+            ViewState["tblMRR"] = ds1.Tables[0];
             Session["UserLog"] = ds1.Tables[1];
 
             if (mMRRNo == "NEWMRR")
@@ -790,9 +596,9 @@ namespace RealERPWEB.F_28_MPro
             this.txtCurMRRNo2.Text = ds1.Tables[1].Rows[0]["mrrno1"].ToString().Substring(6, 5);
             this.txtCurMRRDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["mrrdat"]).ToString("dd.MM.yyyy");
             //this.lblddlProject.Text = (this.ddlProject.Items.Count == 0 ? "XXX" : this.ddlProject.SelectedItem.Text.Trim());
-            this.txtPreparedBy.Text = ds1.Tables[1].Rows[0]["mrrbydes"].ToString();
-            this.txtApprovedBy.Text = ds1.Tables[1].Rows[0]["appbydes"].ToString();
-            this.txtApprovalDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["apprdat"]).ToString("dd.MM.yyyy");
+            //this.txtPreparedBy.Text = ds1.Tables[1].Rows[0]["mrrbydes"].ToString();
+            //this.txtApprovedBy.Text = ds1.Tables[1].Rows[0]["appbydes"].ToString();
+            //this.txtApprovalDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["apprdat"]).ToString("dd.MM.yyyy");
             this.txtMRRNarr.Text = ds1.Tables[1].Rows[0]["mrrnar"].ToString();
             this.txtChalanNo.Text = ds1.Tables[1].Rows[0]["chlnno"].ToString();
             this.txtQc.Text = ds1.Tables[1].Rows[0]["qcno"].ToString();
@@ -805,104 +611,11 @@ namespace RealERPWEB.F_28_MPro
             this.Session_tblMRR_Update();
             DataTable tbl1 = (DataTable)ViewState["tblMRR"];
             string orderno = this.ddlOrderList.SelectedValue.ToString();
-            string mReqno1 = "";
-            string Narration = "";
-            string mReqno2 = "000000000000";
+            string prType = this.ddlPRType.SelectedValue.ToString();
+            string actType = this.ddlActType.SelectedValue.ToString();
 
-            foreach (ListItem reqno1 in listGroup.Items)
-            {
-                if (reqno1.Selected)
-                {
-
-                    mReqno1 = reqno1.Value.Substring(0, 38);
-                    DataTable tbl2 = (DataTable)ViewState["tblMat"];
-                    string mReqno = mReqno1.Substring(0, 14);
-                    string mResCode = mReqno1.Substring(14, 12);
-                    string mSpcfCode = mReqno1.Substring(26, 12);
-
-                    DataView dv = tbl2.DefaultView;
-                    dv.RowFilter = ("orderno='" + orderno + "' and  reqno='" + mReqno + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCode + "'");
-                    tbl2 = dv.ToTable();
-
-                    for (int i = 0; i < tbl2.Rows.Count; i++)
-                    {
-                        //string mReqno = tbl2.Rows[i]["reqno"].ToString();
-
-                        string reqno2 = tbl2.Rows[i]["reqno1"].ToString();
-                        string sirdesc = tbl2.Rows[i]["sirdesc"].ToString();
-                        string spcfdesc = tbl2.Rows[i]["spcfdesc"].ToString();
-                        string rsirunit = tbl2.Rows[i]["rsirunit"].ToString();
-                        string orderdat = tbl2.Rows[i]["orderdat"].ToString();
-                        string orderqty = tbl2.Rows[i]["orderqty"].ToString();
-                        string recup = tbl2.Rows[i]["recup"].ToString();
-                        double balqty = Convert.ToDouble(tbl2.Rows[i]["balqty"]);
-                        double mrrqty = 0.00;
-                        double mrrrate = Convert.ToDouble(tbl2.Rows[i]["mrrrate"]);
-                        double rowid = Convert.ToDouble(tbl2.Rows[i]["rowid"]);
-                        DataRow[] dr2 = tbl1.Select("orderno='" + orderno + "' and  reqno='" + mReqno + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCode + "'");
-                        if (dr2.Length == 0)
-                        {
-                            DataRow dr1 = tbl1.NewRow();
-                            dr1["orderno"] = orderno;
-                            dr1["reqno"] = mReqno;
-                            dr1["rsircode"] = mResCode;
-                            dr1["spcfcod"] = mSpcfCode;
-
-
-                            dr1["reqno1"] = reqno2;  
-                            dr1["rsirdesc1"] = sirdesc;
-                            dr1["spcfdesc"] = spcfdesc; 
-                            dr1["rsirunit"] = rsirunit; 
-                            dr1["orderdat"] = orderdat; 
-                            dr1["orderqty"] = orderqty;
-                            dr1["recup"] = recup; 
-                            dr1["orderbal"] = balqty; 
-                            dr1["mrrqty"] = balqty;
-                            dr1["mrrrate"] = mrrrate;
-                            dr1["mrramt"] = 0;
-                            dr1["mrrnote"] = "";
-                            dr1["chlnqty"] = balqty;
-                            dr1["rowid"] = rowid;
-                            tbl1.Rows.Add(dr1);
-
-                            if (mReqno2 != mReqno)
-                            {
-                                Narration = Narration + tbl2.Rows[i]["reqnar"] + ", ";
-
-                            }
-
-                            mReqno2 = mReqno;
-
-
-                            this.lblreqnaration.Text = "Req Naration : " + Narration.Substring(0, (Narration.Length) - 2);
-
-                        }
-                    }
-                }
-            }
-
-
-            ViewState["tblMRR"] = this.HiddenSameData(tbl1);
-            int RowNo = 1;
-          
-            double PageNo = Math.Ceiling(RowNo * 1.00 / this.gvMRRInfo.PageSize);
-            this.gvMRRInfo.PageIndex = Convert.ToInt32(PageNo - 1);
-            this.gvMRRInfo_DataBind();
-
-        }
-
-        protected void lbtnSelectResAll_Click(object sender, EventArgs e)
-        {
-            this.Session_tblMRR_Update();
-            string orderno = this.ddlOrderList.SelectedValue.ToString();
-           
-            string mReqno = this.listGroup.SelectedValue.ToString().Substring(0, 14);
-            string mResCode = this.listGroup.SelectedValue.ToString().Substring(14, 12);
-            string mSpcfCode = this.listGroup.SelectedValue.ToString().Substring(26, 12);
-
-            DataTable tbl1 = (DataTable)ViewState["tblMRR"];
             DataTable tbl2 = (DataTable)ViewState["tblMat"];
-            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and  reqno='" + mReqno + "' and  rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCode + "'");
+            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and  prtype = '" + prType + "' and acttype = '" + actType + "'");
             if (dr.Length == 0)
             {
                 for (int i = 0; i < tbl2.Rows.Count; i++)
@@ -912,11 +625,11 @@ namespace RealERPWEB.F_28_MPro
                     dr1["orderno"] = tbl2.Rows[i]["orderno"].ToString();
                     dr1["reqno"] = tbl2.Rows[i]["reqno"].ToString();
                     dr1["reqno1"] = tbl2.Rows[i]["reqno1"].ToString();
-                    dr1["rsircode"] = tbl2.Rows[i]["rsircode"].ToString();
-                    dr1["spcfcod"] = tbl2.Rows[i]["spcfcod"].ToString();
-                    dr1["rsirdesc1"] = tbl2.Rows[i]["sirdesc"].ToString();
-                    dr1["spcfdesc"] = tbl2.Rows[i]["spcfdesc"].ToString();
-                    dr1["rsirunit"] = tbl2.Rows[i]["rsirunit"].ToString();
+                    dr1["prtype"] = tbl2.Rows[i]["prtype"].ToString();
+                    dr1["acttype"] = tbl2.Rows[i]["acttype"].ToString();
+                    dr1["mkttype"] = tbl2.Rows[i]["mkttype"].ToString();
+                    dr1["prtypedesc"] = this.ddlPRType.SelectedItem.Text.Trim();
+                    dr1["acttypedesc"] = this.ddlActType.SelectedItem.Text.Trim();
                     dr1["orderdat"] = tbl2.Rows[i]["orderdat"].ToString();
                     dr1["orderqty"] = tbl2.Rows[i]["orderqty"].ToString();
                     dr1["recup"] = Convert.ToDouble(tbl2.Rows[i]["recup"]).ToString();
@@ -928,7 +641,51 @@ namespace RealERPWEB.F_28_MPro
                     dr1["chlnqty"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]).ToString();
                     tbl1.Rows.Add(dr1);
                 }
-                ViewState["tblMRR"] = this.HiddenSameData(tbl1);
+
+                ViewState["tblMRR"] = tbl1;
+            }
+
+            int RowNo = 1;          
+            double PageNo = Math.Ceiling(RowNo * 1.00 / this.gvMRRInfo.PageSize);
+            this.gvMRRInfo.PageIndex = Convert.ToInt32(PageNo - 1);
+            this.gvMRRInfo_DataBind();
+
+        }
+
+        protected void lbtnSelectResAll_Click(object sender, EventArgs e)
+        {
+            this.Session_tblMRR_Update();
+            string orderno = this.ddlOrderList.SelectedValue.ToString();
+           
+            string prType = this.ddlPRType.SelectedValue.ToString();
+            string actType = this.ddlActType.SelectedValue.ToString();
+
+            DataTable tbl1 = (DataTable)ViewState["tblMRR"];
+            DataTable tbl2 = (DataTable)ViewState["tblMat"];
+            DataRow[] dr = tbl1.Select("orderno='" + orderno + "' and  prtype = '" + prType + "' and acttype = '" + actType + "'");
+            if (dr.Length == 0)
+            {
+                for (int i = 0; i < tbl2.Rows.Count; i++)
+                {
+
+                    DataRow dr1 = tbl1.NewRow();
+                    dr1["orderno"] = tbl2.Rows[i]["orderno"].ToString();
+                    dr1["reqno"] = tbl2.Rows[i]["reqno"].ToString();
+                    dr1["reqno1"] = tbl2.Rows[i]["reqno1"].ToString();
+                    dr1["prtype"] = tbl2.Rows[i]["prtype"].ToString();
+                    dr1["acttype"] = tbl2.Rows[i]["acttype"].ToString();
+                    dr1["orderdat"] = tbl2.Rows[i]["orderdat"].ToString();
+                    dr1["orderqty"] = tbl2.Rows[i]["orderqty"].ToString();
+                    dr1["recup"] = Convert.ToDouble(tbl2.Rows[i]["recup"]).ToString();
+                    dr1["orderbal"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]).ToString();
+                    dr1["mrrqty"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]).ToString();
+                    dr1["mrrrate"] = Convert.ToDouble(tbl2.Rows[i]["mrrrate"]).ToString();
+                    dr1["mrramt"] = 0;
+                    dr1["mrrnote"] = "";
+                    dr1["chlnqty"] = Convert.ToDouble(tbl2.Rows[i]["balqty"]).ToString();
+                    tbl1.Rows.Add(dr1);
+                }
+                ViewState["tblMRR"] = tbl1;
             }
             this.gvMRRInfo_DataBind();
 
@@ -942,15 +699,15 @@ namespace RealERPWEB.F_28_MPro
         }
         protected void lbtnUpdateMRR_Click(object sender, EventArgs e)
         {
-            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-            if (!Convert.ToBoolean(dr1[0]["entry"]))
-            {
-                ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                return;
-            }
+            
+            //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            //if (!Convert.ToBoolean(dr1[0]["entry"]))
+            //{
+            //    ((Label)this.Master.FindControl("lblmsg")).Text = "You have no permission";
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            //    return;
+            //}
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
 
@@ -1094,20 +851,23 @@ namespace RealERPWEB.F_28_MPro
 
 
 
-                //string orderno = tbl1.Rows[i]["orderno"].ToString();
+                string orderno = tbl1.Rows[i]["orderno"].ToString();
                 string mreqno = tbl1.Rows[i]["reqno"].ToString();
                 string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
                 string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
                 double orbal = Convert.ToDouble(tbl1.Rows[i]["orderbal"].ToString());
                 double mMRRQTY = Convert.ToDouble(tbl1.Rows[i]["mrrqty"].ToString());
                 string mMRRAMT = tbl1.Rows[i]["mrramt"].ToString();
-                //string mMRRNOTE = tbl1.Rows[i]["mrrnote"].ToString();
+                string prtype = tbl1.Rows[i]["prtype"].ToString();
+                string acttype = tbl1.Rows[i]["acttype"].ToString();
+                string mkttype = tbl1.Rows[i]["mkttype"].ToString();
+                string mMRRNOTE = tbl1.Rows[i]["mrrnote"].ToString();
                 //string mMRRchlnqty = tbl1.Rows[i]["chlnqty"].ToString();
                 if (orbal >= mMRRQTY)
                 {
                     if (mMRRQTY > 0)
                         result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "UPDATE_MKT_MRR_INFO", "MKTMRRA",
-                                 mMRRNO, mRSIRCODE, mSPCFCOD, mMRRQTY.ToString(), mMRRAMT, mreqno, "", "", "", "", "", "", "", "", "", "", "","","","");
+                                 mMRRNO, mRSIRCODE, mSPCFCOD, mMRRQTY.ToString(), mMRRAMT, mreqno, prtype, acttype, orderno, mkttype, mMRRNOTE, "", "", "", "", "", "","","","");
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
@@ -1118,13 +878,12 @@ namespace RealERPWEB.F_28_MPro
 
                 else
                 {
-                    ((Label)this.Master.FindControl("lblmsg")).Text = "MRR Qty  must be less then equal Balance Qty";
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "MRR Qty  must be less then or equal Balance Qty" + "');", true);
                     return;
                 }
             }
             this.txtCurMRRDate.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Marketing Material Received Successfully" + "');", true);
 
             if (hst["compsms"].ToString() == "True")
             {
@@ -1210,20 +969,31 @@ namespace RealERPWEB.F_28_MPro
             string mProject = this.ddlProject.SelectedValue.ToString();
             string mSupCode = this.ddlSupList.SelectedValue.ToString();
             string mOrderNo = this.ddlOrderList.SelectedValue.ToString();
-            string mSrchTxt = "%" + this.txtResSearch.Text.Trim() + "%";
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_MRR_RES_LIST", mSrchTxt, mProject, mSupCode, mOrderNo, "", "", "", "", "");
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "GET_MRR_RES_LIST", mProject, mSupCode, mOrderNo, "", "", "", "", "");
             if (ds1 == null)
                 return;
 
+            this.ddlPRType.DataTextField = "prtypedesc";
+            this.ddlPRType.DataValueField = "prtype";
+            this.ddlPRType.DataSource = ds1.Tables[0];
+            this.ddlPRType.DataBind();
+
             ViewState["tblMat"] = ds1.Tables[0];
-            this.listGroup.DataTextField = "rsirdesc1";
-            this.listGroup.DataValueField = "rsircode1";
-            this.listGroup.DataSource = ds1.Tables[0];
-            this.listGroup.DataBind();
+            this.ddlPRType_SelectedIndexChanged1(null, null);
 
         }
 
-
+        protected void ddlPRType_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblMat"];
+            string code = this.ddlPRType.SelectedValue;
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "ccode like ('" + code + "')";
+            this.ddlActType.DataTextField = "acttypedesc";
+            this.ddlActType.DataValueField = "acttype";
+            this.ddlActType.DataSource = dv1.ToTable();
+            this.ddlActType.DataBind();
+        }       
 
         protected void ddlProject_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1261,11 +1031,11 @@ namespace RealERPWEB.F_28_MPro
             bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_MRR", mMRRNO, userid, Terminal, Sessionid, date, "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Data Deleted Failed" + "');", true);
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Material Deleted Failed!" + "');", true);
                 return;
             }
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Deleted successfully" + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Deleted successfully" + "');", true);
             if (ConstantInfo.LogStatus == true)
             {
                 string eventtype = "Materials Receive Information";
@@ -1287,17 +1057,20 @@ namespace RealERPWEB.F_28_MPro
             int rowIndex = (this.gvMRRInfo.PageSize * this.gvMRRInfo.PageIndex) + gvRowIndex;
             string MRRNO = this.lblCurMRRNo1.Text.Trim().Substring(0, 3) + this.txtCurMRRDate.Text.Trim().Substring(6, 4) + this.lblCurMRRNo1.Text.Trim().Substring(3, 2) + this.txtCurMRRNo2.Text.Trim();
             string reqno = ((Label)this.gvMRRInfo.Rows[rowIndex].FindControl("lblgvReqnomain")).Text.Trim();
-            string rescode = ((Label)this.gvMRRInfo.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
-            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_MRR_MAT", MRRNO, reqno, rescode, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            if (result == true)
+            //string rescode = ((Label)this.gvMRRInfo.Rows[rowIndex].FindControl("lblgvResCod")).Text.Trim();
+            bool result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "DELETE_MRR_MAT", MRRNO, reqno, "", "", "", "", "", "", "", "", "", "", "", "", "");
+            if (!result)
             {
-                dt.Rows[rowIndex].Delete();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Received Material Deleted Failed!" + "');", true);
+                return;
             }
 
+            dt.Rows[rowIndex].Delete();
             DataView dv = dt.DefaultView;
             ViewState["tblMRR"] = dv.ToTable();
             this.gvMRRInfo_DataBind();
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Received Material Deleted successfully" + "');", true);
         }
+       
     }
 }
