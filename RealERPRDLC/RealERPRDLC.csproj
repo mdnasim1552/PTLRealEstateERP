@@ -932,6 +932,7 @@
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipPEB.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptPaySlipTro.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryAssSecurity01.rdlc" />
+    <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryBTI_Old.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryBTI.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryDetailsJbs.rdlc" />
     <EmbeddedResource Include="R_81_Hrm\R_89_Pay\RptSalaryEntrust.rdlc" />
