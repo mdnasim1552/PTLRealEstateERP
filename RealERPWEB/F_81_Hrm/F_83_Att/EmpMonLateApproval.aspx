@@ -8,6 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+    <style>
+
+    </style>
     <script type="text/javascript" language="javascript">
 
         $(document).ready(function () {
@@ -728,12 +731,23 @@
                                                         Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "leaveadj")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="80px"></asp:TextBox>
                                                 </ItemTemplate>
-
-
-
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Balance">
+                                                <ItemTemplate>
+
+
+                                                    <asp:Label ID="txbalancelvadj" runat="server" BackColor="Transparent"
+                                                        BorderStyle="None" Font-Size="11px" Style="text-align: right"
+                                                        Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "balance")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="80px"></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
+                                                <FooterStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>
+
 
                                             <asp:TemplateField HeaderText="Reason">
                                                 <ItemTemplate>
@@ -742,9 +756,6 @@
                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reason")) %>'
                                                         Width="120px"></asp:TextBox>
                                                 </ItemTemplate>
-
-
-
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>

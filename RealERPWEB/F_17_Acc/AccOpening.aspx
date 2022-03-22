@@ -500,6 +500,20 @@
                                         <FooterStyle HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
+
+                                    
+                                    <asp:TemplateField HeaderText="Remarks"
+                                        FooterStyle-HorizontalAlign="Right">
+
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="gvtxtgvremarks" runat="server" BackColor="Transparent"
+                                                BorderColor="Transparent" BorderStyle="None"
+                                                Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rmrks")) %>'
+                                                Width="180px" Font-Size="12px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <FooterStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+
                                 </Columns>
                                 <FooterStyle BackColor="#F5F5F5" />
                                 <EditRowStyle />

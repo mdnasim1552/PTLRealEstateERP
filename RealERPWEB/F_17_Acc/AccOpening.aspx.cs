@@ -255,7 +255,7 @@ namespace RealERPWEB.F_17_Acc
                 double dgvTrnDrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtDrAmt")).Text.Trim()));
                 double dgvTrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtCrAmt")).Text.Trim()));
                 double dgvTrnRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv3.Rows[j].FindControl("txtgvRate")).Text.Trim()));
-
+                string rmrks = ((TextBox)this.dgv3.Rows[j].FindControl("gvtxtgvremarks")).Text.Trim();
 
                 //if (dgvTrnDrAmt == 0 && dgvTrnCrAmt == 0)
                 //{
@@ -288,6 +288,10 @@ namespace RealERPWEB.F_17_Acc
                 tblt02.Rows[TblRowIndex2]["rate"] = dgvTrnRate;
                 tblt02.Rows[TblRowIndex2]["Dr"] = dgvTrnDrAmt;
                 tblt02.Rows[TblRowIndex2]["Cr"] = dgvTrnCrAmt;
+                tblt02.Rows[TblRowIndex2]["rmrks"] = rmrks;
+
+
+            
 
             }
             Session["AccTbl02"] = tblt02;
@@ -505,11 +509,13 @@ namespace RealERPWEB.F_17_Acc
                 double Cramt = Convert.ToDouble(tblt03.Rows[i]["Cr"]);
                 string trnamt = Convert.ToString(Dramt - Cramt);
                 string trnremark = Convert.ToDouble(Dramt).ToString();
+                string rmrks = tblt03.Rows[i]["rmrks"].ToString();
+
 
                 //if ((Dramt - Cramt) != 0)
                 //{
                 bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER", "ACVOPNUPDATEA", vounum, actcode,
-                        rescode, cactcode, voudat, trnqty, trnremark, vtcode, trnamt, spcfcod, UserId, EditDate, Terminal, "", "");
+                        rescode, cactcode, voudat, trnqty, trnremark, vtcode, trnamt, spcfcod, UserId, EditDate, Terminal, rmrks, "");
                 if (!resulta)
                 {
                     // string error = accData.ErrorObject["Msg"].ToString().Trim();

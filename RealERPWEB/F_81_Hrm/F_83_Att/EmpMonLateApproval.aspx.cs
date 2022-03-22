@@ -864,16 +864,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
                                 double absday = Convert.ToDouble(((Label)this.gvmapsapp.Rows[i].FindControl("lblgvabsday")).Text.Trim());
                                 double aprday = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsaprday")).Text.Trim());
+                                double dedday = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsAdj")).Text.Trim());
                                 double lvadj = Convert.ToDouble("0" + ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabslvadj")).Text.Trim());
                                 string reason = ((TextBox)this.gvmapsapp.Rows[i].FindControl("txtabsreason")).Text.Trim();
 
                                 rowindex = (this.gvmapsapp.PageSize) * (this.gvmapsapp.PageIndex) + i;
-                                dt.Rows[rowindex]["aprday"] = lvadj>0? 0.00 : aprday;
+                                dt.Rows[rowindex]["aprday"] = aprday;
                                 dt.Rows[rowindex]["leaveadj"] = lvadj;
+                                dt.Rows[rowindex]["dedday"] = (absday - (aprday+ lvadj));
                                 dt.Rows[rowindex]["reason"] = reason;
-
-
-                                dt.Rows[rowindex]["dedday"] = (absday - aprday);
+                                dt.Rows[rowindex]["balance"] = (absday - (aprday + lvadj+ dedday)); ;
 
                             }
                             break;
@@ -1689,7 +1689,16 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         }
         protected void btnUpdateAbsent_Click(object sender, EventArgs e)
         {
-
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string compsms = hst["compsms"].ToString();
+            string compmail = hst["compmail"].ToString();
+            string ssl = hst["ssl"].ToString();
+            string sendUsername = hst["userfname"].ToString();
+            string sendDptdesc = hst["dptdesc"].ToString();
+            string sendUsrdesig = hst["usrdesig"].ToString();
+            string compName = hst["comnam"].ToString();
+            string usrid = hst["usrid"].ToString();
+            string deptcode = hst["deptcode"].ToString();
             this.SaveValue();
 
             DataTable dt = (DataTable)Session["tblover"];
@@ -1703,15 +1712,52 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
                 string absday = Convert.ToDouble(dr1["absday"]).ToString();
                 string aprday = Convert.ToDouble(dr1["aprday"]).ToString();
                 string dedday = Convert.ToDouble(dr1["dedday"]).ToString();
-                string leaveadj = Convert.ToDouble(dr1["leaveadj"]).ToString();
                 string reason = (dr1["reason"]).ToString();
-
-
-                //if (dedday > 0)
-                //{
-                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPABSENTADJ", monthid, empid, absday, aprday, dedday, leaveadj, reason, "", "", "", "", "", "", "", "");
+                double leaveadj = Convert.ToDouble("0" + dr1["leaveadj"]);
+                
+                result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "INSERTORUPABSENTADJ", monthid, empid, absday, aprday, dedday, leaveadj.ToString(), reason, "", "", "", "", "", "", "", "");
                 if (!result)
                     return;
+
+                if (comcod == "3365")
+                {
+                      reason = "LP Adjustment";
+                    // for leave creatrion bti
+                    string frmdate = this.txtfrmDate.Text.Trim();
+                    string todate = this.txttoDate.Text.Trim();
+                    DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_ATTENDENCE", "EMPLATEATTENDETAILSINDIVIDUAL_AFTER_10AM", frmdate, todate, empid);                    
+                 
+                    DataTable dts;
+                    DataTable dtcl;
+                    
+                    DataView dv = ds2.Tables[0].DefaultView;
+                    dv.RowFilter = "(lateapp = 'False')";
+                    dts = dv.ToTable();
+                    dtcl = dts;
+                   
+
+                    // CL Adjust  table dbo_hrm.HREMPLVEAPP
+                    if (leaveadj.ToString() != "0")
+                    {
+                        string trnid = this.GetLeaveid();
+                        //int lvrow = (Int32)(Math.Round(leaveadj, 0));                                                          
+                        for (int j = 0; j < dtcl.Rows.Count; j++)
+                        {
+                            string tdays = (leaveadj > 1 ? "1" : leaveadj.ToString("#,##0.00;(#,##0.00);"));
+                            bool ishalfday = (leaveadj <= 0.5 ? true : false);
+                            frmdate = Convert.ToDateTime(dtcl.Rows[j]["intime"]).ToString("dd-MMM-yyyy");
+                            result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP_LATEADJUSTMENT", trnid, empid, "51002", frmdate, frmdate, frmdate, reason, "", frmdate, "", "", tdays, ishalfday.ToString(), usrid, "");
+                    
+                            leaveadj = leaveadj - 1;
+                            if (leaveadj <= 0)
+                                break;
+                        }
+                    }
+
+                     
+                }
+
+
                 //  }
             }
 
@@ -2554,9 +2600,10 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
         protected void lnkbtnAbsAppGVmapsapp_Click(object sender, EventArgs e)
         {
+             
             //Get Data after 1:00 Hour late Employee 
             this.ModalUpdateBtn.Visible = false;
-            this.ModallnkBtnLateAFTER10AM.Visible = true;
+            this.ModallnkBtnLateAFTER10AM.Visible = false;
             string comcod = this.GetCompCode();
             this.lbmodalheading.Text = "Late Approval Details Information";
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;

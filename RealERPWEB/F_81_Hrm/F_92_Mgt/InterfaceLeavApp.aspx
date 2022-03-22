@@ -162,29 +162,7 @@
         }
     </style>
 
-    <%--<script>
-        $(document).ready(function () {
-            $("#slSt").load("~/F_23_SaM/SalesInterface.aspx");
-            var refreshId = setInterval(function () {
-                $("#slSt").load('~/F_23_SaM/SalesInterface.aspx?randval=' + Math.random());
-            }, 10000);
-            $.ajaxSetup({ cache: false });
-        });
-
-
-
-        //var refreshId = setInterval(function()
-        //{
-        //    $(‘#responsecontainer’).load(‘response.php’);
-        //    $(‘#responsecontainer2’).load(‘response2.php’);
-        //}, 60000);
-
-        //$(document).ready(function()
-        //{
-        //    $(‘#responsecontainer’).fadeOut(“slow”).load(‘response.php’).fadeIn(“slow”);
-        //    $(‘#responsecontainer2’).fadeOut(“slow”).load(‘response2.php’).fadeIn(“slow”);
-        //});
-    </script>--%>
+ 
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -223,23 +201,18 @@
 
 
 
+            var gvLvReq = $('#<%=this.gvLvReq.ClientID %>');
+            gvLvReq.Scrollable();
 
+            var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
+            gvInprocess.Scrollable();
 
-
-         <%--  var gvLvReq = $('#<%=this.gvLvReq.ClientID %>');
-            gvLvReq.ScrollableGv();--%>
-            <%-- var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
-            gvInprocess.ScrollableGv();
             var gvApproved = $('#<%=this.gvApproved.ClientID %>');
-            gvApproved.ScrollableGv();
-            var gvReadyDelivery = $('#<%=this.gvReadyDelivery.ClientID %>');
-            gvReadyDelivery.ScrollableGv();
-            var gvPayConfr = $('#<%=this.gvPayConfr.ClientID %>');
-            gvPayConfr.ScrollableGv();
-            var gvDispatch = $('#<%=this.gvDispatch.ClientID %>');
-            gvDispatch.ScrollableGv();--%>
-            <%--var gvDeliverd = $('#<%=this.gvDeliverd.ClientID %>');
-            gvDeliverd.ScrollableGv();--%>
+            gvApproved.Scrollable();
+
+            var gvConfirm = $('#<%=this.gvConfirm.ClientID %>');
+            gvConfirm.Scrollable();
+         
         };
 
 

@@ -20,12 +20,24 @@
 
         .rbtResponsive tr td {
             padding: 0 5px;
+            margin: 2px;
         }
 
             .rbtResponsive tr td label {
                 padding-left: 5px;
-                margin: 0;
-                line-height: 18px;
+                line-height: 15px;
+            }
+
+        .rbtResponsive2 tr td {
+            padding: 0 5px;
+            margin: 2px;
+        }
+
+            .rbtResponsive2 tr td label {
+                padding-left: 5px;
+                padding-right:20px;
+                margin: 2px;
+                line-height: 15px;
             }
     </style>
 </asp:Content>
@@ -128,8 +140,8 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card card-fluid" style="min-height: 550px;">
-                <div class="card-header mt-3 mb-0 pb-0">
+            <div class="card card-fluid" style="min-height: 600px;">
+                <div class="card-header mt-2 mb-0 pb-0">
                     <div class="row form-group">
                         <div class="col-md-2">
                             <div class="input-group input-group-alt">
@@ -168,9 +180,8 @@
                             <asp:Label ID="lblprocopy" runat="server" Visible="False"></asp:Label>
                             <asp:Label ID="lblProjectLock" runat="server" Visible="False"></asp:Label>
                         </div>
-
                     </div>
-                    <div class="row form-group">
+                    <div class="row form-group mt-0">
 
                         <%--<asp:Label ID="Label8" runat="server" CssClass="lblTxt lblName" Style="font-size: 11px;"></asp:Label>--%>
 
@@ -188,14 +199,14 @@
                         </asp:RadioButtonList>
 
                     </div>
-                    <div class="row form-group">
+                    <div class="row form-group mb-0">
                         <asp:Panel ID="crDate" runat="server" Visible="false">
                             <div class="form-group">
                                 <asp:Label ID="lblcreationdate" runat="server" CssClass="lblTxt lblName" Visible="False" Text="Creation Date:"></asp:Label>
                                 <asp:TextBox ID="txtDate" runat="server" CssClass="inputTxt inpPixedWidth" Visible="False"></asp:TextBox>
                                 <cc1:CalendarExtender ID="txtDate_CalendarExtender" runat="server"
-                                    Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
-                                <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary primaryBtn" Visible="False" OnClick="lbtnUpdatePCDate_Click">Update</asp:LinkButton>
+                                    Format="dd-MMM-yyyy" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                <asp:LinkButton ID="lbtnUpdatePCDate" runat="server" CssClass="btn btn-primary btn-sm" Visible="False" OnClick="lbtnUpdatePCDate_Click">Update</asp:LinkButton>
                             </div>
                         </asp:Panel>
                     </div>
@@ -293,13 +304,11 @@
                                         OnCheckedChanged="chkFlrShowSelected_CheckedChanged" Text="Selected Catagory(s) only" />
                                     <asp:LinkButton ID="lbtnShowSelectedFloor" runat="server" CssClass="btn  btn-primary primaryBtn" OnClick="lbtnShowSelectedFloor_Click">Show Selected</asp:LinkButton>
                                 </div>
-
                             </div>
                             <div class="col-md-12">
-                                <hr class="hrline" />
                                 <asp:CheckBoxList ID="cbListFloor" runat="server"
-                                    CellPadding="3" CellSpacing="10" RepeatColumns="7"
-                                    CssClass=" chkBoxControl primaryBtn rbtResponsive " Font-Size="14px">
+                                    CellPadding="5" CellSpacing="10" RepeatColumns="8"
+                                    CssClass=" chkBoxControl primaryBtn rbtResponsive2 " Font-Size="16px">
                                     <asp:ListItem>aa</asp:ListItem>
                                     <asp:ListItem>bb</asp:ListItem>
                                     <asp:ListItem>cc</asp:ListItem>
@@ -638,7 +647,7 @@
                         </asp:View>
                         <asp:View ID="View3Item" runat="server">
                             <div class="row form-group">
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <asp:Label ID="lblTitle1a" runat="server" CssClass=" btn btn-success btn-sm">Item Selection (Individual Catagory)</asp:Label>
                                 </div>
                                 <div class="col-md-1 text3-right">
