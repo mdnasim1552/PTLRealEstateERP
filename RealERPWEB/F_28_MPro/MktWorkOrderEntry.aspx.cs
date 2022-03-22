@@ -232,9 +232,7 @@ namespace RealERPWEB.F_28_MPro
             if (this.lbtnOk.Text == "New")
             {
                 this.MultiView1.ActiveViewIndex = -1;
-
-                //this.lblPrevious.Visible = true;
-                //this.txtsearchpre.Visible = true;
+                this.pnlSupplier.Visible = false;
                 this.lbtnPrevOrderList.Visible = true;
                 this.ddlPrevOrderList.Visible = true;
                 this.ddlPrevOrderList.Items.Clear();
@@ -276,6 +274,7 @@ namespace RealERPWEB.F_28_MPro
             if (this.ddlPrevOrderList.Items.Count <= 0)
             {
                 this.MultiView1.ActiveViewIndex = 0;
+                this.pnlSupplier.Visible= true;
                 this.ResourceForOrder();
                 return;
 
@@ -434,8 +433,7 @@ namespace RealERPWEB.F_28_MPro
                 return;
 
             ViewState["dsOrder"] = ds1;
-            ViewState["tblOrder"] = ds1.Tables[0];
-            //ViewState["tblOrder"] = this.HiddenSameData(ds1.Tables[0]);
+            ViewState["tblOrder"] = this.HiddenSameData(ds1.Tables[0]);
             ViewState["purtermcon"] = ds1.Tables[1];
 
             this.gvOrderTerms.DataSource = ds1.Tables[1];
@@ -477,8 +475,7 @@ namespace RealERPWEB.F_28_MPro
             try
             {
                 string comcod = this.GetCompCode();
-                DataTable tbl1 = (DataTable)ViewState["tblOrder"];
-                //DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblOrder"]);
+                DataTable tbl1 = this.HiddenSameData((DataTable)ViewState["tblOrder"]);
                 this.gvOrderInfo.DataSource = tbl1;
                 this.gvOrderInfo.DataBind();
 
@@ -501,30 +498,24 @@ namespace RealERPWEB.F_28_MPro
           
         }
 
-
-
-
         private DataTable HiddenSameData(DataTable dt1)
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-            DataView dv = dt1.DefaultView;
-            dv.Sort = "rsircode";
-            dt1 = dv.ToTable();
 
-            string rsircode = dt1.Rows[0]["rsircode"].ToString();
+            string pactcode = dt1.Rows[0]["pactcode"].ToString();
 
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["rsircode"].ToString() == rsircode)
+                if (dt1.Rows[j]["pactcode"].ToString() == pactcode)
                 {
 
-                    dt1.Rows[j]["rsirdesc1"] = "";
+                    dt1.Rows[j]["projdesc1"] = "";
                 }
 
                 else
                 {
-                    rsircode = dt1.Rows[j]["rsircode"].ToString();
+                    pactcode = dt1.Rows[j]["pactcode"].ToString();
                 }
 
             }
@@ -539,13 +530,24 @@ namespace RealERPWEB.F_28_MPro
             int TblRowIndex2;
             for (int j = 0; j < this.gvOrderInfo.Rows.Count; j++)
             {
+                string prtypeCode = ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvPrTypeCode")).Text.Trim();
+
                 double dgvorderQty = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderQty")).Text.Trim()));
                 double dgvOrderRate = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((Label)this.gvOrderInfo.Rows[j].FindControl("lblgvOrderRate")).Text.Trim()));
+                double dgvAppAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.gvOrderInfo.Rows[j].FindControl("txtgvOrderAmt")).Text.Trim()));
                 TblRowIndex2 = (this.gvOrderInfo.PageIndex) * this.gvOrderInfo.PageSize + j;
                
-                double dgvAppAmt = dgvorderQty * dgvOrderRate;
-                tbl1.Rows[TblRowIndex2]["ordrqty"] = dgvorderQty;
-                tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;               
+                if(prtypeCode.Substring(0, 7) == "0199999")
+                {
+                    tbl1.Rows[TblRowIndex2]["ordrqty"] = dgvorderQty;
+                    tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;
+                }
+                else
+                {
+                    dgvAppAmt = dgvorderQty * dgvOrderRate;
+                    tbl1.Rows[TblRowIndex2]["ordrqty"] = dgvorderQty;
+                    tbl1.Rows[TblRowIndex2]["ordramt"] = dgvAppAmt;
+                }           
 
             }
             ViewState["tblOrder"] = tbl1;
@@ -1139,7 +1141,14 @@ namespace RealERPWEB.F_28_MPro
                 {
                     result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_PUR_ORDER_INFO", "MKTORDERA",
                                                  mORDERNO, mREQNO, mORDRQTY.ToString(), prtype, acttype, mkttype, "", "", "", "", "", "", "", "", "", "", "","","","");
-                }                    
+                }
+
+                else
+                {
+                    string mPactcode = tbl1.Rows[i]["pactcode"].ToString();
+                    string mOrderAmt = Convert.ToDouble(tbl1.Rows[i]["ordramt"]).ToString();
+                    result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_PUR_ORDER_INFO", "MKTORDERE", mORDERNO, mPactcode, prtype, "000000000000", mOrderAmt, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                }
 
                 if (!result)
                 {
@@ -1169,24 +1178,21 @@ namespace RealERPWEB.F_28_MPro
             }
 
 
-
-            //for (int i = 0; i < tbl1.Rows.Count; i++)
-            //{
-            //    string mREQNO = tbl1.Rows[i]["reqno"].ToString();
-            //    string SSIRCODE = tbl1.Rows[i]["ssircode"].ToString();
-            //    string mORDRQTY = tbl1.Rows[i]["ordrqty"].ToString();
-            //    result = purData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "UPDATEPURAPPROVA", mAPROVNO, mREQNO, mRSIRCODE, SSIRCODE, mORDERNO, mSPCFCOD, "", "", "", "", "", "", "", "", "");
-            //    if (!result)
-            //    {
-            //        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
-            //        return;
-            //    }
-            //}
+            for (int i = 0; i < tbl1.Rows.Count; i++)
+            {
+                string mREQNO = tbl1.Rows[i]["reqno"].ToString();
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_MKT_REQ", mREQNO, mORDERNO, "", "", "", "", "", "", "", "", "");
+                if (!result)
+                {
+                    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
+                    return;
+                }
+            }
 
 
             DataTable dsty = (DataTable)ViewState["tblOrder"];
             this.txtCurOrderDate.Enabled = false;
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Purchase Order Updated successfully" + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Purchase Order Updated successfully" + "');", true);
             ViewState["purtermcon"] = null;
 
             if (hst["compsms"].ToString() == "True")
@@ -1336,8 +1342,7 @@ namespace RealERPWEB.F_28_MPro
             this.MultiView1.ActiveViewIndex = 1;
             this.hideTermsConditions();
 
-            ViewState["tblOrder"] = dt1;
-            //ViewState["tblOrder"] = this.HiddenSameData(dt1);
+            ViewState["tblOrder"] = this.HiddenSameData(dt1);
             this.gvOrderInfo_DataBind();
 
             this.ShowProjectFiles();
@@ -1679,34 +1684,34 @@ namespace RealERPWEB.F_28_MPro
             DataTable tbl1 = (DataTable)ViewState["tblOrder"];
 
             string mProjectCode = this.ddlProjectName.SelectedValue.ToString();
-            string mResCode = this.ddlCharge.SelectedValue.ToString();
-            string mSpcfCode = "000000000000";
-            DataRow[] dr2 = tbl1.Select("pactcode ='" + mProjectCode + "' and rsircode = '" + mResCode + "' and spcfcod = '" + mSpcfCode + "'");
+            string chargeCode = this.ddlCharge.SelectedValue.ToString();
+            DataRow[] dr2 = tbl1.Select("pactcode ='" + mProjectCode + "' and prtype = '" + chargeCode + "'");
             if (dr2.Length == 0)
             {
                 DataRow dr1 = tbl1.NewRow();
-
-
                 
                 dr1["reqno"] = "";
-                dr1["rsircode"] = mResCode;
-                dr1["ssircode"] = "";
-                dr1["spcfcod"] = mSpcfCode;              
+                dr1["prtype"] = chargeCode;
+                dr1["acttype"] = "";
+                dr1["mkttype"] = "";
+                dr1["ssircode"] = "";           
                 dr1["reqno1"] = "";
                 dr1["mrfno"] = "";
                 dr1["pactcode"] = mProjectCode;
                 dr1["projdesc1"] = this.ddlProjectName.SelectedItem.ToString();
-                dr1["rsirdesc1"] = this.ddlCharge.SelectedItem.ToString(); ;
+                dr1["prtypedesc"] = this.ddlCharge.SelectedItem.ToString();
+                dr1["acttypedesc"] = "";
+                dr1["mkttypedesc"] = "";
                 dr1["ssirdesc1"] = "";
-                dr1["spcfdesc"] = "";
-                dr1["rsirunit"] = "";
+                dr1["reqrat"] = 0.00;
+                dr1["aprvqty"] = 0.00;
                 dr1["ordrqty"] = 0.00;
                 dr1["ordramt"] = 0.00;
+                dr1["aprovdat"] = "01-Jan-1900";
                 tbl1.Rows.Add(dr1);
             }
 
-            ViewState["tblOrder"] = tbl1;
-            //ViewState["tblOrder"] = this.HiddenSameData(tbl1);
+            ViewState["tblOrder"] = this.HiddenSameData(tbl1);
             this.gvOrderInfo_DataBind();
         }
 
