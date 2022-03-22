@@ -95,9 +95,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             Session["tblempdatewise"] = ds1.Tables[0];
 
-
-
-
             this.RptMyAttenView.DataSource = ds1;
             this.RptMyAttenView.DataBind();
 

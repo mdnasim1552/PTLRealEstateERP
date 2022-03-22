@@ -574,6 +574,7 @@
                                   <Value>=Fields!refdesc.Value</Value>
                                   <Style>
                                     <FontFamily>calibri</FontFamily>
+                                    <FontSize>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "12pt", Fields!refno.Value = "BBBBBBBBBBBB","12pt", Fields!refno.Value = "00000000000","12pt")</FontSize>
                                     <FontWeight>=Switch(Fields!refno.Value = "AAAAAAAAAAAA", "Bold", Fields!refno.Value = "BBBBBBBBBBBB", "Bold", Fields!refno.Value = "00000000000","Bold")</FontWeight>
                                   </Style>
                                 </TextRun>
@@ -932,7 +933,7 @@
       <Width>10.65568in</Width>
       <Page>
         <PageHeader>
-          <Height>0.77083in</Height>
+          <Height>0.71875in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -957,7 +958,8 @@
                     <TextRun>
                       <Value>=Parameters!comnam.Value</Value>
                       <Style>
-                        <FontSize>12pt</FontSize>
+                        <FontFamily>calibri</FontFamily>
+                        <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -991,7 +993,7 @@
                     <TextRun>
                       <Value>=Parameters!RptTitle.Value</Value>
                       <Style>
-                        <FontFamily>cambria</FontFamily>
+                        <FontFamily>calibri</FontFamily>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -1106,7 +1108,7 @@
         <PageWidth>11.69in</PageWidth>
         <LeftMargin>0.5in</LeftMargin>
         <RightMargin>0.5in</RightMargin>
-        <TopMargin>0.25in</TopMargin>
+        <TopMargin>0.1in</TopMargin>
         <BottomMargin>0.25in</BottomMargin>
         <Style />
       </Page>
