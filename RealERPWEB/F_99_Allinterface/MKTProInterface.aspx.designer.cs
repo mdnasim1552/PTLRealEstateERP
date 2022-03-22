@@ -186,24 +186,6 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvReqChk;
 
         /// <summary>
-        /// pnlFirstApp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlFirstApp;
-
-        /// <summary>
-        /// gvreqfapproved control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvreqfapproved;
-
-        /// <summary>
         /// pnlFinalApp control.
         /// </summary>
         /// <remarks>
@@ -213,49 +195,13 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.Panel pnlFinalApp;
 
         /// <summary>
-        /// gvreqsecapproved control.
+        /// gvReqApp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvreqsecapproved;
-
-        /// <summary>
-        /// pnlCSPrep control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCSPrep;
-
-        /// <summary>
-        /// gvRatePro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRatePro;
-
-        /// <summary>
-        /// pnlCSChq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCSChq;
-
-        /// <summary>
-        /// gvFRec control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvFRec;
+        protected global::System.Web.UI.WebControls.GridView gvReqApp;
 
         /// <summary>
         /// pnlWorkOrder control.
