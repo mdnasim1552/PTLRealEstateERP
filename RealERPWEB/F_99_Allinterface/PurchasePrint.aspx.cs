@@ -2584,6 +2584,11 @@ namespace RealERPWEB.F_99_Allinterface
                 case "3354": // Edison
                 case "3366": // Lanco
 
+                case "1108": // assure
+                case "1109": // assure
+                case "3315": // assure
+                case "3316": // assure
+
 
                     this.OrderPrintRDLC();
                     break;
@@ -3768,7 +3773,6 @@ namespace RealERPWEB.F_99_Allinterface
                 DataTable dt2;
                 DataTable dt3;
 
-
                 // Carring
                 DataView dv1 = dtorder1.DefaultView;
                 dv1.RowFilter = ("rsircode  like '019999901%'");
@@ -3793,7 +3797,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352")
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3101")
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -3935,7 +3939,7 @@ namespace RealERPWEB.F_99_Allinterface
                         sign7 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
                         break;
 
-                    case "3101": //
+                    //case "3101": //
                     case "3366": //Lanco
                         sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
                         sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
@@ -4042,7 +4046,7 @@ namespace RealERPWEB.F_99_Allinterface
 
                         break;
 
-                    case "3101": // ASIT
+                    //case "3101": // ASIT
                     case "3366": // Lanco
                     case "3357": // Cube
                     case "1205"://P2P
@@ -4076,7 +4080,6 @@ namespace RealERPWEB.F_99_Allinterface
                         terms7 = termscondition.Find(p => p.termsid == "007").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "";
                         // contact person come from Terms and Conditions
                         cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
-
                         break;
 
 
@@ -4129,6 +4132,25 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
+                    case "3101":                 
+                    case "1108":                 
+                    case "1109":                 
+                    case "3315":                 
+                    case "3316":                 
+
+                        terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
+                        terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
+                        terms3 = termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "";
+                        terms4 = termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? "4." + (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "";
+                        terms5 = termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString().Length > 0 ? "5." + (termscondition.FindAll(p => p.termsid == "005")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString()) : "";
+                        terms6 = termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString().Length > 0 ? "6." + (termscondition.FindAll(p => p.termsid == "006")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString()) : "";
+                        terms7 = termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "";
+                        terms8 = termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString().Length > 0 ? "8." + (termscondition.FindAll(p => p.termsid == "008")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString()) : "";
+                        terms9 = termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+                        break;
+
+
 
                     default: //Default
                         terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
@@ -4148,13 +4170,14 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
+                    case "3101": //Assure
                     case "1108": //Assure
                     case "1109": //Assure
                     case "3315": //Assure
                     case "3316": //Assure
                     case "3317": //Assure
-
-                        Reportpath = "~/Report/RptPurchaseOrder.rdlc";
+                        //Reportpath = "~/Report/RptPurchaseOrder.rdlc";
+                        Reportpath = "~/Report/RptPurchaseOrderAssure.rdlc";
                         break;
 
                     case "3339": //Tropical
@@ -4227,7 +4250,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderJBS.rdlc";
                         break;
 
-                    case "3101"://Asit
+                    //case "3101"://Asit
                     case "3357": //Cube
                         Reportpath = "~/Report/RptPurchaseOrderCube.rdlc";
                         break;
@@ -4257,7 +4280,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseOrder", purlist, termscondition, null);
                 Rpt1.EnableExternalImages = true;
 
-                if (comcod == "3351" || comcod == "1205" || comcod == "3352")
+                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3101")
                 {
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));

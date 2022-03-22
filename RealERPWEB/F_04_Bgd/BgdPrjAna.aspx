@@ -39,6 +39,10 @@
                 margin: 2px;
                 line-height: 15px;
             }
+
+        .custom1{
+            min-height:700px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -140,7 +144,7 @@
                     </ProgressTemplate>
                 </asp:UpdateProgress>
             </div>
-            <div class="card card-fluid" style="min-height: 600px;">
+            <div class="card card-fluid" style="min-height: 800px;">
                 <div class="card-header mt-2 mb-0 pb-0">
                     <div class="row form-group">
                         <div class="col-md-2">
@@ -292,7 +296,7 @@
                     </fieldset>
 
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="min-height:660px">
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="View1Floor" runat="server">
                             <div class="row form-group">

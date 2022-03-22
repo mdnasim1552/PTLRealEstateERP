@@ -1356,7 +1356,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2801000", "2801001", "F_28_MPro", "MktProGenCodeBook?", "Type=Entry", "General Code(M. Procurement) ", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801002", "F_28_MPro", "MKTPurReqEntry?", "InputType=Entry", "Material Requisition", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801020", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqCheck", "Material Requisition (1st Approval)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801030", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqApproval", "Material Requisition (Final Approval)", "Marketing Procurement", "False", "False", "False", "False" });
 
+       
 
             tblObj.Rows.Add(new Object[] { "2851000", "2851001", "F_99_Allinterface", "MKTProInterface?", "Type=Report", "Marketing Procurement", "Marketing Procurement", "False", "False", "False", "False" });
 
