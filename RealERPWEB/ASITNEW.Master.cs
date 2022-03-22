@@ -119,6 +119,10 @@ namespace RealERPWEB
         {
             string comcod = this.GetCompCode();
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            DataSet ds = (DataSet)Session["tblusrlog"]; 
+            DataView dv = ds.Tables[1].DefaultView;
+            dv.RowFilter = ("frmid = '8102113'");
+            DataTable dt = dv.ToTable(); 
             if (hst == null)
             {
                 return;
@@ -128,30 +132,22 @@ namespace RealERPWEB
             {
                 case "3365":
                     // case "3101":
-
-                    //sidebar nav off for bti general user
-                    hypOnlineAttendance.Visible= (userrole == "3" ? false : true);
+                    //sidebar nav off for bti general user                    
                     this.mySidenav.Visible = (userrole == "3" ? false : true);
-                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);                   
-
+                    this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true); 
                     this.hypGroupChat.Visible = false;
-                    this.HypOldModules.Visible = false;
-                   // this.hypApplyLV.Visible = true;
+                    this.HypOldModules.Visible = false;                 
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
                     this.hypTimeOfleave.NavigateUrl = "#";
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
-                    break;
-                   
+                    break;                   
                 case "3315":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
-
                     break;
-
                 case "3347":
                     this.HypLinkApplyLvCommon.Visible = (userrole == "3" ? false : true);
                     break;
-
                 default:
                     this.lnkFormLink.Text = "Forum";
                     this.lnkFormLink.Visible = true;
@@ -160,6 +156,7 @@ namespace RealERPWEB
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/pintechltd";
                     break;
             }
+            hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
 

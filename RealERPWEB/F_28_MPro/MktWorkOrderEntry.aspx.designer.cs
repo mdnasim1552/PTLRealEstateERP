@@ -159,22 +159,13 @@ namespace RealERPWEB.F_28_MPro
         protected global::System.Web.UI.WebControls.DropDownList ddlPrevOrderList;
 
         /// <summary>
-        /// MultiView1 control.
+        /// pnlSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.MultiView MultiView1;
-
-        /// <summary>
-        /// PurApp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View PurApp;
+        protected global::System.Web.UI.WebControls.Panel pnlSupplier;
 
         /// <summary>
         /// txtsrchSupplier control.
@@ -202,6 +193,24 @@ namespace RealERPWEB.F_28_MPro
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlSuplierList;
+
+        /// <summary>
+        /// MultiView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.MultiView MultiView1;
+
+        /// <summary>
+        /// PurApp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View PurApp;
 
         /// <summary>
         /// gvAprovInfo control.

@@ -48,8 +48,8 @@
                 </asp:UpdateProgress>
             </div>
 
-            <div class="card card-fluid">
-                <div class="card-header">
+            <div class="card card-fluid mb-2">
+                <div class="card-body">
                     <asp:Panel ID="pnlPurOrderDet" CssClass="mt-2" runat="server">
                         <div class="row">
                             <div class="col-2">
@@ -57,7 +57,7 @@
                                     <asp:Label ID="lblOrderDate" runat="server" class="control-label  lblmargin-top9px" Text="Order Date"></asp:Label>
                                     <asp:TextBox ID="txtCurOrderDate" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                                     <cc1:CalendarExtender ID="txtCurOrderDate_CalendarExtender" runat="server" Enabled="True"
-                                        Format="dd.MMM.yyyy" TargetControlID="txtCurOrderDate"></cc1:CalendarExtender>
+                                        Format="dd.MM.yyyy" TargetControlID="txtCurOrderDate"></cc1:CalendarExtender>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -93,28 +93,34 @@
                             </div>
 
                         </div>
-
                     </asp:Panel>
                 </div>
-                <div class="card-body" style="min-height: 350px;">
+            </div>
+            <div class="card card-fluid">
+                <div class="card-header">
+                    <asp:Panel ID="pnlSupplier" runat="server" Visible="false">
+                        <div class="row">
+                            <div class="col-2">
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2">Supplier:</span>
+                                    </div>
+                                    <asp:TextBox ID="txtsrchSupplier" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                    <div class="input-group-prepend">
+                                        <asp:LinkButton ID="imgSearchOrderno" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Find Supplier" OnClick="imgSearchOrderno_Click"><i class="fas fa-search"></i></asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 mb-3">
+                                <asp:DropDownList ID="ddlSuplierList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
+                <div class="card-body" style="min-height: 400px;">
                     <asp:MultiView ID="MultiView1" runat="server">
                         <asp:View ID="PurApp" runat="server">
                             <div class="row">
-
-                                <div class="col-2">
-                                    <div class="input-group input-group-sm">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon2">Supplier:</span>
-                                        </div>
-                                        <asp:TextBox ID="txtsrchSupplier" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                        <div class="input-group-prepend">
-                                            <asp:LinkButton ID="imgSearchOrderno" runat="server" CssClass="btn btn-secondary btn-sm" ToolTip="Find Supplier" OnClick="imgSearchOrderno_Click"><i class="fas fa-search"></i></asp:LinkButton>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-4 mb-3">
-                                    <asp:DropDownList ID="ddlSuplierList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true"></asp:DropDownList>
-                                </div>
 
                                 <asp:GridView ID="gvAprovInfo" runat="server"
                                     AutoGenerateColumns="False" ShowFooter="True" Width="482px" CssClass="table-striped table-hover table-bordered grvContentarea">
@@ -373,6 +379,14 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                          <asp:TemplateField HeaderText="PR Type Code" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvPrTypeCode" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Reqno" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvReqNo" runat="server"
@@ -442,7 +456,7 @@
                                             </FooterTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Pur. Appr. Qty">
+                                        <asp:TemplateField HeaderText="Pur. Appr. Qty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPurApprvQty" runat="server" Style="text-align: right;"
                                                     Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "aprvqty")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
@@ -463,7 +477,7 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Rate">
+                                        <asp:TemplateField HeaderText="Rate">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvOrderRate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
                                                     BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
@@ -499,17 +513,13 @@
                             </div>
 
                             <div class="row mb-1">
-                                <div class="col-md-9 pading5p ">
+                                <div class="col-md-8">
                                     <asp:LinkButton ID="btnSendmail" CssClass="btn btn-info primaryBtn btn-sm" runat="server" OnClick="btnSendmail_Click">Send Email</asp:LinkButton>
                                 </div>
 
-                                <div class="col-md-3 pading5px">
-                                    <div class="input-group input-group-sm">
-                                        <span class="input-group-prepend ">
-                                            <asp:Label ID="Label1" runat="server" CssClass="lblTxt lblName" Text="Advanced Amount:"></asp:Label>
-                                        </span>
-                                        <asp:TextBox ID="txtadvAmt" runat="server" class="form-control inputTxt"></asp:TextBox>
-                                    </div>
+                                <div class="col-md-2">
+                                    <asp:Label ID="Label1" runat="server" Text="Advanced Amount:"></asp:Label>
+                                    <asp:TextBox ID="txtadvAmt" runat="server" class="form-control form-control-sm inputTxt"></asp:TextBox>
                                 </div>
                             </div>
 
