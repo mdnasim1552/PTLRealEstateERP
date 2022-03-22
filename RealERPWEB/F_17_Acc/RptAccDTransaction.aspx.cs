@@ -76,7 +76,7 @@ namespace RealERPWEB.F_17_Acc
                 if (comcod == "1103")
                 {
                     this.chkwitransfer.Checked = false;
-                }
+                } 
             }
 
 

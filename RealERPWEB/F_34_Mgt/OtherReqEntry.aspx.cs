@@ -1165,19 +1165,32 @@ namespace RealERPWEB.F_34_Mgt
             // string confirmby = dtsign.Rows[0]["reqnam"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString()
             string confirmby = dtsign.Rows[0]["reqanam"].ToString() + "\n" + dtsign.Rows[0]["reqdat"].ToString();
             string approved = dtsign.Rows[0]["faprovnam"].ToString() + "\n" + dtsign.Rows[0]["fapprvdat"].ToString();
+            string secapnam = dtsign.Rows[0]["secapnam"].ToString() + "\n" + dtsign.Rows[0]["secapdat"].ToString();
+            string thrapnam = dtsign.Rows[0]["thrapnam"].ToString() + "\n" + dtsign.Rows[0]["thrapdat"].ToString();
 
             LocalReport Rpt1 = new LocalReport();
-
-            if (comcod == "3336" || comcod == "3337")
+            
+            switch (comcod)
             {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, null, null);
-            }
-            else
-            {
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
-            }
+                case "3336":
+                case "3337":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqPrintSuvasto", lst, null, null);
+                    break;
 
-            Rpt1.EnableExternalImages = true;
+                case "3101":
+                case "1102":
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatusISBL", lst, null, null);
+                    Rpt1.EnableExternalImages = true;
+                    Rpt1.SetParameters(new ReportParameter("thrapnam", thrapnam));
+                    Rpt1.SetParameters(new ReportParameter("comLogo", ComLogo));
+
+                    break;
+                default:
+                    Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_34_Mgt.RptOtherReqStatus", lst, null, null);
+                    break;
+            }           
+
+
             Rpt1.SetParameters(new ReportParameter("comnam", comnam));
             //Rpt1.SetParameters(new ReportParameter("comadd", comadd));
             Rpt1.SetParameters(new ReportParameter("rpttitle", "Work Order"));
