@@ -137,8 +137,8 @@ namespace RealERPWEB
             }
             this.UDptment.InnerHtml = hst["dptdesc"].ToString();
             this.UDesignation.InnerHtml = hst["usrdesig"].ToString();
-            UserName.InnerHtml = "Hi, " + hst["username"].ToString();
-            UserName1.InnerHtml = "Hey <b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
+            UserName.InnerHtml =  hst["userfname"].ToString();
+            UserName1.InnerHtml = "<b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
             userimg.ImageUrl = hst["userimg"].ToString();
             if (hst["events"].ToString() == "True")
             {

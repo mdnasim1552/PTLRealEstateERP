@@ -233,10 +233,14 @@ namespace RealERPWEB.F_17_Acc
                 double dgvTrnCrAmt = Convert.ToDouble(ASTUtility.ExprToValue("0" + ((TextBox)this.dgv2.Rows[i].FindControl("txtgvCrAmt")).Text.Trim()));
                 //string dgvTrnRemarks = ((TextBox)this.dgv2.Rows[i].FindControl("txtgvRemarks")).Text.Trim();
 
+                string gvtxtmaingvrmks = ((TextBox)this.dgv2.Rows[i].FindControl("gvtxtmaingvrmks")).Text.Trim();
+
                 TblRowIndex = (dgv2.PageIndex) * dgv2.PageSize + i;
 
                 tblt01.Rows[TblRowIndex]["Dr"] = dgvTrnDrAmt;
                 tblt01.Rows[TblRowIndex]["Cr"] = dgvTrnCrAmt;
+                tblt01.Rows[TblRowIndex]["opnnar"] = gvtxtmaingvrmks;
+
                 //  tblt01.Rows[TblRowIndex]["Remarks"] = dgvTrnRemarks;
             }
             Session["AccTbl01"] = tblt01;
@@ -635,12 +639,14 @@ namespace RealERPWEB.F_17_Acc
                     double Cramt = Convert.ToDouble(tblt05.Rows[i]["Cr"]);
                     string trnamt = Convert.ToString(Dramt - Cramt);
                     string trnremarks = Convert.ToDouble(Dramt).ToString();
+                    string opnnar = tblt05.Rows[i]["opnnar"].ToString();
+
                     //if ((Dramt - Cramt) != 0 && actlev != "2")
                     if (actlev != "2")
                     {
                         bool resulta = accData.UpdateTransInfo(comcod, "SP_ENTRY_ACCOUNTS_VOUCHER",
                                 "ACVOPNUPDATEA", vounum1, actcode, rescode, cactcode, voudat, trnqty,
-                                trnremarks, vtcode, trnamt, spclcode, UserId, EditDate, Terminal, "", "");
+                                trnremarks, vtcode, trnamt, spclcode, UserId, EditDate, Terminal, opnnar, "");
                         if (!resulta)
                         {
                             //((Label)this.Master.FindControl("lblmsg")).Text = accData.ErrorObject["Msg"].ToString();
