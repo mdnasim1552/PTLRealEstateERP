@@ -18,7 +18,7 @@
                 k1.textBoxHandler(event);
             });
 
-            $('#<%=this.grvacc.ClientID%>').tblScrollable();
+          <%--  $('#<%=this.grvacc.ClientID%>').tblScrollable();--%>
 
             $('.chzn-select').chosen({ search_contains: true });
 
@@ -39,7 +39,7 @@
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-              <div class="card card-fluid" style="min-height:550px;">
+              <div class="card card-fluid" style="min-height:600px;">
                 <div class="card-body">
 
                     <div class="row">
@@ -76,7 +76,7 @@
                         
 
                         
-                        <asp:GridView ID="grvacc" runat="server" AllowPaging="True" CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
+                        <asp:GridView ID="grvacc" runat="server"  CssClass="table-condensed table-hover table-bordered grvContentarea" AutoGenerateColumns="False" OnRowCancelingEdit="grvacc_RowCancelingEdit" OnRowEditing="grvacc_RowEditing"
                             OnRowUpdating="grvacc_RowUpdating" PageSize="15"
                             OnPageIndexChanging="grvacc_PageIndexChanging" ShowFooter="True" BorderStyle="None" Width="724px">
                             <PagerSettings NextPageText="Next" PreviousPageText="Previous" Position="Top"
@@ -126,14 +126,9 @@
                                 </asp:TemplateField>
 
 
-
-
-
-
-
                                 <asp:TemplateField HeaderText=" Description">
                                     <EditItemTemplate>
-                                        <asp:Panel ID="pnlTeam" runat="server" BorderColor="Yellow" BorderStyle="Solid"
+                                       <%-- <asp:Panel ID="pnlTeam" runat="server" BorderColor="Yellow" BorderStyle="Solid"
                                             BorderWidth="1px">
 
 
@@ -146,13 +141,13 @@
                                                         <asp:LinkButton ID="ibtnSrchteam" Visible="false" runat="server" OnClick="ibtnSrchteam_Click" CssClass="btn btn-success srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
 
                                                     </td>
-                                                    <td>
+                                                    <td>--%>
                                                         <asp:DropDownList ID="ddlteam" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
-                                                        </asp:DropDownList>
-                                                    </td>
+                                                      </asp:DropDownList>
+                                                 <%--   </td>
                                                 </tr>
                                             </table>
-                                        </asp:Panel>
+                                        </asp:Panel>--%>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvcatdesc" runat="server"
@@ -164,7 +159,36 @@
 
 
 
+                                    <asp:TemplateField HeaderText="Group Description">
+                                    <EditItemTemplate>
+                                        <%--<asp:Panel ID="pnlGroup" runat="server" BorderColor="Yellow" BorderStyle="Solid"
+                                            BorderWidth="1px">--%>
 
+
+                                           <%-- <table style="width: 100%;">
+                                                <tr>
+                                                    <td>
+                                                        <asp:TextBox ID="txtgSearchteam" runat="server" Visible="false" CssClass=" inputtextbox" TabIndex="4" Width="50px"></asp:TextBox>
+                                                    </td>
+                                                    <td>
+                                                        <asp:LinkButton ID="ibtngSrchteam" Visible="false" runat="server" OnClick="ibtnSrchteam_Click" CssClass="btn btn-success srearchBtn"><span class="glyphicon glyphicon-search asitGlyp"></span></asp:LinkButton>
+
+                                                    </td>
+                                                    <td>--%>
+                                                        <asp:DropDownList ID="ddlgroup" runat="server" CssClass="chzn-select form-control  inputTxt" TabIndex="6">
+                                                        </asp:DropDownList>
+                                                    <%--</td>
+                                                </tr>
+                                            </table>
+                                        </asp:Panel>--%>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvgcatdesc" runat="server"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "gropdesc")) %>'
+                                            Width="320px"></asp:Label>
+                                    </ItemTemplate>
+                                    <HeaderStyle Width="150px" />
+                                </asp:TemplateField>
 
 
 

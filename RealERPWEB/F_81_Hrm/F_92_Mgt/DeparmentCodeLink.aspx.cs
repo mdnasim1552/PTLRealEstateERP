@@ -33,7 +33,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
 
                 this.ShowInformation();
                 this.GetACGCode();
-
+                this.GetGropCode();
                 // this.GetCode();
             }
 
@@ -62,7 +62,16 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         }
 
 
+        private void GetGropCode()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string srchoption = "%%";
+            DataSet dsone = this.accData.GetTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "GETGROUPCODE", srchoption, "", "", "", "", "", "", "", "");
+            ViewState["tblgroupcode"] = dsone.Tables[0];
+            dsone.Dispose();
 
+        }
 
 
 
@@ -81,9 +90,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ViewState["gindex"] = e.NewEditIndex;
             int rowindex = (grvacc.PageSize) * (this.grvacc.PageIndex) + e.NewEditIndex;
             string acgcode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
-            string actcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
+            //string actcode = ((Label)grvacc.Rows[e.NewEditIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
             string agccode = ((DataTable)Session["storedata"]).Rows[rowindex]["acgcode"].ToString();
+            string gropcode = ((DataTable)Session["storedata"]).Rows[rowindex]["gropcode"].ToString();
             DropDownList ddlteam = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlteam");
+            DropDownList ddlgroup = (DropDownList)this.grvacc.Rows[e.NewEditIndex].FindControl("ddlgroup");
 
             ddlteam.DataTextField = "acgdesc";
             ddlteam.DataValueField = "acgcode";
@@ -92,12 +103,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             ddlteam.SelectedValue = agccode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
 
 
-
-
-
-
-
-
+            ddlgroup.DataTextField = "gropdesc";
+            ddlgroup.DataValueField = "gropcode";
+            ddlgroup.DataSource = (DataTable)ViewState["tblgroupcode"];
+            ddlgroup.DataBind();
+            ddlgroup.SelectedValue = gropcode; //((Label)this.gvCodeBook.Rows[e.NewEditIndex].FindControl("lblgvProName")).Text.Trim();
 
 
         }
@@ -114,20 +124,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                 return;
             }
 
-
-
             string actcode = ((Label)grvacc.Rows[e.RowIndex].FindControl("lblgvactcode")).Text.Trim().Replace("-", "");
             string acgcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedValue.ToString();
+            string gropcode = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedValue.ToString();
             string acgdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlteam")).SelectedItem.ToString();
+            string gropdesc = ((DropDownList)this.grvacc.Rows[e.RowIndex].FindControl("ddlgroup")).SelectedItem.ToString();
             DataTable tbl1 = (DataTable)Session["storedata"];
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
             int Index = grvacc.PageSize * grvacc.PageIndex + e.RowIndex;
             tbl1.Rows[Index]["acgcode"] = acgcode;
             tbl1.Rows[Index]["acgdesc"] = acgdesc;
+            tbl1.Rows[Index]["gropdesc"] = gropdesc;
             Session["storedata"] = tbl1;
             this.grvacc.EditIndex = -1;
-            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, "", "", "", "", "", "", "", "",
+            bool result = this.accData.UpdateTransInfo(comcod, "[dbo_hrm].[SP_REPORT_CODEBOOK]", "UPDATEDEPTCODE", actcode, acgcode, gropcode, "", "", "", "", "", "", "",
                 "", "", "", "", "");
 
 
