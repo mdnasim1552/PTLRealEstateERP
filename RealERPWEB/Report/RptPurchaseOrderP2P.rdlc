@@ -3232,7 +3232,7 @@
                                 <TextRun>
                                   <Value>=Parameters!terms1.Value</Value>
                                   <Style>
-                                    <FontFamily>cambria</FontFamily>
+                                    <FontFamily>Cambria</FontFamily>
                                     <FontSize>8pt</FontSize>
                                     <TextDecoration>None</TextDecoration>
                                   </Style>
@@ -3243,10 +3243,7 @@
                           </Paragraphs>
                           <rd:DefaultName>Textbox51</rd:DefaultName>
                           <Style>
-                            <Border>
-                              <Color>LightGrey</Color>
-                              <Style>None</Style>
-                            </Border>
+                            <Border />
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -3254,6 +3251,7 @@
                           </Style>
                         </Textbox>
                         <ColSpan>11</ColSpan>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />

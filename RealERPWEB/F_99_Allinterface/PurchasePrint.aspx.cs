@@ -3797,7 +3797,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string costa = "", costb = "", costc = "", costd = "", coste = "";
                 string cost1 = "", cost2 = "", cost3 = "", cost4 = "", cost5 = "";
 
-                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3101")
+                if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316")
                 {
                     if (dt4.Rows.Count > 0)
                     {
@@ -4132,7 +4132,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    case "3101":                 
+                    //case "3101":                 
                     case "1108":                 
                     case "1109":                 
                     case "3315":                 
@@ -4170,7 +4170,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
-                    case "3101": //Assure
+                    //case "3101": //Assure
                     case "1108": //Assure
                     case "1109": //Assure
                     case "3315": //Assure
@@ -4280,7 +4280,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_12_Inv.RptPurchaseOrder", purlist, termscondition, null);
                 Rpt1.EnableExternalImages = true;
 
-                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316" || comcod == "3101")
+                if (comcod == "3351" || comcod == "1205" || comcod == "3352" || comcod == "1108" || comcod == "1109" || comcod == "3315" || comcod == "3316")
                 {
                     string subcom = (comcod == "3351") ? "A Concern of P2P" : "";
                     Rpt1.SetParameters(new ReportParameter("subcompname", subcom));
