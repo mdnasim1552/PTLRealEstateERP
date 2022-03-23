@@ -85,7 +85,7 @@ namespace RealERPWEB
 
             }
 
-            string Cont = "Copyright © " + System.DateTime.Today.ToString("yyyy") + ".";
+            string Cont = "Developed by :"; //+ System.DateTime.Today.ToString("yyyy") + ".";
 
             var CopyRight = "<div class='copyright'>" + Cont +
                                      " <a href='http://pintechltd.com/' target='_blank'>" + "Pinovation Tech Ltd." + " </a>" +
