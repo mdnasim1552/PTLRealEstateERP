@@ -73,33 +73,16 @@ namespace RealERPWEB.F_28_MPro
 
                 //only current date
 
-                this.CurDate();
+                
+                this.CalendarExtender_txtCurReqDate.EndDate = System.DateTime.Today;
+                this.txtCurReqDate.ReadOnly = true;
                 ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS REQUISITION";
 
             }
         }
 
 
-        private void CurDate()
-
-        {
-
-            string comcod = this.GetCompCode();
-
-            switch (comcod)
-            {
-                case "3101":
-                case "3336":
-                case "3337":
-                    this.CalendarExtender_txtCurReqDate.StartDate = System.DateTime.Today;
-                    this.txtCurReqDate.ReadOnly = true;
-
-                    break;
-
-            }
-
-
-        }
+       
         private string ReadCookie()
         {
             HttpCookie nameCookie = Request.Cookies["MRF"];
@@ -907,30 +890,7 @@ namespace RealERPWEB.F_28_MPro
         }
 
 
-        private string GetReqCheckAApproved()
-        {
 
-            string reqcheckaapproved = "";
-            string comcod = this.GetCompCode();
-            switch (comcod)
-            {
-
-                // case "3101":      //ASIT      
-                case "3338":  //ACME
-                              //case "1103":  //Tanvir
-                case "3348":  //Credence
-
-                    break;
-
-                default:
-                    reqcheckaapproved = "reqCheckedAApproved";
-                    break;
-            }
-
-            return reqcheckaapproved;
-
-
-        }
 
         protected void lbtnCheecked_Click(object sender, EventArgs e)
         {
@@ -952,66 +912,7 @@ namespace RealERPWEB.F_28_MPro
             string checkSessionid = hst["session"].ToString();
             string checkDate = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
             string mREQNO = this.lblCurReqNo1.Text.Trim().Substring(0, 3) + this.txtCurReqDate.Text.Trim().Substring(6, 4) + this.lblCurReqNo1.Text.Trim().Substring(3, 2) + this.txtCurReqNo2.Text.Trim();
-
-            //string reqcheckaapproved = this.GetReqCheckAApproved();
-            //string 
-
-            DataTable dt = ((DataTable)Session["tblUserReq"]);
-            DataTable tbl1 = (DataTable)ViewState["tblReq"];
-
-            int index = 0;
-            string pactcode1 = this.Request.QueryString["prjcode"].ToString();
-            string pactcode = ASTUtility.Left(pactcode1, 4);
-            //  todo for check central inventory
-            switch (pactcode)
-            {
-                case "1102":
-                    break;
-
-                default:
-                    //txtgvReqQty
-                    for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
-                    {
-                        index = (this.gvReqInfo.PageSize) * (this.gvReqInfo.PageIndex) + j;
-
-                        double dgvBgdQty = Convert.ToDouble(tbl1.Rows[index]["bbgdqty1"]);
-                        double dgvReqQty =
-                                Convert.ToDouble(
-                                    ASTUtility.ExprToValue("0" + ((TextBox)this.gvReqInfo.Rows[j].FindControl("txtgvReqQty")).Text.Trim()));
-
-                        if (this.Request.QueryString["InputType"] == "ReqCheck")
-                        {
-                            if (dgvBgdQty < dgvReqQty)
-                            {
-                                ((Label)this.Master.FindControl("lblmsg")).Text = "Not Within the Budget";
-                                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
-                                return;
-
-                            }
-                        }
-
-                    }
-                    break;
-            }
-
-            string appxml = ((DataTable)Session["tblUserReq"]).Rows[0]["rapproval"].ToString();
-            string Approval = this.GetReqApproval(appxml);
-            string crmData = this.Request.QueryString["InputType"] == "ReqcRMCheck" ? "crm" : "";
-            string crmNarr = "";
-            if (crmData == "crm")
-            {
-                crmNarr = txtCCDNarr.Text.ToString();
-            }
-
-            else
-            {
-                crmNarr = txtCCDNarr.Text.ToString();
-
-            }
-
-
-
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_01", "UPDATEREQCHECKED", mREQNO, checkusrid, checkTerminal, checkSessionid, checkDate, Approval, crmData, crmNarr,
+            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT", "UPDATEREQCHECKED", mREQNO, checkusrid, checkTerminal, checkSessionid, checkDate, "", "", "",
                 "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (!result)
             {
@@ -1021,9 +922,6 @@ namespace RealERPWEB.F_28_MPro
             }
 
             ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Data Updated successfully" + "');", true);
-
-
-
             if (hst["compsms"].ToString() == "True")
             {
 
@@ -1045,11 +943,8 @@ namespace RealERPWEB.F_28_MPro
                         break;
                 }
             }
-            // comment nahid why its call ??
-            if (this.Request.QueryString["InputType"] != "ReqcRMCheck")
-            {
-                lbtnUpdateResReq_Click(null, null);
-            }
+            
+           
 
 
 
@@ -1141,6 +1036,16 @@ namespace RealERPWEB.F_28_MPro
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             this.gvReqInfo.DataSource = tbl1;
             this.gvReqInfo.DataBind();
+
+
+
+            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnCheecked")).Visible = (this.Request.QueryString["InputType"] == "ReqCheck");
+            
+
+
+            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnUpdateResReq")).Visible = !(this.Request.QueryString["InputType"].ToString().Trim() == "ReqCheck");
+          
+            ((LinkButton)this.gvReqInfo.FooterRow.FindControl("lbtnResFooterTotal")).Visible = !(this.Request.QueryString["InputType"].ToString().Trim() == "ReqCheck");
             this.FooterCalCulation();
         }
         private void FooterCalCulation()

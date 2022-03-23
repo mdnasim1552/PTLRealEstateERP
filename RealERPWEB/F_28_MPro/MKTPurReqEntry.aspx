@@ -201,9 +201,14 @@
                                             <asp:TextBox ID="txtgvReqQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
                                                 Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
                                         </ItemTemplate>
-                                        <FooterTemplate>
-                                            <asp:CheckBox ID="crChkbox" runat="server" Visible="false" Text="CRM Checkd" />
-                                        </FooterTemplate>
+                                       
+                                        
+                                            <FooterTemplate>
+
+                                                <asp:LinkButton ID="lbtnCheecked" runat="server" OnClientClick="return FunCheckConfirm();" OnClick="lbtnCheecked_Click" CssClass="btn  btn-primary primarygrdBtn">Checked</asp:LinkButton>
+
+                                            </FooterTemplate>
+
                                         <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
                                         <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
                                         <HeaderStyle ForeColor="Blue" />
