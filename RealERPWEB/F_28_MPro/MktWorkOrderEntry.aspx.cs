@@ -33,6 +33,12 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+                DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+                ((LinkButton)this.Master.FindControl("lnkPrint")).Enabled = (Convert.ToBoolean(dr1[0]["printable"]));
 
                 Hashtable hst = (Hashtable)Session["tblLogin"];
                 string comcod = hst["comcod"].ToString();
@@ -952,14 +958,14 @@ namespace RealERPWEB.F_28_MPro
 
         protected void lbtnUpdatePurOrder_Click(object sender, EventArgs e)
         {
-            //((Label)this.Master.FindControl("lblmsg")).Visible = true;
-            //int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
-            //DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
-            //if (!Convert.ToBoolean(dr1[0]["entry"]))
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
-            //    return;
-            //}
+            ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+            int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+            DataRow[] dr1 = ASTUtility.PagePermission1(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["entry"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "You have no permission" + "');", true);
+                return;
+            }
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = this.GetCompCode();
@@ -1229,123 +1235,100 @@ namespace RealERPWEB.F_28_MPro
 
         protected void lbtnSelectedOrdr_Click(object sender, EventArgs e)
         {
-
-            this.Get_Pur_Order_Info();
-            string comcod = this.GetCompCode();
-            if (comcod == "3335")
+            try
             {
-                this.ddltypecod.Visible = true;
-                this.lnkselect.Visible = true;
+                this.Get_Pur_Order_Info();
 
-            }
-            switch (comcod)
-            {
-                case "3335":
-                    this.ddltypecod.Visible = true;
-                    this.lnkselect.Visible = true;
-                    this.txtSubject.Text = "Purchase Order For Materials";
-                    this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
-                    break;
+                this.txtSubject.Text = "Purchase Order For Materials";
+                this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
 
-                case "3364":
-                    this.txtSubject.Text = "Purchase Order For ";
-                    this.txtLETDES.Text = "This is an reference to your discussion had with us today, we are pleased to place an order for supplying Rmc at our project under the following terms & conditions.";
-                    break;
-
-                case "3101":
-                case "3357":
-                    this.txtSubject.Text = "Purchase Order For ";
-                    this.txtLETDES.Text = "Thank you very much for cooperating with Cube Holdings Ltd. Against your offer and further discussion we are offering you for the supply of ... under the following terms & condition and rate.";
-                    break;
-
-                default:
-                    this.txtSubject.Text = "Purchase Order For Materials";
-                    this.txtLETDES.Text = "Refer to your offer with specification dated on 15/02/2009 and subsequent discussion our management is pleased to issue work order for the following terms &amp; conditions";
-
-                    break;
-
-            }
-
-
-
-            DataTable dt1 = (DataTable)ViewState["tblOrder"];
-            DataTable dtResP = (DataTable)ViewState["tblResP"];
-            int i;
-            for (i = 0; i < this.gvAprovInfo.Rows.Count; i++)
-            {
-                bool chkitm = ((CheckBox)this.gvAprovInfo.Rows[i].FindControl("chkitem")).Checked;
-
-                string PactCode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvPrjCod11")).Text.Trim();
-                string Reqno = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvReqNo2")).Text.Trim();               
-                string Ssircode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvSupCod")).Text.Trim();
-                if (chkitm == true)
+                DataTable dt1 = (DataTable)ViewState["tblOrder"];
+                DataTable dtResP = (DataTable)ViewState["tblResP"];
+                int i;
+                for (i = 0; i < this.gvAprovInfo.Rows.Count; i++)
                 {
+                    bool chkitm = ((CheckBox)this.gvAprovInfo.Rows[i].FindControl("chkitem")).Checked;
 
-                    DataRow[] dr2 = dtResP.Select("pactcode='" + PactCode + " 'and reqno = '" + Reqno + "' and ssircode = '" + Ssircode + "'");
-                    if (dr2.Length > 0)
+                    string PactCode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvPrjCod11")).Text.Trim();
+                    string prTypeCode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvPrTypeCode")).Text.Trim();
+                    string actTypeCode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvActTypeCode")).Text.Trim();
+                    string mktTypeCode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvMktTypeCode")).Text.Trim();
+                    string Reqno = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvReqNo2")).Text.Trim();
+                    string Ssircode = ((Label)this.gvAprovInfo.Rows[i].FindControl("lblgvSupCod")).Text.Trim();
+                    if (chkitm == true)
                     {
-                        dr2[0]["chk"] = "1";
+
+                        DataRow[] dr2 = dtResP.Select("pactcode='" + PactCode + " 'and reqno = '" + Reqno + "' and ssircode = '" + Ssircode +
+                                                      " 'and prtype = '" + prTypeCode + " 'and acttype = '" + actTypeCode + "' and mkttype = '" + mktTypeCode + "'");
+                        if (dr2.Length > 0)
+                        {
+                            dr2[0]["chk"] = "1";
+                        }
+
+
                     }
 
+                    else
+                    {
+
+                        DataRow[] dr2 = dtResP.Select("pactcode='" + PactCode  + " 'and reqno = '" + Reqno + "' and ssircode = '" + Ssircode +
+                                                      " 'and prtype = '" + prTypeCode + " 'and acttype = '" + actTypeCode + "' and mkttype = '" + mktTypeCode + "'");
+                        if (dr2.Length > 0)
+                        {
+                            dr2[0]["chk"] = "0";
+                        }
+                    }
 
                 }
 
-                else
+                string Narration = "";
+                for (i = 0; i < dtResP.Rows.Count; i++)
                 {
 
-                    DataRow[] dr2 = dtResP.Select("pactcode='" + PactCode  + " 'and reqno = '" + Reqno + "' and ssircode = '" + Ssircode + "'");
-                    if (dr2.Length > 0)
+                    string chkitem = dtResP.Rows[i]["chk"].ToString();
+                    if (chkitem == "1")
                     {
-                        dr2[0]["chk"] = "0";
+                        DataRow dr1 = dt1.NewRow();
+                        dr1["reqno"] = dtResP.Rows[i]["reqno"];
+                        dr1["ssircode"] = dtResP.Rows[i]["ssircode"];
+                        dr1["reqno1"] = dtResP.Rows[i]["reqno1"];
+                        dr1["mrfno"] = dtResP.Rows[i]["mrfno"];
+                        dr1["pactcode"] = dtResP.Rows[i]["pactcode"];
+                        dr1["projdesc1"] = dtResP.Rows[i]["projdesc1"];
+                        dr1["ssirdesc1"] = dtResP.Rows[i]["ssirdesc1"];
+                        dr1["prtype"] = dtResP.Rows[i]["prtype"];
+                        dr1["acttype"] = dtResP.Rows[i]["acttype"];
+                        dr1["mkttype"] = dtResP.Rows[i]["mkttype"];
+                        dr1["ssirdesc1"] = dtResP.Rows[i]["ssirdesc1"];
+                        dr1["prtypedesc"] = dtResP.Rows[i]["prtypedesc"];
+                        dr1["acttypedesc"] = dtResP.Rows[i]["acttypedesc"];
+                        dr1["mkttypedesc"] = dtResP.Rows[i]["mkttypedesc"];
+                        dr1["reqrat"] = dtResP.Rows[i]["reqrat"];
+                        dr1["aprvqty"] = dtResP.Rows[i]["aprvqty"];
+                        dr1["ordrqty"] = dtResP.Rows[i]["aprvqty"];
+                        dr1["aprovdat"] = dtResP.Rows[i]["aprovdat"];
+                        dr1["ordramt"] = dtResP.Rows[i]["orderamt"];
+                        dt1.Rows.Add(dr1);
+                        Narration = Narration + dtResP.Rows[i]["reqnar"] + ", ";
+
                     }
                 }
 
-            }
+                this.lblreqnaration.Text = "Req Naration : " + Narration.Substring(0, (Narration.Length) - 2);
 
-            string Narration = "";
-            string aprovno1 = "00000000000000";
-            //string comcod = this.GetCompCode();
-            for (i = 0; i < dtResP.Rows.Count; i++)
+                this.MultiView1.ActiveViewIndex = 1;
+                this.hideTermsConditions();
+
+                ViewState["tblOrder"] = this.HiddenSameData(dt1);
+                this.gvOrderInfo_DataBind();
+
+                this.ShowProjectFiles();
+            }
+            catch (Exception ex)
             {
-                
-                string chkitem = dtResP.Rows[i]["chk"].ToString();
-                if (chkitem == "1")
-                {
-                    DataRow dr1 = dt1.NewRow();
-                    dr1["reqno"] = dtResP.Rows[i]["reqno"];                  
-                    dr1["ssircode"] = dtResP.Rows[i]["ssircode"];
-                    dr1["reqno1"] = dtResP.Rows[i]["reqno1"];
-                    dr1["mrfno"] = dtResP.Rows[i]["mrfno"];
-                    dr1["pactcode"] = dtResP.Rows[i]["pactcode"];
-                    dr1["projdesc1"] = dtResP.Rows[i]["projdesc1"];
-                    dr1["ssirdesc1"] = dtResP.Rows[i]["ssirdesc1"];
-                    dr1["prtype"] = dtResP.Rows[i]["prtype"];
-                    dr1["acttype"] = dtResP.Rows[i]["acttype"];
-                    dr1["mkttype"] = dtResP.Rows[i]["mkttype"];
-                    dr1["ssirdesc1"] = dtResP.Rows[i]["ssirdesc1"];
-                    dr1["prtypedesc"] = dtResP.Rows[i]["prtypedesc"];
-                    dr1["acttypedesc"] = dtResP.Rows[i]["acttypedesc"];
-                    dr1["mkttypedesc"] = dtResP.Rows[i]["mkttypedesc"];
-                    dr1["reqrat"] = dtResP.Rows[i]["reqrat"];
-                    dr1["aprvqty"] = dtResP.Rows[i]["aprvqty"];
-                    dr1["ordrqty"] = dtResP.Rows[i]["aprvqty"];
-                    dr1["aprovdat"] = dtResP.Rows[i]["aprovdat"];
-                    dr1["ordramt"] = dtResP.Rows[i]["orderamt"];
-                    dt1.Rows.Add(dr1);
-                    Narration = Narration + dtResP.Rows[i]["reqnar"] + ", ";
-
-                }
-            }
-
-            this.lblreqnaration.Text = "Req Naration : " + Narration.Substring(0, (Narration.Length) - 2);
-
-            this.MultiView1.ActiveViewIndex = 1;
-            this.hideTermsConditions();
-
-            ViewState["tblOrder"] = this.HiddenSameData(dt1);
-            this.gvOrderInfo_DataBind();
-
-            this.ShowProjectFiles();
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + ex.Message + "');", true);
+                return;
+            }           
 
         }
 
@@ -1427,11 +1410,7 @@ namespace RealERPWEB.F_28_MPro
                 for (i = 0; i < this.gvAprovInfo.Rows.Count; i++)
                 {
                     ((CheckBox)this.gvAprovInfo.Rows[i].FindControl("chkitem")).Checked = true;
-                    //index = (this.gvPermission.PageSize) * (this.gvPermission.PageIndex) + i;
-                    //dt.Rows[i]["chkper"] = "True";
-
                 }
-
 
             }
 
@@ -1440,8 +1419,6 @@ namespace RealERPWEB.F_28_MPro
                 for (i = 0; i < this.gvAprovInfo.Rows.Count; i++)
                 {
                     ((CheckBox)this.gvAprovInfo.Rows[i].FindControl("chkitem")).Checked = false;
-                    //index = (this.gvPermission.PageSize) * (this.gvPermission.PageIndex) + i;
-                    //dt.Rows[i]["chkper"] = "False";
 
                 }
 
@@ -1519,31 +1496,11 @@ namespace RealERPWEB.F_28_MPro
                 dr["rmrks02"] = "";
                 dt.Rows.Add(dr);
             }
+
             ViewState["tblpaysch"] = dt;
-
             this.chkVisible.Checked = false;
-            //this.SchData_Bind();
-
         }
 
-
-        //private void SchData_Bind()
-        //{
-        //    DataTable dt = (DataTable)ViewState["tblpaysch"];
-
-        //    this.gvPayment.DataSource = dt;
-        //    this.gvPayment.DataBind();
-
-        //    if (dt.Rows.Count > 0)
-        //    {
-
-        //        ((Label)this.gvPayment.FooterRow.FindControl("lblgvfschAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(insamt)", "")) ? 0.00 : dt.Compute("sum(insamt)", ""))).ToString("#,##0;(#,##0); ");
-        //        ((Label)this.gvPayment.FooterRow.FindControl("lblgvfait")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(ait)", "")) ? 0.00 : dt.Compute("sum(ait)", ""))).ToString("#,##0;(#,##0); ");
-        //        ((Label)this.gvPayment.FooterRow.FindControl("lblgvfAmt")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(amt)", "")) ? 0.00 : dt.Compute("sum(amt)", ""))).ToString("#,##0;(#,##0); ");
-        //    }
-
-
-        //}
         private void SavePaymentSchdule()
         {
 
