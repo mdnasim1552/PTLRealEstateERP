@@ -195,7 +195,7 @@ namespace RealERPWEB.F_17_Acc
 
             switch (comcod)
             {
-                case "3101": // Test
+                //case "3101": // Test
                 case "3332":
                 case "3339":
                 case "3356": // intech 
@@ -1025,7 +1025,7 @@ namespace RealERPWEB.F_17_Acc
             string comcod = this.GetCompCode();
             switch (comcod)
             {
-                case "3101":
+                //case "3101":
                 case "1103":
                 case "3339":
                 case "3353":

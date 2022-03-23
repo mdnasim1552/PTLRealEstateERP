@@ -1085,6 +1085,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
         {
             seLvDate();
+            GetCalCulateDay();
         }
         private void SetError(Exception exp)
         {
