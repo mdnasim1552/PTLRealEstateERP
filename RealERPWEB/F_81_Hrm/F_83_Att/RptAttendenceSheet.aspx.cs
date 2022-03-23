@@ -560,9 +560,18 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
         private void MonthlyAttendance()
         {
 
-            string section = this.DropCheck1.SelectedValue.Trim();
+            string section22 = this.DropCheck1.SelectedValue.Trim();
+            if(this.ddlProjectName.SelectedValue.ToString() == "000000000000")
+            {
+                string Msg = "Please Select Department";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
+                return;
 
-            if (section == "")
+            }
+            
+
+
+            if (section22 == "")
             {
                 string Msg = "Please Select Section";
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Msg + "');", true);
@@ -577,8 +586,8 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string comcod = this.GetComCode();
             int hrcomln = Convert.ToInt32((((DataTable)Session["tblcompany"]).Select("actcode='" + this.ddlCompany.SelectedValue.ToString() + "'"))[0]["hrcomln"]);
-            //string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"";
-            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
+            string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, hrcomln)+"%";
+            //string Company = this.ddlCompany.SelectedValue.ToString().Substring(0, 2) + "%";
             string PCompany = this.ddlCompany.SelectedItem.Text.Trim();
             string frmdate = Convert.ToDateTime(this.txtfromdate.Text).ToString("dd-MMM-yyyy");
             string todate = Convert.ToDateTime(this.txttodate.Text).ToString("dd-MMM-yyyy");
@@ -589,7 +598,7 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
 
             string acclate = this.GetComLateAccTime();
 
-           
+           string  section = "";
             if ((this.ddlProjectName.SelectedValue.ToString() != "000000000000"))
             {
                 string gp = this.DropCheck1.SelectedValue.Trim();
