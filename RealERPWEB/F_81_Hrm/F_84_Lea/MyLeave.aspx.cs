@@ -887,9 +887,20 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 string comcod = this.GetComeCode();
                 string empid = this.GetEmpID();
                 string aplydat = Convert.ToDateTime(this.txtaplydate.Text).ToString("dd-MMM-yyyy");
+                string calltype = "";
+                switch (comcod)
+                {
+                   /* case "3101":*/  // For BTI as Per concern Nahid Vai  create by Md Ibrahim Khalil
+                    case "3365":
+                        calltype = "LEAVE_STATUS02BTI";
+                        break;
 
+                    default:
+                        calltype = "LEAVE_STATUS02";
+                        break;
+                }
 
-                DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "LEAVESTATUS02", empid, aplydat, "", "", "", "", "", "", "");
+                DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", calltype, empid, aplydat, "", "", "", "", "", "", "");
                 if (ds1 == null)
                 {
                     this.gvLeaveStatus.DataSource = null;
