@@ -212,7 +212,7 @@ namespace RealERPWEB
             //string Date = this.txtDate.Text.Trim();
             switch (comcod)
             {
-                case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
+               // case "3101":  // For BTI as Per Instructiion Emdad Vai and Uzzal Vai  create by Md Ibrahim Khalil
                 case "3365":
                     calltype = "RPTMYSERVICESBTI";
                     break;
