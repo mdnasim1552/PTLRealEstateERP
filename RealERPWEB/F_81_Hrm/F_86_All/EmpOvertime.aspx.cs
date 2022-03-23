@@ -984,13 +984,14 @@ namespace RealERPWEB.F_81_Hrm.F_86_All
                             break;
 
 
+                        case "3101":
                         case "3364":
+                            this.gvothearn.HeaderRow.Cells[8].Text = "Performance Allowance";
                             this.gvothearn.HeaderRow.Cells[9].Text = "Holiday Allowance";
 
 
                             break;
 
-                        case "3101":
                         case "3365"://For BTI                                   
                             this.gvothearn.HeaderRow.Cells[6].Text = "Earned Leave";
                             this.gvothearn.HeaderRow.Cells[7].Text = "Arear Salary";

@@ -344,7 +344,7 @@ namespace RealERPWEB.F_81_Hrm.F_89_Pay
                     break;
 
 
-               
+                case "3101"://
                 case "3364"://JBS
                     this.rbtSalSheet.SelectedIndex = 22;
                   
