@@ -197,7 +197,7 @@
                                 <div class="row">
                                     <div class="col-9">
                                         <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" 
-                                            CssClass="table-striped table-hover table-bordered"
+                                            CssClass="table-striped table-hover table-bordered" OnRowDataBound="gvLvReq_RowDataBound"
                                             ShowFooter="True">
                                             <RowStyle />
                                             <Columns>
@@ -290,11 +290,16 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Leave Type">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lglvtype" runat="server"
+                                                        <asp:Label ID="lglvtype" runat="server" Visible="false"
                                                             Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lvtype")) %>'
                                                             Width="150px"></asp:Label>
 
+                                                        <asp:DropDownList ID="ddlLvtype" runat="server" AutoPostBack="true" CssClass="form-control p-1"></asp:DropDownList>
                                                     </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn  btn-warning btn-sm" OnClick="lbtnTotal_Click">Recalculate days</asp:LinkButton>
+
+                                                    </FooterTemplate>
                                                     <FooterStyle Font-Bold="True" HorizontalAlign="Left" />
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                                 </asp:TemplateField>
@@ -309,7 +314,8 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                                        <asp:LinkButton ID="lbtnTotal" runat="server" CssClass="btn  btn-info btn-sm" OnClick="lbtnTotal_Click">Recalculate days</asp:LinkButton>
+                                            <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
+
                                                     </FooterTemplate>
 
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -336,7 +342,8 @@
                                                             Format="dd-MMM-yyyy" TargetControlID="txtgvlstdate"></cc1:CalendarExtender>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                            <asp:LinkButton ID="lbtnDelete" runat="server" CssClass="btn btn-danger btn-sm ApprovedBtn" OnClick="lbtnDelete_Click" BorderStyle="None">Cancel</asp:LinkButton>
+                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
+
 
                                                     </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" />
@@ -353,7 +360,6 @@
                                                             Width="80px"></asp:Label>
                                                     </ItemTemplate>
                                                     <FooterTemplate>
-                                            <asp:LinkButton ID="LinkButton1_test" runat="server" CssClass="btn btn-info  btn-sm ApprovedBtn" OnClick="LinkButton1_test_Click" BorderStyle="None">Approved</asp:LinkButton>
 
                                                     </FooterTemplate>
                                                     <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
@@ -362,12 +368,12 @@
 
                                                 <asp:TemplateField HeaderText="Is Half Days">
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="ishalfday" runat="server"
+                                                        <asp:CheckBox ID="ishalfday" runat="server" ToolTip="Only is Half day then click"
                                                             Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ishalfday"))=="True" %>' />
                                                     </ItemTemplate>
 
                                                     <HeaderStyle HorizontalAlign="Center" />
-                                                    <ItemStyle HorizontalAlign="right" />
+                                                    <ItemStyle HorizontalAlign="Center" />
                                                 </asp:TemplateField>
 
 

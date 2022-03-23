@@ -86,7 +86,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             string comcod = this.GetCompCode();
             string refno = this.Request.QueryString["refno"] ?? "";
             string RoleType = this.Request.QueryString["RoleType"] ?? "";
-            if(RoleType=="SUP")
+            if (RoleType == "SUP")
             {
                 RoleType = RoleType == "SUP" ? "DPT" : "";
 
@@ -105,7 +105,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     return;
                 }
             }
-           
+
         }
         private void CommonButton()
         {
@@ -255,7 +255,17 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
         }
 
+        private void GetLeavType(string empid)
+        {
+            string comcod = this.GetCompCode();
+            DataSet ds1 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE01", "GETLEAVETYPE", empid, "", "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+            ViewState["tbltype"] = ds1.Tables[0];
 
+
+
+        }
         private void ShowData()
         {
 
@@ -286,31 +296,32 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 ViewState["tblempinfo"] = ds.Tables[2];
 
 
-                this.Data_Bind();
                 //applied informaiton 
                 DataTable dt1 = ds.Tables[2];
                 DataTable dtstatus = ds.Tables[3];
+
+                string empid = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empid"].ToString();
                 string empUsrID = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empuserid"].ToString();
-                string empid = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empEmail"].ToString();
+                string empEmail = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empEmail"].ToString();
                 string idcard = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["idcard"].ToString();
                 string deptName = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["deptanme"].ToString();
                 string empdesig = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["desig"].ToString();
                 string empname = dt1.Rows.Count == 0 ? "" : dt1.Rows[0]["empname"].ToString();
-                this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
-                this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble(dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblelv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivelv"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblclv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivclv"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblslv.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["upachivslv"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblelvenjoy.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0"+dtstatus.Rows[0]["enjenleave"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblclenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjcleave"]).ToString("#,##0.00;(#,##0.00); ");
+                this.lblslenj.Text = dtstatus.Rows.Count == 0 ? "" : Convert.ToDouble("0" + dtstatus.Rows[0]["enjsleave"]).ToString("#,##0.00;(#,##0.00); ");
 
-              
+
                 string elst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["elst"].ToString();
                 string clst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["clst"].ToString();
                 string slst = dtstatus.Rows.Count == 0 ? "" : dtstatus.Rows[0]["slst"].ToString();
                 this.lblelvenjoy.Attributes["class"] = "badge text-white bg-" + elst + "";
                 this.lblclenj.Attributes["class"] = "badge text-white bg-" + clst + "";
                 this.lblslenj.Attributes["class"] = "badge text-white bg-" + slst + "";
-               
+
 
                 this.spEmpInfo.InnerText = "Employee ID: " + idcard + "," + "Employee Name : " + empname + "," + "Designation: " + empdesig + "," +
                     "Department Name : " + deptName;
@@ -322,6 +333,10 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 this.lblRemarks.Text = ds.Tables[0].Rows[0]["LRMARKS"].ToString();
                 this.Chboxforward.Checked = Convert.ToBoolean(ds.Tables[0].Rows[0]["forward"]);
 
+                GetLeavType(empid);
+
+                this.Data_Bind();
+
                 if (ds.Tables[1].Rows.Count == 0)
                     return;
                 this.lblRemarks.Text = ds.Tables[1].Rows[0]["usrname"].ToString();
@@ -330,7 +345,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             {
                 string Messagesd = "Error :" + ex.Message;
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + Messagesd + "');", true);
-                return; 
+                return;
             }
 
         }
@@ -406,24 +421,25 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
         {
 
             var lst = (List<RealEntity.C_81_Hrm.C_84_Lea.BO_ClassLeave.LvApproval>)ViewState["tblt01"];
-
+             
             this.gvLvReq.DataSource = lst;
             this.gvLvReq.DataBind();
 
+            DataTable dt = (DataTable)ViewState["tbltype"];
 
-            //for (int i = 0; i < this.RepInv.Items.Count; i++)
-            //{
-            //    string SubCode = ((Label)this.RepInv.Items[i].FindControl("lblSubCode")).Text.Trim();
+            DropDownList ddlgval;
 
+            for (int i = 0; i < this.gvLvReq.Rows.Count; i++)
+            {
+                ddlgval = ((DropDownList)this.gvLvReq.Rows[i].FindControl("ddlLvtype"));
+                ddlgval.DataTextField = "hrgdesc";
+                ddlgval.DataValueField = "hrgcod";
+                ddlgval.DataSource = dt;
+                ddlgval.DataBind();
+                ddlgval.SelectedValue = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
+            }
 
-            //    LinkButton lbtn1 = (LinkButton)RepInv.Items[i].FindControl("btnDel");
-            //    if (lbtn1 != null)
-            //        if (lbtn1.Text.Trim().Length > 0)
-            //            lbtn1.CommandArgument = SubCode;
-
-            //}
-
-
+            
 
 
         }
@@ -677,8 +693,23 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
 
                 if (leaveday > 0)
                 {
+
                     string stdat = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
-                    string endat = Convert.ToDateTime(stdat).AddDays(leaveday - 1).ToString("dd-MMM-yyyy");
+                    string endat = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
+                    if (leaveday != 0.5)
+                    {
+                        endat = Convert.ToDateTime(stdat).AddDays(leaveday - 1).ToString("dd-MMM-yyyy");
+
+                        ((CheckBox)this.gvLvReq.Rows[i].FindControl("ishalfday")).Checked = false;
+
+                    }
+                    else
+                    {
+                        ((CheckBox)this.gvLvReq.Rows[i].FindControl("ishalfday")).Checked = true;
+
+                    }
+
+
                     ((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text = endat;
                 }
             }
@@ -702,12 +733,13 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                 {
                     string ishalfday = (((CheckBox)gvLvReq.Rows[i].FindControl("ishalfday")).Checked) ? "1" : "0";
                     string lbllevid = ((Label)this.gvLvReq.Rows[i].FindControl("lbllevid")).Text.Trim();
-                    string gcod = ((Label)this.gvLvReq.Rows[i].FindControl("lblgvgcod")).Text.Trim();
+                    string gcod = ((DropDownList)this.gvLvReq.Rows[i].FindControl("ddlLvtype")).SelectedValue.Trim();
+                   
                     string frmdate = Convert.ToDateTime(((TextBox)this.gvLvReq.Rows[i].FindControl("txtgvlstdate")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string todate = Convert.ToDateTime(((Label)this.gvLvReq.Rows[i].FindControl("lblgvenddat")).Text.Trim()).ToString("dd-MMM-yyyy");
                     string forword = Convert.ToBoolean(this.Chboxforward.Checked).ToString();
 
-                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, "", "", "", "", "", "");
+                    result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPLOYEE", "INSERTORUPEMLEAVAPP02", trnid, empid, gcod, frmdate, todate, applydat, forword, ishalfday, lbllevid, lapplied.ToString(), "", "", "", "", "");
 
                     if (!result)
                     {
@@ -1353,7 +1385,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                         string Messagesd = "Leave Approved";
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + Messagesd + "');", true);
 
-                        string eventdesc2 = "Details: " + sendUsername+ sendDptdesc+ sendUsrdesig+ compName;
+                        string eventdesc2 = "Details: " + sendUsername + sendDptdesc + sendUsrdesig + compName;
                         bool IsVoucherSaved = CALogRecord.AddLogRecord(comcod, ((Hashtable)Session["tblLogin"]), Messagesd, Messagesd, eventdesc2);
 
                     }
@@ -1639,6 +1671,11 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
             Session["tbllog1"] = dt;
             ((Label)this.Master.FindControl("LblGrpCompany")).Text = ((DataTable)Session["tbllog1"]).Rows[0]["comnam"].ToString();
             //((Label)this.Master.FindControl("lbladd")).Text = (dr[0]
+        }
+
+        protected void gvLvReq_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
         }
     }
 }
