@@ -154,6 +154,30 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="PR Type Code" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvPrTypeCode" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Activity Type Code" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvActTypeCode" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Marketing Type Code" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvMktTypeCode" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mkttype")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Supplier Code" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSupCod" runat="server" Height="16px"
@@ -383,6 +407,22 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPrTypeCode" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Activity Type Code" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvActTypeCode" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'
+                                                    Width="80px"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Marketing Type Code" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblgvMktTypeCode" runat="server" Height="16px"
+                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "mkttype")) %>'
                                                     Width="80px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>

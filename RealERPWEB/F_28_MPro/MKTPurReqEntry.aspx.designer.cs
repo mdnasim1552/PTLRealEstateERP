@@ -186,15 +186,6 @@ namespace RealERPWEB.F_28_MPro
         protected global::System.Web.UI.WebControls.CheckBox chkneBudget;
 
         /// <summary>
-        /// Panel2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
-
-        /// <summary>
         /// pnlSpeDet control.
         /// </summary>
         /// <remarks>

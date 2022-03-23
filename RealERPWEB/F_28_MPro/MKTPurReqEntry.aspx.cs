@@ -58,25 +58,15 @@ namespace RealERPWEB.F_28_MPro
 
                 }
 
-                string reqcheckorApproved = this.GetReqcheckorApproved();
-                string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Materials Requisition"
-                     : (Request.QueryString["InputType"].ToString() == "Approval") ? "Materials Requisition Approval Screen"
-                     : (Request.QueryString["InputType"].ToString() == "FxtAstEntry") ? "Fixed Assets Requisition Information Input/Edit Screen"
-                      : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? "Materials Requisition Information Input/Edit Screen"
-                       : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? reqcheckorApproved
-                       : (Request.QueryString["InputType"].ToString() == "ReqcRMCheck") ? "Req CRM Check"
-                      : (Request.QueryString["InputType"].ToString() == "HeadUsed") ? "Material Requisition (H/O Used)"
-                      : (Request.QueryString["InputType"].ToString() == "LcEntry") ? "Lc Requistion"
-                      : (Request.QueryString["InputType"].ToString() == "LcApproval") ? "Lc Requistion Approval" : "Fixed Assets Requisition Approval Screen";
+                string title = (Request.QueryString["InputType"].ToString() == "Entry") ? "Marketing Materials Requisition"
+                       : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? "Marketing Materials Requisition (1st Approval)"
+                       : (Request.QueryString["InputType"].ToString() == "ReqApproval") ? "Marketing Materials Requisition (Final Approval)"
+                       : (Request.QueryString["InputType"].ToString() == "CSCheck") ? "Marketing Materials Requisition (CS Checked)"
+                       : (Request.QueryString["InputType"].ToString() == "CSApproved") ? "Marketing Materials Requisition (CS Approved)" : "Marketing Materials Requisition";
 
-                this.CalendarExtender_txtCurReqDate.EndDate = System.DateTime.Today;
-
-                //only current date
-
-                
                 this.CalendarExtender_txtCurReqDate.EndDate = System.DateTime.Today;
                 this.txtCurReqDate.ReadOnly = true;
-                ((Label)this.Master.FindControl("lblTitle")).Text = "MATERIALS REQUISITION";
+                ((Label)this.Master.FindControl("lblTitle")).Text = title;
 
             }
         }
@@ -156,17 +146,9 @@ namespace RealERPWEB.F_28_MPro
 
             string userid = hst["usrid"].ToString();
             string type = this.Request.QueryString["InputType"];
-            string ReFindProject;
-            //if (type == "FxtAstEntry")
-            //{
-            //    ReFindProject = "%" + this.txtProjectSearch.Text.Trim() + "%";
-            //}
-            //else
-            //{
+            string ReFindProject;        
             ReFindProject = (this.Request.QueryString["prjcode"].ToString()).Length == 0 ? "%" : this.Request.QueryString["prjcode"].ToString() + "%";
-            //}
-
-
+           
             DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", CallType, ReFindProject, fxtast, Aproval, userid, "", "", "", "", "");
             if (ds2 == null)
                 return;
@@ -220,33 +202,25 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnOk_Click(object sender, EventArgs e)
         {
 
-
             if (this.lbtnOk.Text == "New")
             {
-
-                //this.txtSrchMrfNo.Visible = true;
-                //this.lblpreReq.Visible = true;
                 this.ImgbtnFindReq.Visible = true;
                 this.ddlPrevReqList.Visible = true;
                 this.ddlPrevReqList.Items.Clear();
-                this.ddlProject.Visible = true;
-
-               
+                this.ddlProject.Visible = true;               
                 this.txtCurReqDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.lblCurReqNo1.Text = "MRQ" + DateTime.Today.ToString("MM") + "-";
                 this.txtCurReqDate.Enabled = true;
-                this.txtMRFNo.Text = "";                
-                         
+                this.txtMRFNo.Text = "";    
                 this.txtReqNarr.Text = "";
                 this.gvReqInfo.DataSource = null;
                 this.gvReqInfo.DataBind();
                 this.ddlProject.Enabled = true;
-
                 this.pnlSpeDet.Visible = false;
-                this.Panel2.Visible = false;               
+                this.dNarr.Visible = false;              
                 this.lbtnOk.Text = "Ok";              
 
-                if (Request.QueryString["InputType"].ToString() == "Approval" || Request.QueryString["InputType"].ToString() == "ReqEdit" || Request.QueryString["InputType"].ToString() == "HeadUsed")
+                if (Request.QueryString["InputType"].ToString() == "Approval" || Request.QueryString["InputType"].ToString() == "ReqEdit")
                 {
 
                     this.chkdupMRF.Visible = false;
@@ -265,25 +239,21 @@ namespace RealERPWEB.F_28_MPro
                 return;
             }
 
-            if (Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit" || Request.QueryString["InputType"].ToString() == "HeadUsed")
-            {
-               
+            if (Request.QueryString["InputType"].ToString() == "FxtAstApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit")
+            {               
                 this.lblmrfno.Visible = true;
                 this.txtMRFNo.Visible = true;               
                 this.lblCurNo.Visible = true;
                 this.lblCurReqNo1.Visible = true;
-                this.txtCurReqNo2.Visible = true;             
-
+                this.txtCurReqNo2.Visible = true;      
             }
 
-
             this.ImgbtnFindReq.Visible = false;
-            this.ddlPrevReqList.Visible = false; //
-            this.ddlProject.Enabled = false;
-                     
+            this.ddlPrevReqList.Visible = false;
+            this.ddlProject.Enabled = false;                     
             this.txtCurReqNo2.ReadOnly = true;
             this.pnlSpeDet.Visible = true;
-            this.Panel2.Visible = true;            
+            this.dNarr.Visible = true;         
             this.lbtnOk.Text = "New";
             this.Get_Requisition_Info();
             this.LinkMarketSurvey();           
@@ -369,28 +339,19 @@ namespace RealERPWEB.F_28_MPro
                 }
                 return;
             }
+
             this.txtMRFNo.Text = ds1.Tables[1].Rows[0]["mrfno"].ToString();
             this.lblCurReqNo1.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(0, 6);
             this.txtCurReqNo2.Text = ds1.Tables[1].Rows[0]["reqno1"].ToString().Substring(6, 5);
             this.txtCurReqDate.Text = Convert.ToDateTime(ds1.Tables[1].Rows[0]["reqdat"]).ToString("dd.MM.yyyy");
-
-
-            this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();
-           
-
-           
-            //this.lblddlProject.Text = (this.ddlProject.Items.Count == 0 ? "XXX" : this.ddlProject.SelectedItem.Text.Trim());
-            //this.lblddlProject.Text = this.ddlProject.SelectedItem.Text.Trim();
-            this.ddlProject.Enabled=false;        
-          
+            this.ddlProject.SelectedValue = ds1.Tables[1].Rows[0]["pactcode"].ToString();           
+            this.ddlProject.Enabled=false;                  
             this.txtReqNarr.Text = ds1.Tables[1].Rows[0]["reqnar"].ToString();
-            //this.ddlptype.SelectedValue = ds1.Tables[1].Rows[0]["ptype"].ToString();
             this.gvResInfo_DataBind();
         }
 
         private void LinkMarketSurvey()
         {
-
 
             string reqno = this.ddlPrevReqList.SelectedValue.ToString();
             if (reqno == "")
@@ -398,9 +359,6 @@ namespace RealERPWEB.F_28_MPro
             string QryStr = "reqno=" + reqno;
             string TString = "javascript:window.showModalDialog('../F_12_Inv/LinkMktSurvey.aspx?" + QryStr + "', 'Unit Description', 'dialogHeight:800px;dialogWidth:900px;status:no')";
             this.lbtnSurVey.Attributes.Add("OnClick", TString);
-
-
-
 
         }
    
@@ -421,9 +379,7 @@ namespace RealERPWEB.F_28_MPro
 
         protected void lbtnSelectRes_Click(object sender, EventArgs e)
         {
-            //this.Panel2.Visible = true;
             this.Session_tblReq_Update();
-
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string ddldesc = hst["ddldesc"].ToString();
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
@@ -447,8 +403,6 @@ namespace RealERPWEB.F_28_MPro
                 dr1["reqnote"] = "";
                 tbl1.Rows.Add(dr1);
 
-
-
             }
 
             ViewState["tblReq"] = tbl1;
@@ -460,9 +414,6 @@ namespace RealERPWEB.F_28_MPro
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-            //DataView dv = dt1.DefaultView;
-            //dv.Sort = "rsircode";
-            //dt1 = dv.ToTable();
             string rsircode = dt1.Rows[0]["rsircode"].ToString();
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
@@ -474,7 +425,6 @@ namespace RealERPWEB.F_28_MPro
                     dt1.Rows[j]["bbgdamt"] = 0.00;
                     dt1.Rows[j]["bgdqty"] = 0.00;
                     dt1.Rows[j]["treceived"] = 0.00;
-
 
                 }
 
@@ -802,9 +752,6 @@ namespace RealERPWEB.F_28_MPro
 
                             }
 
-
-
-
                             break;
 
                     }
@@ -857,18 +804,6 @@ namespace RealERPWEB.F_28_MPro
                     break;
 
 
-
-
-                // }
-
-
-
-
-                //        break;
-
-
-
-
                 case "ReqSecondApproved":
                     xmlSR = new System.IO.StringReader(approval);
                     ds1.ReadXml(xmlSR);
@@ -878,9 +813,7 @@ namespace RealERPWEB.F_28_MPro
                     ds1.Tables[0].Rows[0]["sapptrmid"] = trmnid;
                     ds1.Tables[0].Rows[0]["sappseson"] = session;
                     approval = ds1.GetXml();
-
                     break;
-
 
             }
 
@@ -942,11 +875,7 @@ namespace RealERPWEB.F_28_MPro
                         bool resultsms = sms.SendSmms(SMSText, checkusrid, frmname);
                         break;
                 }
-            }
-            
-           
-
-
+            }          
 
         }
 
@@ -1004,31 +933,6 @@ namespace RealERPWEB.F_28_MPro
             lbtnUpdateResReq_Click(null, null);
         }
 
-        private string GetReqcheckorApproved()
-        {
-            string comcod = this.GetCompCode();
-            string reqcheck = "";
-
-            switch (comcod)
-            {
-                case "3336":
-                case "3340":
-                    reqcheck = "Requisition Approval";
-
-                    break;
-
-                default:
-
-                    reqcheck = "Requisition Checked";
-
-                    break;
-
-
-            }
-
-            return reqcheck;
-
-        }
 
         protected void gvResInfo_DataBind()
         {
@@ -1078,7 +982,6 @@ namespace RealERPWEB.F_28_MPro
             DataTable tbl1 = (DataTable)ViewState["tblReq"];
             int rowindex;
 
-            //string Rsircode = "000000000000";
             double  reqqty=0.00, price=0.00, amount;
             for (int j = 0; j < this.gvReqInfo.Rows.Count; j++)
             {
@@ -1358,29 +1261,6 @@ namespace RealERPWEB.F_28_MPro
         protected void lbtnAddspecifiation_Click(object sender, EventArgs e)
         {
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "loadModal();", true);
-        }
-
-        protected void lbtnUpdateSpeDetails_Click(object sender, EventArgs e)
-        {
-
-            //string comcod = this.GetCompCode();
-            //string Desc = this.txtspcfdesc.Text.Trim();
-            //string sircode = this.ddlResList.SelectedValue.ToString().Substring(0, 9);
-            //List<RealEntity.C_17_Acc.EClassSpecification.EClassLastSpcfcodeofRes> lst = objuserman.GetLastSpeciCode(comcod, sircode);
-            //string spcfcod = lst[0].spcfcod;
-            //bool result = this.purData.UpdateTransInfo(comcod, "SP_ENTRY_CODEBOOK", "SPACCOUNTUPDATE", spcfcod.Substring(0, 2), spcfcod, Desc, "", "", "", "", "", "", "", "", "", "", "", "");
-
-            //if (!result)
-            //{
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" +  purData.ErrorObject["Msg"].ToString() + "');", true);
-            //    return;
-            //}
-            //else
-            //{
-
-            //    ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Material Specification Update Successfully" + "');", true);
-            //}
-
         }
 
         protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
