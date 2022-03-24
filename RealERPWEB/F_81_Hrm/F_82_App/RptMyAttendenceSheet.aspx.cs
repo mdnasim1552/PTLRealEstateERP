@@ -162,8 +162,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
         }
 
         protected void RptMyAttenView_ItemDataBound(object sender, RepeaterItemEventArgs e)

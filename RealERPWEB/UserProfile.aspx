@@ -450,7 +450,7 @@ contain the p elements to be scrolled  */
                                         <span class="mr-auto">LEAVE HISTORY</span>
                                         <!-- .card-header-control -->
 
-                                        <asp:HyperLink ID="hlnkbtnNext" runat="server" NavigateUrl="#" Target="_blank" CssClass="btn btn-sm btn-info primaryBtn pull-right" Text="View all"></asp:HyperLink>
+                                       <asp:LinkButton ID="hlnkbtnNext" runat="server" CssClass="btn btn-sm btn-info primaryBtn pull-right" OnClick="hlnkbtnNext_Click" Text="View all"></asp:LinkButton>
 
 
 
