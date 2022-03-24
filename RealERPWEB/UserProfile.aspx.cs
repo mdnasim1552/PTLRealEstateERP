@@ -411,9 +411,8 @@ namespace RealERPWEB
                 string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
                 string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
 
-
-
-                this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
+               
+                //this.hlnkbtnNext.NavigateUrl = "../../F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate;
 
                 DataTable dt4 = (DataTable)ViewState["tblEmpimg"];
                 DataTable dt5 = (DataTable)ViewState["tblJobRespon"];
@@ -671,6 +670,35 @@ namespace RealERPWEB
             this.gvSpHolidyas.PageIndex = e.NewPageIndex;
             this.LoadGridHolidays();
 
+        }
+
+        protected void hlnkbtnNext_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string empid = hst["empid"].ToString();
+
+            string comcod = this.GetCompCode();
+      
+            string frmdate = "";
+            string date = "";
+            switch (comcod)
+            {
+                case "3365":
+                case "3101":
+                    date = Convert.ToDateTime("26-Dec-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+                    frmdate = Convert.ToDateTime(date).AddYears(-1).ToString("dd-MMM-yyyy");
+                    //cudate = date1.AddMonths(-1).ToString("dd-MMM-yyyy");
+                    break;
+
+                default:
+                    date = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+                    frmdate = Convert.ToDateTime(date).ToString("dd-MMM-yyyy");
+                    break;
+            }
+
+            //string frmdate = Convert.ToDateTime("01-Jan-" + this.txtDate.Text.Substring(7)).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(frmdate).AddYears(1).AddDays(-1).ToString("dd-MMM-yyyy");
+            Response.Redirect("~/F_81_Hrm/F_82_App/LinkMyHRLeave?Type=EmpLeaveSt&empid=" + empid + "&frmdate=" + frmdate + "&todate=" + todate);        
         }
     }
 }
