@@ -213,6 +213,23 @@
                                     <HeaderStyle ForeColor="Blue" />
                                 </asp:TemplateField>
 
+
+                                 <asp:TemplateField HeaderText="Approved Qty">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="txtgvReqappQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
+                                    </ItemTemplate>
+
+
+                                  
+
+                                    <FooterStyle Font-Bold="True" Font-Size="12px" HorizontalAlign="Right" />
+                                    <ItemStyle HorizontalAlign="Right" BackColor="#69AEE7" />
+                                    <HeaderStyle ForeColor="Blue" />
+                                </asp:TemplateField>
+
+
+
                                 <asp:TemplateField HeaderText="Apprx. Unit</br> Price">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvAppUnitPrice" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right; background-color: Transparent"
@@ -235,6 +252,20 @@
 
                                     </FooterTemplate>
                                 </asp:TemplateField>
+
+
+                                  <asp:TemplateField HeaderText="Amount">
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblgvareqamt" runat="server" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                    </ItemTemplate>
+                                    <FooterTemplate>
+                                        <asp:Label ID="lblgvFareqamt" runat="server" Font-Bold="true" Font-Size="11px" Style="text-align: right; background-color: Transparent"
+                                            Width="70px"></asp:Label>
+
+                                    </FooterTemplate>
+                                </asp:TemplateField>
+
 
                                 <asp:TemplateField HeaderText="Expected Date">
                                     <ItemTemplate>
