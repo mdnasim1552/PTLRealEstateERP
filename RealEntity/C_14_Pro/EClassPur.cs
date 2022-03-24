@@ -1323,5 +1323,34 @@ namespace RealEntity.C_14_Pro
             public ChequeSheet01() { }
         }
 
+        [Serializable]
+        public class ComparativeStatementCreate
+        {
+            public string comcod { get; set; }
+            public string ssircode { get; set; }
+            public string rsircode { get; set; }
+            public string spcfcod { get; set; }
+            public decimal rate { get; set; }
+            public decimal stkqty { get; set; }
+            public decimal areqty { get; set; }
+            public decimal propqty { get; set; }
+            public decimal csreqqty { get; set; }
+            public decimal propqty1 { get; set; }
+            public decimal amount { get; set; }
+            public string supdesc { get; set; }
+            public string rsirdesc { get; set; }
+            public string spcfdesc { get; set; }
+            public string rsirunit { get; set; }
+            public decimal istpurate { get; set; }
+            public string payment { get; set; }
+            public string cperson { get; set; }
+            public string mobile { get; set; }
+            public decimal leadtime { get; set; }
+            public decimal auditrate { get; set; }
+            public string paytype { get; set; }
+            public decimal advamt { get; set; }
+
+        }
+
     }
 }

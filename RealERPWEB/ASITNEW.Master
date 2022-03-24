@@ -934,7 +934,7 @@
         function GetNotifications() {
             try {
                 var url = '<%=ResolveClientUrl("~/Service/UserService.asmx/GetNotAndMessage")%>';
-                var userid = <%=this.GetUserId()%>;
+                var  userid =  <%=this.GetUserId()%>;
                 var objnotification = new RealERPScript();
                 var data = objnotification.GetNotifications(userid, url);
 
