@@ -1492,10 +1492,10 @@
                  
 
 
-                <div id="earleavemodal" class="modal col-md-8 col-md-offset-2 animated zoomIn" role="dialog">
+                <div id="earleavemodal" class="modal animated zoomIn" role="dialog">
                     <div class="modal-dialog   modal-lg">
                         <div class="modal-content  ">
-                            <div class="modal-header bg-primary">
+                            <div class="modal-header">
 
                                 <button type="button" style="background-color: red;" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
                                 <h4 class="modal-title">
@@ -1702,10 +1702,10 @@
                 </div>
 
 
-                <div id="absmodal" class="modal col-md-8 col-md-offset-2 animated zoomIn" role="dialog">
+                <div id="absmodal" class="modal animated zoomIn" role="dialog">
                     <div class="modal-dialog   modal-lg">
                         <div class="modal-content  ">
-                            <div class="modal-header bg-primary">
+                            <div class="modal-header">
 
 
 
