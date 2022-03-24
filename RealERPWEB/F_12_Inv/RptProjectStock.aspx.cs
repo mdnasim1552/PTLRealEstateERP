@@ -444,10 +444,10 @@ namespace RealERPWEB.F_12_Inv
 
             DataTable dt1 = (DataTable)Session["tbMatStc"];
 
-            if (comcod == "3315" || comcod == "3316")
+            if (comcod == "3315" || comcod == "3316" || comcod=="3101")
             {
                 DataView dv = dt1.DefaultView; //only Assure
-                dv.RowFilter = ("tqty<>0");
+                dv.RowFilter = ("tqty<>0 or opqty<>0 or rcvqty<>0 or trninqty<>0 or trnoutqty<>0");
                 dt1 = dv.ToTable();
 
             }
