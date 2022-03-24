@@ -27,6 +27,33 @@
         }
     </style>
 
+
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(pageLoaded);
+        });
+
+        function openModalAbs() {
+            $('#absmodal').modal('toggle');
+        }
+
+
+        function CloseModalAbs() {
+            $('#absmodal').modal('hide');
+        }
+
+        function pageLoaded() {
+
+
+        }
+
+
+
+
+
+    </script>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -172,14 +199,14 @@
 
                                 </td>
                                 <td>
-                                  <%--  <asp:Label ID="lblactualin" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt") %>'></asp:Label>--%>
-                                     <asp:Label ID="lblactualin" runat="server" Text='<%# 
+                                    <%--  <asp:Label ID="lblactualin" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt") %>'></asp:Label>--%>
+                                    <asp:Label ID="lblactualin" runat="server" Text='<%# 
                                    (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt")==	"12:00 AM" ? "" : 
                                    Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt")) %>'></asp:Label>
                                 </td>
                                 <td>
                                     <%--<asp:Label ID="lblactualout" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt") %>'></asp:Label>--%>
-                                     <asp:Label ID="lblactualout" runat="server" Text='<%# 
+                                    <asp:Label ID="lblactualout" runat="server" Text='<%# 
                                    (Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt")==	"12:00 AM" ? "" : 
                                    Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualout")).ToString("hh:mm tt")) %>'></asp:Label>
                                 </td>
@@ -197,10 +224,10 @@
                                 </td>
 
                                 <td>
-                                    <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False"
+                                    <asp:CheckBox ID="chkvmrno" runat="server" Enabled="False" Visible="false"
                                         Checked='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "lateapp"))=="True"||Convert.ToString(DataBinder.Eval(Container.DataItem, "earleaveapp"))=="True" %>'
                                         Width="20px" />
-
+                                    <asp:LinkButton ID="lnkRequstApply" Visible="false" ToolTip="For Approval Request" runat="server" OnClick="lnkRequstApply_Click" CssClass="btn btn-sm btn-primary">Apply Request</asp:LinkButton>
                                 </td>
 
 
@@ -234,7 +261,84 @@
             </div>
 
 
+            <div id="absmodal" class="modal animated zoomIn" role="dialog">
+                <div class="modal-dialog   modal-lg">
+                    <div class="modal-content  ">
+                        <div class="modal-header">
+                            <button type="button" class="close btn btn-xs" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                            
+                        </div>
+                        <div class="modal-body">
+                             <div class="card-body m-0 p-0 text-center">
+                                <h4 class="card-title badge badge-lg badge-info" id="lblhead" runat="server">Request Form</h4>
+                                 </div>
+                            <div class="card-body">
+                                <!-- form .needs-validation -->
 
+                                <!-- .form-row -->
+                                <div class="form-row">
+                                    <!-- form grid -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationTooltip01">
+                                            Request Type
+                           
+                                            <abbr title="Required">*</abbr>
+                                        </label>
+                                        <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">                                            
+                                            <asp:ListItem Value="LA">Late Present Approval Request</asp:ListItem>
+                                            <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
+                                            <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
+                                            
+                                        </asp:DropDownList>
+
+                                    </div>
+                                    <!-- /form grid -->
+                                    <!-- form grid -->
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip02">
+                                            Date 
+                                        </label>
+                                        <asp:Label ID="lbldadte" runat="server" class="form-control"></asp:Label>
+
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <label for="validationTooltip02">
+                                            Time  
+                                        </label>
+                                        <asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>
+
+                                    </div>
+                                    <!-- /form grid -->
+                                    <!-- form grid -->
+                                    <div class="col-md-12 mb-3">
+                                        <label for="validationTooltipUsername">
+                                            Remarks/Reason                           
+                                            <abbr title="Required">*</abbr>
+                                        </label>
+
+                                        <asp:TextBox ID="txtAreaReson" class="form-control" runat="server" TextMode="MultiLine" Rows="5"></asp:TextBox>
+                                    </div>
+                                    <!-- /form grid -->
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton ID="lbntnAbsentApproval" OnClientClick="CloseModalAbs();" OnClick="lbntnAbsentApproval_Click"
+                                runat="server" CssClass="btn btn-primary"> <span class="glyphicon glyphicon-saved"></span> Submit Request</asp:LinkButton>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </ContentTemplate>
     </asp:UpdatePanel>
