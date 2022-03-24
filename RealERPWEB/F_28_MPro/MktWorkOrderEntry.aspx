@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="col-4 mb-3">
-                                <asp:DropDownList ID="ddlSuplierList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSuplierList" runat="server" CssClass="form-control chzn-select" AutoPostBack="true" OnSelectedIndexChanged="ddlSuplierList_SelectedIndexChanged"></asp:DropDownList>
                             </div>
                         </div>
                     </asp:Panel>
@@ -154,7 +154,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="PR Type Code" Visible="False">
+                                        <asp:TemplateField HeaderText="PR Type Code" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPrTypeCode" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>'
@@ -403,7 +403,7 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="PR Type Code" Visible="False">
+                                        <asp:TemplateField HeaderText="PR Type Code" Visible="False">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvPrTypeCode" runat="server" Height="16px"
                                                     Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "prtype")) %>'
@@ -512,7 +512,7 @@
                                                     Width="70px"></asp:TextBox>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:CheckBox ID="lblfchkbox" Text=" Forward" runat="server" Width="70px"></asp:CheckBox>
+                                                <asp:CheckBox ID="lblfchkbox"  Text=" Forward" runat="server" Width="70px"></asp:CheckBox>
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -553,13 +553,23 @@
                             </div>
 
                             <div class="row mb-1">
-                                <div class="col-md-8">
+                                <div class="col-md-4">
                                     <asp:LinkButton ID="btnSendmail" CssClass="btn btn-info primaryBtn btn-sm" runat="server" OnClick="btnSendmail_Click">Send Email</asp:LinkButton>
                                 </div>
 
                                 <div class="col-md-2">
-                                    <asp:Label ID="Label1" runat="server" Text="Advanced Amount:"></asp:Label>
-                                    <asp:TextBox ID="txtadvAmt" runat="server" class="form-control form-control-sm inputTxt"></asp:TextBox>
+                                    <div class="input-group input-group-alt">
+                                        <div class="input-group-prepend ">
+                                            <span class="input-group-text">Advanced</span>
+                                          
+                                        </div>
+                                         <asp:TextBox ID="txtadvAmt" runat="server" class="form-control" Style="text-align: right" ></asp:TextBox>
+                                       
+                                        
+                                    </div>
+
+                                   
+                                   
                                 </div>
                             </div>
 

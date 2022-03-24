@@ -705,6 +705,8 @@
                                                         <asp:ListItem Value="4"></asp:ListItem>
                                                         <asp:ListItem Value="5"></asp:ListItem>
                                                         <asp:ListItem Value="6"></asp:ListItem>
+                                                        <asp:ListItem Value="7"></asp:ListItem>
+                                                        <asp:ListItem Value="8"></asp:ListItem>
                                                        
 
 

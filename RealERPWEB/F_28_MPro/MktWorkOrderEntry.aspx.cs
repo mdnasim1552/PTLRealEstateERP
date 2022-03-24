@@ -253,7 +253,7 @@ namespace RealERPWEB.F_28_MPro
 
 
                 this.txtPreparedBy.Text = "";
-                this.txtApprovedBy.Text = "";
+                
                 this.txtOrderNarr.Text = "";
                 this.lblissueno.Text = "";
                 this.gvOrderInfo.DataSource = null;
@@ -365,45 +365,33 @@ namespace RealERPWEB.F_28_MPro
             if (ds1 == null)
                 return;
 
-            //this.ddlSuplierList.DataTextField = "ssirdesc1";
-            //this.ddlSuplierList.DataValueField = "ssircode";
-            //this.ddlSuplierList.DataSource = ds1.Tables[1];
-            //this.ddlSuplierList.DataBind();
+            this.ddlSuplierList.DataTextField = "ssirdesc1";
+            this.ddlSuplierList.DataValueField = "ssircode";
+            this.ddlSuplierList.DataSource = ds1.Tables[1];
+            this.ddlSuplierList.DataBind();
             ViewState["tblResP"] = ds1.Tables[0];
-            ViewState["tblProject"] = ds1.Tables[1];
-            this.Data_Bind();
-            //this.ddlSuplierList_SelectedIndexChanged(null, null);
+            ViewState["tblProject"] = ds1.Tables[1];           
+            this.ddlSuplierList_SelectedIndexChanged(null, null);
+           
         }
 
-        private void Data_Bind()
-        {
-            DataTable dt = (DataTable)ViewState["tblResP"];
-            this.gvAprovInfo.DataSource = dt;
-            this.gvAprovInfo.DataBind();
-        }
-
+       
         protected void imgSearchOrderno_Click(object sender, EventArgs e)
         {
             this.ResourceForOrder();
         }
 
-        //protected void ddlSuplierList_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    DataTable dt = (DataTable)ViewState["tblResP"];
-        //    string supcode = this.ddlSuplierList.SelectedValue.ToString();
-        //    DataView dv1 = dt.DefaultView;
-        //    dv1.RowFilter = "ssircode in ('" + supcode + "')";
-        //    this.gvAprovInfo.DataSource = dv1.ToTable();
-        //    this.gvAprovInfo.DataBind();
+        protected void ddlSuplierList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)ViewState["tblResP"];
+            string supcode = this.ddlSuplierList.SelectedValue.ToString();
+            DataView dv1 = dt.DefaultView;
+            dv1.RowFilter = "ssircode in ('" + supcode + "')";
+            this.gvAprovInfo.DataSource = dv1.ToTable();
+            this.gvAprovInfo.DataBind();
 
-        //    //For Visible Item Serial Manama
-        //    string comcod = GetCompCode();
-        //    if (comcod == "3353" || comcod == "3101")
-        //    {
-        //        this.gvAprovInfo.Columns[1].Visible = true;
-        //    }
 
-        //}
+        }
 
 
         protected void Get_Pur_Order_Info()
@@ -605,14 +593,8 @@ namespace RealERPWEB.F_28_MPro
                     switch (comcod)
                     {
 
-                        case "3335": // Edison
-                        case "3355": // Green Wood
-                        case "3354":  // Edison Real Estate
-                        case "1205":  //P2P Construction
-                        case "3351":  //wecon Properties
-                        case "3352":  //p2p360
-                                      //case "3101": // ASIT
-
+                        case "3354":  // Edison Real Estate   
+                        case "3101":  //PTL 
                             break;
 
                         default:
@@ -670,90 +652,8 @@ namespace RealERPWEB.F_28_MPro
 
                     switch (comcod)
                     {
-                        //case "3101": // ptl
-                        case "3355": // grenwood
-                            string sappusridg = "";
-                            string sapptrmnidg = "";
-                            string sappsessiong = "";
-                            string sappDateg = "";
 
-                            List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange> lst2 = (List<RealEntity.C_14_Pro.EClassPur.EClassOrderRange>)Session["tblordrange"];
-
-                            bool forardg = ((CheckBox)this.gvOrderInfo.FooterRow.FindControl("lblfchkbox")).Checked ? true : false;
-                            double toamtg = Convert.ToDouble(((Label)this.gvOrderInfo.FooterRow.FindControl("lblgvFooterTOrderAmt")).Text.ToString());
-                            string sslnumg = "";
-                            foreach (RealEntity.C_14_Pro.EClassPur.EClassOrderRange lst1 in lst2)
-                            {
-
-                                string slnumg = lst1.slnum;
-                                double minamtg = lst1.minamt;
-                                double maxamtg = lst1.maxamt;
-                                if (toamtg > minamtg && toamtg <= maxamtg)
-                                {
-                                    sslnumg = slnumg;
-                                }
-
-                            }
-                            string fslnumg = lst2[0].slnum.ToString();
-                            // First Approval
-                            if (sslnumg == fslnumg)
-                            {
-
-                                if (forardg == true)
-                                    ;
-                                else
-                                {
-
-                                    sappusridg = hst["usrid"].ToString();
-                                    sapptrmnidg = hst["compname"].ToString();
-                                    sappsessiong = hst["session"].ToString();
-                                    sappDateg = System.DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
-                                }
-                            }
-
-                            if (approval == "")
-                            {
-                                this.CreateDataTable();
-                                DataTable dt = (DataTable)ViewState["tblapproval"];
-                                DataRow dr1 = dt.NewRow();
-
-                                dr1["fappid"] = usrid;
-                                dr1["fappdat"] = Date;
-                                dr1["fapptrmid"] = trmnid;
-                                dr1["fappseson"] = session;
-                                dr1["secappid"] = "";
-                                dr1["secappdat"] = "";
-                                dr1["secapptrmid"] = "";
-                                dr1["secappseson"] = "";
-
-                                dt.Rows.Add(dr1);
-                                ds1.Merge(dt);
-                                ds1.Tables[0].TableName = "tbl1";
-                                approval = ds1.GetXml();
-
-                            }
-
-                            else
-                            {
-
-                                xmlSR = new System.IO.StringReader(approval);
-                                ds1.ReadXml(xmlSR);
-                                ds1.Tables[0].TableName = "tbl1";
-                                ds1.Tables[0].Rows[0]["fappid"] = usrid;
-                                ds1.Tables[0].Rows[0]["fappdat"] = Date;
-                                ds1.Tables[0].Rows[0]["fapptrmid"] = trmnid;
-                                ds1.Tables[0].Rows[0]["fappseson"] = session;
-                                ds1.Tables[0].Rows[0]["secappid"] = "";
-                                ds1.Tables[0].Rows[0]["secappdat"] = "";
-                                ds1.Tables[0].Rows[0]["secapptrmid"] = "";
-                                ds1.Tables[0].Rows[0]["secappseson"] = "";
-                                approval = ds1.GetXml();
-
-                            }
-                            break;
-
-
-                        case "3335":
+                        case "3101":  //PTL                    
                         case "3354":// Edison Real Estate
                             string sappusrid = "";
                             string sapptrmnid = "";
@@ -861,9 +761,6 @@ namespace RealERPWEB.F_28_MPro
                             if (approval == "")
                             {
 
-
-
-
                                 this.CreateDataTable();
                                 DataTable dt = (DataTable)ViewState["tblapproval"];
                                 DataRow dr1 = dt.NewRow();
@@ -970,30 +867,10 @@ namespace RealERPWEB.F_28_MPro
 
             string mORDERDAT = this.GetStdDate(this.txtCurOrderDate.Text.Trim());
 
-            // Back date Entry  only Tropical
-            if (comcod == "3339")
-            {
-                DateTime Bdate;
-                Bdate = this.GetBackDate();
-                bool dconi = ASITUtility02.TransactionDateCon(Bdate, Convert.ToDateTime(mORDERDAT));
-                string type1 = this.Request.QueryString["InputType"].ToString().Trim();
+           
 
-                if (type1 == "OrderEntry")
-                {
-                    if (!dconi)
-                    {
-                        ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Purchase Order Entry Only Current Date" + "');", true);
-                        return;
-                    }
-                }
-            }
-
-            string mPORDUSRID = "";
-            string mAPPRUSRID = "";
-            string mSSIRCODE = this.ddlSuplierList.Items.Count > 0 ? this.ddlSuplierList.SelectedValue.ToString() : this.lssircode.Text.Trim();
-            string mAPPRDAT = this.GetStdDate(this.txtApprovalDate.Text.Trim());
-            string mPORDBYDES = this.txtPreparedBy.Text.Trim();
-            string mAPPBYDES = this.txtApprovedBy.Text.Trim();
+         
+            string mSSIRCODE = this.ddlSuplierList.Items.Count > 0 ? this.ddlSuplierList.SelectedValue.ToString() : this.lssircode.Text.Trim();           
             string mPORDREF = this.txtOrderRefNo.Text.Trim();
             string mLETERDES = this.txtLETDES.Text.Trim();
             string mPORDNAR = this.txtOrderNarr.Text.Trim();
@@ -1007,7 +884,7 @@ namespace RealERPWEB.F_28_MPro
 
             //end log
             bool result = false;
-            //forward Programm
+     
             //Balance Approval
             DataTable tbl1 = (DataTable)ViewState["tblOrder"];
             foreach (DataRow drf in tbl1.Rows)
@@ -1100,11 +977,12 @@ namespace RealERPWEB.F_28_MPro
 
             string terms = "";
             bool istxtTerms = true;
+            string advamt = ASTUtility.StrPosOrNagative(this.txtadvAmt.Text.Trim()).ToString();
 
             string forward = (tbl1.Rows[0]["forward"].ToString().Trim().Length == 0) ? "False" : tbl1.Rows[0]["forward"].ToString();
             result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_PUR_ORDER_INFO", "MKTORDERB",
                              mORDERNO, mORDERDAT, mSSIRCODE, mPORDREF, mLETERDES, mPORDNAR, subject, userid, Terminal, Sessionid, Approval, forward,
-                             "", "", "");
+                             advamt, "", "");
             if (!result)
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
