@@ -160,7 +160,7 @@ namespace RealERPWEB.F_28_MPro
             this.ddlProject.DataBind();
             ViewState["tblprojlist"] = ds2.Tables[0];
 
-            this.ddlProject_SelectedIndexChanged(null, null);
+           
 
         }
         protected void GetPRType()
@@ -1110,7 +1110,7 @@ namespace RealERPWEB.F_28_MPro
                 //this.ImgbtnFindReq_Click(null, null);
 
             }
-            //this.ImgbtnSpecification_Click(null, null); //w
+          
 
 
          
@@ -1128,11 +1128,12 @@ namespace RealERPWEB.F_28_MPro
             string comcod = this.GetCompCode();           
             string fxtast = (this.Request.QueryString["InputType"].ToString() == "ReqEdit") ? "ReqEdit"
                 : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? "ReqCheck"               
+                : (Request.QueryString["InputType"].ToString() == "ReqApproval") ? "ReqApproval"
                  : "";
 
-            string prjcode = ((Request.QueryString["InputType"].ToString() == "Approval") ? this.ddlProject.SelectedValue.ToString()               
-                : (Request.QueryString["InputType"].ToString() == "ReqEdit") ? this.ddlProject.SelectedValue.ToString()              
-                : (Request.QueryString["InputType"].ToString() == "ReqCheck") ? this.ddlProject.SelectedValue.ToString()   
+            string prjcode = ((Request.QueryString["InputType"].ToString() == "ReqApproval" || Request.QueryString["InputType"].ToString() == "ReqEdit" 
+                || Request.QueryString["InputType"].ToString() == "ReqCheck" ) ? this.ddlProject.SelectedValue.ToString()               
+               
                 : "") + "%";
 
 
