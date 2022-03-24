@@ -4132,7 +4132,7 @@ namespace RealERPWEB.F_99_Allinterface
                         break;
 
 
-                    //case "3101":                 
+                    case "3101":                 
                     case "1108":                 
                     case "1109":                 
                     case "3315":                 
@@ -4170,7 +4170,7 @@ namespace RealERPWEB.F_99_Allinterface
                         Reportpath = "~/Report/RptPurchaseOrderAcme.rdlc";
                         break;
 
-                    //case "3101": //Assure
+                    case "3101": //Assure
                     case "1108": //Assure
                     case "1109": //Assure
                     case "3315": //Assure

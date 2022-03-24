@@ -294,8 +294,8 @@ namespace RealERPWEB.F_09_PImp
                 string txtSign2 = "";
                 string txtSign3 = "";
                 string txtSign4 = "";
-
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
+                string lang = ds1.Tables[1].Rows[0]["lang"].ToString();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2PBN", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
                 Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
@@ -303,6 +303,7 @@ namespace RealERPWEB.F_09_PImp
                 Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
                 Rpt1.SetParameters(new ReportParameter("Suppl1", Suppl));
                 Rpt1.SetParameters(new ReportParameter("Suppl2", Supp2));
+                Rpt1.SetParameters(new ReportParameter("lang", lang));
 
             }
             else
@@ -391,26 +392,28 @@ namespace RealERPWEB.F_09_PImp
             var lst = ds1.Tables[0].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder>();
             var lst1 = ds1.Tables[1].DataTableToList<RealEntity.C_09_PIMP.EClassOrder.GetWorkOrder1>();
 
-            if (comcod == "1205" || comcod == "3351" || comcod == "3352" || comcod == "3101")
+            if (comcod == "1205" || comcod == "3351" || comcod == "3352")
             {
                 refNo = Request.QueryString["genno"].ToString();
                 string txtSign1 = ds1.Tables[2].Rows[0]["usrname"].ToString() + " ," + ds1.Tables[2].Rows[0]["usrdesig"].ToString() + " \n" + Convert.ToDateTime(ds1.Tables[2].Rows[0]["POSTEDDAT"]).ToString("dd-MMM-yyyy");
                 string txtSign2 = "";
                 string txtSign3 = "";
                 string txtSign4 = "";
-
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
+                string lang = ds1.Tables[1].Rows[0]["lang"].ToString();
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrderP2PBN", lst, null, null);
+                //Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
                 Rpt1.EnableExternalImages = true;
                 Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
                 Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
                 Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
                 Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
+                Rpt1.SetParameters(new ReportParameter("lang", lang));
 
             }
             else
             {
                 refNo = this.txtOrderRef.Text.ToString();
-                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder", lst, null, null);
+                Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_09_PIMP.RptWorkOrder2", lst, null, null);
                 Rpt1.EnableExternalImages = true;
 
             }
@@ -492,6 +495,8 @@ namespace RealERPWEB.F_09_PImp
                 ((Label)this.Master.FindControl("lblmsg")).Text = "";
                 this.grvissue.DataSource = null;
                 this.grvissue.DataBind();
+
+                this.ChkLanguage.Visible = false;
                 return;
             }
             this.lbtnPrevList.Visible = false;
@@ -515,8 +520,27 @@ namespace RealERPWEB.F_09_PImp
             this.GetFloorCode();
             this.Get_Work_Info();
             this.ibtnSearchMaterisl_Click(null, null);
+            this.HideLanguage();
 
         }
+
+        private void HideLanguage()
+        {
+            string comcod = this.GetCompCode();
+            switch (comcod)
+            {
+                case "3101":
+                case "1205":
+                case "3351":
+                case "3352":
+                    this.ChkLanguage.Visible = true;
+                    break;
+                default:
+                    this.ChkLanguage.Visible = false;
+                    break;
+            }
+        }
+
 
         private void GetFloorCode()
         {
@@ -825,15 +849,9 @@ namespace RealERPWEB.F_09_PImp
             string mOrdernoO = this.lblCurISSNo1.Text.Trim().Substring(0, 3) + this.txtCurISSDate.Text.Trim().Substring(7, 4) + this.lblCurISSNo1.Text.Trim().Substring(3, 2) + this.txtCurISSNo2.Text.Trim();
             string mDATE = Convert.ToDateTime(this.txtCurISSDate.Text.Trim()).ToString();
 
-
-
-
-
-
-
             //////////
 
-
+            string language = this.ChkLanguage.Checked ? "True" : "False";
 
             string csircode = this.ddlContractorlist.SelectedValue.ToString();
             string mPACTCODE = this.ddlprjlist.SelectedValue.ToString().Trim();
@@ -843,20 +861,16 @@ namespace RealERPWEB.F_09_PImp
             string compltdat = txtcompltdat.Text.Trim();
             string term = this.txtTerm.Text.Trim();
             string days = "";
-
             string biltype = "";
             string lreqno = this.Request.QueryString["genno"] ?? "";
-            bool result = purData.UpdateTransInfo3(comcod, "SP_ENTRY_PURCHASE_03", "INSERTORUPDATECORDER", "PURCORDERB",
-                             mOrdernoO, mDATE, csircode, mPACTCODE, mRef, subject, letdes, term, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Edittrmid, EditSession, Editdat, days, biltype, comncdat, compltdat, lreqno);
+            bool result = purData.UpdateTransHREMPInfo3(comcod, "SP_ENTRY_PURCHASE_03", "INSERTORUPDATECORDER", "PURCORDERB",
+                             mOrdernoO, mDATE, csircode, mPACTCODE, mRef, subject, letdes, term, PostedByid, Posttrmid, PostSession, Posteddat, EditByid, Edittrmid, EditSession, Editdat, days, biltype, comncdat, compltdat, lreqno,
+                             language, "", "", "", "", "", "", "", "", "");
             if (!result)
             {
                 ((Label)this.Master.FindControl("lblmsg")).Text = purData.ErrorObject["Msg"].ToString();
                 return;
             }
-
-
-
-
 
             foreach (DataRow dru in tbl2.Rows)
             {

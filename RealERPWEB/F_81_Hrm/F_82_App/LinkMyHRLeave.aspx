@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <label for="input04" class="col-md-3">Desgnation:</label>
+                                <label for="input04" class="col-md-3">Designation:</label>
                                 <div class="col-md-9 mb-3">
                                     <asp:Label ID="lbldesg" runat="server" CssClass="control-label"> Card</asp:Label>
                                 </div>

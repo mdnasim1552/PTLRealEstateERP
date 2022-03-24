@@ -27,8 +27,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //    Response.Redirect("../../AcceessError.aspx");
                 //string date= System.DateTime.Today.ToString("dd-MMM-yyyy");
                 //this.txtfromdate.Text = "01" + date.Substring(2);
-
-
                 this.MultiView1.ActiveViewIndex = 0;
                 this.ShowLeaveStatus();
 
@@ -41,31 +39,23 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         {
             // Create an event handler for the master page's contentCallEvent event
             ((LinkButton)this.Master.FindControl("lnkPrint")).Click += new EventHandler(lbtnPrint_Click);
-
             //((Panel)this.Master.FindControl("pnlTitle")).Visible = true;
-
         }
 
         private string GetCompCode()
         {
             Hashtable hst = (Hashtable)Session["tblLogin"];
             return (hst["comcod"].ToString());
-
         }
 
-
-
         private void ShowLeaveStatus()
-        {
-             
+        {            
             ViewState.Remove("tblleave");
             string comcod = this.GetCompCode();
             string Empid = this.Request.QueryString["empid"].ToString();
             string frmdate = this.Request.QueryString["frmdate"].ToString();
             string todate = this.Request.QueryString["todate"].ToString();
-
             DataSet ds3 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_LEAVESTATUS", "LEAVESTATUS02", Empid, frmdate, todate, "", "", "", "", "", "");
-
 
             if (ds3 == null)
             {
@@ -74,9 +64,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 this.gvLeavedetails.DataSource = null;
                 this.gvLeavedetails.DataBind();
                 return;
-
             }
-
             this.lblname.Text = ds3.Tables[1].Rows[0]["empname1"].ToString();
             this.lbldpt.Text = ds3.Tables[1].Rows[0]["section"].ToString();
             this.lbldesg.Text = ds3.Tables[1].Rows[0]["desig"].ToString();
@@ -115,10 +103,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             this.gvLeavedetails.DataBind();
             //  this.FooterCalculation(dt1, "gvLeavedetails"); 
             //C. Cheque In Hand
-
-
-
-
         }
 
 
@@ -145,12 +129,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                     ((Label)this.gvLeavedetails.FooterRow.FindControl("lblgvFleavedays")).Text = Convert.ToDouble((Convert.IsDBNull(dt.Compute("sum(lvday)", "")) ? 0.00
                          : dt.Compute("sum(lvday)", ""))).ToString("#,##0;(#,##0); ");
                     break;
-
-
-
             }
-
-
         }
 
 

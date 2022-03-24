@@ -491,8 +491,10 @@ namespace RealERPWEB
 
 
             Hashtable hst = (Hashtable)Session["tblLogin"];
+            //Int32 usrid =(Int32) (hst["usrid"].ToString());
 
-            return (hst["usrid"].ToString());
+            //return (usrid);
+           return (hst["usrid"].ToString());
 
 
             //Hashtable hst = (Hashtable)Session["tblLogin"];

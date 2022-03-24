@@ -104,5 +104,30 @@ namespace RealEntity.C_12_Inv
             public double actstock { get; set; }
 
         }
+
+        [Serializable]
+        public class MaterialWiseStock
+        {
+            public string gp { get; set; }
+            public string grp { get; set; }
+            public string isuno { get; set; }
+            public string isuno1 { get; set; }
+            public string exdate { get; set; }
+            public string actcode { get; set; }
+            public string actdesc { get; set; }
+            public string subcode { get; set; }
+            public string subdesc { get; set; }
+            public string spcfcod { get; set; }
+            public string spcfdesc { get; set; }
+            public string unit { get; set; }
+            public double inqty { get; set; }
+            public double outqty { get; set; }
+            public double stock { get; set; }
+            public string ssircode { get; set; }
+            public string ssirdesc { get; set; }
+            public double rate { get; set; }
+
+
+        }
     }
 }
