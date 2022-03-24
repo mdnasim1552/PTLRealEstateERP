@@ -186,12 +186,12 @@
 
                                 <asp:TemplateField HeaderText="Justification">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblgvJustification" runat="server"
-                                            Text='' Width="120px"></asp:Label>
+                                        <asp:TextBox ID="txtgvJustification" runat="server" BackColor="Transparent" BorderStyle="none"
+                                            Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "justific")) %>'  Width="120px"></asp:TextBox>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:LinkButton ID="lbtnResFooterTotal" runat="server" Font-Bold="True" OnClick="lbtnResFooterTotal_Click"
-                                            CssClass="btn btn-primary  primarygrdBtn btn-sm">Total :</asp:LinkButton>
+                                            CssClass="btn btn-primary  primarygrdBtn btn-sm">Total</asp:LinkButton>
                                     </FooterTemplate>
                                 </asp:TemplateField>
 
@@ -204,7 +204,7 @@
 
                                     <FooterTemplate>
 
-                                        <asp:LinkButton ID="lbtnCheecked" runat="server" OnClientClick="return FunCheckConfirm();" OnClick="lbtnCheecked_Click" CssClass="btn  btn-primary primarygrdBtn">Checked</asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnCheecked" runat="server" OnClientClick="return FunCheckConfirm();" OnClick="lbtnCheecked_Click" CssClass="btn  btn-primary primarygrdBtn">Approved</asp:LinkButton>
 
                                     </FooterTemplate>
 
@@ -214,7 +214,7 @@
                                 </asp:TemplateField>
 
 
-                                 <asp:TemplateField HeaderText="Approved Qty">
+                                 <asp:TemplateField HeaderText="Approved Qty" Visible="false">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvReqappQty" runat="server" BorderColor="#99CCFF" BackColor="Wheat" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: right;"
                                             Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqty")).ToString("#,##0.000;(#,##0.000); ") %>' Width="80px"></asp:TextBox>
@@ -254,10 +254,10 @@
                                 </asp:TemplateField>
 
 
-                                  <asp:TemplateField HeaderText="Amount">
+                                  <asp:TemplateField HeaderText="Amount" Visible="false">
                                     <ItemTemplate>
                                         <asp:Label ID="lblgvareqamt" runat="server" Font-Size="11px" Style="text-align: right; background-color: Transparent"
-                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "preqamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
+                                            Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "areqamt")).ToString("#,##0.00;(#,##0.00); ") %>' Width="70px"></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label ID="lblgvFareqamt" runat="server" Font-Bold="true" Font-Size="11px" Style="text-align: right; background-color: Transparent"
@@ -270,7 +270,7 @@
                                 <asp:TemplateField HeaderText="Expected Date">
                                     <ItemTemplate>
                                         <asp:TextBox ID="txtgvExpDate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid" BorderWidth="0px" Font-Size="11px" Style="text-align: left; background-color: Transparent"
-                                            Text='<%# DataBinder.Eval(Container.DataItem, "expusedt").ToString() %>' Width="70px"></asp:TextBox>
+                                            Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "expusedt")).ToString("dd-MMM-yyyy") %>' Width="70px"></asp:TextBox>
                                         <cc1:CalendarExtender ID="txtgvExpDate_CalendarExtender" runat="server"
                                             Enabled="True" Format="dd-MMM-yyyy" TargetControlID="txtgvExpDate" PopupPosition="TopLeft" PopupButtonID="txtgvExpDate"></cc1:CalendarExtender>
                                     </ItemTemplate>
