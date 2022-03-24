@@ -162,8 +162,6 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../../RptViewer.aspx?PrintOpt=" +
                          ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_blank');</script>";
-
-
         }
 
         protected void RptMyAttenView_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -186,7 +184,15 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 switch (comcod)
                 {
                     case "3365":
-                        if (ahleave == "A" || ahleave == "H" || ahleave == "Lv")
+                        if (ahleave == "A")
+                        {
+                            ((Label)e.Item.FindControl("lblactualout")).Visible = false;
+                            ((Label)e.Item.FindControl("lblactualin")).Visible = false;
+                            ((Label)e.Item.FindControl("lblstatus")).Attributes["style"] = "font-weight:bold;";
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
+
+                        }
+                        if (ahleave == "H" || ahleave == "Lv")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
@@ -199,7 +205,13 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lbldtimehour")).Attributes["style"] = "font-weight:bold; color:red;";
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
 
+
+                        }
+                        else
+                        {
+                            ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = false;
 
                         }
 
@@ -246,6 +258,67 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 //((Label)e.Item.FindControl("lblTotalHour")).Text = Convert.ToDouble((Convert.IsDBNull(Convert.ToDouble(dt3.Compute("Sum(actTimehour)", ""))))).ToString("#,##0.00;(#,##0.00);"); //? 0.00 : dt3.Compute("Sum(actTimehour)", ""))).ToString("#,##0.00;(#,##0.00);");
 
             }
+        }
+
+        protected void lnkRequstApply_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetComeCode();
+            //  this.lblabsheading.Text = "Apply for RequestDate :" + this.txtfrmDate.Text.ToString() + " To: " + this.txttoDate.Text.ToString();
+
+            LinkButton lnkBtn1 = sender as LinkButton;
+            RepeaterItem Rptitem = (RepeaterItem)lnkBtn1.NamingContainer;
+            Label issuedate = (Label)Rptitem.FindControl("lblacintime");
+            Label actualin = (Label)Rptitem.FindControl("lblactualin");
+            Label lblstatus = (Label)Rptitem.FindControl("lblstatus");
+
+            string attstatus = lblstatus.Text.Trim();
+            ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "");
+            ddlReqType.Enabled= (attstatus == "A" ? false : true);
+            if (attstatus=="A")
+            {     
+                ddlReqType.Items.Remove("TC");
+                ddlReqType.Items.Remove("LA");
+            }
+            else
+            {
+                ListItem removeItem = ddlReqType.Items.FindByValue("AB");
+                ddlReqType.Items.Remove(removeItem);
+            }
+           
+
+
+
+            this.lbldadte.Text = issuedate.Text;
+            this.lbldadteTime.Text =  actualin.Text;
+
+            
+            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
+        }
+
+        protected void lbntnAbsentApproval_Click(object sender, EventArgs e)
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string userid = hst["usrid"].ToString();
+            string empid = hst["empid"].ToString();
+
+            string comcod = this.GetComeCode();
+            string reqtype = this.ddlReqType.SelectedValue.ToString();
+            string reqdate = this.lbldadte.Text.Trim();
+            string reqtime = this.lbldadteTime.Text.Trim();
+            string txtReson = txtAreaReson.Text.Trim();
+
+          bool  result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", empid, reqdate, reqtime, reqtype, txtReson, "", "", "", "");
+
+
+            if (!result)
+            {
+
+                string errMsg = "Update Fail";
+                ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + errMsg + "');", true);
+                return;
+            }
+
+
         }
     }
 }

@@ -72,8 +72,8 @@
                                             </div>
 
                                             <div class="row">
-                                                <asp:Label ID="Label6" runat="server" CssClass=" lblTxt lblName">Desgnation</asp:Label>
-                                                <asp:Label ID="lbldesg" runat="server" CssClass=" smLbl_to lblStyle"> Desgnation name</asp:Label>
+                                                <asp:Label ID="Label6" runat="server" CssClass=" lblTxt lblName">Designation</asp:Label>
+                                                <asp:Label ID="lbldesg" runat="server" CssClass=" smLbl_to lblStyle"> Designation name</asp:Label>
                                             </div>
                                             <div class="row">
                                                 <asp:Label ID="Label8" runat="server" CssClass=" lblTxt lblName">Department</asp:Label>
