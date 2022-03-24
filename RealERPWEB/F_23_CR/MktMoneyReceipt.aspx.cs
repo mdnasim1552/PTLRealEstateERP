@@ -1198,7 +1198,7 @@ namespace RealERPWEB.F_23_CR
                 switch (comcod)
                 {
 
-                    case "3101": // Pintech                   
+                    //case "3101": // Pintech                   
                     case "3356": //Intech                    
                       this.SMSSendMoneyRecipt(comcod, PactCode, Usircode,  mrno,  mrdate);
                         break;

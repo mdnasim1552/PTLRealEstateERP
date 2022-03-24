@@ -99,6 +99,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             double leaveday = Convert.ToDouble(drp[0]["lapplied"].ToString());
             double enjleave = Convert.ToDouble(drls[0]["ltaken"]);
             double Clsleave = Convert.ToDouble(drls[0]["pbal"]);
+            string startdate = Convert.ToDateTime(drp[0]["strtdat"]).ToString("dd-MMM-yyyy");
+            string  endate = Convert.ToDateTime(drp[0]["enddat"]).ToString("dd-MMM-yyyy");
             drls[0]["applyday"] = drp[0]["lapplied"];
             drls[0]["appday"] = drp[0]["lapplied"];
             drls[0]["applydate"] = drp[0]["strtdat"];
@@ -127,8 +129,8 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             Rpt1.SetParameters(new ReportParameter("comLogo", comLogo));
             Rpt1.SetParameters(new ReportParameter("txtRecordNo", this.Request.QueryString["LeaveId"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtleaveday", Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ") + " days"));
-            Rpt1.SetParameters(new ReportParameter("txtldatefrm", Convert.ToDateTime(dt3.Rows[0]["applydate"]).ToString("dd-MMM-yyyy")));
-            Rpt1.SetParameters(new ReportParameter("txtldateto", Convert.ToDateTime(dt3.Rows[0]["applydate"]).AddDays(Convert.ToInt32(dt.Rows[0]["appday"]) - 1).ToString("dd-MMM-yyyy")));
+            Rpt1.SetParameters(new ReportParameter("txtldatefrm", startdate));// Convert.ToDateTime(dt3.Rows[0]["applydate"]).ToString("dd-MMM-yyyy")
+            Rpt1.SetParameters(new ReportParameter("txtldateto", endate)); //Convert.ToDateTime(dt3.Rows[0]["applydate"]).AddDays(Convert.ToInt32(dt.Rows[0]["appday"]) - 1).ToString("dd-MMM-yyyy")
             Rpt1.SetParameters(new ReportParameter("txtlday", Convert.ToInt32(dt3.Rows[0]["appday"]).ToString("#,##0;(#,##0); ")));
             Rpt1.SetParameters(new ReportParameter("txtRecordNo1", this.Request.QueryString["LeaveId"].ToString()));
             Rpt1.SetParameters(new ReportParameter("txtEmpName", ds1.Tables[2].Rows[0]["empname"].ToString()));
