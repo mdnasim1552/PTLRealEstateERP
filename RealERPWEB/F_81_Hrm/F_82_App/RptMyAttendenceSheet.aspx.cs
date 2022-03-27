@@ -79,7 +79,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             }
 
             //this.lblDateOn.Text = " From " + this.Request.QueryString["frmdate"].ToString() + " To " + this.Request.QueryString["todate"].ToString();
-           // this.lblcompname.Text = ds1.Tables[2].Rows[0]["companyname"].ToString();
+            // this.lblcompname.Text = ds1.Tables[2].Rows[0]["companyname"].ToString();
             this.lblname.Text = ds1.Tables[0].Rows[0]["empnam"].ToString();
             this.lbldpt.Text = ds1.Tables[0].Rows[0]["empdept"].ToString();
             this.lbldesg.Text = ds1.Tables[0].Rows[0]["empdsg"].ToString();
@@ -170,8 +170,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             {
 
                 string comcod = this.GetComeCode();
-                string ahleave = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "leav")).ToString();
-                string lateapp = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "lateapp")).ToString();
+                string ahleave = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "leav")).ToString().Trim();
+                string lateapp = Convert.ToString(DataBinder.Eval(e.Item.DataItem, "lateapp")).ToString().Trim();
 
                 DateTime offimein = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "stdtimein"));
                 DateTime offouttim = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "stdtimeout"));
@@ -184,6 +184,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 switch (comcod)
                 {
                     case "3365":
+                    case "3101":
                         if (ahleave == "A")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
@@ -192,7 +193,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                             ((LinkButton)e.Item.FindControl("lnkRequstApply")).Visible = true;
 
                         }
-                        if (ahleave == "H" || ahleave == "Lv")
+                        else if (ahleave == "H" || ahleave == "Lv")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Visible = false;
                             ((Label)e.Item.FindControl("lblactualin")).Visible = false;
@@ -200,7 +201,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
                         }
 
-                        else if ((offimein < actualin ) && lateapp == "False")
+                        else if ((offimein < actualin) && lateapp == "False")
                         {
                             ((Label)e.Item.FindControl("lblactualout")).Attributes["style"] = "font-weight:bold; color:red;";
                             ((Label)e.Item.FindControl("lblactualin")).Attributes["style"] = "font-weight:bold; color:red;";
@@ -237,7 +238,7 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 }
 
 
-               
+
 
             }
 
@@ -267,15 +268,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
 
             LinkButton lnkBtn1 = sender as LinkButton;
             RepeaterItem Rptitem = (RepeaterItem)lnkBtn1.NamingContainer;
+            Label lblIntime = (Label)Rptitem.FindControl("lblIntime");
             Label issuedate = (Label)Rptitem.FindControl("lblacintime");
             Label actualin = (Label)Rptitem.FindControl("lblactualin");
             Label lblstatus = (Label)Rptitem.FindControl("lblstatus");
 
             string attstatus = lblstatus.Text.Trim();
-            ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "");
-            ddlReqType.Enabled= (attstatus == "A" ? false : true);
-            if (attstatus=="A")
-            {     
+            ddlReqType.SelectedValue = (attstatus == "A" ? "AB" : "LA");
+            ddlReqType.Enabled = (attstatus == "A" ? false : true);
+            if (attstatus == "A")
+            {
                 ddlReqType.Items.Remove("TC");
                 ddlReqType.Items.Remove("LA");
             }
@@ -284,14 +286,16 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
                 ListItem removeItem = ddlReqType.Items.FindByValue("AB");
                 ddlReqType.Items.Remove(removeItem);
             }
-           
+
+            //lblIntime
 
 
-
+            this.lbldadteIntime.Text = lblIntime.Text;
             this.lbldadte.Text = issuedate.Text;
-            this.lbldadteTime.Text =  actualin.Text;
-
+            this.lbldadteTime.Text = actualin.Text;
+            this.lbldadteOuttime.Text = lblIntime.Text;
             
+
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModalAbs();", true);
         }
 
@@ -304,10 +308,14 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string comcod = this.GetComeCode();
             string reqtype = this.ddlReqType.SelectedValue.ToString();
             string reqdate = this.lbldadte.Text.Trim();
-            string reqtime = this.lbldadteTime.Text.Trim();
+            string dayID =  Convert.ToDateTime(this.lbldadte.Text.Trim()).ToString("yyyyMMdd");
+            string reqtimeIN = this.lbldadteIntime.Text.Trim();
+            string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
-
-          bool  result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", empid, reqdate, reqtime, reqtype, txtReson, "", "", "", "");
+            string usetime = "0.00";
+            string postDat = System.DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss");
+             
+            bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeIN, reqtimeOUT, txtReson, usetime, userid, postDat, "");
 
 
             if (!result)
