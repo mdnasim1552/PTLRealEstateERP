@@ -2780,7 +2780,7 @@
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkDelete" 
-                                                            Visible='<%# Eval("isreject").ToString() == "True" ? false : true %>'
+                                                            <%--Visible='<%# Eval("isreject").ToString() == "True" ? false : true %>'--%>
                                                               runat="server" Font-Bold="True" ToolTip="Delete" Style="text-align: right" OnClientClick="javascript:return  FunConfirm()" OnClick="lnkDelete_Click">
 
                                                         <i class=" fa fa-trash"></i></asp:LinkButton>

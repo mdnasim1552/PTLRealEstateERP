@@ -195,8 +195,10 @@
                             <tr>
 
                                 <td>
+                                    <asp:Label ID="lblIntime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
+                                    <asp:Label ID="lblOuttime" Visible="false" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy hh:mm:ss tt") %>'></asp:Label>
                                     <asp:Label ID="lblacintime" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "wintime")).ToString("dd-MMM-yyyy") %>'></asp:Label>
-
+                  
                                 </td>
                                 <td>
                                     <%--  <asp:Label ID="lblactualin" runat="server" Text='<%# Convert.ToDateTime(DataBinder.Eval(Container.DataItem, "actualin")).ToString("hh:mm tt") %>'></asp:Label>--%>
@@ -305,6 +307,8 @@
                                         <label for="validationTooltip02">
                                             Time  
                                         </label>
+                                        <asp:Label ID="lbldadteOuttime" Visible="false" runat="server" class="form-control"></asp:Label>
+                                        <asp:Label ID="lbldadteIntime" Visible="false" runat="server" class="form-control"></asp:Label>
                                         <asp:Label ID="lbldadteTime" runat="server" class="form-control"></asp:Label>
 
                                     </div>
