@@ -273,10 +273,9 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Res Code" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblgvResCodBSel1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
+                                                <asp:Label ID="lblgvacttypeBSel1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'
                                                     Width="80px"></asp:Label>
-                                                <asp:Label ID="lblgvSpcCodBSel1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'
-                                                    Width="80px"></asp:Label>
+                                               
                                             </ItemTemplate>
                                             <ItemStyle />
                                         </asp:TemplateField>
@@ -292,15 +291,6 @@
                                             <ItemStyle />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Specification">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvrSpecBSel" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: left; background-color: Transparent"
-                                                    Text='<%# DataBinder.Eval(Container.DataItem, "spcfdesc").ToString() %>' Width="80px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="Center" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Unit">
@@ -387,26 +377,6 @@
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Currency" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCurrency" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: right; float: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "currency")) %>'
-                                                    Width="60px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Con. Rate" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtconrate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: right; float: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "conrate")).ToString("#,##0.000000;(#,##0.000000); ") %>'
-                                                    Width="60px"></asp:TextBox>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Rate">
                                             <FooterTemplate>
@@ -553,16 +523,7 @@
                                             </ItemTemplate>
                                             <ItemStyle />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="curcode" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblcurcode" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: right; float: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "curcode")) %>'
-                                                    Width="60px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
+                                       
 
 
 
@@ -591,10 +552,9 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvSuplCod1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "ssircode")) %>'
                                                     Width="80px"></asp:Label>
-                                                <asp:Label ID="lblrsircode" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsircode")) %>'
+                                                <asp:Label ID="lblrsircode" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'
                                                     Width="80px"></asp:Label>
-                                                <asp:Label ID="lblspcfcod" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfcod")) %>'
-                                                    Width="80px"></asp:Label>
+                                               
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -604,13 +564,7 @@
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Res Code" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvResCod1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "spcfdesc")) %>'
-                                                    Width="80px"></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle />
-                                        </asp:TemplateField>
+                                       
                                         <asp:TemplateField HeaderText="Materials">
                                             <ItemTemplate>
                                                 <asp:LinkButton OnClick="lblgrsirdescs1_Click" ID="lblgrsirdescs1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
@@ -622,17 +576,7 @@
                                             <ItemStyle />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Specification">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblgvrSpec" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: left; background-color: Transparent"
-                                                    Text='<%# DataBinder.Eval(Container.DataItem, "spcfdesc").ToString() %>' Width="100px"></asp:Label>
-                                            </ItemTemplate>
-
-
-                                            <FooterStyle HorizontalAlign="Center" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
+                                       
                                         <asp:TemplateField HeaderText="Used For">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgreqnote" runat="server" Font-Size="9px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqnote")) %>'
@@ -693,26 +637,8 @@
                                             <FooterStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Currency" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblCurrency" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: right; float: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "currency")) %>'
-                                                    Width="60px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Con. Rate" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:TextBox ID="txtconrate" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: right; float: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "conrate")).ToString("#,##0.000000;(#,##0.000000); ") %>'
-                                                    Width="60px"></asp:TextBox>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
+                                       
+                                       
 
                                         <asp:TemplateField HeaderText="Rate">
 
@@ -871,17 +797,7 @@
                                             </FooterTemplate>
                                             <ItemStyle />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="curcode" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblcurcode" runat="server" BorderColor="#99CCFF" BorderStyle="Solid"
-                                                    BorderWidth="0px" Font-Size="10px" Style="text-align: right; float: right; background-color: Transparent"
-                                                    Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "curcode")) %>'
-                                                    Width="60px"></asp:Label>
-                                            </ItemTemplate>
-                                            <FooterStyle HorizontalAlign="right" />
-                                            <HeaderStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
-
+                                       
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
@@ -1006,6 +922,33 @@
                                                                     </ItemTemplate>
                                                                     <ItemStyle HorizontalAlign="Right" />
                                                                 </asp:TemplateField>
+
+                                                                  <asp:TemplateField HeaderText="h9" Visible="false">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="gvText8" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "c8")).ToString("#,##0.00;-#,##0.00;") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="h10" Visible="false">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="gvText9" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "c9")).ToString("#,##0.00;-#,##0.00;") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="h11" Visible="false">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="gvText10" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "c10")).ToString("#,##0.00;-#,##0.00;") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="h12" Visible="false">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="gvText11" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "c11")).ToString("#,##0.00;-#,##0.00;") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+
+                                                              
                                                                 <asp:TemplateField HeaderText="Total">
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lblToal" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tamt")).ToString("#,##0.00;-#,##0.00;") %>'></asp:Label>

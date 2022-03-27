@@ -27,14 +27,18 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
-                //if (prevPage.Length == 0)
-                //{
-                //    prevPage = Request.UrlReferrer.ToString();
-                //}
+
+
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
+
 
                 ((Label)this.Master.FindControl("lblTitle")).Text = "Market Survey Information Input/Edit Screen";
                 this.CommonButton();
                 this.txtCurMSRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
+
 
                 if (this.Request.QueryString["genno"].Length != 0)
                 {
@@ -285,7 +289,7 @@ namespace RealERPWEB.F_28_MPro
             string txtsearch = "%" + this.txtReqSearch.Text.ToString() + "%";
             string reqno = this.ddlReqList.SelectedValue.ToString();
 
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMATREQWISE", reqno,
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "GETMATREQWISE", reqno,
                           txtsearch, CurDate1, "", "", "", "", "", "");
 
             if (ds2 == null)
@@ -411,7 +415,7 @@ namespace RealERPWEB.F_28_MPro
                 : (this.Request.QueryString["Type"] == "Audit") ? "Audit" : "Next";
 
             string Gennno = (this.Request.QueryString["genno"].Length == 0) ? "%" : this.Request.QueryString["genno"].ToString() + "%";
-            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETRPUREQNO", CurDate1,
+            DataSet ds2 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "GETRPUREQNO", CurDate1,
                           txtsearch, Gennno, Type, "", "", "", "", "");
 
             if (ds2 == null)
@@ -429,15 +433,15 @@ namespace RealERPWEB.F_28_MPro
         {
             if (dt1.Rows.Count == 0)
                 return dt1;
-            string rsircode, spcfcod;
+            string acttype;
 
 
-            rsircode = dt1.Rows[0]["rsircode"].ToString();
-            spcfcod = dt1.Rows[0]["spcfcod"].ToString();
+            acttype = dt1.Rows[0]["acttype"].ToString();
+           
 
             for (int j = 1; j < dt1.Rows.Count; j++)
             {
-                if (dt1.Rows[j]["rsircode"].ToString() == rsircode && dt1.Rows[j]["spcfcod"].ToString() == spcfcod)
+                if (dt1.Rows[j]["acttype"].ToString() == acttype )
                 {
                     dt1.Rows[j]["rsirdesc"] = "";
                     dt1.Rows[j]["propqty"] = 0.00;
@@ -445,8 +449,8 @@ namespace RealERPWEB.F_28_MPro
                     dt1.Rows[j]["reqnote"] = "";
                 }
 
-                rsircode = dt1.Rows[j]["rsircode"].ToString();
-                spcfcod = dt1.Rows[j]["spcfcod"].ToString();
+                acttype = dt1.Rows[j]["acttype"].ToString();
+                
             }
 
             return dt1;

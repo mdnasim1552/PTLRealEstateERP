@@ -133,15 +133,23 @@ namespace RealERPWEB.F_28_MPro
 
         private void lnkPrint_Click2(object sender, EventArgs e)
         {
+
+
+
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string comcod = hst["comcod"].ToString();
 
             string orderno = this.lblCurOrderNo1.Text.Trim().Substring(0, 3) + this.txtCurOrderDate.Text.Trim().Substring(6, 4) + this.lblCurOrderNo1.Text.Trim().Substring(3, 2) + this.txtCurOrderNo2.Text.Trim();
 
+
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            string currentptah = "PurchasePrint.aspx?Type=MktOrderPrint&orderno=" + orderno;
+            //string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "F_99_Allinterface/";
+            string currentptah = "PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
             string totalpath = hostname + currentptah;
             ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('" + totalpath + "', target='_blank');</script>";
+
+            // lbtnPrint.PostBackUrl = "~/F_99_Allinterface/PurchasePrint.aspx?Type=OrderPrint&orderno=" + orderno;
+
         }
 
 
