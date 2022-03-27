@@ -173,6 +173,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqChq.Visible = false;                    
                     this.pnlFinalApp.Visible = false;                   
                     this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;                    
                     this.pnlMatRec.Visible = false;
                     this.RadioButtonList1.Items[0].Attributes["class"] = "lblactive blink_me";
 
@@ -194,6 +196,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqChq.Visible = true;                   
                     this.pnlFinalApp.Visible = false;                   
                     this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
                     this.RadioButtonList1.Items[1].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -210,6 +214,8 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqChq.Visible = false;                    
                     this.pnlFinalApp.Visible = true;                   
                     this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
                     this.RadioButtonList1.Items[2].Attributes["class"] = "lblactive blink_me";
                     break;
@@ -224,13 +230,15 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //Work Order
                 case "5":
-                    dt = (DataTable)ds1.Tables[2];
+                    dt = (DataTable)ds1.Tables[3];
                     this.Data_Bind("gvWrkOrd", dt);
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;                  
                     this.pnlFinalApp.Visible = false;                   
                     this.pnlWorkOrder.Visible = true;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
                     if (dt.Rows.Count > 0)
@@ -240,51 +248,54 @@ namespace RealERPWEB.F_99_Allinterface
                     break;
 
 
-
+                 
                 //Work Order(1st Approval)
                 case "6":
-                    dt = (DataTable)ds1.Tables[2];
-                    this.Data_Bind("gvWrkOrd", dt);
 
+                    dt = (DataTable)ds1.Tables[4];
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("cstatus='Purchase Order (1st Approval)'  ");
+                    this.Data_Bind("gvordfapp", dv.ToTable());  
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;
                     this.pnlFinalApp.Visible = false;
-                    this.pnlWorkOrder.Visible = true;
+                    this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = true;
+                    this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
-                    if (dt.Rows.Count > 0)
-                    {
-                        ((TextBox)this.gvWrkOrd.HeaderRow.FindControl("txtSearchrefnumporder")).Attributes.Add("placeholder", ReadCookie());
-                    }
+                    
                     break;
 
 
                 //Work Order(Final Approval)
                 case "7":
-                    dt = (DataTable)ds1.Tables[2];
-                    this.Data_Bind("gvWrkOrd", dt);
-
+                    dt = (DataTable)ds1.Tables[4];
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("cstatus='Purchase Order (2nd Approval)'  ");
+                    this.Data_Bind("gvordsapp", dv.ToTable());
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;
                     this.pnlFinalApp.Visible = false;
-                    this.pnlWorkOrder.Visible = true;
+                    this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = true;
                     this.pnlMatRec.Visible = false;
                     this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
-                    if (dt.Rows.Count > 0)
-                    {
-                        ((TextBox)this.gvWrkOrd.HeaderRow.FindControl("txtSearchrefnumporder")).Attributes.Add("placeholder", ReadCookie());
-                    }
+                    
                     break;
 
                 //MRR
                 case "8":
-                    dt = (DataTable)ds1.Tables[3];
+                    dt = (DataTable)ds1.Tables[5];
                     this.Data_Bind("grvMRec", dt);
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;                    
                     this.pnlFinalApp.Visible = false;                    
                     this.pnlWorkOrder.Visible = false;
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = true;
                     this.pnlMatRec.Visible = true;
                     this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     if (dt.Rows.Count > 0)
@@ -450,36 +461,7 @@ namespace RealERPWEB.F_99_Allinterface
 
         }
 
-        protected void gvOrdeProc_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprFAppPrint");
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-
-                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                string ptype = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ptype")).ToString();
-                string prjcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-
-
-                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqFinalAppPrint&reqno=" + reqno;
-
-
-                //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
-
-                if (ptype == "003")
-                {
-                    hlink2.NavigateUrl = "~/F_12_Inv/PurMTReqEntry?Type=Entry&genno=" + reqno + "&prjcode=" + prjcode;
-
-                }
-                else
-                    hlink2.NavigateUrl = "~/F_14_Pro/PurAprovEntry?InputType=PurProposal&genno=" + reqno;
-
-            }
-        }
+        
         protected void gvWrkOrd_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -552,6 +534,225 @@ namespace RealERPWEB.F_99_Allinterface
             ScriptManager.RegisterStartupScript(this, GetType(), "target", "FunPurchaseOrder('" + totalpath + "');", true);
         }
 
+        protected void gvordfapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntryofapp");
+                HyperLink hlnkPrintofapp = (HyperLink)e.Row.FindControl("HyInprPrintofapp");
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+
+
+                //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
+
+                hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=FirstApp&genno=" + orderno;
+                hlnkPrintofapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;
+
+            }
+
+        }
+        protected void gvordsapp_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntryosapp");
+                HyperLink hlnkPrintosapp = (HyperLink)e.Row.FindControl("HyInprPrintosapp");
+                HyperLink hlnkPrintosappReq = (HyperLink)e.Row.FindControl("HyInprPrintosappReq");
+
+
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = hst["comcod"].ToString();
+
+                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                string reqdat = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
+
+                //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
+
+                hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=SecondApp&genno=" + orderno;
+                hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;
+                hlnkPrintosappReq.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+
+
+            }
+        }
+
+
+        protected void btnofapp_Click(object sender, EventArgs e)
+        {
+
+            string url = "PurWrkOrderEntry?InputType=FirstApp";
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string genno = ((Label)this.gvordfapp.Rows[RowIndex].FindControl("lblgvordernoofapp")).Text.Trim();
+
+
+            //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
+
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", genno, "",
+                         //  DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", genno, "",
+                         "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+
+            bool result = this.XmlDataInsertOrder(genno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+
+            }
+
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERFIRSTAPP", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+
+        }
+        protected void btnosapp_Click(object sender, EventArgs e)
+        {
+
+
+            string url = "PurWrkOrderEntry?InputType=SecondApp";
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+            string genno = ((Label)this.gvordsapp.Rows[RowIndex].FindControl("lblgvordernosapp")).Text.Trim();
+
+
+            //accData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_INTERFACE", "RPTACCOUNTDASHBOARD", "%", Date, "%", "", "", "", "", "", "");
+
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", genno, "",
+                         //  DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_03", "GETPURBILLINFO", genno, "",
+                         "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+
+            bool result = this.XmlDataInsertOrder(genno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+
+            }
+
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERSECONDAPP", genno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+
+
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+
+
+
+
+
+        }
+
+        protected void btnDelOrderAprv_Click(object sender, EventArgs e)
+        {
+            string comcod = this.GetCompCode();
+            ((Label)this.Master.FindControl("lblprintstk")).Text = "";
+
+            string url = "PurWrkOrderEntry?InputType=FirstApp";
+
+            DataRow[] dr1 = ASTUtility.PagePermission1(url, (DataSet)Session["tblusrlog"]);
+            if (!Convert.ToBoolean(dr1[0]["delete"]))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('You have no permission');", true);
+                return;
+            }
+
+            int RowIndex = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+
+            string orderno = ((Label)this.gvordfapp.Rows[RowIndex].FindControl("lblgvordernoofapp")).Text.Trim();
+            string date = System.DateTime.Today.ToString("dd-MMM-yyyy");
+
+            if (orderno == "")
+                return;
+
+            DataSet ds1 = accData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "GETPURORDERINFO", orderno, date, "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+
+            bool result = this.XmlDataInsertOrder(orderno, ds1);
+
+            if (!result)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Updated Fail');", true);
+                return;
+
+            }
+
+
+            bool resulbill = accData.UpdateTransInfo(comcod, "SP_ENTRY_PURCHASE_02", "DELETEORDERAPPROVAL", orderno, "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+
+            if (!resulbill)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted  Fail');", true);
+                return;
+            }
+            else
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "alert('Deleted Successfully.');", true);
+
+
+
+            this.PurchaseInfoRpt();
+            this.RadioButtonList1_SelectedIndexChanged(null, null);
+        }
 
         protected void grvMRec_RowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -567,11 +768,9 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
 
-                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;
-                if (orderno.Substring(0, 3) == "POR")
-                    hlink2.NavigateUrl = "~/F_28_MPro/MktMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
-                else
-                    hlink2.NavigateUrl = "~/F_12_Inv/PurMTReqGatePass?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno;
+                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;              
+                hlink2.NavigateUrl = "~/F_28_MPro/MktMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
+               
             }
         }
       
@@ -671,6 +870,17 @@ namespace RealERPWEB.F_99_Allinterface
                         this.gvWrkOrd.DataSource = HiddenSameData(dt);
                         this.gvWrkOrd.DataBind();
                         break;
+
+                    case "gvordfapp":
+                        this.gvordfapp.DataSource = HiddenSameData(dt);
+                        this.gvordfapp.DataBind();
+                        break;
+
+                    case "gvordsapp":
+                        this.gvordsapp.DataSource = HiddenSameData(dt);
+                        this.gvordsapp.DataBind();
+                        break;
+
 
                     case "grvMRec":
                         this.grvMRec.DataSource = HiddenSameData(dt);
@@ -1443,51 +1653,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
-        protected void gvordfapp_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntryofapp");
-                HyperLink hlnkPrintofapp = (HyperLink)e.Row.FindControl("HyInprPrintofapp");
-
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-
-                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
-
-                hlink2.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=FirstApp&genno=" + orderno;
-                hlnkPrintofapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
-
-            }
-
-        }
-        protected void gvordsapp_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntryosapp");
-                HyperLink hlnkPrintosapp = (HyperLink)e.Row.FindControl("HyInprPrintosapp");
-                HyperLink hlnkPrintosappReq = (HyperLink)e.Row.FindControl("HyInprPrintosappReq");
-
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-
-                string orderno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "orderno")).ToString();
-                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                string reqdat = Convert.ToDateTime(this.txttoDate.Text).ToString("dd-MMM-yyyy");
-
-                hlink2.NavigateUrl = "~/F_14_Pro/PurWrkOrderEntry?InputType=SecondApp&genno=" + orderno;
-                hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
-                hlnkPrintosappReq.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
-
-
-            }
-        }
+      
         protected void lbtnSendMail_Click(object sender, EventArgs e)
         {
 
@@ -2194,24 +2360,7 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
         
-        protected void gvCRM_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrint");
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("lnkbtnEntry");
-
-                Hashtable hst = (Hashtable)Session["tblLogin"];
-                string comcod = hst["comcod"].ToString();
-                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
-                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
-
-                hlink2.NavigateUrl = "~/F_12_Inv/PurReqEntry?InputType=ReqcRMCheck&prjcode=" + pactcode + "&genno=" + reqno;
-                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
-
-            }
-        }
+       
         protected void btnDirecdelReq_Click(object sender, EventArgs e)
         {
 

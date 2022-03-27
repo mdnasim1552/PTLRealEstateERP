@@ -222,6 +222,42 @@ namespace RealERPWEB.F_99_Allinterface
         protected global::System.Web.UI.WebControls.GridView gvWrkOrd;
 
         /// <summary>
+        /// pnlorderfapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlorderfapp;
+
+        /// <summary>
+        /// gvordfapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvordfapp;
+
+        /// <summary>
+        /// pnlordersapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlordersapp;
+
+        /// <summary>
+        /// gvordsapp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvordsapp;
+
+        /// <summary>
         /// pnlMatRec control.
         /// </summary>
         /// <remarks>

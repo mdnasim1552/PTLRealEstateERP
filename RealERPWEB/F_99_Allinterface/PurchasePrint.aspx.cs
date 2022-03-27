@@ -77,6 +77,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.printMRReceipt();
                     break;
 
+                case "MktOrderPrint":
+                    this.MktOrderPrint();
+                    break;
+
                 default:
                     break;
             }
@@ -4365,6 +4369,247 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("sign6", sign6));
 
 
+                Rpt1.SetParameters(new ReportParameter("terms1", terms1));
+                Rpt1.SetParameters(new ReportParameter("terms2", terms2));
+                Rpt1.SetParameters(new ReportParameter("terms3", terms3));
+                Rpt1.SetParameters(new ReportParameter("terms4", terms4));
+                Rpt1.SetParameters(new ReportParameter("terms5", terms5));
+                Rpt1.SetParameters(new ReportParameter("terms6", terms6));
+                Rpt1.SetParameters(new ReportParameter("terms7", terms7));
+                Rpt1.SetParameters(new ReportParameter("terms8", terms8));
+                Rpt1.SetParameters(new ReportParameter("terms9", terms9));
+                Rpt1.SetParameters(new ReportParameter("terms10", terms10));
+                Rpt1.SetParameters(new ReportParameter("terms11", terms11));
+                Rpt1.SetParameters(new ReportParameter("terms12", terms12));
+
+                Rpt1.SetParameters(new ReportParameter("footer", ASTUtility.Concat(compname, username, printdate)));
+                Rpt1.SetParameters(new ReportParameter("inword", inword));
+                Rpt1.SetParameters(new ReportParameter("pordnar", pordnar));
+
+
+                Rpt1.SubreportProcessing += new SubreportProcessingEventHandler(LoadSubReport);
+                Session["Report1"] = Rpt1;
+                ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                            ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+
+            }
+            catch (Exception ex)
+            {
+                ((Label)this.Master.FindControl("lblmsg")).Visible = true;
+                ((Label)this.Master.FindControl("lblmsg")).Text = ex.Message;
+                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "HideLabel(0);", true);
+            }
+        }
+
+        private void MktOrderPrint()
+        {
+            try
+            {
+                Hashtable hst = (Hashtable)Session["tblLogin"];
+                string comcod = this.GetCompCode();
+                string comnam = hst["comnam"].ToString();
+                string comadd = hst["comadd1"].ToString();
+                string compname = hst["compname"].ToString();
+                string username = hst["username"].ToString();
+                string printdate = System.DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss tt");
+                string orderNo = this.Request.QueryString["orderno"].ToString();
+                string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
+
+                string ordercopy = "";
+                DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_MKT_PROCUREMENT", "SHOWORKORDER01", orderNo, ordercopy, "", "", "", "", "", "", "");
+
+                List<RealEntity.C_12_Inv.EclassPurchase.MktPurchaseOrderInfo> purlist = _ReportDataSet.Tables[0].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.MktPurchaseOrderInfo>();
+                List<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition> termscondition = _ReportDataSet.Tables[2].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition>();
+                List<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule> paymentschedule = _ReportDataSet.Tables[5].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PaymentSchedule>();
+                ViewState["tblpaysch"] = paymentschedule;
+                string orderno = _ReportDataSet.Tables[4].Rows[0]["orderno"].ToString().Substring(0, 3) + _ReportDataSet.Tables[4].Rows[0]["orderno"].ToString().Substring(7, 2) + "-" + ASTUtility.Right(_ReportDataSet.Tables[4].Rows[0]["orderno"].ToString(), 5);
+                //string oissueno = _ReportDataSet.Tables[4].Rows[0]["oissueno"].ToString();
+                string porderno = orderno;
+                string fax = _ReportDataSet.Tables[1].Rows[0]["fax"].ToString();
+
+
+                string pactcode = _ReportDataSet.Tables[0].Rows[0]["pactcode"].ToString();
+                string prjaddress = _ReportDataSet.Tables[0].Rows[0]["proadd"].ToString();
+                string pactdesc = _ReportDataSet.Tables[0].Rows[0]["pactdesc"].ToString();
+
+
+                string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
+
+                DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_PUR_ORDER_INFO", orderNo, "", "", "", "", "", "", "", "");
+
+                ViewState["tblOrder1"] = ds1.Tables[0];
+
+                DataTable dtorder1 = (DataTable)ViewState["tblOrder1"];
+                DataTable dt1;
+                DataTable dt2;
+                DataTable dt3;
+
+                // Carring
+                DataView dv1 = dtorder1.DefaultView;
+                dv1.RowFilter = ("prtype  like '019999901%'");
+                dt1 = dv1.ToTable();
+
+                //Deduction
+                dv1 = dtorder1.DefaultView;
+                dv1.RowFilter = ("prtype like'019999902%' ");
+                dt2 = dv1.ToTable();
+
+                //Material
+                dv1 = dtorder1.DefaultView;
+                dv1.RowFilter = ("prtype not like '0199999%'");
+                dt3 = dv1.ToTable();
+
+                string discountdesc = dtorder1.Select("prtype like '019999902003%'").Length == 0 ? "Discount" : dtorder1.Select("prtype like '019999902003%'")[0]["prtypedesc"].ToString();
+
+                double amtcar = (dt1.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt1.Compute("Sum(ordramt)", "")) ? 0.00 : dt1.Compute("Sum(ordramt)", "")));
+                double amtdis = (dt2.Rows.Count == 0) ? 0.00 : Convert.ToDouble((Convert.IsDBNull(dt2.Compute("Sum(ordramt)", "")) ? 0.00 : dt2.Compute("Sum(ordramt)", "")));
+                double amtmat = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(ordramt)", "")) ? 0.00 : dt3.Compute("Sum(ordramt)", "")));
+
+
+                string nettotalamt = (amtmat + amtcar - amtdis).ToString("#,##0.00;(#,##0.00);");
+                string advamt = Convert.ToDouble(_ReportDataSet.Tables[4].Rows[0]["advamt"]).ToString("#,##0.00;(#,##0.00); ");
+
+
+
+                string inword = "In Word: " + ASTUtility.Trans(amtmat + amtcar - amtdis, 2);
+
+
+                string sign1 = "", sign2 = "", sign3 = "", sign4 = "", sign5 = "", sign6 = "", sign7 = "";
+
+                /// signature       // appnam - PURAPROVB and ordnam - purorder     
+                switch (comcod)
+                {
+                 
+                    case "3354": //Edison Real Estate
+                    case "3101":
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        //sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        //sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = _ReportDataSet.Tables[3].Rows[0]["ordfappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordfappdat"].ToString();
+                        sign7 = _ReportDataSet.Tables[3].Rows[0]["ordappnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["ordappdat"].ToString();
+                        break;
+
+                    default:
+                        sign1 = _ReportDataSet.Tables[3].Rows[0]["reqnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqdat"].ToString();
+                        sign2 = _ReportDataSet.Tables[3].Rows[0]["checknam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["checkdat"].ToString();
+                        //sign3 = _ReportDataSet.Tables[3].Rows[0]["reqanam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["reqadat"].ToString();
+                        //sign4 = _ReportDataSet.Tables[3].Rows[0]["appnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["appdat"].ToString();
+                        sign5 = _ReportDataSet.Tables[3].Rows[0]["ordnam"].ToString() + "\n" + _ReportDataSet.Tables[3].Rows[0]["orddat"].ToString();
+                        sign6 = "Approved By";
+                        break;
+                }
+
+                // basic information/////////
+                string subject = _ReportDataSet.Tables[4].Rows[0]["subject"].ToString();
+                string leterdesc = _ReportDataSet.Tables[4].Rows[0]["leterdes"].ToString();
+
+                string ordrefno = _ReportDataSet.Tables[4].Rows[0]["pordref"].ToString();
+                string supname = _ReportDataSet.Tables[1].Rows[0]["ssirdesc"].ToString();
+                string Supadd = _ReportDataSet.Tables[1].Rows[0]["address"].ToString();
+                string Supmobile = _ReportDataSet.Tables[1].Rows[0]["phone"].ToString();
+                string cperson = _ReportDataSet.Tables[1].Rows[0]["cperson"].ToString();
+                string podate = Convert.ToDateTime(_ReportDataSet.Tables[1].Rows[0]["orderdat"]).ToString("dd-MMM-yyyy");
+                string pordnar = _ReportDataSet.Tables[4].Rows[0]["pordnar"].ToString();
+
+                //string terms = _ReportDataSet.Tables[4].Rows[0]["terms"].ToString();
+
+                string cperson2 = "";
+
+                // Terms & Conditions Variables//
+
+                string terms1 = "", terms2 = "", terms3 = "", terms4 = "", terms5 = "", terms6 = "", terms7 = "", terms8 = "",
+                    terms9 = "", terms10 = "", terms11 = "", terms12 = "";
+                string pperson1 = "", pperson2 = "";
+
+
+                switch (comcod)
+                {                  
+
+                    case "3354": // Edison Real estate
+                    case "3101":
+                        terms1 = termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString().Length > 0 ? "1." + (termscondition.FindAll(p => p.termsid == "001")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "001")[0].termsdesc.ToString()) : "";
+                        terms2 = termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString().Length > 0 ? "2." + (termscondition.FindAll(p => p.termsid == "002")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "002")[0].termsdesc.ToString()) : "";
+                        terms3 = termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString().Length > 0 ? "3." + (termscondition.FindAll(p => p.termsid == "003")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "003")[0].termsdesc.ToString()) : "";
+                        terms4 = termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString().Length > 0 ? "4." + (termscondition.FindAll(p => p.termsid == "004")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "004")[0].termsdesc.ToString()) : "";
+                        terms5 = termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString().Length > 0 ? "5." + (termscondition.FindAll(p => p.termsid == "005")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "005")[0].termsdesc.ToString()) : "";
+                        terms6 = termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString().Length > 0 ? "6." + (termscondition.FindAll(p => p.termsid == "006")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "006")[0].termsdesc.ToString()) : "";
+                        terms7 = termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString().Length > 0 ? "7." + (termscondition.FindAll(p => p.termsid == "007")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "007")[0].termsdesc.ToString()) : "";
+                        terms8 = termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString().Length > 0 ? "8." + (termscondition.FindAll(p => p.termsid == "008")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "008")[0].termsdesc.ToString()) : "";
+                        terms9 = termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString().Length > 0 ? "9." + (termscondition.FindAll(p => p.termsid == "009")[0].termssubj.ToString()) + " : " + (termscondition.FindAll(p => p.termsid == "009")[0].termsdesc.ToString()) : "";
+                        cperson = termscondition.Find(p => p.termsid == "010").ToString().Length > 0 ? (termscondition.FindAll(p => p.termsid == "010")[0].termsdesc.ToString()) : "";
+                        break;
+
+                    default: //Default
+                        terms1 = "* " + termscondition[0].termssubj.ToString() + ":" + termscondition[0].termsdesc.ToString();
+                        terms2 = "* " + termscondition[1].termssubj.ToString() + ":" + termscondition[1].termsdesc.ToString();
+                        terms3 = "* " + termscondition[2].termssubj.ToString() + ":" + termscondition[2].termsdesc.ToString();
+                        terms4 = "* " + termscondition[3].termssubj.ToString() + ":" + termscondition[3].termsdesc.ToString();
+                        terms5 = "* " + termscondition[4].termssubj.ToString() + ":" + termscondition[4].termsdesc.ToString();
+                        break;
+                }
+
+                // Set Report Name
+                string Reportpath = "";
+                switch (comcod)
+                {
+                    case "3354": //Edison Real Estate
+                    case "3101":
+                        Reportpath = "~/Report/RptMktPurchaseOrder.rdlc";
+                        break;
+
+                    default:
+                        Reportpath = "~/Report/RptMktPurchaseOrder.rdlc";
+                        break;
+                }
+
+
+                LocalReport Rpt1 = new LocalReport();
+                Rpt1.DisplayName = "RptPurchaseOrder";
+                Rpt1.ReportPath = Server.MapPath(Reportpath);
+                Rpt1.DataSources.Clear();
+                Rpt1.DataSources.Add(new ReportDataSource("DataSet1", purlist));
+                Rpt1.DataSources.Add(new ReportDataSource("DataSet2", termscondition));
+                Rpt1.EnableExternalImages = true;
+
+                //Final Order Approval
+                if (comcod == "3354" || comcod=="3101")
+                {
+                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
+
+                }
+
+                Rpt1.SetParameters(new ReportParameter("compname", comnam));
+                Rpt1.SetParameters(new ReportParameter("comadd", comadd));
+                Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
+                Rpt1.SetParameters(new ReportParameter("disamt", amtdis.ToString("#,##0.00;(#,##0.00); ")));
+                Rpt1.SetParameters(new ReportParameter("carecost", amtcar.ToString("#,##0.00;(#,##0.00); ")));
+                Rpt1.SetParameters(new ReportParameter("nettotal", nettotalamt));
+                Rpt1.SetParameters(new ReportParameter("advamt", advamt));
+                Rpt1.SetParameters(new ReportParameter("discountdesc", discountdesc));
+
+                // basic information send to report//
+                Rpt1.SetParameters(new ReportParameter("subject", subject));
+                Rpt1.SetParameters(new ReportParameter("leterdesc", leterdesc));
+                Rpt1.SetParameters(new ReportParameter("porderno", porderno));
+                Rpt1.SetParameters(new ReportParameter("ordrefno", ordrefno));
+                Rpt1.SetParameters(new ReportParameter("supname", supname));
+                Rpt1.SetParameters(new ReportParameter("supadd", Supadd));
+                Rpt1.SetParameters(new ReportParameter("supmobile", Supmobile));
+                Rpt1.SetParameters(new ReportParameter("cperson", cperson));
+                Rpt1.SetParameters(new ReportParameter("podate", podate));
+                Rpt1.SetParameters(new ReportParameter("faxnumber", fax));
+
+                // signature send to report//
+                Rpt1.SetParameters(new ReportParameter("sign1", sign1));
+                Rpt1.SetParameters(new ReportParameter("sign2", sign2));
+                Rpt1.SetParameters(new ReportParameter("sign3", sign3));
+                Rpt1.SetParameters(new ReportParameter("sign4", sign4));
+                Rpt1.SetParameters(new ReportParameter("sign5", sign5));
+                Rpt1.SetParameters(new ReportParameter("sign6", sign6));
+
+                // Terms & Condition send to report//
                 Rpt1.SetParameters(new ReportParameter("terms1", terms1));
                 Rpt1.SetParameters(new ReportParameter("terms2", terms2));
                 Rpt1.SetParameters(new ReportParameter("terms3", terms3));
