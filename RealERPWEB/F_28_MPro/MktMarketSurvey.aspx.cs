@@ -1196,40 +1196,40 @@ namespace RealERPWEB.F_28_MPro
 
         protected void lblgrmet1BSel_Click(object sender, EventArgs e)
         {
-            string comcod = this.GetCompCode();
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-            int index = row.RowIndex;
-            string rsircode = ((Label)this.gvBestSelect.Rows[index].FindControl("lblgvResCodBSel1")).Text.ToString();
-            string spcfcod = ((Label)this.gvBestSelect.Rows[index].FindControl("lblgvSpcCodBSel1")).Text.ToString();
-            string reqno = this.Request.QueryString["genno"].ToString();
-            DataSet mathistory = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETMATWISEPURINF", rsircode, spcfcod, reqno, "", "");
-            if (mathistory.Tables[0].Rows.Count == 0)
-            {
+            //string comcod = this.GetCompCode();
+            //GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+            //int index = row.RowIndex;
+            //string rsircode = ((Label)this.gvBestSelect.Rows[index].FindControl("lblgvacttypeBSel1")).Text.ToString();
+            //string spcfcod = "000000000000";
+            //string reqno = this.Request.QueryString["genno"].ToString();
+            //DataSet mathistory = purData.GetTransInfo(comcod, "SP_REPORT_PURCHASE", "GETMATWISEPURINF", rsircode, spcfcod, reqno, "", "");
+            //if (mathistory.Tables[0].Rows.Count == 0)
+            //{
 
-                ScriptManager.RegisterStartupScript(this, GetType(), "alert", "FnDanger();", true);
-                return;
-            }
-            this.lblstore.Text = mathistory.Tables[0].Rows[0]["actdesc"].ToString();
-            this.lblmat.Text = mathistory.Tables[0].Rows[0]["subdesc"].ToString();
-            this.lblspc.Text = mathistory.Tables[0].Rows[0]["spcfdesc"].ToString();
-            string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
-            var matlist = mathistory.Tables[0].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.MaterialWiseStock>();
-            Session["MatWiseStock"] = matlist;
-            this.gvMatHis.DataSource = matlist;
-            this.gvMatHis.DataBind();
-            //-----------------------mat pur history
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATPURHISTORY", "000000000000", rsircode, "", todate, "OpDate", "", "", "", "");
-            if (ds1 == null)
-            {
-                this.gvMatPurHis.DataSource = null;
-                this.gvMatPurHis.DataBind();
-                return;
-            }
-            Session["MatPurHis"] = HiddenSameDate(ds1.Tables[0]);
-            this.gvMatPurHis.DataSource = HiddenSameDate(ds1.Tables[0]);
-            this.gvMatPurHis.DataBind();
-            FooterCalculation();
-            ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
+            //    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "FnDanger();", true);
+            //    return;
+            //}
+            //this.lblstore.Text = mathistory.Tables[0].Rows[0]["actdesc"].ToString();
+            //this.lblmat.Text = mathistory.Tables[0].Rows[0]["subdesc"].ToString();
+            //this.lblspc.Text = mathistory.Tables[0].Rows[0]["spcfdesc"].ToString();
+            //string todate = System.DateTime.Today.ToString("dd-MMM-yyyy");
+            //var matlist = mathistory.Tables[0].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.MaterialWiseStock>();
+            //Session["MatWiseStock"] = matlist;
+            //this.gvMatHis.DataSource = matlist;
+            //this.gvMatHis.DataBind();
+            ////-----------------------mat pur history
+            //DataSet ds1 = purData.GetTransInfo(comcod, "SP_REPORT_REQ_STATUS", "RPTMATPURHISTORY", "000000000000", rsircode, "", todate, "OpDate", "", "", "", "");
+            //if (ds1 == null)
+            //{
+            //    this.gvMatPurHis.DataSource = null;
+            //    this.gvMatPurHis.DataBind();
+            //    return;
+            //}
+            //Session["MatPurHis"] = HiddenSameDate(ds1.Tables[0]);
+            //this.gvMatPurHis.DataSource = HiddenSameDate(ds1.Tables[0]);
+            //this.gvMatPurHis.DataBind();
+            //FooterCalculation();
+            //ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openModal();", true);
 
 
         }
@@ -1242,10 +1242,8 @@ namespace RealERPWEB.F_28_MPro
             int index = row.RowIndex;
 
             string rsircode = ((Label)this.gvResInfo.Rows[index].FindControl("lblrsircode")).Text.ToString();
-            string spcfcod = ((Label)this.gvResInfo.Rows[index].FindControl("lblspcfcod")).Text.ToString();
-            Session["rsircode"] = rsircode;
-            Session["spcfcod"] = spcfcod;
-            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_PURCHASE_01", "GETMSRSUPLIST", "%", "", "", "", "", "", "", "", "");
+            Session["rsircode"] = rsircode;           
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_04", "GETMSRSUPLIST", "%", "", "", "", "", "", "", "", "");
             if (ds1 == null)
                 return;
 
@@ -1253,25 +1251,25 @@ namespace RealERPWEB.F_28_MPro
             this.ddlSupl2.DataValueField = "ssircode";
             this.ddlSupl2.DataSource = ds1.Tables[0];
             this.ddlSupl2.DataBind();
-            DataSet ds = lst.Curreny();
-            var lstConv = ds.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.ConvInf>();
-            Session["tblcur"] = lstConv;
+            //DataSet ds = lst.Curreny();
+            //var lstConv = ds.Tables[0].DataTableToList<RealEntity.C_22_Sal.Sales_BO.ConvInf>();
+            //Session["tblcur"] = lstConv;
 
-            var lstCurryDesc = ds.Tables[1].DataTableToList<RealEntity.C_22_Sal.Sales_BO.Currencyinf>();
-            Session["tblcurdesc"] = lstCurryDesc;
-            this.ddlCurrency.DataValueField = "curcode";
-            this.ddlCurrency.DataTextField = "curdesc";
-            this.ddlCurrency.DataSource = lstCurryDesc;
-            this.ddlCurrency.DataBind();
+            //var lstCurryDesc = ds.Tables[1].DataTableToList<RealEntity.C_22_Sal.Sales_BO.Currencyinf>();
+            //Session["tblcurdesc"] = lstCurryDesc;
+            //this.ddlCurrency.DataValueField = "curcode";
+            //this.ddlCurrency.DataTextField = "curdesc";
+            //this.ddlCurrency.DataSource = lstCurryDesc;
+            //this.ddlCurrency.DataBind();
 
-            string fcode = "001";
-            string tcode = this.ddlCurrency.SelectedValue.ToString();
-            List<RealEntity.C_22_Sal.Sales_BO.ConvInf> lst1 = (List<RealEntity.C_22_Sal.Sales_BO.ConvInf>)Session["tblcur"];
+            //string fcode = "001";
+            //string tcode = this.ddlCurrency.SelectedValue.ToString();
+            //List<RealEntity.C_22_Sal.Sales_BO.ConvInf> lst1 = (List<RealEntity.C_22_Sal.Sales_BO.ConvInf>)Session["tblcur"];
 
-            double method = (((List<RealEntity.C_22_Sal.Sales_BO.ConvInf>)Session["tblcur"]).FindAll(p => p.fcode == fcode && p.tcode == tcode))[0].conrate;
+            //double method = (((List<RealEntity.C_22_Sal.Sales_BO.ConvInf>)Session["tblcur"]).FindAll(p => p.fcode == fcode && p.tcode == tcode))[0].conrate;
 
 
-            this.lblConRate.Text = Convert.ToDouble(method).ToString("#,##0.000000;-#,##0.000000; ");
+            //this.lblConRate.Text = Convert.ToDouble(method).ToString("#,##0.000000;-#,##0.000000; ");
             ScriptManager.RegisterStartupScript(this, GetType(), "alert", "openServyModal();", true);
 
 
