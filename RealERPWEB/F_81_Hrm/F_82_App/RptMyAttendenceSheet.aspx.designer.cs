@@ -168,6 +168,24 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
         protected global::System.Web.UI.WebControls.Label lbldadte;
 
         /// <summary>
+        /// lbldadteOuttime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldadteOuttime;
+
+        /// <summary>
+        /// lbldadteIntime control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbldadteIntime;
+
+        /// <summary>
         /// lbldadteTime control.
         /// </summary>
         /// <remarks>

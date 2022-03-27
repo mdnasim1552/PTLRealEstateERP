@@ -632,7 +632,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=FirstApp&genno=" + orderno;
-                hlnkPrintofapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
+                hlnkPrintofapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;
 
             }
 
@@ -658,7 +658,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=SecondApp&genno=" + orderno;
-                hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
+                hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;
                 hlnkPrintosappReq.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
 
 
@@ -848,7 +848,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
 
-                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;              
+                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;              
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                
             }
