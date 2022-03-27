@@ -11970,7 +11970,7 @@
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
-    <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
+    <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderP2P_O.rdlc" />

@@ -1358,12 +1358,18 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "2801000", "2801020", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqCheck", "Material Requisition (1st Approval)", "Marketing Procurement", "False", "False", "False", "False" });
             tblObj.Rows.Add(new Object[] { "2801000", "2801030", "F_28_MPro", "MKTPurReqEntry?", "InputType=ReqApproval", "Material Requisition (Final Approval)", "Marketing Procurement", "False", "False", "False", "False" });
 
+            tblObj.Rows.Add(new Object[] { "2801000", "2801035", "F_28_MPro", "MktMarketSurvey?", "Type=Entry", "CS Preparation", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801036", "F_28_MPro", "MktMarketSurvey?", "Type=Approval", "CS Approval", "Marketing Procurement", "False", "False", "False", "False" });
+
+
 
             tblObj.Rows.Add(new Object[] { "2801000", "2801040", "F_28_MPro", "MktWorkOrderEntry?", "InputType=OrderEntry", "Marketing Purchase Order", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801042", "F_28_MPro", "MktWorkOrderEntry?", "InputType=FirstApp", "Marketing Purchase Order(1st App)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801045", "F_28_MPro", "MktWorkOrderEntry?", "InputType=SecondApp", "Marketing Purchase Order(Final App)", "Marketing Procurement", "False", "False", "False", "False" });
+            tblObj.Rows.Add(new Object[] { "2801000", "2801050", "F_28_MPro", "MktMRREntry?", "Type=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
 
 
-
-            tblObj.Rows.Add(new Object[] { "2801000", "2801050", "F_28_MPro", "MktMRREntry?", "InputType=Entry", "Marketing Material Receive", "Marketing Procurement", "False", "False", "False", "False" });
+            
 
 
             tblObj.Rows.Add(new Object[] { "2851000", "2851001", "F_99_Allinterface", "MKTProInterface?", "Type=Report", "Marketing Procurement", "Marketing Procurement", "False", "False", "False", "False" });
@@ -8214,14 +8220,14 @@ namespace RealERPLIB
 
 
 
-            
 
- 
+
+
 
             mnuTbl1.Rows.Add(new Object[] { "0301000000", "", "", "", true, "mb" });
             mnuTbl1.Rows.Add(new Object[] { "0301000001", "01. Material Requisition", "F_28_MPro/MKTPurReqEntry?InputType=Entry&prjcode=&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000002", "02. Material Requisition (1st Approval)", "F_28_MPro/MKTPurReqEntry?InputType=ReqCheck&prjcode=&genno=", "", true, "" });           
-            mnuTbl1.Rows.Add(new Object[] { "0301000003","", "", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0301000003", "03. CS Preparation", "F_28_MPro/MktMarketSurvey?Type=Entry&genno=", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000004","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000005","", "", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0301000006","", "", "", true, "" });

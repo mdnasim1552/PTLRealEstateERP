@@ -171,7 +171,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqStatus.Visible = true;
                     this.pnlReqChq.Visible = false;                    
-                    this.pnlFinalApp.Visible = false;                   
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;                    
@@ -194,7 +196,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = true;                   
-                    this.pnlFinalApp.Visible = false;                   
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
@@ -212,7 +216,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;                    
-                    this.pnlFinalApp.Visible = true;                   
+                    this.pnlFinalApp.Visible = true;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
@@ -222,10 +228,44 @@ namespace RealERPWEB.F_99_Allinterface
 
                 //CS Preparation
                 case "3":
+                    dt = ((DataTable)ds1.Tables[2]).Copy();
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("cstatus = 'CS Preparation'");
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvcsprepared", dt1);
+
+                    this.pnlReqStatus.Visible = false;
+                    this.pnlReqChq.Visible = false;
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = true;
+                    this.pnlcsapproved.Visible = false;
+                    this.pnlWorkOrder.Visible = false;
+                   
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
+                    this.pnlMatRec.Visible = false;
+                    this.RadioButtonList1.Items[3].Attributes["class"] = "lblactive blink_me";
                     break;
 
                 //CS Approved
                 case "4":
+                    dt = ((DataTable)ds1.Tables[2]).Copy();
+                    dv = dt.DefaultView;
+                    dv.RowFilter = ("cstatus = 'CS Approved' ");
+                    dt1 = dv.ToTable();
+                    this.Data_Bind("gvcsapproved", dt1);
+
+                    this.pnlReqStatus.Visible = false;
+                    this.pnlReqChq.Visible = false;
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = true;
+                    this.pnlWorkOrder.Visible = false;
+
+                    this.pnlorderfapp.Visible = false;
+                    this.pnlordersapp.Visible = false;
+                    this.pnlMatRec.Visible = false;
+                    this.RadioButtonList1.Items[4].Attributes["class"] = "lblactive blink_me";
                     break;
 
                 //Work Order
@@ -235,7 +275,9 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;                  
-                    this.pnlFinalApp.Visible = false;                   
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = true;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = false;
@@ -259,11 +301,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;
                     this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = true;
                     this.pnlordersapp.Visible = false;
                     this.pnlMatRec.Visible = false;
-                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
                     
                     break;
 
@@ -277,11 +321,13 @@ namespace RealERPWEB.F_99_Allinterface
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;
                     this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = true;
                     this.pnlMatRec.Visible = false;
-                    this.RadioButtonList1.Items[5].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[7].Attributes["class"] = "lblactive blink_me";
                     
                     break;
 
@@ -292,12 +338,14 @@ namespace RealERPWEB.F_99_Allinterface
 
                     this.pnlReqStatus.Visible = false;
                     this.pnlReqChq.Visible = false;                    
-                    this.pnlFinalApp.Visible = false;                    
+                    this.pnlFinalApp.Visible = false;
+                    this.pnlcsprepared.Visible = false;
+                    this.pnlcsapproved.Visible = false;
                     this.pnlWorkOrder.Visible = false;
                     this.pnlorderfapp.Visible = false;
                     this.pnlordersapp.Visible = true;
                     this.pnlMatRec.Visible = true;
-                    this.RadioButtonList1.Items[6].Attributes["class"] = "lblactive blink_me";
+                    this.RadioButtonList1.Items[8].Attributes["class"] = "lblactive blink_me";
                     if (dt.Rows.Count > 0)
                     {
                         ((TextBox)this.grvMRec.HeaderRow.FindControl("txtSearchrefnummrec")).Attributes.Add("placeholder", ReadCookie());
@@ -395,6 +443,38 @@ namespace RealERPWEB.F_99_Allinterface
                 hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_28_MPro/MKTPurReqEntry?InputType=ReqApproval&prjcode=" + pactcode + "&genno=" + reqno;
                 
+
+            }
+        }
+
+        protected void gvcsprepared_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintcsp");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsp");
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
+                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Entry&genno=" + reqno;
+
+
+            }
+        }
+
+        protected void gvcsapproved_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintcsap");
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");
+                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+                string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
+                string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
+                //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Approval&genno=" + reqno;
+
 
             }
         }
@@ -552,7 +632,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=FirstApp&genno=" + orderno;
-                hlnkPrintofapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;
+                hlnkPrintofapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
 
             }
 
@@ -578,7 +658,7 @@ namespace RealERPWEB.F_99_Allinterface
                 //hlink1.NavigateUrl = "~/F_20_Service/Ser_Print?Type=ProReceived&comcod=" + comcod + "&centrid=" + centrid + "&recvno=" + recvno + "&imesimeno=" + imesimeno;
 
                 hlink2.NavigateUrl = "~/F_28_MPro/MktWorkOrderEntry?InputType=SecondApp&genno=" + orderno;
-                hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;
+                hlnkPrintosapp.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrint&orderno=" + orderno;
                 hlnkPrintosappReq.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
 
 
@@ -768,7 +848,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string sircode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "ssircode")).ToString();
 
-                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktOrderPrint&orderno=" + orderno;              
+                hlink3.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=OrderPrintNew&orderno=" + orderno;              
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMRREntry?Type=Entry&prjcode=" + pactcode + "&genno=" + orderno + "&sircode=" + sircode;
                
             }
@@ -863,6 +943,21 @@ namespace RealERPWEB.F_99_Allinterface
                         this.gvReqApp.DataSource = HiddenSameData(dt);
                         this.gvReqApp.DataBind();
                         break;
+
+
+                    case "gvcsprepared":
+                        this.gvcsprepared.DataSource = HiddenSameData(dt);
+                        this.gvcsprepared.DataBind();
+                        break;
+
+
+
+                    case "gvcsapproved":
+                        this.gvcsapproved.DataSource = HiddenSameData(dt);
+                        this.gvcsapproved.DataBind();
+                        break;
+
+
 
 
 
@@ -2456,7 +2551,6 @@ namespace RealERPWEB.F_99_Allinterface
             this.RadioButtonList1_SelectedIndexChanged(null, null);
         }
 
-        
-        
+       
     }
 }

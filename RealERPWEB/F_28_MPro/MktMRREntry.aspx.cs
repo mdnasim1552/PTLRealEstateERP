@@ -16,8 +16,11 @@ namespace RealERPWEB.F_28_MPro
         {
             if (!IsPostBack)
             {
-                //if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString(), (DataSet)Session["tblusrlog"]))
-                //    Response.Redirect("../AcceessError.aspx");
+               
+                int indexofamp = (HttpContext.Current.Request.Url.AbsoluteUri.ToString().Contains("&")) ? HttpContext.Current.Request.Url.AbsoluteUri.ToString().IndexOf('&') : HttpContext.Current.Request.Url.AbsoluteUri.ToString().Length;
+                if (!ASTUtility.PagePermission(HttpContext.Current.Request.Url.AbsoluteUri.ToString().Substring(0, indexofamp), (DataSet)Session["tblusrlog"]))
+                    Response.Redirect("~/AcceessError.aspx");
+
 
                 this.txtCurMRRDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
                 this.txtApprovalDate.Text = DateTime.Today.ToString("dd.MM.yyyy");
@@ -766,9 +769,9 @@ namespace RealERPWEB.F_28_MPro
                 for (int i = 0; i < tbl1.Rows.Count; i++)
                 {
                     string mreqno = tbl1.Rows[i]["reqno"].ToString();
-                    string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                    string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
-                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "BAL_ORDER_QTY", mORDERNO, mreqno, mRSIRCODE, mSPCFCOD, "", "", "", "", "");
+                    string prtype = tbl1.Rows[i]["prtype"].ToString();
+                    string acttype = tbl1.Rows[i]["acttype"].ToString();
+                    DataSet ds = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "BAL_ORDER_QTY", mORDERNO, mreqno, prtype, acttype, "", "", "", "", "");
                     if (ds.Tables[0].Rows.Count == 0) continue;
                     else if (Convert.ToDouble(ds.Tables[0].Rows[0]["balqty"]) <= 0)
                     {
@@ -848,8 +851,7 @@ namespace RealERPWEB.F_28_MPro
 
                 string orderno = tbl1.Rows[i]["orderno"].ToString();
                 string mreqno = tbl1.Rows[i]["reqno"].ToString();
-                string mRSIRCODE = tbl1.Rows[i]["rsircode"].ToString();
-                string mSPCFCOD = tbl1.Rows[i]["spcfcod"].ToString();
+              
                 double orbal = Convert.ToDouble(tbl1.Rows[i]["orderbal"].ToString());
                 double mMRRQTY = Convert.ToDouble(tbl1.Rows[i]["mrrqty"].ToString());
                 string mMRRAMT = tbl1.Rows[i]["mrramt"].ToString();
@@ -862,7 +864,7 @@ namespace RealERPWEB.F_28_MPro
                 {
                     if (mMRRQTY > 0)
                         result = purData.UpdateTransInfo2(comcod, "SP_ENTRY_MKT_PROCUREMENT_03", "UPDATE_MKT_MRR_INFO", "MKTMRRA",
-                                 mMRRNO, mRSIRCODE, mSPCFCOD, mMRRQTY.ToString(), mMRRAMT, mreqno, prtype, acttype, orderno, mkttype, mMRRNOTE, "", "", "", "", "", "","","","");
+                                 mMRRNO, "", "", mMRRQTY.ToString(), mMRRAMT, mreqno, prtype, acttype, orderno, mkttype, mMRRNOTE, "", "", "", "", "", "","","","");
                     if (!result)
                     {
                         ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);
