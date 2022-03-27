@@ -252,7 +252,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="table-responsives">
+                                <div class="table-responsive">
                                     <asp:GridView ID="gvLeaveRule" runat="server" AutoGenerateColumns="False"
                                         OnPageIndexChanging="gvLeaveRule_PageIndexChanging" ShowFooter="True" Width="834px" CssClass="table-striped table-hover table-bordered grvContentarea"
                                         PageSize="15">
@@ -389,7 +389,7 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Without Pay Leave">
+                                            <asp:TemplateField HeaderText="Without Pay <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvWPl" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "wpleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -398,7 +398,7 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Training Leave">
+                                            <asp:TemplateField HeaderText="Training <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvTrL" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "trpleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -408,7 +408,7 @@
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Leave On Probation">
+                                            <asp:TemplateField HeaderText="Paternity <br> Leave">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnProba" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonproidleave")).ToString("#,##0.00;(#,##0.00); ") %>'
@@ -417,10 +417,20 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <HeaderStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Leave On Separation">
+                                            <asp:TemplateField HeaderText="Leave On <br> PROBITION">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtgvLOnSepa" runat="server" BackColor="Transparent" BorderStyle="None"
                                                         ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lonsepaleave")).ToString("#,##0.00;(#,##0.00); ") %>'
+                                                        Width="70px"></asp:TextBox>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="right" />
+                                                <HeaderStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="Leave On APPRENTICE">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtgvLOnApprentice" runat="server" BackColor="Transparent" BorderStyle="None"
+                                                        ForeColor="Black" Style="font-size: 11px; text-align: right;" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "lappreleave")).ToString("#,##0.00;(#,##0.00); ") %>'
                                                         Width="70px"></asp:TextBox>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="right" />
