@@ -102,6 +102,7 @@
     <Compile Include="C_24_CC\EClassBillApproval.cs" />
     <Compile Include="C_24_CC\RptCostRegistration.cs" />
     <Compile Include="C_24_CC\RptSalesPermissionCost.cs" />
+    <Compile Include="C_28_MPro\EClassMktProcurement.cs" />
     <Compile Include="C_29_Fxt\EClassFixedAsset.cs" />
     <Compile Include="C_32_Mis\EClassAcc_03.cs" />
     <Compile Include="C_33_Doc\EClassDoc.cs" />

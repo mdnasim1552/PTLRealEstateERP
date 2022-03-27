@@ -425,7 +425,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");  
                 hlink2.NavigateUrl = "~/F_28_MPro/MKTPurReqEntry?InputType=ReqCheck&prjcode=" + pactcode + "&genno=" + reqno;
-                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MktReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
 
 
             }
@@ -440,7 +440,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
                 string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
-                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
+                hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=MKtReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_28_MPro/MKTPurReqEntry?InputType=ReqApproval&prjcode=" + pactcode + "&genno=" + reqno;
                 
 

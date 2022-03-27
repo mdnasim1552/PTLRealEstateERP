@@ -729,6 +729,10 @@ namespace RealERPRDLC
 
                 #endregion
 
+                #region Marketing Procurement
+                case "R_28_MPro.RptMktRequisition": Rpt1a = SetRptMktRequisition(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
+                #endregion
+
                 #region MIS Module
                 case "R_32_Mis.RptProjectSummary": Rpt1a = SetRptProjectSummary(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
                 case "R_32_Mis.RptProjectWisResource": Rpt1a = SetRptProjectWisResource(Rpt1a, RptDataSet, RptDataSet2, UserDataset); break;
@@ -5734,6 +5738,10 @@ namespace RealERPRDLC
             Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_21_Mkt.ECRMClientInfo.RptProspectTransfer>)RptDataSet));
             return Rpt1a;
         }
-
+        private static LocalReport SetRptMktRequisition(LocalReport Rpt1a, object RptDataSet, object RptDataSet2, object UserDataset)
+        {
+            Rpt1a.DataSources.Add(new ReportDataSource("DataSet1", (List<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>)RptDataSet));
+            return Rpt1a;
+        }
     }
 }
