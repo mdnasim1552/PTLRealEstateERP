@@ -447,7 +447,8 @@ namespace RealERPWEB.F_28_MPro
 
             this.txtCurOrderDate.Text = Convert.ToDateTime(ds1.Tables[2].Rows[0]["orderdat"]).ToString("dd.MM.yyyy");
             this.lssircode.Text = ds1.Tables[2].Rows[0]["ssircode"].ToString();
-            this.txtOrderNarr.Text = ds1.Tables[2].Rows[0]["pordnar"].ToString();            
+            this.txtOrderNarr.Text = ds1.Tables[2].Rows[0]["pordnar"].ToString();  
+            this.txtadvAmt.Text= Convert.ToDouble(ds1.Tables[2].Rows[0]["advamt"]).ToString("#,##0;(#,##0); ");
 
             this.gvOrderInfo_DataBind();
         }
@@ -1054,7 +1055,8 @@ namespace RealERPWEB.F_28_MPro
             for (int i = 0; i < tbl1.Rows.Count; i++)
             {
                 string mREQNO = tbl1.Rows[i]["reqno"].ToString();
-                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_MKT_REQ", mREQNO, mORDERNO, "", "", "", "", "", "", "", "", "");
+                string acttpe= tbl1.Rows[i]["acttype"].ToString();
+                result = purData.UpdateTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "UPDATE_MKT_REQ", mREQNO, acttpe, mORDERNO, "", "", "", "", "", "", "", "", "");
                 if (!result)
                 {
                     ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + purData.ErrorObject["Msg"].ToString() + "');", true);

@@ -1417,7 +1417,7 @@
 
                                                             <asp:TemplateField HeaderText=" Req. No">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblgvreqnocsap" runat="server" Font-Bold="True" Style="text-align: left"
+                                                                    <asp:Label ID="lblgvreqnocsap01" runat="server" Font-Bold="True" Style="text-align: left"
                                                                         Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqno1"))%>' Width="80px"></asp:Label>
 
                                                                 </ItemTemplate>
@@ -1501,7 +1501,7 @@
                                                                     </asp:HyperLink>
 
 
-                                                                    <asp:HyperLink ID="lnkbtnEntrycsap" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
+                                                                    <asp:HyperLink ID="hlnkbtnEntrycsap" runat="server" Target="_blank" CssClass="btn btn-default btn-xs"><span class="fa fa-check"></span>
 
                                                                     </asp:HyperLink>
 
