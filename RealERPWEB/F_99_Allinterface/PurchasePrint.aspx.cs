@@ -77,6 +77,10 @@ namespace RealERPWEB.F_99_Allinterface
                     this.printMRReceipt();
                     break;
 
+                case "MktReqPrint":
+                    this.MktReqPrint();
+                    break;
+
                 case "MktOrderPrint":
                     this.MktOrderPrint();
                     break;
@@ -4401,6 +4405,88 @@ namespace RealERPWEB.F_99_Allinterface
             }
         }
 
+        private void MktReqPrint()
+        {
+            Hashtable hst = (Hashtable)Session["tblLogin"];
+            string comcod = hst["comcod"].ToString();
+            string comnam = hst["comnam"].ToString();
+            string compname = hst["compname"].ToString();
+            string username = hst["username"].ToString();
+            string printdate = System.DateTime.Now.ToString("dd.MMM.yyyy hh:mm:ss tt");
+
+
+            string mReqNo = this.Request.QueryString["reqno"].ToString();
+            DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT", "GET_MKT_PUR_REQ_INFO", mReqNo, "",
+                     "", "", "", "", "", "", "");
+            if (ds1 == null)
+                return;
+
+            DataTable dt1 = ds1.Tables[1];
+           // DataTable dt = ds1.Tables[2];
+
+            string txtcrno = dt1.Rows[0]["reqno1"].ToString();
+            string txtcrdate = Convert.ToDateTime(dt1.Rows[0]["reqdat"].ToString()).ToString("dd-MMM-yyyy");
+            string txtmrfno = dt1.Rows[0]["mrfno"].ToString();
+            string txtprojectname = dt1.Rows[0]["pactdesc"].ToString();
+            //string txtAddress = dt1.Rows[0]["paddress"].ToString();
+
+
+            //string txtbuildno = ((dt.Rows.Count == 0) ? "" : (dt.Select("termsid='001'").Length > 0 ? (dt.Select("termsid='001'")[0]["termsdesc"]).ToString() : ""));
+            //string floorno = ((dt.Rows.Count == 0) ? "" : (dt.Select("termsid='002'").Length > 0 ? (dt.Select("termsid='002'")[0]["termsdesc"]).ToString() : ""));
+            //string txtfloorno = (dt.Rows.Count == 0) ? "" : (floorno + (dt.Select("termsid='003'").Length > 0 ? (", " + (dt.Select("termsid='003'")[0]["termsdesc"]).ToString()) : ""));
+            //string txtpforused = ((dt.Rows.Count == 0) ? "" : (dt.Select("termsid='004'").Length > 0 ? (dt.Select("termsid='004'")[0]["termsdesc"]).ToString() : ""));
+
+            DataTable dtr = ds1.Tables[0];
+
+            double reqamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(preqamt)", "")) ? 0.00 : dtr.Compute("Sum(preqamt)", "")));
+            double aprvamt = Convert.ToDouble((Convert.IsDBNull(dtr.Compute("Sum(areqamt)", "")) ? 0.00 : dtr.Compute("Sum(areqamt)", "")));
+            double reqoapamt = aprvamt > 0 ? aprvamt : reqamt;
+
+
+            string txttoamt = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
+            string txttoamt02 = Convert.ToDouble(reqoapamt).ToString("#,##0.00;(#,##0.00); ");
+            string rpttxtnaration = dt1.Rows[0]["reqnar"].ToString();
+            string txtuserinfo = ASTUtility.Concat(compname, username, printdate);
+            string txtSign1 = "S.K";
+            string txtSign2 = "Project Incharge";
+            string txtSign3 = "DPM/PM/AGM/DGM";
+            string txtSign4 = "Procurement";
+            string txtSign5 = "Cost & Budget";
+            string txtSign6 = "Head Of Construction";
+            string txtSign7 = "Managing Director";
+
+
+            var list = dtr.DataTableToList<RealEntity.C_28_Mpro.EClassMktProcurement.RptMktPurchaseRequisition>();
+            LocalReport Rpt1 = new LocalReport();
+            Rpt1 = RealERPRDLC.RptSetupClass1.GetLocalReport("R_28_MPro.RptMktRequisition", list, null, null);
+            Rpt1.EnableExternalImages = true;
+            Rpt1.SetParameters(new ReportParameter("txtcompanyname", comnam));
+            Rpt1.SetParameters(new ReportParameter("txtRptTitle", "Marketing Purchase Requisition"));
+            Rpt1.SetParameters(new ReportParameter("txtReqNo", txtcrno));
+            Rpt1.SetParameters(new ReportParameter("txtReqDate", txtcrdate));
+            Rpt1.SetParameters(new ReportParameter("txtMrfno", txtmrfno));
+            Rpt1.SetParameters(new ReportParameter("txtProjectName", txtprojectname));
+            Rpt1.SetParameters(new ReportParameter("txtAddress", ""));
+            Rpt1.SetParameters(new ReportParameter("txtBuildingNo", ""));
+            Rpt1.SetParameters(new ReportParameter("txtFloorNo", ""));
+            Rpt1.SetParameters(new ReportParameter("txtPurposeofUsed", ""));
+            Rpt1.SetParameters(new ReportParameter("txttoamt", txttoamt));
+            Rpt1.SetParameters(new ReportParameter("txttoamt02", txttoamt02));
+            Rpt1.SetParameters(new ReportParameter("rpttxtnaration", rpttxtnaration));
+            Rpt1.SetParameters(new ReportParameter("txtRptFooter", txtuserinfo));
+            Rpt1.SetParameters(new ReportParameter("txtSign1", txtSign1));
+            Rpt1.SetParameters(new ReportParameter("txtSign2", txtSign2));
+            Rpt1.SetParameters(new ReportParameter("txtSign3", txtSign3));
+            Rpt1.SetParameters(new ReportParameter("txtSign4", txtSign4));
+            Rpt1.SetParameters(new ReportParameter("txtSign5", txtSign5));
+            Rpt1.SetParameters(new ReportParameter("txtSign6", txtSign6));
+            Rpt1.SetParameters(new ReportParameter("txtSign7", txtSign7));
+
+            Session["Report1"] = Rpt1;
+            ((Label)this.Master.FindControl("lblprintstk")).Text = @"<script>window.open('../RDLCViewer.aspx?PrintOpt=" +
+                        ((DropDownList)this.Master.FindControl("DDPrintOpt")).SelectedValue.Trim().ToString() + "', target='_self');</script>";
+        }
+
         private void MktOrderPrint()
         {
             try
@@ -4416,7 +4502,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string ComLogo = new Uri(Server.MapPath(@"~\Image\LOGO" + comcod + ".jpg")).AbsoluteUri;
 
                 string ordercopy = "";
-                DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_MKT_PROCUREMENT", "SHOWORKORDER01", orderNo, ordercopy, "", "", "", "", "", "", "");
+                DataSet _ReportDataSet = purData.GetTransInfo(comcod, "SP_REPORT_MKT_PROCUREMENT", "SHOW_WORK_ORDER", orderNo, ordercopy, "", "", "", "", "", "", "");
 
                 List<RealEntity.C_12_Inv.EclassPurchase.MktPurchaseOrderInfo> purlist = _ReportDataSet.Tables[0].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.MktPurchaseOrderInfo>();
                 List<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition> termscondition = _ReportDataSet.Tables[2].DataTableToList<RealEntity.C_12_Inv.EclassPurchase.PurOrderTermsCondition>();
@@ -4433,7 +4519,7 @@ namespace RealERPWEB.F_99_Allinterface
                 string pactdesc = _ReportDataSet.Tables[0].Rows[0]["pactdesc"].ToString();
 
 
-                string mrfno1 = _ReportDataSet.Tables[7].Rows[0]["mrfno"].ToString();
+                string mrfno1 = _ReportDataSet.Tables[6].Rows[0]["mrfno"].ToString();
 
                 DataSet ds1 = purData.GetTransInfo(comcod, "SP_ENTRY_MKT_PROCUREMENT_02", "GET_PUR_ORDER_INFO", orderNo, "", "", "", "", "", "", "", "");
 
@@ -4573,13 +4659,6 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.DataSources.Add(new ReportDataSource("DataSet2", termscondition));
                 Rpt1.EnableExternalImages = true;
 
-                //Final Order Approval
-                if (comcod == "3354" || comcod=="3101")
-                {
-                    Rpt1.SetParameters(new ReportParameter("sign7", sign7));
-
-                }
-
                 Rpt1.SetParameters(new ReportParameter("compname", comnam));
                 Rpt1.SetParameters(new ReportParameter("comadd", comadd));
                 Rpt1.SetParameters(new ReportParameter("ComLogo", ComLogo));
@@ -4608,6 +4687,7 @@ namespace RealERPWEB.F_99_Allinterface
                 Rpt1.SetParameters(new ReportParameter("sign4", sign4));
                 Rpt1.SetParameters(new ReportParameter("sign5", sign5));
                 Rpt1.SetParameters(new ReportParameter("sign6", sign6));
+                Rpt1.SetParameters(new ReportParameter("sign7", sign7));
 
                 // Terms & Condition send to report//
                 Rpt1.SetParameters(new ReportParameter("terms1", terms1));
