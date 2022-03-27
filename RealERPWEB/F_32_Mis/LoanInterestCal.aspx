@@ -88,7 +88,7 @@
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Left" />
-                                                <FooterStyle Font-Bold="True" Font-Size="12pt" ForeColor="White" />
+                                                <FooterStyle Font-Bold="True" Font-Size="12pt" ForeColor="Black" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Principal">
@@ -98,7 +98,7 @@
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" Font-Size="12pt" ForeColor="White" />
+                                                <FooterStyle Font-Bold="True" Font-Size="12pt" ForeColor="Black" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Payment">
@@ -128,7 +128,7 @@
                                                         Width="70px"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
-                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" ForeColor="White" />
+                                                <FooterStyle Font-Bold="True" HorizontalAlign="Right" ForeColor="Black" />
 
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
                                             </asp:TemplateField>
@@ -140,7 +140,7 @@
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFDays" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="White" Style="text-align: right" Width="75px"></asp:Label>
+                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                                 <ItemStyle HorizontalAlign="Right" />
@@ -166,7 +166,7 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                                 <FooterTemplate>
                                                     <asp:Label ID="lgvFInst" runat="server" Font-Bold="True" Font-Size="12px"
-                                                        ForeColor="White" Style="text-align: right" Width="75px"></asp:Label>
+                                                        ForeColor="Black" Style="text-align: right" Width="75px"></asp:Label>
                                                 </FooterTemplate>
                                                 <FooterStyle Font-Bold="True" HorizontalAlign="Right" />
                                                 <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />

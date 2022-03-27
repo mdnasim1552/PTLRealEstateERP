@@ -134,7 +134,7 @@ namespace RealERPWEB.F_23_CR
                         case "3310": //RCU
 
                         case "3349":
-                        //case "3101":
+                        case "3364":
                             this.chkConsolidate.Checked = false;
                             this.chkConsolidate.Visible = false;
                             break;
