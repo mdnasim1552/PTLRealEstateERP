@@ -467,11 +467,9 @@ namespace RealERPWEB.F_99_Allinterface
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                HyperLink hlink1 = (HyperLink)e.Row.FindControl("HyInprPrintcsap");
-                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");
-                string pactcode = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "pactcode")).ToString();
+               
+                HyperLink hlink2 = (HyperLink)e.Row.FindControl("hlnkbtnEntrycsap");               
                 string reqno = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "reqno")).ToString();
-                string reqdat = Convert.ToDateTime(DataBinder.Eval(e.Row.DataItem, "reqdat1")).ToString("dd-MMM-yyyy");
                 //hlink1.NavigateUrl = "~/F_99_Allinterface/PurchasePrint?Type=ReqPrint&reqno=" + reqno + "&reqdat=" + reqdat;
                 hlink2.NavigateUrl = "~/F_28_MPro/MktMarketSurvey?Type=Approval&genno=" + reqno;
 

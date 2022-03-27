@@ -398,7 +398,7 @@ namespace RealERPWEB.F_28_MPro
                 dr1["reqrat"] = 0;
                 dr1["preqamt"] = 0;
                 dr1["areqamt"] = 0;
-                dr1["expusedt"] = "";
+                dr1["expusedt"] = "01-Jan-1900";
                 dr1["reqnote"] = "";
                 dr1["justific"] = "";
                 tbl1.Rows.Add(dr1);

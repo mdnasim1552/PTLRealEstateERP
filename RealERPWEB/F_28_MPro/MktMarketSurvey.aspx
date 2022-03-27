@@ -252,7 +252,7 @@
                             <asp:Label ID="lbltitel2" runat="server" CssClass="lblHead" Visible="false"><h4> B. Best Selection</h4> </asp:Label>
                         </div>
                         <div class="card-body" style="min-height: 200px;">
-                            <div class="table-responsive">
+                            
                                 <asp:GridView ID="gvBestSelect" runat="server" AllowPaging="False" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
                                     ShowFooter="True" Width="1009px">
                                     <PagerSettings Visible="False" />
@@ -275,7 +275,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgvacttypeBSel1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'
                                                     Width="80px"></asp:Label>
-                                               
+
                                             </ItemTemplate>
                                             <ItemStyle />
                                         </asp:TemplateField>
@@ -523,7 +523,7 @@
                                             </ItemTemplate>
                                             <ItemStyle />
                                         </asp:TemplateField>
-                                       
+
 
 
 
@@ -534,7 +534,7 @@
                                     <PagerStyle CssClass="gvPagination" />
                                     <HeaderStyle CssClass="grvHeader" />
                                 </asp:GridView>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="card card-fluid mb-2">
@@ -554,7 +554,7 @@
                                                     Width="80px"></asp:Label>
                                                 <asp:Label ID="lblrsircode" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "acttype")) %>'
                                                     Width="80px"></asp:Label>
-                                               
+
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -564,7 +564,7 @@
                                                     Text='<%# Convert.ToString(Container.DataItemIndex+1)+"." %>' Width="35px"></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                       
+
                                         <asp:TemplateField HeaderText="Materials">
                                             <ItemTemplate>
                                                 <asp:LinkButton OnClick="lblgrsirdescs1_Click" ID="lblgrsirdescs1" runat="server" Height="16px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "rsirdesc")) %>'
@@ -576,7 +576,7 @@
                                             <ItemStyle />
                                         </asp:TemplateField>
 
-                                       
+
                                         <asp:TemplateField HeaderText="Used For">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblgreqnote" runat="server" Font-Size="9px" Text='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "reqnote")) %>'
@@ -637,8 +637,8 @@
                                             <FooterStyle HorizontalAlign="right" />
                                             <HeaderStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                       
-                                       
+
+
 
                                         <asp:TemplateField HeaderText="Rate">
 
@@ -797,7 +797,7 @@
                                             </FooterTemplate>
                                             <ItemStyle />
                                         </asp:TemplateField>
-                                       
+
 
                                     </Columns>
                                     <FooterStyle CssClass="grvFooter" />
@@ -923,7 +923,7 @@
                                                                     <ItemStyle HorizontalAlign="Right" />
                                                                 </asp:TemplateField>
 
-                                                                  <asp:TemplateField HeaderText="h9" Visible="false">
+                                                                <asp:TemplateField HeaderText="h9" Visible="false">
                                                                     <ItemTemplate>
                                                                         <asp:TextBox ID="gvText8" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "c8")).ToString("#,##0.00;-#,##0.00;") %>'></asp:TextBox>
                                                                     </ItemTemplate>
@@ -948,7 +948,15 @@
                                                                     <ItemStyle HorizontalAlign="Right" />
                                                                 </asp:TemplateField>
 
-                                                              
+
+                                                                <asp:TemplateField HeaderText="h13" Visible="false">
+                                                                    <ItemTemplate>
+                                                                        <asp:TextBox ID="gvText12" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "c12")).ToString("#,##0.00;-#,##0.00;") %>'></asp:TextBox>
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+
+
                                                                 <asp:TemplateField HeaderText="Total">
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lblToal" Style="text-align: right;" runat="server" Width="70px" Text='<%# Convert.ToDouble(DataBinder.Eval(Container.DataItem, "tamt")).ToString("#,##0.00;-#,##0.00;") %>'></asp:Label>
@@ -1390,30 +1398,28 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
+                                    <div class="col-md-2">
+                                        <asp:Label ID="lblResList2" runat="server" CssClass="lblTxt lblName" Text="Material"></asp:Label>
 
-                                    <asp:Label ID="lblResList2" runat="server" CssClass="lblTxt lblName" Text="Material"></asp:Label>
-
-
-
+                                    </div>
                                     <div class="col-md-4 pading5px">
-                                        <%--   <asp:DropDownList ID="ddlSupl2" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="6">
-                                    </asp:DropDownList>--%>
+
                                         <asp:DropDownList ID="ddlSupl2" Width="280px" runat="server" CssClass="form-control inputTxt chzn-select" TabIndex="6"></asp:DropDownList>
                                     </div>
+                                    <div class="col-md-4">
 
-                                    <asp:LinkButton ID="btnCurr" runat="server" CssClass="formlbl" Text="Currency:" OnClick="btnCurr_Click"></asp:LinkButton>
+                                        <div class="input-group input-group-alt">
+                                            <div class="input-group-prepend">
+                                               <span class="input-group-text">Rate</span>
+                                            </div>
+                                             <asp:TextBox ID="TextRate" runat="server" Style="width: 58px;" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
 
-                                    <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btnok pull-left" Style="margin-left: -45px; padding: 0 6px;" ToolTip="Create List" Target="_blank"
-                                        NavigateUrl="~/F_17_Acc/AccConversion.aspx"><span class="glyphicon glyphicon-plus"></span></asp:HyperLink>
+                                        </div>
+                                    </div>
 
-                                    <asp:DropDownList ID="ddlCurrency" CssClass="fromddss pull-left" Style="margin-left: -19px; width: 61px;" runat="server" OnSelectedIndexChanged="ddlCurrency_SelectedIndexChanged"></asp:DropDownList>
-
-                                    <asp:Label ID="Label22" runat="server" CssClass="formlbl" Text="Con. Rate:"></asp:Label>
-                                    <asp:TextBox ID="lblConRate" runat="server" Style="margin-left: -32px; width: 58px;" CssClass="inputTxt inpPixedWidth" ReadOnly="true"></asp:TextBox>
-
-                                    <asp:Label ID="Label6" runat="server" CssClass="formlbl" Text="Rate:"></asp:Label>
-                                    <asp:TextBox ID="TextRate" runat="server" Style="margin-left: -32px; width: 58px;" CssClass="inputTxt inpPixedWidth"></asp:TextBox>
-                                    <div class="clearfix"></div>
+                                   
+                                   
+                                    
 
                                 </div>
 
@@ -1447,7 +1453,7 @@
                 k1.textBoxHandler(event);
             });
 
-            var gvBestSelect = $('#<%=this.gvBestSelect.ClientID %>');
+           <%-- var gvBestSelect = $('#<%=this.gvBestSelect.ClientID %>');
             gvBestSelect.gridviewScroll({
                 width: 1220,
                 height: 310,
@@ -1472,7 +1478,7 @@
                 harrowleftimg: "../Image/arrowhl.png",
                 harrowrightimg: "../Image/arrowhr.png",
                 freezesize: 7
-            });
+            });--%>
             <%-- var gvBestSelect = $('#<%=this.gvBestSelect.ClientID %>');
             gvBestSelect.Scrollable();--%>
             <%--  var gvResInfo = $('#<%=this.gvResInfo.ClientID %>');
