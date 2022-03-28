@@ -1174,7 +1174,7 @@ namespace RealERPWEB.F_17_Acc
                             this.PrintReceiveAndPayment01Credence();
                             break;
 
-                        //case "3101":
+                        case "3101":
                         case "3358":
                         case "3359":
                         case "3360":

@@ -165,9 +165,15 @@ namespace RealERPWEB.F_81_Hrm.F_83_Att
             string comcod = hst["comcod"].ToString();
             string empid = this.ddlEmpName.SelectedValue.ToString();
             string month = this.ddlMonth.SelectedValue.ToString();
-            string month1 = month;
+            //string month1 = month;
+            //string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
+            //string monyr = this.ddlMonth.SelectedValue.ToString();
+
+            string month1 = ASTUtility.Right(month.Trim(), 2); // month.PadLeft(2, '0');
             string year = ASTUtility.Right(this.ddlMonth.SelectedItem.Text.Trim(), 4);
-            string monyr = this.ddlMonth.SelectedValue.ToString();
+            string monyr = month1 + year;
+
+
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_ENTRY_EMPABSENT", "DELETEABSCT", empid, monyr, "", "", "", "", "", "", "", "", "", "", "", "", "");
             if (result == false)
             {
