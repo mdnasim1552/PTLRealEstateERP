@@ -100,11 +100,6 @@ namespace RealERPLIB
 
 
         }
-
-
-
-
-
         private void SetError(Exception exp)
         {
             this._errObj["Src"] = exp.Source;

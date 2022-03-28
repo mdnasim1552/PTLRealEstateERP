@@ -20,8 +20,8 @@
                 var k1 = new KeyPress();
                 k1.textBoxHandler(event);
             });
-            var gvAnnIncre = $('#<%=this.gvAnnIncre.ClientID %>');
-            gvAnnIncre.Scrollable();
+           <%-- var gvAnnIncre = $('#<%=this.gvAnnIncre.ClientID %>');
+            gvAnnIncre.Scrollable();--%>
 
             var gridview = $('#<%=this.gvAnnIncre.ClientID %>');
             $.keynavigation(gridview);
