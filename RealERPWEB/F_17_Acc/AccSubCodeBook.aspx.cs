@@ -953,6 +953,7 @@ namespace RealERPWEB.F_17_Acc
                     : ((isircode != tsircode) ? tsircode : isircode);
 
                 string mnumber = (isircode == tsircode) ? "" : "manual";
+                
 
                 string Desc = this.txtresourcehead.Text.Trim();
                 string DescBN = this.txtresourceheadBN.Text.Trim();
@@ -968,6 +969,7 @@ namespace RealERPWEB.F_17_Acc
                 string txtTDetails = this.txtTDetails.Text.Trim();
 
                 string sphone = this.txtSupPhone.Text.ToString();
+                string ssno = ASTUtility.Left(tsircode, 2)+"%";
 
                 bool isResultValid = true;
                 bool isSupPhone = false;
@@ -999,7 +1001,7 @@ namespace RealERPWEB.F_17_Acc
 
                         if ((ASTUtility.Left(tsircode, 2) == "98") || (ASTUtility.Left(tsircode, 2) == "99"))
                         {
-                            DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, "", "", "", "", "", "", "");
+                            DataSet ds1 = da.GetTransInfo(comcod, "SP_ENTRY_CODEBOOK", "CHKDUPLICATEMOBILE", sphone, ssno, "", "", "", "", "", "");
                             if (ds1.Tables[0].Rows.Count > 0)
                             {
                                 msg = "Mobile/Phone Number Already Exist";
