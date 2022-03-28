@@ -60,6 +60,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.comlist.Visible = true;
                     this.Company();
                 }
+
                 this.lbtnOk_Click(null,null);
 
             }
@@ -117,6 +118,7 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
         private void SelectView()
         {
             string type = this.Request.QueryString["Type"].ToString().Trim();
+            string comcod = this.GetCompCode();
             switch (type)
             {
                 case "joiningRpt":
@@ -124,9 +126,21 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     break;
 
                 case "JoinigdWise":
+                    if (comcod == "3101" || comcod == "3315")
+                    {
+
+                        this.pnlDesig.Visible = true;
+
+                    }
                     this.MultiView1.ActiveViewIndex = 1;
                     break;
                 case "EmpList":
+                    if(comcod=="3101" || comcod=="3315")
+                    {
+
+                        this.pnlDesig.Visible = true;
+
+                    }
                     this.lblfrmdate.Visible = false;
                     this.txtFdate.Visible = false;
                     this.lbltodate.Visible = false;
@@ -177,6 +191,13 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
                     this.MultiView1.ActiveViewIndex = 10;
                     break;
                 case "TotalEmplist":
+
+                    if (comcod == "3101" || comcod == "3315")
+                    {
+
+                        this.pnlDesig.Visible = true;
+
+                    }
                     this.lblfrmdate.Visible = false;
                     this.txtFdate.Visible = false;
                     this.lbltodate.Visible = false;
@@ -517,7 +538,11 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    //pnlDesig.Visible = true;
+                case "3315":
+                case "3101":
+
+
+                    pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
@@ -552,7 +577,10 @@ namespace RealERPWEB.F_81_Hrm.F_92_Mgt
             switch (comcod)
             {
                 case "3102":
-                    //pnlDesig.Visible = true;
+                case "3315":
+                case "3101":
+
+                   // pnlDesig.Visible = true;
 
                     DesigFrom = this.ddlfrmDesig.SelectedValue.ToString();
                     DesigTo = this.ddlToDesig.SelectedValue.ToString();
