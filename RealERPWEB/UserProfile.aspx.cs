@@ -137,6 +137,7 @@ namespace RealERPWEB
             }
             this.UDptment.InnerHtml = hst["dptdesc"].ToString();
             this.UDesignation.InnerHtml = hst["usrdesig"].ToString();
+
             UserName.InnerHtml =  hst["userfname"].ToString();
             UserName1.InnerHtml = "<b>" + hst["username"].ToString() + "!!</b>  do you want to enable Notifications Panel in your Main Dashboard? (Note: ON for Enable and OFF for Disable)";
             userimg.ImageUrl = hst["userimg"].ToString();
@@ -190,20 +191,7 @@ namespace RealERPWEB
             ViewState.Remove("tblgrph");
             ((Label)this.Master.FindControl("lblprintstk")).Text = "";
             Hashtable hst = (Hashtable)Session["tblLogin"];
-            string empid = hst["empid"].ToString();
-
-            //this.lblServHead.Visible = true;
-            //this.lbAttHead.Visible = true;
-            //this.lblgraph.Visible = true;
-            //this.lblleaveHis.Visible = true;
-            //this.EmpUserImg.Visible = true;
-            //   this.AttHistoryGraph.Visible = true;
-            //this.hyplPreviewCv.Visible = true;
-            //this.Lbljobres.Visible = true;
-
-
-            // this.EmpUserImg.ImageUrl = "~/GetImage.aspx?ImgID=ImgUser";
-            //ViewState.Remove("tblservices");
+            string empid = hst["empid"].ToString(); 
             string comcod = this.GetCompCode();
 
             string qempid = this.Request.QueryString["empid"] ?? "";
@@ -256,8 +244,6 @@ namespace RealERPWEB
             }
 
             DataTable dt3 = (DataTable)ViewState["tblAttHist"];
-
-
             DataTable dt1 = (DataTable)ViewState["tblgrph"];
 
             DataRow dr1 = dt1.NewRow();
@@ -268,6 +254,11 @@ namespace RealERPWEB
             dr1["leave"] = Convert.ToDouble((Convert.IsDBNull(dt3.Compute("Sum(leave)", "")) ? 0.00 : dt3.Compute("Sum(leave)", ""))).ToString("#,##0;(#,##0)"); ; ;
             dt1.Rows.Add(dr1);
             ViewState["tblgrph"] = dt1;
+
+            //DataSet ds2 = HRData.GetTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_EMPSTATUS", "GETMYALLINFORMATION", empid, Date, "", "", "", "", "", "", "");
+
+
+
             this.Data_Bind();
 
 
