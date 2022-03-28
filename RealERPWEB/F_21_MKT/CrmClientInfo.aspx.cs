@@ -511,12 +511,20 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.SelectedValue = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
                         break;
                     case "0302003": //Team Leader
+
+                        gempid = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+
                         dv1 = ((DataTable)ViewState["tblsubddl"]).Copy().DefaultView; ;
                         if (userrole == "1")
                             dv1.RowFilter = ("gcod like '93%'");
                         else
+                        {
+                            if(gempid.Length>0)
+                                dv1.RowFilter = ("gcod like '" + teamid + "' or gcod like '"+ gempid + "'");
 
-                            dv1.RowFilter = ("gcod like '" + teamid + "'");
+                            else 
+                                dv1.RowFilter = ("gcod like '" + teamid + "'");
+                        }
 
 
 
@@ -528,7 +536,7 @@ namespace RealERPWEB.F_21_MKT
                         ddlgval.DataSource = dv1.ToTable();
                         ddlgval.DataBind();
                         //ddlgval.Items.Insert(0, new ListItem("--Please Select--", ""));
-                        gempid = ((TextBox)this.gvSourceInfo.Rows[i].FindControl("txtgvVal")).Text.Trim();
+                       
                         // empid = gempid.Length == 0 ? empid : gempid;
                         ddlgval.SelectedValue = gempid;
 
