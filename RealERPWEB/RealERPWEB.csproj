@@ -3044,6 +3044,7 @@
     <Content Include="F_81_Hrm\F_92_Mgt\HREmpConfirmation.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\HrLeaveApprovalForm.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAtt.aspx" />
+    <Content Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceHROld.aspx" />
     <Content Include="F_81_Hrm\F_92_Mgt\InterfaceLeavApp.aspx" />
@@ -4498,6 +4499,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\EntrySectionWisePermission.aspx.designer.cs">
       <DependentUpon>EntrySectionWisePermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx.cs">
+      <DependentUpon>InterfaceAttApp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceAttApp.aspx.designer.cs">
+      <DependentUpon>InterfaceAttApp.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_92_Mgt\InterfaceHR.aspx.cs">
       <DependentUpon>InterfaceHR.aspx</DependentUpon>

@@ -287,9 +287,10 @@
                                             <abbr title="Required">*</abbr>
                                         </label>
                                         <asp:DropDownList runat="server" ID="ddlReqType" class="custom-select d-block w-100" required="">                                            
-                                            <asp:ListItem Value="LA">Late Present Approval Request</asp:ListItem>
+                                            <asp:ListItem Value="LP">Late Present Approval Request</asp:ListItem>
                                             <asp:ListItem Value="TC">Time Correction Approval Request</asp:ListItem>
                                             <asp:ListItem Value="AB">Absent Approval Request</asp:ListItem>
+                                            <asp:ListItem Value="LA">Late Approval Request</asp:ListItem>
                                             
                                         </asp:DropDownList>
 
