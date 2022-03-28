@@ -761,7 +761,7 @@ namespace RealERPWEB.F_81_Hrm.F_84_Lea
                     dt.Rows[i]["lapplied"] = leaveday;
                     dt.Rows[i]["lenjoydt1"] = stdat;
                     dt.Rows[i]["lenjoydt2"] = endat;
-                    double enjleave = Convert.ToDouble(dt1.Rows[i]["ltaken"]);
+                    //double enjleave = Convert.ToDouble(dt1.Rows[i]["ltaken"]);
                     double Clsleave = Convert.ToDouble(dt1.Rows[i]["pbal"]);
                     dt1.Rows[i]["applyday"] = leaveday;
                     dt1.Rows[i]["appday"] = leaveday;
