@@ -139,7 +139,6 @@ namespace RealERPWEB
                     this.HypOldModules.Visible = false;                 
                     this.lnkFormLink.Visible = true;
                     this.hypTimeOfleave.Visible = true;
-                    this.hypTimeOfleave.NavigateUrl = "#";
                     this.lnkFormLink.NavigateUrl = "https://www.facebook.com/groups/btiforum";
                     break;                   
                 case "3315":
@@ -159,6 +158,8 @@ namespace RealERPWEB
             hypOnlineAttendance.Visible = (dt.Rows.Count == 0) ? false : true;
             this.HypLinkApplyLvCommon.NavigateUrl = "~/F_81_Hrm/F_84_Lea/MyLeave?Type=MGT";
             this.hypOnlineAttendance.NavigateUrl = "~/F_81_Hrm/F_83_Att/AttnOutOfOffice";
+            this.hypTimeOfleave.NavigateUrl = "~/F_81_Hrm/F_84_Lea/TimeOfLeave?Type=Ind";
+
 
         }
 

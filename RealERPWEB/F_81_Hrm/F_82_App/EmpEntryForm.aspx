@@ -240,6 +240,16 @@
                                             <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="User Create">
+                                            <ItemTemplate>
+                                                            <asp:LinkButton ID="lnkUserGenarate" ToolTip="User Create" OnClick="lnkUserGenarate_Click" 
+                                                                runat="server" Visible='<%#Convert.ToBoolean(DataBinder.Eval(Container.DataItem, "genbtn"))%>' 
+                                                                CssClass="btn btn-sm btn-primary "> User Generate</asp:LinkButton>
+                                                
+                                            </ItemTemplate>
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Top" />
+                                            <ItemStyle HorizontalAlign="left" VerticalAlign="Top" />
+                                        </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="">
@@ -251,7 +261,8 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
+                                                            <asp:LinkButton ID="lnkbtnEdit" ToolTip="Employee Name Edit" OnClick="lnkbtnEdit_Click" runat="server" 
+                                                                Visible='<%# Convert.ToString(DataBinder.Eval(Container.DataItem, "idcardno")).Length==0? true:false %>' CssClass="dropdown-item "><i class="fa fa-edit "></i> Edit</asp:LinkButton>
                                                         </li>
                                                         <li class="mt-2">
                                                             <asp:HyperLink ID="lnkView" Target="_blank" ToolTip="Employee Information view"
