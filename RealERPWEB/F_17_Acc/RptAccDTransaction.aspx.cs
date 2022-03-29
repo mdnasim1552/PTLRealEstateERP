@@ -2230,14 +2230,14 @@ namespace RealERPWEB.F_17_Acc
             Session.Remove("recandpay");
             Hashtable hst = (Hashtable)Session["tblLogin"];
             string fromdate = Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy");
-            string todate = Convert.ToDateTime(this.txtfrmdat2.Text).ToString("dd-MMM-yyyy");
+            string todate = Convert.ToDateTime(this.txttodat2.Text).ToString("dd-MMM-yyyy");
             string comcod = GetCompCode();
             string rp = "RP";
             string CBorBoth = (this.rbtncashbank2.SelectedIndex == 0) ? "C" : (this.rbtncashbank2.SelectedIndex == 1) ? "B" : "";
             string prjcode = this.ddlproject2.SelectedValue.ToString();
-            //string CallType = (this.rbtnlistrp02.SelectedIndex == 0 || this.rbtnlistrp02.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANK" : "RPTRECEIPTPAYMENT";
-            
-            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", "RPTRECEIPTPAYMENTPRJWISE", fromdate, todate, rp, CBorBoth, prjcode, "", "", "", "");
+            string CallType = (this.rbtncashbank2.SelectedIndex == 0 || this.rbtncashbank2.SelectedIndex == 1) ? "RPTRECEIPTPAYMENTCASHORBANKPRJWISE" : "RPTRECEIPTPAYMENTPRJWISE";
+
+            DataSet ds1 = MktData.GetTransInfo(comcod, "SP_REPORT_ACCOUNTS_RP", CallType, fromdate, todate, rp, CBorBoth, prjcode, "", "", "", "");
             if (ds1 == null)
                 return;
 
