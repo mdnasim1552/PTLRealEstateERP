@@ -42,5 +42,25 @@ namespace RealEntity.C_28_Mpro
             public RptMktPurchaseRequisition() { }
 
         }
+
+        [Serializable]
+        public class RptMktPurchaseTrack
+        {
+            public string grp { get; set; }
+            public string grpdesc { get; set; }
+            public string genno { get; set; }
+            public string gdate { get; set; }
+            public string refno { get; set; }
+            public string chlno { get; set; }
+            public string prtypedesc { get; set; }
+            public string acttypedesc { get; set; }
+            public string mkttypedesc { get; set; }
+            public double qty { get; set; }
+            public double rate { get; set; }
+            public double amt { get; set; }
+            public string ssirdesc { get; set; }
+            public string usrname { get; set; }
+            public RptMktPurchaseTrack() { }
+        }
     }
 }
