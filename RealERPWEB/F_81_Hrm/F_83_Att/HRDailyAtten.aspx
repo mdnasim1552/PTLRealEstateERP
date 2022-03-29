@@ -14,16 +14,11 @@
                 var gv = $('#<%=this.gvDailyAttn.ClientID%>');
                 gv.Scrollable();
             }
-
-
             catch (e)
             {
 
                 alert(e);
             }
-
-
-
         };
 
 

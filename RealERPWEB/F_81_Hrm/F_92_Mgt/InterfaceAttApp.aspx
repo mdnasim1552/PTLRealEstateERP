@@ -182,8 +182,8 @@
 
 
 
-            var gvLvReq = $('#<%=this.gvLvReq.ClientID %>');
-            gvLvReq.Scrollable();
+             var gvAttReq = $('#<%=this.gvAttReq.ClientID %>');
+                gvAttReq.Scrollable();
 
             var gvInprocess = $('#<%=this.gvInprocess.ClientID %>');
             gvInprocess.Scrollable();
@@ -203,7 +203,7 @@
  
                 var strData = strKey.value.toLowerCase().split(" ");
                 /*alert()*/
-                   var tblData = document.getElementById("<%=this.gvLvReq.ClientID %>");
+                   var tblData = document.getElementById("<%=this.gvAttReq.ClientID %>");
 
                    var rowData;
                    for (var i = 1; i < tblData.rows.length; i++) {
@@ -332,7 +332,7 @@
 
 
                         <div class="col-md-2">
-                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Leave Apply</asp:HyperLink>
+                            <asp:HyperLink ID="HyperLink7" runat="server" Target="_blank" NavigateUrl="~/F_81_Hrm/F_84_Lea/MyLeave.aspx?Type=User" CssClass="btn btn-md btn-danger full-right">Apply</asp:HyperLink>
 
                         </div>
 
@@ -390,8 +390,8 @@
                                             <div class="row">
                                                 <div class="table-responsive col-lg-12" style="min-height: 350px;">
 
-                                                    <asp:GridView ID="gvLvReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
-                                                        ShowFooter="True" OnRowDataBound="gvLvReq_RowDataBound">
+                                                    <asp:GridView ID="gvAttReq" runat="server" AutoGenerateColumns="False" CssClass="table-striped table-hover table-bordered grvContentarea"
+                                                        ShowFooter="True" OnRowDataBound="gvAttReq_RowDataBound">
                                                         <RowStyle />
                                                         <Columns>
                                                             <asp:TemplateField HeaderText="Sl">
