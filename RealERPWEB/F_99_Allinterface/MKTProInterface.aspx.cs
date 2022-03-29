@@ -137,10 +137,10 @@ namespace RealERPWEB.F_99_Allinterface
 
             this.RadioButtonList1.Items[5].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-sky-blue counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-sky-blue'><div class='circle-tile-description text-faded'>Purchase Order</div></div></div>";
 
-            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading green counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordfapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content green'><div class='circle-tile-description text-faded'>Ord. 1st App</div></div></div>";
+            this.RadioButtonList1.Items[6].Text = "<div class='circle-tile'><a><div class='circle-tile-heading lime counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordfapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content lime'><div class='circle-tile-description text-faded'>Ord. 1st App</div></div></div>";
 
 
-            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading red counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordfinapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content red'><div class='circle-tile-description text-faded'>Ord. final App</div></div></div>";
+            this.RadioButtonList1.Items[7].Text = "<div class='circle-tile'><a><div class='circle-tile-heading chocolate counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["ordfinapp"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content chocolate'><div class='circle-tile-description text-faded'>Ord. final App</div></div></div>";
 
             this.RadioButtonList1.Items[8].Text = "<div class='circle-tile'><a><div class='circle-tile-heading deep-pink counter'>" + Convert.ToDouble(ds1.Tables[6].Rows[0]["mrr"]).ToString("#,##0;(#,##0); ") + "</div></a><div class='circle-tile-content deep-pink'><div class='circle-tile-description text-faded'>Received</div></div></div>";
 
@@ -405,7 +405,7 @@ namespace RealERPWEB.F_99_Allinterface
 
 
 
-                hlnkgvgvmrfno.NavigateUrl = "~/F_14_Pro/RptPurchasetracking?Type=Purchasetrk&reqno=" + reqno + "&comcod=" + comcod1;
+                hlnkgvgvmrfno.NavigateUrl = "~/F_28_MPro/RptMktPurchaseTracking?Type=PurchaseTrk&reqno=" + reqno + "&comcod=" + comcod1;
 
 
             }

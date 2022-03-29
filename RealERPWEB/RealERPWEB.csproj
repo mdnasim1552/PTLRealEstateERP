@@ -2646,6 +2646,7 @@
     <Content Include="F_26_Alert\GenPage.aspx" />
     <Content Include="F_28_MPro\MktProGenCodeBook.aspx" />
     <Content Include="F_28_MPro\MktWorkOrderEntry.aspx" />
+    <Content Include="F_28_MPro\RptMktPurchaseTracking.aspx" />
     <Content Include="F_29_Fxt\DepreciationCharge.aspx" />
     <Content Include="F_29_Fxt\EntryDepCharge.aspx" />
     <Content Include="F_29_Fxt\EntryFixAssetTransITStock.aspx" />
@@ -2974,6 +2975,7 @@
     <Content Include="F_81_Hrm\F_84_Lea\RptEmpMonthLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptHREmpLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx" />
+    <Content Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx" />
     <Content Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpAllow.aspx" />
     <Content Include="F_81_Hrm\F_85_Lon\EmpDeducOther.aspx" />
@@ -4039,6 +4041,13 @@
     <Compile Include="F_28_MPro\MktWorkOrderEntry.aspx.designer.cs">
       <DependentUpon>MktWorkOrderEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="F_28_MPro\RptMktPurchaseTracking.aspx.cs">
+      <DependentUpon>RptMktPurchaseTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_28_MPro\RptMktPurchaseTracking.aspx.designer.cs">
+      <DependentUpon>RptMktPurchaseTracking.aspx</DependentUpon>
+    </Compile>
     <Compile Include="F_29_Fxt\EntryFixAssetTransITStock.aspx.cs">
       <DependentUpon>EntryFixAssetTransITStock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4332,6 +4341,13 @@
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\RptYearlyLeaveRecord.aspx.designer.cs">
       <DependentUpon>RptYearlyLeaveRecord.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx.cs">
+      <DependentUpon>TimeOfLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="F_81_Hrm\F_84_Lea\TimeOfLeave.aspx.designer.cs">
+      <DependentUpon>TimeOfLeave.aspx</DependentUpon>
     </Compile>
     <Compile Include="F_81_Hrm\F_84_Lea\UploadLeavExcel.aspx.cs">
       <DependentUpon>UploadLeavExcel.aspx</DependentUpon>
@@ -11986,6 +12002,7 @@
   <ItemGroup>
     <Content Include="Report\RptPurchaseOrderTropical.rdlc" />
     <Content Include="Report\RptPurchaseOrderLanco.rdlc" />
+    <EmbeddedResource Include="Report\RptMktPurchaseOrder.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderCube.rdlc" />
     <EmbeddedResource Include="Report\RptPurchaseOrderEDR.rdlc" />
     <Content Include="Report\RptPurchaseOrderAssure.rdlc" />

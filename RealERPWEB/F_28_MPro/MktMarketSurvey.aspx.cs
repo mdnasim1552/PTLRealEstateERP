@@ -739,7 +739,7 @@ namespace RealERPWEB.F_28_MPro
             }
 
 
-            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContentFail('" + "Market Servey Updated successfully" + "');", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "CallMyFunction", "showContent('" + "Market Survey Updated successfully" + "');", true);
 
             if (ConstantInfo.LogStatus == true)
             {
