@@ -374,11 +374,11 @@
             transition: all 0.3s ease-in-out 0s;
         }
 
-            .circle-tile-footer:hover {
-                background-color: rgba(0, 0, 0, 0.2);
-                color: rgba(255, 255, 255, 0.5);
-                text-decoration: none;
-            }
+        .circle-tile-footer:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+        }
 
         .circle-tile-heading.dark-blue:hover {
             background-color: #8E44AD;
@@ -409,9 +409,14 @@
         }
 
         .circle-tile-heading.deep-pink:hover {
+            background-color: #A52A2A;
+        }
+        .circle-tile-heading.lime:hover {
             background-color: #00BFFF;
         }
-
+        .circle-tile-heading.chocolate:hover {
+            background-color: #32CD32;
+        }
         .tile-img {
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
         }
@@ -463,7 +468,12 @@
         .deep-pink {
             background-color: #FF1493;
         }
-
+        .lime{
+            background-color:#32CD32;
+        }
+        .chocolate{
+            background-color:#A52A2A;
+        }
         .text-dark-blue {
             color: #34495E;
         }
@@ -495,7 +505,13 @@
         .text-deep-pink {
             color: #FF1493;
         }
-
+        .text-lime {
+            color: #32CD32;
+        }
+        .text-chocolate{
+            color: #A52A2A;
+        }
+        
         .text-faded {
             color: rgba(255, 255, 255, 0.7);
         }
