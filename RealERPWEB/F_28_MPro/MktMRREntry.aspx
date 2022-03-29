@@ -24,8 +24,8 @@
             });
 
 
-            var gridview = $('#<%=this.gvMRRInfo.ClientID %>');
-            $.keynavigation(gridview);
+          <%--  var gridview = $('#<%=this.gvMRRInfo.ClientID %>');
+            $.keynavigation(gridview);--%>
             $('.chzn-select').chosen({ search_contains: true });
 
 
