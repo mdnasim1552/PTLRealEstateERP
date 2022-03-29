@@ -1970,6 +1970,9 @@ namespace RealERPLIB
             tblObj.Rows.Add(new Object[] { "8102000", "8102055", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=SalResign&Entry=Payroll", "Actual Salary Sheet(Resign)", "PayRoll", "False", "False", "False", "False" });
 
             tblObj.Rows.Add(new Object[] { "8102000", "8102049", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Bonus&Entry=Payroll", "Festival Bonus", "PayRoll", "False", "False", "False", "False" }); ;
+            tblObj.Rows.Add(new Object[] { "8102000", "8102253", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=SpecialBonus&Entry=Payroll", "Special Purpose Bonus", "PayRoll", "False", "False", "False", "False" }); ;
+
+
             tblObj.Rows.Add(new Object[] { "8102000", "8102050", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Payslip", "Pay Slip", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102051", "F_81_Hrm/F_89_Pay", "RpHRtPayroll?", "Type=Signature", "Signature Sheet", "PayRoll", "False", "False", "False", "False" }); ;
             tblObj.Rows.Add(new Object[] { "8102000", "8102052", "F_81_Hrm/F_89_Pay", "EmpOverTimeSalary?", "Type=OvertimeSalary", "Overtime Allowance ", "PayRoll", "False", "False", "False", "False" }); ;
@@ -14880,11 +14883,13 @@ namespace RealERPLIB
             mnuTbl1.Rows.Add(new Object[] { "0408000000", "Payroll Reports", "", "", false, "mb" });
 
             //mnuTbl1.Rows.Add(new Object[] { "0408000000", "General Reports", "", "", false, "mb" });
-           
+            
 
             mnuTbl1.Rows.Add(new Object[] { "0408000001", "01. Actual Salary Sheet", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Salary&Entry=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000002", "01. Actual Salary Sheet(Resign)", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=SalResign&Entry=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000003", "02. Festival Bonus", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Bonus&Entry=Payroll", "", true, "" });
+            mnuTbl1.Rows.Add(new Object[] { "0408000003", "02. Special Purpose Bonus", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=SpecialBonus&Entry=Payroll", "", true, "" });
+
             mnuTbl1.Rows.Add(new Object[] { "0408000004", "03. Employee Status", "F_81_Hrm/F_83_Att/RptHREmpStatus?Type=Payroll", "", true, "" });
             mnuTbl1.Rows.Add(new Object[] { "0408000005", "04. Pay Slip", "F_81_Hrm/F_89_Pay/RpHRtPayroll?Type=Payslip", "", true, "" });
             //mnuTbl1.Rows.Add(new Object[] { "0408000006", "05. Envelop Print", "F_81_Hrm/F_89_Pay/RptSalSummary02?Type=RPTENVELOP", "", true, "" });

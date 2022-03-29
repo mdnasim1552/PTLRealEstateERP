@@ -329,8 +329,8 @@ namespace RealERPWEB.F_81_Hrm.F_82_App
             string reqtimeIN = this.lbldadteIntime.Text.Trim();
             string reqtimeOUT = this.lbldadteOuttime.Text.Trim();
             string txtReson = txtAreaReson.Text.Trim();
-            string usetime = "0.00";
-            string postDat = System.DateTime.Today.ToString("yyyy-MM-dd hh:mm:ss");
+            string usetime = "0:00";
+            string postDat = System.DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss");
             string qtype = this.Request.QueryString["Type"] ?? "";
             bool result = HRData.UpdateTransInfo(comcod, "dbo_hrm.SP_REPORT_HR_INTERFACE", "INSERT_REQ_ATTN_CAHNGE", dayID, empid, reqdate, reqtype, reqtimeIN, reqtimeOUT, txtReson, usetime, usrid, postDat, "");
 
