@@ -398,7 +398,7 @@ namespace RealERPWEB.F_28_MPro
                 dr1["reqrat"] = 0;
                 dr1["preqamt"] = 0;
                 dr1["areqamt"] = 0;
-                dr1["expusedt"] = "01-Jan-1900";
+                dr1["expusedt"] = System.DateTime.Today.ToString("dd-MMM-yyyy");
                 dr1["reqnote"] = "";
                 dr1["justific"] = "";
                 tbl1.Rows.Add(dr1);
@@ -444,7 +444,7 @@ namespace RealERPWEB.F_28_MPro
 
 
             string hostname = "http://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.ApplicationPath + "/F_99_Allinterface/";
-            string currentpath = "PurchasePrint.aspx?Type=ReqPrint&reqno=" + mReqNo + "&reqdat=" + CurDate1;
+            string currentpath = "PurchasePrint.aspx?Type=MktReqPrint&reqno=" + mReqNo + "&reqdat=" + CurDate1;
 
             string totalpath = hostname + currentpath;
 
