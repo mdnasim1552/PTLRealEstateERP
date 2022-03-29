@@ -76,7 +76,7 @@
 
             </div>
 
-            <div class="row" id="Lvform" runat="server" visible="false">
+            <div class="row" id="Lvform" runat="server"  >
                 <div class="col-12 col-lg-12 col-xl-3">
                     <section class="card card-fluid" style="min-height: 650px">
                         <header class="card-header">Application for Time Of Leave</header>
@@ -100,23 +100,24 @@
                                 <div class="col-md-6 pl-0">
                                     <div class="form-group">
                                         <label for="sel1" id="frmdate" runat="server">From Time <span class="text-danger">*</span></label>
-                                        <asp:TextBox ID="txtgvenjoydt1" runat="server" TextMode="Time" AutoPostBack="true" class="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtFromTime" runat="server" TextMode="Time"  OnTextChanged="txtFromTime_TextChanged" AutoPostBack="true" class="form-control"></asp:TextBox>
 
                                     </div>
                                 </div>
                                 <div class="col-md-6 pl-0">
                                     <div class="form-group">
                                         <label for="sel1" id="Label1" runat="server">To Time <span class="text-danger">*</span></label>
-                                        <asp:TextBox ID="TextBox2" runat="server" TextMode="Time" AutoPostBack="true" class="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtToTime" runat="server" TextMode="Time" AutoPostBack="true" OnTextChanged="txtToTime_TextChanged" class="form-control"></asp:TextBox>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="ddlLvType">
-                                    Use Time   
+                                    Use Time   (hh:mm:ss)
                                 </label>
-                                <asp:TextBox ID="TextBox3" runat="server" ReadOnly="true" AutoPostBack="true" class="form-control"></asp:TextBox>
+
+                                <asp:TextBox ID="txtUseTime" runat="server" ReadOnly="true" AutoPostBack="true" class="form-control bg-danger" ForeColor="White"></asp:TextBox>
 
                             </div>
                             <div class="form-group">
